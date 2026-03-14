@@ -1,1 +1,119 @@
+---
+import LessonLayout from '../layouts/LessonLayout.astro';
+---
+
+<LessonLayout
+  title="Toán THCS KNTT"
+  description="Hệ thống học toán THCS Kết nối tri thức với cuộc sống"
+  currentSlug=""
+>
+  <div slot="home-sidebar" class="sidebar">
+    <div class="sidebar-title">🧭 Điều hướng</div>
+    <ul class="sidebar-lesson-list">
+      <li>
+        <a href="/lop6" class="active">
+          <span style="font-size:1.2rem;">🍕</span> Toán Lớp 6
+        </a>
+      </li>
+      <li>
+        <a href="/lop7">
+          <span style="font-size:1.2rem;">📐</span> Toán Lớp 7
+        </a>
+      </li>
+      <li>
+        <a href="/lop8">
+          <span style="font-size:1.2rem;">📈</span> Toán Lớp 8
+        </a>
+      </li>
+      <li>
+        <a href="/lop9">
+          <span style="font-size:1.2rem;">🧠</span> Toán Lớp 9
+        </a>
+      </li>
+    </ul>
+
+    <div style="margin-top:2rem; padding:1.25rem; background:#eff6ff; border:2px dashed #bfdbfe; border-radius:12px; text-align:center;">
+      <div style="font-size:2rem; margin-bottom:.5rem;">🚀</div>
+      <h4 style="font-size:.95rem; font-weight:700; color:#1d4ed8; margin-bottom:.5rem;">Cập nhật mới!</h4>
+      <p style="font-size:.8rem; color:#475569; margin:0; line-height:1.4;">Đã thêm các bài giảng tương tác cho lớp 6, 7, 8.</p>
+    </div>
+  </div>
+
+  <div class="hero" style="border-radius: 20px; margin-bottom: 3rem; background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #0d9488 100%);">
+    <h1 class="animate-fade-in-up">Toán Học Tương Tác</h1>
+    <p class="animate-fade-in-up" style="animation-delay: 0.1s; max-width: 650px;">
+      Nền tảng học Toán THCS theo bộ sách <strong>Kết nối tri thức với cuộc sống</strong>.
+      Trực quan, sinh động và dễ hiểu với các bài giảng tương tác, mô phỏng hình học và đồ thị.
+    </p>
+  </div>
+
+  <div style="margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #1e293b; display: flex; align-items: center; gap: 0.5rem;">
+      <span>📚</span> Chọn lớp học của bạn
+    </h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+      {/* Lớp 6 */}
+      <a href="/lop6" class="lesson-card grade-card-6" style="border-top: 4px solid var(--kntt-blue-500); padding-bottom: 2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <span class="lesson-card-grade" style="background:#dbeafe; color:#1d4ed8;">Lớp 6</span>
+          <span style="font-size: 2.5rem;">🍕</span>
+        </div>
+        <h3 class="lesson-card-title" style="font-size: 1.3rem; margin-top: 0.5rem;">Tập hợp & Phân số</h3>
+        <p class="lesson-card-desc" style="margin-top: 0.5rem;">
+          Khám phá tập hợp số tự nhiên, tính chia hết, số nguyên, phân số và các hình học phẳng cơ bản.
+        </p>
+        <div style="margin-top:auto; padding-top:1.5rem; font-weight:600; color:var(--kntt-blue-600); display:flex; align-items:center; gap:.5rem;">
+          Xem mục lục lớp 6 →
+        </div>
+      </a>
+
+      {/* Lớp 7 */}
+      <a href="/lop7" class="lesson-card grade-card-7" style="border-top: 4px solid var(--kntt-teal-500); padding-bottom: 2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <span class="lesson-card-grade" style="background:#ccfbf1; color:#0f766e;">Lớp 7</span>
+          <span style="font-size: 2.5rem;">📐</span>
+        </div>
+        <h3 class="lesson-card-title" style="font-size: 1.3rem; margin-top: 0.5rem;">Đại số & Tam giác</h3>
+        <p class="lesson-card-desc" style="margin-top: 0.5rem;">
+          Số hữu tỉ, số thực, góc và đường thẳng song song, các trường hợp bằng nhau của tam giác, biểu thức đại số.
+        </p>
+        <div style="margin-top:auto; padding-top:1.5rem; font-weight:600; color:var(--kntt-teal-600); display:flex; align-items:center; gap:.5rem;">
+          Xem mục lục lớp 7 →
+        </div>
+      </a>
+
+      {/* Lớp 8 */}
+      <a href="/lop8" class="lesson-card grade-card-8" style="border-top: 4px solid var(--kntt-purple-500); padding-bottom: 2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <span class="lesson-card-grade" style="background:#f3e8ff; color:#7e22ce;">Lớp 8</span>
+          <span style="font-size: 2.5rem;">📈</span>
+        </div>
+        <h3 class="lesson-card-title" style="font-size: 1.3rem; margin-top: 0.5rem;">Hàm số & Tứ giác</h3>
+        <p class="lesson-card-desc" style="margin-top: 0.5rem;">
+          Đa thức, hằng đẳng thức, hàm số bậc nhất và đồ thị, định lý Thalès, tứ giác và tam giác đồng dạng.
+        </p>
+        <div style="margin-top:auto; padding-top:1.5rem; font-weight:600; color:var(--kntt-purple-600); display:flex; align-items:center; gap:.5rem;">
+          Xem mục lục lớp 8 →
+        </div>
+      </a>
+
+      {/* Lớp 9 */}
+      <a href="/lop9" class="lesson-card grade-card-9" style="border-top: 4px solid var(--kntt-orange-500); padding-bottom: 2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <span class="lesson-card-grade" style="background:#ffedd5; color:#c2410c;">Lớp 9</span>
+          <span style="font-size: 2.5rem;">🧠</span>
+        </div>
+        <h3 class="lesson-card-title" style="font-size: 1.3rem; margin-top: 0.5rem;">Hệ phương trình & Đường tròn</h3>
+        <p class="lesson-card-desc" style="margin-top: 0.5rem;">
+          Căn thức, hệ phương trình, phương trình bậc hai, hệ thức lượng, đường tròn nội tiếp và ngoại tiếp.
+        </p>
+        <div style="margin-top:auto; padding-top:1.5rem; font-weight:600; color:var(--kntt-orange-600); display:flex; align-items:center; gap:.5rem;">
+          Xem mục lục lớp 9 →
+        </div>
+      </a>
+    </div>
+  </div>
+
+</LessonLayout>
 
