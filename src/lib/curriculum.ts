@@ -84,7 +84,6 @@ export const curriculumData: Record<string, GradeCurriculum> = {
           {
             title: 'Chương VI: Phân số',
             lessons: [
-              { title: 'Phân số và các phép tính (Demo)', href: '/lop6/phan-so' },
               { title: 'Bài 23: Mở rộng phân số. Phân số bằng nhau', href: '/lop6/bai-23-mo-rong-phan-so' },
               { title: 'Bài 24: So sánh phân số. Hỗn số dương', href: '/lop6/bai-24-so-sanh-phan-so' },
               { title: 'Bài 25: Phép cộng và phép trừ phân số', href: '/lop6/bai-25-cong-tru-phan-so' },
