@@ -1,0 +1,364 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 35: Sự đồng quy của ba đường trung trực, ba đường cao"
+description: "Tâm đường tròn ngoại tiếp và trực tâm - Toán 7 KNTT Chương 9"
+grade: "Lớp 7"
+chapter: "Chương IX: Quan hệ giữa các yếu tố trong tam giác"
+currentSlug: "lop7/bai-35-dong-quy-ba-duong-trung-truc-ba-duong-cao"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Ba đường trung trực của tam giác:",
+    option_a: "Đồng quy tại một điểm",
+    option_b: "Song song với nhau",
+    option_c: "Vuông góc với nhau",
+    option_d: "Không cắt nhau",
+    correct_option: "A",
+    explanation: "Ba đường trung trực của tam giác đồng quy tại một điểm gọi là tâm đường tròn ngoại tiếp.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tâm đường tròn ngoại tiếp tam giác:",
+    option_a: "Cách đều ba đỉnh",
+    option_b: "Cách đều ba cạnh",
+    option_c: "Là trọng tâm",
+    option_d: "Là trực tâm",
+    correct_option: "A",
+    explanation: "Tâm đường tròn ngoại tiếp cách đều ba đỉnh của tam giác.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ba đường cao của tam giác:",
+    option_a: "Đồng quy tại một điểm",
+    option_b: "Song song với nhau",
+    option_c: "Bằng nhau",
+    option_d: "Không cắt nhau",
+    correct_option: "A",
+    explanation: "Ba đường cao của tam giác đồng quy tại một điểm gọi là trực tâm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác vuông, tâm đường tròn ngoại tiếp nằm ở:",
+    option_a: "Trung điểm cạnh huyền",
+    option_b: "Đỉnh góc vuông",
+    option_c: "Trung điểm cạnh góc vuông",
+    option_d: "Bên ngoài tam giác",
+    correct_option: "A",
+    explanation: "Trong tam giác vuông, tâm đường tròn ngoại tiếp là trung điểm cạnh huyền.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Trực tâm của tam giác:",
+    option_a: "Là giao điểm ba đường cao",
+    option_b: "Có thể nằm ngoài tam giác",
+    option_c: "Trùng với đỉnh góc vuông trong tam giác vuông",
+    option_d: "Luôn nằm trong tam giác",
+    correct_option: "A,B,C",
+    explanation: "Trực tâm là giao ba đường cao, có thể nằm ngoài tam giác tù, trùng đỉnh góc vuông trong tam giác vuông.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tam giác $ABC$ vuông tại $A$ có $BC = 10$ cm. Bán kính đường tròn ngoại tiếp là bao nhiêu cm?",
+    correct_option: "5",
+    explanation: "Tâm ngoại tiếp là trung điểm cạnh huyền, bán kính = $\\\\frac{BC}{2} = \\\\frac{10}{2} = 5$ cm",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Đường trung trực và đường cao</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">O</div>
+    <strong>Tâm ngoại tiếp</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ba trung trực</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fca5a5;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">H</div>
+    <strong>Trực tâm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ba đường cao</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="trung-truc">📖 1. Đường trung trực và tâm đường tròn ngoại tiếp</h3>
+
+<div class="box-dinh-nghia">
+
+**Đường trung trực** của một cạnh tam giác là đường thẳng vuông góc với cạnh đó tại trung điểm của nó.
+
+Mỗi tam giác có ba đường trung trực.
+
+</div>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Ba đường trung trực của một tam giác cùng đi qua một điểm. Điểm đó gọi là **tâm đường tròn ngoại tiếp** tam giác.
+
+Tâm đường tròn ngoại tiếp cách đều ba đỉnh của tam giác.
+
+$OA = OB = OC = R$ (bán kính đường tròn ngoại tiếp)
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="350" viewBox="0 0 400 350" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Đường tròn ngoại tiếp */}
+  <circle cx="200" cy="180" r="130" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  {/* Tam giác ABC */}
+  <polygon points="200,50 100,260 300,260" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Ba đường trung trực */}
+  <line x1="200" y1="30" x2="200" y2="330" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="80" y1="155" x2="320" y2="155" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="150" y1="260" x2="250" y2="50" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3"/>
+  
+  {/* Tâm O */}
+  <circle cx="200" cy="180" r="5" fill="#ef4444"/>
+  <text x="210" y="185" font-size="16" font-weight="bold" fill="#ef4444">O</text>
+  
+  {/* Bán kính */}
+  <line x1="200" y1="180" x2="200" y2="50" stroke="#ef4444" stroke-width="2" stroke-dasharray="2,2"/>
+  <text x="205" y="115" font-size="14" fill="#ef4444">R</text>
+  
+  {/* Điểm A, B, C */}
+  <circle cx="200" cy="50" r="4" fill="#1f2937"/>
+  <text x="200" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  <circle cx="100" cy="260" r="4" fill="#1f2937"/>
+  <text x="85" y="280" font-size="16" font-weight="bold" fill="#1f2937">B</text>
+  
+  <circle cx="300" cy="260" r="4" fill="#1f2937"/>
+  <text x="315" y="280" font-size="16" font-weight="bold" fill="#1f2937">C</text>
+  
+  {/* Chú thích */}
+  <text x="200" y="320" font-size="14" text-anchor="middle" fill="#1f2937">OA = OB = OC = R</text>
+</svg>
+</div>
+
+**Ví dụ 1:** Tam giác $ABC$ có tâm đường tròn ngoại tiếp $O$, bán kính $R = 5$ cm. Tính $OA$, $OB$, $OC$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$OA = OB = OC = R = 5$ cm
+
+(Tâm ngoại tiếp cách đều ba đỉnh)
+
+</div>
+
+**Trường hợp đặc biệt:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- **Tam giác nhọn**: Tâm $O$ nằm trong tam giác
+- **Tam giác vuông**: Tâm $O$ là trung điểm cạnh huyền
+- **Tam giác tù**: Tâm $O$ nằm ngoài tam giác
+
+</div>
+
+<h3 id="duong-cao" style="margin-top:2rem;">📖 2. Đường cao và trực tâm</h3>
+
+<div class="box-dinh-nghia">
+
+**Đường cao** của tam giác là đoạn thẳng kẻ từ một đỉnh vuông góc với cạnh đối diện (hoặc đường thẳng chứa cạnh đối diện).
+
+Mỗi tam giác có ba đường cao.
+
+</div>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Ba đường cao của một tam giác cùng đi qua một điểm. Điểm đó gọi là **trực tâm** của tam giác.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="350" viewBox="0 0 400 350" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="200,50 80,280 320,280" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Ba đường cao */}
+  <line x1="200" y1="50" x2="200" y2="280" stroke="#8b5cf6" stroke-width="2"/>
+  <line x1="80" y1="280" x2="260" y2="140" stroke="#8b5cf6" stroke-width="2"/>
+  <line x1="320" y1="280" x2="140" y2="140" stroke="#8b5cf6" stroke-width="2"/>
+  
+  {/* Ký hiệu vuông góc */}
+  <rect x="195" y="275" width="10" height="10" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+  
+  {/* Trực tâm H */}
+  <circle cx="200" cy="190" r="5" fill="#ef4444"/>
+  <text x="210" y="195" font-size="16" font-weight="bold" fill="#ef4444">H</text>
+  
+  {/* Điểm A, B, C */}
+  <circle cx="200" cy="50" r="4" fill="#1f2937"/>
+  <text x="200" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  <circle cx="80" cy="280" r="4" fill="#1f2937"/>
+  <text x="65" y="300" font-size="16" font-weight="bold" fill="#1f2937">B</text>
+  
+  <circle cx="320" cy="280" r="4" fill="#1f2937"/>
+  <text x="335" y="300" font-size="16" font-weight="bold" fill="#1f2937">C</text>
+  
+  {/* Chú thích */}
+  <text x="200" y="330" font-size="14" text-anchor="middle" fill="#1f2937">H là trực tâm</text>
+</svg>
+</div>
+
+**Ví dụ 2:** Tam giác $ABC$ vuông tại $A$. Trực tâm của tam giác nằm ở đâu?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Trong tam giác vuông tại $A$:
+
+- Đường cao từ $A$ vuông góc với $BC$
+- Đường cao từ $B$ chính là $BA$ (vì $BA \perp AC$)
+- Đường cao từ $C$ chính là $CA$ (vì $CA \perp AB$)
+
+Ba đường cao cùng đi qua $A$.
+
+**Vậy trực tâm trùng với đỉnh góc vuông $A$.**
+
+</div>
+
+**Vị trí trực tâm:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- **Tam giác nhọn**: Trực tâm $H$ nằm trong tam giác
+- **Tam giác vuông**: Trực tâm $H$ trùng với đỉnh góc vuông
+- **Tam giác tù**: Trực tâm $H$ nằm ngoài tam giác
+
+</div>
+
+<h3 id="so-sanh" style="margin-top:2rem;">📖 3. Bốn điểm đặc biệt của tam giác</h3>
+
+<div class="box-dinh-ly">
+
+**Bốn điểm đặc biệt:**
+
+1. **Trọng tâm $G$**: Giao ba trung tuyến
+2. **Tâm nội tiếp $I$**: Giao ba phân giác (cách đều ba cạnh)
+3. **Tâm ngoại tiếp $O$**: Giao ba trung trực (cách đều ba đỉnh)
+4. **Trực tâm $H$**: Giao ba đường cao
+
+**Đặc biệt:** Trong tam giác đều, bốn điểm này trùng nhau.
+
+</div>
+
+**Ví dụ 3:** Tam giác $ABC$ vuông tại $A$ có $AB = 6$ cm, $AC = 8$ cm. Tính bán kính đường tròn ngoại tiếp.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tính $BC$: $BC = \sqrt{AB^2 + AC^2} = \sqrt{36 + 64} = 10$ cm
+
+Tâm ngoại tiếp là trung điểm cạnh huyền $BC$
+
+Bán kính: $R = \frac{BC}{2} = \frac{10}{2} = 5$ cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Ba trạm phát sóng $A$, $B$, $C$ tạo thành tam giác. Cần đặt một trạm thu tín hiệu sao cho cách đều ba trạm phát.
+
+a) Trạm thu nên đặt ở đâu?
+
+b) Nếu $AB = 8$ km, $AC = 6$ km, $BC = 10$ km, tính khoảng cách từ trạm thu đến mỗi trạm phát.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Trạm thu đặt tại tâm đường tròn ngoại tiếp $O$ (cách đều ba đỉnh).
+
+b) Kiểm tra: $AB^2 + AC^2 = 64 + 36 = 100 = BC^2$
+
+Tam giác vuông tại $A$.
+
+Tâm ngoại tiếp là trung điểm $BC$.
+
+Khoảng cách: $R = \frac{BC}{2} = \frac{10}{2} = 5$ km
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Ba trung trực** đồng quy tại tâm ngoại tiếp $O$
+- **Tâm ngoại tiếp**: cách đều ba đỉnh, $OA = OB = OC = R$
+- **Ba đường cao** đồng quy tại trực tâm $H$
+- **Tam giác vuông**: $O$ là trung điểm cạnh huyền, $H$ là đỉnh góc vuông
+- **Tam giác đều**: $G = I = O = H$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tam giác $ABC$ có tâm đường tròn ngoại tiếp $O$, bán kính $R = 6$ cm. Tính $OA$, $OB$, $OC$.
+
+**Bài 2:** Tam giác $ABC$ vuông tại $A$ có $BC = 12$ cm. Tính bán kính đường tròn ngoại tiếp.
+
+**Bài 3:** Tam giác $ABC$ vuông tại $B$ có $AB = 5$ cm, $BC = 12$ cm. Tính bán kính đường tròn ngoại tiếp.
+
+**Bài 4:** Chứng minh: Trong tam giác vuông, trực tâm trùng với đỉnh góc vuông.
+
+**Bài 5:** Cho tam giác đều $ABC$ cạnh $a$. Chứng minh trọng tâm, tâm nội tiếp, tâm ngoại tiếp và trực tâm trùng nhau.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** $OA = OB = OC = 6$ cm
+
+**Bài 2:** $R = 6$ cm
+
+**Bài 3:** $AC = 13$ cm, $R = 6.5$ cm
+
+**Bài 4:** Hai cạnh góc vuông chính là hai đường cao
+
+**Bài 5:** Do tính đối xứng của tam giác đều
+
+</div>
+</details>

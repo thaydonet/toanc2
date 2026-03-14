@@ -1,0 +1,490 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 24: So sánh phân số. Hỗn số dương"
+description: "So sánh phân số, hỗn số dương - Toán 6 KNTT Chương 6"
+grade: "Lớp 6"
+chapter: "Chương VI: Phân số"
+currentSlug: "lop6/bai-24-so-sanh-phan-so"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import FractionPie from '../../components/interactive/FractionPie';
+import FractionDenominatorLCM from '../../components/interactive/FractionDenominatorLCM';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "So sánh $\\frac{3}{5}$ và $\\frac{4}{7}$:",
+    option_a: "$\\frac{3}{5} > \\frac{4}{7}$",
+    option_b: "$\\frac{3}{5} < \\frac{4}{7}$",
+    option_c: "$\\frac{3}{5} = \\frac{4}{7}$",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "Quy đồng: $\\frac{3}{5} = \\frac{21}{35}$, $\\frac{4}{7} = \\frac{20}{35}$. Vì $21 > 20$ nên $\\frac{3}{5} > \\frac{4}{7}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số nào lớn hơn $\\frac{2}{3}$?",
+    option_a: "$\\frac{3}{5}$",
+    option_b: "$\\frac{5}{8}$",
+    option_c: "$\\frac{7}{10}$",
+    option_d: "$\\frac{4}{6}$",
+    correct_option: "C",
+    explanation: "$\\frac{2}{3} = \\frac{20}{30} = \\frac{6}{9} = \\frac{7}{10.5}$. $\\frac{7}{10} = 0.7 > 0.666... = \\frac{2}{3}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Viết $2\\frac{3}{4}$ thành phân số:",
+    option_a: "$\\frac{6}{4}$",
+    option_b: "$\\frac{11}{4}$",
+    option_c: "$\\frac{8}{4}$",
+    option_d: "$\\frac{23}{4}$",
+    correct_option: "B",
+    explanation: "$2\\frac{3}{4} = 2 + \\frac{3}{4} = \\frac{8}{4} + \\frac{3}{4} = \\frac{11}{4}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{7}{3}$ viết dưới dạng hỗn số là:",
+    option_a: "$2\\frac{1}{3}$",
+    option_b: "$3\\frac{1}{3}$",
+    option_c: "$2\\frac{2}{3}$",
+    option_d: "$3\\frac{2}{3}$",
+    correct_option: "A",
+    explanation: "$7 : 3 = 2$ dư $1$, nên $\\frac{7}{3} = 2\\frac{1}{3}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "So sánh $-\\frac{3}{7}$ và $-\\frac{4}{9}$:",
+    option_a: "$-\\frac{3}{7} > -\\frac{4}{9}$",
+    option_b: "$-\\frac{3}{7} < -\\frac{4}{9}$",
+    option_c: "$-\\frac{3}{7} = -\\frac{4}{9}$",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "$\\frac{3}{7} = \\frac{27}{63}$, $\\frac{4}{9} = \\frac{28}{63}$. Vì $\\frac{3}{7} < \\frac{4}{9}$ nên $-\\frac{3}{7} > -\\frac{4}{9}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Sắp xếp các phân số $\\frac{1}{2}, \\frac{2}{3}, \\frac{3}{4}$ theo thứ tự tăng dần:",
+    option_a: "$\\frac{1}{2} < \\frac{2}{3} < \\frac{3}{4}$",
+    option_b: "$\\frac{3}{4} < \\frac{2}{3} < \\frac{1}{2}$",
+    option_c: "$\\frac{2}{3} < \\frac{1}{2} < \\frac{3}{4}$",
+    option_d: "$\\frac{1}{2} = \\frac{2}{3} = \\frac{3}{4}$",
+    correct_option: "A",
+    explanation: "$\\frac{1}{2} = 0.5$, $\\frac{2}{3} \\approx 0.67$, $\\frac{3}{4} = 0.75$. Thứ tự tăng dần: $\\frac{1}{2} < \\frac{2}{3} < \\frac{3}{4}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hỗn số $5\\frac{2}{7}$ có phần nguyên là:",
+    option_a: "5",
+    option_b: "2",
+    option_c: "7",
+    option_d: "$\\frac{2}{7}$",
+    correct_option: "A",
+    explanation: "Trong hỗn số $a\\frac{b}{c}$, $a$ là phần nguyên, $\\frac{b}{c}$ là phần phân số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điền dấu $>$, $<$, $=$ vào chỗ chấm: $\\frac{5}{-8}$ ... $-\\frac{3}{4}$",
+    option_a: "$>$",
+    option_b: "$<$",
+    option_c: "$=$",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "$\\frac{5}{-8} = -0.625$, $-\\frac{3}{4} = -0.75$. Vì $-0.625 > -0.75$ nên $\\frac{5}{-8} > -\\frac{3}{4}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số nào lớn nhất trong các phân số: $\\frac{3}{8}, \\frac{5}{12}, \\frac{7}{16}, \\frac{1}{2}$?",
+    option_a: "$\\frac{3}{8}$",
+    option_b: "$\\frac{5}{12}$",
+    option_c: "$\\frac{7}{16}$",
+    option_d: "$\\frac{1}{2}$",
+    correct_option: "D",
+    explanation: "$\\frac{1}{2} = 0.5$, các phân số còn lại đều nhỏ hơn 0.5.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "So sánh $\\frac{-8}{5}$ và $-1\\frac{3}{5}$:",
+    option_a: "$\\frac{-8}{5} > -1\\frac{3}{5}$",
+    option_b: "$\\frac{-8}{5} < -1\\frac{3}{5}$",
+    option_c: "$\\frac{-8}{5} = -1\\frac{3}{5}$",
+    option_d: "Không xác định",
+    correct_option: "C",
+    explanation: "$-1\\frac{3}{5} = -\\frac{8}{5} = \\frac{-8}{5}$. Hai phân số bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🍕 So sánh phần bánh</h3>
+
+Bạn có 2 cái bánh pizza cùng loại:
+
+- Cái thứ nhất chia 4 phần, lấy 3 phần
+- Cái thứ hai chia 8 phần, lấy 5 phần
+
+Phần bánh nào lớn hơn?
+
+<div style="display:flex; gap:2rem; align-items:center; flex-wrap:wrap; justify-content:center; margin:1.5rem 0;">
+  <div style="text-align:center;">
+    <FractionPie client:load numerator={3} denominator={4} size={130} />
+    <p>$\dfrac{3}{4}$</p>
+  </div>
+  <div style="text-align:center;">
+    <FractionPie client:load numerator={5} denominator={8} size={130} />
+    <p>$\dfrac{5}{8}$</p>
+  </div>
+</div>
+
+Để trả lời câu hỏi này, ta cần biết cách **so sánh phân số**.
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="so-sanh-cung-mau" style="margin-top:2rem;">📖 1. So sánh phân số cùng mẫu</h3>
+
+<div class="box-dinh-ly">
+
+Khi so sánh hai phân số **cùng mẫu dương**:
+- Phân số nào có **tử lớn hơn** thì lớn hơn
+- $\dfrac{a}{m} > \dfrac{b}{m} \Leftrightarrow a > b$ (với $m > 0$)
+
+</div>
+
+**Ví dụ 1:** So sánh $\dfrac{5}{8}$ và $\dfrac{7}{8}$
+
+Vì $5 < 7$ nên $\dfrac{5}{8} < \dfrac{7}{8}$
+
+<h3 id="so-sanh-cung-tu" style="margin-top:2rem;">📖 2. So sánh phân số cùng tử</h3>
+
+<div class="box-dinh-ly">
+
+Khi so sánh hai phân số **cùng tử dương**:
+- Phân số nào có **mẫu nhỏ hơn** thì lớn hơn
+- $\dfrac{a}{m} > \dfrac{a}{n} \Leftrightarrow m < n$ (với $a > 0$)
+
+</div>
+
+**Ví dụ 2:** So sánh $\dfrac{3}{7}$ và $\dfrac{3}{5}$
+
+Vì $7 > 5$ nên $\dfrac{3}{7} < \dfrac{3}{5}$
+
+<div style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0;justify-content:center;">
+  <FractionPie client:load numerator={3} denominator={7} size={100} />
+  <FractionPie client:load numerator={3} denominator={5} size={100} />
+</div>
+
+<h3 id="quy-dong-mau" style="margin-top:2rem;">📖 3. Quy đồng mẫu số</h3>
+
+<div class="box-dinh-ly">
+
+Để so sánh các phân số có mẫu khác nhau, ta **quy đồng mẫu số**.
+
+**Cách quy đồng:**
+1. Tìm BCNN của các mẫu (gọi là mẫu chung)
+2. Nhân tử và mẫu của mỗi phân số với số thích hợp để được mẫu chung
+
+</div>
+
+**Ví dụ 3:** Quy đồng mẫu số $\dfrac{3}{4}$ và $\dfrac{5}{6}$
+
+BCNN(4, 6) = 12
+
+$\dfrac{3}{4} = \dfrac{3 \times 3}{4 \times 3} = \dfrac{9}{12}$
+
+$\dfrac{5}{6} = \dfrac{5 \times 2}{6 \times 2} = \dfrac{10}{12}$
+
+<FractionDenominatorLCM client:load />
+
+**So sánh:** Vì $9 < 10$ nên $\dfrac{3}{4} < \dfrac{5}{6}$
+
+<h3 id="so-sanh-phan-so-am" style="margin-top:2rem;">📖 4. So sánh phân số âm</h3>
+
+<div class="box-luu-y">
+
+**Quy tắc:** Khi so sánh hai phân số âm, ta so sánh **giá trị tuyệt đối** của chúng rồi đảo dấu kết quả.
+
+Nghĩa là: $-\dfrac{a}{b} > -\dfrac{c}{d} \Leftrightarrow \dfrac{a}{b} < \dfrac{c}{d}$ (với $a, b, c, d > 0$)
+
+</div>
+
+**Ví dụ 4:** So sánh $-\dfrac{2}{5}$ và $-\dfrac{3}{7}$
+
+Ta có: $\dfrac{2}{5} = \dfrac{14}{35}$, $\dfrac{3}{7} = \dfrac{15}{35}$
+
+Vì $14 < 15$ nên $\dfrac{2}{5} < \dfrac{3}{7}$
+
+Do đó: $-\dfrac{2}{5} > -\dfrac{3}{7}$
+
+<h3 id="hon-so" style="margin-top:2rem;">📖 5. Hỗn số dương</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hỗn số dương là số có dạng:
+
+$$a\frac{b}{c} = a + \frac{b}{c}$$
+
+trong đó $a$ là số nguyên dương, $b, c$ là số tự nhiên và $b < c$
+
+- $a$ gọi là **phần nguyên**
+- $\frac{b}{c}$ gọi là **phần phân số**
+
+</div>
+
+**Chú ý:** Viết gọn là $a\frac{b}{c}$ thay cho $a + \frac{b}{c}$
+
+**Ví dụ 5:** 
+
+a) $2\frac{3}{4}$ đọc là "hai và ba phần tư"
+
+b) $5\frac{1}{2}$ đọc là "năm và một phần hai"
+
+<h3 id="chuyen-doi" style="margin-top:2rem;">📖 6. Chuyển đổi giữa phân số và hỗn số</h3>
+
+<div class="box-dinh-ly">
+
+**a) Đổi hỗn số sang phân số:**
+
+$$a\frac{b}{c} = \frac{a \times c + b}{c}$$
+
+**b) Đổi phân số sang hỗn số (tử > mẫu):**
+
+$$\frac{m}{n} = q\frac{r}{n}$$
+
+trong đó: $m = q \times n + r$ ($0 \leq r < n$)
+
+</div>
+
+**Ví dụ 6a:** Đổi $3\frac{2}{5}$ sang phân số
+
+$$3\frac{2}{5} = \frac{3 \times 5 + 2}{5} = \frac{17}{5}$$
+
+**Ví dụ 6b:** Đổi $\dfrac{17}{4}$ sang hỗn số
+
+$17 : 4 = 4$ dư $1$
+
+$\dfrac{17}{4} = 4\frac{1}{4}$
+
+</KhamPha>
+
+<LuyenTap title="Luyện tập">
+
+**Bài 1:** So sánh các cặp phân số sau:
+
+a) $\dfrac{3}{7}$ và $\dfrac{5}{7}$ b) $\dfrac{2}{9}$ và $\dfrac{2}{5}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) Vì $3 < 5$ nên $\dfrac{3}{7} < \dfrac{5}{7}$
+
+b) Vì $9 > 5$ nên $\dfrac{2}{9} < \dfrac{2}{5}$
+
+</div>
+
+**Bài 2:** Quy đồng rồi so sánh:
+
+a) $\dfrac{3}{4}$ và $\dfrac{5}{6}$ b) $\dfrac{7}{10}$ và $\dfrac{2}{3}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) BCNN(4,6) = 12
+$\dfrac{3}{4} = \dfrac{9}{12}$, $\dfrac{5}{6} = \dfrac{10}{12}$
+Vì $9 < 10$ nên $\dfrac{3}{4} < \dfrac{5}{6}$
+
+b) BCNN(10,3) = 30
+$\dfrac{7}{10} = \dfrac{21}{30}$, $\dfrac{2}{3} = \dfrac{20}{30}$
+Vì $21 > 20$ nên $\dfrac{7}{10} > \dfrac{2}{3}$
+
+</div>
+
+**Bài 3:** So sánh:
+
+a) $-\dfrac{3}{8}$ và $-\dfrac{5}{12}$ b) $-\dfrac{7}{9}$ và $-\dfrac{4}{5}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $\dfrac{3}{8} = \dfrac{9}{24}$, $\dfrac{5}{12} = \dfrac{10}{24}$
+Vì $9 < 10$ nên $\dfrac{3}{8} < \dfrac{5}{12}$
+Do đó: $-\dfrac{3}{8} > -\dfrac{5}{12}$
+
+b) $\dfrac{7}{9} = \dfrac{35}{45}$, $\dfrac{4}{5} = \dfrac{36}{45}$
+Vì $35 < 36$ nên $\dfrac{7}{9} < \dfrac{4}{5}$
+Do đó: $-\dfrac{7}{9} > -\dfrac{4}{5}$
+
+</div>
+
+**Bài 4:** Đổi các hỗn số sau thành phân số:
+
+a) $2\frac{3}{7}$ b) $5\frac{4}{9}$ c) $1\frac{5}{12}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $2\frac{3}{7} = \dfrac{2 \times 7 + 3}{7} = \dfrac{17}{7}$
+
+b) $5\frac{4}{9} = \dfrac{5 \times 9 + 4}{9} = \dfrac{49}{9}$
+
+c) $1\frac{5}{12} = \dfrac{1 \times 12 + 5}{12} = \dfrac{17}{12}$
+
+</div>
+
+**Bài 5:** Đổi các phân số sau thành hỗn số:
+
+a) $\dfrac{17}{5}$ b) $\dfrac{23}{4}$ c) $\dfrac{15}{6}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $17 : 5 = 3$ dư $2$ → $3\frac{2}{5}$
+
+b) $23 : 4 = 5$ dư $3$ → $5\frac{3}{4}$
+
+c) $15 : 6 = 2$ dư $3$ → $2\frac{3}{6} = 2\frac{1}{2}$
+
+</div>
+
+</LuyenTap>
+
+<VanDung title="Vận dụng">
+
+**Bài 1:** Sắp xếp các phân số sau theo thứ tự tăng dần:
+
+$\dfrac{3}{4}, \dfrac{2}{5}, \dfrac{5}{8}, \dfrac{1}{2}$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Quy đồng (mẫu 40):
+$\dfrac{3}{4} = \dfrac{30}{40}$
+$\dfrac{2}{5} = \dfrac{16}{40}$
+$\dfrac{5}{8} = \dfrac{25}{40}$
+$\dfrac{1}{2} = \dfrac{20}{40}$
+
+Thứ tự: $\dfrac{2}{5} < \dfrac{1}{2} < \dfrac{5}{8} < \dfrac{3}{4}$
+
+</div>
+
+**Bài 2:** Một người đi bộ quãng đường AB. Giờ thứ nhất đi được $\dfrac{2}{7}$ quãng đường, giờ thứ hai đi được $\dfrac{3}{8}$ quãng đường. Hỏi giờ nào đi được nhiều hơn?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+BCNN(7,8) = 56
+
+$\dfrac{2}{7} = \dfrac{16}{56}$, $\dfrac{3}{8} = \dfrac{21}{56}$
+
+Vì $16 < 21$ nên $\dfrac{2}{7} < \dfrac{3}{8}$
+
+**Giờ thứ hai đi được nhiều hơn.**
+
+</div>
+
+**Bài 3:** Viết phân số $\dfrac{25}{6}$ dưới dạng hỗn số rồi cho biết phần nguyên và phần phân số.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$25 : 6 = 4$ dư $1$
+
+$\dfrac{25}{6} = 4\frac{1}{6}$
+
+- Phần nguyên: $4$
+- Phần phân số: $\dfrac{1}{6}$
+
+</div>
+
+</VanDung>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Tổng kết bài học:**
+
+**1. So sánh phân số cùng mẫu:**
+$\dfrac{a}{m} > \dfrac{b}{m} \Leftrightarrow a > b$ (với $m > 0$)
+
+**2. So sánh phân số cùng tử:**
+$\dfrac{a}{m} > \dfrac{a}{n} \Leftrightarrow m < n$ (với $a > 0$)
+
+**3. So sánh phân số khác mẫu:**
+- Quy đồng mẫu số
+- So sánh tử số sau khi quy đồng
+
+**4. So sánh phân số âm:**
+- So sánh giá trị tuyệt đối
+- Đảo dấu kết quả
+
+**5. Hỗn số:**
+- $a\frac{b}{c} = \frac{a \times c + b}{c}$
+- $\frac{m}{n} = q\frac{r}{n}$ với $m = q \times n + r$
+
+</div>
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** So sánh các phân số sau (không quy đồng mẫu):
+
+a) $\dfrac{5}{9}$ và $\dfrac{7}{12}$ b) $\dfrac{11}{15}$ và $\dfrac{13}{20}$
+
+**Bài 2:** So sánh các phân số sau:
+
+a) $-\dfrac{3}{7}$ và $-\dfrac{5}{9}$ b) $\dfrac{-4}{11}$ và $\dfrac{-6}{13}$
+
+**Bài 3:** Sắp xếp các phân số sau theo thứ tự tăng dần:
+
+$\dfrac{3}{4}, \dfrac{5}{6}, \dfrac{2}{3}, \dfrac{7}{12}$
+
+**Bài 4:** Đổi các hỗn số sau thành phân số:
+
+a) $3\dfrac{2}{5}$ b) $7\dfrac{4}{9}$ c) $12\dfrac{3}{8}$
+
+**Bài 5:** Đổi các phân số sau thành hỗn số:
+
+a) $\dfrac{17}{4}$ b) $\dfrac{43}{6}$ c) $\dfrac{89}{7}$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\dfrac{5}{9} < \dfrac{7}{12}$; b) $\dfrac{11}{15} > \dfrac{13}{20}$
+
+**Bài 2:** a) $-\dfrac{3}{7} > -\dfrac{5}{9}$; b) $\dfrac{-4}{11} > \dfrac{-6}{13}$
+
+**Bài 3:** $\dfrac{7}{12} < \dfrac{2}{3} < \dfrac{3}{4} < \dfrac{5}{6}$
+
+**Bài 4:** a) $\dfrac{17}{5}$; b) $\dfrac{67}{9}$; c) $\dfrac{99}{8}$
+
+**Bài 5:** a) $4\dfrac{1}{4}$; b) $7\dfrac{1}{6}$; c) $12\dfrac{5}{7}$
+
+</div>
+</details>
+
+<QuizSession client:load questions={quizData} />
+

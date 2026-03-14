@@ -1,0 +1,364 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 18: Biểu đồ hình quạt tròn"
+description: "Biểu đồ hình quạt tròn - Toán 7 KNTT Chương 5"
+grade: "Lớp 7"
+chapter: "Chương V: Thu thập và biểu diễn dữ liệu"
+currentSlug: "lop7/bai-18-bieu-do-hinh-quat-tron"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Biểu đồ hình quạt tròn dùng để biểu diễn:",
+    option_a: "Tỉ lệ phần trăm của các bộ phận so với tổng thể",
+    option_b: "Chỉ số lượng",
+    option_c: "Chỉ thời gian",
+    option_d: "Chỉ màu sắc",
+    correct_option: "A",
+    explanation: "Biểu đồ hình quạt tròn biểu diễn tỉ lệ phần trăm của các bộ phận so với tổng thể.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tổng số đo các góc ở tâm trong biểu đồ hình quạt tròn là:",
+    option_a: "$360^\\\\circ$",
+    option_b: "$180^\\\\circ$",
+    option_c: "$90^\\\\circ$",
+    option_d: "$100^\\\\circ$",
+    correct_option: "A",
+    explanation: "Tổng các góc ở tâm của hình tròn là $360^\\\\circ$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu một bộ phận chiếm 25% thì góc ở tâm tương ứng là:",
+    option_a: "$90^\\\\circ$",
+    option_b: "$45^\\\\circ$",
+    option_c: "$180^\\\\circ$",
+    option_d: "$60^\\\\circ$",
+    correct_option: "A",
+    explanation: "25% của $360^\\\\circ$ là $360^\\\\circ \\\\times 0.25 = 90^\\\\circ$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ưu điểm của biểu đồ hình quạt tròn là:",
+    option_a: "Dễ so sánh tỉ lệ các bộ phận",
+    option_b: "Khó hiểu",
+    option_c: "Không chính xác",
+    option_d: "Chỉ dùng cho số lớn",
+    correct_option: "A",
+    explanation: "Biểu đồ hình quạt tròn giúp dễ dàng so sánh tỉ lệ các bộ phận với nhau và với tổng thể.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để vẽ biểu đồ hình quạt tròn cần:",
+    option_a: "Tính tỉ lệ phần trăm của mỗi bộ phận",
+    option_b: "Tính góc ở tâm tương ứng",
+    option_c: "Vẽ hình tròn và chia thành các hình quạt",
+    option_d: "Ghi chú thích cho mỗi hình quạt",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các bước đều cần thiết để vẽ biểu đồ hình quạt tròn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một bộ phận chiếm 50% trong biểu đồ hình quạt tròn. Góc ở tâm tương ứng là bao nhiêu độ?",
+    correct_option: "180",
+    explanation: "50% của $360^\\\\circ$ là $360^\\\\circ \\\\times 0.5 = 180^\\\\circ$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Biểu đồ hình quạt tròn</h3>
+
+Biểu đồ hình quạt tròn giúp ta thấy rõ tỉ lệ của từng phần so với tổng thể!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🥧</div>
+    <strong>Hình quạt tròn</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Như chiếc bánh pizza</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">%</div>
+    <strong>Tỉ lệ phần trăm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">So sánh các phần</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm biểu đồ hình quạt tròn</h3>
+
+<div class="box-dinh-nghia">
+
+**Biểu đồ hình quạt tròn** (hay biểu đồ tròn) là biểu đồ dùng hình tròn được chia thành các hình quạt để biểu diễn tỉ lệ phần trăm của các bộ phận so với tổng thể.
+
+Mỗi hình quạt tương ứng với một bộ phận, diện tích hình quạt tỉ lệ với tỉ lệ phần trăm của bộ phận đó.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="350" height="320" viewBox="0 0 350 320" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Hình tròn */}
+  <circle cx="175" cy="160" r="100" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  
+  {/* Hình quạt 1: 40% = 144° (màu xanh) */}
+  <path d="M 175 160 L 175 60 A 100 100 0 0 1 245 100 Z" fill="#3b82f6" opacity="0.7"/>
+  <text x="200" y="100" font-size="14" font-weight="bold" fill="white">40%</text>
+  
+  {/* Hình quạt 2: 30% = 108° (màu xanh lá) */}
+  <path d="M 175 160 L 245 100 A 100 100 0 0 1 245 220 Z" fill="#10b981" opacity="0.7"/>
+  <text x="230" y="170" font-size="14" font-weight="bold" fill="white">30%</text>
+  
+  {/* Hình quạt 3: 20% = 72° (màu vàng) */}
+  <path d="M 175 160 L 245 220 A 100 100 0 0 1 145 240 Z" fill="#f59e0b" opacity="0.7"/>
+  <text x="190" y="220" font-size="14" font-weight="bold" fill="white">20%</text>
+  
+  {/* Hình quạt 4: 10% = 36° (màu đỏ) */}
+  <path d="M 175 160 L 145 240 A 100 100 0 0 1 175 60 Z" fill="#ef4444" opacity="0.7"/>
+  <text x="130" y="180" font-size="14" font-weight="bold" fill="white">10%</text>
+  
+  {/* Chú thích */}
+  <rect x="20" y="20" width="15" height="15" fill="#3b82f6" opacity="0.7"/>
+  <text x="40" y="32" font-size="13" fill="#1f2937">Toán (40%)</text>
+  
+  <rect x="20" y="45" width="15" height="15" fill="#10b981" opacity="0.7"/>
+  <text x="40" y="57" font-size="13" fill="#1f2937">Văn (30%)</text>
+  
+  <rect x="20" y="70" width="15" height="15" fill="#f59e0b" opacity="0.7"/>
+  <text x="40" y="82" font-size="13" fill="#1f2937">Anh (20%)</text>
+  
+  <rect x="20" y="95" width="15" height="15" fill="#ef4444" opacity="0.7"/>
+  <text x="40" y="107" font-size="13" fill="#1f2937">Khác (10%)</text>
+  
+  {/* Tiêu đề */}
+  <text x="175" y="300" font-size="14" font-weight="bold" text-anchor="middle" fill="#1f2937">Sở thích môn học của học sinh</text>
+</svg>
+</div>
+
+<h3 id="cach-tinh-goc" style="margin-top:2rem;">📖 2. Cách tính góc ở tâm</h3>
+
+<div class="box-dinh-ly">
+
+**Công thức tính góc ở tâm:**
+
+$$\text{Góc ở tâm} = \frac{\text{Tỉ lệ phần trăm}}{100} \times 360°$$
+
+hoặc
+
+$$\text{Góc ở tâm} = \frac{\text{Số lượng bộ phận}}{\text{Tổng số}} \times 360°$$
+
+</div>
+
+**Ví dụ 1:** Điều tra sở thích môn học của 100 học sinh:
+
+- Toán: 40 học sinh (40%)
+- Văn: 30 học sinh (30%)
+- Anh: 20 học sinh (20%)
+- Khác: 10 học sinh (10%)
+
+Tính góc ở tâm:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Toán: $\frac{40}{100} \times 360° = 144°$
+- Văn: $\frac{30}{100} \times 360° = 108°$
+- Anh: $\frac{20}{100} \times 360° = 72°$
+- Khác: $\frac{10}{100} \times 360° = 36°$
+
+Tổng: $144° + 108° + 72° + 36° = 360°$ ✓
+
+</div>
+
+<h3 id="cach-ve" style="margin-top:2rem;">📖 3. Các bước vẽ biểu đồ hình quạt tròn</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Tính tỉ lệ phần trăm của mỗi bộ phận
+
+$$\text{Tỉ lệ \%} = \frac{\text{Số lượng bộ phận}}{\text{Tổng số}} \times 100\%$$
+
+**Bước 2:** Tính góc ở tâm tương ứng với mỗi bộ phận
+
+$$\text{Góc} = \frac{\text{Tỉ lệ \%}}{100} \times 360°$$
+
+**Bước 3:** Vẽ hình tròn và chia thành các hình quạt theo góc đã tính
+
+Dùng thước đo góc để vẽ chính xác.
+
+**Bước 4:** Tô màu và ghi chú thích
+
+Mỗi hình quạt tô một màu khác nhau, ghi tên và tỉ lệ phần trăm.
+
+**Bước 5:** Ghi tiêu đề cho biểu đồ
+
+</div>
+
+<h3 id="uu-nhuoc-diem" style="margin-top:2rem;">📖 4. Ưu điểm và nhược điểm</h3>
+
+**Ưu điểm:**
+
+- Dễ so sánh tỉ lệ các bộ phận với nhau và với tổng thể
+- Trực quan, dễ hiểu
+- Thích hợp khi muốn nhấn mạnh tỉ lệ phần trăm
+
+**Nhược điểm:**
+
+- Không thể hiện số lượng cụ thể
+- Khó vẽ chính xác khi có nhiều bộ phận nhỏ
+- Không thích hợp khi có quá nhiều bộ phận (nên dưới 7 bộ phận)
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**Bài toán:** Điều tra phương tiện đi học của 120 học sinh:
+
+- Xe đạp: 48 học sinh
+- Xe máy: 36 học sinh
+- Đi bộ: 24 học sinh
+- Ô tô: 12 học sinh
+
+Vẽ biểu đồ hình quạt tròn biểu diễn dữ liệu trên.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Tính tỉ lệ phần trăm:
+
+- Xe đạp: $\frac{48}{120} \times 100\% = 40\%$
+- Xe máy: $\frac{36}{120} \times 100\% = 30\%$
+- Đi bộ: $\frac{24}{120} \times 100\% = 20\%$
+- Ô tô: $\frac{12}{120} \times 100\% = 10\%$
+
+**Bước 2:** Tính góc ở tâm:
+
+- Xe đạp: $40\% \times 360° = 144°$
+- Xe máy: $30\% \times 360° = 108°$
+- Đi bộ: $20\% \times 360° = 72°$
+- Ô tô: $10\% \times 360° = 36°$
+
+**Bước 3:** Vẽ biểu đồ với các góc đã tính
+
+**Nhận xét:** Xe đạp là phương tiện phổ biến nhất (40%), ô tô ít nhất (10%)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Biểu đồ hình quạt tròn**: biểu diễn tỉ lệ phần trăm các bộ phận
+- **Tổng góc ở tâm**: $360°$
+- **Công thức góc**: $\frac{\text{Tỉ lệ \%}}{100} \times 360°$
+- **Ưu điểm**: dễ so sánh tỉ lệ, trực quan
+- **Nhược điểm**: không thể hiện số lượng cụ thể
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính góc ở tâm tương ứng với các tỉ lệ phần trăm sau:
+
+a) 25%
+
+b) 50%
+
+c) 75%
+
+d) 15%
+
+**Bài 2:** Điều tra sở thích màu sắc của 80 học sinh:
+
+- Đỏ: 20 học sinh
+- Xanh: 32 học sinh
+- Vàng: 16 học sinh
+- Trắng: 12 học sinh
+
+a) Tính tỉ lệ phần trăm của mỗi màu
+
+b) Tính góc ở tâm tương ứng
+
+c) Màu nào được yêu thích nhất?
+
+**Bài 3:** Trong biểu đồ hình quạt tròn, một hình quạt có góc ở tâm $120°$. Tính tỉ lệ phần trăm của hình quạt đó.
+
+**Bài 4:** Điều tra loại trái cây yêu thích của 150 học sinh:
+
+- Cam: 45 học sinh
+- Xoài: 60 học sinh
+- Chuối: 30 học sinh
+- Dâu: 15 học sinh
+
+Vẽ biểu đồ hình quạt tròn (tính tỉ lệ % và góc ở tâm).
+
+**Bài 5:** Một biểu đồ hình quạt tròn có 4 hình quạt với góc ở tâm lần lượt là $90°$, $120°$, $100°$, $50°$. Tính tỉ lệ phần trăm của mỗi hình quạt.
+
+**Bài 6:** Trong một lớp có 40 học sinh, biểu đồ hình quạt tròn biểu diễn kết quả học lực:
+
+- Giỏi: $72°$
+- Khá: $144°$
+- Trung bình: $108°$
+- Yếu: $36°$
+
+Tính số học sinh mỗi loại.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $90°$; b) $180°$; c) $270°$; d) $54°$
+
+**Bài 2:** 
+a) Đỏ: 25%, Xanh: 40%, Vàng: 20%, Trắng: 15%
+b) Đỏ: $90°$, Xanh: $144°$, Vàng: $72°$, Trắng: $54°$
+c) Xanh (40%)
+
+**Bài 3:** $\frac{120°}{360°} \times 100\% = 33.33\%$ (hoặc $\frac{1}{3}$)
+
+**Bài 4:** 
+Cam: 30%, $108°$; Xoài: 40%, $144°$; Chuối: 20%, $72°$; Dâu: 10%, $36°$
+
+**Bài 5:** 
+$90°$: 25%; $120°$: 33.33%; $100°$: 27.78%; $50°$: 13.89%
+
+**Bài 6:** 
+Giỏi: 8 hs; Khá: 16 hs; Trung bình: 12 hs; Yếu: 4 hs
+
+</div>
+</details>

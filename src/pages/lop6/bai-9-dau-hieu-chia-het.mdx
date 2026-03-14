@@ -1,0 +1,504 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 9: Dấu hiệu chia hết"
+description: "Dấu hiệu chia hết cho 2, 3, 5, 9 - Toán 6 KNTT Chương 2"
+grade: "Lớp 6"
+chapter: "Chương II: Tính chia hết trong tập hợp các số tự nhiên"
+currentSlug: "lop6/bai-9-dau-hieu-chia-het"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số nào chia hết cho $2$?",
+    option_a: "$123$",
+    option_b: "$456$",
+    option_c: "$789$",
+    option_d: "$135$",
+    correct_option: "B",
+    explanation: "$456$ có chữ số tận cùng là $6$ (chẵn) nên chia hết cho $2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào chia hết cho $5$?",
+    option_a: "$123$",
+    option_b: "$234$",
+    option_c: "$345$",
+    option_d: "$456$",
+    correct_option: "C",
+    explanation: "$345$ có chữ số tận cùng là $5$ nên chia hết cho $5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào chia hết cho $3$?",
+    option_a: "$124$",
+    option_b: "$135$",
+    option_c: "$247$",
+    option_d: "$358$",
+    correct_option: "B",
+    explanation: "$135$: tổng các chữ số $1 + 3 + 5 = 9$ chia hết cho $3$ nên $135$ chia hết cho $3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào chia hết cho $9$?",
+    option_a: "$108$",
+    option_b: "$126$",
+    option_c: "$135$",
+    option_d: "$144$",
+    correct_option: "A,C",
+    explanation: "$108$: $1+0+8=9 \\vdots 9$; $126$: $1+2+6=9 \\vdots 9$ (sai, tổng là 9 nên đúng); $135$: $1+3+5=9 \\vdots 9$; $144$: $1+4+4=9 \\vdots 9$ (sai, tổng là 9 nên đúng). Đáp án đúng: A, B, C, D đều chia hết cho 9.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số $2340$ chia hết cho những số nào?",
+    option_a: "Chỉ $2$ và $5$",
+    option_b: "Chỉ $2, 3, 5$",
+    option_c: "$2, 3, 5, 9$",
+    option_d: "Chỉ $2$ và $3$",
+    correct_option: "B",
+    explanation: "$2340$ tận cùng $0$ (chia hết cho 2, 5); tổng $2+3+4+0=9$ (chia hết cho 3, 9). Vậy chia hết cho $2, 3, 5, 9$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm chữ số $x$ để $23x$ chia hết cho $3$.",
+    correct_option: "1",
+    explanation: "Tổng $2+3+x = 5+x$ phải chia hết cho $3$. Vậy $x \\in \\{1, 4, 7\\}$. Đáp án nhỏ nhất: $x=1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số $!a#234!$ có chia hết cho $!b#2!$ không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "$!a!$ có chữ số tận cùng là $!tinh: !a! % 10!$ (chẵn) nên chia hết cho $2$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tổng các chữ số của $!a#123!$ là bao nhiêu?",
+    option_a: "$!tinh: sum([int(d) for d in str(!a!)])!$",
+    option_b: "$!tinh: !a! % 10!$",
+    option_c: "$!a!$",
+    option_d: "$!tinh: !a! // 10!$",
+    correct_option: "A",
+    explanation: "Tổng các chữ số: $!tinh: sum([int(d) for d in str(!a!)])!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔍 Dấu hiệu chia hết — Nhận biết nhanh</h3>
+
+Không cần chia, chỉ cần nhìn là biết chia hết!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">2️⃣</div>
+    <strong>Chia hết cho 2</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chữ số cuối chẵn</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">5️⃣</div>
+    <strong>Chia hết cho 5</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tận cùng 0 hoặc 5</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">3️⃣</div>
+    <strong>Chia hết cho 3</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tổng chữ số ⋮ 3</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dau-hieu-2-5">📖 1. Dấu hiệu chia hết cho 2 và 5</h3>
+
+<div class="box-dinh-nghia">
+
+**Dấu hiệu chia hết cho 2:**
+
+Một số chia hết cho $2$ khi và chỉ khi chữ số tận cùng là **số chẵn** ($0, 2, 4, 6, 8$).
+
+**Ví dụ:**
+- $124 \vdots 2$ (tận cùng là 4)
+- $356 \vdots 2$ (tận cùng là 6)
+- $1230 \vdots 2$ (tận cùng là 0)
+
+**Dấu hiệu chia hết cho 5:**
+
+Một số chia hết cho $5$ khi và chỉ khi chữ số tận cùng là **0 hoặc 5**.
+
+**Ví dụ:**
+- $125 \vdots 5$ (tận cùng là 5)
+- $340 \vdots 5$ (tận cùng là 0)
+- $2575 \vdots 5$ (tận cùng là 5)
+
+</div>
+
+**Ví dụ 1:** Kiểm tra chia hết cho 2 và 5
+
+a) $456$ có chia hết cho $2$ không? Cho $5$ không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Tận cùng là $6$ (chẵn) → $456 \vdots 2$ ✓
+- Tận cùng không phải $0$ hoặc $5$ → $456$ không chia hết cho $5$ ✗
+
+</div>
+
+b) $1230$ có chia hết cho $2$ không? Cho $5$ không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Tận cùng là $0$ (chẵn) → $1230 \vdots 2$ ✓
+- Tận cùng là $0$ → $1230 \vdots 5$ ✓
+
+</div>
+
+<h3 id="dau-hieu-3-9" style="margin-top:2rem;">📖 2. Dấu hiệu chia hết cho 3 và 9</h3>
+
+<div class="box-dinh-nghia">
+
+**Dấu hiệu chia hết cho 3:**
+
+Một số chia hết cho $3$ khi và chỉ khi **tổng các chữ số** của nó chia hết cho $3$.
+
+**Ví dụ:** $123$
+- Tổng: $1 + 2 + 3 = 6 \vdots 3$
+- Vậy $123 \vdots 3$
+
+**Dấu hiệu chia hết cho 9:**
+
+Một số chia hết cho $9$ khi và chỉ khi **tổng các chữ số** của nó chia hết cho $9$.
+
+**Ví dụ:** $234$
+- Tổng: $2 + 3 + 4 = 9 \vdots 9$
+- Vậy $234 \vdots 9$
+
+</div>
+
+**Ví dụ 2:** Kiểm tra chia hết cho 3 và 9
+
+a) $456$ có chia hết cho $3$ không? Cho $9$ không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tổng các chữ số: $4 + 5 + 6 = 15$
+
+- $15 \vdots 3$ → $456 \vdots 3$ ✓
+- $15$ không chia hết cho $9$ → $456$ không chia hết cho $9$ ✗
+
+</div>
+
+b) $1827$ có chia hết cho $3$ không? Cho $9$ không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tổng các chữ số: $1 + 8 + 2 + 7 = 18$
+
+- $18 \vdots 3$ → $1827 \vdots 3$ ✓
+- $18 \vdots 9$ → $1827 \vdots 9$ ✓
+
+</div>
+
+<h3 id="bang-tong-hop" style="margin-top:2rem;">📊 3. Bảng tổng hợp dấu hiệu chia hết</h3>
+
+<div style="overflow-x:auto;margin:2rem 0;">
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Chia hết cho</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Dấu hiệu</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;font-weight:600;">$2$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Chữ số tận cùng là $0, 2, 4, 6, 8$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$124, 356, 1230$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;font-weight:600;">$5$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Chữ số tận cùng là $0$ hoặc $5$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$125, 340, 2575$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;font-weight:600;">$3$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Tổng các chữ số chia hết cho $3$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$123$ ($1+2+3=6$)</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;font-weight:600;">$9$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Tổng các chữ số chia hết cho $9$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$234$ ($2+3+4=9$)</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;font-weight:600;">$10$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Chữ số tận cùng là $0$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$120, 340, 1000$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="ket-hop" style="margin-top:2rem;">🔗 4. Kết hợp các dấu hiệu</h3>
+
+<div class="box-dinh-ly">
+
+**Dấu hiệu chia hết cho 6:**
+
+Một số chia hết cho $6$ khi và chỉ khi nó **vừa chia hết cho 2, vừa chia hết cho 3**.
+
+**Ví dụ:** $126$
+- Tận cùng là $6$ (chẵn) → $126 \vdots 2$ ✓
+- Tổng: $1 + 2 + 6 = 9 \vdots 3$ → $126 \vdots 3$ ✓
+- Vậy $126 \vdots 6$
+
+**Dấu hiệu chia hết cho 10:**
+
+Một số chia hết cho $10$ khi và chỉ khi chữ số tận cùng là $0$.
+
+**Ví dụ:** $340, 1250, 7000$
+
+</div>
+
+**Ví dụ 3:** Kiểm tra chia hết cho 6
+
+a) $234$ có chia hết cho $6$ không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Tận cùng là $4$ (chẵn) → $234 \vdots 2$ ✓
+- Tổng: $2 + 3 + 4 = 9 \vdots 3$ → $234 \vdots 3$ ✓
+- Vậy $234 \vdots 6$ ✓
+
+</div>
+
+b) $125$ có chia hết cho $6$ không?
+
+<div style="background:#fee2e2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Tận cùng là $5$ (lẻ) → $125$ không chia hết cho $2$ ✗
+- Vậy $125$ không chia hết cho $6$ ✗
+
+</div>
+
+<h3 id="tim-chu-so" style="margin-top:2rem;">🔍 5. Tìm chữ số chưa biết</h3>
+
+**Ví dụ 4:** Tìm chữ số $x$
+
+a) Tìm $x$ để $23x$ chia hết cho $3$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tổng các chữ số: $2 + 3 + x = 5 + x$
+
+Để $23x \vdots 3$ thì $(5 + x) \vdots 3$
+
+$x \in \{1, 4, 7\}$ (vì $0 \leq x \leq 9$)
+
+</div>
+
+b) Tìm $x$ để $45x$ chia hết cho $9$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tổng các chữ số: $4 + 5 + x = 9 + x$
+
+Để $45x \vdots 9$ thì $(9 + x) \vdots 9$
+
+$x \in \{0, 9\}$
+
+</div>
+
+c) Tìm $x$ để $3x4$ chia hết cho cả $2, 3, 5$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Chia hết cho $2$: tận cùng $4$ (chẵn) → luôn đúng ✓
+- Chia hết cho $5$: tận cùng phải là $0$ hoặc $5$ → không thỏa ✗
+
+Vậy không tồn tại $x$ thỏa mãn.
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một cửa hàng có $234$ quyển vở. Người bán muốn xếp đều vào các hộp.
+
+a) Có thể xếp đều vào các hộp $2$ quyển không?
+
+b) Có thể xếp đều vào các hộp $3$ quyển không?
+
+c) Có thể xếp đều vào các hộp $5$ quyển không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) $234$ tận cùng là $4$ (chẵn) → $234 \vdots 2$. **Có thể** xếp đều.
+
+b) Tổng: $2 + 3 + 4 = 9 \vdots 3$ → $234 \vdots 3$. **Có thể** xếp đều.
+
+c) $234$ tận cùng là $4$ (không phải $0$ hoặc $5$) → $234$ không chia hết cho $5$. **Không thể** xếp đều.
+
+</div>
+
+**📝 Bài toán 2:** Một số điện thoại có dạng $567x$ (với $x$ là chữ số cuối).
+
+a) Tìm $x$ để số điện thoại chia hết cho $3$.
+
+b) Tìm $x$ để số điện thoại chia hết cho $9$.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tổng: $5 + 6 + 7 + x = 18 + x$
+
+Để chia hết cho $3$: $(18 + x) \vdots 3$
+
+Vì $18 \vdots 3$ nên $x \in \{0, 3, 6, 9\}$
+
+b) Để chia hết cho $9$: $(18 + x) \vdots 9$
+
+Vì $18 \vdots 9$ nên $x \in \{0, 9\}$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Chia hết cho 2**: Tận cùng $0, 2, 4, 6, 8$
+- **Chia hết cho 5**: Tận cùng $0$ hoặc $5$
+- **Chia hết cho 3**: Tổng các chữ số $\vdots 3$
+- **Chia hết cho 9**: Tổng các chữ số $\vdots 9$
+- **Chia hết cho 6**: Vừa $\vdots 2$, vừa $\vdots 3$
+- **Chia hết cho 10**: Tận cùng $0$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Kiểm tra các số sau chia hết cho $2, 3, 5, 9$:
+
+a) $120$
+
+b) $135$
+
+c) $234$
+
+d) $450$
+
+**Bài 2:** Tìm chữ số $x$:
+
+a) $12x$ chia hết cho $3$
+
+b) $34x$ chia hết cho $5$
+
+c) $56x$ chia hết cho $9$
+
+d) $78x$ chia hết cho $2$ và $3$
+
+**Bài 3:** Trong các số sau, số nào chia hết cho $6$?
+
+a) $126$
+
+b) $135$
+
+c) $234$
+
+d) $345$
+
+**Bài 4:** Tìm tất cả các chữ số $x$ để:
+
+a) $2x3$ chia hết cho $3$
+
+b) $4x5$ chia hết cho $9$
+
+c) $6x8$ chia hết cho $3$
+
+d) $7x0$ chia hết cho $9$
+
+**Bài 5:** Viết số tự nhiên nhỏ nhất:
+
+a) Có 3 chữ số và chia hết cho $2$
+
+b) Có 3 chữ số và chia hết cho $5$
+
+c) Có 3 chữ số và chia hết cho $9$
+
+d) Có 3 chữ số và chia hết cho cả $2, 3, 5$
+
+**Bài 6 (Thực tế):** Một trường học có $abc$ học sinh (số có 3 chữ số).
+
+a) Nếu $c = 0$, trường có thể chia đều thành các lớp bao nhiêu học sinh?
+
+b) Nếu $a + b + c = 18$, trường có thể chia đều thành các lớp bao nhiêu học sinh?
+
+c) Tìm số học sinh nhỏ nhất để chia đều thành các lớp 2, 3, 5 học sinh.
+
+d) Tìm số học sinh lớn nhất (dưới 1000) để chia đều thành các lớp 9 học sinh.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\vdots 2, 3, 5$ (không $\vdots 9$); b) $\vdots 3, 5, 9$ (không $\vdots 2$); c) $\vdots 2, 3$ (không $\vdots 5, 9$); d) $\vdots 2, 3, 5, 9$
+
+**Bài 2:** a) $x \in \{0, 3, 6, 9\}$; b) $x \in \{0, 5\}$; c) $x \in \{2\}$; d) $x \in \{0, 6\}$
+
+**Bài 3:** a) Có; b) Không; c) Có; d) Không
+
+**Bài 4:** a) $\{0, 3, 6, 9\}$; b) $\{0\}$; c) $\{0, 3, 6, 9\}$; d) $\{2\}$
+
+**Bài 5:** a) $100$; b) $100$; c) $108$; d) $120$
+
+**Bài 6:** a) 2, 5, 10 HS; b) 2, 3, 9 HS; c) $30$ HS; d) $999$ HS
+
+</div>
+</details>
+

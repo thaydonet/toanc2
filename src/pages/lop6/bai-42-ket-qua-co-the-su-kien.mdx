@@ -1,0 +1,391 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 42: Kết quả có thể và sự kiện trong trò chơi, thí nghiệm"
+description: "Khái niệm kết quả có thể, sự kiện, không gian mẫu - Toán 6 KNTT Chương IX"
+grade: "Lớp 6"
+chapter: "Chương IX: Dữ liệu và xác suất thực nghiệm"
+currentSlug: "lop6/bai-42-ket-qua-co-the-su-kien"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Kết quả có thể là gì?",
+    option_a: "Những kết quả có thể xảy ra trong một thí nghiệm",
+    option_b: "Kết quả chắc chắn xảy ra",
+    option_c: "Kết quả không thể xảy ra",
+    option_d: "Kết quả đã xảy ra",
+    correct_option: "A",
+    explanation: "Kết quả có thể là những kết quả có thể xảy ra trong một thí nghiệm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Sự kiện là gì?",
+    option_a: "Một tập hợp các kết quả có thể",
+    option_b: "Chỉ một kết quả",
+    option_c: "Kết quả không thể xảy ra",
+    option_d: "Kết quả chắc chắn xảy ra",
+    correct_option: "A",
+    explanation: "Sự kiện là một tập hợp các kết quả có thể xảy ra.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Không gian mẫu là gì?",
+    option_a: "Tập hợp tất cả các kết quả có thể xảy ra",
+    option_b: "Chỉ một kết quả",
+    option_c: "Kết quả không thể xảy ra",
+    option_d: "Kết quả chắc chắn xảy ra",
+    correct_option: "A",
+    explanation: "Không gian mẫu là tập hợp tất cả các kết quả có thể xảy ra.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Kết quả có thể và sự kiện</h3>
+
+Trong trò chơi và thí nghiệm, có những kết quả có thể xảy ra. Hãy cùng tìm hiểu!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Kết quả có thể</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Có thể xảy ra</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📌</div>
+    <strong>Sự kiện</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp kết quả</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem-ket-qua">📖 1. Kết quả có thể</h3>
+
+<div class="box-dinh-nghia">
+
+**Kết quả có thể** là những kết quả có thể xảy ra trong một thí nghiệm hoặc trò chơi.
+
+**Ví dụ:**
+- Tung đồng xu: Sấp hoặc Ngửa
+- Tung xúc xắc: 1, 2, 3, 4, 5, hoặc 6
+- Rút thẻ từ bộ bài: Cơ, Chuồn, Tép, Bích
+
+</div>
+
+<h3 id="khong-gian-mau" style="margin-top:2rem;">📖 2. Không gian mẫu</h3>
+
+<div class="box-dinh-nghia">
+
+**Không gian mẫu** là tập hợp tất cả các kết quả có thể xảy ra trong một thí nghiệm.
+
+Ký hiệu: Ω (Omega)
+
+</div>
+
+**Ví dụ không gian mẫu:**
+
+- **Tung đồng xu:** Ω = {Sấp, Ngửa}
+- **Tung xúc xắc:** Ω = {1, 2, 3, 4, 5, 6}
+- **Rút thẻ từ bộ bài:** Ω = {Cơ, Chuồn, Tép, Bích}
+
+<h3 id="khai-niem-su-kien" style="margin-top:2rem;">📖 3. Sự kiện</h3>
+
+<div class="box-dinh-nghia">
+
+**Sự kiện** là một tập hợp các kết quả có thể xảy ra.
+
+Sự kiện là một tập con của không gian mẫu.
+
+</div>
+
+**Ví dụ sự kiện:**
+
+**Khi tung xúc xắc:**
+
+- Sự kiện A: "Được số chẵn" = {2, 4, 6}
+- Sự kiện B: "Được số lẻ" = {1, 3, 5}
+- Sự kiện C: "Được số lớn hơn 3" = {4, 5, 6}
+- Sự kiện D: "Được số 1" = {1}
+
+<h3 id="phan-loai-su-kien" style="margin-top:2rem;">📖 4. Phân loại sự kiện</h3>
+
+**Sự kiện chắc chắn**
+
+Là sự kiện luôn xảy ra.
+
+**Ví dụ:** Khi tung xúc xắc, sự kiện "được số từ 1 đến 6" luôn xảy ra.
+
+**Sự kiện không thể**
+
+Là sự kiện không bao giờ xảy ra.
+
+**Ví dụ:** Khi tung xúc xắc, sự kiện "được số 7" không thể xảy ra.
+
+**Sự kiện có thể**
+
+Là sự kiện có thể xảy ra hoặc không xảy ra.
+
+**Ví dụ:** Khi tung xúc xắc, sự kiện "được số chẵn" có thể xảy ra.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một hộp có 5 viên bi: 2 viên đỏ, 2 viên xanh, 1 viên vàng. Rút ngẫu nhiên 1 viên bi.
+
+a) Xác định không gian mẫu
+
+b) Nêu sự kiện "Rút được viên bi đỏ"
+
+c) Nêu sự kiện "Rút được viên bi xanh"
+
+d) Nêu sự kiện "Rút được viên bi vàng"
+
+</VanDung>
+
+<BaiTapTuLuan>
+
+**Bài 1:** Tung một đồng xu.
+
+a) Xác định không gian mẫu
+
+b) Nêu sự kiện "Được mặt sấp"
+
+c) Nêu sự kiện "Được mặt ngửa"
+
+d) Sự kiện nào là sự kiện chắc chắn?
+
+e) Nêu một sự kiện không thể xảy ra
+
+**Bài 2:** Tung một xúc xắc 6 mặt.
+
+a) Xác định không gian mẫu
+
+b) Nêu sự kiện A: "Được số chẵn"
+
+c) Nêu sự kiện B: "Được số lẻ"
+
+d) Nêu sự kiện C: "Được số lớn hơn 4"
+
+e) Nêu sự kiện D: "Được số nhỏ hơn 7"
+
+f) Sự kiện nào là sự kiện chắc chắn?
+
+g) Nêu một sự kiện không thể xảy ra
+
+**Bài 3:** Một hộp có 4 viên bi: 1 đỏ, 2 xanh, 1 vàng. Rút ngẫu nhiên 1 viên bi.
+
+a) Xác định không gian mẫu
+
+b) Nêu sự kiện "Rút được viên bi đỏ"
+
+c) Nêu sự kiện "Rút được viên bi xanh"
+
+d) Nêu sự kiện "Rút được viên bi không phải màu vàng"
+
+e) Nêu một sự kiện chắc chắn
+
+f) Nêu một sự kiện không thể
+
+**Bài 4:** Quay một bánh xe có 8 ô được đánh số từ 1 đến 8.
+
+a) Xác định không gian mẫu
+
+b) Nêu sự kiện "Được số chia hết cho 2"
+
+c) Nêu sự kiện "Được số chia hết cho 3"
+
+d) Nêu sự kiện "Được số nguyên tố"
+
+e) Nêu sự kiện "Được số lớn hơn 5"
+
+**Bài 5:** Một túi có 5 thẻ được đánh số: 2, 4, 6, 8, 10. Rút ngẫu nhiên 1 thẻ.
+
+a) Xác định không gian mẫu
+
+b) Nêu sự kiện "Được số chia hết cho 4"
+
+c) Nêu sự kiện "Được số lớn hơn 5"
+
+d) Nêu sự kiện "Được số chẵn"
+
+e) Sự kiện nào là sự kiện chắc chắn? Giải thích.
+
+f) Nêu một sự kiện không thể xảy ra
+
+**Bài 6:** Gieo hai đồng xu cùng lúc.
+
+a) Xác định không gian mẫu (gợi ý: có 4 kết quả)
+
+b) Nêu sự kiện "Cả hai đều sấp"
+
+c) Nêu sự kiện "Có ít nhất một mặt ngửa"
+
+d) Nêu sự kiện "Một sấp, một ngửa"
+
+**Bài 7:** Chọn ngẫu nhiên một ngày trong tuần.
+
+a) Xác định không gian mẫu
+
+b) Nêu sự kiện "Được ngày cuối tuần"
+
+c) Nêu sự kiện "Được ngày trong tuần (không phải cuối tuần)"
+
+d) Nêu sự kiện "Được ngày có tên bắt đầu bằng chữ T"
+
+e) Tính số phần tử của mỗi sự kiện trên
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1: Tung đồng xu**
+
+a) Không gian mẫu: **Ω = {Sấp, Ngửa}**
+
+b) Sự kiện "Được mặt sấp": **A = {Sấp}**
+
+c) Sự kiện "Được mặt ngửa": **B = {Ngửa}**
+
+d) Sự kiện chắc chắn: **"Được mặt sấp hoặc ngửa" = {Sấp, Ngửa}** (luôn xảy ra)
+
+e) Sự kiện không thể: **"Được mặt cạnh"** hoặc **"Được số 3"** (không bao giờ xảy ra)
+
+---
+
+**Bài 2: Tung xúc xắc**
+
+a) Không gian mẫu: **Ω = {1, 2, 3, 4, 5, 6}**
+
+b) Sự kiện A "Được số chẵn": **A = {2, 4, 6}**
+
+c) Sự kiện B "Được số lẻ": **B = {1, 3, 5}**
+
+d) Sự kiện C "Được số lớn hơn 4": **C = {5, 6}**
+
+e) Sự kiện D "Được số nhỏ hơn 7": **D = {1, 2, 3, 4, 5, 6}**
+
+f) Sự kiện chắc chắn: **Sự kiện D** (vì tất cả các số từ 1 đến 6 đều nhỏ hơn 7)
+
+g) Sự kiện không thể: **"Được số 7"** hoặc **"Được số 0"** hoặc **"Được số âm"**
+
+---
+
+**Bài 3: Rút viên bi**
+
+a) Không gian mẫu: **Ω = {Đỏ, Xanh, Vàng}**
+
+b) Sự kiện "Rút được viên bi đỏ": **A = {Đỏ}**
+
+c) Sự kiện "Rút được viên bi xanh": **B = {Xanh}**
+
+d) Sự kiện "Rút được viên bi không phải màu vàng": **C = {Đỏ, Xanh}**
+
+e) Sự kiện chắc chắn: **"Rút được viên bi màu đỏ, xanh hoặc vàng" = {Đỏ, Xanh, Vàng}**
+
+f) Sự kiện không thể: **"Rút được viên bi màu tím"** hoặc **"Rút được viên bi màu đen"**
+
+---
+
+**Bài 4: Quay bánh xe**
+
+a) Không gian mẫu: **Ω = {1, 2, 3, 4, 5, 6, 7, 8}**
+
+b) Sự kiện "Được số chia hết cho 2": **A = {2, 4, 6, 8}**
+
+c) Sự kiện "Được số chia hết cho 3": **B = {3, 6}**
+
+d) Sự kiện "Được số nguyên tố": **C = {2, 3, 5, 7}**
+
+e) Sự kiện "Được số lớn hơn 5": **D = {6, 7, 8}**
+
+---
+
+**Bài 5: Rút thẻ**
+
+a) Không gian mẫu: **Ω = {2, 4, 6, 8, 10}**
+
+b) Sự kiện "Được số chia hết cho 4": **A = {4, 8}**
+
+c) Sự kiện "Được số lớn hơn 5": **B = {6, 8, 10}**
+
+d) Sự kiện "Được số chẵn": **C = {2, 4, 6, 8, 10}**
+
+e) Sự kiện chắc chắn: **Sự kiện C "Được số chẵn"**
+   
+   **Giải thích:** Vì tất cả các thẻ trong túi đều là số chẵn (2, 4, 6, 8, 10), nên dù rút thẻ nào cũng được số chẵn.
+
+f) Sự kiện không thể: **"Được số lẻ"** hoặc **"Được số 5"** hoặc **"Được số lớn hơn 10"**
+
+---
+
+**Bài 6: Gieo hai đồng xu**
+
+a) Không gian mẫu: **Ω = {(Sấp, Sấp), (Sấp, Ngửa), (Ngửa, Sấp), (Ngửa, Ngửa)}**
+
+b) Sự kiện "Cả hai đều sấp": **A = {(Sấp, Sấp)}**
+
+c) Sự kiện "Có ít nhất một mặt ngửa": **B = {(Sấp, Ngửa), (Ngửa, Sấp), (Ngửa, Ngửa)}**
+
+d) Sự kiện "Một sấp, một ngửa": **C = {(Sấp, Ngửa), (Ngửa, Sấp)}**
+
+---
+
+**Bài 7: Chọn ngày trong tuần**
+
+a) Không gian mẫu: **Ω = {Thứ 2, Thứ 3, Thứ 4, Thứ 5, Thứ 6, Thứ 7, Chủ nhật}**
+
+b) Sự kiện "Được ngày cuối tuần": **A = {Thứ 7, Chủ nhật}**
+
+c) Sự kiện "Được ngày trong tuần": **B = {Thứ 2, Thứ 3, Thứ 4, Thứ 5, Thứ 6}**
+
+d) Sự kiện "Được ngày có tên bắt đầu bằng chữ T": **C = {Thứ 2, Thứ 3, Thứ 4, Thứ 5, Thứ 6, Thứ 7}**
+
+e) Số phần tử của mỗi sự kiện:
+   - Sự kiện A: **2 phần tử**
+   - Sự kiện B: **5 phần tử**
+   - Sự kiện C: **6 phần tử**
+
+</div>
+</details>
+
+</BaiTapTuLuan>
+
+<GhiNho>
+
+- **Kết quả có thể:** Những kết quả có thể xảy ra trong thí nghiệm
+- **Không gian mẫu:** Tập hợp tất cả các kết quả có thể (Ω)
+- **Sự kiện:** Tập hợp các kết quả có thể xảy ra
+- **Sự kiện chắc chắn:** Luôn xảy ra
+- **Sự kiện không thể:** Không bao giờ xảy ra
+- **Sự kiện có thể:** Có thể xảy ra hoặc không
+
+</GhiNho>

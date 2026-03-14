@@ -1,0 +1,388 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 37: Hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác"
+description: "Hình lăng trụ đứng - Toán 7 KNTT Chương 10"
+grade: "Lớp 7"
+chapter: "Chương X: Một số hình khối trong thực tiễn"
+currentSlug: "lop7/bai-37-hinh-lang-tru-dung-tam-giac-tu-giac"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình lăng trụ đứng tam giác có bao nhiêu mặt?",
+    option_a: "5 mặt",
+    option_b: "4 mặt",
+    option_c: "6 mặt",
+    option_d: "3 mặt",
+    correct_option: "A",
+    explanation: "Hình lăng trụ đứng tam giác có 2 đáy tam giác và 3 mặt bên chữ nhật, tổng 5 mặt.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình lăng trụ đứng tứ giác có bao nhiêu cạnh?",
+    option_a: "12 cạnh",
+    option_b: "8 cạnh",
+    option_c: "10 cạnh",
+    option_d: "6 cạnh",
+    correct_option: "A",
+    explanation: "Hình lăng trụ đứng tứ giác có 4 cạnh đáy trên, 4 cạnh đáy dưới, 4 cạnh bên, tổng 12 cạnh.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích xung quanh hình lăng trụ đứng được tính bằng:",
+    option_a: "Chu vi đáy × chiều cao",
+    option_b: "Diện tích đáy × chiều cao",
+    option_c: "Chu vi đáy + chiều cao",
+    option_d: "Diện tích đáy + chiều cao",
+    correct_option: "A",
+    explanation: "Diện tích xung quanh = chu vi đáy × chiều cao.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích hình lăng trụ đứng được tính bằng:",
+    option_a: "Diện tích đáy × chiều cao",
+    option_b: "Chu vi đáy × chiều cao",
+    option_c: "Diện tích xung quanh × chiều cao",
+    option_d: "Diện tích đáy + chiều cao",
+    correct_option: "A",
+    explanation: "Thể tích = diện tích đáy × chiều cao.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Hình hộp chữ nhật là:",
+    option_a: "Hình lăng trụ đứng tứ giác",
+    option_b: "Có đáy là hình chữ nhật",
+    option_c: "Có 6 mặt",
+    option_d: "Có 12 cạnh",
+    correct_option: "A,B,C,D",
+    explanation: "Hình hộp chữ nhật là trường hợp đặc biệt của hình lăng trụ đứng tứ giác.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hình lăng trụ đứng tam giác có đáy là tam giác vuông với hai cạnh góc vuông 3 cm và 4 cm, chiều cao 10 cm. Thể tích là bao nhiêu cm³?",
+    correct_option: "60",
+    explanation: "Diện tích đáy = $\\\\frac{1}{2} \\\\times 3 \\\\times 4 = 6$ cm². Thể tích = $6 \\\\times 10 = 60$ cm³",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Hình lăng trụ đứng</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">△</div>
+    <strong>Lăng trụ tam giác</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đáy tam giác</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">▭</div>
+    <strong>Lăng trụ tứ giác</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đáy tứ giác</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm hình lăng trụ đứng</h3>
+
+<div class="box-dinh-nghia">
+
+**Hình lăng trụ đứng** là hình khối có:
+- Hai đáy là hai đa giác bằng nhau và song song với nhau
+- Các mặt bên là các hình chữ nhật
+- Các cạnh bên vuông góc với hai mặt đáy
+
+**Chiều cao** của hình lăng trụ đứng là khoảng cách giữa hai mặt đáy (bằng độ dài cạnh bên).
+
+</div>
+
+<h3 id="lang-tru-tam-giac" style="margin-top:2rem;">📖 2. Hình lăng trụ đứng tam giác</h3>
+
+<div class="box-dinh-nghia">
+
+**Hình lăng trụ đứng tam giác** có:
+- 2 đáy là hai tam giác bằng nhau
+- 3 mặt bên là hình chữ nhật
+- 6 đỉnh
+- 9 cạnh (3 cạnh đáy trên, 3 cạnh đáy dưới, 3 cạnh bên)
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="300" viewBox="0 0 400 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Lăng trụ tam giác */}
+  {/* Đáy dưới */}
+  <polygon points="150,220 250,220 200,160" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Đáy trên */}
+  <polygon points="150,100 250,100 200,40" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Mặt bên */}
+  <polygon points="150,220 250,220 250,100 150,100" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2"/>
+  <polygon points="250,220 200,160 200,40 250,100" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="150,220 200,160 200,40 150,100" fill="rgba(139,92,246,0.2)" stroke="#8b5cf6" stroke-width="2"/>
+  
+  {/* Đỉnh */}
+  <circle cx="150" cy="220" r="3" fill="#1f2937"/>
+  <circle cx="250" cy="220" r="3" fill="#1f2937"/>
+  <circle cx="200" cy="160" r="3" fill="#1f2937"/>
+  <circle cx="150" cy="100" r="3" fill="#1f2937"/>
+  <circle cx="250" cy="100" r="3" fill="#1f2937"/>
+  <circle cx="200" cy="40" r="3" fill="#1f2937"/>
+  
+  {/* Chú thích */}
+  <text x="200" y="250" font-size="14" text-anchor="middle" fill="#3b82f6">Đáy tam giác</text>
+  <text x="130" y="160" font-size="14" fill="#10b981">h</text>
+</svg>
+</div>
+
+**Các công thức:**
+
+<div class="box-dinh-ly">
+
+Cho hình lăng trụ đứng tam giác có:
+- Diện tích đáy: $S_{đáy}$
+- Chu vi đáy: $C_{đáy}$
+- Chiều cao: $h$
+
+**1. Diện tích xung quanh:**
+
+$$S_{xq} = C_{đáy} \cdot h$$
+
+**2. Diện tích toàn phần:**
+
+$$S_{tp} = S_{xq} + 2S_{đáy}$$
+
+**3. Thể tích:**
+
+$$V = S_{đáy} \cdot h$$
+
+</div>
+
+**Ví dụ 1:** Hình lăng trụ đứng tam giác có đáy là tam giác đều cạnh 6 cm, chiều cao 10 cm. Tính diện tích xung quanh và thể tích.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Chu vi đáy: $C = 3 \times 6 = 18$ cm
+
+Diện tích đáy (tam giác đều): $S = \frac{a^2\sqrt{3}}{4} = \frac{36\sqrt{3}}{4} = 9\sqrt{3}$ cm²
+
+**Diện tích xung quanh:**
+
+$S_{xq} = C \cdot h = 18 \times 10 = 180$ cm²
+
+**Thể tích:**
+
+$V = S_{đáy} \cdot h = 9\sqrt{3} \times 10 = 90\sqrt{3} \approx 155.88$ cm³
+
+</div>
+
+<h3 id="lang-tru-tu-giac" style="margin-top:2rem;">📖 3. Hình lăng trụ đứng tứ giác</h3>
+
+<div class="box-dinh-nghia">
+
+**Hình lăng trụ đứng tứ giác** có:
+- 2 đáy là hai tứ giác bằng nhau
+- 4 mặt bên là hình chữ nhật
+- 8 đỉnh
+- 12 cạnh (4 cạnh đáy trên, 4 cạnh đáy dưới, 4 cạnh bên)
+
+**Chú ý:** Hình hộp chữ nhật là trường hợp đặc biệt của hình lăng trụ đứng tứ giác (khi đáy là hình chữ nhật).
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="300" viewBox="0 0 400 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Lăng trụ tứ giác */}
+  {/* Đáy dưới */}
+  <polygon points="100,220 240,220 260,180 120,180" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Đáy trên */}
+  <polygon points="100,100 240,100 260,60 120,60" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Mặt bên trước */}
+  <polygon points="100,220 240,220 240,100 100,100" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2"/>
+  
+  {/* Mặt bên phải */}
+  <polygon points="240,220 260,180 260,60 240,100" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="2"/>
+  
+  {/* Cạnh ẩn */}
+  <line x1="120" y1="180" x2="120" y2="60" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="120" y1="220" x2="120" y2="180" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  {/* Đỉnh */}
+  <circle cx="100" cy="220" r="3" fill="#1f2937"/>
+  <circle cx="240" cy="220" r="3" fill="#1f2937"/>
+  <circle cx="260" cy="180" r="3" fill="#1f2937"/>
+  <circle cx="100" cy="100" r="3" fill="#1f2937"/>
+  <circle cx="240" cy="100" r="3" fill="#1f2937"/>
+  <circle cx="260" cy="60" r="3" fill="#1f2937"/>
+  <circle cx="120" cy="60" r="3" fill="#1f2937"/>
+  
+  {/* Chú thích */}
+  <text x="170" y="250" font-size="14" text-anchor="middle" fill="#3b82f6">Đáy tứ giác</text>
+  <text x="80" y="160" font-size="14" fill="#10b981">h</text>
+</svg>
+</div>
+
+**Ví dụ 2:** Hình lăng trụ đứng tứ giác có đáy là hình vuông cạnh 5 cm, chiều cao 8 cm. Tính diện tích toàn phần và thể tích.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Chu vi đáy: $C = 4 \times 5 = 20$ cm
+
+Diện tích đáy: $S_{đáy} = 5^2 = 25$ cm²
+
+**Diện tích xung quanh:**
+
+$S_{xq} = C \cdot h = 20 \times 8 = 160$ cm²
+
+**Diện tích toàn phần:**
+
+$S_{tp} = S_{xq} + 2S_{đáy} = 160 + 2 \times 25 = 210$ cm²
+
+**Thể tích:**
+
+$V = S_{đáy} \cdot h = 25 \times 8 = 200$ cm³
+
+</div>
+
+<h3 id="so-sanh" style="margin-top:2rem;">📖 4. Mối quan hệ với hình hộp chữ nhật</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Hình hộp chữ nhật** là trường hợp đặc biệt của **hình lăng trụ đứng tứ giác** khi đáy là hình chữ nhật.
+
+**Hình lập phương** là trường hợp đặc biệt của **hình hộp chữ nhật** khi tất cả các cạnh bằng nhau.
+
+Quan hệ: Hình lập phương ⊂ Hình hộp chữ nhật ⊂ Hình lăng trụ đứng tứ giác
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán 1:** Một lều trại có dạng hình lăng trụ đứng tam giác. Đáy là tam giác cân có cạnh đáy 4 m, chiều cao tam giác 3 m. Chiều dài lều 5 m.
+
+a) Tính diện tích vải bạt cần để làm mặt bên và hai đầu lều (không tính mặt đáy).
+
+b) Tính thể tích không gian bên trong lều.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Diện tích đáy tam giác: $S = \frac{1}{2} \times 4 \times 3 = 6$ m²
+
+Tính cạnh bên tam giác cân: $c = \sqrt{3^2 + 2^2} = \sqrt{13}$ m
+
+Chu vi đáy: $C = 4 + 2\sqrt{13} \approx 11.21$ m
+
+Diện tích xung quanh: $S_{xq} = 11.21 \times 5 \approx 56.05$ m²
+
+Diện tích hai đầu: $2 \times 6 = 12$ m²
+
+Tổng diện tích vải: $56.05 + 12 = 68.05$ m²
+
+b) Thể tích: $V = 6 \times 5 = 30$ m³
+
+</div>
+
+**Bài toán 2:** Một hộp đựng bút hình lăng trụ đứng tứ giác có đáy là hình chữ nhật 8 cm × 5 cm, chiều cao 12 cm. Tính thể tích hộp.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Diện tích đáy: $S = 8 \times 5 = 40$ cm²
+
+Thể tích: $V = 40 \times 12 = 480$ cm³
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Lăng trụ đứng**: hai đáy song song, mặt bên chữ nhật
+- **Diện tích xung quanh**: $S_{xq} = C_{đáy} \times h$
+- **Thể tích**: $V = S_{đáy} \times h$
+- **Lăng trụ tam giác**: 5 mặt, 9 cạnh, 6 đỉnh
+- **Lăng trụ tứ giác**: 6 mặt, 12 cạnh, 8 đỉnh
+- Hình hộp chữ nhật là lăng trụ đứng tứ giác đặc biệt
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Hình lăng trụ đứng tam giác có đáy là tam giác vuông với hai cạnh góc vuông 6 cm và 8 cm, chiều cao 12 cm. Tính:
+
+a) Diện tích xung quanh
+
+b) Thể tích
+
+**Bài 2:** Hình lăng trụ đứng tứ giác có đáy là hình thoi cạnh 5 cm, chiều cao hình thoi 4 cm, chiều cao lăng trụ 10 cm. Tính thể tích.
+
+**Bài 3:** Một bể nước hình lăng trụ đứng tứ giác có đáy là hình vuông cạnh 1.5 m, chiều cao 2 m. Tính thể tích nước bể chứa được (đơn vị: lít).
+
+**Bài 4:** Hình lăng trụ đứng tam giác có đáy là tam giác đều cạnh 8 cm, chiều cao 15 cm. Tính diện tích toàn phần.
+
+**Bài 5:** So sánh thể tích của hình lập phương cạnh 6 cm và hình lăng trụ đứng tứ giác có đáy là hình vuông cạnh 4 cm, chiều cao 9 cm.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Cạnh huyền = 10 cm, $S_{xq} = 288$ cm²; b) $V = 288$ cm³
+
+**Bài 2:** Diện tích đáy = 10 cm², $V = 100$ cm³
+
+**Bài 3:** $V = 4.5$ m³ = 4500 lít
+
+**Bài 4:** $S_{tp} = 360 + 32\sqrt{3} \approx 415.43$ cm²
+
+**Bài 5:** Lập phương: 216 cm³; Lăng trụ: 144 cm³. Lập phương lớn hơn.
+
+</div>
+</details>

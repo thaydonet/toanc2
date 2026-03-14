@@ -1,0 +1,220 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import FractionBuilder from '../../components/interactive/FractionBuilder';
+import FractionPie from '../../components/interactive/FractionPie';
+import FractionCalc from '../../components/interactive/FractionCalc';
+import QuizSession from '../../components/ui/QuizSession';
+
+import Math from '../../components/ui/Math.astro';
+
+const quizData = [
+  {
+    id: 1,
+    question: 'Phân số $\\frac{6}{8}$ rút gọn bằng phân số nào?',
+    options: [
+      { key: 'A', text: '$\\frac{3}{4}$' },
+      { key: 'B', text: '$\\frac{2}{3}$' },
+      { key: 'C', text: '$\\frac{1}{2}$' },
+      { key: 'D', text: '$\\frac{6}{8}$' },
+    ],
+    correctKey: 'A',
+    explanation: '6 và 8 có ƯCLN = 2. Chia cả tử và mẫu cho 2: 6÷2 = 3, 8÷2 = 4. Vậy 6/8 = 3/4.',
+  },
+  {
+    id: 2,
+    question: 'Kết quả của phép tính 1/3 + 1/4 là?',
+    options: [
+      { key: 'A', text: '2/7' },
+      { key: 'B', text: '7/12' },
+      { key: 'C', text: '1/7' },
+      { key: 'D', text: '5/12' },
+    ],
+    correctKey: 'B',
+    explanation: 'Quy đồng mẫu 12: 1/3 = 4/12, 1/4 = 3/12. Cộng lại: 4/12 + 3/12 = 7/12.',
+  },
+  {
+    id: 3,
+    question: 'Phân số nào sau đây là phân số âm?',
+    options: [
+      { key: 'A', text: '−3/4' },
+      { key: 'B', text: '3/(−4)' },
+      { key: 'C', text: '(−3)/(−4)' },
+      { key: 'D', text: 'Cả A và B' },
+    ],
+    correctKey: 'D',
+    explanation: 'Phân số âm là phân số có tử và mẫu khác dấu. −3/4 và 3/(−4) đều là phân số âm. (−3)/(−4) = 3/4 là phân số dương.',
+  },
+  {
+    id: 4,
+    question: 'Tính 2/5 × 3/4 = ?',
+    options: [
+      { key: 'A', text: '6/20' },
+      { key: 'B', text: '3/10' },
+      { key: 'C', text: '5/9' },
+      { key: 'D', text: '8/15' },
+    ],
+    correctKey: 'B',
+    explanation: '2/5 × 3/4 = (2×3)/(5×4) = 6/20. Rút gọn: ƯCLN(6,20) = 2, nên 6/20 = 3/10.',
+  },
+];
+---
+
+<LessonLayout
+  title="Phân số"
+  grade="Lớp 6"
+  chapter="Chương 2: Số nguyên — Số hữu tỉ"
+  currentSlug="lop6/phan-so"
+  nextLesson={{ href: '/lop7/tam-giac', title: 'Tam giác' }}
+  toc={[
+    { id: 'chia-banh', text: 'Chia bánh thế nào cho công bằng?' },
+    { id: 'khai-niem-phan-so', text: '1. Khái niệm phân số' },
+    { id: 'cong-cu-kham-pha', text: '2. Công cụ khám phá phân số' },
+    { id: 'hai-phan-so-bang-nhau', text: '3. Hai phân số bằng nhau' },
+    { id: 'rut-gon-phan-so', text: '4. Rút gọn phân số' },
+    { id: 'phep-tinh', text: 'Phép tính với phân số' },
+    { id: 'luyen-tap', text: 'Luyện tập' },
+    { id: 'van-dung', text: 'Vận dụng' },
+  ]}
+>
+
+<KhoiDong>
+  <h3 id="chia-banh">🍕 Chia bánh thế nào cho công bằng?</h3>
+  <p>
+    Mẹ mua một cái bánh pizza tròn và muốn chia đều cho <strong>4</strong> người trong gia đình.
+    Hỏi mỗi người được <strong>bao nhiêu phần</strong> của cái bánh?
+  </p>
+
+  <div style="display:flex; gap:2rem; align-items:center; flex-wrap:wrap; margin:1.5rem 0;">
+    <FractionPie client:load numerator={1} denominator={4} size={140} />
+    <div>
+      <p>Cái bánh được chia thành <strong>4 phần bằng nhau</strong>.</p>
+      <p>Mỗi người được <strong>1 phần</strong> trong số 4 phần đó.</p>
+      <p>
+        Ta viết: <span style="font-size:1.5rem;font-weight:800;font-family:Georgia,serif;color:#2563eb;">
+          <sup>1</sup>&frasl;<sub>4</sub>
+        </span>
+        &nbsp;và đọc là <em>"một phần tư"</em>.
+      </p>
+    </div>
+  </div>
+
+  <p>💬 <em>Phân số là cách biểu diễn một phần của một tổng thể.</em></p>
+</KhoiDong>
+
+<KhamPha>
+  <h3 id="khai-niem-phan-so">📖 1. Khái niệm phân số</h3>
+
+  <div class="box-dinh-nghia">
+    <p>
+      Phân số có dạng $\frac&#123;a&#125;&#123;b&#125;$ trong đó:
+    </p>
+    <ul style="margin-top:.5rem;padding-left:1.5rem;display:flex;flex-direction:column;gap:.3rem;">
+      <li><code>a</code> là <strong>tử số</strong> (số nguyên)</li>
+      <li><code>b</code> là <strong>mẫu số</strong> (số nguyên khác 0)</li>
+    </ul>
+    <p style="margin-top:.75rem;">
+      Phân số $\frac&#123;a&#125;&#123;b&#125;$ âm khi tử và mẫu khác dấu nhau.
+    </p>
+  </div>
+
+  <h3 id="cong-cu-kham-pha" style="margin-top:1.5rem;">🔧 2. Công cụ khám phá phân số</h3>
+  <p>Kéo thanh trượt để thay đổi tử số và mẫu số. Nhấp vào miếng bánh để tô màu:</p>
+
+  <FractionBuilder client:load initialNumerator={3} initialDenominator={8} />
+
+  <h3 id="hai-phan-so-bang-nhau" style="margin-top:2rem;">⚖️ 3. Hai phân số bằng nhau</h3>
+  <div class="box-dinh-nghia">
+    <p>Hai phân số $\frac&#123;a&#125;&#123;b&#125;$ và $\frac&#123;c&#125;&#123;d&#125;$ bằng nhau khi:</p>
+    <div style="text-align:center;font-size:1.2rem;font-weight:700;margin:1rem 0;">$$\frac&#123;a&#125;&#123;b&#125; = \frac&#123;c&#125;&#123;d&#125; \Leftrightarrow a \times d = b \times c$$</div>
+  </div>
+
+  <p>Ví dụ: 1/2 = 2/4 = 3/6 vì 1 × 4 = 2 × 2</p>
+
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin:1.25rem 0;">
+    <FractionPie client:load numerator={1} denominator={2} size={130} />
+    <FractionPie client:load numerator={2} denominator={4} size={130} />
+    <FractionPie client:load numerator={3} denominator={6} size={130} />
+  </div>
+
+  <h3 id="rut-gon-phan-so" style="margin-top:1.5rem;">🔽 4. Rút gọn phân số</h3>
+  <div class="box-dinh-nghia">
+    <p>Rút gọn phân số: chia cả tử và mẫu cho <strong>ƯCLN</strong> của chúng.</p>
+    <div style="text-align:center;font-size:1.1rem;font-weight:600;margin:1rem 0;">$$\frac&#123;a&#125;&#123;b&#125; = \frac&#123;a \div d&#125;&#123;b \div d&#125; \quad (d = ƯCLN(a, b))$$</div>
+  </div>
+
+  <p>Ví dụ: 6/8 = (6 ÷ 2)/(8 ÷ 2) = 3/4 (vì ƯCLN(6,8) = 2)</p>
+</KhamPha>
+
+<KhamPha title="Phép tính với phân số">
+  <h3 id="phep-tinh">➕ Cộng và trừ phân số</h3>
+
+  <div class="box-dinh-ly">
+    <div style="font-size:1.1rem;font-weight:600;margin-bottom:0.5rem;">$$\frac&#123;a&#125;&#123;b&#125; + \frac&#123;c&#125;&#123;d&#125; = \frac&#123;a \times d + b \times c&#125;&#123;b \times d&#125;$$</div>
+    <div style="font-size:1.1rem;font-weight:600;">$$\frac&#123;a&#125;&#123;b&#125; - \frac&#123;c&#125;&#123;d&#125; = \frac&#123;a \times d - b \times c&#125;&#123;b \times d&#125;$$</div>
+  </div>
+
+  <h3 style="margin-top:1.25rem;">✖️ Nhân và chia phân số</h3>
+  <div class="box-dinh-ly">
+    <div style="font-size:1.1rem;font-weight:600;margin-bottom:0.5rem;">$$\frac&#123;a&#125;&#123;b&#125; \times \frac&#123;c&#125;&#123;d&#125; = \frac&#123;a \times c&#125;&#123;b \times d&#125;$$</div>
+    <div style="font-size:1.1rem;font-weight:600;">$$\frac&#123;a&#125;&#123;b&#125; \div \frac&#123;c&#125;&#123;d&#125; = \frac&#123;a&#125;&#123;b&#125; \times \frac&#123;d&#125;&#123;c&#125; = \frac&#123;a \times d&#125;&#123;b \times c&#125;$$</div>
+  </div>
+
+  <h3 style="margin-top:1.5rem;">🖥️ Máy tính phân số tương tác</h3>
+  <FractionCalc client:load operation="add" />
+</KhamPha>
+
+<LuyenTap>
+  <h3 id="luyen-tap" style="display:none;">Luyện tập</h3>
+  <QuizSession client:load questions={quizData} />
+</LuyenTap>
+
+<VanDung>
+  <h3 id="van-dung">🌍 Phân số trong cuộc sống</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;">
+    {[
+      { icon:'🍕', title:'Chia pizza', desc:'Pizza 8 miếng, ăn 3 miếng = 3/8 chiếc pizza' },
+      { icon:'⏰', title:'Thời gian', desc:'30 phút = 30/60 = 1/2 giờ' },
+      { icon:'💰', title:'Giảm giá', desc:'Giảm 25% = giảm 1/4 giá tiền' },
+      { icon:'📏', title:'Đo lường', desc:'250ml = 1/4 lít' },
+    ].map(item => (
+      <div style="background:white;border-radius:12px;padding:1rem;border:1px solid #e2e8f0;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:.5rem;">{item.icon}</div>
+        <h4 style="margin-bottom:.3rem;font-size:.95rem;">{item.title}</h4>
+        <p style="font-size:.85rem;color:#64748b;margin:0;">{item.desc}</p>
+      </div>
+    ))}
+  </div>
+
+  <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:white;border-radius:12px;border:2px solid #e2e8f0;">
+    <h4>📝 Bài toán:</h4>
+    <p>
+      Một lớp học có <strong>40 học sinh</strong>. Trong đó <code>3/8</code> học sinh đạt loại giỏi,
+      <code>1/4</code> học sinh đạt loại khá. Hỏi có bao nhiêu học sinh loại giỏi và khá?
+    </p>
+    <details style="margin-top:1rem;">
+      <summary style="cursor:pointer;font-weight:600;color:#2563eb;">💡 Xem đáp án</summary>
+      <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid #e2e8f0;">
+        <p>Học sinh giỏi: 40 × 3/8 = (40 × 3) / 8 = 15 học sinh</p>
+        <p>Học sinh khá: 40 × 1/4 = 40 / 4 = 10 học sinh</p>
+        <p>Tổng cộng: 15 + 10 = <strong>25</strong> học sinh</p>
+      </div>
+    </details>
+  </div>
+</VanDung>
+
+<GhiNho>
+  <ul style="display:flex;flex-direction:column;gap:.5rem;padding-left:1.5rem;">
+    <li>Phân số <code>a/b</code>: a là tử số, b ≠ 0 là mẫu số</li>
+    <li>Rút gọn: chia tử và mẫu cho ƯCLN</li>
+    <li>Cộng/trừ: quy đồng mẫu số rồi cộng/trừ tử</li>
+    <li>Nhân: nhân tử với tử, mẫu với mẫu</li>
+    <li>Chia: nhân với nghịch đảo của phân số chia</li>
+  </ul>
+</GhiNho>
+
+</LessonLayout>

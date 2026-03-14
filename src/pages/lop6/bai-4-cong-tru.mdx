@@ -1,0 +1,497 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 4: Phép cộng và phép trừ số tự nhiên"
+description: "Tính chất và quy tắc của phép cộng, phép trừ - Toán 6 KNTT Chương 1"
+grade: "Lớp 6"
+chapter: "Chương I: Tập hợp các số tự nhiên"
+currentSlug: "lop6/bai-4-cong-tru"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tính: $25 + 37$",
+    option_a: "$52$",
+    option_b: "$62$",
+    option_c: "$72$",
+    option_d: "$82$",
+    correct_option: "B",
+    explanation: "$25 + 37 = 62$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $100 - 45$",
+    option_a: "$45$",
+    option_b: "$55$",
+    option_c: "$65$",
+    option_d: "$75$",
+    correct_option: "B",
+    explanation: "$100 - 45 = 55$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phép cộng có tính chất nào sau đây?",
+    option_a: "Giao hoán",
+    option_b: "Kết hợp",
+    option_c: "Cộng với 0",
+    option_d: "Cả ba tính chất trên",
+    correct_option: "D",
+    explanation: "Phép cộng có cả ba tính chất: giao hoán, kết hợp và cộng với 0.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những đẳng thức nào đúng?",
+    option_a: "$15 + 20 = 20 + 15$",
+    option_b: "$(5 + 10) + 15 = 5 + (10 + 15)$",
+    option_c: "$30 + 0 = 30$",
+    option_d: "$40 - 0 = 0$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng theo tính chất giao hoán, kết hợp và cộng với 0. D sai vì $40 - 0 = 40$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tìm $x$ biết: $x + 15 = 40$",
+    option_a: "$20$",
+    option_b: "$25$",
+    option_c: "$30$",
+    option_d: "$35$",
+    correct_option: "B",
+    explanation: "$x = 40 - 15 = 25$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính nhanh: $25 + 47 + 75$",
+    correct_option: "147",
+    explanation: "$25 + 47 + 75 = (25 + 75) + 47 = 100 + 47 = 147$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $!a#25! + !b#37!$",
+    option_a: "$!tinh: !a! + !b!!$",
+    option_b: "$!tinh: !a! - !b!!$",
+    option_c: "$!tinh: !a! * !b!!$",
+    option_d: "$!tinh: !a! + !b! + 10!$",
+    correct_option: "A",
+    explanation: "$!a! + !b! = !tinh: !a! + !b!!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tìm $x$ biết: $x + !a#15! = !b#40!$",
+    option_a: "$!tinh: !b! - !a!!$",
+    option_b: "$!tinh: !b! + !a!!$",
+    option_c: "$!tinh: !a! - !b!!$",
+    option_d: "$!tinh: !a! + !b! + 5!$",
+    correct_option: "A",
+    explanation: "$x = !b! - !a! = !tinh: !b! - !a!!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">➕ Phép cộng và phép trừ — Nền tảng của toán học</h3>
+
+Phép cộng và phép trừ là hai phép tính cơ bản nhất!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
+    <strong>Phép cộng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Gộp lại với nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➖</div>
+    <strong>Phép trừ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Lấy đi một phần</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔄</div>
+    <strong>Mối liên hệ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hai phép ngược nhau</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="phep-cong">📖 1. Phép cộng số tự nhiên</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Phép cộng hai số tự nhiên $a$ và $b$ cho ta một số tự nhiên, gọi là **tổng**, ký hiệu là $a + b$.
+
+- $a, b$: các **số hạng**
+- $a + b$: **tổng**
+
+</div>
+
+**Tính chất của phép cộng:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**1. Tính chất giao hoán:**
+
+$a + b = b + a$
+
+Ví dụ: $5 + 7 = 7 + 5 = 12$
+
+**2. Tính chất kết hợp:**
+
+$(a + b) + c = a + (b + c)$
+
+Ví dụ: $(3 + 5) + 7 = 3 + (5 + 7) = 15$
+
+**3. Cộng với số 0:**
+
+$a + 0 = 0 + a = a$
+
+Ví dụ: $25 + 0 = 25$
+
+</div>
+
+**Ví dụ 1:** Tính nhanh
+
+a) $17 + 25 + 83$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$17 + 25 + 83 = 17 + 83 + 25$ (giao hoán)
+
+$= (17 + 83) + 25$ (kết hợp)
+
+$= 100 + 25 = 125$
+
+</div>
+
+b) $46 + 37 + 54 + 63$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$46 + 37 + 54 + 63 = (46 + 54) + (37 + 63)$
+
+$= 100 + 100 = 200$
+
+</div>
+
+<h3 id="phep-tru" style="margin-top:2rem;">📖 2. Phép trừ số tự nhiên</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Cho hai số tự nhiên $a$ và $b$ với $a \geq b$. Phép trừ $a$ cho $b$ cho ta số tự nhiên $c$ sao cho $b + c = a$, ký hiệu là $a - b = c$.
+
+- $a$: **số bị trừ**
+- $b$: **số trừ**
+- $c = a - b$: **hiệu**
+
+**Điều kiện:** $a \geq b$ (số bị trừ phải lớn hơn hoặc bằng số trừ)
+
+</div>
+
+**Tính chất của phép trừ:**
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**1. Trừ đi số 0:**
+
+$a - 0 = a$
+
+Ví dụ: $50 - 0 = 50$
+
+**2. Trừ đi chính nó:**
+
+$a - a = 0$
+
+Ví dụ: $30 - 30 = 0$
+
+**3. Tính chất của phép trừ liên tiếp:**
+
+$a - b - c = a - (b + c)$
+
+Ví dụ: $100 - 20 - 30 = 100 - (20 + 30) = 100 - 50 = 50$
+
+</div>
+
+**Ví dụ 2:** Tính nhanh
+
+a) $125 - 37 - 25$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$125 - 37 - 25 = 125 - 25 - 37$
+
+$= (125 - 25) - 37$
+
+$= 100 - 37 = 63$
+
+</div>
+
+b) $200 - (45 + 55)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$200 - (45 + 55) = 200 - 100 = 100$
+
+</div>
+
+<h3 id="moi-lien-he" style="margin-top:2rem;">🔗 3. Mối liên hệ giữa phép cộng và phép trừ</h3>
+
+<div class="box-dinh-ly">
+
+**Mối liên hệ:**
+
+Nếu $a + b = c$ thì:
+- $c - a = b$
+- $c - b = a$
+
+**Ví dụ:** $5 + 7 = 12$ nên:
+- $12 - 5 = 7$
+- $12 - 7 = 5$
+
+</div>
+
+**Ứng dụng:** Tìm số chưa biết
+
+**Ví dụ 3:** Tìm $x$ biết:
+
+a) $x + 15 = 40$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$x = 40 - 15 = 25$
+
+**Thử lại:** $25 + 15 = 40$ ✓
+
+</div>
+
+b) $x - 23 = 17$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$x = 17 + 23 = 40$
+
+**Thử lại:** $40 - 23 = 17$ ✓
+
+</div>
+
+c) $56 - x = 28$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$x = 56 - 28 = 28$
+
+**Thử lại:** $56 - 28 = 28$ ✓
+
+</div>
+
+<h3 id="tinh-nhanh" style="margin-top:2rem;">⚡ 4. Các kỹ thuật tính nhanh</h3>
+
+**Kỹ thuật 1:** Nhóm các số có tổng tròn chục, tròn trăm
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$27 + 48 + 73 + 52$
+
+$= (27 + 73) + (48 + 52)$
+
+$= 100 + 100 = 200$
+
+</div>
+
+**Kỹ thuật 2:** Thêm vào rồi bớt đi
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$47 + 99 = 47 + 100 - 1 = 147 - 1 = 146$
+
+$85 - 49 = 85 - 50 + 1 = 35 + 1 = 36$
+
+</div>
+
+**Kỹ thuật 3:** Tách số để tính thuận tiện
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$156 - 28 - 56 = (156 - 56) - 28 = 100 - 28 = 72$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một cửa hàng sách có $250$ cuốn sách. Buổi sáng bán được $85$ cuốn, buổi chiều bán được $67$ cuốn.
+
+a) Cả ngày cửa hàng bán được bao nhiêu cuốn sách?
+
+b) Cuối ngày cửa hàng còn lại bao nhiêu cuốn sách?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Số sách bán được cả ngày:
+
+$85 + 67 = 152$ (cuốn)
+
+b) Số sách còn lại:
+
+$250 - 152 = 98$ (cuốn)
+
+**Đáp số:** a) 152 cuốn; b) 98 cuốn
+
+</div>
+
+**📝 Bài toán 2:** Ba bạn An, Bình, Chi có tổng cộng $180$ viên bi. An có $65$ viên, Bình có $58$ viên.
+
+a) Hai bạn An và Bình có tất cả bao nhiêu viên bi?
+
+b) Chi có bao nhiêu viên bi?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Số bi của An và Bình:
+
+$65 + 58 = 123$ (viên)
+
+b) Số bi của Chi:
+
+$180 - 123 = 57$ (viên)
+
+**Đáp số:** a) 123 viên; b) 57 viên
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Phép cộng**: $a + b = c$ (tổng)
+  - Giao hoán: $a + b = b + a$
+  - Kết hợp: $(a + b) + c = a + (b + c)$
+  - Cộng với 0: $a + 0 = a$
+- **Phép trừ**: $a - b = c$ (hiệu), điều kiện $a \geq b$
+  - $a - 0 = a$
+  - $a - a = 0$
+- **Mối liên hệ**: $a + b = c \Rightarrow c - a = b$ và $c - b = a$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Thực hiện phép tính:
+
+a) $125 + 237 + 75$
+
+b) $456 + 89 + 44 + 11$
+
+c) $500 - 125 - 75$
+
+d) $1000 - (234 + 166)$
+
+**Bài 2:** Tính nhanh:
+
+a) $47 + 99$
+
+b) $85 - 49$
+
+c) $123 + 456 + 77 + 44$
+
+d) $250 - 37 - 50$
+
+**Bài 3:** Tìm $x$ biết:
+
+a) $x + 45 = 100$
+
+b) $x - 37 = 63$
+
+c) $125 - x = 48$
+
+d) $x + 56 = 156$
+
+**Bài 4:** Áp dụng tính chất để tính nhanh:
+
+a) $25 + 17 + 75 + 83$
+
+b) $46 + 28 + 54 + 72$
+
+c) $200 - 45 - 55$
+
+d) $156 - 28 - 56$
+
+**Bài 5:** Điền số thích hợp vào ô trống:
+
+a) $35 + ... = 80$
+
+b) $... - 45 = 55$
+
+c) $67 + 33 = ...$
+
+d) $150 - ... = 75$
+
+**Bài 6 (Thực tế):** Một trường học có $450$ học sinh. Trong đó có $235$ học sinh nam.
+
+a) Trường có bao nhiêu học sinh nữ?
+
+b) Nếu năm sau trường tuyển thêm $85$ học sinh, trường sẽ có tất cả bao nhiêu học sinh?
+
+c) Nếu có $120$ học sinh tốt nghiệp, trường còn lại bao nhiêu học sinh?
+
+d) Tính số học sinh nam và nữ sau khi tuyển thêm và có học sinh tốt nghiệp (giả sử tuyển đều và tốt nghiệp đều).
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $437$; b) $600$; c) $300$; d) $600$
+
+**Bài 2:** a) $146$; b) $36$; c) $700$; d) $163$
+
+**Bài 3:** a) $x = 55$; b) $x = 100$; c) $x = 77$; d) $x = 100$
+
+**Bài 4:** a) $200$; b) $200$; c) $100$; d) $72$
+
+**Bài 5:** a) $45$; b) $100$; c) $100$; d) $75$
+
+**Bài 6:** a) $215$ học sinh nữ; b) $535$ học sinh; c) $330$ học sinh; d) $415$ học sinh
+
+</div>
+</details>
+

@@ -1,0 +1,376 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 3: Lũy thừa với số mũ tự nhiên của một số hữu tỉ"
+description: "Lũy thừa và các tính chất của lũy thừa - Toán 7 KNTT Chương 1"
+grade: "Lớp 7"
+chapter: "Chương I: Số hữu tỉ"
+currentSlug: "lop7/bai-3-luy-thua-so-mu-tu-nhien"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Kết quả của $\\left(\\dfrac{2}{3}\\right)^3$ là:",
+    option_a: "$\\dfrac{8}{27}$",
+    option_b: "$\\dfrac{6}{9}$",
+    option_c: "$\\dfrac{2}{9}$",
+    option_d: "$\\dfrac{8}{9}$",
+    correct_option: "A",
+    explanation: "$\\left(\\dfrac{2}{3}\\right)^3 = \\dfrac{2^3}{3^3} = \\dfrac{8}{27}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $2^3 \\times 2^4$ là:",
+    option_a: "$2^7$",
+    option_b: "$2^{12}$",
+    option_c: "$4^7$",
+    option_d: "$2^1$",
+    correct_option: "A",
+    explanation: "Khi nhân hai lũy thừa cùng cơ số, ta cộng các số mũ: $2^3 \\times 2^4 = 2^{3+4} = 2^7$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $3^5 : 3^2$ là:",
+    option_a: "$3^3$",
+    option_b: "$3^7$",
+    option_c: "$3^{10}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Khi chia hai lũy thừa cùng cơ số, ta trừ các số mũ: $3^5 : 3^2 = 3^{5-2} = 3^3$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(2^3)^2$ là:",
+    option_a: "$2^6$",
+    option_b: "$2^5$",
+    option_c: "$4^6$",
+    option_d: "$2^9$",
+    correct_option: "A",
+    explanation: "Lũy thừa của lũy thừa: $(2^3)^2 = 2^{3 \\times 2} = 2^6$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "$\\left(-\\dfrac{1}{2}\\right)^4$ bằng:",
+    option_a: "$\\dfrac{1}{16}$",
+    option_b: "$-\\dfrac{1}{16}$",
+    option_c: "$\\dfrac{1}{8}$",
+    option_d: "$-\\dfrac{1}{8}$",
+    correct_option: "A",
+    explanation: "$\\left(-\\dfrac{1}{2}\\right)^4 = \\dfrac{(-1)^4}{2^4} = \\dfrac{1}{16}$ (số mũ chẵn nên kết quả dương)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những công thức nào sau đây đúng?",
+    option_a: "$a^m \\times a^n = a^{m+n}$",
+    option_b: "$a^m : a^n = a^{m-n}$ (với $a \\neq 0$)",
+    option_c: "$(a^m)^n = a^{m \\times n}$",
+    option_d: "$(a \\times b)^n = a^n \\times b^n$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các công thức trên đều là các tính chất cơ bản của lũy thừa.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Lũy thừa — Phép toán mạnh mẽ</h3>
+
+Lũy thừa giúp viết gọn các phép nhân lặp lại và tính toán nhanh hơn!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Lũy thừa bậc 2</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$2^2 = 2 \\times 2 = 4$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Lũy thừa bậc 3</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$2^3 = 2 \\times 2 \\times 2 = 8$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
+    <strong>Lũy thừa bậc n</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$2^n = 2 \\times 2 \\times ... \\times 2$</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm lũy thừa</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Lũy thừa bậc $n$ của số hữu tỉ $a$ là tích của $n$ thừa số $a$:
+
+$$a^n = \underbrace{a \times a \times a \times ... \times a}_{n \text{ thừa số}}$$
+
+Trong đó:
+- $a$ gọi là **cơ số**
+- $n$ gọi là **số mũ** (với $n \in \mathbb{N}^*$)
+- $a^n$ đọc là "$a$ mũ $n$" hoặc "$a$ lũy thừa $n$"
+
+</div>
+
+**Ví dụ 1:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $2^3 = 2 \times 2 \times 2 = 8$
+- $\left(\dfrac{1}{2}\right)^4 = \dfrac{1}{2} \times \dfrac{1}{2} \times \dfrac{1}{2} \times \dfrac{1}{2} = \dfrac{1}{16}$
+- $(-3)^2 = (-3) \times (-3) = 9$
+- $(-2)^3 = (-2) \times (-2) \times (-2) = -8$
+- $\left(-\dfrac{2}{3}\right)^2 = \left(-\dfrac{2}{3}\right) \times \left(-\dfrac{2}{3}\right) = \dfrac{4}{9}$
+
+</div>
+
+**Quy ước đặc biệt:**
+
+- $a^1 = a$ (lũy thừa bậc 1 bằng chính số đó)
+- $a^0 = 1$ (với $a \neq 0$)
+
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 2. Tính chất của lũy thừa</h3>
+
+<div class="box-dinh-ly">
+
+**Các công thức cơ bản:**
+
+1. **Nhân hai lũy thừa cùng cơ số:**
+   $$a^m \times a^n = a^{m+n}$$
+
+2. **Chia hai lũy thừa cùng cơ số:**
+   $$a^m : a^n = a^{m-n} \quad (a \neq 0, m \geq n)$$
+
+3. **Lũy thừa của lũy thừa:**
+   $$(a^m)^n = a^{m \times n}$$
+
+4. **Lũy thừa của một tích:**
+   $$(a \times b)^n = a^n \times b^n$$
+
+5. **Lũy thừa của một thương:**
+   $$\left(\dfrac{a}{b}\right)^n = \dfrac{a^n}{b^n} \quad (b \neq 0)$$
+
+</div>
+
+**Ví dụ 2:** Áp dụng tính chất
+
+a) $2^3 \times 2^4 = 2^{3+4} = 2^7 = 128$
+
+b) $5^6 : 5^2 = 5^{6-2} = 5^4 = 625$
+
+c) $(3^2)^3 = 3^{2 \times 3} = 3^6 = 729$
+
+d) $(2 \times 5)^3 = 2^3 \times 5^3 = 8 \times 125 = 1000$
+
+e) $\left(\dfrac{2}{3}\right)^4 = \dfrac{2^4}{3^4} = \dfrac{16}{81}$
+
+<h3 id="luy-thua-so-am" style="margin-top:2rem;">➖ 3. Lũy thừa của số âm</h3>
+
+**Quy tắc quan trọng:**
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Nếu số mũ **chẵn**: $(-a)^{2n} = a^{2n}$ (kết quả **dương**)
+- Nếu số mũ **lẻ**: $(-a)^{2n+1} = -a^{2n+1}$ (kết quả **âm**)
+
+</div>
+
+**Ví dụ 3:**
+
+a) $(-2)^4 = 16$ (số mũ chẵn → kết quả dương)
+
+b) $(-2)^5 = -32$ (số mũ lẻ → kết quả âm)
+
+c) $\left(-\dfrac{1}{3}\right)^2 = \dfrac{1}{9}$ (số mũ chẵn → kết quả dương)
+
+d) $\left(-\dfrac{1}{2}\right)^3 = -\dfrac{1}{8}$ (số mũ lẻ → kết quả âm)
+
+<h3 id="so-sanh" style="margin-top:2rem;">⚖️ 4. So sánh các lũy thừa</h3>
+
+**Quy tắc so sánh:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. **Cùng cơ số** (cơ số > 1): Số mũ lớn hơn thì lũy thừa lớn hơn
+   - Ví dụ: $2^5 > 2^3$ vì $5 > 3$
+
+2. **Cùng số mũ**: So sánh cơ số
+   - Ví dụ: $5^3 > 3^3$ vì $5 > 3$
+
+3. **Khác cơ số và số mũ**: Tính giá trị rồi so sánh
+   - Ví dụ: $2^5 = 32$ và $3^3 = 27$, nên $2^5 > 3^3$
+
+</div>
+
+**Ví dụ 4:** So sánh
+
+a) $3^7$ và $3^5$: Vì $7 > 5$ nên $3^7 > 3^5$
+
+b) $2^{10}$ và $10^2$: $2^{10} = 1024$ và $10^2 = 100$, nên $2^{10} > 10^2$
+
+c) $\left(\dfrac{1}{2}\right)^3$ và $\left(\dfrac{1}{2}\right)^5$: Vì $\dfrac{1}{2} < 1$ nên $\left(\dfrac{1}{2}\right)^3 > \left(\dfrac{1}{2}\right)^5$
+
+<h3 id="ung-dung" style="margin-top:2rem;">🔬 5. Ứng dụng của lũy thừa</h3>
+
+**Ví dụ 5:** Tính nhanh
+
+a) $2^{10} = 1024$ (dùng trong tin học: 1 KB ≈ $2^{10}$ bytes)
+
+b) $10^6 = 1\,000\,000$ (1 triệu)
+
+c) $10^9 = 1\,000\,000\,000$ (1 tỷ)
+
+**Ví dụ 6:** Viết gọn
+
+a) $8 = 2^3$
+
+b) $27 = 3^3$
+
+c) $\dfrac{1}{16} = \left(\dfrac{1}{2}\right)^4 = 2^{-4}$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Một vi khuẩn phân chia thành 2 con sau mỗi giờ. Ban đầu có 1 con vi khuẩn.
+
+a) Sau 1 giờ có bao nhiêu con vi khuẩn?
+
+b) Sau 2 giờ có bao nhiêu con vi khuẩn?
+
+c) Sau $n$ giờ có bao nhiêu con vi khuẩn?
+
+d) Sau 10 giờ có bao nhiêu con vi khuẩn?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Sau 1 giờ: $2^1 = 2$ con
+
+b) Sau 2 giờ: $2^2 = 4$ con
+
+c) Sau $n$ giờ: $2^n$ con
+
+d) Sau 10 giờ: $2^{10} = 1024$ con
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Lũy thừa**: $a^n = a \times a \times ... \times a$ ($n$ thừa số)
+- **Nhân**: $a^m \times a^n = a^{m+n}$
+- **Chia**: $a^m : a^n = a^{m-n}$ (với $a \neq 0$, $m \geq n$)
+- **Lũy thừa của lũy thừa**: $(a^m)^n = a^{m \times n}$
+- **Lũy thừa của tích**: $(a \times b)^n = a^n \times b^n$
+- **Lũy thừa của thương**: $\left(\dfrac{a}{b}\right)^n = \dfrac{a^n}{b^n}$
+- **Số âm**: Số mũ chẵn → dương, số mũ lẻ → âm
+- **Quy ước**: $a^1 = a$, $a^0 = 1$ (với $a \neq 0$)
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính giá trị của các lũy thừa sau:
+
+a) $3^4$ &nbsp;&nbsp;&nbsp; b) $(-2)^5$ &nbsp;&nbsp;&nbsp; c) $\left(\dfrac{1}{2}\right)^3$ &nbsp;&nbsp;&nbsp; d) $\left(-\dfrac{2}{3}\right)^2$
+
+**Bài 2:** Viết dưới dạng lũy thừa:
+
+a) $16$ &nbsp;&nbsp;&nbsp; b) $125$ &nbsp;&nbsp;&nbsp; c) $\dfrac{1}{8}$ &nbsp;&nbsp;&nbsp; d) $\dfrac{9}{25}$
+
+**Bài 3:** Thực hiện phép tính:
+
+a) $2^3 \times 2^5$ &nbsp;&nbsp;&nbsp; b) $5^7 : 5^4$ &nbsp;&nbsp;&nbsp; c) $(3^2)^4$ &nbsp;&nbsp;&nbsp; d) $(2 \times 3)^3$
+
+**Bài 4:** Tính nhanh:
+
+a) $2^5 \times 2^3 : 2^4$
+
+b) $(5^2)^3 : 5^4$
+
+c) $\left(\dfrac{2}{3}\right)^2 \times \left(\dfrac{3}{2}\right)^2$
+
+d) $3^4 \times 9^2$ (Gợi ý: $9 = 3^2$)
+
+**Bài 5:** So sánh:
+
+a) $2^{10}$ và $10^2$
+
+b) $3^5$ và $5^3$
+
+c) $\left(\dfrac{1}{2}\right)^4$ và $\left(\dfrac{1}{2}\right)^6$
+
+d) $(-2)^4$ và $(-3)^2$
+
+**Bài 6:** Tìm $x$, biết:
+
+a) $2^x = 32$
+
+b) $3^x = 81$
+
+c) $x^3 = 125$
+
+d) $\left(\dfrac{1}{2}\right)^x = \dfrac{1}{16}$
+
+**Bài 7 (Thực tế):** Một tờ giấy có độ dày $0,\!1$ mm. Gấp đôi tờ giấy $n$ lần thì độ dày là $0,\!1 \times 2^n$ mm.
+
+a) Gấp đôi 5 lần thì độ dày là bao nhiêu?
+
+b) Gấp đôi 10 lần thì độ dày là bao nhiêu cm?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $81$; b) $-32$; c) $\dfrac{1}{8}$; d) $\dfrac{4}{9}$
+
+**Bài 2:** a) $2^4$ hoặc $4^2$; b) $5^3$; c) $\left(\dfrac{1}{2}\right)^3$ hoặc $2^{-3}$; d) $\left(\dfrac{3}{5}\right)^2$
+
+**Bài 3:** a) $2^8 = 256$; b) $5^3 = 125$; c) $3^8 = 6561$; d) $6^3 = 216$
+
+**Bài 4:** a) $2^4 = 16$; b) $5^2 = 25$; c) $1$; d) $3^8 = 6561$
+
+**Bài 5:** a) $2^{10} = 1024 > 100 = 10^2$; b) $3^5 = 243 > 125 = 5^3$; c) $\left(\dfrac{1}{2}\right)^4 > \left(\dfrac{1}{2}\right)^6$; d) $(-2)^4 = 16 > 9 = (-3)^2$
+
+**Bài 6:** a) $x = 5$; b) $x = 4$; c) $x = 5$; d) $x = 4$
+
+**Bài 7:** a) $0,\!1 \times 2^5 = 3,\!2$ mm; b) $0,\!1 \times 2^{10} = 102,\!4$ mm $= 10,\!24$ cm
+
+</div>
+</details>

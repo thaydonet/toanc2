@@ -1,0 +1,452 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 36: Góc"
+description: "Khái niệm góc, đỉnh, cạnh, phân loại góc - Toán 6 KNTT Chương VIII"
+grade: "Lớp 6"
+chapter: "Chương VIII: Những hình hình học cơ bản"
+currentSlug: "lop6/bai-36-goc"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Góc là gì?",
+    option_a: "Hình tạo bởi hai tia chung gốc",
+    option_b: "Một đoạn thẳng",
+    option_c: "Một đường cong",
+    option_d: "Một hình tròn",
+    correct_option: "A",
+    explanation: "Góc là hình tạo bởi hai tia chung gốc. Gốc chung gọi là đỉnh, hai tia gọi là cạnh.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc AOB có đỉnh tại điểm nào?",
+    option_a: "Điểm O",
+    option_b: "Điểm A",
+    option_c: "Điểm B",
+    option_d: "Không có đỉnh",
+    correct_option: "A",
+    explanation: "Góc AOB có đỉnh tại điểm O (gốc chung của hai tia OA và OB).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc vuông có số đo bao nhiêu độ?",
+    option_a: "90°",
+    option_b: "180°",
+    option_c: "45°",
+    option_d: "360°",
+    correct_option: "A",
+    explanation: "Góc vuông có số đo 90°.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào đúng về góc?",
+    option_a: "Góc có một đỉnh",
+    option_b: "Góc có hai cạnh",
+    option_c: "Góc bẹt có số đo 180°",
+    option_d: "Góc nhọn có số đo lớn hơn 90°",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì góc nhọn có số đo nhỏ hơn 90°.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc nhọn là góc có số đo:",
+    option_a: "Nhỏ hơn 90°",
+    option_b: "Bằng 90°",
+    option_c: "Lớn hơn 90° và nhỏ hơn 180°",
+    option_d: "Bằng 180°",
+    correct_option: "A",
+    explanation: "Góc nhọn là góc có số đo nhỏ hơn 90°.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Góc tù là góc có số đo lớn hơn bao nhiêu độ và nhỏ hơn bao nhiêu độ?",
+    correct_option: "90 và 180",
+    explanation: "Góc tù là góc có số đo lớn hơn 90° và nhỏ hơn 180°.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc bẹt là góc có số đo:",
+    option_a: "180°",
+    option_b: "90°",
+    option_c: "360°",
+    option_d: "0°",
+    correct_option: "A",
+    explanation: "Góc bẹt là góc có số đo 180°.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu góc AOB = 45°, góc AOB là:",
+    option_a: "Góc nhọn",
+    option_b: "Góc vuông",
+    option_c: "Góc tù",
+    option_d: "Góc bẹt",
+    correct_option: "A",
+    explanation: "Vì 45° < 90°, nên góc AOB là góc nhọn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Góc — Hình tạo bởi hai tia chung gốc</h3>
+
+Góc là một khái niệm cơ bản trong hình học. Chúng ta gặp góc ở khắp nơi trong cuộc sống!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">∠</div>
+    <strong>Góc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hai tia chung gốc</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Phân loại</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Theo số đo</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia-goc">📖 1. Định nghĩa góc</h3>
+
+<div class="box-dinh-nghia">
+
+**Góc** là hình tạo bởi hai tia chung gốc.
+
+**Ký hiệu:** Góc AOB được ký hiệu là ∠AOB hoặc ∠O
+
+**Các thành phần:**
+- **Đỉnh:** Điểm O (gốc chung)
+- **Cạnh:** Hai tia OA và OB
+
+</div>
+
+**Biểu diễn góc:**
+
+<svg viewBox="0 0 300 200" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="150" y1="150" x2="250" y2="150" stroke="#2563eb" stroke-width="2"/>
+  <line x1="150" y1="150" x2="100" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="150" cy="150" r="4" fill="#dc2626"/>
+  <circle cx="250" cy="150" r="3" fill="#059669"/>
+  <circle cx="100" cy="50" r="3" fill="#059669"/>
+  
+  <path d="M 170 150 Q 180 140 190 130" stroke="#f59e0b" stroke-width="2" fill="none"/>
+  
+  <text x="150" y="175" text-anchor="middle" font-size="12" fill="#1f2937">O</text>
+  <text x="260" y="155" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="90" y="40" text-anchor="middle" font-size="12" fill="#1f2937">B</text>
+  <text x="210" y="110" text-anchor="middle" font-size="12" fill="#f59e0b">∠AOB</text>
+</svg>
+
+<h3 id="phan-loai-goc" style="margin-top:2rem;">📖 2. Phân loại góc</h3>
+
+**Góc nhọn:**
+
+<svg viewBox="0 0 200 150" style="width:100%;max-width:200px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="100" y1="100" x2="180" y2="100" stroke="#2563eb" stroke-width="2"/>
+  <line x1="100" y1="100" x2="150" y2="40" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="100" cy="100" r="3" fill="#dc2626"/>
+  <path d="M 120 100 Q 125 90 135 75" stroke="#f59e0b" stroke-width="2" fill="none"/>
+  <text x="100" y="120" text-anchor="middle" font-size="11" fill="#1f2937">O</text>
+  <text x="145" y="125" text-anchor="middle" font-size="11" fill="#1f2937">0° < ∠ < 90°</text>
+</svg>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Góc nhọn** là góc có số đo **nhỏ hơn 90°**.
+
+</div>
+
+**Góc vuông:**
+
+<svg viewBox="0 0 200 150" style="width:100%;max-width:200px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="100" y1="100" x2="180" y2="100" stroke="#2563eb" stroke-width="2"/>
+  <line x1="100" y1="100" x2="100" y2="20" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="100" cy="100" r="3" fill="#dc2626"/>
+  <rect x="100" y="80" width="20" height="20" fill="none" stroke="#f59e0b" stroke-width="1"/>
+  <text x="100" y="120" text-anchor="middle" font-size="11" fill="#1f2937">O</text>
+  <text x="145" y="125" text-anchor="middle" font-size="11" fill="#1f2937">∠ = 90°</text>
+</svg>
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Góc vuông** là góc có số đo **bằng 90°**.
+
+</div>
+
+**Góc tù:**
+
+<svg viewBox="0 0 200 150" style="width:100%;max-width:200px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="100" y1="100" x2="180" y2="100" stroke="#2563eb" stroke-width="2"/>
+  <line x1="100" y1="100" x2="60" y2="30" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="100" cy="100" r="3" fill="#dc2626"/>
+  <path d="M 120 100 Q 110 80 90 50" stroke="#f59e0b" stroke-width="2" fill="none"/>
+  <text x="100" y="120" text-anchor="middle" font-size="11" fill="#1f2937">O</text>
+  <text x="145" y="125" text-anchor="middle" font-size="11" fill="#1f2937">90° < ∠ < 180°</text>
+</svg>
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Góc tù** là góc có số đo **lớn hơn 90° và nhỏ hơn 180°**.
+
+</div>
+
+**Góc bẹt:**
+
+<svg viewBox="0 0 200 150" style="width:100%;max-width:200px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="30" y1="100" x2="170" y2="100" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="100" cy="100" r="3" fill="#dc2626"/>
+  <path d="M 120 100 Q 130 95 150 100" stroke="#f59e0b" stroke-width="2" fill="none"/>
+  <text x="100" y="120" text-anchor="middle" font-size="11" fill="#1f2937">O</text>
+  <text x="145" y="125" text-anchor="middle" font-size="11" fill="#1f2937">∠ = 180°</text>
+</svg>
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Góc bẹt** là góc có số đo **bằng 180°**.
+
+</div>
+
+<h3 id="bang-phan-loai" style="margin-top:2rem;">📖 3. Bảng phân loại góc</h3>
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;text-align:left;">Loại góc</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;text-align:left;">Số đo</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;text-align:left;">Ký hiệu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;"><strong>Góc nhọn</strong></td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">0° < ∠ < 90°</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">∠ nhọn</td>
+</tr>
+<tr style="background:#f9fafb;">
+<td style="border:1px solid #d1d5db;padding:0.75rem;"><strong>Góc vuông</strong></td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">∠ = 90°</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">∠ vuông</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;"><strong>Góc tù</strong></td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">90° < ∠ < 180°</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">∠ tù</td>
+</tr>
+<tr style="background:#f9fafb;">
+<td style="border:1px solid #d1d5db;padding:0.75rem;"><strong>Góc bẹt</strong></td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">∠ = 180°</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">∠ bẹt</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="so-sanh-goc" style="margin-top:2rem;">📖 4. So sánh góc</h3>
+
+**Cách so sánh:**
+
+1. **Dùng thước đo góc:** Đo số đo từng góc, rồi so sánh các số đo.
+
+2. **Dùng compa:** Vẽ hai cung tròn có cùng bán kính từ đỉnh của mỗi góc, rồi so sánh độ dài cung.
+
+**Ký hiệu so sánh:**
+- ∠AOB = ∠COD (bằng nhau)
+- ∠AOB < ∠COD (nhỏ hơn)
+- ∠AOB > ∠COD (lớn hơn)
+
+**Ví dụ:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- ∠AOB = 45° (góc nhọn)
+- ∠COD = 90° (góc vuông)
+- ∠EOF = 120° (góc tù)
+
+So sánh: ∠AOB < ∠COD < ∠EOF
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Quan sát các góc trong một căn phòng:
+
+a) Góc giữa hai bức tường là góc gì?
+
+b) Góc giữa kim giờ và kim phút lúc 3 giờ là góc gì?
+
+c) Góc giữa kim giờ và kim phút lúc 6 giờ là góc gì?
+
+d) Góc giữa kim giờ và kim phút lúc 9 giờ là góc gì?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Góc giữa hai bức tường là **góc vuông** (90°)
+
+b) Lúc 3 giờ, góc là **góc vuông** (90°)
+
+c) Lúc 6 giờ, góc là **góc bẹt** (180°)
+
+d) Lúc 9 giờ, góc là **góc vuông** (90°)
+
+</div>
+
+**📝 Bài toán 2:** Một chiếc thang dựa vào tường. Hãy xác định:
+
+a) Góc giữa thang và mặt đất là góc gì?
+
+b) Góc giữa thang và tường là góc gì?
+
+c) Góc giữa mặt đất và tường là góc gì?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Góc giữa thang và mặt đất là **góc nhọn** (nhỏ hơn 90°)
+
+b) Góc giữa thang và tường là **góc nhọn** (nhỏ hơn 90°)
+
+c) Góc giữa mặt đất và tường là **góc vuông** (90°)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Góc** là hình tạo bởi hai tia chung gốc
+- **Đỉnh:** Gốc chung của hai tia
+- **Cạnh:** Hai tia tạo thành góc
+- **Góc nhọn:** 0° < ∠ < 90°
+- **Góc vuông:** ∠ = 90°
+- **Góc tù:** 90° < ∠ < 180°
+- **Góc bẹt:** ∠ = 180°
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Hãy phân loại các góc sau:
+
+a) ∠AOB = 30°
+
+b) ∠COD = 90°
+
+c) ∠EOF = 120°
+
+d) ∠GOH = 180°
+
+e) ∠IOJ = 75°
+
+f) ∠KOL = 150°
+
+**Bài 2:** Cho các góc:
+
+a) ∠AOB = 45°, ∠COD = 60°. So sánh hai góc.
+
+b) ∠EOF = 90°, ∠GOH = 85°. So sánh hai góc.
+
+c) ∠IOJ = 120°, ∠KOL = 130°. So sánh hai góc.
+
+d) ∠MON = 180°, ∠POQ = 179°. So sánh hai góc.
+
+**Bài 3:** Hãy xác định loại góc:
+
+a) Góc giữa hai kim đồng hồ lúc 12 giờ.
+
+b) Góc giữa hai kim đồng hồ lúc 3 giờ.
+
+c) Góc giữa hai kim đồng hồ lúc 6 giờ.
+
+d) Góc giữa hai kim đồng hồ lúc 9 giờ.
+
+**Bài 4:** Cho góc ∠AOB. Hãy xác định:
+
+a) Nếu ∠AOB = 50°, góc này là góc gì?
+
+b) Nếu ∠AOB = 90°, góc này là góc gì?
+
+c) Nếu ∠AOB = 110°, góc này là góc gì?
+
+d) Nếu ∠AOB = 180°, góc này là góc gì?
+
+**Bài 5:** Hãy sắp xếp các góc sau theo thứ tự từ nhỏ đến lớn:
+
+a) ∠AOB = 45°, ∠COD = 30°, ∠EOF = 60°, ∠GOH = 90°
+
+b) ∠IOJ = 120°, ∠KOL = 100°, ∠MON = 140°, ∠POQ = 110°
+
+c) ∠ROT = 75°, ∠UOV = 85°, ∠WOX = 65°, ∠YOZ = 95°
+
+**Bài 6 (Thực tế):** Quan sát các góc trong một ngôi nhà:
+
+a) Góc giữa hai bức tường là góc gì?
+
+b) Góc giữa mái nhà và tường là góc gì?
+
+c) Góc giữa cửa sổ và tường là góc gì?
+
+d) Góc giữa hai cánh cửa khi mở hết là góc gì?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Góc nhọn; b) Góc vuông; c) Góc tù; d) Góc bẹt; e) Góc nhọn; f) Góc tù
+
+**Bài 2:** a) ∠AOB < ∠COD; b) ∠GOH < ∠EOF; c) ∠IOJ < ∠KOL; d) ∠POQ < ∠MON
+
+**Bài 3:** a) Góc bẹt (0°); b) Góc vuông (90°); c) Góc bẹt (180°); d) Góc vuông (90°)
+
+**Bài 4:** a) Góc nhọn; b) Góc vuông; c) Góc tù; d) Góc bẹt
+
+**Bài 5:** a) 30° < 45° < 60° < 90°; b) 100° < 110° < 120° < 140°; c) 65° < 75° < 85° < 95°
+
+**Bài 6:** a) Góc vuông; b) Góc nhọn; c) Góc vuông; d) Góc bẹt
+
+</div>
+</details>

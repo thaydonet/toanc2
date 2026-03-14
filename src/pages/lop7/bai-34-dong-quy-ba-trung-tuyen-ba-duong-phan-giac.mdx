@@ -1,0 +1,335 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 34: Sự đồng quy của ba trung tuyến, ba đường phân giác"
+description: "Trọng tâm và tâm đường tròn nội tiếp - Toán 7 KNTT Chương 9"
+grade: "Lớp 7"
+chapter: "Chương IX: Quan hệ giữa các yếu tố trong tam giác"
+currentSlug: "lop7/bai-34-dong-quy-ba-trung-tuyen-ba-duong-phan-giac"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Ba đường trung tuyến của tam giác:",
+    option_a: "Đồng quy tại một điểm",
+    option_b: "Song song với nhau",
+    option_c: "Vuông góc với nhau",
+    option_d: "Không cắt nhau",
+    correct_option: "A",
+    explanation: "Ba đường trung tuyến của tam giác luôn đồng quy tại một điểm gọi là trọng tâm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trọng tâm $G$ chia mỗi trung tuyến theo tỉ lệ:",
+    option_a: "$2:1$ kể từ đỉnh",
+    option_b: "$1:2$ kể từ đỉnh",
+    option_c: "$1:1$",
+    option_d: "$3:1$",
+    correct_option: "A",
+    explanation: "Trọng tâm chia mỗi trung tuyến thành hai phần theo tỉ lệ $2:1$ kể từ đỉnh.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ba đường phân giác của tam giác:",
+    option_a: "Đồng quy tại một điểm",
+    option_b: "Song song với nhau",
+    option_c: "Vuông góc với nhau",
+    option_d: "Không cắt nhau",
+    correct_option: "A",
+    explanation: "Ba đường phân giác của tam giác đồng quy tại một điểm gọi là tâm đường tròn nội tiếp.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác $ABC$ có trọng tâm $G$. Nếu $AM = 12$ cm thì $AG$ bằng:",
+    option_a: "$8$ cm",
+    option_b: "$6$ cm",
+    option_c: "$4$ cm",
+    option_d: "$10$ cm",
+    correct_option: "A",
+    explanation: "$AG = \\\\frac{2}{3}AM = \\\\frac{2}{3} \\\\cdot 12 = 8$ cm",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Tâm đường tròn nội tiếp tam giác:",
+    option_a: "Là giao điểm ba đường phân giác",
+    option_b: "Cách đều ba cạnh",
+    option_c: "Là tâm đường tròn tiếp xúc ba cạnh",
+    option_d: "Luôn nằm trong tam giác",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các khẳng định đều đúng về tâm đường tròn nội tiếp.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tam giác $ABC$ có trọng tâm $G$. Nếu $GM = 3$ cm ($M$ là trung điểm $BC$) thì $AG$ bằng bao nhiêu cm?",
+    correct_option: "6",
+    explanation: "$AG = 2 \\\\cdot GM = 2 \\\\cdot 3 = 6$ cm",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Đường đồng quy</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">G</div>
+    <strong>Trọng tâm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ba trung tuyến</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">I</div>
+    <strong>Tâm nội tiếp</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ba phân giác</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="trung-tuyen">📖 1. Đường trung tuyến và trọng tâm</h3>
+
+<div class="box-dinh-nghia">
+
+**Đường trung tuyến** của tam giác là đoạn thẳng nối từ một đỉnh đến trung điểm của cạnh đối diện.
+
+Mỗi tam giác có ba đường trung tuyến.
+
+</div>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Ba đường trung tuyến của một tam giác cùng đi qua một điểm. Điểm đó gọi là **trọng tâm** của tam giác.
+
+Trọng tâm chia mỗi đường trung tuyến thành hai phần theo tỉ lệ $2:1$ kể từ đỉnh.
+
+$AG = \frac{2}{3}AM$, $GM = \frac{1}{3}AM$
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="350" viewBox="0 0 400 350" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="200,50 80,280 320,280" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Trung điểm M, N, P */}
+  <circle cx="200" cy="165" r="3" fill="#10b981"/>
+  <text x="215" y="170" font-size="14" fill="#10b981">M</text>
+  
+  <circle cx="140" cy="280" r="3" fill="#10b981"/>
+  <text x="125" y="300" font-size="14" fill="#10b981">N</text>
+  
+  <circle cx="260" cy="165" r="3" fill="#10b981"/>
+  <text x="275" y="170" font-size="14" fill="#10b981">P</text>
+  
+  {/* Ba trung tuyến */}
+  <line x1="200" y1="50" x2="200" y2="280" stroke="#ef4444" stroke-width="2"/>
+  <line x1="80" y1="280" x2="260" y2="165" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="320" y1="280" x2="140" y2="165" stroke="#8b5cf6" stroke-width="2"/>
+  
+  {/* Trọng tâm G */}
+  <circle cx="200" cy="190" r="5" fill="#ef4444"/>
+  <text x="210" y="195" font-size="16" font-weight="bold" fill="#ef4444">G</text>
+  
+  {/* Điểm A, B, C */}
+  <circle cx="200" cy="50" r="4" fill="#1f2937"/>
+  <text x="200" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  <circle cx="80" cy="280" r="4" fill="#1f2937"/>
+  <text x="65" y="300" font-size="16" font-weight="bold" fill="#1f2937">B</text>
+  
+  <circle cx="320" cy="280" r="4" fill="#1f2937"/>
+  <text x="335" y="300" font-size="16" font-weight="bold" fill="#1f2937">C</text>
+  
+  {/* Chú thích */}
+  <text x="200" y="330" font-size="14" text-anchor="middle" fill="#1f2937">AG = 2GM</text>
+</svg>
+</div>
+
+**Ví dụ 1:** Tam giác $ABC$ có trọng tâm $G$, trung tuyến $AM = 15$ cm. Tính $AG$ và $GM$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$AG = \frac{2}{3}AM = \frac{2}{3} \cdot 15 = 10$ cm
+
+$GM = \frac{1}{3}AM = \frac{1}{3} \cdot 15 = 5$ cm
+
+Hoặc: $GM = AM - AG = 15 - 10 = 5$ cm
+
+</div>
+
+<h3 id="phan-giac" style="margin-top:2rem;">📖 2. Đường phân giác và tâm đường tròn nội tiếp</h3>
+
+<div class="box-dinh-nghia">
+
+**Đường phân giác** của tam giác là đoạn thẳng nối từ một đỉnh đến cạnh đối diện và chia góc tại đỉnh đó thành hai góc bằng nhau.
+
+</div>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Ba đường phân giác của một tam giác cùng đi qua một điểm. Điểm đó gọi là **tâm đường tròn nội tiếp** tam giác.
+
+Tâm đường tròn nội tiếp cách đều ba cạnh của tam giác.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="350" viewBox="0 0 400 350" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="200,50 80,280 320,280" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Ba đường phân giác */}
+  <line x1="200" y1="50" x2="200" y2="280" stroke="#10b981" stroke-width="2"/>
+  <line x1="80" y1="280" x2="240" y2="140" stroke="#10b981" stroke-width="2"/>
+  <line x1="320" y1="280" x2="160" y2="140" stroke="#10b981" stroke-width="2"/>
+  
+  {/* Tâm I */}
+  <circle cx="200" cy="210" r="5" fill="#ef4444"/>
+  <text x="210" y="215" font-size="16" font-weight="bold" fill="#ef4444">I</text>
+  
+  {/* Đường tròn nội tiếp */}
+  <circle cx="200" cy="210" r="70" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  {/* Điểm A, B, C */}
+  <circle cx="200" cy="50" r="4" fill="#1f2937"/>
+  <text x="200" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  <circle cx="80" cy="280" r="4" fill="#1f2937"/>
+  <text x="65" y="300" font-size="16" font-weight="bold" fill="#1f2937">B</text>
+  
+  <circle cx="320" cy="280" r="4" fill="#1f2937"/>
+  <text x="335" y="300" font-size="16" font-weight="bold" fill="#1f2937">C</text>
+  
+  {/* Chú thích */}
+  <text x="200" y="330" font-size="14" text-anchor="middle" fill="#1f2937">I cách đều ba cạnh</text>
+</svg>
+</div>
+
+**Ví dụ 2:** Tam giác $ABC$ có tâm đường tròn nội tiếp $I$. Biết $\widehat{BAC} = 80^\circ$. Tính $\widehat{BAI}$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$AI$ là phân giác của $\widehat{BAC}$
+
+$\widehat{BAI} = \frac{1}{2}\widehat{BAC} = \frac{1}{2} \cdot 80^\circ = 40^\circ$
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📖 3. Tính chất</h3>
+
+**Tính chất trọng tâm:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Trọng tâm luôn nằm trong tam giác
+- $AG:GM = 2:1$
+- $AG = 2GM$
+- $AG = \frac{2}{3}AM$
+
+</div>
+
+**Tính chất tâm đường tròn nội tiếp:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Tâm nội tiếp luôn nằm trong tam giác
+- Cách đều ba cạnh của tam giác
+- Là tâm đường tròn tiếp xúc với ba cạnh
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Một tấm ván hình tam giác cần tìm điểm treo để cân bằng. Biết ba cạnh có độ dài $6$ cm, $8$ cm, $10$ cm.
+
+a) Điểm treo nên đặt ở đâu?
+
+b) Nếu trung tuyến từ đỉnh góc vuông dài $5$ cm, tính khoảng cách từ điểm treo đến đỉnh góc vuông.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Điểm treo là trọng tâm $G$ của tam giác.
+
+b) Khoảng cách từ $G$ đến đỉnh góc vuông:
+
+$AG = \frac{2}{3} \cdot 5 = \frac{10}{3} \approx 3.33$ cm
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Ba trung tuyến** đồng quy tại trọng tâm $G$
+- **Trọng tâm**: $AG = 2GM$, $AG = \frac{2}{3}AM$
+- **Ba phân giác** đồng quy tại tâm nội tiếp $I$
+- **Tâm nội tiếp**: cách đều ba cạnh
+- Cả hai điểm đều nằm trong tam giác
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tam giác $ABC$ có trọng tâm $G$, trung tuyến $AM = 18$ cm. Tính $AG$ và $GM$.
+
+**Bài 2:** Tam giác $ABC$ có trọng tâm $G$. Biết $GM = 4$ cm ($M$ là trung điểm $BC$). Tính $AG$ và $AM$.
+
+**Bài 3:** Tam giác $ABC$ có $\widehat{A} = 70^\circ$, $\widehat{B} = 60^\circ$, $\widehat{C} = 50^\circ$. Tâm đường tròn nội tiếp là $I$. Tính các góc $\widehat{BAI}$, $\widehat{ABI}$, $\widehat{BCI}$.
+
+**Bài 4:** Chứng minh: Trong tam giác đều, trọng tâm trùng với tâm đường tròn nội tiếp.
+
+**Bài 5:** Tam giác $ABC$ có $AB = 6$ cm, $AC = 8$ cm, $BC = 10$ cm. Tính độ dài trung tuyến $AM$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** $AG = 12$ cm, $GM = 6$ cm
+
+**Bài 2:** $AG = 8$ cm, $AM = 12$ cm
+
+**Bài 3:** $\widehat{BAI} = 35^\circ$, $\widehat{ABI} = 30^\circ$, $\widehat{BCI} = 25^\circ$
+
+**Bài 4:** Do tính đối xứng của tam giác đều
+
+**Bài 5:** $AM = 5$ cm (trung tuyến ứng với cạnh huyền)
+
+</div>
+</details>

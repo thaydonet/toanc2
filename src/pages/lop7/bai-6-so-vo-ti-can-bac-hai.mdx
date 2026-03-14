@@ -1,0 +1,465 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 6: Số vô tỉ. Căn bậc hai số học"
+description: "Số vô tỉ và căn bậc hai số học - Toán 7 KNTT Chương 2"
+grade: "Lớp 7"
+chapter: "Chương II: Số thực"
+currentSlug: "lop7/bai-6-so-vo-ti-can-bac-hai"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số vô tỉ là:",
+    option_a: "Số thập phân vô hạn không tuần hoàn",
+    option_b: "Số thập phân vô hạn tuần hoàn",
+    option_c: "Số thập phân hữu hạn",
+    option_d: "Phân số",
+    correct_option: "A",
+    explanation: "Số vô tỉ là số thập phân vô hạn không tuần hoàn, không viết được dưới dạng phân số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Căn bậc hai số học của 16 là:",
+    option_a: "$4$",
+    option_b: "$-4$",
+    option_c: "$\\pm 4$",
+    option_d: "$8$",
+    correct_option: "A",
+    explanation: "Căn bậc hai số học của 16 là số không âm có bình phương bằng 16, đó là 4.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "$\\sqrt{25}$ bằng:",
+    option_a: "$5$",
+    option_b: "$-5$",
+    option_c: "$\\pm 5$",
+    option_d: "$12,\\!5$",
+    correct_option: "A",
+    explanation: "$\\sqrt{25} = 5$ (chỉ lấy giá trị dương)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào sau đây là số vô tỉ?",
+    option_a: "$\\sqrt{2}$",
+    option_b: "$\\sqrt{4}$",
+    option_c: "$0,\\overline{3}$",
+    option_d: "$\\dfrac{1}{3}$",
+    correct_option: "A",
+    explanation: "$\\sqrt{2} = 1,\\!414...$ là số vô tỉ. Các số còn lại đều là số hữu tỉ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "$\\sqrt{49}$ bằng:",
+    option_a: "$7$",
+    option_b: "$24,\\!5$",
+    option_c: "$-7$",
+    option_d: "$\\pm 7$",
+    correct_option: "A",
+    explanation: "$\\sqrt{49} = 7$ vì $7^2 = 49$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào sau đây là số vô tỉ?",
+    option_a: "$\\sqrt{3}$",
+    option_b: "$\\sqrt{9}$",
+    option_c: "$\\pi$",
+    option_d: "$\\sqrt{5}$",
+    correct_option: "A,C,D",
+    explanation: "$\\sqrt{3}$, $\\pi$, $\\sqrt{5}$ là số vô tỉ. $\\sqrt{9} = 3$ là số hữu tỉ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Số vô tỉ — Khám phá thế giới số mới</h3>
+
+Không phải mọi số đều viết được dưới dạng phân số. Hãy khám phá số vô tỉ!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Số hữu tỉ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\\dfrac{1}{2} = 0,\\!5$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
+    <strong>Số vô tỉ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\\sqrt{2} = 1,\\!414...$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🥧</div>
+    <strong>Pi</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\\pi = 3,\\!14159...$</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="so-vo-ti">📖 1. Số vô tỉ</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số vô tỉ là số viết được dưới dạng số thập phân vô hạn không tuần hoàn.
+
+Số vô tỉ không thể viết được dưới dạng phân số $\dfrac{a}{b}$ với $a, b \in \mathbb{Z}$, $b \neq 0$.
+
+</div>
+
+**Ví dụ 1:** Các số vô tỉ
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $\sqrt{2} = 1,\!41421356...$ (căn bậc hai của 2)
+- $\sqrt{3} = 1,\!73205080...$ (căn bậc hai của 3)
+- $\pi = 3,\!14159265...$ (số pi, tỉ số chu vi và đường kính hình tròn)
+- $e = 2,\!71828182...$ (số Euler)
+
+Các số này có vô hạn chữ số sau dấu phẩy và không lặp lại theo chu kỳ.
+
+</div>
+
+**So sánh số hữu tỉ và số vô tỉ:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+| Đặc điểm | Số hữu tỉ | Số vô tỉ |
+|----------|-----------|----------|
+| Dạng phân số | Viết được | Không viết được |
+| Số thập phân | Hữu hạn hoặc vô hạn tuần hoàn | Vô hạn không tuần hoàn |
+| Ví dụ | $\dfrac{1}{2}$, $0,\overline{3}$ | $\sqrt{2}$, $\pi$ |
+
+</div>
+
+<h3 id="can-bac-hai" style="margin-top:2rem;">√ 2. Căn bậc hai</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Căn bậc hai của một số $a$ không âm là số $x$ sao cho $x^2 = a$.
+
+Mỗi số dương có hai căn bậc hai là hai số đối nhau.
+
+</div>
+
+**Ví dụ 2:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Căn bậc hai của 9 là 3 và -3 vì $3^2 = 9$ và $(-3)^2 = 9$
+- Căn bậc hai của 16 là 4 và -4 vì $4^2 = 16$ và $(-4)^2 = 16$
+- Căn bậc hai của 0 là 0 vì $0^2 = 0$
+
+</div>
+
+**Lưu ý:** Số âm không có căn bậc hai (trong tập số thực).
+
+<h3 id="can-bac-hai-so-hoc" style="margin-top:2rem;">✓ 3. Căn bậc hai số học</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Căn bậc hai số học của một số $a$ không âm, ký hiệu $\sqrt{a}$, là số không âm có bình phương bằng $a$.
+
+$$\sqrt{a} \geq 0 \text{ và } (\sqrt{a})^2 = a$$
+
+</div>
+
+**Ví dụ 3:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $\sqrt{4} = 2$ (chỉ lấy giá trị dương)
+- $\sqrt{9} = 3$
+- $\sqrt{16} = 4$
+- $\sqrt{25} = 5$
+- $\sqrt{0} = 0$
+- $\sqrt{1} = 1$
+
+</div>
+
+**Chú ý phân biệt:**
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Căn bậc hai của 9: là 3 và -3
+- Căn bậc hai số học của 9: $\sqrt{9} = 3$ (chỉ lấy giá trị dương)
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 4. Tính chất của căn bậc hai số học</h3>
+
+<div class="box-dinh-ly">
+
+**Các tính chất cơ bản:**
+
+1. $\sqrt{a^2} = |a|$ với mọi $a$
+   - Nếu $a \geq 0$ thì $\sqrt{a^2} = a$
+   - Nếu $a < 0$ thì $\sqrt{a^2} = -a$
+
+2. $(\sqrt{a})^2 = a$ với $a \geq 0$
+
+3. Nếu $0 \leq a < b$ thì $\sqrt{a} < \sqrt{b}$
+
+4. $\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}$ với $a, b \geq 0$
+
+5. $\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}$ với $a \geq 0$, $b > 0$
+
+</div>
+
+**Ví dụ 4:** Áp dụng tính chất
+
+a) $\sqrt{4 \times 9} = \sqrt{4} \times \sqrt{9} = 2 \times 3 = 6$
+
+b) $\sqrt{36} = \sqrt{4 \times 9} = \sqrt{4} \times \sqrt{9} = 2 \times 3 = 6$
+
+c) $\sqrt{\dfrac{16}{25}} = \dfrac{\sqrt{16}}{\sqrt{25}} = \dfrac{4}{5}$
+
+d) $\sqrt{3^2} = |3| = 3$
+
+e) $\sqrt{(-5)^2} = |-5| = 5$
+
+<h3 id="so-sanh" style="margin-top:2rem;">⚖️ 5. So sánh căn bậc hai số học</h3>
+
+**Quy tắc:** Với $a, b \geq 0$:
+- Nếu $a < b$ thì $\sqrt{a} < \sqrt{b}$
+- Nếu $\sqrt{a} < \sqrt{b}$ thì $a < b$
+
+**Ví dụ 5:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) So sánh $\sqrt{5}$ và $\sqrt{7}$
+
+Vì $5 < 7$ nên $\sqrt{5} < \sqrt{7}$
+
+b) So sánh $\sqrt{10}$ và 3
+
+Ta có: $3 = \sqrt{9}$
+
+Vì $10 > 9$ nên $\sqrt{10} > \sqrt{9} = 3$
+
+c) So sánh $\sqrt{2}$ và $1,\!5$
+
+Ta có: $1,\!5 = \dfrac{3}{2}$, nên $1,\!5^2 = 2,\!25$
+
+Vì $2 < 2,\!25$ nên $\sqrt{2} < \sqrt{2,\!25} = 1,\!5$
+
+</div>
+
+<h3 id="bang-can" style="margin-top:2rem;">📊 6. Bảng căn bậc hai số học</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+| $n$ | $\sqrt{n}$ | $n$ | $\sqrt{n}$ |
+|-----|------------|-----|------------|
+| 1 | 1 | 36 | 6 |
+| 4 | 2 | 49 | 7 |
+| 9 | 3 | 64 | 8 |
+| 16 | 4 | 81 | 9 |
+| 25 | 5 | 100 | 10 |
+
+</div>
+
+**Ví dụ 6:** Ước lượng căn bậc hai
+
+Ước lượng $\sqrt{50}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Ta có: $49 < 50 < 64$
+
+Nên: $\sqrt{49} < \sqrt{50} < \sqrt{64}$
+
+Hay: $7 < \sqrt{50} < 8$
+
+Vậy $\sqrt{50} \approx 7,\!07$
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">🔬 7. Ứng dụng thực tế</h3>
+
+**Ví dụ 7:** Tính cạnh hình vuông
+
+Một hình vuông có diện tích $36 \text{ cm}^2$. Tính độ dài cạnh.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Gọi cạnh hình vuông là $a$ (cm), $a > 0$
+
+Diện tích: $a^2 = 36$
+
+Suy ra: $a = \sqrt{36} = 6$ (cm)
+
+</div>
+
+**Ví dụ 8:** Định lý Pythagore
+
+Tam giác vuông có hai cạnh góc vuông là 3 cm và 4 cm. Tính cạnh huyền.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Theo định lý Pythagore:
+
+$c^2 = 3^2 + 4^2 = 9 + 16 = 25$
+
+$c = \sqrt{25} = 5$ (cm)
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Một mảnh vườn hình vuông có diện tích $144 \text{ m}^2$.
+
+a) Tính độ dài cạnh của mảnh vườn.
+
+b) Tính chu vi của mảnh vườn.
+
+c) Nếu muốn tăng diện tích lên $196 \text{ m}^2$, cạnh phải tăng thêm bao nhiêu mét?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Độ dài cạnh: $a = \sqrt{144} = 12$ (m)
+
+b) Chu vi: $P = 4 \times 12 = 48$ (m)
+
+c) Cạnh mới: $a' = \sqrt{196} = 14$ (m)
+
+Tăng thêm: $14 - 12 = 2$ (m)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Số vô tỉ**: Số thập phân vô hạn không tuần hoàn
+- **Căn bậc hai**: Số $x$ sao cho $x^2 = a$
+- **Căn bậc hai số học**: $\sqrt{a} \geq 0$ và $(\sqrt{a})^2 = a$
+- **Tính chất**: $\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}$
+- **So sánh**: $a < b \Leftrightarrow \sqrt{a} < \sqrt{b}$ (với $a, b \geq 0$)
+- Số âm không có căn bậc hai
+- $\sqrt{a^2} = |a|$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính:
+
+a) $\sqrt{1}$ &nbsp;&nbsp;&nbsp; b) $\sqrt{4}$ &nbsp;&nbsp;&nbsp; c) $\sqrt{9}$ &nbsp;&nbsp;&nbsp; d) $\sqrt{16}$
+
+e) $\sqrt{25}$ &nbsp;&nbsp;&nbsp; f) $\sqrt{36}$ &nbsp;&nbsp;&nbsp; g) $\sqrt{49}$ &nbsp;&nbsp;&nbsp; h) $\sqrt{100}$
+
+**Bài 2:** Tính:
+
+a) $\sqrt{0,\!25}$ &nbsp;&nbsp;&nbsp; b) $\sqrt{0,\!64}$ &nbsp;&nbsp;&nbsp; c) $\sqrt{\dfrac{1}{4}}$ &nbsp;&nbsp;&nbsp; d) $\sqrt{\dfrac{9}{16}}$
+
+**Bài 3:** Phân loại các số sau thành số hữu tỉ hoặc số vô tỉ:
+
+a) $\sqrt{4}$ &nbsp;&nbsp;&nbsp; b) $\sqrt{5}$ &nbsp;&nbsp;&nbsp; c) $\sqrt{9}$ &nbsp;&nbsp;&nbsp; d) $\sqrt{10}$
+
+e) $\pi$ &nbsp;&nbsp;&nbsp; f) $0,\overline{3}$ &nbsp;&nbsp;&nbsp; g) $\sqrt{16}$ &nbsp;&nbsp;&nbsp; h) $\sqrt{2}$
+
+**Bài 4:** So sánh:
+
+a) $\sqrt{3}$ và $\sqrt{5}$
+
+b) $\sqrt{10}$ và 3
+
+c) $\sqrt{7}$ và 2,\!5
+
+d) $\sqrt{20}$ và 4,\!5
+
+**Bài 5:** Tính:
+
+a) $\sqrt{4 \times 9}$
+
+b) $\sqrt{16 \times 25}$
+
+c) $\sqrt{\dfrac{36}{49}}$
+
+d) $\sqrt{2^2 + 3^2}$
+
+**Bài 6:** Tìm $x$, biết:
+
+a) $\sqrt{x} = 5$
+
+b) $\sqrt{x} = 7$
+
+c) $x^2 = 64$ (với $x > 0$)
+
+d) $\sqrt{x + 1} = 4$
+
+**Bài 7 (Thực tế):** Một hình vuông có diện tích $81 \text{ cm}^2$.
+
+a) Tính độ dài cạnh.
+
+b) Tính chu vi.
+
+c) Nếu tăng cạnh thêm 3 cm, diện tích mới là bao nhiêu?
+
+**Bài 8 (Pythagore):** Tam giác vuông có hai cạnh góc vuông là 5 cm và 12 cm.
+
+a) Tính cạnh huyền.
+
+b) Tính chu vi tam giác.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 1; b) 2; c) 3; d) 4; e) 5; f) 6; g) 7; h) 10
+
+**Bài 2:** a) 0,5; b) 0,8; c) $\dfrac{1}{2}$; d) $\dfrac{3}{4}$
+
+**Bài 3:** Hữu tỉ: a, c, f, g; Vô tỉ: b, d, e, h
+
+**Bài 4:** a) $\sqrt{3} < \sqrt{5}$; b) $\sqrt{10} > 3$; c) $\sqrt{7} > 2,\!5$; d) $\sqrt{20} < 4,\!5$
+
+**Bài 5:** a) 6; b) 20; c) $\dfrac{6}{7}$; d) $\sqrt{13}$
+
+**Bài 6:** a) $x = 25$; b) $x = 49$; c) $x = 8$; d) $x = 15$
+
+**Bài 7:** a) 9 cm; b) 36 cm; c) 144 cm²
+
+**Bài 8:** a) 13 cm; b) 30 cm
+
+</div>
+</details>

@@ -1,0 +1,450 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 34: Đoạn thẳng. Độ dài đoạn thẳng"
+description: "Khái niệm đoạn thẳng, độ dài, so sánh độ dài - Toán 6 KNTT Chương VIII"
+grade: "Lớp 6"
+chapter: "Chương VIII: Những hình hình học cơ bản"
+currentSlug: "lop6/bai-34-doan-thang"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Đoạn thẳng AB là gì?",
+    option_a: "Phần của đường thẳng bị giới hạn bởi hai điểm A và B",
+    option_b: "Một tia có gốc tại A",
+    option_c: "Một đường thẳng đi qua A và B",
+    option_d: "Một phần của tia AB",
+    correct_option: "A",
+    explanation: "Đoạn thẳng AB là phần của đường thẳng bị giới hạn bởi hai điểm A và B, gọi là hai đầu mút.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Độ dài đoạn thẳng AB là gì?",
+    option_a: "Khoảng cách giữa hai điểm A và B",
+    option_b: "Số điểm trên đoạn AB",
+    option_c: "Số đường thẳng đi qua A và B",
+    option_d: "Số tia có gốc tại A",
+    correct_option: "A",
+    explanation: "Độ dài đoạn thẳng AB là khoảng cách giữa hai điểm A và B, ký hiệu AB hoặc |AB|.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu AB = 5 cm và CD = 5 cm, ta nói:",
+    option_a: "Đoạn AB bằng đoạn CD",
+    option_b: "Đoạn AB dài hơn đoạn CD",
+    option_c: "Đoạn AB ngắn hơn đoạn CD",
+    option_d: "Không thể so sánh",
+    correct_option: "A",
+    explanation: "Nếu AB = CD = 5 cm, ta nói đoạn AB bằng đoạn CD (có cùng độ dài).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào đúng về đoạn thẳng?",
+    option_a: "Đoạn thẳng có hai đầu mút",
+    option_b: "Đoạn thẳng chứa vô số điểm",
+    option_c: "Độ dài đoạn thẳng luôn dương",
+    option_d: "Đoạn thẳng AB khác đoạn thẳng BA",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì đoạn thẳng AB và BA là cùng một đoạn thẳng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu M nằm giữa A và B, thì:",
+    option_a: "AM + MB = AB",
+    option_b: "AM + AB = MB",
+    option_c: "MB + AB = AM",
+    option_d: "AM = MB",
+    correct_option: "A",
+    explanation: "Nếu M nằm giữa A và B, thì AM + MB = AB (tính chất cộng độ dài).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho AB = 8 cm, M nằm giữa A và B, AM = 3 cm. Tính MB.",
+    correct_option: "5",
+    explanation: "MB = AB - AM = 8 - 3 = 5 cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Để so sánh độ dài hai đoạn thẳng, ta dùng:",
+    option_a: "Thước đo hoặc compa",
+    option_b: "Mắt nhìn",
+    option_c: "Tính toán",
+    option_d: "Cả A và C",
+    correct_option: "D",
+    explanation: "Để so sánh độ dài hai đoạn thẳng, ta có thể dùng thước đo, compa hoặc tính toán.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu AB < CD, ta nói:",
+    option_a: "Đoạn AB ngắn hơn đoạn CD",
+    option_b: "Đoạn AB dài hơn đoạn CD",
+    option_c: "Đoạn AB bằng đoạn CD",
+    option_d: "Không thể so sánh",
+    correct_option: "A",
+    explanation: "Nếu AB < CD, ta nói đoạn AB ngắn hơn đoạn CD (hoặc CD dài hơn AB).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Đoạn thẳng — Phần của đường thẳng</h3>
+
+Đoạn thẳng là phần của đường thẳng bị giới hạn bởi hai điểm. Chúng ta có thể đo độ dài của nó!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">━</div>
+    <strong>Đoạn thẳng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Phần giới hạn</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Độ dài</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Khoảng cách</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="doan-thang">📖 1. Khái niệm đoạn thẳng</h3>
+
+<div class="box-dinh-nghia">
+
+**Đoạn thẳng AB** là phần của đường thẳng bị giới hạn bởi hai điểm A và B.
+
+**Ký hiệu:** Đoạn thẳng AB được ký hiệu là AB hoặc BA.
+
+**Hai đầu mút:** A và B gọi là hai đầu mút của đoạn thẳng.
+
+</div>
+
+**Biểu diễn đoạn thẳng:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="50" y1="50" x2="250" y2="50" stroke="#d1d5db" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="50" y1="50" x2="250" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="50" cy="50" r="4" fill="#dc2626"/>
+  <circle cx="250" cy="50" r="4" fill="#dc2626"/>
+  <text x="50" y="75" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="250" y="75" text-anchor="middle" font-size="12" fill="#1f2937">B</text>
+  <text x="150" y="30" text-anchor="middle" font-size="12" fill="#2563eb">Đoạn thẳng AB</text>
+</svg>
+
+**Đặc điểm của đoạn thẳng:**
+- Có hai đầu mút (A và B)
+- Chứa vô số điểm
+- Có độ dài xác định
+
+<h3 id="do-dai-doan-thang" style="margin-top:2rem;">📖 2. Độ dài đoạn thẳng</h3>
+
+<div class="box-dinh-nghia">
+
+**Độ dài đoạn thẳng AB** là khoảng cách giữa hai điểm A và B.
+
+**Ký hiệu:** AB hoặc |AB|
+
+**Đơn vị:** mm, cm, dm, m, km, ...
+
+</div>
+
+**Cách đo độ dài:**
+
+<svg viewBox="0 0 300 120" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="50" y1="50" x2="250" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="50" cy="50" r="4" fill="#dc2626"/>
+  <circle cx="250" cy="50" r="4" fill="#dc2626"/>
+  <text x="50" y="75" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="250" y="75" text-anchor="middle" font-size="12" fill="#1f2937">B</text>
+  <text x="150" y="30" text-anchor="middle" font-size="12" fill="#2563eb">AB = 8 cm</text>
+  
+  <line x1="50" y1="95" x2="250" y2="95" stroke="#059669" stroke-width="1"/>
+  <line x1="50" y1="90" x2="50" y2="100" stroke="#059669" stroke-width="1"/>
+  <line x1="250" y2="90" x2="250" y2="100" stroke="#059669" stroke-width="1"/>
+  <text x="150" y="115" text-anchor="middle" font-size="11" fill="#059669">Thước đo</text>
+</svg>
+
+**Ví dụ:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Dùng thước đo, ta đo được:
+- AB = 5 cm
+- CD = 7 cm
+- EF = 5 cm
+
+</div>
+
+<h3 id="so-sanh-do-dai" style="margin-top:2rem;">📖 3. So sánh độ dài đoạn thẳng</h3>
+
+**Cách so sánh:**
+
+1. **Dùng thước đo:** Đo độ dài từng đoạn, rồi so sánh các số đo.
+
+2. **Dùng compa:** Đặt compa sao cho hai chân trùng với hai đầu mút của đoạn thứ nhất, rồi so sánh với đoạn thứ hai.
+
+**Ký hiệu so sánh:**
+- AB = CD (bằng nhau)
+- AB < CD (AB ngắn hơn CD)
+- AB > CD (AB dài hơn CD)
+
+**Ví dụ:**
+
+<svg viewBox="0 0 300 150" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="30" y1="30" x2="150" y2="30" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="30" cy="30" r="3" fill="#dc2626"/>
+  <circle cx="150" cy="30" r="3" fill="#dc2626"/>
+  <text x="30" y="50" text-anchor="middle" font-size="11" fill="#1f2937">A</text>
+  <text x="150" y="50" text-anchor="middle" font-size="11" fill="#1f2937">B</text>
+  <text x="90" y="20" text-anchor="middle" font-size="10" fill="#2563eb">AB = 5 cm</text>
+  
+  <line x1="30" y1="80" x2="200" y2="80" stroke="#059669" stroke-width="2"/>
+  <circle cx="30" cy="80" r="3" fill="#dc2626"/>
+  <circle cx="200" cy="80" r="3" fill="#dc2626"/>
+  <text x="30" y="100" text-anchor="middle" font-size="11" fill="#1f2937">C</text>
+  <text x="200" y="100" text-anchor="middle" font-size="11" fill="#1f2937">D</text>
+  <text x="115" y="70" text-anchor="middle" font-size="10" fill="#059669">CD = 8 cm</text>
+  
+  <text x="150" y="130" text-anchor="middle" font-size="11" fill="#1f2937">AB < CD</text>
+</svg>
+
+<h3 id="tinh-chat-cong-do-dai" style="margin-top:2rem;">📖 4. Tính chất cộng độ dài</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Nếu M nằm giữa A và B, thì:**
+
+**AM + MB = AB**
+
+</div>
+
+**Ví dụ 1:**
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Cho đoạn AB = 10 cm, M nằm giữa A và B, AM = 4 cm. Tính MB.
+
+**Giải:**
+MB = AB - AM = 10 - 4 = 6 cm
+
+</div>
+
+**Ví dụ 2:**
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Cho đoạn AB = 12 cm, M nằm giữa A và B, AM = 5 cm, MB = 7 cm. Kiểm tra: AM + MB = AB?
+
+**Giải:**
+AM + MB = 5 + 7 = 12 = AB ✓
+
+</div>
+
+<h3 id="vi-du-tinh-toan" style="margin-top:2rem;">📖 5. Ví dụ tính toán</h3>
+
+**Ví dụ 1:** Cho ba điểm A, B, C thẳng hàng, theo thứ tự A, B, C. Biết AB = 3 cm, BC = 5 cm. Tính AC.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Vì B nằm giữa A và C, nên:
+AC = AB + BC = 3 + 5 = 8 cm
+
+</div>
+
+**Ví dụ 2:** Cho đoạn AB = 15 cm. Lấy điểm M trên AB sao cho AM = 6 cm. Tính MB.
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Vì M nằm giữa A và B, nên:
+MB = AB - AM = 15 - 6 = 9 cm
+
+</div>
+
+**Ví dụ 3:** Cho bốn điểm A, B, C, D thẳng hàng, theo thứ tự A, B, C, D. Biết AB = 2 cm, BC = 3 cm, CD = 4 cm. Tính AD.
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+AD = AB + BC + CD = 2 + 3 + 4 = 9 cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một sợi dây dài 20 cm. Người ta cắt dây tại điểm M sao cho AM = 8 cm (A là một đầu dây).
+
+a) Tính độ dài MB (B là đầu kia của dây).
+
+b) Nếu cắt dây tại hai điểm M và N sao cho AM = 5 cm, MN = 7 cm, tính NB.
+
+c) Nếu cắt dây thành ba phần bằng nhau, mỗi phần dài bao nhiêu?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) MB = AB - AM = 20 - 8 = 12 cm
+
+b) NB = AB - AM - MN = 20 - 5 - 7 = 8 cm
+
+c) Mỗi phần dài: 20 : 3 ≈ 6,67 cm
+
+</div>
+
+**📝 Bài toán 2:** Trên một con đường thẳng, có ba trạm dừng A, B, C. Biết AB = 10 km, BC = 15 km.
+
+a) Tính khoảng cách AC.
+
+b) Nếu một xe buýt đi từ A đến C, xe buýt đó phải đi bao nhiêu km?
+
+c) Nếu một xe buýt đi từ A đến B rồi quay lại A, xe buýt đó đi bao nhiêu km?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) AC = AB + BC = 10 + 15 = 25 km
+
+b) Xe buýt đi 25 km
+
+c) Xe buýt đi 10 + 10 = 20 km
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Đoạn thẳng AB** là phần của đường thẳng bị giới hạn bởi hai điểm A và B
+- **Độ dài đoạn thẳng** là khoảng cách giữa hai điểm A và B
+- **Cách so sánh:** Dùng thước đo hoặc compa
+- **Tính chất cộng độ dài:** Nếu M nằm giữa A và B, thì AM + MB = AB
+- **Ký hiệu:** AB = CD (bằng), AB < CD (ngắn hơn), AB > CD (dài hơn)
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho đoạn AB = 10 cm. Lấy điểm M trên AB sao cho AM = 4 cm. Tính MB.
+
+a) MB = ?
+
+b) So sánh AM và MB.
+
+c) Kiểm tra: AM + MB = AB?
+
+d) Nếu lấy điểm N sao cho AN = 6 cm, so sánh AN và AM.
+
+**Bài 2:** Cho ba điểm A, B, C thẳng hàng, theo thứ tự A, B, C. Biết AB = 5 cm, BC = 7 cm. Tính:
+
+a) AC
+
+b) Nếu lấy M là trung điểm của AB, tính AM.
+
+c) Nếu lấy N là trung điểm của BC, tính BN.
+
+d) Tính MN.
+
+**Bài 3:** Cho bốn điểm A, B, C, D thẳng hàng, theo thứ tự A, B, C, D. Biết AB = 3 cm, BC = 4 cm, CD = 5 cm. Tính:
+
+a) AC
+
+b) BD
+
+c) AD
+
+d) Nếu M là trung điểm của AD, tính AM.
+
+**Bài 4:** Cho đoạn AB = 12 cm. Lấy hai điểm M, N trên AB sao cho AM = 3 cm, AN = 9 cm. Tính:
+
+a) MB
+
+b) NB
+
+c) MN
+
+d) So sánh AM, MN, NB.
+
+**Bài 5:** Cho đoạn AB = 20 cm. Lấy điểm M trên AB sao cho AM = 8 cm. Lấy điểm N trên AB sao cho BN = 6 cm. Tính:
+
+a) MB
+
+b) AN
+
+c) MN
+
+d) Nếu M nằm giữa A và N, kiểm tra: AM + MN = AN?
+
+**Bài 6 (Thực tế):** Một sợi dây dài 30 cm. Người ta cắt dây tại ba điểm M, N, P sao cho AM = 5 cm, MN = 8 cm, NP = 7 cm (A là một đầu dây, B là đầu kia).
+
+a) Tính AP.
+
+b) Tính PB.
+
+c) Kiểm tra: AP + PB = AB?
+
+d) Nếu cắt dây thành bốn phần bằng nhau, mỗi phần dài bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 6 cm; b) AM < MB; c) 4 + 6 = 10 ✓; d) AN > AM
+
+**Bài 2:** a) 12 cm; b) 2,5 cm; c) 3,5 cm; d) 6 cm
+
+**Bài 3:** a) 7 cm; b) 9 cm; c) 12 cm; d) 6 cm
+
+**Bài 4:** a) 9 cm; b) 3 cm; c) 6 cm; d) AM < MN > NB
+
+**Bài 5:** a) 12 cm; b) 14 cm; c) 6 cm; d) 8 + 6 = 14 ✓
+
+**Bài 6:** a) 20 cm; b) 10 cm; c) 20 + 10 = 30 ✓; d) 7,5 cm
+
+</div>
+</details>

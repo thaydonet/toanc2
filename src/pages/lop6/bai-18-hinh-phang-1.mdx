@@ -1,0 +1,547 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 18: Hình tam giác đều. Hình vuông. Hình lục giác đều"
+description: "Các hình đều cơ bản - Toán 6 KNTT Chương 4"
+grade: "Lớp 6"
+chapter: "Chương IV: Một số hình phẳng trong thực tiễn"
+currentSlug: "lop6/bai-18-hinh-phang-1"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình tam giác đều có bao nhiêu cạnh bằng nhau?",
+    option_a: "$3$ cạnh",
+    option_b: "$2$ cạnh",
+    option_c: "$1$ cạnh",
+    option_d: "$0$ cạnh",
+    correct_option: "A",
+    explanation: "Tam giác đều có $3$ cạnh bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Mỗi góc của hình vuông bằng:",
+    option_a: "$90°$",
+    option_b: "$60°$",
+    option_c: "$120°$",
+    option_d: "$45°$",
+    correct_option: "A",
+    explanation: "Hình vuông có $4$ góc vuông, mỗi góc bằng $90°$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình lục giác đều có bao nhiêu cạnh?",
+    option_a: "$6$ cạnh",
+    option_b: "$5$ cạnh",
+    option_c: "$4$ cạnh",
+    option_d: "$8$ cạnh",
+    correct_option: "A",
+    explanation: "Hình lục giác đều có $6$ cạnh bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những tính chất nào của hình tam giác đều?",
+    option_a: "$3$ cạnh bằng nhau",
+    option_b: "$3$ góc bằng nhau",
+    option_c: "$3$ góc mỗi góc $60°$",
+    option_d: "$4$ cạnh bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "Tam giác đều có $3$ cạnh bằng nhau, $3$ góc bằng nhau, mỗi góc $60°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chu vi hình vuông cạnh $5$ cm là:",
+    option_a: "$20$ cm",
+    option_b: "$25$ cm",
+    option_c: "$15$ cm",
+    option_d: "$10$ cm",
+    correct_option: "A",
+    explanation: "Chu vi = $4 \\times 5 = 20$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Mỗi góc của hình lục giác đều bằng bao nhiêu độ?",
+    correct_option: "120",
+    explanation: "Mỗi góc của lục giác đều bằng $120°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình vuông cạnh 4 cm là:",
+    option_a: "$16$ cm²",
+    option_b: "$16$ cm",
+    option_c: "$8$ cm²",
+    option_d: "$8$ cm",
+    correct_option: "A",
+    explanation: "Diện tích = $4 \\times 4 = 16$ cm².",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chu vi tam giác đều cạnh 6 cm là:",
+    option_a: "$18$ cm",
+    option_b: "$12$ cm",
+    option_c: "$24$ cm",
+    option_d: "$9$ cm",
+    correct_option: "A",
+    explanation: "Chu vi = $3 \\times 6 = 18$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Hình đều — Đối xứng và cân bằng</h3>
+
+Hình đều là những hình có tính chất đặc biệt: cạnh bằng nhau, góc bằng nhau!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">△</div>
+    <strong>Tam giác đều</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">3 cạnh, 3 góc</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">□</div>
+    <strong>Hình vuông</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">4 cạnh, 4 góc</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⬡</div>
+    <strong>Lục giác đều</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">6 cạnh, 6 góc</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="tam-giac-deu">📖 1. Hình tam giác đều</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình tam giác đều là tam giác có ba cạnh bằng nhau và ba góc bằng nhau.
+
+**Tính chất:**
+- Ba cạnh bằng nhau: $AB = BC = CA$
+- Ba góc bằng nhau: $\angle A = \angle B = \angle C = 60°$
+- Có trục đối xứng: 3 trục (đi qua đỉnh và trung điểm cạnh đối diện)
+
+**Công thức:**
+- Chu vi: $P = 3a$ (với $a$ là độ dài cạnh)
+- Diện tích: $S = \frac{a^2\sqrt{3}}{4}$ (học sau)
+
+</div>
+
+**Hình minh họa tam giác đều:**
+
+<svg viewBox="0 0 300 280" style="width:100%;max-width:300px;height:auto;margin:1.5rem 0;">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#1e40af" />
+    </marker>
+  </defs>
+  
+  {/* Tam giác đều */}
+  <polygon points="150,30 50,230 250,230" fill="#dbeafe" stroke="#1e40af" strokeWidth="2"/>
+  
+  {/* Các cạnh */}
+  <line x1="150" y1="30" x2="50" y2="230" stroke="#1e40af" strokeWidth="2"/>
+  <line x1="50" y1="230" x2="250" y2="230" stroke="#1e40af" strokeWidth="2"/>
+  <line x1="250" y1="230" x2="150" y2="30" stroke="#1e40af" strokeWidth="2"/>
+  
+  {/* Các góc */}
+  <circle cx="150" cy="30" r="3" fill="#ef4444"/>
+  <circle cx="50" cy="230" r="3" fill="#ef4444"/>
+  <circle cx="250" cy="230" r="3" fill="#ef4444"/>
+  
+  {/* Nhãn đỉnh */}
+  <text x="150" y="15" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#1e40af">A</text>
+  <text x="30" y="245" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#1e40af">B</text>
+  <text x="270" y="245" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#1e40af">C</text>
+  
+  {/* Nhãn cạnh */}
+  <text x="90" y="110" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  <text x="150" y="255" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  <text x="210" y="110" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  
+  {/* Nhãn góc */}
+  <text x="150" y="55" textAnchor="middle" fontSize="11" fill="#0ea5e9">60°</text>
+  <text x="65" y="215" textAnchor="middle" fontSize="11" fill="#0ea5e9">60°</text>
+  <text x="235" y="215" textAnchor="middle" fontSize="11" fill="#0ea5e9">60°</text>
+</svg>
+
+**Ví dụ 1:** Tính chu vi tam giác đều
+
+a) Tam giác đều cạnh $5$ cm
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 3 \times 5 = 15$ cm
+
+</div>
+
+b) Tam giác đều cạnh $8$ cm
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 3 \times 8 = 24$ cm
+
+</div>
+
+<h3 id="hinh-vuong" style="margin-top:2rem;">📖 2. Hình vuông</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình vuông là tứ giác có bốn cạnh bằng nhau và bốn góc vuông.
+
+**Tính chất:**
+- Bốn cạnh bằng nhau: $AB = BC = CD = DA$
+- Bốn góc vuông: $\angle A = \angle B = \angle C = \angle D = 90°$
+- Hai đường chéo bằng nhau và vuông góc
+- Có trục đối xứng: 4 trục
+
+**Công thức:**
+- Chu vi: $P = 4a$ (với $a$ là độ dài cạnh)
+- Diện tích: $S = a^2$
+
+</div>
+
+**Hình minh họa hình vuông:**
+
+<svg viewBox="0 0 300 300" style="width:100%;max-width:300px;height:auto;margin:1.5rem 0;">
+  {/* Hình vuông */}
+  <rect x="50" y="50" width="200" height="200" fill="#dbeafe" stroke="#1e40af" strokeWidth="2"/>
+  
+  {/* Đường chéo */}
+  <line x1="50" y1="50" x2="250" y2="250" stroke="#94a3b8" strokeWidth="1" strokeDasharray="5,5"/>
+  <line x1="250" y1="50" x2="50" y2="250" stroke="#94a3b8" strokeWidth="1" strokeDasharray="5,5"/>
+  
+  {/* Các góc */}
+  <circle cx="50" cy="50" r="3" fill="#ef4444"/>
+  <circle cx="250" cy="50" r="3" fill="#ef4444"/>
+  <circle cx="250" cy="250" r="3" fill="#ef4444"/>
+  <circle cx="50" cy="250" r="3" fill="#ef4444"/>
+  
+  {/* Nhãn đỉnh */}
+  <text x="35" y="50" textAnchor="end" fontSize="14" fontWeight="bold" fill="#1e40af">A</text>
+  <text x="265" y="50" textAnchor="start" fontSize="14" fontWeight="bold" fill="#1e40af">B</text>
+  <text x="265" y="265" textAnchor="start" fontSize="14" fontWeight="bold" fill="#1e40af">C</text>
+  <text x="35" y="265" textAnchor="end" fontSize="14" fontWeight="bold" fill="#1e40af">D</text>
+  
+  {/* Nhãn cạnh */}
+  <text x="30" y="155" textAnchor="middle" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  <text x="155" y="275" textAnchor="middle" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  
+  {/* Nhãn góc */}
+  <text x="65" y="70" fontSize="11" fill="#0ea5e9">90°</text>
+  <text x="235" y="70" fontSize="11" fill="#0ea5e9">90°</text>
+  <text x="235" y="235" fontSize="11" fill="#0ea5e9">90°</text>
+  <text x="65" y="235" fontSize="11" fill="#0ea5e9">90°</text>
+</svg>
+
+**Ví dụ 2:** Tính chu vi và diện tích hình vuông
+
+a) Hình vuông cạnh $4$ cm
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 4 \times 4 = 16$ cm
+
+Diện tích: $S = 4^2 = 16$ cm²
+
+</div>
+
+b) Hình vuông cạnh $7$ cm
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 4 \times 7 = 28$ cm
+
+Diện tích: $S = 7^2 = 49$ cm²
+
+</div>
+
+<h3 id="luc-giac-deu" style="margin-top:2rem;">📖 3. Hình lục giác đều</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình lục giác đều là lục giác có sáu cạnh bằng nhau và sáu góc bằng nhau.
+
+**Tính chất:**
+- Sáu cạnh bằng nhau
+- Sáu góc bằng nhau: mỗi góc $= 120°$
+- Có trục đối xứng: 6 trục
+- Có tâm đối xứng
+
+**Công thức:**
+- Chu vi: $P = 6a$ (với $a$ là độ dài cạnh)
+- Diện tích: $S = \frac{3\sqrt{3}}{2}a^2$ (học sau)
+
+</div>
+
+**Hình minh họa lục giác đều:**
+
+<svg viewBox="0 0 300 300" style="width:100%;max-width:300px;height:auto;margin:1.5rem 0;">
+  {/* Lục giác đều */}
+  <polygon points="150,30 230,80 230,180 150,230 70,180 70,80" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2"/>
+  
+  {/* Các cạnh */}
+  <line x1="150" y1="30" x2="230" y2="80" stroke="#f59e0b" strokeWidth="2"/>
+  <line x1="230" y1="80" x2="230" y2="180" stroke="#f59e0b" strokeWidth="2"/>
+  <line x1="230" y1="180" x2="150" y2="230" stroke="#f59e0b" strokeWidth="2"/>
+  <line x1="150" y1="230" x2="70" y2="180" stroke="#f59e0b" strokeWidth="2"/>
+  <line x1="70" y1="180" x2="70" y2="80" stroke="#f59e0b" strokeWidth="2"/>
+  <line x1="70" y1="80" x2="150" y2="30" stroke="#f59e0b" strokeWidth="2"/>
+  
+  {/* Các đỉnh */}
+  <circle cx="150" cy="30" r="3" fill="#ef4444"/>
+  <circle cx="230" cy="80" r="3" fill="#ef4444"/>
+  <circle cx="230" cy="180" r="3" fill="#ef4444"/>
+  <circle cx="150" cy="230" r="3" fill="#ef4444"/>
+  <circle cx="70" cy="180" r="3" fill="#ef4444"/>
+  <circle cx="70" cy="80" r="3" fill="#ef4444"/>
+  
+  {/* Nhãn cạnh */}
+  <text x="185" y="50" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  <text x="245" y="130" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  <text x="185" y="215" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  <text x="115" y="215" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  <text x="55" y="130" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  <text x="115" y="50" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  
+  {/* Nhãn góc */}
+  <text x="150" y="60" textAnchor="middle" fontSize="10" fill="#0ea5e9">120°</text>
+  <text x="210" y="95" fontSize="10" fill="#0ea5e9">120°</text>
+  <text x="210" y="165" fontSize="10" fill="#0ea5e9">120°</text>
+  <text x="150" y="210" textAnchor="middle" fontSize="10" fill="#0ea5e9">120°</text>
+  <text x="90" y="165" fontSize="10" fill="#0ea5e9">120°</text>
+  <text x="90" y="95" fontSize="10" fill="#0ea5e9">120°</text>
+</svg>
+
+**Ví dụ 3:** Tính chu vi lục giác đều
+
+a) Lục giác đều cạnh $3$ cm
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 6 \times 3 = 18$ cm
+
+</div>
+
+b) Lục giác đều cạnh $5$ cm
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 6 \times 5 = 30$ cm
+
+</div>
+
+<h3 id="so-sanh" style="margin-top:2rem;">📊 4. So sánh ba hình đều</h3>
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Tính chất</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Tam giác đều</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Hình vuông</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Lục giác đều</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;"><strong>Số cạnh</strong></td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">3</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">4</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">6</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;"><strong>Mỗi góc</strong></td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$60°$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$90°$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$120°$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;"><strong>Chu vi</strong></td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$3a$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$4a$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$6a$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;"><strong>Trục đối xứng</strong></td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">3</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">4</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">6</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một mảnh vườn hình vuông cạnh $20$ m.
+
+a) Tính chu vi mảnh vườn.
+
+b) Tính diện tích mảnh vườn.
+
+c) Nếu trồng cây cách nhau $2$ m dọc theo chu vi, cần bao nhiêu cây?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi: $P = 4 \times 20 = 80$ m
+
+b) Diện tích: $S = 20^2 = 400$ m²
+
+c) Số cây: $80 : 2 = 40$ cây
+
+</div>
+
+**📝 Bài toán 2:** Một tấm gương hình tam giác đều cạnh $30$ cm.
+
+a) Tính chu vi tấm gương.
+
+b) Nếu khung gương dài $90$ cm, khung có đủ để bao quanh tấm gương không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi: $P = 3 \times 30 = 90$ cm
+
+b) Khung dài $90$ cm = chu vi $90$ cm
+
+Vậy khung vừa đủ để bao quanh tấm gương ✓
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Tam giác đều**: 3 cạnh bằng nhau, 3 góc $60°$, chu vi $P = 3a$
+- **Hình vuông**: 4 cạnh bằng nhau, 4 góc $90°$, chu vi $P = 4a$, diện tích $S = a^2$
+- **Lục giác đều**: 6 cạnh bằng nhau, 6 góc $120°$, chu vi $P = 6a$
+- **Hình đều**: Có tính đối xứng cao, cạnh bằng nhau, góc bằng nhau
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính chu vi tam giác đều:
+
+a) Cạnh $6$ cm
+
+b) Cạnh $10$ cm
+
+c) Cạnh $15$ cm
+
+d) Cạnh $25$ cm
+
+**Bài 2:** Tính chu vi và diện tích hình vuông:
+
+a) Cạnh $5$ cm
+
+b) Cạnh $8$ cm
+
+c) Cạnh $12$ cm
+
+d) Cạnh $20$ cm
+
+**Bài 3:** Tính chu vi lục giác đều:
+
+a) Cạnh $4$ cm
+
+b) Cạnh $7$ cm
+
+c) Cạnh $10$ cm
+
+d) Cạnh $15$ cm
+
+**Bài 4:** Điền vào chỗ trống:
+
+a) Tam giác đều cạnh $a$ có chu vi là ___
+
+b) Hình vuông cạnh $a$ có diện tích là ___
+
+c) Lục giác đều cạnh $a$ có chu vi là ___
+
+d) Mỗi góc của lục giác đều bằng ___
+
+**Bài 5:** So sánh:
+
+a) Chu vi tam giác đều cạnh $10$ cm và chu vi hình vuông cạnh $7$ cm
+
+b) Diện tích hình vuông cạnh $6$ cm và diện tích hình vuông cạnh $5$ cm
+
+c) Chu vi lục giác đều cạnh $5$ cm và chu vi tam giác đều cạnh $10$ cm
+
+d) Chu vi hình vuông cạnh $8$ cm và chu vi lục giác đều cạnh $5$ cm
+
+**Bài 6 (Thực tế):** Một sân chơi hình vuông cạnh $30$ m.
+
+a) Tính chu vi sân chơi.
+
+b) Tính diện tích sân chơi.
+
+c) Nếu lát gạch hình vuông cạnh $1$ m, cần bao nhiêu viên gạch?
+
+d) Nếu trồng cây cách nhau $3$ m dọc theo chu vi, cần bao nhiêu cây?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $18$ cm; b) $30$ cm; c) $45$ cm; d) $75$ cm
+
+**Bài 2:** a) $P = 20$ cm, $S = 25$ cm²; b) $P = 32$ cm, $S = 64$ cm²; c) $P = 48$ cm, $S = 144$ cm²; d) $P = 80$ cm, $S = 400$ cm²
+
+**Bài 3:** a) $24$ cm; b) $42$ cm; c) $60$ cm; d) $90$ cm
+
+**Bài 4:** a) $3a$; b) $a^2$; c) $6a$; d) $120°$
+
+**Bài 5:** a) $30$ cm $>$ $28$ cm; b) $36$ cm² $>$ $25$ cm²; c) $30$ cm $=$ $30$ cm; d) $32$ cm $<$ $30$ cm
+
+**Bài 6:** a) $120$ m; b) $900$ m²; c) $900$ viên; d) $40$ cây
+
+</div>
+</details>

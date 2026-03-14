@@ -1,0 +1,364 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 30: Làm quen với xác suất của biến cố"
+description: "Xác suất của biến cố - Toán 7 KNTT Chương 8"
+grade: "Lớp 7"
+chapter: "Chương VIII: Làm quen với biến cố và xác suất của biến cố"
+currentSlug: "lop7/bai-30-lam-quen-voi-xac-suat-cua-bien-co"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố được tính bằng:",
+    option_a: "Số kết quả thuận lợi chia cho tổng số kết quả có thể",
+    option_b: "Tổng số kết quả có thể chia cho số kết quả thuận lợi",
+    option_c: "Số kết quả thuận lợi nhân với tổng số kết quả",
+    option_d: "Tổng số kết quả trừ số kết quả thuận lợi",
+    correct_option: "A",
+    explanation: "Xác suất = Số kết quả thuận lợi / Tổng số kết quả có thể.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố chắc chắn bằng:",
+    option_a: "1",
+    option_b: "0",
+    option_c: "0.5",
+    option_d: "2",
+    correct_option: "A",
+    explanation: "Biến cố chắc chắn luôn xảy ra nên xác suất bằng 1.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố không thể bằng:",
+    option_a: "0",
+    option_b: "1",
+    option_c: "0.5",
+    option_d: "-1",
+    correct_option: "A",
+    explanation: "Biến cố không thể không bao giờ xảy ra nên xác suất bằng 0.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung xúc xắc, xác suất được số chẵn là:",
+    option_a: "$\\\\frac{1}{2}$",
+    option_b: "$\\\\frac{1}{3}$",
+    option_c: "$\\\\frac{1}{6}$",
+    option_d: "$\\\\frac{2}{3}$",
+    correct_option: "A",
+    explanation: "Có 3 số chẵn (2, 4, 6) trong 6 kết quả. Xác suất = $\\\\frac{3}{6} = \\\\frac{1}{2}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Xác suất của một biến cố ngẫu nhiên:",
+    option_a: "Luôn nằm trong khoảng từ 0 đến 1",
+    option_b: "Có thể bằng 0",
+    option_c: "Có thể bằng 1",
+    option_d: "Có thể lớn hơn 1",
+    correct_option: "A,B,C",
+    explanation: "Xác suất luôn nằm trong đoạn [0, 1], không thể lớn hơn 1.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tung đồng xu, xác suất được mặt sấp là bao nhiêu? (Viết dưới dạng phân số tối giản)",
+    correct_option: "1/2",
+    explanation: "Có 1 mặt sấp trong 2 kết quả. Xác suất = $\\\\frac{1}{2}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Xác suất</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Đo lường khả năng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Từ 0 đến 1</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">÷</div>
+    <strong>Công thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thuận lợi / Tổng số</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem-xac-suat">📖 1. Khái niệm xác suất</h3>
+
+<div class="box-dinh-nghia">
+
+**Xác suất** của một biến cố là một số đo lường khả năng xảy ra của biến cố đó.
+
+Xác suất được tính bằng tỉ số giữa số kết quả thuận lợi và tổng số kết quả có thể xảy ra.
+
+</div>
+
+<div class="box-dinh-ly">
+
+**Công thức tính xác suất:**
+
+Cho biến cố $A$, xác suất của $A$ được ký hiệu là $P(A)$ và tính theo công thức:
+
+$$P(A) = \frac{\text{Số kết quả thuận lợi cho } A}{\text{Tổng số kết quả có thể xảy ra}} = \frac{n(A)}{n(\Omega)}$$
+
+Trong đó:
+- $n(A)$: số kết quả thuận lợi cho biến cố $A$
+- $n(\Omega)$: tổng số kết quả có thể xảy ra (số phần tử của không gian mẫu)
+
+</div>
+
+**Ví dụ 1:** Tung một xúc xắc. Tính xác suất được số chẵn.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Gọi $A$ là biến cố "Được số chẵn"
+
+- Không gian mẫu: $\Omega = \{1, 2, 3, 4, 5, 6\}$ → $n(\Omega) = 6$
+
+- Kết quả thuận lợi: $A = \{2, 4, 6\}$ → $n(A) = 3$
+
+- Xác suất: $P(A) = \frac{n(A)}{n(\Omega)} = \frac{3}{6} = \frac{1}{2}$
+
+</div>
+
+<h3 id="tinh-chat-xac-suat" style="margin-top:2rem;">📖 2. Tính chất của xác suất</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất:**
+
+1. Xác suất của mọi biến cố luôn nằm trong đoạn $[0, 1]$:
+   
+   $$0 \leq P(A) \leq 1$$
+
+2. Xác suất của biến cố chắc chắn bằng 1:
+   
+   $$P(\Omega) = 1$$
+
+3. Xác suất của biến cố không thể bằng 0:
+   
+   $$P(\emptyset) = 0$$
+
+4. Nếu $P(A) = 0$ thì $A$ là biến cố không thể
+   
+   Nếu $P(A) = 1$ thì $A$ là biến cố chắc chắn
+
+</div>
+
+<h3 id="vi-du-tinh-xac-suat" style="margin-top:2rem;">📖 3. Các ví dụ tính xác suất</h3>
+
+**Ví dụ 2:** Tung một đồng xu. Tính xác suất được mặt sấp.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Gọi $A$ là biến cố "Được mặt sấp"
+
+- Không gian mẫu: $\Omega = \{\text{Sấp}, \text{Ngửa}\}$ → $n(\Omega) = 2$
+
+- Kết quả thuận lợi: $A = \{\text{Sấp}\}$ → $n(A) = 1$
+
+- Xác suất: $P(A) = \frac{1}{2}$
+
+</div>
+
+**Ví dụ 3:** Một hộp có 5 bi đỏ và 3 bi xanh. Rút ngẫu nhiên 1 bi. Tính xác suất được bi đỏ.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Gọi $A$ là biến cố "Được bi đỏ"
+
+- Tổng số bi: $n(\Omega) = 5 + 3 = 8$
+
+- Số bi đỏ: $n(A) = 5$
+
+- Xác suất: $P(A) = \frac{5}{8}$
+
+</div>
+
+**Ví dụ 4:** Rút ngẫu nhiên một thẻ từ bộ bài 52 lá. Tính xác suất được:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) **Được lá Át:**
+
+- Có 4 lá Át trong 52 lá
+- $P(\text{Át}) = \frac{4}{52} = \frac{1}{13}$
+
+b) **Được lá cơ:**
+
+- Có 13 lá cơ trong 52 lá
+- $P(\text{Cơ}) = \frac{13}{52} = \frac{1}{4}$
+
+c) **Được lá đỏ (cơ hoặc rô):**
+
+- Có 26 lá đỏ trong 52 lá
+- $P(\text{Đỏ}) = \frac{26}{52} = \frac{1}{2}$
+
+</div>
+
+<h3 id="xac-suat-bien-co-doi" style="margin-top:2rem;">📖 4. Xác suất của biến cố đối</h3>
+
+<div class="box-dinh-ly">
+
+**Biến cố đối** của biến cố $A$, ký hiệu $\overline{A}$, là biến cố "không xảy ra $A$".
+
+**Công thức:**
+
+$$P(\overline{A}) = 1 - P(A)$$
+
+</div>
+
+**Ví dụ 5:** Tung xúc xắc, xác suất được số chẵn là $\frac{1}{2}$. Tính xác suất được số lẻ.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Biến cố "Được số lẻ" là biến cố đối của "Được số chẵn"
+
+$P(\text{Số lẻ}) = 1 - P(\text{Số chẵn}) = 1 - \frac{1}{2} = \frac{1}{2}$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Một lớp học có 40 học sinh, trong đó có 24 nữ và 16 nam. Giáo viên gọi ngẫu nhiên 1 học sinh lên bảng.
+
+a) Tính xác suất học sinh được gọi là nữ
+
+b) Tính xác suất học sinh được gọi là nam
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Gọi $A$ là biến cố "Học sinh được gọi là nữ"
+
+- Tổng số học sinh: $n(\Omega) = 40$
+- Số học sinh nữ: $n(A) = 24$
+- Xác suất: $P(A) = \frac{24}{40} = \frac{3}{5}$
+
+b) Gọi $B$ là biến cố "Học sinh được gọi là nam"
+
+**Cách 1:** Tính trực tiếp
+
+$P(B) = \frac{16}{40} = \frac{2}{5}$
+
+**Cách 2:** Dùng biến cố đối
+
+$P(B) = 1 - P(A) = 1 - \frac{3}{5} = \frac{2}{5}$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Xác suất**: $P(A) = \frac{n(A)}{n(\Omega)}$
+- **Giá trị**: $0 \leq P(A) \leq 1$
+- **Biến cố chắc chắn**: $P(\Omega) = 1$
+- **Biến cố không thể**: $P(\emptyset) = 0$
+- **Biến cố đối**: $P(\overline{A}) = 1 - P(A)$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tung một xúc xắc. Tính xác suất của các biến cố:
+
+a) Được số lẻ
+
+b) Được số lớn hơn 4
+
+c) Được số chia hết cho 3
+
+d) Được số nguyên tố
+
+**Bài 2:** Một hộp có 12 viên bi: 5 viên đỏ, 4 viên xanh, 3 viên vàng. Rút ngẫu nhiên 1 viên bi. Tính xác suất:
+
+a) Được bi đỏ
+
+b) Được bi xanh
+
+c) Được bi không phải màu vàng
+
+**Bài 3:** Một túi có 20 thẻ đánh số từ 1 đến 20. Rút ngẫu nhiên 1 thẻ. Tính xác suất:
+
+a) Được số chẵn
+
+b) Được số chia hết cho 5
+
+c) Được số lớn hơn 15
+
+d) Được số nhỏ hơn hoặc bằng 20
+
+**Bài 4:** Gieo hai đồng xu cùng lúc. Tính xác suất:
+
+a) Được hai mặt sấp
+
+b) Được ít nhất một mặt sấp
+
+c) Được hai mặt khác nhau
+
+**Bài 5:** Trong một lớp có 45 học sinh, trong đó có 18 học sinh giỏi Toán. Chọn ngẫu nhiên 1 học sinh.
+
+a) Tính xác suất học sinh được chọn giỏi Toán
+
+b) Tính xác suất học sinh được chọn không giỏi Toán
+
+**Bài 6:** Cho biết $P(A) = 0.3$. Tính $P(\overline{A})$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\frac{1}{2}$; b) $\frac{1}{3}$; c) $\frac{1}{3}$; d) $\frac{1}{2}$
+
+**Bài 2:** a) $\frac{5}{12}$; b) $\frac{1}{3}$; c) $\frac{3}{4}$
+
+**Bài 3:** a) $\frac{1}{2}$; b) $\frac{1}{5}$; c) $\frac{1}{4}$; d) $1$
+
+**Bài 4:** a) $\frac{1}{4}$; b) $\frac{3}{4}$; c) $\frac{1}{2}$
+
+**Bài 5:** a) $\frac{2}{5}$; b) $\frac{3}{5}$
+
+**Bài 6:** $P(\overline{A}) = 0.7$
+
+</div>
+</details>

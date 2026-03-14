@@ -1,0 +1,368 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 1: Tập hợp"
+description: "Khái niệm tập hợp và cách biểu diễn tập hợp - Toán 6 KNTT Chương 1"
+grade: "Lớp 6"
+chapter: "Chương I: Tập hợp các số tự nhiên"
+currentSlug: "lop6/bai-1-tap-hop"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tập hợp là:",
+    option_a: "Một nhóm các đối tượng xác định",
+    option_b: "Chỉ là các con số",
+    option_c: "Chỉ là các chữ cái",
+    option_d: "Không có ý nghĩa",
+    correct_option: "A",
+    explanation: "Tập hợp là một nhóm các đối tượng được xác định rõ ràng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ký hiệu nào dùng để chỉ phần tử thuộc tập hợp?",
+    option_a: "$\\in$",
+    option_b: "$\\notin$",
+    option_c: "$=$",
+    option_d: "$\\subset$",
+    correct_option: "A",
+    explanation: "Ký hiệu $\\in$ có nghĩa là 'thuộc', dùng để chỉ phần tử thuộc tập hợp.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tập hợp $A = \\{1, 2, 3\\}$ có bao nhiêu phần tử?",
+    option_a: "$3$",
+    option_b: "$2$",
+    option_c: "$1$",
+    option_d: "$4$",
+    correct_option: "A",
+    explanation: "Tập hợp $A$ có 3 phần tử là 1, 2, 3.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $A = \\{2, 4, 6, 8\\}$. Khẳng định nào đúng?",
+    option_a: "$4 \\in A$",
+    option_b: "$5 \\in A$",
+    option_c: "$1 \\in A$",
+    option_d: "$10 \\in A$",
+    correct_option: "A",
+    explanation: "$4$ là phần tử của tập hợp $A$, nên $4 \\in A$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho $B = \\{1, 3, 5, 7, 9\\}$. Những số nào thuộc $B$?",
+    option_a: "$1$",
+    option_b: "$2$",
+    option_c: "$5$",
+    option_d: "$9$",
+    correct_option: "A,C,D",
+    explanation: "Các số 1, 5, 9 đều là phần tử của tập hợp $B$. Số 2 không thuộc $B$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tập hợp các số tự nhiên nhỏ hơn 5 có bao nhiêu phần tử?",
+    correct_option: "5",
+    explanation: "Các số tự nhiên nhỏ hơn 5 là: 0, 1, 2, 3, 4. Có 5 phần tử.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tập hợp $A = \\{!a#2!, !b#4!, !c#6!\\}$ có bao nhiêu phần tử?",
+    option_a: "$3$",
+    option_b: "$2$",
+    option_c: "$4$",
+    option_d: "$!tinh: !a! + !b! + !c!!$",
+    correct_option: "A",
+    explanation: "Tập hợp có 3 phần tử bất kể giá trị của chúng.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho $A = \\{1, 2, 3, 4, 5\\}$. Số $!a#3!$ có thuộc $A$ không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "$!a!$ thuộc tập hợp $A$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Tập hợp — Khái niệm đầu tiên</h3>
+
+Tập hợp là một trong những khái niệm cơ bản nhất trong toán học!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">👥</div>
+    <strong>Nhóm bạn</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp các bạn trong lớp</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📚</div>
+    <strong>Sách vở</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp các quyển sách</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
+    <strong>Các số</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp các số tự nhiên</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm tập hợp</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Tập hợp là một nhóm các đối tượng được xác định rõ ràng.
+
+Mỗi đối tượng trong tập hợp gọi là một **phần tử** của tập hợp đó.
+
+</div>
+
+**Ví dụ về tập hợp:**
+
+- Tập hợp các học sinh trong lớp 6A
+- Tập hợp các ngày trong tuần
+- Tập hợp các số tự nhiên nhỏ hơn 10
+- Tập hợp các chữ cái trong bảng chữ cái tiếng Việt
+
+<h3 id="cach-viet" style="margin-top:2rem;">✍️ 2. Cách viết tập hợp</h3>
+
+**Cách 1: Liệt kê các phần tử**
+
+Viết các phần tử trong dấu ngoặc nhọn $\{ \}$, cách nhau bởi dấu phẩy.
+
+**Ví dụ 1:**
+- $A = \{1, 2, 3, 4, 5\}$ - Tập hợp các số tự nhiên từ 1 đến 5
+- $B = \{a, b, c, d\}$ - Tập hợp các chữ cái a, b, c, d
+- $C = \{2, 4, 6, 8\}$ - Tập hợp các số chẵn nhỏ hơn 10
+
+**Cách 2: Chỉ ra tính chất đặc trưng**
+
+Mô tả tính chất chung của các phần tử.
+
+**Ví dụ 2:**
+- $A = \{x \mid x \text{ là số tự nhiên nhỏ hơn 6}\}$
+- $B = \{x \mid x \text{ là số chẵn, } 0 < x < 10\}$
+
+<h3 id="ky-hieu" style="margin-top:2rem;">🔤 3. Ký hiệu</h3>
+
+<div class="box-dinh-ly">
+
+**Các ký hiệu quan trọng:**
+
+- $\in$ : thuộc (phần tử thuộc tập hợp)
+- $\notin$ : không thuộc (phần tử không thuộc tập hợp)
+- $\mathbb{N}$ : tập hợp các số tự nhiên
+- $\mathbb{N}^*$ : tập hợp các số tự nhiên khác 0
+
+</div>
+
+**Ví dụ 3:** Cho $A = \{1, 2, 3, 4, 5\}$
+
+- $3 \in A$ (đọc là: 3 thuộc A)
+- $6 \notin A$ (đọc là: 6 không thuộc A)
+- $1 \in A$, $2 \in A$, $5 \in A$
+- $0 \notin A$, $7 \notin A$
+
+<h3 id="so-phan-tu" style="margin-top:2rem;">🔢 4. Số phần tử của tập hợp</h3>
+
+**Số phần tử** của tập hợp là số lượng các đối tượng trong tập hợp đó.
+
+**Ví dụ 4:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $A = \{1, 2, 3\}$ có **3 phần tử**
+- $B = \{a, b, c, d, e\}$ có **5 phần tử**
+- $C = \{2, 4, 6, 8, 10\}$ có **5 phần tử**
+- Tập hợp các ngày trong tuần có **7 phần tử**
+
+</div>
+
+**Tập hợp rỗng:** Tập hợp không có phần tử nào, ký hiệu $\emptyset$ hoặc $\{\}$
+
+**Ví dụ 5:** Tập hợp các số tự nhiên nhỏ hơn 0 là tập rỗng.
+
+<h3 id="bieu-dien" style="margin-top:2rem;">📊 5. Biểu diễn tập hợp bằng sơ đồ Ven</h3>
+
+**Sơ đồ Ven** dùng hình tròn hoặc hình khép kín để biểu diễn tập hợp.
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="300" height="250" viewBox="0 0 300 250" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Hình tròn biểu diễn tập hợp A */}
+  <circle cx="150" cy="125" r="80" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Nhãn tập hợp */}
+  <text x="150" y="50" font-size="18" font-weight="bold" text-anchor="middle" fill="#3b82f6">A</text>
+  
+  {/* Các phần tử */}
+  <text x="150" y="90" font-size="16" text-anchor="middle" fill="#1f2937">1</text>
+  <text x="120" y="125" font-size="16" text-anchor="middle" fill="#1f2937">2</text>
+  <text x="180" y="125" font-size="16" text-anchor="middle" fill="#1f2937">3</text>
+  <text x="135" y="160" font-size="16" text-anchor="middle" fill="#1f2937">4</text>
+  <text x="165" y="160" font-size="16" text-anchor="middle" fill="#1f2937">5</text>
+  
+  {/* Chú thích */}
+  <text x="150" y="230" font-size="14" text-anchor="middle" fill="#6b7280">A = {1, 2, 3, 4, 5}</text>
+</svg>
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Trong lớp 6A có 40 học sinh. Gọi $A$ là tập hợp các học sinh trong lớp.
+
+a) Tập hợp $A$ có bao nhiêu phần tử?
+
+b) Bạn An có thuộc tập hợp $A$ không?
+
+c) Bạn Bình học lớp 6B có thuộc tập hợp $A$ không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tập hợp $A$ có 40 phần tử (40 học sinh)
+
+b) Nếu bạn An học lớp 6A thì An $\in A$
+
+c) Bạn Bình học lớp 6B nên Bình $\notin A$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Tập hợp**: nhóm các đối tượng xác định rõ ràng
+- **Phần tử**: mỗi đối tượng trong tập hợp
+- **Cách viết**: $A = \{1, 2, 3\}$ hoặc mô tả tính chất
+- **Ký hiệu**: $\in$ (thuộc), $\notin$ (không thuộc)
+- **Tập rỗng**: $\emptyset$ - tập hợp không có phần tử
+- **Sơ đồ Ven**: biểu diễn tập hợp bằng hình tròn
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Viết tập hợp sau bằng cách liệt kê các phần tử:
+
+a) $A$ là tập hợp các số tự nhiên nhỏ hơn 7
+
+b) $B$ là tập hợp các số tự nhiên lớn hơn 3 và nhỏ hơn 9
+
+c) $C$ là tập hợp các chữ cái trong từ "TOÁN"
+
+d) $D$ là tập hợp các tháng có 31 ngày
+
+**Bài 2:** Cho $A = \{0, 1, 2, 3, 4, 5\}$. Điền ký hiệu $\in$ hoặc $\notin$ vào chỗ trống:
+
+a) $3 ... A$
+
+b) $7 ... A$
+
+c) $0 ... A$
+
+d) $10 ... A$
+
+**Bài 3:** Cho $B = \{2, 4, 6, 8, 10\}$
+
+a) Tập hợp $B$ có bao nhiêu phần tử?
+
+b) Viết tập hợp $B$ bằng cách chỉ ra tính chất đặc trưng.
+
+c) Số 5 có thuộc $B$ không?
+
+d) Số 8 có thuộc $B$ không?
+
+**Bài 4:** Viết tập hợp các số tự nhiên:
+
+a) Lớn hơn 5 và nhỏ hơn 10
+
+b) Nhỏ hơn hoặc bằng 4
+
+c) Lớn hơn 10 và nhỏ hơn 15
+
+d) Bằng 0 hoặc lớn hơn 8 và nhỏ hơn 12
+
+**Bài 5:** Cho $C = \{x \mid x \text{ là số tự nhiên, } x < 6\}$
+
+a) Viết tập hợp $C$ bằng cách liệt kê.
+
+b) Tập hợp $C$ có bao nhiêu phần tử?
+
+c) Số 5 có thuộc $C$ không?
+
+d) Số 6 có thuộc $C$ không?
+
+**Bài 6 (Thực tế):** Trong một cửa hàng có 5 loại trái cây: táo, cam, chuối, xoài, nho.
+
+a) Viết tập hợp $F$ các loại trái cây trong cửa hàng.
+
+b) Tập hợp $F$ có bao nhiêu phần tử?
+
+c) Dưa hấu có thuộc $F$ không?
+
+d) Nếu cửa hàng thêm dưa hấu, tập hợp $F$ có bao nhiêu phần tử?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $A = \{0, 1, 2, 3, 4, 5, 6\}$; b) $B = \{4, 5, 6, 7, 8\}$; c) $C = \{T, O, Á, N\}$; d) $D = \{\text{Tháng 1, 3, 5, 7, 8, 10, 12}\}$
+
+**Bài 2:** a) $3 \in A$; b) $7 \notin A$; c) $0 \in A$; d) $10 \notin A$
+
+**Bài 3:** a) 5 phần tử; b) $B = \{x \mid x \text{ là số chẵn, } 0 < x \leq 10\}$; c) Không; d) Có
+
+**Bài 4:** a) $\{6, 7, 8, 9\}$; b) $\{0, 1, 2, 3, 4\}$; c) $\{11, 12, 13, 14\}$; d) $\{0, 9, 10, 11\}$
+
+**Bài 5:** a) $C = \{0, 1, 2, 3, 4, 5\}$; b) 6 phần tử; c) Có; d) Không
+
+**Bài 6:** a) $F = \{\text{táo, cam, chuối, xoài, nho}\}$; b) 5 phần tử; c) Không; d) 6 phần tử
+
+</div>
+</details>

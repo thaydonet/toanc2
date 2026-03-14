@@ -1,0 +1,520 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 13: Tập hợp các số nguyên"
+description: "Khái niệm số nguyên âm và tập hợp số nguyên - Toán 6 KNTT Chương 3"
+grade: "Lớp 6"
+chapter: "Chương III: Số nguyên"
+currentSlug: "lop6/bai-13-so-nguyen"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số nào là số nguyên âm?",
+    option_a: "$5$",
+    option_b: "$0$",
+    option_c: "$-3$",
+    option_d: "$7$",
+    correct_option: "C",
+    explanation: "$-3$ là số nguyên âm (nhỏ hơn $0$).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số đối của $-5$ là:",
+    option_a: "$5$",
+    option_b: "$-5$",
+    option_c: "$0$",
+    option_d: "$10$",
+    correct_option: "A",
+    explanation: "Số đối của $-5$ là $5$ vì $-5 + 5 = 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị tuyệt đối của $-7$ là:",
+    option_a: "$-7$",
+    option_b: "$7$",
+    option_c: "$0$",
+    option_d: "$14$",
+    correct_option: "B",
+    explanation: "$|-7| = 7$ (khoảng cách từ $-7$ đến $0$ trên trục số).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào thuộc tập hợp số nguyên $\\mathbb{Z}$?",
+    option_a: "$-5$",
+    option_b: "$0$",
+    option_c: "$3$",
+    option_d: "$\\frac{1}{2}$",
+    correct_option: "A,B,C",
+    explanation: "$-5, 0, 3$ đều là số nguyên. $\\frac{1}{2}$ không phải số nguyên.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "So sánh: $-5$ và $-3$",
+    option_a: "$-5 < -3$",
+    option_b: "$-5 > -3$",
+    option_c: "$-5 = -3$",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "Trên trục số, $-5$ ở bên trái $-3$ nên $-5 < -3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm $|{-12}|$.",
+    correct_option: "12",
+    explanation: "$|-12| = 12$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số đối của $!a#-8!$ là:",
+    option_a: "$!tinh: -!a!!$",
+    option_b: "$!a!$",
+    option_c: "$0$",
+    option_d: "$!tinh: !a! * 2!$",
+    correct_option: "A",
+    explanation: "Số đối của $!a!$ là $!tinh: -!a!!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tính $|!a#-15!|$:",
+    option_a: "$!tinh: abs(!a!)!$",
+    option_b: "$!a!$",
+    option_c: "$!tinh: -!a!!$",
+    option_d: "$0$",
+    correct_option: "A",
+    explanation: "$|!a!| = !tinh: abs(!a!)!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">➖ Số nguyên — Mở rộng tập số tự nhiên</h3>
+
+Số nguyên giúp biểu diễn cả giá trị âm: nhiệt độ dưới 0°C, nợ tiền, độ cao dưới mực nước biển...
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
+    <strong>Số nguyên dương</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$1, 2, 3, ...$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">0️⃣</div>
+    <strong>Số 0</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Không dương, không âm</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➖</div>
+    <strong>Số nguyên âm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$-1, -2, -3, ...$</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="so-nguyen-am">📖 1. Số nguyên âm</h3>
+
+<div class="box-dinh-nghia">
+
+**Số nguyên âm** là các số nhỏ hơn $0$, được viết với dấu trừ ($-$) phía trước.
+
+**Ví dụ:**
+- $-1$ (âm một hoặc trừ một)
+- $-5$ (âm năm hoặc trừ năm)
+- $-100$ (âm một trăm)
+
+**Ứng dụng thực tế:**
+- Nhiệt độ: $-5°C$ (âm 5 độ C)
+- Độ cao: $-50$ m (dưới mực nước biển 50 m)
+- Tài chính: $-1000000$ đồng (nợ 1 triệu đồng)
+- Thời gian: $-3$ giờ (3 giờ trước)
+
+</div>
+
+**Ví dụ 1:** Biểu diễn bằng số nguyên
+
+a) Nhiệt độ Hà Nội là $15°C$, Sa Pa là $5°C$ dưới $0°C$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Hà Nội: $+15°C$ (hoặc $15°C$)
+- Sa Pa: $-5°C$
+
+</div>
+
+b) Tài khoản của An có $500000$ đồng, tài khoản của Bình thiếu $200000$ đồng
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- An: $+500000$ đồng
+- Bình: $-200000$ đồng
+
+</div>
+
+<h3 id="tap-hop-z" style="margin-top:2rem;">📖 2. Tập hợp số nguyên</h3>
+
+<div class="box-dinh-nghia">
+
+**Tập hợp số nguyên**, ký hiệu là $\mathbb{Z}$, gồm:
+- Các số nguyên dương: $1, 2, 3, 4, ...$
+- Số $0$
+- Các số nguyên âm: $-1, -2, -3, -4, ...$
+
+$$\mathbb{Z} = \{..., -3, -2, -1, 0, 1, 2, 3, ...\}$$
+
+**Mối quan hệ:**
+- $\mathbb{N} \subset \mathbb{Z}$ (tập số tự nhiên là con của tập số nguyên)
+- $\mathbb{N}^* \subset \mathbb{Z}$ (số tự nhiên khác $0$ là số nguyên dương)
+
+**Ký hiệu:**
+- $\mathbb{Z}^+$: tập số nguyên dương ($1, 2, 3, ...$)
+- $\mathbb{Z}^-$: tập số nguyên âm ($-1, -2, -3, ...$)
+
+</div>
+
+**Trục số nguyên:**
+
+<div style="margin:2rem 0;">
+<svg viewBox="0 0 700 100" style="width:100%;max-width:700px;height:auto;">
+  <defs>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#1e40af" />
+    </marker>
+  </defs>
+  
+  <line x1="30" y1="50" x2="670" y2="50" stroke="#1e40af" strokeWidth="2" markerEnd="url(#arrowhead2)" />
+  
+  {[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map((n) => (
+    <g key={n}>
+      <circle cx={350 + n * 50} cy="50" r="4" fill={n < 0 ? "#ef4444" : n > 0 ? "#22c55e" : "#3b82f6"} />
+      <text x={350 + n * 50} y="75" textAnchor="middle" fontSize="16" fill={n < 0 ? "#ef4444" : n > 0 ? "#22c55e" : "#3b82f6"}>{n}</text>
+    </g>
+  ))}
+  
+  <text x="100" y="30" fontSize="14" fill="#ef4444" fontWeight="bold">Số âm</text>
+  <text x="350" y="30" fontSize="14" fill="#3b82f6" fontWeight="bold">0</text>
+  <text x="580" y="30" fontSize="14" fill="#22c55e" fontWeight="bold">Số dương</text>
+</svg>
+</div>
+
+<h3 id="so-doi" style="margin-top:2rem;">🔄 3. Số đối</h3>
+
+<div class="box-dinh-nghia">
+
+**Số đối** của số nguyên $a$ là số $-a$ sao cho $a + (-a) = 0$.
+
+**Ví dụ:**
+- Số đối của $5$ là $-5$ (vì $5 + (-5) = 0$)
+- Số đối của $-3$ là $3$ (vì $-3 + 3 = 0$)
+- Số đối của $0$ là $0$ (vì $0 + 0 = 0$)
+
+**Trên trục số:** Hai số đối nhau nằm đối xứng qua điểm $0$.
+
+</div>
+
+**Ví dụ 2:** Tìm số đối
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Số</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Số đối</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Kiểm tra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$7$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$-7$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$7 + (-7) = 0$ ✓</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$-12$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$12$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$-12 + 12 = 0$ ✓</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$0$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$0$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$0 + 0 = 0$ ✓</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$-100$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$100$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$-100 + 100 = 0$ ✓</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="gia-tri-tuyet-doi" style="margin-top:2rem;">📏 4. Giá trị tuyệt đối</h3>
+
+<div class="box-dinh-nghia">
+
+**Giá trị tuyệt đối** của số nguyên $a$, ký hiệu $|a|$, là khoảng cách từ điểm $a$ đến điểm $0$ trên trục số.
+
+**Quy tắc:**
+- Nếu $a \geq 0$ thì $|a| = a$
+- Nếu $a < 0$ thì $|a| = -a$
+
+**Ví dụ:**
+- $|5| = 5$
+- $|-5| = 5$
+- $|0| = 0$
+- $|-100| = 100$
+
+**Tính chất:**
+- $|a| \geq 0$ với mọi $a$
+- $|a| = |-a|$
+- $|a| = 0$ khi và chỉ khi $a = 0$
+
+</div>
+
+**Ví dụ 3:** Tính giá trị tuyệt đối
+
+a) $|7| = 7$
+
+b) $|-12| = 12$
+
+c) $|0| = 0$
+
+d) $|-50| = 50$
+
+<h3 id="so-sanh" style="margin-top:2rem;">📊 5. So sánh số nguyên</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc so sánh:**
+
+1. **Số dương > Số 0 > Số âm**
+
+2. **Hai số dương:** So sánh như số tự nhiên
+   - Ví dụ: $5 > 3$
+
+3. **Hai số âm:** Số nào có giá trị tuyệt đối nhỏ hơn thì lớn hơn
+   - Ví dụ: $-3 > -5$ (vì $|-3| = 3 < 5 = |-5|$)
+
+4. **Trên trục số:** Số bên phải lớn hơn số bên trái
+
+</div>
+
+**Ví dụ 4:** So sánh các số
+
+a) $5$ và $-3$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$5$ là số dương, $-3$ là số âm
+
+Vậy $5 > -3$
+
+</div>
+
+b) $-7$ và $-4$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$|-7| = 7$, $|-4| = 4$
+
+Vì $7 > 4$ nên $-7 < -4$
+
+</div>
+
+c) Sắp xếp: $-5, 3, 0, -2, 7$ theo thứ tự tăng dần
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$-5 < -2 < 0 < 3 < 7$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Nhiệt độ ở các thành phố:
+- Hà Nội: $20°C$
+- Đà Lạt: $15°C$
+- Sa Pa: $-2°C$
+- Moscow: $-15°C$
+
+a) Thành phố nào có nhiệt độ thấp nhất?
+
+b) Thành phố nào có nhiệt độ cao nhất?
+
+c) Sắp xếp các thành phố theo nhiệt độ tăng dần.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) So sánh: $-15 < -2 < 15 < 20$
+
+**Moscow** có nhiệt độ thấp nhất ($-15°C$)
+
+b) **Hà Nội** có nhiệt độ cao nhất ($20°C$)
+
+c) Thứ tự tăng dần: Moscow ($-15°C$), Sa Pa ($-2°C$), Đà Lạt ($15°C$), Hà Nội ($20°C$)
+
+</div>
+
+**📝 Bài toán 2:** Tài khoản ngân hàng:
+- An có: $+2000000$ đồng
+- Bình có: $-500000$ đồng (nợ)
+- Chi có: $+1000000$ đồng
+- Dũng có: $-300000$ đồng (nợ)
+
+a) Ai có số tiền nhiều nhất?
+
+b) Ai nợ nhiều nhất?
+
+c) Sắp xếp theo số tiền từ ít đến nhiều.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) **An** có số tiền nhiều nhất ($+2000000$ đồng)
+
+b) **Bình** nợ nhiều nhất ($-500000$ đồng)
+
+c) Thứ tự: Bình ($-500000$), Dũng ($-300000$), Chi ($+1000000$), An ($+2000000$)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Số nguyên âm**: Số nhỏ hơn $0$, viết với dấu $-$
+- **Tập hợp $\mathbb{Z}$**: $\{..., -3, -2, -1, 0, 1, 2, 3, ...\}$
+- **Số đối**: Số đối của $a$ là $-a$, có $a + (-a) = 0$
+- **Giá trị tuyệt đối**: $|a|$ là khoảng cách từ $a$ đến $0$
+- **So sánh**: Số dương $>$ $0$ $>$ Số âm; Hai số âm: số nào có $|a|$ nhỏ hơn thì lớn hơn
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Viết các số sau bằng số nguyên:
+
+a) Nhiệt độ $5$ độ dưới $0°C$
+
+b) Mực nước biển cao hơn $10$ m
+
+c) Nợ $500000$ đồng
+
+d) Trước đây $3$ giờ
+
+**Bài 2:** Tìm số đối của các số sau:
+
+a) $15$
+
+b) $-20$
+
+c) $0$
+
+d) $-100$
+
+**Bài 3:** Tính giá trị tuyệt đối:
+
+a) $|8|$
+
+b) $|-15|$
+
+c) $|0|$
+
+d) $|-50|$
+
+**Bài 4:** So sánh các cặp số:
+
+a) $-5$ và $3$
+
+b) $-7$ và $-10$
+
+c) $0$ và $-4$
+
+d) $-2$ và $-1$
+
+**Bài 5:** Sắp xếp các số theo thứ tự tăng dần:
+
+a) $-3, 5, 0, -7, 2$
+
+b) $-10, -5, -15, 0, 8$
+
+c) $4, -4, 8, -8, 0$
+
+d) $-1, -2, -3, 1, 2, 3$
+
+**Bài 6 (Thực tế):** Độ cao so với mực nước biển:
+- Núi Phú Sĩ (Nhật Bản): $+3776$ m
+- Biển Chết (Trung Đông): $-430$ m
+- Đỉnh Everest: $+8848$ m
+- Hồ Baikal (Nga): $-1642$ m
+
+a) Địa điểm nào cao nhất?
+
+b) Địa điểm nào thấp nhất?
+
+c) Sắp xếp theo độ cao tăng dần.
+
+d) Tính khoảng cách độ cao giữa Everest và Biển Chết.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $-5°C$; b) $+10$ m; c) $-500000$ đồng; d) $-3$ giờ
+
+**Bài 2:** a) $-15$; b) $20$; c) $0$; d) $100$
+
+**Bài 3:** a) $8$; b) $15$; c) $0$; d) $50$
+
+**Bài 4:** a) $-5 < 3$; b) $-7 > -10$; c) $0 > -4$; d) $-2 < -1$
+
+**Bài 5:** a) $-7, -3, 0, 2, 5$; b) $-15, -10, -5, 0, 8$; c) $-8, -4, 0, 4, 8$; d) $-3, -2, -1, 1, 2, 3$
+
+**Bài 6:** a) Everest ($+8848$ m); b) Hồ Baikal ($-1642$ m); c) Hồ Baikal, Biển Chết, Phú Sĩ, Everest; d) $8848 - (-430) = 9278$ m
+
+</div>
+</details>
+

@@ -1,0 +1,369 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 11: Định lí và chứng minh định lí"
+description: "Định lí, giả thiết, kết luận, chứng minh - Toán 7 KNTT Chương 3"
+grade: "Lớp 7"
+chapter: "Chương III: Góc và đường thẳng song song"
+currentSlug: "lop7/bai-11-dinh-li-chung-minh"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Định lí là:",
+    option_a: "Một khẳng định được coi là đúng và cần chứng minh",
+    option_b: "Một khẳng định không cần chứng minh",
+    option_c: "Một câu hỏi",
+    option_d: "Một phép tính",
+    correct_option: "A",
+    explanation: "Định lí là khẳng định được coi là đúng và cần được chứng minh.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giả thiết của định lí là:",
+    option_a: "Điều cho trước",
+    option_b: "Điều cần chứng minh",
+    option_c: "Kết luận",
+    option_d: "Phép tính",
+    correct_option: "A",
+    explanation: "Giả thiết là điều cho trước trong định lí.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết luận của định lí là:",
+    option_a: "Điều cần chứng minh",
+    option_b: "Điều cho trước",
+    option_c: "Giả thiết",
+    option_d: "Tiên đề",
+    correct_option: "A",
+    explanation: "Kết luận là điều cần chứng minh trong định lí.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Định lí đảo là:",
+    option_a: "Đổi giả thiết và kết luận cho nhau",
+    option_b: "Giống định lí thuận",
+    option_c: "Không liên quan đến định lí thuận",
+    option_d: "Luôn đúng",
+    correct_option: "A",
+    explanation: "Định lí đảo là định lí có giả thiết và kết luận đổi cho nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chứng minh định lí là:",
+    option_a: "Dùng lập luận để suy ra kết luận từ giả thiết",
+    option_b: "Đưa ra ví dụ",
+    option_c: "Vẽ hình",
+    option_d: "Đo đạc",
+    correct_option: "A",
+    explanation: "Chứng minh là quá trình lập luận logic từ giả thiết đến kết luận.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Một định lí gồm những phần nào?",
+    option_a: "Giả thiết",
+    option_b: "Kết luận",
+    option_c: "Chứng minh",
+    option_d: "Tất cả các phần trên",
+    correct_option: "A,B",
+    explanation: "Định lí gồm giả thiết và kết luận. Chứng minh là quá trình để khẳng định định lí đúng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Định lí và chứng minh</h3>
+
+Định lí là những khẳng định quan trọng trong toán học cần được chứng minh!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📋</div>
+    <strong>Giả thiết</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Điều cho trước</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✓</div>
+    <strong>Kết luận</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Điều cần chứng minh</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔍</div>
+    <strong>Chứng minh</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Lập luận logic</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-li">📖 1. Định lí</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Định lí là một khẳng định được coi là đúng và cần được chứng minh.
+
+Một định lí gồm hai phần:
+- **Giả thiết (GT)**: Điều cho trước
+- **Kết luận (KL)**: Điều cần chứng minh
+
+</div>
+
+**Ví dụ 1:** Định lí về hai góc đối đỉnh
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Phát biểu:** Hai góc đối đỉnh thì bằng nhau.
+
+**Giả thiết:** Hai góc $\widehat{O_1}$ và $\widehat{O_3}$ đối đỉnh
+
+**Kết luận:** $\widehat{O_1} = \widehat{O_3}$
+
+</div>
+
+**Ví dụ 2:** Định lí về hai đường thẳng song song
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Phát biểu:** Nếu hai góc so le trong bằng nhau thì hai đường thẳng song song.
+
+**Giả thiết:** Hai góc so le trong bằng nhau
+
+**Kết luận:** Hai đường thẳng song song
+
+</div>
+
+<h3 id="chung-minh" style="margin-top:2rem;">🔍 2. Chứng minh định lí</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Chứng minh định lí là dùng lập luận để từ giả thiết suy ra kết luận.
+
+**Các bước chứng minh:**
+1. Vẽ hình (nếu cần)
+2. Viết giả thiết và kết luận
+3. Lập luận từ giả thiết đến kết luận
+4. Kết luận
+
+</div>
+
+**Ví dụ 3:** Chứng minh hai góc đối đỉnh bằng nhau
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giả thiết:** $\widehat{O_1}$ và $\widehat{O_3}$ đối đỉnh
+
+**Kết luận:** $\widehat{O_1} = \widehat{O_3}$
+
+**Chứng minh:**
+
+Ta có: $\widehat{O_1}$ và $\widehat{O_2}$ kề bù nên:
+$$\widehat{O_1} + \widehat{O_2} = 180^\\circ \quad (1)$$
+
+$\widehat{O_2}$ và $\widehat{O_3}$ kề bù nên:
+$$\widehat{O_2} + \widehat{O_3} = 180^\\circ \quad (2)$$
+
+Từ (1) và (2) suy ra:
+$$\widehat{O_1} + \widehat{O_2} = \widehat{O_2} + \widehat{O_3}$$
+
+$$\Rightarrow \widehat{O_1} = \widehat{O_3}$$
+
+</div>
+
+<h3 id="dinh-li-dao" style="margin-top:2rem;">↔️ 3. Định lí đảo</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Định lí đảo là định lí có giả thiết và kết luận đổi cho nhau so với định lí ban đầu (định lí thuận).
+
+**Lưu ý:** Không phải định lí nào cũng có định lí đảo đúng.
+
+</div>
+
+**Ví dụ 4:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Định lí thuận:** Nếu hai góc so le trong bằng nhau thì hai đường thẳng song song.
+- GT: Hai góc so le trong bằng nhau
+- KL: Hai đường thẳng song song
+
+**Định lí đảo:** Nếu hai đường thẳng song song thì hai góc so le trong bằng nhau.
+- GT: Hai đường thẳng song song
+- KL: Hai góc so le trong bằng nhau
+
+Cả hai định lí đều đúng!
+
+</div>
+
+**Ví dụ 5:** Định lí không có định lí đảo đúng
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Định lí thuận:** Nếu $a = b$ thì $a^2 = b^2$ (đúng)
+
+**Định lí đảo:** Nếu $a^2 = b^2$ thì $a = b$ (sai, vì có thể $a = -b$)
+
+</div>
+
+<h3 id="cac-loai" style="margin-top:2rem;">📊 4. Các loại mệnh đề toán học</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. **Tiên đề:** Khẳng định được thừa nhận là đúng không cần chứng minh
+   - Ví dụ: Tiên đề Euclid
+
+2. **Định lí:** Khẳng định cần được chứng minh
+   - Ví dụ: Hai góc đối đỉnh bằng nhau
+
+3. **Hệ quả:** Kết quả suy ra trực tiếp từ định lí
+   - Ví dụ: Từ định lí về góc đối đỉnh
+
+4. **Tính chất:** Đặc điểm của đối tượng toán học
+   - Ví dụ: Tính chất giao hoán của phép cộng
+
+</div>
+
+<h3 id="vi-du-chung-minh" style="margin-top:2rem;">✍️ 5. Ví dụ về chứng minh</h3>
+
+**Ví dụ 6:** Chứng minh: Nếu $a \parallel b$ và $b \parallel c$ thì $a \parallel c$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giả thiết:** $a \parallel b$ và $b \parallel c$
+
+**Kết luận:** $a \parallel c$
+
+**Chứng minh:**
+
+Vẽ đường thẳng $d$ cắt $a$, $b$, $c$ tại $A$, $B$, $C$.
+
+Vì $a \parallel b$ nên hai góc so le trong tại $A$ và $B$ bằng nhau (gọi là $\alpha$)
+
+Vì $b \parallel c$ nên hai góc so le trong tại $B$ và $C$ bằng nhau (cũng bằng $\alpha$)
+
+Suy ra góc tại $A$ và góc tại $C$ bằng nhau (cùng bằng $\alpha$)
+
+Hai góc so le trong bằng nhau nên $a \parallel c$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Phát biểu định lí: "Nếu hai đường thẳng vuông góc với đường thẳng thứ ba thì chúng song song với nhau"
+
+a) Viết giả thiết và kết luận.
+
+b) Phát biểu định lí đảo.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) 
+- GT: $a \perp c$ và $b \perp c$
+- KL: $a \parallel b$
+
+b) Định lí đảo: "Nếu hai đường thẳng song song thì chúng cùng vuông góc với một đường thẳng thứ ba"
+- GT: $a \parallel b$
+- KL: Tồn tại $c$ sao cho $a \perp c$ và $b \perp c$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định lí**: Khẳng định cần chứng minh, gồm giả thiết và kết luận
+- **Giả thiết**: Điều cho trước (GT)
+- **Kết luận**: Điều cần chứng minh (KL)
+- **Chứng minh**: Lập luận từ GT đến KL
+- **Định lí đảo**: Đổi GT và KL cho nhau
+- **Tiên đề**: Không cần chứng minh
+- Không phải định lí nào cũng có định lí đảo đúng
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Phát biểu định lí: "Hai góc kề bù có tổng bằng $180^\\circ$"
+
+a) Viết giả thiết và kết luận
+
+b) Phát biểu định lí đảo (nếu có)
+
+**Bài 2:** Cho định lí: "Nếu hai góc đồng vị bằng nhau thì hai đường thẳng song song"
+
+a) Viết GT và KL
+
+b) Phát biểu định lí đảo
+
+c) Định lí đảo có đúng không?
+
+**Bài 3:** Chứng minh: Nếu $a \perp c$ và $b \perp c$ thì $a \parallel b$
+
+**Bài 4:** Phân biệt tiên đề và định lí. Cho ví dụ.
+
+**Bài 5:** Cho định lí: "Nếu $x > 0$ thì $x^2 > 0$"
+
+a) Viết GT và KL
+
+b) Phát biểu định lí đảo
+
+c) Định lí đảo có đúng không? Giải thích.
+
+**Bài 6:** Chứng minh: Hai góc kề bù có tổng bằng $180^\\circ$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) GT: Hai góc kề bù; KL: Tổng = $180^\\circ$; b) Nếu hai góc có tổng $180^\\circ$ và có cạnh chung thì chúng kề bù (không hoàn toàn đúng)
+
+**Bài 2:** a) GT: Hai góc đồng vị bằng nhau; KL: Hai đường thẳng song song; b) Nếu hai đường thẳng song song thì hai góc đồng vị bằng nhau; c) Đúng
+
+**Bài 3:** Dùng tính chất góc đồng vị
+
+**Bài 4:** Tiên đề không cần chứng minh, định lí cần chứng minh
+
+**Bài 5:** a) GT: $x > 0$; KL: $x^2 > 0$; b) Nếu $x^2 > 0$ thì $x > 0$; c) Sai, vì $x$ có thể âm
+
+**Bài 6:** Theo định nghĩa góc kề bù
+
+</div>
+</details>

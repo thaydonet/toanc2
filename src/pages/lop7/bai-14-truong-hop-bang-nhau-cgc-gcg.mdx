@@ -1,0 +1,206 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 14: Trường hợp bằng nhau thứ hai và thứ ba của tam giác"
+description: "Trường hợp c.g.c và g.c.g - Toán 7 KNTT Chương 4"
+grade: "Lớp 7"
+chapter: "Chương IV: Tam giác bằng nhau"
+currentSlug: "lop7/bai-14-truong-hop-bang-nhau-cgc-gcg"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Trường hợp bằng nhau c.g.c là:",
+    option_a: "Hai cạnh và góc xen giữa bằng nhau",
+    option_b: "Hai cạnh và một góc bất kỳ",
+    option_c: "Ba cạnh bằng nhau",
+    option_d: "Ba góc bằng nhau",
+    correct_option: "A",
+    explanation: "Trường hợp c.g.c: Hai cạnh và góc xen giữa bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trường hợp bằng nhau g.c.g là:",
+    option_a: "Một cạnh và hai góc kề bằng nhau",
+    option_b: "Ba góc bằng nhau",
+    option_c: "Hai góc và một cạnh bất kỳ",
+    option_d: "Một góc và hai cạnh",
+    correct_option: "A",
+    explanation: "Trường hợp g.c.g: Một cạnh và hai góc kề cạnh đó bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc xen giữa hai cạnh AB và AC là:",
+    option_a: "Góc A",
+    option_b: "Góc B",
+    option_c: "Góc C",
+    option_d: "Không có",
+    correct_option: "A",
+    explanation: "Góc xen giữa hai cạnh AB và AC là góc A.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai góc kề cạnh BC là:",
+    option_a: "Góc B và góc C",
+    option_b: "Góc A và góc B",
+    option_c: "Góc A và góc C",
+    option_d: "Cả ba góc",
+    correct_option: "A",
+    explanation: "Hai góc kề cạnh BC là góc B và góc C.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để chứng minh hai tam giác bằng nhau theo c.g.c cần:",
+    option_a: "Hai cặp cạnh bằng nhau",
+    option_b: "Góc xen giữa hai cạnh đó bằng nhau",
+    option_c: "Ba cặp cạnh bằng nhau",
+    option_d: "Hai cạnh kề với góc đó",
+    correct_option: "A,B",
+    explanation: "Cần hai cặp cạnh và góc xen giữa bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Hai trường hợp bằng nhau mới</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">c.g.c</div>
+    <strong>Trường hợp 2</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cạnh - góc - cạnh</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">g.c.g</div>
+    <strong>Trường hợp 3</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Góc - cạnh - góc</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="truong-hop-cgc">📐 1. Trường hợp c.g.c</h3>
+
+<div class="box-dinh-ly">
+
+**Trường hợp bằng nhau cạnh - góc - cạnh (c.g.c):**
+
+Nếu hai cạnh và góc xen giữa của tam giác này bằng hai cạnh và góc xen giữa của tam giác kia thì hai tam giác đó bằng nhau.
+
+</div>
+
+**Ví dụ 1:** $\\triangle ABC$ và $\\triangle DEF$ có:
+- $AB = DE$
+- $\\widehat{A} = \\widehat{D}$
+- $AC = DF$
+
+Kết luận: $\\triangle ABC = \\triangle DEF$ (c.g.c)
+
+**Lưu ý:** Góc phải xen giữa hai cạnh đã cho!
+
+<h3 id="truong-hop-gcg" style="margin-top:2rem;">📊 2. Trường hợp g.c.g</h3>
+
+<div class="box-dinh-ly">
+
+**Trường hợp bằng nhau góc - cạnh - góc (g.c.g):**
+
+Nếu một cạnh và hai góc kề cạnh đó của tam giác này bằng một cạnh và hai góc kề cạnh đó của tam giác kia thì hai tam giác đó bằng nhau.
+
+</div>
+
+**Ví dụ 2:** $\\triangle ABC$ và $\\triangle DEF$ có:
+- $\\widehat{B} = \\widehat{E}$
+- $BC = EF$
+- $\\widehat{C} = \\widehat{F}$
+
+Kết luận: $\\triangle ABC = \\triangle DEF$ (g.c.g)
+
+<h3 id="so-sanh" style="margin-top:2rem;">⚖️ 3. So sánh các trường hợp</h3>
+
+| Trường hợp | Điều kiện | Ký hiệu |
+|------------|-----------|---------|
+| c.c.c | Ba cạnh bằng nhau | c.c.c |
+| c.g.c | Hai cạnh và góc xen giữa | c.g.c |
+| g.c.g | Một cạnh và hai góc kề | g.c.g |
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Cho $\\triangle ABC$ có $AB = AC$. Kẻ $BH \\perp AC$, $CK \\perp AB$. Chứng minh $\\triangle ABH = \\triangle ACK$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Xét $\\triangle ABH$ và $\\triangle ACK$ có:
+- $AB = AC$ (gt)
+- $\\widehat{A}$ chung
+- $\\widehat{AHB} = \\widehat{AKC} = 90^\\circ$
+
+Vậy $\\triangle ABH = \\triangle ACK$ (g.c.g)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **c.g.c**: Hai cạnh và góc xen giữa
+- **g.c.g**: Một cạnh và hai góc kề
+- Góc xen giữa: Góc tạo bởi hai cạnh
+- Góc kề cạnh: Hai góc ở hai đầu cạnh
+- Tổng cộng có 3 trường hợp: c.c.c, c.g.c, g.c.g
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập</h3>
+
+**Bài 1:** Cho $\\triangle ABC$ và $\\triangle DEF$ có $AB = DE = 5$ cm, $\\widehat{A} = \\widehat{D} = 60^\\circ$, $AC = DF = 6$ cm. Hai tam giác có bằng nhau không?
+
+**Bài 2:** Cho $\\triangle ABC$ có $AB = AC$. Gọi $M$ là trung điểm $BC$. Chứng minh $\\triangle ABM = \\triangle ACM$ (dùng c.g.c).
+
+**Bài 3:** Cho hai đường thẳng $AB$ và $CD$ cắt nhau tại $O$. Biết $OA = OB$, $OC = OD$. Chứng minh $\\triangle AOC = \\triangle BOD$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** Có, theo c.g.c
+
+**Bài 2:** Dùng c.g.c với $AB = AC$, $\\widehat{A}$ chung (hoặc $\\widehat{AMB} = \\widehat{AMC} = 90^\\circ$), $AM$ chung
+
+**Bài 3:** Dùng c.g.c với $OA = OB$, $\\widehat{AOC} = \\widehat{BOD}$ (đối đỉnh), $OC = OD$
+
+</div>
+</details>

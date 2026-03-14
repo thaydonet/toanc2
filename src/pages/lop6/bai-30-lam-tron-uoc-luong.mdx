@@ -1,0 +1,427 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 30: Làm tròn và ước lượng"
+description: "Làm tròn và ước lượng - Toán 6 KNTT Chương 7"
+grade: "Lớp 6"
+chapter: "Chương VII: Số thập phân"
+currentSlug: "lop6/bai-30-lam-tron-uoc-luong"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Làm tròn số 12,3456 đến chữ số thập phân thứ hai được:",
+    option_a: "12,35",
+    option_b: "12,34",
+    option_c: "12,3",
+    option_d: "12,4",
+    correct_option: "A",
+    explanation: "Chữ số thứ ba sau dấu phẩy là 5 nên làm tròn lên: 12,346 ≈ 12,35",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Làm tròn số 7,96 đến số nguyên ta được:",
+    option_a: "8",
+    option_b: "7",
+    option_c: "7,9",
+    option_d: "7,10",
+    correct_option: "A",
+    explanation: "Chữ số sau dấu phẩy là 9 ≥ 5 nên làm tròn lên: 7,96 ≈ 8",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Làm tròn số 3,14159 đến chữ số thập phân thứ ba là:",
+    option_a: "3,142",
+    option_b: "3,141",
+    option_c: "3,14",
+    option_d: "3,140",
+    correct_option: "A",
+    explanation: "Chữ số thứ tư là 5 nên làm tròn lên: 3,14159 ≈ 3,142",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Làm tròn số 25,473 đến hàng phần mười được:",
+    option_a: "25,5",
+    option_b: "25,4",
+    option_c: "25,0",
+    option_d: "26,0",
+    correct_option: "A",
+    explanation: "Chữ số hàng phần trăm là 7 ≥ 5 nên làm tròn lên: 25,473 ≈ 25,5",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào làm tròn đến hàng chục được 130?",
+    option_a: "127",
+    option_b: "125",
+    option_c: "134",
+    option_d: "135",
+    correct_option: "B",
+    explanation: "127 làm tròn đến hàng chục được 130 (7 ≥ 5).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ước lượng 27,5 + 12,8 bằng cách làm tròn đến hàng đơn vị:",
+    option_a: "28 + 13 = 41",
+    option_b: "27 + 12 = 39",
+    option_c: "28 + 12 = 40",
+    option_d: "27 + 13 = 40",
+    correct_option: "C",
+    explanation: "27,5 ≈ 28, 12,8 ≈ 13. Tổng ước lượng: 28 + 13 = 41.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Làm tròn số 99,9 đến hàng đơn vị được:",
+    option_a: "100",
+    option_b: "99",
+    option_c: "101",
+    option_d: "98",
+    correct_option: "A",
+    explanation: "Chữ số phần thập phân là 9 ≥ 5 nên làm tròn lên: 99,9 ≈ 100",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Làm tròn 5,499 đến hàng đơn vị được:",
+    option_a: "5",
+    option_b: "6",
+    option_c: "5,5",
+    option_d: "5,0",
+    correct_option: "A",
+    explanation: "Chữ số phần thập phân là 4 < 5 nên giữ nguyên: 5,499 ≈ 5",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Làm tròn 8,75 đến hàng phần mười được:",
+    option_a: "8,8",
+    option_b: "8,7",
+    option_c: "9,0",
+    option_d: "8,0",
+    correct_option: "A",
+    explanation: "Chữ số hàng phần trăm là 5 nên làm tròn lên: 8,75 ≈ 8,8",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ước lượng 4,8 × 2,1 bằng cách làm tròn:",
+    option_a: "5 × 2 = 10",
+    option_b: "4 × 2 = 8",
+    option_c: "5 × 3 = 15",
+    option_d: "4 × 3 = 12",
+    correct_option: "A",
+    explanation: "4,8 ≈ 5, 2,1 ≈ 2. Tích ước lượng: 5 × 2 = 10",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">📏 Chiều cao của em</h3>
+
+Khi đo chiều cao, thước có vạch chia đến **0,1 cm**. Nếu chiều cao của bạn nằm giữa **1,55 m** và **1,56 m**, ta sẽ ghi **1,55 m** hay **1,56 m**?
+
+Đây là vấn đề về **làm tròn số**.
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="lam-tron" style="margin-top:2rem;">📖 1. Làm tròn số</h3>
+
+<div class="box-dinh-ly">
+
+**Quy ước làm tròn số:**
+
+1. Nếu chữ số đứng ngay sau hàng làm tròn **nhỏ hơn 5** (< 5) → giữ nguyên chữ số hàng làm tròn
+2. Nếu chữ số đứng ngay sau hàng làm tròn **bằng hoặc lớn hơn 5** (≥ 5) → cộng 1 vào chữ số hàng làm tròn
+
+</div>
+
+**Ví dụ 1:** Làm tròn số 12,3456
+
+| Hàng làm tròn | Kết quả | Cách làm |
+|--------------|---------|---------|
+| Đơn vị | 12 | 12,3456 → 12 |
+| Phần mười | 12,3 | 12,3456 → 12,3 |
+| Phần trăm | 12,35 | 12,3456 → 12,35 |
+| Phần nghìn | 12,346 | 12,3456 → 12,346 |
+
+**Ví dụ 2:** Làm tròn 7,96 đến hàng đơn vị
+
+- Chữ số sau dấu phẩy là 9 ≥ 5
+- Làm tròn lên: 7,96 ≈ **8**
+
+**Ví dụ 3:** Làm tròn 3,14159 đến phần trăm
+
+- Chữ số thứ ba sau dấu phẩy là 5 → làm tròn lên
+- 3,14159 ≈ **3,14**
+
+<h3 id="vi-du" style="margin-top:2rem;">📖 2. Ví dụ làm tròn trong thực tế</h3>
+
+<div class="box-luu-y">
+
+| Tình huống | Số gốc | Làm tròn đến | Kết quả |
+|-----------|--------|--------------|---------|
+| Giá tiền | 125 000,45 đ | nghìn đồng | 125 000 đ |
+| Dân số | 96 500 000 người | triệu người | 97 triệu |
+| Điểm trung bình | 7,56 điểm | phần mười | 7,6 điểm |
+| Nhiệt độ | 36,8°C | độ C | 37°C |
+
+</div>
+
+<h3 id="uoc-luong" style="margin-top:2rem;">📖 3. Ước lượng kết quả</h3>
+
+<div class="box-dinh-ly">
+
+**Ước lượng** là dùng các số gần đúng để tính toán nhanh, thường làm tròn trước khi tính.
+
+</div>
+
+**Ví dụ 4:** Ước lượng tổng 27,5 + 12,8
+
+- 27,5 ≈ 28
+- 12,8 ≈ 13
+- Tổng ước lượng: 28 + 13 = **41**
+
+(Kết quả chính xác: 27,5 + 12,8 = 40,3)
+
+**Ví dụ 5:** Ước lượng tích 4,8 × 2,1
+
+- 4,8 ≈ 5
+- 2,1 ≈ 2
+- Tích ước lượng: 5 × 2 = **10**
+
+(Kết quả chính xác: 4,8 × 2,1 = 10,08)
+
+<h3 id=" Ung dung" style="margin-top:2rem;">📖 4. Ứng dụng</h3>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1rem 0;">
+<div style="background:#fef3c7;border-radius:8px;padding:1rem;text-align:center;">
+  <strong>🛒 Mua sắm</strong><br/>
+  Làm tròn giá tiền để ước tính tổng
+</div>
+<div style="background:#dbeafe;border-radius:8px;padding:1rem;text-align:center;">
+  <strong>📏 Đo lường</strong><br/>
+  Đọc số đo gần đúng
+</div>
+<div style="background:#d1fae5;border-radius:8px;padding:1rem;text-align:center;">
+  <strong>📊 Thống kê</strong><br/>
+  Báo cáo số liệu gọn hơn
+</div>
+</div>
+
+</KhamPha>
+
+<LuyenTap title="Luyện tập">
+
+**Bài 1:** Làm tròn các số sau đến hàng đơn vị:
+
+a) 7,3 b) 12,6 c) 25,5 d) 9,49
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 7 b) 13 c) 26 d) 9
+
+</div>
+
+**Bài 2:** Làm tròn các số sau đến phần mười:
+
+a) 3,47 b) 8,95 c) 12,34 d) 0,76
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 3,5 b) 9,0 c) 12,3 d) 0,8
+
+</div>
+
+**Bài 3:** Làm tròn các số sau đến hàng chục:
+
+a) 127 b) 153 c) 195 d) 241
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 130 b) 150 c) 200 d) 240
+
+</div>
+
+**Bài 4:** Ước lượng kết quả các phép tính:
+
+a) 18,5 + 21,3 b) 9,8 × 4,2 c) 45,6 - 22,3
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 19 + 21 = 40 b) 10 × 4 = 40 c) 46 - 22 = 24
+
+</div>
+
+**Bài 5:** Một cửa hàng có 145,5 kg gạo, bán được 78,7 kg. Ước lượng còn lại bao nhiêu kg?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+146 - 79 = 67 kg
+
+</div>
+
+</LuyenTap>
+
+<VanDung title="Vận dụng">
+
+**Bài 1:** Một chiếc xe đi 124,5 km với 8,5 lít xăng. Hỏi xe đi bao nhiêu km với 1 lít xăng (làm tròn đến hàng đơn vị)?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Quãng đường trung bình: 124,5 ÷ 8,5 ≈ 14,6 km/lít
+
+Làm tròn đến hàng đơn vị: **15 km/lít**
+
+</div>
+
+**Bài 2:** Bạn Nam mua sách hết 125 500 đồng, mua vở hết 45 800 đồng. Ước lượng tổng số tiền.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+126 000 + 46 000 = 172 000 đồng
+
+</div>
+
+**Bài 3:** Nhiệt độ buổi sáng là 23,8°C, buổi chiều là 28,4°C. Tính nhiệt độ trung bình và làm tròn đến độ C.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Nhiệt độ TB: (23,8 + 28,4) ÷ 2 = 26,1°C
+
+Làm tròn: **26°C**
+
+</div>
+
+</VanDung>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Làm tròn các số sau đến phần trăm:
+
+a) 3,147 b) 9,865 c) 12,999 d) 0,045
+
+**Bài 2:** Làm tròn các số sau đến hàng trăm:
+
+a) 2457 b) 3821 c) 1950 d) 450
+
+**Bài 3:** Ước lượng kết quả các phép tính:
+
+a) 23,7 × 4,8 b) 156,5 + 89,3 c) 245,8 - 98,4
+
+**Bài 4:** Một ô tô đi 156,7 km hết 12,3 lít xăng. Tính mức tiêu thụ xăng trung bình (làm tròn đến 1 chữ số thập phân).
+
+**Bài 5:** Một cửa hàng có 245,5 kg đường, bán trong 3 ngày được 178,25 kg. Ước lượng còn lại bao nhiêu kg?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 3,15; b) 9,87; c) 13,00; d) 0,05
+
+**Bài 2:** a) 2500; b) 3800; c) 2000; d) 500
+
+**Bài 3:** a) 120; b) 246; c) 148
+
+**Bài 4:** 12,7 lít/100km
+
+**Bài 5:** 68 kg
+
+</div>
+</details>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Tổng kết bài học:**
+
+**1. Quy ước làm tròn số:**
+- Chữ số sau hàng làm tròn < 5: giữ nguyên
+- Chữ số sau hàng làm tròn ≥ 5: cộng 1 vào hàng làm tròn
+
+**2. Các hàng làm tròn:**
+- Hàng đơn vị, hàng chục, hàng trăm...
+- Phần mười, phần trăm, phần nghìn...
+
+**3. Ước lượng:**
+- Làm tròn các số trước khi tính
+- Giúp đánh giá nhanh kết quả
+- Thường dùng trong mua sắm, đo lường
+
+**4. Ứng dụng:**
+- Báo cáo số liệu
+- Đọc kết quả đo lường
+- Tính toán nhanh
+
+</div>
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Làm tròn các số sau đến phần trăm:
+
+a) 3,147 b) 9,865 c) 12,999 d) 0,045
+
+**Bài 2:** Làm tròn các số sau đến hàng trăm:
+
+a) 2457 b) 3821 c) 1950 d) 450
+
+**Bài 3:** Ước lượng kết quả các phép tính:
+
+a) 23,7 × 4,8 b) 156,5 + 89,3 c) 245,8 - 98,4
+
+**Bài 4:** Một ô tô đi 156,7 km hết 12,3 lít xăng. Tính mức tiêu thụ xăng trung bình (làm tròn đến 1 chữ số thập phân).
+
+**Bài 5:** Một cửa hàng có 245,5 kg đường, bán trong 3 ngày được 178,25 kg. Ước lượng còn lại bao nhiêu kg?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 3,15; b) 9,87; c) 13,00; d) 0,05
+
+**Bài 2:** a) 2500; b) 3800; c) 2000; d) 500
+
+**Bài 3:** a) 120; b) 246; c) 148
+
+**Bài 4:** 12,7 lít/100km
+
+**Bài 5:** 68 kg
+
+</div>
+</details>
+
+<QuizSession client:load questions={quizData} />
+

@@ -1,0 +1,434 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 23: Mở rộng phân số. Phân số bằng nhau"
+description: "Mở rộng phân số, phân số bằng nhau - Toán 6 KNTT Chương 6"
+grade: "Lớp 6"
+chapter: "Chương VI: Phân số"
+currentSlug: "lop6/bai-23-mo-rong-phan-so"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import FractionPie from '../../components/interactive/FractionPie';
+import RationalSimplifier from '../../components/interactive/RationalSimplifier';
+import FractionBuilder from '../../components/interactive/FractionBuilder';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Phân số nào sau đây có tử số là -3 và mẫu số là 7?",
+    option_a: "$\\frac{-3}{7}$",
+    option_b: "$\\frac{3}{-7}$",
+    option_c: "$\\frac{-3}{-7}$",
+    option_d: "Cả A và B",
+    correct_option: "D",
+    explanation: "Cả $\\frac{-3}{7}$ và $\\frac{3}{-7}$ đều có tử là -3 và mẫu là 7 (khi viết về dạng chuẩn, mẫu dương).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{-2}{5}$ là kết quả của phép chia nào?",
+    option_a: "$2 : 5$",
+    option_b: "$-2 : 5$",
+    option_c: "$2 : (-5)$",
+    option_d: "$-2 : (-5)$",
+    correct_option: "B",
+    explanation: "$-2 : 5 = \\frac{-2}{5}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai phân số $\\frac{a}{b}$ và $\\frac{c}{d}$ bằng nhau khi:",
+    option_a: "$a + d = b + c$",
+    option_b: "$a - d = b - c$",
+    option_c: "$a \\times d = b \\times c$",
+    option_d: "$a : d = b : c$",
+    correct_option: "C",
+    explanation: "$\\frac{a}{b} = \\frac{c}{d} \\Leftrightarrow a \\times d = b \\times c$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số nào sau đây bằng phân số $\\frac{2}{3}$?",
+    option_a: "$\\frac{4}{6}$",
+    option_b: "$\\frac{6}{9}$",
+    option_c: "$\\frac{10}{15}$",
+    option_d: "Tất cả đều đúng",
+    correct_option: "D",
+    explanation: "Tất cả đều đúng vì $2 \\times 6 = 3 \\times 4$, $2 \\times 9 = 3 \\times 6$, $2 \\times 15 = 3 \\times 10$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{12}{18}$ rút gọn về phân số tối giản là:",
+    option_a: "$\\frac{6}{9}$",
+    option_b: "$\\frac{3}{4}$",
+    option_c: "$\\frac{2}{3}$",
+    option_d: "$\\frac{4}{6}$",
+    correct_option: "C",
+    explanation: "ƯCLN(12,18) = 6. Chia cả tử và mẫu cho 6: $\\frac{12}{18} = \\frac{2}{3}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số nào sau đây là phân số tối giản?",
+    option_a: "$\\frac{8}{12}$",
+    option_b: "$\\frac{7}{21}$",
+    option_c: "$\\frac{5}{11}$",
+    option_d: "$\\frac{9}{15}$",
+    correct_option: "C",
+    explanation: "$\\frac{5}{11}$ là phân số tối giản vì ƯCLN(5,11) = 1.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{-5}{-8}$ là phân số:",
+    option_a: "Âm",
+    option_b: "Dương",
+    option_c: "Không dương không âm",
+    option_d: "Bằng 0",
+    correct_option: "B",
+    explanation: "Tử và mẫu cùng dấu nên phân số dương: $\\frac{-5}{-8} = \\frac{5}{8}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Viết số nguyên -7 dưới dạng phân số có mẫu dương:",
+    option_a: "$\\frac{-7}{1}$",
+    option_b: "$\\frac{7}{-1}$",
+    option_c: "$\\frac{-7}{-1}$",
+    option_d: "$\\frac{7}{1}$",
+    correct_option: "A",
+    explanation: "$-7 = \\frac{-7}{1}$ (mẫu dương, tử âm).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính chất cơ bản của phân số là:",
+    option_a: "Nhân cả tử và mẫu với cùng một số nguyên khác 0",
+    option_b: "Chia cả tử và mẫu cho cùng một số nguyên khác 0",
+    option_c: "Cả A và B đều đúng",
+    option_d: "Chỉ có A đúng",
+    correct_option: "C",
+    explanation: "Tính chất cơ bản: $\\frac{a}{b} = \\frac{a \\times k}{b \\times k} = \\frac{a : k}{b : k}$ (với $k \\neq 0$, $k$ là ước của $a$ và $b$).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số nào sau đây không bằng $\\frac{3}{4}$?",
+    option_a: "$\\frac{15}{20}$",
+    option_b: "$\\frac{9}{12}$",
+    option_c: "$\\frac{21}{28}$",
+    option_d: "$\\frac{18}{24}$",
+    correct_option: "D",
+    explanation: "$\\frac{18}{24} = \\frac{3}{4}$ cũng bằng! Thực ra tất cả đều bằng $\\frac{3}{4}$. Đáp án là sai vì tất cả đều bằng.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🍕 Chia bánh và phân số</h3>
+
+Bạn có 3 cái bánh pizza và muốn chia đều cho 4 người bạn. Mỗi người được bao nhiêu phần?
+
+<div style="display:flex; gap:2rem; align-items:center; flex-wrap:wrap; margin:1.5rem 0;">
+  <FractionPie client:load numerator={3} denominator={4} size={150} />
+  <div>
+    <p>Mỗi người được <strong>3 phần</strong> trong 4 phần bằng nhau.</p>
+    <p>Ta viết: <span style="font-size:1.5rem;font-weight:800;font-family:Georgia,serif;color:#2563eb;"><sup>3</sup>&frasl;<sub>4</sub></span></p>
+    <p>Đọc là <em>"ba phần tư"</em>.</p>
+  </div>
+</div>
+
+**Câu hỏi:** Em đã học về phân số ở lớp dưới. Vậy phân số là gì?
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="phan-so" style="margin-top:2rem;">📖 1. Mở rộng khái niệm phân số</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Phân số có dạng $\dfrac{a}{b}$ trong đó:
+
+- $a$ là **tử số** (số nguyên)
+- $b$ là **mẫu số** (số nguyên khác 0, $b \neq 0$)
+
+**Chú ý:**
+- Mọi số nguyên đều có thể viết dưới dạng phân số: $n = \dfrac{n}{1}$
+- Phân số $\dfrac{a}{b}$ **dương** khi $a$ và $b$ cùng dấu
+- Phân số $\dfrac{a}{b}$ **âm** khi $a$ và $b$ khác dấu
+
+</div>
+
+**Ví dụ 1:** Những cách viết nào là phân số?
+
+| Cách viết | Có phải phân số? | Tử số | Mẫu số |
+|-----------|------------------|-------|--------|
+| $\dfrac{3}{7}$ | ✅ | 3 | 7 |
+| $\dfrac{-5}{8}$ | ✅ | -5 | 8 |
+| $\dfrac{2}{-9}$ | ✅ | 2 | -9 |
+| $\dfrac{4}{0}$ | ❌ | 4 | 0 (sai vì mẫu = 0) |
+
+**Luyện tập 1:** Viết kết quả của các phép chia dưới dạng phân số:
+
+a) $4 : 9 = \dfrac{4}{9}$
+
+b) $(-2) : 7 = \dfrac{-2}{7}$
+
+c) $8 : (-3) = \dfrac{8}{-3}$
+
+<h3 id="phan-so-bang-nhau" style="margin-top:2rem;">📖 2. Hai phân số bằng nhau</h3>
+
+<div class="box-dinh-nghia">
+
+Hai phân số $\dfrac{a}{b}$ và $\dfrac{c}{d}$ bằng nhau khi:
+
+$$\frac{a}{b} = \frac{c}{d} \Leftrightarrow a \times d = b \times c$$
+
+</div>
+
+**Ví dụ 2:** Kiểm tra xem $\dfrac{2}{5}$ có bằng $\dfrac{4}{10}$ không?
+
+Ta có: $2 \times 10 = 20$ và $5 \times 4 = 20$
+
+Vì $2 \times 10 = 5 \times 4$ nên $\dfrac{2}{5} = \dfrac{4}{10}$
+
+<div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin:1.25rem 0;justify-content:center;">
+  <FractionPie client:load numerator={2} denominator={5} size={120} />
+  <FractionPie client:load numerator={4} denominator={10} size={120} />
+</div>
+
+<h3 id="tinh-chat-co-ban" style="margin-top:2rem;">📖 3. Tính chất cơ bản của phân số</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất:** Nếu nhân (hoặc chia) cả tử và mẫu của một phân số với cùng một số nguyên khác 0, ta được một phân số bằng phân số đã cho.
+
+$$\frac{a}{b} = \frac{a \times k}{b \times k} = \frac{a : k}{b : k} \quad (k \neq 0, \text{ k là ước của } a \text{ và } b)$$
+
+</div>
+
+**Ví dụ 3:** $\dfrac{3}{4} = \dfrac{3 \times 2}{4 \times 2} = \dfrac{6}{8}$
+
+<div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin:1.25rem 0;justify-content:center;">
+  <FractionPie client:load numerator={3} denominator={4} size={110} />
+  <FractionPie client:load numerator={6} denominator={8} size={110} />
+</div>
+
+**Ví dụ 4:** $\dfrac{12}{18} = \dfrac{12 : 6}{18 : 6} = \dfrac{2}{3}$ (vì ƯCLN(12,18) = 6)
+
+<h3 id="phan-so-toi-gian" style="margin-top:2rem;">📖 4. Phân số tối giản</h3>
+
+<div class="box-dinh-nghia">
+
+Phân số tối giản là phân số có tử và mẫu là hai số nguyên tố cùng nhau (ước chung lớn nhất bằng 1).
+
+$$\frac{a}{b} \text{ là tối giản } \Leftrightarrow \text{ƯCLN}(|a|, |b|) = 1$$
+
+</div>
+
+**Công cụ rút gọn phân số:**
+
+<RationalSimplifier client:load />
+
+<h3 id="vd-minh-hoa" style="margin-top:2rem;">📖 5. Ví dụ tổng hợp</h3>
+
+**Ví dụ 5:** Hoàn thành bảng sau:
+
+| Phân số | Đọc | Tử số | Mẫu số | Phân số bằng (mẫu dương) |
+|---------|-----|-------|--------|---------------------------|
+| $\dfrac{5}{7}$ | năm phần bảy | 5 | 7 | $\dfrac{5}{7}$ |
+| $\dfrac{-6}{11}$ | âm sáu phần mười một | -6 | 11 | $\dfrac{-6}{11}$ |
+| $\dfrac{8}{-3}$ | tám phần âm ba | 8 | -3 | $\dfrac{-8}{3}$ |
+
+**Ví dụ 6:** Viết phân số $\dfrac{-15}{25}$ thành phân số tối giản
+
+ƯCLN(15, 25) = 5
+
+$\dfrac{-15}{25} = \dfrac{-15 : 5}{25 : 5} = \dfrac{-3}{5}$
+
+<FractionBuilder client:load initialNumerator={-15} initialDenominator={25} />
+
+</KhamPha>
+
+<LuyenTap title="Luyện tập">
+
+**Bài 1:** Trong các cách viết sau, cách nào cho ta một phân số? Cho biết tử và mẫu.
+
+a) $\dfrac{3}{8}$ b) $\dfrac{-5}{4}$ c) $\dfrac{2.5}{7}$ d) $\dfrac{4}{0}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) ✅ Phân số: tử = 3, mẫu = 8
+
+b) ✅ Phân số: tử = -5, mẫu = 4
+
+c) ❌ Không phải vì 2.5 không phải số nguyên
+
+d) ❌ Không phải vì mẫu = 0
+
+</div>
+
+**Bài 2:** Tìm các cặp phân số bằng nhau trong các phân số sau:
+
+$\dfrac{2}{3}, \dfrac{4}{6}, \dfrac{5}{10}, \dfrac{10}{15}, \dfrac{3}{9}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Các cặp phân số bằng nhau:
+
+- $\dfrac{2}{3} = \dfrac{4}{6}$ (vì $2 \times 6 = 3 \times 4$)
+
+- $\dfrac{2}{3} = \dfrac{10}{15}$ (vì $2 \times 15 = 3 \times 10$)
+
+- $\dfrac{5}{10} = \dfrac{3}{9}$ (vì $5 \times 9 = 10 \times 3 = \dfrac{1}{2}$)
+
+</div>
+
+**Bài 3:** Rút gọn các phân số sau về phân số tối giản:
+
+a) $\dfrac{12}{18}$ b) $\dfrac{-21}{28}$ c) $\dfrac{36}{48}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $\dfrac{12}{18} = \dfrac{2}{3}$ (ƯCLN = 6)
+
+b) $\dfrac{-21}{28} = \dfrac{-3}{4}$ (ƯCLN = 7)
+
+c) $\dfrac{36}{48} = \dfrac{3}{4}$ (ƯCLN = 12)
+
+</div>
+
+**Bài 4:** Viết mỗi phân số sau thành phân số bằng nó có mẫu dương:
+
+$\dfrac{-3}{7}, \dfrac{5}{-8}, \dfrac{-12}{-15}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$\dfrac{-3}{7} = \dfrac{-3}{7}$
+
+$\dfrac{5}{-8} = \dfrac{-5}{8}$
+
+$\dfrac{-12}{-15} = \dfrac{4}{5}$
+
+</div>
+
+</LuyenTap>
+
+<VanDung title="Vận dụng">
+
+**Bài 1:** Một bể cá có 24 con cá, trong đó có 18 con cá vàng. Tính tỉ số phần trăm số cá vàng trong bể.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tỉ số số cá vàng: $\dfrac{18}{24} = \dfrac{3}{4} = 75\%$
+
+</div>
+
+**Bài 2:** Một người đi bộ 12km trong 3 giờ. Viết quãng đường đi được trong 1 giờ dưới dạng phân số.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Quãng đường đi trong 1 giờ: $12 : 3 = \dfrac{12}{3} = 4$ km/giờ
+
+</div>
+
+**Bài 3:** Tìm số nguyên $x$ sao cho $\dfrac{3}{7} = \dfrac{x}{21}$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$\dfrac{3}{7} = \dfrac{x}{21} \Leftrightarrow 3 \times 21 = 7 \times x$
+
+$\Rightarrow 63 = 7x \Rightarrow x = 9$
+
+</div>
+
+</VanDung>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Tổng kết bài học:**
+
+**1. Khái niệm phân số**
+- $\dfrac{a}{b}$ với $a, b \in \mathbb{Z}, b \neq 0$
+- $n = \dfrac{n}{1}$ với mọi số nguyên $n$
+
+**2. Hai phân số bằng nhau**
+$$\frac{a}{b} = \frac{c}{d} \Leftrightarrow a \times d = b \times c$$
+
+**3. Tính chất cơ bản của phân số**
+$$\frac{a}{b} = \frac{a \times k}{b \times k} = \frac{a : k}{b : k}$$
+
+**4. Phân số tối giản**
+- Phân số tối giản khi ƯCLN(|tử|, |mẫu|) = 1
+- Rút gọn: chia cả tử và mẫu cho ƯCLN
+
+**5. Dấu hiệu phân số dương/âm**
+- Cùng dấu → dương
+- Khác dấu → âm
+
+</div>
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Trong các cách viết sau, cách nào cho ta một phân số? Hãy giải thích.
+
+a) $\dfrac{5}{8}$ b) $\dfrac{-3}{0}$ c) $\dfrac{0}{7}$ d) $\dfrac{2.5}{3}$
+
+**Bài 2:** Tìm $x$ để các cặp phân số sau bằng nhau:
+
+a) $\dfrac{x}{6} = \dfrac{3}{9}$ b) $\dfrac{-4}{x} = \dfrac{8}{-12}$
+
+**Bài 3:** Rút gọn các phân số sau về phân số tối giản:
+
+a) $\dfrac{24}{36}$ b) $\dfrac{-45}{75}$ c) $\dfrac{72}{48}$
+
+**Bài 4:** Viết mỗi phân số sau thành phân số bằng nó có mẫu dương:
+
+a) $\dfrac{-7}{9}$ b) $\dfrac{5}{-12}$ c) $\dfrac{-18}{-24}$
+
+**Bài 5:** Chứng minh rằng nếu $\dfrac{a}{b} = \dfrac{c}{d}$ thì $ad = bc$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Phân số; b) Không phải; c) Phân số; d) Không phải
+
+**Bài 2:** a) $x = 2$; b) $x = 6$
+
+**Bài 3:** a) $\dfrac{2}{3}$; b) $\dfrac{-3}{5}$; c) $\dfrac{3}{2}$
+
+**Bài 4:** a) $\dfrac{-7}{9}$; b) $\dfrac{-5}{12}$; c) $\dfrac{3}{4}$
+
+**Bài 5:** Theo định nghĩa hai phân số bằng nhau
+
+</div>
+</details>
+
+<QuizSession client:load questions={quizData} />
+

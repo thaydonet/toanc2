@@ -1,0 +1,418 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 32: Điểm và đường thẳng"
+description: "Khái niệm điểm, đường thẳng, quan hệ điểm-đường thẳng - Toán 6 KNTT Chương VIII"
+grade: "Lớp 6"
+chapter: "Chương VIII: Những hình hình học cơ bản"
+currentSlug: "lop6/bai-32-diem-duong-thang"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Điểm là gì?",
+    option_a: "Một vị trí xác định trong không gian",
+    option_b: "Một đoạn thẳng ngắn",
+    option_c: "Một hình tròn nhỏ",
+    option_d: "Một góc nhỏ",
+    correct_option: "A",
+    explanation: "Điểm là một vị trí xác định trong không gian, được ký hiệu bằng một chữ cái in hoa.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường thẳng là gì?",
+    option_a: "Một tập hợp vô hạn các điểm nằm trên một hàng",
+    option_b: "Một đoạn thẳng dài",
+    option_c: "Một hình vuông",
+    option_d: "Một đường cong",
+    correct_option: "A",
+    explanation: "Đường thẳng là một tập hợp vô hạn các điểm nằm trên một hàng, kéo dài vô tận về hai phía.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi điểm A nằm trên đường thẳng d, ta nói:",
+    option_a: "Điểm A thuộc đường thẳng d",
+    option_b: "Điểm A không thuộc đường thẳng d",
+    option_c: "Đường thẳng d không đi qua A",
+    option_d: "Điểm A ở ngoài đường thẳng d",
+    correct_option: "A",
+    explanation: "Khi điểm A nằm trên đường thẳng d, ta nói điểm A thuộc đường thẳng d, ký hiệu: A ∈ d.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào đúng về điểm và đường thẳng?",
+    option_a: "Qua hai điểm phân biệt, chỉ có một đường thẳng",
+    option_b: "Một đường thẳng chứa vô số điểm",
+    option_c: "Điểm không có kích thước",
+    option_d: "Đường thẳng có độ dài hữu hạn",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đều đúng. D sai vì đường thẳng kéo dài vô tận, không có độ dài hữu hạn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường thẳng phân biệt có thể có bao nhiêu điểm chung?",
+    option_a: "0 hoặc 1 điểm",
+    option_b: "Vô số điểm",
+    option_c: "2 điểm",
+    option_d: "3 điểm",
+    correct_option: "A",
+    explanation: "Hai đường thẳng phân biệt có thể không cắt nhau (0 điểm chung) hoặc cắt nhau tại 1 điểm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Qua bao nhiêu điểm phân biệt có thể vẽ được một đường thẳng duy nhất?",
+    correct_option: "2",
+    explanation: "Qua hai điểm phân biệt, chỉ có thể vẽ được một đường thẳng duy nhất.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ký hiệu A ∈ d có nghĩa là:",
+    option_a: "Điểm A thuộc đường thẳng d",
+    option_b: "Điểm A không thuộc đường thẳng d",
+    option_c: "Đường thẳng d là điểm A",
+    option_d: "Điểm A và đường thẳng d không liên quan",
+    correct_option: "A",
+    explanation: "Ký hiệu A ∈ d có nghĩa là điểm A thuộc đường thẳng d, tức là A nằm trên d.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu ba điểm A, B, C thẳng hàng, điều nào đúng?",
+    option_a: "Ba điểm cùng nằm trên một đường thẳng",
+    option_b: "Ba điểm tạo thành một tam giác",
+    option_c: "Ba điểm không cùng nằm trên một đường thẳng",
+    option_d: "Ba điểm tạo thành một góc",
+    correct_option: "A",
+    explanation: "Ba điểm thẳng hàng có nghĩa là ba điểm cùng nằm trên một đường thẳng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Điểm và đường thẳng — Những khái niệm cơ bản</h3>
+
+Trong hình học, điểm và đường thẳng là những khái niệm cơ bản nhất. Chúng ta sẽ khám phá mối quan hệ giữa chúng!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">●</div>
+    <strong>Điểm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Vị trí xác định</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">━</div>
+    <strong>Đường thẳng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp điểm</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="diem">📖 1. Khái niệm điểm</h3>
+
+<div class="box-dinh-nghia">
+
+**Điểm** là một vị trí xác định trong không gian. Điểm không có kích thước, không có chiều dài, chiều rộng hay chiều cao.
+
+**Ký hiệu:** Điểm được ký hiệu bằng một chữ cái in hoa: A, B, C, ...
+
+</div>
+
+**Biểu diễn điểm:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <circle cx="50" cy="50" r="3" fill="#dc2626"/>
+  <text x="50" y="75" text-anchor="middle" font-size="14" fill="#1f2937">Điểm A</text>
+  
+  <circle cx="150" cy="50" r="3" fill="#2563eb"/>
+  <text x="150" y="75" text-anchor="middle" font-size="14" fill="#1f2937">Điểm B</text>
+  
+  <circle cx="250" cy="50" r="3" fill="#059669"/>
+  <text x="250" y="75" text-anchor="middle" font-size="14" fill="#1f2937">Điểm C</text>
+</svg>
+
+<h3 id="duong-thang" style="margin-top:2rem;">📖 2. Khái niệm đường thẳng</h3>
+
+<div class="box-dinh-nghia">
+
+**Đường thẳng** là một tập hợp vô hạn các điểm nằm trên một hàng, kéo dài vô tận về hai phía.
+
+**Ký hiệu:** Đường thẳng được ký hiệu bằng một chữ cái thường: a, b, c, d, ... hoặc bằng hai điểm trên nó: đường thẳng AB.
+
+</div>
+
+**Biểu diễn đường thẳng:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="10" y1="50" x2="290" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <text x="150" y="75" text-anchor="middle" font-size="14" fill="#1f2937">Đường thẳng d</text>
+</svg>
+
+<h3 id="quan-he-diem-duong" style="margin-top:2rem;">📖 3. Quan hệ giữa điểm và đường thẳng</h3>
+
+**Trường hợp 1: Điểm thuộc đường thẳng**
+
+Khi điểm A nằm trên đường thẳng d, ta nói:
+- Điểm A **thuộc** đường thẳng d
+- Ký hiệu: **A ∈ d**
+- Đường thẳng d **đi qua** điểm A
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="10" y1="50" x2="290" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="100" cy="50" r="4" fill="#dc2626"/>
+  <text x="100" y="75" text-anchor="middle" font-size="14" fill="#1f2937">A ∈ d</text>
+</svg>
+
+**Trường hợp 2: Điểm không thuộc đường thẳng**
+
+Khi điểm B không nằm trên đường thẳng d, ta nói:
+- Điểm B **không thuộc** đường thẳng d
+- Ký hiệu: **B ∉ d**
+- Điểm B **ở ngoài** đường thẳng d
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="10" y1="50" x2="290" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="150" cy="20" r="4" fill="#059669"/>
+  <text x="150" y="10" text-anchor="middle" font-size="14" fill="#1f2937">B ∉ d</text>
+</svg>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📖 4. Tính chất cơ bản</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Tính chất 1:** Qua hai điểm phân biệt, chỉ có **một đường thẳng duy nhất**.
+
+</div>
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <circle cx="80" cy="50" r="4" fill="#dc2626"/>
+  <circle cx="220" cy="50" r="4" fill="#dc2626"/>
+  <line x1="80" y1="50" x2="220" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <text x="80" y="75" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="220" y="75" text-anchor="middle" font-size="12" fill="#1f2937">B</text>
+  <text x="150" y="25" text-anchor="middle" font-size="12" fill="#2563eb">Đường thẳng AB</text>
+</svg>
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Tính chất 2:** Một đường thẳng chứa **vô số điểm**.
+
+</div>
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="10" y1="50" x2="290" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="50" cy="50" r="2" fill="#dc2626"/>
+  <circle cx="100" cy="50" r="2" fill="#dc2626"/>
+  <circle cx="150" cy="50" r="2" fill="#dc2626"/>
+  <circle cx="200" cy="50" r="2" fill="#dc2626"/>
+  <circle cx="250" cy="50" r="2" fill="#dc2626"/>
+  <text x="150" y="75" text-anchor="middle" font-size="12" fill="#1f2937">Vô số điểm trên đường thẳng</text>
+</svg>
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Tính chất 3:** Hai đường thẳng phân biệt có thể:
+- Không cắt nhau (0 điểm chung)
+- Cắt nhau tại 1 điểm
+
+</div>
+
+<svg viewBox="0 0 300 150" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="10" y1="40" x2="140" y2="40" stroke="#2563eb" stroke-width="2"/>
+  <line x1="160" y1="40" x2="290" y2="40" stroke="#2563eb" stroke-width="2"/>
+  <text x="75" y="25" text-anchor="middle" font-size="12" fill="#1f2937">Song song</text>
+  <text x="225" y="25" text-anchor="middle" font-size="12" fill="#1f2937">Song song</text>
+  
+  <line x1="10" y1="100" x2="140" y2="100" stroke="#059669" stroke-width="2"/>
+  <line x1="80" y1="70" x2="140" y2="130" stroke="#059669" stroke-width="2"/>
+  <circle cx="110" cy="100" r="3" fill="#dc2626"/>
+  <text x="75" y="145" text-anchor="middle" font-size="12" fill="#1f2937">Cắt nhau</text>
+</svg>
+
+<h3 id="ba-diem-thang-hang" style="margin-top:2rem;">📖 5. Ba điểm thẳng hàng</h3>
+
+<div class="box-dinh-nghia">
+
+**Ba điểm thẳng hàng** là ba điểm cùng nằm trên một đường thẳng.
+
+</div>
+
+**Ví dụ:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="30" y1="50" x2="270" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="60" cy="50" r="4" fill="#dc2626"/>
+  <circle cx="150" cy="50" r="4" fill="#dc2626"/>
+  <circle cx="240" cy="50" r="4" fill="#dc2626"/>
+  <text x="60" y="75" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="150" y="75" text-anchor="middle" font-size="12" fill="#1f2937">B</text>
+  <text x="240" y="75" text-anchor="middle" font-size="12" fill="#1f2937">C</text>
+  <text x="150" y="25" text-anchor="middle" font-size="12" fill="#2563eb">A, B, C thẳng hàng</text>
+</svg>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Trong một sân chơi, có ba cây cột A, B, C. Hãy xác định:
+
+a) Qua hai cây cột A và B, có bao nhiêu đường thẳng?
+
+b) Nếu ba cây cột thẳng hàng, chúng nằm trên bao nhiêu đường thẳng?
+
+c) Nếu ba cây cột không thẳng hàng, chúng xác định bao nhiêu đường thẳng?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Qua hai cây cột A và B, có **1 đường thẳng duy nhất** (đường thẳng AB).
+
+b) Nếu ba cây cột thẳng hàng, chúng nằm trên **1 đường thẳng**.
+
+c) Nếu ba cây cột không thẳng hàng, chúng xác định **3 đường thẳng** (AB, BC, AC).
+
+</div>
+
+**📝 Bài toán 2:** Một người đứng tại điểm A, nhìn thẳng về phía trước đến điểm B. Hãy xác định:
+
+a) Có bao nhiêu đường thẳng đi qua A và B?
+
+b) Nếu người đó bước từ A đến B, anh ta đi trên bao nhiêu đường thẳng?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Có **1 đường thẳng duy nhất** đi qua A và B.
+
+b) Anh ta đi trên **1 đường thẳng** (đường thẳng AB).
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Điểm** là vị trí xác định, không có kích thước
+- **Đường thẳng** là tập hợp vô hạn các điểm nằm trên một hàng
+- **A ∈ d**: Điểm A thuộc đường thẳng d
+- **A ∉ d**: Điểm A không thuộc đường thẳng d
+- Qua hai điểm phân biệt, chỉ có **một đường thẳng duy nhất**
+- Một đường thẳng chứa **vô số điểm**
+- **Ba điểm thẳng hàng** là ba điểm cùng nằm trên một đường thẳng
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho ba điểm A, B, C. Hãy xác định:
+
+a) Qua A và B có bao nhiêu đường thẳng?
+
+b) Qua A, B, C (không thẳng hàng) có bao nhiêu đường thẳng?
+
+c) Qua A, B, C (thẳng hàng) có bao nhiêu đường thẳng?
+
+d) Qua bốn điểm A, B, C, D (không có ba điểm nào thẳng hàng) có bao nhiêu đường thẳng?
+
+**Bài 2:** Cho đường thẳng d và điểm A. Hãy xác định:
+
+a) Nếu A ∈ d, điểm A có nằm trên d không?
+
+b) Nếu A ∉ d, điểm A có nằm trên d không?
+
+c) Có bao nhiêu đường thẳng đi qua A và vuông góc với d?
+
+d) Có bao nhiêu đường thẳng đi qua A và song song với d?
+
+**Bài 3:** Cho năm điểm A, B, C, D, E. Hãy xác định:
+
+a) Nếu năm điểm thẳng hàng, chúng nằm trên bao nhiêu đường thẳng?
+
+b) Nếu không có ba điểm nào thẳng hàng, chúng xác định bao nhiêu đường thẳng?
+
+c) Nếu A, B, C thẳng hàng, D, E không nằm trên đường thẳng ABC, chúng xác định bao nhiêu đường thẳng?
+
+**Bài 4:** Cho ba đường thẳng a, b, c. Hãy xác định:
+
+a) Nếu a, b, c đôi một cắt nhau tại ba điểm phân biệt, có bao nhiêu điểm cắt?
+
+b) Nếu a, b, c đôi một song song, có bao nhiêu điểm cắt?
+
+c) Nếu a ∥ b, c cắt cả a và b, có bao nhiêu điểm cắt?
+
+**Bài 5:** Cho bốn điểm A, B, C, D không có ba điểm nào thẳng hàng. Hãy xác định:
+
+a) Có bao nhiêu đường thẳng đi qua hai điểm?
+
+b) Có bao nhiêu đoạn thẳng nối hai điểm?
+
+c) Có bao nhiêu tia có gốc tại một trong bốn điểm?
+
+**Bài 6 (Thực tế):** Trong một sân chơi, có sáu cây cột A, B, C, D, E, F. Biết rằng:
+- A, B, C thẳng hàng
+- D, E, F thẳng hàng
+- Không có ba cây cột khác nào thẳng hàng
+
+Hãy xác định:
+
+a) Có bao nhiêu đường thẳng được xác định bởi các cây cột?
+
+b) Nếu thêm một cây cột G không nằm trên hai đường thẳng trên, có bao nhiêu đường thẳng?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 1; b) 3; c) 1; d) 6
+
+**Bài 2:** a) Có; b) Không; c) 1; d) 1
+
+**Bài 3:** a) 1; b) 10; c) 7
+
+**Bài 4:** a) 3; b) 0; c) 2
+
+**Bài 5:** a) 6; b) 6; c) 12
+
+**Bài 6:** a) 4; b) 10
+
+</div>
+</details>

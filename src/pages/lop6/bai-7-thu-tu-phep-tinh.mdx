@@ -1,0 +1,521 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 7: Thứ tự thực hiện các phép tính"
+description: "Quy tắc ưu tiên và thứ tự tính toán - Toán 6 KNTT Chương 1"
+grade: "Lớp 6"
+chapter: "Chương I: Tập hợp các số tự nhiên"
+currentSlug: "lop6/bai-7-thu-tu-phep-tinh"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tính: $5 + 3 \\times 2$",
+    option_a: "$16$",
+    option_b: "$11$",
+    option_c: "$13$",
+    option_d: "$10$",
+    correct_option: "B",
+    explanation: "Nhân trước, cộng sau: $5 + 3 \\times 2 = 5 + 6 = 11$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(8 + 2) \\times 3$",
+    option_a: "$14$",
+    option_b: "$24$",
+    option_c: "$30$",
+    option_d: "$26$",
+    correct_option: "C",
+    explanation: "Tính trong ngoặc trước: $(8 + 2) \\times 3 = 10 \\times 3 = 30$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong biểu thức không có dấu ngoặc, phép tính nào được thực hiện đầu tiên?",
+    option_a: "Lũy thừa",
+    option_b: "Nhân, chia",
+    option_c: "Cộng, trừ",
+    option_d: "Từ trái sang phải",
+    correct_option: "A",
+    explanation: "Thứ tự ưu tiên: Lũy thừa → Nhân, chia → Cộng, trừ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những biểu thức nào có giá trị bằng $20$?",
+    option_a: "$10 + 5 \\times 2$",
+    option_b: "$(10 + 5) \\times 2$",
+    option_c: "$30 - 2 \\times 5$",
+    option_d: "$4 \\times 5$",
+    correct_option: "A,C,D",
+    explanation: "A: $10 + 10 = 20$; B: $15 \\times 2 = 30$; C: $30 - 10 = 20$; D: $20$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $2^3 + 4 \\times 5$",
+    option_a: "$28$",
+    option_b: "$48$",
+    option_c: "$60$",
+    option_d: "$13$",
+    correct_option: "A",
+    explanation: "Lũy thừa và nhân trước: $2^3 + 4 \\times 5 = 8 + 20 = 28$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính: $100 - 20 : 4$",
+    correct_option: "95",
+    explanation: "Chia trước, trừ sau: $100 - 20 : 4 = 100 - 5 = 95$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $!a#10! + !b#5! \\times !c#2!$",
+    option_a: "$!tinh: !a! + !b! * !c!!$",
+    option_b: "$!tinh: (!a! + !b!) * !c!!$",
+    option_c: "$!tinh: !a! * !b! + !c!!$",
+    option_d: "$!tinh: !a! + !b! + !c!!$",
+    correct_option: "A",
+    explanation: "Nhân trước, cộng sau: $!a! + !b! \\times !c! = !a! + !tinh: !b! * !c!! = !tinh: !a! + !b! * !c!!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(!a#8! + !b#2!) \\times !c#3!$",
+    option_a: "$!tinh: (!a! + !b!) * !c!!$",
+    option_b: "$!tinh: !a! + !b! * !c!!$",
+    option_c: "$!tinh: !a! * !c! + !b!!$",
+    option_d: "$!tinh: !a! + !b! + !c!!$",
+    correct_option: "A",
+    explanation: "Tính trong ngoặc trước: $(!a! + !b!) \\times !c! = !tinh: !a! + !b!! \\times !c! = !tinh: (!a! + !b!) * !c!!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Thứ tự phép tính — Quy tắc quan trọng</h3>
+
+Thứ tự thực hiện phép tính quyết định kết quả đúng!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">1️⃣</div>
+    <strong>Ngoặc đơn</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính trước tiên</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">2️⃣</div>
+    <strong>Lũy thừa</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ưu tiên cao</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">3️⃣</div>
+    <strong>Nhân, chia, cộng, trừ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Theo thứ tự</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="quy-tac">📖 1. Quy tắc thứ tự thực hiện phép tính</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc chung:**
+
+**Bước 1:** Tính các biểu thức trong **dấu ngoặc** (từ trong ra ngoài)
+- Ngoặc tròn $( )$ trước
+- Ngoặc vuông $[ ]$ sau
+- Ngoặc nhọn $\{ \}$ cuối cùng
+
+**Bước 2:** Tính **lũy thừa**
+
+**Bước 3:** Tính **nhân** và **chia** (từ trái sang phải)
+
+**Bước 4:** Tính **cộng** và **trừ** (từ trái sang phải)
+
+</div>
+
+**Sơ đồ ưu tiên:**
+
+<div style="margin:2rem 0;">
+<svg viewBox="0 0 600 200" style="width:100%;max-width:600px;height:auto;">
+  {/* Mức 1 - Ngoặc */}
+  <rect x="50" y="20" width="500" height="35" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2" rx="8" />
+  <text x="300" y="43" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#1e40af">1. Ngoặc đơn ( ), ngoặc vuông [ ], ngoặc nhọn \{ \}</text>
+  
+  {/* Mũi tên */}
+  <line x1="300" y1="55" x2="300" y2="70" stroke="#6b7280" strokeWidth="2" markerEnd="url(#arrow)" />
+  
+  {/* Mức 2 - Lũy thừa */}
+  <rect x="150" y="75" width="300" height="35" fill="#d1fae5" stroke="#10b981" strokeWidth="2" rx="8" />
+  <text x="300" y="98" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#047857">2. Lũy thừa</text>
+  
+  {/* Mũi tên */}
+  <line x1="300" y1="110" x2="300" y2="125" stroke="#6b7280" strokeWidth="2" markerEnd="url(#arrow)" />
+  
+  {/* Mức 3 - Nhân, chia */}
+  <rect x="150" y="130" width="300" height="35" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2" rx="8" />
+  <text x="300" y="153" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#92400e">3. Nhân (×), Chia (:)</text>
+  
+  {/* Mũi tên */}
+  <line x1="300" y1="165" x2="300" y2="180" stroke="#6b7280" strokeWidth="2" markerEnd="url(#arrow)" />
+  
+  {/* Mức 4 - Cộng, trừ */}
+  <rect x="150" y="185" width="300" height="35" fill="#fecaca" stroke="#ef4444" strokeWidth="2" rx="8" />
+  <text x="300" y="208" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#991b1b">4. Cộng (+), Trừ (-)</text>
+  
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#6b7280" />
+    </marker>
+  </defs>
+</svg>
+</div>
+
+<h3 id="vi-du-co-ban" style="margin-top:2rem;">📝 2. Ví dụ cơ bản</h3>
+
+**Ví dụ 1:** Biểu thức không có dấu ngoặc
+
+a) $5 + 3 \times 4$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Nhân trước: $3 \times 4 = 12$
+
+**Bước 2:** Cộng sau: $5 + 12 = 17$
+
+**Đáp số:** $17$
+
+</div>
+
+b) $20 - 12 : 3$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Chia trước: $12 : 3 = 4$
+
+**Bước 2:** Trừ sau: $20 - 4 = 16$
+
+**Đáp số:** $16$
+
+</div>
+
+c) $2^3 + 5 \times 4$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Lũy thừa: $2^3 = 8$
+
+**Bước 2:** Nhân: $5 \times 4 = 20$
+
+**Bước 3:** Cộng: $8 + 20 = 28$
+
+**Đáp số:** $28$
+
+</div>
+
+**Ví dụ 2:** Biểu thức có dấu ngoặc
+
+a) $(5 + 3) \times 4$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Tính trong ngoặc: $5 + 3 = 8$
+
+**Bước 2:** Nhân: $8 \times 4 = 32$
+
+**Đáp số:** $32$
+
+</div>
+
+b) $100 - (20 + 15)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Tính trong ngoặc: $20 + 15 = 35$
+
+**Bước 2:** Trừ: $100 - 35 = 65$
+
+**Đáp số:** $65$
+
+</div>
+
+c) $[(12 + 8) \times 2] : 5$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Ngoặc tròn: $12 + 8 = 20$
+
+**Bước 2:** Ngoặc vuông: $20 \times 2 = 40$
+
+**Bước 3:** Chia: $40 : 5 = 8$
+
+**Đáp số:** $8$
+
+</div>
+
+<h3 id="vi-du-phuc-tap" style="margin-top:2rem;">🔍 3. Ví dụ phức tạp</h3>
+
+**Ví dụ 3:** Biểu thức kết hợp nhiều phép tính
+
+a) $3 \times 5 + 2^3 - 10 : 2$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Lũy thừa: $2^3 = 8$
+
+Biểu thức: $3 \times 5 + 8 - 10 : 2$
+
+**Bước 2:** Nhân và chia: $3 \times 5 = 15$, $10 : 2 = 5$
+
+Biểu thức: $15 + 8 - 5$
+
+**Bước 3:** Cộng và trừ từ trái sang phải:
+
+$15 + 8 = 23$
+
+$23 - 5 = 18$
+
+**Đáp số:** $18$
+
+</div>
+
+b) $(2^3 + 2) \times (15 - 3 \times 4)$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Tính ngoặc thứ nhất:
+- Lũy thừa: $2^3 = 8$
+- Cộng: $8 + 2 = 10$
+
+**Bước 2:** Tính ngoặc thứ hai:
+- Nhân: $3 \times 4 = 12$
+- Trừ: $15 - 12 = 3$
+
+**Bước 3:** Nhân hai kết quả:
+
+$10 \times 3 = 30$
+
+**Đáp số:** $30$
+
+</div>
+
+c) $\{50 - [20 + (8 - 3) \times 2]\} : 5$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Ngoặc tròn: $8 - 3 = 5$
+
+Biểu thức: $\{50 - [20 + 5 \times 2]\} : 5$
+
+**Bước 2:** Trong ngoặc vuông:
+- Nhân: $5 \times 2 = 10$
+- Cộng: $20 + 10 = 30$
+
+Biểu thức: $\{50 - 30\} : 5$
+
+**Bước 3:** Ngoặc nhọn: $50 - 30 = 20$
+
+**Bước 4:** Chia: $20 : 5 = 4$
+
+**Đáp số:** $4$
+
+</div>
+
+<h3 id="luu-y" style="margin-top:2rem;">⚠️ 4. Lưu ý quan trọng</h3>
+
+<div style="background:#fee2e2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Sai lầm thường gặp:**
+
+**1. Không tuân thủ thứ tự:**
+
+❌ Sai: $5 + 3 \times 2 = 8 \times 2 = 16$
+
+✅ Đúng: $5 + 3 \times 2 = 5 + 6 = 11$
+
+**2. Quên tính trong ngoặc trước:**
+
+❌ Sai: $(5 + 3) \times 2 = 5 + 6 = 11$
+
+✅ Đúng: $(5 + 3) \times 2 = 8 \times 2 = 16$
+
+**3. Không tính lũy thừa trước:**
+
+❌ Sai: $2 + 3^2 = 5^2 = 25$
+
+✅ Đúng: $2 + 3^2 = 2 + 9 = 11$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một cửa hàng có $5$ hộp bút, mỗi hộp $12$ cây. Bán đi $20$ cây.
+
+Viết biểu thức tính số bút còn lại và tính kết quả.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Biểu thức: $5 \times 12 - 20$
+
+**Bước 1:** Nhân: $5 \times 12 = 60$
+
+**Bước 2:** Trừ: $60 - 20 = 40$
+
+**Đáp số:** Còn lại $40$ cây bút
+
+</div>
+
+**📝 Bài toán 2:** Ba bạn An, Bình, Chi có tổng cộng $100$ viên bi. An có $25$ viên, Bình và Chi có số bi bằng nhau.
+
+Viết biểu thức tính số bi của mỗi bạn Bình và Chi.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Biểu thức: $(100 - 25) : 2$
+
+**Bước 1:** Trong ngoặc: $100 - 25 = 75$
+
+**Bước 2:** Chia: $75 : 2 = 37$ (dư $1$)
+
+Nếu chia hết: Mỗi bạn có $37$ viên (còn dư $1$ viên)
+
+**Đáp số:** Mỗi bạn có $37$ viên bi
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Thứ tự thực hiện phép tính:**
+  1. **Ngoặc**: $( )$ → $[ ]$ → $\{ \}$
+  2. **Lũy thừa**: $a^n$
+  3. **Nhân, chia**: $\times, :$ (từ trái sang phải)
+  4. **Cộng, trừ**: $+, -$ (từ trái sang phải)
+- **Nhớ:** Ngoặc → Lũy thừa → Nhân/Chia → Cộng/Trừ
+- **Lưu ý:** Luôn tính từ trái sang phải khi các phép tính cùng mức ưu tiên
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Thực hiện phép tính:
+
+a) $15 + 5 \times 3$
+
+b) $40 - 20 : 4$
+
+c) $2^4 + 3 \times 5$
+
+d) $100 - 2^3 \times 5$
+
+**Bài 2:** Thực hiện phép tính (có dấu ngoặc):
+
+a) $(15 + 5) \times 3$
+
+b) $(40 - 20) : 4$
+
+c) $(2^4 + 6) : 2$
+
+d) $100 - (20 + 30)$
+
+**Bài 3:** Thực hiện phép tính:
+
+a) $3 \times 4 + 2^3 - 10 : 5$
+
+b) $(5 + 3) \times 2 - 4$
+
+c) $50 - [20 + (8 - 3) \times 2]$
+
+d) $\{100 - [50 - (20 - 5)]\} : 5$
+
+**Bài 4:** Đặt dấu ngoặc để được kết quả đúng:
+
+a) $5 + 3 \times 2 = 16$
+
+b) $20 - 10 : 2 = 5$
+
+c) $3 + 2 \times 4 = 20$
+
+d) $15 - 3 + 2 = 10$
+
+**Bài 5:** So sánh (không tính):
+
+a) $5 + 3 \times 2$ và $(5 + 3) \times 2$
+
+b) $20 - 10 : 2$ và $(20 - 10) : 2$
+
+c) $2^3 + 4$ và $(2 + 1)^3$
+
+d) $10 \times 2 + 5$ và $10 \times (2 + 5)$
+
+**Bài 6 (Thực tế):** Một lớp học có $40$ học sinh. Cô giáo chia lớp thành $5$ nhóm đều nhau, mỗi nhóm được phát $3$ quyển vở.
+
+a) Viết biểu thức tính số học sinh trong mỗi nhóm.
+
+b) Viết biểu thức tính tổng số vở đã phát.
+
+c) Nếu mỗi quyển vở giá $5000$ đồng, viết biểu thức tính tổng số tiền.
+
+d) Tính kết quả các biểu thức trên.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $30$; b) $35$; c) $31$; d) $60$
+
+**Bài 2:** a) $60$; b) $5$; c) $11$; d) $50$
+
+**Bài 3:** a) $18$; b) $12$; c) $20$; d) $7$
+
+**Bài 4:** a) $(5 + 3) \times 2 = 16$; b) $(20 - 10) : 2 = 5$; c) $(3 + 2) \times 4 = 20$; d) $15 - (3 + 2) = 10$
+
+**Bài 5:** a) $<$; b) $>$; c) $<$; d) $<$
+
+**Bài 6:** a) $40 : 5 = 8$ học sinh; b) $5 \times 3 = 15$ quyển; c) $5 \times 3 \times 5000 = 75000$ đồng; d) $8$ học sinh, $15$ quyển, $75000$ đồng
+
+</div>
+</details>
+

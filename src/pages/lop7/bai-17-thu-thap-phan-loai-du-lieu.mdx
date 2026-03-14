@@ -1,0 +1,364 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 17: Thu thập và phân loại dữ liệu"
+description: "Thu thập và phân loại dữ liệu - Toán 7 KNTT Chương 5"
+grade: "Lớp 7"
+chapter: "Chương V: Thu thập và biểu diễn dữ liệu"
+currentSlug: "lop7/bai-17-thu-thap-phan-loai-du-lieu"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Dữ liệu thống kê là gì?",
+    option_a: "Thông tin được thu thập để nghiên cứu một vấn đề",
+    option_b: "Chỉ là những con số",
+    option_c: "Những câu chuyện",
+    option_d: "Những dự đoán",
+    correct_option: "A",
+    explanation: "Dữ liệu thống kê là thông tin được thu thập để nghiên cứu, phân tích một vấn đề nào đó.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dữ liệu định lượng là:",
+    option_a: "Dữ liệu có thể đo lường bằng số",
+    option_b: "Dữ liệu mô tả tính chất",
+    option_c: "Dữ liệu về màu sắc",
+    option_d: "Dữ liệu về tên gọi",
+    correct_option: "A",
+    explanation: "Dữ liệu định lượng là dữ liệu có thể đo lường, biểu diễn bằng số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dữ liệu định tính là:",
+    option_a: "Dữ liệu mô tả tính chất, đặc điểm",
+    option_b: "Dữ liệu là những con số",
+    option_c: "Dữ liệu có thể đo lường",
+    option_d: "Dữ liệu về thời gian",
+    correct_option: "A",
+    explanation: "Dữ liệu định tính mô tả tính chất, đặc điểm không thể đo lường bằng số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phương pháp nào dùng để thu thập dữ liệu?",
+    option_a: "Điều tra, khảo sát",
+    option_b: "Quan sát",
+    option_c: "Thí nghiệm",
+    option_d: "Tất cả các phương pháp trên",
+    correct_option: "D",
+    explanation: "Có thể thu thập dữ liệu bằng điều tra, khảo sát, quan sát hoặc thí nghiệm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các bước thu thập dữ liệu bao gồm:",
+    option_a: "Xác định mục đích",
+    option_b: "Chọn phương pháp thu thập",
+    option_c: "Tiến hành thu thập",
+    option_d: "Tổ chức và phân loại dữ liệu",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều là các bước quan trọng trong quá trình thu thập dữ liệu.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một lớp có 40 học sinh, điều tra chiều cao thì thu được bao nhiêu dữ liệu?",
+    correct_option: "40",
+    explanation: "Mỗi học sinh có một giá trị chiều cao, nên có 40 dữ liệu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Thu thập và phân loại dữ liệu</h3>
+
+Để nghiên cứu một vấn đề, ta cần thu thập và tổ chức dữ liệu một cách khoa học!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Dữ liệu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thông tin thu thập</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔍</div>
+    <strong>Thu thập</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Lấy thông tin</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📁</div>
+    <strong>Phân loại</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tổ chức dữ liệu</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="du-lieu-thong-ke">📖 1. Dữ liệu thống kê</h3>
+
+<div class="box-dinh-nghia">
+
+**Dữ liệu thống kê** là những thông tin được thu thập để nghiên cứu, phân tích một vấn đề nào đó.
+
+**Ví dụ:**
+- Điểm số của học sinh trong lớp
+- Chiều cao, cân nặng của học sinh
+- Số lượng sản phẩm bán ra mỗi tháng
+- Nhiệt độ trung bình hàng ngày
+
+</div>
+
+<h3 id="phan-loai-du-lieu" style="margin-top:2rem;">📖 2. Phân loại dữ liệu</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Dữ liệu định lượng (Quantitative Data)**
+
+Là dữ liệu có thể đo lường, biểu diễn bằng số.
+
+**Ví dụ:**
+- Chiều cao: 150 cm, 160 cm, 170 cm
+- Điểm số: 7, 8, 9, 10
+- Tuổi: 12, 13, 14
+- Số lượng: 5 quyển sách, 20 học sinh
+
+**Đặc điểm:** Có thể tính toán, so sánh, tìm trung bình
+
+</div>
+
+<div style="background:#ecfdf5;border-left:4px solid #059669;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Dữ liệu định tính (Qualitative Data)**
+
+Là dữ liệu mô tả tính chất, đặc điểm, không thể đo lường bằng số.
+
+**Ví dụ:**
+- Màu sắc: đỏ, xanh, vàng
+- Giới tính: nam, nữ
+- Loại hình: tròn, vuông, tam giác
+- Đánh giá: tốt, khá, trung bình
+
+**Đặc điểm:** Không thể tính toán, chỉ có thể phân loại, đếm số lượng
+
+</div>
+
+<h3 id="phuong-phap-thu-thap" style="margin-top:2rem;">📖 3. Phương pháp thu thập dữ liệu</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Phương pháp 1: Điều tra, khảo sát**
+
+Sử dụng phiếu điều tra, bảng hỏi để thu thập thông tin từ nhiều người.
+
+**Ví dụ:** Điều tra sở thích môn học của học sinh trong trường.
+
+</div>
+
+<div style="background:#ecfdf5;border-left:4px solid #059669;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Phương pháp 2: Quan sát**
+
+Quan sát trực tiếp và ghi lại thông tin.
+
+**Ví dụ:** Quan sát và đếm số xe ô tô đi qua ngã tư trong 1 giờ.
+
+</div>
+
+<div style="background:#fef3c7;border-left:4px solid #d97706;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Phương pháp 3: Thí nghiệm**
+
+Tiến hành thí nghiệm và ghi lại kết quả.
+
+**Ví dụ:** Đo nhiệt độ nước sôi ở các độ cao khác nhau.
+
+</div>
+
+<h3 id="cac-buoc-thu-thap" style="margin-top:2rem;">📖 4. Các bước thu thập dữ liệu</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Xác định mục đích thu thập dữ liệu
+
+Cần trả lời câu hỏi: Thu thập dữ liệu để làm gì?
+
+**Bước 2:** Xác định đối tượng và phạm vi
+
+Ai sẽ cung cấp dữ liệu? Bao nhiêu người?
+
+**Bước 3:** Chọn phương pháp thu thập
+
+Điều tra, quan sát hay thí nghiệm?
+
+**Bước 4:** Tiến hành thu thập
+
+Thực hiện thu thập dữ liệu theo kế hoạch.
+
+**Bước 5:** Tổ chức và phân loại dữ liệu
+
+Sắp xếp dữ liệu thành bảng, nhóm để dễ phân tích.
+
+</div>
+
+**Ví dụ:** Điều tra chiều cao của học sinh lớp 7A
+
+- **Mục đích:** Tìm hiểu chiều cao trung bình của học sinh lớp 7A
+- **Đối tượng:** 40 học sinh lớp 7A
+- **Phương pháp:** Đo trực tiếp chiều cao
+- **Thu thập:** Đo và ghi lại chiều cao của từng học sinh
+- **Tổ chức:** Lập bảng thống kê, phân nhóm theo khoảng chiều cao
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**Bài toán:** Một nhóm học sinh muốn điều tra về sở thích đọc sách của học sinh trong trường.
+
+a) Xác định mục đích thu thập dữ liệu
+
+b) Đề xuất phương pháp thu thập phù hợp
+
+c) Dữ liệu thu thập được là định lượng hay định tính?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Mục đích: Tìm hiểu sở thích đọc sách của học sinh để đề xuất mua thêm sách cho thư viện
+
+b) Phương pháp: Điều tra bằng phiếu khảo sát với các câu hỏi:
+- Bạn có thích đọc sách không?
+- Loại sách nào bạn thích nhất?
+- Bạn đọc bao nhiêu quyển sách mỗi tháng?
+
+c) Dữ liệu thu thập được:
+- "Có thích đọc sách không" → Định tính (có/không)
+- "Loại sách thích nhất" → Định tính (truyện tranh, tiểu thuyết, khoa học...)
+- "Số quyển sách đọc mỗi tháng" → Định lượng (1, 2, 3... quyển)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Dữ liệu thống kê**: thông tin thu thập để nghiên cứu vấn đề
+- **Dữ liệu định lượng**: có thể đo lường bằng số
+- **Dữ liệu định tính**: mô tả tính chất, đặc điểm
+- **Phương pháp thu thập**: điều tra, quan sát, thí nghiệm
+- **Các bước**: xác định mục đích → chọn phương pháp → thu thập → tổ chức
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Phân loại các dữ liệu sau thành định lượng hoặc định tính:
+
+a) Màu sắc áo của học sinh
+
+b) Điểm kiểm tra toán
+
+c) Giới tính
+
+d) Cân nặng
+
+e) Sở thích môn học
+
+**Bài 2:** Muốn điều tra về thời gian học bài ở nhà của học sinh lớp 7. Hãy:
+
+a) Xác định mục đích
+
+b) Đề xuất phương pháp thu thập
+
+c) Thiết kế câu hỏi điều tra
+
+**Bài 3:** Điều tra số con trong gia đình của 30 học sinh, thu được kết quả:
+
+2, 1, 3, 2, 2, 1, 2, 3, 2, 1, 2, 2, 1, 3, 2, 2, 1, 2, 3, 2, 1, 2, 2, 3, 2, 1, 2, 2, 1, 2
+
+a) Dữ liệu này là định lượng hay định tính?
+
+b) Có bao nhiêu gia đình có 1 con? 2 con? 3 con?
+
+c) Số con nào xuất hiện nhiều nhất?
+
+**Bài 4:** Muốn biết học sinh trong trường thích môn thể thao nào nhất. Hãy thiết kế phiếu điều tra với ít nhất 3 câu hỏi.
+
+**Bài 5:** Quan sát số lượng xe máy đi qua cổng trường trong 5 phút, ghi lại: 12, 15, 10, 18, 14
+
+a) Phương pháp thu thập dữ liệu là gì?
+
+b) Tính trung bình số xe máy đi qua mỗi phút
+
+**Bài 6:** Cho các tình huống sau, hãy chọn phương pháp thu thập dữ liệu phù hợp:
+
+a) Tìm hiểu sở thích ăn uống của học sinh
+
+b) Đo nhiệt độ nước đá tan chảy
+
+c) Đếm số người đi bộ qua đường trong 1 giờ
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Định tính; b) Định lượng; c) Định tính; d) Định lượng; e) Định tính
+
+**Bài 2:** 
+a) Mục đích: Tìm hiểu thời gian học bài để đánh giá thói quen học tập
+b) Phương pháp: Điều tra bằng phiếu khảo sát
+c) Câu hỏi: "Em học bài ở nhà bao nhiêu giờ mỗi ngày?"
+
+**Bài 3:** 
+a) Định lượng
+b) 1 con: 9 gia đình; 2 con: 17 gia đình; 3 con: 4 gia đình
+c) 2 con (xuất hiện 17 lần)
+
+**Bài 4:** Phiếu điều tra có thể bao gồm:
+- Bạn có thích chơi thể thao không?
+- Môn thể thao nào bạn thích nhất?
+- Bạn chơi thể thao bao nhiêu lần mỗi tuần?
+
+**Bài 5:** 
+a) Quan sát
+b) Trung bình: (12 + 15 + 10 + 18 + 14) : 5 = 13.8 xe/phút
+
+**Bài 6:** 
+a) Điều tra, khảo sát
+b) Thí nghiệm
+c) Quan sát
+
+</div>
+</details>

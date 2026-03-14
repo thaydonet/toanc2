@@ -1,0 +1,431 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 33: Điểm nằm giữa hai điểm. Tia"
+description: "Khái niệm điểm nằm giữa, tia, tia đối - Toán 6 KNTT Chương VIII"
+grade: "Lớp 6"
+chapter: "Chương VIII: Những hình hình học cơ bản"
+currentSlug: "lop6/bai-33-diem-tia"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Điểm B nằm giữa hai điểm A và C khi nào?",
+    option_a: "Ba điểm thẳng hàng và B ở giữa A và C",
+    option_b: "Ba điểm tạo thành một tam giác",
+    option_c: "B ở ngoài đường thẳng AC",
+    option_d: "A, B, C không thẳng hàng",
+    correct_option: "A",
+    explanation: "Điểm B nằm giữa A và C khi ba điểm thẳng hàng và B ở giữa A và C.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tia là gì?",
+    option_a: "Phần của đường thẳng bị giới hạn bởi một điểm, kéo dài vô tận về một phía",
+    option_b: "Một đoạn thẳng",
+    option_c: "Một đường cong",
+    option_d: "Một phần của đường tròn",
+    correct_option: "A",
+    explanation: "Tia là phần của đường thẳng bị giới hạn bởi một điểm (gốc), kéo dài vô tận về một phía.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tia AB có gốc tại điểm nào?",
+    option_a: "Điểm A",
+    option_b: "Điểm B",
+    option_c: "Điểm giữa A và B",
+    option_d: "Không có gốc",
+    correct_option: "A",
+    explanation: "Tia AB có gốc tại điểm A, kéo dài vô tận qua B.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào đúng về tia?",
+    option_a: "Tia có một gốc và kéo dài vô tận về một phía",
+    option_b: "Hai tia đối nhau có cùng gốc",
+    option_c: "Tia AB và tia BA là hai tia đối nhau",
+    option_d: "Tia AB chứa vô số điểm",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai vì tia AB và tia BA không phải tia đối nhau (chúng có gốc khác nhau).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai tia đối nhau là gì?",
+    option_a: "Hai tia có cùng gốc và kéo dài về hai phía ngược nhau trên cùng một đường thẳng",
+    option_b: "Hai tia song song",
+    option_c: "Hai tia cắt nhau",
+    option_d: "Hai tia không có gốc chung",
+    correct_option: "A",
+    explanation: "Hai tia đối nhau có cùng gốc và kéo dài về hai phía ngược nhau trên cùng một đường thẳng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Nếu B nằm giữa A và C, thì AB + BC = ?",
+    correct_option: "AC",
+    explanation: "Nếu B nằm giữa A và C, thì AB + BC = AC (tính chất cộng độ dài).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trên đường thẳng d, lấy điểm O. Có bao nhiêu tia có gốc tại O?",
+    option_a: "2 tia",
+    option_b: "1 tia",
+    option_c: "Vô số tia",
+    option_d: "3 tia",
+    correct_option: "A",
+    explanation: "Trên đường thẳng d, lấy điểm O, có 2 tia có gốc tại O (hai tia đối nhau).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu C nằm giữa A và B, điều nào sai?",
+    option_a: "AC + CB = AB",
+    option_b: "A, B, C thẳng hàng",
+    option_c: "AC > AB",
+    option_d: "CB < AB",
+    correct_option: "C",
+    explanation: "Nếu C nằm giữa A và B, thì AC < AB (phần nhỏ hơn cả). C sai vì AC không thể lớn hơn AB.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Điểm nằm giữa và tia — Khái niệm quan trọng</h3>
+
+Khi ba điểm thẳng hàng, một điểm có thể nằm giữa hai điểm khác. Từ một điểm, ta có thể vẽ các tia kéo dài vô tận!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">●●●</div>
+    <strong>Điểm nằm giữa</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ba điểm thẳng hàng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">→</div>
+    <strong>Tia</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Nửa đường thẳng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="diem-nam-giua">📖 1. Điểm nằm giữa hai điểm</h3>
+
+<div class="box-dinh-nghia">
+
+**Điểm B nằm giữa hai điểm A và C** khi:
+- Ba điểm A, B, C thẳng hàng
+- B ở giữa A và C
+
+**Tính chất:** Nếu B nằm giữa A và C, thì: **AB + BC = AC**
+
+</div>
+
+**Biểu diễn:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="30" y1="50" x2="270" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="60" cy="50" r="4" fill="#dc2626"/>
+  <circle cx="150" cy="50" r="4" fill="#059669"/>
+  <circle cx="240" cy="50" r="4" fill="#dc2626"/>
+  <text x="60" y="75" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="150" y="75" text-anchor="middle" font-size="12" fill="#1f2937">B</text>
+  <text x="240" y="75" text-anchor="middle" font-size="12" fill="#1f2937">C</text>
+  <text x="105" y="30" text-anchor="middle" font-size="11" fill="#059669">AB</text>
+  <text x="195" y="30" text-anchor="middle" font-size="11" fill="#059669">BC</text>
+</svg>
+
+**Ví dụ:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Cho ba điểm A, B, C thẳng hàng. Biết AB = 3 cm, BC = 5 cm. Tính AC.
+
+**Giải:** Vì B nằm giữa A và C, nên:
+AC = AB + BC = 3 + 5 = 8 cm
+
+</div>
+
+<h3 id="tia">📖 2. Khái niệm tia</h3>
+
+<div class="box-dinh-nghia">
+
+**Tia** là phần của đường thẳng bị giới hạn bởi một điểm (gọi là gốc), kéo dài vô tận về một phía.
+
+**Ký hiệu:** Tia có gốc tại O và đi qua điểm A được ký hiệu là **tia OA**.
+
+</div>
+
+**Biểu diễn tia:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <circle cx="80" cy="50" r="4" fill="#dc2626"/>
+  <line x1="84" y1="50" x2="290" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <polygon points="290,50 280,45 280,55" fill="#2563eb"/>
+  <text x="80" y="75" text-anchor="middle" font-size="12" fill="#1f2937">O</text>
+  <text x="200" y="30" text-anchor="middle" font-size="12" fill="#2563eb">Tia OA</text>
+</svg>
+
+**Đặc điểm của tia:**
+- Có một gốc (điểm O)
+- Kéo dài vô tận về một phía
+- Chứa vô số điểm
+
+<h3 id="tia-doi">📖 3. Hai tia đối nhau</h3>
+
+<div class="box-dinh-nghia">
+
+**Hai tia đối nhau** là hai tia:
+- Có cùng gốc
+- Kéo dài về hai phía ngược nhau trên cùng một đường thẳng
+
+</div>
+
+**Biểu diễn:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <polygon points="10,50 20,45 20,55" fill="#dc2626"/>
+  <line x1="20" y1="50" x2="280" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <polygon points="290,50 280,45 280,55" fill="#059669"/>
+  <circle cx="150" cy="50" r="4" fill="#f59e0b"/>
+  <text x="150" y="75" text-anchor="middle" font-size="12" fill="#1f2937">O</text>
+  <text x="80" y="30" text-anchor="middle" font-size="11" fill="#dc2626">Tia Ox</text>
+  <text x="220" y="30" text-anchor="middle" font-size="11" fill="#059669">Tia Oy</text>
+</svg>
+
+**Ví dụ:**
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Trên đường thẳng d, lấy điểm O. Có hai tia đối nhau:
+- Tia Ox (kéo dài về bên trái)
+- Tia Oy (kéo dài về bên phải)
+
+Hai tia này có cùng gốc O và kéo dài về hai phía ngược nhau.
+
+</div>
+
+<h3 id="so-sanh-tia">📖 4. Tia trùng nhau</h3>
+
+<div class="box-dinh-nghia">
+
+**Hai tia trùng nhau** khi chúng có cùng gốc và cùng hướng.
+
+</div>
+
+**Ví dụ:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <circle cx="80" cy="50" r="4" fill="#dc2626"/>
+  <circle cx="150" cy="50" r="3" fill="#059669"/>
+  <line x1="84" y1="50" x2="290" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <text x="80" y="75" text-anchor="middle" font-size="12" fill="#1f2937">O</text>
+  <text x="150" y="75" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="200" y="30" text-anchor="middle" font-size="11" fill="#2563eb">Tia OA = Tia OB</text>
+</svg>
+
+<h3 id="tinh-chat-cong-do-dai" style="margin-top:2rem;">📖 5. Tính chất cộng độ dài</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Nếu B nằm giữa A và C, thì:**
+
+**AB + BC = AC**
+
+</div>
+
+**Ví dụ 1:**
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Cho A, B, C thẳng hàng, B nằm giữa A và C. Biết AB = 4 cm, AC = 10 cm. Tính BC.
+
+**Giải:**
+BC = AC - AB = 10 - 4 = 6 cm
+
+</div>
+
+**Ví dụ 2:**
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Cho A, B, C thẳng hàng, B nằm giữa A và C. Biết AB = 5 cm, BC = 7 cm. Tính AC.
+
+**Giải:**
+AC = AB + BC = 5 + 7 = 12 cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Trên một con đường thẳng, có ba cây cột A, B, C. Biết rằng B nằm giữa A và C, AB = 20 m, BC = 30 m.
+
+a) Tính khoảng cách AC.
+
+b) Nếu từ B phát một tia sáng về phía A, tia sáng đó có thể đến được C không?
+
+c) Nếu từ B phát một tia sáng về phía C, tia sáng đó có thể đến được A không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) AC = AB + BC = 20 + 30 = 50 m
+
+b) Tia sáng từ B về phía A không thể đến được C (vì tia chỉ kéo dài về một phía).
+
+c) Tia sáng từ B về phía C không thể đến được A (vì tia chỉ kéo dài về một phía).
+
+</div>
+
+**📝 Bài toán 2:** Một người đứng tại điểm O trên một con đường thẳng. Người đó có thể nhìn thấy:
+
+a) Bao nhiêu tia có gốc tại O?
+
+b) Nếu người đó quay 180°, anh ta nhìn thấy tia nào?
+
+c) Hai tia này có quan hệ gì?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Có **2 tia** có gốc tại O (hai tia đối nhau).
+
+b) Nếu quay 180°, anh ta nhìn thấy **tia đối** của tia ban đầu.
+
+c) Hai tia này là **hai tia đối nhau** (có cùng gốc, kéo dài về hai phía ngược nhau).
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Điểm B nằm giữa A và C** khi ba điểm thẳng hàng và B ở giữa A và C
+- **Tính chất:** Nếu B nằm giữa A và C, thì AB + BC = AC
+- **Tia** là phần của đường thẳng bị giới hạn bởi một điểm (gốc), kéo dài vô tận về một phía
+- **Tia OA** có gốc tại O, kéo dài qua A
+- **Hai tia đối nhau** có cùng gốc, kéo dài về hai phía ngược nhau
+- Trên một đường thẳng, lấy một điểm O, có **2 tia đối nhau** có gốc tại O
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho ba điểm A, B, C thẳng hàng, B nằm giữa A và C. Tính độ dài còn lại:
+
+a) AB = 3 cm, BC = 5 cm. Tính AC.
+
+b) AB = 7 cm, AC = 12 cm. Tính BC.
+
+c) BC = 8 cm, AC = 15 cm. Tính AB.
+
+d) AB = 4 cm, BC = 6 cm. Tính AC.
+
+**Bài 2:** Cho bốn điểm A, B, C, D thẳng hàng, theo thứ tự A, B, C, D. Biết AB = 2 cm, BC = 3 cm, CD = 4 cm. Tính:
+
+a) AC
+
+b) BD
+
+c) AD
+
+d) Khoảng cách từ B đến D
+
+**Bài 3:** Trên tia Ox, lấy hai điểm A và B sao cho OA = 5 cm, OB = 8 cm.
+
+a) Điểm A có nằm giữa O và B không?
+
+b) Tính AB.
+
+c) Nếu lấy điểm C trên tia Ox sao cho OC = 3 cm, điểm C có nằm giữa O và A không?
+
+d) Tính CA.
+
+**Bài 4:** Cho đường thẳng d, lấy điểm O trên d. Hãy xác định:
+
+a) Có bao nhiêu tia có gốc tại O?
+
+b) Hai tia này có quan hệ gì?
+
+c) Nếu lấy thêm điểm A trên d (A ≠ O), có bao nhiêu tia có gốc tại O?
+
+d) Nếu lấy thêm điểm B trên d (B ≠ O, B ≠ A), có bao nhiêu tia có gốc tại O?
+
+**Bài 5:** Cho tia Ox. Trên tia Ox, lấy ba điểm A, B, C sao cho OA = 2 cm, OB = 5 cm, OC = 8 cm.
+
+a) Hãy sắp xếp các điểm theo thứ tự trên tia Ox.
+
+b) Tính AB, BC, AC.
+
+c) Kiểm tra xem B có nằm giữa A và C không?
+
+d) Kiểm tra xem A có nằm giữa O và B không?
+
+**Bài 6 (Thực tế):** Trên một con đường thẳng, có ba trạm dừng A, B, C theo thứ tự. Biết AB = 15 km, BC = 25 km.
+
+a) Tính khoảng cách AC.
+
+b) Nếu một xe buýt đi từ A đến C, xe buýt đó phải đi qua B không?
+
+c) Nếu một xe buýt đi từ B về phía A, xe buýt đó có thể đến được C không?
+
+d) Nếu một xe buýt đi từ B về phía C, xe buýt đó có thể đến được A không?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 8 cm; b) 5 cm; c) 7 cm; d) 10 cm
+
+**Bài 2:** a) 5 cm; b) 7 cm; c) 9 cm; d) 7 cm
+
+**Bài 3:** a) Có; b) 3 cm; c) Không; d) 2 cm
+
+**Bài 4:** a) 2; b) Hai tia đối nhau; c) 2; d) 2
+
+**Bài 5:** a) O, A, B, C; b) AB = 3 cm, BC = 3 cm, AC = 6 cm; c) Có; d) Có
+
+**Bài 6:** a) 40 km; b) Có; c) Không; d) Không
+
+</div>
+</details>

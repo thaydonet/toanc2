@@ -1,0 +1,488 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 8: Quan hệ chia hết và tính chất"
+description: "Khái niệm và tính chất của quan hệ chia hết - Toán 6 KNTT Chương 2"
+grade: "Lớp 6"
+chapter: "Chương II: Tính chia hết trong tập hợp các số tự nhiên"
+currentSlug: "lop6/bai-8-quan-he-chia-het"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số nào chia hết cho $5$?",
+    option_a: "$23$",
+    option_b: "$35$",
+    option_c: "$47$",
+    option_d: "$52$",
+    correct_option: "B",
+    explanation: "$35 = 5 \\times 7$ nên $35$ chia hết cho $5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $a$ chia hết cho $b$ và $b$ chia hết cho $c$ thì:",
+    option_a: "$a$ chia hết cho $c$",
+    option_b: "$c$ chia hết cho $a$",
+    option_c: "$a = b = c$",
+    option_d: "Không kết luận được",
+    correct_option: "A",
+    explanation: "Theo tính chất bắc cầu: $a \\vdots b$ và $b \\vdots c$ thì $a \\vdots c$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số $0$ có chia hết cho mọi số tự nhiên khác $0$ không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Chỉ chia hết cho $1$",
+    option_d: "Chỉ chia hết cho $10$",
+    correct_option: "A",
+    explanation: "$0$ chia hết cho mọi số tự nhiên khác $0$ vì $0 = 0 \\times a$ với mọi $a \\neq 0$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào chia hết cho $3$?",
+    option_a: "$12$",
+    option_b: "$15$",
+    option_c: "$18$",
+    option_d: "$20$",
+    correct_option: "A,B,C",
+    explanation: "$12 = 3 \\times 4$, $15 = 3 \\times 5$, $18 = 3 \\times 6$ đều chia hết cho $3$. $20$ không chia hết cho $3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $a$ chia hết cho $b$ thì $a + b$ có chia hết cho $b$ không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Tùy trường hợp",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Nếu $a \\vdots b$ thì $a + b \\vdots b$ theo tính chất của quan hệ chia hết.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm số dư khi chia $25$ cho $7$.",
+    correct_option: "4",
+    explanation: "$25 = 7 \\times 3 + 4$, số dư là $4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số $!a#24!$ có chia hết cho $!b#6!$ không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "$!a! = !b! \\times !tinh: !a! / !b!! = !b! \\times !tinh: !a! // !b!!$ nên $!a!$ chia hết cho $!b!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $!a#12!$ chia hết cho $!b#3!$ và $!c#15!$ chia hết cho $!b#3!$ thì $!a! + !c!$ có chia hết cho $!b!$ không?",
+    option_a: "Có, vì $!tinh: !a! + !c!! = !b! \\times !tinh: (!a! + !c!) / !b!!$",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "Nếu $a \\vdots b$ và $c \\vdots b$ thì $(a + c) \\vdots b$. Vậy $!tinh: !a! + !c!! \\vdots !b!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">➗ Quan hệ chia hết — Nền tảng số học</h3>
+
+Chia hết là một trong những khái niệm quan trọng nhất trong toán học!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✓</div>
+    <strong>Chia hết</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Không có số dư</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
+    <strong>Tính chất</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Quy tắc tính toán</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>Ứng dụng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Giải toán thực tế</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia">📖 1. Định nghĩa quan hệ chia hết</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Cho hai số tự nhiên $a$ và $b$ với $b \neq 0$. Ta nói $a$ **chia hết** cho $b$ nếu tồn tại số tự nhiên $q$ sao cho $a = b \times q$.
+
+**Ký hiệu:** $a \vdots b$ (đọc là "$a$ chia hết cho $b$")
+
+**Các tên gọi:**
+- $a$ chia hết cho $b$
+- $b$ là **ước** của $a$
+- $a$ là **bội** của $b$
+
+**Ví dụ:**
+- $15 \vdots 3$ vì $15 = 3 \times 5$
+- $20 \vdots 4$ vì $20 = 4 \times 5$
+- $12 \vdots 6$ vì $12 = 6 \times 2$
+
+</div>
+
+**Ví dụ 1:** Kiểm tra quan hệ chia hết
+
+a) $24$ có chia hết cho $6$ không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$24 = 6 \times 4$
+
+Vậy $24 \vdots 6$ (24 chia hết cho 6)
+
+</div>
+
+b) $17$ có chia hết cho $5$ không?
+
+<div style="background:#fee2e2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$17 = 5 \times 3 + 2$ (còn dư 2)
+
+Vậy $17$ không chia hết cho $5$
+
+</div>
+
+<h3 id="tinh-chat-co-ban" style="margin-top:2rem;">⚡ 2. Tính chất cơ bản</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 1:** Số $0$ chia hết cho mọi số tự nhiên khác $0$
+
+$$0 \vdots a \quad (a \neq 0)$$
+
+**Tính chất 2:** Mọi số tự nhiên đều chia hết cho $1$
+
+$$a \vdots 1$$
+
+**Tính chất 3:** Mọi số tự nhiên khác $0$ đều chia hết cho chính nó
+
+$$a \vdots a \quad (a \neq 0)$$
+
+**Tính chất 4 (Bắc cầu):** Nếu $a \vdots b$ và $b \vdots c$ thì $a \vdots c$
+
+Ví dụ: $24 \vdots 6$ và $6 \vdots 3$ nên $24 \vdots 3$
+
+</div>
+
+**Ví dụ 2:** Áp dụng tính chất
+
+a) $0 \vdots 7$ đúng hay sai?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Đúng**, vì $0 = 7 \times 0$
+
+</div>
+
+b) Biết $36 \vdots 12$ và $12 \vdots 4$. Hỏi $36$ có chia hết cho $4$ không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Theo tính chất bắc cầu: $36 \vdots 4$
+
+Thật vậy: $36 = 4 \times 9$
+
+</div>
+
+<h3 id="tinh-chat-tong-hieu" style="margin-top:2rem;">➕ 3. Tính chất về tổng và hiệu</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 5:** Nếu $a \vdots m$ và $b \vdots m$ thì:
+
+- $(a + b) \vdots m$
+- $(a - b) \vdots m$ (với $a \geq b$)
+
+**Ví dụ:**
+- $12 \vdots 3$ và $9 \vdots 3$ nên $(12 + 9) = 21 \vdots 3$
+- $15 \vdots 5$ và $10 \vdots 5$ nên $(15 - 10) = 5 \vdots 5$
+
+**Tính chất 6:** Nếu $a \vdots m$ và $b$ không chia hết cho $m$ thì:
+
+- $(a + b)$ không chia hết cho $m$
+- $(a - b)$ không chia hết cho $m$
+
+</div>
+
+**Ví dụ 3:** Áp dụng tính chất tổng và hiệu
+
+a) Biết $18 \vdots 6$ và $24 \vdots 6$. Tính $18 + 24$ có chia hết cho $6$ không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Theo tính chất 5: $(18 + 24) \vdots 6$
+
+Thật vậy: $18 + 24 = 42 = 6 \times 7$
+
+</div>
+
+b) Biết $30 \vdots 5$ và $12 \vdots 4$ (12 không chia hết cho 5). Hỏi $30 + 12$ có chia hết cho $5$ không?
+
+<div style="background:#fee2e2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Theo tính chất 6: $(30 + 12)$ không chia hết cho $5$
+
+Thật vậy: $30 + 12 = 42 = 5 \times 8 + 2$ (dư 2)
+
+</div>
+
+<h3 id="tinh-chat-tich" style="margin-top:2rem;">✖️ 4. Tính chất về tích</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 7:** Nếu $a \vdots m$ thì $(a \times k) \vdots m$ với mọi số tự nhiên $k$
+
+**Ví dụ:** $12 \vdots 3$ nên $12 \times 5 = 60 \vdots 3$
+
+**Tính chất 8:** Nếu $a \vdots m$ và $a \vdots n$ với $m, n$ là hai số nguyên tố cùng nhau thì $a \vdots (m \times n)$
+
+**Ví dụ:** $30 \vdots 2$ và $30 \vdots 3$ nên $30 \vdots 6$ (vì $6 = 2 \times 3$)
+
+</div>
+
+**Ví dụ 4:** Áp dụng tính chất tích
+
+a) Biết $15 \vdots 5$. Hỏi $15 \times 7$ có chia hết cho $5$ không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Theo tính chất 7: $(15 \times 7) \vdots 5$
+
+Thật vậy: $15 \times 7 = 105 = 5 \times 21$
+
+</div>
+
+b) Biết $24 \vdots 2$ và $24 \vdots 3$. Hỏi $24$ có chia hết cho $6$ không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Vì $2$ và $3$ nguyên tố cùng nhau, theo tính chất 8: $24 \vdots 6$
+
+Thật vậy: $24 = 6 \times 4$
+
+</div>
+
+<h3 id="chia-co-du" style="margin-top:2rem;">📊 5. Phép chia có dư</h3>
+
+<div class="box-dinh-nghia">
+
+**Định lý chia có dư:** Cho hai số tự nhiên $a$ và $b$ với $b \neq 0$. Luôn tồn tại duy nhất hai số tự nhiên $q$ (thương) và $r$ (số dư) sao cho:
+
+$$a = b \times q + r \quad \text{với } 0 \leq r < b$$
+
+**Chú ý:**
+- Nếu $r = 0$ thì $a \vdots b$
+- Nếu $r \neq 0$ thì $a$ không chia hết cho $b$
+
+</div>
+
+**Ví dụ 5:** Phép chia có dư
+
+a) $23 = 5 \times 4 + 3$
+
+- Số bị chia: $a = 23$
+- Số chia: $b = 5$
+- Thương: $q = 4$
+- Số dư: $r = 3$
+
+b) $50 = 7 \times 7 + 1$
+
+- Số bị chia: $a = 50$
+- Số chia: $b = 7$
+- Thương: $q = 7$
+- Số dư: $r = 1$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một lớp học có $36$ học sinh. Cô giáo muốn chia đều thành các nhóm.
+
+a) Có thể chia thành $6$ nhóm được không?
+
+b) Có thể chia thành $5$ nhóm được không?
+
+c) Có thể chia thành bao nhiêu nhóm? (Liệt kê các cách chia)
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) $36 = 6 \times 6$, vậy $36 \vdots 6$. **Có thể** chia thành 6 nhóm, mỗi nhóm 6 học sinh.
+
+b) $36 = 5 \times 7 + 1$ (dư 1), vậy $36$ không chia hết cho $5$. **Không thể** chia đều thành 5 nhóm.
+
+c) Các cách chia: 1, 2, 3, 4, 6, 9, 12, 18, 36 nhóm (các ước của 36)
+
+</div>
+
+**📝 Bài toán 2:** Một cửa hàng có $48$ quyển vở và $60$ cây bút. Người bán muốn chia đều vào các túi quà, mỗi túi có số vở và số bút như nhau.
+
+a) Có thể chia thành $6$ túi được không?
+
+b) Có thể chia thành $8$ túi được không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Kiểm tra:
+- $48 = 6 \times 8$ (48 chia hết cho 6)
+- $60 = 6 \times 10$ (60 chia hết cho 6)
+
+**Có thể** chia thành 6 túi: mỗi túi 8 vở và 10 bút.
+
+b) Kiểm tra:
+- $48 = 8 \times 6$ (48 chia hết cho 8)
+- $60 = 8 \times 7 + 4$ (60 không chia hết cho 8)
+
+**Không thể** chia đều thành 8 túi.
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định nghĩa**: $a \vdots b$ nếu $a = b \times q$
+- **Tính chất cơ bản**:
+  - $0 \vdots a$ (với $a \neq 0$)
+  - $a \vdots 1$ và $a \vdots a$
+  - Bắc cầu: $a \vdots b$ và $b \vdots c$ thì $a \vdots c$
+- **Tổng, hiệu**: $a \vdots m$ và $b \vdots m$ thì $(a \pm b) \vdots m$
+- **Tích**: $a \vdots m$ thì $(a \times k) \vdots m$
+- **Chia có dư**: $a = b \times q + r$ với $0 \leq r < b$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Kiểm tra các số sau có chia hết cho số đã cho không:
+
+a) $45$ cho $9$
+
+b) $37$ cho $6$
+
+c) $72$ cho $8$
+
+d) $100$ cho $7$
+
+**Bài 2:** Áp dụng tính chất bắc cầu:
+
+a) Biết $48 \vdots 12$ và $12 \vdots 4$. Hỏi $48$ có chia hết cho $4$ không?
+
+b) Biết $60 \vdots 15$ và $15 \vdots 5$. Hỏi $60$ có chia hết cho $5$ không?
+
+c) Biết $90 \vdots 18$ và $18 \vdots 6$. Hỏi $90$ có chia hết cho $6$ không?
+
+d) Biết $120 \vdots 24$ và $24 \vdots 8$. Hỏi $120$ có chia hết cho $8$ không?
+
+**Bài 3:** Áp dụng tính chất tổng và hiệu:
+
+a) Biết $18 \vdots 6$ và $24 \vdots 6$. Tính $18 + 24$ có chia hết cho $6$ không?
+
+b) Biết $30 \vdots 5$ và $20 \vdots 5$. Tính $30 - 20$ có chia hết cho $5$ không?
+
+c) Biết $21 \vdots 7$ và $35 \vdots 7$. Tính $21 + 35$ có chia hết cho $7$ không?
+
+d) Biết $40 \vdots 8$ và $16 \vdots 8$. Tính $40 - 16$ có chia hết cho $8$ không?
+
+**Bài 4:** Thực hiện phép chia có dư:
+
+a) $47 : 6$
+
+b) $83 : 9$
+
+c) $100 : 13$
+
+d) $125 : 11$
+
+**Bài 5:** Tìm số dư khi chia:
+
+a) $56$ cho $7$
+
+b) $73$ cho $8$
+
+c) $91$ cho $10$
+
+d) $150$ cho $12$
+
+**Bài 6 (Thực tế):** Một trường học có $240$ học sinh. Hiệu trưởng muốn xếp đều vào các lớp.
+
+a) Có thể xếp thành $8$ lớp được không? Nếu được, mỗi lớp có bao nhiêu học sinh?
+
+b) Có thể xếp thành $7$ lớp được không? Tại sao?
+
+c) Liệt kê các cách xếp có thể (số lớp từ 5 đến 12).
+
+d) Cách xếp nào để mỗi lớp có khoảng 30-40 học sinh?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Có ($45 = 9 \times 5$); b) Không ($37 = 6 \times 6 + 1$); c) Có ($72 = 8 \times 9$); d) Không ($100 = 7 \times 14 + 2$)
+
+**Bài 2:** a) Có; b) Có; c) Có; d) Có
+
+**Bài 3:** a) Có ($42 \vdots 6$); b) Có ($10 \vdots 5$); c) Có ($56 \vdots 7$); d) Có ($24 \vdots 8$)
+
+**Bài 4:** a) $7$ dư $5$; b) $9$ dư $2$; c) $7$ dư $9$; d) $11$ dư $4$
+
+**Bài 5:** a) $0$; b) $1$; c) $1$; d) $6$
+
+**Bài 6:** a) Có, mỗi lớp 30 học sinh; b) Không ($240 = 7 \times 34 + 2$); c) 5, 6, 8, 10, 12 lớp; d) 6 lớp (40 HS) hoặc 8 lớp (30 HS)
+
+</div>
+</details>
+

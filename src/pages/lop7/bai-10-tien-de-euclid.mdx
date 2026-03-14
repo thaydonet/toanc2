@@ -1,0 +1,302 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 10: Tiên đề Euclid. Tính chất của hai đường thẳng song song"
+description: "Tiên đề Euclid và tính chất song song - Toán 7 KNTT Chương 3"
+grade: "Lớp 7"
+chapter: "Chương III: Góc và đường thẳng song song"
+currentSlug: "lop7/bai-10-tien-de-euclid"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tiên đề Euclid phát biểu:",
+    option_a: "Qua một điểm ngoài đường thẳng có duy nhất một đường thẳng song song",
+    option_b: "Qua một điểm có vô số đường thẳng song song",
+    option_c: "Không có đường thẳng song song nào",
+    option_d: "Có hai đường thẳng song song",
+    correct_option: "A",
+    explanation: "Tiên đề Euclid: Qua một điểm ngoài đường thẳng có duy nhất một đường thẳng song song với đường thẳng đó.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $a \\parallel b$ thì hai góc so le trong:",
+    option_a: "Bằng nhau",
+    option_b: "Bù nhau",
+    option_c: "Phụ nhau",
+    option_d: "Không liên quan",
+    correct_option: "A",
+    explanation: "Tính chất: Nếu hai đường thẳng song song thì hai góc so le trong bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $a \\parallel b$ thì hai góc đồng vị:",
+    option_a: "Bằng nhau",
+    option_b: "Bù nhau",
+    option_c: "Phụ nhau",
+    option_d: "Đối đỉnh",
+    correct_option: "A",
+    explanation: "Tính chất: Nếu hai đường thẳng song song thì hai góc đồng vị bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $a \\parallel b$ thì hai góc trong cùng phía:",
+    option_a: "Bù nhau",
+    option_b: "Bằng nhau",
+    option_c: "Phụ nhau",
+    option_d: "Đối đỉnh",
+    correct_option: "A",
+    explanation: "Tính chất: Nếu hai đường thẳng song song thì hai góc trong cùng phía bù nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $a \\parallel b$, góc so le trong bằng $70^\\circ$. Góc đồng vị tương ứng bằng:",
+    option_a: "$70^\\circ$",
+    option_b: "$110^\\circ$",
+    option_c: "$90^\\circ$",
+    option_d: "$180^\\circ$",
+    correct_option: "A",
+    explanation: "Góc đồng vị bằng góc so le trong khi hai đường thẳng song song.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Tính chất nào đúng khi $a \\parallel b$?",
+    option_a: "Góc so le trong bằng nhau",
+    option_b: "Góc đồng vị bằng nhau",
+    option_c: "Góc trong cùng phía bù nhau",
+    option_d: "Góc đối đỉnh bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "Ba tính chất của hai đường thẳng song song.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Tiên đề Euclid</h3>
+
+Tiên đề Euclid là một trong những nền tảng quan trọng của hình học!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Tiên đề Euclid</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Duy nhất một đường song song</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✓</div>
+    <strong>Tính chất</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Góc bằng nhau, bù nhau</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="tien-de">📖 1. Tiên đề Euclid</h3>
+
+<div class="box-dinh-nghia">
+
+**Tiên đề Euclid:**
+
+Qua một điểm nằm ngoài một đường thẳng, có duy nhất một đường thẳng song song với đường thẳng đó.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="250" viewBox="0 0 400 250" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Đường thẳng a */}
+  <line x1="50" y1="180" x2="350" y2="180" stroke="#3b82f6" stroke-width="2"/>
+  <text x="360" y="185" font-size="14" font-weight="bold" fill="#3b82f6">a</text>
+  
+  {/* Điểm M */}
+  <circle cx="200" cy="80" r="4" fill="#f59e0b"/>
+  <text x="210" y="75" font-size="14" font-weight="bold" fill="#f59e0b">M</text>
+  
+  {/* Đường thẳng b qua M song song với a */}
+  <line x1="50" y1="80" x2="350" y2="80" stroke="#10b981" stroke-width="2"/>
+  <text x="360" y="85" font-size="14" font-weight="bold" fill="#10b981">b</text>
+  
+  {/* Đường nét đứt từ M xuống a */}
+  <line x1="200" y1="80" x2="200" y2="180" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <text x="200" y="140" font-size="16" text-anchor="middle" fill="#1f2937">b ∥ a</text>
+  <text x="200" y="220" font-size="14" text-anchor="middle" fill="#6b7280">Duy nhất một đường b qua M song song với a</text>
+</svg>
+</div>
+
+**Ý nghĩa:** Tiên đề này khẳng định tính duy nhất của đường thẳng song song.
+
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 2. Tính chất của hai đường thẳng song song</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất:** Nếu một đường thẳng cắt hai đường thẳng song song thì:
+
+1. Hai góc so le trong bằng nhau
+2. Hai góc đồng vị bằng nhau
+3. Hai góc trong cùng phía bù nhau (tổng bằng $180^\\circ$)
+
+</div>
+
+**Ví dụ 1:** Cho $a \parallel b$, đường thẳng $c$ cắt $a$ tại $A$ và $b$ tại $B$. Biết góc $\widehat{A_1} = 65^\\circ$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tính các góc còn lại:
+
+- Góc so le trong với $\widehat{A_1}$: $65^\\circ$
+- Góc đồng vị với $\widehat{A_1}$: $65^\\circ$
+- Góc trong cùng phía với $\widehat{A_1}$: $180^\\circ - 65^\\circ = 115^\\circ$
+
+</div>
+
+<h3 id="so-sanh" style="margin-top:2rem;">↔️ 3. So sánh dấu hiệu và tính chất</h3>
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Dấu hiệu nhận biết** (Bài 9):
+- Nếu góc bằng nhau/bù nhau → Kết luận song song
+
+**Tính chất** (Bài 10):
+- Nếu song song → Kết luận góc bằng nhau/bù nhau
+
+Hai chiều ngược nhau!
+
+</div>
+
+**Ví dụ 2:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết một góc so le trong bằng $x$. Tính góc đồng vị tương ứng.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Vì $a \parallel b$ nên:
+- Góc đồng vị = góc so le trong = $x$
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">🔬 4. Ứng dụng</h3>
+
+**Ví dụ 3:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết góc trong cùng phía là $x$ và $y$. Tính $x + y$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Vì $a \parallel b$ nên hai góc trong cùng phía bù nhau:
+
+$$x + y = 180^\\circ$$
+
+</div>
+
+**Ví dụ 4:** Cho $a \parallel b$, $c \perp a$. Chứng minh $c \perp b$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Vì $c \perp a$ nên góc tạo bởi $c$ và $a$ bằng $90^\\circ$
+
+Vì $a \parallel b$ nên góc đồng vị (góc tạo bởi $c$ và $b$) cũng bằng $90^\\circ$
+
+Vậy $c \perp b$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Hai bức tường song song. Một cây thước đặt nghiêng tạo với bức tường thứ nhất một góc $75^\\circ$.
+
+a) Tính góc tạo với bức tường thứ hai (góc đồng vị).
+
+b) Tính góc trong cùng phía.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Góc đồng vị = $75^\\circ$ (hai đường thẳng song song)
+
+b) Góc trong cùng phía = $180^\\circ - 75^\\circ = 105^\\circ$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Tiên đề Euclid**: Qua điểm ngoài đường thẳng có duy nhất một đường song song
+- **Tính chất 1**: $a \parallel b$ → góc so le trong bằng nhau
+- **Tính chất 2**: $a \parallel b$ → góc đồng vị bằng nhau
+- **Tính chất 3**: $a \parallel b$ → góc trong cùng phía bù nhau
+- Dấu hiệu và tính chất là hai chiều ngược nhau
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết góc so le trong bằng $55^\\circ$. Tính:
+
+a) Góc so le trong còn lại
+
+b) Các góc đồng vị
+
+c) Các góc trong cùng phía
+
+**Bài 2:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết góc đồng vị bằng $80^\\circ$. Tính các góc còn lại.
+
+**Bài 3:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết hai góc trong cùng phía là $x$ và $2x$. Tính $x$.
+
+**Bài 4:** Cho $a \parallel b$, $c \perp a$. Chứng minh $c \perp b$.
+
+**Bài 5:** Cho $a \parallel b \parallel c$. Chứng minh $a \parallel c$.
+
+**Bài 6:** Qua điểm $M$ nằm ngoài đường thẳng $d$, vẽ được bao nhiêu đường thẳng song song với $d$?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $55^\\circ$; b) $55^\\circ$; c) $55^\\circ$ và $125^\\circ$
+
+**Bài 2:** Góc so le trong: $80^\\circ$; Góc trong cùng phía: $80^\\circ$ và $100^\\circ$
+
+**Bài 3:** $x + 2x = 180^\\circ$ → $x = 60^\\circ$
+
+**Bài 4:** Dùng tính chất góc đồng vị
+
+**Bài 5:** Dùng tính chất bắc cầu
+
+**Bài 6:** Duy nhất một đường (Tiên đề Euclid)
+
+</div>
+</details>

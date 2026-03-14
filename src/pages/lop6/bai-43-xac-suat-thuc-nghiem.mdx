@@ -1,0 +1,482 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 43: Xác suất thực nghiệm"
+description: "Khái niệm xác suất thực nghiệm, cách tính và ứng dụng - Toán 6 KNTT Chương IX"
+grade: "Lớp 6"
+chapter: "Chương IX: Dữ liệu và xác suất thực nghiệm"
+currentSlug: "lop6/bai-43-xac-suat-thuc-nghiem"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Xác suất thực nghiệm là gì?",
+    option_a: "Tỉ số giữa số lần sự kiện xảy ra và tổng số lần thí nghiệm",
+    option_b: "Chỉ là dự đoán",
+    option_c: "Kết quả chắc chắn",
+    option_d: "Kết quả không thể xảy ra",
+    correct_option: "A",
+    explanation: "Xác suất thực nghiệm = (Số lần sự kiện xảy ra) / (Tổng số lần thí nghiệm)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất thực nghiệm có giá trị trong khoảng nào?",
+    option_a: "Từ 0 đến 1",
+    option_b: "Từ 0 đến 10",
+    option_c: "Từ -1 đến 1",
+    option_d: "Từ 1 đến 100",
+    correct_option: "A",
+    explanation: "Xác suất thực nghiệm luôn nằm trong khoảng từ 0 đến 1.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung xúc xắc 60 lần, được số 6 là 10 lần. Xác suất thực nghiệm của sự kiện 'được số 6' là bao nhiêu?",
+    option_a: "1/6",
+    option_b: "1/10",
+    option_c: "10/60 = 1/6",
+    option_d: "60/10 = 6",
+    correct_option: "C",
+    explanation: "P(được 6) = 10/60 = 1/6 ≈ 0,167",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Xác suất thực nghiệm — Dự đoán từ dữ liệu</h3>
+
+Xác suất thực nghiệm giúp ta dự đoán khả năng xảy ra của một sự kiện dựa trên dữ liệu thực tế!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Xác suất thực nghiệm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Từ dữ liệu thực tế</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Dự đoán</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Khả năng xảy ra</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm xác suất thực nghiệm</h3>
+
+<div class="box-dinh-nghia">
+
+**Xác suất thực nghiệm** của một sự kiện là tỉ số giữa số lần sự kiện xảy ra và tổng số lần thí nghiệm được thực hiện.
+
+P(A) = (Số lần sự kiện A xảy ra) / (Tổng số lần thí nghiệm)
+
+</div>
+
+<h3 id="cong-thuc" style="margin-top:2rem;">📖 2. Công thức tính xác suất thực nghiệm</h3>
+
+P(A) = m/n
+
+Trong đó:
+- P(A) là xác suất thực nghiệm của sự kiện A
+- m là số lần sự kiện A xảy ra
+- n là tổng số lần thí nghiệm
+
+**Tính chất:**
+- 0 ≤ P(A) ≤ 1
+- Nếu P(A) = 0: sự kiện không xảy ra
+- Nếu P(A) = 1: sự kiện chắc chắn xảy ra
+
+<h3 id="vi-du-chi-tiet" style="margin-top:2rem;">📖 3. Ví dụ chi tiết</h3>
+
+**Ví dụ 1: Tung xúc xắc**
+
+Tung xúc xắc 60 lần, kết quả:
+
+| Mặt | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| Lần | 8 | 10 | 12 | 9 | 11 | 10 |
+
+Tính xác suất thực nghiệm của sự kiện "được số 6":
+
+P(được 6) = 10/60 = 1/6 ≈ 0,167
+
+Tính xác suất thực nghiệm của sự kiện "được số chẵn":
+
+Số lần được số chẵn: 10 + 9 + 10 = 29
+
+P(số chẵn) = 29/60 ≈ 0,483
+
+**Ví dụ 2: Tung đồng xu**
+
+Tung đồng xu 100 lần:
+- Sấp: 48 lần
+- Ngửa: 52 lần
+
+Xác suất thực nghiệm:
+
+P(Sấp) = 48/100 = 0,48
+
+P(Ngửa) = 52/100 = 0,52
+
+**Ví dụ 3: Rút thẻ từ hộp**
+
+Một hộp có 5 viên bi: 2 đỏ, 2 xanh, 1 vàng. Rút 50 lần có hoàn lại:
+- Đỏ: 20 lần
+- Xanh: 18 lần
+- Vàng: 12 lần
+
+Xác suất thực nghiệm:
+
+P(Đỏ) = 20/50 = 0,4
+
+P(Xanh) = 18/50 = 0,36
+
+P(Vàng) = 12/50 = 0,24
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một cửa hàng bán quần áo muốn biết tỉ lệ khách hàng mua áo sơ mi. Trong 200 khách hàng, có 80 người mua áo sơ mi.
+
+a) Tính xác suất thực nghiệm của sự kiện "khách hàng mua áo sơ mi"
+
+b) Nếu cửa hàng có 1000 khách hàng, dự đoán bao nhiêu người sẽ mua áo sơ mi?
+
+**Giải:**
+
+a) P(mua áo sơ mi) = 80/200 = 0,4
+
+b) Dự đoán: 1000 × 0,4 = 400 người
+
+**📝 Bài toán 2:** Một nhà máy sản xuất bóng đèn. Kiểm tra 500 bóng đèn, có 15 bóng bị lỗi.
+
+a) Tính xác suất thực nghiệm của sự kiện "bóng đèn bị lỗi"
+
+b) Nếu sản xuất 10.000 bóng đèn, dự đoán bao nhiêu bóng sẽ bị lỗi?
+
+**Giải:**
+
+a) P(bị lỗi) = 15/500 = 0,03
+
+b) Dự đoán: 10.000 × 0,03 = 300 bóng
+
+</VanDung>
+
+<BaiTapTuLuan>
+
+**Bài 1:** Tung một đồng xu 50 lần, kết quả:
+- Sấp: 28 lần
+- Ngửa: 22 lần
+
+a) Tính xác suất thực nghiệm của sự kiện "Được mặt sấp"
+
+b) Tính xác suất thực nghiệm của sự kiện "Được mặt ngửa"
+
+c) Nếu tung thêm 100 lần nữa, dự đoán số lần được mặt sấp
+
+**Bài 2:** Tung một xúc xắc 120 lần, kết quả:
+
+| Mặt | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| Lần | 18 | 22 | 20 | 19 | 21 | 20 |
+
+a) Tính xác suất thực nghiệm của sự kiện "Được số 3"
+
+b) Tính xác suất thực nghiệm của sự kiện "Được số chẵn"
+
+c) Tính xác suất thực nghiệm của sự kiện "Được số lớn hơn 4"
+
+d) Nếu tung thêm 60 lần, dự đoán số lần được số 6
+
+**Bài 3:** Một hộp có 5 viên bi: 2 đỏ, 2 xanh, 1 vàng. Rút ngẫu nhiên 100 lần có hoàn lại, kết quả:
+- Đỏ: 42 lần
+- Xanh: 38 lần
+- Vàng: 20 lần
+
+a) Tính xác suất thực nghiệm của mỗi màu
+
+b) Màu nào có xác suất cao nhất?
+
+c) Nếu rút thêm 200 lần, dự đoán số lần rút được viên bi đỏ
+
+**Bài 4:** Một cửa hàng bán 3 loại sản phẩm A, B, C. Trong 500 khách hàng:
+- Mua A: 200 người
+- Mua B: 180 người
+- Mua C: 120 người
+
+a) Tính xác suất thực nghiệm khách hàng mua mỗi loại sản phẩm
+
+b) Sản phẩm nào được ưa chuộng nhất?
+
+c) Nếu có 2000 khách hàng, dự đoán số người mua sản phẩm B
+
+d) Tính tỉ lệ phần trăm khách hàng mua mỗi loại sản phẩm
+
+**Bài 5:** Một trường khảo sát 400 học sinh về phương tiện đi học:
+- Xe đạp: 160 học sinh
+- Xe máy: 120 học sinh
+- Đi bộ: 80 học sinh
+- Ô tô: 40 học sinh
+
+a) Tính xác suất thực nghiệm của mỗi phương tiện
+
+b) Phương tiện nào được sử dụng nhiều nhất?
+
+c) Nếu trường có 1200 học sinh, dự đoán số học sinh đi xe đạp
+
+d) Tính tỉ lệ phần trăm học sinh sử dụng mỗi phương tiện
+
+**Bài 6:** Gieo một con xúc xắc 180 lần, được số 5 là 32 lần.
+
+a) Tính xác suất thực nghiệm của sự kiện "Được số 5"
+
+b) So sánh với xác suất lý thuyết (1/6)
+
+c) Nếu gieo thêm 360 lần, dự đoán số lần được số 5
+
+**Bài 7:** Một nhà máy sản xuất 1000 sản phẩm, kiểm tra ngẫu nhiên 200 sản phẩm, có 8 sản phẩm lỗi.
+
+a) Tính xác suất thực nghiệm sản phẩm bị lỗi
+
+b) Dự đoán số sản phẩm lỗi trong 1000 sản phẩm
+
+c) Tính tỉ lệ phần trăm sản phẩm lỗi
+
+d) Nếu muốn giảm tỉ lệ lỗi xuống còn 2%, cần cải thiện như thế nào?
+
+**Bài 8:** Một bác sĩ thống kê 300 bệnh nhân, có 240 người khỏi bệnh sau điều trị.
+
+a) Tính xác suất thực nghiệm bệnh nhân khỏi bệnh
+
+b) Tính tỉ lệ phần trăm bệnh nhân khỏi bệnh
+
+c) Nếu có 500 bệnh nhân mới, dự đoán số người sẽ khỏi bệnh
+
+d) Tính xác suất thực nghiệm bệnh nhân không khỏi bệnh
+
+**Bài 9:** Một trạm kiểm tra chất lượng nước, trong 250 mẫu nước:
+- Đạt chuẩn: 225 mẫu
+- Không đạt: 25 mẫu
+
+a) Tính xác suất thực nghiệm mẫu nước đạt chuẩn
+
+b) Tính tỉ lệ phần trăm mẫu nước đạt chuẩn
+
+c) Nếu kiểm tra 1000 mẫu, dự đoán số mẫu đạt chuẩn
+
+d) Đánh giá chất lượng nước tại khu vực này
+
+**Bài 10:** Em hãy tự thiết kế một thí nghiệm tung đồng xu 30 lần, ghi lại kết quả và:
+
+a) Tính xác suất thực nghiệm của mỗi mặt
+
+b) So sánh với xác suất lý thuyết (0,5)
+
+c) Giải thích sự khác biệt (nếu có)
+
+d) Dự đoán nếu tung thêm 70 lần nữa
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1: Tung đồng xu 50 lần**
+
+a) P(Sấp) = 28/50 = **0,56** (hoặc 56%)
+
+b) P(Ngửa) = 22/50 = **0,44** (hoặc 44%)
+
+c) Dự đoán số lần được sấp trong 100 lần: 100 × 0,56 = **56 lần**
+
+---
+
+**Bài 2: Tung xúc xắc 120 lần**
+
+a) P(được số 3) = 20/120 = **1/6 ≈ 0,167** (hoặc 16,7%)
+
+b) Số lần được số chẵn: 22 + 19 + 20 = 61 lần
+   P(số chẵn) = 61/120 ≈ **0,508** (hoặc 50,8%)
+
+c) Số lần được số lớn hơn 4: 21 + 20 = 41 lần
+   P(số > 4) = 41/120 ≈ **0,342** (hoặc 34,2%)
+
+d) Dự đoán số lần được số 6 trong 60 lần: 60 × (20/120) = 60 × (1/6) = **10 lần**
+
+---
+
+**Bài 3: Rút viên bi 100 lần**
+
+a) Xác suất thực nghiệm:
+   - P(Đỏ) = 42/100 = **0,42** (42%)
+   - P(Xanh) = 38/100 = **0,38** (38%)
+   - P(Vàng) = 20/100 = **0,20** (20%)
+
+b) Màu có xác suất cao nhất: **Đỏ** (0,42)
+
+c) Dự đoán số lần rút được đỏ trong 200 lần: 200 × 0,42 = **84 lần**
+
+---
+
+**Bài 4: Khách hàng mua sản phẩm**
+
+a) Xác suất thực nghiệm:
+   - P(A) = 200/500 = **0,4** (40%)
+   - P(B) = 180/500 = **0,36** (36%)
+   - P(C) = 120/500 = **0,24** (24%)
+
+b) Sản phẩm được ưa chuộng nhất: **A** (40%)
+
+c) Dự đoán số người mua B trong 2000 khách: 2000 × 0,36 = **720 người**
+
+d) Tỉ lệ phần trăm:
+   - A: **40%**
+   - B: **36%**
+   - C: **24%**
+
+---
+
+**Bài 5: Phương tiện đi học**
+
+a) Xác suất thực nghiệm:
+   - P(Xe đạp) = 160/400 = **0,4** (40%)
+   - P(Xe máy) = 120/400 = **0,3** (30%)
+   - P(Đi bộ) = 80/400 = **0,2** (20%)
+   - P(Ô tô) = 40/400 = **0,1** (10%)
+
+b) Phương tiện được sử dụng nhiều nhất: **Xe đạp** (40%)
+
+c) Dự đoán số học sinh đi xe đạp trong 1200 học sinh: 1200 × 0,4 = **480 học sinh**
+
+d) Tỉ lệ phần trăm:
+   - Xe đạp: **40%**
+   - Xe máy: **30%**
+   - Đi bộ: **20%**
+   - Ô tô: **10%**
+
+---
+
+**Bài 6: Gieo xúc xắc 180 lần**
+
+a) P(được số 5) = 32/180 = **4/45 ≈ 0,178** (17,8%)
+
+b) So sánh với xác suất lý thuyết:
+   - Xác suất lý thuyết: 1/6 ≈ 0,167 (16,7%)
+   - Xác suất thực nghiệm: 0,178 (17,8%)
+   - Chênh lệch: 0,178 - 0,167 = **0,011** (1,1%)
+   - Xác suất thực nghiệm **cao hơn** xác suất lý thuyết một chút
+
+c) Dự đoán số lần được số 5 trong 360 lần: 360 × 0,178 ≈ **64 lần**
+
+---
+
+**Bài 7: Sản phẩm lỗi**
+
+a) P(lỗi) = 8/200 = **0,04** (4%)
+
+b) Dự đoán số sản phẩm lỗi trong 1000 sản phẩm: 1000 × 0,04 = **40 sản phẩm**
+
+c) Tỉ lệ phần trăm sản phẩm lỗi: **4%**
+
+d) Để giảm tỉ lệ lỗi xuống 2%:
+   - Cải thiện quy trình sản xuất
+   - Kiểm tra chất lượng nguyên liệu đầu vào
+   - Đào tạo công nhân kỹ hơn
+   - Bảo trì máy móc thường xuyên
+   - Tăng cường kiểm soát chất lượng
+   - Cần giảm số sản phẩm lỗi từ 40 xuống còn 20 sản phẩm
+
+---
+
+**Bài 8: Bệnh nhân khỏi bệnh**
+
+a) P(khỏi bệnh) = 240/300 = **0,8** (80%)
+
+b) Tỉ lệ phần trăm bệnh nhân khỏi bệnh: **80%**
+
+c) Dự đoán số người khỏi bệnh trong 500 bệnh nhân: 500 × 0,8 = **400 người**
+
+d) P(không khỏi bệnh) = 60/300 = **0,2** (20%)
+   Hoặc: 1 - 0,8 = **0,2**
+
+---
+
+**Bài 9: Chất lượng nước**
+
+a) P(đạt chuẩn) = 225/250 = **0,9** (90%)
+
+b) Tỉ lệ phần trăm mẫu nước đạt chuẩn: **90%**
+
+c) Dự đoán số mẫu đạt chuẩn trong 1000 mẫu: 1000 × 0,9 = **900 mẫu**
+
+d) **Đánh giá:**
+   - Chất lượng nước tại khu vực này **tốt**
+   - 90% mẫu đạt chuẩn là tỉ lệ cao
+   - Chỉ 10% mẫu không đạt chuẩn
+   - Cần tiếp tục duy trì và cải thiện để đạt 100%
+
+---
+
+**Bài 10: Thí nghiệm tung đồng xu 30 lần (Ví dụ)**
+
+**Giả sử kết quả:** Sấp: 16 lần, Ngửa: 14 lần
+
+a) Xác suất thực nghiệm:
+   - P(Sấp) = 16/30 ≈ **0,533** (53,3%)
+   - P(Ngửa) = 14/30 ≈ **0,467** (46,7%)
+
+b) So sánh với xác suất lý thuyết (0,5):
+   - P(Sấp) thực nghiệm: 0,533 > 0,5 (cao hơn 3,3%)
+   - P(Ngửa) thực nghiệm: 0,467 < 0,5 (thấp hơn 3,3%)
+
+c) **Giải thích sự khác biệt:**
+   - Số lần thí nghiệm còn ít (30 lần)
+   - Có yếu tố ngẫu nhiên
+   - Nếu tăng số lần thí nghiệm, xác suất thực nghiệm sẽ tiến gần 0,5
+   - Đồng xu có thể không hoàn toàn cân đối
+   - Cách tung có thể ảnh hưởng kết quả
+
+d) **Dự đoán nếu tung thêm 70 lần:**
+   - Tổng: 30 + 70 = 100 lần
+   - Dự đoán Sấp: 100 × 0,533 ≈ **53 lần**
+   - Dự đoán Ngửa: 100 × 0,467 ≈ **47 lần**
+   - Hoặc dùng xác suất lý thuyết: mỗi mặt khoảng **50 lần**
+
+</div>
+</details>
+
+</BaiTapTuLuan>
+
+<GhiNho>
+
+- **Xác suất thực nghiệm:** P(A) = (Số lần A xảy ra) / (Tổng số lần thí nghiệm)
+- **Giá trị:** 0 ≤ P(A) ≤ 1
+- **Khi số lần thí nghiệm tăng:** Xác suất thực nghiệm tiến gần xác suất lý thuyết
+- **Ứng dụng:** Dự đoán tỉ lệ, khả năng xảy ra của sự kiện
+
+</GhiNho>

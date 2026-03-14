@@ -1,0 +1,568 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 19: Hình chữ nhật. Hình thoi. Hình bình hành. Hình thang cân"
+description: "Các hình tứ giác cơ bản - Toán 6 KNTT Chương 4"
+grade: "Lớp 6"
+chapter: "Chương IV: Một số hình phẳng trong thực tiễn"
+currentSlug: "lop6/bai-19-hinh-phang-2"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình chữ nhật có bao nhiêu góc vuông?",
+    option_a: "4 góc vuông",
+    option_b: "2 góc vuông",
+    option_c: "3 góc vuông",
+    option_d: "0 góc vuông",
+    correct_option: "A",
+    explanation: "Hình chữ nhật có 4 góc vuông.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thoi có tính chất nào?",
+    option_a: "4 cạnh bằng nhau",
+    option_b: "4 góc vuông",
+    option_c: "2 cạnh bằng nhau",
+    option_d: "Không có cạnh bằng nhau",
+    correct_option: "A",
+    explanation: "Hình thoi có 4 cạnh bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình bình hành có bao nhiêu cặp cạnh song song?",
+    option_a: "2 cặp",
+    option_b: "1 cặp",
+    option_c: "3 cặp",
+    option_d: "4 cặp",
+    correct_option: "A",
+    explanation: "Hình bình hành có 2 cặp cạnh song song.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những tính chất nào của hình thang cân?",
+    option_a: "2 cạnh đáy song song",
+    option_b: "2 cạnh bên bằng nhau",
+    option_c: "2 góc ở đáy bằng nhau",
+    option_d: "4 cạnh bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "Hình thang cân có 2 cạnh đáy song song, 2 cạnh bên bằng nhau, 2 góc ở đáy bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chu vi hình chữ nhật chiều dài 8 cm, chiều rộng 5 cm là:",
+    option_a: "26 cm",
+    option_b: "40 cm",
+    option_c: "13 cm",
+    option_d: "20 cm",
+    correct_option: "A",
+    explanation: "Chu vi = 2 × (8 + 5) = 26 cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hình thoi có 4 cạnh bằng nhau, mỗi cạnh 6 cm. Chu vi là bao nhiêu cm?",
+    correct_option: "24",
+    explanation: "Chu vi = 4 × 6 = 24 cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình chữ nhật chiều dài 10 cm, chiều rộng 6 cm là:",
+    option_a: "$60$ cm²",
+    option_b: "$32$ cm²",
+    option_c: "$16$ cm²",
+    option_d: "$4$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích = $10 \\times 6 = 60$ cm².",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chu vi hình thoi cạnh 5 cm là:",
+    option_a: "$20$ cm",
+    option_b: "$10$ cm",
+    option_c: "$15$ cm",
+    option_d: "$25$ cm",
+    correct_option: "A",
+    explanation: "Chu vi = $5 \\times 4 = 20$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Tứ giác — Những hình đa dạng</h3>
+
+Ngoài hình vuông, còn có nhiều hình tứ giác khác với tính chất riêng biệt!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">▭</div>
+    <strong>Hình chữ nhật</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">4 góc vuông</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fca5a5;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">◇</div>
+    <strong>Hình thoi</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">4 cạnh bằng nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">▱</div>
+    <strong>Hình bình hành</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cạnh đối song song</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⊢</div>
+    <strong>Hình thang cân</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">2 cạnh bên bằng nhau</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="hinh-chu-nhat">📖 1. Hình chữ nhật</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình chữ nhật là tứ giác có bốn góc vuông.
+
+**Tính chất:**
+- Bốn góc vuông: $\angle A = \angle B = \angle C = \angle D = 90°$
+- Cạnh đối bằng nhau: $AB = CD$, $BC = AD$
+- Hai đường chéo bằng nhau
+- Có 2 trục đối xứng
+
+**Công thức:**
+- Chu vi: $P = 2(a + b)$ (với $a$ là chiều dài, $b$ là chiều rộng)
+- Diện tích: $S = a \times b$
+
+</div>
+
+**Hình minh họa hình chữ nhật:**
+
+<svg viewBox="0 0 320 220" style="width:100%;max-width:320px;height:auto;margin:1.5rem 0;">
+  {/* Hình chữ nhật */}
+  <rect x="40" y="40" width="240" height="140" fill="#dbeafe" stroke="#1e40af" strokeWidth="2"/>
+  
+  {/* Đường chéo */}
+  <line x1="40" y1="40" x2="280" y2="180" stroke="#94a3b8" strokeWidth="1" strokeDasharray="5,5"/>
+  
+  {/* Các góc */}
+  <circle cx="40" cy="40" r="3" fill="#ef4444"/>
+  <circle cx="280" cy="40" r="3" fill="#ef4444"/>
+  <circle cx="280" cy="180" r="3" fill="#ef4444"/>
+  <circle cx="40" cy="180" r="3" fill="#ef4444"/>
+  
+  {/* Nhãn đỉnh */}
+  <text x="25" y="45" textAnchor="end" fontSize="14" fontWeight="bold" fill="#1e40af">A</text>
+  <text x="295" y="45" textAnchor="start" fontSize="14" fontWeight="bold" fill="#1e40af">B</text>
+  <text x="295" y="195" textAnchor="start" fontSize="14" fontWeight="bold" fill="#1e40af">C</text>
+  <text x="25" y="195" textAnchor="end" fontSize="14" fontWeight="bold" fill="#1e40af">D</text>
+  
+  {/* Nhãn cạnh */}
+  <text x="15" y="115" textAnchor="middle" fontSize="12" fill="#ef4444" fontWeight="bold">b</text>
+  <text x="160" y="205" textAnchor="middle" fontSize="12" fill="#ef4444" fontWeight="bold">a</text>
+  
+  {/* Nhãn góc */}
+  <text x="55" y="60" fontSize="11" fill="#0ea5e9">90°</text>
+  <text x="265" y="60" fontSize="11" fill="#0ea5e9">90°</text>
+  <text x="265" y="165" fontSize="11" fill="#0ea5e9">90°</text>
+  <text x="55" y="165" fontSize="11" fill="#0ea5e9">90°</text>
+</svg>
+
+**Ví dụ 1:** Tính chu vi và diện tích hình chữ nhật
+
+a) Chiều dài 10 cm, chiều rộng 6 cm
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 2 \times (10 + 6) = 32$ cm
+
+Diện tích: $S = 10 \times 6 = 60$ cm²
+
+</div>
+
+b) Chiều dài 15 cm, chiều rộng 8 cm
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 2 \times (15 + 8) = 46$ cm
+
+Diện tích: $S = 15 \times 8 = 120$ cm²
+
+</div>
+
+<h3 id="hinh-thoi" style="margin-top:2rem;">📖 2. Hình thoi</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình thoi là tứ giác có bốn cạnh bằng nhau.
+
+**Tính chất:**
+- Bốn cạnh bằng nhau: $AB = BC = CD = DA$
+- Cạnh đối song song
+- Hai đường chéo vuông góc với nhau
+- Hai đường chéo cắt nhau tại trung điểm mỗi đường
+- Có 2 trục đối xứng
+
+**Công thức:**
+- Chu vi: $P = 4a$ (với $a$ là độ dài cạnh)
+- Diện tích: $S = \frac{1}{2} \times d_1 \times d_2$ (với $d_1$, $d_2$ là độ dài hai đường chéo)
+
+</div>
+
+**Hình minh họa hình thoi:**
+
+<svg viewBox="0 0 300 300" style="width:100%;max-width:300px;height:auto;margin:1.5rem 0;">
+  {/* Hình thoi */}
+  <polygon points="150,30 250,150 150,270 50,150" fill="#fecaca" stroke="#dc2626" strokeWidth="2"/>
+  
+  {/* Đường chéo */}
+  <line x1="150" y1="30" x2="150" y2="270" stroke="#94a3b8" strokeWidth="1" strokeDasharray="5,5"/>
+  <line x1="50" y1="150" x2="250" y2="150" stroke="#94a3b8" strokeWidth="1" strokeDasharray="5,5"/>
+  
+  {/* Các góc */}
+  <circle cx="150" cy="30" r="3" fill="#ef4444"/>
+  <circle cx="250" cy="150" r="3" fill="#ef4444"/>
+  <circle cx="150" cy="270" r="3" fill="#ef4444"/>
+  <circle cx="50" cy="150" r="3" fill="#ef4444"/>
+  
+  {/* Nhãn đỉnh */}
+  <text x="150" y="15" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#dc2626">A</text>
+  <text x="270" y="155" textAnchor="start" fontSize="14" fontWeight="bold" fill="#dc2626">B</text>
+  <text x="150" y="290" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#dc2626">C</text>
+  <text x="30" y="155" textAnchor="end" fontSize="14" fontWeight="bold" fill="#dc2626">D</text>
+  
+  {/* Nhãn cạnh */}
+  <text x="190" y="80" fontSize="12" fill="#dc2626" fontWeight="bold">a</text>
+  <text x="210" y="200" fontSize="12" fill="#dc2626" fontWeight="bold">a</text>
+  <text x="110" y="200" fontSize="12" fill="#dc2626" fontWeight="bold">a</text>
+  <text x="90" y="80" fontSize="12" fill="#dc2626" fontWeight="bold">a</text>
+  
+  {/* Nhãn đường chéo */}
+  <text x="165" y="150" fontSize="11" fill="#0ea5e9" fontWeight="bold">d₁</text>
+  <text x="150" y="165" fontSize="11" fill="#0ea5e9" fontWeight="bold">d₂</text>
+</svg>
+
+**Ví dụ 2:** Tính chu vi hình thoi
+
+a) Cạnh 7 cm
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 4 \times 7 = 28$ cm
+
+</div>
+
+b) Cạnh 12 cm
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 4 \times 12 = 48$ cm
+
+</div>
+
+<h3 id="hinh-binh-hanh" style="margin-top:2rem;">📖 3. Hình bình hành</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình bình hành là tứ giác có hai cặp cạnh đối song song.
+
+**Tính chất:**
+- Cạnh đối song song và bằng nhau: $AB \parallel CD$, $AB = CD$; $BC \parallel AD$, $BC = AD$
+- Góc đối bằng nhau
+- Hai đường chéo cắt nhau tại trung điểm mỗi đường
+- Có tâm đối xứng
+
+**Công thức:**
+- Chu vi: $P = 2(a + b)$ (với $a$, $b$ là độ dài hai cạnh kề)
+- Diện tích: $S = a \times h$ (với $a$ là cạnh đáy, $h$ là chiều cao)
+
+</div>
+
+**Hình minh họa hình bình hành:**
+
+<svg viewBox="0 0 320 220" style="width:100%;max-width:320px;height:auto;margin:1.5rem 0;">
+  {/* Hình bình hành */}
+  <polygon points="60,140 80,60 260,60 240,140" fill="#d1fae5" stroke="#059669" strokeWidth="2"/>
+  
+  {/* Đường chéo */}
+  <line x1="60" y1="140" x2="260" y2="60" stroke="#94a3b8" strokeWidth="1" strokeDasharray="5,5"/>
+  
+  {/* Chiều cao */}
+  <line x1="80" y1="60" x2="80" y2="140" stroke="#f59e0b" strokeWidth="1" strokeDasharray="3,3"/>
+  <path d="M 75 135 L 80 140 L 85 135" fill="none" stroke="#f59e0b" strokeWidth="1"/>
+  
+  {/* Các góc */}
+  <circle cx="60" cy="140" r="3" fill="#ef4444"/>
+  <circle cx="80" cy="60" r="3" fill="#ef4444"/>
+  <circle cx="260" cy="60" r="3" fill="#ef4444"/>
+  <circle cx="240" cy="140" r="3" fill="#ef4444"/>
+  
+  {/* Nhãn đỉnh */}
+  <text x="45" y="150" textAnchor="end" fontSize="14" fontWeight="bold" fill="#059669">A</text>
+  <text x="65" y="45" textAnchor="end" fontSize="14" fontWeight="bold" fill="#059669">B</text>
+  <text x="275" y="65" textAnchor="start" fontSize="14" fontWeight="bold" fill="#059669">C</text>
+  <text x="255" y="150" textAnchor="start" fontSize="14" fontWeight="bold" fill="#059669">D</text>
+  
+  {/* Nhãn cạnh */}
+  <text x="70" y="35" fontSize="12" fill="#059669" fontWeight="bold">a</text>
+  <text x="150" y="155" fontSize="12" fill="#059669" fontWeight="bold">a</text>
+  <text x="160" y="85" fontSize="12" fill="#059669" fontWeight="bold">b</text>
+  
+  {/* Nhãn chiều cao */}
+  <text x="95" y="100" fontSize="11" fill="#f59e0b" fontWeight="bold">h</text>
+</svg>
+
+**Ví dụ 3:** Tính chu vi hình bình hành
+
+a) Cạnh 9 cm, cạnh 5 cm
+
+<div style="background:#d1fae5;border-left:4px solid #059669;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 2 \times (9 + 5) = 28$ cm
+
+</div>
+
+b) Cạnh 12 cm, cạnh 7 cm
+
+<div style="background:#d1fae5;border-left:4px solid #059669;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 2 \times (12 + 7) = 38$ cm
+
+</div>
+
+<h3 id="hinh-thang-can" style="margin-top:2rem;">📖 4. Hình thang cân</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình thang cân là hình thang có hai cạnh bên bằng nhau.
+
+**Tính chất:**
+- Hai cạnh đáy song song: $AB \parallel CD$
+- Hai cạnh bên bằng nhau: $BC = AD$
+- Hai góc ở mỗi đáy bằng nhau
+- Có 1 trục đối xứng
+
+**Công thức:**
+- Chu vi: $P = a + b + 2c$ (với $a$, $b$ là độ dài hai đáy, $c$ là độ dài cạnh bên)
+- Diện tích: $S = \frac{(a + b) \times h}{2}$ (với $a$, $b$ là độ dài hai đáy, $h$ là chiều cao)
+
+</div>
+
+**Hình minh họa hình thang cân:**
+
+<svg viewBox="0 0 320 240" style="width:100%;max-width:320px;height:auto;margin:1.5rem 0;">
+  {/* Hình thang cân */}
+  <polygon points="80,180 100,60 220,60 240,180" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2"/>
+  
+  {/* Đường cao */}
+  <line x1="100" y1="60" x2="100" y2="180" stroke="#f59e0b" strokeWidth="1" strokeDasharray="3,3"/>
+  <path d="M 95 175 L 100 180 L 105 175" fill="none" stroke="#f59e0b" strokeWidth="1"/>
+  
+  {/* Các góc */}
+  <circle cx="80" cy="180" r="3" fill="#ef4444"/>
+  <circle cx="100" cy="60" r="3" fill="#ef4444"/>
+  <circle cx="220" cy="60" r="3" fill="#ef4444"/>
+  <circle cx="240" cy="180" r="3" fill="#ef4444"/>
+  
+  {/* Nhãn đỉnh */}
+  <text x="65" y="195" textAnchor="end" fontSize="14" fontWeight="bold" fill="#f59e0b">A</text>
+  <text x="85" y="45" textAnchor="end" fontSize="14" fontWeight="bold" fill="#f59e0b">B</text>
+  <text x="235" y="45" textAnchor="start" fontSize="14" fontWeight="bold" fill="#f59e0b">C</text>
+  <text x="255" y="195" textAnchor="start" fontSize="14" fontWeight="bold" fill="#f59e0b">D</text>
+  
+  {/* Nhãn cạnh */}
+  <text x="160" y="45" textAnchor="middle" fontSize="12" fill="#f59e0b" fontWeight="bold">b</text>
+  <text x="160" y="200" textAnchor="middle" fontSize="12" fill="#f59e0b" fontWeight="bold">a</text>
+  <text x="70" y="120" fontSize="12" fill="#f59e0b" fontWeight="bold">c</text>
+  <text x="250" y="120" fontSize="12" fill="#f59e0b" fontWeight="bold">c</text>
+  
+  {/* Nhãn chiều cao */}
+  <text x="115" y="120" fontSize="11" fill="#f59e0b" fontWeight="bold">h</text>
+</svg>
+
+**Ví dụ 4:** Tính chu vi hình thang cân
+
+a) Đáy lớn 12 cm, đáy nhỏ 8 cm, cạnh bên 5 cm
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 12 + 8 + 2 \times 5 = 30$ cm
+
+</div>
+
+b) Đáy lớn 15 cm, đáy nhỏ 10 cm, cạnh bên 6 cm
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi: $P = 15 + 10 + 2 \times 6 = 37$ cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một mảnh đất hình chữ nhật chiều dài 24 m, chiều rộng 18 m.
+
+a) Tính chu vi mảnh đất.
+
+b) Tính diện tích mảnh đất.
+
+c) Nếu trồng cây cách nhau 3 m dọc theo chu vi, cần bao nhiêu cây?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi: $P = 2 \times (24 + 18) = 84$ m
+
+b) Diện tích: $S = 24 \times 18 = 432$ m²
+
+c) Số cây: $84 : 3 = 28$ cây
+
+</div>
+
+**📝 Bài toán 2:** Một viên gạch hình thoi cạnh 20 cm.
+
+a) Tính chu vi viên gạch.
+
+b) Nếu lát một bức tường dài 4 m bằng những viên gạch này, cần bao nhiêu viên?
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi: $P = 4 \times 20 = 80$ cm
+
+b) Số viên: $400 : 20 = 20$ viên
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Hình chữ nhật**: 4 góc vuông, cạnh đối bằng nhau, chu vi $P = 2(a + b)$, diện tích $S = a \times b$
+- **Hình thoi**: 4 cạnh bằng nhau, đường chéo vuông góc, chu vi $P = 4a$
+- **Hình bình hành**: Cạnh đối song song và bằng nhau, chu vi $P = 2(a + b)$, diện tích $S = a \times h$
+- **Hình thang cân**: 2 cạnh bên bằng nhau, 2 góc ở mỗi đáy bằng nhau, chu vi $P = a + b + 2c$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính chu vi và diện tích hình chữ nhật:
+
+a) Chiều dài 12 cm, chiều rộng 8 cm
+
+b) Chiều dài 20 cm, chiều rộng 15 cm
+
+c) Chiều dài 25 cm, chiều rộng 10 cm
+
+d) Chiều dài 30 cm, chiều rộng 20 cm
+
+**Bài 2:** Tính chu vi hình thoi:
+
+a) Cạnh 8 cm
+
+b) Cạnh 11 cm
+
+c) Cạnh 15 cm
+
+d) Cạnh 25 cm
+
+**Bài 3:** Tính chu vi hình bình hành:
+
+a) Cạnh 10 cm, cạnh 6 cm
+
+b) Cạnh 14 cm, cạnh 8 cm
+
+c) Cạnh 18 cm, cạnh 12 cm
+
+d) Cạnh 20 cm, cạnh 15 cm
+
+**Bài 4:** Tính chu vi hình thang cân:
+
+a) Đáy lớn 16 cm, đáy nhỏ 10 cm, cạnh bên 7 cm
+
+b) Đáy lớn 20 cm, đáy nhỏ 12 cm, cạnh bên 8 cm
+
+c) Đáy lớn 24 cm, đáy nhỏ 14 cm, cạnh bên 9 cm
+
+d) Đáy lớn 30 cm, đáy nhỏ 18 cm, cạnh bên 10 cm
+
+**Bài 5:** So sánh:
+
+a) Chu vi hình chữ nhật (12 cm × 8 cm) và chu vi hình thoi cạnh 10 cm
+
+b) Diện tích hình chữ nhật (15 cm × 10 cm) và diện tích hình chữ nhật (20 cm × 8 cm)
+
+c) Chu vi hình bình hành (12 cm, 8 cm) và chu vi hình thang cân (12 cm, 8 cm, 6 cm)
+
+d) Chu vi hình thoi cạnh 12 cm và chu vi hình chữ nhật (14 cm × 10 cm)
+
+**Bài 6 (Thực tế):** Một sân bóng hình chữ nhật chiều dài 100 m, chiều rộng 60 m.
+
+a) Tính chu vi sân bóng.
+
+b) Tính diện tích sân bóng.
+
+c) Nếu lát sân bằng gạch hình vuông cạnh 1 m, cần bao nhiêu viên gạch?
+
+d) Nếu chạy vòng quanh sân 5 lần, chạy được bao nhiêu mét?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $P = 40$ cm, $S = 96$ cm²; b) $P = 70$ cm, $S = 300$ cm²; c) $P = 70$ cm, $S = 250$ cm²; d) $P = 100$ cm, $S = 600$ cm²
+
+**Bài 2:** a) $32$ cm; b) $44$ cm; c) $60$ cm; d) $100$ cm
+
+**Bài 3:** a) $32$ cm; b) $44$ cm; c) $60$ cm; d) $70$ cm
+
+**Bài 4:** a) $40$ cm; b) $48$ cm; c) $56$ cm; d) $68$ cm
+
+**Bài 5:** a) $40$ cm $=$ $40$ cm; b) $150$ cm² $>$ $160$ cm²; c) $40$ cm $=$ $40$ cm; d) $48$ cm $<$ $48$ cm
+
+**Bài 6:** a) $320$ m; b) $6000$ m²; c) $6000$ viên; d) $1600$ m
+
+</div>
+</details>

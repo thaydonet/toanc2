@@ -1,0 +1,457 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 29: Tính toán với số thập phân"
+description: "Tính toán với số thập phân - Toán 6 KNTT Chương 7"
+grade: "Lớp 6"
+chapter: "Chương VII: Số thập phân"
+currentSlug: "lop6/bai-29-tinh-toan-so-thap-phan"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tính 3,5 + 2,8:",
+    option_a: "6,3",
+    option_b: "5,3",
+    option_c: "6,0",
+    option_d: "5,13",
+    correct_option: "A",
+    explanation: "3,5 + 2,8 = 6,3",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính 12,7 - 5,3:",
+    option_a: "7,4",
+    option_b: "6,4",
+    option_c: "7,0",
+    option_d: "6,14",
+    correct_option: "A",
+    explanation: "12,7 - 5,3 = 7,4",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính 2,5 × 4:",
+    option_a: "10",
+    option_b: "8",
+    option_c: "6,5",
+    option_d: "10,0",
+    correct_option: "A",
+    explanation: "2,5 × 4 = 10",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính 15,6 ÷ 3:",
+    option_a: "5,2",
+    option_b: "4,2",
+    option_c: "5,0",
+    option_d: "6,2",
+    correct_option: "A",
+    explanation: "15,6 ÷ 3 = 5,2",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính 3,2 × 2,5:",
+    option_a: "8,0",
+    option_b: "8",
+    option_c: "7,0",
+    option_d: "6,5",
+    correct_option: "B",
+    explanation: "3,2 × 2,5 = 8,0 = 8",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính 17,28 ÷ 1,2:",
+    option_a: "14,4",
+    option_b: "1,44",
+    option_c: "144",
+    option_d: "0,144",
+    correct_option: "A",
+    explanation: "17,28 ÷ 1,2 = 14,4",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính (-2,5) + (-3,7):",
+    option_a: "-6,2",
+    option_b: "6,2",
+    option_c: "-1,2",
+    option_d: "1,2",
+    correct_option: "A",
+    explanation: "(-2,5) + (-3,7) = -(2,5 + 3,7) = -6,2",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính 8,5 - 12,3:",
+    option_a: "-3,8",
+    option_b: "3,8",
+    option_c: "-4,8",
+    option_d: "4,8",
+    correct_option: "A",
+    explanation: "8,5 - 12,3 = -(12,3 - 8,5) = -3,8",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thực hiện phép tính: 2,5 × 1,2 × 4",
+    option_a: "12",
+    option_b: "10",
+    option_c: "15",
+    option_d: "8",
+    correct_option: "A",
+    explanation: "2,5 × 1,2 × 4 = (2,5 × 4) × 1,2 = 10 × 1,2 = 12",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính 15,6 ÷ (2,4 × 0,5):",
+    option_a: "13",
+    option_b: "1,3",
+    option_c: "130",
+    option_d: "0,13",
+    correct_option: "A",
+    explanation: "2,4 × 0,5 = 1,2; 15,6 ÷ 1,2 = 13",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🛒 Tính tiền mua sách</h3>
+
+Bạn Lan mua 3 quyển vở, mỗi quyển giá 12 500 đồng. Hỏi Lan phải trả bao nhiêu tiền?
+
+Để tính được, ta cần biết cách **nhân số thập phân** với số tự nhiên và cách **cộng trừ số thập phân**.
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="cong-tru" style="margin-top:2rem;">📖 1. Cộng, trừ số thập phân</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:**
+1. Viết các số thập phân sao cho các chữ số cùng hàng thẳng cột nhau
+2. Cộng/trừ như cộng/trừ số tự nhiên
+3. Đặt dấu phẩy ở kết quả thẳng cột với các dấu phẩy của các số
+
+</div>
+
+**Ví dụ 1:** Tính 23,5 + 7,28
+
+```
+  23,50
++  7,28
+-------
+  30,78
+```
+
+**Ví dụ 2:** Tính 15,7 - 8,25
+
+```
+  15,70
+-  8,25
+-------
+   7,45
+```
+
+**Tính chất:** Cộng số thập phân có các tính chất như cộng số nguyên (giao hoán, kết hợp).
+
+<h3 id="nhan" style="margin-top:2rem;">📖 2. Nhân số thập phân</h3>
+
+<div class="box-dinh-ly">
+
+**a) Nhân số thập phân với số tự nhiên:**
+
+Nhân như nhân số tự nhiên, rồi đặt dấu phẩy sau $n$ chữ số từ phải sang ($n$ là số chữ số phần thập phân).
+
+**b) Nhân hai số thập phân:**
+
+1. Nhân như nhân số tự nhiên (bỏ qua dấu phẩy)
+2. Đếm tổng số chữ số phần thập phân của cả hai thừa số
+3. Đặt dấu phẩy có số chữ số thập phân bằng tổng đó
+
+</div>
+
+**Ví dụ 3:** Tính 2,5 × 4
+
+$2,5 \times 4 = 10$
+
+**Ví dụ 4:** Tính 3,24 × 2,5
+
+- $324 \times 25 = 8100$
+- 2,5 có 1 chữ số thập phân, 3,24 có 2 chữ số → tổng 3
+- Kết quả: 8,100 = 8,1
+
+<h3 id="chia" style="margin-top:2rem;">📖 3. Chia số thập phân</h3>
+
+<div class="box-dinh-ly">
+
+**a) Chia số thập phân cho số tự nhiên:**
+
+Chia như chia số tự nhiên, khi hạ phần thập phân xuống thì đặt dấu phẩy ở thương.
+
+**b) Chia hai số thập phân:**
+
+1. Biến đổi số chia thành số tự nhiên (nhân cả hai số với 10, 100, 1000...)
+2. Thực hiện phép chia
+
+</div>
+
+**Ví dụ 5:** Tính 15,6 ÷ 3
+
+$15,6 \div 3 = 5,2$
+
+**Ví dụ 6:** Tính 7,28 ÷ 1,3
+
+- $7,28 \div 1,3 = 72,8 \div 13$
+- $72,8 \div 13 = 5,6$
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📖 4. Tính chất các phép tính</h3>
+
+<div class="box-dinh-ly">
+
+Các phép tính với số thập phân có tính chất tương tự như với số nguyên:
+
+**Cộng:**
+- Giao hoán: $a + b = b + a$
+- Kết hợp: $(a + b) + c = a + (b + c)$
+- Cộng với 0: $a + 0 = a$
+
+**Nhân:**
+- Giao hoán: $a \times b = b \times a$
+- Kết hợp: $(a \times b) \times c = a \times (b \times c)$
+- Nhân với 1: $a \times 1 = a$
+- Nhân với 0: $a \times 0 = 0$
+- Phân phối: $a \times (b + c) = a \times b + a \times c$
+
+</div>
+
+**Ví dụ 7:** Tính nhanh $2,5 \times 4,7 + 2,5 \times 5,3$
+
+$= 2,5 \times (4,7 + 5,3) = 2,5 \times 10 = 25$
+
+</KhamPha>
+
+<LuyenTap title="Luyện tập">
+
+**Bài 1:** Tính:
+
+a) 23,5 + 7,8 b) 15,7 - 8,9 c) 12,34 + 5,66 d) 20 - 5,75
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 31,3 b) 6,8 c) 18 d) 14,25
+
+</div>
+
+**Bài 2:** Tính:
+
+a) 3,5 × 4 b) 2,8 × 3 c) 1,25 × 8 d) 0,5 × 1,2
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 14 b) 8,4 c) 10 d) 0,6
+
+</div>
+
+**Bài 3:** Tính:
+
+a) 17,5 ÷ 5 b) 25,2 ÷ 3 c) 8,64 ÷ 1,2 d) 15,6 ÷ 0,4
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 3,5 b) 8,4 c) 7,2 d) 39
+
+</div>
+
+**Bài 4:** Tính nhanh:
+
+a) 2,5 × 7 × 4 b) 1,25 × 8 × 0,8
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 2,5 × 4 × 7 = 10 × 7 = 70
+
+b) 1,25 × 8 × 0,8 = 10 × 0,8 = 8
+
+</div>
+
+**Bài 5:** Tính bằng cách hợp lý:
+
+a) 4,7 × 5,3 + 4,7 × 4,7 b) 2,5 × (3,8 + 4,2)
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 4,7 × (5,3 + 4,7) = 4,7 × 10 = 47
+
+b) 2,5 × 8 = 20
+
+</div>
+
+</LuyenTap>
+
+<VanDung title="Vận dụng">
+
+**Bài 1:** Một quả táo nặng 0,25 kg, giá 30 000 đồng/kg. Hỏi quả táo nặng bao nhiêu kg và có giá bao nhiêu?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Quả táo nặng: 0,25 kg
+
+Giá tiền: 0,25 × 30 000 = 7 500 đồng
+
+</div>
+
+**Bài 2:** Một người đi xe máy quãng đường 45,5 km với vận tốc 35 km/giờ. Tính thời gian đi.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Thời gian = 45,5 ÷ 35 = 1,3 giờ
+
+</div>
+
+**Bài 3:** Tính chu vi và diện tích hình chữ nhật có chiều dài 12,5 cm và chiều rộng 8,4 cm.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi = 2 × (12,5 + 8,4) = 2 × 20,9 = 41,8 cm
+
+Diện tích = 12,5 × 8,4 = 105 cm²
+
+</div>
+
+</VanDung>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính:
+
+a) 34,7 + 12,5 b) 56,3 - 28,9 c) 8,75 + 1,25 d) 100 - 45,8
+
+**Bài 2:** Tính:
+
+a) 3,5 × 6 b) 2,8 × 1,5 c) 7,2 ÷ 0,8 d) 15,6 ÷ 3
+
+**Bài 3:** Tính:
+
+a) (12,5 + 8,7) × 2 b) 25,8 - 3,5 × 4
+
+**Bài 4:** Tính nhanh:
+
+a) 2,5 × 3,7 + 2,5 × 6,3 b) 1,25 × 7 × 8
+
+**Bài 5:** Một cửa hàng ngày thứ nhất bán được 125,5 kg gạo, ngày thứ hai bán được nhiều hơn ngày thứ nhất 23,8 kg. Ngày thứ ba bán được bằng trung bình cộng của hai ngày đầu. Hỏi cả ba ngày cửa hàng bán được bao nhiêu kg gạo?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 47,2; b) 27,4; c) 10; d) 54,2
+
+**Bài 2:** a) 21; b) 4,2; c) 9; d) 5,2
+
+**Bài 3:** a) 42,4; b) 11,8
+
+**Bài 4:** a) 25; b) 70
+
+**Bài 5:** 412,2 kg
+
+</div>
+</details>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Tổng kết bài học:**
+
+**1. Cộng, trừ số thập phân**
+- Đặt các chữ số cùng hàng thẳng cột
+- Cộng/trừ như số tự nhiên
+- Đặt dấu phẩy thẳng cột với các dấu phẩy ban đầu
+
+**2. Nhân số thập phân**
+- Nhân như số tự nhiên
+- Đếm tổng số chữ số phần thập phân của cả hai thừa số
+- Đặt dấu phẩy có số chữ số bằng tổng đó
+
+**3. Chia số thập phân**
+- Biến đổi số chia thành số tự nhiên (nhân cả hai với 10, 100...)
+- Thực hiện phép chia
+
+**4. Tính chất**
+- Giao hoán, kết hợp, phân phối đều đúng như với số nguyên
+
+</div>
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính:
+
+a) 34,7 + 12,5 b) 56,3 - 28,9 c) 8,75 + 1,25 d) 100 - 45,8
+
+**Bài 2:** Tính:
+
+a) 3,5 × 6 b) 2,8 × 1,5 c) 7,2 ÷ 0,8 d) 15,6 ÷ 3
+
+**Bài 3:** Tính:
+
+a) (12,5 + 8,7) × 2 b) 25,8 - 3,5 × 4
+
+**Bài 4:** Tính nhanh:
+
+a) 2,5 × 3,7 + 2,5 × 6,3 b) 1,25 × 7 × 8
+
+**Bài 5:** Một cửa hàng ngày thứ nhất bán được 125,5 kg gạo, ngày thứ hai bán được nhiều hơn ngày thứ nhất 23,8 kg. Ngày thứ ba bán được bằng trung bình cộng của hai ngày đầu. Hỏi cả ba ngày cửa hàng bán được bao nhiêu kg gạo?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 47,2; b) 27,4; c) 10; d) 54,2
+
+**Bài 2:** a) 21; b) 4,2; c) 9; d) 5,2
+
+**Bài 3:** a) 42,4; b) 11,8
+
+**Bài 4:** a) 25; b) 70
+
+**Bài 5:** 412,2 kg
+
+</div>
+</details>
+
+<QuizSession client:load questions={quizData} />
+

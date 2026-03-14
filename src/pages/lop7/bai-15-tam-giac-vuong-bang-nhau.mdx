@@ -1,0 +1,177 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 15: Các trường hợp bằng nhau của tam giác vuông"
+description: "Trường hợp bằng nhau của tam giác vuông - Toán 7 KNTT Chương 4"
+grade: "Lớp 7"
+chapter: "Chương IV: Tam giác bằng nhau"
+currentSlug: "lop7/bai-15-tam-giac-vuong-bang-nhau"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai tam giác vuông bằng nhau nếu có:",
+    option_a: "Hai cạnh góc vuông bằng nhau",
+    option_b: "Chỉ góc vuông bằng nhau",
+    option_c: "Chỉ cạnh huyền bằng nhau",
+    option_d: "Ba góc bằng nhau",
+    correct_option: "A",
+    explanation: "Hai tam giác vuông bằng nhau nếu có hai cạnh góc vuông tương ứng bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trường hợp cạnh huyền - góc nhọn là:",
+    option_a: "Cạnh huyền và một góc nhọn bằng nhau",
+    option_b: "Chỉ cạnh huyền bằng nhau",
+    option_c: "Chỉ góc nhọn bằng nhau",
+    option_d: "Ba cạnh bằng nhau",
+    correct_option: "A",
+    explanation: "Hai tam giác vuông có cạnh huyền và một góc nhọn bằng nhau thì bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trường hợp cạnh huyền - cạnh góc vuông là:",
+    option_a: "Cạnh huyền và một cạnh góc vuông bằng nhau",
+    option_b: "Hai cạnh huyền bằng nhau",
+    option_c: "Hai cạnh góc vuông bằng nhau",
+    option_d: "Ba cạnh bằng nhau",
+    correct_option: "A",
+    explanation: "Hai tam giác vuông có cạnh huyền và một cạnh góc vuông bằng nhau thì bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các trường hợp bằng nhau của tam giác vuông:",
+    option_a: "Hai cạnh góc vuông",
+    option_b: "Cạnh huyền - góc nhọn",
+    option_c: "Cạnh huyền - cạnh góc vuông",
+    option_d: "Cạnh góc vuông - góc nhọn kề",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều là trường hợp bằng nhau của tam giác vuông.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Tam giác vuông bằng nhau</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Tam giác vuông</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Có một góc vuông</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✓</div>
+    <strong>Trường hợp đặc biệt</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cạnh huyền - cạnh góc vuông</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="truong-hop-chung">📖 1. Các trường hợp chung</h3>
+
+Tam giác vuông cũng áp dụng được các trường hợp bằng nhau của tam giác thường:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. **Hai cạnh góc vuông:** Nếu hai cạnh góc vuông của tam giác vuông này bằng hai cạnh góc vuông của tam giác vuông kia thì hai tam giác vuông đó bằng nhau (c.g.c)
+
+2. **Cạnh góc vuông và góc nhọn kề:** Nếu một cạnh góc vuông và góc nhọn kề cạnh đó của tam giác vuông này bằng một cạnh góc vuông và góc nhọn kề cạnh đó của tam giác vuông kia thì hai tam giác vuông đó bằng nhau (g.c.g)
+
+</div>
+
+<h3 id="truong-hop-dac-biet" style="margin-top:2rem;">⭐ 2. Trường hợp đặc biệt</h3>
+
+<div class="box-dinh-ly">
+
+**Trường hợp cạnh huyền - góc nhọn:**
+
+Nếu cạnh huyền và một góc nhọn của tam giác vuông này bằng cạnh huyền và một góc nhọn của tam giác vuông kia thì hai tam giác vuông đó bằng nhau.
+
+**Trường hợp cạnh huyền - cạnh góc vuông:**
+
+Nếu cạnh huyền và một cạnh góc vuông của tam giác vuông này bằng cạnh huyền và một cạnh góc vuông của tam giác vuông kia thì hai tam giác vuông đó bằng nhau.
+
+</div>
+
+**Ví dụ:** Tam giác $ABC$ và $DEF$ vuông tại $A$ và $D$, có:
+- $BC = EF$ (cạnh huyền)
+- $AB = DE$ (cạnh góc vuông)
+
+Kết luận: $\\triangle ABC = \\triangle DEF$ (cạnh huyền - cạnh góc vuông)
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Cho $\\triangle ABC$ vuông tại $A$, có $AB = AC$. Kẻ $AH \\perp BC$. Chứng minh $\\triangle ABH = \\triangle ACH$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Xét $\\triangle ABH$ và $\\triangle ACH$ (vuông tại $H$) có:
+- $AB = AC$ (gt)
+- $AH$ chung
+
+Vậy $\\triangle ABH = \\triangle ACH$ (cạnh huyền - cạnh góc vuông)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Hai cạnh góc vuông**: Áp dụng c.g.c
+- **Cạnh góc vuông - góc nhọn kề**: Áp dụng g.c.g
+- **Cạnh huyền - góc nhọn**: Trường hợp đặc biệt
+- **Cạnh huyền - cạnh góc vuông**: Trường hợp đặc biệt
+- Tam giác vuông có 4 trường hợp bằng nhau
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập</h3>
+
+**Bài 1:** Cho $\\triangle ABC$ vuông tại $A$, có $AB = 3$ cm, $AC = 4$ cm. Tam giác $DEF$ vuông tại $D$, có $DE = 3$ cm, $DF = 4$ cm. Hai tam giác có bằng nhau không?
+
+**Bài 2:** Cho $\\triangle ABC$ vuông cân tại $A$. Kẻ $AH \\perp BC$. Chứng minh $\\triangle ABH = \\triangle ACH$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** Có, theo trường hợp hai cạnh góc vuông
+
+**Bài 2:** Dùng cạnh huyền - cạnh góc vuông với $AB = AC$, $AH$ chung
+
+</div>
+</details>
