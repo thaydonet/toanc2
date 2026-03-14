@@ -59,10 +59,10 @@ const availableHrefs = new Set(
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.12.2/distrib/jsxgraph.css" />
   <script is:inline src="https://cdn.jsdelivr.net/npm/jsxgraph@1.12.2/distrib/jsxgraphcore.js"></script>
 
-  <!-- KaTeX Auto Render -->
+  <!-- KaTeX Auto Render — chỉ dùng $ và $$ để tránh render nhầm (...) thường thành toán -->
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.37/dist/katex.min.js" crossorigin="anonymous"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.37/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-      onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
+      onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] });"></script>
 </head>
 <body>
   <div class="site-wrapper">
