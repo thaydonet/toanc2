@@ -11,6 +11,13 @@ import { useState, useCallback, useEffect, useMemo } from 'react';
 import 'katex/dist/katex.min.css';
 import Latex from 'react-latex-next';
 
+// Chỉ dùng $...$ và $$...$$ làm delimiters — KHÔNG dùng (...) hay [...] để
+// tránh render nhầm văn bản thường có dấu ngoặc đơn/vuông thành công thức toán.
+const LATEX_DELIMITERS = [
+  { left: '$$', right: '$$', display: true },
+  { left: '$', right: '$', display: false },
+];
+
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 export interface QuizQuestion {
@@ -390,7 +397,7 @@ export default function QuizSession({ questions }: Props) {
                 <span>{!a ? '⬜' : isTL ? '📝' : ok ? '✅' : '❌'}</span>
                 <span>
                   <strong>Câu {i + 1}{nq.type === 'msq' ? ' (chọn nhiều)' : nq.type === 'sa' ? ' (tự điền)' : nq.type === 'tl' ? ' (tự luận)' : ''}:</strong>{' '}
-                  <Latex>{nq.question}</Latex>
+                  <Latex delimiters={LATEX_DELIMITERS}>{nq.question}</Latex>
                 </span>
               </div>
             );
@@ -418,7 +425,7 @@ export default function QuizSession({ questions }: Props) {
               <button key={opt.key} className={`quiz-option ${state}`}
                 onClick={() => selectMCQ(opt.key)} disabled={answered}>
                 <span className="option-key">{opt.key}</span>
-                <span><Latex>{opt.label}</Latex></span>
+                <span><Latex delimiters={LATEX_DELIMITERS}>{opt.label}</Latex></span>
               </button>
             );
           })}
@@ -457,7 +464,7 @@ export default function QuizSession({ questions }: Props) {
                     {isSelected ? '✓' : ''}
                   </span>
                   <span className="option-key">{opt.key}</span>
-                  <span><Latex>{opt.label}</Latex></span>
+                  <span><Latex delimiters={LATEX_DELIMITERS}>{opt.label}</Latex></span>
                 </button>
               );
             })}
@@ -602,7 +609,7 @@ export default function QuizSession({ questions }: Props) {
       )}
 
       {/* Question */}
-      <p className="quiz-question"><Latex>{q.question}</Latex></p>
+      <p className="quiz-question"><Latex delimiters={LATEX_DELIMITERS}>{q.question}</Latex></p>
 
       {/* Answer area */}
       {renderAnswer()}
@@ -622,7 +629,7 @@ export default function QuizSession({ questions }: Props) {
                   <strong>Đáp án đúng: {q.correctKeys.join(', ')}</strong>
                 </p>
               )}
-              <p><Latex>{q.explanation}</Latex></p>
+              <p><Latex delimiters={LATEX_DELIMITERS}>{q.explanation}</Latex></p>
             </div>
           </div>
           <div style={{ marginTop: '1.25rem', display: 'flex', justifyContent: 'flex-end' }}>
@@ -635,3 +642,4 @@ export default function QuizSession({ questions }: Props) {
     </div>
   );
 }
+
