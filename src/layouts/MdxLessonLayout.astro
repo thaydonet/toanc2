@@ -1,0 +1,38 @@
+---
+/**
+ * Layout dùng riêng cho các file bài học .mdx
+ * Trong frontmatter của .mdx, khai báo:
+ *   layout: ../../layouts/MdxLessonLayout.astro
+ *   title: "..."
+ *   grade: "Lớp 8"
+ *   chapter: "Chương 6: ..."
+ *   currentSlug: "lop8/bai-21-phan-thuc-dai-so"
+ *   toc: [...]
+ *
+ * prevLesson / nextLesson được tự động tính từ curriculum.ts
+ * nhưng có thể override bằng cách khai báo trong frontmatter.
+ */
+import LessonLayout from './LessonLayout.astro';
+import { getPrevNextLesson } from '../lib/lessonNav';
+
+const { frontmatter } = Astro.props;
+
+const auto = frontmatter.currentSlug
+  ? getPrevNextLesson(frontmatter.currentSlug)
+  : { prevLesson: undefined, nextLesson: undefined };
+
+const prevLesson = frontmatter.prevLesson ?? auto.prevLesson;
+const nextLesson = frontmatter.nextLesson ?? auto.nextLesson;
+---
+
+<LessonLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  grade={frontmatter.grade}
+  chapter={frontmatter.chapter}
+  currentSlug={frontmatter.currentSlug}
+  prevLesson={prevLesson}
+  nextLesson={nextLesson}
+>
+  <slot />
+</LessonLayout>

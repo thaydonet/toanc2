@@ -1,0 +1,401 @@
+---
+import '../styles/global.css';
+import { curriculumData } from '../lib/curriculum';
+
+// TOC tự động từ DOM — không cần khai báo tay nữa
+
+interface Props {
+  title: string;
+  description?: string;
+  grade?: string;
+  chapter?: string;
+  currentSlug?: string;
+  prevLesson?: { href: string; title: string };
+  nextLesson?: { href: string; title: string };
+  toc?: unknown; // giữ để legacy không lỗi, không dùng nữa
+}
+
+const {
+  title, description = 'Toán THCS - Kết nối tri thức với cuộc sống',
+  grade, chapter, currentSlug, prevLesson, nextLesson,
+} = Astro.props;
+
+const currentGradeSlug = currentSlug?.split('/')[0] || '';
+const currentCurriculum = curriculumData[currentGradeSlug];
+
+const getGradeIcon = (g: string) => {
+  if (g === 'lop6') return '🍕';
+  if (g === 'lop7') return '📐';
+  if (g === 'lop8') return '📈';
+  if (g === 'lop9') return '🧠';
+  return '📚';
+};
+
+// Tự động phát hiện các file trang thực tế tồn tại
+// import.meta.glob trả về object { './path': () => ... }
+const allPageFiles = import.meta.glob('../pages/**/*.{astro,mdx,md}');
+
+// Chuyển các path file → href dạng /lop6/bai-1-tap-hop
+const availableHrefs = new Set(
+  Object.keys(allPageFiles)
+    .map(p => p
+      .replace('../pages', '')           // bỏ prefix
+      .replace(/\.(astro|mdx|md)$/, '') // bỏ extension
+      .replace(/\/index$/, '')           // bỏ /index
+    )
+    .filter(h => h !== '' && h !== '/')
+);
+---
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | Toán THCS</title>
+  <meta name="description" content={description} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  
+  <!-- JSXGraph (must load before React components, sets window.JXG) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.12.2/distrib/jsxgraph.css" />
+  <script is:inline src="https://cdn.jsdelivr.net/npm/jsxgraph@1.12.2/distrib/jsxgraphcore.js"></script>
+
+  <!-- KaTeX Auto Render -->
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.37/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.37/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+      onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
+</head>
+<body>
+  <div class="site-wrapper">
+    <header class="site-header">
+      <!-- Nút Hamburger Mobile -->
+      <button id="mobile-menu-btn" aria-label="Menu" class="mobile-menu-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="/" class="logo">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <rect width="34" height="34" rx="9" fill="rgba(255,255,255,0.22)"/>
+          <text x="17" y="24" text-anchor="middle" font-size="20" font-weight="bold" fill="white" font-family="Georgia,serif">π</text>
+        </svg>
+        Toán THCS
+      </a>
+      <nav class="desktop-nav">
+        <a href="/" class={!currentGradeSlug ? 'active' : ''}>Trang chủ</a>
+        <a href="/lop6" class={currentGradeSlug === 'lop6' ? 'active' : ''}>Lớp 6</a>
+        <a href="/lop7" class={currentGradeSlug === 'lop7' ? 'active' : ''}>Lớp 7</a>
+        <a href="/lop8" class={currentGradeSlug === 'lop8' ? 'active' : ''}>Lớp 8</a>
+        <a href="/lop9" class={currentGradeSlug === 'lop9' ? 'active' : ''}>Lớp 9</a>
+      </nav>
+    </header>
+
+    <div class="page-body">
+      <!-- Mobile Backdrop -->
+      <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+      <!-- Left Sidebar (Curriculum) -->
+      {currentCurriculum ? (
+        <aside id="left-sidebar" class="sidebar left-sidebar">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px dashed #e2e8f0;">
+             <span style="font-size: 2rem;">{getGradeIcon(currentGradeSlug)}</span>
+             <div>
+                <h3 style="font-size: 1.1rem; color: var(--kntt-blue-800); margin: 0;">{currentCurriculum.title}</h3>
+                <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;">MỤC LỤC KNTT</span>
+             </div>
+          </div>
+          <div class="curriculum-menu">
+            {currentCurriculum.volumes.map(vol => (
+              <div class="curriculum-volume" style="margin-bottom: 1.5rem;">
+                <div style="font-size: 0.8rem; font-weight: 800; color: #ef4444; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;">
+                  {vol.title}
+                </div>
+                {vol.chapters.map(chap => (
+                  <div class="curriculum-chapter" style="margin-bottom: 0.75rem;">
+                    <div style="font-size: 0.85rem; font-weight: 700; color: #ef4444; margin-bottom: 0.4rem; padding-left: 0.25rem;">
+                      {chap.title}
+                    </div>
+                    <ul class="sidebar-lesson-list">
+                      {chap.lessons.map(lesson => {
+                        const isAvailable = availableHrefs.has(lesson.href);
+                        const isDemo = lesson.title.includes('(Demo)');
+                        const isActive = currentSlug === lesson.href.slice(1);
+                        const cleanTitle = lesson.title.replace(' (Demo)', '');
+                        return (
+                          <li>
+                            {isAvailable ? (
+                              <a href={lesson.href} class={isActive ? 'active' : ''}>
+                                {isDemo && <span style="font-size:0.6rem; padding: 0.1rem 0.3rem; border-radius: 4px; background: #dbeafe; color: #1d4ed8; font-weight: 700;">LIVE</span>}
+                                <span>{cleanTitle}</span>
+                              </a>
+                            ) : (
+                              <a
+                                href="#"
+                                class={`lesson-coming-soon${isActive ? ' active' : ''}`}
+                                data-title={cleanTitle}
+                                aria-label={`${cleanTitle} – bài học đang soạn`}
+                              >
+                                <span>{cleanTitle}</span>
+                              </a>
+                            )}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </aside>
+      ) : (
+        <div id="left-sidebar" class="sidebar left-sidebar">
+          <slot name="home-sidebar" />
+        </div>
+      )}
+
+      <!-- Main Content -->
+      <main class="main-content-wrapper">
+        <div class="content-area">
+          {(grade || chapter) && (
+            <div style="margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid #e2e8f0">
+              <div class="lesson-chapter">{grade && grade}{chapter && ` · ${chapter}`}</div>
+              <h1 class="lesson-main-title">{title}</h1>
+            </div>
+          )}
+
+          <slot />
+
+          {(prevLesson || nextLesson) && (
+            <nav class="lesson-nav">
+              {prevLesson
+                ? <a href={prevLesson.href}>← {prevLesson.title}</a>
+                : <span />
+              }
+              {nextLesson && <a href={nextLesson.href}>{nextLesson.title} →</a>}
+            </nav>
+          )}
+        </div>
+      </main>
+
+      <!-- Right Sidebar (TOC tự động) -->
+      <button id="mobile-toc-btn" class="mobile-toc-btn" aria-label="Mục lục bài học">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="8" y1="6" x2="21" y2="6"></line>
+          <line x1="8" y1="12" x2="21" y2="12"></line>
+          <line x1="8" y1="18" x2="21" y2="18"></line>
+          <line x1="3" y1="6" x2="3.01" y2="6"></line>
+          <line x1="3" y1="12" x2="3.01" y2="12"></line>
+          <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        </svg>
+      </button>
+      <aside id="right-sidebar" class="sidebar right-sidebar">
+        <div class="toc-container">
+          <h4 class="toc-title">MỤC LỤC BÀI HỌC</h4>
+          <ul id="auto-toc" class="toc-list"></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="coming-soon-toast" role="alert" aria-live="polite" style="
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    background: #1e293b;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    z-index: 9999;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  ">
+    <span style="font-size:1.1rem;">✏️</span>
+    <span id="coming-soon-toast-msg">Bài học đang soạn</span>
+  </div>
+
+  <script>
+    // ── Helpers ──────────────────────────────────────────────────────────────
+    function slugify(text) {
+      return text
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // bỏ dấu
+        .replace(/đ/g, 'd').replace(/Đ/g, 'd')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+    }
+
+    // ── Build TOC tự động ────────────────────────────────────────────────────
+    function buildAutoToc() {
+      const tocList = document.getElementById('auto-toc');
+      const content = document.querySelector('.content-area');
+      if (!tocList || !content) return;
+
+      // Chỉ lấy h2 và h3, bỏ qua h3 ẩn (display:none)
+      const headings = Array.from(
+        content.querySelectorAll('h2, h3')
+      ).filter(h => {
+        // Bỏ qua heading ẩn
+        if (window.getComputedStyle(h).display === 'none') return false;
+        // Bỏ qua heading không có text thực
+        const text = h.textContent?.trim();
+        return text && text.length > 0;
+      });
+
+      if (headings.length === 0) {
+        // Ẩn sidebar nếu không có heading
+        const sidebar = document.getElementById('right-sidebar');
+        const tocBtn = document.getElementById('mobile-toc-btn');
+        if (sidebar) sidebar.style.display = 'none';
+        if (tocBtn) tocBtn.style.display = 'none';
+        return;
+      }
+
+      tocList.innerHTML = '';
+      headings.forEach(h => {
+        // Tự thêm id nếu chưa có
+        if (!h.id) {
+          h.id = slugify(h.textContent || '');
+        }
+
+        // Lấy text sạch (bỏ emoji đầu nếu muốn — để nguyên cho đẹp)
+        const text = h.textContent?.trim() || '';
+        const isH3 = h.tagName === 'H3';
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = text;
+        if (isH3) {
+          a.style.paddingLeft = '0.75rem';
+          a.style.fontSize = '0.8rem';
+          a.style.opacity = '0.85';
+        }
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      // ── Highlight khi scroll (IntersectionObserver) ──────────────────────
+      const allLinks = () => Array.from(tocList.querySelectorAll('a'));
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            allLinks().forEach(a => a.classList.remove('active'));
+            const active = tocList.querySelector(`a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+
+      headings.forEach(h => observer.observe(h));
+
+      // Close mobile TOC khi bấm link
+      allLinks().forEach(link => {
+        link.addEventListener('click', () => {
+          const sidebar = document.getElementById('right-sidebar');
+          const bd = document.getElementById('sidebar-backdrop');
+          if (window.innerWidth <= 1150 && sidebar?.classList.contains('open')) {
+            sidebar.classList.remove('open');
+            bd?.classList.remove('open');
+            document.body.style.overflow = '';
+          }
+        });
+      });
+    }
+
+    // ── Mobile sidebar & backdrop ─────────────────────────────────────────
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const leftSidebar = document.getElementById('left-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const tocBtn = document.getElementById('mobile-toc-btn');
+    const rightSidebar = document.getElementById('right-sidebar');
+
+    const updateBodyOverflow = () => {
+      const leftOpen = leftSidebar?.classList.contains('open');
+      const rightOpen = rightSidebar?.classList.contains('open');
+      document.body.style.overflow = (leftOpen || rightOpen) ? 'hidden' : '';
+    };
+
+    if (menuBtn && leftSidebar && backdrop) {
+      const toggleLeftMenu = () => {
+        if (window.innerWidth <= 900) {
+          leftSidebar.classList.toggle('open');
+          backdrop.classList.toggle('open');
+          updateBodyOverflow();
+        } else {
+          leftSidebar.classList.toggle('collapsed');
+        }
+      };
+      menuBtn.addEventListener('click', toggleLeftMenu);
+      backdrop.addEventListener('click', () => {
+        leftSidebar.classList.remove('open');
+        rightSidebar?.classList.remove('open');
+        backdrop.classList.remove('open');
+        updateBodyOverflow();
+      });
+    }
+
+    if (tocBtn && rightSidebar && backdrop) {
+      tocBtn.addEventListener('click', () => {
+        rightSidebar.classList.toggle('open');
+        backdrop.classList.toggle('open');
+        updateBodyOverflow();
+      });
+    }
+
+    // ── Toast "bài học đang soạn" ───────────────────────────────────────
+    const toast = document.getElementById('coming-soon-toast');
+    const toastMsg = document.getElementById('coming-soon-toast-msg');
+    let toastTimer = null;
+
+    function showComingSoonToast(title) {
+      if (!toast) return;
+      if (toastMsg) toastMsg.textContent = `"${title}" đang được soạn...`;
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      toast.style.opacity = '1';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(120%)';
+        toast.style.opacity = '0';
+      }, 2800);
+    }
+
+    document.querySelectorAll('a.lesson-coming-soon').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const title = link.dataset.title || 'Bài học';
+        showComingSoonToast(title);
+        // Close mobile sidebar if open
+        const ls = document.getElementById('left-sidebar');
+        const bd = document.getElementById('sidebar-backdrop');
+        if (window.innerWidth <= 900 && ls?.classList.contains('open')) {
+          ls.classList.remove('open');
+          bd?.classList.remove('open');
+          updateBodyOverflow();
+        }
+      });
+    });
+
+    // Chạy sau khi DOM sẵn sàng
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', buildAutoToc);
+    } else {
+      buildAutoToc();
+    }
+  </script>
+</body>
+</html>
