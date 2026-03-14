@@ -1,8 +1,0 @@
----
-interface Props { title?: string; so?: number }
-const { title = 'Luyện tập', so } = Astro.props;
----
-<section class="lesson-section section-luyen-tap animate-fade-in-up">
-  <span class="section-badge">✏️ {title}{so ? ` ${so}` : ''}</span>
-  <slot />
-</section>
