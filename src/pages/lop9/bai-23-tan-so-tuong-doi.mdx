@@ -1,0 +1,277 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 23: Bảng tần số tương đối và biểu đồ tần số tương đối"
+description: "Khái niệm tần số tương đối, bảng tần số tương đối và các dạng biểu đồ thường gặp - Toán 9 Kết nối tri thức"
+grade: "Lớp 9"
+chapter: "Chương VII: Tần số và tần số tương đối"
+currentSlug: "lop9/bai-23-tan-so-tuong-doi"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import StatisticsCalculator from '../../components/interactive/StatisticsCalculator';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tần số tương đối của một giá trị trong mẫu số liệu cho biết đại lượng nào?",
+    option_a: "Số lần xuất hiện của đại lượng đó.",
+    option_b: "Tỉ số phần trăm giữa tần số của một giá trị và cỡ mẫu $N$.",
+    option_c: "Độ lệch của giá trị đó so với trung bình cộng.",
+    option_d: "Tổng số phần tử của mẫu số liệu.",
+    correct_option: "B",
+    explanation: "Tần số tương đối $f$ được xác định bằng công thức $f = \\frac{n}{N} \\cdot 100\\%$, thể hiện tỉ lệ xuất hiện yếu tố đó so với toàn bộ mẫu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong một mẫu gồm 50 học sinh, có 15 học sinh đạt loại Giỏi. Tần số tương đối của học sinh đạt loại Giỏi là:",
+    option_a: "15%",
+    option_b: "30%",
+    option_c: "35%",
+    option_d: "50%",
+    correct_option: "B",
+    explanation: "Áp dụng công thức tính tỉ lệ phần trăm: $f = \\frac{15}{50} \\cdot 100\\% = 30\\%$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tổng các tần số tương đối của tất cả các giá trị trong mẫu luôn bằng bao nhiêu?",
+    option_a: "100%",
+    option_b: "Bằng cỡ mẫu $N$",
+    option_c: "Tuỳ thuộc vào mẫu khảo sát",
+    option_d: "Bằng $1$ (nếu không biểu diễn dưới dạng phần trăm)",
+    correct_option: "A",
+    explanation: "Tổng tất cả các tần số tương đối của một mẫu thống kê luôn đạt trạng thái nguyên vẹn, tức là $100\\%$ (hoặc bằng $1$ nếu xét tỉ lệ thập phân).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ nào sau đây thường được sử dụng nhằm mục đích mô tả sự cơ cấu thành phần bằng tần số tương đối?",
+    option_a: "Biểu đồ đoạn thẳng",
+    option_b: "Biểu đồ Venn",
+    option_c: "Biểu đồ hình quạt tròn (Pie Chart)",
+    option_d: "Sơ đồ cây",
+    correct_option: "C",
+    explanation: "Biểu đồ hình quạt tròn là loại biểu đồ phù hợp nhất để thể hiện tỉ lệ phần trăm (tần số tương đối) đóng góp của các giá trị riêng lẻ trong toàn bộ tổng thể kinh tế, xã hội, v...v.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hình quạt biểu diễn tần số tương đối 25% sẽ có góc ở tâm là bao nhiêu độ?",
+    option_a: "25 độ",
+    option_b: "90 độ",
+    option_c: "180 độ",
+    option_d: "360 độ",
+    correct_option: "B",
+    explanation: "Góc ở tâm quạt tròn được đo bằng tỉ lệ 360 độ tương ứng với 100%. Nếu tần số tương đối là 25%, góc tâm bằng $\\frac{25}{100} \\cdot 360 = 90$ độ (góc vuông).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những ưu điểm nào thuộc về bảng/biểu đồ tần số tương đối so với bảng tần số thông thường?",
+    option_a: "Luôn biết được chính xác cỡ mẫu của cuộc thăm dò là bao nhiêu.",
+    option_b: "Giúp so sánh tỉ lệ, cơ cấu các thành phần một cách tổng quát, ngay cả khi hai mẫu số liệu lớn bé khác nhau.",
+    option_c: "Thể hiện xu hướng phân bố của dãy số liệu ở góc nhìn thị phần, kết cấu.",
+    option_d: "Dễ dàng quy giá trị số lượng cụ thể sang hệ quy chiếu tổng 100%.",
+    correct_option: "B,C,D",
+    explanation: "Tần số tương đối nhằm chuẩn hoá bộ dữ liệu thành nhóm tỉ lệ %, do vậy nó đặc biệt hữu ích khi dùng để đối chiếu cơ cấu (vd: cơ cấu sinh viên thành thị/nông thôn ở hai trường đại học khác quy mô mẫu). Nó không cho phép nhận biết quy mô mẫu thăm dò tuyệt đối ($N$).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Bạn An đã thăm dò ý kiến 40 người về loại quả yêu thích. Biết rằng có 8 người chọn quả dâu tây. Tính tần số tương đối (%) của loại dâu tây trong nhóm thăm dò trên (không nhập kí hiệu %).",
+    correct_option: "20",
+    explanation: "Tần số tương đối: $f = \\frac{8}{40} \\cdot 100\\% = 20\\%$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Trong một bảng thống kê có tổng số $N = 120$ mẫu vật. Tần số tương đối của phần tử X đo được là 15%. Tính số lần phần tử X thực tế xuất hiện trong mẫu số liệu (tần số $n$).",
+    correct_option: "18",
+    explanation: "Biến đổi từ tần số tương đối: $n = \\frac{f \\cdot N}{100} = \\frac{15 \\cdot 120}{100} = 18$ mẫu.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">📈 Quan sát góc độ cơ cấu thành phần</h3>
+
+Trên bản tin thời sự, có một đoạn phóng sự kinh tế đề cập đến lượng gạo xuất khẩu giữa hai vùng trồng nông nghiệp: 
+> "Năm nay, vùng A xuất khẩu $4$ triệu tấn lúa, và vùng B xuất khẩu $3$ triệu tấn lúa. Nếu chỉ nhìn thoáng qua, Vùng A có công lớn hơn do sản lượng đóng góp nhiều hơn. Nhưng khi quy đổi về tỉ trọng xuất khẩu trên tổng khối lượng nông sản toàn vùng trồng, việc sản xuất lúa tương đương chiếm tới $60\%$ tại Vùng B nhưng chỉ đạt có $20\%$ tỉ trọng kinh tế Vùng A."
+
+Trong phân tích số liệu học thuật, có những lúc ta không chỉ quan tâm tới những lượng số lớn lẻ loi tuyệt đối, mà thay vì đó sẽ so sánh số liệu đó biểu thị **bao nhiêu phần trăm** so với tổng số chung để khảo sát hiệu suất. Giá trị dạng "phần trăm" này được gọi là Tần số tương đối.
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="tan-so-tuong-doi" style="margin-top:2rem;">📖 1. Tần số tương đối và Bảng phân loại</h3>
+
+<div class="box-dinh-nghia">
+
+Cho mẫu chứa $N$ số liệu. Giả sử giá trị (hoặc hiện tượng) $x_i$ xuất hiện trong mẫu với một tần số là $n_i$.  
+**Tần số tương đối** (kí hiệu là $f_i$) của trị số $x_i$ là tỉ số phần trăm giữa tần số $n_i$ và quy mô cỡ mẫu chung $N$. Ta có hệ thức:
+$$f_i = \frac{n_i}{N} \cdot 100\%$$
+
+</div>
+
+Tương tự như khái niệm Bảng tần số, nếu ta thay thế toàn bộ hàng tần số $n_i$ bằng hàng (hoặc cột) chứa số liệu dạng tỉ lệ % ($f_i$), ta thu được **Bảng tần số tương đối**. 
+
+**Quy luật bất biến:**
+Tổng các tần số tương đối của tất cả các giá trị (thành tố) trong mẫu số liệu luôn đảm bảo kết quả ròng bằng $100\%$ (hay 1 quy đổi).
+$$f_1 + f_2 + \dots + f_k = 100\%$$
+*($100\%$ thể hiện tính toàn vẹn của một tập thể).*
+
+<h3 id="bieu-do-quat" style="margin-top:2rem;">📖 2. Biểu đồ Tần số tương đối</h3>
+
+Để minh họa trực quan sự phân bổ của tỷ lệ phần trăm vào một đại lượng, trong toán học thường dùng:
+- **Biểu đồ hình quạt tròn (Pie Chart):** Mẫu số liệu là một hình tròn trị dạo quanh (360°), tương ứng với $100\%$. Mỗi giá trị được phân mảnh thành một miền quạt, tỉ lệ góc tương đương với tỉ số $f_i\%$.
+- **Biểu đồ cột tần số tương đối (Bar Chart):** Cấu trúc tương đồng với biểu đồ cột tần số, khác ở việc trục tung $Oy$ lúc này thể hiện tỉ lệ tần số tương đối ($f_i\%$) thay vì đo số đạc lượng ($n_i$).
+
+Ví dụ dưới đây thể hiện biểu đồ hình quạt cho bảng chi phí của một câu lạc bộ (Giải trí: 30%, Ăn uống: 50%, Di chuyển: 20%):
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="250" height="250" viewBox="0 0 250 250">
+  {/* Circle center at 125,125 radius 100 */}
+  {/* Eating 50% => 180deg | Travel 20% => 72deg | Entertaining 30% => 108deg */}
+  
+  {/* Eating: 0 to 180 degrees */}
+  <path d="M 125 125 L 225 125 A 100 100 0 0 1 25 125 Z" fill="#3b82f6" stroke="#ffffff" strokeWidth="2"/>
+  
+  {/* Travel: 180 to 252 degrees */}
+  <path d="M 125 125 L 25 125 A 100 100 0 0 1 54.09 54.09 Z" fill="#f59e0b" stroke="#ffffff" strokeWidth="2"/>
+  
+  {/* Entertaining: 252 to 360 degrees */}
+  <path d="M 125 125 L 54.09 54.09 A 100 100 0 0 1 225 125 Z" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+  
+  {/* Labels */}
+  <text x="125" y="180" textAnchor="middle" fill="#ffffff" fontWeight="bold">Ăn uống (50%)</text>
+  <text x="60" y="90" textAnchor="middle" fill="#ffffff" fontWeight="bold">Sân</text>
+  <text x="60" y="110" textAnchor="middle" fill="#ffffff" fontWeight="bold">khấu (20%)</text>
+  <text x="170" y="80" textAnchor="middle" fill="#ffffff" fontWeight="bold" transform="rotate(20 170 80)">Giải trí (30%)</text>
+</svg>
+</div>
+
+<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Công cụ xử lí Tỉ lệ thống kê</h3>
+Bạn có thể nhập dữ liệu thô hoặc bảng giá trị và tần số vào máy tính toán dưới đây, hệ thống sẽ thực hiện chuyển đổi thành dạng tỷ lệ phần trăm tần số tương đối!
+
+<StatisticsCalculator client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Lập Bảng Tần số tương đối**
+**Phương pháp:** 
+- Rút tính cỡ mẫu $N$ bằng tổng số lượt phần tử đo được.
+- Với tần số $n_i$ của mỗi thuộc tính, áp dụng công thức tìm tỉ số cấu phần: $f_i = \frac{n_i}{N} \cdot 100\%$.
+- Có thể kết hợp hai dòng $n_i$ và $f_i$ để biểu diễn trên cùng một Bảng Phân bố Tần số.
+*(Luôn nhớ thử nghiệm xác suất tổng $f_i$ phải bằng $100\%$ hoặc xấp xỉ tỉ lệ thập phân tiệm cận $100$)*.
+
+</div>
+
+**Ví dụ 1:** 
+Để chuẩn bị mua vật tư phòng dịch cho $40$ cán bộ nhân viên, trưởng phòng thực hiện kiểm duyệt chỉ số cỡ tay như sau: Cỡ M (12 thẻ), Cỡ L (20 thẻ), Cỡ XL (8 thẻ).
+Hãy lập bảng tần số tương đối tỉ lệ thẻ thành viên ứng với mỗi cỡ!
+**Hướng dẫn:** 
+- Tổng cỡ mẫu $N = 40$.
+- Xét các mức cỡ tay và tần số quy đổi phần trăm:
+  + Cỡ M: $f_M = \frac{12}{40} \cdot 100\% = 30\%$.
+  + Cỡ L: $f_L = \frac{20}{40} \cdot 100\% = 50\%$.
+  + Cỡ XL: $f_{XL} = \frac{8}{40} \cdot 100\% = 20\%$.
+- Ta có bảng tần số tương đối:
+
+| Cỡ bao tay | M | L | XL |
+| :--- | :---: | :---: | :---: |
+| Tần số tương đối (%) | 30 | 50 | 20 |
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Phục hồi Tần số từ Tần số tương đối**
+**Phương pháp:** 
+- Khi biết được tỉ lệ đóng góp của một tính trạng nào đó chiếm $f\%$ của tổng thể, đồng thời có quy mô cỡ mẫu chung là $N$.
+- Sự hiện diện (tần số $n$) của đối lượng chính là: $n = \frac{f \cdot N}{100}$.
+
+</div>
+
+**Ví dụ 2:** Dựa vào biểu đồ hình quạt biểu thị thị phần sử dụng di động thông minh của dân số, giả dụ như hãng B chiếm chiết suất $35\%$ thị phần. Với dữ liệu khảo sát từ $500$ người dân địa phương do một cơ quan công bố, hãy tìm xem xấp xỉ có bao nhiêu người thực tế đang chọn điện thoại hãng B?
+**Hướng dẫn:** 
+- Áp dụng phép chuyển đổi nghịch từ tần số tương đối sang chỉ số nguyên:
+  Số người lựa chọn sử dụng di động hãng B là: $n_B = \frac{35 \cdot 500}{100} = 175$ (người).
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Một đơn vị nghiên cứu tiến hành khảo sát $50$ hộ gia đình về số lượng ti vi đang hữu dụng trong nhà:
+- Phân khúc không có ti vi: 2 hộ
+- Có 1 máy: 15 hộ
+- Có 2 máy: 28 hộ
+- Từ 3 máy trở lên: 5 hộ
+
+a) Hãy thực hiện thiết lập bảng tần số tương đối về lượng thiết bị thu phát truyền hình trên mẫu tổng.
+b) Phân khúc hộ gia đình trang bị 2 máy thu hình chiếm phần chi phối ra sao trong mô hình cộng đồng này?
+
+**Bài 2:** Dưới đây là bảng thống kê chất lượng thành phẩm chi tiết của hệ thống cảm biến sau một lô quy trình $1000$ sản phẩm:
+
+| Xếp loại | A (Đạt yêu cầu) | B (Tái chế) | C (Phế phẩm) | Tổng (%) |
+| :--- | :---: | :---: | :---: | :---: |
+| Tần số tương đối (%)| $85$ | $m$ | $3$ | 100% |
+
+a) Dựa trên định lý tổng tần số tương đối, tìm giá trị cơ cấu \% tái chế $m$?.
+b) Dây chuyền phế phẩm (loại C) mang lại cho doanh nghiệp thua lỗ trong dây chuyền. Hãy tính được tần số lỗi hiện thái (Số lượng phế phẩm lỗi)?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) Cỡ mẫu $N = 50$.
+Lập tỉ số Tần số / Cỡ mẫu theo tỉ lệ phần trăm:
+- 0 tivi: $\frac{2}{50} \cdot 100\% = 4\%$.
+- 1 tivi: $\frac{15}{50} \cdot 100\% = 30\%$.
+- 2 tivi: $\frac{28}{50} \cdot 100\% = 56\%$.
+- $\ge 3$ tivi: $\frac{5}{50} \cdot 100\% = 10\%$.
+
+Bảng thể hiện tần số tương đối:
+| Số lượng Tivi | 0 cái | 1 cái | 2 cái | $\ge 3$ cái |
+| :--- | :---: | :---: | :---: | :---: |
+| Tỉ lệ (%) | 4 | 30 | 56 | 10 |
+
+b) Theo dữ liệu từ bảng tần số tương đối, tỉ trọng của chùm gia đình lắp 2 truyền hình chiếm con số đông lên tới $56\%$. Có thể nhận định phần lớn hộ dân quy tụ tại phân mức 2 sản phẩm điện máy.
+
+**Bài 2:**
+a) Tổng tỉ lệ phần trăm của sản phẩm trong lô hàng hoàn thiện là 100%. 
+Do đó thành phần lô hàng loại B chứa: 
+$m = 100\% - (85\% + 3\%) = 12\%$.
+
+b) Số sản phẩm phế phẩm loại C với $f_C = 3\%$, mẫu $N = 1000$ là:
+$n_C = \frac{3 \cdot 1000}{100} = 30$ (Sản phẩm).
+Dây chuyền thải loại khoảng 30 phế phẩm.
+
+</div>
+</details>

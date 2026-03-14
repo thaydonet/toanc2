@@ -1,0 +1,249 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 32: Hình cầu"
+description: "Khái niệm, công thức tính diện tích mặt cầu và thể tích của hình cầu - Toán 9 Kết nối tri thức"
+grade: "Lớp 9"
+chapter: "Chương X: Một số hình khối trong thực tiễn"
+currentSlug: "lop9/bai-32-hinh-cau"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import Geometry3DCalculator from '../../components/interactive/Geometry3DCalculator';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình cầu được tạo thành khi ta cho phép quay một hình học phẳng nào sau đây xung quanh trục cố định?",
+    option_a: "Quay một tam giác cân.",
+    option_b: "Quay một nửa hình tròn quanh đường kính cố định của nó.",
+    option_c: "Quay vòng một hình chữ nhật.",
+    option_d: "Quay một hình Elip.",
+    correct_option: "B",
+    explanation: "Theo định nghĩa về mặt tiếp xúc khối, khối cầu hình thành dựa trên việc dịch chuyển mô hình một nửa mặt hình tròn quay kín $360^\\circ$ xung quanh hệ trục tọa độ chính là đường kính của mảnh bán nguyệt đó.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trên một hình cầu bao gồm một tâm $O$ và có độ dài bán kính $R$. Khoảng cách từ một điểm bất kì nằm trên mặt cầu đến tâm $O$ luôn bằng:",
+    option_a: "$1/2 R$",
+    option_b: "$R^2$",
+    option_c: "$R$",
+    option_d: "$2R$ (đường kính)",
+    correct_option: "C",
+    explanation: "Đặc tính hoàn mỹ của một mặt cầu là mọi điểm tập hợp nằm trên vỏ mặt biên cầu đều cách mạng tâm điểm không gian cốt lõi $O$ một khoảng cố định bằng chính xác độ dài bán kính $R$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức toán học dùng để tính Diện tích bề mặt của hình cầu (mặt cầu) có bán kính $R$ là gì?",
+    option_a: "$S = \\pi R^2$",
+    option_b: "$S = 2\\pi R^2$",
+    option_c: "$S = 4\\pi R^2$",
+    option_d: "$S = \\frac{4}{3}\\pi R^3$",
+    correct_option: "C",
+    explanation: "Diện tích che phủ trọn vẹn toàn bộ lớp vỏ bề mặt biên cầu (không tính không gian ở trong lòng) được tính bằng $S = 4\\pi R^2$, tương đương 4 lần diện tích hình tròn mặt cắt tại tâm cầu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một quả bóng da hình cầu có bán kính 10 cm. Khỏi cần bấm máy, công thức để tính tổng thể tích dung khí nhét đầy trong quả bóng là:",
+    option_a: "$V = 4\\pi \\cdot 10^2$",
+    option_b: "$V = \\frac{4}{3}\\pi \\cdot 10^3$",
+    option_c: "$V = \\frac{1}{3}\\pi \\cdot 10^3$",
+    option_d: "$V = 20\\pi$",
+    correct_option: "B",
+    explanation: "Sử dụng công thức tính mốc thể tích hình cầu kinh điển của Archimedes: $V = \\frac{4}{3}\\pi R^3$. Ta thay trực tiếp bán kính hình học $R=10$ thu được biểu thức B.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Điểm giao kết giữa Toán học và Địa lý. Khi cắt một hình cầu cắt ngang bởi một mặt phẳng (giống như việc dùng dao bổ một quả cam). Đặc điểm của mặt cắt thiết diện lúc này sẽ LUÔN LUÔN là một:",
+    option_a: "Hình parabol lõm.",
+    option_b: "Hình Elip nhọn.",
+    option_c: "Hình tròn.",
+    option_d: "Mặt tiếp xúc phẳng không bị chóp vát.",
+    correct_option: "C",
+    explanation: "Sự tiếp xúc của mặt cắt thẳng (dù cắt nghiêng đi theo mọi góc độ nào chăng nữa) tịnh tiến cắt sâu vào hình cầu luôn luôn tạo ra một mặt thiết diện biên là một đường lót hình tròn hoàn hảo.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Nếu biết trước thông số diện tích một mặt cầu bằng $100\\pi\\text{ cm}^2$. Hãy tính độ dài bán kính $R$ quy chiếu của mặt cầu đó (không nhập đơn vị).",
+    correct_option: "5",
+    explanation: "Áp dụng định hướng giải phương trình: $S = 4\\pi R^2 = 100\\pi \\Rightarrow 4R^2 = 100 \\Rightarrow R^2 = 25$. Khai căn bậc 2 ra độ lớn dương, $R = 5\\text{ cm}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính thể tích ước tính (khối lượng đơn vị $\\pi$) của một khối phôi kim loại hình cầu có chu vi dải vòng tròn Xích Đạo ở vị trí mặt cắt trung tâm là $12\\pi\\text{ cm}$? (Gợi ý: Dùng vòng xích đạo để tìm $R$ trước). Trả lời chỉ cần nhập phần phân số / hệ số đằng trước số $\\pi$.",
+    correct_option: "288",
+    explanation: "Chu vi mặt cắt tâm $C = 2\\pi R = 12\\pi \\Rightarrow R = 6\\text{ cm}$. Áp dụng hệ số công thức nạp khối: $V = \\frac{4}{3}\\pi R^3 = \\frac{4}{3} \\cdot \\pi \\cdot 6^3 = \\frac{4}{3} \\cdot \\pi \\cdot 216 = 288\\pi$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🌍 Quả bóng trên sân và Mô hình thu nhỏ Trái Đất</h3>
+
+Trong mọi thiết kế môn thể thao liên quan đến bóng (bóng đá, bóng chuyền, bóng bàn, bóng rổ...), quả bóng luôn lựu chọn một cấu trúc mang tính đối xứng triệt để nhất trong toàn bộ không gian 3 chiều - đó là **Hình cầu**. Thậm chí, chính hành tinh mà chúng ta đang sinh sống cũng là một quả địa cầu với kích thước vĩ đại và độ nhẵn khổng lồ.
+
+Những thuộc tính vật lí gì khiến cho hình dạng này vừa lăn tròn, lại vừa phân tán chịu ngoại lực tốt khi rơi đập đụng? Bậc thầy toán học cổ đại Archimedes là người đầu tiên bóc tách và tính toán bằng nguyên lý công năng hai thứ quan trọng là **Diện tích Vỏ Mặt cầu bao quanh** và lượng **Thể tích không gian** rỗng nhồi bên trong cái vỏ đó. Bài toán hình cầu cũng chính thức khép lại chương trình Toán khối THCS của bậc nhà trường cơ sở!
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="hinh-cau" style="margin-top:2rem;">📖 1. Mặt cầu và Hình cầu</h3>
+
+<div class="box-dinh-nghia">
+
+- Khi quy tập mô hình một **nửa hình tròn** có hệ tâm $O$, bán kính đường viền là $R$, quay tròn khép một vòng mốc $360^\circ$ quanh trục đối xứng xuyên tâm mốc đường kính dải $AB$ của nó, đường cong vòng cung sẽ quét ra một vòm lề mặt cong khép kín gọi là **Mặt cầu**.
+- Quỹ tích mặt phẳng bao bọc (lớp vỏ ngoài da) kết hợp với toàn thể phần điểm không gian dày đặc lót bên trong bụng mặt cầu tạo thành khối kiến trúc cấu trúc rắn, gọi chung là **Hình cầu**.
+
+</div>
+
+**Đặc điểm hình chiếu của Hình cầu:**
+1. Tâm $O$ luôn đại diện là trung tâm không gian lõi của cả khối. Mọi điểm lọt trên lề lớp da vỏ bề mặt luôn luôn cách đều tâm $O$ một khoảng đúng bằng chiều dài **Bán kính khối cầu $R$**. Khoảng cách đường xiên nối đỉnh xuyên tâm là Đường kính $D = 2R$.
+2. Khi dùng một mặt dao cắt (mặt phẳng) chặt cắt đôi hoặc cắt đi một mỏn qua hình cầu, phần bề mặt lộ diện giao thoa **thiết diện luôn tự động là một hình tròn**. Nếu nhát cắt xuyên qua thẳng tâm $O$, ta có thiết diện vòng xích đạo lớn nhất (đường tròn to nhất có bán kính bằng $R$).
+ 
+<h3 id="cong-thuc" style="margin-top:2rem;">📖 2. Diện tích của mặt cầu và Thể tích lưu giữ</h3>
+
+Không giống như việc bóc giấy bồi trải dọc của hình trụ để ép ra mặt diện kích thước hình chữ nhật phẳng phiu, mặt cầu không thể trải dẹp thành một nếp giấy do đường lượn lồi lõm đa hướng. Tuy nhiên dựa vào công trình giải tích, ta có khả năng chốt áp dụng hai bộ công thức cố định quan trọng bậc nhất:
+
+<div class="box-dinh-ly">
+
+1. **Công thức tính Diện tích bề bao bọc lớp Mặt Cầu** 
+Diện tích cấu tạo thành một đường cầu phủ lớp bao bọc khép viền mốc mặt khối: 
+$$S = 4 \pi R^2$$ 
+*(Hoặc nếu biểu thị bằng đường kính dải $D$: $S = \pi D^2$)*.
+
+2. **Công thức tính Thể tích Hình Cầu nằm trong**
+Không gian dung lượng vật chất chứa nhồi tích định dạng nhét ruột mặt khối:
+$$V = \frac{4}{3} \pi R^3$$
+
+*(Ở bậc mức cơ sở, kí hiệu tỉ lệ hằng số thường sử dụng trị mức lấy xấp xỉ $\pi \approx 3.14$ dọn cho dễ tính)*.
+
+</div>
+
+<h3 id="hinh-ve" style="margin-top:2rem;">💡 Hình ảnh Cấu trúc không gian Hình Cầu</h3>
+
+<div style={{display: "flex", justifyContent: "center", margin: "2rem 0"}}>
+<svg width="250" height="250" viewBox="0 0 250 250">
+  {/* Circle outline of sphere */}
+  <circle cx="125" cy="125" r="100" fill="none" stroke="#2563eb" strokeWidth="2" />
+  
+  {/* Front half of equator (ellipsis) */}
+  <path d="M 25 125 A 100 30 0 0 0 225 125" fill="none" stroke="#10b981" strokeWidth="2" />
+  
+  {/* Back half of equator (dashed ellipsis) */}
+  <path d="M 25 125 A 100 30 0 0 1 225 125" fill="none" stroke="#9ca3af" strokeWidth="2" strokeDasharray="5,5" />
+  
+  {/* Tâm O và Bán kính R */}
+  <circle cx="125" cy="125" r="4" fill="#ef4444" />
+  <line x1="125" y1="125" x2="225" y2="125" stroke="#ef4444" strokeWidth="2" />
+  <text x="110" y="115" fill="#ef4444" fontWeight="bold">O</text>
+  <text x="180" y="115" fill="#ef4444" fontWeight="bold">R</text>
+  
+  <text x="125" y="240" textAnchor="middle" fill="#475569" fontWeight="bold">Mô hình khối cầu 3D</text>
+</svg>
+</div>
+
+<h3 id="tuong-tac-3d" style="margin-top:2rem;">🖩 3. Công cụ kiểm soát Thể tích Khối Lượng không gian 3D</h3>
+
+Chỉ nhờ một dữ kiện duy nhất là Bán kính $R$, ta có thể đánh giả toàn bộ không gian hình tròn. Nhập kích cỡ $R$ vào mô tơ hệ thống, kiểm duyệt đo lường sự chênh lệch to lên về thể tích rất nhanh chóng (hệ số lũy thừa $R^3$) !
+
+<Geometry3DCalculator client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Các bài toán thực tiễn phủ vật liệu, lớp da bao quanh và bọc Mặt Cầu**
+**Phương pháp:** 
+- Nắm phân định rõ câu từ "Mặt cầu" (Dùng làm các bài toán cần mua sơn phủ vỏ bảo vệ quả banh cầu, may vỏ khung da bọc quả bóng, sơn mạ điện bề mặt cầu lồi...). 
+- Có bán kính $R$, lập số nhân liền tính: $S_{xq} = 4\pi R^2$. 
+- Điển hình là loại bài: So sánh gấp rưỡi, khi độ dài bán kính được nhà sản xuất nhân thêm gấp đôi (thành $2R$), do diện tích bọc tuân theo tỉ lệ bình phương mũ $2$, lượng da nguyên vật liệu bọc ngoài tiêu tốn sẽ phình lồi lên gấp 4 lần ($2^2=4$).
+
+</div>
+
+**Ví dụ 1:** 
+Phân xưởng thợ da nhận bọc lại một lô những quả bóng chuyên dụng cho giải ngoại hạng, mỗi quả có bán kính đường kính xích đạo là mốc $R = 11\text{ cm}$. Công ty đo lường mỗi cm vuông $1\text{ cm}^2$ miếng đắp da bọc giá thành tốn hao khoảng $2$ VNĐ. Bạn hãy tổng tính lượng chi phí gia công vật liệu dán da khâu phủ kín một quả bóng. 
+(Gợi ý: Phủ kín một hình mặt cầu, định $\pi = 3.14$).
+**Hướng dẫn:** 
+- Yêu cầu mua da bọc "phủ kín bề mặt" bao quát bên ngoài tương đương với Diện tích mặt bao bộ nệm của cầu:
+  $S_{\text{vỏ bọc}} = 4 \cdot \pi \cdot R^2 = 4 \cdot 3.14 \cdot 11^2 = 12.56 \cdot 121 = 1519.76\text{ cm}^2$.
+- Rút giá thành hao lượng chiết liệu trên mỗi thành phẩm bóng:
+  $\text{Chi phí} = 1519.76 \cdot 2\text{ VNĐ} \approx 3039.52\text{ VNĐ}$ / Quả (hơn 3 ngàn đồng một vỏ bóng rỗng).
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Quy hệ Thể tích không gian, Trọng tải ngậm và Dung lượng Lõi cầu**
+**Phương pháp:** 
+- Bài toán thể tích ngụ ý chứa nước, nấu chì đúc nóng nguyên khối, múc kem trổ bóng kem tròn viền chóp... Ứng dụng thẳng biểu đồ khối lượng mốc lượng lưu $V = \frac{4}{3} \pi R^3$. 
+- Đáng chú ý ở loại bài toán này, khi các thông số kích thước hình cầu lồi to gấp 2 lần, thể tích bụng chứa vọt lên với biên gấp bội cực lớn theo hàm lập phương (tăng lượng nhân lên 8 lần).
+- Giải toán quy đổi: Lấy Thể tích nhân với Khối khối lượng tỷ trọng đơn vị (như nước $1\text{kg/lít}$) ra tải trọng khối cầu thép nặng tổng bì. Lượng nước bơm ngập bình cũng đo mức đong bằng khối hở tương đồng...
+
+</div>
+
+**Ví dụ 2:**  Một cái hồ cá thuỷ tinh sang trọng trưng bày phong thủy được điêu khắc thổi nhiệt mang hình dạng là một khối hình cầu kín. Có rốn một miệng ở cực Bắc để rót cá (Bỏ qua vi thể do miệng quá nhỏ so với thân cầu). Số đo cấu hình chu vi vòng bụng rộng nhất thân bể xích đạo là vòng dải vòng là $C = 62.8\text{ cm}$. Nhà thủy vi sinh hỏi chứa sấp sấp được cỡ tối đa thể lượng được róc nổi nước bao nhiêu Lít mới ngập mép tràn. (Lấy $\pi \approx 3.14$).
+**Hướng dẫn:** 
+- Đường vòng xích đạo cong bụng chính là chu vi viền mặt cắt thẳng chẻ giữa đường tròn bao tâm: 
+$C = 2\pi R \Rightarrow R = \frac{C}{2\pi} = \frac{62.8}{2 \cdot 3.14} = \frac{62.8}{6.28} = 10\text{ cm}$.
+- Khảo sát dung lượng thể tích nước $lượng$ móp theo mốc bán kính đã ấn:
+$V_{hồ} = \frac{4}{3} \pi R^3 = \frac{4}{3} \cdot 3.14 \cdot 10^3 = \frac{4}{3} \cdot 3.14 \cdot 1000 = \frac{12560}{3} \approx 4186.67\text{ cm}^3$.
+- Biên dịch khối không gian sang hệ trữ dung nước: $1\text{ lít (lit)} = 1\text{ dm}^3 = 1000\text{ cm}^3$. Do đó, bình này mang theo giới hạn tích là tầm chứa vào khoảng $4.186$ Lít nước trong.
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Người chủ xưởng kim hoàn làm phôi chuẩn gia công. Ông lấy nung đúc chảy một viên bi chì dạng khối đặc (mô phôi viên đạn hình cầu đặc sệt) cấu trúc có độ bán kính ban đầu neo tại mức $R_{1} = 2\text{ cm}$. Sau đó ông đổ phôi chì tái chế thành một lố những viên bi súng bi sắt siêu nhỏ con để bắn mồi, biên viền mỗi viên bi nhỏ bé tẹo chênh là cấu thành độ lớn có phân độ đường kính là gộp chóp đới mốc $d = 1\text{ cm}$. Hỏi theo phép màu khối đúc (không thất thoát), nhà đúc kim loại đó làm ra được tròn trĩnh ra một bầy gồm tổng cộng là số lượng được chia ra của bao nhiêu bi nhỏ nòng viền bắn? 
+
+**Bài 2:** (Tư duy toán học không gian Archimedes tương phùng)
+Thử hình dung bạn có một cốc nước dạng lập lên là khối Hình Trụ trơn nhẵn có chỉ số bán kính của mặt đáy ở dưới vòng bằng đúng nhúng bằng bán kính $R$ và chiều đứng dải lên của thành cốc nước hụt đúng vạch chóp cao bằng đúng trần của một khối trục đường kính là $h = 2R$. Bạn rinh mua về một quả Tạ hình câm sắt thỏi đặc sệt có dạng đúc một hình của khối đa cầu đặc mang đường kính giới ranh tương tự $2R$. 
+Bạn thả rơi khối cầu đặc ngập khít và làm tràn chìm tịt vào mặt trong của khối vỏ hộp Cốc.  Sử dụng mô hình thức khối thể tích của vỏ hộp rỗng với cầu phôi chèn chiếm nhồi bít vị trí. Giải trình tìm và chốt kết luận phần không gian bị sót chứa nước còn chừa trống ở các mép có thể tích hệ bằng khối chiết bao nhiêu của phần nạp vào (Mối tỷ lệ phần thừa)? 
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+- Phôi đục khối của nguyên một cục chì chóp đĩa tổng: Hình dạng nó là quả bóng lựu một khối Cầu khổng lồ: $V_{\text{lớn}} = \frac{4}{3} \cdot \pi \cdot R_{1}^3 = \frac{4}{3} \cdot \pi \cdot (2)^3 = \frac{32}{3}\pi \text{ cm}^3$.
+- Hình dạng kích cỡ xẻ mảnh đục rẽ tạo khuôn bi con bi nhỏ có độ chéo đường kính qua rốn là tâm tẹo $d = 1\text{ cm}$. Vì cần theo chuẩn nên rút ra quy số bán kính siêu nhỏ có chóp là $R_2 = \frac{d}{2} = 0.5\text{ cm}$.
+- Số đo định lượng khuôn bi cầu khối đơn vị mảnh nhỏ đếm khối: $V_{\text{nhỏ}} = \frac{4}{3} \cdot \pi \cdot R_{2}^3 = \frac{4}{3} \cdot \pi \cdot (0.5)^3 = \frac{4}{3} \pi \cdot 0.125 = \frac{0.5}{3}\pi \text{ cm}^3$.
+- Khảo sát việc đem chia khối chì to nhất $V_{\text{lớn}}$ cho khuôn vi $V_{\text{nhỏ}}$ lấy trúng phép số: Lượng bi chia nhỏ bằng với $=\frac{\frac{32}{3}\pi}{\frac{0.5}{3}\pi} = \frac{32}{0.5} = 64$ viên. 
+
+**Bài 2:**
+Tư duy tương tự bài toán cổ đại về chiếc vương miện và bồn tắm:
+- Tổng không gian màng bọc khối chứa Hình trụ bao quát khối nước $V_{\text{trụ}} = \pi \cdot R^2 \cdot h = \pi \cdot R^2 \cdot (2R) = 2\pi \cdot R^3$.
+- Đem hình dạng kết vây của mô hình khối Cầu bằng khối sắt dập nước bị ngập chìm đọng dưới chiếm nhồi $V_{\text{cầu}} = \frac{4}{3}\pi \cdot R^3$.
+- Xét về tổng số lượng nước trong khoảng không còn lọt chênh ở mép sườn còn bị bỏ sót chưa đậy: 
+  $\Delta V_{\text{hở hụt sót lại}} = V_{\text{trụ}} - V_{\text{cầu}}$.
+  $= 2\pi R^3 - \frac{4}{3}\pi R^3 = \pi R^3 \left(2 - \frac{4}{3}\right) = \frac{2}{3}\pi R^3$.
+Như ta thấy phần thể tích của Cầu gặm nhồi khối chóp chiếm cứ phân khối là $\frac{4}{3}\pi R^3$, bằng dường như chính xác lượng bằng $2/3$ khoang thể tích bọc trụ không gian rỗng $2\pi R^3$. Tương tự thì lượng mép kẽ bỏ trống $\Delta V$ còn hụt mang mức chia phần diện tích đúng $1/3$ tổng khối vỏ bao bọc, cũng tức là chứa bằng một nửa phần Thể tích khối cối bi cầu ($1/2 V_{\text{cầu}}$). 
+
+</div>
+</details>

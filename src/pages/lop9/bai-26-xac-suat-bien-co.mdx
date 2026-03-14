@@ -1,0 +1,240 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 26: Xác suất của biến cố liên quan tới phép thử"
+description: "Cách tính xác suất của biến cố liên quan tới phép thử ngẫu nhiên, tỉ số và các tính chất cơ bản - Toán 9 Kết nối tri thức"
+grade: "Lớp 9"
+chapter: "Chương VIII: Xác suất của biến cố trong một số mô hình xác suất đơn giản"
+currentSlug: "lop9/bai-26-xac-suat-bien-co"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import ProbabilitySimulator from '../../components/interactive/ProbabilitySimulator';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Xác suất của một biến cố E, kí hiệu là $P(E)$, được định nghĩa bằng tỉ số nào dưới đây?",
+    option_a: "Số kết quả thuận lợi cho E chia cho tần số tương đối.",
+    option_b: "Số phần tử của không gian mẫu $\\Omega$ chia cho số kết quả thuận lợi cho E.",
+    option_c: "Số kết quả thuận lợi cho biến cố E chia cho tổng số phần tử (kết quả có thể xảy ra) của không gian mẫu.",
+    option_d: "Số biến cố ngẫu nhiên nhân với cỡ mẫu $N$.",
+    correct_option: "C",
+    explanation: "Định nghĩa xác suất cổ điển: Xác suất của một biến cố $E$ bằng tỉ số giữa số lượng kết quả làm cho biến cố đó xảy ra (kết quả thuận lợi $n(E)$) và tổng số kết quả đồng khả năng có thể xảy ra trong không gian mẫu ($n(\\Omega)$). Công thức: $P(E) = \\frac{n(E)}{n(\\Omega)}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong một hộp kín có 4 quả bóng xanh, 5 quả bóng đỏ và 1 quả bóng vàng cùng kích thước. Lấy ngẫu nhiên ra 1 quả bóng. Xác suất để quả bóng được chọn có màu xanh là:",
+    option_a: "$\\frac{1}{4}$",
+    option_b: "$\\frac{4}{5}$",
+    option_c: "$\\frac{4}{10}$",
+    option_d: "$\\frac{5}{10}$",
+    correct_option: "C",
+    explanation: "Không gian mẫu là tổng số khối cầu: $4 + 5 + 1 = 10$. Biến cố 'Lấy được bóng màu xanh' có 4 kết quả thuận lợi. Do đó tỉ lệ xác suất là $P = \\frac{4}{10} = 0.4$ (hay $40\\%$).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khẳng định nào dưới đây là ĐÚNG về giá trị xác suất của một biến cố bất kỳ?",
+    option_a: "Luôn lớn hơn 1.",
+    option_b: "Nằm trong đoạn từ 0 đến 1, hay $0 \\le P \\le 1$.",
+    option_c: "Có thể mang giá trị âm.",
+    option_d: "Chỉ nhận hai giá trị đúng 0 hoặc đúng 1.",
+    correct_option: "B",
+    explanation: "Xác suất là một tỉ lệ phân số có tử luôn luôn không thể vượt qua mẫu (do tập kết quả thuận lợi là tập con của không gian mẫu). Nên ta luôn có tính chất cơ bản: $0 \\le P(E) \\le 1$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một biến cố có tính chất 'chắc chắn xảy ra' sẽ nhận lại được giá trị xác suất bằng bao nhiêu?",
+    option_a: "1",
+    option_b: "0",
+    option_c: "0.5",
+    option_d: "100",
+    correct_option: "A",
+    explanation: "Khi biến cố chắc chắn xảy ra 100%, mọi kết quả của không gian mẫu đều thuận lợi cho nó. Do đó $n(E) = n(\\Omega)$, suy ra tỉ lệ $P(E) = 1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dựa vào phép gieo đồng xu chuẩn xác, gọi $\\Omega$ là không gian mẫu của phép tung một đồng xu hai lần $\\Omega = \\{(S,S), (S,N), (N,S), (N,N)\\}$. Hỏi xác suất của biến cố A: 'Hai lần tung ra cùng một mặt' bằng bao nhiêu phần?",
+    option_a: "$\\frac{1}{4}$",
+    option_b: "$\\frac{1}{2}$",
+    option_c: "$\\frac{3}{4}$",
+    option_d: "$1$",
+    correct_option: "B",
+    explanation: "Tính chất biến cố A: Rơi vào $(S,S)$ hoặc $(N,N)$. Số kết quả thuận lợi là 2. Tuyệt đối của mẫu là 4. Ta có số liệu quy đổi xác suất: $P(A) = \\frac{2}{4} = \\frac{1}{2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những giả định ban đầu nào là quan trọng và cần thiết để có thể áp dụng công thức tính toán xác suất tiên nghiệm (Cổ điển): $P(E) = \\frac{n(E)}{n(\\Omega)}$?",
+    option_a: "Chỉ được vận dụng cho quy trình có giới hạn không gian mẫu là hữu hạn các phần tử.",
+    option_b: "Tất cả các kết quả trong không gian mẫu phải có khả năng xảy ra là như nhau (đồng khả năng).",
+    option_c: "Phép thử phải tung đến hàng ngàn lần trước khi đo đạc tính toán.",
+    option_d: "Biến cố E không được phép chứa các tính chất là số nguyên tố.",
+    correct_option: "A,B",
+    explanation: "Công thức cổ điển chỉ hợp lệ khi ta có thể liệt kê được bộ đếm hữu hạn (A) và giả định mọi kết quả trong $\\Omega$ đều bình đẳng, ngẫu nhiên khách quan với rủi ro như nhau (B) (ví dụ không gian mẫu xúc xắc cân đối, không được dùng xu gian lận).",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Gieo đồng thời 2 viên xúc xắc tiêu chuẩn $6$ mặt. Một viên chấm đỏ, một viên chấm xanh rành mạch. Lập không gian mẫu và tính tổng số các kết quả $n(\\Omega)$ có khả năng xảy ra.",
+    correct_option: "36",
+    explanation: "Theo định luật đếm ngẫu nhiên quy tắc nhân trong tổ hợp: Viên xanh có $6$ khả năng, viên đỏ có $6$ khả năng. Ghép cặp đôi ta thu được tổng số phần tử là $6 \\times 6 = 36$ kết quả cho toàn bộ số liệu không gian $\\Omega$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Bắt ngẫu nhiên $1$ lá bài từ bộ đồ cơ bản $52$ lá. Tính tỉ lệ xác suất (dưới dạng hệ thập phân, ví dụ 0.25) cho biến cố P: 'Rút được một lá Át'?",
+    correct_option: "0.0769",
+    explanation: "Tập hợp bộ bài $52$ lá là không gian mẫu chung. Các kết quả thuận lợi có $4$ lá Át thuộc bộ biến cố. Tỉ lệ tính xác suất: $\\frac{4}{52} = \\frac{1}{13} \\approx 0.076923$. Viết đúng là $0.0769$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🎯 Lượng hóa khả năng bằng những con số tỉ lệ</h3>
+
+Trong cuộc sống, chúng ta thường sử dụng những định lượng ngôn từ như "Dễ lắm", "Hiếm lắm", "Không thể nào" để mô tả khả năng xảy ra của một sự việc. Các thuật ngữ này mang đầy tính cảm tính của người phát ngôn.
+
+Ví dụ, khi dự báo chỉ số mưa rơi, những chuyên gia chương trình Thời tiết luôn luôn thông báo: *"Dự báo xác suất có mưa rào ở thủ đô vào chiều mai là ${80\%}$"*. Con số lượng hóa $80\%$ là hệ đo tiêu chuẩn có được sau khi máy tính đã tính toán xác suất phân luồng thống kê về số liệu lượng nước mây.
+
+Trong toán xác suất thống kê ở bậc Trung học cơ sở, chúng ta sẽ làm quen với việc làm sao để thay bằng việc nói *"Tui bốc được lá Át là hên xui khó lắm"*, sinh viên hoàn toàn có khả năng nhẩm một con số cụ thể trên giấy để nói: *"Khả năng tôi trúng con bài Át trong bộ môn tổ hợp chính là  $\\frac{1}{13}$"*. Vậy phân số đó từ đâu tạo ra?
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Khái niệm Xác suất của biến cố</h3>
+
+<div class="box-dinh-nghia">
+
+Trong một phép thử ngẫu nhiên với một không gian mẫu $\Omega$ gồm hữu hạn các kết quả có tính chất đồng khả năng xuất hiện như nhau:
+**Xác suất của một biến cố $E$**, kí hiệu bằng toán học là $P(E)$, được xác định thông qua tỉ số giữa **số kết quả thuận lợi** cho sự hình thành biến cố $E$ (tức là $n(E)$) và **số phần tử của toàn bộ không gian mẫu** (tức là $n(\Omega)$).
+
+Công thức cổ điển:
+$$P(E) = \frac{n(E)}{n(\Omega)}$$
+
+</div>
+
+- Đại lượng $n(E)$ trả lời cho câu hỏi: *"Trong hằng hà sa số các kịch bản, có bao nhiêu nhánh giúp cho cái sự kiện tôi mong đợi trở thành sự thật?"*
+- Đại lượng $n(\Omega)$ trả lời cho câu hỏi: *"Tổng số mọi kịch bản trên đời có thể xảy đến trong hành động phép thử là bao nhiêu?"*
+Thép thử gieo hạt xúc xắc 6 mặt, khi kiểm tra hiện tượng $A$: "Gieo đồng thời ra số mặt chẵn" ta có:
+Không gian mẫu $n(\Omega) = 6$. Thuận lợi mặt chẵn $n(A) = 3$ (mặt 2, 4, 6).
+Vậy xác suất xuất hiện là: $P(A) = \frac{3}{6} = \frac{1}{2}$ (hay 50%).
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📖 2. Ba Tính chất quan trọng hàng đầu của Xác suất</h3>
+
+Phép toán lượng hóa xác suất phân phối một số thuộc tính chuẩn mực của tỉ lệ như sau:
+1. Xác suất của bất kỳ biến cố $E$ nào cũng bao giờ lấy giới hạn nằm trong khoảng giá trị hẹp từ $0$ cho đến $1$:
+$$0 \le P(E) \le 1$$
+*(Khi thể hiện dưới dạng phần trăm, tính chất này được dịch thành từ $0\%$ đến $100\%$)*.
+2. Với một **biến cố không thể xảy ra** (giao của tập hợp là tập Rỗng $\emptyset$), xác suất của nó luôn lấy giá trị tuyệt đối bằng $0$.
+3. Với một **biến cố chắc chắn** (trùm bao phủ toàn thể mọi tình huống trên không gian mẫu), điểm lượng khả năng xác suất này mang ý nghĩa bằng đúng $1$.
+
+<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Bộ máy mô phỏng luật Số Lớn trong Xác Suất</h3>
+
+Việc một biến cố được gắn nhãn $P(E) = \frac{1}{6}$ không đồng nghĩa là cứ gieo $6$ lần nó chắc chắn phải ra $1$ lần. Sự thực là nếu bạn thực hiện một phép thử lặp đi lặp lại đủ hàng nghìn vòng (luật số lượng lớn), tần số xuất hiện của một biến cố phân bổ tỉ lệ với công thức lý thuyết trên giấy. Hệ thống mô phỏng xúc xắc và xu điện tử tự động dưỡi đay sẽ chứng minh nguyên lý đó bằng đồ thị tự nhiên!
+
+<ProbabilitySimulator client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Chẻ Động Xác Suất qua Phép Thử Cổ Điển Rút / Chọn / Gieo Đơn Phân**
+**Phương pháp:** 
+- Xác đáng bước đầu liệt kê không gian mẫu $n(\Omega)$ là ưu tiên hạt nhân và nền tảng bằng tất cả hiện vật đối tượng.
+- Quét theo tiêu chuẩn biến cố trong đề, liệt kê kĩ rồi đếm hệ số thuật lợi cho thuộc tính đề ra (điểm thành phần $n(E)$).
+- Lập sơ đồ tỉ số và tối giản phân số $P(E) = \frac{n(E)}{n(\Omega)}$ đến mức gọn nhất làm phép so sánh.
+
+</div>
+
+**Ví dụ 1:** 
+Phòng rút thăm trúng thưởng ở công ty phát hành một hòm gồm $100$ lá phiếu kín đều nhau. Trong số đó được cài đặt cơ cấu như sau: 5 phiếu có Quà Đặc Biệt, 15 phiếu ghi Giải Nhì, còn lại 80 phiếu ghi dòng chữ "Chúc bạn may mắn". Chọn ngẫu nhiên một lá phiếu. 
+Xác định xác suất của một cơ hội bốc trúng lá được giải thưởng vật phẩm (Bao gồm Nhì và Đặc Biệt)?
+
+**Hướng dẫn:** 
+- Số lượng lá phiếu bốc ra được chọn ngẫu nhiên đồng khả năng $\Rightarrow n(\Omega) = 100$.
+- Kí hiệu biến cố $K$: "Bốc trúng thưởng có quà". Những lá có quà bao gồm Quà Đặc Biệt và Giải Nhì.
+- Số lượng phiếu chứa mệnh giá giải là: $n(K) = 5 + 15 = 20$ tấm vé.
+- Cập nhật số liệu để tính xác suất là: $P(K) = \frac{n(K)}{n(\Omega)} = \frac{20}{100} = \frac{1}{5}$ (Tương đương 20%).
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Khai thác không gian mẫu qua việc cấu trúc nhánh (Tung hai đối tượng hoặc lấy lại phần tử)**
+**Phương pháp:** 
+- Phải hết sức cẩn trọng trong phép nhân sơ cấp cho không gian mẫu tổ hợp (2 xúc xắc có không gian $6 \times 6 = 36$, 2 đồng xu có $2 \times 2 = 4$).
+- Biến cố mang tham số đôi. (ví dụ "Tổng hai số chấm bằng 8") cần được duyệt danh sách thành phần theo cấu tạo cặp toạ độ (2, 6), (3, 5), (4, 4)... rồi đếm số lượng tập hợp kết quả.
+- Việc đồng thời xuất hiện của 2 hệ sẽ kéo theo phép toán hệ thức lớn hơn cho lượng $n(\Omega)$.
+
+</div>
+
+**Ví dụ 2:**  Một người chơi cờ chẵn tung đồng thời hai hạt xúc xắc 6 mặt đồng chất. 
+Hãy tính toán và công bố xem xác suất để hai con xúc xắc thể hiện ra số chấm giống y hệt nhau?
+**Hướng dẫn:** 
+- Tổng kết quả không gian mẫu gộp ở không gian đa chiều hệ 2 viên: $n(\Omega) = 6 \cdot 6 = 36$.
+- Gọi sự kiện diễn biến là $H$ đối chiếu 2 mặt giống nhau khi gieo. Vậy những kết quả đôi tạo nên $H$ bao gồm sáu cặp: ${(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)}$.
+- Đếm tổng thành phần thuận lợi của biến cố $H$ bằng: $n(H) = 6$.
+- Số đo định lượng xác suất sự kiện xảy ra sẽ áp vào là: $P(H) = \frac{6}{36} = \frac{1}{6}$.
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Một nhóm học sinh có 6 nam và 4 nữ tập chung ghi tên vào 10 mẩu giấy để chọn ngẫu nhiên bốc thăm thủ lĩnh câu lạc bộ. Lấy hú họa một mảnh giấy:
+a) Có đúng 10 học sinh. Hãy cho biết tổ hợp đếm tính không gian mẫu $\Omega$ cho phép chọn người này?
+b) Tính cụ thể giá trị xác suất để tên bốc được trên lá thăm là một học sinh Nữ.
+c) Biến cố "Chọn được một học sinh là thành viên trong trường" là biến cố loại gì? Cho biết thông số phân bố tỉ lệ của xác suất này là bao nhiêu?
+
+**Bài 2:** Hai chiếc hộp đen và đỏ. Hộp hộp màu đen có 3 quả bóng: số 1, số 2, số 3. Nhánh bên hộp màu đỏ chứa 2 quả bóng: kí tự A và kí tự B. Một hành động bốc ngẫu nhiên gồm: một tay vào hộp đen rút một quả và tay còn lại qua hộp đỏ nhặt thêm một quả. 
+
+a) Sử dụng quy tắc thiết lập danh sách (hoặc nhánh cây), hãy liệt kê cụ thể tất cả các hiện tượng kết hợp cấu thành nên tập hợp của không gian mẫu $\Omega$?
+b) Kiểm duyệt tính xác suất cho sự kiện: "Rút được quả có kí tự số 2 kẹp cùng khối kí tự B". 
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) Tổng số giấy lá thăm đại diện cho các cá nhân là: $6 + 4 = 10$. Chọn 1 lá bất kì thì không gian mẫu đo được tương ứng với số học sinh, tức $n(\Omega) = 10$.
+b) Nhóm nữ sinh chiếm 4 slot. Việc bốc trúng là giấy của bạn nữ có 4 kết quả thuận lợi. Tính toán tỉ lệ định hình: Số đo phần xác suất $P = \frac{4}{10} = \frac{2}{5}$ là $0.4$.
+c) Tất cả 10 tên đăng ký đều mặc nhiên là học sinh đại diện trong trường học đó. Do đó, việc chọn bốc thăm luôn thu lại 1 cá nhân thuộc về trường. Nó được xếp vào phân loại "Biến cố chắc chắn xảy ra". 
+Xác suất của biến cố này mặc định bằng 1 (hoặc 100%).
+
+**Bài 2:**
+a) Tiến hành rút qua hộp đen (có 3 khả năng) và đồng bộ trích xuất kèm của hộp đỏ (có 2 khả năng). Bố cục mọi kịch bản của không gian mẫu gồm:
+$\Omega = \{(1, A); (1, B); (2, A); (2, B); (3, A); (3, B)\}$.
+Tổng cộng toàn bộ các trường hợp chéo có thể xảy ra: $n(\Omega) = 6$.
+b) Giả định gọi biến cố F: "Thể hiện số lượng quả bóng mang bộ mặt là cặp giá trị (2, B)".
+Tập hợp thuận lợi cho biến cố trên hệ chỉ có đúng duy nhất $1$ bộ là $(2, B)$ thục tế nằm trong chuỗi liệt kê ở trên.
+Số kết quả thuận lợi là $n(F) = 1$.
+Số biểu thức mang tính xác suất chốt hạ sẽ bằng: $P = \frac{1}{6}$.
+
+</div>
+</details>

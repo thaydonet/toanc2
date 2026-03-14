@@ -1,0 +1,472 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 38: Hình chóp tam giác đều"
+description: "Khái niệm, tính chất và công thức hình chóp tam giác đều - Toán 8 KNTT Chương 10"
+grade: "Lớp 8"
+chapter: "Chương 10: Một số hình khối trong thực tiễn"
+currentSlug: "lop8/bai-38-chop-tam-giac"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình chóp tam giác đều có đáy là:",
+    option_a: "Tam giác đều",
+    option_b: "Tam giác vuông",
+    option_c: "Tam giác cân",
+    option_d: "Tam giác thường",
+    correct_option: "A",
+    explanation: "Hình chóp tam giác đều có đáy là tam giác đều.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tam giác đều có bao nhiêu mặt?",
+    option_a: "$4$ mặt",
+    option_b: "$3$ mặt",
+    option_c: "$5$ mặt",
+    option_d: "$6$ mặt",
+    correct_option: "A",
+    explanation: "Hình chóp tam giác đều có 4 mặt: 1 đáy tam giác đều và 3 mặt bên là tam giác cân.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tam giác đều $S.ABC$ có cạnh đáy $a = 6$ cm, chiều cao $h = 4$ cm. Diện tích đáy bằng:",
+    option_a: "$9\\sqrt{3}$ cm²",
+    option_b: "$18$ cm²",
+    option_c: "$36$ cm²",
+    option_d: "$12\\sqrt{3}$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích tam giác đều cạnh $a$: $S = \\frac{a^2\\sqrt{3}}{4} = \\frac{36\\sqrt{3}}{4} = 9\\sqrt{3}$ cm².",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tam giác đều có diện tích đáy $16\\sqrt{3}$ cm² và chiều cao $6$ cm. Thể tích bằng:",
+    option_a: "$32\\sqrt{3}$ cm³",
+    option_b: "$96\\sqrt{3}$ cm³",
+    option_c: "$48\\sqrt{3}$ cm³",
+    option_d: "$16\\sqrt{3}$ cm³",
+    correct_option: "A",
+    explanation: "$V = \\frac{1}{3} \\times S_{\\text{đáy}} \\times h = \\frac{1}{3} \\times 16\\sqrt{3} \\times 6 = 32\\sqrt{3}$ cm³.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chân đường cao của hình chóp tam giác đều trùng với:",
+    option_a: "Trọng tâm đáy",
+    option_b: "Trung điểm một cạnh đáy",
+    option_c: "Một đỉnh đáy",
+    option_d: "Tâm đường tròn ngoại tiếp đáy",
+    correct_option: "A",
+    explanation: "Chân đường cao của hình chóp tam giác đều trùng với trọng tâm (cũng là tâm đường tròn ngoại tiếp) của tam giác đáy.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Hình chóp tam giác đều có những tính chất nào?",
+    option_a: "Đáy là tam giác đều",
+    option_b: "Ba mặt bên là tam giác cân bằng nhau",
+    option_c: "Chân đường cao trùng trọng tâm đáy",
+    option_d: "Tất cả các cạnh bên bằng nhau",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng. Hình chóp tam giác đều có đáy là tam giác đều, ba mặt bên là tam giác cân bằng nhau, chân đường cao trùng trọng tâm đáy, và các cạnh bên bằng nhau.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hình chóp tam giác đều có cạnh đáy $6$ cm, chiều cao $8$ cm. Thể tích bằng bao nhiêu cm³? (Làm tròn đến hàng đơn vị, biết $\\sqrt{3} \\approx 1{,}73$)",
+    correct_option: "52",
+    explanation: "$S_{\\text{đáy}} = \\frac{6^2 \\times 1{,}73}{4} = 15{,}57$ cm². $V = \\frac{1}{3} \\times 15{,}57 \\times 8 \\approx 52$ cm³.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tam giác đều có cạnh đáy $!a#6!$ cm và chiều cao $!h#4!$ cm. Thể tích gần bằng (cm³, làm tròn đến hàng đơn vị, $\\sqrt{3} \\approx 1{,}73$):",
+    option_a: "$!tinh: Math.round((!a! * !a! * 1.73 / 4) * !h! / 3)!$",
+    option_b: "$!tinh: !a! * !h!!$",
+    option_c: "$!tinh: !a! * !a! * !h!!$",
+    option_d: "$!tinh: !a! * !a! * !h! / 3!$",
+    correct_option: "A",
+    explanation: "$S_{\\text{đáy}} = \\frac{!a!^2 \\times 1{,}73}{4}$ cm². $V = \\frac{1}{3} \\times S_{\\text{đáy}} \\times !h! \\approx !tinh: Math.round((!a! * !a! * 1.73 / 4) * !h! / 3)!$ cm³.",
+    difficulty_level: "hard",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🏔️ Kim tự tháp Ai Cập</h3>
+
+Kim tự tháp Ai Cập là một trong những kỳ quan kiến trúc cổ đại, có dạng hình chóp với đáy là hình vuông hoặc tam giác!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏛️</div>
+    <strong>Kim tự tháp</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình chóp khổng lồ</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⛺</div>
+    <strong>Lều trại</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình chóp nhỏ gọn</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏔️</div>
+    <strong>Núi lửa</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Dạng hình chóp tự nhiên</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm hình chóp tam giác đều</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình chóp tam giác đều là hình chóp có:
+- Đáy là tam giác đều
+- Chân đường cao trùng với trọng tâm của tam giác đáy
+- Ba cạnh bên bằng nhau
+- Ba mặt bên là các tam giác cân bằng nhau
+
+</div>
+
+**Hình minh họa:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="350" viewBox="0 0 400 350" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Đáy tam giác đều ABC */}
+  <polygon points="200,280 100,230 300,230" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
+  
+  {/* Các cạnh bên */}
+  <line x1="200" y1="280" x2="200" y2="80" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="200" y1="80" x2="100" y2="230" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="200" y1="80" x2="300" y2="230" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="200" y1="80" x2="200" y2="230" stroke="#3b82f6" stroke-width="2.5"/>
+  
+  {/* Mặt bên */}
+  <polygon points="200,80 100,230 200,230" fill="#fef3c7" stroke="#3b82f6" stroke-width="2" opacity="0.5"/>
+  <polygon points="200,80 200,230 300,230" fill="#fef3c7" stroke="#3b82f6" stroke-width="2" opacity="0.5"/>
+  
+  {/* Điểm đỉnh S */}
+  <circle cx="200" cy="80" r="5" fill="#ef4444"/>
+  <text x="210" y="75" font-size="18" font-weight="bold" fill="#ef4444">S</text>
+  
+  {/* Các đỉnh đáy */}
+  <circle cx="100" cy="230" r="4" fill="#3b82f6"/>
+  <text x="80" y="225" font-size="16" font-weight="bold" fill="#3b82f6">A</text>
+  
+  <circle cx="300" cy="230" r="4" fill="#3b82f6"/>
+  <text x="310" y="225" font-size="16" font-weight="bold" fill="#3b82f6">B</text>
+  
+  <circle cx="200" cy="280" r="4" fill="#3b82f6"/>
+  <text x="210" y="295" font-size="16" font-weight="bold" fill="#3b82f6">C</text>
+  
+  {/* Trọng tâm H */}
+  <circle cx="200" cy="230" r="4" fill="#10b981"/>
+  <text x="210" y="225" font-size="16" font-weight="bold" fill="#10b981">H</text>
+  
+  {/* Nhãn chiều cao */}
+  <text x="165" y="155" font-size="14" fill="#ef4444" font-style="italic">h</text>
+  
+  {/* Nhãn cạnh đáy */}
+  <text x="145" y="270" font-size="14" fill="#3b82f6" font-style="italic">a</text>
+</svg>
+</div>
+
+**Các thành phần:**
+- Đỉnh: $S$
+- Đáy: Tam giác đều $ABC$ (cạnh $a$)
+- Chân đường cao: $H$ (trọng tâm $\\triangle ABC$)
+- Chiều cao: $SH = h$
+- Cạnh bên: $SA = SB = SC$
+
+<h3 id="tinh-chat" style="margin-top:2rem;">🔍 2. Tính chất</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất của hình chóp tam giác đều:**
+
+1. Ba cạnh bên bằng nhau: $SA = SB = SC$
+2. Ba mặt bên là tam giác cân bằng nhau
+3. Chân đường cao $H$ là trọng tâm tam giác đáy
+4. Các đường cao của mặt bên (trung đoạn) bằng nhau
+
+</div>
+
+<h3 id="cong-thuc" style="margin-top:2rem;">📐 3. Công thức tính toán</h3>
+
+**a) Diện tích đáy (tam giác đều cạnh $a$):**
+
+$S_{\\text{đáy}} = \\frac{a^2\\sqrt{3}}{4}$
+
+**b) Thể tích:**
+
+$V = \\frac{1}{3} \\times S_{\\text{đáy}} \\times h = \\frac{a^2\\sqrt{3}h}{12}$
+
+**c) Diện tích xung quanh:**
+
+$S_{xq} = 3 \\times S_{\\text{mặt bên}} = \\frac{3ad}{2}$
+
+trong đó $d$ là trung đoạn (đường cao) của mặt bên.
+
+**d) Diện tích toàn phần:**
+
+$S_{tp} = S_{xq} + S_{\\text{đáy}}$
+
+<h3 id="vi-du" style="margin-top:2rem;">✏️ 4. Ví dụ minh họa</h3>
+
+**Ví dụ 1:** Hình chóp tam giác đều có cạnh đáy $a = 6$ cm, chiều cao $h = 8$ cm. Tính thể tích.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Diện tích đáy: $S_{\\text{đáy}} = \\frac{6^2\\sqrt{3}}{4} = 9\\sqrt{3}$ cm²
+
+Thể tích: $V = \\frac{1}{3} \\times 9\\sqrt{3} \\times 8 = 24\\sqrt{3} \\approx 41{,}57$ cm³
+
+</div>
+
+**Ví dụ 2:** Hình chóp tam giác đều có cạnh đáy $10$ cm. Biết cạnh bên dài $13$ cm. Tính chiều cao.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Bán kính đường tròn ngoại tiếp đáy: $R = \\frac{a}{\\sqrt{3}} = \\frac{10}{\\sqrt{3}} = \\frac{10\\sqrt{3}}{3}$ cm
+
+Trong tam giác vuông $SHA$: $h^2 + R^2 = SA^2$
+
+$h^2 = 13^2 - \\left(\\frac{10\\sqrt{3}}{3}\\right)^2 = 169 - \\frac{100}{3} = \\frac{407}{3}$
+
+$h = \\sqrt{\\frac{407}{3}} \\approx 11{,}65$ cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một lều trại có dạng hình chóp tam giác đều với cạnh đáy $4$ m và chiều cao $3$ m. Tính thể tích không gian bên trong lều.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+$S_{\\text{đáy}} = \\frac{4^2 \\times 1{,}73}{4} = 6{,}92$ m²
+
+$V = \\frac{1}{3} \\times 6{,}92 \\times 3 \\approx 6{,}92$ m³
+
+</div>
+
+**📝 Bài toán 2:** Một kim tự tháp nhỏ có dạng hình chóp tam giác đều với cạnh đáy $20$ m và chiều cao $15$ m. Tính khối lượng đá cần dùng, biết khối lượng riêng của đá là $2500$ kg/m³.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+$S_{\\text{đáy}} = \\frac{20^2\\sqrt{3}}{4} = 100\\sqrt{3} \\approx 173$ m²
+
+$V = \\frac{1}{3} \\times 173 \\times 15 = 865$ m³
+
+Khối lượng: $865 \\times 2500 = 2{.}162{.}500$ kg $\\approx 2162{,}5$ tấn
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Đáy**: Tam giác đều cạnh $a$
+- **Chân đường cao**: Trọng tâm đáy
+- **Diện tích đáy**: $S = \\frac{a^2\\sqrt{3}}{4}$
+- **Thể tích**: $V = \\frac{1}{3}Sh = \\frac{a^2\\sqrt{3}h}{12}$
+- **Cạnh bên**: Bằng nhau
+
+</GhiNho>
+
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho hình chóp tam giác đều $S.ABC$ có cạnh đáy $a = 6$ cm.
+
+a) Tính diện tích đáy (làm tròn đến chữ số thập phân thứ nhất, biết $\sqrt{3} \approx 1{,}73$)
+
+b) Biết chiều cao $h = 8$ cm, tính thể tích hình chóp
+
+c) Nếu tăng cạnh đáy lên gấp đôi nhưng giữ nguyên chiều cao, thể tích tăng lên bao nhiêu lần?
+
+---
+
+**Bài 2:** Cho hình chóp tam giác đều $S.ABC$ có cạnh đáy $AB = 10$ cm và cạnh bên $SA = 13$ cm.
+
+a) Tính bán kính đường tròn ngoại tiếp tam giác đáy $ABC$ (biết $R = \dfrac{a}{\sqrt{3}}$, làm tròn đến chữ số thập phân thứ nhất)
+
+b) Gọi $H$ là chân đường cao từ $S$. Chứng minh $H$ là trọng tâm tam giác $ABC$
+
+c) Tính chiều cao $SH$ (làm tròn đến chữ số thập phân thứ nhất)
+
+d) Tính thể tích hình chóp (làm tròn đến hàng đơn vị)
+
+
+---
+
+**Bài 3:** Cho hình chóp tam giác đều $S.MNP$ có diện tích đáy $25\sqrt{3}$ cm² và chiều cao $12$ cm.
+
+a) Tính cạnh đáy của hình chóp (biết $S_{\text{đáy}} = \dfrac{a^2\sqrt{3}}{4}$)
+
+b) Tính thể tích hình chóp
+
+c) Nếu giảm chiều cao xuống còn một nửa, thể tích giảm đi bao nhiêu phần trăm?
+
+---
+
+**Bài 4 (Ứng dụng thực tế):** Một lều trại dã ngoại có dạng hình chóp tam giác đều với cạnh đáy $5$ m và chiều cao $4$ m.
+
+a) Tính thể tích không gian bên trong lều (làm tròn đến chữ số thập phân thứ nhất, biết $\sqrt{3} \approx 1{,}73$)
+
+b) Biết mỗi người cần ít nhất $3$ m³ không gian. Lều có thể chứa tối đa bao nhiêu người?
+
+c) Nếu làm lều có cạnh đáy $6$ m và chiều cao $5$ m, thể tích tăng lên bao nhiêu lần so với lều ban đầu?
+
+d) Tính diện tích vải bạt cần để phủ mặt đáy lều (làm tròn đến chữ số thập phân thứ nhất)
+
+
+---
+
+**Bài 5 (Nâng cao):** Cho hình chóp tam giác đều $S.ABC$ có cạnh đáy $a = 12$ cm. Gọi $M$ là trung điểm cạnh $AB$, $H$ là trọng tâm tam giác $ABC$.
+
+a) Chứng minh $SH \perp (ABC)$ (SH vuông góc với mặt phẳng đáy)
+
+b) Tính $HM$ theo $a$ (biết $HM = \dfrac{a\sqrt{3}}{6}$)
+
+c) Biết cạnh bên $SA = 15$ cm, tính chiều cao $SH$
+
+d) Tính thể tích hình chóp $S.ABC$ (làm tròn đến hàng đơn vị, biết $\sqrt{3} \approx 1{,}73$)
+
+e) Gọi $N$ là trung điểm $SC$. Tính tỉ số thể tích $\dfrac{V_{S.AMN}}{V_{S.ABC}}$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $S_{\text{đáy}} = \dfrac{6^2 \times 1{,}73}{4} = \dfrac{36 \times 1{,}73}{4} = 15{,}6$ cm²
+
+b) $V = \dfrac{1}{3} \times 15{,}6 \times 8 = 41{,}6$ cm³
+
+c) Cạnh đáy mới: $2a = 12$ cm
+
+$S'_{\text{đáy}} = \dfrac{12^2 \times 1{,}73}{4} = 62{,}3$ cm²
+
+$V' = \dfrac{1}{3} \times 62{,}3 \times 8 = 166{,}4$ cm³
+
+Tỉ số: $\dfrac{V'}{V} = \dfrac{166{,}4}{41{,}6} = 4$ lần (vì diện tích tăng $2^2 = 4$ lần)
+
+
+---
+
+**Bài 2:**
+
+a) $R = \dfrac{10}{\sqrt{3}} = \dfrac{10\sqrt{3}}{3} \approx \dfrac{10 \times 1{,}73}{3} \approx 5{,}8$ cm
+
+b) Trong hình chóp tam giác đều, chân đường cao trùng với trọng tâm đáy (theo định nghĩa)
+
+c) Trong tam giác vuông $SHA$: $SH^2 + HA^2 = SA^2$
+
+$SH^2 = 13^2 - 5{,}8^2 = 169 - 33{,}64 = 135{,}36$
+
+$SH \approx 11{,}6$ cm
+
+d) $S_{\text{đáy}} = \dfrac{10^2 \times 1{,}73}{4} = 43{,}25$ cm²
+
+$V = \dfrac{1}{3} \times 43{,}25 \times 11{,}6 \approx 167$ cm³
+
+---
+
+**Bài 3:**
+
+a) $\dfrac{a^2\sqrt{3}}{4} = 25\sqrt{3}$
+
+$a^2 = 100 \Rightarrow a = 10$ cm
+
+b) $V = \dfrac{1}{3} \times 25\sqrt{3} \times 12 = 100\sqrt{3}$ cm³
+
+c) Chiều cao mới: $h' = 6$ cm
+
+$V' = \dfrac{1}{3} \times 25\sqrt{3} \times 6 = 50\sqrt{3}$ cm³
+
+Giảm: $\dfrac{V - V'}{V} \times 100\% = \dfrac{50\sqrt{3}}{100\sqrt{3}} \times 100\% = 50\%$
+
+
+---
+
+**Bài 4:**
+
+a) $S_{\text{đáy}} = \dfrac{5^2 \times 1{,}73}{4} = 10{,}8$ m²
+
+$V = \dfrac{1}{3} \times 10{,}8 \times 4 = 14{,}4$ m³
+
+b) Số người tối đa: $\dfrac{14{,}4}{3} = 4{,}8 \approx 4$ người
+
+c) Lều mới: $S'_{\text{đáy}} = \dfrac{6^2 \times 1{,}73}{4} = 15{,}6$ m²
+
+$V' = \dfrac{1}{3} \times 15{,}6 \times 5 = 26$ m³
+
+Tỉ số: $\dfrac{V'}{V} = \dfrac{26}{14{,}4} \approx 1{,}8$ lần
+
+d) Diện tích đáy: $10{,}8$ m²
+
+---
+
+**Bài 5:**
+
+a) Theo định nghĩa hình chóp tam giác đều, $SH$ là đường cao nên $SH \perp (ABC)$
+
+b) $HM = \dfrac{12\sqrt{3}}{6} = 2\sqrt{3}$ cm
+
+c) $HA = R = \dfrac{12}{\sqrt{3}} = 4\sqrt{3}$ cm
+
+Trong tam giác vuông $SHA$: $SH^2 = SA^2 - HA^2 = 15^2 - (4\sqrt{3})^2 = 225 - 48 = 177$
+
+$SH = \sqrt{177} \approx 13{,}3$ cm
+
+d) $S_{\text{đáy}} = \dfrac{12^2 \times 1{,}73}{4} = 62{,}3$ cm²
+
+$V = \dfrac{1}{3} \times 62{,}3 \times 13{,}3 \approx 276$ cm³
+
+e) $\dfrac{V_{S.AMN}}{V_{S.ABC}} = \dfrac{1}{2} \times \dfrac{1}{2} = \dfrac{1}{4}$ (vì $M$ là trung điểm $AB$ và $N$ là trung điểm $SC$)
+
+</div>
+</details>

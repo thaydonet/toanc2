@@ -1,0 +1,477 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 29: Hệ số góc của đường thẳng"
+description: "Khái niệm hệ số góc, góc tạo bởi đường thẳng và trục Ox - Toán 8 KNTT Chương 7"
+grade: "Lớp 8"
+chapter: "Chương 7: Phương trình bậc nhất và hàm số bậc nhất"
+currentSlug: "lop8/bai-29-he-so-goc"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hệ số góc của đường thẳng $y = 3x - 2$ là:",
+    option_a: "$3$",
+    option_b: "$-2$",
+    option_c: "$\\dfrac{3}{2}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Hệ số góc là hệ số $a$ trong $y = ax + b$, tức $a = 3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường thẳng $y = -2x + 5$ tạo với trục $Ox$ một góc:",
+    option_a: "Tù",
+    option_b: "Nhọn",
+    option_c: "Vuông",
+    option_d: "Bẹt",
+    correct_option: "A",
+    explanation: "Hệ số góc $a = -2 < 0$ nên góc tạo với $Ox$ là góc tù.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu hệ số góc $a > 0$ thì đường thẳng $y = ax + b$:",
+    option_a: "Tạo với $Ox$ góc nhọn",
+    option_b: "Tạo với $Ox$ góc tù",
+    option_c: "Song song với $Ox$",
+    option_d: "Vuông góc với $Ox$",
+    correct_option: "A",
+    explanation: "Khi $a > 0$, đường thẳng đi lên từ trái sang phải, tạo góc nhọn với $Ox$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường thẳng $y = 2x + 1$ và $y = 2x - 3$ có hệ số góc:",
+    option_a: "Bằng nhau",
+    option_b: "Khác nhau",
+    option_c: "Đối nhau",
+    option_d: "Nghịch đảo nhau",
+    correct_option: "A",
+    explanation: "Cả hai đều có hệ số góc $a = 2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường thẳng đi qua gốc tọa độ và có hệ số góc $k = 3$ có phương trình:",
+    option_a: "$y = 3x$",
+    option_b: "$y = 3x + 3$",
+    option_c: "$y = x + 3$",
+    option_d: "$y = 3$",
+    correct_option: "A",
+    explanation: "Đi qua gốc $O(0; 0)$ nên $b = 0$. Phương trình: $y = 3x$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hệ số góc của đường thẳng đi qua hai điểm $A(1; 2)$ và $B(3; 6)$ là:",
+    option_a: "$2$",
+    option_b: "$3$",
+    option_c: "$4$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Hệ số góc: $k = \\dfrac{y_B - y_A}{x_B - x_A} = \\dfrac{6 - 2}{3 - 1} = \\dfrac{4}{2} = 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những đường thẳng nào sau đây có hệ số góc dương?",
+    option_a: "$y = 2x + 1$",
+    option_b: "$y = -x + 3$",
+    option_c: "$y = 0{,}5x - 2$",
+    option_d: "$y = -3x$",
+    correct_option: "A,C",
+    explanation: "Hệ số góc dương khi $a > 0$. A) $a = 2 > 0$ ✓, C) $a = 0{,}5 > 0$ ✓",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Đường thẳng $y = kx + 3$ đi qua điểm $M(2; 7)$. Tìm $k$.",
+    correct_option: "2",
+    explanation: "Thay $M(2; 7)$: $7 = k \\cdot 2 + 3 \\Rightarrow 2k = 4 \\Rightarrow k = 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho đường thẳng $y = !a#0!x + !b!$. Hệ số góc của đường thẳng này là:",
+    option_a: "$!a!$",
+    option_b: "$!b!$",
+    option_c: "$!tinh: !a! + !b!!$",
+    option_d: "$!tinh: !a! * !b!!$",
+    correct_option: "A",
+    explanation: "Hệ số góc là hệ số $a$ trong $y = ax + b$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">📐 Mở đầu — Độ dốc của đường thẳng</h3>
+
+Hệ số góc thể hiện độ dốc của đường thẳng:
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⛰️</div>
+    <strong>Độ dốc đường</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đường dốc 10% nghĩa là cứ đi 100m theo phương ngang thì lên cao 10m</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Tốc độ tăng trưởng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Doanh thu tăng 5 triệu/tháng → Hệ số góc = 5</p>
+  </div>
+</div>
+
+💬 *Hệ số góc cho biết đường thẳng "dốc" như thế nào!*
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm hệ số góc</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Trong hàm số bậc nhất $y = ax + b$ (với $a \neq 0$), hệ số $a$ được gọi là **hệ số góc** của đường thẳng $y = ax + b$.
+
+Ký hiệu: $k = a$
+
+**Ý nghĩa hình học:** Hệ số góc cho biết độ dốc của đường thẳng so với trục $Ox$.
+
+</div>
+
+**Ví dụ 1:** Xác định hệ số góc:
+
+| Hàm số | Hệ số góc $k$ | Ghi chú |
+|:---:|:---:|:---|
+| $y = 3x + 2$ | $k = 3$ | Dốc lên |
+| $y = -2x + 5$ | $k = -2$ | Dốc xuống |
+| $y = 0{,}5x - 1$ | $k = 0{,}5$ | Dốc lên ít |
+| $y = -x + 3$ | $k = -1$ | Dốc xuống 45° |
+
+<h3 id="goc" style="margin-top:2rem;">📐 2. Góc tạo bởi đường thẳng và trục Ox</h3>
+
+<div class="box-dinh-ly">
+
+Cho đường thẳng $y = ax + b$ (với $a \neq 0$) tạo với trục $Ox$ góc $\alpha$ ($0° < \alpha < 180°$, $\alpha \neq 90°$).
+
+**Mối liên hệ giữa hệ số góc và góc $\alpha$:**
+
+1. **Nếu $a > 0$**: Góc $\alpha$ là góc nhọn ($0° < \alpha < 90°$)
+   - Đường thẳng đi lên từ trái sang phải
+   - $\tan \alpha = a$
+
+2. **Nếu $a < 0$**: Góc $\alpha$ là góc tù ($90° < \alpha < 180°$)
+   - Đường thẳng đi xuống từ trái sang phải
+   - $\tan(180° - \alpha) = |a|$
+
+</div>
+
+**Ví dụ 2:** Xét góc tạo với trục $Ox$:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $y = 2x + 1$: $a = 2 > 0$ → Góc nhọn, $\tan \alpha = 2$
+
+b) $y = -x + 3$: $a = -1 < 0$ → Góc tù, $\tan(180° - \alpha) = 1$ → $\alpha = 135°$
+
+c) $y = x - 2$: $a = 1 > 0$ → Góc nhọn, $\tan \alpha = 1$ → $\alpha = 45°$
+
+</div>
+
+<h3 id="tinh-he-so" style="margin-top:2rem;">🔢 3. Tính hệ số góc qua hai điểm</h3>
+
+<div class="box-dinh-ly">
+
+**Công thức:** Đường thẳng đi qua hai điểm $A(x_1; y_1)$ và $B(x_2; y_2)$ (với $x_1 \neq x_2$) có hệ số góc:
+
+$$k = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\Delta y}{\Delta x}$$
+
+</div>
+
+**Ví dụ 3:** Tìm hệ số góc của đường thẳng đi qua $A(1; 2)$ và $B(3; 8)$.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+$$k = \frac{y_B - y_A}{x_B - x_A} = \frac{8 - 2}{3 - 1} = \frac{6}{2} = 3$$
+
+**Vậy hệ số góc** $k = 3$.
+
+</div>
+
+**Ví dụ 4:** Viết phương trình đường thẳng đi qua $M(2; 5)$ và $N(4; 9)$.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Tính hệ số góc:
+
+$$k = \frac{9 - 5}{4 - 2} = \frac{4}{2} = 2$$
+
+**Bước 2:** Phương trình có dạng $y = 2x + b$
+
+Thay $M(2; 5)$: $5 = 2 \cdot 2 + b \Rightarrow b = 1$
+
+**Vậy phương trình đường thẳng là** $y = 2x + 1$.
+
+</div>
+
+<h3 id="y-nghia" style="margin-top:2rem;">💡 4. Ý nghĩa của hệ số góc</h3>
+
+<div class="box-nhan-xet">
+
+**Ý nghĩa:**
+
+1. **Độ dốc**: $|k|$ càng lớn, đường thẳng càng dốc
+
+2. **Chiều tăng/giảm**:
+   - $k > 0$: Hàm số đồng biến (tăng)
+   - $k < 0$: Hàm số nghịch biến (giảm)
+
+3. **Tốc độ thay đổi**: Khi $x$ tăng 1 đơn vị, $y$ tăng $k$ đơn vị
+
+</div>
+
+**Ví dụ 5:** So sánh độ dốc:
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $y = 5x + 1$: $|k| = 5$ → Dốc nhất
+
+b) $y = 2x - 3$: $|k| = 2$ → Dốc vừa
+
+c) $y = 0{,}5x + 2$: $|k| = 0{,}5$ → Dốc ít nhất
+
+**Kết luận:** Đường thẳng (a) dốc nhất, (c) dốc ít nhất.
+
+</div>
+
+<h3 id="song-song" style="margin-top:2rem;">↔️ 5. Điều kiện song song và vuông góc</h3>
+
+<div class="box-dinh-ly">
+
+Cho hai đường thẳng $d_1: y = k_1x + b_1$ và $d_2: y = k_2x + b_2$:
+
+1. **Song song**: $d_1 \parallel d_2 \Leftrightarrow k_1 = k_2$ và $b_1 \neq b_2$
+
+2. **Trùng nhau**: $d_1 \equiv d_2 \Leftrightarrow k_1 = k_2$ và $b_1 = b_2$
+
+3. **Vuông góc**: $d_1 \perp d_2 \Leftrightarrow k_1 \cdot k_2 = -1$
+
+</div>
+
+**Ví dụ 6:** Tìm $m$ để hai đường thẳng song song:
+
+$d_1: y = 3x + 2$ và $d_2: y = mx - 1$
+
+<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Để $d_1 \parallel d_2$: $k_1 = k_2$ và $b_1 \neq b_2$
+
+$$3 = m \text{ và } 2 \neq -1 \checkmark$$
+
+**Vậy** $m = 3$.
+
+</div>
+
+**Ví dụ 7:** Viết phương trình đường thẳng đi qua $A(1; 2)$ và vuông góc với $y = 2x + 1$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Đường thẳng $y = 2x + 1$ có $k_1 = 2$
+
+Đường thẳng cần tìm vuông góc nên: $k_2 \cdot 2 = -1 \Rightarrow k_2 = -\dfrac{1}{2}$
+
+Phương trình: $y = -\dfrac{1}{2}x + b$
+
+Thay $A(1; 2)$: $2 = -\dfrac{1}{2} \cdot 1 + b \Rightarrow b = \dfrac{5}{2}$
+
+**Vậy** $y = -\dfrac{1}{2}x + \dfrac{5}{2}$.
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Độ dốc đường:**
+
+Một con đường có độ dốc 15%. Điều này có nghĩa là cứ đi 100m theo phương ngang thì độ cao tăng 15m.
+
+a) Viết công thức tính độ cao $h$ (m) theo khoảng cách ngang $d$ (m)
+
+b) Tính độ cao khi đi 200m theo phương ngang
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Độ dốc 15% = $\dfrac{15}{100} = 0{,}15$
+
+Công thức: $h = 0{,}15d$
+
+Hệ số góc $k = 0{,}15$
+
+b) Khi $d = 200$ m:
+
+$$h = 0{,}15 \times 200 = 30 \text{ m}$$
+
+</div>
+
+---
+
+**📝 Bài toán 2 — Tăng trưởng doanh thu:**
+
+Doanh thu của một công ty tăng đều theo thời gian. Tháng 1 có doanh thu 50 triệu, tháng 4 có doanh thu 80 triệu.
+
+a) Tính hệ số góc (tốc độ tăng trưởng)
+
+b) Viết công thức tính doanh thu $y$ (triệu) theo tháng $x$
+
+c) Dự đoán doanh thu tháng 7
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Hệ số góc:
+
+$$k = \frac{80 - 50}{4 - 1} = \frac{30}{3} = 10 \text{ (triệu/tháng)}$$
+
+b) Phương trình: $y = 10x + b$
+
+Thay tháng 1 ($x = 1$, $y = 50$):
+
+$$50 = 10 \cdot 1 + b \Rightarrow b = 40$$
+
+**Công thức:** $y = 10x + 40$
+
+c) Tháng 7 ($x = 7$):
+
+$$y = 10 \cdot 7 + 40 = 110 \text{ triệu}$$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Hệ số góc**: $k = a$ trong $y = ax + b$
+- **Góc nhọn**: $a > 0$, **Góc tù**: $a < 0$
+- **Qua 2 điểm**: $k = \dfrac{y_2 - y_1}{x_2 - x_1}$
+- **Song song**: $k_1 = k_2$
+- **Vuông góc**: $k_1 \cdot k_2 = -1$
+
+</GhiNho>
+
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ):** Xác định hệ số góc của các đường thẳng sau:
+
+a) $y = 5x - 3$
+
+b) $y = -2x + 7$
+
+c) $y = \dfrac{1}{3}x + 1$
+
+d) $y = -x + 4$
+
+**Bài 2 (Dễ):** Cho các đường thẳng sau, đường thẳng nào tạo với trục $Ox$ góc nhọn, góc tù?
+
+a) $y = 3x + 2$
+
+b) $y = -4x + 1$
+
+c) $y = 0{,}5x - 3$
+
+d) $y = -\dfrac{2}{3}x + 5$
+
+
+**Bài 3 (Trung bình):** Tính hệ số góc của đường thẳng đi qua hai điểm:
+
+a) $A(1; 3)$ và $B(3; 7)$
+
+b) $M(2; 5)$ và $N(4; 1)$
+
+c) $P(-1; 2)$ và $Q(2; 8)$
+
+d) $E(0; 3)$ và $F(3; 0)$
+
+**Bài 4 (Khá):** Viết phương trình đường thẳng biết:
+
+a) Đi qua điểm $A(2; 5)$ và có hệ số góc $k = 3$.
+
+b) Đi qua điểm $B(1; 4)$ và có hệ số góc $k = -2$.
+
+c) Đi qua hai điểm $M(1; 2)$ và $N(3; 6)$.
+
+d) Đi qua gốc tọa độ và có hệ số góc $k = -1$.
+
+
+**Bài 5 (Khó - Ứng dụng thực tế):** 
+
+a) Một con đường có độ dốc 12%. Viết công thức tính độ cao $h$ (m) theo khoảng cách ngang $d$ (m). Xác định hệ số góc.
+
+b) Doanh thu của một công ty tăng từ 40 triệu (tháng 1) lên 70 triệu (tháng 7). Tính hệ số góc (tốc độ tăng trưởng). Viết công thức tính doanh thu theo tháng.
+
+c) Viết phương trình đường thẳng song song với $y = 2x + 3$ và đi qua điểm $A(1; 5)$.
+
+d) Viết phương trình đường thẳng vuông góc với $y = 3x - 1$ và đi qua điểm $B(2; 4)$.
+
+e) Tìm $m$ để hai đường thẳng $y = (m+1)x + 2$ và $y = 3x - 5$ song song với nhau.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $k = 5$; b) $k = -2$; c) $k = \dfrac{1}{3}$; d) $k = -1$
+
+**Bài 2:** a) Góc nhọn; b) Góc tù; c) Góc nhọn; d) Góc tù
+
+**Bài 3:** a) $k = 2$; b) $k = -2$; c) $k = 2$; d) $k = -1$
+
+**Bài 4:** a) $y = 3x - 1$; b) $y = -2x + 6$; c) $y = 2x$; d) $y = -x$
+
+**Bài 5:** a) $h = 0{,}12d$, $k = 0{,}12$; b) $k = 5$ triệu/tháng, $y = 5x + 35$; c) $y = 2x + 3$; d) $y = -\dfrac{1}{3}x + \dfrac{14}{3}$; e) $m = 2$
+
+</div>
+</details>

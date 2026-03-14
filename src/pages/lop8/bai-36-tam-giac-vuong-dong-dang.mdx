@@ -1,0 +1,453 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 36: Các trường hợp đồng dạng của hai tam giác vuông"
+description: "Các trường hợp đồng dạng đặc biệt của tam giác vuông - Toán 8 KNTT Chương 9"
+grade: "Lớp 8"
+chapter: "Chương 9: Tam giác đồng dạng"
+currentSlug: "lop8/bai-36-tam-giac-vuong-dong-dang"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai tam giác vuông đồng dạng khi:",
+    option_a: "Có một góc nhọn bằng nhau",
+    option_b: "Có hai cạnh góc vuông tỉ lệ",
+    option_c: "Có cạnh huyền và một cạnh góc vuông tỉ lệ",
+    option_d: "Cả A, B, C đều đúng",
+    correct_option: "D",
+    explanation: "Tam giác vuông có nhiều trường hợp đồng dạng đặc biệt: góc nhọn bằng nhau, hai cạnh góc vuông tỉ lệ, hoặc cạnh huyền và cạnh góc vuông tỉ lệ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác vuông $ABC$ ($\\hat{A} = 90°$) có $AB = 3$ cm, $AC = 4$ cm. Tam giác vuông $DEF$ ($\\hat{D} = 90°$) có $DE = 6$ cm, $DF = 8$ cm. Hai tam giác này:",
+    option_a: "Đồng dạng với tỉ số $k = 2$",
+    option_b: "Đồng dạng với tỉ số $k = \\frac{1}{2}$",
+    option_c: "Không đồng dạng",
+    option_d: "Bằng nhau",
+    correct_option: "A",
+    explanation: "$\\frac{DE}{AB} = \\frac{6}{3} = 2$ và $\\frac{DF}{AC} = \\frac{8}{4} = 2$. Hai cạnh góc vuông tỉ lệ nên hai tam giác đồng dạng với $k = 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác vuông $ABC$ vuông tại $A$ có $\\hat{B} = 40°$. Tam giác vuông $MNP$ vuông tại $M$ có $\\hat{N} = 50°$. Hai tam giác này:",
+    option_a: "Đồng dạng",
+    option_b: "Không đồng dạng",
+    option_c: "Bằng nhau",
+    option_d: "Chưa đủ dữ kiện",
+    correct_option: "A",
+    explanation: "Trong $\\triangle ABC$: $\\hat{C} = 90° - 40° = 50°$. Trong $\\triangle MNP$: $\\hat{P} = 90° - 50° = 40°$. Có $\\hat{B} = \\hat{P} = 40°$ nên hai tam giác đồng dạng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác vuông có cạnh huyền 10 cm và một cạnh góc vuông 6 cm đồng dạng với tam giác vuông có cạnh huyền 15 cm và một cạnh góc vuông:",
+    option_a: "$9$ cm",
+    option_b: "$8$ cm",
+    option_c: "$10$ cm",
+    option_d: "$12$ cm",
+    correct_option: "A",
+    explanation: "Tỉ số đồng dạng: $k = \\frac{15}{10} = \\frac{3}{2}$. Cạnh góc vuông tương ứng: $6 \\times \\frac{3}{2} = 9$ cm.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Hai tam giác vuông đồng dạng khi có:",
+    option_a: "Một góc nhọn bằng nhau",
+    option_b: "Hai cạnh góc vuông tỉ lệ",
+    option_c: "Cạnh huyền và một cạnh góc vuông tỉ lệ",
+    option_d: "Hai cạnh huyền bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "A, B, C là các trường hợp đồng dạng của tam giác vuông. D sai vì hai cạnh huyền bằng nhau chưa đủ để kết luận đồng dạng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tam giác vuông có hai cạnh góc vuông 5 cm và 12 cm đồng dạng với tam giác vuông có hai cạnh góc vuông 10 cm và 24 cm. Tỉ số đồng dạng bằng bao nhiêu?",
+    correct_option: "2",
+    explanation: "$k = \\frac{10}{5} = \\frac{24}{12} = 2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác vuông $ABC$ vuông tại $A$, đường cao $AH$. Khi đó:",
+    option_a: "$\\triangle ABC \\sim \\triangle HBA$",
+    option_b: "$\\triangle ABC \\sim \\triangle HAC$",
+    option_c: "$\\triangle HBA \\sim \\triangle HAC$",
+    option_d: "Cả A, B, C đều đúng",
+    correct_option: "D",
+    explanation: "Đường cao chia tam giác vuông thành hai tam giác vuông đồng dạng với nhau và đồng dạng với tam giác ban đầu.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác vuông có hai cạnh góc vuông $!a#3!$ cm và $!b#4!$ cm đồng dạng với tam giác vuông có hai cạnh góc vuông $!tinh: !a! * 2!$ cm và:",
+    option_a: "$!tinh: !b! * 2!$ cm",
+    option_b: "$!tinh: !b! + 2!$ cm",
+    option_c: "$!tinh: !b! * 3!$ cm",
+    option_d: "$!b!$ cm",
+    correct_option: "A",
+    explanation: "Hai cạnh góc vuông phải tỉ lệ với cùng tỉ số $k = 2$. Vậy cạnh thứ hai là $!b! \\times 2 = !tinh: !b! * 2!$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">📐 Tam giác vuông — Trường hợp đặc biệt</h3>
+
+Tam giác vuông có những tính chất đặc biệt, nên các trường hợp đồng dạng của chúng cũng đơn giản hơn tam giác thường.
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Tam giác thường</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cần 3 điều kiện để xét đồng dạng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✓</div>
+    <strong>Tam giác vuông</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chỉ cần 2 điều kiện (đã có góc vuông)</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="truong-hop-1">📖 1. Trường hợp 1: Góc nhọn bằng nhau</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Hai tam giác vuông đồng dạng với nhau nếu chúng có một góc nhọn bằng nhau.
+
+</div>
+
+**Giải thích:** Vì đã có góc vuông bằng nhau ($90° = 90°$), nếu thêm một góc nhọn bằng nhau thì góc thứ ba cũng bằng nhau (do tổng ba góc = $180°$).
+
+**Ví dụ 1:** Tam giác vuông $ABC$ ($\\hat{A} = 90°$, $\\hat{B} = 35°$) và tam giác vuông $DEF$ ($\\hat{D} = 90°$, $\\hat{E} = 35°$).
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Có $\\hat{A} = \\hat{D} = 90°$ và $\\hat{B} = \\hat{E} = 35°$
+
+$\\Rightarrow \\triangle ABC \\sim \\triangle DEF$ (g.g)
+
+</div>
+
+<h3 id="truong-hop-2" style="margin-top:2rem;">📖 2. Trường hợp 2: Hai cạnh góc vuông tỉ lệ</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Hai tam giác vuông đồng dạng với nhau nếu hai cạnh góc vuông của tam giác này tỉ lệ với hai cạnh góc vuông của tam giác kia.
+
+$\\frac{AB}{DE} = \\frac{AC}{DF} \\Rightarrow \\triangle ABC \\sim \\triangle DEF$
+
+</div>
+
+**Ví dụ 2:** Tam giác vuông $ABC$ có $AB = 3$ cm, $AC = 4$ cm. Tam giác vuông $DEF$ có $DE = 6$ cm, $DF = 8$ cm.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Kiểm tra: $\\frac{DE}{AB} = \\frac{6}{3} = 2$ và $\\frac{DF}{AC} = \\frac{8}{4} = 2$
+
+Hai cạnh góc vuông tỉ lệ $\\Rightarrow \\triangle ABC \\sim \\triangle DEF$ với tỉ số $k = 2$
+
+</div>
+
+<h3 id="truong-hop-3" style="margin-top:2rem;">📖 3. Trường hợp 3: Cạnh huyền và cạnh góc vuông tỉ lệ</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Hai tam giác vuông đồng dạng với nhau nếu cạnh huyền và một cạnh góc vuông của tam giác này tỉ lệ với cạnh huyền và một cạnh góc vuông của tam giác kia.
+
+$\\frac{BC}{EF} = \\frac{AB}{DE} \\Rightarrow \\triangle ABC \\sim \\triangle DEF$
+
+</div>
+
+**Ví dụ 3:** Tam giác vuông $ABC$ có cạnh huyền $BC = 5$ cm, cạnh góc vuông $AB = 3$ cm. Tam giác vuông $DEF$ có cạnh huyền $EF = 10$ cm, cạnh góc vuông $DE = 6$ cm.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Kiểm tra: $\\frac{EF}{BC} = \\frac{10}{5} = 2$ và $\\frac{DE}{AB} = \\frac{6}{3} = 2$
+
+Cạnh huyền và cạnh góc vuông tỉ lệ $\\Rightarrow \\triangle ABC \\sim \\triangle DEF$ với $k = 2$
+
+</div>
+
+<h3 id="he-qua" style="margin-top:2rem;">🔑 4. Hệ quả: Đường cao trong tam giác vuông</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Trong tam giác vuông, đường cao ứng với cạnh huyền chia tam giác thành hai tam giác vuông đồng dạng với nhau và đồng dạng với tam giác ban đầu.
+
+Cho $\\triangle ABC$ vuông tại $A$, đường cao $AH$:
+
+$\\triangle ABC \\sim \\triangle HBA \\sim \\triangle HAC$
+
+</div>
+
+**Hệ quả quan trọng:**
+
+Từ đồng dạng, ta có các hệ thức:
+
+- $AH^2 = HB \\cdot HC$ (bình phương đường cao)
+- $AB^2 = BH \\cdot BC$ (hệ thức cạnh góc vuông)
+- $AC^2 = CH \\cdot BC$ (hệ thức cạnh góc vuông)
+
+**Ví dụ 4:** Tam giác vuông $ABC$ vuông tại $A$, đường cao $AH$. Biết $BH = 4$ cm, $HC = 9$ cm. Tính $AH$.
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Áp dụng: $AH^2 = BH \\cdot HC = 4 \\times 9 = 36$
+
+$\\Rightarrow AH = 6$ cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**📝 Bài toán 1:** Một cột đèn cao 6 m có bóng dài 8 m. Cùng lúc đó, một cây cao 4,5 m có bóng dài bao nhiêu?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Ánh sáng mặt trời tạo ra hai tam giác vuông đồng dạng (cùng góc tạo bởi tia sáng).
+
+Gọi độ dài bóng cây là $x$ (m).
+
+$\\frac{6}{8} = \\frac{4{,}5}{x} \\Rightarrow x = \\frac{4{,}5 \\times 8}{6} = 6$ m
+
+</div>
+
+**📝 Bài toán 2:** Một thang máy nghiêng có chiều dài ray 50 m, độ cao nâng lên 30 m. Một thang máy nghiêng khác có chiều dài ray 75 m thì nâng cao bao nhiêu mét (giả sử góc nghiêng như nhau)?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Hai tam giác vuông đồng dạng (cùng góc nghiêng).
+
+Gọi độ cao là $h$ (m).
+
+$\\frac{50}{75} = \\frac{30}{h} \\Rightarrow h = \\frac{30 \\times 75}{50} = 45$ m
+
+</div>
+
+**📝 Bài toán 3:** Trong tam giác vuông $ABC$ vuông tại $A$, có $AB = 6$ cm, $AC = 8$ cm, đường cao $AH$. Tính độ dài $AH$, $BH$, $CH$.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Cạnh huyền: $BC = \\sqrt{6^2 + 8^2} = \\sqrt{100} = 10$ cm
+
+Từ $\\triangle ABC \\sim \\triangle HBA$:
+
+$\\frac{AB}{BC} = \\frac{BH}{AB} \\Rightarrow BH = \\frac{AB^2}{BC} = \\frac{36}{10} = 3{,}6$ cm
+
+$CH = BC - BH = 10 - 3{,}6 = 6{,}4$ cm
+
+$AH = \\sqrt{BH \\cdot HC} = \\sqrt{3{,}6 \\times 6{,}4} = \\sqrt{23{,}04} = 4{,}8$ cm
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Trường hợp 1**: Một góc nhọn bằng nhau
+- **Trường hợp 2**: Hai cạnh góc vuông tỉ lệ
+- **Trường hợp 3**: Cạnh huyền và cạnh góc vuông tỉ lệ
+- **Đường cao**: $\\triangle ABC \\sim \\triangle HBA \\sim \\triangle HAC$
+- **Hệ thức**: $AH^2 = HB \\cdot HC$
+
+</GhiNho>
+
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho tam giác vuông $ABC$ vuông tại $A$ có $AB = 6$ cm, $AC = 8$ cm và tam giác vuông $DEF$ vuông tại $D$ có $DE = 9$ cm, $DF = 12$ cm.
+
+a) Chứng minh $\triangle ABC \sim \triangle DEF$
+
+b) Tính tỉ số đồng dạng
+
+c) Tính $BC$ và $EF$
+
+d) Tính tỉ số diện tích hai tam giác
+
+---
+
+**Bài 2:** Cho tam giác vuông $MNP$ vuông tại $M$ có $\widehat{N} = 35°$ và tam giác vuông $XYZ$ vuông tại $X$ có $\widehat{Y} = 35°$.
+
+a) Chứng minh $\triangle MNP \sim \triangle XYZ$
+
+b) Biết $MN = 5$ cm, $XY = 8$ cm. Tính tỉ số đồng dạng
+
+c) Biết $MP = 12$ cm, tính $XZ$
+
+
+---
+
+**Bài 3:** Cho tam giác vuông $ABC$ vuông tại $A$, đường cao $AH$ ($H \in BC$). Biết $BH = 9$ cm, $HC = 16$ cm.
+
+a) Chứng minh $\triangle ABH \sim \triangle CAH$
+
+b) Tính $AH$
+
+c) Tính $AB$ và $AC$
+
+d) Tính $BC$ và kiểm tra lại bằng định lí Pythagore
+
+---
+
+**Bài 4 (Ứng dụng thực tế):** Một cột đèn cao 8 m đặt cách tường 6 m. Ánh sáng từ đỉnh cột tạo bóng trên tường cao 4 m.
+
+a) Vẽ hình minh họa và chỉ ra hai tam giác vuông đồng dạng
+
+b) Tính khoảng cách từ chân tường đến điểm ánh sáng chạm mặt đất
+
+c) Nếu cột đèn cao 12 m (các điều kiện khác không đổi), tính chiều cao bóng trên tường
+
+
+---
+
+**Bài 5 (Nâng cao):** Cho tam giác vuông $ABC$ vuông tại $A$ có $AB = 12$ cm, $AC = 16$ cm. Đường cao $AH$ cắt $BC$ tại $H$.
+
+a) Tính $BC$
+
+b) Chứng minh $\triangle ABC \sim \triangle HBA \sim \triangle HAC$
+
+c) Tính $AH$, $BH$, $HC$
+
+d) Chứng minh $AB^2 = BH \cdot BC$ và $AC^2 = CH \cdot BC$
+
+e) Tính tỉ số $\dfrac{S_{ABH}}{S_{AHC}}$
+
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $\dfrac{DE}{AB} = \dfrac{9}{6} = \dfrac{3}{2}$; $\dfrac{DF}{AC} = \dfrac{12}{8} = \dfrac{3}{2}$
+
+Hai cạnh góc vuông tỉ lệ nên $\triangle ABC \sim \triangle DEF$
+
+b) $k = \dfrac{3}{2}$
+
+c) $BC = \sqrt{6^2 + 8^2} = \sqrt{100} = 10$ cm
+
+$EF = \sqrt{9^2 + 12^2} = \sqrt{225} = 15$ cm
+
+d) $\dfrac{S_{DEF}}{S_{ABC}} = k^2 = \left(\dfrac{3}{2}\right)^2 = \dfrac{9}{4}$
+
+
+---
+
+**Bài 2:**
+
+a) Hai tam giác vuông có $\widehat{N} = \widehat{Y} = 35°$ nên đồng dạng (g.g)
+
+b) $k = \dfrac{XY}{MN} = \dfrac{8}{5}$
+
+c) $XZ = \dfrac{8 \times 12}{5} = 19{,}2$ cm
+
+---
+
+**Bài 3:**
+
+a) Xét $\triangle ABH$ và $\triangle CAH$:
+
+- $\widehat{AHB} = \widehat{CHA} = 90°$
+- $\widehat{ABH} = \widehat{ACH}$ (cùng phụ với $\widehat{BAH}$)
+
+Vậy $\triangle ABH \sim \triangle CAH$ (g.g)
+
+b) $AH^2 = BH \cdot HC = 9 \times 16 = 144$
+
+$AH = 12$ cm
+
+
+c) $AB^2 = BH \cdot BC = 9 \times 25 = 225 \Rightarrow AB = 15$ cm
+
+$AC^2 = CH \cdot BC = 16 \times 25 = 400 \Rightarrow AC = 20$ cm
+
+d) $BC = BH + HC = 9 + 16 = 25$ cm
+
+Kiểm tra: $AB^2 + AC^2 = 15^2 + 20^2 = 225 + 400 = 625 = 25^2 = BC^2$ ✓
+
+---
+
+**Bài 4:**
+
+a) Hai tam giác vuông tạo bởi cột đèn và bóng trên tường đồng dạng (cùng góc tạo bởi tia sáng)
+
+b) Gọi khoảng cách cần tìm là $x$ (m). Ta có: $\dfrac{8}{4} = \dfrac{6 + x}{x}$
+
+$8x = 4(6 + x) \Rightarrow 8x = 24 + 4x \Rightarrow 4x = 24 \Rightarrow x = 6$ m
+
+c) Tỉ số đồng dạng không đổi: $\dfrac{12}{h} = \dfrac{8}{4} = 2$
+
+$h = 6$ m
+
+
+---
+
+**Bài 5:**
+
+a) $BC = \sqrt{12^2 + 16^2} = \sqrt{144 + 256} = \sqrt{400} = 20$ cm
+
+b) - $\triangle ABC$ và $\triangle HBA$: cùng vuông, có $\widehat{B}$ chung $\Rightarrow \triangle ABC \sim \triangle HBA$
+
+- $\triangle ABC$ và $\triangle HAC$: cùng vuông, có $\widehat{C}$ chung $\Rightarrow \triangle ABC \sim \triangle HAC$
+
+- Từ đó: $\triangle ABC \sim \triangle HBA \sim \triangle HAC$
+
+c) $AH = \dfrac{AB \times AC}{BC} = \dfrac{12 \times 16}{20} = 9{,}6$ cm
+
+$BH = \dfrac{AB^2}{BC} = \dfrac{144}{20} = 7{,}2$ cm
+
+$CH = \dfrac{AC^2}{BC} = \dfrac{256}{20} = 12{,}8$ cm
+
+d) $AB^2 = 144$ và $BH \cdot BC = 7{,}2 \times 20 = 144$ ✓
+
+$AC^2 = 256$ và $CH \cdot BC = 12{,}8 \times 20 = 256$ ✓
+
+e) $\dfrac{S_{ABH}}{S_{AHC}} = \dfrac{BH}{CH} = \dfrac{7{,}2}{12{,}8} = \dfrac{9}{16}$
+
+</div>
+</details>

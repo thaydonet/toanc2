@@ -1,0 +1,458 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 19: Biểu diễn dữ liệu bằng bảng, biểu đồ"
+description: "Các phương pháp biểu diễn dữ liệu thống kê - Toán 8 KNTT Chương 5"
+grade: "Lớp 8"
+chapter: "Chương 5: Dữ liệu và biểu đồ"
+currentSlug: "lop8/bai-19-bieu-dien-du-lieu"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Biểu đồ cột được sử dụng để:",
+    option_a: "So sánh các giá trị khác nhau",
+    option_b: "Chỉ để trang trí",
+    option_c: "Chỉ dùng cho dữ liệu định tính",
+    option_d: "Không có ý nghĩa",
+    correct_option: "A",
+    explanation: "Biểu đồ cột giúp so sánh trực quan các giá trị khác nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ hình quạt tròn thể hiện:",
+    option_a: "Tỉ lệ phần trăm của các phần so với tổng thể",
+    option_b: "Sự thay đổi theo thời gian",
+    option_c: "Mối quan hệ giữa hai biến",
+    option_d: "Chỉ số liệu lớn",
+    correct_option: "A",
+    explanation: "Biểu đồ hình quạt tròn thể hiện tỉ lệ phần trăm của từng phần trong tổng thể.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ đoạn thẳng thích hợp để biểu diễn:",
+    option_a: "Sự thay đổi của dữ liệu theo thời gian",
+    option_b: "Tỉ lệ phần trăm",
+    option_c: "Chỉ dữ liệu định tính",
+    option_d: "Không thể biểu diễn dữ liệu",
+    correct_option: "A",
+    explanation: "Biểu đồ đoạn thẳng thích hợp để thể hiện sự thay đổi theo thời gian.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong biểu đồ hình quạt, tổng các góc ở tâm bằng:",
+    option_a: "$360°$",
+    option_b: "$180°$",
+    option_c: "$100°$",
+    option_d: "$90°$",
+    correct_option: "A",
+    explanation: "Tổng các góc ở tâm của hình tròn là $360°$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các loại biểu đồ phổ biến là:",
+    option_a: "Biểu đồ cột",
+    option_b: "Biểu đồ hình quạt tròn",
+    option_c: "Biểu đồ đoạn thẳng",
+    option_d: "Biểu đồ tranh",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều là các loại biểu đồ phổ biến trong thống kê.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một phần chiếm 25% trong biểu đồ hình quạt. Góc ở tâm tương ứng là bao nhiêu độ?",
+    correct_option: "90",
+    explanation: "Góc $= 360° \\times 25\\% = 90°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một phần chiếm $!a#40!\\%$ trong biểu đồ hình quạt. Góc ở tâm là:",
+    option_a: "$!tinh: 360 * !a! / 100!°$",
+    option_b: "$!tinh: 180 * !a! / 100!°$",
+    option_c: "$!a!°$",
+    option_d: "$!tinh: 100 - !a!!°$",
+    correct_option: "A",
+    explanation: "Góc $= 360° \\times \\dfrac{!a!}{100} = !tinh: 360 * !a! / 100!°$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ cột có $!a#5!$ cột với chiều cao lần lượt $10, 15, !b#20!, 12, 8$. Cột cao nhất là:",
+    option_a: "Cột thứ 3",
+    option_b: "Cột thứ 1",
+    option_c: "Cột thứ 2",
+    option_d: "Cột thứ 5",
+    correct_option: "A",
+    explanation: "Cột thứ 3 có chiều cao $!b!$ là cao nhất.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">📊 Biểu đồ — Hình ảnh của dữ liệu</h3>
+
+Biểu đồ giúp chúng ta "nhìn thấy" dữ liệu một cách trực quan!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Biểu đồ cột</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">So sánh các giá trị</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🥧</div>
+    <strong>Biểu đồ hình quạt</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thể hiện tỉ lệ phần trăm</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
+    <strong>Biểu đồ đoạn thẳng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thay đổi theo thời gian</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="bang-tan-so">📖 1. Bảng tần số</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Bảng tần số là bảng thống kê số lần xuất hiện của mỗi giá trị trong dữ liệu.
+
+</div>
+
+**Ví dụ 1:** Điểm kiểm tra của 20 học sinh:
+
+```
+7, 8, 6, 9, 7, 8, 7, 6, 8, 9,
+7, 8, 7, 9, 8, 7, 6, 8, 9, 7
+```
+
+**Bảng tần số:**
+
+| Điểm | 6 | 7 | 8 | 9 | Tổng |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Tần số | 3 | 8 | 6 | 3 | 20 |
+| Tỉ lệ % | 15% | 40% | 30% | 15% | 100% |
+
+<h3 id="bieu-do-cot" style="margin-top:2rem;">📊 2. Biểu đồ cột</h3>
+
+<div class="box-dinh-ly">
+
+**Biểu đồ cột:** Sử dụng các cột có chiều cao tỉ lệ với giá trị để biểu diễn dữ liệu.
+
+**Ưu điểm:** Dễ so sánh các giá trị khác nhau.
+
+</div>
+
+**Hình minh họa biểu đồ cột:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="500" height="320" viewBox="0 0 500 320" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Trục tọa độ */}
+  <line x1="60" y1="40" x2="60" y2="280" stroke="#374151" stroke-width="2"/>
+  <line x1="60" y1="280" x2="460" y2="280" stroke="#374151" stroke-width="2"/>
+  
+  {/* Các cột */}
+  <rect x="90" y="220" width="60" height="60" fill="#3b82f6" opacity="0.8"/>
+  <rect x="180" y="120" width="60" height="160" fill="#10b981" opacity="0.8"/>
+  <rect x="270" y="160" width="60" height="120" fill="#f59e0b" opacity="0.8"/>
+  <rect x="360" y="220" width="60" height="60" fill="#ef4444" opacity="0.8"/>
+  
+  {/* Nhãn trục x */}
+  <text x="115" y="300" font-size="14" text-anchor="middle" fill="#374151">6</text>
+  <text x="205" y="300" font-size="14" text-anchor="middle" fill="#374151">7</text>
+  <text x="295" y="300" font-size="14" text-anchor="middle" fill="#374151">8</text>
+  <text x="385" y="300" font-size="14" text-anchor="middle" fill="#374151">9</text>
+  
+  {/* Nhãn trục y */}
+  <text x="45" y="285" font-size="12" text-anchor="end" fill="#374151">0</text>
+  <text x="45" y="225" font-size="12" text-anchor="end" fill="#374151">3</text>
+  <text x="45" y="165" font-size="12" text-anchor="end" fill="#374151">6</text>
+  <text x="45" y="105" font-size="12" text-anchor="end" fill="#374151">9</text>
+  
+  {/* Tiêu đề */}
+  <text x="250" y="25" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">Biểu đồ điểm kiểm tra</text>
+  <text x="250" y="315" font-size="14" text-anchor="middle" fill="#6b7280">Điểm số</text>
+  <text x="20" y="160" font-size="14" text-anchor="middle" fill="#6b7280" transform="rotate(-90 20 160)">Số học sinh</text>
+</svg>
+</div>
+
+<h3 id="bieu-do-hinh-quat" style="margin-top:2rem;">🥧 3. Biểu đồ hình quạt tròn</h3>
+
+<div class="box-dinh-ly">
+
+**Biểu đồ hình quạt tròn:** Chia hình tròn thành các hình quạt có góc ở tâm tỉ lệ với tỉ lệ phần trăm.
+
+**Công thức:** Góc ở tâm $= 360° \times \dfrac{\text{Tỉ lệ phần trăm}}{100\%}$
+
+</div>
+
+**Ví dụ 2:** Môn học yêu thích của 40 học sinh:
+
+| Môn học | Số HS | Tỉ lệ % | Góc ở tâm |
+|:---:|:---:|:---:|:---:|
+| Toán | 16 | 40% | $144°$ |
+| Văn | 12 | 30% | $108°$ |
+| Anh | 8 | 20% | $72°$ |
+| Lý | 4 | 10% | $36°$ |
+
+**Hình minh họa biểu đồ hình quạt:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="400" viewBox="0 0 400 400" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Hình tròn */}
+  <circle cx="200" cy="200" r="120" fill="none" stroke="#d1d5db" stroke-width="1"/>
+  
+  {/* Các hình quạt */}
+  <path d="M 200,200 L 200,80 A 120,120 0 0,1 285,115 Z" fill="#3b82f6" opacity="0.8"/>
+  <path d="M 200,200 L 285,115 A 120,120 0 0,1 285,285 Z" fill="#10b981" opacity="0.8"/>
+  <path d="M 200,200 L 285,285 A 120,120 0 0,1 200,320 Z" fill="#f59e0b" opacity="0.8"/>
+  <path d="M 200,200 L 200,320 A 120,120 0 0,1 200,80 Z" fill="#ef4444" opacity="0.8"/>
+  
+  {/* Nhãn */}
+  <text x="200" y="120" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Toán 40%</text>
+  <text x="270" y="200" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Văn 30%</text>
+  <text x="230" y="290" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Anh 20%</text>
+  <text x="150" y="200" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Lý 10%</text>
+  
+  {/* Tiêu đề */}
+  <text x="200" y="30" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">Môn học yêu thích</text>
+</svg>
+</div>
+
+<h3 id="bieu-do-doan-thang" style="margin-top:2rem;">📈 4. Biểu đồ đoạn thẳng</h3>
+
+<div class="box-dinh-ly">
+
+**Biểu đồ đoạn thẳng:** Nối các điểm biểu diễn giá trị bằng đoạn thẳng, thích hợp cho dữ liệu thay đổi theo thời gian.
+
+</div>
+
+**Ví dụ 3:** Nhiệt độ trung bình các tháng (°C):
+
+| Tháng | 1 | 2 | 3 | 4 | 5 | 6 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Nhiệt độ | 18 | 20 | 24 | 28 | 30 | 32 |
+
+**Hình minh họa biểu đồ đoạn thẳng:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="500" height="320" viewBox="0 0 500 320" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Trục tọa độ */}
+  <line x1="60" y1="40" x2="60" y2="280" stroke="#374151" stroke-width="2"/>
+  <line x1="60" y1="280" x2="460" y2="280" stroke="#374151" stroke-width="2"/>
+  
+  {/* Đường gấp khúc */}
+  <polyline points="90,220 150,200 210,160 270,120 330,100 390,80" fill="none" stroke="#3b82f6" stroke-width="3"/>
+  
+  {/* Các điểm */}
+  <circle cx="90" cy="220" r="5" fill="#3b82f6"/>
+  <circle cx="150" cy="200" r="5" fill="#3b82f6"/>
+  <circle cx="210" cy="160" r="5" fill="#3b82f6"/>
+  <circle cx="270" cy="120" r="5" fill="#3b82f6"/>
+  <circle cx="330" cy="100" r="5" fill="#3b82f6"/>
+  <circle cx="390" cy="80" r="5" fill="#3b82f6"/>
+  
+  {/* Nhãn trục x */}
+  <text x="90" y="300" font-size="14" text-anchor="middle" fill="#374151">T1</text>
+  <text x="150" y="300" font-size="14" text-anchor="middle" fill="#374151">T2</text>
+  <text x="210" y="300" font-size="14" text-anchor="middle" fill="#374151">T3</text>
+  <text x="270" y="300" font-size="14" text-anchor="middle" fill="#374151">T4</text>
+  <text x="330" y="300" font-size="14" text-anchor="middle" fill="#374151">T5</text>
+  <text x="390" y="300" font-size="14" text-anchor="middle" fill="#374151">T6</text>
+  
+  {/* Nhãn trục y */}
+  <text x="45" y="285" font-size="12" text-anchor="end" fill="#374151">15</text>
+  <text x="45" y="225" font-size="12" text-anchor="end" fill="#374151">20</text>
+  <text x="45" y="165" font-size="12" text-anchor="end" fill="#374151">25</text>
+  <text x="45" y="105" font-size="12" text-anchor="end" fill="#374151">30</text>
+  
+  {/* Tiêu đề */}
+  <text x="250" y="25" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">Nhiệt độ trung bình</text>
+  <text x="250" y="315" font-size="14" text-anchor="middle" fill="#6b7280">Tháng</text>
+  <text x="20" y="160" font-size="14" text-anchor="middle" fill="#6b7280" transform="rotate(-90 20 160)">Nhiệt độ (°C)</text>
+</svg>
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Doanh thu bán hàng của một cửa hàng trong 6 tháng (triệu đồng):
+
+| Tháng | 1 | 2 | 3 | 4 | 5 | 6 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Doanh thu | 50 | 60 | 55 | 70 | 75 | 80 |
+
+a) Vẽ biểu đồ cột thể hiện dữ liệu.
+
+b) Vẽ biểu đồ đoạn thẳng thể hiện dữ liệu.
+
+c) Tháng nào có doanh thu cao nhất?
+
+d) Nhận xét xu hướng doanh thu.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) và b) Vẽ biểu đồ (tự vẽ)
+
+c) Tháng 6 có doanh thu cao nhất (80 triệu)
+
+d) Doanh thu có xu hướng tăng dần theo thời gian, đặc biệt từ tháng 3 đến tháng 6.
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Bảng tần số**: thống kê số lần xuất hiện
+- **Biểu đồ cột**: so sánh các giá trị
+- **Biểu đồ hình quạt**: thể hiện tỉ lệ phần trăm, góc $= 360° \times \dfrac{\%}{100}$
+- **Biểu đồ đoạn thẳng**: thể hiện sự thay đổi theo thời gian
+- Chọn loại biểu đồ phù hợp với mục đích và loại dữ liệu
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Điểm kiểm tra của 30 học sinh:
+
+| Điểm | 5 | 6 | 7 | 8 | 9 | 10 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Số HS | 2 | 5 | 10 | 8 | 4 | 1 |
+
+a) Vẽ biểu đồ cột.
+
+b) Tính tỉ lệ phần trăm mỗi điểm.
+
+c) Điểm nào có nhiều học sinh đạt nhất?
+
+d) Tính tỉ lệ học sinh đạt điểm trung bình trở lên (từ 7 trở lên).
+
+**Bài 2:** Phương tiện đi học của 50 học sinh:
+
+- Xe đạp: 20 học sinh (40%)
+- Xe máy: 15 học sinh (30%)
+- Đi bộ: 10 học sinh (20%)
+- Xe buýt: 5 học sinh (10%)
+
+a) Tính góc ở tâm cho mỗi phần trong biểu đồ hình quạt.
+
+b) Vẽ biểu đồ hình quạt tròn.
+
+c) Phương tiện nào được sử dụng nhiều nhất?
+
+d) So sánh tỉ lệ xe đạp và xe máy.
+
+**Bài 3:** Nhiệt độ trung bình các tháng trong năm (°C):
+
+| Tháng | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Nhiệt độ | 18 | 20 | 24 | 28 | 30 | 32 | 32 | 31 | 29 | 26 | 22 | 19 |
+
+a) Vẽ biểu đồ đoạn thẳng.
+
+b) Tháng nào có nhiệt độ cao nhất?
+
+c) Tháng nào có nhiệt độ thấp nhất?
+
+d) Nhận xét sự thay đổi nhiệt độ trong năm.
+
+**Bài 4:** So sánh ba loại biểu đồ:
+
+a) Nêu ưu điểm của biểu đồ cột.
+
+b) Nêu ưu điểm của biểu đồ hình quạt tròn.
+
+c) Nêu ưu điểm của biểu đồ đoạn thẳng.
+
+d) Cho ví dụ về tình huống phù hợp với mỗi loại biểu đồ.
+
+**Bài 5:** Doanh số bán hàng của 4 cửa hàng (triệu đồng):
+
+- Cửa hàng A: 100 (25%)
+- Cửa hàng B: 150 (37,5%)
+- Cửa hàng C: 100 (25%)
+- Cửa hàng D: 50 (12,5%)
+
+a) Vẽ biểu đồ cột so sánh doanh số.
+
+b) Tính góc ở tâm cho biểu đồ hình quạt.
+
+c) Cửa hàng nào có doanh số cao nhất?
+
+d) Tính tổng doanh số của 4 cửa hàng.
+
+**Bài 6 (Thực tế):** Số lượng khách tham quan bảo tàng trong tuần:
+
+| Thứ | 2 | 3 | 4 | 5 | 6 | 7 | CN |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Số khách | 200 | 250 | 300 | 280 | 350 | 400 | 500 |
+
+a) Vẽ biểu đồ cột.
+
+b) Vẽ biểu đồ đoạn thẳng.
+
+c) Ngày nào có nhiều khách nhất?
+
+d) Tính trung bình số khách mỗi ngày.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Vẽ biểu đồ; b) 5: 6,7%, 6: 16,7%, 7: 33,3%, 8: 26,7%, 9: 13,3%, 10: 3,3%; c) Điểm 7; d) 76,7%
+
+**Bài 2:** a) Xe đạp: 144°, Xe máy: 108°, Đi bộ: 72°, Xe buýt: 36°; b) Vẽ biểu đồ; c) Xe đạp; d) Xe đạp nhiều hơn 10%
+
+**Bài 3:** a) Vẽ biểu đồ; b) Tháng 6 và 7 (32°C); c) Tháng 1 (18°C); d) Tăng từ T1-T6, giảm từ T7-T12
+
+**Bài 4:** Tự trả lời dựa trên đặc điểm mỗi loại
+
+**Bài 5:** a) Vẽ biểu đồ; b) A: 90°, B: 135°, C: 90°, D: 45°; c) Cửa hàng B; d) 400 triệu
+
+**Bài 6:** a, b) Vẽ biểu đồ; c) Chủ nhật (500 khách); d) 325,7 khách/ngày
+
+</div>
+</details>

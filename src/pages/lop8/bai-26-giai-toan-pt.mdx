@@ -1,0 +1,433 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 26: Giải bài toán bằng cách lập phương trình"
+description: "Các bước giải bài toán bằng cách lập phương trình - Toán 8 KNTT Chương 7"
+grade: "Lớp 8"
+chapter: "Chương 7: Phương trình bậc nhất và hàm số bậc nhất"
+currentSlug: "lop8/bai-26-giai-toan-pt"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Bước đầu tiên khi giải bài toán bằng cách lập phương trình là:",
+    option_a: "Chọn ẩn số và đặt điều kiện",
+    option_b: "Lập phương trình",
+    option_c: "Giải phương trình",
+    option_d: "Trả lời",
+    correct_option: "A",
+    explanation: "Bước 1: Chọn ẩn số và đặt điều kiện cho ẩn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một số tăng thêm 15 thì được 42. Phương trình biểu diễn bài toán là:",
+    option_a: "$x + 15 = 42$",
+    option_b: "$x - 15 = 42$",
+    option_c: "$15x = 42$",
+    option_d: "$x = 42 - 15$",
+    correct_option: "A",
+    explanation: "Gọi số cần tìm là $x$. Số tăng thêm 15: $x + 15 = 42$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tổng của hai số là 50, số thứ nhất gấp đôi số thứ hai. Gọi số thứ hai là $x$, phương trình là:",
+    option_a: "$x + 2x = 50$",
+    option_b: "$2x + x = 100$",
+    option_c: "$x - 2x = 50$",
+    option_d: "$x + x = 50$",
+    correct_option: "A",
+    explanation: "Số thứ hai: $x$. Số thứ nhất: $2x$. Tổng: $x + 2x = 50$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một người đi xe đạp với vận tốc 15 km/h trong $x$ giờ. Quãng đường đi được là:",
+    option_a: "$15x$ km",
+    option_b: "$\\dfrac{15}{x}$ km",
+    option_c: "$\\dfrac{x}{15}$ km",
+    option_d: "$15 + x$ km",
+    correct_option: "A",
+    explanation: "Quãng đường = vận tốc × thời gian = $15x$ km.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hiện nay tuổi con là $x$, tuổi mẹ gấp 3 lần tuổi con. Sau 5 năm, tuổi mẹ là:",
+    option_a: "$3x + 5$",
+    option_b: "$3(x + 5)$",
+    option_c: "$3x$",
+    option_d: "$x + 5$",
+    correct_option: "A",
+    explanation: "Tuổi mẹ hiện nay: $3x$. Sau 5 năm: $3x + 5$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các bước giải bài toán bằng cách lập phương trình gồm:",
+    option_a: "Chọn ẩn và đặt điều kiện",
+    option_b: "Lập phương trình",
+    option_c: "Giải phương trình",
+    option_d: "Trả lời và kiểm tra",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả 4 bước đều cần thiết khi giải bài toán bằng cách lập phương trình.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một số nhân với 5 rồi cộng 7 được 32. Số đó là bao nhiêu?",
+    correct_option: "5",
+    explanation: "Gọi số cần tìm là $x$: $5x + 7 = 32 \\Rightarrow 5x = 25 \\Rightarrow x = 5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một ô tô đi quãng đường $!a#50!$ km với vận tốc $x$ km/h. Thời gian đi là:",
+    option_a: "$\\dfrac{!a!}{x}$ giờ",
+    option_b: "$!a!x$ giờ",
+    option_c: "$\\dfrac{x}{!a!}$ giờ",
+    option_d: "$!a! - x$ giờ",
+    correct_option: "A",
+    explanation: "Thời gian = quãng đường ÷ vận tốc = $\\dfrac{!a!}{x}$ giờ.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Mở đầu — Tại sao cần lập phương trình?</h3>
+
+Nhiều bài toán thực tế có thể giải bằng cách lập phương trình:
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🚗</div>
+    <strong>Bài toán chuyển động</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Xe đi từ A đến B, tính vận tốc, thời gian, quãng đường</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">💼</div>
+    <strong>Bài toán làm chung</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hai người làm chung công việc, tính thời gian hoàn thành</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎂</div>
+    <strong>Bài toán tuổi</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính tuổi của các thành viên trong gia đình</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #e9d5ff;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">💰</div>
+    <strong>Bài toán tiền hàng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Mua bán hàng hóa, tính giá, số lượng</p>
+  </div>
+</div>
+
+💬 *Lập phương trình giúp chuyển bài toán thực tế thành bài toán đại số dễ giải!*
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="cac-buoc">📖 1. Các bước giải bài toán bằng cách lập phương trình</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy trình 4 bước:**
+
+**Bước 1: Chọn ẩn và đặt điều kiện**
+- Chọn đại lượng chưa biết làm ẩn số (thường ký hiệu là $x$)
+- Đặt điều kiện thích hợp cho ẩn (ví dụ: $x > 0$, $x \in \mathbb{N}$)
+
+**Bước 2: Biểu diễn các đại lượng chưa biết theo ẩn**
+- Dựa vào mối quan hệ trong đề bài để biểu diễn các đại lượng khác theo $x$
+
+**Bước 3: Lập phương trình**
+- Dựa vào điều kiện của bài toán để lập phương trình
+
+**Bước 4: Giải phương trình và trả lời**
+- Giải phương trình vừa lập
+- Kiểm tra nghiệm có thỏa mãn điều kiện không
+- Trả lời câu hỏi của bài toán
+
+</div>
+
+<h3 id="vi-du-1" style="margin-top:2rem;">✏️ 2. Bài toán về số</h3>
+
+**Ví dụ 1:** Tìm số tự nhiên có hai chữ số, biết chữ số hàng chục gấp đôi chữ số hàng đơn vị và tổng hai chữ số bằng 9.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Gọi chữ số hàng đơn vị là $x$ ($x \in \mathbb{N}$, $0 < x \leq 9$)
+
+Chữ số hàng chục: $2x$
+
+**Bước 2:** Điều kiện: $2x \leq 9 \Rightarrow x \leq 4{,}5$
+
+Tổng hai chữ số: $x + 2x = 9$
+
+**Bước 3:** Lập phương trình:
+
+$$3x = 9$$
+
+**Bước 4:** Giải:
+
+$$x = 3$$
+
+Chữ số hàng chục: $2 \times 3 = 6$
+
+**Vậy số cần tìm là 63.**
+
+</div>
+
+<h3 id="vi-du-2" style="margin-top:2rem;">🚗 3. Bài toán chuyển động</h3>
+
+**Công thức cơ bản:**
+
+$$\text{Quãng đường} = \text{Vận tốc} \times \text{Thời gian}$$
+
+$$S = v \cdot t$$
+
+**Ví dụ 2:** Một người đi xe đạp từ A đến B với vận tốc 12 km/h. Lúc về, người đó đi với vận tốc 15 km/h nên thời gian về ít hơn thời gian đi 20 phút. Tính quãng đường AB.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Gọi quãng đường AB là $x$ (km), $x > 0$
+
+**Bước 2:** 
+- Thời gian đi: $\dfrac{x}{12}$ (giờ)
+- Thời gian về: $\dfrac{x}{15}$ (giờ)
+- 20 phút = $\dfrac{1}{3}$ giờ
+
+**Bước 3:** Lập phương trình:
+
+$$\frac{x}{12} - \frac{x}{15} = \frac{1}{3}$$
+
+**Bước 4:** Giải (MTC = 60):
+
+$$\frac{5x}{60} - \frac{4x}{60} = \frac{1}{3}$$
+$$\frac{x}{60} = \frac{1}{3}$$
+$$x = 20$$
+
+**Vậy quãng đường AB dài 20 km.**
+
+</div>
+
+<h3 id="vi-du-3" style="margin-top:2rem;">💼 4. Bài toán làm chung</h3>
+
+**Công thức cơ bản:**
+
+$$\text{Năng suất} = \frac{1}{\text{Thời gian hoàn thành}}$$
+
+**Ví dụ 3:** Hai người thợ cùng làm một công việc thì hoàn thành trong 6 giờ. Nếu người thứ nhất làm một mình thì mất 10 giờ. Hỏi người thứ hai làm một mình thì mất bao lâu?
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Gọi thời gian người thứ hai làm một mình là $x$ (giờ), $x > 0$
+
+**Bước 2:**
+- Năng suất người 1: $\dfrac{1}{10}$ (công việc/giờ)
+- Năng suất người 2: $\dfrac{1}{x}$ (công việc/giờ)
+- Năng suất cả hai: $\dfrac{1}{6}$ (công việc/giờ)
+
+**Bước 3:** Lập phương trình:
+
+$$\frac{1}{10} + \frac{1}{x} = \frac{1}{6}$$
+
+**Bước 4:** Giải:
+
+$$\frac{1}{x} = \frac{1}{6} - \frac{1}{10} = \frac{5-3}{30} = \frac{2}{30} = \frac{1}{15}$$
+$$x = 15$$
+
+**Vậy người thứ hai làm một mình mất 15 giờ.**
+
+</div>
+
+<h3 id="vi-du-4" style="margin-top:2rem;">🎂 5. Bài toán tuổi</h3>
+
+**Ví dụ 4:** Hiện nay tuổi bố gấp 4 lần tuổi con. Sau 5 năm nữa, tuổi bố chỉ còn gấp 3 lần tuổi con. Tính tuổi mỗi người hiện nay.
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Gọi tuổi con hiện nay là $x$ (tuổi), $x > 0$
+
+**Bước 2:**
+- Tuổi bố hiện nay: $4x$ (tuổi)
+- Sau 5 năm, tuổi con: $x + 5$ (tuổi)
+- Sau 5 năm, tuổi bố: $4x + 5$ (tuổi)
+
+**Bước 3:** Lập phương trình:
+
+$$4x + 5 = 3(x + 5)$$
+
+**Bước 4:** Giải:
+
+$$4x + 5 = 3x + 15$$
+$$4x - 3x = 15 - 5$$
+$$x = 10$$
+
+Tuổi bố: $4 \times 10 = 40$ (tuổi)
+
+**Vậy hiện nay con 10 tuổi, bố 40 tuổi.**
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Bài toán tiền hàng:**
+
+Một cửa hàng bán cam và táo. Giá 1 kg cam là 30000đ, giá 1 kg táo là 40000đ. Một người mua tổng cộng 5 kg hai loại quả và trả 170000đ. Hỏi người đó mua bao nhiêu kg mỗi loại?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Gọi số kg cam mua là $x$ (kg), $0 < x < 5$
+
+Số kg táo: $5 - x$ (kg)
+
+Tổng tiền: $30000x + 40000(5-x) = 170000$
+
+$$30000x + 200000 - 40000x = 170000$$
+$$-10000x = -30000$$
+$$x = 3$$
+
+**Vậy:** Mua 3 kg cam và 2 kg táo.
+
+</div>
+
+---
+
+**📝 Bài toán 2 — Bài toán phần trăm:**
+
+Một cửa hàng giảm giá 20% cho tất cả sản phẩm. Sau khi giảm, một chiếc áo có giá 240000đ. Hỏi giá ban đầu của chiếc áo là bao nhiêu?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Gọi giá ban đầu là $x$ (đồng), $x > 0$
+
+Sau khi giảm 20%, giá còn 80% giá ban đầu:
+
+$$0{,}8x = 240000$$
+$$x = \frac{240000}{0{,}8} = 300000$$
+
+**Vậy:** Giá ban đầu là 300000đ.
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **4 bước**: Chọn ẩn → Biểu diễn → Lập PT → Giải và trả lời
+- **Chuyển động**: $S = v \cdot t$
+- **Làm chung**: Năng suất = $\dfrac{1}{\text{thời gian}}$
+- **Luôn kiểm tra** nghiệm có thỏa mãn điều kiện thực tế
+
+</GhiNho>
+
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ):** Giải các bài toán sau bằng cách lập phương trình:
+
+a) Tìm số tự nhiên, biết rằng nếu lấy số đó cộng với 15 thì được 42.
+
+b) Tìm số tự nhiên, biết rằng nếu lấy số đó nhân với 3 rồi trừ đi 7 thì được 20.
+
+c) Tổng của hai số là 50. Số thứ nhất gấp đôi số thứ hai. Tìm hai số đó.
+
+d) Hiệu của hai số là 12. Số lớn gấp 3 lần số bé. Tìm hai số đó.
+
+**Bài 2 (Trung bình):** Bài toán về tuổi:
+
+a) Hiện nay tuổi bố gấp 4 lần tuổi con. Biết tuổi bố hơn tuổi con 27 tuổi. Tính tuổi mỗi người.
+
+b) Năm nay tuổi mẹ gấp 3 lần tuổi con. Sau 10 năm nữa, tuổi mẹ chỉ còn gấp 2 lần tuổi con. Tính tuổi mỗi người hiện nay.
+
+c) Trước đây 5 năm, tuổi anh gấp 2 lần tuổi em. Hiện nay tổng số tuổi của hai anh em là 35 tuổi. Tính tuổi mỗi người hiện nay.
+
+**Bài 3 (Trung bình):** Bài toán chuyển động:
+
+a) Một người đi xe đạp từ A đến B với vận tốc 15 km/h. Lúc về, người đó đi với vận tốc 12 km/h nên thời gian về nhiều hơn thời gian đi 30 phút. Tính quãng đường AB.
+
+b) Hai ô tô cùng xuất phát từ A đến B. Xe thứ nhất có vận tốc 50 km/h, xe thứ hai có vận tốc 60 km/h và đến B sớm hơn xe thứ nhất 20 phút. Tính quãng đường AB.
+
+c) Một ca nô đi xuôi dòng từ A đến B mất 2 giờ, đi ngược dòng từ B về A mất 3 giờ. Biết vận tốc dòng nước là 5 km/h. Tính vận tốc thực của ca nô và quãng đường AB.
+
+**Bài 4 (Khá):** Bài toán làm chung:
+
+a) Hai người thợ cùng làm một công việc thì hoàn thành trong 12 giờ. Nếu người thứ nhất làm một mình thì mất 20 giờ. Hỏi người thứ hai làm một mình thì mất bao lâu?
+
+b) Hai vòi nước cùng chảy vào bể thì sau 6 giờ đầy bể. Nếu vòi thứ nhất chảy một mình thì sau 10 giờ đầy bể. Hỏi vòi thứ hai chảy một mình thì sau bao lâu đầy bể?
+
+c) Ba người cùng làm một công việc thì hoàn thành trong 4 giờ. Người thứ nhất làm một mình mất 12 giờ, người thứ hai làm một mình mất 10 giờ. Hỏi người thứ ba làm một mình thì mất bao lâu?
+
+**Bài 5 (Khó - Ứng dụng thực tế):** 
+
+a) Một cửa hàng bán hai loại hàng: loại A giá 30000đ/kg, loại B giá 50000đ/kg. Một người mua tổng cộng 8 kg hai loại và trả 300000đ. Hỏi người đó mua bao nhiêu kg mỗi loại?
+
+b) Một người gửi tiết kiệm 10 triệu đồng với lãi suất 0,5%/tháng. Sau bao nhiêu tháng thì người đó có được 11 triệu đồng (cả vốn lẫn lãi)?
+
+c) Một hình chữ nhật có chu vi 60 cm. Nếu tăng chiều dài 5 cm và giảm chiều rộng 3 cm thì diện tích tăng 15 cm². Tính kích thước ban đầu của hình chữ nhật.
+
+d) Một xe tải và một xe con cùng xuất phát từ A đến B cách nhau 180 km. Xe tải đi trước xe con 1 giờ. Vận tốc xe tải là 40 km/h, vận tốc xe con là 60 km/h. Hỏi sau bao lâu kể từ khi xe con xuất phát thì hai xe gặp nhau?
+
+e) Một bể nước hình hộp chữ nhật có chiều dài 2m, chiều rộng 1,5m. Người ta đổ nước vào bể với lưu lượng 30 lít/phút. Sau 40 phút thì mực nước trong bể cao 80 cm. Tính chiều cao của bể.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 27; b) 9; c) Số thứ nhất: 33,33, số thứ hai: 16,67; d) Số bé: 6, số lớn: 18
+
+**Bài 2:** a) Con 9 tuổi, bố 36 tuổi; b) Con 10 tuổi, mẹ 30 tuổi; c) Em 15 tuổi, anh 20 tuổi
+
+**Bài 3:** a) 30 km; b) 100 km; c) Vận tốc ca nô: 25 km/h, AB: 60 km
+
+**Bài 4:** a) 30 giờ; b) 15 giờ; c) 60 giờ
+
+**Bài 5:** a) Loại A: 5 kg, loại B: 3 kg; b) 20 tháng; c) Dài 20 cm, rộng 10 cm; d) 2 giờ; e) 1,2 m
+
+</div>
+</details>

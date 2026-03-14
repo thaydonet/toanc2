@@ -1,0 +1,452 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 17: Tính chất đường phân giác của tam giác"
+description: "Định lí về tính chất đường phân giác trong tam giác - Toán 8 KNTT Chương 4"
+grade: "Lớp 8"
+chapter: "Chương 4: Định lí Thales"
+currentSlug: "lop8/bai-17-phan-giac-tam-giac"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Trong tam giác $ABC$, phân giác $AD$ chia cạnh $BC$ thành hai đoạn $BD$ và $DC$ sao cho:",
+    option_a: "$\\dfrac{BD}{DC} = \\dfrac{AB}{AC}$",
+    option_b: "$BD = DC$",
+    option_c: "$\\dfrac{BD}{AB} = \\dfrac{DC}{AC}$",
+    option_d: "$BD + DC = AB + AC$",
+    correct_option: "A",
+    explanation: "Tính chất đường phân giác: $\\dfrac{BD}{DC} = \\dfrac{AB}{AC}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác $ABC$ có $AB = 6$ cm, $AC = 9$ cm. Phân giác $AD$ chia $BC$ thành $BD = 4$ cm. Độ dài $DC$ là:",
+    option_a: "$6$ cm",
+    option_b: "$8$ cm",
+    option_c: "$9$ cm",
+    option_d: "$12$ cm",
+    correct_option: "A",
+    explanation: "$\\dfrac{BD}{DC} = \\dfrac{AB}{AC} \\Rightarrow \\dfrac{4}{DC} = \\dfrac{6}{9} \\Rightarrow DC = 6$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác có hai cạnh $8$ cm và $12$ cm. Phân giác góc xen giữa hai cạnh đó chia cạnh đối diện thành hai đoạn có tỉ số:",
+    option_a: "$\\dfrac{2}{3}$",
+    option_b: "$\\dfrac{1}{2}$",
+    option_c: "$\\dfrac{3}{4}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Tỉ số hai đoạn bằng tỉ số hai cạnh: $\\dfrac{8}{12} = \\dfrac{2}{3}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân giác ngoài của tam giác chia cạnh đối diện (kéo dài) thành hai đoạn:",
+    option_a: "Tỉ lệ với hai cạnh kề",
+    option_b: "Bằng nhau",
+    option_c: "Tỉ lệ nghịch với hai cạnh kề",
+    option_d: "Không có tính chất đặc biệt",
+    correct_option: "A",
+    explanation: "Phân giác ngoài cũng chia theo tỉ lệ: $\\dfrac{BE}{EC} = \\dfrac{AB}{AC}$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Tam giác $ABC$ có phân giác $AD$ ($D \\in BC$). Các khẳng định nào đúng?",
+    option_a: "$\\dfrac{BD}{DC} = \\dfrac{AB}{AC}$",
+    option_b: "$\\dfrac{BD}{AB} = \\dfrac{DC}{AC}$",
+    option_c: "$\\dfrac{AB}{BD} = \\dfrac{AC}{DC}$",
+    option_d: "$\\hat{BAD} = \\hat{CAD}$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng theo định nghĩa phân giác và tính chất.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tam giác có hai cạnh $10$ cm và $15$ cm. Phân giác chia cạnh thứ ba thành hai đoạn, đoạn nhỏ $6$ cm. Đoạn lớn dài bao nhiêu cm?",
+    correct_option: "9",
+    explanation: "$\\dfrac{6}{x} = \\dfrac{10}{15} \\Rightarrow x = 9$ cm.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác có $AB = !a#12!$ cm, $AC = !b#18!$ cm, $BC = !c#20!$ cm. Phân giác $AD$ chia $BC$ thành $BD$ và $DC$. Độ dài $BD$ là:",
+    option_a: "$!tinh: !a! * !c! / (!a! + !b!)!$ cm",
+    option_b: "$!tinh: !b! * !c! / (!a! + !b!)!$ cm",
+    option_c: "$!tinh: !c! / 2!$ cm",
+    option_d: "$!a!$ cm",
+    correct_option: "A",
+    explanation: "$\\dfrac{BD}{DC} = \\dfrac{!a!}{!b!}$ và $BD + DC = !c!$ nên $BD = \\dfrac{!a! \\times !c!}{!a! + !b!} = !tinh: !a! * !c! / (!a! + !b!)!$ cm.",
+    difficulty_level: "hard",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác có $AB = !a#9!$ cm, $AC = !b#12!$ cm. Phân giác $AD$ chia $BC$ sao cho $BD = !c#6!$ cm. Độ dài $DC$ là:",
+    option_a: "$!tinh: !b! * !c! / !a!!$ cm",
+    option_b: "$!tinh: !a! * !c! / !b!!$ cm",
+    option_c: "$!tinh: !c! + !a!!$ cm",
+    option_d: "$!b!$ cm",
+    correct_option: "A",
+    explanation: "$\\dfrac{BD}{DC} = \\dfrac{AB}{AC} \\Rightarrow DC = \\dfrac{!b! \\times !c!}{!a!} = !tinh: !b! * !c! / !a!!$ cm.",
+    difficulty_level: "hard",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">📐 Đường phân giác — Chia theo tỉ lệ</h3>
+
+Đường phân giác có tính chất đặc biệt về chia tỉ lệ!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚖️</div>
+    <strong>Cân bằng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chia theo tỉ lệ công bằng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>Chính xác</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính toán khoảng cách</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Phân chia</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chia tài sản, đất đai</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="on-tap">📖 1. Ôn tập: Đường phân giác</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Đường phân giác của một góc trong tam giác là đường thẳng chia góc đó thành hai góc bằng nhau.
+
+</div>
+
+**Hình minh họa:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="320" viewBox="0 0 400 320" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="100,60 80,280 320,280" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" opacity="0.2"/>
+  
+  {/* Các cạnh tam giác */}
+  <line x1="100" y1="60" x2="80" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="100" y1="60" x2="320" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="80" y1="280" x2="320" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
+  
+  {/* Phân giác AD */}
+  <line x1="100" y1="60" x2="180" y2="280" stroke="#ef4444" stroke-width="2.5"/>
+  
+  {/* Đánh dấu góc bằng nhau */}
+  <path d="M 100,80 Q 110,70 120,75" stroke="#10b981" stroke-width="1.5" fill="none"/>
+  <path d="M 100,80 Q 115,85 125,95" stroke="#10b981" stroke-width="1.5" fill="none"/>
+  
+  {/* Các đỉnh */}
+  <circle cx="100" cy="60" r="4" fill="#3b82f6"/>
+  <text x="80" y="50" font-size="18" font-weight="bold" fill="#3b82f6">A</text>
+  
+  <circle cx="80" cy="280" r="4" fill="#3b82f6"/>
+  <text x="60" y="300" font-size="18" font-weight="bold" fill="#3b82f6">B</text>
+  
+  <circle cx="320" cy="280" r="4" fill="#3b82f6"/>
+  <text x="330" y="300" font-size="18" font-weight="bold" fill="#3b82f6">C</text>
+  
+  {/* Điểm D */}
+  <circle cx="180" cy="280" r="4" fill="#ef4444"/>
+  <text x="175" y="300" font-size="18" font-weight="bold" fill="#ef4444">D</text>
+  
+  {/* Nhãn */}
+  <text x="85" y="170" font-size="14" fill="#ef4444" font-style="italic">AD</text>
+  <text x="120" y="290" font-size="14" fill="#059669">BD</text>
+  <text x="240" y="290" font-size="14" fill="#059669">DC</text>
+  <text x="50" y="170" font-size="14" fill="#6b7280">AB</text>
+  <text x="200" y="170" font-size="14" fill="#6b7280">AC</text>
+</svg>
+</div>
+
+**Trong tam giác $ABC$:**
+- $AD$ là phân giác góc $A$
+- $\hat{BAD} = \hat{CAD}$
+- $D \in BC$
+
+<h3 id="tinh-chat" style="margin-top:2rem;">🔑 2. Tính chất đường phân giác trong</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Trong tam giác, đường phân giác của một góc chia cạnh đối diện thành hai đoạn thẳng tỉ lệ với hai cạnh kề của góc đó.
+
+</div>
+
+**Phát biểu toán học:**
+
+Cho tam giác $ABC$, $AD$ là phân giác góc $A$ ($D \in BC$).
+
+Khi đó: $\dfrac{BD}{DC} = \dfrac{AB}{AC}$
+
+**Chứng minh:**
+
+Kẻ $CE \parallel AD$ ($E \in AB$ kéo dài).
+
+Vì $CE \parallel AD$ nên:
+- $\hat{DAC} = \hat{ACE}$ (so le trong)
+- $\hat{BAD} = \hat{AEC}$ (đồng vị)
+
+Mà $\hat{BAD} = \hat{DAC}$ (AD là phân giác)
+
+$\Rightarrow \hat{ACE} = \hat{AEC}$
+
+$\Rightarrow \triangle ACE$ cân tại $A$
+
+$\Rightarrow AC = AE$
+
+Áp dụng định lí Thales cho $\triangle BCE$ với $AD \parallel CE$:
+
+$\dfrac{BD}{DC} = \dfrac{BA}{AE} = \dfrac{AB}{AC}$
+
+**Hệ quả:**
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Từ $\dfrac{BD}{DC} = \dfrac{AB}{AC}$ suy ra:
+
+1. $\dfrac{BD}{AB} = \dfrac{DC}{AC}$
+
+2. $\dfrac{AB}{BD} = \dfrac{AC}{DC}$
+
+3. $\dfrac{BD + DC}{DC} = \dfrac{AB + AC}{AC}$ hay $\dfrac{BC}{DC} = \dfrac{AB + AC}{AC}$
+
+</div>
+
+**Ví dụ 1:** Tam giác $ABC$ có $AB = 8$ cm, $AC = 12$ cm, $BC = 15$ cm. Phân giác $AD$ chia $BC$ tại $D$. Tính $BD$ và $DC$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Theo tính chất đường phân giác: $\dfrac{BD}{DC} = \dfrac{AB}{AC} = \dfrac{8}{12} = \dfrac{2}{3}$
+
+Đặt $BD = 2x$, $DC = 3x$
+
+Ta có: $BD + DC = BC$
+
+$\Rightarrow 2x + 3x = 15$
+
+$\Rightarrow 5x = 15$
+
+$\Rightarrow x = 3$
+
+Vậy $BD = 6$ cm, $DC = 9$ cm
+
+</div>
+
+<h3 id="phan-giac-ngoai" style="margin-top:2rem;">↔️ 3. Tính chất đường phân giác ngoài</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Đường phân giác ngoài của một góc trong tam giác chia cạnh đối diện (kéo dài) thành hai đoạn thẳng tỉ lệ với hai cạnh kề của góc đó.
+
+</div>
+
+**Ví dụ 2:** Tam giác $ABC$ có $AB = 6$ cm, $AC = 9$ cm. Phân giác ngoài góc $A$ cắt $BC$ kéo dài tại $E$. Biết $BE = 8$ cm. Tính $EC$.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Theo tính chất phân giác ngoài: $\dfrac{BE}{EC} = \dfrac{AB}{AC}$
+
+$\Rightarrow \dfrac{8}{EC} = \dfrac{6}{9} = \dfrac{2}{3}$
+
+$\Rightarrow EC = \dfrac{8 \times 3}{2} = 12$ cm
+
+</div>
+
+**Ví dụ 3:** Tam giác $ABC$ có $AB = 10$ cm, $AC = 15$ cm, $BC = 18$ cm. Tính độ dài các đoạn mà phân giác góc $B$ chia cạnh $AC$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Gọi $E$ là giao điểm phân giác góc $B$ với $AC$.
+
+Theo tính chất: $\dfrac{AE}{EC} = \dfrac{AB}{BC} = \dfrac{10}{18} = \dfrac{5}{9}$
+
+Đặt $AE = 5x$, $EC = 9x$
+
+$AE + EC = AC$
+
+$\Rightarrow 5x + 9x = 15$
+
+$\Rightarrow x = \dfrac{15}{14}$
+
+Vậy $AE = \dfrac{75}{14} \approx 5{,}36$ cm, $EC = \dfrac{135}{14} \approx 9{,}64$ cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Chia đất:** Hai anh em có mảnh đất hình tam giác $ABC$ với $AB = 30$ m, $AC = 45$ m, $BC = 60$ m. Họ muốn chia đất bằng đường thẳng từ $A$ đến cạnh $BC$ sao cho tỉ lệ diện tích bằng tỉ lệ hai cạnh $AB$ và $AC$. Tính độ dài hai đoạn trên $BC$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Để chia theo tỉ lệ diện tích bằng tỉ lệ hai cạnh, cần dùng đường phân giác góc $A$.
+
+Gọi $D$ là giao điểm phân giác với $BC$.
+
+$\dfrac{BD}{DC} = \dfrac{AB}{AC} = \dfrac{30}{45} = \dfrac{2}{3}$
+
+Đặt $BD = 2x$, $DC = 3x$
+
+$2x + 3x = 60 \Rightarrow x = 12$
+
+Vậy $BD = 24$ m, $DC = 36$ m
+
+</div>
+
+**📝 Bài toán 2 — Thiết kế:** Một tấm biển hình tam giác có hai cạnh $40$ cm và $60$ cm. Muốn chia biển thành hai phần có diện tích tỉ lệ với hai cạnh đó, cần kẻ đường phân giác. Nếu cạnh thứ ba dài $80$ cm, tính độ dài hai đoạn được chia.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+$\dfrac{BD}{DC} = \dfrac{40}{60} = \dfrac{2}{3}$
+
+$BD + DC = 80$
+
+$\Rightarrow BD = \dfrac{2 \times 80}{2 + 3} = 32$ cm
+
+$\Rightarrow DC = \dfrac{3 \times 80}{2 + 3} = 48$ cm
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Phân giác trong**: $\dfrac{BD}{DC} = \dfrac{AB}{AC}$
+- **Phân giác ngoài**: $\dfrac{BE}{EC} = \dfrac{AB}{AC}$ (E ngoài BC)
+- Phân giác chia cạnh đối theo tỉ lệ hai cạnh kề
+- Công thức tính: $BD = \dfrac{AB \cdot BC}{AB + AC}$, $DC = \dfrac{AC \cdot BC}{AB + AC}$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tam giác $ABC$ có $AB = 9$ cm, $AC = 12$ cm, $BC = 14$ cm. Phân giác $AD$ ($D \in BC$).
+
+a) Tính tỉ số $\dfrac{BD}{DC}$.
+
+b) Tính $BD$ và $DC$.
+
+c) Chứng minh $\dfrac{BD}{AB} = \dfrac{DC}{AC}$.
+
+d) Tính tỉ số diện tích $\dfrac{S_{ABD}}{S_{ADC}}$.
+
+**Bài 2:** Tam giác $ABC$ có $AB = 8$ cm, $AC = 10$ cm.
+
+a) Phân giác $AD$ chia $BC$ sao cho $BD = 6$ cm. Tính $DC$.
+
+b) Tính $BC$.
+
+c) Nếu $BC = 18$ cm, tính $BD$ và $DC$.
+
+d) Phân giác góc $B$ cắt $AC$ tại $E$. Tính $\dfrac{AE}{EC}$.
+
+**Bài 3:** Tam giác $ABC$ có $AB = 15$ cm, $AC = 20$ cm, $BC = 21$ cm.
+
+a) Phân giác $AD$ chia $BC$ tại $D$. Tính $BD$, $DC$.
+
+b) Phân giác $BE$ chia $AC$ tại $E$. Tính $AE$, $EC$.
+
+c) Phân giác $CF$ chia $AB$ tại $F$. Tính $AF$, $FB$.
+
+d) Tính chu vi tam giác $DEF$.
+
+**Bài 4:** Chứng minh:
+
+a) Trong tam giác, phân giác chia cạnh đối thành hai đoạn tỉ lệ với hai cạnh kề.
+
+b) Nếu $\dfrac{BD}{DC} = \dfrac{AB}{AC}$ và $\hat{BAD} = \hat{CAD}$ thì $AD$ là phân giác.
+
+c) Ba đường phân giác của tam giác cùng đi qua một điểm.
+
+d) Trong tam giác cân, phân giác đỉnh đồng thời là đường trung tuyến và đường cao.
+
+**Bài 5:** Tam giác $ABC$ vuông tại $A$ có $AB = 6$ cm, $AC = 8$ cm.
+
+a) Tính $BC$.
+
+b) Phân giác $AD$ chia $BC$ tại $D$. Tính $BD$, $DC$.
+
+c) Tính $AD$ (sử dụng công thức diện tích).
+
+d) Chứng minh $BD + DC = BC$.
+
+**Bài 6 (Thực tế):** Hai người có mảnh đất hình tam giác với hai cạnh từ góc chung là $50$ m và $70$ m, cạnh đối diện $96$ m.
+
+a) Họ muốn chia đất theo tỉ lệ hai cạnh bằng đường phân giác. Tính độ dài hai đoạn.
+
+b) Tính tỉ số diện tích hai phần.
+
+c) Nếu giá đất $10$ triệu/m², phần nhỏ có giá trị bao nhiêu (biết tổng diện tích $1200$ m²)?
+
+d) Giải thích tại sao phương pháp này công bằng.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\dfrac{3}{4}$; b) $BD = 6$ cm, $DC = 8$ cm; c) Tính chất phân giác; d) $\dfrac{3}{4}$
+
+**Bài 2:** a) $7{,}5$ cm; b) $13{,}5$ cm; c) $BD = 8$ cm, $DC = 10$ cm; d) $\dfrac{8}{10} = \dfrac{4}{5}$
+
+**Bài 3:** a) $BD = 9$ cm, $DC = 12$ cm; b) $AE = \dfrac{300}{36}$ cm, $EC = \dfrac{420}{36}$ cm; c) $AF = \dfrac{225}{35}$ cm, $FB = \dfrac{300}{35}$ cm; d) Tính bằng tổng
+
+**Bài 4:** Chứng minh bằng định lí và tính chất
+
+**Bài 5:** a) $10$ cm; b) $BD = \dfrac{15}{4}$ cm, $DC = \dfrac{25}{4}$ cm; c) $\dfrac{24}{7}$ cm; d) Hiển nhiên
+
+**Bài 6:** a) $40$ m và $56$ m; b) $\dfrac{5}{7}$; c) $5$ tỷ đồng; d) Tỉ lệ diện tích bằng tỉ lệ đóng góp
+
+</div>
+</details>

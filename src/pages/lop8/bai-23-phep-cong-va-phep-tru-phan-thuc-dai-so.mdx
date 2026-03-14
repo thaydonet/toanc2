@@ -1,0 +1,440 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 23: Phép cộng và phép trừ phân thức đại số"
+description: "Quy đồng mẫu thức, cộng trừ phân thức đại số - Toán 8 KNTT Chương 6"
+grade: "Lớp 8"
+chapter: "Chương 6: Phân thức đại số"
+currentSlug: "lop8/bai-23-phep-cong-va-phep-tru-phan-thuc-dai-so"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import FractionOperation from '../../components/interactive/FractionOperation';
+import FractionDenominatorLCM from '../../components/interactive/FractionDenominatorLCM';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{2}{x} + \\dfrac{3}{x}$ (với $x \\neq 0$):",
+    option_a: "$\\dfrac{5}{x}$",
+    option_b: "$\\dfrac{5}{2x}$",
+    option_c: "$\\dfrac{6}{x^2}$",
+    option_d: "$\\dfrac{2+3}{x+x}$",
+    correct_option: "A",
+    explanation: "Hai phân thức cùng mẫu: $\\dfrac{2}{x} + \\dfrac{3}{x} = \\dfrac{2+3}{x} = \\dfrac{5}{x}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Mẫu thức chung (MTC) của $\\dfrac{1}{x-1}$ và $\\dfrac{1}{x+1}$ là:",
+    option_a: "$x^2-1$",
+    option_b: "$(x-1)(x+1)$",
+    option_c: "$x-1$",
+    option_d: "Cả A và B",
+    correct_option: "D",
+    explanation: "MTC = $(x-1)(x+1) = x^2-1$. Cả hai đáp án đều đúng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{1}{x} + \\dfrac{1}{x+1}$ (với $x \\neq 0, x \\neq -1$):",
+    option_a: "$\\dfrac{2x+1}{x(x+1)}$",
+    option_b: "$\\dfrac{2}{x+1}$",
+    option_c: "$\\dfrac{x+1}{x}$",
+    option_d: "$\\dfrac{2}{2x+1}$",
+    correct_option: "A",
+    explanation: "Quy đồng: $\\dfrac{1}{x} + \\dfrac{1}{x+1} = \\dfrac{x+1}{x(x+1)} + \\dfrac{x}{x(x+1)} = \\dfrac{x+1+x}{x(x+1)} = \\dfrac{2x+1}{x(x+1)}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{x}{x-2} - \\dfrac{2}{x-2}$ (với $x \\neq 2$):",
+    option_a: "$1$",
+    option_b: "$\\dfrac{x-2}{x-2}$",
+    option_c: "$0$",
+    option_d: "$\\dfrac{x}{2}$",
+    correct_option: "A",
+    explanation: "$\\dfrac{x}{x-2} - \\dfrac{2}{x-2} = \\dfrac{x-2}{x-2} = 1$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{2}{x+1} - \\dfrac{1}{x-1}$ (với $x \\neq \\pm 1$):",
+    option_a: "$\\dfrac{x-3}{(x+1)(x-1)}$",
+    option_b: "$\\dfrac{x+3}{x^2-1}$",
+    option_c: "$\\dfrac{1}{2x}$",
+    option_d: "$\\dfrac{3-x}{x^2-1}$",
+    correct_option: "A",
+    explanation: "Quy đồng: $\\dfrac{2(x-1)}{(x+1)(x-1)} - \\dfrac{x+1}{(x+1)(x-1)} = \\dfrac{2x-2-x-1}{(x+1)(x-1)} = \\dfrac{x-3}{(x+1)(x-1)}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{x}{x^2-1} + \\dfrac{1}{x+1}$ (với $x \\neq \\pm 1$):",
+    option_a: "$\\dfrac{x+x-1}{(x-1)(x+1)}$",
+    option_b: "$\\dfrac{2x-1}{x^2-1}$",
+    option_c: "$\\dfrac{x+x-1}{x^2-1}$",
+    option_d: "$\\dfrac{2x-1}{(x-1)(x+1)}$",
+    correct_option: "D",
+    explanation: "MTC = $(x-1)(x+1)$. Quy đồng: $\\dfrac{x}{(x-1)(x+1)} + \\dfrac{x-1}{(x-1)(x+1)} = \\dfrac{x+x-1}{(x-1)(x+1)} = \\dfrac{2x-1}{(x-1)(x+1)}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phép tính nào sau đây **đúng**?",
+    option_a: "$\\dfrac{1}{x} + \\dfrac{2}{x} = \\dfrac{3}{x}$",
+    option_b: "$\\dfrac{x}{x+1} - \\dfrac{1}{x+1} = \\dfrac{x-1}{x+1}$",
+    option_c: "$\\dfrac{1}{x} + \\dfrac{1}{y} = \\dfrac{2}{x+y}$",
+    option_d: "$\\dfrac{1}{x-1} + \\dfrac{1}{1-x} = 0$",
+    correct_option: "A,B,D",
+    explanation: "A) Cùng mẫu ✓\nB) Cùng mẫu ✓\nC) Sai, phải quy đồng: $\\dfrac{y+x}{xy}$ ✗\nD) $\\dfrac{1}{x-1} + \\dfrac{1}{1-x} = \\dfrac{1}{x-1} - \\dfrac{1}{x-1} = 0$ ✓",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính $\\dfrac{3}{x+2} + \\dfrac{x}{x+2}$ (với $x \\neq -2$). Nếu $x = 1$, kết quả bằng bao nhiêu?",
+    correct_option: "4/3",
+    explanation: "$\\dfrac{3}{x+2} + \\dfrac{x}{x+2} = \\dfrac{3+x}{x+2}$. Thay $x=1$: $\\dfrac{4}{3}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{!a#0!}{x} + \\dfrac{!b#0!}{x+1}$ (với $x \\neq 0, x \\neq -1$):",
+    option_a: "$\\dfrac{!a!x + !a! + !b!x}{x(x+1)}$",
+    option_b: "$\\dfrac{!tinh: !a! + !b!!x + !a!}{x(x+1)}$",
+    option_c: "$\\dfrac{!a! + !b!}{x(x+1)}$",
+    option_d: "$\\dfrac{!a!x + !b!}{x+1}$",
+    correct_option: "A",
+    explanation: "Quy đồng: $\\dfrac{!a!(x+1)}{x(x+1)} + \\dfrac{!b!x}{x(x+1)} = \\dfrac{!a!x + !a! + !b!x}{x(x+1)}$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">➕ Mở đầu — Tại sao cần cộng trừ phân thức?</h3>
+
+Trong thực tế, nhiều bài toán yêu cầu cộng trừ các biểu thức có biến ở mẫu:
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⏱️</div>
+    <strong>Bài toán thời gian</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hai người làm chung: $$\frac{1}{a} + \frac{1}{b} = \frac{a+b}{ab}$$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
+    <strong>Điện trở song song</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$$\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$$</p>
+  </div>
+</div>
+
+💬 *Để cộng trừ phân thức, ta cần quy đồng mẫu thức — giống như cộng trừ phân số!*
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="cung-mau">📖 1. Cộng trừ phân thức cùng mẫu</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:** Muốn cộng (hoặc trừ) hai phân thức có cùng mẫu thức, ta cộng (hoặc trừ) các tử thức và giữ nguyên mẫu thức:
+
+$$\frac{A}{C} + \frac{B}{C} = \frac{A+B}{C}$$
+
+$$\frac{A}{C} - \frac{B}{C} = \frac{A-B}{C}$$
+
+</div>
+
+**Ví dụ 1:** Tính $\dfrac{x+1}{x-2} + \dfrac{3}{x-2}$ (với $x \neq 2$).
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+$$\frac{x+1}{x-2} + \frac{3}{x-2} = \frac{(x+1)+3}{x-2} = \frac{x+4}{x-2}$$
+
+</div>
+
+**Ví dụ 2:** Tính $\dfrac{2x}{x^2-1} - \dfrac{x-1}{x^2-1}$ (với $x \neq \pm 1$).
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+$$\frac{2x}{x^2-1} - \frac{x-1}{x^2-1} = \frac{2x-(x-1)}{x^2-1} = \frac{2x-x+1}{x^2-1} = \frac{x+1}{x^2-1}$$
+
+Rút gọn: $\dfrac{x+1}{(x-1)(x+1)} = \dfrac{1}{x-1}$
+
+</div>
+
+<h3 id="quy-dong" style="margin-top:2rem;">🔄 2. Quy đồng mẫu thức</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy trình quy đồng mẫu thức:**
+
+1. **Phân tích** các mẫu thức thành nhân tử
+2. **Tìm MTC** (Mẫu Thức Chung): tích các nhân tử chung và riêng với số mũ cao nhất
+3. **Tìm nhân tử phụ** của mỗi mẫu: MTC chia cho mẫu đó
+4. **Nhân** tử và mẫu của mỗi phân thức với nhân tử phụ tương ứng
+
+</div>
+
+**Ví dụ 3:** Quy đồng mẫu thức: $\dfrac{1}{x-1}$ và $\dfrac{2}{x+1}$.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Các mẫu đã phân tích: $(x-1)$ và $(x+1)$
+
+**Bước 2:** MTC = $(x-1)(x+1)$
+
+**Bước 3:** Nhân tử phụ:
+- Của $\dfrac{1}{x-1}$: $(x+1)$
+- Của $\dfrac{2}{x+1}$: $(x-1)$
+
+**Bước 4:** Quy đồng:
+
+$$\frac{1}{x-1} = \frac{1 \cdot (x+1)}{(x-1)(x+1)} = \frac{x+1}{(x-1)(x+1)}$$
+
+$$\frac{2}{x+1} = \frac{2 \cdot (x-1)}{(x+1)(x-1)} = \frac{2x-2}{(x-1)(x+1)}$$
+
+</div>
+
+<FractionDenominatorLCM client:load />
+
+<h3 id="khac-mau" style="margin-top:2rem;">➕ 3. Cộng trừ phân thức khác mẫu</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:** Muốn cộng (hoặc trừ) hai phân thức có mẫu thức khác nhau:
+
+1. Quy đồng mẫu thức
+2. Cộng (hoặc trừ) các phân thức có cùng mẫu vừa tìm được
+
+</div>
+
+**Ví dụ 4:** Tính $\dfrac{1}{x} + \dfrac{2}{x+1}$ (với $x \neq 0, x \neq -1$).
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** MTC = $x(x+1)$
+
+**Bước 2:** Quy đồng:
+
+$$\frac{1}{x} = \frac{x+1}{x(x+1)}, \quad \frac{2}{x+1} = \frac{2x}{x(x+1)}$$
+
+**Bước 3:** Cộng:
+
+$$\frac{x+1}{x(x+1)} + \frac{2x}{x(x+1)} = \frac{x+1+2x}{x(x+1)} = \frac{3x+1}{x(x+1)}$$
+
+</div>
+
+**Ví dụ 5:** Tính $\dfrac{x}{x^2-4} - \dfrac{1}{x-2}$ (với $x \neq \pm 2$).
+
+<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Phân tích: $x^2-4 = (x-2)(x+2)$
+
+MTC = $(x-2)(x+2)$
+
+**Bước 2:** Quy đồng:
+
+$$\frac{x}{(x-2)(x+2)} - \frac{x+2}{(x-2)(x+2)}$$
+
+**Bước 3:** Trừ:
+
+$$\frac{x-(x+2)}{(x-2)(x+2)} = \frac{x-x-2}{(x-2)(x+2)} = \frac{-2}{(x-2)(x+2)} = \frac{-2}{x^2-4}$$
+
+</div>
+
+<FractionOperation client:load />
+
+<h3 id="vi-du-phuc-tap" style="margin-top:2rem;">🎯 4. Ví dụ phức tạp</h3>
+
+**Ví dụ 6:** Tính $\dfrac{1}{x-1} - \dfrac{2}{x^2-1} + \dfrac{1}{x+1}$ (với $x \neq \pm 1$).
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Phân tích: $x^2-1 = (x-1)(x+1)$
+
+MTC = $(x-1)(x+1)$
+
+**Bước 2:** Quy đồng:
+
+$$\frac{x+1}{(x-1)(x+1)} - \frac{2}{(x-1)(x+1)} + \frac{x-1}{(x-1)(x+1)}$$
+
+**Bước 3:** Tính:
+
+$$\frac{(x+1) - 2 + (x-1)}{(x-1)(x+1)} = \frac{x+1-2+x-1}{(x-1)(x+1)} = \frac{2x-2}{(x-1)(x+1)}$$
+
+**Bước 4:** Rút gọn:
+
+$$\frac{2(x-1)}{(x-1)(x+1)} = \frac{2}{x+1}$$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Làm việc chung:**
+
+Người thứ nhất làm xong công việc trong $x$ giờ, người thứ hai trong $y$ giờ. Hỏi hai người làm chung trong 1 giờ được bao nhiêu phần công việc?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Trong 1 giờ:
+- Người 1 làm được: $\dfrac{1}{x}$ công việc
+- Người 2 làm được: $\dfrac{1}{y}$ công việc
+- Cả hai: $$\frac{1}{x} + \frac{1}{y} = \frac{y}{xy} + \frac{x}{xy} = \frac{x+y}{xy} \text{ (công việc)}$$
+
+Nếu $x = 6$ giờ, $y = 4$ giờ: $\dfrac{6+4}{24} = \dfrac{10}{24} = \dfrac{5}{12}$ công việc/giờ
+
+Thời gian hoàn thành: $\dfrac{1}{\frac{5}{12}} = \dfrac{12}{5} = 2{,}4$ giờ
+
+</div>
+
+---
+
+**📝 Bài toán 2 — Điện trở song song:**
+
+Hai điện trở $R_1 = x$ Ω và $R_2 = x+2$ Ω mắc song song. Tính điện trở tương đương.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Công thức: $\dfrac{1}{R} = \dfrac{1}{R_1} + \dfrac{1}{R_2}$
+
+$$\frac{1}{R} = \frac{1}{x} + \frac{1}{x+2} = \frac{x+2}{x(x+2)} + \frac{x}{x(x+2)} = \frac{2x+2}{x(x+2)}$$
+
+$$R = \frac{x(x+2)}{2x+2} = \frac{x(x+2)}{2(x+1)} \text{ (Ω)}$$
+
+Nếu $x = 4$ Ω: $R = \dfrac{4 \cdot 6}{2 \cdot 5} = \dfrac{24}{10} = 2{,}4$ Ω
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Cùng mẫu**: $\dfrac{A}{C} \pm \dfrac{B}{C} = \dfrac{A \pm B}{C}$
+- **Quy đồng**: Phân tích → Tìm MTC → Nhân tử phụ → Quy đồng
+- **Khác mẫu**: Quy đồng → Cộng/trừ → Rút gọn (nếu có)
+- **Lưu ý**: Luôn ghi ĐKXĐ và rút gọn kết quả cuối
+
+</GhiNho>
+
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ):** Thực hiện phép tính (các phân thức cùng mẫu):
+
+a) $\dfrac{3}{x+1} + \dfrac{2}{x+1}$ (với $x \neq -1$)
+
+b) $\dfrac{x+5}{x-2} - \dfrac{3}{x-2}$ (với $x \neq 2$)
+
+c) $\dfrac{2x}{x^2-1} + \dfrac{x-1}{x^2-1}$ (với $x \neq \pm 1$)
+
+d) $\dfrac{x^2}{x+3} - \dfrac{9}{x+3}$ (với $x \neq -3$)
+
+**Bài 2 (Trung bình):** Quy đồng mẫu thức các phân thức sau:
+
+a) $\dfrac{1}{x-2}$ và $\dfrac{1}{x+2}$
+
+b) $\dfrac{2}{x}$ và $\dfrac{3}{x^2-x}$
+
+c) $\dfrac{x}{x^2-4}$ và $\dfrac{1}{x-2}$
+
+d) $\dfrac{1}{x-1}$, $\dfrac{2}{x+1}$ và $\dfrac{3}{x^2-1}$
+
+**Bài 3 (Trung bình):** Thực hiện phép tính:
+
+a) $\dfrac{2}{x} + \dfrac{3}{x+1}$ (với $x \neq 0, -1$)
+
+b) $\dfrac{x}{x-3} - \dfrac{2}{x+3}$ (với $x \neq \pm 3$)
+
+c) $\dfrac{1}{x^2-1} + \dfrac{1}{x-1}$ (với $x \neq \pm 1$)
+
+d) $\dfrac{x+1}{x-2} - \dfrac{x-1}{x+2}$ (với $x \neq \pm 2$)
+
+**Bài 4 (Khá):** Rút gọn các biểu thức sau:
+
+a) $\dfrac{1}{x-1} - \dfrac{2}{x^2-1} + \dfrac{1}{x+1}$ (với $x \neq \pm 1$)
+
+b) $\dfrac{x}{x^2-4} + \dfrac{1}{x-2} - \dfrac{1}{x+2}$ (với $x \neq \pm 2$)
+
+c) $\dfrac{2x}{x^2-9} - \dfrac{1}{x-3} + \dfrac{1}{x+3}$ (với $x \neq \pm 3$)
+
+d) $\dfrac{x+2}{x^2-1} - \dfrac{1}{x-1} + \dfrac{1}{x+1}$ (với $x \neq \pm 1$)
+
+**Bài 5 (Khó - Ứng dụng thực tế):** Hai công nhân A và B cùng làm một công việc:
+- Người A làm một mình xong trong $x$ ngày
+- Người B làm một mình xong trong $y$ ngày
+
+a) Viết biểu thức tính phần công việc mỗi người làm được trong 1 ngày.
+
+b) Viết biểu thức tính phần công việc cả hai người làm được trong 1 ngày khi làm chung.
+
+c) Rút gọn biểu thức ở câu b).
+
+d) Viết biểu thức tính thời gian hoàn thành công việc khi hai người làm chung.
+
+e) Nếu A làm trong 6 ngày và B làm trong 4 ngày, tính thời gian làm chung.
+
+f) Nếu làm chung trong 2,4 ngày thì xong, và A làm nhanh hơn B 2 ngày, tìm thời gian mỗi người làm riêng.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\dfrac{5}{x+1}$; b) $\dfrac{x+2}{x-2}$; c) $\dfrac{3x-1}{x^2-1}$; d) $x-3$
+
+**Bài 2:** a) MTC = $(x-2)(x+2)$; b) MTC = $x(x-1)$; c) MTC = $(x-2)(x+2)$; d) MTC = $(x-1)(x+1)$
+
+**Bài 3:** a) $\dfrac{5x+3}{x(x+1)}$; b) $\dfrac{x^2+x+6}{(x-3)(x+3)}$; c) $\dfrac{x+2}{(x-1)(x+1)}$; d) $\dfrac{4x}{(x-2)(x+2)}$
+
+**Bài 4:** a) $\dfrac{2}{x+1}$; b) $\dfrac{x}{(x-2)(x+2)}$; c) $0$; d) $\dfrac{2}{x+1}$
+
+**Bài 5:** a) A: $\dfrac{1}{x}$, B: $\dfrac{1}{y}$; b) $\dfrac{1}{x} + \dfrac{1}{y}$; c) $\dfrac{x+y}{xy}$; d) $\dfrac{xy}{x+y}$ ngày; e) $2{,}4$ ngày; f) A: 4 ngày, B: 6 ngày
+
+</div>
+</details>

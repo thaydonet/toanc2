@@ -1,0 +1,317 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 21: Giải bài toán bằng cách lập phương trình"
+description: "Ứng dụng phương trình bậc hai để giải quyết các bài toán thực tế - Toán 9 KNTT Chương 6"
+grade: "Lớp 9"
+chapter: "Chương VI: Hàm số y = ax² (a ≠ 0). Phương trình bậc hai một ẩn"
+currentSlug: "lop9/bai-21-giai-toan-bang-lap-pt"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import QuadraticEquationSolver from '../../components/interactive/QuadraticEquationSolver';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Bước quan trọng đầu tiên khi giải bài toán bằng cách lập phương trình là gì?",
+    option_a: "Giải phương trình ngay lập tức",
+    option_b: "Lập bảng giá trị biến thiên nghiệm",
+    option_c: "Chọn ẩn số, đặt điều kiện và đơn vị cho ẩn số",
+    option_d: "Thử mọi đáp án từ 1 đến 10",
+    correct_option: "C",
+    explanation: "Đầu xuôi đuôi lọt. Nếu không có bước Chọn ẩn x và Đặt điều kiện (như $x > 0$ hoặc $x \\in \\mathbb{N}$), bạn sẽ không thể chuyển ngữ bài toán thành Đại số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một mảnh vườn hình chữ nhật có diện tích $60\\text{m}^2$. Biết chiều dài hơn chiều rộng $4\\text{m}$. Nếu gọi chiều rộng là $x$, phương trình diện tích nào là đúng?",
+    option_a: "$x(x - 4) = 60$",
+    option_b: "$x + (x + 4) = 60$",
+    option_c: "$x(x + 4) = 60$",
+    option_d: "$x^2 + 4 = 60$",
+    correct_option: "C",
+    explanation: "Chiều rộng là x. Chiều dài dài hơn $4\\text{m}$ nên là $x+4$. Diện tích là Tích của hai cạnh = $x(x+4) = 60$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong bài toán Chuyển động, Năng suất, công thức liên hệ thần thánh là gì?",
+    option_a: "Quãng đường = Vận tốc + Thời gian",
+    option_b: "Vận tốc = Thời gian / Quãng đường",
+    option_c: "Quãng đường = Vận tốc x Thời gian ($S = V \\cdot T$)",
+    option_d: "Khối lượng công việc = Năng suất / Thời gian",
+    correct_option: "C",
+    explanation: "$S = v \\cdot t$ và Khối lượng công việc = Năng suất $\\times$ Thời gian.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai vòi nước cùng chảy vào 1 nấc bể. Vòi 1 róc rách mất x (giờ) để đầy. Vậy trong 1 giờ, vòi 1 chảy được NGẦN NÀO cái bể?",
+    option_a: "$x / 1$ (bể)",
+    option_b: "$x$ (bể)",
+    option_c: "$1 / x$ (bể)",
+    option_d: "$1 - x$ (bể)",
+    correct_option: "C",
+    explanation: "Đây là bài toán Năng suất đơn vị chung. Mất tổng x giờ để đạt mốc 1 (đầy bể). Nên 1 giờ chỉ chạy được mảng phân số $1/x$ của cái bể.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phương trình biểu diễn Bài toán Năng suất 2 vòi V(1) là $1/x$, vòi V(2) là $1/(x+2)$ cùng chảy sau 4 giờ đầy lu cái bể (Quy chuẩn bể = 1).",
+    option_a: "$4(1/x) + 4(1/(x+2)) = 1$",
+    option_b: "$1/x + 1/(x+2) = 4$",
+    option_c: "$x + x+2 = 4$",
+    option_d: "$4/x + 4x + 8 = 1$",
+    correct_option: "A",
+    explanation: "Tổng năng suất 1 giờ của cả 2 mỏm vòi nhân chập với 4 giờ liên tục thì tạo thành cái mốc số 1 (Hoàn Thành $100\\%$ Bể). Do đó Tích $4 \\cdot (1/x + 1/(x+2)) = 1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi giải nảy ra 2 nghiệm $x_1 = 5$ và $x_2 = -8$ đo đạc cho kích thước Chiều dài. Bạn phải làm gì ở Bước Cuối?",
+    option_a: "Lấy cái lớn nhất là 5, trừ cái nhỏ ra đáp án.",
+    option_b: "Nhận cả 2 rồi kết luận dài 5 hoặc dài -8.",
+    option_c: "Loại bỏ -8 vì Chiều dài (hoặc Thời gian) không bao giờ nhận số Âm. Chỉ lấy 5.",
+    option_d: "Biến -8 thành 8 để lấy nhánh đối lập.",
+    correct_option: "C",
+    explanation: "Bước 3 của quy trình Giải toán lập phương trình: Luôn Kiểm Tra Lại Nghiệm. So sánh với điều kiện mốc $x > 0$ ban đầu để Chặn Nghiệm phi lý (Loại x2).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Bài toán: Một người đi xe đạp chặng $30\\text{km}$. Gọi Vận tốc lúc đi là $x$. Vận tốc lúc rẽ về tăng sương sương thêm $5\\text{km/h}$. Thời gian lúc về ít hơn lúc đi $1\\text{ giờ}$. Chọn các khẳng định biểu thức Đúng:",
+    option_a: "Thời gian lúc đi là $30 / x$.",
+    option_b: "Vận tốc lúc về là $x + 5$ và Thời gian về là $30 / (x+5)$.",
+    option_c: "Phương trình mấu chốt là: $30/x - 30/(x+5) = 1$.",
+    option_d: "Phương trình mấu chốt là: $30/(x+5) - 30/x = 1$.",
+    correct_option: "A,B,C",
+    explanation: "Thời gian (T = S / v). Lúc đi vận tốc nhỏ hơn $\\Rightarrow$ Chạy Chậm $\\Rightarrow$ Tốn nhiều thời gian hơn. Nên Lấy Mức T (lớn) trừ T (nhỏ) luôn bằng chênh lệch dương (1 giờ). Nên $30/x$ là số to, trừ đi $30/(x+5)$ mới ra dương 1. (C đúng, D sai).",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Phương trình $x^2 + 10x - 1200 = 0$ (Định mức mảng $x>0$). Định cấu trúc để tính số Dãy ghế (x) của Rạp Xiếc. Chọn giá trị x đúng?",
+    option_a: "x = 30",
+    option_b: "x = 40",
+    option_c: "x = -40",
+    option_d: "x = 30 và x = -40",
+    correct_option: "A",
+    explanation: "Bấm giải chập $1x^2 + 10x - 1200 = 0 \\Rightarrow x=30$ hoặc $x=-40$. Nhưng ghế rạp thì phải trên 0, nên rụng mảng âm. Chỉ nhận Khẳng định A một đáp án nẩy chốt $30$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tổng của hai số tự nhiên là 11, Tích của chúng cắn bằng 30. Số Lớn Hơn trong cặp đó là bao nhiêu?",
+    correct_option: "6",
+    explanation: "Quá quen với mảng Viètes: Hai số chập lại là nghiệm phương trình $X^2 - 11X + 30 = 0$. Bấm nghiệm lòi ra $X = 6$ và $X = 5$. Cặp số là 5 và 6. Mỏ neo số Lớn là 6.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Quãng đường $S = 60\\text{km}$. Gọi vận tốc của xe máy là x. Ô tô dốc vận tốc hơn xe máy $20\\text{km/h}$ nên đến nơi sớm hơn xe máy $0.5\\text{ giờ}$. Lập Phương trình ẩn thời gian nẹp $60/x - 60/(x+20) = 0.5$. Sau khi quy đồng, Vận Tốc x của xe máy là bao nhiêu km/h?",
+    correct_option: "40",
+    explanation: "Quy đồng đè 2 con mẫu: $60(x+20) - 60x = 0.5 x(x+20) \\Rightarrow 1200 = 0.5 x^2 + 10x \\Rightarrow x^2 + 20x - 2400 = 0$. Ráp Delta hoặc nhẩm ra x = 40 và x = -60 (Loại vì âm). Vận Tốc $= 40$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">💼 Bài toán Chia Cổ Tức của Thương gia</h3>
+
+Một nhóm thương gia kinh doanh hùn vốn cùng nhau buôn lụa sang Trung Đông. Họ thu lời được được $120$ lượng vàng bạc. Tiền lãi chia đều cho mọi nguời. 
+Bỗng nhiên có 2 người trong nhóm mắc nghẹn bão cát, không tham gia nữa. Thế là mỗi người CÒN LẠI bỗng nhiên vớ bẫm, được húp thêm $10$ lượng vàng so với dự đoạn lộc chia ban đầu.
+Hỏi lúc mới đi buôn, đoàn lạc đà nhóm này có bao nhiêu thương nhân?
+
+Nghe qua câu chuyện sặc mùi tiền tốn não này, bạn hoàn toàn có thể "hô biến" câu từ đời sống thành ngôn ngữ Phương Trình và dùng Máy Tính Bậc 2 để bốc trần số người của nhóm thương nhân chỉ sau 3 nốt nhạc Đại Số.
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="quy-trinh" style="margin-top:2rem;">📖 1. Ba bước giải toán bằng cách Lập phương trình</h3>
+
+Đây là kĩ năng phân lô chốt hạ Toán Khó của kì thi mảng lớp 9 (Luôn có 1 Bài Thực Tế 2-3 điểm thi vào lớp 10 bằng dạng nà). Quy tắc Thép bạn phải thuọc:
+
+<div class="box-dinh-nghia">
+
+**Bước 1: Chọn Tướng Ấn lập trình Bảng (Lập phương trình)**
+- Chọn môt khía cạnh tò mò để đặt ẩn $x$ (Ví dụ gọi số người là $x$, vận tốc là $x$).
+- Bắt buộc ghi rành rọt **kèm Đơn vị** mảng đo và **Điều kiện** màng lọc của ẩn (Người không thể bị phanh thây $\Rightarrow x \in \mathbb{N}^*$, Khoảng cách không thể lùi $\Rightarrow x > 0$).
+- Ép các biến cố còn lại bám víu theo đuôi cái hệ quy chiếu ẩn $x$ đó.
+- Lồng cụm chúng lại chập một biểu thức Liên Quan Cắt Ngang (Phương trình).
+
+**Bước 2: Giải Cuộc Chiến Chèn Delta**
+- Bơm sức mạnh bằng công thức Delta Phương trình bậc 2 vào phương trình mới tậu. Tút được chốt gỡ $x_1, x_2$.
+
+**Bước 3: Sàng lọc Rác Thải và Kết Luận**
+- So Đối với cái lồng Điều kiện Bước 1 $\rightarrow$ Lấy số Nào Hợp, Lên Đời Vứt Bỏ Số Âm Vô Lý.
+- Trả lời đúng trọng tâm Câu hỏi của Khách đề bài.
+
+</div>
+
+<h3 id="tuong-tac" style="margin-top:2rem;">🖩 2. Vùng Test Thử Lửa Hậu Phương</h3>
+Mọi bài toán bạn Lập Ra dù có khó đến mấy, cuối cùng nó cũng rụng về lại Phương Trình Bậc 2 ở đây:
+$ax^2 + bx + c = 0$. 
+Tập quy đồng rút gọn phương trình của bạn và bơm hệ cài mốc vào máy tính test rãnh chóp xem số nghiệm mút có đẹp chẵn (phù hợp thực tế) hay sai do sai dấu nhé!
+
+<QuadraticEquationSolver client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Toán Chuyển Động ($S = v \cdot t$)**
+**Phương pháp:** 
+- Kẻ Bảng "Thần Chú" 3 Cột: **Quãng Đường (S) - Vận Tốc (v) - Thời Giang (t)**.
+- Điền dữ kiện Lúc Đi / Lúc Về vào các ô. Đặt $x$ thường là $v$.
+- Ô thời gian chập chờn luôn là con bài quy đổi **$t = \frac{S}{x}$**.
+- Ép phương trình dựa trên Dữ Liệu Thời Gian chênh lệch (Kẻ Đi Xa lâu trừ kẻ đi Nhanh Ngắn = Lượng Chênh Lệch).
+
+</div>
+
+**Ví dụ 1:** 
+Một bè gỗ trôi dọc dòng xuôi $60\text{km}$ rồi kéo máy lội ngược dòng lên $48\text{km}$ tốn hết trọn 1 ngày ròng rã ($24\text{h}$). Biết vận tốc bè cùi dừa trôi sương sương dòng nước là $2\text{km/h}$. Kẻ ẩn tìm Vận tốc cano máy (tĩnh)? 
+**Hướng dẫn:** 
+- Gọi vật tốc cano lặng mốc là $x$ (ĐK: Khỏe hơn nước nên $x > 2$).
+- Lúc lội Xuôi dốc (bị nước đẩy sướng mông): $v = x + 2 \Rightarrow t_{\text{xuôi}} = \frac{60}{x + 2}$.
+- Lúc leo Ngược núi (bị Nước cản kéo lùi): $v = x - 2 \Rightarrow t_{\text{ngược}} = \frac{48}{x - 2}$.
+- Tống thời gian vào 1 lốc hãm $24\text{h}$: $ \frac{60}{x+2} + \frac{48}{x-2} = 24$.
+- Rút Phương trình (Giải quy đồng rụng gông) $\Rightarrow 24x^2 - 108x == 0$ (Xóa $c$). Ra Căn dải $x = 5 \text{km/h}$.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Toán Hình Học Cắt Xén kẹp Diện Tích**
+**Phương pháp:** 
+- Hình thang, Chữ nhật, Tam giác VUÔNG (Pytago).
+- Kẻ x là 1 Cạnh. Lập Cạnh thứ 2 thành Biểu thức ví dụ: (Hơn $x+a$, Gấp $xa$, Cạnh Huyền theo Pytago).
+- Gài phương trình Diệt Tích lút $S = a \cdot b$.
+
+</div>
+
+**Ví dụ 2:** 
+Tam giác vuông có mốc màng Cạnh Huyền chẻ dài $10\text{m}$. Hai cạnh góc vuông chênh lệch vênh mép nhau $2\text{m}$. Tim chốt 2 cạnh đó?
+**Hướng dẫn:** 
+- Gọi cạnh ngắn hơn là $x$ ($x > 0$).
+- Cạnh tạc cành vuông kia sẽ lòi ra: $x + 2$.
+- Dập nắp siêu công thức **Định Lý Pytago Vàng**: Cạnh $1^2$ + Cạnh $2^2$ = Cạnh Huyền$^2$.
+- Ngã ngửa phập: $x^2 + (x + 2)^2 = 10^2$.
+- Bun Rỉ dạt Phép khai: $x^2 + x^2 + 4x + 4 - 100 = 0 \Rightarrow 2x^2 + 4x - 96 = 0$.
+- Bấm Máy Tính rụng nghiệm Căn mốc $x = 6$ và $x = -8$ (Vứt Âm). Hai Cạnh dài Chốt là $6$ và $8\text{m}$.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 3: Toán Năng Suất, Mảng Chia Tiền Cổ Tức**
+**Phương pháp:** 
+- Bảng nạp: **Tổng Số Vật/Tiền - Số Người/Ngày - Định Mức Mõi Người/1Ngày**.
+- Đặt ẩn mảng giữa $x$ là Số Lượng Người/Công (Có Mốc Nguyên dương $x \in \mathbb{N}^*$).
+- Phóng ra Khối lượng chia nứt = $\frac{\text{Tổng }}{x}$.
+- Thêm Bớt người (Thành $x+a$ hay $x-a$). Dập cành Phương trình chênh Năng suất / Lãi nhẩm.
+
+</div>
+
+**Ví dụ 3:** (Quay Lại bài Toán Buôn Hùn Khởi Động). Tổng 120 Vàng.
+**Hướng dẫn:** 
+- Gọi số thương gia gốc đi theo xe là $x$. Mỗi ông vớ húp sương $120/x$ Vàng.
+- Khi 2 người Bị Nghẹn (Tức là mất mảng 2 gánh) $\Rightarrow$ Mảng nhóm túm tụm Lại là $(x - 2)$. 
+- Giờ lộc chia bị gánh lột cho đội nhóm Rỗng Nhanh $\Rightarrow$ Cổ tức lên mốc $\frac{120}{x - 2}$.
+- Ông Mới đứt nhiều HƠN Ông Cũ Tận $10$ lượng $\Rightarrow \frac{120}{x - 2} - \frac{120}{x} = 10$.
+- Vung móng xẻ: $120x - 120(x - 2) = 10x(x - 2) \Rightarrow 240 = 10x^2 - 20x \Rightarrow x^2 - 2x - 24 = 0$.
+Máy Báo Chốt: Rụng nghiệm $x = 6$ và $x = -4$ (Loại -4 người lùi). Đội Lạc Đà ban đầu có **6 Thương Gia!!!**.
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Kĩ năng Lập Biểu Thức Chắn Mốc):** 
+Em hãy chuyển dịch các câu Tiếng Việt sau ra "Biểu thức Toán":
+
+a) Số cây trồng của lớp 9A ($y$ cây) nhiều hơn lớp 9B ($x$ cây) là 20 gốc. (Viết Y theo X).
+
+b) Vận tốc lúc xuôi dòng của thuyền (Biết sương vận tốc Cano nằm yên là $V_o$, vận tốc dòng chảy suối là $v_{nước}$).
+
+c) Giá một cái nhẫn Vàng là $1000$ USD. Sau khi Giảm giá % sale đợt mốc $x\%$, giá nó còn bao nhiêu dốc?
+
+**Bài 2 (Năng Suất Chuyển Hàng):** 
+Môt Đội xe chở hàng siêu dạt mốc vận lốc thầu dọn Quặng $480\text{ tấn}$ từ mìn núi. Sắp đến lúc khởi hành dốc máy, xưởng cho tăng bo 2 chiếc xe Tải khổng lồ. 
+Vì sức nén Thêm Trọng Tải Mới 2 Xe, mỗi xe Mũi Cũ CỦA ĐỘI giảm được gánh nặng phải chở Đi 12 Tấn/1 Xe Khung.
+(Yêu cầu Trọng Tải dạt phân kều Bằng Nhau cho Cả Tất Cả Lô Hàng).
+
+a) Lập Bảng ma trận chóp 3 Cột (Tổng Tấn - Số Xe - Chở Được Lô xe). Gọi X là Số Lốc Hão.
+
+b) Ráp gài PT và Cào nát nghiệm để truy ra: Đội Nhám Xưởng có bao nhiêu Đứa Xe Khởi Hành BAN THUỞ ĐẦU NGUYÊN BẢN CHƯA BƠM XE??
+
+**Bài 3 (Mũi Kích Chuyển Động Xa):** 
+Ông An Lượn Lốc Phượt Xe Mô Tô Quãng Đoạn 150 km từ Nọc Xong. Ông B đi xế Mui Vỏ Mềnh Đi Nhanh Hơn Ống An Dạt Chóp 10 km/h. Vì lướt xé mây chót vót, Nên Xế Hộp đến cắm Đích Trăm Rưỡi Sớm Hơn Mô Tố Lọc Lạc $0.5\text{ giờ}$ ráng!
+
+a) Cáp Lọc ẩn Vận tốc Khúc Moto Lốc $= v$. Thì vận tốc Xế Hài B là biểu thức dạt mốc gì?
+
+b) Hai Thời Gian lốc Sớm muộn chênh nhau Bao nhiêu tiếng? Ráp Tháp lập Phương Trình Giải $V$. (Tìm luôn lỏng cả $v$ CỦA ÔNG B NỐT NHÉ).
+
+**Bài 4 (Hố Vườn Tu sửa Khu Nhà Tùy Biến):** 
+Môt nẻo mảnh vườn Tồn Đọng Chữ Nhật. Chu Vi Rào Khỏa lấp Đã Tốn Trọn 60 mét Xích Thép dây Kẽm! 
+Đảo Diễn Cắt Cỏ: Nếu Nịt bớt Đi 2 mét Hông Chiều Rộng... Mà Kéo Dọc Phăng 2 mét Vuông Dọc Chiều Dài... Thì Tường Bao Lấn Trắng Tốn HẾT Toàn Diện Tích Bị Nâng thêm Xát 8 mét Vuông Màn So Với Đất Cú Xưa!
+
+a) Tính Dạt Hệ $S$ Nửa Chu Rào là Tổng Rộng Và Dài Cự li chóp? Gài Dài Viết THEO Gài Rộng (x).
+
+b) Cây Phương trình Nạy Viết Rộng - Dài Diện Tích Mảng Cũ Chênh Giao Mảng Mới Bội Biến Lên... Rồi Giải Chiều Khỏa Lấp Khung Cũ Dịch Ra Bao Vành!
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) $y = x + 20$.
+b) $V_{\text{xuôi}} = V_{cano} + V_{nước}$.
+c) Giảm $x\%$, tứclà còn Giữ lại Lốc $(100 - x)\%$. Giá dạt Sale $G = 1000 \cdot (1 - \frac{x}{100})$.
+
+**Bài 2:**
+a) Gài $x$ (xe) lốc Cũ. Lượng Chở $=\frac{480}{x}$. Lốc thầu Mới Xe $(x+2)$ Xe. Trọng lốc chở mút mới: $\frac{480}{x+2}$.
+b) Chênh 12 Tấn là mức Giảm Đi $\Rightarrow$ Lượng cũ nứt NẶNG hơn lượng Mới chèn nhồi 12 Tấn.
+PT: $\frac{480}{x} - \frac{480}{x+2} = 12$. 
+Khống lốc xé mẫu $480 \cdot 2 = 12x(x+2) \Rightarrow x^2 + 2x - 80 = 0$. Giải Rỉ Căn Nghiệm bóc 8 và -10. 
+Số Xe Cũ khơi màn $= 8$ Xe!
+
+**Bài 3:**
+a) Moto $x$. Xế B là $x + 10$.
+b) Phương Trình Chênh giờ Thời Chóp: Càng chậm đi càng Cực (Moto Cực, Tiêu hao nhiều thì trừ Ông Ít Xíu Ra Chốc dư Thừa 0.5):
+$\frac{150}{x} - \frac{150}{x+10} = 0.5$.
+Đẩy lùi hất tung Đáy: $300(x+10) - 300x = x^2 + 10x \Rightarrow x^2 + 10x - 3000 = 0$. 
+Bấm rụng mụt nghiệm $x = 50$, $x = -60$ vứt trượt. Moto A đi $50\text{km/h}$. Ô Tô B lao $60\text{km/h}$.
+
+**Bài 4:**
+a) Chu Rào Căng 60m $\Rightarrow$ Nửa Chu Đỉnh $D + R = 30$. Bọc gọi Rộng $x \Rightarrow$ Dài Vết $(30 - x)$.
+b) Tích Trồi S $S_{\text{cũ}} = x(30 - x)$.
+Trồi Mới Rộng Nịt 2 gánh $= x - 2$. Dài Nịt mảng Phăng kéo 2 mốc $\Rightarrow (30 - x + 2) = (32 - x)$.
+Tích S Mới Rào $S_{\text{mới}} = (x - 2)(32 - x)$.
+Do Nâng thêm Vọt đập 8 $\Rightarrow S_{\text{mới}} - S_{\text{cũ}} = 8$.
+Tuyển móp Biến chóp: $(-x^2 + 34x - 64) - (-x^2 + 30x) = 8 \Rightarrow 4x = 72 \Rightarrow x = 18$.
+Chiều Rộng Bị lấn rụng ngầm Mốc Lòi 18 mét. Dài $(30 - 18) = 12$ mét. (Ủa, Rộng Mập Hơn Dài!!! Toán Học Vui Tính Rộng 18 Dài 12 là hình Lộn Ngược). Chấp Nhận Chiều Kích 18 và 12.
+
+</div>
+</details>

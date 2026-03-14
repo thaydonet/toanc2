@@ -1,0 +1,350 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 4: Phương trình quy về phương trình bậc nhất một ẩn"
+description: "Giải phương trình tích và phương trình chứa ẩn ở mẫu - Toán 9 KNTT Chương 2"
+grade: "Lớp 9"
+chapter: "Chương II: Phương trình và bất phương trình bậc nhất một ẩn"
+currentSlug: "lop9/bai-4-pt-quy-ve-bac-nhat"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Phương trình tích có dạng nào sau đây?",
+    option_a: "$A(x) + B(x) = 0$",
+    option_b: "$A(x) \\cdot B(x) = 0$",
+    option_c: "$\\frac{A(x)}{B(x)} = 0$",
+    option_d: "$A(x) - B(x) = 0$",
+    correct_option: "B",
+    explanation: "Phương trình tích là phương trình dạng tích của các biểu thức bằng 0, tức là $A(x) \\cdot B(x) = 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nghiệm của phương trình $(x - 2)(x + 3) = 0$ là:",
+    option_a: "$x = 2$ hoặc $x = 3$",
+    option_b: "$x = -2$ hoặc $x = -3$",
+    option_c: "$x = 2$ hoặc $x = -3$",
+    option_d: "$x = -2$ hoặc $x = 3$",
+    correct_option: "C",
+    explanation: "Ta có $x - 2 = 0 \\Rightarrow x = 2$ hoặc $x + 3 = 0 \\Rightarrow x = -3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong phương trình chứa ẩn ở mẫu, việc đầu tiên cần làm là gì?",
+    option_a: "Quy đồng mẫu hai vế",
+    option_b: "Nhân chéo hai vế",
+    option_c: "Tìm điều kiện xác định (ĐKXĐ)",
+    option_d: "Hủy mẫu số",
+    correct_option: "C",
+    explanation: "Bước đầu tiên vô cùng quan trọng để loại đi những giá trị làm cho mẫu số bằng 0 là tìm ĐKXĐ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tập ĐKXĐ của phương trình $\\frac{x+1}{x-2} = \\frac{3}{x+2}$ là:",
+    option_a: "$x \\neq 2$ và $x \\neq -2$",
+    option_b: "$x \\neq -1$ và $x \\neq -2$",
+    option_c: "$x \\neq 2$",
+    option_d: "$x \\neq \\pm 1$",
+    correct_option: "A",
+    explanation: "Các mẫu số phải khác 0: $x - 2 \\neq 0 \\Rightarrow x \\neq 2$ và $x + 2 \\neq 0 \\Rightarrow x \\neq -2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi giải xong phương trình chứa ẩn ở mẫu và tìm được $x = 2$. Nhưng ĐKXĐ là $x \\neq 2$. Ta kết luận:",
+    option_a: "Phương trình có nghiệm là $x = -2$",
+    option_b: "Phương trình có nghiệm là $x = 2$",
+    option_c: "Phương trình vô nghiệm",
+    option_d: "Phải giải lại từ đầu",
+    correct_option: "C",
+    explanation: "Giá trị $x=2$ vi phạm ĐKXĐ nên bị loại. Phương trình vô nghiệm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nghiệm của phương trình $x^2 - 4x = 0$ là:",
+    option_a: "$x = 4$",
+    option_b: "$x = 0$ hoặc $x = 4$",
+    option_c: "$x = 0$ hoặc $x = -4$",
+    option_d: "$x = -4$",
+    correct_option: "B",
+    explanation: "Đặt x làm nhân tử chung: $x(x - 4) = 0 \\Rightarrow x=0$ hoặc $x=4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các phương trình nào sau đây là phương trình tích?",
+    option_a: "$(2x-1)(x+5) = 0$",
+    option_b: "$x(x^2 - 1) = 0$",
+    option_c: "$2x - 3 = 0$",
+    option_d: "$x(y-1) = 2$",
+    correct_option: "A,B",
+    explanation: "A, B đều ở dạng tích hai hay nhiều biểu thức của x bằng 0. C là bậc nhất thông thường, D bằng 2 (không bằng 0).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các bước giải phương trình chứa ẩn ở mẫu bao gồm:",
+    option_a: "Tìm ĐKXĐ của phương trình",
+    option_b: "Quy đồng mẫu hai vế và khử mẫu",
+    option_c: "Giải phương trình vừa nhận được",
+    option_d: "So sánh nghiệm với ĐKXĐ và kết luận",
+    correct_option: "A,B,C,D",
+    explanation: "Đây là 4 bước chuẩn để giải phương trình chứa ẩn ở mẫu.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Giải pt: $(2x - 6)(x + 1) = 0$. Tìm nghiệm dương lớn nhất.",
+    correct_option: "3",
+    explanation: "$2x-6=0 \\Rightarrow x=3$. $x+1=0 \\Rightarrow x=-1$. Nghiệm dương lớn nhất là 3.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm ĐKXĐ của pt: $\\frac{5}{2x - 4} = 3$. Hãy nhập giá trị mà x KHÔNG THỂ BẰNG (VD: Nếu khác 5 thì nhập 5).",
+    correct_option: "2",
+    explanation: "$2x - 4 \\neq 0 \\Rightarrow 2x \\neq 4 \\Rightarrow x \\neq 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🧐 Phương trình phức tạp</h3>
+
+Trong thực tế hoặc khi giải toán, chúng ta thường xuyên gặp những phương trình không phải ở dạng "bậc nhất một ẩn" chuẩn mực $ax + b = 0$.
+Ví dụ như:
+- $(x - 2)(3x + 1) = 0$
+- $\frac{x}{x-1} + \frac{2}{x+2} = 3$
+
+Tuy hình dáng phức tạp hơn, nhưng chúng ta hoàn toàn có thể "biến hóa" chúng để đưa về dạng quen thuộc: **Phương trình bậc nhất một ẩn** để giải. Sự biến hóa đó thực hiện như thế nào? Cùng tìm hiểu trong bài học này.
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="pt-tich" style="margin-top:2rem;">📖 1. Phương trình tích</h3>
+
+<div class="box-dinh-nghia">
+
+**Phương trình tích** là phương trình có dạng: 
+$$A(x) \cdot B(x) = 0$$
+(trong đó $A(x), B(x)$ là các biểu thức của cùng một ẩn $x$).
+
+**Cách giải:**
+Ta biết rằng: *Một tích bằng 0 khi và chỉ khi ít nhất một trong các nhân tử của nó bằng 0*.
+Do đó:
+$$A(x) \cdot B(x) = 0 \Leftrightarrow \left[ \begin{array}{l} A(x) = 0 \\ B(x) = 0 \end{array} \right.$$
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ 1:** Giải phương trình $(x - 3)(2x + 4) = 0$
+**Giải:**
+$$ \Leftrightarrow \left[ \begin{array}{l} x - 3 = 0 \\ 2x + 4 = 0 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} x = 3 \\ x = -2 \end{array} \right.$$
+Vậy tập nghiệm của phương trình là $S = \{3; -2\}$.
+
+**Ví dụ 2:** Giải pt: $x^2 - 5x = 0$
+**Giải:** Ta đưa về PT tích bằng cách đặt $x$ làm nhân tử chung.
+$x(x - 5) = 0 \Leftrightarrow \left[ \begin{array}{l} x = 0 \\ x - 5 = 0 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} x = 0 \\ x = 5 \end{array} \right.$
+
+**Ví dụ 3:** Giải pt: $(2x - 1)^2 - (x + 3)^2 = 0$
+**Giải:** Phân tích hằng đẳng thức $A^2 - B^2 = (A-B)(A+B)$:
+$(2x - 1 - x - 3)(2x - 1 + x + 3) = 0$
+$\Leftrightarrow (x - 4)(3x + 2) = 0$
+$\Leftrightarrow \left[ \begin{array}{l} x - 4 = 0 \\ 3x + 2 = 0 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} x = 4 \\ x = -2/3 \end{array} \right.$
+
+</div>
+
+<h3 id="pt-an-o-mau" style="margin-top:2rem;">📖 2. Phương trình chứa ẩn ở mẫu</h3>
+
+Khi ẩn số xuất hiện ở dưới mẫu thức, ta không thể quy đồng khử mẫu một cách vô tư, vì biểu thức ở mẫu có nguy cơ bằng 0 (làm phân thức vô nghĩa).
+
+<div class="box-dinh-nghia">
+
+**Các bước giải phương trình chứa ẩn ở mẫu:**
+- **Bước 1:** Tìm điều kiện xác định (ĐKXĐ) của phương trình. (Cho tất cả các mẫu số $\neq 0$).
+- **Bước 2:** Quy đồng mẫu hai vế của phương trình rồi khử mẫu.
+- **Bước 3:** Giải phương trình vừa nhận được.
+- **Bước 4 (Cực kì quan trọng):** So sánh các nghiệm tìm được ở Bước 3 với ĐKXĐ. Nghiệm nào thỏa mãn thì nhận, không thỏa mãn thì phải **LOẠI BỎ**. Kết luận tập nghiệm.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ 4:** Giải pt $\frac{x+2}{x} = \frac{2x+3}{2x-2}$
+**Giải:**
+- **Bước 1 (ĐKXĐ):** $x \neq 0$ và $2x-2 \neq 0 \Rightarrow x \neq 1$. Vậy ĐKXĐ: $x \neq 0, x \neq 1$. Mẫu thức chung: $x(2x-2)$.
+- **Bước 2 (Quy đồng & khử mẫu):**
+$\frac{(x+2)(2x-2)}{x(2x-2)} = \frac{x(2x+3)}{x(2x-2)}$
+Khử mẫu: $(x+2)(2x-2) = x(2x+3)$
+- **Bước 3 (Giải PT):**
+$2x^2 - 2x + 4x - 4 = 2x^2 + 3x$
+$2x - 4 = 3x$
+$-x = 4 \Rightarrow x = -4$.
+- **Bước 4 (Đối chiếu):** $x = -4$ thỏa mãn ĐKXĐ ($x \neq 0, x \neq 1$).
+$\Rightarrow$ KL: Tập nghiệm $S = \{-4\}$.
+
+**Ví dụ 5:** Giải pt $\frac{x}{x-1} = \frac{1}{x-1} + 2$
+**Giải:**
+- ĐKXĐ: $x \neq 1$. MTC: $x-1$.
+- PT $\Rightarrow \frac{x}{x-1} = \frac{1 + 2(x-1)}{x-1}$
+- Khử mẫu: $x = 1 + 2x - 2$
+- $x = 2x - 1 \Rightarrow x = 1$.
+- Đối chiếu: $x=1$ **KHÔNG** thỏa mãn ĐKXĐ ($x \neq 1$). Do đó loại.
+- Chốt: PT vô nghiệm.
+
+</div>
+
+</KhamPha>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Điểm mấu chốt khi giải phương trình:**
+- Đối với phương trình bậc 2 hoặc bậc cao hơn, ta có thể dùng kỹ thuật nhân tử chung, hằng đẳng thức để tách biểu thức thành **phương trình Tích**.
+- Đối với phương trình chứa ẩn ở mẫu $\rightarrow$ Đừng bao giờ quên bước đặt **ĐKXĐ** và bước **ĐỐI CHIẾU NGHIỆM**. Nếu không vội vàng khử mẫu bạn sẽ có thể kết luận thừa nghiệm đấy nhé.
+
+</div>
+
+</GhiNho>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Giải các phương trình tích cơ bản:
+
+a) $(x + 5)(3x - 1) = 0$
+
+b) $(4 - x)(2x + 6) = 0$
+
+c) $2x(x + 7)(x - 2) = 0$
+
+d) $(2x + 5)(3x - 1) = (2x + 5)(x + 4)$
+
+**Bài 2:** Biến đổi đưa về phương trình tích:
+
+a) $x^2 - 6x = 0$
+
+b) $4x^2 - 9 = 0$
+
+c) $x^2 - 5x + 6 = 0$ (Gợi ý: Tách $-5x = -2x - 3x$)
+
+d) $(x-2)^2 - (2x+1)^2 = 0$
+
+**Bài 3:** Giải phương trình chứa ẩn ở mẫu cấp độ 1:
+
+a) $\frac{2x+1}{x-2} = 3$
+
+b) $\frac{x}{x-1} + \frac{2}{x} = \frac{x^2+1}{x(x-1)}$
+
+c) $\frac{x+2}{x-2} - \frac{1}{x} = \frac{2}{x(x-2)}$
+
+d) $\frac{2}{x+1} - \frac{1}{x-1} = \frac{3x}{x^2-1}$
+
+**Bài 4:** Giải phương trình chứa ẩn ở mẫu Nâng cao:
+
+a) $\frac{x}{x-3} - \frac{x}{x+3} = \frac{18}{x^2-9}$
+
+b) $\frac{1}{x-1} + \frac{2}{x-2} = \frac{3}{x-3}$
+
+c) $\frac{x-1}{x} + \frac{x-2}{x} + \frac{x-3}{x} = 3$
+
+d) $\frac{2x}{x-1} + \frac{x-1}{x} = 3$
+
+**Bài 5 (Ứng dụng giải toán):**
+
+a) Tổng 2 số là 15, tích hai số là 56. Lập phương trình biểu diễn mối liên hệ của số bé ($x$).
+
+b) Rút ra phương trình $x(15 - x) = 56 \Rightarrow 15x - x^2 = 56 \Rightarrow x^2 - 15x + 56 = 0$. Hãy biến đổi nó về phương trình tích.
+
+c) Từ PT trên, hai công nhân cùng làm 1 công việc. Công nhân A làm một mình xong nhanh hơn B là 2h. Cả 2 cùng làm thì 2h24m xong. Biết 2h24m = $12/5$ h. Gọi thời gian B là $x$, thì pt là: $\frac{1}{x-2} + \frac{1}{x} = \frac{5}{12}$. Hãy giải nó.
+
+d) Tóm lại B làm hết bao lâu và A làm hết bao lâu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $x = -5, x = 1/3$
+
+b) $x = 4, x = -3$
+
+c) $x = 0, x = -7, x = 2$
+
+d) Chuyển vế: $(2x+5)(3x-1 - x - 4) = 0 \Leftrightarrow (2x+5)(2x-5) = 0 \Rightarrow x=\pm 2.5$.
+
+**Bài 2:**
+
+a) $x(x-6) = 0 \Rightarrow x=0; x=6$
+
+b) $(2x-3)(2x+3) = 0 \Rightarrow x=\pm 1.5$
+
+c) $x(x-2) - 3(x-2) = 0 \Leftrightarrow (x-2)(x-3) = 0 \Rightarrow x=2; x=3$
+
+d) $(x-2-2x-1)(x-2+2x+1) = 0 \Leftrightarrow (-x-3)(3x-1) = 0 \Rightarrow x=-3; x=1/3$
+
+**Bài 3:**
+
+a) ĐKXĐ: $x \neq 2$. $2x+1 = 3(x-2) \Rightarrow 2x+1 = 3x-6 \Rightarrow x=7$ (TM).
+
+b) ĐKXĐ: $x \neq 0, x \neq 1$. $x^2 + 2(x-1) = x^2+1 \Rightarrow x^2+2x-2 = x^2+1 \Rightarrow 2x=3 \Rightarrow x=1.5$ (TM).
+
+c) ĐKXĐ: $x \neq 0, x \neq 2$. $x(x+2) - (x-2) = 2 \Rightarrow x^2+2x-x+2 = 2 \Rightarrow x^2+x=0 \Rightarrow x(x+1)=0 \Rightarrow x=0$ (Loại) hoặc $x=-1$ (TM). Mọi nghiệm chỉ là $x=-1$.
+
+d) ĐKXĐ: $x \neq \pm 1$. $2(x-1) - (x+1) = 3x \Rightarrow 2x-2-x-1 = 3x \Rightarrow x-3 = 3x \Rightarrow -2x = 3 \Rightarrow x=-1.5$ (TM).
+
+**Bài 4:**
+
+a) ĐKXĐ: $x \neq \pm 3$. $x(x+3) - x(x-3) = 18 \Rightarrow x^2+3x - x^2+3x = 18 \Rightarrow 6x = 18 \Rightarrow x=3$. So với ĐKXĐ $\Rightarrow$ Loại. PT vô nghiệm!
+
+b) ĐKXĐ: $x \neq 1,2,3$. Quy đồng: $(x-2)(x-3) + 2(x-1)(x-3) = 3(x-1)(x-2) \dots \Rightarrow x^2-5x+6 + 2x^2-8x+6 = 3x^2-9x+6 \Rightarrow -13x + 12 = -9x + 6 \Rightarrow 4x = 6 \Rightarrow x=1.5$.
+
+c) ĐKXĐ: $x \neq 0$. $(x-1+x-2+x-3) = 3x \Rightarrow 3x - 6 = 3x \Rightarrow -6 = 0$ (Vô lí, PT vô nghiệm).
+
+d) ĐKXĐ: $x \neq 0, x \neq 1$. Có dạng $2X + 1/X = 3$. Đặt ẩn phụ hoặc nhân lên $2x^2 + (x-1)^2 = 3x(x-1) \Rightarrow 2x^2 + x^2-2x+1 = 3x^2-3x \Rightarrow x = -1$.
+
+**Bài 5:**
+
+a) Tổng 2 số là 15, 1 số là x, số kia là 15-x. Tích $x(15-x) = 56$.
+
+b) $x^2 - 15x + 56 = x^2 - 7x - 8x + 56 = x(x-7) - 8(x-7) = (x-7)(x-8) = 0 \Rightarrow x=7; x=8$.
+
+c) ĐKXĐ: $x>2$. $\frac{1}{x-2} + \frac{1}{x} = \frac{5}{12} \Rightarrow 12x + 12(x-2) = 5x(x-2) \Rightarrow 24x - 24 = 5x^2 - 10x \Rightarrow 5x^2 - 34x + 24 = 0 \Leftrightarrow (x-6)(5x-4) = 0$. $x=6$ (thỏa mãn), $x=4/5 = 0.8 < 2$ (loại).
+
+d) A làm hết 4h, B làm hết 6h.
+
+</div>
+</details>

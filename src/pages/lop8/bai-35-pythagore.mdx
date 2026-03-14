@@ -1,0 +1,354 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 35: Định lí Pythagore và ứng dụng"
+description: "Định lí Pythagore, định lí đảo và ứng dụng - Toán 8 KNTT Chương 9"
+grade: "Lớp 8"
+chapter: "Chương 9: Tam giác đồng dạng"
+currentSlug: "lop8/bai-35-pythagore"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Cho tam giác vuông có hai cạnh góc vuông là 3 cm và 4 cm. Cạnh huyền bằng:",
+    option_a: "$5$ cm",
+    option_b: "$7$ cm",
+    option_c: "$25$ cm",
+    option_d: "$12$ cm",
+    correct_option: "A",
+    explanation: "$c^2 = 3^2 + 4^2 = 9 + 16 = 25 \\Rightarrow c = 5$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác có ba cạnh 5, 12, 13 là tam giác:",
+    option_a: "Vuông",
+    option_b: "Nhọn",
+    option_c: "Tù",
+    option_d: "Cân",
+    correct_option: "A",
+    explanation: "$5^2 + 12^2 = 25 + 144 = 169 = 13^2$. Thỏa mãn định lí Pythagore đảo.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác vuông có cạnh huyền 10 cm và một cạnh góc vuông 6 cm. Cạnh còn lại bằng:",
+    option_a: "$8$ cm",
+    option_b: "$4$ cm",
+    option_c: "$16$ cm",
+    option_d: "$100$ cm",
+    correct_option: "A",
+    explanation: "$b^2 = 10^2 - 6^2 = 100 - 36 = 64 \\Rightarrow b = 8$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác có ba cạnh 6, 8, 11 là tam giác:",
+    option_a: "Tù",
+    option_b: "Vuông",
+    option_c: "Nhọn",
+    option_d: "Cân",
+    correct_option: "A",
+    explanation: "$6^2 + 8^2 = 36 + 64 = 100 < 121 = 11^2$. Tam giác tù.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Bộ ba số nào sau đây là độ dài ba cạnh của tam giác vuông?",
+    option_a: "3, 4, 5",
+    option_b: "5, 12, 13",
+    option_c: "8, 15, 17",
+    option_d: "1, 2, 3",
+    correct_option: "A,B,C",
+    explanation: "A, B, C thỏa mãn $a^2 + b^2 = c^2$. D không thỏa mãn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tam giác vuông có hai cạnh góc vuông 5 cm và 12 cm. Cạnh huyền bằng bao nhiêu cm?",
+    correct_option: "13",
+    explanation: "$c^2 = 5^2 + 12^2 = 25 + 144 = 169 \\Rightarrow c = 13$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác vuông có hai cạnh góc vuông $!a#3!$ cm và $!b#4!$ cm. Cạnh huyền bằng:",
+    option_a: "$!tinh: Math.sqrt(!a! * !a! + !b! * !b!)!$ cm",
+    option_b: "$!tinh: !a! + !b!!$ cm",
+    option_c: "$!tinh: !a! * !b!!$ cm",
+    option_d: "$!tinh: !a! - !b!!$ cm",
+    correct_option: "A",
+    explanation: "$c = \\sqrt{!a!^2 + !b!^2} = \\sqrt{!tinh: !a! * !a! + !b! * !b!!} = !tinh: Math.sqrt(!a! * !a! + !b! * !b!)!$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">📐 Định lí nổi tiếng nhất hình học</h3>
+
+Định lí Pythagore là một trong những định lí quan trọng và ứng dụng nhất trong toán học, được phát hiện từ hơn 2500 năm trước!
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-li">📖 1. Định lí Pythagore</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí Pythagore:** Trong tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông.
+
+$$c^2 = a^2 + b^2$$
+
+trong đó $c$ là cạnh huyền, $a$ và $b$ là hai cạnh góc vuông.
+
+</div>
+
+**Ví dụ 1:** Cho tam giác vuông có hai cạnh góc vuông 3 cm và 4 cm. Tính cạnh huyền.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$$c^2 = 3^2 + 4^2 = 9 + 16 = 25$$
+$$c = 5 \text{ cm}$$
+
+</div>
+
+<h3 id="dinh-li-dao" style="margin-top:2rem;">🔄 2. Định lí Pythagore đảo</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí đảo:** Nếu một tam giác có bình phương một cạnh bằng tổng bình phương hai cạnh kia thì tam giác đó là tam giác vuông.
+
+$$a^2 + b^2 = c^2 \Rightarrow \triangle ABC \text{ vuông tại } C$$
+
+</div>
+
+**Ví dụ 2:** Tam giác có ba cạnh 5, 12, 13 có phải tam giác vuông không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Kiểm tra: $5^2 + 12^2 = 25 + 144 = 169 = 13^2$ ✓
+
+Vậy tam giác vuông (vuông tại đỉnh đối diện cạnh 13).
+
+</div>
+
+<h3 id="bo-ba-pythagore" style="margin-top:2rem;">🔢 3. Bộ ba số Pythagore</h3>
+
+Một số bộ ba Pythagore thường gặp:
+
+| Bộ ba | Kiểm tra |
+|:---:|:---|
+| 3, 4, 5 | $3^2 + 4^2 = 9 + 16 = 25 = 5^2$ |
+| 5, 12, 13 | $5^2 + 12^2 = 25 + 144 = 169 = 13^2$ |
+| 8, 15, 17 | $8^2 + 15^2 = 64 + 225 = 289 = 17^2$ |
+| 7, 24, 25 | $7^2 + 24^2 = 49 + 576 = 625 = 25^2$ |
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Ứng dụng</h3>
+
+**📝 Bài toán 1:** Một cái thang dài 5 m dựa vào tường, chân thang cách tường 3 m. Tính độ cao thang chạm tường.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$$h^2 = 5^2 - 3^2 = 25 - 9 = 16$$
+$$h = 4 \text{ m}$$
+
+</div>
+
+**📝 Bài toán 2:** Một hình chữ nhật có chiều dài 12 cm, chiều rộng 5 cm. Tính đường chéo.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$$d^2 = 12^2 + 5^2 = 144 + 25 = 169$$
+$$d = 13 \text{ cm}$$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định lí Pythagore**: $c^2 = a^2 + b^2$
+- **Định lí đảo**: $a^2 + b^2 = c^2 \Rightarrow$ tam giác vuông
+- **Bộ ba Pythagore**: 3-4-5, 5-12-13, 8-15-17
+
+</GhiNho>
+
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho tam giác vuông $ABC$ vuông tại $A$.
+
+a) Biết $AB = 5$ cm, $AC = 12$ cm. Tính $BC$
+
+b) Biết $BC = 13$ cm, $AB = 5$ cm. Tính $AC$
+
+c) Biết $BC = 10$ cm, $AC = 8$ cm. Tính $AB$
+
+---
+
+**Bài 2:** Xét xem các bộ ba số sau có phải là độ dài ba cạnh của tam giác vuông không? Nếu có, chỉ ra cạnh nào là cạnh huyền.
+
+a) 6, 8, 10
+
+b) 9, 12, 15
+
+c) 7, 24, 25
+
+d) 5, 11, 13
+
+---
+
+**Bài 3:** Cho tam giác $ABC$ có $AB = 7$ cm, $BC = 24$ cm, $CA = 25$ cm.
+
+a) Chứng minh tam giác $ABC$ vuông
+
+b) Tính diện tích tam giác $ABC$
+
+c) Tính đường cao $AH$ (với $H$ là chân đường cao từ $A$ xuống $BC$)
+
+---
+
+**Bài 4 (Ứng dụng thực tế):** 
+
+a) Một cái thang dài 5 m dựa vào tường, chân thang cách chân tường 3 m. Tính độ cao mà thang chạm tường.
+
+b) Một hình chữ nhật có chiều dài 16 cm và chiều rộng 12 cm. Tính độ dài đường chéo.
+
+c) Một sân bóng hình chữ nhật có chiều dài 100 m và chiều rộng 60 m. Một cầu thủ chạy từ góc này sang góc đối diện theo đường chéo. Tính quãng đường cầu thủ chạy.
+
+---
+
+**Bài 5 (Nâng cao):** Cho tam giác $ABC$ vuông tại $A$, có $AB = 6$ cm, $AC = 8$ cm. Kẻ đường cao $AH$ ($H \in BC$).
+
+a) Tính $BC$
+
+b) Tính diện tích tam giác $ABC$
+
+c) Tính $AH$ (sử dụng công thức diện tích)
+
+d) Chứng minh $\triangle ABH \sim \triangle CBA$
+
+e) Tính $BH$ và $CH$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $BC^2 = AB^2 + AC^2 = 5^2 + 12^2 = 25 + 144 = 169$
+
+$BC = 13$ cm
+
+b) $AC^2 = BC^2 - AB^2 = 13^2 - 5^2 = 169 - 25 = 144$
+
+$AC = 12$ cm
+
+c) $AB^2 = BC^2 - AC^2 = 10^2 - 8^2 = 100 - 64 = 36$
+
+$AB = 6$ cm
+
+---
+
+**Bài 2:**
+
+a) $6^2 + 8^2 = 36 + 64 = 100 = 10^2$ ✓ Tam giác vuông, cạnh huyền 10
+
+b) $9^2 + 12^2 = 81 + 144 = 225 = 15^2$ ✓ Tam giác vuông, cạnh huyền 15
+
+c) $7^2 + 24^2 = 49 + 576 = 625 = 25^2$ ✓ Tam giác vuông, cạnh huyền 25
+
+d) $5^2 + 11^2 = 25 + 121 = 146 \neq 169 = 13^2$ ✗ Không phải tam giác vuông
+
+---
+
+**Bài 3:**
+
+a) Kiểm tra: $AB^2 + BC^2 = 7^2 + 24^2 = 49 + 576 = 625 = 25^2 = CA^2$
+
+Vậy tam giác $ABC$ vuông tại $B$ (theo định lí Pythagore đảo)
+
+b) $S_{ABC} = \dfrac{1}{2} \times AB \times BC = \dfrac{1}{2} \times 7 \times 24 = 84$ cm²
+
+c) $S_{ABC} = \dfrac{1}{2} \times BC \times AH$
+
+$84 = \dfrac{1}{2} \times 24 \times AH$
+
+$AH = \dfrac{84 \times 2}{24} = 7$ cm
+
+---
+
+**Bài 4:**
+
+a) $h^2 = 5^2 - 3^2 = 25 - 9 = 16$
+
+$h = 4$ m
+
+b) $d^2 = 16^2 + 12^2 = 256 + 144 = 400$
+
+$d = 20$ cm
+
+c) $d^2 = 100^2 + 60^2 = 10000 + 3600 = 13600$
+
+$d = \sqrt{13600} \approx 116{,}6$ m
+
+---
+
+**Bài 5:**
+
+a) $BC^2 = AB^2 + AC^2 = 6^2 + 8^2 = 36 + 64 = 100$
+
+$BC = 10$ cm
+
+b) $S_{ABC} = \dfrac{1}{2} \times AB \times AC = \dfrac{1}{2} \times 6 \times 8 = 24$ cm²
+
+c) $S_{ABC} = \dfrac{1}{2} \times BC \times AH$
+
+$24 = \dfrac{1}{2} \times 10 \times AH$
+
+$AH = 4{,}8$ cm
+
+d) Xét $\triangle ABH$ và $\triangle CBA$:
+
+- $\widehat{AHB} = \widehat{BAC} = 90°$
+- $\widehat{B}$ chung
+
+Vậy $\triangle ABH \sim \triangle CBA$ (g.g)
+
+e) Từ $\triangle ABH \sim \triangle CBA$: $\dfrac{BH}{AB} = \dfrac{AB}{BC}$
+
+$BH = \dfrac{AB^2}{BC} = \dfrac{36}{10} = 3{,}6$ cm
+
+$CH = BC - BH = 10 - 3{,}6 = 6{,}4$ cm
+
+</div>
+</details>

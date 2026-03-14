@@ -1,0 +1,40 @@
+---
+import LessonLayout from '../../layouts/LessonLayout.astro';
+import { curriculumData } from '../../lib/curriculum';
+
+const grade = curriculumData['lop8'];
+---
+
+<LessonLayout
+  title={grade.title}
+  currentSlug="lop8"
+>
+  <div style="background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-radius: 20px; padding: 3rem 2rem; margin-bottom: 2rem; text-align: center; border: 2px solid #e9d5ff;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #7e22ce;">Toán Lớp 8</h1>
+    <p style="font-size: 1.1rem; color: #6b21a8; max-width: 600px; margin: 0 auto;">
+      Chào mừng bạn đến với chương trình Toán Lớp 8! Bắt đầu hành trình bằng cách chọn một bài học trong thanh điều hướng bên trái.
+    </p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+    {grade.volumes.map(vol => (
+      <div style="background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 1.5rem;">
+        <h3 style="color: #9333ea; margin-bottom: 1rem; border-bottom: 2px dashed #e2e8f0; padding-bottom: 0.5rem;">{vol.title}</h3>
+        {vol.chapters.map(chap => (
+          <div style="margin-bottom: 1rem;">
+            <div class="grade-chapter-title">{chap.title}</div>
+            <ul class="grade-lesson-list">
+              {chap.lessons.map(lesson => (
+                <li class="grade-lesson-item">
+                  <a href={lesson.href} class="grade-lesson-link">
+                    {lesson.title.replace(' (Demo)', '')}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</LessonLayout>

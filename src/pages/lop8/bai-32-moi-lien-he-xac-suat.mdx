@@ -1,0 +1,497 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 32: Mối liên hệ giữa xác suất thực nghiệm với xác suất ứng dụng"
+description: "Xác suất thực nghiệm, xác suất lý thuyết và mối liên hệ - Toán 8 KNTT Chương 8"
+grade: "Lớp 8"
+chapter: "Chương 8: Mở đầu về tính xác suất của biến cố"
+currentSlug: "lop8/bai-32-moi-lien-he-xac-suat"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tung đồng xu 100 lần, xuất hiện mặt ngửa 48 lần. Xác suất thực nghiệm là:",
+    option_a: "$0{,}48$",
+    option_b: "$0{,}5$",
+    option_c: "$0{,}52$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Xác suất thực nghiệm = $\\dfrac{48}{100} = 0{,}48$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất lý thuyết của việc tung đồng xu ra mặt ngửa là:",
+    option_a: "$0{,}5$",
+    option_b: "$0{,}48$",
+    option_c: "$0{,}6$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Xác suất lý thuyết = $\\dfrac{1}{2} = 0{,}5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi số lần thực nghiệm tăng lên, xác suất thực nghiệm sẽ:",
+    option_a: "Tiến gần đến xác suất lý thuyết",
+    option_b: "Luôn bằng xác suất lý thuyết",
+    option_c: "Xa rời xác suất lý thuyết",
+    option_d: "Không thay đổi",
+    correct_option: "A",
+    explanation: "Theo luật số lớn, khi $n \\to \\infty$, xác suất thực nghiệm tiến gần xác suất lý thuyết.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo xúc xắc 60 lần, xuất hiện mặt 6 là 12 lần. Xác suất thực nghiệm là:",
+    option_a: "$0{,}2$",
+    option_b: "$0{,}167$",
+    option_c: "$0{,}5$",
+    option_d: "$0{,}12$",
+    correct_option: "A",
+    explanation: "Xác suất thực nghiệm = $\\dfrac{12}{60} = 0{,}2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất lý thuyết gieo xúc xắc ra mặt 6 là:",
+    option_a: "$\\dfrac{1}{6}$",
+    option_b: "$\\dfrac{1}{5}$",
+    option_c: "$\\dfrac{1}{4}$",
+    option_d: "$\\dfrac{1}{2}$",
+    correct_option: "A",
+    explanation: "Có 1 mặt 6 trong 6 mặt: $P = \\dfrac{1}{6} \\approx 0{,}167$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Để xác suất thực nghiệm chính xác hơn, ta nên:",
+    option_a: "Tăng số lần thực nghiệm",
+    option_b: "Giảm số lần thực nghiệm",
+    option_c: "Giữ nguyên số lần thực nghiệm",
+    option_d: "Thay đổi điều kiện thực nghiệm",
+    correct_option: "A",
+    explanation: "Số lần thực nghiệm càng nhiều, kết quả càng chính xác.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào sau đây **đúng**?",
+    option_a: "Xác suất thực nghiệm phụ thuộc vào số lần thực nghiệm",
+    option_b: "Xác suất lý thuyết không đổi",
+    option_c: "Xác suất thực nghiệm luôn bằng xác suất lý thuyết",
+    option_d: "Khi $n$ lớn, hai xác suất gần nhau",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai vì chỉ gần nhau chứ không luôn bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tung đồng xu 200 lần, xuất hiện mặt ngửa 105 lần. Xác suất thực nghiệm là bao nhiêu? (Viết dưới dạng thập phân)",
+    correct_option: "0.525",
+    explanation: "Xác suất thực nghiệm = $\\dfrac{105}{200} = 0{,}525$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thực nghiệm $!n#50!$ lần, biến cố $A$ xảy ra $!m#10!$ lần. Xác suất thực nghiệm là:",
+    option_a: "$\\dfrac{!m!}{!n!}$",
+    option_b: "$\\dfrac{!n!}{!m!}$",
+    option_c: "$!tinh: !m! / !n!!$",
+    option_d: "$!tinh: !n! - !m!!$",
+    correct_option: "A",
+    explanation: "Xác suất thực nghiệm = $\\dfrac{\\text{Số lần xảy ra}}{\\text{Tổng số lần}} = \\dfrac{!m!}{!n!}$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔬 Mở đầu — Hai cách tiếp cận xác suất</h3>
+
+Có hai cách để xác định xác suất của một biến cố:
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Xác suất lý thuyết</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính toán bằng công thức: $$P(A) = \\dfrac{n(A)}{n(\\Omega)}$$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔬</div>
+    <strong>Xác suất thực nghiệm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thực hiện thí nghiệm và đếm: $$P(A) \\approx \\dfrac{m}{n}$$</p>
+  </div>
+</div>
+
+💬 *Khi số lần thực nghiệm đủ lớn, hai xác suất này rất gần nhau!*
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="xac-suat-thuc-nghiem">📖 1. Xác suất thực nghiệm</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Xác suất thực nghiệm của biến cố $A$ được xác định bằng cách:
+
+1. Thực hiện phép thử $n$ lần (trong cùng điều kiện)
+2. Đếm số lần biến cố $A$ xảy ra: $m$ lần
+3. Tính tỉ số:
+
+$$P_{tn}(A) = \frac{m}{n}$$
+
+trong đó:
+- $n$: Tổng số lần thực nghiệm
+- $m$: Số lần biến cố $A$ xảy ra
+
+</div>
+
+**Ví dụ 1:** Tung đồng xu 100 lần, xuất hiện mặt ngửa 52 lần. Tính xác suất thực nghiệm.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+- Tổng số lần tung: $n = 100$
+- Số lần xuất hiện mặt ngửa: $m = 52$
+
+$$P_{tn}(A) = \frac{52}{100} = 0{,}52 = 52\%$$
+
+</div>
+
+**Ví dụ 2:** Gieo xúc xắc 60 lần, xuất hiện mặt 6 là 9 lần. Tính xác suất thực nghiệm.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+- Tổng số lần gieo: $n = 60$
+- Số lần xuất hiện mặt 6: $m = 9$
+
+$$P_{tn}(A) = \frac{9}{60} = \frac{3}{20} = 0{,}15 = 15\%$$
+
+</div>
+
+<h3 id="xac-suat-ly-thuyet" style="margin-top:2rem;">📐 2. Xác suất lý thuyết</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Xác suất lý thuyết (hay xác suất cổ điển) của biến cố $A$ được tính bằng công thức:
+
+$$P(A) = \frac{n(A)}{n(\Omega)}$$
+
+trong đó:
+- $n(A)$: Số kết quả thuận lợi
+- $n(\Omega)$: Tổng số kết quả có thể (đồng khả năng)
+
+</div>
+
+**Ví dụ 3:** So sánh xác suất lý thuyết và thực nghiệm khi tung đồng xu.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Xác suất lý thuyết:**
+
+$$P(N) = \frac{1}{2} = 0{,}5 = 50\%$$
+
+**Xác suất thực nghiệm** (từ Ví dụ 1):
+
+$$P_{tn}(N) = 0{,}52 = 52\%$$
+
+**Nhận xét:** Hai xác suất gần nhau nhưng không hoàn toàn bằng nhau.
+
+</div>
+
+<h3 id="moi-lien-he" style="margin-top:2rem;">🔗 3. Mối liên hệ giữa hai xác suất</h3>
+
+<div class="box-dinh-ly">
+
+**Luật số lớn:** Khi số lần thực nghiệm $n$ càng lớn, xác suất thực nghiệm $P_{tn}(A)$ càng tiến gần đến xác suất lý thuyết $P(A)$.
+
+$$\lim_{n \to \infty} P_{tn}(A) = P(A)$$
+
+**Ý nghĩa:**
+- Với số lần thực nghiệm nhỏ: Kết quả có thể chênh lệch nhiều
+- Với số lần thực nghiệm lớn: Kết quả rất gần với lý thuyết
+
+</div>
+
+**Ví dụ 4:** Thực nghiệm tung đồng xu với số lần khác nhau:
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+| Số lần tung | Số lần ngửa | Xác suất thực nghiệm | Chênh lệch với lý thuyết |
+|:---:|:---:|:---:|:---:|
+| 10 | 6 | $0{,}6$ | $0{,}1$ |
+| 100 | 52 | $0{,}52$ | $0{,}02$ |
+| 1000 | 503 | $0{,}503$ | $0{,}003$ |
+| 10000 | 5012 | $0{,}5012$ | $0{,}0012$ |
+
+**Xác suất lý thuyết:** $P = 0{,}5$
+
+**Nhận xét:** Số lần tung càng nhiều, xác suất thực nghiệm càng gần $0{,}5$.
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">💡 4. Ứng dụng của xác suất thực nghiệm</h3>
+
+<div class="box-nhan-xet">
+
+**Khi nào dùng xác suất thực nghiệm?**
+
+1. **Không tính được lý thuyết:** Khi không biết tất cả kết quả có thể
+   - Ví dụ: Tỷ lệ sản phẩm lỗi, xác suất mưa
+
+2. **Kiểm tra tính công bằng:** Kiểm tra xúc xắc, đồng xu có cân đối không
+
+3. **Dự đoán thực tế:** Dựa vào dữ liệu quá khứ để dự đoán tương lai
+
+</div>
+
+**Ví dụ 5:** Kiểm tra xúc xắc có cân đối không.
+
+<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Gieo xúc xắc 600 lần, kết quả:
+
+| Mặt | 1 | 2 | 3 | 4 | 5 | 6 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Số lần | 95 | 102 | 98 | 105 | 97 | 103 |
+| Xác suất TN | 0,158 | 0,170 | 0,163 | 0,175 | 0,162 | 0,172 |
+
+**Xác suất lý thuyết:** $P = \dfrac{1}{6} \approx 0{,}167$
+
+**Kết luận:** Các xác suất thực nghiệm đều gần $0{,}167$ → Xúc xắc **cân đối**.
+
+</div>
+
+**Ví dụ 6:** Dự đoán tỷ lệ sản phẩm lỗi.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Kiểm tra 500 sản phẩm, phát hiện 15 sản phẩm lỗi.
+
+$$P_{tn}(\text{lỗi}) = \frac{15}{500} = 0{,}03 = 3\%$$
+
+**Dự đoán:** Trong lô hàng 10000 sản phẩm, số sản phẩm lỗi khoảng:
+
+$$10000 \times 0{,}03 = 300 \text{ sản phẩm}$$
+
+</div>
+
+<h3 id="so-sanh" style="margin-top:2rem;">⚖️ 5. So sánh hai loại xác suất</h3>
+
+| Tiêu chí | Xác suất lý thuyết | Xác suất thực nghiệm |
+|:---|:---|:---|
+| **Cách tính** | Công thức toán học | Thực nghiệm và đếm |
+| **Điều kiện** | Biết tất cả kết quả có thể | Có thể thực hiện thí nghiệm |
+| **Độ chính xác** | Chính xác tuyệt đối | Phụ thuộc số lần thực nghiệm |
+| **Ưu điểm** | Nhanh, chính xác | Áp dụng được mọi trường hợp |
+| **Nhược điểm** | Không luôn tính được | Tốn thời gian, chi phí |
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Kiểm tra chất lượng:**
+
+Một nhà máy sản xuất bóng đèn. Kiểm tra ngẫu nhiên 200 bóng, phát hiện 6 bóng hỏng.
+
+a) Tính xác suất thực nghiệm bóng đèn hỏng
+
+b) Dự đoán số bóng hỏng trong lô 5000 bóng
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Xác suất thực nghiệm:
+
+$$P_{tn}(\text{hỏng}) = \frac{6}{200} = 0{,}03 = 3\%$$
+
+b) Số bóng hỏng dự đoán:
+
+$$5000 \times 0{,}03 = 150 \text{ bóng}$$
+
+</div>
+
+---
+
+**📝 Bài toán 2 — Dự báo thời tiết:**
+
+Trong 100 ngày qua, có 25 ngày mưa. Dựa vào dữ liệu này:
+
+a) Tính xác suất thực nghiệm trời mưa
+
+b) Dự đoán số ngày mưa trong 30 ngày tới
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Xác suất thực nghiệm:
+
+$$P_{tn}(\text{mưa}) = \frac{25}{100} = 0{,}25 = 25\%$$
+
+b) Số ngày mưa dự đoán:
+
+$$30 \times 0{,}25 = 7{,}5 \approx 7-8 \text{ ngày}$$
+
+</div>
+
+---
+
+**📝 Bài toán 3 — Khảo sát ý kiến:**
+
+Khảo sát 500 người về một sản phẩm, có 380 người hài lòng.
+
+a) Tính xác suất thực nghiệm người hài lòng
+
+b) Nếu có 10000 khách hàng, dự đoán số người hài lòng
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Xác suất thực nghiệm:
+
+$$P_{tn}(\text{hài lòng}) = \frac{380}{500} = 0{,}76 = 76\%$$
+
+b) Số người hài lòng dự đoán:
+
+$$10000 \times 0{,}76 = 7600 \text{ người}$$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Xác suất thực nghiệm**: $P_{tn}(A) = \dfrac{m}{n}$ (m: số lần xảy ra, n: tổng số lần)
+- **Xác suất lý thuyết**: $P(A) = \dfrac{n(A)}{n(\Omega)}$
+- **Luật số lớn**: $n$ càng lớn, $P_{tn}(A)$ càng gần $P(A)$
+- **Ứng dụng**: Dự đoán, kiểm tra, ước lượng
+
+</GhiNho>
+
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ):** Tính xác suất thực nghiệm trong các trường hợp sau:
+
+a) Tung đồng xu 50 lần, xuất hiện mặt ngửa 28 lần.
+
+b) Gieo xúc xắc 60 lần, xuất hiện mặt 6 là 12 lần.
+
+c) Rút bi 100 lần (có hoàn lại), lấy được bi đỏ 35 lần.
+
+d) Bắn 40 phát, trúng đích 32 phát.
+
+**Bài 2 (Dễ):** So sánh xác suất thực nghiệm với xác suất lý thuyết:
+
+a) Tung đồng xu 100 lần, xuất hiện mặt ngửa 48 lần. So sánh với xác suất lý thuyết.
+
+b) Gieo xúc xắc 120 lần, xuất hiện mặt chẵn 58 lần. So sánh với xác suất lý thuyết.
+
+c) Nhận xét về sự chênh lệch giữa hai xác suất.
+
+
+**Bài 3 (Trung bình):** Thực nghiệm với số lần khác nhau:
+
+a) Tung đồng xu 10 lần, xuất hiện mặt ngửa 6 lần. Tính xác suất thực nghiệm.
+
+b) Tung đồng xu 100 lần, xuất hiện mặt ngửa 52 lần. Tính xác suất thực nghiệm.
+
+c) Tung đồng xu 1000 lần, xuất hiện mặt ngửa 503 lần. Tính xác suất thực nghiệm.
+
+d) So sánh ba kết quả trên với xác suất lý thuyết. Rút ra nhận xét.
+
+**Bài 4 (Khá):** Kiểm tra xúc xắc có cân đối không:
+
+Gieo xúc xắc 300 lần, kết quả:
+
+| Mặt | 1 | 2 | 3 | 4 | 5 | 6 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Số lần | 48 | 52 | 51 | 49 | 50 | 50 |
+
+a) Tính xác suất thực nghiệm cho mỗi mặt.
+
+b) So sánh với xác suất lý thuyết $\dfrac{1}{6} \approx 0{,}167$.
+
+c) Xúc xắc có cân đối không? Giải thích.
+
+
+**Bài 5 (Khó - Ứng dụng thực tế):** 
+
+a) Kiểm tra chất lượng sản phẩm:
+   - Kiểm tra 500 sản phẩm, phát hiện 18 sản phẩm lỗi.
+   - Tính xác suất thực nghiệm sản phẩm lỗi.
+   - Dự đoán số sản phẩm lỗi trong lô 10000 sản phẩm.
+
+b) Dự báo thời tiết:
+   - Trong 200 ngày qua, có 45 ngày mưa.
+   - Tính xác suất thực nghiệm trời mưa.
+   - Dự đoán số ngày mưa trong 60 ngày tới.
+
+c) Khảo sát ý kiến:
+   - Khảo sát 800 người về một sản phẩm, có 640 người hài lòng.
+   - Tính xác suất thực nghiệm người hài lòng.
+   - Nếu có 50000 khách hàng, dự đoán số người hài lòng.
+
+d) Thống kê giao thông:
+   - Quan sát 1000 xe qua trạm, có 350 xe ô tô, 450 xe máy, 200 xe khác.
+   - Tính xác suất thực nghiệm cho mỗi loại xe.
+   - Dự đoán số xe mỗi loại trong 5000 xe tiếp theo.
+
+e) Bắn súng:
+   - Một vận động viên bắn 200 phát, trúng đích 165 phát.
+   - Tính xác suất thực nghiệm trúng đích.
+   - Nếu bắn 50 phát nữa, dự đoán số phát trúng đích.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $0{,}56$; b) $0{,}2$; c) $0{,}35$; d) $0{,}8$
+
+**Bài 2:** a) $P_{tn} = 0{,}48$, $P = 0{,}5$, chênh $0{,}02$; b) $P_{tn} = 0{,}483$, $P = 0{,}5$, chênh $0{,}017$; c) Chênh lệch nhỏ, gần với lý thuyết
+
+**Bài 3:** a) $0{,}6$; b) $0{,}52$; c) $0{,}503$; d) Càng nhiều lần, càng gần $0{,}5$
+
+**Bài 4:** a) 0,16; 0,173; 0,17; 0,163; 0,167; 0,167; b) Tất cả đều gần $0{,}167$; c) Có, vì các xác suất gần nhau
+
+**Bài 5:** a) $0{,}036$, khoảng 360 sản phẩm; b) $0{,}225$, khoảng 13-14 ngày; c) $0{,}8$, khoảng 40000 người; d) Ô tô: 0,35 (1750 xe), Xe máy: 0,45 (2250 xe), Khác: 0,2 (1000 xe); e) $0{,}825$, khoảng 41 phát
+
+</div>
+</details>

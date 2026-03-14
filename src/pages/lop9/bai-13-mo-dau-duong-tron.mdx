@@ -1,0 +1,298 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 13: Mở đầu về đường tròn"
+description: "Khái niệm đường tròn, hình tròn, sự xác định đường tròn và tính đối xứng - Toán 9 KNTT Chương 5"
+grade: "Lớp 9"
+chapter: "Chương V: Đường tròn"
+currentSlug: "lop9/bai-13-mo-dau-duong-tron"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tập hợp các điểm cách đều điểm O cố định một khoảng bằng R (R > 0) được gọi là:",
+    option_a: "Hình tròn tâm O bán kính R",
+    option_b: "Đường tròn tâm O bán kính R",
+    option_c: "Mặt cầu tâm O bán kính R",
+    option_d: "Khối cầu tâm O bán kính R",
+    correct_option: "B",
+    explanation: "Đây là định nghĩa chuẩn của 'Đường tròn'. 'Hình tròn' bao gồm cả phần bên trong đường tròn đó.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một đường tròn hoàn toàn được xác định nếu ta biết:",
+    option_a: "Tâm và bán kính",
+    option_b: "Một điểm mà đường tròn đi qua",
+    option_c: "Hai điểm mà đường tròn đi qua",
+    option_d: "Ba điểm thẳng hàng mà đường tròn đi qua",
+    correct_option: "A",
+    explanation: "Đường tròn được đo ni đóng giày bởi Tâm (vị trí tọa độ) và chiều dài Bán kính.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Có bao nhiêu đường tròn đi qua 3 điểm KHÔNG thẳng hàng?",
+    option_a: "Không có",
+    option_b: "1",
+    option_c: "2",
+    option_d: "Vô số",
+    correct_option: "B",
+    explanation: "Qua ba điểm không thẳng hàng luôn xác định được duy nhất MỘT đường tròn, đó là đường tròn ngoại tiếp tam giác tạo bởi 3 điểm đó.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tâm đường tròn ngoại tiếp tam giác vuông nằm ở đâu?",
+    option_a: "Bên trong tam giác",
+    option_b: "Bên ngoài tam giác",
+    option_c: "Trung điểm của cạnh huyền",
+    option_d: "Giao điểm của ba đường trung tuyến",
+    correct_option: "C",
+    explanation: "Trong tam giác vuông, trung điểm cạnh huyền cách đều 3 đỉnh của tam giác nên nó chính là tâm đường tròn đi qua 3 đỉnh (tâm đường tròn ngoại tiếp).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho điểm A nằm ngoài đường tròn (O; R). Mệnh đề nào sau đây đúng?",
+    option_a: "$OA < R$",
+    option_b: "$OA = R$",
+    option_c: "$OA > R$",
+    option_d: "$OA \\le R$",
+    correct_option: "C",
+    explanation: "Điểm nằm ngoài thì khoảng cách từ điểm đó tới tâm sẽ lớn hơn bán kính ($OA > R$).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường tròn có bao nhiêu trục đối xứng?",
+    option_a: "1",
+    option_b: "2",
+    option_c: "4",
+    option_d: "Vô số",
+    correct_option: "D",
+    explanation: "Mọi đường thẳng đi qua tâm (chứa đường kính) đều là trục đối xứng của đường tròn. Vì có vô số đường kính nên có vô số trục đối xứng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Giao điểm của ba đường trung trực của tam giác là:",
+    option_a: "Cách đều 3 cạnh của tam giác đó",
+    option_b: "Cách đều 3 đỉnh của tam giác đó",
+    option_c: "Tâm đường tròn nội tiếp tam giác",
+    option_d: "Tâm đường tròn ngoại tiếp tam giác",
+    correct_option: "B,D",
+    explanation: "Vì nằm trên trung trực nên điểm đó cách đều 2 mút. Do đó Giao 3 trung trực cách đều 3 đỉnh, chính là tâm đường tròn chứa 3 đỉnh đó (ngoại tiếp).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho đường kính AB của đường tròn (O; R). Khẳng định nào ĐÚNG?",
+    option_a: "Tâm O là trung điểm của AB",
+    option_b: "$AB = 2R$",
+    option_c: "O là tâm đối xứng của đường tròn",
+    option_d: "Đường thẳng AB là trục đối xứng của đường tròn",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các tính chất trên đều là những tính chất cơ bản, đúng đắn nhất của đường tròn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho hình chữ nhật có kích thước $6\\text{cm} \\times 8\\text{cm}$. Bán kính của đường tròn đi qua 4 đỉnh của hình chữ nhật này là bao nhiêu cm?",
+    correct_option: "5",
+    explanation: "Đường chéo hình chữ nhật = $10\\text{cm}$ (theo Định lý Pytago $6^2+8^2=10^2$). Tâm đường tròn ngoại tiếp hình chữ nhật là giao hai đường chéo, do đó bán kính $R = 10 / 2 = 5\\text{cm}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Nếu khoảng cách từ điểm M đến tâm O của đường tròn (O; 5cm) là 3cm, thì điểm M nằm TRONG hay NGOÀI đường tròn?",
+    correct_option: "TRONG",
+    explanation: "Vì khoảng cách $OM = 3 < R = 5$, nên điểm M nằm bên trong đường tròn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🎡 Vòng đu quay khổng lồ</h3>
+
+Hãy tưởng tượng một bánh xe Ferris (Vòng đu quay khổng lồ) ở một công viên giải trí. Tại sao người ta lại thiết kế vòng quay dưới dạng một hình tròn lý tưởng? Khi bánh xe xoay quanh ròng rọc trung tâm, khoảng cách từ ca-bin đến trung tâm **luôn luôn không đổi**. Nhờ vậy, hành khách sẽ không bị rung lắc đột ngột lên xuống khi quỹ đạo di chuyển thay đổi liên tục. Sự đều đặn này đến từ đâu? 
+Đó chính là linh hồn của Toán học: **Đường tròn**.
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="250" height="250" viewBox="0 0 250 250">
+  {/* Support frame */}
+  <line x1="125" y1="125" x2="60" y2="240" stroke="#4b5563" stroke-width="8" stroke-linecap="round"/>
+  <line x1="125" y1="125" x2="190" y2="240" stroke="#4b5563" stroke-width="8" stroke-linecap="round"/>
+  <line x1="40" y1="240" x2="210" y2="240" stroke="#1f2937" stroke-width="10" stroke-linecap="round"/>
+  
+  {/* Main Wheel */}
+  <circle cx="125" cy="125" r="95" fill="none" stroke="#3b82f6" stroke-width="6"/>
+  <circle cx="125" cy="125" r="85" fill="none" stroke="#60a5fa" stroke-width="2"/>
+  <circle cx="125" cy="125" r="10" fill="#dc2626"/>
+  
+  {/* Spokes and cabins */}
+  {[0, 45, 90, 135, 180, 225, 270, 315].map(angle => {
+    const rad = angle * Math.PI / 180;
+    const x1 = 125 + 10 * Math.cos(rad);
+    const y1 = 125 + 10 * Math.sin(rad);
+    const x2 = 125 + 95 * Math.cos(rad);
+    const y2 = 125 + 95 * Math.sin(rad);
+    return (
+      <g key={angle}>
+        <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#9ca3af" stroke-width="2"/>
+        <rect x={x2-8} y={y2-5} width="16" height="12" fill="#f59e0b" rx="2"/>
+      </g>
+    );
+  })}
+</svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Đường tròn là gì?</h3>
+
+<div class="box-dinh-nghia">
+
+**Đường tròn tâm $O$, bán kính $R$ (ký hiệu là $(O; R)$)** là hình gồm **tất cả các điểm** cách điểm $O$ một khoảng đúng bằng $R$ (với $R > 0$).
+
+Khi nói đến **Hình tròn $(O; R)$**, ta bao gồm cả đường tròn (đường viền) VÀ toàn bộ các điểm nằm bên trong vòng tròn đó.
+
+</div>
+
+<h4 style="margin-top:1.5rem;">Cơ quan kiểm định vị trí</h4>
+Cho đường tròn tâm $O$, bán kính $R$. Khoảng cách từ một điểm $M$ bất kì trên mặt phẳng đến tâm $O$ sẽ xác định "hộ khẩu" của điểm $M$:
+- Nếu **$OM < R$**: Điểm $M$ nằm **trong** đường tròn.
+- Nếu **$OM = R$**: Điểm $M$ nằm **trên** đường tròn.
+- Nếu **$OM > R$**: Điểm $M$ nằm **ngoài** đường tròn.
+
+<h3 id="cung-va-day" style="margin-top:2rem;">📖 2. Sự "Sinh ra" và xác định đường tròn</h3>
+
+Làm thế nào để tạo ra một đường tròn duy nhất mà không bị trùng lặp?
+- **Cách 1 (Biết Tâm & Bán kính):** Giống như cắm compa cố định một chỗ và quay góc vòng, bạn sẽ vẽ được duy nhất một đường.
+- **Cách 2 (Biết Đường kính):** Nếu biết đoạn thẳng $AB$ là đường kính, tâm đường tròn chính là "trung điểm" của $AB$, và $R = AB/2$.
+- **Cách 3 (Biết 3 điểm không thẳng hàng):** 
+
+<div class="box-dinh-ly">
+
+**Định lý:** Qua ba đỉnh của một tam giác (ba điểm không thẳng hàng), luôn vẽ được môt và chỉ một đường tròn.
+Đường tròn đi qua cấu tạo 3 đỉnh của tam giác gọi là **Đường tròn ngoại tiếp** tam giác đó.
+Tâm của đường tròn này chính là giao điểm của **ba đường trung trực** của 3 cạnh tam giác.
+
+Nếu 3 điểm thẳng hàng thì sao? $\rightarrow$ Sẽ không có bất kỳ đường tròn nào có thể oằn mình đi qua môt lúc 3 điểm tạo thành một đường thẳng được.
+
+</div>
+
+<h3 id="doi-xung" style="margin-top:2rem;">📖 3. Tính chất đối xứng tuyệt mĩ</h3>
+
+Đường tròn được mệnh danh là dạng hình học hoàn hảo nhất, đối xứng 360 độ.
+
+1. **Tâm đối xứng:** Tâm $O$ của đường tròn chính là Tâm đối xứng. Điều này có nghĩa là, nếu bạn có một điểm $A$ nằm trên quỹ đạo, lấy điểm đối xứng qua $O$ tạo thành đoạn $AB$ (đường kính), thì điểm $B$ cũng nằm trên đường tròn.
+2. **Trục đối xứng:** Đường tròn có **VÔ SỐ** trục đối xứng. Mọi đường thẳng đi xẻ ngang qua Tâm $O$ (hay đường thẳng chứa bất kì đường kính nào) đều cắm vai trò chia đường tròn thành 2 nửa sinh đôi đối xứng hoàn toàn.
+
+</KhamPha>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Góc nhớ nhanh Tam giác Vuông đặc biệt:** 
+Trong tam giác vuông, giao điểm của 3 đường trung trực trùng luôn vào **Trung điểm cạnh huyền**. Xưa kia có câu: "Tâm ngoại tiếp tam giác vuông nằm **ngay trên** trung điểm cạnh béo (Huyền)".
+- Từ đó rút ra định lý: Nếu một tam giác có một cạnh là đường kính của đường tròn ngoại tiếp, thì tam giác đó **bắt buộc** là tam giác Vuông.
+
+</div>
+
+</GhiNho>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Dùng compa vẽ trên nháp:
+
+a) Vẽ đường tròn bán kính 3cm.
+
+b) Vẽ đường tròn đường kính 8cm. Giữa 2 đường tròn này đường tròn nào to hơn?
+
+**Bài 2:** Định vị điểm
+Cho đường tròn $(O; 4\text{cm})$. Hãy cho biết vị trí của điểm $A, B, C$ đối với đường tròn. Giả sử đo được: 
+$OA = 3.5\text{cm}, OB = 4\text{cm}, OC = 4.1\text{cm}$.
+
+**Bài 3:** Tam giác $ABC$ vuông tại $A$, có $AB = 5\text{cm}$, $AC = 12\text{cm}$.
+
+a) Tìm cạnh huyền $BC$.
+
+b) Rút ra đường kính và bán kính của đường tròn đi qua 3 đỉnh $A, B, C$.
+
+c) Vị trí tâm $O$ của đường tròn này trên hình chiếu ở đâu?
+
+**Bài 4:** Tại sao không thể có 1 đường tròn đi qua 3 điểm thẳng hàng? Dùng phương pháp kẻ trung trực giả định để phản chứng.
+
+**Bài 5 (Thực tế - Kho kẹo M&M):**
+Một người công nhân cần dùng một đoạn compa bằng chỉ để cắt một tấm ván gỗ thành hình nắp tròn đậy vừa khít 1 thùng phi có thiết diện miệng thùng là môt tam giác cân Nội Tiếp có các kích thước $10\text{cm}, 10\text{cm}, 16\text{cm}$. Người kĩ sư cho biết Tâm của đường tròn sẽ nằm trên đường cao của tam giác. Hãy giúp bác công nhân tính được Bán Kính vòng nháp mà compa cần mở ra.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $R = 3\text{cm}$. 
+
+b) Đường kính $D = 8 \Rightarrow R = 4\text{cm}$. Đường tròn (b) to hơn.
+
+**Bài 2:**
+Bán kính chuẩn $R=4$. 
+- $OA < R \Rightarrow A$ nằm **trong** đường tròn.
+- $OB = R \Rightarrow B$ nằm **trên** vỏ (thuộc) đường tròn.
+- $OC > R \Rightarrow C$ nằm **ngoài** đường tròn.
+
+**Bài 3:**
+
+a) $BC = \sqrt{5^2 + 12^2} = \sqrt{25+144} = \sqrt{169} = 13\text{cm}$.
+
+b) Tam giác vuông thì tâm nằm ở trung điểm cạnh huyền $BC$. Do đó đường kính chính là nẹp cạnh huyền $D = 13\text{cm}$. Bán kính $R = 13/2 = 6.5\text{cm}$.
+
+c) Vị trí tâm $O$ là trung điểm của cạnh huyền $BC$.
+
+**Bài 4:**
+Giả sử có 3 điểm thẳng hàng A, B, C (B nằm giữa). Để đường tròn đi qua A và B $\Rightarrow$ tâm O phải thuộc trung trực d1 của đoạn AB. Tương tự đường tròn đi qua B và C $\Rightarrow$ tâm O phải thuộc trung trực d2 của đoạn BC.
+Nhưng A, B, C thẳng hàng nên 2 trung trực cùng vuông góc với đường phân chia sẽ SONG SONG với nhau. d1 // d2 nên không bao giờ cắt nhau điểm chung để tạo thành Tâm O được.
+Do đó vô lý, không tồn tại.
+
+**Bài 5 (Nâng cao cho học sinh Giỏi):**
+Gọi tam giác là $ABC$ cân tại $A$ ($AB=AC=10, BC=16$). Kẻ đường cao $AH$ xuống $BC \Rightarrow H$ là trung điểm $BC \Rightarrow BH = HC = 8$.
+Trong tam giác vuông $ABH$, $AH = \sqrt{AB^2 - BH^2} = \sqrt{10^2 - 8^2} = 6\text{cm}$.
+Tâm đường tròn ngoại tiếp O nằm trên đường cao $AH$. Bán kính $R = OA = OB = OC$. 
+Ta có đoạn thẳng $AH$. Gọi khoảng cách từ $O$ đến mốc $H$ là $x$ ($OH = x$). Có 2 trường hợp: O nằm giữa AH hay ngoài. Nhưng do góc đỉnh lớn, tâm $O$ nằm ở ngoài, nôm na ta biểu diễn đại số: $R = 6 + x$ (tâm nằm dưới H) hoặc $R = 6 - x$.
+Rất may ta có tam giác vuông nhỏ $OBH$: $OB^2 = OH^2 + BH^2 \Rightarrow R^2 = x^2 + 8^2 = x^2 + 64$.
+Thay $x = R - 6$ (H nằm giữa). $R^2 = (R-6)^2 + 64 \Rightarrow R^2 = R^2 - 12R + 36 + 64 \Rightarrow 12R = 100 \Rightarrow R = 100/12 = 25/3 \approx 8.33\text{cm}$.
+Vậy bác công nhân cần mở compa $\approx 8.33\text{cm}$.
+
+</div>
+</details>

@@ -1,0 +1,441 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 11: Hình thang cân"
+description: "Định nghĩa, tính chất và dấu hiệu nhận biết hình thang cân - Toán 8 KNTT Chương 3"
+grade: "Lớp 8"
+chapter: "Chương 3: Tứ giác"
+currentSlug: "lop8/bai-11-hinh-thang-can"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình thang cân là hình thang có:",
+    option_a: "Hai góc kề một đáy bằng nhau",
+    option_b: "Hai cạnh bên bằng nhau",
+    option_c: "Hai đường chéo bằng nhau",
+    option_d: "Cả A, B, C đều đúng",
+    correct_option: "D",
+    explanation: "Hình thang cân có cả ba tính chất: hai góc kề đáy bằng nhau, hai cạnh bên bằng nhau, hai đường chéo bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thang $ABCD$ ($AB \parallel CD$) có $\hat{C} = 70°$. Để $ABCD$ là hình thang cân thì $\hat{D}$ bằng:",
+    option_a: "$70°$",
+    option_b: "$110°$",
+    option_c: "$90°$",
+    option_d: "$80°$",
+    correct_option: "A",
+    explanation: "Hình thang cân có hai góc kề một đáy bằng nhau, nên $\hat{D} = \hat{C} = 70°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong hình thang cân, hai góc kề một cạnh bên:",
+    option_a: "Bù nhau",
+    option_b: "Bằng nhau",
+    option_c: "Phụ nhau",
+    option_d: "Tổng bằng $180°$",
+    correct_option: "A",
+    explanation: "Hai góc kề một cạnh bên của hình thang cân bù nhau (tổng bằng $180°$).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thang có hai đường chéo bằng nhau thì:",
+    option_a: "Là hình thang cân",
+    option_b: "Chưa chắc là hình thang cân",
+    option_c: "Là hình chữ nhật",
+    option_d: "Là hình vuông",
+    correct_option: "A",
+    explanation: "Đây là dấu hiệu nhận biết hình thang cân: hình thang có hai đường chéo bằng nhau là hình thang cân.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Hình thang cân $ABCD$ có những tính chất nào?",
+    option_a: "$AD = BC$ (hai cạnh bên bằng nhau)",
+    option_b: "$\hat{A} = \hat{B}$ (hai góc kề đáy lớn)",
+    option_c: "$AC = BD$ (hai đường chéo bằng nhau)",
+    option_d: "$\hat{A} + \hat{D} = 180°$ (hai góc kề cạnh bên bù nhau)",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng. Đây là các tính chất của hình thang cân.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hình thang cân có đáy nhỏ $6$ cm, đáy lớn $10$ cm, cạnh bên $5$ cm. Chu vi bằng bao nhiêu cm?",
+    correct_option: "26",
+    explanation: "Chu vi $= 6 + 10 + 5 + 5 = 26$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thang cân có góc kề đáy lớn bằng $!a#60!°$. Góc kề đáy nhỏ bằng:",
+    option_a: "$!tinh: 180 - !a!!°$",
+    option_b: "$!a!°$",
+    option_c: "$90°$",
+    option_d: "$!tinh: 360 - !a!!°$",
+    correct_option: "A",
+    explanation: "Hai góc kề một cạnh bên bù nhau: góc kề đáy nhỏ $= 180° - !a!° = !tinh: 180 - !a!!°$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Hình thang cân có đáy nhỏ $!a#8!$ cm, đáy lớn $!b#12!$ cm, cạnh bên $!c#6!$ cm. Chu vi bằng:",
+    option_a: "$!tinh: !a! + !b! + 2 * !c!!$ cm",
+    option_b: "$!tinh: !a! + !b! + !c!!$ cm",
+    option_c: "$!tinh: 2 * (!a! + !b!)!$ cm",
+    option_d: "$!tinh: !a! * !b!!$ cm",
+    correct_option: "A",
+    explanation: "Chu vi $= !a! + !b! + !c! + !c! = !tinh: !a! + !b! + 2 * !c!!$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🏛️ Hình thang cân — Đối xứng đẹp</h3>
+
+Hình thang cân có tính đối xứng đặc biệt, xuất hiện nhiều trong kiến trúc!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏛️</div>
+    <strong>Mái nhà</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình thang cân đối xứng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌉</div>
+    <strong>Cầu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Trụ cầu hình thang cân</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🪟</div>
+    <strong>Cửa sổ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thiết kế đối xứng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="hinh-thang">📖 1. Ôn tập: Hình thang</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình thang là tứ giác có hai cạnh đối song song.
+
+Hai cạnh song song gọi là **hai đáy**, hai cạnh còn lại gọi là **hai cạnh bên**.
+
+</div>
+
+**Hình minh họa hình thang:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="320" height="220" viewBox="0 0 320 220" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Hình thang ABCD */}
+  <polygon points="60,50 260,50 220,170 100,170" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5" opacity="0.3"/>
+  
+  {/* Các cạnh */}
+  <line x1="60" y1="50" x2="260" y2="50" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="260" y1="50" x2="220" y2="170" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="220" y1="170" x2="100" y2="170" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="100" y1="170" x2="60" y2="50" stroke="#3b82f6" stroke-width="2.5"/>
+  
+  {/* Đánh dấu song song */}
+  <line x1="150" y1="45" x2="155" y2="45" stroke="#ef4444" stroke-width="2"/>
+  <line x1="150" y1="40" x2="155" y2="40" stroke="#ef4444" stroke-width="2"/>
+  <line x1="155" y1="165" x2="160" y2="165" stroke="#ef4444" stroke-width="2"/>
+  <line x1="155" y1="170" x2="160" y2="170" stroke="#ef4444" stroke-width="2"/>
+  
+  {/* Các đỉnh */}
+  <circle cx="60" cy="50" r="4" fill="#3b82f6"/>
+  <text x="45" y="45" font-size="18" font-weight="bold" fill="#3b82f6">A</text>
+  
+  <circle cx="260" cy="50" r="4" fill="#3b82f6"/>
+  <text x="270" y="45" font-size="18" font-weight="bold" fill="#3b82f6">B</text>
+  
+  <circle cx="220" cy="170" r="4" fill="#3b82f6"/>
+  <text x="230" y="185" font-size="18" font-weight="bold" fill="#3b82f6">C</text>
+  
+  <circle cx="100" cy="170" r="4" fill="#3b82f6"/>
+  <text x="80" y="185" font-size="18" font-weight="bold" fill="#3b82f6">D</text>
+  
+  {/* Nhãn */}
+  <text x="140" y="30" font-size="14" fill="#059669">Đáy nhỏ AB</text>
+  <text x="140" y="200" font-size="14" fill="#059669">Đáy lớn DC</text>
+</svg>
+</div>
+
+<h3 id="dinh-nghia" style="margin-top:2rem;">📖 2. Định nghĩa hình thang cân</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình thang cân là hình thang có hai góc kề một đáy bằng nhau.
+
+</div>
+
+**Hình minh họa hình thang cân:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="350" height="240" viewBox="0 0 350 240" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Hình thang cân ABCD */}
+  <polygon points="80,60 270,60 240,190 110,190" fill="#d1fae5" stroke="#10b981" stroke-width="2.5" opacity="0.4"/>
+  
+  {/* Các cạnh */}
+  <line x1="80" y1="60" x2="270" y2="60" stroke="#10b981" stroke-width="2.5"/>
+  <line x1="270" y1="60" x2="240" y2="190" stroke="#10b981" stroke-width="2.5"/>
+  <line x1="240" y1="190" x2="110" y2="190" stroke="#10b981" stroke-width="2.5"/>
+  <line x1="110" y1="190" x2="80" y2="60" stroke="#10b981" stroke-width="2.5"/>
+  
+  {/* Đường chéo */}
+  <line x1="80" y1="60" x2="240" y2="190" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <line x1="270" y1="60" x2="110" y2="190" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
+  
+  {/* Đánh dấu song song */}
+  <line x1="170" y1="55" x2="175" y2="55" stroke="#ef4444" stroke-width="2"/>
+  <line x1="170" y1="50" x2="175" y2="50" stroke="#ef4444" stroke-width="2"/>
+  <line x1="170" y1="185" x2="175" y2="185" stroke="#ef4444" stroke-width="2"/>
+  <line x1="170" y1="190" x2="175" y2="190" stroke="#ef4444" stroke-width="2"/>
+  
+  {/* Đánh dấu cạnh bên bằng nhau */}
+  <line x1="95" y1="120" x2="100" y2="125" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="250" y1="120" x2="255" y2="125" stroke="#f59e0b" stroke-width="2"/>
+  
+  {/* Các đỉnh */}
+  <circle cx="80" cy="60" r="4" fill="#10b981"/>
+  <text x="60" y="55" font-size="18" font-weight="bold" fill="#10b981">A</text>
+  
+  <circle cx="270" cy="60" r="4" fill="#10b981"/>
+  <text x="280" y="55" font-size="18" font-weight="bold" fill="#10b981">B</text>
+  
+  <circle cx="240" cy="190" r="4" fill="#10b981"/>
+  <text x="250" y="205" font-size="18" font-weight="bold" fill="#10b981">C</text>
+  
+  <circle cx="110" cy="190" r="4" fill="#10b981"/>
+  <text x="90" y="205" font-size="18" font-weight="bold" fill="#10b981">D</text>
+  
+  {/* Đánh dấu góc bằng nhau */}
+  <path d="M 95,60 Q 95,75 105,80" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+  <path d="M 255,60 Q 255,75 245,80" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+  
+  <path d="M 115,190 Q 115,175 105,170" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+  <path d="M 235,190 Q 235,175 245,170" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+</svg>
+</div>
+
+**Trong hình thang cân $ABCD$ ($AB \parallel CD$):**
+- $\hat{A} = \hat{B}$ (hai góc kề đáy nhỏ)
+- $\hat{D} = \hat{C}$ (hai góc kề đáy lớn)
+
+<h3 id="tinh-chat" style="margin-top:2rem;">🔑 3. Tính chất hình thang cân</h3>
+
+<div class="box-dinh-ly">
+
+**Định lý:** Trong hình thang cân:
+
+1. Hai cạnh bên bằng nhau
+2. Hai đường chéo bằng nhau
+
+</div>
+
+**Chứng minh:**
+
+Xét hình thang cân $ABCD$ có $AB \parallel CD$, $\hat{A} = \hat{B}$.
+
+Kẻ $AH \perp CD$, $BK \perp CD$.
+
+Trong hai tam giác vuông $AHD$ và $BKC$:
+- $AH = BK$ (cùng chiều cao)
+- $\hat{D} = \hat{C}$ (hình thang cân)
+
+$\Rightarrow \triangle AHD = \triangle BKC$ (cạnh huyền - góc nhọn)
+
+$\Rightarrow AD = BC$ (hai cạnh tương ứng)
+
+**Tính chất tổng hợp:**
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. $AD = BC$ (hai cạnh bên bằng nhau)
+2. $AC = BD$ (hai đường chéo bằng nhau)
+3. $\hat{A} = \hat{B}$ và $\hat{D} = \hat{C}$
+4. $\hat{A} + \hat{D} = 180°$ (hai góc kề cạnh bên bù nhau)
+
+</div>
+
+<h3 id="dau-hieu" style="margin-top:2rem;">✓ 4. Dấu hiệu nhận biết</h3>
+
+<div class="box-dinh-ly">
+
+**Dấu hiệu nhận biết hình thang cân:**
+
+1. Hình thang có hai góc kề một đáy bằng nhau
+2. Hình thang có hai cạnh bên bằng nhau
+3. Hình thang có hai đường chéo bằng nhau
+
+</div>
+
+**Ví dụ:** Hình thang $ABCD$ có $AB \parallel CD$, $AC = BD$. Chứng minh $ABCD$ là hình thang cân.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Vì $AC = BD$ (hai đường chéo bằng nhau)
+
+$\Rightarrow ABCD$ là hình thang cân (dấu hiệu 3)
+
+</div>
+
+<h3 id="cong-thuc" style="margin-top:2rem;">📐 5. Công thức</h3>
+
+**Chu vi:** $P = AB + BC + CD + DA = AB + CD + 2 \cdot BC$
+
+(vì $AD = BC$)
+
+**Diện tích:** $S = \frac{(AB + CD) \cdot h}{2}$
+
+(với $h$ là chiều cao)
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Một mái nhà hình thang cân có đáy nhỏ $8$ m, đáy lớn $12$ m, cạnh bên $5$ m.
+
+a) Tính chu vi mái nhà.
+
+b) Nếu chiều cao $4$ m, tính diện tích.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi $= 8 + 12 + 5 + 5 = 30$ m
+
+b) Diện tích $= \frac{(8 + 12) \times 4}{2} = 40$ m²
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định nghĩa**: hai góc kề một đáy bằng nhau
+- **Tính chất**: hai cạnh bên bằng nhau, hai đường chéo bằng nhau
+- **Dấu hiệu**: 3 cách nhận biết
+- **Chu vi**: $P = a + b + 2c$
+- **Diện tích**: $S = \frac{(a + b)h}{2}$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho hình thang cân $ABCD$ ($AB \parallel CD$) có $\hat{A} = 70°$.
+
+a) Tính $\hat{B}$, $\hat{C}$, $\hat{D}$.
+
+b) Chứng minh $AD = BC$.
+
+c) Chứng minh $AC = BD$.
+
+d) Tính tổng $\hat{A} + \hat{D}$.
+
+**Bài 2:** Cho hình thang $ABCD$ ($AB \parallel CD$) có $AC = BD$.
+
+a) Chứng minh $ABCD$ là hình thang cân.
+
+b) Biết $\hat{C} = 80°$, tính các góc còn lại.
+
+c) Nếu $AB = 6$ cm, $CD = 10$ cm, $BC = 5$ cm, tính chu vi.
+
+d) Nếu chiều cao $h = 4$ cm, tính diện tích.
+
+**Bài 3:** Hình thang cân có:
+
+a) Đáy nhỏ $8$ cm, đáy lớn $14$ cm, cạnh bên $5$ cm. Tính chu vi.
+
+b) Đáy nhỏ $10$ cm, đáy lớn $16$ cm, chiều cao $6$ cm. Tính diện tích.
+
+c) Chu vi $40$ cm, đáy nhỏ $8$ cm, đáy lớn $12$ cm. Tính cạnh bên.
+
+d) Diện tích $60$ cm², đáy nhỏ $7$ cm, đáy lớn $13$ cm. Tính chiều cao.
+
+**Bài 4:** Chứng minh:
+
+a) Hình thang có hai cạnh bên bằng nhau là hình thang cân.
+
+b) Trong hình thang cân, hai góc kề một cạnh bên bù nhau.
+
+c) Hình thang cân có một góc vuông là hình chữ nhật.
+
+d) Đường trung bình của hình thang cân song song với hai đáy.
+
+**Bài 5:** Cho hình thang cân $ABCD$ có $AB = 6$ cm, $CD = 10$ cm, $\hat{D} = 60°$.
+
+a) Tính $\hat{A}$, $\hat{B}$, $\hat{C}$.
+
+b) Tính độ dài cạnh bên $AD$.
+
+c) Tính chiều cao của hình thang.
+
+d) Tính diện tích hình thang.
+
+**Bài 6 (Thực tế):** Một cửa sổ hình thang cân có đáy nhỏ $80$ cm, đáy lớn $120$ cm, chiều cao $60$ cm.
+
+a) Tính diện tích cửa sổ.
+
+b) Nếu làm khung cửa bằng nhôm, biết cạnh bên dài $70$ cm, tính tổng chiều dài nhôm cần dùng.
+
+c) Giá nhôm $50000$ đồng/mét. Tính chi phí làm khung.
+
+d) Nếu tăng đáy nhỏ thêm $20$ cm, diện tích tăng thêm bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\hat{B} = 70°$, $\hat{C} = \hat{D} = 110°$; b, c) Chứng minh bằng tính chất; d) $180°$
+
+**Bài 2:** a) Dấu hiệu nhận biết; b) $\hat{D} = 80°$, $\hat{A} = \hat{B} = 100°$; c) $26$ cm; d) $32$ cm²
+
+**Bài 3:** a) $32$ cm; b) $78$ cm²; c) $10$ cm; d) $6$ cm
+
+**Bài 4:** Chứng minh bằng định lý và tính chất
+
+**Bài 5:** a) $\hat{A} = \hat{B} = 120°$, $\hat{C} = 60°$; b) $4$ cm; c) $2\sqrt{3}$ cm; d) $16\sqrt{3}$ cm²
+
+**Bài 6:** a) $6000$ cm² = $0{,}6$ m²; b) $3{,}4$ m; c) $170{.}000$ đồng; d) $600$ cm²
+
+</div>
+</details>

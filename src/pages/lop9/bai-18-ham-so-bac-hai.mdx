@@ -1,0 +1,314 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 18: Hàm số y = ax² (a ≠ 0)"
+description: "Khám phá hàm số bậc hai, đồ thị Parabola và tính chất đồng biến, nghịch biến - Toán 9 KNTT"
+grade: "Lớp 9"
+chapter: "Chương VI: Hàm số y = ax² (a ≠ 0). Phương trình bậc hai một ẩn"
+currentSlug: "lop9/bai-18-ham-so-bac-hai"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Đâu là hàm số có dạng $y = ax^2 (a \\neq 0)$?",
+    option_a: "$y = 2x - 1$",
+    option_b: "$y = -3x^2$",
+    option_c: "$y = x^2 + 5$",
+    option_d: "$y = \\frac{2}{x^2}$",
+    correct_option: "B",
+    explanation: "Hàm số Bậc Hai cơ bản chỉ có duy nhất 1 hạng tử là bậc 2 của x. Phương án B ($y = -3x^2$) thoả mãn với $a = -3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho hàm số $y = 5x^2$. Tính giá trị của hàm số khi $x = -2$.",
+    option_a: "y = -10",
+    option_b: "y = -20",
+    option_c: "y = 10",
+    option_d: "y = 20",
+    correct_option: "D",
+    explanation: "Thay $x = -2$ vào hàm số: $y = 5 \\cdot (-2)^2 = 5 \\cdot 4 = 20$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đối với hàm số $y = \frac{1}{2}x^2$, khẳng định nào sau đây là ĐÚNG về tính đồng biến, nghịch biến?",
+    option_a: "Hàm số đồng biến khi $x > 0$ và nghịch biến khi $x < 0$.",
+    option_b: "Hàm số đồng biến khi $x < 0$ và nghịch biến khi $x > 0$.",
+    option_c: "Hàm số luôn đồng biến trên $\\mathbb{R}$.",
+    option_d: "Hàm số luôn nghịch biến trên $\\mathbb{R}$.",
+    correct_option: "A",
+    explanation: "Vì $a = 1/2 > 0$, hàm số đạt giá trị nhỏ nhất (GTNN) bằng 0 tại x=0. Hàm số đi xuống (nghịch biến) khi $x < 0$ và đi lên (đồng biến) khi $x > 0$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đồ thị của hàm số $y = ax^2 (a \\neq 0)$ có tên gọi là gì và có tính đối xứng như thế nào?",
+    option_a: "Đường thẳng đối xứng qua trục hoành Ox.",
+    option_b: "Đường Parabol nhận trục tung Oy làm trục đối xứng.",
+    option_c: "Đường tròn nhận gốc tọa độ O làm tâm đối xứng.",
+    option_d: "Đường Hyperbol nhận trục hoành làm trục đối xứng.",
+    correct_option: "B",
+    explanation: "Đồ thị của nó là 1 đường cong Parabol úp hoặc ngửa, nằm cân đối 2 bên Trục Tung (Oy).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đồ thị hàm số $y = -2x^2$ sẽ nằm ở vị trí nào trên hệ trục tọa độ?",
+    option_a: "Nằm phía trên trục hoành Ox.",
+    option_b: "Nằm phía dưới trục hoành Ox.",
+    option_c: "Nằm bên trái trục tung Oy.",
+    option_d: "Nước đôi, một nửa trên nửa dưới.",
+    correct_option: "B",
+    explanation: "Vì $a = -2 < 0$, mọi giá trị của $y$ (trừ đỉnh O) đều nhỏ hơn 0. Vậy toàn bộ mảng Parabol bị lật úp và nằm dưới trục hoành Ox.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điểm nào sau đây KHÔNG thuộc đồ thị hàm số $y = x^2$?",
+    option_a: "A(2; 4)",
+    option_b: "B(-3; 9)",
+    option_c: "C(4; 8)",
+    option_d: "D(0; 0)",
+    correct_option: "C",
+    explanation: "Thay tọa độ x của C(4; 8) vào hàm số: $y = 4^2 = 16 \\neq 8$. Nên C không thuộc đồ thị.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho hàm số $y = -3x^2$. Chọn các phát biểu ĐÚNG.",
+    option_a: "Bề lõm của đồ thị hướng lên trên.",
+    option_b: "Hàm số đồng biến khi $x < 0$.",
+    option_c: "Gốc tọa độ O là điểm cao nhất của đồ thị.",
+    option_d: "Đồ thị cắt trục hoành tại 2 điểm phân biệt.",
+    correct_option: "B,C",
+    explanation: "Vì $a = -3 < 0$, Bề lõm đồ thị hướng Xuống Dưới (A sai). Hàm đi lên (Đồng biến) từ Âm Vô cực tới 0, nên $x < 0$ thì đồng biến (B đúng). Đỉnh O(0,0) là vị trí chóp cao nhất (C đúng). Đồ thị xới chạm Ox chỉ tại 1 điểm duy nhất O (D sai).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Tính chất của Đồ thị Parabol $y = ax^2 (a > 0)$ là gì?",
+    option_a: "Giao điểm với trục tung là góc tọa độ O.",
+    option_b: "Đối xứng hoàn hảo qua nếp gấp trục tung Oy.",
+    option_c: "Đường cong Parabol này nằm trọn phần phía TRÊN trục hoành.",
+    option_d: "Càng xa O, đồ thị càng mở rộng và chĩa xuống đất.",
+    correct_option: "A,B,C",
+    explanation: "Với $a > 0$, Parabol có bề lõm hướng lên trên trời (cười), nằm trên trục hoành (chỉ nhúng O), đối xứng qua Oy.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho hàm số $y = 4x^2$. Điểm $M(m; 36)$ nằm trên đồ thị của hàm số nằm ở góc phần tư thứ Nhất. Tìm m.",
+    correct_option: "3",
+    explanation: "Thay tung độ y = 36 vào: $36 = 4m^2 \\Rightarrow m^2 = 9$. Do m nằm ở khu vực chữ thập Góc phần tư I (bên phải trên) $\\Rightarrow m > 0$. Vậy m = 3.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Bán kính của một quỹ đạo tròn được tăng lên 5 lần thì diện tích thay đổi bao nhiêu lần? (Gợi ý: Hãy nghĩ về hàm $S = \\pi R^2$).",
+    correct_option: "25",
+    explanation: "Đây là ứng dụng điển hình: Diện tích hàm tròn $S = \\pi R^2$ là môt dạng của hàm bậc hai $y = ax^2$ với biến là R. Khi R tăng lên k lần, thì $S$ tăng $k^2$ lần. Do đó $5^2 = 25$ lần.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">Vòi rồng nước và Tháp Eiffel</h3>
+
+Bạn có bao giờ để ý những tia nước phụt lên từ vòi phun nước tại các đài phun công viên?
+Bỏ qua sức cản của gió, quỹ đạo của từng giọt nước bay lên bầu trời, đạt đỉnh điểm rồi cong vút phi xuống mặt hồ không phải là một nửa đường tròn, mà nó tuân theo một dáng hình học mượt mà được gọi là **Parabol**.
+
+Những kiến trúc sư tài ba của Tháp Eiffel cũng đã áp dụng vô vàn các dầm chịu lực theo các đường viền uốn lượn có phương trình định nghĩa hình dạng **Hàm số bậc hai** $y = ax^2$ này. Vậy Hàm số bậc hai khác gì Bậc Nhất (đường thẳng tắp) mà làm thế giới ta rung động đến thế?
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="250" height="200" viewBox="0 0 250 200">
+  {/* The fountain pool */}
+  <path d="M 20,170 Q 125,190 230,170 L 230,200 L 20,200 Z" fill="#bae6fd" />
+  
+  {/* Parabola Water streams */}
+  <path d="M 125,170 Q 125,20 30,170" fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="6 4" />
+  <path d="M 125,170 Q 125,20 220,170" fill="none" stroke="#3b82f6" stroke-width="4" />
+  <path d="M 125,170 Q 125,50 80,170" fill="none" stroke="#60a5fa" stroke-width="2" />
+  <path d="M 125,170 Q 125,50 170,170" fill="none" stroke="#93c5fd" stroke-width="2" />
+  
+  {/* The fountain nozzle */}
+  <rect x="115" y="160" width="20" height="15" fill="#64748b" rx="2" />
+  
+  <text x="50" y="35" font-weight="bold" fill="#1e3a8a" font-size="14">y = ax²</text>
+</svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="khai-niem-ham-so" style="margin-top:2rem;">📖 1. Khái niệm Hàm Số Bậc Hai</h3>
+
+Hàm số bậc hai là hàm số được cho bởi công thức đơn giản nhất là:
+<div class="box-dinh-nghia">
+
+$$y = a x^2 \quad (a \neq 0)$$
+
+Trong đó $a$ là một hằng số đã biết và $x$ là biến số nằm ở số mũ bậc 2.
+
+</div>
+
+*Tính chất biến thiên (Đồng biến - Nghịch biến):*
+Vì $x^2$ luôn $\ge 0$ nên dấu của giá trị hàm số chỉ phụ thuộc hoàn toàn vào hệ số thủ lĩnh $a$:
+- **Nếu $a > 0$:** Giá trị $y$ luôn không âm ($y \ge 0$). Hàm số đi xuống (Nghịch biến) cho mảng $x < 0$ và đi lên dốc (Đồng biến) cho mảng $x > 0$. **Điểm thấp nhất là O(0,0).**
+- **Nếu $a < 0$:** Giá trị $y$ luôn không dương ($y \le 0$). Hàm số bò lên (Đồng biến) từ đáy vực ở mảng $x < 0$ và lao xuống dốc (Nghịch biến) ở mảng $x > 0$. **Điểm cao nhất là Tóp mỡ O(0,0).**
+
+<h3 id="do-thi-parabol" style="margin-top:2rem;">📖 2. Đồ thị của Parabol</h3>
+
+Khác với đường thẳng tắp thẳng tưng của bậc 1. Đồ thị hàm số lượng bậc hai không bẻ gãy, là một đường cong trơn tru âu yếm góc tọa độ gọi là đường **Parabol** (với mốc O là Đỉnh Parabol).
+
+<div class="box-dinh-ly">
+
+**Đặc điểm hình dáng:**
+- Hình chóp luôn Mở Rộng như một cái tô chén bát.
+- Nhận Trục Tung **(Oy)** làm **Trục đối xứng**. Nó chia bát thành 2 nửa trái phải in hệt nhau qua gương.
+- Nếu **$a > 0$**: Cái chén lật **ngửa** lên trời nhận lộc (nằm TRÊN trục tung ngang Ox).
+- Nếu **$a < 0$**: Cái chén lật **úp** xuống che đầu (nằm DƯỚI trục ngang Ox).
+
+</div>
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Kiểm tra Điểm thuộc Đồ thị Hàm số**
+**Phương pháp:** 
+- Cho hàm số $y = ax^2$ và môt Điểm M($x_0; y_0$). 
+- Thay Hoành độ x ($x_0$) vào phương trình xem giá trị Vế Phải tính ra có CÚP ĐÚNG BẰNG tung độ y ($y_0$) kia không? Bằng thì dính vào đồ thị, không bằng thì Rụng.
+
+</div>
+
+**Ví dụ 1:** Cho hàm số $y = \frac{-1}{2}x^2$. Các điểm A(2; -2) và B(-4; 8) có thuộc đồ thị không?
+**Hướng dẫn:** 
+- Thay điểm A: Tại $x = 2 \Rightarrow y = \frac{-1}{2} \cdot 2^2 = \frac{-4}{2} = -2$. Khớp với tung độ của A! $\Rightarrow$ A thuộc đồ thị.
+- Thay điểm B: Tại $x = -4 \Rightarrow y = \frac{-1}{2} \cdot (-4)^2 = \frac{-16}{2} = -8 \neq 8$. Không khớp tung độ của B! $\Rightarrow$ B KHÔNG thuộc đồ thị.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Tìm hệ số "a" Đứng mũi chịu sào**
+**Phương pháp:** 
+- Bài toán sẽ cho biết Parabol (P) đi qua MỘT ĐIỂM neo đậu tọa độ $A(x_1; y_1)$.
+- Bạn Bốc cái Tọa độ đó quăng thẳng vào $y = ax^2$ tạo thành: $y_1 = a \cdot x_1^2$.
+- Rút ra tham số Giải Mã: $a = \frac{y_1}{x_1^2}$.
+
+</div>
+
+**Ví dụ 2:** Tìm a để đồ thị Parabol $y = a x^2$ đi trúng đỉnh phễu M(-3; 18).
+**Hướng dẫn:** 
+Vì P đi xuyên qua M(-3; 18), ta lợp số vào phương trình:
+$18 = a \cdot (-3)^2 \\Rightarrow 18 = a \cdot 9 \\Rightarrow a = \frac{18}{9} = 2$.
+Vậy hàm số đó có mặt thật là $y = 2x^2$.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 3: Vẽ Đồ thị Parabol**
+**Phương pháp:** 
+- Lập Bảng giá trị Lõi: Luôn lấy **5 điểm** (bao gồm điểm giữa O(0;0)).
+- Lấy 2 số bên Cánh Trái (thường là $x = -1, x = -2$) và 2 số dội Cánh Phải mang dấu Dương ($x = 1, 2$). Do tính ĐỐI XỨNG, bạn chỉ cần Tính 2 con số cánh Phải, cánh Trái lập tức copy y hệt kết cục $y$ đó!! Cực nhàn.
+
+</div>
+
+**Ví dụ 3:** Cùng lập Nháp để vẽ đồ thị hàm số $y = -x^2$.
+**Hướng dẫn:** 
+*Bảng giá trị thần tốc:*
+
+| $x$ | -2 | -1 | 0 | 1 | 2 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| $y = -x^2$ | -4 | -1 | 0 | -1 | -4 |
+
+Hàm có $a = -1 < 0$ bề lõm hướng xuống dưới. Tất thảy 5 điểm đều chấm ngoặt dốc dần trên nháp rồi nối lượn bút chì là Xong!
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Củng cố tư duy Hàm số cơ bản:
+
+a) Khảo sát tính đồng biến, nghịch biến của hàm $y = 7x^2$.
+
+b) Khảo sát tính biến thiên của hàm $y = -0.5x^2$.
+
+c) Trong hai Hàm số trên, đồ thị nào ngửa lên cao, đồ thị nào cụp xuống?
+
+**Bài 2:** Cho hàm số $y = (2m - 1) x^2$. Tìm giá trị của $m$ để:
+
+a) Hàm số đồng biến khi $x > 0$.
+
+b) Hàm số là hàm số bậc hai có bề lõm bị Úp Ngược?
+
+**Bài 3:** Vẽ và Đối xứng. Cho (P): $y = \frac{1}{4}x^2$.
+
+a) Vẽ đồ thị Hàm số Bậc Hai này qua 5 Lỗ tọa độ x ($x = -4, -2, 0, 2, 4$).
+
+b) Tìm điểm K nằm trên Parabol biết hoành độ rãnh ngang $x = 6$.
+
+c) Tìm tất cả những mút M nằm trên (P) có tung độ neo cao đúng bằng 9 ($y = 9$).
+
+**Bài 4:** Ứng dụng Quãng đường Rơi Tự do Vật Lý học:
+Theo phương trình Rơi tự do của Galileo, quảng đường chạm đất (m) tỉ lệ với bình phương thời gian (s) là $S = \frac{1}{2} g t^2$. Lấy $g = 9.8\text{m/s}^2$. 
+Ta định dạng Hàm Mẫu $S = 4.9 t^2$.
+
+a) Hãy tính Quãng đường rơi của Quả táo từ đỉnh toà nhà sau $3\text{ giây}$.
+
+b) Nếu toà Tháp chuông cao $44.1\text{m}$. Mất bao lâu cho Hòn ngói Rơi xuống đập đất?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) $a = 7 > 0$. Nghịch biến khi $x < 0$ và Đồng biến khi $x > 0$.
+b) $a = -0.5 < 0$. Đồng biến khi $x < 0$ và Nghịch biến kéo thả khi $x > 0$.
+c) Hàm $y = 7x^2$ sẽ Ngửa mặt lên. Hàm âm $y = -0.5x^2$ sẽ cụp đầu xuống.
+
+**Bài 2:**
+a) Đồng biến khi $x>0$ nghĩa là hàm có hệ số Hướng Lên ($a > 0$).
+Vậy $2m - 1 > 0 \Rightarrow 2m > 1 \Rightarrow m > 0.5$.
+b) Bề lõm Úp ngược là $a < 0$. $2m - 1 < 0 \Rightarrow m < 0.5$. (Nếu m = 0.5 nó thành hàm hằng Bậc 0).
+
+**Bài 3:**
+a) Lập bảng x = [-4, -2, 0, 2, 4] sẽ ra y = [4, 1, 0, 1, 4]. (Tự lấy thước vẽ nhé cưng!).
+b) $x = 6 \Rightarrow y = \frac{1}{4} \cdot (6)^2 = 36 / 4 = 9$. Vậy $K(6; 9)$.
+c) Cho $y = 9 \Rightarrow 9 = \frac{1}{4} x^2 \Rightarrow x^2 = 36$. Lấy Tẩy Căn Bậc 2 Nhận Kép $\Rightarrow x = 6$ HOẶC $x = -6$. 
+Vậy có TẬN 2 điểm cao bằng 9 đối xứng nhau là $M_1(6; 9)$ và $M_2(-6; 9)$. Đừng bị xót nghiệm nhé!
+
+**Bài 4:**
+a) Rơi Quãng đường dập thời gian t=3. Thay Hàm số $S = 4.9 t^2 = 4.9 \cdot 3^2 = 4.9 \cdot 9 = 44.1\text{m}$.
+b) Rơi dốc dập đất có Vị trí $S = 44.1$. Vậy $44.1 = 4.9 \cdot t^2$.
+$\Rightarrow t^2 = 44.1 / 4.9 = 9$. Do thời gian Phải Dương $\Rightarrow t = \sqrt{9} = 3\text{s}$. Mất 3 giây rơi trúng đầu!
+
+</div>
+</details>

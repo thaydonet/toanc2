@@ -1,0 +1,279 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 28: Đường tròn ngoại tiếp và đường tròn nội tiếp của một tam giác"
+description: "Khái niệm, tính chất và cách xác định tâm đường tròn ngoại tiếp, nội tiếp tam giác - Toán 9 Kết nối tri thức"
+grade: "Lớp 9"
+chapter: "Chương IX: Đường tròn ngoại tiếp và đường tròn nội tiếp"
+currentSlug: "lop9/bai-28-dt-noi-ngoai-tiep-tam-giac"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Đường tròn đi qua ba đỉnh của một tam giác được gọi là gì?",
+    option_a: "Đường tròn nội tiếp tam giác.",
+    option_b: "Đường tròn ngoại tiếp tam giác.",
+    option_c: "Đường tròn bàng tiếp tam giác.",
+    option_d: "Đường tròn đường kính tam giác.",
+    correct_option: "B",
+    explanation: "Định nghĩa chuẩn: Đường tròn đi qua tất cả 3 đỉnh của một tam giác được gọi là đường tròn ngoại tiếp tam giác đó. Khi đó, tam giác được gọi là tam giác nội tiếp đường tròn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tâm của đường tròn ngoại tiếp một tam giác là giao điểm của các đường nào trong tam giác?",
+    option_a: "Ba đường cao.",
+    option_b: "Ba đường trung tuyến.",
+    option_c: "Ba đường trung trực của ba cạnh.",
+    option_d: "Ba đường phân giác trong.",
+    correct_option: "C",
+    explanation: "Tâm đường tròn ngoại tiếp cách đều 3 đỉnh của tam giác. Giao điểm của ba đường trung trực của tam giác chính là điểm duy nhất thỏa mãn tính chất cách đều ba đỉnh này.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đối với một tam giác vuông, tâm của đường tròn ngoại tiếp tam giác đó nằm ở vị trí nào?",
+    option_a: "Trùng với đỉnh góc vuông.",
+    option_b: "Nằm bên ngoài tam giác.",
+    option_c: "Là trọng tâm của tam giác.",
+    option_d: "Là trung điểm của cạnh huyền.",
+    correct_option: "D",
+    explanation: "Trong tam giác vuông, giao điểm của các đường trung trực trùng với trung điểm của cạnh huyền. Góc vuông chắn nửa đường tròn, do đó đường kính của đường tròn ngoại tiếp chính là cạnh huyền.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường tròn tiếp xúc với cả ba cạnh của một tam giác được gọi là gì?",
+    option_a: "Đường tròn tâm O.",
+    option_b: "Đường tròn nội tiếp tam giác.",
+    option_c: "Đường tròn ngoại tiếp tam giác.",
+    option_d: "Đường tròn tiếp tuyến.",
+    correct_option: "B",
+    explanation: "Đường tròn nằm phía trong và tiếp xúc (chạm vào) cả 3 cạnh của tam giác được định nghĩa là đường tròn nội tiếp của tam giác đó.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tâm của đường tròn nội tiếp tam giác được xác định bởi giao điểm của:",
+    option_a: "Ba đường phân giác trong của tam giác.",
+    option_b: "Ba đường trung trực của tam giác.",
+    option_c: "Ba đường trung bình của tam giác.",
+    option_d: "Ba đường cao của tam giác.",
+    correct_option: "A",
+    explanation: "Tâm đường tròn nội tiếp cần cách đều 3 cạnh của tam giác (bán kính nội tiếp). Điểm cách đều hai cạnh của một góc là điểm nằm trên tia phân giác của góc đó. Do đó, giao điểm ba đường phân giác trong sẽ cách đều ba cạnh.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khẳng định nào sau đây là MỘT TÍNH CHẤT ĐÚNG về tâm đường tròn ngoại tiếp và nội tiếp?",
+    option_a: "Mọi tam giác đều luôn luôn chỉ có một đường tròn ngoại tiếp và một đường tròn nội tiếp duy nhất.",
+    option_b: "Trong tam giác đều, tâm đường tròn ngoại tiếp và tâm đường tròn nội tiếp trùng nhau.",
+    option_c: "Tâm đường tròn nội tiếp của tam giác nhọn luôn nằm bên ngoài tam giác.",
+    option_d: "Đường tròn ngoại tiếp tam giác vuông có độ dài bán kính bằng một nửa cạnh huyền.",
+    correct_option: "A,B,D",
+    explanation: "Mỗi tam giác mang tính chất duy nhất đối với các đường tròn khép kín. Ở tam giác đều, tính đối xứng cao khiến các tâm (trọng tâm, trực tâm, tâm nội tiếp, ngoại tiếp) đều hội tụ về một điểm. Khẳng định C sai vì tâm nội tiếp luôn nằm bên trong khu vực không gian tam giác.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho tam giác đều ABC có cạnh bằng $a$, độ dài đường cao tương ứng là $h$. Bán kính $R$ của đường tròn ngoại tiếp tam giác đều này bằng bao nhiêu phần của $h$? (Trả lời bằng phân số dạng 2/3 nếu có).",
+    correct_option: "2/3",
+    explanation: "Trong tam giác đều, tâm đường tròn ngoại tiếp cũng chính là trọng tâm của tam giác. Tính chất trọng tâm chia đường trung tuyến (cũng là đường cao $h$) theo tỉ lệ $2:1$. Do đó khoảng cách từ tâm đến đỉnh là $R = \\frac{2}{3}h$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một tam giác vuông có hai cạnh góc vuông lần lượt là $6\\text{ cm}$ và $8\\text{ cm}$. Tính độ dài bán kính $R$ của đường tròn ngoại tiếp tam giác đó.",
+    correct_option: "5",
+    explanation: "Đầu tiên áp dụng định lí Pythagore tìm cạnh huyền $c = \\sqrt{6^2 + 8^2} = \\sqrt{36+64} = 10\\text{ cm}$. Tâm đường tròn ngoại tiếp tam giác vuông nằm ở trung điểm cạnh huyền, nên bán kính $R$ bằng nửa cạnh huyền: $R = \\frac{10}{2} = 5\\text{ cm}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">📍 Việc cấp bách: Điểm đặt trạm cứu hỏa hợp lý</h3>
+
+Có ba khu dân cư nằm ở ba vị trí khác nhau tạo thành ba đỉnh của một tam giác trên bản đồ quy hoạch thành phố (kí hiệu là các điểm $A, B, C$). Chính quyền muốn xây dựng một trạm cứu hỏa trung tâm sao cho khoảng cách máy xịt nước từ trạm cứu hỏa di chuyển đến ba khu dân cư này là **hoàn toàn bằng nhau**, nhằm đảm bảo thời gian ứng cứu là công bằng cho mọi nhà.
+
+Để giải quyết bài toán thực tế này, các kĩ sư quy hoạch sử dụng khái niệm **Tâm đường tròn ngoại tiếp tam giác**. Vị trí trạm cứu hỏa chính là tâm của đường tròn đi qua ba điểm $A, B, C$. Cách xác định tâm đường tròn đó như thế nào sẽ được làm sáng tỏ trong bài học sau.
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="ngoai-tiep" style="margin-top:2rem;">📖 1. Đường tròn ngoại tiếp tam giác</h3>
+
+<div class="box-dinh-nghia">
+
+- **Đường tròn đi qua cả ba đỉnh** của một tam giác được gọi là **đường tròn ngoại tiếp** tam giác đó.
+- Khi đó, tam giác được gọi là **tam giác nội tiếp** (nằm bên trong) đường tròn.
+- Định lí sự tồn tại: Mọi tam giác đều có **một và chỉ một** đường tròn ngoại tiếp.
+
+</div>
+
+**Cách xác định tâm:**
+- Tâm $O$ của đường tròn ngoại tiếp tam giác là **giao điểm của ba đường trung trực** của ba cạnh tam giác.
+- (Thực tế khi vẽ hình, ta chỉ cần kẻ hai đường trung trực của hai cạnh bất kì cắt nhau tại $O$, điểm đó đã đảm bảo là tâm đường tròn do tính chất đồng quy).
+
+**Các trường hợp đặc biệt:**
+1. **Tam giác nhọn:** Tâm đường tròn ngoại tiếp nằm *bên trong* tam giác.
+2. **Tam giác vuông:** Tâm đường tròn ngoại tiếp là *trung điểm của cạnh huyền*. (Bán kính $R = \frac{1}{2}\times\text{cạnh huyền}$).
+3. **Tam giác tù:** Tâm đường tròn ngoại tiếp nằm *bên ngoài* khu vực giới hạn của tam giác.
+
+<h3 id="noi-tiep" style="margin-top:2rem;">📖 2. Đường tròn nội tiếp tam giác</h3>
+
+Khác biệt với việc "bao bọc qua đỉnh", một đường tròn hoàn toàn có thể nép mình nằm lọt vừa vặn bên trong ba bức tường của tam giác.
+
+<div class="box-dinh-nghia">
+
+- **Đường tròn tiếp xúc với cả ba cạnh** của một tam giác (tức là ba cạnh đều tiếp tuyến ngoài của vòng tròn) được gọi là **đường tròn nội tiếp** tam giác đó.
+- Khi đó tam giác được gọi là **tam giác ngoại tiếp** (bao bọc bên ngoài) đường tròn.
+- Định lí sự tồn tại: Mọi tam giác đều có **một và chỉ một** đường tròn nội tiếp.
+
+</div>
+
+**Cách xác định tâm:**
+- Tâm $I$ của đường tròn nội tiếp tam giác là **giao điểm của ba đường phân giác trong** của các góc trong tam giác.
+- Tương tự, chỉ cần kẻ hai đường phân giác trong của hai góc cắt nhau tại $I$, điểm đó sẽ cách đều ba cạnh và là tâm. Tâm $I$ luôn luôn nằm bên trong tam giác.
+- Bán kính $r$ là khoảng cách kẻ vuông góc từ tâm $I$ đến bất kì cạnh nào của tam giác.
+
+<h3 id="hinh-ve" style="margin-top:2rem;">📖 3. Hình vẽ biểu diễn Hai đường tròn</h3>
+
+<div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap", margin: "2rem 0"}}>
+
+{/* Ngoại tiếp */}
+<div style={{textAlign: "center", marginBottom: "1rem"}}>
+<svg width="250" height="250" viewBox="0 0 250 250">
+  <circle cx="125" cy="125" r="90" fill="none" stroke="#2563eb" strokeWidth="2"/>
+  <path d="M 61.35,61.35 L 215,125 L 125,215 Z" fill="none" stroke="#374151" strokeWidth="2"/>
+  {/* Đỉnh */}
+  <circle cx="61.35" cy="61.35" r="3" fill="#ef4444"/>
+  <circle cx="215" cy="125" r="3" fill="#ef4444"/>
+  <circle cx="125" cy="215" r="3" fill="#ef4444"/>
+  
+  <text x="45" y="55" fontWeight="bold">A</text>
+  <text x="225" y="130" fontWeight="bold">B</text>
+  <text x="120" y="235" fontWeight="bold">C</text>
+  <circle cx="125" cy="125" r="3" fill="#10b981"/>
+  <text x="110" y="125" fontWeight="bold" fill="#10b981">O</text>
+</svg>
+<p style={{fontStyle: "italic", marginTop: "0.5rem"}}>Đường tròn (O) ngoại tiếp <br/>đi qua 3 đỉnh A, B, C</p>
+</div>
+
+{/* Nội tiếp */}
+<div style={{textAlign: "center", marginBottom: "1rem"}}>
+<svg width="250" height="250" viewBox="0 0 250 250">
+  <path d="M 125,30 L 220,200 L 30,200 Z" fill="none" stroke="#374151" strokeWidth="2"/>
+  <circle cx="125" cy="144" r="56" fill="none" stroke="#f59e0b" strokeWidth="2"/>
+  
+  {/* Đỉnh */}
+  <text x="120" y="20" fontWeight="bold">M</text>
+  <text x="15" y="210" fontWeight="bold">N</text>
+  <text x="230" y="210" fontWeight="bold">P</text>
+  <circle cx="125" cy="144" r="3" fill="#10b981"/>
+  <text x="115" y="140" fontWeight="bold" fill="#10b981">I</text>
+</svg>
+<p style={{fontStyle: "italic", marginTop: "0.5rem"}}>Đường tròn (I) nội tiếp <br/>tiếp xúc 3 cạnh MNP</p>
+</div>
+
+</div>
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Xác định tọa độ tâm, tính bán kính đường tròn ngoại tiếp**
+**Phương pháp:** 
+- Trong **tam giác nhọn/tù**: Dựng đường trung trực của 2 cạnh cắt nhau tại giao điểm $O$. Bán kính $R = OA = OB = OC$. 
+- Trong **tam giác vuông**: Xác suất thường gặp nhất. Tâm $O$ trung điểm cạnh huyền. Bán kính $R = \frac{1}{2} \text{cạnh huyền}$. Áp dụng định lí Pytago để tính cạnh.
+- Trong **tam giác đều** cạnh $a$: Chiều cao $h = \frac{a\sqrt{3}}{2}$. Tâm ngoại tiếp là trọng tâm, $R = \frac{2}{3}h = \frac{a\sqrt{3}}{3}$.
+
+</div>
+
+**Ví dụ 1:** 
+Cho tam giác $ABC$ vuông tại $A$, có chiểu dài cạnh góc vuông $AB = 5\text{ cm}$ và $AC = 12\text{ cm}$. Hỏi tâm đường tròn ngoại tiếp tam giác nằm ở đâu và có bán kính vòng tròn $R$ là bao nhiêu?
+**Hướng dẫn:** 
+- Tam giác $ABC$ vuông tại $A$ là góc nội tiếp chắn đoạn $BC$. Do đó đường chuẩn $BC$ đóng vai trò là một đường kính của đường tròn đi qua bộ ba cạnh. Tâm đường tròn ngoại tiếp $O$ là trung điểm của $BC$.
+- Áp dụng định lí Pythagore trong $\triangle ABC$ vuông:
+$BC = \sqrt{AB^2 + AC^2} = \sqrt{5^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13\text{ cm}$.
+- Bán kính đường tròn $R = \frac{BC}{2} = \frac{13}{2} = 6.5\text{ cm}$.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Khai thác tính chất đường tròn nội tiếp để tính các thông số**
+**Phương pháp:** 
+- Dựng giao điểm phân giác trong lấy tâm điểm $I$.
+- Từ tâm điểm $I$ hạ đường vuông góc xuống tiếp điểm của 3 cạnh tam giác (đóng vai trò là bán kính nội tiếp $r$).
+- Ứng dụng quan hệ tiếp tuyến cắt nhau: Nhớ rằng đoạn thẳng từ một đỉnh bất kì của tam giác đến hai tiếp điểm của nội tiếp là luôn bằng nhau.
+
+</div>
+
+**Ví dụ 2:** Cho $\triangle DEF$ đều cạnh có độ dài $a = 6\text{ cm}$. Định mức độ dài bán kính nhỏ $r$ của đường tròn nội tiếp tam giác này?
+**Hướng dẫn:** 
+- Đối với tam giác đều, tâm đường tròn nội tiếp $I$ và ngoại tiếp $O$ trùng nhau và nằm trùng tại trọng tâm giao tuyến đường cao.
+- Độ dài đường cao (đồng thời trung tuyến) của $\triangle DEF$ là $h = \frac{a\sqrt{3}}{2} = \frac{6\sqrt{3}}{2} = 3\sqrt{3}\text{ cm}$.
+- Tâm nội tiếp cũng chia đường cao theo tỉ lệ $2:1$. Do đó khoảng viền tính từ tâm nội tiếp ra đến tiếp điểm bằng đáy (Bán kính nội tiếp $r$) bằng $\frac{1}{3}h$:
+$r = \frac{1}{3} \cdot 3\sqrt{3} = \sqrt{3}\text{ cm}$.
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho cấu trúc tam giác $\triangle MNP$ vuông tại định mốc $N$, có thông số $MP = 10\text{ cm}$, $MN = 8\text{ cm}$.
+a) Tìm toạ độ tâm đường tròn ngoại tiếp bao quanh $\triangle MNP$. 
+b) Giải thông số bán kính đường tròn ngoại tiếp tam giác và diện tích phần mặt phẳng bị giới hạn bởi đường tròn đó (Sử dụng tỷ lệ $\pi \approx 3.14$).
+c) Từ kết quả tính các cạnh góc vuông, chứng minh rằng diện tích $\triangle MNP$ luôn nhỏ hơn diện tích không gian của đường tròn ngoại tiếp. 
+
+**Bài 2:** Vẽ một tam giác đều $\triangle ABC$ cạnh mở $A = 12\text{ cm}$ nội tiếp vừa khít trong một đường tròn $(O)$.
+a) Đường cao $AH$ có độ dài bao nhiêu? Dựa vào đó hãy đi tìm thông lượng bán kính lớn $R$ của đường tròn $(O)$.
+b) Đồng thời dựng biểu diễn vòng đường tròn $(I)$ nội tiếp chìm ngầm bên trong chính $\triangle ABC$. Nhận xét xem điểm $I$ có nằm đè lên vị trí của $O$ hay không? Tính bán kính $r$ của vòng $(I)$ đó.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) Ở cấu trúc tam giác vuông tại $N$ của $\triangle MNP$, cạnh huyền luôn luôn là $MP$.
+Tâm đường tròn ngoại tiếp trùng vào trung điểm của cạnh huyền $MP$.
+b) Bán kính đường tròn $R$ dài nửa cạnh huyền: $R = \frac{MP}{2} = \frac{10}{2} = 5\text{ cm}$.
+Diện tích đường tròn ngoại tiếp: $S_{\text{tròn}} = \pi \cdot R^2 = 3.14 \cdot 5^2 = 3.14 \cdot 25 = 78.5\text{ cm}^2$.
+c) Theo định lí Pytago tính cạnh còn lại: $NP = \sqrt{MP^2 - MN^2} = \sqrt{10^2 - 8^2} = \sqrt{100 - 64} = 6\text{ cm}$.
+Diện tích tam giác vuông: $S_{\triangle} = \frac{1}{2}MN \cdot NP = \frac{1}{2} \cdot 8 \cdot 6 = 24\text{ cm}^2$.
+Dễ thấy diện tích tam giác lọt thỏm ($24$) nhỏ hơn nhiều so với hình đường tròn ngoại tiếp bao phủ toàn bộ nó ($78.5$).
+
+**Bài 2:**
+a) Trong $\triangle ABC$ đều cạnh là $12\text{ cm}$, đường cao $AH$ được tính bằng công thức lượng giác (hoặc Pytago) $AH = 12 \cdot \frac{\sqrt{3}}{2} = 6\sqrt{3}\text{ cm}$.
+Tâm $O$ của đường tròn trùng tại trọng tâm chéo của tam giác đều. Đoạn $OA$ vừa là phân giác vừa chiếm tỉ lệ hai phần ba đường cao $AH$. 
+Bán kính đường tròn ngoại tiếp $R = OA = \frac{2}{3} \cdot 6\sqrt{3} = 4\sqrt{3}\text{ cm}$.
+b) Tâm $I$ nội tiếp cũng bị định lý đồng nhất bắt nằm trùng lên điểm $O$ đối với một tam giác đều tuyệt đối. ($I \equiv O$).
+Khoảng cách từ trọng tâm chia xuống mút đáy cạnh tương đương một phần ba đường cao.
+Bán kính nội tiếp $r = \frac{1}{3}AH = \frac{1}{3} \cdot 6\sqrt{3} = 2\sqrt{3}\text{ cm}$.
+
+</div>
+</details>

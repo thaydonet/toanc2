@@ -1,0 +1,391 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 34: Ba trường hợp đồng dạng của hai tam giác"
+description: "Các trường hợp đồng dạng: c.c.c, c.g.c, g.g - Toán 8 KNTT Chương 9"
+grade: "Lớp 8"
+chapter: "Chương 9: Tam giác đồng dạng"
+currentSlug: "lop8/bai-34-truong-hop-dong-dang"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai tam giác có ba cạnh tương ứng tỉ lệ thì:",
+    option_a: "Đồng dạng",
+    option_b: "Bằng nhau",
+    option_c: "Không đồng dạng",
+    option_d: "Vuông",
+    correct_option: "A",
+    explanation: "Theo trường hợp c.c.c, ba cạnh tỉ lệ thì hai tam giác đồng dạng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai tam giác có hai góc tương ứng bằng nhau thì:",
+    option_a: "Đồng dạng",
+    option_b: "Bằng nhau",
+    option_c: "Không đồng dạng",
+    option_d: "Cần thêm điều kiện",
+    correct_option: "A",
+    explanation: "Theo trường hợp g.g, hai góc bằng nhau thì hai tam giác đồng dạng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ và $\\triangle DEF$ có $\\dfrac{AB}{DE} = \\dfrac{AC}{DF}$ và $\\widehat{A} = \\widehat{D}$. Kết luận:",
+    option_a: "$\\triangle ABC \\sim \\triangle DEF$",
+    option_b: "$\\triangle ABC = \\triangle DEF$",
+    option_c: "Không đồng dạng",
+    option_d: "Cần thêm điều kiện",
+    correct_option: "A",
+    explanation: "Theo trường hợp c.g.c: hai cạnh tỉ lệ và góc xen giữa bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ có $\\widehat{A} = 50°$, $\\widehat{B} = 60°$ và $\\triangle MNP$ có $\\widehat{M} = 50°$, $\\widehat{N} = 60°$. Kết luận:",
+    option_a: "$\\triangle ABC \\sim \\triangle MNP$",
+    option_b: "$\\triangle ABC = \\triangle MNP$",
+    option_c: "Không đồng dạng",
+    option_d: "Cần biết thêm cạnh",
+    correct_option: "A",
+    explanation: "Hai góc bằng nhau nên theo trường hợp g.g, hai tam giác đồng dạng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ và $\\triangle DEF$ có $AB = 6$, $BC = 8$, $CA = 10$ và $DE = 3$, $EF = 4$, $FD = 5$. Kết luận:",
+    option_a: "$\\triangle ABC \\sim \\triangle DEF$",
+    option_b: "$\\triangle ABC = \\triangle DEF$",
+    option_c: "Không đồng dạng",
+    option_d: "Cần biết góc",
+    correct_option: "A",
+    explanation: "$\\dfrac{6}{3} = \\dfrac{8}{4} = \\dfrac{10}{5} = 2$. Theo c.c.c, hai tam giác đồng dạng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để chứng minh hai tam giác đồng dạng, ta có thể dùng:",
+    option_a: "Ba cạnh tỉ lệ (c.c.c)",
+    option_b: "Hai cạnh tỉ lệ và góc xen giữa bằng nhau (c.g.c)",
+    option_c: "Hai góc bằng nhau (g.g)",
+    option_d: "Một cạnh bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "Có 3 trường hợp đồng dạng: c.c.c, c.g.c, g.g.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho $\\triangle ABC$ có $AB = 9$, $AC = 12$ và $\\triangle DEF$ có $DE = 6$, $DF = 8$, $\\widehat{A} = \\widehat{D}$. Tỉ số đồng dạng $k$ bằng? (dạng a/b)",
+    correct_option: "3/2",
+    explanation: "$k = \\dfrac{AB}{DE} = \\dfrac{9}{6} = \\dfrac{3}{2}$. Kiểm tra: $\\dfrac{AC}{DF} = \\dfrac{12}{8} = \\dfrac{3}{2}$ ✓",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ và $\\triangle MNP$ có $\\dfrac{AB}{MN} = \\dfrac{!a#2!}{!b#3!}$, $\\dfrac{AC}{MP} = \\dfrac{!a!}{!b!}$, $\\widehat{A} = \\widehat{M}$. Hai tam giác:",
+    option_a: "Đồng dạng",
+    option_b: "Bằng nhau",
+    option_c: "Không đồng dạng",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Hai cạnh tỉ lệ bằng $\\dfrac{!a!}{!b!}$ và góc xen giữa bằng nhau → đồng dạng (c.g.c).",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔍 Mở đầu</h3>
+
+Giống như tam giác bằng nhau có 3 trường hợp (c.c.c, c.g.c, g.c.g), tam giác đồng dạng cũng có 3 trường hợp tương tự để nhận biết nhanh!
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="truong-hop-1">📖 1. Trường hợp c.c.c (cạnh - cạnh - cạnh)</h3>
+
+<div class="box-dinh-ly">
+
+**Định lý:** Nếu ba cạnh của tam giác này tỉ lệ với ba cạnh của tam giác kia thì hai tam giác đó đồng dạng.
+
+$$\frac{AB}{A'B'} = \frac{BC}{B'C'} = \frac{CA}{C'A'} \Rightarrow \triangle ABC \sim \triangle A'B'C'$$
+
+</div>
+
+**Ví dụ 1:** Cho $\triangle ABC$ có $AB = 6$, $BC = 9$, $CA = 12$ và $\triangle DEF$ có $DE = 4$, $EF = 6$, $FD = 8$. Chứng minh hai tam giác đồng dạng.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Xét tỉ số các cạnh:
+
+$$\frac{AB}{DE} = \frac{6}{4} = \frac{3}{2}$$
+$$\frac{BC}{EF} = \frac{9}{6} = \frac{3}{2}$$
+$$\frac{CA}{FD} = \frac{12}{8} = \frac{3}{2}$$
+
+Ba cạnh tỉ lệ với nhau nên $\triangle ABC \sim \triangle DEF$ (c.c.c)
+
+</div>
+
+<h3 id="truong-hop-2" style="margin-top:2rem;">📖 2. Trường hợp c.g.c (cạnh - góc - cạnh)</h3>
+
+<div class="box-dinh-ly">
+
+**Định lý:** Nếu hai cạnh của tam giác này tỉ lệ với hai cạnh của tam giác kia và hai góc tạo bởi các cặp cạnh đó bằng nhau thì hai tam giác đồng dạng.
+
+$$\frac{AB}{A'B'} = \frac{AC}{A'C'} \text{ và } \widehat{A} = \widehat{A'} \Rightarrow \triangle ABC \sim \triangle A'B'C'$$
+
+</div>
+
+**Ví dụ 2:** Cho $\triangle ABC$ có $AB = 8$, $AC = 12$, $\widehat{A} = 60°$ và $\triangle MNP$ có $MN = 6$, $MP = 9$, $\widehat{M} = 60°$. Chứng minh đồng dạng.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Xét tỉ số:
+
+$$\frac{AB}{MN} = \frac{8}{6} = \frac{4}{3}$$
+$$\frac{AC}{MP} = \frac{12}{9} = \frac{4}{3}$$
+
+Và $\widehat{A} = \widehat{M} = 60°$
+
+Vậy $\triangle ABC \sim \triangle MNP$ (c.g.c)
+
+</div>
+
+<h3 id="truong-hop-3" style="margin-top:2rem;">📖 3. Trường hợp g.g (góc - góc)</h3>
+
+<div class="box-dinh-ly">
+
+**Định lý:** Nếu hai góc của tam giác này lần lượt bằng hai góc của tam giác kia thì hai tam giác đó đồng dạng.
+
+$$\widehat{A} = \widehat{A'} \text{ và } \widehat{B} = \widehat{B'} \Rightarrow \triangle ABC \sim \triangle A'B'C'$$
+
+**Lưu ý:** Chỉ cần 2 góc bằng nhau vì góc thứ 3 tự động bằng nhau (tổng 3 góc = 180°).
+
+</div>
+
+**Ví dụ 3:** Cho $\triangle ABC$ có $\widehat{A} = 50°$, $\widehat{B} = 70°$ và $\triangle DEF$ có $\widehat{D} = 50°$, $\widehat{E} = 70°$. Chứng minh đồng dạng.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Ta có: $\widehat{A} = \widehat{D} = 50°$ và $\widehat{B} = \widehat{E} = 70°$
+
+Vậy $\triangle ABC \sim \triangle DEF$ (g.g)
+
+**Kiểm tra:** $\widehat{C} = 180° - 50° - 70° = 60°$ và $\widehat{F} = 180° - 50° - 70° = 60°$ ✓
+
+</div>
+
+<h3 id="so-sanh" style="margin-top:2rem;">⚖️ 4. So sánh các trường hợp</h3>
+
+| Trường hợp | Điều kiện | Dễ áp dụng | Ghi chú |
+|:---:|:---|:---:|:---|
+| **c.c.c** | 3 cạnh tỉ lệ | ⭐⭐ | Cần tính 3 tỉ số |
+| **c.g.c** | 2 cạnh tỉ lệ + góc xen giữa | ⭐⭐⭐ | Thường dùng nhất |
+| **g.g** | 2 góc bằng nhau | ⭐⭐⭐⭐ | Dễ nhất, chỉ cần góc |
+
+<h3 id="vi-du-tong-hop" style="margin-top:2rem;">✏️ 5. Ví dụ tổng hợp</h3>
+
+**Ví dụ 4:** Cho $\triangle ABC$ có $AB = 10$ cm, $AC = 15$ cm, $\widehat{A} = 45°$. Tìm độ dài các cạnh của $\triangle DEF$ đồng dạng với $\triangle ABC$ biết $DE = 6$ cm và $\widehat{D} = 45°$.
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tỉ số đồng dạng:
+
+$$k = \frac{AB}{DE} = \frac{10}{6} = \frac{5}{3}$$
+
+Tính $DF$:
+
+$$\frac{AC}{DF} = k \Rightarrow DF = \frac{AC}{k} = \frac{15}{\frac{5}{3}} = 15 \times \frac{3}{5} = 9 \text{ cm}$$
+
+Để tính $EF$, cần biết $BC$ (không đủ dữ liệu).
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**📝 Bài toán:** Một cột đèn cao 6 m đặt cách tường 4 m. Bóng của cột trên tường cao 3 m. Tính khoảng cách từ chân tường đến đỉnh bóng trên mặt đất.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Hai tam giác tạo bởi cột đèn và bóng đồng dạng (g.g - cùng góc vuông và góc tia sáng).
+
+Áp dụng tỉ lệ: $\dfrac{6}{3} = \dfrac{4}{x}$
+
+$$x = \frac{3 \times 4}{6} = 2 \text{ m}$$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **c.c.c**: Ba cạnh tỉ lệ
+- **c.g.c**: Hai cạnh tỉ lệ, góc xen giữa bằng nhau
+- **g.g**: Hai góc bằng nhau
+- Trường hợp **g.g** dễ dùng nhất
+
+</GhiNho>
+
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho $\triangle ABC$ có $AB = 6$ cm, $BC = 8$ cm, $CA = 10$ cm và $\triangle DEF$ có $DE = 9$ cm, $EF = 12$ cm, $FD = 15$ cm.
+
+a) Chứng minh $\triangle ABC \sim \triangle DEF$ bằng trường hợp c.c.c
+
+b) Tính tỉ số đồng dạng
+
+c) Nếu $\widehat{A} = 53°$, tính $\widehat{D}$
+
+---
+
+**Bài 2:** Cho $\triangle MNP$ có $MN = 10$ cm, $MP = 15$ cm, $\widehat{M} = 70°$ và $\triangle XYZ$ có $XY = 6$ cm, $XZ = 9$ cm, $\widehat{X} = 70°$.
+
+a) Chứng minh $\triangle MNP \sim \triangle XYZ$ bằng trường hợp c.g.c
+
+b) Tính tỉ số đồng dạng
+
+c) Biết $NP = 12$ cm, tính $YZ$
+
+---
+
+**Bài 3:** Cho $\triangle ABC$ có $\widehat{A} = 50°$, $\widehat{B} = 60°$ và $\triangle DEF$ có $\widehat{E} = 60°$, $\widehat{F} = 70°$.
+
+a) Tính $\widehat{C}$ và $\widehat{D}$
+
+b) Chứng minh $\triangle ABC \sim \triangle FDE$ bằng trường hợp g.g
+
+c) Nếu $AB = 8$ cm và $FD = 12$ cm, tính tỉ số đồng dạng
+
+---
+
+**Bài 4 (Ứng dụng thực tế):** Một cột cờ cao 6 m có bóng dài 4 m. Cùng lúc đó, một tòa nhà có bóng dài 30 m.
+
+a) Giải thích tại sao hai tam giác tạo bởi cột cờ và tòa nhà với bóng của chúng đồng dạng
+
+b) Tính chiều cao của tòa nhà
+
+c) Nếu bóng của cột cờ dài 5 m thì bóng của tòa nhà dài bao nhiêu mét?
+
+---
+
+**Bài 5 (Nâng cao):** Cho $\triangle ABC$ có $AB = 12$ cm, $AC = 18$ cm, $\widehat{A} = 60°$. Trên tia $AB$ lấy điểm $D$ sao cho $AD = 8$ cm, trên tia $AC$ lấy điểm $E$ sao cho $AE = 12$ cm.
+
+a) Chứng minh $\triangle ADE \sim \triangle ABC$
+
+b) Tính tỉ số đồng dạng
+
+c) Biết $BC = 15$ cm, tính $DE$
+
+d) Chứng minh $DE \parallel BC$
+
+e) Tính tỉ số diện tích $\dfrac{S_{ADE}}{S_{ABC}}$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $\dfrac{DE}{AB} = \dfrac{9}{6} = \dfrac{3}{2}$; $\dfrac{EF}{BC} = \dfrac{12}{8} = \dfrac{3}{2}$; $\dfrac{FD}{CA} = \dfrac{15}{10} = \dfrac{3}{2}$
+
+Ba cạnh tỉ lệ nên $\triangle ABC \sim \triangle DEF$ (c.c.c)
+
+b) $k = \dfrac{3}{2}$
+
+c) $\widehat{D} = \widehat{A} = 53°$ (góc tương ứng)
+
+---
+
+**Bài 2:**
+
+a) $\dfrac{XY}{MN} = \dfrac{6}{10} = \dfrac{3}{5}$; $\dfrac{XZ}{MP} = \dfrac{9}{15} = \dfrac{3}{5}$
+
+Có $\dfrac{XY}{MN} = \dfrac{XZ}{MP}$ và $\widehat{M} = \widehat{X} = 70°$ nên $\triangle MNP \sim \triangle XYZ$ (c.g.c)
+
+b) $k = \dfrac{5}{3}$
+
+c) $YZ = \dfrac{3 \times 12}{5} = 7{,}2$ cm
+
+---
+
+**Bài 3:**
+
+a) $\widehat{C} = 180° - 50° - 60° = 70°$; $\widehat{D} = 180° - 60° - 70° = 50°$
+
+b) Có $\widehat{A} = \widehat{D} = 50°$ và $\widehat{B} = \widehat{E} = 60°$ nên $\triangle ABC \sim \triangle FDE$ (g.g)
+
+c) $k = \dfrac{FD}{AB} = \dfrac{12}{8} = \dfrac{3}{2}$
+
+---
+
+**Bài 4:**
+
+a) Hai tam giác vuông có chung góc tạo bởi tia sáng mặt trời nên có hai góc bằng nhau, do đó đồng dạng (g.g)
+
+b) Gọi chiều cao tòa nhà là $h$ (m). Ta có: $\dfrac{h}{6} = \dfrac{30}{4}$
+
+$h = \dfrac{6 \times 30}{4} = 45$ m
+
+c) Tỉ số đồng dạng không đổi: $\dfrac{h}{6} = \dfrac{x}{5}$
+
+$x = \dfrac{45 \times 5}{6} = 37{,}5$ m
+
+---
+
+**Bài 5:**
+
+a) $\dfrac{AD}{AB} = \dfrac{8}{12} = \dfrac{2}{3}$; $\dfrac{AE}{AC} = \dfrac{12}{18} = \dfrac{2}{3}$
+
+Có $\dfrac{AD}{AB} = \dfrac{AE}{AC}$ và $\widehat{A}$ chung nên $\triangle ADE \sim \triangle ABC$ (c.g.c)
+
+b) $k = \dfrac{2}{3}$
+
+c) $DE = \dfrac{2 \times 15}{3} = 10$ cm
+
+d) Vì $\triangle ADE \sim \triangle ABC$ nên $\widehat{ADE} = \widehat{ABC}$ (hai góc ở vị trí đồng vị) $\Rightarrow DE \parallel BC$
+
+e) $\dfrac{S_{ADE}}{S_{ABC}} = k^2 = \left(\dfrac{2}{3}\right)^2 = \dfrac{4}{9}$
+
+</div>
+</details>

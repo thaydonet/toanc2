@@ -1,0 +1,301 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 4: Phép nhân đa thức"
+description: "Quy tắc nhân đa thức và ứng dụng - Toán 8 KNTT Chương 1"
+grade: "Lớp 8"
+chapter: "Chương 1: Đa thức"
+currentSlug: "lop8/bai-4-nhan-da-thuc"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tích của $2x$ và $(3x - 5)$ là:",
+    option_a: "$6x^2 - 10x$",
+    option_b: "$6x - 10x$",
+    option_c: "$5x - 5$",
+    option_d: "$6x^2 - 5$",
+    correct_option: "A",
+    explanation: "$2x(3x - 5) = 2x \\cdot 3x - 2x \\cdot 5 = 6x^2 - 10x$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tích của $(x + 2)$ và $(x + 3)$ là:",
+    option_a: "$x^2 + 5x + 6$",
+    option_b: "$x^2 + 6$",
+    option_c: "$x^2 + 5x$",
+    option_d: "$2x + 5$",
+    correct_option: "A",
+    explanation: "$(x + 2)(x + 3) = x^2 + 3x + 2x + 6 = x^2 + 5x + 6$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khai triển $(x - 1)(x^2 + x + 1)$ được:",
+    option_a: "$x^3 - 1$",
+    option_b: "$x^3 + 1$",
+    option_c: "$x^3 - x^2 - 1$",
+    option_d: "$x^3 + 2x^2 + 1$",
+    correct_option: "A",
+    explanation: "$(x - 1)(x^2 + x + 1) = x^3 + x^2 + x - x^2 - x - 1 = x^3 - 1$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "$(2x + 3)(2x - 3)$ bằng:",
+    option_a: "$4x^2 - 9$",
+    option_b: "$4x^2 + 9$",
+    option_c: "$4x^2 - 6x - 9$",
+    option_d: "$2x^2 - 9$",
+    correct_option: "A",
+    explanation: "Hằng đẳng thức: $(a + b)(a - b) = a^2 - b^2$. Vậy $(2x + 3)(2x - 3) = 4x^2 - 9$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khi nhân đa thức, ta cần:",
+    option_a: "Nhân mỗi hạng tử của đa thức này với mỗi hạng tử của đa thức kia",
+    option_b: "Cộng các tích vừa tìm được",
+    option_c: "Thu gọn kết quả",
+    option_d: "Chia các hệ số",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì ta nhân chứ không chia.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hệ số của $x^2$ trong khai triển $(x + 1)(x + 2)$ bằng bao nhiêu?",
+    correct_option: "1",
+    explanation: "$(x + 1)(x + 2) = x^2 + 3x + 2$. Hệ số của $x^2$ là 1.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tích của $!a#2!x$ và $(!b#3!x + !c#4!)$ là:",
+    option_a: "$!tinh: !a! * !b!!x^2 + !tinh: !a! * !c!!x$",
+    option_b: "$!tinh: !a! + !b!!x + !c!$",
+    option_c: "$!a!x^2 + !c!x$",
+    option_d: "$!b!x^2 + !c!x$",
+    correct_option: "A",
+    explanation: "$!a!x(!b!x + !c!) = !a!x \\cdot !b!x + !a!x \\cdot !c! = !tinh: !a! * !b!!x^2 + !tinh: !a! * !c!!x$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tích của $(x + !a#2!)$ và $(x + !b#3!)$ là:",
+    option_a: "$x^2 + !tinh: !a! + !b!!x + !tinh: !a! * !b!!$",
+    option_b: "$x^2 + !a!x + !b!$",
+    option_c: "$x^2 + !tinh: !a! * !b!!$",
+    option_d: "$2x + !tinh: !a! + !b!!$",
+    correct_option: "A",
+    explanation: "$(x + !a!)(x + !b!) = x^2 + !b!x + !a!x + !tinh: !a! * !b!! = x^2 + !tinh: !a! + !b!!x + !tinh: !a! * !b!!$.",
+    difficulty_level: "hard",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">✖️ Nhân đa thức</h3>
+
+Phép nhân đa thức giúp ta khai triển các biểu thức phức tạp và giải nhiều bài toán thực tế!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📦</div>
+    <strong>Diện tích hình chữ nhật</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$(x + 2)(x + 3) = x^2 + 5x + 6$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Thể tích</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$(2x)(3x)(4x) = 24x^3$</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="nhan-don-da">📖 1. Nhân đơn thức với đa thức</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:** Nhân đơn thức với từng hạng tử của đa thức, rồi cộng các tích lại.
+
+$a(b + c) = ab + ac$
+
+</div>
+
+**Ví dụ 1:** $3x(2x^2 - 5x + 1) = 6x^3 - 15x^2 + 3x$
+
+<h3 id="nhan-da-da" style="margin-top:2rem;">📖 2. Nhân đa thức với đa thức</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:** Nhân mỗi hạng tử của đa thức này với mỗi hạng tử của đa thức kia, rồi cộng các tích lại.
+
+$(a + b)(c + d) = ac + ad + bc + bd$
+
+</div>
+
+**Ví dụ 2:** $(x + 2)(x + 3)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$= x \\cdot x + x \\cdot 3 + 2 \\cdot x + 2 \\cdot 3$
+
+$= x^2 + 3x + 2x + 6$
+
+$= x^2 + 5x + 6$
+
+</div>
+
+<h3 id="hang-dang-thuc" style="margin-top:2rem;">🔑 3. Hằng đẳng thức đáng nhớ</h3>
+
+<div class="box-dinh-ly">
+
+1. $(a + b)^2 = a^2 + 2ab + b^2$
+2. $(a - b)^2 = a^2 - 2ab + b^2$
+3. $(a + b)(a - b) = a^2 - b^2$
+
+</div>
+
+**Ví dụ 3:**
+
+$(x + 3)^2 = x^2 + 6x + 9$
+
+$(2x - 1)^2 = 4x^2 - 4x + 1$
+
+$(x + 5)(x - 5) = x^2 - 25$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**📝 Bài toán:** Một mảnh vườn hình chữ nhật có chiều dài $(x + 5)$ m, chiều rộng $(x + 3)$ m. Tính diện tích.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$S = (x + 5)(x + 3) = x^2 + 8x + 15$ (m²)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Nhân đơn-đa**: nhân với từng hạng tử
+- **Nhân đa-đa**: nhân từng cặp hạng tử
+- **Hằng đẳng thức**: $(a \pm b)^2$, $(a + b)(a - b)$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Thực hiện phép nhân đơn thức với đa thức:
+
+a) $3x(2x^2 - 5x + 1)$
+
+b) $-2y(3y^2 + 4y - 7)$
+
+c) $5xy(x^2 - 2xy + y^2)$
+
+d) $-4ab^2(2a^2 - 3ab + b^2)$
+
+**Bài 2:** Thực hiện phép nhân đa thức với đa thức:
+
+a) $(x + 2)(x + 3)$
+
+b) $(2x - 1)(x + 5)$
+
+c) $(x^2 + 2x - 1)(x - 3)$
+
+d) $(3x - 2)(2x^2 - x + 4)$
+
+**Bài 3:** Khai triển các biểu thức sau bằng hằng đẳng thức:
+
+a) $(x + 5)^2$
+
+b) $(2x - 3)^2$
+
+c) $(x + 4)(x - 4)$
+
+d) $(3x + 2y)^2$
+
+**Bài 4:** Rút gọn các biểu thức:
+
+a) $(x + 1)(x + 2) - (x - 3)(x + 4)$
+
+b) $(2x - 1)^2 - (2x + 1)^2$
+
+c) $(x + 3)^2 - (x - 3)^2$
+
+d) $(x + 2)(x - 2) - (x - 1)^2$
+
+**Bài 5:** Cho $A(x) = x + 3$ và $B(x) = x^2 - 2x + 5$
+
+a) Tính $A(x) \cdot B(x)$.
+
+b) Tính giá trị của tích khi $x = 1$.
+
+c) Tìm $x$ để $A(x) \cdot B(x) = 0$.
+
+d) Chứng minh rằng $B(x) > 0$ với mọi $x$.
+
+**Bài 6 (Thực tế):** Một mảnh vườn hình chữ nhật có chiều dài $(2x + 3)$ m và chiều rộng $(x + 1)$ m.
+
+a) Viết biểu thức tính diện tích mảnh vườn.
+
+b) Tính diện tích khi $x = 5$ m.
+
+c) Nếu tăng chiều dài thêm 2 m và chiều rộng thêm 1 m, diện tích tăng thêm bao nhiêu?
+
+d) Tìm $x$ để diện tích mảnh vườn bằng 35 m².
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $6x^3 - 15x^2 + 3x$; b) $-6y^3 - 8y^2 + 14y$; c) $5x^3y - 10x^2y^2 + 5xy^3$; d) $-8a^3b^2 + 12a^2b^3 - 4ab^4$
+
+**Bài 2:** a) $x^2 + 5x + 6$; b) $2x^2 + 9x - 5$; c) $x^3 - x^2 - 7x + 3$; d) $6x^3 - 7x^2 + 14x - 8$
+
+**Bài 3:** a) $x^2 + 10x + 25$; b) $4x^2 - 12x + 9$; c) $x^2 - 16$; d) $9x^2 + 12xy + 4y^2$
+
+**Bài 4:** a) $5x + 14$; b) $-8x$; c) $12x$; d) $-2x + 5$
+
+**Bài 5:** a) $x^3 + x^2 - x + 15$; b) $16$; c) $x = -3$; d) $B(x) = (x - 1)^2 + 4 \geq 4 > 0$
+
+**Bài 6:** a) $S = 2x^2 + 5x + 3$ (m²); b) $S = 78$ m²; c) Tăng $4x + 7$ m²; d) $x = 4$ m
+
+</div>
+</details>

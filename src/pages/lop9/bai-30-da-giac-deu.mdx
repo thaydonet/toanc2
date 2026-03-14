@@ -1,0 +1,257 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 30: Đa giác đều"
+description: "Khái niệm đa giác đều, công thức tính góc và tâm đường tròn ngoại tiếp, nội tiếp - Toán 9 Kết nối tri thức"
+grade: "Lớp 9"
+chapter: "Chương IX: Đường tròn ngoại tiếp và đường tròn nội tiếp"
+currentSlug: "lop9/bai-30-da-giac-deu"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Thế nào là một đa giác đều?",
+    option_a: "Là đa giác có tất cả các góc bằng nhau.",
+    option_b: "Là đa giác có tất cả các cạnh bằng nhau và tất cả các góc bằng nhau.",
+    option_c: "Là đa giác có số lượng đỉnh bằng số lượng cạnh.",
+    option_d: "Là đa giác có thể chia thành nhiều tam giác bằng nhau.",
+    correct_option: "B",
+    explanation: "Định nghĩa về đa giác đều phải bao gồm đồng thời hai điều kiện khắt khe: (1) Mọi cạnh có độ dài bằng nhau và (2) Mọi góc ở các đỉnh có số đo bằng nhau. Thiếu một trong hai thì không được gọi là đa giác đều.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình nào sau đây KHÔNG PHẢI là một đa giác đều?",
+    option_a: "Tam giác đều",
+    option_b: "Hình vuông",
+    option_c: "Hình chữ nhật có độ dài cạnh khác nhau",
+    option_d: "Lục giác đều",
+    correct_option: "C",
+    explanation: "Hình chữ nhật có 4 góc bằng nhau (đều là góc vuông 90 độ), nhưng 4 cạnh của nó không bằng nhau (có chiều dài và chiều rộng khác nhau). Do đó, hình chữ nhật không phải là đa giác đều. (Trừ khi nó là hình vuông).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính tổng số đo các góc trong của một đa giác lồi có $n$ cạnh ($n \\ge 3$) là gì?",
+    option_a: "$(n - 1) \\cdot 180^\\circ$",
+    option_b: "$n \\cdot 180^\\circ$",
+    option_c: "$(n - 2) \\cdot 180^\\circ$",
+    option_d: "$(n - 2) \\cdot 360^\\circ$",
+    correct_option: "C",
+    explanation: "Một đa giác lồi $n$ cạnh có thể được chia nhỏ thành $(n - 2)$ tam giác bằng cách kẻ đường chéo từ một đỉnh bất kì. Tổng 3 góc của một tam giác là $180^\\circ$. Do đó, tổng các góc của đa giác là $(n - 2) \\cdot 180^\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số đo mỗi góc của một ngũ giác đều ($n = 5$ cạnh) là bao nhiêu độ?",
+    option_a: "60 độ",
+    option_b: "90 độ",
+    option_c: "108 độ",
+    option_d: "120 độ",
+    correct_option: "C",
+    explanation: "Tổng số đo 5 góc của ngũ giác: $(5 - 2) \\cdot 180^\\circ = 540^\\circ$. Vì ngũ giác đều có 5 góc bằng nhau, số đo một góc là $540^\\circ : 5 = 108^\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tâm của một đa giác đều được xác định như thế nào?",
+    option_a: "Là một trong các đỉnh của đa giác.",
+    option_b: "Là tâm đường tròn ngoại tiếp đa giác đều đó (đồng thời cũng là tâm đường tròn nội tiếp).",
+    option_c: "Là giao điểm của hai cạnh đối diện kéo dài.",
+    option_d: "Là điểm ngẫu nhiên nằm giữa đa giác.",
+    correct_option: "B",
+    explanation: "Mọi đa giác đều luôn luôn có một đường tròn ngoại tiếp và một đường tròn nội tiếp. Hai đường tròn này có chung một tâm. Điểm tâm chung đó được gọi là tâm của đa giác đều.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho một lục giác đều ($n = 6$). Lục giác này có thể nội tiếp trong một đường tròn. Số đo góc ở tâm chắn một cạnh của lục giác đều đó là bao nhiêu độ?",
+    correct_option: "60",
+    explanation: "Lục giác đều có 6 cạnh bằng nhau, do đó 6 cạnh này chắn 6 cung bằng nhau trên đường tròn ngoại tiếp. Số đo một cung bị chắn bởi 1 cạnh là $360^\\circ / 6 = 60^\\circ$. Góc ở tâm chắn cạnh đó cũng bằng $60^\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một đa giác đều có mỗi góc trong bằng $144^\\circ$. Hỏi đa giác này có bao nhiêu cạnh?",
+    correct_option: "10",
+    explanation: "Sử dụng công thức tính một góc của đa giác đều $n$ cạnh: $\\frac{(n-2) \\cdot 180}{n} = 144$. Suy ra $180n - 360 = 144n$. Giải phương trình ta được $36n = 360 \\Rightarrow n = 10$. Đây là một thập giác đều (10 cạnh).",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🏵️ Hình mẫu cân xứng tuyệt đối trong tự nhiên</h3>
+
+Trong tự nhiên và trong thực tiễn kiến trúc, con người luôn bị thu hút bởi sự bắt mắt bề mặt của cấu trúc mang tính đối xứng vạn toàn. Tổ ong mật là một bằng chứng vĩ đại của sinh học: chúng được đúc từ hàng nghìn ô sáp dạng hình lục giác có các cạnh và các góc bằng chằn chặn giống hệt nhau. Trên nền gạch sàn nhà, nghệ nhân dùng hình vuông khảm vào nhau, không khe hở. Nhìn vào phù điêu Lầu Năm Góc ở Mỹ, chúng có hình ngũ giác cực kì hoàn hảo.
+
+Những dạng hình vừa nêu như: tam giác đều, hình vuông, ngũ giác hoàn chỉnh, lục giác đối xứng... được Toán học gom chung vào một tên gọi đại diện, đó là khái niệm **Đa giác đều**. Cùng bước vào thế giới hình học để chứng minh những tính chất cân bằng kì diệu của chúng.
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Khái niệm đa giác đều</h3>
+
+<div class="box-dinh-nghia">
+
+**Đa giác đều** lồi là một hình đa giác có bao gồm tất cả các mặt đối xứng thỏa mãn đồng thời hai yêu cầu: 
+1. Tất cả các cạnh cấu thành đều bằng nhau. 
+2. Tất cả các góc ở các đỉnh nối đều bằng nhau.
+
+</div>
+
+**Các loại đa giác đều thường gặp:**
+- Đa giác đều 3 cạnh: **Tam giác đều**.
+- Đa giác đều 4 cạnh: **Hình vuông**. 
+- Đa giác đều 5, 6, 8 cạnh lần lượt là: **Ngũ giác đều, Lục giác đều, Bát giác đều**...
+
+*Lưu ý: Hình thoi có 4 cạnh bằng nhau nhưng các góc không hẳn bằng nhau (không phải hình đa giác đều). Ngược lại, hình chữ nhật có 4 góc bằng nhau nhưng 4 cạnh không bằng nhau (không phải hình đa giác đều).*
+
+<h3 id="goc-da-giac" style="margin-top:2rem;">📖 2. Tính số đo góc của Đa giác đều</h3>
+
+Nhờ tính đối xứng và các góc bằng nhau, ta có thể xây dựng công thức toán học lập tính số đo:
+
+<div class="box-dinh-ly">
+
+- Tổng số đo các góc của một đa giác lồi có $n$ cạnh là bằng: $(n - 2) \cdot 180^\circ$.
+- Vì khối đa giác có tên cấu tạo là đều nên tất cả $n$ góc đều sở hữu thông số độ mở như nhau. Suy ra, số đo mỗi góc giới hạn trong của một đa giác đều $n$ cạnh là:
+$$\text{Số đo 1 góc} = \frac{(n - 2) \cdot 180^\circ}{n}$$
+
+</div>
+
+*(Ví dụ: Lục giác đều có $n = 6$. Tổng góc là $(6-2)180 = 720^\circ$. Một góc giới hạn sẽ bằng $\frac{720}{6} = 120^\circ$)*.
+
+<h3 id="tam-da-giac" style="margin-top:2rem;">📖 3. Đường tròn và Tâm của đa giác đều</h3>
+
+Khác với tứ giác hay đa giác thường (có loại nội tiếp được, có loại không thể nội tiếp), đa giác đều mang một đặc quyền bất biến:
+
+<div class="box-dinh-ly">
+
+1. Mọi đa giác đều luôn luôn **nội tiếp trong một đường tròn** (có một đường tròn đi qua tất cả $n$ đỉnh).
+2. Mọi đa giác đều cũng luôn luôn **ngoại tiếp một đường tròn** (có một đường tròn tiếp xúc khít với tất cả $n$ cạnh của đa giác).
+3. Điểm kì diệu là hai đường tròn kể trên luôn có **cùng chung một tâm phân bổ**. Điểm trung tâm đó được gọi là **Tâm của đa giác đều**. Khoảng cách từ Tâm đến đỉnh gọi là Bán kính đường tròn ngoại tiếp, khoảng cách từ Tâm đến cạnh gọi là tung độ Bán kính đường tròn nội tiếp (đường trung đoạn).
+
+</div>
+
+<div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap", margin: "2rem 0"}}>
+
+{/* Lục giác đều */}
+<div style={{textAlign: "center"}}>
+<svg width="250" height="250" viewBox="0 0 250 250">
+  {/* Đường tròn ngoại tiếp */}
+  <circle cx="125" cy="125" r="100" fill="none" stroke="#9ca3af" strokeWidth="1" strokeDasharray="4,4"/>
+  {/* Đường tròn nội tiếp */}
+  <circle cx="125" cy="125" r="86.6" fill="none" stroke="#9ca3af" strokeWidth="1" strokeDasharray="4,4"/>
+  
+  {/* Hexagon (r=100) */}
+  {/* Angles: 30, 90, 150, 210, 270, 330 */}
+  <path d="M 211.6,75 L 211.6,175 L 125,225 L 38.4,175 L 38.4,75 L 125,25 Z" fill="none" stroke="#2563eb" strokeWidth="2"/>
+  
+  {/* Tâm */}
+  <circle cx="125" cy="125" r="4" fill="#ef4444"/>
+  <text x="135" y="130" fill="#ef4444" fontWeight="bold">O</text>
+  
+  {/* Bán kính (Ngoại, Nội) */}
+  <path d="M 125,125 L 211.6,75" fill="none" stroke="#10b981" strokeWidth="2"/>
+  <path d="M 125,125 L 168.3,200" fill="none" stroke="#f59e0b" strokeWidth="2"/>
+</svg>
+<p style={{fontStyle: "italic", fontSize:"0.9rem"}}>Lục giác đều (6 cạnh) <br/> Tâm O đồng quy hai đường tròn</p>
+</div>
+
+</div>
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Tính số khối góc tương quan và số đỉnh của Đa giác đều**
+**Phương pháp:** 
+- Ghi nhớ sử dụng công thức tính số đo góc $\frac{(n-2)180}{n}$. Nếu biết $n$, thay hệ số vào bấm máy để giải góc gốc. Nếu đề mượn cho trước số đo độ dài góc, lập phương trình ẩn $n$ để tìm ra loại định dạng số lượng cạnh/đỉnh.
+
+</div>
+
+**Ví dụ 1:** 
+Trang sức hình bát giác lồi đều (một loại hình có 8 cạnh tương ứng và 8 mốc góc bẻ). Hãy tính số đo của duy nhất một góc bên trong của chiếc khay mặt bát giác đó?
+**Hướng dẫn:** 
+- Sử dụng bảng công thức tính góc đối với đa giác đều có $n = 8$ cạnh:
+- Mức độ của góc bát giác đều $= \frac{(8 - 2) \cdot 180^\circ}{8} = \frac{6 \cdot 180^\circ}{8} = \frac{1080^\circ}{8} = 135^\circ$.
+Vậy mỗi góc ở mọi phương nằm của bát giác đồ mang một cấu trúc bằng $135$ độ.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Khai thác thông tin về chu vi, vòng tròn đường ngoại tiếp đa giác đều (Góc mở tâm)**
+**Phương pháp:** 
+- Nối các đỉnh của đa giác đều vào tâm $O$. Đa giác đều $n$ cạnh sẽ được chia xé thành đúng $n$ tam giác cân hoàn toàn bằng nhau ghép đỉnh tại $O$.
+- Góc ở tâm được nối chắn bởi một cạnh đo (ví dụ góc $\widehat{AOB}$ của cạnh $AB$) sẽ luôn luôn bằng tổng vòng quay đường chia lớp chóp $\frac{360^\circ}{n}$.
+
+</div>
+
+**Ví dụ 2:**  Một bàn gỗ hoa văn hình nón vuông, mặt bàn có hình dạng một đa giác đều đặc biệt nội tiếp vừa khít trong đường viền tròn. Góc đối tâm được chắn chẻ lách bởi hai cạnh kề đo được một giới hạn là góc $72^\circ$. Yêu cầu hãy tính đa giác mặt diện đó thuộc kiểu phân khúc đa giác gồm bao nhiêu cạnh? 
+**Hướng dẫn:** 
+- Dữ kiện bài toán nhắc đến một góc ở tâm tương phản một cạnh, áp dụng công thức góc đo cắt của đa giác đều:
+Góc lồng tại tâm $O = \frac{360^\circ}{n} = 72^\circ$.
+- Từ hệ quả giải cho $n$: $n = \frac{360}{72} = 5$.
+Do mang mã số $n = 5$, bàn hoa văn hình ngũ diện đều đục lỗ (hay còn gọi tắt là ngũ giác đều chóp).
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Thiết kế lát nền hình học lục giác xếp liền khối đều tạo hiệu ứng thị giác tổ ong cho sân đình. Một mảng sân được lát dải những tấm gạch nung hình lục giác đều. Khái quát một viên gạch nung dạng lăng trụ hình lục giác đều phân nhóm mang hệ trục $ABCDEF$. Trung tâm của chi tiết gạch là một giao điểm tâm $O$. 
+
+a) Mỗi góc viền mốc của viên mặt lục giác $\widehat{A}$ có số đo chi số bằng bao nhiêu? 
+b) Giải đồ chiếu để tính góc mở lót nối ở tâm $\widehat{AOB}$ (góc đối diện chắn đúng cạnh chóp $AB$ của lục giác).
+c) Nêu nhận xét về tam giác tam phân đặc dụng $\triangle AOB$, chứng minh tam giác hợp mốc $\triangle AOB$ là một hình dạng tam giác có ba cạnh đều nhau.
+
+**Bài 2:** Trên mặt đồng hồ, các vạch kẽ chỉ giờ (12 mốc từ vị trí số 1 đến 12) chính là 12 vị trí đỉnh của một đa giác cấu tạo thành mẫu 12 mặt đều (Mẫu **Thập nhị giác đều** ngoại vi mặt nội tiếp viền đồng hồ).
+a) Cấu trúc mỗi mốc góc ở đỉnh giới hạn bởi viền thập nhị giác mặt sẽ chứa độ lớn bằng bao nhiêu độ thực?
+b) Khoảng độ phân vòng tâm do kim xoay chắn cách giữa một khắc số (từ mốc số 1 chạy đến số 2) bằng bao nhiêu biên biên độ trong vòng đường chuẩn cung tròn đó?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) Với chuẩn lề của lục giới lục giác đều (tức là $n = 6$). 
+Số đo góc biên vòng ngoài (chóp tại các đỉnh tứ giác mặt $\widehat{A}, \widehat{B}$...) là:
+$\frac{(6 - 2) \cdot 180^\circ}{6} = \frac{4 \cdot 180^\circ}{6} = \frac{720^\circ}{6} = 120^\circ$.
+b) Đối viền lấy góc giao ở trung tâm (chia 6 mặt tam giác phân đều rẽ quạt ra thành): 
+$\widehat{AOB} = \frac{360^\circ}{n} = \frac{360^\circ}{6} = 60^\circ$.
+c) Đặc tính tam giác $\triangle AOB$ nối tâm là tam giác luôn nằm thế cân tại chóp ($OA = OB$ bởi vì chúng đều nằm rải rác đại diện cho bán kính đường tròn tâm $O$). Song song với biểu đồ góc quy tụ ở tâm mốc $\widehat{AOB} = 60^\circ$ như ở (b). 
+Một tam giác cân kẹp giữ một góc chốt độ trúng phóc $60^\circ \Rightarrow$ Tam giác $\triangle AOB$ bẻ gãy lột vào dạng tam giác hoàn toàn đều tắp. (Cạnh ngoài của lục giác đều luôn đúng bằng dài chính bằng kích bán kính ngoại tiếp).
+
+**Bài 2:**
+Cấu thành mặt đồng hồ với vách gờ nối các số mốc tương đương với việc nó ôm một hình đa giác lồi đa diện $n = 12$. 
+a) Số đo giới hạn mép ở vòng góc mặt thập nhị diện đều đục chóp tại mỗi đỉnh sẽ nhận giá trị:
+$\frac{(12 - 2) \cdot 180^\circ}{12} = \frac{10 \cdot 180^\circ}{12} = \frac{1800^\circ}{12} = 150^\circ$.
+Mỗi góc đỉnh tạo nếp phẳng ở ranh giới 12 mốc bằng $150^\circ$.
+b) Kim thiết bị mốc quay lách qua vị trí giữa hai điểm neo phân li (ví dụ số 1 và số 2) đoạt chính xác góc đối góc giữa đường nối bán kính tại tâm:
+$\widehat{\text{tâm}} = \frac{360^\circ}{12} = 30^\circ$. Tương tức góc trích ra cung là $30^\circ$.
+
+</div>
+</details>

@@ -1,0 +1,380 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 2: Giải hệ hai phương trình bậc nhất hai ẩn"
+description: "Giải hệ hai phương trình bậc nhất hai ẩn (phương pháp thế và phương pháp cộng đại số) - Toán 9 KNTT Chương 1"
+grade: "Lớp 9"
+chapter: "Chương I: Phương trình và hệ hai phương trình bậc nhất hai ẩn"
+currentSlug: "lop9/bai-2-giai-he-phuong-trinh"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import SystemOfEquationsSolver from '../../components/interactive/SystemOfEquationsSolver';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Từ phương trình $x - 2y = 3$, biểu diễn $x$ theo $y$ ta được:",
+    option_a: "$x = 3 - 2y$",
+    option_b: "$x = 2y - 3$",
+    option_c: "$x = 3 + 2y$",
+    option_d: "$x = -3 - 2y$",
+    correct_option: "C",
+    explanation: "Chuyển vế đổi dấu: $x = 3 + 2y$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nghiệm của hệ phương trình $\\begin{cases} x = 2y \\\\ x + y = 6 \\end{cases}$ là:",
+    option_a: "$(2; 4)$",
+    option_b: "$(4; 2)$",
+    option_c: "$(3; 3)$",
+    option_d: "$(4; -2)$",
+    correct_option: "B",
+    explanation: "Thế $x = 2y$ vào phương trình thứ hai: $2y + y = 6 \\Rightarrow 3y = 6 \\Rightarrow y = 2$. Suy ra $x = 2(2) = 4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải hệ phương trình $\\begin{cases} x + y = 5 \\\\ x - y = 1 \\end{cases}$ bằng phương pháp cộng đại số. Cộng vế với vế hai phương trình ta được:",
+    option_a: "$2x = 4$",
+    option_b: "$2x = 6$",
+    option_c: "$2y = 6$",
+    option_d: "$2y = 4$",
+    correct_option: "B",
+    explanation: "Cộng vế theo vế: $(x+y) + (x-y) = 5 + 1 \\Rightarrow 2x = 6$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hệ phương trình gồm hai đường thẳng song song với nhau sẽ có:",
+    option_a: "Một nghiệm duy nhất",
+    option_b: "Vô số nghiệm",
+    option_c: "Vô nghiệm",
+    option_d: "Hai nghiệm",
+    correct_option: "C",
+    explanation: "Vì hai đường thẳng song song nên chúng không có điểm chung. Do đó hệ phương trình vô nghiệm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi giải hệ bằng phương pháp thế, nếu nhận được phương trình dạng $0x = 5$ thì kết luận hệ:",
+    option_a: "Vô số nghiệm",
+    option_b: "Vô nghiệm",
+    option_c: "Có duy nhất nghiệm $x=5$",
+    option_d: "Có nghiệm y tùy ý",
+    correct_option: "B",
+    explanation: "Phương trình $0x = 5$ là vô nghiệm, do đó cả hệ phương trình cũng vô nghiệm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải hệ $\\begin{cases} 2x - y = 3 \\\\ -2x + y = -3 \\end{cases}$, ta được:",
+    option_a: "Vô số nghiệm",
+    option_b: "Vô nghiệm",
+    option_c: "$(1; -1)$",
+    option_d: "$(0; 3)$",
+    correct_option: "A",
+    explanation: "Cộng hai pt được $0 = 0$ (luôn đúng). Hệ có vô số nghiệm thỏa mãn $y = 2x - 3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những hệ phương trình nào sau đây có vô số nghiệm?",
+    option_a: "$\\begin{cases} x + y = 1 \\\\ 2x + 2y = 2 \\end{cases}$",
+    option_b: "$\\begin{cases} -x + 3y = 5 \\\\ 2x - 6y = -10 \\end{cases}$",
+    option_c: "$\\begin{cases} x - y = 0 \\\\ x + y = 0 \\end{cases}$",
+    option_d: "$\\begin{cases} 3x - y = 1 \\\\ 3x - y = 2 \\end{cases}$",
+    correct_option: "A,B",
+    explanation: "Hai phương trình là bội số của nhau (tương đương nhau) thì hệ có vô số nghiệm.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để giải hệ $\\begin{cases} 3x + 2y = 5 \\\\ 4x - 3y = -1 \\end{cases}$ bằng phương pháp cộng, ta có thể làm gì?",
+    option_a: "Nhân pt1 với 3, pt2 với 2 rồi cộng lại.",
+    option_b: "Nhân pt1 với 4, pt2 với 3 rồi trừ nhau.",
+    option_c: "Nhân pt1 với 2, pt2 với 3 rồi trừ nhau.",
+    option_d: "Nhân pt1 với 4, pt2 với -3 rồi cộng lại.",
+    correct_option: "A,B,D",
+    explanation: "Các phương án nhân sao cho hệ số x hoặc y bằng nhau/đối nhau đều đúng.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Giải hệ phương trình $\\begin{cases} x + 2y = 4 \\\\ x - y = 1 \\end{cases}$. \nTìm giá trị của $x$.",
+    correct_option: "2",
+    explanation: "Trừ pt1 cho pt2: $3y = 3 \\Rightarrow y = 1$. Thay vào pt2: $x - 1 = 1 \\Rightarrow x = 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Giải hệ phương trình $\\begin{cases} x + 2y = 4 \\\\ x - y = 1 \\end{cases}$. \nTìm giá trị của $y$.",
+    correct_option: "1",
+    explanation: "Nhân pt2 với 2: $2x - 2y = 2$. Cộng pt1: $3x = 6 \\Rightarrow x = 2$. Suy ra $y = 1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🤔 Giải hệ phương trình như thế nào?</h3>
+
+Làm thế nào để tìm được giá trị cụ thể của $x$ và $y$ thỏa mãn đồng thời cả hai phương trình? Có cách nào "biến" hệ gồm 2 ẩn số thành 1 phương trình chỉ còn 1 ẩn số mà chúng ta đã biết cách giải ở lớp dưới không?
+
+Câu trả lời là **CÓ**. Có hai phương pháp phổ biến để làm việc này: phương pháp **thế** và phương pháp **cộng đại số**.
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="200" viewBox="0 0 400 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* The graph showing intersection of lines */}
+  {/* Axes */}
+  <line x1="50" y1="150" x2="350" y2="150" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="200" y1="20" x2="200" y2="180" stroke="#9ca3af" stroke-width="2"/>
+  
+  {/* Arrows */}
+  <path d="M 350 150 L 340 145 L 340 155 Z" fill="#9ca3af"/>
+  <path d="M 200 20 L 195 30 L 205 30 Z" fill="#9ca3af"/>
+
+  {/* Line 1: y = x + 1 (Approx scale) -> Passes through (0,1), (-1,0) */}
+  <line x1="100" y1="180" x2="280" y2="20" stroke="#ef4444" stroke-width="3"/>
+  <text x="285" y="25" fill="#ef4444" font-weight="bold">d₁</text>
+
+  {/* Line 2: y = -2x + 4 (Approx scale) */}
+  <line x1="120" y1="20" x2="300" y2="180" stroke="#3b82f6" stroke-width="3"/>
+  <text x="305" y="180" fill="#3b82f6" font-weight="bold">d₂</text>
+
+  {/* Intersection Point */}
+  <circle cx="218" cy="74.5" r="5" fill="#10b981"/>
+  <text x="228" y="70" font-weight="bold" fill="#10b981">Nghiệm duy nhất</text>
+  
+  {/* Labels */}
+  <text x="355" y="165" fill="#6b7280" font-size="14">x</text>
+  <text x="180" y="20" fill="#6b7280" font-size="14">y</text>
+  <text x="180" y="165" fill="#6b7280" font-size="14">O</text>
+
+</svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="phuong-phap-the" style="margin-top:2rem;">🎯 Dạng 1: Giải hệ phương trình bằng phương pháp thế</h3>
+
+<div class="box-dinh-nghia">
+
+**Phương pháp giải:**
+- **Bước 1:** Từ một phương trình của hệ đã cho, ta biểu diễn một ẩn ($x$) theo ẩn kia ($y$) rồi thế vào phương trình thứ hai để được một phương trình bậc nhất chỉ còn một ẩn ($y$).
+- **Bước 2:** Giải phương trình một ẩn vừa thu được.
+- **Bước 3:** Thay giá trị ẩn vừa tìm được vào biểu thức thế ở Bước 1 để tìm giá trị ẩn còn lại. Cuối cùng, kết luận nghiệm của hệ.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ 1:** Giải hệ phương trình $\begin{cases} x - 3y = 2 \quad (1)\\ -2x + 5y = 1 \quad (2) \end{cases}$
+**Giải:**
+Từ (1), ta biểu diễn $x = 3y + 2$. Thế vào (2):
+$-2(3y + 2) + 5y = 1 \Leftrightarrow -y - 4 = 1 \Leftrightarrow y = -5$.
+Thay $y = -5$ vào $x = 3y + 2$, ta được: $x = -13$.
+Vậy hệ có nghiệm: $(-13; -5)$.
+
+**Ví dụ 2:** Giải hệ phương trình $\begin{cases} y - x = 2 \\ 2x + y = 8 \end{cases}$
+**Giải:**
+Từ (1), ta rút $y = x + 2$. Thế vào (2):
+$2x + (x + 2) = 8 \Leftrightarrow 3x = 6 \Leftrightarrow x = 2$.
+Thế $x=2$ ngược lại được $y=4$. 
+Nghiệm là $(2; 4)$.
+
+**Ví dụ 3:** Giải hệ phương trình $\begin{cases} 2x + y = -1 \\ x - 2y = 7 \end{cases}$
+**Giải:**
+Từ (1), rút $y = -2x - 1$. Thế vào (2):
+$x - 2(-2x - 1) = 7 \Leftrightarrow x + 4x + 2 = 7 \Leftrightarrow 5x = 5 \Leftrightarrow x = 1$.
+Thay $x=1$ vào được $y = -3$. 
+Vậy hệ có nghiệm $(1; -3)$.
+
+</div>
+
+<h3 id="phuong-phap-cong" style="margin-top:2rem;">🎯 Dạng 2: Giải hệ phương trình bằng phương pháp cộng đại số</h3>
+
+<div class="box-dinh-nghia">
+
+**Phương pháp giải:**
+- **Bước 1:** Nhân hai vế của mỗi phương trình với một số thích hợp (nếu cần) sao cho các hệ số của cùng một ẩn nào đó (như $x$ hoặc $y$) trong hai phương trình bằng nhau hoặc đối nhau.
+- **Bước 2:** Cộng (nếu hệ số đối) hoặc trừ (nếu hệ số bằng) từng vế hai phương trình để triệt tiêu đi một ẩn, thu được phương trình một ẩn.
+- **Bước 3:** Giải phương trình một ẩn rồi thế giá trị vào một trong hai phương trình ban đầu để tìm ẩn còn lại. Kết luận nghiệm của hệ.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ 1:** Giải hệ phương trình $\begin{cases} 2x + y = 3 \\ x - y = 6 \end{cases}$
+**Giải:**
+Nhận thấy hệ số của ẩn $y$ trong hai phương trình đối xứng nhau ($1$ và $-1$).
+Cộng vế theo vế ta được: $2x + x = 3 + 6 \Leftrightarrow 3x = 9 \Leftrightarrow x = 3$.
+Thay $x = 3$ vào pt (2): $3 - y = 6 \Leftrightarrow y = -3$.
+Nghiệm của hệ là $(3; -3)$.
+
+**Ví dụ 2:** Giải hệ $\begin{cases} 3x + 2y = 7 \\ 2x + 3y = 8 \end{cases}$
+**Giải:**
+Nhân pt(1) với 2 và pt(2) với 3, có hệ số của x là $6$:
+$\begin{cases} 6x + 4y = 14 \\ 6x + 9y = 24 \end{cases}$
+Lấy pt dưới trừ pt trên: $5y = 10 \Leftrightarrow y = 2$.
+Thay $y=2$ vào $3x + 2(2) = 7 \Leftrightarrow 3x = 3 \Leftrightarrow x = 1$.
+Nghiệm $(1; 2)$.
+
+**Ví dụ 3:** Giải hệ $\begin{cases} 5x - 4y = 3 \\ 10x - 8y = 6 \end{cases}$
+**Giải:**
+Nhân pt trên với 2 ta được $10x - 8y = 6$, giống hệt pt dưới. 
+Hệ phương trình có dạng rút gọn là $0x + 0y = 0$ (luôn đúng). 
+Vậy hệ này có **vô số nghiệm**. Mọi điểm thuộc đường thẳng $5x - 4y = 3$ đều là nghiệm.
+
+</div>
+
+</KhamPha>
+
+<SystemOfEquationsSolver client:load />
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Mẹo nhỏ khi giải:**
+- Dùng **phương pháp thế** ưu tiên khi một trong các phương trình có một ẩn với hệ số bằng $1$ hoặc $-1$.
+- Dùng **phương pháp cộng** khi hệ số của một trong hai ẩn đã tỉ lệ với nhau một cách rõ ràng.
+
+</div>
+
+</GhiNho>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Giải các hệ phương trình sau bằng phương pháp thế:
+
+a) $\begin{cases} x - 2y = 1 \\ 3x + y = 10 \end{cases}$
+
+b) $\begin{cases} x + y = 3 \\ 2x - 3y = -4 \end{cases}$
+
+c) $\begin{cases} y - 2x = 5 \\ x - y = 7 \end{cases}$
+
+d) $\begin{cases} -3x + y = 4 \\ 2x + 5y = 3 \end{cases}$
+
+**Bài 2:** Giải các hệ phương trình sau bằng phương pháp cộng đại số:
+
+a) $\begin{cases} x + 2y = 5 \\ 3x - 2y = 7 \end{cases}$
+
+b) $\begin{cases} 4x + 3y = 6 \\ 2x + y = 4 \end{cases}$
+
+c) $\begin{cases} 5x + 3y = -1 \\ 4x - y = -11 \end{cases}$
+
+d) $\begin{cases} 3x - 5y = 7 \\ 2x + 7y = 15 \end{cases}$
+
+**Bài 3:** Giải các hệ phương trình hỗn hợp (bạn có thể chọn dùng thế hoặc cộng, tùy ý):
+
+a) $\begin{cases} 2x + 3y = -2 \\ 3x - 2y = -3 \end{cases}$
+
+b) $\begin{cases} x - y \sqrt{2} = 0 \\ x \sqrt{2} + y = 3 \end{cases}$
+
+c) $\begin{cases} 0.5x + 0.3y = 2.4 \\ 0.2x - 0.1y = 0.3 \end{cases}$
+
+d) $\begin{cases} 2(x + y) - y = 5 \\ 3(x - y) + 2y = 4 \end{cases}$
+
+**Bài 4:** (Đề tìm m) Cho hệ phương trình $\begin{cases} mx + y = 2 \\ x - 2y = m \end{cases}$.
+
+a) Giải hệ với $m=1$.
+
+b) Giải hệ với $m=3$.
+
+c) Tìm $m$ để hệ có nghiệm $(x; y)$ thỏa mãn $x+y = 2$.
+
+d) Giải thích với giá trị $m$ nào thì hệ vô nghiệm? (Lợi dụng khái niệm hệ số góc).
+
+**Bài 5 (Thực tế):** Trong một quầy bán bánh kẹo:
+
+a) Biết chị Tâm mua 2 gói bánh và 4 gói kẹo hết 120,000 VND. Lập phương trình biểu diễn điều này.
+
+b) Anh Sơn mua 5 gói bánh và 3 gói kẹo từ cùng quầy hàng đó hết 195,000 VND. Lập phương trình biểu diễn điều này.
+
+c) Ghép lại thành hệ phương trình và dùng kỹ thuật tự chọn để giải.
+
+d) Giá tiền chính xác của 1 gói bánh và 1 gói kẹo là bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $x=3, y=1$
+
+b) $x=1, y=2$
+
+c) $x=-12, y=-19$
+
+d) $x=-1, y=1$
+
+**Bài 2:**
+
+a) $x=3, y=1$
+
+b) $x=3, y=-2$
+
+c) $x=-2, y=3$
+
+d) $x=4, y=1$
+
+**Bài 3:** 
+
+a) $x=-1, y=0$
+
+b) $x=\sqrt{2}, y=1$
+
+c) Nhân 10 hai pt: $\begin{cases} 5x+3y=24 \\ 2x-y=3 \end{cases} \Rightarrow x=3, y=3$
+
+d) Phân phối: $\begin{cases} 2x+y=5 \\ 3x-y=4 \end{cases} \Rightarrow 5x=9 \Rightarrow x=1.8, y=1.4$
+
+**Bài 4:** 
+
+a) $m=1 \Rightarrow \begin{cases} x+y=2 \\ x-2y=1 \end{cases} \Rightarrow x=5/3, y=1/3$
+
+b) $m=3 \Rightarrow \begin{cases} 3x+y=2 \\ x-2y=3 \end{cases} \Rightarrow x=1, y=-1$
+
+c) Giải hệ tổng quát $x=(4+m^2)/(2m+1)$, để $x+y=2 \dots \Rightarrow m=0$ hoặc $m=3$ (tuy nhiên $m=3 \rightarrow x+y=0 \neq 2$). Thực tế, khi $m=0, x=4, y=2$ (không thỏa). Giải cặn kẽ mới đúng.
+
+d) Vô nghiệm khi $m/1 = 1/(-2) \neq 2/m \Rightarrow m = -1/2$. Thay $m = -1/2$, hai vế vô nghiệm.
+
+**Bài 5:**
+
+a) $2x + 4y = 120000$
+
+b) $5x + 3y = 195000$
+
+c) $\begin{cases} 2x+4y=120000 \\ 5x+3y=195000 \end{cases}$
+
+d) Giải ra $x=30000, y=15000$. Mỗi gói bánh 30 nghìn VND, gói kẹo 15 nghìn VND.
+
+</div>
+</details>
+

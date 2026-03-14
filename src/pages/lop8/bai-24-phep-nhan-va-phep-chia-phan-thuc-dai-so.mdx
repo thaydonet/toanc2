@@ -1,0 +1,455 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 24: Phép nhân và phép chia phân thức đại số"
+description: "Quy tắc nhân, chia phân thức đại số và biểu thức hỗn hợp - Toán 8 KNTT Chương 6"
+grade: "Lớp 8"
+chapter: "Chương 6: Phân thức đại số"
+currentSlug: "lop8/bai-24-phep-nhan-va-phep-chia-phan-thuc-dai-so"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{2}{x} \\cdot \\dfrac{x}{3}$ (với $x \\neq 0$):",
+    option_a: "$\\dfrac{2}{3}$",
+    option_b: "$\\dfrac{2x}{3x}$",
+    option_c: "$\\dfrac{2x^2}{3}$",
+    option_d: "$\\dfrac{6}{x^2}$",
+    correct_option: "A",
+    explanation: "$\\dfrac{2}{x} \\cdot \\dfrac{x}{3} = \\dfrac{2x}{3x} = \\dfrac{2}{3}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân thức nghịch đảo của $\\dfrac{x-1}{x+2}$ là:",
+    option_a: "$\\dfrac{x+2}{x-1}$",
+    option_b: "$\\dfrac{1-x}{2+x}$",
+    option_c: "$\\dfrac{x-1}{x+2}$",
+    option_d: "$\\dfrac{-(x-1)}{x+2}$",
+    correct_option: "A",
+    explanation: "Phân thức nghịch đảo được tạo bằng cách đổi tử và mẫu: $\\dfrac{x+2}{x-1}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{x+1}{x-2} : \\dfrac{x+1}{x+3}$ (với $x \\neq -1, 2, -3$):",
+    option_a: "$\\dfrac{x+3}{x-2}$",
+    option_b: "$1$",
+    option_c: "$\\dfrac{(x+1)^2}{(x-2)(x+3)}$",
+    option_d: "$\\dfrac{x-2}{x+3}$",
+    correct_option: "A",
+    explanation: "$\\dfrac{x+1}{x-2} : \\dfrac{x+1}{x+3} = \\dfrac{x+1}{x-2} \\cdot \\dfrac{x+3}{x+1} = \\dfrac{(x+1)(x+3)}{(x-2)(x+1)} = \\dfrac{x+3}{x-2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{x^2-4}{x+1} \\cdot \\dfrac{x+1}{x-2}$ (với $x \\neq -1, 2$):",
+    option_a: "$x+2$",
+    option_b: "$x-2$",
+    option_c: "$\\dfrac{x+2}{x-2}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "$\\dfrac{x^2-4}{x+1} \\cdot \\dfrac{x+1}{x-2} = \\dfrac{(x-2)(x+2)}{x+1} \\cdot \\dfrac{x+1}{x-2} = \\dfrac{(x-2)(x+2)(x+1)}{(x+1)(x-2)} = x+2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{2x}{x+3} : \\dfrac{4x^2}{x^2-9}$ (với $x \\neq 0, \\pm 3$):",
+    option_a: "$\\dfrac{x-3}{2x}$",
+    option_b: "$\\dfrac{2(x-3)}{x}$",
+    option_c: "$\\dfrac{x+3}{2x}$",
+    option_d: "$\\dfrac{x-3}{x}$",
+    correct_option: "A",
+    explanation: "$\\dfrac{2x}{x+3} : \\dfrac{4x^2}{x^2-9} = \\dfrac{2x}{x+3} \\cdot \\dfrac{(x-3)(x+3)}{4x^2} = \\dfrac{2x(x-3)(x+3)}{4x^2(x+3)} = \\dfrac{x-3}{2x}$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Rút gọn $\\dfrac{x^2-1}{x+2} \\cdot \\dfrac{x+2}{x-1}$ (với $x \\neq -2, 1$):",
+    option_a: "$x+1$",
+    option_b: "$x-1$",
+    option_c: "$1$",
+    option_d: "$\\dfrac{x+1}{x-1}$",
+    correct_option: "A",
+    explanation: "$\\dfrac{(x-1)(x+1)}{x+2} \\cdot \\dfrac{x+2}{x-1} = \\dfrac{(x-1)(x+1)(x+2)}{(x+2)(x-1)} = x+1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phép tính nào sau đây **đúng**?",
+    option_a: "$\\dfrac{a}{b} \\cdot \\dfrac{c}{d} = \\dfrac{ac}{bd}$",
+    option_b: "$\\dfrac{a}{b} : \\dfrac{c}{d} = \\dfrac{ad}{bc}$",
+    option_c: "$\\dfrac{x}{y} : \\dfrac{x}{z} = \\dfrac{z}{y}$",
+    option_d: "$\\dfrac{1}{x} \\cdot x = 1$ (với $x \\neq 0$)",
+    correct_option: "A,B,C,D",
+    explanation: "A) Quy tắc nhân ✓\nB) Quy tắc chia ✓\nC) $\\dfrac{x}{y} \\cdot \\dfrac{z}{x} = \\dfrac{z}{y}$ ✓\nD) $\\dfrac{1 \\cdot x}{x} = 1$ ✓",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính $\\dfrac{x+2}{x-1} \\cdot \\dfrac{x-1}{x+2}$ (với $x \\neq \\pm 2, 1$). Kết quả bằng bao nhiêu?",
+    correct_option: "1",
+    explanation: "$\\dfrac{(x+2)(x-1)}{(x-1)(x+2)} = 1$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\dfrac{!a#0!x}{x+1} \\cdot \\dfrac{x+1}{!b#0!}$ (với $x \\neq -1$):",
+    option_a: "$\\dfrac{!a!x}{!b!}$",
+    option_b: "$\\dfrac{!tinh: !a! * !b!!x}{x+1}$",
+    option_c: "$\\dfrac{!a!}{!b!x}$",
+    option_d: "$!a!x + !b!$",
+    correct_option: "A",
+    explanation: "$\\dfrac{!a!x(x+1)}{!b!(x+1)} = \\dfrac{!a!x}{!b!}$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">✖️ Mở đầu — Tại sao cần nhân chia phân thức?</h3>
+
+Phép nhân và chia phân thức xuất hiện trong nhiều bài toán thực tế:
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Diện tích hình chữ nhật</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Dài $\dfrac{x+1}{2}$, rộng $\dfrac{4}{x+1}$: $$S = \frac{x+1}{2} \cdot \frac{4}{x+1} = 2$$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🚗</div>
+    <strong>Vận tốc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Quãng đường $\dfrac{x^2-4}{x}$, thời gian $\dfrac{x-2}{x}$: $$v = \frac{x^2-4}{x} : \frac{x-2}{x} = x+2$$</p>
+  </div>
+</div>
+
+💬 *Phép nhân chia phân thức đại số tương tự như phân số, nhưng cần chú ý rút gọn!*
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="phep-nhan">📖 1. Phép nhân phân thức đại số</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc nhân:** Muốn nhân hai phân thức, ta nhân các tử thức với nhau và nhân các mẫu thức với nhau:
+
+$$\frac{A}{B} \cdot \frac{C}{D} = \frac{A \cdot C}{B \cdot D}$$
+
+**Lưu ý:** Nên rút gọn trước khi nhân để đơn giản hóa tính toán.
+
+</div>
+
+**Ví dụ 1:** Tính $\dfrac{3}{x+1} \cdot \dfrac{x+1}{6}$ (với $x \neq -1$).
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Cách 1 (nhân trực tiếp):
+
+$$\frac{3}{x+1} \cdot \frac{x+1}{6} = \frac{3(x+1)}{6(x+1)} = \frac{3}{6} = \frac{1}{2}$$
+
+Cách 2 (rút gọn trước):
+
+$$\frac{3}{x+1} \cdot \frac{x+1}{6} = \frac{3}{6} = \frac{1}{2}$$
+
+</div>
+
+**Ví dụ 2:** Tính $\dfrac{x^2-4}{x+3} \cdot \dfrac{x+3}{x+2}$ (với $x \neq -3, -2$).
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Phân tích: $x^2-4 = (x-2)(x+2)$
+
+$$\frac{(x-2)(x+2)}{x+3} \cdot \frac{x+3}{x+2} = \frac{(x-2)(x+2)(x+3)}{(x+3)(x+2)} = x-2$$
+
+</div>
+
+<h3 id="phep-chia" style="margin-top:2rem;">➗ 2. Phép chia phân thức đại số</h3>
+
+<div class="box-dinh-ly">
+
+**Định nghĩa phân thức nghịch đảo:** Hai phân thức $\dfrac{A}{B}$ và $\dfrac{B}{A}$ gọi là nghịch đảo của nhau nếu:
+
+$$\frac{A}{B} \cdot \frac{B}{A} = 1$$
+
+**Quy tắc chia:** Muốn chia phân thức $\dfrac{A}{B}$ cho phân thức $\dfrac{C}{D}$ (với $C \neq 0$), ta nhân $\dfrac{A}{B}$ với phân thức nghịch đảo của $\dfrac{C}{D}$:
+
+$$\frac{A}{B} : \frac{C}{D} = \frac{A}{B} \cdot \frac{D}{C} = \frac{A \cdot D}{B \cdot C}$$
+
+</div>
+
+**Ví dụ 3:** Tính $\dfrac{x}{x-1} : \dfrac{x^2}{x^2-1}$ (với $x \neq 0, \pm 1$).
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Phân tích: $x^2-1 = (x-1)(x+1)$
+
+$$\frac{x}{x-1} : \frac{x^2}{(x-1)(x+1)} = \frac{x}{x-1} \cdot \frac{(x-1)(x+1)}{x^2}$$
+
+$$= \frac{x(x-1)(x+1)}{x^2(x-1)} = \frac{x+1}{x}$$
+
+</div>
+
+**Ví dụ 4:** Tính $\dfrac{2x+4}{x-3} : \dfrac{x+2}{x^2-9}$ (với $x \neq -2, \pm 3$).
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Phân tích:
+- Tử phân thức 1: $2x+4 = 2(x+2)$
+- Mẫu phân thức 2: $x^2-9 = (x-3)(x+3)$
+
+$$\frac{2(x+2)}{x-3} : \frac{x+2}{(x-3)(x+3)} = \frac{2(x+2)}{x-3} \cdot \frac{(x-3)(x+3)}{x+2}$$
+
+$$= \frac{2(x+2)(x-3)(x+3)}{(x-3)(x+2)} = 2(x+3) = 2x+6$$
+
+</div>
+
+<h3 id="hon-hop" style="margin-top:2rem;">🔀 3. Biểu thức hỗn hợp</h3>
+
+<div class="box-dinh-nghia">
+
+**Biểu thức hỗn hợp** là biểu thức chứa nhiều phép toán: cộng, trừ, nhân, chia phân thức.
+
+**Thứ tự thực hiện:**
+1. Thực hiện phép tính trong ngoặc trước
+2. Thực hiện phép nhân, chia từ trái sang phải
+3. Thực hiện phép cộng, trừ từ trái sang phải
+
+</div>
+
+**Ví dụ 5:** Tính $\left(\dfrac{1}{x} + \dfrac{1}{x+1}\right) \cdot \dfrac{x(x+1)}{2}$ (với $x \neq 0, -1$).
+
+<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Tính trong ngoặc:
+
+$$\frac{1}{x} + \frac{1}{x+1} = \frac{x+1}{x(x+1)} + \frac{x}{x(x+1)} = \frac{2x+1}{x(x+1)}$$
+
+**Bước 2:** Nhân:
+
+$$\frac{2x+1}{x(x+1)} \cdot \frac{x(x+1)}{2} = \frac{(2x+1) \cdot x(x+1)}{2 \cdot x(x+1)} = \frac{2x+1}{2}$$
+
+</div>
+
+**Ví dụ 6:** Rút gọn $\dfrac{x}{x-1} : \left(\dfrac{x}{x-1} - \dfrac{1}{x}\right)$ (với $x \neq 0, 1$).
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Bước 1:** Tính trong ngoặc:
+
+$$\frac{x}{x-1} - \frac{1}{x} = \frac{x^2}{x(x-1)} - \frac{x-1}{x(x-1)} = \frac{x^2-x+1}{x(x-1)}$$
+
+**Bước 2:** Chia:
+
+$$\frac{x}{x-1} : \frac{x^2-x+1}{x(x-1)} = \frac{x}{x-1} \cdot \frac{x(x-1)}{x^2-x+1} = \frac{x^2}{x^2-x+1}$$
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📌 4. Tính chất của phép nhân</h3>
+
+<div class="box-dinh-ly">
+
+Phép nhân phân thức có các tính chất:
+
+1. **Giao hoán**: $\dfrac{A}{B} \cdot \dfrac{C}{D} = \dfrac{C}{D} \cdot \dfrac{A}{B}$
+
+2. **Kết hợp**: $\left(\dfrac{A}{B} \cdot \dfrac{C}{D}\right) \cdot \dfrac{E}{F} = \dfrac{A}{B} \cdot \left(\dfrac{C}{D} \cdot \dfrac{E}{F}\right)$
+
+3. **Phân phối với phép cộng**: $\dfrac{A}{B} \cdot \left(\dfrac{C}{D} + \dfrac{E}{F}\right) = \dfrac{A}{B} \cdot \dfrac{C}{D} + \dfrac{A}{B} \cdot \dfrac{E}{F}$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Diện tích hình chữ nhật:**
+
+Một mảnh đất hình chữ nhật có chiều dài $\dfrac{x^2-4}{x}$ m và chiều rộng $\dfrac{2x}{x+2}$ m. Tính diện tích.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Diện tích:
+
+$$S = \frac{x^2-4}{x} \cdot \frac{2x}{x+2} = \frac{(x-2)(x+2)}{x} \cdot \frac{2x}{x+2}$$
+
+$$= \frac{(x-2)(x+2) \cdot 2x}{x(x+2)} = 2(x-2) = 2x-4 \text{ (m}^2\text{)}$$
+
+Nếu $x = 5$: $S = 2 \cdot 5 - 4 = 6$ m²
+
+</div>
+
+---
+
+**📝 Bài toán 2 — Vận tốc:**
+
+Một xe đi quãng đường $\dfrac{x^2+3x+2}{x}$ km trong thời gian $\dfrac{x+2}{x}$ giờ. Tính vận tốc.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Vận tốc:
+
+$$v = \frac{x^2+3x+2}{x} : \frac{x+2}{x} = \frac{x^2+3x+2}{x} \cdot \frac{x}{x+2}$$
+
+Phân tích: $x^2+3x+2 = (x+1)(x+2)$
+
+$$v = \frac{(x+1)(x+2)}{x} \cdot \frac{x}{x+2} = \frac{(x+1)(x+2) \cdot x}{x(x+2)} = x+1 \text{ (km/h)}$$
+
+Nếu $x = 4$: $v = 5$ km/h
+
+</div>
+
+---
+
+**📝 Bài toán 3 — Công suất:**
+
+Máy A có công suất $\dfrac{x}{x-1}$ sản phẩm/giờ. Máy B có công suất gấp $\dfrac{x-1}{2}$ lần máy A. Tính công suất máy B.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Công suất máy B:
+
+$$P_B = \frac{x}{x-1} \cdot \frac{x-1}{2} = \frac{x(x-1)}{2(x-1)} = \frac{x}{2} \text{ (sản phẩm/giờ)}$$
+
+Nếu $x = 6$: $P_B = 3$ sản phẩm/giờ
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Phép nhân**: $\dfrac{A}{B} \cdot \dfrac{C}{D} = \dfrac{A \cdot C}{B \cdot D}$
+- **Phép chia**: $\dfrac{A}{B} : \dfrac{C}{D} = \dfrac{A}{B} \cdot \dfrac{D}{C}$
+- **Nghịch đảo**: $\dfrac{A}{B}$ và $\dfrac{B}{A}$ nghịch đảo nhau
+- **Thứ tự**: Ngoặc → Nhân, chia → Cộng, trừ
+- **Mẹo**: Rút gọn trước khi nhân để đơn giản hóa
+
+</GhiNho>
+
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ):** Thực hiện phép nhân:
+
+a) $\dfrac{3}{x} \cdot \dfrac{x}{5}$ (với $x \neq 0$)
+
+b) $\dfrac{x+1}{x-2} \cdot \dfrac{x-2}{x+1}$ (với $x \neq -1, 2$)
+
+c) $\dfrac{2x}{x+3} \cdot \dfrac{x+3}{4}$ (với $x \neq -3$)
+
+d) $\dfrac{x^2-4}{x+1} \cdot \dfrac{x+1}{x-2}$ (với $x \neq -1, 2$)
+
+**Bài 2 (Dễ):** Tìm phân thức nghịch đảo của:
+
+a) $\dfrac{x-3}{x+5}$
+
+b) $\dfrac{2x^2}{x-1}$
+
+c) $x+2$ (viết dưới dạng phân thức)
+
+d) $\dfrac{x^2-9}{x+3}$
+
+**Bài 3 (Trung bình):** Thực hiện phép chia:
+
+a) $\dfrac{x}{x-1} : \dfrac{x^2}{x^2-1}$ (với $x \neq 0, \pm 1$)
+
+b) $\dfrac{x^2-4}{x+3} : \dfrac{x-2}{x^2-9}$ (với $x \neq -3, 2, 3$)
+
+c) $\dfrac{2x+6}{x-5} : \dfrac{x+3}{x^2-25}$ (với $x \neq -3, \pm 5$)
+
+d) $\dfrac{x^3-8}{x+1} : \dfrac{x^2-4}{x^2-1}$ (với $x \neq -1, \pm 2, 1$)
+
+**Bài 4 (Khá):** Rút gọn các biểu thức sau:
+
+a) $\left(\dfrac{1}{x} + \dfrac{1}{x+1}\right) \cdot \dfrac{x(x+1)}{2}$ (với $x \neq 0, -1$)
+
+b) $\dfrac{x}{x-2} : \left(\dfrac{x}{x-2} - \dfrac{2}{x}\right)$ (với $x \neq 0, 2$)
+
+c) $\left(\dfrac{x+1}{x-1} - \dfrac{x-1}{x+1}\right) : \dfrac{4x}{x^2-1}$ (với $x \neq 0, \pm 1$)
+
+d) $\dfrac{x^2-4}{x^2-9} \cdot \dfrac{x+3}{x-2} : \dfrac{x+2}{x-3}$ (với $x \neq \pm 2, \pm 3$)
+
+**Bài 5 (Khó - Ứng dụng thực tế):** Một hình chữ nhật có:
+- Chiều dài: $\dfrac{x^2+2x}{x-1}$ cm
+- Chiều rộng: $\dfrac{x-1}{x+2}$ cm
+
+a) Viết biểu thức tính diện tích hình chữ nhật.
+
+b) Rút gọn biểu thức diện tích.
+
+c) Viết biểu thức tính chu vi hình chữ nhật.
+
+d) Rút gọn biểu thức chu vi.
+
+e) Tính tỉ số giữa diện tích và chu vi.
+
+f) Nếu $x = 3$ cm, tính diện tích và chu vi cụ thể.
+
+g) Tìm $x$ để diện tích bằng 12 cm².
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\dfrac{3}{5}$; b) $1$; c) $\dfrac{x}{2}$; d) $x+2$
+
+**Bài 2:** a) $\dfrac{x+5}{x-3}$; b) $\dfrac{x-1}{2x^2}$; c) $\dfrac{1}{x+2}$; d) $\dfrac{x+3}{x-3}$
+
+**Bài 3:** a) $\dfrac{x+1}{x}$; b) $(x+2)(x+3)$; c) $2(x-5)$; d) $\dfrac{(x^2+2x+4)(x-1)}{x+1}$
+
+**Bài 4:** a) $\dfrac{2x+1}{2}$; b) $\dfrac{x^2}{x^2-2x-4}$; c) $1$; d) $1$
+
+**Bài 5:** a) $S = \dfrac{x^2+2x}{x-1} \cdot \dfrac{x-1}{x+2}$; b) $S = x$ cm²; c) $P = 2\left(\dfrac{x^2+2x}{x-1} + \dfrac{x-1}{x+2}\right)$; d) $P = \dfrac{2(x^3+2x^2+x-2)}{(x-1)(x+2)}$; e) Tỉ số phức tạp; f) $S = 3$ cm², $P \approx 7{,}6$ cm; g) $x = 12$ cm
+
+</div>
+</details>

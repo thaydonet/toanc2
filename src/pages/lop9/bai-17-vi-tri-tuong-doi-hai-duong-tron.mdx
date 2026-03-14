@@ -1,0 +1,303 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 17: Vị trí tương đối của hai đường tròn"
+description: "Cắt nhau, tiếp xúc, không giao nhau và tính chất đường nối tâm - Toán 9 KNTT Chương 5"
+grade: "Lớp 9"
+chapter: "Chương V: Đường tròn"
+currentSlug: "lop9/bai-17-vi-tri-tuong-doi-hai-duong-tron"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai đường tròn lồng vào nhau và giao nhau thì có tối đa bao nhiêu điểm chung?",
+    option_a: "1",
+    option_b: "2",
+    option_c: "3",
+    option_d: "4",
+    correct_option: "B",
+    explanation: "Đường tròn và Đường tròn chỉ có thể cắt nhau tại tối đa 2 điểm chung. Đoạn nối 2 điểm này gọi là dây chung.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho 2 đường tròn (O; R) và (O'; r) tiếp xúc ngoài với nhau ($R > r$). Khoảng cách giữa 2 tâm $OO'$ được tính bằng:",
+    option_a: "$OO' = R - r$",
+    option_b: "$OO' = R + r$",
+    option_c: "$OO' > R + r$",
+    option_d: "$OO' < R - r$",
+    correct_option: "B",
+    explanation: "Khi tiếp xúc ngoài, 2 đường tròn chạm mông nhau ở 1 điểm nằm chính giữa đoạn nối tâm, nên khoảng cách 2 tâm bằng tổng 2 bán kính.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho (O; 5cm) và (O'; 3cm). Khoảng cách tâm $OO' = 10\\text{cm}$. Vị trí tương đối của 2 đường tròn này là:",
+    option_a: "Cắt nhau",
+    option_b: "Tiếp xúc ngoài",
+    option_c: "Tiếp xúc trong",
+    option_d: "Ở ngoài nhau (Không giao nhau)",
+    correct_option: "D",
+    explanation: "Tổng 2 bán kính là $5 + 3 = 8$. Vì $OO' = 10 > 8$ tức là khoảng cách vươn Tâm quá xa, nên chúng không thể chạm tới nhau (Ngoài nhau).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điều kiện để hai đường tròn (O; R) và (O'; r) CẮT NHAU tại 2 điểm là gì ($R \\ge r$)?",
+    option_a: "$OO' = R - r$",
+    option_b: "$OO' < R - r$",
+    option_c: "$R - r < OO' < R + r$",
+    option_d: "$OO' > R + r$",
+    correct_option: "C",
+    explanation: "Để cắt nhau, đường nối tâm phải nhỏ hơn tổng 2 bán kính (để không bị rời xa) nhưng phải lớn hơn hiệu 2 bán kính (để không bị nuốt chửng dồn vào bên trong vòng to).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trục đối xứng của TỔNG THỂ hình vẽ gồm hai đường tròn phân biệt là đường nào?",
+    option_a: "Dây chung (nếu cắt nhau)",
+    option_b: "Đường nối hai tâm",
+    option_c: "Tiếp tuyến chung",
+    option_d: "Đường kính nằm ngang",
+    correct_option: "B",
+    explanation: "Đường thẳng đi qua hai tâm $OO'$ (Đường nối tâm) chính là trục đối xứng hoàn hảo chia dọc 2 đường tròn thành 2 nửa sinh đôi đối lập.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường tròn (O) và (O') cắt nhau tại 2 điểm phân biệt A và B. Mệnh đề nào sau đây luôn ĐÚNG?",
+    option_a: "$OO'$ song song với $AB$",
+    option_b: "$OO'$ vuông góc với $AB$ tại môt điểm bất kì",
+    option_c: "$OO'$ là đường trung trực của đoạn $AB$",
+    option_d: "$AB$ là đường trung trực của đoạn $OO'$",
+    correct_option: "C",
+    explanation: "Tính chất tuyệt đối: Đường nối hai tâm là ĐƯỜNG TRUNG TRỰC của DÂY CHUNG $AB$. Nghĩa là nó chia đôi dây $AB$ và vuông góc thẳng đứng tại chỗ cắt.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những trường hợp nào Hai Đường Tròn SẼ KHÔNG CÓ BẤT KỲ điểm chung nào?",
+    option_a: "Ngoài nhau",
+    option_b: "Tiếp xúc ngoài",
+    option_c: "Đựng nhau",
+    option_d: "Đồng tâm",
+    correct_option: "A,C,D",
+    explanation: "A: 2 vòng tròn xa nhau tít tắp. C: Vòng nhỏ chui rúc trọn lọt thỏm trong vòng to nhưng không đụng mép. D: Đồng tâm là 1 ví dụ đặc biệt của Đựng nhau (chỉ có 1 tâm). B: Tiếp xúc ngoài là dính mông 1 điểm chung nên sài rứt.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Nếu 2 đường tròn tiếp xúc nhau (dù tiếp xúc trong hay ngoài), thì \"Tiếp Điểm\" bắt buộc phải nằm ở đâu?",
+    option_a: "Nằm tại trung điểm cung",
+    option_b: "Nằm trên đường nối Tâm $OO'$",
+    option_c: "Cách đều 2 tâm $O$ và $O'$",
+    option_d: "Có khoảng cách tới tâm bằng Bán kính của mỗi đường",
+    correct_option: "B,D",
+    explanation: "Trung tâm đắc địa: Điểm chạm duy nhất đấy luốn cắm rễ nằm trên đường thẳng vạch nối hai tâm (Đường $OO'$). Nó KHÔNG cách đều 2 tâm trừ phi 2 hình tròn to bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hai đường tròn (O; 10cm) và (O'; 6cm) tiếp xúc TRONG với nhau. Hỏi khoảng cách giữa 2 tâm $OO'$ là bao nhiêu cm?",
+    correct_option: "4",
+    explanation: "Tiếp xúc TRONG (vòng nhỏ nằm cọ mép trong lòng vòng to): $OO' = R - r = 10 - 6 = 4\\text{cm}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho 2 đường tròn (O; 8cm) và (O'; 5cm) có đường nối tâm $OO' = 15\\text{cm}$. Hỏi số điểm chung của hai đường tròn này là bao nhiêu?",
+    correct_option: "0",
+    explanation: "Tính Tổng 2 bán kính $R + r = 8 + 5 = 13\\text{cm}$. Vì $OO' (15) > R+r (13)$, hai vòng văng ra Ngoài Nhau $\\Rightarrow$ Có 0 điểm chung.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">⚙️ Hệ thống bánh răng ăn khớp</h3>
+
+Bạn đã bao giờ tháo tung vỏ môt chiếc đồng hồ đeo tay cơ học hay hộp số xe đạp chưa?
+Bạn sẽ thấy một kiệt tác truyền động gồm nhiều **Bánh răng hình tròn** ghép sát vào nhau. Răng của bánh nhỏ cắn rập khuôn vào răng bánh lớn. Chúng không bao giờ bị trượt ra ngoài, cũng không bao giờ nuốt chửng vào lõi đè lên nhau. 
+Theo ngôn ngữ Toán học, các bánh răng này đang ở trạng thái **\"Tiếp xúc ngoài\"** với nhau. Và khoảng cách giữa con trục xoay cốt lõi (Tâm) của 2 bánh răng được xưởng tính toán sao cho NHẤT ĐỊNH chiều dài nối tâm phải BẰNG TỔNG 2 BÁN KÍNH của 2 bánh (Cỡ răng). Chỉ chệch đi 1 milimet, cỗ máy sẽ lập tức kẹt cứng hoặc rỗng gai.
+
+Đó là lý do ta phải học cách xác định vị trí tương đối giữa hai \"Chiếc bánh\" hình tròn.
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="250" height="150" viewBox="0 0 250 150">
+  {/* Left Gear */}
+  <circle cx="80" cy="75" r="50" fill="#cbd5e1" stroke="#64748b" stroke-width="4" stroke-dasharray="10 6"/>
+  <circle cx="80" cy="75" r="8" fill="#475569"/>
+  <line x1="80" y1="75" x2="130" y2="75" stroke="#ef4444" stroke-width="2"/>
+  <text x="95" y="65" font-size="12" fill="#dc2626" font-weight="bold">R (50)</text>
+  
+  {/* Right Gear */}
+  <circle cx="160" cy="75" r="30" fill="#94a3b8" stroke="#475569" stroke-width="4" stroke-dasharray="8 6"/>
+  <circle cx="160" cy="75" r="6" fill="#1e293b"/>
+  <line x1="160" y1="75" x2="130" y2="75" stroke="#3b82f6" stroke-width="2"/>
+  <text x="140" y="65" font-size="12" fill="#2563eb" font-weight="bold">r (30)</text>
+  
+  {/* Center line (OO') */}
+  <line x1="80" y1="75" x2="160" y2="75" stroke="#1f2937" stroke-width="2" opacity="0.5" stroke-dasharray="4 4"/>
+  <text x="100" y="95" font-size="14" font-weight="bold">O ────── O'</text>
+  <text x="110" y="115" font-size="12" fill="#1f2937">Khoảng cách OO' = 80</text>
+</svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="vi-tri-tuong-doi" style="margin-top:2rem;">📖 1. Ba vị trí tương đối và Công thức so sánh</h3>
+
+Cho hai đường tròn riêng biệt $(O; R)$ và $(O'; r)$ (Quy ước luôn viết và tính vòng to trước, vẽ $R \ge r$).
+Phụ thuộc vào **Khoảng cách nối tâm $d = OO'$**, ta chia ra làm 3 gia tộc sau:
+
+<div class="box-dinh-nghia">
+
+**1. Hai đường tròn Ở ngoài nhau / Đựng nhau (0 điểm chung):**
+- **Ngoài nhau:** Hai vòng tách rời hoàn toàn. $OO' > R + r$.
+- **Đựng nhau (Nút lọt thỏm):** Vòng nhỏ chui rọt bên trong vỏ vòng to. $OO' < R - r$.
+*(Đặc biệt: Nếu $O$ rơi trúng nếp đỉnh $O'$ thì $OO' = 0$. Hai đường tròn Đồng Tâm).*
+
+**2. Hai đường tròn Tiếp xúc nhau (Có ĐÚNG 1 điểm chung):**
+- **Tiếp xúc ngoài:** Cọ sát bờ tường. $OO' = R + r$.
+- **Tiếp xúc trong:** Úp bát úp nhau (Đứa lớn bao bọc nhưng cọ viền màng ở 1 bên mấu chốt). $OO' = R - r$.
+*🔥 Điểm chung vinh dự đó gọi là **Tiếp điểm**, và nó bắt buộc phải nằm trên đường ngấm rãnh $OO'$.*
+
+**3. Hai đường tròn Cắt nhau (Có ĐÚNG 2 điểm chung):**
+Hai vòng móc ngoặc xoắn xuýt vào nhau như nhẫn luồn thẻ.
+- Điều kiện bồng lai: **$R - r < OO' < R + r$**. 
+*(Đây chính là hình hài của Bất đẳng thức tam giác).*
+Hai điểm chung tạo thành môt đoạn thẳng gọi là **Dây chung**. 
+
+</div>
+
+<h3 id="tinh-chat-duong-tam" style="margin-top:2rem;">📖 2. Sức mạnh của Đường Nối Tâm</h3>
+
+Trong 2 cái bánh đúc với nhau, đường thẳng phi từ đỉnh bánh 1 sang tâm bánh 2 có uy quyền tuyệt đối.
+Đường thẳng $OO'$ là **Trục Đối Xứng** của hình hài 2 cái bánh cộng lại. Điển hình nhất ở thế cờ CẮT NHAU:
+
+<div class="box-dinh-ly">
+
+**Định lý Dây Chung:**
+Nếu hai đường tròn cắt nhau tại $A$ và $B$ (Dây chung $AB$), thì:
+Đường nối hai tâm $OO'$ LÀ **ĐƯỜNG TRUNG TRỰC** của dây chung $AB$.
+$\Rightarrow OO'$ sẽ chia $AB$ làm đôi và cắt chẻ xéo ở môt Góc Vuông Hoàn Hảo $90^\circ$.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Bẫy ngược đời?** 
+Bạn có thể hỏi lại: $AB$ liệu có là trung trực của $OO'$ không vậy? Trả lời là KHÔNG. Trừ phi 2 vòng tròn bằng kích thước anh em sinh đôi ($R = r$). Vòng to sẽ nuốt dây $AB$ kéo dạt sang bờ của nhà bên nhỏ hơn. Nên $OO'$ mới là trung trực, $AB$ chỉ là trung... tuyến cắt vuông nửa nạc nửa mỡ mà thôi.
+
+</div>
+
+<h3 id="tiep-tuyen-chung" style="margin-top:2rem;">📖 3. Tiếp tuyến chung</h3>
+
+Khoảng không gian có thể tạo ra môt đường vạch phấn chải ép tiếp xúc và cọ vào thành của CẢ HAI hình tròn CÙNG MỘT LÚC:
+- **Tiếp tuyến chung NGOÀI:** Không bị kẹt ở phần cắt rãnh giữa 2 vòng (như sợi xích xe đạp bao bọc ngoài 2 đĩa líp).
+- **Tiếp tuyến chung TRONG:** Bị kẹp chéo ngang chữ X lấn vào khoảng không gữa đường viền 2 vòng (Giống hình chạc ná cao su kẹp ngang).
+
+*(Số lượng tiếp tuyến chung hoàn toàn phụ thuộc vào việc 2 đứa nó có xít gần lại với nhau hay lồng bao nhiêu cái vào nhau! Bạn có thể tự tập kéo nháp và đếm thử).*
+
+</KhamPha>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Hệ thống phân định 3 chốt:**
+Bài tập mà bắt tìm Khoảng cách mấu $h$ (Ví dụ bắt tìm độ dài Dây Chung AB của 2 hình Cắt nhau) thì bí kíp ở đây là Kẻ tam giác Tứ diện từ O và O' cắm chung vào Dây. Dùng Py-ta-go 2 lần (hoặc Công thức đường cao $\frac{R \cdot r}{OO'}$ nếu Tam giác 2 tâm là Tam giác vuông tại góc tiếp điểm) để chọc thẳng ra đoạn giao cắt nhỏ, rồi X2 Mức đáp án!
+
+</div>
+
+</GhiNho>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho 2 đường tròn $(O; R)$ và $(O'; r)$ biết $R = 8\text{cm}, r = 3\text{cm}$. Lần lượt khảo sạt các tình huống sau, tính khoảng cách 2 gốc tâm $OO'$ và nêu số điểm tương đồng?
+
+a) Hai vòng tiếp xúc ngoài nhau.
+
+b) Hai vòng tiếp xúc vè mép sườn trong nhau.
+
+c) Hai vòng cắt nhau tạo Dây và tạo thành 1 Tam Giác Đều ở khoảng khuyên kẹp góc? (Tìm môt giá trị bất kỳ của OO').
+
+**Bài 2:** Biết (A) và (B) là 2 đường tròn Cắt nhau tại 2 đỉnh C và D. Dây chung vạch góc $CD = 10\text{cm}$. Khoảng dốc $AB$ cắt rãnh $CD$ tại H.
+
+a) Chiều dài móc đoạn $CH$ bằng bao nhiêu?
+
+b) Nếu móc khoảng cách $AH = 4\text{cm}$ và $BH = 2\text{cm}$. Bán kính của đường tròn gốc (B) bằng bao nhiêu cm?
+
+**Bài 3:** Vẽ 2 tâm phân ly $(O_1; 6\text{cm})$ và $(O_2; 4\text{cm})$ sao cho $O_1O_2 = 12\text{cm}$. 
+Chúng có cọ rọt giao nhau điểm nào không? Nêu rành rọt số Lượng Tiếp Tuyến Chung MÀ Kẻ đè chéo bên Ngoài và xọc Trong? Mấy Trục Tất Cả?
+
+**Bài 4:** Khẩu súng bắn ná chạc Y. Bạn có môt rễ cây Cấu tạo là đường tròn 1 có R=5 tiếp xúc ngoài đường tròn R=5 kề bên. Cọng thun buộc quàng lướt từ viền lườn đỉnh Ngoài đường 1 luồn sang lườn viền Đỉnh Ngoại 2.
+Tính Chu Vi chiều dài mảng Thun co rãn đó nối ngang nối vắt ngang. Bao nhiêu vòng quấn và Dọc Ngang Bằng bao nhiêu cm?
+
+**Bài 5 (Nâng cao):** Hai đường chéo lồng khuyên cắt nhau tại I. Từ O móc tới $R = 15\text{cm}$ và $r = 13\text{cm}$. Tuyến Dây chung chéo chia góc D $= 24\text{cm}$. 
+Dùng tính chất Dây kẹp Trung Trực, dốc ngầm độ dài $OO'$ là tổng của 2 nét chéo nào? Bạn cần Py-ta-go lấy khoảng dốc tới đài ngang bao nhiêu độ rồi bồi 2 đoạn lại ra được con số tuyệt mĩ?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $OO' = R+r = 8+3=11\text{cm}$ (Có 1 điểm chung).
+
+b) $OO' = R-r = 8-3=5\text{cm}$ (Có 1 điểm chung màng kẹp).
+
+c) Điểm dốc $R-r < x < R+r \Rightarrow 5 < OO' < 11$. Ví dụ lấy bừa $OO' = 9$.
+
+**Bài 2:**
+
+a) $AB$ cắt ngang chia $CD$ ở giữa mông, H làm chốt $\Rightarrow CH = HD = 10 / 2 = 5\text{cm}$. (Tính chất $AB \perp CD$).
+
+b) Tam giác BHC vuông ở H. Bắn kính $r = BC = \sqrt{CH^2 + BH^2} = \sqrt{5^2+2^2} = \sqrt{25+4} = \sqrt{29}$ (tầm $5.385\text{cm}$).
+
+**Bài 3:**
+$R_1 + R_2 = 10$. Khoảng d $OO' = 12 > 10 \Rightarrow$ Chúng nằm Ngoại Vực Nhau (tách biệt xa nhau). Không có điểm cọ mút.
+Có môt định mức: 2 Vành ngoài nhau KHÔNG rập có tối đa 4 Tuyến kẹp chung vạch vẽ bút chì (2 Cọng Ngoại sượt viền dài nằm 2 lề Ngang, 2 Cọng Nội xẻ hình thoi X nẹt vào hốc lõm giữa 2 vành).
+
+**Bài 4:**
+Do hai Vòng Cọ Xát Ngoại có đường đính $R=5$ bằng nhau chằn chặn. Khoảng cách cháp $OO'=10$.
+Hai vòng Thắt Cọng Cung Ngoại bằng nhau $\Rightarrow$ Đường kẹp Thun sào Ngang sẽ tạo thành Trực Chéo của môt Hình Chữ Nhật mút thắt $5 - 5 = 10$ sào dọc sào ngang ngang trục. Chiều Dài móc gác dây chính bằng Mảng Mốc nối đục đáy $OO'$.
+Khút dây ngang chéo $= 10\text{cm}$ trên mút rệ ngoài, $10\text{cm}$ móc rệ kẹp dưới..
+Chu kỳ luồn lườn bọc vòng tính cung vòng $C - C_{con}$.
+
+**Bài 5:**
+Gọi H là giao viền $OO'$ với cọng dây CD. Do $OO'$ Trung Trực chẻ góc 90 độ $CD \Rightarrow CH = 12\text{cm}$.
+Đoạn $OO' = OH + HO'$.
+Vuông trái: $OH^2 = OC^2 - CH^2 = 15^2 - 12^2 = 225 - 144 = 81 \Rightarrow OH = 9\text{cm}$.
+Vuông Phải: $O'H^2 = O'C^2 - CH^2 = 13^2 - 12^2 = 169 - 144 = 25 \Rightarrow O'H = 5\text{cm}$.
+$\Rightarrow$ Toàn Tuyến Ốc $OO' = 9 + 5 = 14\text{cm}$. Phép tính mầu nhiệm ghép của môn toán!
+
+</div>
+</details>

@@ -1,0 +1,532 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 31: Cách tính xác suất của biến cố bằng tỉ số"
+description: "Công thức tính xác suất cổ điển và ứng dụng - Toán 8 KNTT Chương 8"
+grade: "Lớp 8"
+chapter: "Chương 8: Mở đầu về tính xác suất của biến cố"
+currentSlug: "lop8/bai-31-tinh-xac-suat"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố chắc chắn là:",
+    option_a: "$1$",
+    option_b: "$0$",
+    option_c: "$0{,}5$",
+    option_d: "$2$",
+    correct_option: "A",
+    explanation: "Biến cố chắc chắn luôn xảy ra nên $P(A) = 1$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung một đồng xu, xác suất xuất hiện mặt ngửa là:",
+    option_a: "$\\dfrac{1}{2}$",
+    option_b: "$\\dfrac{1}{3}$",
+    option_c: "$\\dfrac{2}{3}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "$P(A) = \\dfrac{n(A)}{n(\\Omega)} = \\dfrac{1}{2}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc, xác suất xuất hiện mặt chẵn là:",
+    option_a: "$\\dfrac{1}{2}$",
+    option_b: "$\\dfrac{1}{3}$",
+    option_c: "$\\dfrac{2}{3}$",
+    option_d: "$\\dfrac{1}{6}$",
+    correct_option: "A",
+    explanation: "Có 3 mặt chẵn (2,4,6) trong 6 mặt: $P(A) = \\dfrac{3}{6} = \\dfrac{1}{2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố không thể là:",
+    option_a: "$0$",
+    option_b: "$1$",
+    option_c: "$0{,}5$",
+    option_d: "$-1$",
+    correct_option: "A",
+    explanation: "Biến cố không thể không bao giờ xảy ra nên $P(A) = 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong hộp có 3 bi đỏ và 7 bi xanh. Lấy ngẫu nhiên 1 bi, xác suất lấy được bi đỏ là:",
+    option_a: "$\\dfrac{3}{10}$",
+    option_b: "$\\dfrac{7}{10}$",
+    option_c: "$\\dfrac{3}{7}$",
+    option_d: "$\\dfrac{1}{3}$",
+    correct_option: "A",
+    explanation: "$P(A) = \\dfrac{3}{3+7} = \\dfrac{3}{10}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc, xác suất xuất hiện mặt lớn hơn 4 là:",
+    option_a: "$\\dfrac{1}{3}$",
+    option_b: "$\\dfrac{1}{2}$",
+    option_c: "$\\dfrac{2}{3}$",
+    option_d: "$\\dfrac{1}{6}$",
+    correct_option: "A",
+    explanation: "Có 2 mặt lớn hơn 4 (5,6): $P(A) = \\dfrac{2}{6} = \\dfrac{1}{3}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Với mọi biến cố $A$, xác suất $P(A)$ thỏa mãn:",
+    option_a: "$0 \\leq P(A) \\leq 1$",
+    option_b: "$P(A) \\geq 0$",
+    option_c: "$P(A) \\leq 1$",
+    option_d: "$P(A) > 0$",
+    correct_option: "A,B,C",
+    explanation: "Xác suất luôn nằm trong khoảng $[0, 1]$. D sai vì có thể $P(A) = 0$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Gieo hai con xúc xắc, xác suất để tổng hai mặt bằng 7 là $\\dfrac{a}{b}$ (phân số tối giản). Tính $a + b$.",
+    correct_option: "7",
+    explanation: "Có 6 cách trong 36: $P = \\dfrac{6}{36} = \\dfrac{1}{6}$. Vậy $a = 1, b = 6$, $a + b = 7$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong hộp có $!a#2!$ bi đỏ và $!b#2!$ bi xanh. Xác suất lấy được bi đỏ là:",
+    option_a: "$\\dfrac{!a!}{!tinh: !a! + !b!!}$",
+    option_b: "$\\dfrac{!b!}{!tinh: !a! + !b!!}$",
+    option_c: "$\\dfrac{!a!}{!b!}$",
+    option_d: "$\\dfrac{!tinh: !a! + !b!!}{!a!}$",
+    correct_option: "A",
+    explanation: "Xác suất = $\\dfrac{\\text{Số bi đỏ}}{\\text{Tổng số bi}} = \\dfrac{!a!}{!tinh: !a! + !b!!}$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Mở đầu — Đo lường khả năng</h3>
+
+Xác suất giúp ta đo lường khả năng xảy ra của một sự kiện:
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Xúc xắc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Xác suất ra mặt 6: $\\dfrac{1}{6} \\approx 16{,}7\\%$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🪙</div>
+    <strong>Đồng xu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Xác suất ra mặt ngửa: $\\dfrac{1}{2} = 50\\%$</p>
+  </div>
+</div>
+
+💬 *Xác suất là tỉ số giữa số kết quả thuận lợi và số kết quả có thể!*
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="cong-thuc">📖 1. Công thức tính xác suất</h3>
+
+<div class="box-dinh-ly">
+
+**Định nghĩa:** Xác suất của biến cố $A$ (ký hiệu $P(A)$) được tính bằng công thức:
+
+$$P(A) = \frac{n(A)}{n(\Omega)} = \frac{\text{Số kết quả thuận lợi}}{\text{Số kết quả có thể}}$$
+
+trong đó:
+- $n(A)$: Số kết quả thuận lợi cho biến cố $A$
+- $n(\Omega)$: Tổng số kết quả có thể
+
+**Điều kiện:** Các kết quả có thể phải có khả năng xảy ra như nhau (đồng khả năng).
+
+</div>
+
+**Ví dụ 1:** Tung một đồng xu, tính xác suất xuất hiện mặt ngửa.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+- Số kết quả có thể: $n(\Omega) = 2$ (Ngửa, Sấp)
+- Biến cố $A$: "Xuất hiện mặt ngửa"
+- Số kết quả thuận lợi: $n(A) = 1$
+
+$$P(A) = \frac{1}{2} = 0{,}5 = 50\%$$
+
+</div>
+
+**Ví dụ 2:** Gieo một con xúc xắc, tính xác suất xuất hiện mặt chẵn.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+- Số kết quả có thể: $n(\Omega) = 6$
+- Biến cố $A$: "Xuất hiện mặt chẵn" = $\{2, 4, 6\}$
+- Số kết quả thuận lợi: $n(A) = 3$
+
+$$P(A) = \frac{3}{6} = \frac{1}{2} = 50\%$$
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📊 2. Tính chất của xác suất</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất:**
+
+1. **Giới hạn:** $0 \leq P(A) \leq 1$ với mọi biến cố $A$
+
+2. **Biến cố chắc chắn:** $P(\Omega) = 1$
+
+3. **Biến cố không thể:** $P(\emptyset) = 0$
+
+4. **Biến cố đối:** $P(\overline{A}) = 1 - P(A)$
+
+</div>
+
+**Ví dụ 3:** Gieo một con xúc xắc:
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) Biến cố $A$: "Xuất hiện mặt nhỏ hơn 7" (chắc chắn)
+
+$$P(A) = \frac{6}{6} = 1$$
+
+b) Biến cố $B$: "Xuất hiện mặt 7" (không thể)
+
+$$P(B) = \frac{0}{6} = 0$$
+
+c) Biến cố $C$: "Xuất hiện mặt lẻ"
+
+$$P(C) = \frac{3}{6} = \frac{1}{2}$$
+
+Biến cố đối $\overline{C}$: "Xuất hiện mặt chẵn"
+
+$$P(\overline{C}) = 1 - P(C) = 1 - \frac{1}{2} = \frac{1}{2}$$
+
+</div>
+
+<h3 id="vi-du" style="margin-top:2rem;">✏️ 3. Các ví dụ tính xác suất</h3>
+
+**Ví dụ 4:** Trong hộp có 5 bi đỏ và 3 bi xanh. Lấy ngẫu nhiên 1 bi, tính xác suất:
+
+a) Lấy được bi đỏ
+
+b) Lấy được bi xanh
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tổng số bi: $5 + 3 = 8$
+
+a) Biến cố $A$: "Lấy được bi đỏ"
+
+$$P(A) = \frac{5}{8} = 0{,}625 = 62{,}5\%$$
+
+b) Biến cố $B$: "Lấy được bi xanh"
+
+$$P(B) = \frac{3}{8} = 0{,}375 = 37{,}5\%$$
+
+**Kiểm tra:** $P(A) + P(B) = \dfrac{5}{8} + \dfrac{3}{8} = 1$ ✓
+
+</div>
+
+**Ví dụ 5:** Rút ngẫu nhiên một lá bài từ bộ 52 lá, tính xác suất:
+
+a) Rút được lá bài cơ
+
+b) Rút được lá Át
+
+<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Biến cố $A$: "Rút được lá bài cơ"
+
+Có 13 lá bài cơ trong 52 lá:
+
+$$P(A) = \frac{13}{52} = \frac{1}{4} = 25\%$$
+
+b) Biến cố $B$: "Rút được lá Át"
+
+Có 4 lá Át (Át cơ, rô, chuồn, bích):
+
+$$P(B) = \frac{4}{52} = \frac{1}{13} \approx 7{,}7\%$$
+
+</div>
+
+**Ví dụ 6:** Gieo hai con xúc xắc, tính xác suất để tổng hai mặt bằng 7.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Số kết quả có thể: $n(\Omega) = 6 \times 6 = 36$
+
+Biến cố $A$: "Tổng hai mặt bằng 7"
+
+Các cặp: $(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)$
+
+Số kết quả thuận lợi: $n(A) = 6$
+
+$$P(A) = \frac{6}{36} = \frac{1}{6} \approx 16{,}7\%$$
+
+</div>
+
+<h3 id="bien-co-doi" style="margin-top:2rem;">🔄 4. Biến cố đối</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Biến cố đối của biến cố $A$ (ký hiệu $\overline{A}$) là biến cố xảy ra khi và chỉ khi $A$ không xảy ra.
+
+**Công thức:** $P(\overline{A}) = 1 - P(A)$
+
+</div>
+
+**Ví dụ 7:** Trong lớp có 30 học sinh, trong đó 18 nữ. Chọn ngẫu nhiên 1 học sinh.
+
+a) Tính xác suất chọn được học sinh nữ
+
+b) Tính xác suất chọn được học sinh nam
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Biến cố $A$: "Chọn được học sinh nữ"
+
+$$P(A) = \frac{18}{30} = \frac{3}{5} = 60\%$$
+
+b) Biến cố $\overline{A}$: "Chọn được học sinh nam"
+
+**Cách 1:** Tính trực tiếp
+
+Số học sinh nam: $30 - 18 = 12$
+
+$$P(\overline{A}) = \frac{12}{30} = \frac{2}{5} = 40\%$$
+
+**Cách 2:** Dùng công thức biến cố đối
+
+$$P(\overline{A}) = 1 - P(A) = 1 - \frac{3}{5} = \frac{2}{5} = 40\%$$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Xổ số:**
+
+Một vé số có 2 chữ số cuối từ 00 đến 99. Tính xác suất:
+
+a) Trúng giải đặc biệt (số 25)
+
+b) Trúng giải khuyến khích (2 chữ số cuối giống nhau)
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tổng số kết quả: $n(\Omega) = 100$ (từ 00 đến 99)
+
+a) Chỉ có 1 số 25:
+
+$$P(A) = \frac{1}{100} = 1\% = 0{,}01$$
+
+b) Các số có 2 chữ số giống nhau: 00, 11, 22, ..., 99
+
+Có 10 số như vậy:
+
+$$P(B) = \frac{10}{100} = \frac{1}{10} = 10\%$$
+
+</div>
+
+---
+
+**📝 Bài toán 2 — Kiểm tra chất lượng:**
+
+Một lô hàng có 100 sản phẩm, trong đó 8 sản phẩm lỗi. Lấy ngẫu nhiên 1 sản phẩm để kiểm tra.
+
+a) Tính xác suất lấy được sản phẩm tốt
+
+b) Tính xác suất lấy được sản phẩm lỗi
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Số sản phẩm tốt: $100 - 8 = 92$
+
+$$P(A) = \frac{92}{100} = 0{,}92 = 92\%$$
+
+b) Số sản phẩm lỗi: $8$
+
+$$P(B) = \frac{8}{100} = 0{,}08 = 8\%$$
+
+Hoặc: $P(B) = 1 - P(A) = 1 - 0{,}92 = 0{,}08 = 8\%$
+
+</div>
+
+---
+
+**📝 Bài toán 3 — Sinh nhật:**
+
+Trong một nhóm 30 người, tính xác suất có ít nhất 2 người cùng sinh nhật (giả sử 1 năm có 365 ngày).
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Biến cố $A$: "Có ít nhất 2 người cùng sinh nhật"
+
+Biến cố đối $\overline{A}$: "Tất cả đều khác sinh nhật"
+
+Tính $P(\overline{A})$ dễ hơn:
+
+- Người 1: chọn 1 trong 365 ngày
+- Người 2: chọn 1 trong 364 ngày còn lại
+- ...
+- Người 30: chọn 1 trong 336 ngày còn lại
+
+$$P(\overline{A}) = \frac{365 \times 364 \times ... \times 336}{365^{30}} \approx 0{,}2937$$
+
+$$P(A) = 1 - P(\overline{A}) \approx 1 - 0{,}2937 = 0{,}7063 \approx 70{,}6\%$$
+
+**Kết luận:** Xác suất khá cao (hơn 70%)!
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Công thức xác suất**: $P(A) = \dfrac{n(A)}{n(\Omega)}$
+- **Giới hạn**: $0 \leq P(A) \leq 1$
+- **Biến cố chắc chắn**: $P(\Omega) = 1$
+- **Biến cố không thể**: $P(\emptyset) = 0$
+- **Biến cố đối**: $P(\overline{A}) = 1 - P(A)$
+
+</GhiNho>
+
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ):** Tính xác suất trong các trường hợp sau:
+
+a) Tung một đồng xu, xác suất xuất hiện mặt sấp.
+
+b) Gieo một con xúc xắc, xác suất xuất hiện mặt 5.
+
+c) Rút một lá bài từ bộ 52 lá, xác suất rút được lá Át.
+
+d) Chọn ngẫu nhiên một số từ 1 đến 10, xác suất chọn được số chẵn.
+
+**Bài 2 (Dễ):** Gieo một con xúc xắc. Tính xác suất của các biến cố:
+
+a) Xuất hiện mặt chẵn.
+
+b) Xuất hiện mặt lớn hơn 4.
+
+c) Xuất hiện mặt nhỏ hơn 7.
+
+d) Xuất hiện mặt 7.
+
+
+**Bài 3 (Trung bình):** Trong hộp có 5 bi đỏ, 3 bi xanh và 2 bi vàng. Lấy ngẫu nhiên 1 bi.
+
+a) Tính xác suất lấy được bi đỏ.
+
+b) Tính xác suất lấy được bi xanh.
+
+c) Tính xác suất lấy được bi không phải màu đỏ.
+
+d) Tính xác suất lấy được bi đỏ hoặc vàng.
+
+**Bài 4 (Khá):** Tung hai đồng xu.
+
+a) Tính xác suất cả hai đều ngửa.
+
+b) Tính xác suất có ít nhất một mặt ngửa.
+
+c) Tính xác suất hai mặt khác nhau.
+
+d) Kiểm tra tổng các xác suất ở câu a, b, c có bằng 1 không?
+
+
+**Bài 5 (Khó - Ứng dụng thực tế):** 
+
+a) Gieo hai con xúc xắc. Tính xác suất để:
+   - Tổng hai mặt bằng 7.
+   - Tổng hai mặt lớn hơn 10.
+   - Hai mặt bằng nhau.
+
+b) Một lớp có 30 học sinh, trong đó 18 nữ. Chọn ngẫu nhiên 1 học sinh.
+   - Tính xác suất chọn được học sinh nữ.
+   - Tính xác suất chọn được học sinh nam.
+
+c) Một hộp có 10 sản phẩm, trong đó 2 sản phẩm lỗi. Lấy ngẫu nhiên 1 sản phẩm.
+   - Tính xác suất lấy được sản phẩm tốt.
+   - Tính xác suất lấy được sản phẩm lỗi.
+
+d) Xổ số có 2 chữ số cuối từ 00 đến 99. Tính xác suất:
+   - Trúng số 25.
+   - Trúng số có 2 chữ số giống nhau.
+   - Trúng số chia hết cho 5.
+
+e) Rút ngẫu nhiên một lá bài từ bộ 52 lá. Tính xác suất:
+   - Rút được lá bài cơ.
+   - Rút được lá K.
+   - Rút được lá bài đỏ (cơ hoặc rô).
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\dfrac{1}{2}$; b) $\dfrac{1}{6}$; c) $\dfrac{1}{13}$; d) $\dfrac{1}{2}$
+
+**Bài 2:** a) $\dfrac{1}{2}$; b) $\dfrac{1}{3}$; c) $1$; d) $0$
+
+**Bài 3:** a) $\dfrac{1}{2}$; b) $\dfrac{3}{10}$; c) $\dfrac{1}{2}$; d) $\dfrac{7}{10}$
+
+**Bài 4:** a) $\dfrac{1}{4}$; b) $\dfrac{3}{4}$; c) $\dfrac{1}{2}$; d) Không (vì các biến cố không rời nhau)
+
+**Bài 5:** a) $\dfrac{1}{6}, \dfrac{1}{12}, \dfrac{1}{6}$; b) $\dfrac{3}{5}, \dfrac{2}{5}$; c) $\dfrac{4}{5}, \dfrac{1}{5}$; d) $\dfrac{1}{100}, \dfrac{1}{10}, \dfrac{1}{5}$; e) $\dfrac{1}{4}, \dfrac{1}{13}, \dfrac{1}{2}$
+
+</div>
+</details>
