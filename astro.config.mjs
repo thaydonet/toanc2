@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://toanc2.pages.dev',
+  site: 'https://toan.booktoan.com',
   integrations: [
     react(),
     mdx({
