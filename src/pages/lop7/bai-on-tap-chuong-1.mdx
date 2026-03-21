@@ -1,0 +1,555 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 1 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 1 Toán 7 KNTT: Số hữu tỉ, tập hợp, cộng trừ, nhân chia, lũy thừa, thứ tự phép tính"
+grade: "Lớp 7"
+chapter: "Chương I: Số hữu tỉ"
+currentSlug: "lop7/bai-on-tap-chuong-1"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số hữu tỉ là số có thể viết dưới dạng:",
+    option_a: "$\\frac{a}{b}$ với $a, b \\in \\mathbb{Z}, b \\neq 0$",
+    option_b: "$\\frac{a}{b}$ với $a, b \\in \\mathbb{N}$",
+    option_c: "$a \\times b$ với $a, b \\in \\mathbb{Z}$",
+    option_d: "$a + b$ với $a, b \\in \\mathbb{Q}$",
+    correct_option: "A",
+    explanation: "Số hữu tỉ là số có thể viết dưới dạng $\\frac{a}{b}$ với $a, b \\in \\mathbb{Z}, b \\neq 0$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $\\frac{1}{2} + \\frac{1}{3}$ là:",
+    option_a: "$\\frac{5}{6}$",
+    option_b: "$\\frac{2}{5}$",
+    option_c: "$\\frac{1}{5}$",
+    option_d: "$\\frac{3}{5}$",
+    correct_option: "A",
+    explanation: "$\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $\\frac{2}{3} \\times \\frac{3}{4}$ là:",
+    option_a: "$\\frac{1}{2}$",
+    option_b: "$\\frac{6}{12}$",
+    option_c: "$\\frac{5}{7}$",
+    option_d: "$\\frac{2}{4}$",
+    correct_option: "A",
+    explanation: "$\\frac{2}{3} \\times \\frac{3}{4} = \\frac{6}{12} = \\frac{1}{2}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $\\frac{3}{4} \\div \\frac{1}{2}$ là:",
+    option_a: "$\\frac{3}{2}$",
+    option_b: "$\\frac{3}{8}$",
+    option_c: "$\\frac{1}{2}$",
+    option_d: "$\\frac{2}{3}$",
+    correct_option: "A",
+    explanation: "$\\frac{3}{4} \\div \\frac{1}{2} = \\frac{3}{4} \\times \\frac{2}{1} = \\frac{6}{4} = \\frac{3}{2}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của $(-2)^3$ là:",
+    option_a: "$-8$",
+    option_b: "$8$",
+    option_c: "$-6$",
+    option_d: "$6$",
+    correct_option: "A",
+    explanation: "$(-2)^3 = (-2) \\times (-2) \\times (-2) = -8$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của $\\left(\\frac{1}{2}\\right)^2$ là:",
+    option_a: "$\\frac{1}{4}$",
+    option_b: "$\\frac{1}{2}$",
+    option_c: "$\\frac{2}{4}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "$\\left(\\frac{1}{2}\\right)^2 = \\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thứ tự thực hiện phép tính đúng là:",
+    option_a: "Lũy thừa → Nhân, chia → Cộng, trừ",
+    option_b: "Cộng, trừ → Nhân, chia → Lũy thừa",
+    option_c: "Nhân, chia → Lũy thừa → Cộng, trừ",
+    option_d: "Lũy thừa → Cộng, trừ → Nhân, chia",
+    correct_option: "A",
+    explanation: "Thứ tự đúng: Lũy thừa → Nhân, chia (từ trái sang phải) → Cộng, trừ (từ trái sang phải)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $2 \\times 3^2 - 4 \\div 2$ là:",
+    option_a: "$16$",
+    option_b: "$14$",
+    option_c: "$18$",
+    option_d: "$12$",
+    correct_option: "A",
+    explanation: "$2 \\times 3^2 - 4 \\div 2 = 2 \\times 9 - 2 = 18 - 2 = 16$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số đối của $\\frac{3}{5}$ là:",
+    option_a: "$-\\frac{3}{5}$",
+    option_b: "$\\frac{5}{3}$",
+    option_c: "$\\frac{3}{-5}$",
+    option_d: "$-\\frac{5}{3}$",
+    correct_option: "A",
+    explanation: "Số đối của $\\frac{3}{5}$ là $-\\frac{3}{5}$ (hoặc $\\frac{-3}{5}$, $\\frac{3}{-5}$)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nghịch đảo của $\\frac{2}{3}$ là:",
+    option_a: "$\\frac{3}{2}$",
+    option_b: "$-\\frac{2}{3}$",
+    option_c: "$\\frac{2}{3}$",
+    option_d: "$\\frac{1}{3}$",
+    correct_option: "A",
+    explanation: "Số nghịch đảo của $\\frac{2}{3}$ là $\\frac{3}{2}$ vì $\\frac{2}{3} \\times \\frac{3}{2} = 1$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 1 — Số hữu tỉ</h3>
+
+Chương 1 là nền tảng quan trọng của Toán 7. Hãy cùng ôn tập lại toàn bộ kiến thức về số hữu tỉ, các phép tính và thứ tự thực hiện phép tính!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📚</div>
+    <strong>Tập hợp số hữu tỉ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Định nghĩa và biểu diễn</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
+    <strong>Phép tính</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cộng, trừ, nhân, chia</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
+    <strong>Lũy thừa</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thứ tự phép tính</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="so-huu-ti">1. Số hữu tỉ</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số hữu tỉ là số có thể viết dưới dạng $\frac{a}{b}$ với $a, b \in \mathbb{Z}, b \neq 0$.
+
+**Ký hiệu:** Tập hợp số hữu tỉ được ký hiệu là $\mathbb{Q}$.
+
+**Ví dụ:** $\frac{1}{2}, -\frac{3}{4}, 5, -2, 0$ đều là số hữu tỉ.
+
+</div>
+
+<h4 id="tap-hop-so-huu-ti">2. Tập hợp số hữu tỉ</h4>
+
+- Số tự nhiên: $\mathbb{N} = \{0, 1, 2, 3, ...\}$
+- Số nguyên: $\mathbb{Z} = \{..., -2, -1, 0, 1, 2, ...\}$
+- Số hữu tỉ: $\mathbb{Q} = \left\{\frac{a}{b} \mid a, b \in \mathbb{Z}, b \neq 0\right\}$
+
+**Quan hệ:** $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}$
+
+<h4 id="so-doi-so-nghich-dao">3. Số đối và số nghịch đảo</h4>
+
+**Số đối:** Số đối của $\frac{a}{b}$ là $-\frac{a}{b}$ (hoặc $\frac{-a}{b}$, $\frac{a}{-b}$)
+
+**Số nghịch đảo:** Số nghịch đảo của $\frac{a}{b}$ (với $a \neq 0$) là $\frac{b}{a}$
+
+<h4 id="cong-tru-so-huu-ti">4. Cộng và trừ số hữu tỉ</h4>
+
+**Cộng hai phân số cùng mẫu:**
+$$\frac{a}{m} + \frac{b}{m} = \frac{a+b}{m}$$
+
+**Cộng hai phân số khác mẫu:**
+$$\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}$$
+
+**Trừ:** $\frac{a}{b} - \frac{c}{d} = \frac{a}{b} + \left(-\frac{c}{d}\right)$
+
+**Tính chất:**
+- Giao hoán: $a + b = b + a$
+- Kết hợp: $(a + b) + c = a + (b + c)$
+- Phần tử trung hòa: $a + 0 = a$
+
+<h4 id="nhan-chia-so-huu-ti">5. Nhân và chia số hữu tỉ</h4>
+
+**Nhân:** $\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}$
+
+**Chia:** $\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c} = \frac{ad}{bc}$ (với $c \neq 0$)
+
+**Tính chất:**
+- Giao hoán: $a \times b = b \times a$
+- Kết hợp: $(a \times b) \times c = a \times (b \times c)$
+- Phân phối: $a \times (b + c) = a \times b + a \times c$
+
+<h4 id="luy-thua-so-huu-ti">6. Lũy thừa của số hữu tỉ</h4>
+
+**Định nghĩa:** $a^n = \underbrace{a \times a \times ... \times a}_{n \text{ lần}}$ (với $n \in \mathbb{N}^*$)
+
+**Quy ước:** $a^0 = 1$ (với $a \neq 0$), $a^1 = a$
+
+**Tính chất:**
+- $a^m \times a^n = a^{m+n}$
+- $a^m \div a^n = a^{m-n}$ (với $a \neq 0, m \geq n$)
+- $(a^m)^n = a^{mn}$
+- $(a \times b)^n = a^n \times b^n$
+- $\left(\frac{a}{b}\right)^n = \frac{a^n}{b^n}$
+
+<h4 id="thu-tu-phep-tinh">7. Thứ tự thực hiện phép tính</h4>
+
+**Quy tắc:**
+1. Tính lũy thừa
+2. Tính nhân, chia (từ trái sang phải)
+3. Tính cộng, trừ (từ trái sang phải)
+
+**Dấu ngoặc:** Tính trong ngoặc trước (ngoặc tròn → ngoặc vuông → ngoặc nhọn)
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Cộng và trừ số hữu tỉ</h4>
+
+Tính:
+
+a) $\frac{1}{2} + \frac{1}{3}$
+
+b) $\frac{3}{4} - \frac{1}{6}$
+
+c) $-\frac{2}{5} + \frac{3}{5}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{1}{2} + \frac{1}{3} = \frac{3}{6} + \frac{2}{6} = \frac{5}{6}$
+
+b) $\frac{3}{4} - \frac{1}{6} = \frac{9}{12} - \frac{2}{12} = \frac{7}{12}$
+
+c) $-\frac{2}{5} + \frac{3}{5} = \frac{-2+3}{5} = \frac{1}{5}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Nhân và chia số hữu tỉ</h4>
+
+Tính:
+
+a) $\frac{2}{3} \times \frac{3}{4}$
+
+b) $\frac{3}{4} \div \frac{1}{2}$
+
+c) $-\frac{1}{2} \times \frac{4}{5}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{2}{3} \times \frac{3}{4} = \frac{6}{12} = \frac{1}{2}$
+
+b) $\frac{3}{4} \div \frac{1}{2} = \frac{3}{4} \times \frac{2}{1} = \frac{6}{4} = \frac{3}{2}$
+
+c) $-\frac{1}{2} \times \frac{4}{5} = -\frac{4}{10} = -\frac{2}{5}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Lũy thừa của số hữu tỉ</h4>
+
+Tính:
+
+a) $\left(\frac{1}{2}\right)^2$
+
+b) $(-2)^3$
+
+c) $\left(-\frac{1}{3}\right)^2$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\left(\frac{1}{2}\right)^2 = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$
+
+b) $(-2)^3 = (-2) \times (-2) \times (-2) = -8$
+
+c) $\left(-\frac{1}{3}\right)^2 = \left(-\frac{1}{3}\right) \times \left(-\frac{1}{3}\right) = \frac{1}{9}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Thứ tự thực hiện phép tính</h4>
+
+Tính:
+
+a) $2 \times 3^2 - 4 \div 2$
+
+b) $\frac{1}{2} + \frac{1}{3} \times 3$
+
+c) $\left(\frac{1}{2} + \frac{1}{3}\right) \times 6$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $2 \times 3^2 - 4 \div 2 = 2 \times 9 - 2 = 18 - 2 = 16$
+
+b) $\frac{1}{2} + \frac{1}{3} \times 3 = \frac{1}{2} + 1 = \frac{3}{2}$
+
+c) $\left(\frac{1}{2} + \frac{1}{3}\right) \times 6 = \frac{5}{6} \times 6 = 5$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Số đối và số nghịch đảo</h4>
+
+a) Tìm số đối của $\frac{3}{5}$, $-2$, $\frac{-1}{4}$
+
+b) Tìm số nghịch đảo của $\frac{2}{3}$, $-4$, $\frac{-3}{5}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Số đối:
+- Số đối của $\frac{3}{5}$ là $-\frac{3}{5}$
+- Số đối của $-2$ là $2$
+- Số đối của $\frac{-1}{4}$ là $\frac{1}{4}$
+
+b) Số nghịch đảo:
+- Số nghịch đảo của $\frac{2}{3}$ là $\frac{3}{2}$
+- Số nghịch đảo của $-4$ là $-\frac{1}{4}$
+- Số nghịch đảo của $\frac{-3}{5}$ là $-\frac{5}{3}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Tính chất phép tính</h4>
+
+Sử dụng tính chất giao hoán, kết hợp để tính:
+
+a) $\frac{1}{2} + \frac{3}{4} + \frac{1}{4}$
+
+b) $\frac{2}{3} \times \frac{5}{7} \times \frac{7}{5}$
+
+c) $\frac{1}{3} \times 5 + \frac{1}{3} \times 7$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{1}{2} + \frac{3}{4} + \frac{1}{4} = \frac{1}{2} + \left(\frac{3}{4} + \frac{1}{4}\right) = \frac{1}{2} + 1 = \frac{3}{2}$
+
+b) $\frac{2}{3} \times \frac{5}{7} \times \frac{7}{5} = \frac{2}{3} \times \left(\frac{5}{7} \times \frac{7}{5}\right) = \frac{2}{3} \times 1 = \frac{2}{3}$
+
+c) $\frac{1}{3} \times 5 + \frac{1}{3} \times 7 = \frac{1}{3} \times (5 + 7) = \frac{1}{3} \times 12 = 4$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán kết hợp</h4>
+
+Tính:
+
+a) $\frac{1}{2} - \frac{1}{3} + \frac{1}{6}$
+
+b) $\left(\frac{1}{2} - \frac{1}{3}\right) \times \frac{3}{5}$
+
+c) $\frac{2}{3} \div \frac{4}{5} - \frac{1}{2}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{1}{2} - \frac{1}{3} + \frac{1}{6} = \frac{3}{6} - \frac{2}{6} + \frac{1}{6} = \frac{2}{6} = \frac{1}{3}$
+
+b) $\left(\frac{1}{2} - \frac{1}{3}\right) \times \frac{3}{5} = \frac{1}{6} \times \frac{3}{5} = \frac{3}{30} = \frac{1}{10}$
+
+c) $\frac{2}{3} \div \frac{4}{5} - \frac{1}{2} = \frac{2}{3} \times \frac{5}{4} - \frac{1}{2} = \frac{10}{12} - \frac{1}{2} = \frac{5}{6} - \frac{3}{6} = \frac{2}{6} = \frac{1}{3}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán thực tế</h4>
+
+Một cửa hàng bán hoa quả. Ngày thứ nhất bán được $\frac{1}{3}$ số hoa quả, ngày thứ hai bán được $\frac{1}{4}$ số hoa quả. Hỏi:
+
+a) Tổng hai ngày bán được bao nhiêu phần số hoa quả?
+
+b) Còn lại bao nhiêu phần số hoa quả?
+
+c) Nếu tổng cộng có 120 kg hoa quả, thì mỗi ngày bán được bao nhiêu kg?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tổng hai ngày: $\frac{1}{3} + \frac{1}{4} = \frac{4}{12} + \frac{3}{12} = \frac{7}{12}$ (số hoa quả)
+
+b) Còn lại: $1 - \frac{7}{12} = \frac{5}{12}$ (số hoa quả)
+
+c) Ngày thứ nhất: $120 \times \frac{1}{3} = 40$ (kg)
+   Ngày thứ hai: $120 \times \frac{1}{4} = 30$ (kg)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho biểu thức: $A = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16}$
+
+a) Tính giá trị của $A$
+
+b) So sánh $A$ với $1$
+
+c) Tính $1 - A$
+
+d) Nếu tiếp tục cộng $\frac{1}{32}$, kết quả sẽ là bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $A = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} = \frac{8}{16} + \frac{4}{16} + \frac{2}{16} + \frac{1}{16} = \frac{15}{16}$
+
+b) $A = \frac{15}{16} < 1$
+
+c) $1 - A = 1 - \frac{15}{16} = \frac{1}{16}$
+
+d) $A + \frac{1}{32} = \frac{15}{16} + \frac{1}{32} = \frac{30}{32} + \frac{1}{32} = \frac{31}{32}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Một học sinh có 120 quyển sách. Học sinh đó cho bạn $\frac{1}{4}$ số sách, cho em $\frac{1}{3}$ số sách còn lại.
+
+a) Học sinh đó cho bạn bao nhiêu quyển sách?
+
+b) Sau khi cho bạn, còn lại bao nhiêu quyển sách?
+
+c) Học sinh đó cho em bao nhiêu quyển sách?
+
+d) Sau khi cho bạn và em, học sinh đó còn lại bao nhiêu quyển sách?
+
+e) Phần sách còn lại chiếm bao nhiêu phần của tổng số sách ban đầu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Cho bạn: $120 \times \frac{1}{4} = 30$ (quyển)
+
+b) Còn lại: $120 - 30 = 90$ (quyển)
+
+c) Cho em: $90 \times \frac{1}{3} = 30$ (quyển)
+
+d) Còn lại: $90 - 30 = 60$ (quyển)
+
+e) Phần sách còn lại: $\frac{60}{120} = \frac{1}{2}$ (tổng số sách)
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Số hữu tỉ**: Số có thể viết dưới dạng $\frac{a}{b}$ với $a, b \in \mathbb{Z}, b \neq 0$
+- **Cộng, trừ**: Quy đồng mẫu số rồi cộng, trừ tử số
+- **Nhân**: $\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}$
+- **Chia**: $\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c}$
+- **Lũy thừa**: $a^m \times a^n = a^{m+n}$, $(a^m)^n = a^{mn}$
+- **Thứ tự phép tính**: Lũy thừa → Nhân, chia → Cộng, trừ
+- **Số đối**: Số đối của $\frac{a}{b}$ là $-\frac{a}{b}$
+- **Số nghịch đảo**: Số nghịch đảo của $\frac{a}{b}$ là $\frac{b}{a}$
+
+</GhiNho>

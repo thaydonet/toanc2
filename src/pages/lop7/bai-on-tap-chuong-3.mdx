@@ -1,0 +1,517 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 3 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 3 Toán 7 KNTT: Góc, tia phân giác, đường thẳng song song, tiên đề Euclid"
+grade: "Lớp 7"
+chapter: "Chương III: Góc và đường thẳng song song"
+currentSlug: "lop7/bai-on-tap-chuong-3"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Góc vuông có số đo bằng:",
+    option_a: "$90°$",
+    option_b: "$180°$",
+    option_c: "$45°$",
+    option_d: "$60°$",
+    correct_option: "A",
+    explanation: "Góc vuông có số đo bằng $90°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai góc bù nhau có tổng số đo bằng:",
+    option_a: "$180°$",
+    option_b: "$90°$",
+    option_c: "$360°$",
+    option_d: "$270°$",
+    correct_option: "A",
+    explanation: "Hai góc bù nhau có tổng số đo bằng $180°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tia phân giác của một góc là:",
+    option_a: "Tia chia góc thành hai góc bằng nhau",
+    option_b: "Tia chia góc thành hai góc không bằng nhau",
+    option_c: "Tia nằm ngoài góc",
+    option_d: "Tia vuông góc với cạnh của góc",
+    correct_option: "A",
+    explanation: "Tia phân giác chia góc thành hai góc bằng nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu hai đường thẳng song song bị cắt bởi một đường thẳng thứ ba, thì:",
+    option_a: "Các góc so le trong bằng nhau",
+    option_b: "Các góc so le trong không bằng nhau",
+    option_c: "Các góc đồng vị không bằng nhau",
+    option_d: "Các góc trong cùng phía bằng nhau",
+    correct_option: "A",
+    explanation: "Nếu hai đường thẳng song song bị cắt bởi một đường thẳng thứ ba, các góc so le trong bằng nhau",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tiên đề Euclid phát biểu rằng:",
+    option_a: "Qua một điểm nằm ngoài một đường thẳng, chỉ có một đường thẳng song song với đường thẳng đó",
+    option_b: "Qua một điểm nằm ngoài một đường thẳng, có vô số đường thẳng song song",
+    option_c: "Qua một điểm nằm ngoài một đường thẳng, không có đường thẳng song song",
+    option_d: "Qua một điểm trên một đường thẳng, có một đường thẳng song song",
+    correct_option: "A",
+    explanation: "Tiên đề Euclid: Qua một điểm nằm ngoài một đường thẳng, chỉ có một đường thẳng song song với đường thẳng đó",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai góc đối đỉnh có tính chất:",
+    option_a: "Bằng nhau",
+    option_b: "Bù nhau",
+    option_c: "Phụ nhau",
+    option_d: "Không có quan hệ",
+    correct_option: "A",
+    explanation: "Hai góc đối đỉnh bằng nhau",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc nhọn là góc có số đo:",
+    option_a: "Từ $0°$ đến $90°$",
+    option_b: "Từ $90°$ đến $180°$",
+    option_c: "Bằng $90°$",
+    option_d: "Bằng $180°$",
+    correct_option: "A",
+    explanation: "Góc nhọn có số đo từ $0°$ đến $90°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc tù là góc có số đo:",
+    option_a: "Từ $90°$ đến $180°$",
+    option_b: "Từ $0°$ đến $90°$",
+    option_c: "Bằng $90°$",
+    option_d: "Bằng $180°$",
+    correct_option: "A",
+    explanation: "Góc tù có số đo từ $90°$ đến $180°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai góc phụ nhau có tổng số đo bằng:",
+    option_a: "$90°$",
+    option_b: "$180°$",
+    option_c: "$360°$",
+    option_d: "$45°$",
+    correct_option: "A",
+    explanation: "Hai góc phụ nhau có tổng số đo bằng $90°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $a \\parallel b$ và $b \\parallel c$ thì:",
+    option_a: "$a \\parallel c$",
+    option_b: "$a$ cắt $c$",
+    option_c: "$a$ trùng $c$",
+    option_d: "$a$ vuông góc $c$",
+    correct_option: "A",
+    explanation: "Tính chất bắc cầu: Nếu $a \\parallel b$ và $b \\parallel c$ thì $a \\parallel c$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 3 — Góc và đường thẳng song song</h3>
+
+Chương 3 giới thiệu các khái niệm hình học cơ bản về góc và đường thẳng song song. Hãy cùng ôn tập lại toàn bộ kiến thức!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Góc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Phân loại, tính chất</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✂️</div>
+    <strong>Tia phân giác</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chia góc thành hai phần</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">∥</div>
+    <strong>Đường thẳng song song</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tiên đề Euclid</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="goc">1. Góc</h4>
+
+**Định nghĩa:** Góc là hình gồm hai tia chung gốc.
+
+**Phân loại góc:**
+- **Góc nhọn:** $0° < \alpha < 90°$
+- **Góc vuông:** $\alpha = 90°$
+- **Góc tù:** $90° < \alpha < 180°$
+- **Góc bẹt:** $\alpha = 180°$
+
+<h4 id="goc-phu-goc-bu">2. Góc phụ nhau, góc bù nhau</h4>
+
+**Góc phụ nhau:** Hai góc có tổng số đo bằng $90°$
+
+**Góc bù nhau:** Hai góc có tổng số đo bằng $180°$
+
+**Góc đối đỉnh:** Hai góc đối đỉnh bằng nhau
+
+<h4 id="tia-phan-giac">3. Tia phân giác</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Tia phân giác của một góc là tia chia góc đó thành hai góc bằng nhau.
+
+**Tính chất:** Nếu $Oz$ là tia phân giác của $\angle xOy$ thì:
+$$\angle xOz = \angle zOy = \frac{\angle xOy}{2}$$
+
+</div>
+
+<h4 id="duong-thang-song-song">4. Đường thẳng song song</h4>
+
+**Định nghĩa:** Hai đường thẳng song song là hai đường thẳng không có điểm chung.
+
+**Ký hiệu:** $a \parallel b$
+
+**Dấu hiệu nhận biết:**
+- Hai đường thẳng bị cắt bởi một đường thẳng thứ ba, nếu:
+  - Các góc so le trong bằng nhau, hoặc
+  - Các góc đồng vị bằng nhau, hoặc
+  - Các góc trong cùng phía bù nhau
+  
+thì hai đường thẳng song song.
+
+<h4 id="tien-de-euclid">5. Tiên đề Euclid</h4>
+
+<div class="box-dinh-ly">
+
+**Tiên đề Euclid:** Qua một điểm nằm ngoài một đường thẳng, chỉ có một đường thẳng song song với đường thẳng đó.
+
+**Hệ quả:** Nếu $a \parallel b$ và $b \parallel c$ thì $a \parallel c$ (tính chất bắc cầu)
+
+</div>
+
+<h4 id="goc-tao-boi-duong-thang-song-song">6. Góc tạo bởi đường thẳng song song</h4>
+
+Khi hai đường thẳng song song bị cắt bởi một đường thẳng thứ ba (gọi là đường cắt):
+
+- **Góc so le trong:** Bằng nhau
+- **Góc đồng vị:** Bằng nhau
+- **Góc trong cùng phía:** Bù nhau (tổng = $180°$)
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Phân loại góc</h4>
+
+Cho các góc: $30°$, $90°$, $120°$, $180°$, $45°$, $150°$
+
+Phân loại các góc thành: góc nhọn, góc vuông, góc tù, góc bẹt
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+- **Góc nhọn:** $30°$, $45°$
+- **Góc vuông:** $90°$
+- **Góc tù:** $120°$, $150°$
+- **Góc bẹt:** $180°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Góc phụ nhau, góc bù nhau</h4>
+
+a) Tìm góc phụ của $35°$
+
+b) Tìm góc bù của $120°$
+
+c) Tìm góc phụ của $60°$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Góc phụ của $35°$ là: $90° - 35° = 55°$
+
+b) Góc bù của $120°$ là: $180° - 120° = 60°$
+
+c) Góc phụ của $60°$ là: $90° - 60° = 30°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tia phân giác</h4>
+
+Cho $\angle AOB = 80°$. Tia $OC$ là tia phân giác của $\angle AOB$.
+
+a) Tính $\angle AOC$ và $\angle COB$
+
+b) Nếu $\angle AOB = 120°$, tính $\angle AOC$ và $\angle COB$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle AOC = \angle COB = \frac{80°}{2} = 40°$
+
+b) $\angle AOC = \angle COB = \frac{120°}{2} = 60°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Góc đối đỉnh</h4>
+
+Hai đường thẳng $AB$ và $CD$ cắt nhau tại $O$. Biết $\angle AOC = 50°$.
+
+a) Tính $\angle BOD$
+
+b) Tính $\angle AOD$
+
+c) Tính $\angle BOC$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle BOD = \angle AOC = 50°$ (góc đối đỉnh)
+
+b) $\angle AOD = 180° - 50° = 130°$ (góc bù)
+
+c) $\angle BOC = 180° - 50° = 130°$ (góc bù)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Đường thẳng song song</h4>
+
+Cho $a \parallel b$, đường thẳng $c$ cắt $a$ tại $A$ và cắt $b$ tại $B$. Biết $\angle CAB = 60°$ (với $C$ là điểm trên $a$).
+
+a) Tính góc so le trong
+
+b) Tính góc đồng vị
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Góc so le trong bằng $60°$
+
+b) Góc đồng vị bằng $60°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán kết hợp</h4>
+
+Cho hai đường thẳng $a$ và $b$ song song. Đường thẳng $c$ cắt $a$ tại $A$ và cắt $b$ tại $B$. Biết $\angle CAB = 70°$ (với $C$ là điểm trên $a$).
+
+a) Tính góc so le trong $\angle ABD$ (với $D$ là điểm trên $b$)
+
+b) Tính góc trong cùng phía
+
+c) Tính góc đồng vị
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle ABD = 70°$ (góc so le trong)
+
+b) Góc trong cùng phía = $180° - 70° = 110°$
+
+c) Góc đồng vị = $70°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán thực tế</h4>
+
+Một cái thang dựa vào tường. Góc giữa thang và mặt đất là $60°$.
+
+a) Tính góc giữa thang và tường
+
+b) Nếu góc giữa thang và mặt đất là $45°$, tính góc giữa thang và tường
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Góc giữa thang và tường = $90° - 60° = 30°$
+
+b) Góc giữa thang và tường = $90° - 45° = 45°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán kết hợp</h4>
+
+Cho ba đường thẳng $a$, $b$, $c$ sao cho $a \parallel b$ và $b \parallel c$.
+
+a) Chứng minh $a \parallel c$
+
+b) Nếu đường thẳng $d$ cắt $a$ tại $A$ với $\angle CAD = 50°$, tính góc tương ứng tại $B$ (giao điểm của $d$ và $b$) và tại $C$ (giao điểm của $d$ và $c$)
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Vì $a \parallel b$ và $b \parallel c$ nên theo tính chất bắc cầu: $a \parallel c$
+
+b) Góc tại $B$ = $50°$ (góc đồng vị)
+   Góc tại $C$ = $50°$ (góc đồng vị)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho $\angle AOB = 120°$. Tia $OC$ là tia phân giác của $\angle AOB$. Tia $OD$ là tia phân giác của $\angle AOC$.
+
+a) Tính $\angle AOD$
+
+b) Tính $\angle DOB$
+
+c) Tính $\angle COD$
+
+d) So sánh $\angle AOD$ và $\angle DOB$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle AOC = \frac{120°}{2} = 60°$
+   $\angle AOD = \frac{60°}{2} = 30°$
+
+b) $\angle DOB = 120° - 30° = 90°$
+
+c) $\angle COD = 60° - 30° = 30°$
+
+d) $\angle AOD = 30° < \angle DOB = 90°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho hai đường thẳng $a$ và $b$ song song. Đường thẳng $c$ cắt $a$ tại $A$ và cắt $b$ tại $B$. Đường thẳng $d$ cắt $a$ tại $C$ và cắt $b$ tại $D$. Biết $\angle CAB = 50°$ và $\angle ABD = 70°$.
+
+a) Tính $\angle ABC$
+
+b) Tính $\angle BCD$
+
+c) Tính $\angle CDA$
+
+d) Tính tổng $\angle CAB + \angle ABC + \angle BCD + \angle CDA$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle ABC = 180° - 50° = 130°$ (góc trong cùng phía)
+
+b) $\angle BCD = 180° - 70° = 110°$ (góc trong cùng phía)
+
+c) $\angle CDA = 70°$ (góc so le trong)
+
+d) Tổng = $50° + 130° + 110° + 70° = 360°$
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Góc nhọn:** $0° < \alpha < 90°$, **Góc vuông:** $90°$, **Góc tù:** $90° < \alpha < 180°$
+- **Góc phụ nhau:** Tổng = $90°$, **Góc bù nhau:** Tổng = $180°$
+- **Góc đối đỉnh:** Bằng nhau
+- **Tia phân giác:** Chia góc thành hai góc bằng nhau
+- **Đường thẳng song song:** Không có điểm chung, ký hiệu $a \parallel b$
+- **Tiên đề Euclid:** Qua một điểm ngoài đường thẳng, chỉ có một đường thẳng song song
+- **Góc so le trong:** Bằng nhau khi hai đường thẳng song song
+- **Góc đồng vị:** Bằng nhau khi hai đường thẳng song song
+- **Góc trong cùng phía:** Bù nhau (tổng = $180°$) khi hai đường thẳng song song
+
+</GhiNho>

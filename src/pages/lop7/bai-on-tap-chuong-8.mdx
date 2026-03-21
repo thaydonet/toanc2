@@ -1,0 +1,499 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 8 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 8 Toán 7 KNTT: Biến cố và xác suất"
+grade: "Lớp 7"
+chapter: "Chương VIII: Biến cố và xác suất"
+currentSlug: "lop7/bai-on-tap-chuong-8"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Biến cố là:",
+    option_a: "Sự kiện có thể xảy ra hoặc không xảy ra trong một phép thử",
+    option_b: "Sự kiện chắc chắn xảy ra",
+    option_c: "Sự kiện không bao giờ xảy ra",
+    option_d: "Sự kiện đã xảy ra",
+    correct_option: "A",
+    explanation: "Biến cố là sự kiện có thể xảy ra hoặc không xảy ra",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biến cố chắc chắn là:",
+    option_a: "Biến cố chắc chắn xảy ra",
+    option_b: "Biến cố không bao giờ xảy ra",
+    option_c: "Biến cố có thể xảy ra hoặc không",
+    option_d: "Biến cố đã xảy ra",
+    correct_option: "A",
+    explanation: "Biến cố chắc chắn là biến cố chắc chắn xảy ra",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biến cố không thể là:",
+    option_a: "Biến cố không bao giờ xảy ra",
+    option_b: "Biến cố chắc chắn xảy ra",
+    option_c: "Biến cố có thể xảy ra",
+    option_d: "Biến cố đã xảy ra",
+    correct_option: "A",
+    explanation: "Biến cố không thể là biến cố không bao giờ xảy ra",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của một biến cố là:",
+    option_a: "Tỉ số giữa số kết quả thuận lợi và tổng số kết quả có thể",
+    option_b: "Số kết quả thuận lợi",
+    option_c: "Tổng số kết quả có thể",
+    option_d: "Hiệu giữa số kết quả thuận lợi và tổng số kết quả",
+    correct_option: "A",
+    explanation: "Xác suất = $\\frac{\\text{Số kết quả thuận lợi}}{\\text{Tổng số kết quả có thể}}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của một biến cố nằm trong khoảng:",
+    option_a: "$[0, 1]$",
+    option_b: "$[0, 2]$",
+    option_c: "$[-1, 1]$",
+    option_d: "$[1, \\infty)$",
+    correct_option: "A",
+    explanation: "Xác suất luôn nằm trong khoảng từ 0 đến 1",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố chắc chắn là:",
+    option_a: "$1$",
+    option_b: "$0$",
+    option_c: "$0.5$",
+    option_d: "$-1$",
+    correct_option: "A",
+    explanation: "Xác suất của biến cố chắc chắn là 1",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố không thể là:",
+    option_a: "$0$",
+    option_b: "$1$",
+    option_c: "$0.5$",
+    option_d: "$-1$",
+    correct_option: "A",
+    explanation: "Xác suất của biến cố không thể là 0",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một đồng xu, xác suất xuất hiện mặt ngửa là:",
+    option_a: "$\\frac{1}{2}$",
+    option_b: "$\\frac{1}{3}$",
+    option_c: "$\\frac{2}{3}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Có 2 kết quả có thể (ngửa, sấp), 1 kết quả thuận lợi (ngửa), nên xác suất = $\\frac{1}{2}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một con xúc xắc, xác suất xuất hiện mặt 6 là:",
+    option_a: "$\\frac{1}{6}$",
+    option_b: "$\\frac{1}{3}$",
+    option_c: "$\\frac{1}{2}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Có 6 kết quả có thể, 1 kết quả thuận lợi (mặt 6), nên xác suất = $\\frac{1}{6}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một con xúc xắc, xác suất xuất hiện mặt chẵn là:",
+    option_a: "$\\frac{1}{2}$",
+    option_b: "$\\frac{1}{3}$",
+    option_c: "$\\frac{2}{3}$",
+    option_d: "$\\frac{1}{6}$",
+    correct_option: "A",
+    explanation: "Có 6 kết quả có thể, 3 kết quả thuận lợi (2, 4, 6), nên xác suất = $\\frac{3}{6} = \\frac{1}{2}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 8 — Biến cố và xác suất</h3>
+
+Chương 8 giới thiệu khái niệm biến cố và xác suất. Hãy cùng ôn tập lại toàn bộ kiến thức!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Biến cố</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chắc chắn, không thể, ngẫu nhiên</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Xác suất</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tỉ số kết quả thuận lợi</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>Phép thử</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả có thể</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="bien-co">1. Biến cố</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Biến cố là sự kiện có thể xảy ra hoặc không xảy ra trong một phép thử.
+
+**Phân loại:**
+- **Biến cố chắc chắn:** Biến cố chắc chắn xảy ra
+- **Biến cố không thể:** Biến cố không bao giờ xảy ra
+- **Biến cố ngẫu nhiên:** Biến cố có thể xảy ra hoặc không
+
+</div>
+
+**Ví dụ:**
+- Tung một con xúc xắc, "xuất hiện mặt 1" là biến cố ngẫu nhiên
+- "Xuất hiện mặt từ 1 đến 6" là biến cố chắc chắn
+- "Xuất hiện mặt 7" là biến cố không thể
+
+<h4 id="phep-thu">2. Phép thử</h4>
+
+**Định nghĩa:** Phép thử là một hành động hoặc thí nghiệm mà kết quả không thể dự đoán trước.
+
+**Ví dụ:** Tung đồng xu, tung xúc xắc, rút thẻ từ hộp
+
+<h4 id="xac-suat">3. Xác suất</h4>
+
+<div class="box-dinh-ly">
+
+**Định nghĩa:** Xác suất của một biến cố là tỉ số giữa số kết quả thuận lợi và tổng số kết quả có thể.
+
+$$P(A) = \frac{\text{Số kết quả thuận lợi}}{\text{Tổng số kết quả có thể}}$$
+
+**Tính chất:**
+- $0 \leq P(A) \leq 1$
+- $P(\text{biến cố chắc chắn}) = 1$
+- $P(\text{biến cố không thể}) = 0$
+
+</div>
+
+<h4 id="tinh-xac-suat">4. Tính xác suất</h4>
+
+**Bước 1:** Xác định tổng số kết quả có thể
+
+**Bước 2:** Xác định số kết quả thuận lợi
+
+**Bước 3:** Tính xác suất = $\frac{\text{Số kết quả thuận lợi}}{\text{Tổng số kết quả có thể}}$
+
+**Ví dụ:** Tung xúc xắc, xác suất xuất hiện mặt chẵn:
+- Tổng số kết quả: 6
+- Số kết quả thuận lợi: 3 (mặt 2, 4, 6)
+- Xác suất = $\frac{3}{6} = \frac{1}{2}$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Phân loại biến cố</h4>
+
+Phân loại các biến cố sau thành: chắc chắn, không thể, ngẫu nhiên
+
+a) Tung xúc xắc, xuất hiện mặt 7
+
+b) Tung xúc xắc, xuất hiện mặt từ 1 đến 6
+
+c) Tung xúc xắc, xuất hiện mặt 3
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Biến cố không thể (xúc xắc chỉ có mặt 1-6)
+
+b) Biến cố chắc chắn (chắc chắn xuất hiện mặt từ 1-6)
+
+c) Biến cố ngẫu nhiên (có thể xuất hiện hoặc không)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tính xác suất - Tung đồng xu</h4>
+
+Tung một đồng xu. Tính xác suất:
+
+a) Xuất hiện mặt ngửa
+
+b) Xuất hiện mặt sấp
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số kết quả: 2 (ngửa, sấp)
+
+a) Xác suất xuất hiện mặt ngửa = $\frac{1}{2}$
+
+b) Xác suất xuất hiện mặt sấp = $\frac{1}{2}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tính xác suất - Tung xúc xắc</h4>
+
+Tung một con xúc xắc. Tính xác suất:
+
+a) Xuất hiện mặt 1
+
+b) Xuất hiện mặt chẵn
+
+c) Xuất hiện mặt lẻ
+
+d) Xuất hiện mặt lớn hơn 3
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số kết quả: 6
+
+a) Xác suất xuất hiện mặt 1 = $\frac{1}{6}$
+
+b) Xác suất xuất hiện mặt chẵn = $\frac{3}{6} = \frac{1}{2}$ (mặt 2, 4, 6)
+
+c) Xác suất xuất hiện mặt lẻ = $\frac{3}{6} = \frac{1}{2}$ (mặt 1, 3, 5)
+
+d) Xác suất xuất hiện mặt lớn hơn 3 = $\frac{3}{6} = \frac{1}{2}$ (mặt 4, 5, 6)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Tính xác suất - Rút thẻ</h4>
+
+Một hộp có 10 thẻ được đánh số từ 1 đến 10. Rút ngẫu nhiên một thẻ. Tính xác suất:
+
+a) Rút được thẻ số 5
+
+b) Rút được thẻ số chẵn
+
+c) Rút được thẻ số lẻ
+
+d) Rút được thẻ số từ 1 đến 5
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số kết quả: 10
+
+a) Xác suất rút được thẻ số 5 = $\frac{1}{10}$
+
+b) Xác suất rút được thẻ số chẵn = $\frac{5}{10} = \frac{1}{2}$ (2, 4, 6, 8, 10)
+
+c) Xác suất rút được thẻ số lẻ = $\frac{5}{10} = \frac{1}{2}$ (1, 3, 5, 7, 9)
+
+d) Xác suất rút được thẻ số từ 1 đến 5 = $\frac{5}{10} = \frac{1}{2}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Bài toán kết hợp</h4>
+
+Một hộp có 5 quả bóng: 2 quả đỏ, 2 quả xanh, 1 quả vàng. Lấy ngẫu nhiên một quả. Tính xác suất:
+
+a) Lấy được quả đỏ
+
+b) Lấy được quả xanh
+
+c) Lấy được quả vàng
+
+d) Lấy được quả không phải vàng
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số kết quả: 5
+
+a) Xác suất lấy được quả đỏ = $\frac{2}{5}$
+
+b) Xác suất lấy được quả xanh = $\frac{2}{5}$
+
+c) Xác suất lấy được quả vàng = $\frac{1}{5}$
+
+d) Xác suất lấy được quả không phải vàng = $\frac{4}{5}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán thực tế</h4>
+
+Một lớp học có 30 học sinh: 15 nam, 15 nữ. Chọn ngẫu nhiên một học sinh. Tính xác suất:
+
+a) Chọn được học sinh nam
+
+b) Chọn được học sinh nữ
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số kết quả: 30
+
+a) Xác suất chọn được học sinh nam = $\frac{15}{30} = \frac{1}{2}$
+
+b) Xác suất chọn được học sinh nữ = $\frac{15}{30} = \frac{1}{2}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán nâng cao (Câu lớn)</h4>
+
+Tung hai con xúc xắc cùng lúc. Tính xác suất:
+
+a) Tổng hai mặt bằng 7
+
+b) Tổng hai mặt bằng 12
+
+c) Tổng hai mặt lớn hơn 10
+
+d) Hai mặt bằng nhau
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số kết quả: $6 \times 6 = 36$
+
+a) Tổng = 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) → 6 kết quả
+   Xác suất = $\frac{6}{36} = \frac{1}{6}$
+
+b) Tổng = 12: (6,6) → 1 kết quả
+   Xác suất = $\frac{1}{36}$
+
+c) Tổng > 10: (5,6), (6,5), (6,6) → 3 kết quả
+   Xác suất = $\frac{3}{36} = \frac{1}{12}$
+
+d) Hai mặt bằng nhau: (1,1), (2,2), (3,3), (4,4), (5,5), (6,6) → 6 kết quả
+   Xác suất = $\frac{6}{36} = \frac{1}{6}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán nâng cao (Câu lớn)</h4>
+
+Một hộp có 20 viên bi: 8 viên đỏ, 7 viên xanh, 5 viên vàng. Lấy ngẫu nhiên một viên. Tính xác suất:
+
+a) Lấy được viên đỏ
+
+b) Lấy được viên xanh
+
+c) Lấy được viên vàng
+
+d) Lấy được viên không phải đỏ
+
+e) Lấy được viên đỏ hoặc xanh
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số kết quả: 20
+
+a) Xác suất lấy được viên đỏ = $\frac{8}{20} = \frac{2}{5}$
+
+b) Xác suất lấy được viên xanh = $\frac{7}{20}$
+
+c) Xác suất lấy được viên vàng = $\frac{5}{20} = \frac{1}{4}$
+
+d) Xác suất lấy được viên không phải đỏ = $\frac{12}{20} = \frac{3}{5}$
+
+e) Xác suất lấy được viên đỏ hoặc xanh = $\frac{8+7}{20} = \frac{15}{20} = \frac{3}{4}$
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Biến cố chắc chắn**: Chắc chắn xảy ra, xác suất = 1
+- **Biến cố không thể**: Không bao giờ xảy ra, xác suất = 0
+- **Biến cố ngẫu nhiên**: Có thể xảy ra hoặc không, xác suất từ 0 đến 1
+- **Xác suất**: $P(A) = \frac{\text{Số kết quả thuận lợi}}{\text{Tổng số kết quả có thể}}$
+- **Tính chất xác suất**: $0 \leq P(A) \leq 1$
+- **Tung đồng xu**: Xác suất mỗi mặt = $\frac{1}{2}$
+- **Tung xúc xắc**: Xác suất mỗi mặt = $\frac{1}{6}$
+
+</GhiNho>
