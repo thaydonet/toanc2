@@ -1,0 +1,507 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 5 - Toán 9"
+description: "Ôn tập chương 5 Toán 9 KNTT: Đường tròn, Cung và dây, Vị trí tương đối, Diện tích quạt tròn"
+grade: "Lớp 9"
+chapter: "Chương V: Đường tròn"
+currentSlug: "lop9/bai-on-tap-chuong-5"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Đường tròn tâm O bán kính R là hình gồm:",
+    option_a: "Tất cả các điểm cách O một khoảng bằng R",
+    option_b: "Tất cả các điểm cách O một khoảng nhỏ hơn hoặc bằng R",
+    option_c: "Tất cả các điểm cách O một khoảng lớn hơn R",
+    option_d: "Chỉ là một điểm duy nhất O",
+    correct_option: "A",
+    explanation: "Khái niệm đường tròn: tập hợp tất cả các điểm cách tâm O cố định một khoảng đúng bằng bán kính R.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Qua 3 điểm không thẳng hàng, ta vẽ được:",
+    option_a: "Vô số đường tròn",
+    option_b: "Hai đường tròn",
+    option_c: "Duy nhất một đường tròn",
+    option_d: "Không có đường tròn nào",
+    correct_option: "C",
+    explanation: "Định lí sự xác định đường tròn: Qua 3 điểm phân biệt không thẳng hàng, có đúng một và chỉ một đường tròn đi qua chúng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong một đường tròn, dây cung lớn nhất là:",
+    option_a: "Bán kính",
+    option_b: "Khoảng cách từ tâm đến dây",
+    option_c: "Đường kính",
+    option_d: "Chung góc ở tâm",
+    correct_option: "C",
+    explanation: "Đường kính là dây cung đi qua tâm và là dây lớn nhất trong đường tròn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường tròn cắt nhau có bao nhiêu điểm chung?",
+    option_a: "0",
+    option_b: "1",
+    option_c: "2",
+    option_d: "Vô số",
+    correct_option: "C",
+    explanation: "Vị trí cắt nhau của 2 đường tròn tạo ra đúng 2 điểm chung.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khoảng cách từ tâm $O$ đến đường thẳng $a$ là $d$. Gọi bán kính đường tròn tâm $O$ là $R$. Đường thẳng $a$ là tiếp tuyến của $(O)$ khi và chỉ khi:",
+    option_a: "$d < R$",
+    option_b: "$d = R$",
+    option_c: "$d > R$",
+    option_d: "$d \\leq R$",
+    correct_option: "B",
+    explanation: "Đường thẳng là tiếp tuyến của đường tròn (có 1 điểm chung) khi khoảng cách từ tâm đến đường thẳng bằng bán kính ($d = R$).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho hai đường tròn $(O; R)$ và $(O'; r)$ với điểm $O \\neq O'$. Khoảng cách hai tâm là $OO' = d$. Hai đường tròn tiếp xúc ngoài khi:",
+    option_a: "$d = R - r$",
+    option_b: "$R - r < d < R + r$",
+    option_c: "$d = R + r$",
+    option_d: "$d < R - r$",
+    correct_option: "C",
+    explanation: "Tiếp xúc ngoài: Đoạn nối tâm bằng tổng hai bán kính ($OO' = R + r$).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Từ điểm M nằm ngoài đường tròn $(O)$, kẻ hai tiếp tuyến MA, MB với đường tròn (A, B là hai tiếp điểm). Khẳng định nào ĐÚNG?",
+    option_a: "$MA = MB$",
+    option_b: "MO là tia phân giác của góc AMB",
+    option_c: "OM là tia phân giác của góc AOB",
+    option_d: "Cả A, B, C đều đúng",
+    correct_option: "D",
+    explanation: "Đây là 3 tính chất nằm trong định lí về hai tiếp tuyến cắt nhau tại một điểm ngoài đường tròn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường kính vuông góc với một dây cung thì:",
+    option_a: "Đi qua trung điểm của dây cung đó",
+    option_b: "Bằng với dây cung đó",
+    option_c: "Song song với dây cung đó",
+    option_d: "Phân chia đường tròn làm ba phần",
+    correct_option: "A",
+    explanation: "Trong một đường tròn, đường kính vuông góc với một dây thì đi qua trung điểm của dây ấy.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính chiều dài $l$ của một cung tròn số đo $n^\\circ$, bán kính $R$ là:",
+    option_a: "$l = \\frac{\\pi R n}{180}$",
+    option_b: "$l = \\frac{\\pi R^2 n}{360}$",
+    option_c: "$l = 2\\pi R$",
+    option_d: "$l = \\pi R^2$",
+    correct_option: "A",
+    explanation: "Chiều dài cung tròn $l = \\frac{\\pi R n}{180}$. Đáp án B là cho diện tích hình quạt.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai về mối liên hệ giữa đường thẳng và đường tròn:",
+    option_a: "Nếu $d > R$ thì đường thẳng không có điểm chung với đường tròn.",
+    option_b: "Nếu đường thẳng là cát tuyến thì nó cắt đường tròn tại 2 điểm.",
+    option_c: "Tiếp điểm của tiếp tuyến là điểm duy nhất của nó nằm trên đường tròn.",
+    option_d: "Mọi đường thẳng qua tâm đều không cắt đường tròn.",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì đường thẳng qua tâm chính là cát tuyến chứa đường kính (cắt tại 2 điểm).",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Vị trí tương đối của hai đường tròn đồng tâm (có cùng tâm $O$, $R \\neq r$):",
+    option_a: "Hai đường tròn cắt nhau",
+    option_b: "Hai đường tròn không giao nhau",
+    option_c: "Khoảng cách tâm $d = 0$",
+    option_d: "Hai đường tròn tiếp xúc trong",
+    correct_option: "B,C",
+    explanation: "Hai đường tròn đồng tâm có chung tâm O nên $d = 0$. Vì $R \\neq r$ và $d = 0 < |R - r|$ nên chúng không giao nhau. Một đường nằm trọn trong đường kia.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một đường tròn có diện tích $36\\pi$ cm². Tính chu vi của đường tròn đó (cm). Chỉ viết hệ số đứng trước $\\pi$.",
+    correct_option: "12",
+    explanation: "$S = \\pi R^2 = 36\\pi \\Rightarrow R = 6$ cm. Chu vi $C = 2\\pi R = 2\\pi (6) = 12\\pi$ cm. Hệ số là 12.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính diện tích hình quạt tròn (làm tròn đến chữ số thập phân thứ 1) có bán kính $4$ cm và góc ở tâm là $60^\\circ$. (Lấy $\\pi \\approx 3.14$)",
+    correct_option: "8.4",
+    explanation: "$S_{quat} = \\frac{\\pi R^2 n}{360} = \\frac{3.14 \\times 16 \\times 60}{360} = \\frac{16 \\times 3.14}{6} = \frac{50.24}{6} \\approx 8.37 \\approx 8.4$ cm².",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 5 — Đường tròn</h3>
+
+Chương Đường tròn đem đến những góc nhìn trực quan và thú vị nhất của hình học 9! Chúng ta đã tìm hiểu từ những đường, điểm, dây cung cơ bản nhất cho đến sự kết hợp và giao nhau của 2 đường tròn.
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #818cf8;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⭕</div>
+    <strong>Đường tròn & Các đường cơ bản</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bán kính, đường kính, dây cung, cát tuyến, tiếp tuyến.</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #34d399;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🤝</div>
+    <strong>Vị trí tương đối</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Giữa đường thẳng - đường tròn và hai đường tròn</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="duong-tron-day-cung">1. Đường tròn. Mối quan hệ giữa đường kính và dây cung</h4>
+
+- Tập hợp tất cả các điểm cách tâm $O$ khoảng $R > 0$ là **đường tròn $(O; R)$**.
+- **Đường kính** là dây cung lớn nhất của đường tròn. Độ dài đường kính $D = 2R$.
+- Định lí vuông góc: Trong một đường tròn:
+  + Đường kính vuông góc với dây cung thì đi qua trung điểm của dây đó.
+  + Đường kính đi qua trung điểm của một dây (không phải đường kính) thì vuông góc với dây đó.
+
+<h4 id="vi-tri-dt-va-dt">2. Vị trí tương đối của đường thẳng và đường tròn</h4>
+
+Gọi khoảng cách từ tâm $O$ đến đường thẳng $a$ là $d$.
+
+1. **Cắt nhau:** Đường thẳng cắt đường tròn tại 2 điểm chung $\Leftrightarrow d < R$. Đường thẳng gọi là *cát tuyến*.
+2. **Tiếp xúc:** Đường thẳng chạm đường tròn tại 1 điểm chung $\Leftrightarrow d = R$. Đường thẳng gọi là *tiếp tuyến*. Điểm chung gọi là *tiếp điểm*. Tiếp tuyến vuông góc với bán kính tại tiếp điểm.
+3. **Không giao nhau:** Không có điểm chung $\Leftrightarrow d > R$.
+
+<h4 id="tinh-chat-tiep-tuyen">3. Tính chất hai tiếp tuyến cắt nhau</h4>
+
+Nếu hai tiếp tuyến của đường tròn cắt nhau tại $1$ điểm thì:
+1. Giao điểm đó cách đều hai tiếp điểm. ($MA = MB$)
+2. Tia kẻ từ giao điểm qua tâm là tia phân giác góc tạo bởi hai tiếp tuyến. ($\widehat{OMA} = \widehat{OMB}$)
+3. Tia kẻ từ tâm đi qua giao điểm là tia phân giác góc tạo bởi hai bán kính đi qua hai tiếp điểm. ($\widehat{AOM} = \widehat{BOM}$)
+
+<h4 id="vi-tri-2-dt">4. Vị trí tương đối của hai đường tròn</h4>
+
+Gọi $d = OO'$ là khoảng cách giữa 2 tâm, $R$ và $r$ là bán kính của hai đường tròn $(R \geq r)$.
+
+1. **Cắt nhau:** Tại 2 điểm phân biệt $\Leftrightarrow R - r < d < R + r$.
+2. **Tiếp xúc:**
+   - Tiếp xúc ngoài: $\Leftrightarrow d = R + r$.
+   - Tiếp xúc trong: $\Leftrightarrow d = R - r > 0$.
+3. **Không giao nhau:**
+   - Ở ngoài nhau: $\Leftrightarrow d > R + r$.
+   - Đựng nhau (nằm trong nhau): $\Leftrightarrow d < R - r$.
+   - Đồng tâm: $d = 0$.
+
+<h4 id="dien-tich-chu-vi">5. Chu vi đường tròn. Độ dài cung. Diện tích</h4>
+
+- Chu vi đường tròn: $C = 2\pi R = \pi d$.
+- Độ dài cung tròn $n^\circ$: $l = \frac{\pi R n}{180}$.
+- Diện tích hình tròn: $S = \pi R^2$.
+- Diện tích hình quạt tròn $n^\circ$: $S_{quat} = \frac{\pi R^2 n}{360} = \frac{l R}{2}$.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luyen-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Xác định đường tròn và bán kính</h4>
+
+Cho hình chữ nhật ABCD có $AB = 8$ cm, $BC = 6$ cm. Chứng minh rằng 4 điểm A, B, C, D cùng thuộc một đường tròn. Xác định tâm và bán kính của đường tròn đó.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi O là giao điểm của hai đường chéo AC và BD.
+Vì ABCD là hình chữ nhật nên hai đường chéo bằng nhau và cắt nhau tại trung điểm của mỗi đường.
+Suy ra $OA = OB = OC = OD = \frac{AC}{2}$.
+Do đó, 4 điểm A, B, C, D cách đều điểm O, nên chúng cùng thuộc đường tròn tâm O bán kính $R = \frac{AC}{2}$.
+Xét tam giác ABC vuông tại B: 
+$AC = \sqrt{AB^2 + BC^2} = \sqrt{8^2 + 6^2} = \sqrt{64 + 36} = \sqrt{100} = 10$ cm.
+Vậy tâm đường tròn là giao điểm hai đường chéo, bán kính $R = 5$ cm.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Đường kính và dây cung</h4>
+
+Cho đường tròn $(O; 13 \text{ cm})$. Dây cung $AB$ có độ dài 24 cm. 
+a) Tính khoảng cách từ tâm $O$ đến dây $AB$.
+b) Gọi $M$ là một điểm thuộc dây $AB$ sao cho $AM = 7$ cm. Kẻ dây $CD$ qua $M$ và vuông góc với $AB$. Hỏi hai dây $AB$ và $CD$ có bằng nhau không? Vì sao?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Kẻ $OH \perp AB$ tại $H$. Theo định lý đường kính và dây cung, H là trung điểm của AB.
+Suy ra $AH = \frac{AB}{2} = 12$ cm.
+Áp dụng định lý Pytago trong tam giác vuông OHA:
+$OH = \sqrt{OA^2 - AH^2} = \sqrt{13^2 - 12^2} = \sqrt{169 - 144} = \sqrt{25} = 5$ cm.
+Khoảng cách từ tâm O đến dây AB là $5$ cm.
+
+b) Vì H là trung điểm AB nên $AH = 12$ cm. Khoảng cách từ M đến H là $MH = AH - AM = 12 - 7 = 5$ cm.
+Kẻ $OK \perp CD$ tại K. Tứ giác OHMK có $\widehat{H} = \widehat{M} = \widehat{K} = 90^\circ$ nên OHMK là hình chữ nhật.
+Suy ra $OK = MH = 5$ cm.
+Khoảng cách từ O đến dây CD bằng khoảng cách từ O đến dây AB (bằng 5 cm).
+Theo định lý về khoảng cách từ tâm đến dây, hai dây cung cách đều tâm thì bằng nhau.
+Vậy $AB = CD$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tiếp tuyến của đường tròn</h4>
+
+Cho tam giác ABC vuông tại A, có $AB = 3$ cm, $AC = 4$ cm. Vẽ đường tròn $(A; 3 \text{ cm})$. 
+Chứng minh rằng đoạn thẳng BC là cát tuyến của đường tròn $(A; 3 \text{ cm})$ và đường thẳng AB là tiếp tuyến của đường tròn tâm C bán kính 4 cm.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+* Kẻ $AH \perp BC$. Trong tam giác vuông ABC:
+$AH \cdot BC = AB \cdot AC \Rightarrow AH = \frac{AB \cdot AC}{BC} = \frac{3 \cdot 4}{\sqrt{3^2 + 4^2}} = \frac{12}{5} = 2,4$ cm.
+Khoảng cách từ tâm A đến đường thẳng BC là $d = 2,4$ cm. 
+Bán kính đường tròn $(A)$ là $R = 3$ cm. Vì $d < R$ nên đường thẳng BC cắt đường tròn $(A)$ tại 2 điểm phân biệt, tức BC là cát tuyến.
+
+* Đường thẳng AB tiếp xúc với đường tròn $(C; 4 \text{ cm})$:
+Khoảng cách từ tâm C đến đường thẳng AB chính là đoạn $CA$ (vì $CA \perp AB$).
+Mà $CA = 4$ cm vòng đúng bằng bán kính đường tròn $(C)$.
+Nên AB là tiếp tuyến của đường tròn $(C; 4 \text{ cm})$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Tính chất hai tiếp tuyến cắt nhau</h4>
+
+Từ một điểm M nằm ngoài đường tròn $(O; R)$, kẻ hai tiếp tuyến MA, MB (A, B là hai tiếp điểm). Biết góc $\widehat{AMB} = 60^\circ$ và $OM = 10$ cm.
+a) Tính bán kính R.
+b) Tính độ dài đoạn thẳng AB.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) MO là tia phân giác của góc $\widehat{AMB}$ nên $\widehat{AMO} = \frac{60^\circ}{2} = 30^\circ$.
+Tam giác MAO vuông tại A, ta có:
+$OA = OM \cdot \sin 30^\circ = 10 \cdot \frac{1}{2} = 5$ cm. Vậy $R = 5$ cm.
+
+b) Trong tam giác MAB có $MA = MB$ (tính chất 2 tiếp tuyến) nên $\Delta MAB$ cân tại M.
+Lại có góc $\widehat{AMB} = 60^\circ$ nên $\Delta MAB$ là tam giác đều.
+Do đó $AB = MA$. 
+Tam giác MAO vuông tại A có $MA = OM \cdot \cos 30^\circ = 10 \cdot \frac{\sqrt{3}}{2} = 5\sqrt{3}$ cm.
+Vậy $AB = 5\sqrt{3}$ cm.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Vị trí tương đối của hai đường tròn</h4>
+
+Xét hai đường tròn $(O; 6 \text{ cm})$ và $(O'; 4 \text{ cm})$ có khoảng cách tâm $OO' = d$. Xác định vị trí của hai đường tròn trong các trường hợp sau:
+a) $d = 12$ cm
+b) $d = 10$ cm
+c) $d = 5$ cm
+d) $d = 2$ cm
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Ta có: Tổng bán kính $R + r = 6 + 4 = 10$ cm; Hiệu bán kính $R - r = 6 - 4 = 2$ cm.
+a) $d = 12$ cm $> 10$ cm ($d > R + r$): Hai đường tròn ở ngoài nhau.
+b) $d = 10$ cm ($d = R + r$): Hai đường tròn tiếp xúc ngoài.
+c) $d = 5$ cm ($R - r < d < R + r$, tức là $2 < 5 < 10$): Hai đường tròn cắt nhau.
+d) $d = 2$ cm ($d = R - r$): Hai đường tròn tiếp xúc trong.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Tiếp tuyến chung của hai đường tròn</h4>
+
+Cho hai đường tròn $(O; 8 \text{ cm})$ và $(O'; 3 \text{ cm})$ cắt nhau tại A và B. Biết $OO' = 13$ cm. Kẻ tiếp tuyến chung ngoài CD (C thuộc $(O)$, D thuộc $(O')$). Vẽ đường thẳng qua O' vuông góc với OC tại H.
+a) Tứ giác CH O'D là hình gì? Tính OH.
+b) Tính độ dài đoạn thẳng CD.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Theo tính chất tiếp tuyến chung, OC $\perp$ CD và O'D $\perp$ CD. Suy ra OC $\parallel$ O'D.
+Tứ giác CHO'D có 3 góc vuông: $\widehat{C} = \widehat{D} = 90^\circ$ và $\widehat{CHO'} = 90^\circ$.
+Nên CHO'D là hình chữ nhật. Do đó $CH = O'D = 3$ cm và $O'H = CD$.
+Mặt khác, điểm O, H, C thẳng hàng, nên $OH = OC - CH = 8 - 3 = 5$ cm.
+
+b) Trong tam giác vuông OHO': $O'H^2 = OO'^2 - OH^2 = 13^2 - 5^2 = 169 - 25 = 144$.
+Suy ra $O'H = 12$ cm. Lại có $CD = O'H$, vậy độ dài tiếp tuyến chung ngoài CD là $12$ cm.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Đường tròn ngoại tiếp, nội tiếp tam giác</h4>
+
+Cho tam giác đều ABC cạnh $a = 6$ cm.
+a) Tính bán kính $R$ của đường tròn ngoại tiếp tam giác ABC.
+b) Tính bán kính $r$ của đường tròn nội tiếp tam giác ABC.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi H là trung điểm BC, AH là đường cao, đồng thời là trung tuyến của tam giác đều.
+$AH = \frac{a\sqrt{3}}{2} = \frac{6\sqrt{3}}{2} = 3\sqrt{3}$ cm.
+Trong tam giác đều, tâm đường tròn ngoại tiếp và nội tiếp trùng nhau và chính là trọng tâm G.
+a) Bán kính ngoại tiếp: $R = AG = \frac{2}{3}AH = \frac{2}{3} \cdot 3\sqrt{3} = 2\sqrt{3}$ cm.
+b) Bán kính nội tiếp: $r = GH = \frac{1}{3}AH = \frac{1}{3} \cdot 3\sqrt{3} = \sqrt{3}$ cm.
+*(Lưu ý: Luôn có $R = 2r$ đối với tam giác đều).*
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Chu vi và độ dài cung</h4>
+
+Một bánh xe đạp có bán kính là 35 cm. 
+a) Tính chu vi bánh xe.
+b) Một người đi xe đạp với vận tốc bánh xe quay 120 vòng/phút. Hỏi vận tốc của chiếc xe đạp là bao nhiêu km/h? (Lấy $\pi \approx 3,14$).
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Chu vi bánh xe là $C = 2\pi R = 2 \cdot 3,14 \cdot 35 = 219,8$ cm = $2,198$ m.
+
+b) Trong 1 phút, xe đi được quãng đường bằng 120 vòng nhân chu vi của bánh:
+Quãng đường đi được 1 phút: $120 \cdot 2,198 = 263,76$ m.
+Trong 1 giờ (60 phút), người đó đi được: $263,76 \cdot 60 = 15825,6$ m.
+Đổi ra km/h: Vận tốc là $15,8256$ km/h.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Diện tích hình tròn và quạt tròn</h4>
+
+Cho hình viên phân giới hạn bởi cung nhỏ AB và dây AB của đường tròn tâm $(O; 6 \text{ cm})$. Biết góc ở tâm $\widehat{AOB} = 60^\circ$. Tính diện tích hình viên phân đó theo $\pi$ và $\sqrt{3}$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Diện tích hình viên phân $S_{VP}$ bằng diện tích hình quạt $S_q$ (quạt AOB) trừ đi diện tích tam giác $OAB$ ($S_{\Delta}$).
+- Tính $S_q$: $S_q = \frac{\pi R^2 \cdot 60}{360} = \frac{\pi \cdot 6^2}{6} = 6\pi$ (cm²).
+- Tính $S_{\Delta}$: Tam giác OAB có $OA = OB = 6$ cm và góc $\widehat{AOB} = 60^\circ$ nên tam giác OAB là tam giác đều cạnh 6 cm.
+Diện tích tam giác đều: $S_{\Delta} = \frac{\text{cạnh}^2 \sqrt{3}}{4} = \frac{6^2 \sqrt{3}}{4} = 9\sqrt{3}$ (cm²).
+Vậy diện tích hình viên phân là: $S_{VP} = 6\pi - 9\sqrt{3}$ (cm²).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán thực tế tổng hợp (Quỹ đạo)</h4>
+
+Một chú ngựa bị xích ở ngoài góc của một nhà kho hình chữ nhật kích thước 4m x 6m (Sợi xích buộc tại một góc của nhà kho, bên ngoài nhà kho). Sợi xích dài 8m. Diện tích lớn nhất mà chú ngựa có thể gặm cỏ là bao nhiêu (có thể chưa làm tròn $\pi$)? (Nhà kho ở trên bãi cỏ rộng vô hạn bao kín chân tường xung quanh).
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi góc nhà kho nơi buộc xích là $A$. Nhà kho chắn một góc phần tư của vùng xích.
+Góc gặm cỏ tự do quanh điểm A là $360^\circ - 90^\circ = 270^\circ$, tức là $\frac{3}{4}$ đường tròn bán kính 8m.
+Diện tích phần tự do này: $S_1 = \frac{3}{4} \cdot \pi \cdot 8^2 = 48\pi$ (m²).
+
+Phần xích còn dư khi vòng rẽ qua 2 góc tường còn lại:
+- Khi xích cong qua góc tường dọc theo cạnh 6m, độ dài đoạn xích dư là $8 - 6 = 2$m. Ngựa quạt thêm được 1 phần tư đường tròn bán kính 2m: $S_2 = \frac{1}{4} \cdot \pi \cdot 2^2 = \pi$ (m²).
+- Khi xích cong qua góc tường dọc theo cạnh 4m, đoạn xích dư là $8 - 4 = 4$m. Ngựa quạt thêm được $\frac{1}{4}$ đường tròn bán kính 4m: $S_3 = \frac{1}{4} \cdot \pi \cdot 4^2 = 4\pi$ (m²).
+Tổng diện tích ngựa có thể gặm: $S = S_1 + S_2 + S_3 = 48\pi + \pi + 4\pi = 53\pi$ (m²).
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những bài học rút ra</h3>
+
+- Trong đường tròn, luôn nhớ tính chất **vuông góc giữa đường thẳng nối tâm với bán kính** và **đường kính vuông góc dây cung đi qua trung điểm**. Gần như 80% bài toán chứng minh đường tròn dùng sự vuông góc này và kết hợp định lý Pytago!
+- Tính chất **Hai tiếp tuyến cắt nhau** là xương sống của mọi bài hình tròn xuất hiện tiếp tuyến giao nhau.
+- Tính chiều dài cung hay quạt tròn luôn sử dụng 1 phần n của $360^\circ$. Khá dễ để hiểu và xây dựng lại công thức.
+
+</GhiNho>

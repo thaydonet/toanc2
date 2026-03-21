@@ -1,0 +1,478 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 10 - Toán 9"
+description: "Ôn tập chương 10 Toán 9 KNTT: Hình trụ, hình nón, hình cầu. Công thức diện tích và thể tích."
+grade: "Lớp 9"
+chapter: "Chương X: Một số hình khối trong thực tiễn"
+currentSlug: "lop9/bai-on-tap-chuong-10"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Công thức tính diện tích xung quanh của hình trụ có bán kính đáy $R$ và chiều cao $h$ là:",
+    option_a: "$\\pi R h$",
+    option_b: "$2\\pi R h$",
+    option_c: "$2\\pi R^2 h$",
+    option_d: "$\\pi R^2 h$",
+    correct_option: "B",
+    explanation: "Diện tích xung quanh của hình trụ là chu vi đáy nhân với chiều cao: $S_{xq} = 2\\pi Rh$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích của hình trụ có bán kính đáy $R$ và chiều cao $h$ được tính bằng công thức:",
+    option_a: "$\\frac{1}{3} \\pi R^2 h$",
+    option_b: "$\\frac{4}{3} \\pi R^2 h$",
+    option_c: "$\\pi R^2 h$",
+    option_d: "$2\\pi R^2 h$",
+    correct_option: "C",
+    explanation: "Thể tích hình trụ bằng diện tích đáy nhân với chiều cao: $V = \\pi R^2 h$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong hình nón, mối liên hệ giữa đường sinh $l$, chiều cao $h$ và bán kính đáy $R$ là:",
+    option_a: "$l = h + R$",
+    option_b: "$h^2 = l^2 + R^2$",
+    option_c: "$l^2 = h^2 + R^2$",
+    option_d: "$R^2 = h^2 + l^2$",
+    correct_option: "C",
+    explanation: "Đường sinh, chiều cao và bán kính đáy tạo thành một tam giác vuông, với đường sinh là cạnh huyền. Do đó $l^2 = h^2 + R^2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích xung quanh của hình nón có bán kính đáy $R$ và đường sinh $l$ là:",
+    option_a: "$\\pi R l$",
+    option_b: "$2\\pi R l$",
+    option_c: "$\\pi R^2 h$",
+    option_d: "$\\frac{1}{3} \\pi R l$",
+    correct_option: "A",
+    explanation: "Công thức diện tích xung quanh hình nón: $S_{xq} = \\pi R l$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính diện tích mặt cầu bán kính $R$ là:",
+    option_a: "$\\frac{4}{3} \\pi R^3$",
+    option_b: "$4\\pi R^2$",
+    option_c: "$2\\pi R^2$",
+    option_d: "$\\pi R^2$",
+    correct_option: "B",
+    explanation: "Diện tích mặt cầu được tính bằng 4 lần diện tích hình tròn lớn: $S = 4\\pi R^2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hình lập phương ngoại tiếp một hình cầu bán kính $a$. Tính thể tích hình lập phương đó.",
+    option_a: "$a^3$",
+    option_b: "$8a^3$",
+    option_c: "$4a^3$",
+    option_d: "$2a^3$",
+    correct_option: "B",
+    explanation: "Hình lập phương ngoại tiếp hình cầu thì cạnh lập phương bằng đường kính mặt cầu ($2a$). Thể tích là $(2a)^3 = 8a^3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một chiếc cốc hình trụ có chiều cao $10\\text{cm}$, đường kính đáy $8\\text{cm}$. Lượng nước đổ đầy chiếc cốc đó là bao nhiêu? (Lấy $\\pi \\approx 3.14$)",
+    option_a: "$251.2\\text{cm}^3$",
+    option_b: "$502.4\\text{cm}^3$",
+    option_c: "$1004.8\\text{cm}^3$",
+    option_d: "$785\\text{cm}^3$",
+    correct_option: "B",
+    explanation: "Bán kính đáy $R = 4\\text{cm}$. Thể tích $V = \\pi R^2 h = 3.14 \\times 4^2 \\times 10 = 3.14 \\times 16 \\times 10 = 502.4\\text{ cm}^3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cắt hình nón bằng một mặt phẳng song song với đáy, thiết diện thu được là hình gì?",
+    option_a: "Hình elip",
+    option_b: "Hình tam giác cân",
+    option_c: "Hình tròn",
+    option_d: "Hình chữ nhật",
+    correct_option: "C",
+    explanation: "Mặt phẳng cắt hình nón song song với đáy thì luôn tạo ra mặt cắt (thiết diện) là một hình tròn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các phát biểu nào sau đây đúng về hình cầu?",
+    option_a: "Khoảng cách từ tâm mặt cầu đến bất kì điểm nào trên mặt cầu cũng bằng bán kính.",
+    option_b: "Giao của mặt cầu và một mặt phẳng đi qua tâm là một đường tròn lớn.",
+    option_c: "Hình cầu chỉ có thể tích, không có diện tích toàn phần.",
+    option_d: "Thể tích khối cầu bán kính R tính bằng công thức $V = \\frac{4}{3}\\pi R^3$.",
+    correct_option: "A,B,D",
+    explanation: "C sai vì hình cầu có diện tích mặt cầu (toàn phần) là $4\\pi R^2$. Còn lại đều là định nghĩa và tính chất ĐÚNG.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một hình trụ tròn xoay có diện tích xung quanh bằng $48\\pi$ và chiều cao $h = 6$. Tính bán kính đáy $R$ của hình trụ.",
+    correct_option: "4",
+    explanation: "$S_{xq} = 2\\pi R h = 48\\pi \\Rightarrow 2\\pi R \\times 6 = 48\\pi \\Rightarrow 12\\pi R = 48\\pi \\Rightarrow R = 4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính thể tích của hình cầu có bán kính 3 cm. Trả lời số lượng $\\pi$ (Vd: nếu $15\\pi$ thì ghi 15).",
+    correct_option: "36",
+    explanation: "$V = \\frac{4}{3} \\pi R^3 = \\frac{4}{3} \\pi \\times 3^3 = \\frac{4}{3} \\pi \\times 27 = 36\\pi$. Số lượng là 36.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 10 — Hình khối 3D trong thực tiễn</h3>
+
+Hãy cùng bước từ mặt phẳng 2D ra không gian 3 chiều (3D)! Với 3 vật thể cơ bản tròn xoay: Khối Trụ, Khối Nón và Khối Cầu, chúng ta sẽ biết cách tính dung tích chai nước uống, diện tích vải may nón hay thể tích không khí trong quả bóng.
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #93c5fd;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🛢️</div>
+    <strong>Hình Trụ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cốc nước, lon sữa bò, ống nước</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #86efac;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🍦</div>
+    <strong>Hình Nón</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chiếc nón lá, ốc quế, phễu rót</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fca5a5;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚽</div>
+    <strong>Hình Cầu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Quả bóng, Trái đất, viên bi</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT VÀ CÔNG THỨC</h3>
+
+<h4 id="hinh-tru">1. Hình Trụ (Cylinder)</h4>
+Tạo thành khi quay hình chữ nhật một vòng quanh một cạnh cố định.
+- **Diện tích xung quanh:** $S_{xq} = 2\pi R h$ (Chu vi đáy tiếp xúc vòng quanh nhân chiều cao).
+- **Diện tích toàn phần:** $S_{tp} = S_{xq} + 2 \cdot S_{\text{đáy}} = 2\pi R h + 2\pi R^2$.
+- **Thể tích:** $V = \pi R^2 h$ (Diện tích đáy nhân chiều cao).
+
+<h4 id="hinh-non">2. Hình Nón (Cone)</h4>
+Tạo thành khi quay tam giác vuông một vòng quanh cạnh góc vuông cố định.
+- **Mối liên hệ cạnh:** $l^2 = h^2 + R^2$ (Pytago cho cạnh đường sinh $l$, đường cao $h$ và bán kính đáy $R$).
+- **Diện tích xung quanh:** $S_{xq} = \pi R l$.
+- **Diện tích toàn phần:** $S_{tp} = S_{xq} + S_{\text{đáy}} = \pi R l + \pi R^2$.
+- **Thể tích:** $V = \frac{1}{3} \pi R^2 h$ (Chỉ bằng 1/3 thể tích hình trụ cùng đáy và chiều cao).
+
+<h4 id="hinh-cau">3. Hình Cầu (Sphere)</h4>
+Tạo thành khi quay nửa hình tròn một vòng quanh đường kính. Mọi điểm trên mặt cầu đều cách tâm 1 khoảng bằng bán kính.
+- Giao của hình cầu và mặt phẳng (nếu qua tâm là tròn lớn, không qua tâm sẽ tạo hình tròn nhỏ hoặc tiếp điểm).
+- **Diện tích mặt cầu:** $S = 4\pi R^2 = \pi d^2$ (Bằng 4 lần diện tích hình tròn có cùng bán kính).
+- **Thể tích hình cầu:** $V = \frac{4}{3} \pi R^3$.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luyen-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tính toán cơ bản về hình trụ</h4>
+
+Cho một hình trụ có bán kính đường tròn đáy $R = 5\text{ cm}$ và chiều cao $h = 10\text{ cm}$.
+a) Tính diện tích xung quanh của hình trụ.
+b) Tính diện tích toàn phần của hình trụ.
+c) Tính thể tích của khối trụ đó.
+*(Lấy $\pi \approx 3,14$, làm tròn kết quả đến chữ số thập phân thứ nhất nếu cần).*
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích xung quanh hình trụ:
+$S_{xq} = 2\pi R h = 2 \cdot 3,14 \cdot 5 \cdot 10 = 314\text{ cm}^2$.
+
+b) Diện tích toàn phần bằng diện tích xung quanh cộng với diện tích 2 đáy:
+Diện tích một mặt đáy: $S_d = \pi R^2 = 3,14 \cdot 5^2 = 3,14 \cdot 25 = 78,5\text{ cm}^2$.
+Diện tích toàn phần: $S_{tp} = S_{xq} + 2S_d = 314 + 2 \cdot 78,5 = 314 + 157 = 471\text{ cm}^2$.
+
+c) Thể tích hình trụ:
+$V = \pi R^2 h = S_d \cdot h = 78,5 \cdot 10 = 785\text{ cm}^3$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Bài toán thực tế - Bồn chứa nước hình trụ</h4>
+
+Một bồn chứa nước hình trụ có đường kính đáy là $1,2\text{ m}$ và chiều cao $2,5\text{ m}$.
+a) Bồn nước này có thể chứa tối đa bao nhiêu lít nước? Biết $1\text{ m}^3 = 1000\text{ lít}$. (Lấy $\pi \approx 3,14$).
+b) Người ta muốn sơn chống rỉ toàn bộ mặt ngoài của bồn (kể cả 2 mặt đáy). Tính chi phí tiền sơn, biết giá mỗi mét vuông là $80\,000$ đồng.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Bán kính đáy bồn: $R = 1,2 : 2 = 0,6\text{ m}$.
+a) Thể tích của bồn nước:
+$V = \pi R^2 h \approx 3,14 \cdot 0,6^2 \cdot 2,5 = 3,14 \cdot 0,36 \cdot 2,5 = 2,826\text{ m}^3$.
+Đổi ra lít: $2,826 \cdot 1000 = 2826\text{ lít}$.
+Vậy bồn chứa tối đa $2826$ lít nước.
+
+b) Diện tích toàn phần (mặt ngoài) của bồn:
+$S_{tp} = 2\pi R h + 2\pi R^2 = 2 \cdot 3,14 \cdot 0,6 \cdot 2,5 + 2 \cdot 3,14 \cdot 0,6^2$
+$= 9,42 + 2,2608 = 11,6808\text{ m}^2$.
+Chi phí sơn bồn:
+$11,6808 \cdot 80\,000 \approx 934\,464$ (đồng).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tính toán cơ bản về hình nón</h4>
+
+Một hình nón có bán kính đáy $R = 6\text{ cm}$, chiều cao $h = 8\text{ cm}$.
+a) Tính độ dài đường sinh $l$ của hình nón.
+b) Tính diện tích xung quanh của hình nón theo $\pi$.
+c) Tính thể tích của hình nón theo $\pi$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Trong hình nón, bán kính $R$, chiều cao $h$, và đường sinh $l$ tạo thành tam giác vuông.
+Theo định lý Pytago: $l = \sqrt{R^2 + h^2} = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10\text{ cm}$.
+
+b) Diện tích xung quanh hình nón:
+$S_{xq} = \pi R l = \pi \cdot 6 \cdot 10 = 60\pi\text{ (cm}^2\text{)}$.
+
+c) Thể tích hình nón:
+$V = \frac{1}{3}\pi R^2 h = \frac{1}{3}\pi \cdot 6^2 \cdot 8 = \frac{1}{3}\pi \cdot 36 \cdot 8 = 12 \cdot 8 \cdot \pi = 96\pi\text{ (cm}^3\text{)}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bài toán thực tế - Chiếc nón lá</h4>
+
+Một chiếc nón lá dạng hình nón có đường kính vành nón là $40\text{ cm}$ và độ dài đường sinh là $30\text{ cm}$.
+a) Tính diện tích lá cọ cần dùng để lấp kín mặt xung quanh chiếc nón. (Không lợp đáy, lấy $\pi \approx 3,14$).
+b) Tính chiều cao của chiếc nón lá (làm tròn đến chữ số thập phân thứ nhất).
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Bán kính vành nón: $R = 40 : 2 = 20\text{ cm}$. Đường sinh $l = 30\text{ cm}$.
+a) Diện tích lá cọ lợp nón chính là diện tích xung quanh hình nón:
+$S_{xq} = \pi R l \approx 3,14 \cdot 20 \cdot 30 = 1884\text{ cm}^2$.
+
+b) Chiều cao của nón:
+Áp dụng định lý Pytago $h^2 = l^2 - R^2 = 30^2 - 20^2 = 900 - 400 = 500$.
+$\Rightarrow h = \sqrt{500} = 10\sqrt{5} \approx 22,4\text{ cm}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Tính toán cơ bản về hình cầu</h4>
+
+Một quả địa cầu dành cho học sinh có đường kính đo được là $30\text{ cm}$. (Lấy $\pi \approx 3,14$).
+a) Tính diện tích mặt cầu (diện tích bề mặt vỏ quả địa cầu).
+b) Tính thể tích khoảng trống bên trong quả địa cầu.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Bán kính quả địa cầu: $R = 30 : 2 = 15\text{ cm}$.
+a) Diện tích bề mặt của quả địa cầu (mặt cầu):
+$S = 4\pi R^2 \approx 4 \cdot 3,14 \cdot 15^2 = 4 \cdot 3,14 \cdot 225 = 2826\text{ cm}^2$.
+
+b) Thể tích bên trong quả địa cầu (khối cầu):
+$V = \frac{4}{3}\pi R^3 \approx \frac{4}{3} \cdot 3,14 \cdot 15^3 = \frac{4}{3} \cdot 3,14 \cdot 3375 = 14130\text{ cm}^3$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: So sánh sự thay đổi thể tích</h4>
+
+Có hai cốc nước hình trụ. Cốc thứ nhất có bán kính đáy là $R_1$, chiều cao là $h_1$. Cốc thứ hai có bán kính đáy $R_2 = 2 R_1$ và chiều cao $h_2 = \frac{1}{2} h_1$.
+Hỏi thể tích của cốc thứ hai gấp mấy lần thể tích cốc thứ nhất?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi thể tích cốc 1 là $V_1 = \pi R_1^2 h_1$.
+Thể tích cốc 2 là $V_2 = \pi R_2^2 h_2$.
+Thay $R_2 = 2 R_1$ và $h_2 = \frac{1}{2} h_1$ vào $V_2$:
+$V_2 = \pi \cdot (2 R_1)^2 \cdot (\frac{1}{2} h_1) = \pi \cdot 4 R_1^2 \cdot \frac{1}{2} h_1 = 2 \cdot (\pi R_1^2 h_1) = 2 V_1$.
+Vậy thể tích cốc thứ hai gấp 2 lần thể tích cốc thứ nhất.
+*(Giải thích: Bán kính đóng vai trò bình phương trong công thức nên tăng gấp đôi khiến thể tích tăng gấp 4, chiều cao giảm một nửa khiến thể tích giảm một nửa, tổng cộng là 4/2 = 2 lần).*
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Tìm lại kích thước từ Thể tích / Diện tích</h4>
+
+Một hộp sữa hình trụ có thể tích $V = 314\text{ cm}^3$ và chiều cao $h = 10\text{ cm}$. Từ đó, một người thợ tính toán làm nhãn mác bao quanh mặt hông (xung quanh) thân hộp. Tính diện tích nhãn giấy đó. (Lấy $\pi \approx 3,14$).
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Từ công thức thể tích hình trụ $V = \pi R^2 h$, ta tìm được bán kính $R$:
+$314 = 3,14 \cdot R^2 \cdot 10 \Rightarrow 314 = 31,4 \cdot R^2 \Rightarrow R^2 = \frac{314}{31,4} = 10$.
+$\Rightarrow R = \sqrt{10} \approx 3,16\text{ cm}$.
+
+Diện tích nhãn giấy vòng quanh hộp chính là diện tích xung quanh hộp:
+$S_{xq} = 2\pi R h \approx 2 \cdot 3,14 \cdot 3,16 \cdot 10 = 6,28 \cdot 31,6 \approx 198,45\text{ cm}^2$.
+Vậy diện tích nhãn giấy khoảng $198,45\text{ cm}^2$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Vật thể phức hợp - Viên thuốc con nhộng</h4>
+
+Một viên thuốc con nhộng có hình dạng gồm một hình trụ ở giữa và hai nửa hình cầu ở hai đầu.
+Biết phần hình trụ có chiều dài là $8\text{ mm}$, và đường kính của viên thuốc là $6\text{ mm}$.
+Tính thể tích của viên thuốc đó (lấy $\pi \approx 3,14$).
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Bán kính phần thân trụ cũng chính là bán kính hai khối nửa cầu ở hai đầu: $R = 6 : 2 = 3\text{ mm}$.
+Hai nửa hình cầu ghép lại tạo thành một hình cầu hoàn chỉnh bán kính $R = 3\text{ mm}$.
+- Thể tích phần hình trụ: $V_{tru} = \pi R^2 h_{tru} = \pi \cdot 3^2 \cdot 8 = 72\pi \approx 226,08\text{ mm}^3$.
+- Thể tích 2 nửa hình cầu (hoặc 1 khối cầu): $V_{cau} = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi \cdot 3^3 = 36\pi \approx 113,04\text{ mm}^3$.
+- Tổng thể tích viên thuốc: $V = V_{tru} + V_{cau} = 72\pi + 36\pi = 108\pi \approx 339,12\text{ mm}^3$.
+Vậy thể tích viên thuốc là khoảng $339,12\text{ mm}^3$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Hình cầu kết hợp mặt phẳng</h4>
+
+Một quả cầu thủy tinh đường kính $10\text{ cm}$ bị cưa làm hai phần thành hai chỏm cầu. Phần mặt phẳng cưa tạo ra một mặt cắt là một hình tròn. Biết bán kính của mặt cắt này là $4\text{ cm}$, hãy tính khoảng cách từ tâm quả cầu đến mặt cắt.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Bán kính quả cầu thủy tinh: $R = 10 : 2 = 5\text{ cm}$.
+Bán kính mặt cắt: $r = 4\text{ cm}$.
+Gọi khoảng cách từ tâm mặt cầu $O$ đến mặt cắt là $d$.
+Theo mối liên hệ giữa giao tuyến của mặt cầu và một mặt phẳng với tâm mặt cầu, ta có tam giác vuông được tạo bởi $d, r,$ và $R$, trong đó $R$ là cạnh huyền.
+Áp dụng định lý Pytago:
+$R^2 = d^2 + r^2$
+$\Rightarrow 5^2 = d^2 + 4^2 \Rightarrow 25 = d^2 + 16$
+$\Rightarrow d^2 = 9 \Rightarrow d = 3\text{ cm}$.
+Vậy khoảng cách từ tâm mặt cầu đến mặt phẳng cắt là $3\text{ cm}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Khối cầu ngoại tiếp phần không gian</h4>
+
+Một người thợ khắc gỗ muốn làm một quả cầu gỗ lớn nhất từ một khối gỗ hình lập phương có cạnh $10\text{ cm}$.
+a) Tính phần trăm thể tích gỗ bỏ đi so với lúc đầu (làm tròn 2 chữ số thập phân).
+b) Nếu thay vì hình cầu, thợ làm một khối trụ tròn lớn nhất (cùng chiều cao hộp), phần trăm gỗ bỏ đi là bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Thể tích khối lập phương ban đầu: $V_{lp} = a^3 = 10^3 = 1000\text{ cm}^3$.
+
+a) Khối cầu lớn nhất nội tiếp lập phương có đường kính chính bằng cạnh lập phương.
+Đường kính $D = 10\text{ cm} \Rightarrow R = 5\text{ cm}$.
+Thể tích quả cầu: $V_{cau} = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi \cdot 5^3 = \frac{4}{3}\pi \cdot 125 = \frac{500}{3}\pi \approx 523,6\text{ cm}^3$.
+Thể tích gỗ bỏ đi: $V_{bo1} = 1000 - 523,6 = 476,4\text{ cm}^3$.
+Phần trăm gỗ bị bỏ đi là: $\frac{476,4}{1000} \cdot 100\% = 47,64\%$.
+(Khoảng $47,64\%$ khối gỗ bị gọt đi).
+
+b) Khối trụ lớn nhất có chiều cao $h = 10\text{ cm}$ và mặt đáy có đường kính $D = 10\text{ cm} \Rightarrow R = 5\text{ cm}$.
+Thể tích khối trụ: $V_{tru} = \pi R^2 h = \pi \cdot 5^2 \cdot 10 = 250\pi \approx 785,4\text{ cm}^3$.
+Thể tích gỗ bỏ đi: $V_{bo2} = 1000 - 785,4 = 214,6\text{ cm}^3$.
+Phần trăm gỗ bị bỏ đi là: $\frac{214,6}{1000} \cdot 100\% = 21,46\%$.
+(Khoảng $21,46\%$ khối lập phương bị vứt bỏ).
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Lời khuyên cuối khoá</h3>
+
+- **Mẹo nhớ công thức:**
+  - Diện tích xung quanh NÓN là $\pi Rl$. Nhưng Trụ thì là $2\pi R h$. Thể tích Trụ = $\pi R^2h$, thể tích NÓN = Trụ/3.
+  - Hình Cầu diện tích là 4 hình tròn $4\pi R^2$, thể tích lồng thêm chiều số 3 chia 3 $\frac{4}{3}\pi R^3$.
+- Đơn vị là thứ bị chọc ngoáy nhiều nhất trong đề thi! Lít ($L$) = $1 \text{ dm}^3$, thay vì $\text{cm}^3$ hay $\text{m}^3$. Thường xuyên đổi $1000 \text{ cm}^3 = 1 \text{ L}$ và $1 \text{ m}^3 = 1000 \text{ L}$.
+- Kì thi tuyển sinh thường chỉ có 1 câu Hình không gian điểm số $\approx 0.75$, thuộc công thức là nhận điểm tuyệt đối!
+
+</GhiNho>

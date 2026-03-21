@@ -1,0 +1,483 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 8 - Toán 9"
+description: "Ôn tập chương 8 Toán 9 KNTT: Tóm tắt phép thử ngẫu nhiên, không gian mẫu và tính xác suất biến cố"
+grade: "Lớp 9"
+chapter: "Chương VIII: Xác suất của biến cố trong một số mô hình xác suất đơn giản"
+currentSlug: "lop9/bai-on-tap-chuong-8"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tập hợp tất cả các kết quả có thể xảy ra của một phép thử ngẫu nhiên được gọi là:",
+    option_a: "Không gian mẫu",
+    option_b: "Biến cố",
+    option_c: "Tập con",
+    option_d: "Biến cố chắc chắn",
+    correct_option: "A",
+    explanation: "Định nghĩa: Tập hợp tất cả các kết quả có thể xảy ra của một phép thử gọi là không gian mẫu, ký hiệu là $\\Omega$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biến cố chắc chắn có xác suất bằng bao nhiêu?",
+    option_a: "0",
+    option_b: "0.5",
+    option_c: "1",
+    option_d: "100",
+    correct_option: "C",
+    explanation: "Biến cố chắc chắn là biến cố luôn luôn xảy ra với mọi kết quả của phép thử, xác suất bằng 1 (hay 100%).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc cân đối và đồng chất một lần. Không gian mẫu $\\Omega$ có bao nhiêu phần tử?",
+    option_a: "1",
+    option_b: "6",
+    option_c: "12",
+    option_d: "36",
+    correct_option: "B",
+    explanation: "Xúc xắc có 6 mặt (từ 1 đến 6 chấm), gieo một lần thì có thể rơi vào 1 trong 6 mặt. Do đó n($\\Omega$) = 6.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo đồng thời hai đồng xu cân đối. Số phần tử của không gian mẫu $n(\\Omega)$ là:",
+    option_a: "2",
+    option_b: "3",
+    option_c: "4",
+    option_d: "8",
+    correct_option: "C",
+    explanation: "Đồng xu 1 có 2 k/q (S, N). Đồng xu 2 có 2 k/q (S, N). Gieo 2 đồng thì có $2 \\times 2 = 4$ kết quả: {S-S, S-N, N-S, N-N}.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung một con xúc xắc 6 mặt một lần. Tính xác suất để xuất hiện mặt có số chấm là số chia hết cho 3.",
+    option_a: "$\\frac{1}{6}$",
+    option_b: "$\\frac{1}{3}$",
+    option_c: "$\\frac{1}{2}$",
+    option_d: "$\\frac{2}{3}$",
+    correct_option: "B",
+    explanation: "Không gian mẫu $n(\\Omega) = 6$. Các kết quả thuận lợi là mặt 3 chấm và 6 chấm $\\Rightarrow n(A) = 2$. Xác suất $P = \\frac{2}{6} = \\frac{1}{3}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hộp đựng 4 thẻ được đánh số 1, 2, 3, 4. Lấy ngẫu nhiên ra 1 thẻ. Xác suất để lấy được thẻ đánh số lẻ là:",
+    option_a: "0.25",
+    option_b: "0.5",
+    option_c: "0.75",
+    option_d: "1",
+    correct_option: "B",
+    explanation: "Có 2 thẻ lẻ là 1 và 3 trong tổng số 4 thẻ. Xác suất $P = \\frac{2}{4} = 0.5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo đồng thời hai con xúc xắc xúc xắc cân đối. Xác suất để tổng số chấm trên hai mặt xuất hiện bằng 7 là:",
+    option_a: "$\\frac{1}{6}$",
+    option_b: "$\\frac{7}{36}$",
+    option_c: "$\\frac{1}{36}$",
+    option_d: "$\\frac{1}{18}$",
+    correct_option: "A",
+    explanation: "Không gian mẫu gieo hai con xúc xắc là $n(\\Omega) = 6 \\times 6 = 36$. Các cặp tổng bằng 7 là (1,6), (6,1), (2,5), (5,2), (3,4), (4,3) $\\Rightarrow$ Có 6 phần tử. $P = \\frac{6}{36} = \\frac{1}{6}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong một bình có 3 bi xanh và 2 bi đỏ giống hệt nhau về kích thước. Lấy ngẫu nhiên ra 1 viên bi. Xác suất để lấy được bi đỏ là:",
+    option_a: "$\\frac{2}{3}$",
+    option_b: "$\\frac{3}{5}$",
+    option_c: "$\\frac{2}{5}$",
+    option_d: "$\\frac{1}{2}$",
+    correct_option: "C",
+    explanation: "Tổng số bi là 5. Bi đỏ là 2. Xác suất $P = \\frac{2}{5}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho phép thử \"Gieo một xúc xắc 6 mặt một lần\". Những biến cố nào dưới đây là biến cố chắc chắn?",
+    option_a: "Xuất hiện mặt có số chấm chia hết cho 2",
+    option_b: "Xuất hiện mặt có số chấm nhỏ hơn 7",
+    option_c: "Xuất hiện mặt có số chấm lớn hơn 0",
+    option_d: "Xuất hiện mặt có số chấm là số chẵn hoặc số lẻ",
+    correct_option: "B,C,D",
+    explanation: "Biến cố chắc chắn là biến cố luôn xảy ra. Xúc xắc 6 mặt chỉ có {1,2,3,4,5,6}, đều < 7 (B), đều > 0 (C) và đều là chẵn hoặc lẻ (D).",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một lớp có 40 học sinh, trong đó có 15 nam và 25 nữ. Cô giáo gọi ngẫu nhiên một bạn lên bảng. Tính xác suất để bạn được gọi là bạn nam (Làm tròn 2 chữ số thập phân, phần thập phân phân cách bằng dấu chấm, vd 0.15).",
+    correct_option: "0.38",
+    explanation: "Không gian mẫu là 40 học sinh. Số học sinh nam (thuận lợi) là 15. Xác suất $P = \\frac{15}{40} = 0.375 \\approx 0.38$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tung đồng thời hai đồng xu phân biệt một lần. Gọi A là biến cố \"Có ít nhất một mặt ngửa xuất hiện\". Tính số phần tử thuận lợi cho biến cố A.",
+    correct_option: "3",
+    explanation: "Không gian mẫu $\\Omega = \\{SS, NN, SN, NS\\}$. Có ít nhất một ngửa là các trường hợp: NN, SN, NS. Do đó có 3 phần tử.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 8 — Xác suất của biến cố</h3>
+
+Từ một trò chơi may rủi đơn giản cho tới việc dự báo khả năng mưa, chúng ta đều dùng khái niệm Xác suất! Trong chương này, chúng ta đã tiếp cận xác suất một cách bài bản qua khái niệm "không gian mẫu" và "phép thử".
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #60a5fa;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Phép thử ngẫu nhiên</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Gieo xúc xắc, tung đồng xu, chọn lá bài,...</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #f472b6;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>Xác suất Cổ điển</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">P(A) = Kết quả thuận lợi chia cho Tổng số kết quả</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="khong-gian-mau">1. Phép thử ngẫu nhiên và Không gian mẫu</h4>
+
+- **Phép thử ngẫu nhiên:** (thường hiểu là phép thử): Là một thao tác hay thí nghiệm mà ta không thể đoán trước được kết quả chính xác nào sẽ xảy ra, nhưng lại biết được đầy đủ tất cả các kết quả có thể có của nó.
+- **Không gian mẫu:** Tập hợp tất cả các kết quả có thể xảy ra của phép thử. Ký hiệu là $\Omega$. 
+  - *Ví dụ:* Gieo một đồng xu, $\Omega = \{\text{Sấp}, \text{Ngửa}\}$. Số phần tử mẫu $n(\Omega) = 2$.
+
+<h4 id="bien-co">2. Biến cố</h4>
+
+- **Biến cố (Biến cố ngẫu nhiên):** Là một tập con của không gian mẫu $\Omega$, thường được kí hiệu bởi các chữ cái in hoa như $A, B, C,...$
+- **Biến cố chắc chắn:** Là tập $\Omega$, chắc chắn xảy ra với mọi kết quả (xác suất = $1$).
+- **Biến cố không thể:** Là tập rỗng $\emptyset$, không bao giờ xảy ra (xác suất = $0$).
+- **Số phần tử thuận lợi cho biến cố A:** Là số kết quả thuộc về tập hợp $A$, ký hiệu là $n(A)$.
+
+<h4 id="xac-suat">3. Tính xác suất của biến cố</h4>
+
+Trong một phép thử mà các kết quả có khả năng xảy ra là **như nhau** (đồng khả năng), xác suất của biến cố $A$ được tính bằng công thức:
+
+$$P(A) = \frac{n(A)}{n(\Omega)}$$
+
+Trong đó:
+- $n(A)$: Số kết quả thuận lợi cho biến cố $A$.
+- $n(\Omega)$: Tập hợp tất cả các kết quả có thể xảy ra của phép thử.
+
+**Đặc điểm xác suất:**
+- $0 \leq P(A) \leq 1$.
+- Càng gần 1 thì khả năng xảy ra càng cao; càng gần 0 thì khả năng xảy ra càng thấp.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luyen-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Xác định biến cố và không gian mẫu</h4>
+
+Một phép thử ngẫu nhiên là gieo một con xúc xắc 6 mặt cân đối và đồng chất một lần.
+a) Cho biết số phần tử của không gian mẫu $\Omega$.
+b) Trong các biến cố sau, biến cố nào là chắc chắn, biến cố nào là không thể, biến cố nào là ngẫu nhiên?
+$A$: "Gieo được mặt có số chấm là số chẵn".
+$B$: "Gieo được mặt có số chấm lớn hơn 6".
+$C$: "Gieo được mặt có số chấm dương".
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Không gian mẫu $\Omega = \{1; 2; 3; 4; 5; 6\}$. Số phần tử là $n(\Omega) = 6$.
+b) 
+- Biến cố $A$ có thể xảy ra (1, 3, 5 là số lẻ; 2, 4, 6 là số chẵn), chưa chắc chắn, do đó $A$ là **biến cố ngẫu nhiên**.
+- Biến cố $B$ không có kết quả nào thuận lợi vì các mặt cao nhất là 6. Do đó $B$ là **biến cố không thể** (tập rỗng).
+- Biến cố $C$ luôn xảy ra vì số chấm mọi mặt đều là số tự nhiên dương (từ 1 đến 6). Do đó $C$ là **biến cố chắc chắn**.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tính xác suất gieo đồng xu</h4>
+
+Người ta tung một đồng xu cân đối và đồng chất ba lần liên tiếp.
+a) Hãy liệt kê tất cả các kết quả có thể xảy ra của không gian mẫu $\Omega$.
+b) Tính xác suất để cả 3 lần tung đều ra kết quả giống nhau.
+c) Tính xác suất để có đúng 2 lần xuất hiện mặt Sấp (S).
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\Omega =$ \{SSS, SSN, SNS, SNN, NSS, NSN, NNS, NNN\}. Số kết quả có thể xảy ra là $n(\Omega) = 8$.
+(Hoặc tính nhanh: $2 \times 2 \times 2 = 8$).
+
+b) Gọi $A$ là biến cố "Cả 3 lần tung đều ra kết quả giống nhau". 
+Nhìn vào phần a, các kết quả thuận lợi cho $A$ là \{SSS, NNN\}. Vậy $n(A) = 2$.
+$P(A) = \frac{n(A)}{n(\Omega)} = \frac{2}{8} = \frac{1}{4}$.
+
+c) Gọi $B$ là biến cố "Có đúng 2 mặt Sấp".
+Nhìn vào không gian mẫu, các kết quả cho đúng 2 Sấp là \{SSN, SNS, NSS\}. Vậy $n(B) = 3$.
+$P(B) = \frac{n(B)}{n(\Omega)} = \frac{3}{8}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tính xác suất gieo một xúc xắc</h4>
+
+Gieo một con xúc xắc 6 mặt cân đối và đồng chất một lần. Tính xác suất của các biến cố sau:
+a) $E$: "Gieo được mặt có số chấm là số nguyên tố".
+b) $F$: "Gieo được mặt có số chấm là ước của 6".
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Không gian mẫu $\Omega = \{1; 2; 3; 4; 5; 6\} \Rightarrow n(\Omega) = 6$.
+a) Các số nguyên tố từ 1 đến 6 là \{2; 3; 5\}.
+Tập hợp các kết quả thuận lợi cho $E$ là $\{2; 3; 5\} \Rightarrow n(E) = 3$.
+$P(E) = \frac{3}{6} = \frac{1}{2}$.
+
+b) Các ước dương của 6 gồm \{1; 2; 3; 6\}.
+Tập hợp các kết quả thuận lợi cho $F$ là $\{1; 2; 3; 6\} \Rightarrow n(F) = 4$.
+$P(F) = \frac{4}{6} = \frac{2}{3}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Gieo 2 xúc xắc (Tổng số chấm)</h4>
+
+Gieo đồng thời hai con xúc xắc cân đối. Hãy tính xác suất của biến cố: $A$: "Tổng số chấm trên hai con xúc xắc bằng 9".
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Số kết quả có thể của không gian mẫu $\Omega$ là $6 \times 6 = 36$ kết quả (mỗi kết quả là một cặp $(i, j)$ với $i, j \in \{1, 2, 3, 4, 5, 6\}$).
+Biến cố $A$ xảy ra khi $i + j = 9$.
+Ta liệt kê các trường hợp: 
+$(3, 6); (4, 5); (5, 4); (6, 3)$.
+Số kết quả thuận lợi cho $A$ là $n(A) = 4$.
+Xác suất của biến cố $A$ là: $P(A) = \frac{4}{36} = \frac{1}{9}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Chọn ngẫu nhiên một số</h4>
+
+Một bình kín đựng 20 quả bóng bàn giống hệt nhau, được đánh số từ $1$ đến $20$. Lấy ngẫu nhiên ra 1 quả bóng. Tính xác suất của các biến cố:
+a) Bóng lấy ra đánh số chia hết cho 5.
+b) Bóng lấy ra đánh số lẻ và không chia hết cho 3.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Không gian mẫu: $n(\Omega) = 20$.
+a) Gọi $A$ là tập các bóng mang số chia hết cho 5. $A = \{5; 10; 15; 20\} \Rightarrow n(A) = 4$.
+$P(A) = \frac{4}{20} = \frac{1}{5} = 0,2$.
+
+b) Gọi $B$ là biến cố "Số trên bóng là số lẻ VÀ không chia hết cho 3".
+- Tập các bóng lẻ từ 1 đến 20: $\{1, 3, 5, 7, 9, 11, 13, 15, 17, 19\}$ (10 bóng).
+- Trong tập này, loại đi các bóng chia hết cho 3 bao gồm: $\{3, 9, 15\}$.
+Tập các kết quả thuận lợi cho $B$: $\{1, 5, 7, 11, 13, 17, 19\} \Rightarrow n(B) = 7$.
+$P(B) = \frac{7}{20} = 0,35$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Phép thử bốc có hoàn lại</h4>
+
+Trong hộp có 1 quả bóng xanh (X), 1 quả bóng đỏ (Đ), và 1 quả bóng vàng (V) có kích thước trọng lượng như nhau. Bạn Hoa bốc một quả bóng từ hộp, ghi lại màu rồi **bỏ lại vào hộp**. Sau đó Hoa bốc quả bóng lần thứ hai.
+a) Liệt kê không gian mẫu của phép thử này.
+b) Tính xác suất để cả 2 lần bốc đều thu được bóng đỏ.
+c) Tính xác suất để Hoa bốc được 2 quả bóng khác màu.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Lần bốc thứ I có 3 khả năng: X, Đ, V. Do có hoàn lại nên lần bốc thứ II cũng có 3 khả năng: X, Đ, V.
+$\Omega =$ \{(X,X), (X,Đ), (X,V), (Đ,X), (Đ,Đ), (Đ,V), (V,X), (V,Đ), (V,V)\}. $n(\Omega) = 3 \times 3 = 9$.
+
+b) Biến cố $M$: "Cả hai lần đều bốc được bóng đỏ". Thuận lợi cho $M$ là (Đ,Đ). $n(M) = 1$.
+$P(M) = \frac{1}{9}$.
+
+c) Biến cố $N$: "Hai quả bóng khác màu". Các quả bóng giống màu là (X,X), (Đ,Đ), (V,V). Có 3 kết quả như vậy.
+Do có 9 kết quả tổng cộng nên số kết quả bóng khác màu là $9 - 3 = 6$.
+(Các kết quả: (X,Đ), (X,V), (Đ,X), (Đ,V), (V,X), (V,Đ)).
+$P(N) = \frac{6}{9} = \frac{2}{3}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Phép thử bốc KHÔNG hoàn lại (Lấy liên tiếp)</h4>
+
+Từ hộp ở bài 6, bạn Hoa bốc một quả bóng từ hộp nhưng lần này **KHÔNG bỏ lại vào hộp**. Sau đó Hoa lại bốc tiếp quả bóng thứ hai. Tính xác suất Hoa bốc được quả đầu màu Xanh và quả thứ hai màu Đỏ.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Lần bốc 1 có 3 khả năng: X, Đ, V. Do bốc ra không bỏ vào, số bóng trong hộp giảm đi 1 nên lần bốc 2 chỉ còn 2 khả năng.
+Số kết quả có thể có là: $n(\Omega) = 3 \times 2 = 6$.
+Liệt kê không gian mẫu: $\Omega =$ \{(X,Đ), (X,V), (Đ,X), (Đ,V), (V,X), (V,Đ)\}. (Lưu ý không có (X,X), (Đ,Đ), (V,V)).
+
+Biến cố $A$: "Quả đầu màu xanh, quả thứ hai màu đỏ". Kết quả thuận lợi duy nhất là (X,Đ).
+Vậy $n(A) = 1$.
+$P(A) = \frac{1}{6}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Rút thẻ từ bộ bài tây (Biến cố tổ hợp)</h4>
+
+Từ bộ bài Tây tiêu chuẩn gồm 52 lá. Rút ngẫu nhiên một lá bài. Tính xác suất của các biến cố sau:
+a) $A$: "Rút được lá bài chất Cơ".
+b) $B$: "Rút được lá bài mang chữ K".
+c) $C$: "Rút được lá bài chất Cơ HOẶC mang chữ K".
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Không gian mẫu $n(\Omega) = 52$.
+a) Một bộ bài có 4 chất (Cơ, Rô, Chuồn, Bích), mỗi chất có 13 lá. Lấy ngẫu nhiên nên $n(A) = 13$. $P(A) = \frac{13}{52} = \frac{1}{4}$.
+
+b) Một bộ bài có 4 lá K (Già) khác chất. Lấy lá K có 4 trường hợp $\Rightarrow n(B) = 4$. $P(B) = \frac{4}{52} = \frac{1}{13}$.
+
+c) Tính số lá bài thuộc Cơ hoặc K (Biến cố hợp): 
+Tất cả các bài Cơ có 13 lá, bao gồm K Cơ.
+Tất cả lá bài K có 4 lá: K Cơ, K Rô, K Chuồn, K Bích.
+Tổng số lá thuận lợi là: 13 lá Cơ + 3 lá K còn lại = 16 lá.
+Vậy $n(C) = 16$.
+$P(C) = \frac{16}{52} = \frac{4}{13}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Chọn số 2 chữ số (Bài toán đếm)</h4>
+
+Một bạn học sinh lập bảng quy tắc chơi mật mã: Viết một số ngẫu nhiên có 2 chữ số khác nhau. 
+a) Hãy tính không gian mẫu của phép chọn số này.
+b) Tính xác suất để bạn đó viết ra một số lớn hơn 50.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Số có 2 chữ số khác nhau dạng $\overline{ab}$ ($a \neq 0, a \neq b$):
+- Chọn chữ số hàng chục ($a$): có 9 cách (từ 1 đến 9).
+- Chọn chữ số hàng cạch ($b$): có 9 cách (chọn một số từ 0 đến 9, miễn là khác $a$).
+Tổng số các số thỏa mãn (số phần tử không gian mẫu): $n(\Omega) = 9 \times 9 = 81$ số.
+
+b) Gọi $A$ là biến cố số viết ra $\overline{ab} > 50$ và $a \neq b$. 
+Các trường hợp với hàng chục $a$:
+- $a = 5$: có 9 cách chọn $b$ (từ 0 đến 9 trừ số 5). Số 50 không lớn hơn 50, nên bỏ b=0. Vậy $b$ có thể từ tập \{1,2,3,4,6,7,8,9\} $\Rightarrow 8$ số.
+- $a = 6, 7, 8, 9$ (4 trường hợp): mỗi nhóm có 9 cách chọn $b$ $\Rightarrow 4 \times 9 = 36$ số.
+Tổng số kết quả thỏa mãn $B$ là $n(A) = 8 + 36 = 44$.
+$P(A) = \frac{44}{81}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Vòng quay may mắn</h4>
+
+Một vòng quay may mắn được chia thành 8 hình quạt tròn diện tích bằng nhau, có ghi các số: 10, 20, 30, 40, 50, 60, 70, 80.
+Người chơi quay kim 1 lần (nếu kim nằm ở mép phân cách, phải quay lại). 
+a) Tính xác suất mũi kim chỉ vào ô ghi số chẵn.
+b) Tính xác suất mũi kim chỉ vào ô có số tiền lớn hơn 45.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Không gian mẫu là vòng quay có 8 hình quạt bằng nhau ứng với 8 kết quả từ 10 đến 80. Các kết quả là đồng khả năng. $n(\Omega) = 8$.
+a) Không gian mẫu bao gồm dãy: \{10, 20, 30, 40, 50, 60, 70, 80\}. Tất cả các số trên đều đóng tận cùng là số 0 nên tất cả đều là số chẵn. Mũi kim chắc chắn chỉ vào số chẵn. 
+Biến cố này là biến cố chắc chắn, xác suất là $\frac{8}{8} = 1$.
+
+b) Những ô có giá trị lớn hơn 45 bao gồm: \{50; 60; 70; 80\}. Có 4 ô.
+Xác suất để xảy ra là $P = \frac{4}{8} = \frac{1}{2} = 50\%$.
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Lời khuyên</h3>
+
+- Yếu tố quyết định trong bài Xác suất chính là: **Kể đủ phần tử của Không gian mẫu** và **Kể đủ kết quả thuận lợi** của Biến cố.
+- Nếu không chắc có bao nhiêu trường hợp trong bài xúc xắc 2 lần gieo, hãy lập bảng kẻ mảng $6 \times 6$ ra nháp rồi đánh dấu những ô thỏa mãn đếm cho chắc củ!
+
+</GhiNho>

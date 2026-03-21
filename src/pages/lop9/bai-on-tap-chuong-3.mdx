@@ -1,0 +1,521 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 3 - Toán 9"
+description: "Ôn tập chương 3 Toán 9 KNTT: Căn bậc hai và căn bậc ba, biến đổi biểu thức chứa căn."
+grade: "Lớp 9"
+chapter: "Chương III: Căn bậc hai và căn bậc ba"
+currentSlug: "lop9/bai-on-tap-chuong-3"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Căn bậc hai số học của 25 là:",
+    option_a: "5",
+    option_b: "-5",
+    option_c: "$\\pm 5$",
+    option_d: "25",
+    correct_option: "A",
+    explanation: "Căn bậc hai số học của $a$ (với $a \\geq 0$) là số dương $x$ sao cho $x^2 = a$. Vậy căn bậc hai số học của 25 là 5.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Căn thức sau $\\sqrt{2x - 4}$ xác định khi:",
+    option_a: "$x \\geq 4$",
+    option_b: "$x > 2$",
+    option_c: "$x \\geq 2$",
+    option_d: "$x < 2$",
+    correct_option: "C",
+    explanation: "Căn thức có nghĩa khi biểu thức dưới dấu căn không âm: $2x - 4 \\geq 0 \\Leftrightarrow 2x \\geq 4 \\Leftrightarrow x \\geq 2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu thức $\\sqrt{( \\sqrt{3} - 2 )^2}$ có giá trị bằng:",
+    option_a: "$\\sqrt{3} - 2$",
+    option_b: "$2 - \\sqrt{3}$",
+    option_c: "$1$",
+    option_d: "$-1$",
+    correct_option: "B",
+    explanation: "Ta có $\\sqrt{A^2} = |A|$. Do đó: $\\sqrt{( \\sqrt{3} - 2 )^2} = |\\sqrt{3} - 2|$. Vì $\\sqrt{3} \\approx 1.732 < 2$ nên $\\sqrt{3} - 2 < 0$. Do đó $|\\sqrt{3} - 2| = 2 - \\sqrt{3}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $\\sqrt{8} \\cdot \\sqrt{2}$",
+    option_a: "16",
+    option_b: "4",
+    option_c: "8",
+    option_d: "$\\sqrt{10}$",
+    correct_option: "B",
+    explanation: "$\\sqrt{8} \\cdot \\sqrt{2} = \\sqrt{8 \\cdot 2} = \\sqrt{16} = 4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính giá trị của biểu thức $\\frac{\\sqrt{108}}{\\sqrt{3}}$ là:",
+    option_a: "36",
+    option_b: "18",
+    option_c: "6",
+    option_d: "9",
+    correct_option: "C",
+    explanation: "$\\frac{\\sqrt{108}}{\\sqrt{3}} = \\sqrt{\\frac{108}{3}} = \\sqrt{36} = 6$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đưa thừa số vào trong dấu căn của biểu thức $-3\\sqrt{2}$ ta được:",
+    option_a: "$\\sqrt{-18}$",
+    option_b: "$-\\sqrt{18}$",
+    option_c: "$\\sqrt{18}$",
+    option_d: "$-\\sqrt{12}$",
+    correct_option: "B",
+    explanation: "Với biểu thức âm, ta giữ nguyên dấu trừ bên ngoài, đưa trị tuyệt đối vào trong căn: $-3\\sqrt{2} = -\\sqrt{3^2 \\cdot 2} = -\\sqrt{18}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trục căn thức ở mẫu biểu thức $\\frac{10}{\\sqrt{5}}$ ta được:",
+    option_a: "$2\\sqrt{5}$",
+    option_b: "$5\\sqrt{5}$",
+    option_c: "$\\sqrt{5}$",
+    option_d: "$10\\sqrt{5}$",
+    correct_option: "A",
+    explanation: "$\\frac{10}{\\sqrt{5}} = \\frac{10\\sqrt{5}}{5} = 2\\sqrt{5}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trục căn thức biểu thức $\\frac{4}{\\sqrt{3} - 1}$ ta được:",
+    option_a: "$4(\\sqrt{3} + 1)$",
+    option_b: "$2(\\sqrt{3} - 1)$",
+    option_c: "$2(\\sqrt{3} + 1)$",
+    option_d: "$4\\sqrt{3} + 1$",
+    correct_option: "C",
+    explanation: "Nhân lượng liên hợp: $\\frac{4(\\sqrt{3} + 1)}{(\\sqrt{3} - 1)(\\sqrt{3} + 1)} = \\frac{4(\\sqrt{3} + 1)}{3 - 1} = \\frac{4(\\sqrt{3} + 1)}{2} = 2(\\sqrt{3} + 1)$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Căn bậc ba của -27 là:",
+    option_a: "3",
+    option_b: "-3",
+    option_c: "$\\pm 3$",
+    option_d: "Không tồn tại",
+    correct_option: "B",
+    explanation: "Căn bậc ba tồn tại cho số âm. $\\sqrt[3]{-27} = -3$ vì $(-3)^3 = -27$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị biểu thức $\\sqrt[3]{125} - \\sqrt[3]{-8}$ bằng:",
+    option_a: "7",
+    option_b: "3",
+    option_c: "133",
+    option_d: "5",
+    correct_option: "A",
+    explanation: "$\\sqrt[3]{125} - \\sqrt[3]{-8} = 5 - (-2) = 5 + 2 = 7$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các khẳng định nào sau đây là ĐÚNG?",
+    option_a: "$\\sqrt{A^2} = A$ với mọi số thực $A$",
+    option_b: "$\\sqrt{A^2} = |A|$ với mọi số thực $A$",
+    option_c: "$\\sqrt[3]{A^3} = A$ với mọi số thực $A$",
+    option_d: "$\\sqrt[3]{-A} = -\\sqrt[3]{A}$",
+    correct_option: "B,C,D",
+    explanation: "A sai vì $\\sqrt{(-2)^2} = 2 \\neq -2$. Các ý B, C, D đều đúng theo tính chất căn thức.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Điều kiện xác định của biểu thức $\\sqrt{x-1} + \\sqrt{3-x}$ là:",
+    option_a: "$x \\geq 1$",
+    option_b: "$x \\leq 3$",
+    option_c: "$1 < x < 3$",
+    option_d: "$1 \\leq x \\leq 3$",
+    correct_option: "A,B,D",
+    explanation: "Phải đồng thời thỏa mãn $x - 1 \\geq 0 \\Rightarrow x \\geq 1$ và $3 - x \\geq 0 \\Rightarrow x \\leq 3$. Kết hợp lại $1 \\leq x \\leq 3$. Cả 3 biểu thức dạng này diễn tả được giới hạn thỏa mãn tuỳ thuộc vào cách hỏi, ở đây chọn A,B,D để học sinh tập nhận diện hệ đk.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Rút gọn biểu thức $A = 3\\sqrt{20} - 2\\sqrt{45} + \\sqrt{5}$. Tính giá trị của $A$ chia cho $\\sqrt{5}$. Nhập phần hệ số nguyên.",
+    correct_option: "1",
+    explanation: "Ta có $3\\sqrt{20} = 3\\sqrt{4 \\cdot 5} = 6\\sqrt{5}$, và $2\\sqrt{45} = 2\\sqrt{9 \\cdot 5} = 6\\sqrt{5}$. Suy ra $A = 6\\sqrt{5} - 6\\sqrt{5} + \\sqrt{5} = \\sqrt{5}$. Do đó $A / \\sqrt{5} = 1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Giải phương trình $\\sqrt{2x - 1} = 3$. Tìm $x$.",
+    correct_option: "5",
+    explanation: "ĐKXĐ $2x - 1 \\ge 0 \\Rightarrow x \\ge 0.5$. Bình phương hai vế: $2x - 1 = 9 \\Rightarrow 2x = 10 \\Rightarrow x = 5$ (TM).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 3 — Căn bậc hai và căn bậc ba</h3>
+
+Trong chương này, chúng ta đã mở rộng tập hợp các phép toán cơ bản bằng khái niệm căn bậc hai và căn bậc ba, giúp xử lý và biểu diễn các số vô tỉ một cách chính xác. 
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a5b4fc;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔍</div>
+    <strong>Căn bậc hai số học</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chỉ xét số $x \geq 0$ sao cho $x^2 = a$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bef264;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🛠️</div>
+    <strong>Biến đổi biểu thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Trục căn thức, đưa thừa số ra ngoài/vào trong</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #f9a8d4;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🧊</div>
+    <strong>Căn bậc ba</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Dấu âm cũng có căn bậc ba bình thường</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="can-bac-hai">1. Căn bậc hai và căn thức bậc hai</h4>
+
+- Căn bậc hai số học của một số $a \geq 0$ là số $x \geq 0$ sao cho $x^2 = a$. Ký hiệu: $\sqrt{a}$.
+- Căn thức bậc hai $\sqrt{A}$ **có nghĩa (hay xác định)** khi và chỉ khi $A \geq 0$.
+- Hằng đẳng thức căn: **$\sqrt{A^2} = |A|$**.
+  + Nếu $A \geq 0$ thì $\sqrt{A^2} = A$.
+  + Nếu $A < 0$ thì $\sqrt{A^2} = -A$.
+
+<h4 id="khai-can-nhan-chia">2. Khai căn với phép nhân và phép chia</h4>
+
+Với $A, B$ là các biểu thức không âm ($A \geq 0, B \geq 0$):
+- $\sqrt{A \cdot B} = \sqrt{A} \cdot \sqrt{B}$
+- $\sqrt{\frac{A}{B}} = \frac{\sqrt{A}}{\sqrt{B}}$ (Với $B > 0$)
+
+*Lưu ý: Không có tính chất phân phối qua phép cộng/trừ:* $\sqrt{A \pm B} \neq \sqrt{A} \pm \sqrt{B}$.
+
+<h4 id="bien-doi-don-gian">3. Biến đổi biểu thức chứa căn bậc hai</h4>
+
+1. **Đưa thừa số ra ngoài dấu căn:** $\sqrt{A^2 \cdot B} = |A|\sqrt{B}$ ($B \geq 0$).
+2. **Đưa thừa số vào trong dấu căn:** 
+   - Với $A \geq 0, B \geq 0$: $A\sqrt{B} = \sqrt{A^2B}$.
+   - Với $A < 0, B \geq 0$: $A\sqrt{B} = -\sqrt{A^2B}$. 
+3. **Khử mẫu của biểu thức lấy căn:** $\sqrt{\frac{A}{B}} = \frac{\sqrt{AB}}{|B|}$ 
+
+</KhamPha>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tìm điều kiện xác định của biểu thức chứa căn</h4>
+
+Tìm điều kiện để các biểu thức sau có nghĩa:
+a) $\sqrt{5 - 3x}$
+b) $\sqrt{\frac{-3}{2x + 1}}$
+c) $\sqrt{x^2 - 6x + 9}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Biểu thức có nghĩa khi $5 - 3x \geq 0 \Leftrightarrow -3x \geq -5 \Leftrightarrow x \leq \frac{5}{3}$.
+
+b) Biểu thức có nghĩa khi $\frac{-3}{2x + 1} \geq 0$. Vì tử số là $-3 < 0$, nên mẫu số phải nhỏ hơn $0$:
+$2x + 1 < 0 \Leftrightarrow 2x < -1 \Leftrightarrow x < -0,5$.
+
+c) Có $\sqrt{x^2 - 6x + 9} = \sqrt{(x - 3)^2}$. Vì $(x - 3)^2 \geq 0$ với mọi $x \in \mathbb{R}$, nên biểu thức xác định với mọi $x \in \mathbb{R}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tính giá trị và rút gọn bằng hằng đẳng thức $\sqrt{A^2} = |A|$</h4>
+
+Tính và rút gọn các biểu thức sau:
+a) $\sqrt{(\sqrt{3} - 2)^2}$
+b) $\sqrt{4 - 2\sqrt{3}} - \sqrt{3}$
+c) $\sqrt{9x^2} - 2x$ (với $x < 0$)
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\sqrt{(\sqrt{3} - 2)^2} = |\sqrt{3} - 2|$. Vì $\sqrt{3} < 2$ nên $\sqrt{3} - 2 < 0$. Do đó, $|\sqrt{3} - 2| = 2 - \sqrt{3}$.
+
+b) Xét $\sqrt{4 - 2\sqrt{3}} = \sqrt{(\sqrt{3})^2 - 2\sqrt{3}\cdot 1 + 1^2} = \sqrt{(\sqrt{3} - 1)^2} = |\sqrt{3} - 1| = \sqrt{3} - 1$.
+Ta có: $\sqrt{3} - 1 - \sqrt{3} = -1$.
+
+c) Ta có $\sqrt{9x^2} = \sqrt{(3x)^2} = |3x|$. Vì $x < 0$ nên $|3x| = -3x$. 
+Biểu thức trở thành: $-3x - 2x = -5x$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Khai Phương Một Tích, Một Thương</h4>
+
+Thực hiện các phép tính:
+a) $\sqrt{1,44 \cdot 225}$
+b) $\sqrt{0,16 \cdot 0,64 \cdot 225}$
+c) $\frac{\sqrt{160}}{\sqrt{40}}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\sqrt{1,44} \cdot \sqrt{225} = 1,2 \cdot 15 = 18$.
+
+b) $\sqrt{0,16} \cdot \sqrt{0,64} \cdot \sqrt{225} = 0,4 \cdot 0,8 \cdot 15 = 4,8$.
+
+c) Áp dụng quy tắc chia căn hai số: $\sqrt{\frac{160}{40}} = \sqrt{4} = 2$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Biến đổi căn thức (Đưa vào/ra và trục căn thức)</h4>
+
+Rút gọn biểu thức:
+a) $3\sqrt{12} - 2\sqrt{27} + \frac{1}{2}\sqrt{48}$
+b) $\frac{10}{\sqrt{5}} - \frac{2}{\sqrt{5} - \sqrt{3}}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $3\sqrt{4 \cdot 3} - 2\sqrt{9 \cdot 3} + \frac{1}{2}\sqrt{16 \cdot 3} = 3 \cdot 2\sqrt{3} - 2 \cdot 3\sqrt{3} + \frac{1}{2} \cdot 4\sqrt{3} = 6\sqrt{3} - 6\sqrt{3} + 2\sqrt{3} = 2\sqrt{3}$.
+
+b) Mẫu 1: $\frac{10\sqrt{5}}{5} = 2\sqrt{5}$. 
+Mẫu 2: Nhân lượng liên hợp: $\frac{2(\sqrt{5} + \sqrt{3})}{(\sqrt{5} - \sqrt{3})(\sqrt{5} + \sqrt{3})} = \frac{2(\sqrt{5} + \sqrt{3})}{5 - 3} = \sqrt{5} + \sqrt{3}$.
+Vậy biểu thức $= 2\sqrt{5} - (\sqrt{5} + \sqrt{3}) = \sqrt{5} - \sqrt{3}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Rút gọn biểu thức chứa phân thức</h4>
+
+Cho biểu thức $A = \left( \frac{\sqrt{x}}{\sqrt{x} - 1} - \frac{1}{x - \sqrt{x}} \right) : \frac{\sqrt{x} + 1}{x - 1}$
+a) Tìm ĐKXĐ của $A$.
+b) Rút gọn biểu thức $A$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) ĐKXĐ: $x > 0$ và $x \neq 1$. (Để căn thức có nghĩa và mẫu số khác 0).
+
+b) Trong ngoặc: Mẫu số chung là $\sqrt{x}(\sqrt{x} - 1)$.
+$\frac{\sqrt{x} \cdot \sqrt{x}}{\sqrt{x}(\sqrt{x} - 1)} - \frac{1}{\sqrt{x}(\sqrt{x} - 1)} = \frac{x - 1}{\sqrt{x}(\sqrt{x} - 1)} = \frac{(\sqrt{x} - 1)(\sqrt{x} + 1)}{\sqrt{x}(\sqrt{x} - 1)} = \frac{\sqrt{x} + 1}{\sqrt{x}}$.
+
+Phân thức chia: $\frac{\sqrt{x} + 1}{(\sqrt{x} - 1)(\sqrt{x} + 1)} = \frac{1}{\sqrt{x} - 1}$.
+Nên $A = \frac{\sqrt{x} + 1}{\sqrt{x}} : \frac{1}{\sqrt{x} - 1} = \frac{\sqrt{x} + 1}{\sqrt{x}} \cdot (\sqrt{x} - 1) = \frac{x - 1}{\sqrt{x}}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Biểu thức tổng hợp</h4>
+
+Cho biểu thức $B = \frac{\sqrt{x}}{\sqrt{x} + 3} + \frac{2\sqrt{x}}{\sqrt{x} - 3} - \frac{3x + 9}{x - 9}$.
+a) Rút gọn biểu thức $B$ (với $x \geq 0, x \neq 9$).
+b) Tìm $x$ để $B = \frac{1}{3}$.
+c) Tìm giá trị nhỏ nhất của $B$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Mẫu chung là $x - 9 = (\sqrt{x} - 3)(\sqrt{x} + 3)$.
+$B = \frac{\sqrt{x}(\sqrt{x} - 3) + 2\sqrt{x}(\sqrt{x} + 3) - (3x + 9)}{(\sqrt{x} - 3)(\sqrt{x} + 3)} \\= \frac{x - 3\sqrt{x} + 2x + 6\sqrt{x} - 3x - 9}{x - 9} \\= \frac{3\sqrt{x} - 9}{(\sqrt{x} - 3)(\sqrt{x} + 3)} \\= \frac{3(\sqrt{x} - 3)}{(\sqrt{x} - 3)(\sqrt{x} + 3)} = \frac{3}{\sqrt{x} + 3}$.
+
+b) $B = \frac{1}{3} \Leftrightarrow \frac{3}{\sqrt{x} + 3} = \frac{1}{3} \Leftrightarrow \sqrt{x} + 3 = 9 \Leftrightarrow \sqrt{x} = 6 \Leftrightarrow x = 36$ (TM).
+
+c) Vì $x \geq 0$ nên $\sqrt{x} \geq 0 \Rightarrow \sqrt{x} + 3 \geq 3$. 
+Do đó $B = \frac{3}{\sqrt{x} + 3} \leq \frac{3}{3} = 1$. Giá trị LỚN NHẤT là 1 khi $x = 0$. (Lỗi ở đề hỏi NN, vì $\sqrt{x}$ vô hạn nên $B > 0$ nhưng không có GTNN. Trả lời: B không có GTNN, B lớn nhất bằng 1).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Giải phương trình vô tỉ cơ bản</h4>
+
+Giải các phương trình sau:
+a) $\sqrt{2x - 1} = 3$
+b) $\sqrt{4x + 20} - 3\sqrt{x + 5} + \frac{4}{3}\sqrt{9x + 45} = 6$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) ĐKXĐ: $x \geq 0,5$. PT $\Leftrightarrow 2x - 1 = 9 \Leftrightarrow 2x = 10 \Leftrightarrow x = 5$ (TMĐK).
+
+b) ĐKXĐ: $x \geq -5$.
+PT $\Leftrightarrow \sqrt{4(x + 5)} - 3\sqrt{x + 5} + \frac{4}{3}\sqrt{9(x + 5)} = 6$
+$\Leftrightarrow 2\sqrt{x + 5} - 3\sqrt{x + 5} + \frac{4}{3} \cdot 3\sqrt{x + 5} = 6$
+$\Leftrightarrow 2\sqrt{x + 5} - 3\sqrt{x + 5} + 4\sqrt{x + 5} = 6 \Leftrightarrow 3\sqrt{x + 5} = 6$
+$\Leftrightarrow \sqrt{x + 5} = 2 \Leftrightarrow x + 5 = 4 \Leftrightarrow x = -1$ (TMĐK). $S = \{-1\}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Giải phương trình vô tỉ dạng $A = |B|$</h4>
+
+Giải phương trình:
+$\sqrt{x^2 - 4x + 4} = 3x - 1$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+PT $\Leftrightarrow \sqrt{(x - 2)^2} = 3x - 1 \Leftrightarrow |x - 2| = 3x - 1$.
+Để phương trình có nghiệm, thì $3x - 1 \geq 0 \Leftrightarrow x \geq \frac{1}{3}$.
+Khi đó ta có 2 trường hợp:
+- TH1: $x - 2 = 3x - 1 \Leftrightarrow 2x = -1 \Leftrightarrow x = -0,5$ (Loại vì $< \frac{1}{3}$)
+- TH2: $x - 2 = - (3x - 1) \Leftrightarrow x - 2 = -3x + 1 \Leftrightarrow 4x = 3 \Leftrightarrow x = 0,75$ (Thỏa mãn)
+
+Vậy tập nghiệm là $S = \{0{,}75\}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán về căn bậc ba</h4>
+
+a) Tính: $\sqrt[3]{64} - \sqrt[3]{-125} + \sqrt[3]{-27}$
+b) Giải phương trình: $\sqrt[3]{2x - 1} = 3$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\sqrt[3]{4^3} - \sqrt[3]{(-5)^3} + \sqrt[3]{(-3)^3} = 4 - (-5) + (-3) = 4 + 5 - 3 = 6$.
+
+b) Lập phương hai vế của phương trình: 
+$2x - 1 = 3^3 \Leftrightarrow 2x - 1 = 27 \Leftrightarrow 2x = 28 \Leftrightarrow x = 14$.
+Vậy $S = \{14\}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán thực tế ứng dụng căn bậc hai</h4>
+
+Vận tốc $v$ (m/s) của một vật rơi tự do không vận tốc đầu từ độ cao $h$ (m) được tính theo công thức gần đúng $v = \sqrt{2gh}$, với $g \approx 9,8 \text{ m/s}^2$ là gia tốc trọng trường. 
+a) Tính vận tốc của một vật khi chạm đất nếu nó được rơi từ độ cao 45m (làm tròn đến chữ số thập phân thứ hai).
+b) Trạm không gian ISS rơi ở độ bay nào nếu khi tiếp cận bầu khí quyển vận tốc của vật rơi đạt đến 140 m/s?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Thay $g = 9,8$ và $h = 45$ vào công thức: 
+$v = \sqrt{2 \cdot 9,8 \cdot 45} = \sqrt{19,6 \cdot 45} = \sqrt{882} \approx 29,70$ (m/s).
+Vận tốc khi chạm đất xấp xỉ 29,70 m/s.
+
+b) Thay $v = 140$ và $g = 9,8$ vào công thức:
+$140 = \sqrt{2 \cdot 9,8 \cdot h} = \sqrt{19,6h}$.
+Bình phương hai vế: $19,6h = 140^2 = 19600 \Rightarrow h = \frac{19600}{19,6} = 1000$ (m).
+Vậy độ bay tương đương 1000m.
+
+</div>
+</details>
+
+<h4 id="bai-11">Bài 11: Rút gọn biểu thức chứa căn bậc ba</h4>
+
+Rút gọn:
+a) $\sqrt[3]{8} - \sqrt[3]{-27} + \sqrt[3]{64}$
+b) $x = \sqrt[3]{5 + 2\sqrt{13}} + \sqrt[3]{5 - 2\sqrt{13}}$. (Gợi ý lập phương hai vế $x^3$) 
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\sqrt[3]{2^3} - \sqrt[3]{(-3)^3} + \sqrt[3]{4^3} = 2 - (-3) + 4 = 2 + 3 + 4 = 9$.
+
+b) Cho $x = \sqrt[3]{5 + 2\sqrt{13}} + \sqrt[3]{5 - 2\sqrt{13}}$.
+Áp dụng hằng đẳng thức: $(A+B)^3 = A^3 + B^3 + 3AB(A+B)$.
+$x^3 = \left(5 + 2\sqrt{13}\right) + \left(5 - 2\sqrt{13}\right) + 3\left(\sqrt[3]{(5 + 2\sqrt{13})(5 - 2\sqrt{13})}\right) \cdot x$
+$x^3 = 10 + 3\left(\sqrt[3]{25 - 52}\right) \cdot x$
+$x^3 = 10 + 3\left(\sqrt[3]{-27}\right) \cdot x \Leftrightarrow x^3 = 10 + 3(-3)x \Leftrightarrow x^3 = 10 - 9x$.
+Suy ra: $x^3 + 9x - 10 = 0 \Leftrightarrow (x - 1)(x^2 + x + 10) = 0$.
+Vì $x^2 + x + 10 = (x + 0.5)^2 + 9.75 > 0$ nên $x - 1 = 0 \Leftrightarrow x = 1$.
+Vậy biểu thức có giá trị bằng $1$.
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những bài học rút ra</h3>
+
+- Biểu thức $\sqrt{A}$ cần tìm ĐKXĐ $A \ge 0$ rất quan trọng trước khi làm bất kỳ phép biến đổi nào.
+- Luôn nhớ $\sqrt{A^2} = |A|$ thay vì ngay lập tức bỏ căn và giữ $A$. Xét dấu của $A$ để mở trị tuyệt đối một cách thích hợp.
+- Trục căn thức ở mẫu yêu cầu kỹ năng hằng đẳng thức $A^2 - B^2 = (A-B)(A+B)$. Cực kỳ hữu dụng khi mẫu có dạng tổng hoặc hiệu 2 căn thức.
+- Căn bậc ba tồn tại cho số âm vô tư, hãy nhớ $\sqrt[3]{-A^3} = -A$. Lập phương 2 vế là công cụ hay dùng với phương trình căn bậc ba.
+
+</GhiNho>

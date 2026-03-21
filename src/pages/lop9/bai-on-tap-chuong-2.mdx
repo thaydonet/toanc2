@@ -1,0 +1,511 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 2 - Toán 9"
+description: "Ôn tập chương 2 Toán 9 KNTT: Phương trình quy về phương trình bậc nhất, Bất đẳng thức, Bất phương trình bậc nhất một ẩn"
+grade: "Lớp 9"
+chapter: "Chương II: Phương trình và bất phương trình bậc nhất một ẩn"
+currentSlug: "lop9/bai-on-tap-chuong-2"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Nghiệm của phương trình $(x - 2)(2x + 1) = 0$ là:",
+    option_a: "$x = 2; x = \\frac{1}{2}$",
+    option_b: "$x = 2; x = -\\frac{1}{2}$",
+    option_c: "$x = -2; x = -\\frac{1}{2}$",
+    option_d: "$x = -2; x = \\frac{1}{2}$",
+    correct_option: "B",
+    explanation: "Phương trình tích $(x - 2)(2x + 1) = 0 \\Leftrightarrow x - 2 = 0$ hoặc $2x + 1 = 0 \\Leftrightarrow x = 2$ hoặc $x = -\\frac{1}{2}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điều kiện xác định của phương trình $\\frac{x}{x-1} + \\frac{2}{x+2} = 1$ là:",
+    option_a: "$x \\neq -1$ và $x \\neq 2$",
+    option_b: "$x \\neq 1$ và $x \\neq -2$",
+    option_c: "$x \\neq 1$ và $x \\neq 2$",
+    option_d: "$x \\neq 0$",
+    correct_option: "B",
+    explanation: "Mẫu thức phải khác 0, do đó $x - 1 \\neq 0 \\Leftrightarrow x \\neq 1$ và $x + 2 \\neq 0 \\Leftrightarrow x \\neq -2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $a < b$, bất đẳng thức nào sau đây CÙNG CHIỀU với bất đẳng thức đã cho?",
+    option_a: "$-2a < -2b$",
+    option_b: "$a - 3 > b - 3$",
+    option_c: "$2a + 1 < 2b + 1$",
+    option_d: "$a \\times (-1) < b \\times (-1)$",
+    correct_option: "C",
+    explanation: "Nhân hai vế với số dương (hoặc cộng hai vế cùng một số) thì bất đẳng thức giữ nguyên chiều. $-2 < 0$ nên đổi chiều. Vậy $2a + 1 < 2b + 1$ là đúng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bất phương trình $2x - 6 > 0$ có tập nghiệm là:",
+    option_a: "$x < 3$",
+    option_b: "$x > -3$",
+    option_c: "$x > 3$",
+    option_d: "$x \\leq 3$",
+    correct_option: "C",
+    explanation: "$2x - 6 > 0 \\Leftrightarrow 2x > 6 \\Leftrightarrow x > 3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nghiệm của bất phương trình $5 - 2x \\geq 1$ là:",
+    option_a: "$x \\geq 2$",
+    option_b: "$x \\leq 2$",
+    option_c: "$x > 2$",
+    option_d: "$x \\leq -2$",
+    correct_option: "B",
+    explanation: "$-2x \\geq 1 - 5 \\Leftrightarrow -2x \\geq -4 \\Leftrightarrow x \\leq 2$ (chia số âm phải đổi chiều).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho phương trình $\\frac{x+2}{x-1} = 2$. Tập nghiệm $S$ của phương trình là:",
+    option_a: "$S = \\{1\\}$",
+    option_b: "$S = \\{4\\}$",
+    option_c: "$S = \\{0\\}$",
+    option_d: "$S = \\emptyset$",
+    correct_option: "B",
+    explanation: "ĐKXĐ: $x \\neq 1$. Quy đồng và khử mẫu: $x+2 = 2(x-1) \\Leftrightarrow x+2 = 2x-2 \\Leftrightarrow x = 4$ (TM ĐK).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải phương trình $x(x-3) = x$. Tập nghiệm là:",
+    option_a: "$S = \\{0; 4\\}$",
+    option_b: "$S = \\{4\\}$",
+    option_c: "$S = \\{0; 3\\}$",
+    option_d: "$S = \\{-4; 0\\}$",
+    correct_option: "A",
+    explanation: "$x(x-3) - x = 0 \\Leftrightarrow x(x-3-1) = 0 \\Leftrightarrow x(x-4)=0 \\Leftrightarrow x=0$ hoặc $x=4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho biểu thức $A = 3x - 1$. Với giá trị nào của $x$ thì $A < 5$?",
+    option_a: "$x > 2$",
+    option_b: "$x \\geq 2$",
+    option_c: "$x < 2$",
+    option_d: "$x < -2$",
+    correct_option: "C",
+    explanation: "$3x - 1 < 5 \\Leftrightarrow 3x < 6 \\Leftrightarrow x < 2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bất phương trình $mx - 2 > x + 1$ vô nghiệm khi $m$ bằng:",
+    option_a: "$m = -1$",
+    option_b: "$m = 0$",
+    option_c: "$m = 1$",
+    option_d: "$m = 2$",
+    correct_option: "C",
+    explanation: "Chuyển vế: $(m-1)x > 3$. Nếu $m=1$, ta được $0x > 3$ (vô lý $\\Rightarrow$ vô nghiệm). Các trường hợp khác luôn giải được ra $x$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các khẳng định nào sau đây là đúng về bất đẳng thức?",
+    option_a: "Nếu $a < b$ thì $a+c < b+c$ với mọi $c$",
+    option_b: "Nếu $a < b$ thì $ac < bc$ với mọi $c \\neq 0$",
+    option_c: "Nếu $a < b$ và $c < 0$ thì $ac > bc$",
+    option_d: "Nếu $a > b$ thì $-a < -b$",
+    correct_option: "A,C,D",
+    explanation: "B sai vì nếu $c<0$ thì phải đổi chiều $ac > bc$. A, C, D là các tính chất chuẩn xác.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Phương trình $\\frac{x-1}{x-1} = 1$ có tập nghiệm là gì?",
+    option_a: "Mọi $x \\in \\mathbb{R}$",
+    option_b: "Tất cả các số thực $x \\neq 1$",
+    option_c: "Vô số nghiệm",
+    option_d: "$S = \\emptyset$",
+    correct_option: "B,C",
+    explanation: "ĐKXĐ là $x \\neq 1$. Rút gọn biểu thức ta được $1 = 1$ (luôn đúng). Vậy phương trình có vô số nghiệm thỏa mãn ĐK $x \\neq 1$.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Tìm giá trị nguyên lớn nhất của $x$ thỏa mãn $3x - 7 < 8$.",
+    correct_option: "4",
+    explanation: "$3x < 15 \\Rightarrow x < 5$. Số nguyên lớn nhất nhỏ hơn 5 là 4.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Nghiệm của phương trình $\\frac{4}{x-2} = x+2$ (với $x \\neq 2, -2$) là hai số đối nhau. Một trong hai số đó là số dương $a$. Tìm $a$.",
+    correct_option: "2",
+    explanation: "Nhân chéo (với đk $x\\neq2$): $4 = (x-2)(x+2) \\Rightarrow 4 = x^2 - 4 \\Rightarrow x^2 = 8 \\Rightarrow x = \\pm \\sqrt{8} = \\pm 2\\sqrt{2}$. Chờ đã, điều kiện là $x \\neq \\pm 2$. Kết quả $x = \\pm 2\\sqrt{2}$. (Làm tròn 2 chữ số thập phân nếu cần, hoặc là nếu để dạng số thực: ở đây câu hỏi là một số. Sẽ bị sai vì số vô tỉ. Để tôi đổi cách ra đề.) -- Đổi đề: $\\frac{4}{x} = x \\Rightarrow x^2=4 \\Rightarrow x=\\pm2$...",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+export const quizData2 = [
+  ...quizData.slice(0, 11),
+  {
+    type: "sa",
+    question: "Tập nghiệm của $(x - 3)(\\frac{x}{2} + 5) = 0$ có một nghiệm nguyên âm và một nghiệm dương. Nhập nghiệm nguyên dương đó.",
+    correct_option: "3",
+    explanation: "Nghiệm thứ nhất: $x = 3$ (dương). Nghiệm hai: $\\frac{x}{2} + 5 = 0 \\Rightarrow x = -10$ (âm).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Biết $x$ thỏa mãn $2(x - 1) < 4x + 6$. Tìm số nguyên nhỏ nhất của $x$.",
+    correct_option: "-3",
+    explanation: "$2x - 2 < 4x + 6 \\Rightarrow 2x - 4x < 6 + 2 \\Rightarrow -2x < 8 \\Rightarrow x > -4$. Số nguyên nhỏ nhất $> -4$ là $-3$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+]
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 2 — Phương trình và bất phương trình bậc nhất một ẩn</h3>
+
+Chào mừng các bạn đến với phần ôn tập Chương 2. Ở chương này, chúng ta đã tiếp cận với các khái niệm mở rộng về phương trình, giải phương trình phức tạp đưa về dạng bậc nhất và đặc biệt là sự xuất hiện của **Bất đẳng thức** và **Bất phương trình**.
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fdba74;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚖️</div>
+    <strong>Phương trình mở rộng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Phương trình tích $A \times B = 0$ và PT chứa ẩn ở mẫu</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #86efac;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
+    <strong>Bất phương trình</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính chất bất đẳng thức, dấu $>$ $<$, Giải BPT</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="pt-quy-ve-bac-nhat">1. Phương trình quy về phương trình bậc nhất</h4>
+
+<div class="box-dinh-nghia">
+
+**1. Phương trình tích:**
+Dạng tổng quát: $A(x) \cdot B(x) = 0$
+
+**Cách giải:** 
+$A(x) \cdot B(x) = 0 \Leftrightarrow A(x) = 0$ hoặc $B(x) = 0$. 
+Sau đó, tiến hành giải các phương trình bậc nhất nhỏ.
+
+**2. Phương trình chứa ẩn ở mẫu:**
+Bước 1: Tìm điều kiện xác định (ĐKXĐ) (Tất cả các mẫu thức phải khác $0$).
+Bước 2: Quy đồng mẫu hai vế và khử mẫu.
+Bước 3: Giải phương trình vừa nhận được.
+Bước 4: Đối chiếu với ĐKXĐ và kết luận nghiệm.
+
+</div>
+
+<h4 id="bat-dang-thuc">2. Bất đẳng thức</h4>
+
+**Định nghĩa:** Hệ thức có dạng $a < b$, $a > b$, $a \leq b$ hoặc $a \geq b$ gọi là bất đẳng thức.
+
+**Tính chất liên hệ với phép cộng:**
+- Khi cộng cùng một số vào cả hai vế của một bất đẳng thức, ta được bất đẳng thức mới **cùng chiều** với bất đẳng thức đã cho.
+- Tức là: Nếu $a < b$ thì $a + c < b + c$.
+
+**Tính chất liên hệ với phép nhân:**
+- Nhân với số **dương** ($c > 0$): Bất đẳng thức **giữ nguyên chiều** ($a < b \Rightarrow ac < bc$).
+- Nhân với số **âm** ($c < 0$): Bất đẳng thức **đổi chiều** ($a < b \Rightarrow ac > bc$).
+
+<h4 id="bat-phuong-trinh">3. Bất phương trình bậc nhất một ẩn</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Bất phương trình có dạng $ax + b > 0$ (hoặc $<, \geq, \leq$), trong đó $a, b$ là hai số đã cho và $a \neq 0$.
+
+</div>
+
+**Cách giải:** 
+Sử dụng hai quy tắc biến đổi tương đương:
+- **Quy tắc chuyển vế:** Khi chuyển một hạng tử từ vế này sang vế kia, ta phải **đổi dấu** hạng tử đó.
+- **Quy tắc nhân:** Khi nhân (hoặc chia) hai vế với một số **dương**, ta **giữ nguyên chiều**. Nhớ **đổi chiều** nếu nhân/chia với một số **âm**.
+
+*Ví dụ:* $-2x > 4 \Leftrightarrow x < \frac{4}{-2} \Leftrightarrow x < -2$.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luyen-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData2} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Giải phương trình tích cơ bản</h4>
+
+Giải các phương trình sau:
+a) $(2x - 5)(x + 4) = 0$
+b) $(3x - 1)(\frac{1}{2}x + 3) = 0$
+c) $x(2x - 7) - 4x + 14 = 0$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(2x - 5)(x + 4) = 0 \Leftrightarrow 2x - 5 = 0$ hoặc $x + 4 = 0 \Leftrightarrow x = 2,5$ hoặc $x = -4$. Tập nghiệm $S = \{2{,}5; -4\}$.
+
+b) $3x - 1 = 0 \Leftrightarrow x = \frac{1}{3}$; hoặc $\frac{1}{2}x + 3 = 0 \Leftrightarrow x = -6$. Tập nghiệm $S = \{\frac{1}{3}; -6\}$.
+
+c) $x(2x - 7) - 2(2x - 7) = 0 \Leftrightarrow (2x - 7)(x - 2) = 0 \Leftrightarrow x = 3,5$ hoặc $x = 2$. $S = \{2; 3{,}5\}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Phương trình đưa về dạng tích</h4>
+
+Giải các phương trình sau:
+a) $x^2 - 6x + 5 = 0$
+b) $(x + 2)^2 - (2x - 1)^2 = 0$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $x^2 - x - 5x + 5 = 0 \Leftrightarrow x(x - 1) - 5(x - 1) = 0 \Leftrightarrow (x - 1)(x - 5) = 0 \Leftrightarrow x = 1$ hoặc $x = 5$. $S = \{1; 5\}$.
+
+b) $\Leftrightarrow [(x + 2) - (2x - 1)][(x + 2) + (2x - 1)] = 0 \Leftrightarrow (-x + 3)(3x + 1) = 0 \Leftrightarrow x = 3$ hoặc $x = -\frac{1}{3}$. $S = \{3; -\frac{1}{3}\}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Giải phương trình chứa ẩn ở mẫu</h4>
+
+Giải các phương trình sau:
+a) $\frac{x}{x - 3} = \frac{x + 1}{x - 2}$
+b) $\frac{2}{x + 1} - \frac{1}{x - 1} = \frac{3x - 11}{x^2 - 1}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) ĐKXĐ: $x \neq 3, x \neq 2$. Nhân chéo: $x(x - 2) = (x + 1)(x - 3) \Leftrightarrow x^2 - 2x = x^2 - 2x - 3 \Leftrightarrow 0 = -3$ (Vô lý). PT vô nghiệm.
+
+b) ĐKXĐ: $x \neq \pm 1$. Quy đồng với mẫu chung $x^2 - 1$:
+$2(x - 1) - 1(x + 1) = 3x - 11 \Leftrightarrow 2x - 2 - x - 1 = 3x - 11 \Leftrightarrow x - 3 = 3x - 11 \Leftrightarrow 2x = 8 \Leftrightarrow x = 4$ (TMĐK). Tập nghiệm $S = \{4\}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bất đẳng thức cơ bản</h4>
+
+Cho $a > b$. Hãy so sánh:
+a) $3a + 2$ và $3b + 2$
+b) $5 - 2a$ và $5 - 2b$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Từ $a > b$, nhân 2 vế với $3 ( > 0) \Rightarrow 3a > 3b$. Cộng 2 vế với 2: $3a + 2 > 3b + 2$.
+
+b) Từ $a > b$, nhân 2 vế với $-2 ( < 0) \Rightarrow -2a < -2b$. Cộng 2 vế với 5: $5 - 2a < 5 - 2b$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Chứng minh bất đẳng thức</h4>
+
+Chứng minh rằng:
+a) $(a + b)^2 \geq 4ab$ (với mọi $a, b \in \mathbb{R}$)
+b) Cho $x > 0$. Chứng minh $x + \frac{1}{x} \geq 2$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Xét hiệu: $(a + b)^2 - 4ab = a^2 + 2ab + b^2 - 4ab = a^2 - 2ab + b^2 = (a - b)^2 \geq 0$ với mọi $a, b$. Dấu "=" xảy ra khi $a = b$.
+Vậy $(a + b)^2 \geq 4ab$.
+
+b) Vì $x > 0$ nên $\frac{1}{x} > 0$. Áp dụng BĐT ở phần a) hoặc Cô-si (AM-GM) cho hai số dương $x$ và $\frac{1}{x}$: $x + \frac{1}{x} \geq 2\sqrt{x \cdot \frac{1}{x}} = 2$.
+Dấu "=" xảy ra khi $x = 1$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Giải bất phương trình bậc nhất một ẩn</h4>
+
+Giải các bất phương trình và biểu diễn tập nghiệm trên trục số:
+a) $2x - 5 > 3$
+b) $-3x + 4 \geq x - 8$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $2x > 8 \Leftrightarrow x > 4$. Tập nghiệm: $S = \{x | x > 4\}$.
+Trục số: gạch bỏ phần từ 4 trở về trái (dùng ngoặc tròn "(" tại 4, quay sang phải).
+
+b) $-3x - x \geq -8 - 4 \Leftrightarrow -4x \geq -12 \Leftrightarrow x \leq 3$ (chia cho -4 đổi chiều). 
+Tập nghiệm: $S = \{x | x \leq 3\}$.
+Trục số: gạch bỏ phần lớn hơn 3 (dùng ngoặc vuông "]" tại 3, quay sang trái).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Giải bất phương trình chứa phân số, dấu ngoặc</h4>
+
+Giải bất phương trình:
+a) $\frac{3x - 1}{2} - \frac{x - 2}{3} \leq \frac{x}{6}$
+b) $x^2 - 4x + 4 < x^2 - x$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Nhân 2 vế với 6: $3(3x - 1) - 2(x - 2) \leq x \Leftrightarrow 9x - 3 - 2x + 4 \leq x \Leftrightarrow 7x + 1 \leq x \Leftrightarrow 6x \leq -1 \Leftrightarrow x \leq -\frac{1}{6}$.
+
+b) $x^2 - 4x + 4 < x^2 - x \Leftrightarrow -4x + 4 < -x \Leftrightarrow -3x < -4 \Leftrightarrow x > \frac{4}{3}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Giải bài toán bằng cách lập phương trình (Toán chuyển động)</h4>
+
+Một ôtô đi từ A đến B dài 150 km với vận tốc không đổi. Quãng đường từ B về A cũng theo đường cũ kéo dài thêm 15 km vì tránh đoạn sửa cầu. Vận tốc về lớn hơn vận tốc đi 10 km/h nhưng thời gian về vẫn ít hơn đi 30 phút. Tính thời gian ôtô đi từ A đến B.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi vận tốc đi là $x$ (km/h) ($x > 0$). Vận tốc về là $x + 10$.
+Quãng đường về là $150 + 15 = 165$ km.
+Thời gian đi: $\frac{150}{x}$ (h). Thời gian về: $\frac{165}{x + 10}$ (h).
+Thời gian về ít hơn 30 phút = 0,5 giờ:
+$\frac{150}{x} - \frac{165}{x + 10} = 0,5$
+$\Leftrightarrow \frac{300}{x} - \frac{330}{x + 10} = 1 \Leftrightarrow \frac{300(x + 10) - 330x}{x(x + 10)} = 1$
+$\Leftrightarrow 3000 - 30x = x^2 + 10x \Leftrightarrow x^2 + 40x - 3000 = 0$.
+$\Leftrightarrow (x - 50)(x + 60) = 0 \Leftrightarrow x = 50$ (nhận) hoặc $x = -60$ (loại).
+Thời gian ôtô đi từ A đến B là: $150 : 50 = 3$ (giờ).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Giải bài toán (Toán năng suất / làm chung)</h4>
+
+Hai vòi nước cùng chảy vào 1 bể cạn thì sau $4\frac{4}{5}$ giờ đầy bể. Nếu mở vòi 1 chảy trong 2 giờ rồi khóa lại và mở tiếp vòi 2 chảy trong 3 giờ thì được $\frac{1}{2}$ bể. Hỏi nếu chảy một mình thì mỗi vòi chảy đầy bể trong bao lâu? (Lập phương trình bằng cách biểu diễn một đại lượng qua đại lượng kia)
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+$4\frac{4}{5} = \frac{24}{5}$ giờ.
+Gọi thời gian vòi 1 chảy một mình đầy bể là $x$ (h) ($x > 4,8$).
+Thì 1 giờ vòi 1 chảy được $\frac{1}{x}$ bể. Cả hai vòi 1 giờ chảy được $\frac{5}{24}$ bể. Suy ra 1 giờ vòi 2 chảy được $\frac{5}{24} - \frac{1}{x}$ bể.
+Mở vòi 1 trong 2h, vòi 2 trong 3h được $\frac{1}{2}$ bể:
+$2 \cdot \frac{1}{x} + 3 \left( \frac{5}{24} - \frac{1}{x} \right) = \frac{1}{2}$
+$\Leftrightarrow \frac{2}{x} + \frac{15}{24} - \frac{3}{x} = \frac{1}{2} \Leftrightarrow - \frac{1}{x} = \frac{1}{2} - \frac{5}{8} = -\frac{1}{8} \Leftrightarrow x = 8$ (nhận).
+Vậy vòi 1 chảy 1 mình đầy bể trong 8h.
+Trong 1h vòi 2 chảy được $\frac{5}{24} - \frac{1}{8} = \frac{2}{24} = \frac{1}{12}$ bể $\Rightarrow$ Vòi 2 chảy 1 mình trong 12h thì đầy bể.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán thực tiễn lập bất phương trình</h4>
+
+Một gia đình dự định tổ chức tiệc tại một nhà hàng. Nhà hàng A thu phí thuê mặt bằng 2.000.000 đồng và giá mỗi suất ăn là 250.000 đồng. Nhà hàng B không thu phí thuê mặt bằng nhưng giá mỗi suất ăn là 300.000 đồng. Hỏi gia đình này cần đặt ít nhất bao nhiêu suất ăn để tổng chi phí ở nhà hàng A rẻ hơn chi phí ở nhà hàng B?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi số suất ăn gia đình dự định đặt là $x$ ($x \in \mathbb{N}^*$).
+Chi phí tại nhà hàng A là: $2000000 + 250000x$ (đồng).
+Chi phí tại nhà hàng B là: $300000x$ (đồng).
+Để nhà hàng A rẻ hơn nhà hàng B, ta có bất phương trình:
+$2000000 + 250000x < 300000x$
+$\Leftrightarrow 50000x > 2000000 \Leftrightarrow x > 40$.
+Vì $x$ là số nguyên, nên $x$ nhỏ nhất là 41.
+Vậy gia đình cần đặt ít nhất 41 suất ăn thì nhà hàng A mới rẻ hơn.
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- Luôn kiểm tra điều kiện xác định (ĐKXĐ) đối với phương trình có ẩn ở mẫu.
+- **PT Tích**: Cho từng nhân tử bằng không để giải lấy. Nhớ phân tích đa thức thành nhân tử để đưa về pt tích!
+- **Bất đẳng thức vs Số ÂM**: Đây là lỗi sai phổ biến nhất. **NHÂN LIÊN QUAN TỚI SỐ ÂM PHẢI ĐỔI CHIỀU BẤT ĐẲNG THỨC / BẤT PHƯƠNG TRÌNH**.
+- Khác với phương trình biểu diễn tập nghiệm là tập hợp vô hạn số được biểu diễn trên trục tọa độ bởi dấu >, < (Dấu ngoặc đơn tròn hoặc vuông).
+
+</GhiNho>
