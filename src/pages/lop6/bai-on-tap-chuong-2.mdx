@@ -1,0 +1,523 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 2 - Toán 6"
+description: "Ôn tập toàn bộ kiến thức chương 2 Toán 6 KNTT về tính chia hết"
+grade: "Lớp 6"
+chapter: "Chương II: Tính chia hết trong tập hợp các số tự nhiên"
+currentSlug: "lop6/bai-on-tap-chuong-2"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số 48 chia hết cho những số nào?",
+    option_a: "$2, 3, 4, 6, 8, 12, 16, 24, 48$",
+    option_b: "$2, 3, 5, 6$",
+    option_c: "$1, 2, 3, 4$",
+    option_d: "$2, 4, 8$",
+    correct_option: "A",
+    explanation: "Các ước của 48 là: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào là số nguyên tố?",
+    option_a: "$17$",
+    option_b: "$15$",
+    option_c: "$21$",
+    option_d: "$25$",
+    correct_option: "A",
+    explanation: "17 chỉ có 2 ước là 1 và 17, nên 17 là số nguyên tố.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "ƯCLN(24, 36) bằng:",
+    option_a: "$12$",
+    option_b: "$6$",
+    option_c: "$18$",
+    option_d: "$24$",
+    correct_option: "A",
+    explanation: "24 = 2³ × 3, 36 = 2² × 3². ƯCLN = 2² × 3 = 12",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "BCNN(12, 18) bằng:",
+    option_a: "$36$",
+    option_b: "$24$",
+    option_c: "$18$",
+    option_d: "$12$",
+    correct_option: "A",
+    explanation: "12 = 2² × 3, 18 = 2 × 3². BCNN = 2² × 3² = 36",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân tích 120 thành thừa số nguyên tố:",
+    option_a: "$2^3 \\times 3 \\times 5$",
+    option_b: "$2^2 \\times 3 \\times 5$",
+    option_c: "$2 \\times 3 \\times 5$",
+    option_d: "$2^4 \\times 3 \\times 5$",
+    correct_option: "A",
+    explanation: "$120 = 8 \\times 15 = 2^3 \\times 3 \\times 5$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số 2024 có chia hết cho 8 không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "B",
+    explanation: "2024 ÷ 8 = 253, dư 0. Vậy 2024 chia hết cho 8.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào là hợp số?",
+    option_a: "$15$",
+    option_b: "$13$",
+    option_c: "$11$",
+    option_d: "$7$",
+    correct_option: "A",
+    explanation: "15 = 3 × 5, có nhiều hơn 2 ước, nên 15 là hợp số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ước chung lớn nhất của 60 và 90 là:",
+    option_a: "$30$",
+    option_b: "$15$",
+    option_c: "$45$",
+    option_d: "$60$",
+    correct_option: "A",
+    explanation: "60 = 2² × 3 × 5, 90 = 2 × 3² × 5. ƯCLN = 2 × 3 × 5 = 30",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bội chung nhỏ nhất của 15 và 20 là:",
+    option_a: "$60$",
+    option_b: "$30$",
+    option_c: "$40$",
+    option_d: "$300$",
+    correct_option: "A",
+    explanation: "15 = 3 × 5, 20 = 2² × 5. BCNN = 2² × 3 × 5 = 60",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số 2, 3, 5, 7 là những số gì?",
+    option_a: "Số nguyên tố",
+    option_b: "Hợp số",
+    option_c: "Số chẵn",
+    option_d: "Số lẻ",
+    correct_option: "A",
+    explanation: "2, 3, 5, 7 đều chỉ có 2 ước là 1 và chính nó, nên là số nguyên tố.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 2 — Tính chia hết</h3>
+
+Chương 2 giúp chúng ta hiểu sâu hơn về quan hệ chia hết, số nguyên tố, và cách tìm ước chung lớn nhất, bội chung nhỏ nhất.
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔗</div>
+    <strong>Chia hết</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Quan hệ chia hết</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
+    <strong>Số nguyên tố</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Phân tích thừa số</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>ƯCLN & BCNN</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ứng dụng thực tế</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="quan-he-chia-het">1. Quan hệ chia hết</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số tự nhiên $a$ chia hết cho số tự nhiên $b$ (ký hiệu $a \vdots b$) nếu tồn tại số tự nhiên $q$ sao cho $a = b \times q$.
+
+**Tính chất:**
+- Nếu $a \vdots b$ và $b \vdots c$ thì $a \vdots c$
+- Nếu $a \vdots b$ và $a \vdots c$ thì $a \vdots \text{BCNN}(b, c)$
+
+</div>
+
+<h4 id="dau-hieu-chia-het">2. Dấu hiệu chia hết</h4>
+
+<div class="box-dinh-ly">
+
+- **Chia hết cho 2:** Chữ số tận cùng là 0, 2, 4, 6, 8
+- **Chia hết cho 5:** Chữ số tận cùng là 0 hoặc 5
+- **Chia hết cho 3:** Tổng các chữ số chia hết cho 3
+- **Chia hết cho 9:** Tổng các chữ số chia hết cho 9
+- **Chia hết cho 4:** Hai chữ số tận cùng tạo thành số chia hết cho 4
+- **Chia hết cho 8:** Ba chữ số tận cùng tạo thành số chia hết cho 8
+
+</div>
+
+<h4 id="so-nguyen-to">3. Số nguyên tố và hợp số</h4>
+
+<div class="box-dinh-nghia">
+
+**Số nguyên tố:** Số tự nhiên lớn hơn 1, chỉ có hai ước là 1 và chính nó.
+
+**Hợp số:** Số tự nhiên lớn hơn 1, có nhiều hơn hai ước.
+
+**Lưu ý:** Số 0 và 1 không phải số nguyên tố, cũng không phải hợp số.
+
+</div>
+
+**Các số nguyên tố nhỏ hơn 30:** 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+
+<h4 id="phan-tich-thua-so">4. Phân tích thành thừa số nguyên tố</h4>
+
+**Định nghĩa:** Viết một số dưới dạng tích của các số nguyên tố.
+
+**Ví dụ:** $60 = 2^2 \times 3 \times 5$
+
+**Phương pháp:** Chia liên tiếp cho các số nguyên tố từ nhỏ đến lớn.
+
+<h4 id="uoc-chung">5. Ước chung. Ước chung lớn nhất (ƯCLN)</h4>
+
+<div class="box-dinh-ly">
+
+**Ước chung:** Số vừa là ước của $a$, vừa là ước của $b$.
+
+**ƯCLN:** Ước chung lớn nhất của $a$ và $b$.
+
+**Cách tìm ƯCLN:**
+- Phân tích thành thừa số nguyên tố
+- Lấy tích các thừa số chung với số mũ nhỏ nhất
+
+**Ví dụ:** ƯCLN(24, 36) = ƯCLN($2^3 \times 3$, $2^2 \times 3^2$) = $2^2 \times 3 = 12$
+
+</div>
+
+<h4 id="boi-chung">6. Bội chung. Bội chung nhỏ nhất (BCNN)</h4>
+
+<div class="box-dinh-nghia">
+
+**Bội chung:** Số vừa là bội của $a$, vừa là bội của $b$.
+
+**BCNN:** Bội chung nhỏ nhất của $a$ và $b$.
+
+**Cách tìm BCNN:**
+- Phân tích thành thừa số nguyên tố
+- Lấy tích các thừa số chung và riêng với số mũ lớn nhất
+
+**Ví dụ:** BCNN(12, 18) = BCNN($2^2 \times 3$, $2 \times 3^2$) = $2^2 \times 3^2 = 36$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Dấu hiệu chia hết</h4>
+
+Trong các số 120, 135, 246, 350, 405, hãy tìm:
+
+a) Các số chia hết cho 2
+
+b) Các số chia hết cho 5
+
+c) Các số chia hết cho 3
+
+d) Các số chia hết cho cả 2 và 5
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Chia hết cho 2: $120, 246, 350$
+
+b) Chia hết cho 5: $120, 135, 350, 405$
+
+c) Chia hết cho 3: $120, 135, 246, 405$
+
+d) Chia hết cho cả 2 và 5: $120, 350$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Phân tích thành thừa số nguyên tố</h4>
+
+Phân tích các số sau thành thừa số nguyên tố:
+
+a) $60$
+
+b) $84$
+
+c) $100$
+
+d) $180$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $60 = 2^2 \times 3 \times 5$
+
+b) $84 = 2^2 \times 3 \times 7$
+
+c) $100 = 2^2 \times 5^2$
+
+d) $180 = 2^2 \times 3^2 \times 5$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tìm ƯCLN</h4>
+
+Tìm ƯCLN của:
+
+a) ƯCLN(24, 36)
+
+b) ƯCLN(60, 90)
+
+c) ƯCLN(48, 72, 96)
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $24 = 2^3 \times 3$, $36 = 2^2 \times 3^2$
+
+   ƯCLN(24, 36) = $2^2 \times 3 = 12$
+
+b) $60 = 2^2 \times 3 \times 5$, $90 = 2 \times 3^2 \times 5$
+
+   ƯCLN(60, 90) = $2 \times 3 \times 5 = 30$
+
+c) $48 = 2^4 \times 3$, $72 = 2^3 \times 3^2$, $96 = 2^5 \times 3$
+
+   ƯCLN(48, 72, 96) = $2^3 \times 3 = 24$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Tìm BCNN</h4>
+
+Tìm BCNN của:
+
+a) BCNN(12, 18)
+
+b) BCNN(15, 20)
+
+c) BCNN(10, 15, 20)
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $12 = 2^2 \times 3$, $18 = 2 \times 3^2$
+
+   BCNN(12, 18) = $2^2 \times 3^2 = 36$
+
+b) $15 = 3 \times 5$, $20 = 2^2 \times 5$
+
+   BCNN(15, 20) = $2^2 \times 3 \times 5 = 60$
+
+c) $10 = 2 \times 5$, $15 = 3 \times 5$, $20 = 2^2 \times 5$
+
+   BCNN(10, 15, 20) = $2^2 \times 3 \times 5 = 60$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Số nguyên tố và hợp số</h4>
+
+a) Liệt kê các số nguyên tố nhỏ hơn 20
+
+b) Trong các số 21, 22, 23, 24, 25, số nào là số nguyên tố?
+
+c) Phân tích 210 thành thừa số nguyên tố
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Các số nguyên tố nhỏ hơn 20: $2, 3, 5, 7, 11, 13, 17, 19$
+
+b) Số nguyên tố: $23$
+
+c) $210 = 2 \times 3 \times 5 \times 7$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán thực tế</h4>
+
+Một cửa hàng có 48 cái bàn và 36 cái ghế. Muốn chia đều thành các bộ (mỗi bộ gồm một bàn và một ghế) sao cho không thừa. Hỏi:
+
+a) Có thể chia được bao nhiêu bộ?
+
+b) Mỗi bộ có bao nhiêu cái bàn và bao nhiêu cái ghế?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Số bộ = ƯCLN(48, 36) = 12 bộ
+
+b) Mỗi bộ có: $48 \div 12 = 4$ cái bàn và $36 \div 12 = 3$ cái ghế
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán kết hợp (Câu lớn)</h4>
+
+Một trường học muốn tổ chức một buổi giao lưu. Có 60 học sinh lớp 6A, 72 học sinh lớp 6B, 84 học sinh lớp 6C.
+
+a) Muốn chia đều các học sinh thành các nhóm sao cho mỗi nhóm có số học sinh bằng nhau và không thừa, số học sinh tối đa của mỗi nhóm là bao nhiêu?
+
+b) Khi đó, mỗi lớp được chia thành bao nhiêu nhóm?
+
+c) Tổng cộng có bao nhiêu nhóm?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Số học sinh tối đa mỗi nhóm = ƯCLN(60, 72, 84)
+
+   $60 = 2^2 \times 3 \times 5$, $72 = 2^3 \times 3^2$, $84 = 2^2 \times 3 \times 7$
+
+   ƯCLN = $2^2 \times 3 = 12$ học sinh/nhóm
+
+b) Lớp 6A: $60 \div 12 = 5$ nhóm
+
+   Lớp 6B: $72 \div 12 = 6$ nhóm
+
+   Lớp 6C: $84 \div 12 = 7$ nhóm
+
+c) Tổng cộng: $5 + 6 + 7 = 18$ nhóm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán nâng cao (Câu lớn)</h4>
+
+Hai chiếc xe buýt xuất phát cùng lúc từ một bến. Xe thứ nhất chạy vòng quanh thành phố mất 30 phút, xe thứ hai mất 45 phút.
+
+a) Sau bao lâu thì hai xe gặp nhau lại tại bến?
+
+b) Lúc đó, mỗi xe đã chạy bao nhiêu vòng?
+
+c) Nếu xe thứ nhất chạy 20 phút/vòng, xe thứ hai chạy 30 phút/vòng, sau bao lâu gặp lại?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Thời gian gặp lại = BCNN(30, 45)
+
+   $30 = 2 \times 3 \times 5$, $45 = 3^2 \times 5$
+
+   BCNN = $2 \times 3^2 \times 5 = 90$ phút
+
+b) Xe thứ nhất: $90 \div 30 = 3$ vòng
+
+   Xe thứ hai: $90 \div 45 = 2$ vòng
+
+c) Thời gian gặp lại = BCNN(20, 30)
+
+   $20 = 2^2 \times 5$, $30 = 2 \times 3 \times 5$
+
+   BCNN = $2^2 \times 3 \times 5 = 60$ phút
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Chia hết:** $a \vdots b$ nếu $a = b \times q$
+- **Dấu hiệu chia hết:** Nhớ cho 2, 3, 5, 9
+- **Số nguyên tố:** Chỉ có 2 ước là 1 và chính nó
+- **Phân tích thừa số:** Chia liên tiếp cho số nguyên tố
+- **ƯCLN:** Tích các thừa số chung với số mũ nhỏ nhất
+- **BCNN:** Tích các thừa số chung và riêng với số mũ lớn nhất
+- **Ứng dụng:** ƯCLN dùng để chia đều, BCNN dùng để tìm thời gian gặp lại
+
+</GhiNho>

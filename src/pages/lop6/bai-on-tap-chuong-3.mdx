@@ -1,0 +1,595 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 3 - Toán 6"
+description: "Ôn tập toàn bộ kiến thức chương 3 Toán 6 KNTT về số nguyên"
+grade: "Lớp 6"
+chapter: "Chương III: Số nguyên"
+currentSlug: "lop6/bai-on-tap-chuong-3"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số đối của $-5$ là:",
+    option_a: "$5$",
+    option_b: "$-5$",
+    option_c: "$0$",
+    option_d: "$10$",
+    correct_option: "A",
+    explanation: "Số đối của $-5$ là $5$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(-3) + 7$ là:",
+    option_a: "$4$",
+    option_b: "$-4$",
+    option_c: "$10$",
+    option_d: "$-10$",
+    correct_option: "A",
+    explanation: "$(-3) + 7 = 7 - 3 = 4$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(-5) - (-3)$ là:",
+    option_a: "$-2$",
+    option_b: "$2$",
+    option_c: "$-8$",
+    option_d: "$8$",
+    correct_option: "A",
+    explanation: "$(-5) - (-3) = -5 + 3 = -2$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(-4) \\times 5$ là:",
+    option_a: "$-20$",
+    option_b: "$20$",
+    option_c: "$-1$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "$(-4) \\times 5 = -20$ (âm × dương = âm)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(-6) \\times (-3)$ là:",
+    option_a: "$18$",
+    option_b: "$-18$",
+    option_c: "$-3$",
+    option_d: "$3$",
+    correct_option: "A",
+    explanation: "$(-6) \\times (-3) = 18$ (âm × âm = dương)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $12 \\div (-3)$ là:",
+    option_a: "$-4$",
+    option_b: "$4$",
+    option_c: "$-36$",
+    option_d: "$36$",
+    correct_option: "A",
+    explanation: "$12 \\div (-3) = -4$ (dương ÷ âm = âm)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị tuyệt đối của $-7$ là:",
+    option_a: "$7$",
+    option_b: "$-7$",
+    option_c: "$0$",
+    option_d: "$14$",
+    correct_option: "A",
+    explanation: "$|-7| = 7$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(-2) + (-3) + 5$ là:",
+    option_a: "$0$",
+    option_b: "$-10$",
+    option_c: "$10$",
+    option_d: "$-5$",
+    correct_option: "A",
+    explanation: "$(-2) + (-3) + 5 = -5 + 5 = 0$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $3 \\times (-2) + 4$ là:",
+    option_a: "$-2$",
+    option_b: "$2$",
+    option_c: "$10$",
+    option_d: "$-10$",
+    correct_option: "A",
+    explanation: "$3 \\times (-2) + 4 = -6 + 4 = -2$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nguyên nào nằm giữa $-3$ và $2$?",
+    option_a: "$-2, -1, 0, 1$",
+    option_b: "$-3, -2, -1, 0, 1, 2$",
+    option_c: "$-1, 0, 1$",
+    option_d: "$0, 1$",
+    correct_option: "A",
+    explanation: "Các số nguyên nằm giữa $-3$ và $2$ là: $-2, -1, 0, 1$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 3 — Số nguyên</h3>
+
+Chương 3 mở rộng khái niệm số từ số tự nhiên sang số nguyên, bao gồm cả số âm. Đây là bước quan trọng để hiểu sâu hơn về toán học.
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➖</div>
+    <strong>Số âm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Khái niệm số âm</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
+    <strong>Phép tính</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cộng, trừ, nhân, chia</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Giá trị tuyệt đối</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Khoảng cách từ 0</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="so-nguyen">1. Tập hợp số nguyên</h4>
+
+<div class="box-dinh-nghia">
+
+**Số nguyên:** Bao gồm số tự nhiên, số 0 và số nguyên âm.
+
+**Ký hiệu:** $\mathbb{Z} = \{..., -3, -2, -1, 0, 1, 2, 3, ...\}$
+
+**Số đối:** Số đối của $a$ là $-a$. Ví dụ: số đối của $5$ là $-5$.
+
+</div>
+
+<h4 id="so-sanh">2. So sánh số nguyên</h4>
+
+**Quy tắc:**
+- Số âm < 0 < Số dương
+- Số âm càng xa 0 thì càng nhỏ
+- Ví dụ: $-5 < -2 < 0 < 3 < 7$
+
+<h4 id="phep-cong-tru">3. Phép cộng và phép trừ</h4>
+
+<div class="box-dinh-ly">
+
+**Cộng hai số cùng dấu:** Cộng giá trị tuyệt đối, giữ dấu chung
+
+**Cộng hai số khác dấu:** Lấy hiệu giá trị tuyệt đối, lấy dấu của số có giá trị tuyệt đối lớn hơn
+
+**Phép trừ:** $a - b = a + (-b)$
+
+**Ví dụ:**
+- $(-3) + (-5) = -8$
+- $(-3) + 5 = 2$
+- $3 + (-5) = -2$
+- $5 - 8 = 5 + (-8) = -3$
+
+</div>
+
+<h4 id="phep-nhan-chia">4. Phép nhân và phép chia</h4>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc dấu:**
+- Dương × Dương = Dương
+- Âm × Âm = Dương
+- Dương × Âm = Âm
+- Âm × Dương = Âm
+
+**Ví dụ:**
+- $3 \times 4 = 12$
+- $(-3) \times (-4) = 12$
+- $3 \times (-4) = -12$
+- $(-3) \times 4 = -12$
+
+</div>
+
+<h4 id="gia-tri-tuyet-doi">5. Giá trị tuyệt đối</h4>
+
+<div class="box-dinh-ly">
+
+**Định nghĩa:** Giá trị tuyệt đối của $a$ (ký hiệu $|a|$) là khoảng cách từ $a$ đến 0 trên trục số.
+
+**Công thức:**
+- $|a| = a$ nếu $a \geq 0$
+- $|a| = -a$ nếu $a < 0$
+
+**Ví dụ:** $|5| = 5$, $|-5| = 5$, $|0| = 0$
+
+</div>
+
+<h4 id="quy-tac-dau-ngoac">6. Quy tắc dấu ngoặc</h4>
+
+**Quy tắc:**
+- Bỏ dấu ngoặc có dấu $+$ trước: giữ nguyên dấu các số bên trong
+- Bỏ dấu ngoặc có dấu $-$ trước: đổi dấu tất cả các số bên trong
+
+**Ví dụ:**
+- $a + (b - c) = a + b - c$
+- $a - (b - c) = a - b + c$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: So sánh số nguyên</h4>
+
+So sánh các cặp số sau:
+
+a) $-5$ và $-3$
+
+b) $-2$ và $0$
+
+c) $3$ và $-7$
+
+d) $-10$ và $-15$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $-5 < -3$
+
+b) $-2 < 0$
+
+c) $3 > -7$
+
+d) $-10 > -15$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Phép cộng số nguyên</h4>
+
+Tính:
+
+a) $(-3) + 7$
+
+b) $(-5) + (-4)$
+
+c) $6 + (-9)$
+
+d) $(-2) + (-3) + 5$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(-3) + 7 = 4$
+
+b) $(-5) + (-4) = -9$
+
+c) $6 + (-9) = -3$
+
+d) $(-2) + (-3) + 5 = -5 + 5 = 0$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Phép trừ số nguyên</h4>
+
+Tính:
+
+a) $5 - 8$
+
+b) $(-3) - 4$
+
+c) $(-5) - (-2)$
+
+d) $0 - (-7)$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $5 - 8 = -3$
+
+b) $(-3) - 4 = -7$
+
+c) $(-5) - (-2) = -5 + 2 = -3$
+
+d) $0 - (-7) = 7$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Phép nhân số nguyên</h4>
+
+Tính:
+
+a) $(-3) \times 4$
+
+b) $(-5) \times (-2)$
+
+c) $6 \times (-3)$
+
+d) $(-2) \times (-3) \times 4$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(-3) \times 4 = -12$
+
+b) $(-5) \times (-2) = 10$
+
+c) $6 \times (-3) = -18$
+
+d) $(-2) \times (-3) \times 4 = 6 \times 4 = 24$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Phép chia số nguyên</h4>
+
+Tính:
+
+a) $12 \div (-3)$
+
+b) $(-20) \div (-4)$
+
+c) $(-15) \div 3$
+
+d) $0 \div (-5)$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $12 \div (-3) = -4$
+
+b) $(-20) \div (-4) = 5$
+
+c) $(-15) \div 3 = -5$
+
+d) $0 \div (-5) = 0$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Giá trị tuyệt đối</h4>
+
+Tính:
+
+a) $|-7|$
+
+b) $|5|$
+
+c) $|0|$
+
+d) $|-3| + |4|$
+
+e) $|-5| - |-2|$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $|-7| = 7$
+
+b) $|5| = 5$
+
+c) $|0| = 0$
+
+d) $|-3| + |4| = 3 + 4 = 7$
+
+e) $|-5| - |-2| = 5 - 2 = 3$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Thứ tự thực hiện phép tính</h4>
+
+Tính:
+
+a) $3 \times (-2) + 4$
+
+b) $(-5) + 2 \times 3$
+
+c) $(-2)^2 + 3 \times (-1)$
+
+d) $10 - 2 \times (-3) + 4$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $3 \times (-2) + 4 = -6 + 4 = -2$
+
+b) $(-5) + 2 \times 3 = -5 + 6 = 1$
+
+c) $(-2)^2 + 3 \times (-1) = 4 - 3 = 1$
+
+d) $10 - 2 \times (-3) + 4 = 10 + 6 + 4 = 20$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán thực tế</h4>
+
+Nhiệt độ buổi sáng là $-2°C$, buổi trưa tăng $8°C$, buổi chiều giảm $5°C$. Hỏi:
+
+a) Nhiệt độ buổi trưa là bao nhiêu?
+
+b) Nhiệt độ buổi chiều là bao nhiêu?
+
+c) Nhiệt độ buổi chiều so với buổi sáng thay đổi bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Nhiệt độ buổi trưa: $-2 + 8 = 6°C$
+
+b) Nhiệt độ buổi chiều: $6 - 5 = 1°C$
+
+c) Thay đổi: $1 - (-2) = 3°C$ (tăng)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán kết hợp (Câu lớn)</h4>
+
+Một tài khoản ngân hàng có số dư ban đầu là $500.000$ đồng. Trong tuần:
+- Thứ hai: rút $200.000$ đồng
+- Thứ ba: gửi $150.000$ đồng
+- Thứ tư: rút $100.000$ đồng
+- Thứ năm: gửi $300.000$ đồng
+
+a) Tính số dư sau mỗi ngày
+
+b) Số dư cuối tuần là bao nhiêu?
+
+c) So với ban đầu, số dư thay đổi bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Thứ hai: $500.000 - 200.000 = 300.000$ đồng
+
+   Thứ ba: $300.000 + 150.000 = 450.000$ đồng
+
+   Thứ tư: $450.000 - 100.000 = 350.000$ đồng
+
+   Thứ năm: $350.000 + 300.000 = 650.000$ đồng
+
+b) Số dư cuối tuần: $650.000$ đồng
+
+c) Thay đổi: $650.000 - 500.000 = 150.000$ đồng (tăng)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Tính giá trị của biểu thức:
+
+a) $(-3) \times 4 + 5 \times (-2) - 10$
+
+b) $[(-2) + 3] \times (-4) + 6$
+
+c) $(-5) \times [3 + (-2)] - 4 \times (-3)$
+
+d) $|(-3) + 5| - |(-2) - 3|$
+
+e) $(-2)^3 + 3^2 - (-1)^4$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(-3) \times 4 + 5 \times (-2) - 10 = -12 - 10 - 10 = -32$
+
+b) $[(-2) + 3] \times (-4) + 6 = 1 \times (-4) + 6 = -4 + 6 = 2$
+
+c) $(-5) \times [3 + (-2)] - 4 \times (-3) = (-5) \times 1 + 12 = -5 + 12 = 7$
+
+d) $|(-3) + 5| - |(-2) - 3| = |2| - |-5| = 2 - 5 = -3$
+
+e) $(-2)^3 + 3^2 - (-1)^4 = -8 + 9 - 1 = 0$
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Số nguyên:** $\mathbb{Z} = \{..., -2, -1, 0, 1, 2, ...\}$
+- **So sánh:** Số âm < 0 < Số dương
+- **Cộng:** Cùng dấu cộng giá trị tuyệt đối, khác dấu lấy hiệu
+- **Trừ:** $a - b = a + (-b)$
+- **Nhân/Chia:** Âm × Âm = Dương, Âm × Dương = Âm
+- **Giá trị tuyệt đối:** $|a|$ là khoảng cách từ $a$ đến 0
+- **Quy tắc dấu ngoặc:** Dấu $-$ trước ngoặc đổi dấu tất cả số bên trong
+
+</GhiNho>

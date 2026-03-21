@@ -1,0 +1,572 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 9 - Toán 6"
+description: "Ôn tập toàn bộ kiến thức chương 9 Toán 6 KNTT về dữ liệu và xác suất"
+grade: "Lớp 6"
+chapter: "Chương IX: Dữ liệu và xác suất"
+currentSlug: "lop6/bai-on-tap-chuong-9"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Dữ liệu là gì?",
+    option_a: "Thông tin được thu thập",
+    option_b: "Một số",
+    option_c: "Một biểu đồ",
+    option_d: "Một phương trình",
+    correct_option: "A",
+    explanation: "Dữ liệu là thông tin được thu thập từ các cuộc điều tra, thí nghiệm",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ tranh dùng để làm gì?",
+    option_a: "Biểu diễn dữ liệu bằng hình vẽ",
+    option_b: "Tính toán",
+    option_c: "Vẽ hình",
+    option_d: "Viết văn",
+    correct_option: "A",
+    explanation: "Biểu đồ tranh dùng để biểu diễn dữ liệu bằng các hình vẽ",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ cột dùng để làm gì?",
+    option_a: "Biểu diễn dữ liệu bằng các cột",
+    option_b: "Tính toán",
+    option_c: "Vẽ hình",
+    option_d: "Viết văn",
+    correct_option: "A",
+    explanation: "Biểu đồ cột dùng để biểu diễn dữ liệu bằng các cột có chiều cao khác nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của một sự kiện chắc chắn xảy ra là",
+    option_a: "$1$ hoặc $100\\%$",
+    option_b: "$0$",
+    option_c: "$0,5$",
+    option_d: "$-1$",
+    correct_option: "A",
+    explanation: "Xác suất của sự kiện chắc chắn xảy ra là 1 hoặc 100%",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của một sự kiện không thể xảy ra là",
+    option_a: "$0$",
+    option_b: "$1$",
+    option_c: "$0,5$",
+    option_d: "$100\\%$",
+    correct_option: "A",
+    explanation: "Xác suất của sự kiện không thể xảy ra là 0",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một đồng xu, xác suất mặt sấp xuất hiện là",
+    option_a: "$\\frac{1}{2}$ hoặc $50\\%$",
+    option_b: "$\\frac{1}{3}$",
+    option_c: "$1$",
+    option_d: "$0$",
+    correct_option: "A",
+    explanation: "Đồng xu có 2 mặt, nên xác suất mặt sấp là $\\frac{1}{2}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một con xúc xắc, xác suất mặt 6 xuất hiện là",
+    option_a: "$\\frac{1}{6}$",
+    option_b: "$\\frac{1}{2}$",
+    option_c: "$\\frac{1}{3}$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Xúc xắc có 6 mặt, nên xác suất mặt 6 là $\\frac{1}{6}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trung bình cộng của các số $2, 4, 6$ là",
+    option_a: "$4$",
+    option_b: "$3$",
+    option_c: "$5$",
+    option_d: "$6$",
+    correct_option: "A",
+    explanation: "Trung bình cộng = $\\frac{2+4+6}{3} = \\frac{12}{3} = 4$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Sự kiện nào là sự kiện ngẫu nhiên?",
+    option_a: "Tung đồng xu",
+    option_b: "Mặt trời mọc hàng ngày",
+    option_c: "Nước sôi ở $100°C$",
+    option_d: "Trái đất quay quanh mặt trời",
+    correct_option: "A",
+    explanation: "Tung đồng xu là sự kiện ngẫu nhiên vì kết quả không chắc chắn",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi rút một lá bài từ bộ 52 lá, xác suất rút được lá Át là",
+    option_a: "$\\frac{4}{52} = \\frac{1}{13}$",
+    option_b: "$\\frac{1}{52}$",
+    option_c: "$\\frac{1}{2}$",
+    option_d: "$\\frac{13}{52}$",
+    correct_option: "A",
+    explanation: "Bộ bài có 4 lá Át, nên xác suất là $\\frac{4}{52} = \\frac{1}{13}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 9 — Dữ liệu và xác suất</h3>
+
+Chương 9 giới thiệu cách thu thập, tổ chức dữ liệu và khái niệm xác suất - những công cụ quan trọng để phân tích thông tin.
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Dữ liệu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thu thập, tổ chức</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
+    <strong>Biểu đồ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tranh, cột, đoạn thẳng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Xác suất</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Sự kiện, khả năng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="du-lieu">1. Dữ liệu</h4>
+
+<div class="box-dinh-nghia">
+
+**Dữ liệu:** Là thông tin được thu thập từ các cuộc điều tra, thí nghiệm hoặc quan sát.
+
+**Thu thập dữ liệu:** Quá trình lấy thông tin từ các nguồn khác nhau.
+
+**Tổ chức dữ liệu:** Sắp xếp dữ liệu theo một trật tự nhất định (thường là bảng thống kê).
+
+</div>
+
+**Ví dụ:** Điều tra chiều cao của 30 học sinh, kết quả được ghi lại trong bảng.
+
+<h4 id="bieu-do">2. Biểu đồ</h4>
+
+<div class="box-dinh-nghia">
+
+**Biểu đồ:** Là cách biểu diễn dữ liệu bằng hình ảnh để dễ nhìn và so sánh.
+
+**Các loại biểu đồ:**
+- **Biểu đồ tranh:** Dùng hình vẽ để biểu diễn dữ liệu
+- **Biểu đồ cột:** Dùng các cột có chiều cao khác nhau
+- **Biểu đồ đoạn thẳng:** Dùng các điểm nối với nhau bằng đoạn thẳng
+
+</div>
+
+**Ưu điểm:** Dễ nhìn, dễ so sánh, dễ hiểu.
+
+<h4 id="trung-binh-cong">3. Trung bình cộng</h4>
+
+<div class="box-dinh-nghia">
+
+**Trung bình cộng:** Là tổng của các số chia cho số lượng các số đó.
+
+$$\text{Trung bình cộng} = \frac{\text{Tổng các số}}{\text{Số lượng các số}}$$
+
+</div>
+
+**Ví dụ:** Trung bình cộng của $2, 4, 6$ là $\frac{2+4+6}{3} = \frac{12}{3} = 4$
+
+<h4 id="su-kien">4. Sự kiện</h4>
+
+<div class="box-dinh-nghia">
+
+**Sự kiện chắc chắn:** Sự kiện luôn xảy ra (ví dụ: mặt trời mọc hàng ngày)
+
+**Sự kiện không thể:** Sự kiện không bao giờ xảy ra (ví dụ: nước đá ở $50°C$)
+
+**Sự kiện ngẫu nhiên:** Sự kiện có thể xảy ra hoặc không xảy ra (ví dụ: tung đồng xu)
+
+</div>
+
+<h4 id="xac-suat">5. Xác suất</h4>
+
+<div class="box-dinh-nghia">
+
+**Xác suất:** Là khả năng xảy ra của một sự kiện, được biểu diễn bằng một số từ $0$ đến $1$ (hoặc từ $0\%$ đến $100\%$).
+
+$$\text{Xác suất} = \frac{\text{Số kết quả thuận lợi}}{\text{Tổng số kết quả có thể}}$$
+
+**Tính chất:**
+- Xác suất của sự kiện chắc chắn = $1$ (hoặc $100\%$)
+- Xác suất của sự kiện không thể = $0$
+- Xác suất của sự kiện ngẫu nhiên: $0 < P < 1$
+
+</div>
+
+**Ví dụ:**
+- Tung đồng xu: Xác suất mặt sấp = $\frac{1}{2}$
+- Tung xúc xắc: Xác suất mặt 6 = $\frac{1}{6}$
+
+<h4 id="xac-suat-thuc-nghiem">6. Xác suất thực nghiệm</h4>
+
+<div class="box-dinh-nghia">
+
+**Xác suất thực nghiệm:** Là tỉ số giữa số lần sự kiện xảy ra và tổng số lần thực hiện thí nghiệm.
+
+$$\text{Xác suất thực nghiệm} = \frac{\text{Số lần sự kiện xảy ra}}{\text{Tổng số lần thực hiện}}$$
+
+</div>
+
+**Ví dụ:** Tung đồng xu 100 lần, mặt sấp xuất hiện 48 lần. Xác suất thực nghiệm = $\frac{48}{100} = 0,48$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tính trung bình cộng</h4>
+
+Tính trung bình cộng của các số:
+
+a) $2, 4, 6$
+
+b) $10, 20, 30, 40$
+
+c) $5, 10, 15, 20, 25$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{2+4+6}{3} = \frac{12}{3} = 4$
+
+b) $\frac{10+20+30+40}{4} = \frac{100}{4} = 25$
+
+c) $\frac{5+10+15+20+25}{5} = \frac{75}{5} = 15$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Bài toán thực tế về trung bình cộng</h4>
+
+Điểm kiểm tra toán của một học sinh trong 4 lần là: $8, 9, 7, 10$. Tính điểm trung bình.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Điểm trung bình = $\frac{8+9+7+10}{4} = \frac{34}{4} = 8,5$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Xác suất cơ bản</h4>
+
+Tính xác suất:
+
+a) Tung một đồng xu, xác suất mặt ngửa
+
+b) Tung một xúc xắc, xác suất mặt lẻ
+
+c) Rút một lá bài từ bộ 52 lá, xác suất rút được lá cơ
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Xác suất mặt ngửa = $\frac{1}{2}$
+
+b) Xúc xắc có 3 mặt lẻ (1, 3, 5), nên xác suất = $\frac{3}{6} = \frac{1}{2}$
+
+c) Bộ bài có 13 lá cơ, nên xác suất = $\frac{13}{52} = \frac{1}{4}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Phân loại sự kiện</h4>
+
+Phân loại các sự kiện sau:
+
+a) Mặt trời mọc hàng ngày
+
+b) Tung đồng xu được mặt sấp
+
+c) Nước đá ở $50°C$
+
+d) Rút được lá Át từ bộ bài
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Sự kiện chắc chắn
+
+b) Sự kiện ngẫu nhiên
+
+c) Sự kiện không thể
+
+d) Sự kiện ngẫu nhiên
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Xác suất thực nghiệm</h4>
+
+Tung một đồng xu 200 lần, mặt sấp xuất hiện 95 lần. Tính xác suất thực nghiệm của mặt sấp.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Xác suất thực nghiệm = $\frac{95}{200} = \frac{19}{40} = 0,475$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán về biểu đồ</h4>
+
+Một lớp học có 40 học sinh. Kết quả yêu thích môn học:
+- Toán: 12 học sinh
+- Tiếng Anh: 10 học sinh
+- Lịch Sử: 8 học sinh
+- Khoa học: 10 học sinh
+
+a) Tính tỉ lệ phần trăm học sinh yêu thích mỗi môn
+
+b) Vẽ biểu đồ cột biểu diễn dữ liệu trên
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) 
+- Toán: $\frac{12}{40} \times 100\% = 30\%$
+- Tiếng Anh: $\frac{10}{40} \times 100\% = 25\%$
+- Lịch Sử: $\frac{8}{40} \times 100\% = 20\%$
+- Khoa học: $\frac{10}{40} \times 100\% = 25\%$
+
+b) Biểu đồ cột sẽ có 4 cột với chiều cao tương ứng: 12, 10, 8, 10
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán kết hợp (Câu lớn)</h4>
+
+Một cửa hàng bán quần áo trong 5 ngày với doanh thu (triệu đồng):
+- Thứ 2: 5
+- Thứ 3: 7
+- Thứ 4: 6
+- Thứ 5: 8
+- Thứ 6: 9
+
+a) Tính doanh thu trung bình mỗi ngày
+
+b) Ngày nào có doanh thu cao nhất?
+
+c) Ngày nào có doanh thu thấp nhất?
+
+d) Tính tỉ lệ phần trăm doanh thu của thứ 6 so với tổng doanh thu
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Doanh thu trung bình = $\frac{5+7+6+8+9}{5} = \frac{35}{5} = 7$ triệu đồng
+
+b) Thứ 6 có doanh thu cao nhất (9 triệu đồng)
+
+c) Thứ 2 có doanh thu thấp nhất (5 triệu đồng)
+
+d) Tỉ lệ phần trăm = $\frac{9}{35} \times 100\% \approx 25,7\%$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Tính xác suất phức tạp</h4>
+
+Trong một hộp có 5 viên bi đỏ, 3 viên bi xanh, 2 viên bi vàng. Rút ngẫu nhiên một viên bi.
+
+a) Tính xác suất rút được viên bi đỏ
+
+b) Tính xác suất rút được viên bi xanh
+
+c) Tính xác suất rút được viên bi vàng
+
+d) Tính xác suất rút được viên bi không phải đỏ
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số viên bi = $5 + 3 + 2 = 10$
+
+a) Xác suất rút được bi đỏ = $\frac{5}{10} = \frac{1}{2}$
+
+b) Xác suất rút được bi xanh = $\frac{3}{10}$
+
+c) Xác suất rút được bi vàng = $\frac{2}{10} = \frac{1}{5}$
+
+d) Xác suất rút được bi không phải đỏ = $\frac{3+2}{10} = \frac{5}{10} = \frac{1}{2}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán về dữ liệu</h4>
+
+Chiều cao (cm) của 10 học sinh: $150, 152, 155, 148, 160, 158, 152, 155, 160, 162$
+
+a) Tính chiều cao trung bình
+
+b) Tìm chiều cao cao nhất và thấp nhất
+
+c) Tính số học sinh có chiều cao từ 155 cm trở lên
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Chiều cao trung bình = $\frac{150+152+155+148+160+158+152+155+160+162}{10} = \frac{1552}{10} = 155,2$ cm
+
+b) Chiều cao cao nhất: 162 cm; Chiều cao thấp nhất: 148 cm
+
+c) Học sinh có chiều cao từ 155 cm trở lên: 155, 158, 160, 160, 162 = 5 học sinh
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Một trường học có 3 lớp 6 với số học sinh như sau:
+- Lớp 6A: 40 học sinh
+- Lớp 6B: 42 học sinh
+- Lớp 6C: 38 học sinh
+
+Kết quả kiểm tra toán:
+- Lớp 6A: 30 học sinh đạt loại giỏi
+- Lớp 6B: 35 học sinh đạt loại giỏi
+- Lớp 6C: 28 học sinh đạt loại giỏi
+
+a) Tính tổng số học sinh của 3 lớp
+
+b) Tính tổng số học sinh đạt loại giỏi
+
+c) Tính tỉ lệ phần trăm học sinh đạt loại giỏi của mỗi lớp
+
+d) Tính tỉ lệ phần trăm học sinh đạt loại giỏi của toàn khối
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tổng số học sinh = $40 + 42 + 38 = 120$ học sinh
+
+b) Tổng số học sinh đạt loại giỏi = $30 + 35 + 28 = 93$ học sinh
+
+c) 
+- Lớp 6A: $\frac{30}{40} \times 100\% = 75\%$
+- Lớp 6B: $\frac{35}{42} \times 100\% \approx 83,3\%$
+- Lớp 6C: $\frac{28}{38} \times 100\% \approx 73,7\%$
+
+d) Tỉ lệ phần trăm toàn khối = $\frac{93}{120} \times 100\% = 77,5\%$
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Dữ liệu:** Thông tin được thu thập từ các cuộc điều tra
+- **Biểu đồ:** Cách biểu diễn dữ liệu bằng hình ảnh
+- **Trung bình cộng:** $\frac{\text{Tổng}}{\text{Số lượng}}$
+- **Sự kiện chắc chắn:** Xác suất = 1 (100%)
+- **Sự kiện không thể:** Xác suất = 0
+- **Sự kiện ngẫu nhiên:** $0 < P < 1$
+- **Xác suất:** $\frac{\text{Số kết quả thuận lợi}}{\text{Tổng số kết quả}}$
+- **Xác suất thực nghiệm:** $\frac{\text{Số lần xảy ra}}{\text{Tổng số lần thực hiện}}$
+- **Đồng xu:** Xác suất mỗi mặt = $\frac{1}{2}$
+- **Xúc xắc:** Xác suất mỗi mặt = $\frac{1}{6}$
+
+</GhiNho>
