@@ -118,7 +118,7 @@ export default function FractionExercise() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.3rem', fontWeight: 600, color: '#1e293b' }}>{exercise.fraction1.num}</div>
-            <div style={{ borderTop: '2px solid #334155', margin: '4px 0', width: '60px', margin: '4px auto' }} />
+            <div style={{ borderTop: '2px solid #334155', margin: '4px auto', width: '60px' }} />
             <div style={{ fontSize: '1.3rem', fontWeight: 600, color: '#1e293b' }}>{exercise.fraction1.den}</div>
           </div>
           
@@ -128,7 +128,7 @@ export default function FractionExercise() {
           
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.3rem', fontWeight: 600, color: '#1e293b' }}>{exercise.fraction2.num}</div>
-            <div style={{ borderTop: '2px solid #334155', margin: '4px 0', width: '60px', margin: '4px auto' }} />
+            <div style={{ borderTop: '2px solid #334155', margin: '4px auto', width: '60px' }} />
             <div style={{ fontSize: '1.3rem', fontWeight: 600, color: '#1e293b' }}>{exercise.fraction2.den}</div>
           </div>
           
