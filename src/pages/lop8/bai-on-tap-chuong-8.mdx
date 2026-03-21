@@ -1,0 +1,461 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 8 - Toán 8"
+description: "Ôn tập toàn bộ kiến thức chương 8 Toán 8 KNTT: Xác suất của biến cố, kết quả có thể, kết quả thuận lợi"
+grade: "Lớp 8"
+chapter: "Chương VIII: Mở đầu về tính xác suất của biến cố"
+currentSlug: "lop8/bai-on-tap-chuong-8"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Kết quả có thể của một phép thử là:",
+    option_a: "Kết quả chắc chắn xảy ra",
+    option_b: "Bất kỳ kết quả nào có thể xảy ra",
+    option_c: "Kết quả không thể xảy ra",
+    option_d: "Kết quả xảy ra nhiều lần",
+    correct_option: "B",
+    explanation: "Kết quả có thể là bất kỳ kết quả nào có thể xảy ra trong phép thử",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biến cố là:",
+    option_a: "Một kết quả có thể của phép thử",
+    option_b: "Tập hợp một hoặc nhiều kết quả có thể",
+    option_c: "Kết quả chắc chắn xảy ra",
+    option_d: "Kết quả không thể xảy ra",
+    correct_option: "B",
+    explanation: "Biến cố là tập hợp một hoặc nhiều kết quả có thể của phép thử",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một đồng xu, số kết quả có thể là:",
+    option_a: "1",
+    option_b: "2",
+    option_c: "3",
+    option_d: "4",
+    correct_option: "B",
+    explanation: "Khi tung đồng xu, có 2 kết quả có thể: mặt sấp hoặc mặt ngửa",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một con xúc xắc, xác suất xuất hiện mặt 6 là:",
+    option_a: "$\\frac{1}{6}$",
+    option_b: "$\\frac{1}{3}$",
+    option_c: "$\\frac{1}{2}$",
+    option_d: "$\\frac{2}{3}$",
+    correct_option: "A",
+    explanation: "Xác suất = $\\frac{\\text{Số kết quả thuận lợi}}{\\text{Tổng số kết quả có thể}} = \\frac{1}{6}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của một biến cố nằm trong khoảng:",
+    option_a: "$[0, 1]$",
+    option_b: "$[0, 100]$",
+    option_c: "$[-1, 1]$",
+    option_d: "$[1, \\infty)$",
+    correct_option: "A",
+    explanation: "Xác suất luôn nằm trong khoảng từ 0 đến 1 (hoặc 0% đến 100%)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biến cố chắc chắn có xác suất bằng:",
+    option_a: "$0$",
+    option_b: "$0.5$",
+    option_c: "$1$",
+    option_d: "$-1$",
+    correct_option: "C",
+    explanation: "Biến cố chắc chắn xảy ra có xác suất bằng 1",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biến cố không thể xảy ra có xác suất bằng:",
+    option_a: "$0$",
+    option_b: "$0.5$",
+    option_c: "$1$",
+    option_d: "$2$",
+    correct_option: "A",
+    explanation: "Biến cố không thể xảy ra có xác suất bằng 0",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung hai đồng xu, số kết quả có thể là:",
+    option_a: "2",
+    option_b: "3",
+    option_c: "4",
+    option_d: "8",
+    correct_option: "C",
+    explanation: "Khi tung hai đồng xu: SS, SN, NS, NN → 4 kết quả có thể",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung hai đồng xu, xác suất cả hai mặt ngửa là:",
+    option_a: "$\\frac{1}{4}$",
+    option_b: "$\\frac{1}{2}$",
+    option_c: "$\\frac{1}{3}$",
+    option_d: "$\\frac{3}{4}$",
+    correct_option: "A",
+    explanation: "Chỉ có 1 kết quả thuận lợi (NN) trong 4 kết quả có thể, nên xác suất = $\\frac{1}{4}$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi rút một lá bài từ bộ 52 lá, xác suất rút được lá Át là:",
+    option_a: "$\\frac{1}{52}$",
+    option_b: "$\\frac{4}{52} = \\frac{1}{13}$",
+    option_c: "$\\frac{13}{52} = \\frac{1}{4}$",
+    option_d: "$\\frac{1}{26}$",
+    correct_option: "B",
+    explanation: "Có 4 lá Át trong 52 lá, nên xác suất = $\\frac{4}{52} = \\frac{1}{13}$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },  
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về xác suất:",
+   option_a: "Xác suất của một biến cố luôn nằm trong [0, 1]",
+   option_b: "Biến cố chắc chắn có xác suất bằng 1",
+   option_c: "Biến cố không thể xảy ra có xác suất bằng 0",
+   option_d: "Xác suất có thể lớn hơn 1",
+   correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai: xác suất không thể lớn hơn 1.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq", 
+    question: "Xét tính đúng sai của các khẳng định sau về phép thử:",
+    option_a: "Khi tung đồng xu, có 2 kết quả có thể",
+    option_b: "Khi tung xúc xắc, có 6 kết quả có thể",
+    option_c: "Khi tung hai xúc xắc, có 12 kết quả có thể",
+    option_d: "Khi rút một lá bài từ bộ 52 lá, có 52 kết quả có thể",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai: khi tung hai xúc xắc, có $6 \\times 6 = 36$ kết quả có thể.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về tính xác suất:",
+    option_a: "Xác suất = $\\frac{\\text{Số kết quả thuận lợi}}{\\text{Tổng số kết quả có thể}}$",
+    option_b: "Xác suất xuất hiện mặt 6 khi tung xúc xắc là $\\frac{1}{6}$",
+    option_c: "Xác suất cả hai mặt ngửa khi tung hai đồng xu là $\\frac{1}{2}$",
+    option_d: "Xác suất rút được lá Át từ bộ 52 lá là $\\frac{4}{52}$",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai: xác suất cả hai mặt ngửa là $\\frac{1}{4}$, không phải $\\frac{1}{2}$.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về biến cố:",
+    option_a: "Biến cố là tập hợp một hoặc nhiều kết quả có thể",
+    option_b: "Biến cố chắc chắn là biến cố luôn xảy ra",
+    option_c: "Biến cố không thể là biến cố không bao giờ xảy ra",
+    option_d: "Mỗi phép thử chỉ có một biến cố",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai: mỗi phép thử có thể có nhiều biến cố khác nhau.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một hộp có 5 viên bi đỏ, 3 viên bi xanh, 2 viên bi vàng. Tính xác suất rút được viên bi đỏ.",
+    correct_answer: "0.5",
+    explanation: "Tổng số viên bi = $5 + 3 + 2 = 10$. Xác suất rút được bi đỏ = $\\frac{5}{10} = 0.5$",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một lớp có 25 học sinh, trong đó 15 em thích toán. Chọn ngẫu nhiên một em, tính xác suất em đó thích toán.",
+    correct_answer: "0.6",
+    explanation: "Xác suất = $\\frac{15}{25} = \\frac{3}{5} = 0.6$",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },{
+    type: "sa",
+    question: "Trong một hộp có 4 quả bóng xanh và 6 quả bóng đỏ. Rút ngẫu nhiên một quả bóng. Tính xác suất rút được quả bóng màu xanh.",
+    correct_answer: "0.4",
+    explanation: "Tổng số quả bóng là $4 + 6 = 10$. Số quả bóng xanh là 4. Xác suất = $\\frac{4}{10} = 0.4$",
+    difficulty_level: "hard",
+    is_dynamic: false
+  } 
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 8 — Xác suất của biến cố</h3>
+
+Chương 8 giới thiệu khái niệm xác suất, công cụ để đo lường khả năng xảy ra của các sự kiện!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Phép thử</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả có thể</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📌</div>
+    <strong>Biến cố</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp kết quả</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Xác suất</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính khả năng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="phep-thu">1. Phép thử và kết quả có thể</h4>
+
+<div class="box-dinh-nghia">
+
+**Phép thử:** Một hành động hoặc thí nghiệm mà kết quả không thể dự đoán trước.
+
+**Kết quả có thể:** Bất kỳ kết quả nào có thể xảy ra trong phép thử.
+
+**Không gian mẫu:** Tập hợp tất cả các kết quả có thể của phép thử.
+
+**Ví dụ:** Tung đồng xu → không gian mẫu = &#123;Sấp, Ngửa}
+
+</div>
+
+<h4 id="bien-co">2. Biến cố</h4>
+
+<div class="box-dinh-nghia">
+
+**Biến cố:** Tập hợp một hoặc nhiều kết quả có thể của phép thử.
+
+**Phân loại:**
+- **Biến cố chắc chắn:** Luôn xảy ra (xác suất = 1)
+- **Biến cố không thể:** Không bao giờ xảy ra (xác suất = 0)
+- **Biến cố ngẫu nhiên:** Có thể xảy ra hoặc không (0 < xác suất < 1)
+
+</div>
+
+<h4 id="xac-suat">3. Xác suất của biến cố</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Xác suất của biến cố A là:
+$$P(A) = \frac{\text{Số kết quả thuận lợi cho A}}{\text{Tổng số kết quả có thể}}$$
+
+**Tính chất:**
+- $0 \leq P(A) \leq 1$
+- $P(\text{biến cố chắc chắn}) = 1$
+- $P(\text{biến cố không thể}) = 0$
+
+</div>
+
+**Ứng dụng:** Dùng để dự đoán khả năng xảy ra của các sự kiện trong thực tế.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Phép thử và kết quả có thể</h4>
+
+a) Liệt kê tất cả kết quả có thể khi tung một đồng xu
+
+b) Liệt kê tất cả kết quả có thể khi tung một xúc xắc
+
+c) Liệt kê tất cả kết quả có thể khi tung hai đồng xu
+
+d) Liệt kê tất cả kết quả có thể khi tung hai xúc xắc
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) &#123;Sấp, Ngửa&#125;
+
+b) &#123;1, 2, 3, 4, 5, 6&#125;
+
+c) &#123;SS, SN, NS, NN&#125;
+
+d) &#123;(1,1), (1,2), ..., (6,6)&#125; - 36 kết quả
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tính xác suất</h4>
+
+a) Tính xác suất xuất hiện mặt 6 khi tung xúc xắc
+
+b) Tính xác suất cả hai mặt ngửa khi tung hai đồng xu
+
+c) Tính xác suất rút được lá Át từ bộ 52 lá bài
+
+d) Tính xác suất rút được lá đỏ từ bộ 52 lá bài
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{1}{6}$
+
+b) $\frac{1}{4}$
+
+c) $\frac{4}{52} = \frac{1}{13}$
+
+d) $\frac{26}{52} = \frac{1}{2}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Biến cố</h4>
+
+a) Xác định biến cố "xuất hiện mặt chẵn" khi tung xúc xắc
+
+b) Xác định biến cố "tổng hai mặt bằng 7" khi tung hai xúc xắc
+
+c) Tính xác suất của biến cố "xuất hiện mặt chẵn"
+
+d) Tính xác suất của biến cố "tổng hai mặt bằng 7"
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) &#123;2, 4, 6&#125;
+
+b) &#123;(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)&#125;
+
+c) $\frac{3}{6} = \frac{1}{2}$
+
+d) $\frac{6}{36} = \frac{1}{6}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bài toán tổng hợp</h4>
+
+a) Một hộp có 5 viên bi đỏ, 3 viên bi xanh, 2 viên bi vàng. Tính xác suất rút được bi đỏ
+
+b) Tính xác suất rút được bi xanh
+
+c) Tính xác suất rút được bi vàng
+
+d) Tính xác suất rút được bi không phải đỏ
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{5}{10} = 0.5$
+
+b) $\frac{3}{10} = 0.3$
+
+c) $\frac{2}{10} = 0.2$
+
+d) $\frac{5}{10} = 0.5$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Bài toán nâng cao (Câu lớn)</h4>
+
+Một lớp có 25 học sinh, trong đó 15 em thích toán, 10 em thích văn, 5 em thích cả hai.
+
+a) Tính xác suất chọn được em thích toán
+
+b) Tính xác suất chọn được em thích văn
+
+c) Tính xác suất chọn được em thích cả hai
+
+d) Tính xác suất chọn được em thích ít nhất một trong hai
+
+e) Tính xác suất chọn được em không thích cả hai
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{15}{25} = 0.6$
+
+b) $\frac{10}{25} = 0.4$
+
+c) $\frac{5}{25} = 0.2$
+
+d) $\frac{15 + 10 - 5}{25} = \frac{20}{25} = 0.8$
+
+e) $\frac{25 - 20}{25} = \frac{5}{25} = 0.2$
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Phép thử:** Hành động mà kết quả không thể dự đoán trước
+- **Kết quả có thể:** Bất kỳ kết quả nào có thể xảy ra
+- **Biến cố:** Tập hợp một hoặc nhiều kết quả có thể
+- **Xác suất:** $P(A) = \frac{\text{Số kết quả thuận lợi}}{\text{Tổng số kết quả có thể}}$
+- **Xác suất chắc chắn:** 1
+- **Xác suất không thể:** 0
+- **Xác suất luôn:** $0 \leq P(A) \leq 1$
+
+</GhiNho>

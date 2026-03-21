@@ -1,0 +1,710 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 3 - Toán 8"
+description: "Ôn tập toàn bộ kiến thức chương 3 Toán 8 KNTT: Tứ giác, hình thang, hình bình hành, hình chữ nhật, hình thoi, hình vuông"
+grade: "Lớp 8"
+chapter: "Chương III: Tứ giác"
+currentSlug: "lop8/bai-on-tap-chuong-3"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tổng các góc trong của một tứ giác bằng:",
+    option_a: "$180°$",
+    option_b: "$270°$",
+    option_c: "$360°$",
+    option_d: "$450°$",
+    correct_option: "C",
+    explanation: "Tổng các góc trong của tứ giác luôn bằng $360°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thang có hai cạnh đáy song song là:",
+    option_a: "AB và CD",
+    option_b: "AD và BC", 
+    option_c: "Hai cạnh bất kỳ",
+    option_d: "Hai cạnh đối diện",
+    correct_option: "D",
+    explanation: "Hình thang có hai cạnh đối diện song song (gọi là hai đáy)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình bình hành có tính chất nào sau đây?",
+    option_a: "Hai đường chéo bằng nhau",
+    option_b: "Hai đường chéo vuông góc",
+    option_c: "Các cạnh đối song song và bằng nhau",
+    option_d: "Tất cả các góc bằng nhau",
+    correct_option: "C",
+    explanation: "Hình bình hành có các cạnh đối song song và bằng nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chữ nhật có thêm tính chất gì so với hình bình hành?",
+    option_a: "Các cạnh đối bằng nhau",
+    option_b: "Các góc đối bằng nhau", 
+    option_c: "Tất cả các góc đều vuông",
+    option_d: "Hai đường chéo cắt nhau tại trung điểm",
+    correct_option: "C",
+    explanation: "Hình chữ nhật có tất cả các góc đều vuông (90°)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thoi có đặc điểm nào sau đây?",
+    option_a: "Tất cả các góc bằng nhau",
+    option_b: "Tất cả các cạnh bằng nhau",
+    option_c: "Hai đường chéo bằng nhau",
+    option_d: "Có hai trục đối xứng",
+    correct_option: "B",
+    explanation: "Hình thoi có tất cả các cạnh bằng nhau",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình vuông có bao nhiêu trục đối xứng?",
+    option_a: "2",
+    option_b: "3",
+    option_c: "4", 
+    option_d: "6",
+    correct_option: "C",
+    explanation: "Hình vuông có 4 trục đối xứng: 2 đường chéo và 2 đường thẳng qua trung điểm các cạnh đối",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điều kiện để hình thang trở thành hình thang cân:",
+    option_a: "Hai cạnh bên bằng nhau",
+    option_b: "Hai đường chéo bằng nhau",
+    option_c: "Hai góc kề một đáy bằng nhau",
+    option_d: "Cả A, B, C đều đúng",
+    correct_option: "D",
+    explanation: "Hình thang cân có các tính chất: hai cạnh bên bằng nhau, hai đường chéo bằng nhau, hai góc kề một đáy bằng nhau",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong hình thoi, hai đường chéo:",
+    option_a: "Bằng nhau và vuông góc",
+    option_b: "Vuông góc và cắt nhau tại trung điểm",
+    option_c: "Bằng nhau và cắt nhau tại trung điểm",
+    option_d: "Song song với nhau",
+    correct_option: "B",
+    explanation: "Trong hình thoi, hai đường chéo vuông góc với nhau và cắt nhau tại trung điểm của mỗi đường",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình nào sau đây KHÔNG phải là hình bình hành?",
+    option_a: "Hình chữ nhật",
+    option_b: "Hình thoi",
+    option_c: "Hình vuông",
+    option_d: "Hình thang cân",
+    correct_option: "D",
+    explanation: "Hình thang cân không phải là hình bình hành vì chỉ có một cặp cạnh đối song song",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình thang có đáy $a$, $b$ và chiều cao $h$ là:",
+    option_a: "$\\frac{(a + b)h}{2}$",
+    option_b: "$(a + b)h$",
+    option_c: "$\\frac{abh}{2}$",
+    option_d: "$ah + bh$",
+    correct_option: "A",
+    explanation: "Diện tích hình thang = $\\frac{(a + b) \\times h}{2}$ với $a$, $b$ là độ dài hai đáy, $h$ là chiều cao",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về tứ giác:",
+    option_a: "Tứ giác có tổng các góc trong bằng $360°$",
+    option_b: "Tứ giác lồi có tất cả các góc trong nhỏ hơn $180°$",
+    option_c: "Đường chéo của tứ giác luôn cắt nhau",
+    option_d: "Tứ giác có thể có 3 góc vuông",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai vì trong tứ giác lõm, hai đường chéo có thể không cắt nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq", 
+    question: "Xét tính đúng sai của các khẳng định sau về hình thang:",
+    option_a: "Hình thang có hai cạnh đáy song song",
+    option_b: "Hình thang cân có hai đường chéo bằng nhau",
+    option_c: "Đường trung bình hình thang song song với hai đáy",
+    option_d: "Độ dài đường trung bình bằng tổng hai đáy",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai: độ dài đường trung bình bằng trung bình cộng hai đáy, không phải tổng.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về hình bình hành:",
+    option_a: "Các cạnh đối song song và bằng nhau",
+    option_b: "Các góc đối bằng nhau",
+    option_c: "Hai đường chéo cắt nhau tại trung điểm",
+    option_d: "Hai đường chéo luôn bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng theo tính chất hình bình hành. D sai: hai đường chéo chỉ bằng nhau trong hình chữ nhật.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về hình đặc biệt:",
+    option_a: "Hình vuông vừa là hình chữ nhật vừa là hình thoi",
+    option_b: "Hình chữ nhật có hai đường chéo vuông góc",
+    option_c: "Hình thoi có tất cả các góc bằng $90°$",
+    option_d: "Hình vuông có 4 trục đối xứng",
+    correct_option: "A,D",
+    explanation: "A, D đúng. B sai: hình chữ nhật có hai đường chéo bằng nhau, không nhất thiết vuông góc. C sai: hình thoi không nhất thiết có góc vuông.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một mảnh đất hình thang có đáy lớn 45.6m, đáy nhỏ 32.4m và chiều cao 18.5m. Tính diện tích mảnh đất.",
+    correct_option: "721.5",
+    explanation: "Diện tích hình thang = $\\frac{(a + b) \\times h}{2} = \\frac{(45.6 + 32.4) \\times 18.5}{2} = \\frac{78 \\times 18.5}{2} = \\frac{1443}{2} = 721.5$ m²",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một hình chữ nhật có chu vi 84.6m và chiều dài hơn chiều rộng 12.3m. Tính diện tích hình chữ nhật.",
+    correct_option: "409.5",
+    explanation: "Gọi chiều rộng là $x$, chiều dài là $x + 12.3$. Chu vi: $2(x + x + 12.3) = 84.6$, suy ra $4x + 24.6 = 84.6$, $x = 15$. Diện tích = $15 \\times 27.3 = 409.5$ m²",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },{
+    type: "sa",
+    question: "Một hình chữ nhật có chu vi 84.6m và chiều dài hơn chiều rộng 12.3m. Tính diện tích hình chữ nhật.",
+    correct_answer: "432.0",
+    explanation: "Gọi chiều rộng là $x$, chiều dài là $x + 12.3$. Chu vi: $2(x + x + 12.3) = 84.6$, suy ra $4x + 24.6 = 84.6$, $x = 15$. Diện tích = $15 \\times 27.3 = 409.5$ m². Kiểm tra lại: $x = 15$, dài = $27.3$, chu vi = $2(15 + 27.3) = 84.6$ ✓. Diện tích = $15 \\times 27.3 = 409.5$ m²",
+    difficulty_level: "hard",
+    is_dynamic: false
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 3 — Tứ giác</h3>
+
+Chương 3 khám phá thế giới đa dạng của các tứ giác từ cơ bản đến đặc biệt!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔷</div>
+    <strong>Tứ giác cơ bản</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Định nghĩa và tính chất</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Hình thang</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thang thường, thang cân</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⬜</div>
+    <strong>Hình đặc biệt</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bình hành, chữ nhật, thoi, vuông</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="tu-giac">1. Tứ giác</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Tứ giác là hình gồm bốn đoạn thẳng AB, BC, CD, DA sao cho bất kỳ hai đoạn thẳng nào cũng không cùng nằm trên một đường thẳng.
+
+**Tính chất:** Tổng các góc trong của một tứ giác bằng $360°$.
+
+</div>
+
+**Phân loại:**
+- **Tứ giác lồi:** Tất cả các góc trong đều nhỏ hơn $180°$
+- **Tứ giác lõm:** Có ít nhất một góc trong lớn hơn $180°$
+
+<h4 id="hinh-thang">2. Hình thang</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình thang là tứ giác có hai cạnh đối song song.
+
+**Các yếu tố:**
+- Hai cạnh song song gọi là **hai đáy**
+- Hai cạnh không song song gọi là **hai cạnh bên**
+- Khoảng cách giữa hai đáy gọi là **chiều cao**
+
+</div>
+
+**Tính chất:**
+- Hai góc kề một cạnh bên có tổng bằng $180°$
+
+**Đường trung bình của hình thang:**
+- Song song với hai đáy
+- Độ dài bằng trung bình cộng của hai đáy: $m = \frac{a + b}{2}$
+
+<h4 id="hinh-thang-can">3. Hình thang cân</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình thang cân là hình thang có hai cạnh bên bằng nhau.
+
+</div>
+
+**Tính chất:**
+- Hai góc kề một đáy bằng nhau
+- Hai đường chéo bằng nhau
+
+**Dấu hiệu nhận biết:**
+- Hình thang có hai góc kề một đáy bằng nhau
+- Hình thang có hai đường chéo bằng nhau
+
+<h4 id="hinh-binh-hanh">4. Hình bình hành</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình bình hành là tứ giác có các cạnh đối song song.
+
+</div>
+
+**Tính chất:**
+- Các cạnh đối bằng nhau
+- Các góc đối bằng nhau
+- Hai đường chéo cắt nhau tại trung điểm của mỗi đường
+
+**Dấu hiệu nhận biết:**
+- Tứ giác có các cạnh đối song song
+- Tứ giác có các cạnh đối bằng nhau
+- Tứ giác có hai cạnh đối song song và bằng nhau
+- Tứ giác có các góc đối bằng nhau
+- Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường
+
+<h4 id="hinh-chu-nhat">5. Hình chữ nhật</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình chữ nhật là hình bình hành có một góc vuông.
+
+</div>
+
+**Tính chất:** (Có tất cả tính chất của hình bình hành và thêm)
+- Tất cả các góc đều vuông
+- Hai đường chéo bằng nhau
+
+**Dấu hiệu nhận biết:**
+- Hình bình hành có một góc vuông
+- Hình bình hành có hai đường chéo bằng nhau
+- Tứ giác có ba góc vuông
+
+<h4 id="hinh-thoi">6. Hình thoi</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình thoi là hình bình hành có hai cạnh kề bằng nhau.
+
+</div>
+
+**Tính chất:** (Có tất cả tính chất của hình bình hành và thêm)
+- Tất cả các cạnh bằng nhau
+- Hai đường chéo vuông góc với nhau
+- Hai đường chéo là các đường phân giác của các góc
+
+**Dấu hiệu nhận biết:**
+- Hình bình hành có hai cạnh kề bằng nhau
+- Hình bình hành có hai đường chéo vuông góc
+- Tứ giác có tất cả các cạnh bằng nhau
+
+<h4 id="hinh-vuong">7. Hình vuông</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình vuông là hình chữ nhật có hai cạnh kề bằng nhau.
+(Hoặc: Hình vuông là hình thoi có một góc vuông)
+
+</div>
+
+**Tính chất:** (Có tất cả tính chất của hình chữ nhật và hình thoi)
+- Tất cả các cạnh bằng nhau
+- Tất cả các góc đều vuông
+- Hai đường chéo bằng nhau, vuông góc và cắt nhau tại trung điểm
+
+**Dấu hiệu nhận biết:**
+- Hình chữ nhật có hai cạnh kề bằng nhau
+- Hình thoi có một góc vuông
+- Hình thoi có hai đường chéo bằng nhau
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tính chất tứ giác</h4>
+
+a) Tính tổng các góc trong của một tứ giác
+
+b) Một tứ giác có ba góc lần lượt là 60°, 90°, 120°. Tính góc thứ tư
+
+c) Chứng minh rằng tổng các góc ngoài của một tứ giác bằng 360°
+
+d) Một tứ giác có các góc tỉ lệ 1:2:3:4. Tính các góc đó
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tổng các góc trong của tứ giác = 360°
+
+b) Góc thứ tư = 360° - (60° + 90° + 120°) = 360° - 270° = 90°
+
+c) Mỗi góc ngoài + góc trong = 180°. Tổng góc ngoài = 4×180° - 360° = 360°
+
+d) Gọi các góc là x, 2x, 3x, 4x. Có: x + 2x + 3x + 4x = 360°
+   10x = 360° → x = 36°
+   Các góc: 36°, 72°, 108°, 144°
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Hình thang</h4>
+
+a) Một hình thang có đáy lớn 12cm, đáy nhỏ 8cm, chiều cao 5cm. Tính diện tích
+
+b) Tính độ dài đường trung bình của hình thang trên
+
+c) Một hình thang cân có hai cạnh bên bằng nhau. Chứng minh hai góc kề một đáy bằng nhau
+
+d) Hình thang cân có đáy lớn 10cm, đáy nhỏ 6cm, cạnh bên 5cm. Tính chiều cao
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích = $\frac{(12 + 8) \times 5}{2} = \frac{20 \times 5}{2} = 50$ cm²
+
+b) Đường trung bình = $\frac{12 + 8}{2} = 10$ cm
+
+c) Trong hình thang cân, hai cạnh bên bằng nhau → hai góc kề một đáy bằng nhau (tính chất)
+
+d) Hạ đường cao từ đỉnh đáy nhỏ. Phần đáy lớn bị cắt = $\frac{10-6}{2} = 2$ cm
+   Chiều cao: $h^2 + 2^2 = 5^2$ → $h^2 = 21$ → $h = \sqrt{21}$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Hình bình hành</h4>
+
+a) Chứng minh rằng các cạnh đối của hình bình hành bằng nhau
+
+b) Chứng minh rằng các góc đối của hình bình hành bằng nhau
+
+c) Một hình bình hành có cạnh 8cm, 6cm và góc giữa chúng 60°. Tính diện tích
+
+d) Hai đường chéo của hình bình hành cắt nhau tại O. Chứng minh O là trung điểm của mỗi đường chéo
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Vì các cạnh đối song song, nên các tam giác tạo bởi đường chéo bằng nhau → cạnh đối bằng nhau
+
+b) Các góc đối bằng nhau vì các cạnh đối song song
+
+c) Diện tích = $8 \times 6 \times \sin(60°) = 48 \times \frac{\sqrt{3}}{2} = 24\sqrt{3}$ cm²
+
+d) Theo tính chất hình bình hành, hai đường chéo cắt nhau tại trung điểm của mỗi đường
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Hình chữ nhật</h4>
+
+a) Chứng minh rằng hình chữ nhật có tất cả các góc vuông
+
+b) Chứng minh rằng hai đường chéo của hình chữ nhật bằng nhau
+
+c) Một hình chữ nhật có chiều dài 12cm, chiều rộng 5cm. Tính độ dài đường chéo
+
+d) Hình chữ nhật có diện tích 60cm², chiều dài 12cm. Tính chu vi
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hình chữ nhật là hình bình hành có một góc vuông → tất cả góc vuông
+
+b) Hai đường chéo bằng nhau vì hình chữ nhật là hình bình hành đặc biệt
+
+c) Đường chéo = $\sqrt{12^2 + 5^2} = \sqrt{144 + 25} = \sqrt{169} = 13$ cm
+
+d) Chiều rộng = $\frac{60}{12} = 5$ cm. Chu vi = $2(12 + 5) = 34$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Hình thoi</h4>
+
+a) Chứng minh rằng hình thoi có tất cả các cạnh bằng nhau
+
+b) Chứng minh rằng hai đường chéo của hình thoi vuông góc
+
+c) Một hình thoi có cạnh 5cm, một đường chéo 6cm. Tính đường chéo còn lại
+
+d) Hình thoi có hai đường chéo 8cm và 6cm. Tính diện tích và chu vi
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hình thoi là hình bình hành có hai cạnh kề bằng nhau → tất cả cạnh bằng nhau
+
+b) Hai đường chéo vuông góc vì tính chất của hình thoi
+
+c) Nửa đường chéo 1 = 3cm. Nửa đường chéo 2: $\sqrt{5^2 - 3^2} = 4$ cm
+   Đường chéo 2 = 8cm
+
+d) Diện tích = $\frac{8 \times 6}{2} = 24$ cm²
+   Cạnh = $\sqrt{4^2 + 3^2} = 5$ cm. Chu vi = 20cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Hình vuông</h4>
+
+a) Chứng minh rằng hình vuông vừa là hình chữ nhật vừa là hình thoi
+
+b) Một hình vuông có cạnh 6cm. Tính diện tích, chu vi và đường chéo
+
+c) Hình vuông có đường chéo 8cm. Tính cạnh và diện tích
+
+d) Tính số trục đối xứng của hình vuông
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hình vuông có tất cả góc vuông (hình chữ nhật) và tất cả cạnh bằng nhau (hình thoi)
+
+b) Diện tích = $6^2 = 36$ cm². Chu vi = $4 \times 6 = 24$ cm
+   Đường chéo = $6\sqrt{2}$ cm
+
+c) Cạnh = $\frac{8}{\sqrt{2}} = 4\sqrt{2}$ cm. Diện tích = $(4\sqrt{2})^2 = 32$ cm²
+
+d) Hình vuông có 4 trục đối xứng (2 đường chéo + 2 đường qua trung điểm cạnh đối)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán tổng hợp</h4>
+
+a) Một hình bình hành ABCD có AB = 10cm, AD = 6cm, góc A = 60°. Tính diện tích
+
+b) Hình thang ABCD (AB // CD) có AB = 8cm, CD = 12cm, AD = BC = 5cm. Tính diện tích
+
+c) Hình chữ nhật có chu vi 28cm, chiều dài hơn chiều rộng 2cm. Tính diện tích
+
+d) Hình thoi có chu vi 20cm, một góc 60°. Tính diện tích
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích = $10 \times 6 \times \sin(60°) = 60 \times \frac{\sqrt{3}}{2} = 30\sqrt{3}$ cm²
+
+b) Hình thang cân. Chiều cao: $h^2 + 2^2 = 5^2$ → $h = \sqrt{21}$ cm
+   Diện tích = $\frac{(8+12) \times \sqrt{21}}{2} = 10\sqrt{21}$ cm²
+
+c) Chiều dài = 8cm, chiều rộng = 6cm. Diện tích = 48cm²
+
+d) Cạnh = 5cm. Diện tích = $5^2 \times \sin(60°) = 25 \times \frac{\sqrt{3}}{2} = 12.5\sqrt{3}$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán thực tế</h4>
+
+a) Một mảnh đất hình chữ nhật có chiều dài 24m, chiều rộng 18m. Tính diện tích
+
+b) Một sân chơi hình thang có đáy lớn 40m, đáy nhỏ 30m, chiều cao 20m. Tính diện tích
+
+c) Một viên gạch hình vuông có cạnh 30cm. Cần bao nhiêu viên để lát sàn 18m²?
+
+d) Một khu vườn hình bình hành có cạnh 15m, 10m, góc 45°. Tính diện tích
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích = $24 \times 18 = 432$ m²
+
+b) Diện tích = $\frac{(40 + 30) \times 20}{2} = 700$ m²
+
+c) Diện tích 1 viên = $0.3^2 = 0.09$ m². Số viên = $\frac{18}{0.09} = 200$ viên
+
+d) Diện tích = $15 \times 10 \times \sin(45°) = 150 \times \frac{\sqrt{2}}{2} = 75\sqrt{2}$ m²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho hình bình hành ABCD với AB = 8cm, AD = 6cm, góc A = 60°.
+
+a) Tính diện tích hình bình hành
+
+b) Tính độ dài hai đường chéo AC và BD
+
+c) Chứng minh rằng $AC^2 + BD^2 = 2(AB^2 + AD^2)$
+
+d) Nếu vẽ đường cao từ D đến AB, tính độ dài đường cao này
+
+e) Tính chu vi hình bình hành
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích = $8 \times 6 \times \sin(60°) = 48 \times \frac{\sqrt{3}}{2} = 24\sqrt{3}$ cm²
+
+b) Dùng định lý cosin:
+   $AC^2 = 8^2 + 6^2 - 2 \times 8 \times 6 \times \cos(60°) = 64 + 36 - 48 = 52$
+   $AC = 2\sqrt{13}$ cm
+   $BD^2 = 8^2 + 6^2 - 2 \times 8 \times 6 \times \cos(120°) = 64 + 36 + 48 = 148$
+   $BD = 2\sqrt{37}$ cm
+
+c) $AC^2 + BD^2 = 52 + 148 = 200$
+   $2(AB^2 + AD^2) = 2(64 + 36) = 200$ ✓
+
+d) Đường cao = $\frac{\text{Diện tích}}{AB} = \frac{24\sqrt{3}}{8} = 3\sqrt{3}$ cm
+
+e) Chu vi = $2(8 + 6) = 28$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho hình thang cân ABCD (AB // CD) với AB = 6cm, CD = 10cm, cạnh bên AD = BC = 5cm.
+
+a) Tính chiều cao của hình thang
+
+b) Tính diện tích hình thang
+
+c) Tính độ dài hai đường chéo AC và BD
+
+d) Chứng minh rằng hai đường chéo bằng nhau
+
+e) Tính chu vi hình thang
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hạ đường cao từ A và B. Phần đáy bị cắt = $\frac{10-6}{2} = 2$ cm
+   Chiều cao: $h^2 + 2^2 = 5^2$ → $h = \sqrt{21}$ cm
+
+b) Diện tích = $\frac{(6 + 10) \times \sqrt{21}}{2} = 8\sqrt{21}$ cm²
+
+c) Dùng định lý Pythagore trong tam giác vuông:
+   $AC^2 = (6 + 2)^2 + 21 = 64 + 21 = 85$
+   $AC = \sqrt{85}$ cm
+   Tương tự: $BD = \sqrt{85}$ cm
+
+d) Vì hình thang cân, hai đường chéo bằng nhau
+
+e) Chu vi = $6 + 10 + 5 + 5 = 26$ cm
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Tứ giác:** Tổng góc = 360°
+- **Hình thang:** Hai cạnh đáy song song, đường trung bình = (đáy 1 + đáy 2)/2
+- **Hình bình hành:** Cạnh đối song song và bằng nhau, góc đối bằng nhau
+- **Hình chữ nhật:** Tất cả góc vuông, hai đường chéo bằng nhau
+- **Hình thoi:** Tất cả cạnh bằng nhau, hai đường chéo vuông góc
+- **Hình vuông:** Vừa hình chữ nhật vừa hình thoi, 4 trục đối xứng
+- **Diện tích hình thang:** $S = \frac{(a+b) \times h}{2}$
+- **Diện tích hình bình hành:** $S = a \times h = a \times b \times \sin(\theta)$
+
+</GhiNho>

@@ -1,0 +1,684 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 2 - Toán 8"
+description: "Ôn tập toàn bộ kiến thức chương 2 Toán 8 KNTT: Hằng đẳng thức đáng nhớ và ứng dụng, phân tích đa thức thành nhân tử"
+grade: "Lớp 8"
+chapter: "Chương II: Hằng đẳng thức đáng nhớ và ứng dụng"
+currentSlug: "lop8/bai-on-tap-chuong-2"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Kết quả của $(a + b)^2$ là:",
+    option_a: "$a^2 + b^2$",
+    option_b: "$a^2 + 2ab + b^2$",
+    option_c: "$a^2 - 2ab + b^2$",
+    option_d: "$2a^2 + 2b^2$",
+    correct_option: "B",
+    explanation: "Hằng đẳng thức: $(a + b)^2 = a^2 + 2ab + b^2$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(x - 3)^2$ là:",
+    option_a: "$x^2 - 9$",
+    option_b: "$x^2 + 6x + 9$",
+    option_c: "$x^2 - 6x + 9$",
+    option_d: "$x^2 - 3x + 9$",
+    correct_option: "C",
+    explanation: "$(x - 3)^2 = x^2 - 2 \\cdot x \\cdot 3 + 3^2 = x^2 - 6x + 9$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $x^2 - 25$ được phân tích thành:",
+    option_a: "$(x - 5)^2$",
+    option_b: "$(x + 5)^2$",
+    option_c: "$(x - 5)(x + 5)$",
+    option_d: "$(x - 25)(x + 1)$",
+    correct_option: "C",
+    explanation: "$x^2 - 25 = x^2 - 5^2 = (x - 5)(x + 5)$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(2x + 1)^3$ là:",
+    option_a: "$8x^3 + 1$",
+    option_b: "$8x^3 + 6x^2 + 3x + 1$",
+    option_c: "$8x^3 + 12x^2 + 6x + 1$",
+    option_d: "$2x^3 + 6x^2 + 6x + 1$",
+    correct_option: "C",
+    explanation: "$(2x + 1)^3 = (2x)^3 + 3(2x)^2 \\cdot 1 + 3 \\cdot 2x \\cdot 1^2 + 1^3 = 8x^3 + 12x^2 + 6x + 1$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân tích $x^3 - 8$ thành nhân tử:",
+    option_a: "$(x - 2)(x^2 + 2x + 4)$",
+    option_b: "$(x - 2)(x^2 - 2x + 4)$",
+    option_c: "$(x + 2)(x^2 - 2x + 4)$",
+    option_d: "$(x - 2)^3$",
+    correct_option: "A",
+    explanation: "$x^3 - 8 = x^3 - 2^3 = (x - 2)(x^2 + 2x + 4)$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $x^3 + 27$ được phân tích thành:",
+    option_a: "$(x + 3)(x^2 - 3x + 9)$",
+    option_b: "$(x - 3)(x^2 + 3x + 9)$",
+    option_c: "$(x + 3)(x^2 + 3x + 9)$",
+    option_d: "$(x + 3)^3$",
+    correct_option: "A",
+    explanation: "$x^3 + 27 = x^3 + 3^3 = (x + 3)(x^2 - 3x + 9)$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân tích $2x^2 - 8$ thành nhân tử:",
+    option_a: "$2(x - 2)(x + 2)$",
+    option_b: "$(2x - 4)(x + 2)$",
+    option_c: "$2(x - 4)$",
+    option_d: "$2x(x - 4)$",
+    correct_option: "A",
+    explanation: "$2x^2 - 8 = 2(x^2 - 4) = 2(x - 2)(x + 2)$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(x - y)^3$ là:",
+    option_a: "$x^3 - y^3$",
+    option_b: "$x^3 - 3x^2y + 3xy^2 - y^3$",
+    option_c: "$x^3 + 3x^2y - 3xy^2 - y^3$",
+    option_d: "$x^3 - 3xy^2 + y^3$",
+    correct_option: "B",
+    explanation: "$(x - y)^3 = x^3 - 3x^2y + 3xy^2 - y^3$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân tích $x^4 - 16$ thành nhân tử:",
+    option_a: "$(x^2 - 4)(x^2 + 4)$",
+    option_b: "$(x - 2)(x + 2)(x^2 + 4)$",
+    option_c: "$(x - 4)(x + 4)$",
+    option_d: "$(x^2 - 16)$",
+    correct_option: "B",
+    explanation: "$x^4 - 16 = (x^2)^2 - 4^2 = (x^2 - 4)(x^2 + 4) = (x - 2)(x + 2)(x^2 + 4)$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của $99^2$ tính nhanh bằng hằng đẳng thức:",
+    option_a: "9801",
+    option_b: "9901",
+    option_c: "9701",
+    option_d: "9601",
+    correct_option: "A",
+    explanation: "$99^2 = (100 - 1)^2 = 100^2 - 2 \\cdot 100 \\cdot 1 + 1^2 = 10000 - 200 + 1 = 9801$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về hằng đẳng thức:",
+    option_a: "$(a + b)^2 = a^2 + 2ab + b^2$",
+    option_b: "$(a - b)^2 = a^2 - b^2$",
+    option_c: "$a^2 - b^2 = (a - b)(a + b)$",
+    option_d: "$(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$",
+    correct_option: "A,C,D",
+    explanation: "A, C, D đúng theo hằng đẳng thức. B sai: $(a-b)^2 = a^2 - 2ab + b^2$, không phải $a^2 - b^2$.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq", 
+    question: "Xét tính đúng sai của các khẳng định sau về phân tích đa thức:",
+    option_a: "$x^2 + 4x + 4 = (x + 2)^2$",
+    option_b: "$x^3 - 1 = (x - 1)(x^2 + x + 1)$",
+    option_c: "$2x^2 - 18 = 2(x - 3)(x + 3)$",
+    option_d: "$x^3 + 8 = (x + 2)(x^2 + 4)$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng theo các phương pháp phân tích. D sai: $x^3 + 8 = (x + 2)(x^2 - 2x + 4)$.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về lập phương:",
+    option_a: "$(2x)^3 = 8x^3$",
+    option_b: "$(x - 1)^3 = x^3 - 3x^2 + 3x - 1$",
+    option_c: "$x^3 + y^3 = (x + y)(x^2 - xy + y^2)$",
+    option_d: "$x^3 - y^3 = (x - y)(x^2 + xy + y^2)$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng theo các hằng đẳng thức lập phương.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về ứng dụng hằng đẳng thức:",
+    option_a: "$101^2 = 10201$ (dùng $(100+1)^2$)",
+    option_b: "$98 \\times 102 = 9996$ (dùng $(100-2)(100+2)$)",
+    option_c: "$x^2 + 6x + 9$ phân tích được thành $(x + 3)^2$",
+    option_d: "$4x^2 - 12x + 9 = (2x - 3)^2$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng. Đây là các ứng dụng điển hình của hằng đẳng thức trong tính toán và phân tích.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một mảnh đất hình vuông có cạnh $(x + 5)$ mét. Người ta mở rộng mỗi cạnh thêm 3 mét. Tính diện tích phần mở rộng khi $x = 12.5$ mét.",
+    correct_option: "114.0",
+     explanation: "Diện tích ban đầu: $(x+5)^2$. Diện tích sau mở rộng: $(x+8)^2$. Diện tích mở rộng: $(x+8)^2 - (x+5)^2 = 3(2x+13) = 6x+39$. Khi $x=12.5$: $6(12.5)+39 = 75+39 = 114$ m²",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Tính giá trị của biểu thức $101^2 - 99^2$ bằng hằng đẳng thức.",
+    correct_option: "400.0",
+     explanation: "$101^2 - 99^2 = (101-99)(101+99) = 2 \\times 200 = 400$",
+    difficulty_level: "hard",
+    is_dynamic: false},
+  {
+    type: "sa",
+    question: "Một công ty sản xuất có lợi nhuận theo công thức $P = (x-10)^2 - 25$ triệu đồng, với $x$ là số sản phẩm (nghìn chiếc). Tìm lợi nhuận khi sản xuất 18.7 nghìn chiếc.",
+    correct_answer: "50.7",
+    explanation: "$P = (x-10)^2 - 25$. Khi $x = 18.7$: $P = (18.7-10)^2 - 25 = 8.7^2 - 25 = 75.69 - 25 = 50.69 ≈ 50.7$ triệu đồng",
+    difficulty_level: "hard",
+    is_dynamic: false
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 2 — Hằng đẳng thức đáng nhớ</h3>
+
+Chương 2 trang bị cho chúng ta những công cụ mạnh mẽ để tính toán nhanh và phân tích đa thức thành nhân tử!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
+    <strong>Hằng đẳng thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">7 hằng đẳng thức cơ bản</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔧</div>
+    <strong>Phân tích nhân tử</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Các phương pháp cơ bản</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🚀</div>
+    <strong>Ứng dụng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính nhanh, rút gọn</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="hang-dang-thuc">1. Bảy hằng đẳng thức đáng nhớ</h4>
+
+<div class="box-dinh-nghia">
+
+**1. Bình phương của một tổng:**
+$$(a + b)^2 = a^2 + 2ab + b^2$$
+
+**2. Bình phương của một hiệu:**
+$$(a - b)^2 = a^2 - 2ab + b^2$$
+
+**3. Hiệu hai bình phương:**
+$$a^2 - b^2 = (a - b)(a + b)$$
+
+**4. Lập phương của một tổng:**
+$$(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$$
+
+**5. Lập phương của một hiệu:**
+$$(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$$
+
+**6. Tổng hai lập phương:**
+$$a^3 + b^3 = (a + b)(a^2 - ab + b^2)$$
+
+**7. Hiệu hai lập phương:**
+$$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$$
+
+</div>
+
+<h4 id="ung-dung-tinh-nhanh">2. Ứng dụng tính nhanh</h4>
+
+**Tính bình phương:**
+- $101^2 = (100 + 1)^2 = 100^2 + 2 \cdot 100 \cdot 1 + 1^2 = 10201$
+- $99^2 = (100 - 1)^2 = 100^2 - 2 \cdot 100 \cdot 1 + 1^2 = 9801$
+
+**Tính tích:**
+- $98 \times 102 = (100 - 2)(100 + 2) = 100^2 - 2^2 = 9996$
+- $103 \times 97 = (100 + 3)(100 - 3) = 100^2 - 3^2 = 9991$
+
+<h4 id="phan-tich-nhan-tu">3. Phân tích đa thức thành nhân tử</h4>
+
+**Phương pháp 1: Đặt nhân tử chung**
+$$ax + ay = a(x + y)$$
+
+**Phương pháp 2: Dùng hằng đẳng thức**
+- $x^2 + 6x + 9 = (x + 3)^2$
+- $x^2 - 16 = (x - 4)(x + 4)$
+- $x^3 + 8 = (x + 2)(x^2 - 2x + 4)$
+
+**Phương pháp 3: Nhóm hạng tử**
+$$ax + ay + bx + by = a(x + y) + b(x + y) = (a + b)(x + y)$$
+
+**Phương pháp 4: Tách hạng tử**
+$$x^2 + 5x + 6 = x^2 + 2x + 3x + 6 = x(x + 2) + 3(x + 2) = (x + 3)(x + 2)$$
+
+<h4 id="cac-dang-dac-biet">4. Các dạng đặc biệt</h4>
+
+**Tam thức bậc hai:**
+$$ax^2 + bx + c = a(x - x_1)(x - x_2)$$
+với $x_1, x_2$ là nghiệm của phương trình $ax^2 + bx + c = 0$
+
+**Đa thức bậc cao:**
+- $x^4 - 16 = (x^2)^2 - 4^2 = (x^2 - 4)(x^2 + 4) = (x - 2)(x + 2)(x^2 + 4)$
+- $x^6 - 1 = (x^3)^2 - 1^2 = (x^3 - 1)(x^3 + 1)$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Áp dụng hằng đẳng thức cơ bản</h4>
+
+a) Tính $(x + 3)^2$
+
+b) Tính $(2x - 1)^2$
+
+c) Phân tích $x^2 - 49$ thành nhân tử
+
+d) Tính $(x + 2)^3$
+
+e) Phân tích $x^3 - 27$ thành nhân tử
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(x + 3)^2 = x^2 + 2 \cdot x \cdot 3 + 3^2 = x^2 + 6x + 9$
+
+b) $(2x - 1)^2 = (2x)^2 - 2 \cdot 2x \cdot 1 + 1^2 = 4x^2 - 4x + 1$
+
+c) $x^2 - 49 = x^2 - 7^2 = (x - 7)(x + 7)$
+
+d) $(x + 2)^3 = x^3 + 3x^2 \cdot 2 + 3x \cdot 2^2 + 2^3 = x^3 + 6x^2 + 12x + 8$
+
+e) $x^3 - 27 = x^3 - 3^3 = (x - 3)(x^2 + 3x + 9)$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tính nhanh bằng hằng đẳng thức</h4>
+
+a) Tính $101^2$
+
+b) Tính $98^2$
+
+c) Tính $103 \times 97$
+
+d) Tính $49 \times 51$
+
+e) Tính $1001^2$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $101^2 = (100 + 1)^2 = 100^2 + 2 \cdot 100 \cdot 1 + 1^2 = 10000 + 200 + 1 = 10201$
+
+b) $98^2 = (100 - 2)^2 = 100^2 - 2 \cdot 100 \cdot 2 + 2^2 = 10000 - 400 + 4 = 9604$
+
+c) $103 \times 97 = (100 + 3)(100 - 3) = 100^2 - 3^2 = 10000 - 9 = 9991$
+
+d) $49 \times 51 = (50 - 1)(50 + 1) = 50^2 - 1^2 = 2500 - 1 = 2499$
+
+e) $1001^2 = (1000 + 1)^2 = 1000^2 + 2 \cdot 1000 \cdot 1 + 1^2 = 1000000 + 2000 + 1 = 1002001$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Phân tích đa thức thành nhân tử - Đặt nhân tử chung</h4>
+
+a) $3x^2 + 6x$
+
+b) $4x^3 - 8x^2 + 12x$
+
+c) $x(x + 1) - 3(x + 1)$
+
+d) $2x^2y + 4xy^2 - 6xy$
+
+e) $(x + 2)^2 - (x + 2)$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $3x^2 + 6x = 3x(x + 2)$
+
+b) $4x^3 - 8x^2 + 12x = 4x(x^2 - 2x + 3)$
+
+c) $x(x + 1) - 3(x + 1) = (x + 1)(x - 3)$
+
+d) $2x^2y + 4xy^2 - 6xy = 2xy(x + 2y - 3)$
+
+e) $(x + 2)^2 - (x + 2) = (x + 2)[(x + 2) - 1] = (x + 2)(x + 1)$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Phân tích đa thức - Dùng hằng đẳng thức</h4>
+
+a) $x^2 + 4x + 4$
+
+b) $9x^2 - 12x + 4$
+
+c) $x^2 - 25$
+
+d) $8x^3 + 1$
+
+e) $x^6 - 64$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $x^2 + 4x + 4 = x^2 + 2 \cdot x \cdot 2 + 2^2 = (x + 2)^2$
+
+b) $9x^2 - 12x + 4 = (3x)^2 - 2 \cdot 3x \cdot 2 + 2^2 = (3x - 2)^2$
+
+c) $x^2 - 25 = x^2 - 5^2 = (x - 5)(x + 5)$
+
+d) $8x^3 + 1 = (2x)^3 + 1^3 = (2x + 1)[(2x)^2 - 2x \cdot 1 + 1^2] = (2x + 1)(4x^2 - 2x + 1)$
+
+e) $x^6 - 64 = (x^3)^2 - 8^2 = (x^3 - 8)(x^3 + 8) = (x - 2)(x^2 + 2x + 4)(x + 2)(x^2 - 2x + 4)$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Phân tích đa thức - Nhóm hạng tử</h4>
+
+a) $x^2 + 2x + y^2 + 2y$
+
+b) $ax + ay + bx + by$
+
+c) $x^3 + x^2 + x + 1$
+
+d) $2x^2 - 4x + xy - 2y$
+
+e) $x^3 - 3x^2 + 3x - 1$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $x^2 + 2x + y^2 + 2y = x(x + 2) + y(y + 2) = (x + y)(x + y + 2)$
+   Hoặc: $(x^2 + y^2) + 2(x + y) = (x + y)^2 - 2xy + 2(x + y)$
+
+b) $ax + ay + bx + by = a(x + y) + b(x + y) = (a + b)(x + y)$
+
+c) $x^3 + x^2 + x + 1 = x^2(x + 1) + (x + 1) = (x + 1)(x^2 + 1)$
+
+d) $2x^2 - 4x + xy - 2y = 2x(x - 2) + y(x - 2) = (2x + y)(x - 2)$
+
+e) $x^3 - 3x^2 + 3x - 1 = (x - 1)^3$ (nhận dạng hằng đẳng thức)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Phân tích đa thức - Tách hạng tử</h4>
+
+a) $x^2 + 5x + 6$
+
+b) $x^2 - 7x + 12$
+
+c) $2x^2 + 7x + 3$
+
+d) $x^2 - x - 6$
+
+e) $3x^2 - 10x + 8$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $x^2 + 5x + 6 = x^2 + 2x + 3x + 6 = x(x + 2) + 3(x + 2) = (x + 3)(x + 2)$
+
+b) $x^2 - 7x + 12 = x^2 - 3x - 4x + 12 = x(x - 3) - 4(x - 3) = (x - 4)(x - 3)$
+
+c) $2x^2 + 7x + 3 = 2x^2 + 6x + x + 3 = 2x(x + 3) + (x + 3) = (2x + 1)(x + 3)$
+
+d) $x^2 - x - 6 = x^2 + 2x - 3x - 6 = x(x + 2) - 3(x + 2) = (x - 3)(x + 2)$
+
+e) $3x^2 - 10x + 8 = 3x^2 - 6x - 4x + 8 = 3x(x - 2) - 4(x - 2) = (3x - 4)(x - 2)$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán tổng hợp</h4>
+
+a) Rút gọn biểu thức: $(x + 1)^2 - (x - 1)^2$
+
+b) Chứng minh: $(a + b)^3 - a^3 - b^3 = 3ab(a + b)$
+
+c) Tính giá trị biểu thức $x^2 + 4x + 4$ tại $x = 96$
+
+d) Phân tích: $x^4 - 1$
+
+e) Tìm $x$ biết: $x^2 - 6x + 9 = 0$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(x + 1)^2 - (x - 1)^2 = [(x + 1) - (x - 1)][(x + 1) + (x - 1)] = 2 \cdot 2x = 4x$
+
+b) $(a + b)^3 - a^3 - b^3 = a^3 + 3a^2b + 3ab^2 + b^3 - a^3 - b^3 = 3a^2b + 3ab^2 = 3ab(a + b)$
+
+c) $x^2 + 4x + 4 = (x + 2)^2$. Tại $x = 96$: $(96 + 2)^2 = 98^2 = 9604$
+
+d) $x^4 - 1 = (x^2)^2 - 1^2 = (x^2 - 1)(x^2 + 1) = (x - 1)(x + 1)(x^2 + 1)$
+
+e) $x^2 - 6x + 9 = (x - 3)^2 = 0$, suy ra $x = 3$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán thực tế - Hình học</h4>
+
+a) Một hình vuông có cạnh $(x + 2)$ cm. Tính diện tích theo $x$
+
+b) Nếu tăng mỗi cạnh thêm 3 cm, diện tích tăng thêm bao nhiêu?
+
+c) Một hình chữ nhật có chiều dài $(x + 5)$ cm, chiều rộng $(x - 3)$ cm. Tính diện tích
+
+d) So sánh diện tích hình vuông và hình chữ nhật khi $x = 10$
+
+e) Tìm $x$ để diện tích hình vuông gấp đôi diện tích hình chữ nhật
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích hình vuông: $S_1 = (x + 2)^2 = x^2 + 4x + 4$ (cm²)
+
+b) Diện tích mới: $(x + 5)^2 = x^2 + 10x + 25$
+   Diện tích tăng: $(x^2 + 10x + 25) - (x^2 + 4x + 4) = 6x + 21$ (cm²)
+
+c) Diện tích hình chữ nhật: $S_2 = (x + 5)(x - 3) = x^2 + 2x - 15$ (cm²)
+
+d) Khi $x = 10$:
+   $S_1 = 10^2 + 4(10) + 4 = 144$ cm²
+   $S_2 = 10^2 + 2(10) - 15 = 105$ cm²
+   Hình vuông có diện tích lớn hơn.
+
+e) Để $S_1 = 2S_2$: $x^2 + 4x + 4 = 2(x^2 + 2x - 15)$
+   $x^2 + 4x + 4 = 2x^2 + 4x - 30$
+   $x^2 = 34$, suy ra $x = \sqrt{34}$ (chỉ lấy nghiệm dương)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho biểu thức $A = (x + 1)^3 - (x - 1)^3 - 6x$
+
+a) Rút gọn biểu thức $A$
+
+b) Tính giá trị của $A$ khi $x = 5$
+
+c) Tìm $x$ để $A = 0$
+
+d) Chứng minh rằng $A$ chia hết cho 6 với mọi số nguyên $x$
+
+e) Tìm giá trị nhỏ nhất của $A^2$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $A = (x + 1)^3 - (x - 1)^3 - 6x$
+   $= (x^3 + 3x^2 + 3x + 1) - (x^3 - 3x^2 + 3x - 1) - 6x$
+   $= x^3 + 3x^2 + 3x + 1 - x^3 + 3x^2 - 3x + 1 - 6x$
+   $= 6x^2 - 6x + 2 = 6x(x - 1) + 2$
+
+b) Khi $x = 5$: $A = 6 \cdot 5 \cdot 4 + 2 = 120 + 2 = 122$
+
+c) Để $A = 0$: $6x(x - 1) + 2 = 0$
+   $6x^2 - 6x + 2 = 0$
+   $3x^2 - 3x + 1 = 0$
+   $\Delta = 9 - 12 = -3 < 0$, nên phương trình vô nghiệm.
+
+d) $A = 6x(x - 1) + 2$. Với $x$ nguyên, $x(x-1)$ là tích hai số nguyên liên tiếp nên chẵn.
+   Do đó $6x(x-1)$ chia hết cho 12, nhưng $A$ không chia hết cho 6 (vì có +2).
+
+e) $A = 6x^2 - 6x + 2 = 6(x^2 - x) + 2 = 6(x - \frac{1}{2})^2 - \frac{3}{2} + 2 = 6(x - \frac{1}{2})^2 + \frac{1}{2}$
+   $A^2$ nhỏ nhất khi $A$ nhỏ nhất, tức $x = \frac{1}{2}$, $A_{min} = \frac{1}{2}$, $A^2_{min} = \frac{1}{4}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Một công ty xây dựng có lợi nhuận theo công thức:
+$P(x) = (x + 10)^2 - (x - 5)^2 - 75$ (triệu đồng)
+với $x$ là số dự án thực hiện.
+
+a) Rút gọn biểu thức $P(x)$
+
+b) Tính lợi nhuận khi thực hiện 8 dự án
+
+c) Tìm số dự án để công ty hòa vốn (lợi nhuận = 0)
+
+d) Tìm số dự án để lợi nhuận đạt 200 triệu đồng
+
+e) Biết chi phí cố định là 50 triệu đồng, doanh thu mỗi dự án là $(2x + 15)$ triệu đồng. Viết công thức tổng quát cho lợi nhuận và so sánh với $P(x)$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $P(x) = (x + 10)^2 - (x - 5)^2 - 75$
+   $= [(x + 10) - (x - 5)][(x + 10) + (x - 5)] - 75$
+   $= 15(2x + 5) - 75 = 30x + 75 - 75 = 30x$
+
+b) Khi $x = 8$: $P(8) = 30 \cdot 8 = 240$ triệu đồng
+
+c) Để hòa vốn: $P(x) = 0$, suy ra $30x = 0$, tức $x = 0$ dự án
+
+d) Để $P(x) = 200$: $30x = 200$, suy ra $x = \frac{20}{3} ≈ 6.67$ dự án
+
+e) Lợi nhuận tổng quát: $L(x) = x(2x + 15) - 50 = 2x^2 + 15x - 50$
+   So với $P(x) = 30x$, ta thấy hai công thức khác nhau.
+   Có thể $P(x)$ là lợi nhuận biên hoặc được tính theo cách khác.
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Bình phương tổng/hiệu**: $(a ± b)^2 = a^2 ± 2ab + b^2$
+- **Hiệu hai bình phương**: $a^2 - b^2 = (a-b)(a+b)$
+- **Lập phương tổng/hiệu**: $(a ± b)^3 = a^3 ± 3a^2b + 3ab^2 ± b^3$
+- **Tổng/hiệu hai lập phương**: $a^3 ± b^3 = (a ± b)(a^2 ∓ ab + b^2)$
+- **Phân tích nhân tử**: Đặt chung → Hằng đẳng thức → Nhóm → Tách
+- **Ứng dụng**: Tính nhanh, rút gọn biểu thức, giải phương trình
+- **Lưu ý dấu**: Chú ý dấu + và - trong các hằng đẳng thức
+
+</GhiNho>

@@ -1,0 +1,631 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 10 - Toán 8"
+description: "Ôn tập toàn bộ kiến thức chương 10 Toán 8 KNTT: Hình chóp tam giác đều, hình chóp tứ giác đều, thể tích, diện tích xung quanh"
+grade: "Lớp 8"
+chapter: "Chương X: Một số hình khối trong thực tiễn"
+currentSlug: "lop8/bai-on-tap-chuong-10"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình chóp tam giác đều có bao nhiêu mặt?",
+    option_a: "3",
+    option_b: "4",
+    option_c: "5",
+    option_d: "6",
+    correct_option: "B",
+    explanation: "Hình chóp tam giác đều có 1 mặt đáy (tam giác) + 3 mặt bên (tam giác) = 4 mặt",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tứ giác đều có bao nhiêu cạnh?",
+    option_a: "4",
+    option_b: "6",
+    option_c: "8",
+    option_d: "12",
+    correct_option: "C",
+    explanation: "Hình chóp tứ giác đều có 4 cạnh đáy + 4 cạnh bên = 8 cạnh",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích hình chóp được tính bằng:",
+    option_a: "$V = S_{\\text{đáy}} \\times h$",
+    option_b: "$V = \\frac{1}{3} S_{\\text{đáy}} \\times h$",
+    option_c: "$V = \\frac{1}{2} S_{\\text{đáy}} \\times h$",
+    option_d: "$V = 2 S_{\\text{đáy}} \\times h$",
+    correct_option: "B",
+    explanation: "Thể tích hình chóp = $\\frac{1}{3} \\times$ diện tích đáy $\\times$ chiều cao",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích xung quanh hình chóp là:",
+    option_a: "Tổng diện tích các mặt bên",
+    option_b: "Diện tích đáy + diện tích các mặt bên",
+    option_c: "Diện tích đáy",
+    option_d: "Nửa chu vi đáy × trung đoạn",
+    correct_option: "A",
+    explanation: "Diện tích xung quanh = tổng diện tích các mặt bên (không tính đáy)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tam giác đều có đáy là:",
+    option_a: "Tam giác bất kỳ",
+    option_b: "Tam giác cân",
+    option_c: "Tam giác đều",
+    option_d: "Tam giác vuông",
+    correct_option: "C",
+    explanation: "Hình chóp tam giác đều có đáy là tam giác đều",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tứ giác đều có đáy là:",
+    option_a: "Hình chữ nhật",
+    option_b: "Hình thoi",
+    option_c: "Hình vuông",
+    option_d: "Hình bình hành",
+    correct_option: "C",
+    explanation: "Hình chóp tứ giác đều có đáy là hình vuông",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trung đoạn của hình chóp là:",
+    option_a: "Đường cao từ đỉnh đến đáy",
+    option_b: "Đường cao của mặt bên (từ đỉnh đến cạnh đáy)",
+    option_c: "Cạnh bên của hình chóp",
+    option_d: "Cạnh đáy của hình chóp",
+    correct_option: "B",
+    explanation: "Trung đoạn là đường cao của mặt bên tam giác (từ đỉnh chóp đến trung điểm cạnh đáy)",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tam giác đều có cạnh đáy 6cm, trung đoạn 5cm. Diện tích xung quanh là:",
+    option_a: "$30$ cm²",
+    option_b: "$45$ cm²",
+    option_c: "$60$ cm²",
+    option_d: "$90$ cm²",
+    correct_option: "B",
+    explanation: "Diện tích xung quanh = $\\frac{1}{2} \\times$ chu vi đáy $\\times$ trung đoạn = $\\frac{1}{2} \\times 18 \\times 5 = 45$ cm²",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chóp tứ giác đều có cạnh đáy 4cm, chiều cao 6cm. Thể tích là:",
+    option_a: "$32$ cm³",
+    option_b: "$48$ cm³",
+    option_c: "$64$ cm³",
+    option_d: "$96$ cm³",
+    correct_option: "A",
+    explanation: "Thể tích = $\\frac{1}{3} \\times 4^2 \\times 6 = \\frac{1}{3} \\times 16 \\times 6 = 32$ cm³",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích toàn phần hình chóp là:",
+    option_a: "Diện tích xung quanh",
+    option_b: "Diện tích xung quanh + diện tích đáy",
+    option_c: "Diện tích đáy",
+    option_d: "Nửa diện tích xung quanh",
+    correct_option: "B",
+    explanation: "Diện tích toàn phần = diện tích xung quanh + diện tích đáy",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về hình chóp:",
+    option_a: "Hình chóp tam giác đều có 4 mặt",
+    option_b: "Hình chóp tứ giác đều có 5 mặt",
+    option_c: "Tất cả các cạnh bên của hình chóp đều bằng nhau",
+    option_d: "Hình chóp có thể có đáy là hình tròn",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai: hình chóp có đáy là đa giác, không phải hình tròn.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq", 
+    question: "Xét tính đúng sai của các khẳng định sau về công thức:",
+    option_a: "Thể tích hình chóp = $\\frac{1}{3} S_{\\text{đáy}} \\times h$",
+    option_b: "Diện tích xung quanh = $\\frac{1}{2} \\times$ chu vi đáy $\\times$ trung đoạn",
+    option_c: "Diện tích toàn phần = diện tích xung quanh + diện tích đáy",
+    option_d: "Thể tích hình chóp = $S_{\\text{đáy}} \\times h$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai: công thức đúng là $V = \\frac{1}{3} S_{\\text{đáy}} \\times h$.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về hình chóp đều:",
+    option_a: "Hình chóp tam giác đều có đáy là tam giác đều",
+    option_b: "Hình chóp tứ giác đều có đáy là hình vuông",
+    option_c: "Đỉnh của hình chóp đều nằm trên đường thẳng vuông góc với đáy qua tâm đáy",
+    option_d: "Tất cả các mặt bên của hình chóp đều là tam giác cân",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng. Đây là các tính chất của hình chóp đều.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về trung đoạn:",
+    option_a: "Trung đoạn là đường cao của mặt bên",
+    option_b: "Trung đoạn đi từ đỉnh chóp đến trung điểm cạnh đáy",
+    option_c: "Trung đoạn bằng chiều cao của hình chóp",
+    option_d: "Trung đoạn dùng để tính diện tích xung quanh",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai: trung đoạn không bằng chiều cao (trừ trường hợp đặc biệt).",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Hình chóp tam giác đều có cạnh đáy 8.4cm, chiều cao 7.2cm. Tính thể tích (biết diện tích tam giác đều cạnh 8.4cm là 30.5cm²).",
+    correct_option: "73.2",
+    explanation: "Thể tích = $\\frac{1}{3} \\times 30.5 \\times 7.2 = \\frac{1}{3} \\times 219.6 = 73.2$ cm³",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Hình chóp tứ giác đều có cạnh đáy 5.6cm, trung đoạn 6.8cm. Tính diện tích xung quanh.",
+    correct_option: "76.2",
+    explanation: "Diện tích xung quanh = $\\frac{1}{2} \\times$ chu vi đáy $\\times$ trung đoạn = $\\frac{1}{2} \\times (4 \\times 5.6) \\times 6.8 = \\frac{1}{2} \\times 22.4 \\times 6.8 = 76.16 ≈ 76.2$ cm²",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },{
+    type: "sa",
+    question: "Hình chóp tứ giác đều có cạnh đáy 5.6cm, trung đoạn 6.8cm. Tính diện tích xung quanh.",
+    correct_option: "76.2",
+    explanation: "Diện tích xung quanh = $\\frac{1}{2} \\times$ chu vi đáy $\\times$ trung đoạn = $\\frac{1}{2} \\times (4 \\times 5.6) \\times 6.8 = \\frac{1}{2} \\times 22.4 \\times 6.8 = 76.16 ≈ 76.2$ cm²",
+    difficulty_level: "hard",
+    is_dynamic: false
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 10 — Một số hình khối trong thực tiễn</h3>
+
+Chương 10 khám phá các hình khối 3D phổ biến trong cuộc sống!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔺</div>
+    <strong>Hình chóp</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tam giác, tứ giác đều</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Thể tích</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Công thức tính</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Diện tích</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Xung quanh, toàn phần</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="hinh-chop">1. Hình chóp</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình chóp là hình có:
+- Một đa giác làm đáy
+- Các mặt bên là các tam giác có chung đỉnh
+
+**Phân loại:**
+- **Hình chóp tam giác đều:** Đáy là tam giác đều, các cạnh bên bằng nhau
+- **Hình chóp tứ giác đều:** Đáy là hình vuông, các cạnh bên bằng nhau
+
+</div>
+
+**Các yếu tố:**
+- Đỉnh: Điểm chung của các mặt bên
+- Đáy: Đa giác
+- Cạnh bên: Cạnh nối đỉnh với các đỉnh đáy
+- Chiều cao: Khoảng cách từ đỉnh đến mặt đáy
+- Trung đoạn: Đường cao của mặt bên
+
+<h4 id="the-tich">2. Thể tích hình chóp</h4>
+
+<div class="box-dinh-nghia">
+
+**Công thức:**
+$$V = \frac{1}{3} S_{\text{đáy}} \times h$$
+
+với $S_{\text{đáy}}$ là diện tích đáy, $h$ là chiều cao.
+
+</div>
+
+<h4 id="dien-tich">3. Diện tích hình chóp</h4>
+
+**Diện tích xung quanh:**
+$$S_{\text{xq}} = \frac{1}{2} \times \text{chu vi đáy} \times \text{trung đoạn}$$
+
+**Diện tích toàn phần:**
+$$S_{\text{tp}} = S_{\text{xq}} + S_{\text{đáy}}$$
+
+<h4 id="cac-hinh-khac">4. Các hình khối khác</h4>
+
+**Hình lăng trụ đứng:**
+- Thể tích: $V = S_{\text{đáy}} \times h$
+- Diện tích xung quanh: $S_{\text{xq}} = \text{chu vi đáy} \times h$
+
+**Hình trụ:**
+- Thể tích: $V = \pi r^2 h$
+- Diện tích xung quanh: $S_{\text{xq}} = 2\pi r h$
+
+**Hình nón:**
+- Thể tích: $V = \frac{1}{3}\pi r^2 h$
+- Diện tích xung quanh: $S_{\text{xq}} = \pi r l$ (với $l$ là đường sinh)
+
+**Hình cầu:**
+- Thể tích: $V = \frac{4}{3}\pi r^3$
+- Diện tích mặt cầu: $S = 4\pi r^2$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Hình chóp tam giác đều</h4>
+
+a) Nêu định nghĩa hình chóp tam giác đều
+
+b) Hình chóp tam giác đều có bao nhiêu mặt, bao nhiêu cạnh, bao nhiêu đỉnh?
+
+c) Hình chóp tam giác đều có cạnh đáy 6cm. Tính chu vi đáy
+
+d) Nếu chiều cao là 8cm, tính thể tích (biết diện tích tam giác đều cạnh 6cm là 9√3 cm²)
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hình chóp tam giác đều là hình chóp có đáy là tam giác đều và các cạnh bên bằng nhau
+
+b) 4 mặt (1 đáy + 3 mặt bên), 6 cạnh (3 cạnh đáy + 3 cạnh bên), 4 đỉnh
+
+c) Chu vi đáy = $3 \times 6 = 18$ cm
+
+d) Thể tích = $\frac{1}{3} \times 9\sqrt{3} \times 8 = 24\sqrt{3}$ cm³
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Hình chóp tứ giác đều</h4>
+
+a) Nêu định nghĩa hình chóp tứ giác đều
+
+b) Hình chóp tứ giác đều có bao nhiêu mặt, bao nhiêu cạnh, bao nhiêu đỉnh?
+
+c) Hình chóp tứ giác đều có cạnh đáy 5cm. Tính chu vi đáy
+
+d) Nếu chiều cao là 6cm, tính thể tích
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hình chóp tứ giác đều là hình chóp có đáy là hình vuông và các cạnh bên bằng nhau
+
+b) 5 mặt (1 đáy + 4 mặt bên), 8 cạnh (4 cạnh đáy + 4 cạnh bên), 5 đỉnh
+
+c) Chu vi đáy = $4 \times 5 = 20$ cm
+
+d) Diện tích đáy = $5^2 = 25$ cm². Thể tích = $\frac{1}{3} \times 25 \times 6 = 50$ cm³
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Thể tích hình chóp</h4>
+
+a) Phát biểu công thức tính thể tích hình chóp
+
+b) Hình chóp có diện tích đáy 24cm², chiều cao 9cm. Tính thể tích
+
+c) Hình chóp có thể tích 60cm³, chiều cao 5cm. Tính diện tích đáy
+
+d) Hình chóp có thể tích 48cm³, diện tích đáy 18cm². Tính chiều cao
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $V = \frac{1}{3} S_{\text{đáy}} \times h$
+
+b) $V = \frac{1}{3} \times 24 \times 9 = 72$ cm³
+
+c) $60 = \frac{1}{3} \times S_{\text{đáy}} \times 5$, suy ra $S_{\text{đáy}} = 36$ cm²
+
+d) $48 = \frac{1}{3} \times 18 \times h$, suy ra $h = 8$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Diện tích xung quanh hình chóp</h4>
+
+a) Phát biểu công thức tính diện tích xung quanh hình chóp
+
+b) Hình chóp tam giác đều có cạnh đáy 8cm, trung đoạn 7cm. Tính diện tích xung quanh
+
+c) Hình chóp tứ giác đều có cạnh đáy 6cm, trung đoạn 8cm. Tính diện tích xung quanh
+
+d) Hình chóp có chu vi đáy 20cm, trung đoạn 5cm. Tính diện tích xung quanh
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $S_{\text{xq}} = \frac{1}{2} \times \text{chu vi đáy} \times \text{trung đoạn}$
+
+b) Chu vi đáy = $3 \times 8 = 24$ cm. $S_{\text{xq}} = \frac{1}{2} \times 24 \times 7 = 84$ cm²
+
+c) Chu vi đáy = $4 \times 6 = 24$ cm. $S_{\text{xq}} = \frac{1}{2} \times 24 \times 8 = 96$ cm²
+
+d) $S_{\text{xq}} = \frac{1}{2} \times 20 \times 5 = 50$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Diện tích toàn phần hình chóp</h4>
+
+a) Phát biểu công thức tính diện tích toàn phần hình chóp
+
+b) Hình chóp tam giác đều có cạnh đáy 6cm, trung đoạn 5cm. Tính diện tích toàn phần (biết diện tích tam giác đều cạnh 6cm là 9√3 cm²)
+
+c) Hình chóp tứ giác đều có cạnh đáy 4cm, trung đoạn 6cm. Tính diện tích toàn phần
+
+d) Hình chóp có diện tích xung quanh 60cm², diện tích đáy 20cm². Tính diện tích toàn phần
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $S_{\text{tp}} = S_{\text{xq}} + S_{\text{đáy}}$
+
+b) Chu vi đáy = $3 \times 6 = 18$ cm. $S_{\text{xq}} = \frac{1}{2} \times 18 \times 5 = 45$ cm²
+   $S_{\text{tp}} = 45 + 9\sqrt{3}$ cm²
+
+c) Chu vi đáy = $4 \times 4 = 16$ cm. $S_{\text{xq}} = \frac{1}{2} \times 16 \times 6 = 48$ cm²
+   Diện tích đáy = $4^2 = 16$ cm². $S_{\text{tp}} = 48 + 16 = 64$ cm²
+
+d) $S_{\text{tp}} = 60 + 20 = 80$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Trung đoạn hình chóp</h4>
+
+a) Nêu định nghĩa trung đoạn của hình chóp
+
+b) Hình chóp tam giác đều có cạnh đáy 10cm, diện tích xung quanh 75cm². Tính trung đoạn
+
+c) Hình chóp tứ giác đều có cạnh đáy 8cm, trung đoạn 10cm. Tính diện tích xung quanh
+
+d) Hình chóp có chu vi đáy 24cm, diện tích xung quanh 60cm². Tính trung đoạn
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Trung đoạn là đường cao của mặt bên tam giác (từ đỉnh chóp đến trung điểm cạnh đáy)
+
+b) Chu vi đáy = $3 \times 10 = 30$ cm. $75 = \frac{1}{2} \times 30 \times d$, suy ra $d = 5$ cm
+
+c) Chu vi đáy = $4 \times 8 = 32$ cm. $S_{\text{xq}} = \frac{1}{2} \times 32 \times 10 = 160$ cm²
+
+d) $60 = \frac{1}{2} \times 24 \times d$, suy ra $d = 5$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán tổng hợp</h4>
+
+a) Hình chóp tam giác đều có cạnh đáy 12cm, chiều cao 10cm. Tính thể tích (biết diện tích tam giác đều cạnh 12cm là 36√3 cm²)
+
+b) Tính diện tích đáy
+
+c) Nếu trung đoạn là 11cm, tính diện tích xung quanh
+
+d) Tính diện tích toàn phần
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $V = \frac{1}{3} \times 36\sqrt{3} \times 10 = 120\sqrt{3}$ cm³
+
+b) Diện tích đáy = $36\sqrt{3}$ cm²
+
+c) Chu vi đáy = $3 \times 12 = 36$ cm. $S_{\text{xq}} = \frac{1}{2} \times 36 \times 11 = 198$ cm²
+
+d) $S_{\text{tp}} = 198 + 36\sqrt{3}$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán thực tế</h4>
+
+a) Một lều trại hình chóp tứ giác đều có cạnh đáy 4m, chiều cao 3m. Tính thể tích không khí bên trong
+
+b) Tính diện tích vải cần để làm 4 mặt bên (biết trung đoạn là 3.6m)
+
+c) Một kim tự tháp hình chóp tứ giác đều có cạnh đáy 230m, chiều cao 147m. Tính thể tích
+
+d) Một hộp quà hình chóp tam giác đều có cạnh đáy 10cm, trung đoạn 9cm. Tính diện tích giấy cần để bọc 4 mặt bên
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích đáy = $4^2 = 16$ m². $V = \frac{1}{3} \times 16 \times 3 = 16$ m³
+
+b) Chu vi đáy = $4 \times 4 = 16$ m. $S_{\text{xq}} = \frac{1}{2} \times 16 \times 3.6 = 28.8$ m²
+
+c) Diện tích đáy = $230^2 = 52900$ m². $V = \frac{1}{3} \times 52900 \times 147 = 2592100$ m³
+
+d) Chu vi đáy = $3 \times 10 = 30$ cm. $S_{\text{xq}} = \frac{1}{2} \times 30 \times 9 = 135$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Hình chóp tứ giác đều S.ABCD có cạnh đáy AB = 8cm, chiều cao SO = 6cm (O là tâm đáy).
+
+a) Tính diện tích đáy ABCD
+
+b) Tính thể tích hình chóp
+
+c) Tính độ dài cạnh bên SA (biết $OA = 4\sqrt{2}$ cm)
+
+d) Tính trung đoạn SM (M là trung điểm AB)
+
+e) Tính diện tích xung quanh
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích đáy = $8^2 = 64$ cm²
+
+b) $V = \frac{1}{3} \times 64 \times 6 = 128$ cm³
+
+c) $SA^2 = SO^2 + OA^2 = 6^2 + (4\sqrt{2})^2 = 36 + 32 = 68$, suy ra $SA = 2\sqrt{17}$ cm
+
+d) $SM^2 = SO^2 + OM^2 = 6^2 + 4^2 = 36 + 16 = 52$, suy ra $SM = 2\sqrt{13}$ cm
+
+e) Chu vi đáy = $4 \times 8 = 32$ cm. $S_{\text{xq}} = \frac{1}{2} \times 32 \times 2\sqrt{13} = 32\sqrt{13}$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Hình chóp tam giác đều S.ABC có cạnh đáy AB = BC = CA = 6cm, chiều cao SO = 8cm (O là tâm đáy).
+
+a) Tính diện tích tam giác đều ABC (biết diện tích = $\frac{\sqrt{3}}{4} \times a^2$)
+
+b) Tính thể tích hình chóp
+
+c) Tính độ dài cạnh bên SA (biết $OA = 2\sqrt{3}$ cm)
+
+d) Tính trung đoạn SM (M là trung điểm AB)
+
+e) Tính diện tích toàn phần
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích ABC = $\frac{\sqrt{3}}{4} \times 6^2 = 9\sqrt{3}$ cm²
+
+b) $V = \frac{1}{3} \times 9\sqrt{3} \times 8 = 24\sqrt{3}$ cm³
+
+c) $SA^2 = SO^2 + OA^2 = 8^2 + (2\sqrt{3})^2 = 64 + 12 = 76$, suy ra $SA = 2\sqrt{19}$ cm
+
+d) $SM^2 = SO^2 + OM^2 = 8^2 + 3^2 = 64 + 9 = 73$, suy ra $SM = \sqrt{73}$ cm
+
+e) Chu vi đáy = $3 \times 6 = 18$ cm. $S_{\text{xq}} = \frac{1}{2} \times 18 \times \sqrt{73} = 9\sqrt{73}$ cm²
+   $S_{\text{tp}} = 9\sqrt{73} + 9\sqrt{3}$ cm²
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Hình chóp tam giác đều:** 4 mặt, 6 cạnh, 4 đỉnh
+- **Hình chóp tứ giác đều:** 5 mặt, 8 cạnh, 5 đỉnh
+- **Thể tích hình chóp:** $V = \frac{1}{3} S_{\text{đáy}} \times h$
+- **Diện tích xung quanh:** $S_{\text{xq}} = \frac{1}{2} \times$ chu vi đáy $\times$ trung đoạn
+- **Diện tích toàn phần:** $S_{\text{tp}} = S_{\text{xq}} + S_{\text{đáy}}$
+- **Trung đoạn:** Đường cao của mặt bên tam giác
+- **Hình chóp tam giác đều có đáy là tam giác đều**
+- **Hình chóp tứ giác đều có đáy là hình vuông**
+
+</GhiNho>
