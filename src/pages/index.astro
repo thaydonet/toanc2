@@ -116,4 +116,60 @@ import LessonLayout from '../layouts/LessonLayout.astro';
     </div>
   </div>
 
+  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e2e8f0;">
+    <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #1e293b; display: flex; align-items: center; gap: 0.5rem;">
+      <span>📖</span> Tham khảo thêm
+    </h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+      <!-- Trang chủ sách toán -->
+      <a href="https://booktoan.com" target="_blank" rel="noopener noreferrer" style="
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        border: 2px solid #fcd34d;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      "
+      onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)';"
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';">
+        <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📚</div>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #92400e; margin: 0 0 0.5rem 0;">Trang chủ sách toán</h3>
+        <p style="font-size: 0.9rem; color: #b45309; margin: 0; line-height: 1.5;">
+          Khám phá bộ sưu tập sách toán phong phú, từ cơ bản đến nâng cao cho mọi cấp độ học sinh.
+        </p>
+        <div style="margin-top: auto; padding-top: 1rem; font-weight: 600; color: #d97706; display: flex; align-items: center; gap: 0.5rem;">
+          Truy cập →
+        </div>
+      </a>
+
+      <!-- Học Toán THPT -->
+      <a href="https://booktoan.com/sachtoan/" target="_blank" rel="noopener noreferrer" style="
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        border: 2px solid #93c5fd;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      "
+      onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)';"
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';">
+        <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🎓</div>
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #0c4a6e; margin: 0 0 0.5rem 0;">Học Toán THPT</h3>
+        <p style="font-size: 0.9rem; color: #0369a1; margin: 0; line-height: 1.5;">
+          Tài liệu học toán lớp 10, 11, 12 với các bài giảng chi tiết và bài tập thực hành.
+        </p>
+        <div style="margin-top: auto; padding-top: 1rem; font-weight: 600; color: #0284c7; display: flex; align-items: center; gap: 0.5rem;">
+          Truy cập →
+        </div>
+      </a>
+    </div>
+  </div>
+
 </LessonLayout>
