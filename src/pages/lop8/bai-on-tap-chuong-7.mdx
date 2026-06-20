@@ -1,0 +1,465 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 7 - Toán 8"
+description: "Ôn tập toàn bộ kiến thức chương 7 Toán 8 KNTT: Phương trình bậc nhất, hàm số bậc nhất, đồ thị"
+grade: "Lớp 8"
+chapter: "Chương VII: Phương trình bậc nhất và hàm số bậc nhất"
+currentSlug: "lop8/bai-on-tap-chuong-7"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Phương trình bậc nhất một ẩn có dạng:",
+    option_a: "$ax + b = 0$ với $a \\neq 0$",
+    option_b: "$ax^2 + bx + c = 0$",
+    option_c: "$ax + b = c$",
+    option_d: "$a + b = 0$",
+    correct_option: "A",
+    explanation: "Phương trình bậc nhất một ẩn có dạng $ax + b = 0$ với $a \\neq 0$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nghiệm của phương trình $2x - 4 = 0$ là:",
+    option_a: "$x = 1$",
+    option_b: "$x = 2$",
+    option_c: "$x = -2$",
+    option_d: "$x = 4$",
+    correct_option: "B",
+    explanation: "$2x - 4 = 0 \\Rightarrow 2x = 4 \\Rightarrow x = 2$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hàm số bậc nhất có dạng:",
+    option_a: "$y = ax + b$ với $a \\neq 0$",
+    option_b: "$y = ax^2 + bx + c$",
+    option_c: "$y = ax$",
+    option_d: "$y = b$",
+    correct_option: "A",
+    explanation: "Hàm số bậc nhất có dạng $y = ax + b$ với $a \\neq 0$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đồ thị của hàm số bậc nhất $y = ax + b$ là:",
+    option_a: "Một đường cong",
+    option_b: "Một đường thẳng",
+    option_c: "Một parabol",
+    option_d: "Một đường tròn",
+    correct_option: "B",
+    explanation: "Đồ thị của hàm số bậc nhất là một đường thẳng",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hệ số góc của đường thẳng $y = 2x + 3$ là:",
+    option_a: "$2$",
+    option_b: "$3$",
+    option_c: "$5$",
+    option_d: "$-2$",
+    correct_option: "A",
+    explanation: "Hệ số góc là hệ số của $x$, tức $a = 2$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung độ gốc của đường thẳng $y = -x + 4$ là:",
+    option_a: "$-1$",
+    option_b: "$4$",
+    option_c: "$-4$",
+    option_d: "$1$",
+    correct_option: "B",
+    explanation: "Tung độ gốc là giá trị của $y$ khi $x = 0$, tức $b = 4$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường thẳng $y = 2x + 1$ và $y = 2x - 3$ là:",
+    option_a: "Cắt nhau",
+    option_b: "Song song",
+    option_c: "Trùng nhau",
+    option_d: "Vuông góc",
+    correct_option: "B",
+    explanation: "Hai đường thẳng có cùng hệ số góc ($a = 2$) nhưng tung độ gốc khác nên song song",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường thẳng $y = 2x + 1$ và $y = -\\frac{1}{2}x + 3$ là:",
+    option_a: "Cắt nhau",
+    option_b: "Song song",
+    option_c: "Vuông góc",
+    option_d: "Trùng nhau",
+    correct_option: "C",
+    explanation: "Tích hệ số góc: $2 \\times (-\\frac{1}{2}) = -1$, nên hai đường thẳng vuông góc",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải phương trình $3x + 5 = 2x - 1$:",
+    option_a: "$x = 6$",
+    option_b: "$x = -6$",
+    option_c: "$x = 4$",
+    option_d: "$x = -4$",
+    correct_option: "B",
+    explanation: "$3x + 5 = 2x - 1 \\Rightarrow 3x - 2x = -1 - 5 \\Rightarrow x = -6$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hàm số $y = (m-1)x + 2$ là hàm số bậc nhất khi:",
+    option_a: "$m = 1$",
+    option_b: "$m \\neq 1$",
+    option_c: "$m > 1$",
+    option_d: "$m < 1$",
+    correct_option: "B",
+    explanation: "Để là hàm số bậc nhất, hệ số của $x$ phải khác 0, tức $m - 1 \\neq 0$, suy ra $m \\neq 1$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về phương trình bậc nhất:",
+    option_a: "Phương trình $2x - 4 = 0$ có nghiệm $x = 2$",
+    option_b: "Phương trình $0x + 5 = 0$ có vô số nghiệm",
+    option_c: "Phương trình $3x = 0$ có nghiệm $x = 0$",
+    option_d: "Phương trình $x + 1 = x$ vô nghiệm",
+    correct_option: "A,C,D",
+    explanation: "A, C, D đúng. B sai: phương trình $0x + 5 = 0$ vô nghiệm vì $5 \\neq 0$.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq", 
+    question: "Xét tính đúng sai của các khẳng định sau về hàm số bậc nhất:",
+    option_a: "Hàm số $y = 2x + 1$ có hệ số góc $a = 2$",
+    option_b: "Hàm số $y = -x + 3$ có tung độ gốc $b = 3$",
+    option_c: "Đồ thị hàm số bậc nhất luôn đi qua gốc tọa độ",
+    option_d: "Hàm số $y = 3x$ là hàm số bậc nhất",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai: đồ thị chỉ đi qua gốc tọa độ khi $b = 0$.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về đường thẳng:",
+    option_a: "Hai đường thẳng có cùng hệ số góc thì song song",
+    option_b: "Nếu $a_1 \\cdot a_2 = -1$ thì hai đường thẳng vuông góc",
+    option_c: "Đường thẳng $y = 2x + 1$ cắt trục tung tại $(0, 1)$",
+    option_d: "Đường thẳng $y = x - 2$ cắt trục hoành tại $(2, 0)$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng. Đây là các tính chất cơ bản của đường thẳng.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về giải phương trình:",
+    option_a: "Phương trình $2x + 3 = 7$ có nghiệm $x = 2$",
+    option_b: "Phương trình $x - 5 = 0$ có nghiệm $x = 5$",
+    option_c: "Phương trình $3x = 2x + 1$ có nghiệm $x = 1$",
+    option_d: "Phương trình $\\frac{x}{2} = 3$ có nghiệm $x = 1.5$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai: $\\frac{x}{2} = 3 \\Rightarrow x = 6$, không phải $1.5$.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Tìm tọa độ giao điểm của đường thẳng $y = 2x + 1$ với trục hoành (tung độ = 0).",
+    correct_option: "-0.5",
+    explanation: "Giao điểm với trục hoành có $y = 0$. Thay vào: $0 = 2x + 1 \\Rightarrow x = -\\frac{1}{2} = -0.5$",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Giải phương trình $2x - 3 = x + 1.5$ và tìm giá trị của $x$.",
+    correct_option: "4.5",
+    explanation: "$2x - 3 = x + 1.5 \\Rightarrow 2x - x = 1.5 + 3 \\Rightarrow x = 4.5$",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },{
+    type: "sa",
+    question: "Một hàm số bậc nhất có hệ số góc 2.5 và đi qua điểm $(2, 8)$. Tìm tung độ gốc $b$.",
+    correct_answer: "3.0",
+    explanation: "Hàm số có dạng $y = 2.5x + b$. Thay $(2, 8)$: $8 = 2.5 \\times 2 + b \\Rightarrow 8 = 5 + b \\Rightarrow b = 3$",
+    difficulty_level: "hard",
+    is_dynamic: false
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 7 — Phương trình bậc nhất và hàm số bậc nhất</h3>
+
+Chương 7 kết nối phương trình và hàm số, hai khái niệm quan trọng của đại số!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚖️</div>
+    <strong>Phương trình</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Giải phương trình bậc nhất</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
+    <strong>Hàm số</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hàm số bậc nhất</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Đồ thị</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đường thẳng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="phuong-trinh-bac-nhat">1. Phương trình bậc nhất một ẩn</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Phương trình bậc nhất một ẩn có dạng $ax + b = 0$ với $a \neq 0$.
+
+**Cách giải:**
+$$ax + b = 0 \Rightarrow ax = -b \Rightarrow x = -\frac{b}{a}$$
+
+**Ví dụ:** $2x - 4 = 0 \Rightarrow x = 2$
+
+</div>
+
+**Quy tắc biến đổi:**
+- Chuyển vế đổi dấu
+- Nhân (chia) cả hai vế với cùng một số khác 0
+
+<h4 id="ham-so-bac-nhat">2. Hàm số bậc nhất</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hàm số bậc nhất có dạng $y = ax + b$ với $a \neq 0$.
+
+**Các yếu tố:**
+- $a$: hệ số góc (độ dốc của đường thẳng)
+- $b$: tung độ gốc (giao điểm với trục tung)
+
+**Tính chất:**
+- Hàm số đồng biến khi $a > 0$
+- Hàm số nghịch biến khi $a < 0$
+
+</div>
+
+<h4 id="do-thi">3. Đồ thị hàm số bậc nhất</h4>
+
+**Đặc điểm:**
+- Là một đường thẳng
+- Cắt trục tung tại $(0, b)$
+- Cắt trục hoành tại $(-\frac{b}{a}, 0)$
+
+**Vị trí tương đối của hai đường thẳng:**
+- Song song: $a_1 = a_2$ và $b_1 \neq b_2$
+- Cắt nhau: $a_1 \neq a_2$
+- Vuông góc: $a_1 \cdot a_2 = -1$
+- Trùng nhau: $a_1 = a_2$ và $b_1 = b_2$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Giải phương trình bậc nhất</h4>
+
+a) Giải $2x - 4 = 0$
+
+b) Giải $3x + 5 = 2x - 1$
+
+c) Giải $\frac{x}{2} = 3$
+
+d) Giải $2(x - 1) = 3x + 1$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $x = 2$
+
+b) $x = -6$
+
+c) $x = 6$
+
+d) $2x - 2 = 3x + 1$ → $x = -3$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Hàm số bậc nhất</h4>
+
+a) Xác định hệ số góc và tung độ gốc của $y = 2x + 1$
+
+b) Vẽ đồ thị hàm số $y = -x + 2$
+
+c) Tìm giao điểm của $y = 2x + 1$ với trục tung
+
+d) Tìm giao điểm của $y = 2x + 1$ với trục hoành
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hệ số góc = 2, tung độ gốc = 1
+
+b) Vẽ đường thẳng qua (0, 2) và (2, 0)
+
+c) Giao điểm: (0, 1)
+
+d) Giao điểm: (-0.5, 0)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Bài toán tổng hợp</h4>
+
+a) Hai đường thẳng $y = 2x + 1$ và $y = 2x - 3$ có quan hệ gì?
+
+b) Hai đường thẳng $y = 2x + 1$ và $y = -\frac{1}{2}x + 3$ có quan hệ gì?
+
+c) Tìm phương trình đường thẳng đi qua (0, 2) và (1, 4)
+
+d) Tìm phương trình đường thẳng song song với $y = 2x + 1$ và đi qua (1, 3)
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Song song (cùng hệ số góc 2)
+
+b) Vuông góc ($2 \times (-\frac{1}{2}) = -1$)
+
+c) $y = 2x + 2$
+
+d) $y = 2x + 1$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bài toán thực tế</h4>
+
+a) Một xe taxi có giá mở cửa 10 nghìn đồng, mỗi km tính 5 nghìn đồng. Viết công thức tính giá tiền
+
+b) Tính giá tiền cho quãng đường 10 km
+
+c) Nếu khách trả 60 nghìn đồng, quãng đường là bao nhiêu?
+
+d) Vẽ đồ thị biểu diễn mối quan hệ giữa quãng đường và giá tiền
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $y = 5x + 10$ (x: km, y: nghìn đồng)
+
+b) $y = 5(10) + 10 = 60$ nghìn đồng
+
+c) $60 = 5x + 10$ → $x = 10$ km
+
+d) Vẽ đường thẳng qua (0, 10) và (10, 60)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho hai hàm số $y = 2x + 1$ và $y = -x + 4$
+
+a) Tìm giao điểm của hai đường thẳng
+
+b) Vẽ đồ thị của cả hai hàm số trên cùng một hệ trục
+
+c) Tính góc giữa hai đường thẳng
+
+d) Tìm diện tích tam giác tạo bởi hai đường thẳng và trục hoành
+
+e) Viết phương trình đường thẳng vuông góc với $y = 2x + 1$ và đi qua giao điểm
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $2x + 1 = -x + 4$ → $x = 1$, $y = 3$. Giao điểm: (1, 3)
+
+b) Vẽ hai đường thẳng trên cùng hệ trục
+
+c) Góc = $\arctan(2) - \arctan(-1) ≈ 71.6°$
+
+d) Giao với trục hoành: (-0.5, 0) và (4, 0). Diện tích = $\frac{1}{2} \times 4.5 \times 3 = 6.75$
+
+e) $y = -\frac{1}{2}x + 3.5$
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Phương trình bậc nhất:** $ax + b = 0$ với $a \neq 0$
+- **Hàm số bậc nhất:** $y = ax + b$ với $a \neq 0$
+- **Hệ số góc:** $a$ (độ dốc của đường thẳng)
+- **Tung độ gốc:** $b$ (giao điểm với trục tung)
+- **Song song:** Cùng hệ số góc
+- **Vuông góc:** $a_1 \times a_2 = -1$
+- **Giao điểm với trục hoành:** Cho $y = 0$
+- **Giao điểm với trục tung:** Cho $x = 0$
+
+</GhiNho>

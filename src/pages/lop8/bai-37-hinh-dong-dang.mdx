@@ -1,0 +1,460 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 37: Hình đồng dạng"
+description: "Khái niệm hình đồng dạng và ứng dụng - Toán 8 KNTT Chương 9"
+grade: "Lớp 8"
+chapter: "Chương 9: Tam giác đồng dạng"
+currentSlug: "lop8/bai-37-hinh-dong-dang"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai hình đồng dạng có:",
+    option_a: "Cùng hình dạng nhưng khác kích thước",
+    option_b: "Cùng kích thước nhưng khác hình dạng",
+    option_c: "Cùng hình dạng và kích thước",
+    option_d: "Không liên quan gì đến nhau",
+    correct_option: "A",
+    explanation: "Hai hình đồng dạng có cùng hình dạng (các góc tương ứng bằng nhau) nhưng có thể khác kích thước (các cạnh tỉ lệ).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chữ nhật $ABCD$ có $AB = 4$ cm, $BC = 6$ cm. Hình chữ nhật nào sau đây đồng dạng với $ABCD$?",
+    option_a: "$6$ cm và $9$ cm",
+    option_b: "$8$ cm và $10$ cm",
+    option_c: "$5$ cm và $7$ cm",
+    option_d: "$3$ cm và $6$ cm",
+    correct_option: "A",
+    explanation: "Tỉ số: $\\frac{4}{6} = \\frac{2}{3}$. Chỉ có đáp án A thỏa mãn: $\\frac{6}{9} = \\frac{2}{3}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai hình vuông bất kì:",
+    option_a: "Luôn đồng dạng",
+    option_b: "Không bao giờ đồng dạng",
+    option_c: "Đồng dạng khi có cạnh bằng nhau",
+    option_d: "Đồng dạng khi có chu vi bằng nhau",
+    correct_option: "A",
+    explanation: "Hai hình vuông luôn có bốn góc vuông bằng nhau và các cạnh tỉ lệ, nên luôn đồng dạng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai hình tròn có bán kính $3$ cm và $5$ cm:",
+    option_a: "Đồng dạng với tỉ số $\\frac{3}{5}$",
+    option_b: "Không đồng dạng",
+    option_c: "Bằng nhau",
+    option_d: "Đồng dạng với tỉ số $\\frac{5}{3}$",
+    correct_option: "A",
+    explanation: "Hai hình tròn luôn đồng dạng với tỉ số bằng tỉ số bán kính: $k = \\frac{3}{5}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những hình nào sau đây luôn đồng dạng với nhau?",
+    option_a: "Hai hình vuông",
+    option_b: "Hai hình tròn",
+    option_c: "Hai tam giác đều",
+    option_d: "Hai hình chữ nhật",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng vì các hình này có cùng hình dạng. D sai vì hai hình chữ nhật có thể có tỉ lệ cạnh khác nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một bản đồ tỉ lệ $1:50000$ nghĩa là:",
+    option_a: "$1$ cm trên bản đồ tương ứng $50000$ cm thực tế",
+    option_b: "$1$ cm trên bản đồ tương ứng $50000$ m thực tế",
+    option_c: "$1$ m trên bản đồ tương ứng $50000$ m thực tế",
+    option_d: "$50000$ cm trên bản đồ tương ứng $1$ cm thực tế",
+    correct_option: "A",
+    explanation: "Tỉ lệ $1:50000$ có nghĩa $1$ cm trên bản đồ = $50000$ cm = $500$ m thực tế.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hình chữ nhật có chiều dài $8$ cm, chiều rộng $6$ cm đồng dạng với hình chữ nhật có chiều dài $12$ cm. Chiều rộng của hình thứ hai bằng bao nhiêu cm?",
+    correct_option: "9",
+    explanation: "Tỉ số: $k = \\frac{12}{8} = \\frac{3}{2}$. Chiều rộng: $6 \\times \\frac{3}{2} = 9$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai hình đồng dạng có tỉ số đồng dạng $k = 3$. Tỉ số diện tích của chúng là:",
+    option_a: "$9$",
+    option_b: "$3$",
+    option_c: "$6$",
+    option_d: "$27$",
+    correct_option: "A",
+    explanation: "Tỉ số diện tích bằng bình phương tỉ số đồng dạng: $k^2 = 3^2 = 9$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chữ nhật có chiều dài $!a#4!$ cm và chiều rộng $!b#3!$ cm đồng dạng với hình chữ nhật có chiều dài $!tinh: !a! * 2!$ cm. Chiều rộng của hình thứ hai là:",
+    option_a: "$!tinh: !b! * 2!$ cm",
+    option_b: "$!tinh: !b! + 2!$ cm",
+    option_c: "$!b!$ cm",
+    option_d: "$!tinh: !a! * 2!$ cm",
+    correct_option: "A",
+    explanation: "Tỉ số đồng dạng $k = 2$. Chiều rộng: $!b! \\times 2 = !tinh: !b! * 2!$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🌍 Hình đồng dạng trong cuộc sống</h3>
+
+Khái niệm đồng dạng không chỉ áp dụng cho tam giác mà còn cho mọi hình trong thực tế!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🗺️</div>
+    <strong>Bản đồ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thu nhỏ theo tỉ lệ</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📸</div>
+    <strong>Ảnh phóng to</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Giữ nguyên hình dạng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏗️</div>
+    <strong>Mô hình kiến trúc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thu nhỏ công trình</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm hình đồng dạng</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hai hình được gọi là đồng dạng nếu chúng có cùng hình dạng nhưng có thể khác kích thước.
+
+Cụ thể:
+- Các góc tương ứng bằng nhau
+- Các cạnh tương ứng tỉ lệ với nhau
+
+</div>
+
+**Tỉ số đồng dạng:** Tỉ số giữa các cạnh tương ứng của hai hình đồng dạng gọi là tỉ số đồng dạng, kí hiệu $k$.
+
+**Ví dụ 1:** Hai hình chữ nhật $ABCD$ và $A'B'C'D'$ có:
+- $AB = 4$ cm, $BC = 6$ cm
+- $A'B' = 6$ cm, $B'C' = 9$ cm
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Kiểm tra: $\\frac{A'B'}{AB} = \\frac{6}{4} = \\frac{3}{2}$ và $\\frac{B'C'}{BC} = \\frac{9}{6} = \\frac{3}{2}$
+
+Các cạnh tỉ lệ và các góc đều vuông $\\Rightarrow$ Hai hình chữ nhật đồng dạng với $k = \\frac{3}{2}$
+
+</div>
+
+<h3 id="cac-hinh-dac-biet" style="margin-top:2rem;">🔍 2. Các hình luôn đồng dạng</h3>
+
+Một số hình đặc biệt luôn đồng dạng với nhau:
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**1. Hai hình vuông bất kì** luôn đồng dạng
+- Lý do: Bốn góc vuông bằng nhau, bốn cạnh tỉ lệ
+
+**2. Hai hình tròn bất kì** luôn đồng dạng
+- Lý do: Cùng hình dạng, tỉ số bán kính
+
+**3. Hai tam giác đều bất kì** luôn đồng dạng
+- Lý do: Ba góc $60°$ bằng nhau, ba cạnh tỉ lệ
+
+</div>
+
+<div class="box-nhan-xet">
+
+**Lưu ý:**
+- Hai hình chữ nhật không phải lúc nào cũng đồng dạng (tỉ lệ cạnh có thể khác nhau)
+- Hai hình thoi không phải lúc nào cũng đồng dạng (góc có thể khác nhau)
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">🔑 3. Tính chất của hình đồng dạng</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 1:** Nếu hai hình đồng dạng với tỉ số $k$ thì:
+- Tỉ số chu vi = $k$
+- Tỉ số diện tích = $k^2$
+- Tỉ số thể tích = $k^3$ (với hình khối)
+
+</div>
+
+**Ví dụ 2:** Hai tam giác đồng dạng với tỉ số $k = 2$.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Nếu tam giác nhỏ có chu vi $12$ cm thì tam giác lớn có chu vi $12 \\times 2 = 24$ cm
+- Nếu tam giác nhỏ có diện tích $10$ cm² thì tam giác lớn có diện tích $10 \\times 2^2 = 40$ cm²
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">📐 4. Ứng dụng: Tỉ lệ bản đồ</h3>
+
+**Tỉ lệ bản đồ** là tỉ số giữa khoảng cách trên bản đồ và khoảng cách thực tế.
+
+**Ví dụ 3:** Bản đồ tỉ lệ $1:100000$ nghĩa là:
+- $1$ cm trên bản đồ = $100000$ cm = $1000$ m = $1$ km thực tế
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bài toán:** Trên bản đồ tỉ lệ $1:50000$, khoảng cách giữa hai điểm là $6$ cm. Khoảng cách thực tế là:
+
+$6 \\times 50000 = 300000$ cm = $3000$ m = $3$ km
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một mô hình tháp Eiffel cao $50$ cm được làm theo tỉ lệ $1:600$. Tính chiều cao thực của tháp.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Chiều cao thực: $50 \\times 600 = 30000$ cm = $300$ m
+
+</div>
+
+**📝 Bài toán 2:** Một bức ảnh kích thước $10$ cm × $15$ cm được phóng to thành ảnh $20$ cm × $30$ cm. Tỉ số đồng dạng và tỉ số diện tích là bao nhiêu?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tỉ số đồng dạng: $k = \\frac{20}{10} = 2$
+
+Tỉ số diện tích: $k^2 = 2^2 = 4$
+
+Kiểm tra: $\\frac{20 \\times 30}{10 \\times 15} = \\frac{600}{150} = 4$ ✓
+
+</div>
+
+**📝 Bài toán 3:** Một mảnh vườn hình chữ nhật có chiều dài $40$ m, chiều rộng $30$ m. Vẽ sơ đồ tỉ lệ $1:500$, kích thước trên giấy là bao nhiêu?
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Chiều dài trên giấy: $\\frac{4000}{500} = 8$ cm
+
+Chiều rộng trên giấy: $\\frac{3000}{500} = 6$ cm
+
+</div>
+
+**📝 Bài toán 4:** Hai hình vuông đồng dạng có tỉ số cạnh $3:5$. Nếu hình vuông nhỏ có diện tích $18$ cm², hình vuông lớn có diện tích bao nhiêu?
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tỉ số diện tích: $\\left(\\frac{5}{3}\\right)^2 = \\frac{25}{9}$
+
+Diện tích hình lớn: $18 \\times \\frac{25}{9} = 50$ cm²
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Hình đồng dạng**: cùng hình dạng, khác kích thước
+- **Luôn đồng dạng**: hình vuông, hình tròn, tam giác đều
+- **Tỉ số chu vi** = $k$
+- **Tỉ số diện tích** = $k^2$
+- **Tỉ lệ bản đồ**: $1:n$ nghĩa là $1$ cm = $n$ cm thực tế
+
+</GhiNho>
+
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho hình chữ nhật $ABCD$ có $AB = 8$ cm, $BC = 6$ cm và hình chữ nhật $MNPQ$ có $MN = 12$ cm, $NP = 9$ cm.
+
+a) Chứng minh hai hình chữ nhật đồng dạng
+
+b) Tính tỉ số đồng dạng
+
+c) Tính tỉ số chu vi và tỉ số diện tích
+
+d) Nếu diện tích $ABCD$ là 48 cm², tính diện tích $MNPQ$
+
+---
+
+**Bài 2:** Cho hai hình vuông có cạnh lần lượt là 5 cm và 8 cm.
+
+a) Hai hình vuông có đồng dạng không? Tại sao?
+
+b) Tính tỉ số đồng dạng
+
+c) Tính tỉ số chu vi
+
+d) Tính tỉ số diện tích
+
+
+---
+
+**Bài 3:** Trên bản đồ tỉ lệ 1:25000.
+
+a) Khoảng cách giữa hai điểm $A$ và $B$ trên bản đồ là 8 cm. Tính khoảng cách thực tế (đơn vị: km)
+
+b) Một khu rừng hình chữ nhật trên bản đồ có kích thước 4 cm × 3 cm. Tính diện tích thực tế của khu rừng (đơn vị: ha)
+
+c) Một con đường thẳng dài 5 km trên thực tế. Tính độ dài của nó trên bản đồ (đơn vị: cm)
+
+---
+
+**Bài 4 (Ứng dụng thực tế):** Một nhiếp ảnh gia có bức ảnh gốc kích thước 20 cm × 30 cm.
+
+a) Phóng to ảnh với tỉ lệ 1,5 lần. Tính kích thước ảnh mới
+
+b) Thu nhỏ ảnh gốc xuống còn chiều dài 15 cm. Tính chiều rộng ảnh mới
+
+c) Nếu diện tích ảnh gốc là 600 cm², tính diện tích ảnh sau khi phóng to 2 lần
+
+d) Một bức ảnh khác đồng dạng với ảnh gốc có chiều dài 40 cm. Tính chiều rộng và diện tích bức ảnh này
+
+
+---
+
+**Bài 5 (Nâng cao):** Một kiến trúc sư thiết kế mô hình tòa nhà theo tỉ lệ 1:100.
+
+a) Chiều cao thực tế của tòa nhà là 45 m. Tính chiều cao mô hình (đơn vị: cm)
+
+b) Diện tích mặt bằng mô hình là 400 cm². Tính diện tích mặt bằng thực tế (đơn vị: m²)
+
+c) Thể tích mô hình là 1800 cm³. Tính thể tích thực tế (đơn vị: m³)
+
+d) Nếu làm mô hình theo tỉ lệ 1:50 thì chiều cao mô hình sẽ là bao nhiêu? So sánh với mô hình tỉ lệ 1:100
+
+e) Giải thích tại sao tỉ lệ diện tích là bình phương tỉ lệ độ dài và tỉ lệ thể tích là lập phương tỉ lệ độ dài
+
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $\dfrac{MN}{AB} = \dfrac{12}{8} = \dfrac{3}{2}$; $\dfrac{NP}{BC} = \dfrac{9}{6} = \dfrac{3}{2}$
+
+Các cạnh tỉ lệ và các góc đều vuông nên hai hình chữ nhật đồng dạng
+
+b) $k = \dfrac{3}{2}$
+
+c) Tỉ số chu vi: $\dfrac{P_{MNPQ}}{P_{ABCD}} = k = \dfrac{3}{2}$
+
+Tỉ số diện tích: $\dfrac{S_{MNPQ}}{S_{ABCD}} = k^2 = \dfrac{9}{4}$
+
+d) $S_{MNPQ} = 48 \times \dfrac{9}{4} = 108$ cm²
+
+---
+
+**Bài 2:**
+
+a) Có, vì hai hình vuông luôn đồng dạng (bốn góc vuông bằng nhau, bốn cạnh tỉ lệ)
+
+b) $k = \dfrac{8}{5}$
+
+c) Tỉ số chu vi: $\dfrac{P_2}{P_1} = \dfrac{8}{5}$
+
+d) Tỉ số diện tích: $\dfrac{S_2}{S_1} = \left(\dfrac{8}{5}\right)^2 = \dfrac{64}{25}$
+
+
+---
+
+**Bài 3:**
+
+a) Khoảng cách thực tế: $8 \times 25000 = 200000$ cm = 2 km
+
+b) Kích thước thực tế: $4 \times 25000 = 100000$ cm = 1000 m và $3 \times 25000 = 75000$ cm = 750 m
+
+Diện tích: $1000 \times 750 = 750000$ m² = 75 ha
+
+c) Độ dài trên bản đồ: $\dfrac{500000}{25000} = 20$ cm
+
+---
+
+**Bài 4:**
+
+a) Kích thước mới: $20 \times 1{,}5 = 30$ cm và $30 \times 1{,}5 = 45$ cm
+
+b) Tỉ số: $k = \dfrac{15}{20} = \dfrac{3}{4}$
+
+Chiều rộng: $30 \times \dfrac{3}{4} = 22{,}5$ cm
+
+c) Diện tích mới: $600 \times 2^2 = 600 \times 4 = 2400$ cm²
+
+d) Tỉ số: $k = \dfrac{40}{20} = 2$
+
+Chiều rộng: $30 \times 2 = 60$ cm
+
+Diện tích: $600 \times 2^2 = 2400$ cm²
+
+
+---
+
+**Bài 5:**
+
+a) Chiều cao mô hình: $\dfrac{4500}{100} = 45$ cm
+
+b) Diện tích thực tế: $400 \times 100^2 = 400 \times 10000 = 4000000$ cm² = 400 m²
+
+c) Thể tích thực tế: $1800 \times 100^3 = 1800 \times 1000000 = 1800000000$ cm³ = 1800 m³
+
+d) Chiều cao mô hình tỉ lệ 1:50: $\dfrac{4500}{50} = 90$ cm
+
+So sánh: Mô hình 1:50 cao gấp đôi mô hình 1:100 (vì $\dfrac{90}{45} = 2$)
+
+e) - Diện tích có đơn vị là đơn vị bình phương (cm², m²), nên khi tỉ lệ độ dài là $k$ thì tỉ lệ diện tích là $k^2$
+
+- Thể tích có đơn vị là đơn vị lập phương (cm³, m³), nên khi tỉ lệ độ dài là $k$ thì tỉ lệ thể tích là $k^3$
+
+Ví dụ: Hình vuông cạnh $a$ có diện tích $a^2$. Nếu phóng to $k$ lần thì cạnh mới là $ka$, diện tích mới là $(ka)^2 = k^2a^2$
+
+</div>
+</details>

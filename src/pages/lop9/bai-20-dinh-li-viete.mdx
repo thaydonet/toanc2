@@ -1,0 +1,320 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 20: Định lí Viète và ứng dụng"
+description: "Sức mạnh của Định lí Viết trong việc nhẩm nghiệm và tính tổng, tích các nghiệm - Toán 9 KNTT"
+grade: "Lớp 9"
+chapter: "Chương VI: Hàm số y = ax² (a ≠ 0). Phương trình bậc hai một ẩn"
+currentSlug: "lop9/bai-20-dinh-li-viete"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import QuadraticEquationSolver from '../../components/interactive/QuadraticEquationSolver';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Định lí Viète cho phép ta tính được gì MÀ KHÔNG CẦN GIẢI phương trình?",
+    option_a: "Biệt thức Delta",
+    option_b: "Tọa độ đỉnh Parabol",
+    option_c: "Tổng và Tích của hai nghiệm",
+    option_d: "Căn bậc hai của hệ số tự do",
+    correct_option: "C",
+    explanation: "Đây là sức mạnh cốt lõi của Vi-ét: Tính ngay Tổng (S) và Tích (P) của 2 nghiệm mà không động mồ hôi giải Delta.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức ĐÚNG của Định lí Viète cho phương trình $ax^2 + bx + c = 0$ (với $\\Delta \\ge 0$) là:",
+    option_a: "$x_1 + x_2 = b / a \\quad;\\quad x_1 x_2 = -c / a$",
+    option_b: "$x_1 + x_2 = -b / a \\quad;\\quad x_1 x_2 = c / a$",
+    option_c: "$x_1 + x_2 = -c / a \\quad;\\quad x_1 x_2 = -b / a$",
+    option_d: "$x_1 - x_2 = b / a \\quad;\\quad x_1 + x_2 = c / a$",
+    correct_option: "B",
+    explanation: "Định lí Vi-ét khẳng định: Tổng = $-b/a$ và Tích = $c/a$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho PT $x^2 - 5x + 6 = 0$. Không giải PT, hãy nhẩm tổng và tích các nghiệm (nếu có):",
+    option_a: "S = -5, P = 6",
+    option_b: "S = 5, P = 6",
+    option_c: "S = 5, P = -6",
+    option_d: "S = -5, P = -6",
+    correct_option: "B",
+    explanation: "Hệ số $a=1, b=-5, c=6$. Tính Tổng $S = -b/a = -(-5)/1 = 5$. Tích $P = c/a = 6/1 = 6$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Quy tắc nhẩm nhanh thứ nhất: Nếu phương trình $ax^2 + bx + c = 0$ có $a + b + c = 0$ thì phương trình chắc chắn có:",
+    option_a: "Môt nghiệm x = 1, nghiệm kia x = -c/a",
+    option_b: "Môt nghiệm x = -1, nghiệm kia x = c/a",
+    option_c: "Môt nghiệm x = 1, nghiệm kia x = c/a",
+    option_d: "Nó vô nghiệm",
+    correct_option: "C",
+    explanation: "Nếu tổng 3 hệ số cộng lại bằng 0, thì chắc chắn 1 nghiệm là 1. Do Tích = $c/a$ nên nghiệm còn lại bắt buộc bằng $\\frac{c}{a}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Quy tắc nhẩm nhanh thứ hai: Nếu phương trình có $a - b + c = 0$ (hoặc tổng hệ số chẵn = tổng hệ số lẻ) thì nghiệm là:",
+    option_a: "$x_1 = 1, x_2 = -c/a$",
+    option_b: "$x_1 = -1, x_2 = c/a$",
+    option_c: "$x_1 = -1, x_2 = -c/a$",
+    option_d: "Nghiệm kép $x_1=x_2=-1$",
+    correct_option: "C",
+    explanation: "Tổng số xen kẽ dấu bằng 0 $\\Rightarrow$ Nghiệm khởi thủy là -1. Do Tích = $c/a \\Rightarrow -1 \\cdot x_2 = c/a \\Rightarrow x_2 = -c/a$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai số u và v biết Tổng $u + v = 7$ và Tích $u \\cdot v = 12$. Vậy u và v là nghiệm của phương trình nào?",
+    option_a: "$x^2 - 7x - 12 = 0$",
+    option_b: "$x^2 + 7x + 12 = 0$",
+    option_c: "$x^2 - 7x + 12 = 0$",
+    option_d: "$2x^2 - 14x + 24 = 0$",
+    correct_option: "C",
+    explanation: "Định lí Vi-ét ĐẢO: Hai số có tổng S, tích P là nghiệm của $x^2 - Sx + P = 0$. Thay $S=7, P=12 \\Rightarrow x^2 - 7x + 12 = 0$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Phương trình $3x^2 + 7x + 4 = 0$. Những khẳng định nào ĐÚNG?",
+    option_a: "Tổng 3 hệ số $a+b+c = 14 \\neq 0$ nên không thể tính $x_1=1$.",
+    option_b: "Nhẩm $a - b + c = 3 - 7 + 4 = 0$ nên có 1 nghiệm là -1.",
+    option_c: "Nghiệm còn lại là $x_2 = \\frac{-4}{3}$.",
+    option_d: "Phương trình Vô nghiệm.",
+    correct_option: "A,B,C",
+    explanation: "Dùng quy tắc xét Dấu đan xen $a - b + c = 0$. Có nghiệm Mốc -1. Móc nốt nghiệm thứ hai x2 = -c/a = -4/3. Mọi khẳng định A B C đều là mảnh ghép hoàn hảo.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Chìa khoá Giải Biểu thức Đối Xứng: Làm thế nào biến đổi $(x_1^2 + x_2^2)$ về dạng chứa S và P?",
+    option_a: "Bằng $x_1 + x_2 - 2x_1x_2$",
+    option_b: "Bằng $(x_1 + x_2)^2 - x_1x_2$",
+    option_c: "Bằng $S^2 - 2P$",
+    option_d: "Bằng $(x_1 + x_2)^2 - 2x_1x_2$",
+    correct_option: "C,D",
+    explanation: "Ta dùng ngầm hằng đẳng thức lộn ngược bình phương: $(A+B)^2 = A^2 + 2AB + B^2$. Trừ rút bớt phần gánh giữa $\\Rightarrow A^2+B^2 = (A+B)^2 - 2AB = S^2 - 2P$. (C và D y như nhau về mặt bản chất).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Phương trình $x^2 - mx + 8 = 0$ có một nghiệm $x_1 = 2$. Sử dụng Vi-ét múc được Nghiệm còn lại $x_2$ bằng bao nhiêu?",
+    correct_option: "4",
+    explanation: "Vi-ét Tích $P = c/a = 8/1 = 8$. Biết $x_1 \cdot x_2 = 8$, thay $x_1=2 \Rightarrow 2x_2 = 8 \Rightarrow x_2 = 4$. (Không màng phải giải $m < 0$ lôi thôi!).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm m để phương trình $x^2 - x + m = 0$ có 2 nghiệm thỏa mãn $x_1x_2 = -5$?",
+    correct_option: "-5",
+    explanation: "Vi-ét tích $P = c/a \\Rightarrow -5 = m / 1 \\Rightarrow m = -5$. (Lưu ý phải kiểm tra Delta: $\\Delta = 1 - 4(-5) = 21 > 0$, Quá thoả mãn).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🕵️ Chuyện nhà toán học tài ba François Viète</h3>
+
+Làm sao để đoán tính cách một người mà không cần mở miệng hỏi môt câu nào?
+Trong toán học, việc đi giải cặn kẽ hệ số Delta rồi thay hằng đẳng thức để tìm **Chính xác Từng nghiệm Môt** là rất tốn công.
+Nhà toán học vĩ đại người Pháp **François Viète** đã phát minh ra \"Sợi Dây Liên Kết Tâm Linh\". 
+
+Ông chứng minh rằng, Tổng khối lượng của 2 nghiệm ($x_1 + x_2$) và Tích đo ván ($x_1 \cdot x_2$) của chúng đã bị phơi bày hoàn toàn NGAY TỪ LÚC NHÌN DÁNG MẶT CỦA CÁC HỆ SỐ $a, b, c$! 
+Nghĩa là Chưa giải, nhưng Viète đã đọc vị được 2 nghiệm cộng lại nặng bao nhiêu ki-lô!
+Cùng tiếp thu pháp bảo Toán Học kinh điển nhất của khối THCS bên dưới nhé!
+
+<div style="background:#fefce8;border:1px dashed #fbbf24;padding:1rem;border-radius:8px;text-align:center;font-weight:bold;color:#b45309;margin:2rem 0;">
+\"François Viète (1540 - 1603) là cha đẻ của ngành Đại số Ký Hiệu. Ông tiên phong dùng CHỮ CÁI để thay cho SỐ trong toán học đấy!\"
+</div>
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="dinh-li-viete" style="margin-top:2rem;">📖 1. Định lí Viète</h3>
+
+<div class="box-dinh-nghia">
+
+Nếu phương trình bậc hai CÓ NGHIỆM ($\\Delta \ge 0$), thì giữa hai nghiệm mộc $x_1, x_2$ sẽ tự động bị ràng buộc bởi luật Vi-ét:
+- **TỔNG hai nghiệm:** $S = x_1 + x_2 = \frac{-b}{a}$
+- **TÍCH hai nghiệm:** $P = x_1 \cdot x_2 = \frac{c}{a}$
+
+</div>
+
+*(Dễ nhớ: Trừ Bê trên A / Xê trên A. Cứ TỔNG là ĐỔI DẤU b, TÍCH là GIỮ NGUYÊN dấu c).*
+**Lưu ý Tử Huyệt:** Pháp bảo này KHÔNG hoặt động (không có ý nghĩa) nếu $\Delta < 0$ vì lúc đó lấy đâu ra 2 nghiệm tàng hình để mà cộng với nhân!
+
+<h3 id="ung-dung-nham" style="margin-top:2rem;">📖 2. Ứng dụng Bắt Nghiệm Nhẩm Siêu Tốc</h3>
+
+Nhờ định lý nà, ta có Thâm Công Nhẩm nghiệm (Nhìn lướt giải 1 giây ăn trọn điểm):
+
+<div class="box-dinh-ly">
+
+1. **Khắc Hệ Cùng Dấu:** Bốc cả ba hệ số cắn răng cộng chay với nhau nếu **$a + b + c = 0$**
+   $\Rightarrow$ Phương trình dập tắt có 1 nghiệm đẹp như mơ **$x_1 = 1$**. 
+   $\Rightarrow$ Áp dụng rút Viét Tích, móc nốt nghiệm 2 nhanh gấp: **$x_2 = \frac{c}{a}$**.
+   
+2. **Khắc Hệ Đan Dấu:** Lấy Chẵn cộng lẻ đan xen: **$a - b + c = 0$**
+   $\Rightarrow$ Nhắm mắt điền ngay nghiệm 1 là gạch ranh giới: **$x_1 = -1$**.
+   $\Rightarrow$ Nghiệm 2 là phần bù bị lộn ngược: **$x_2 = -\frac{c}{a}$**.
+
+</div>
+
+<h3 id="tim-hai-so" style="margin-top:2rem;">📖 3. Định lý Viète ĐẢO (Lắp ghép từ Tổng và Tích)</h3>
+
+Nếu ai đố bạn: Tìm hai số biết Tổng của chúng bằng S và Tích bằng P. 
+Bạn không cần dò mò đoán số. Hai số đó CHẮC CHẮN LÀ HAI NGHIỆM của phương trình Lập chéo:
+**$X^2 - S X + P = 0$**
+*(Điều kiện tôn sinh: $S^2 - 4P \ge 0$ mới tồn tại hai chữ số đó ngoài đời thực).*
+
+<h3 id="may-viet" style="margin-top:2rem;">🖩 4. Máy Tính Phân Tích Tổng & Tích</h3>
+Hãy thử điền 3 hệ số a,b,c ngẫu nhiên, để xem chức năng \"Định Lí Viète\" của Tàu ngầm nhả ra bao nhiêu?
+
+<QuadraticEquationSolver client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Không giải $\Delta$, nhẩm nghiệm siêu nhanh**
+**Phương pháp:** 
+- Đưa mũi ngửi xem mảng $a+b+c = 0$ có khớp không? (Mốc $x_1=1, x_2 = c/a$).
+- Nếu sai, mảng $a-b+c = 0$ có khớp không? (Mốc $x_1=-1, x_2 = -c/a$).
+- Ghi trọn điểm vào tờ giấy thi!
+
+</div>
+
+**Ví dụ 1:** Giải phương trình $2024x^2 - 2025x + 1 = 0$.
+**Hướng dẫn:** 
+- Rõ ràng mà đi bấm $\Delta$ của 2025 bình phương thì sập nguồn!!
+- Ta thấy $a = 2024, b = -2025, c = 1$.
+- Thuộc rập: $a + b + c = 2024 + (-2025) + 1 = 0$.
+- Đóng ngoặc $\Rightarrow$ Phương trình khăng khăng có 2 nghiệm: $x_1 = 1$ và $x_2 = \frac{1}{2024}$.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Tính Biểu Thức Đối Xứng Qua Nghiệm**
+**Phương pháp:** 
+Khi đề mòn ra môt biểu thức rối nùi giữa $x_1, x_2$ (ví dụ tồng bình phương), bạn ĐỪNG giả $\Delta$ để tìm lẻ. 
+Chìa Khoá Vạn Năng: Hãy độ chế Mọi Biểu thức về cái vỏ $(x_1 + x_2)$ và ruột $(x_1 x_2)$ để ép số $S$ và $P$ vào!
+**Học thuộc 2 biến đổi \"Tử Kim\" này:**
+- **Kiểu 1 (Tổng Bình):** $x_1^2 + x_2^2 = (x_1+x_2)^2 - 2x_1x_2 = S^2 - 2P$
+- **Kiểu 2 (Tổng Nghịch Đảo):** $\frac{1}{x_1} + \frac{1}{x_2} = \frac{x_1 + x_2}{x_1 \cdot x_2} = \frac{S}{P}$
+
+</div>
+
+**Ví dụ 2:** Cho $x^2 - 5x + 3 = 0$. Hãy tính $A = x_1^2 + x_2^2$.
+**Hướng dẫn:** 
+- Delta $\Delta = 25 - 12 = 13 > 0$ (Phương trình có nghiệm).
+- Vi-ét nhả: $S = x_1+x_2 = 5$. $P = x_1 x_2 = 3$.
+- Chế biểu thức $A = S^2 - 2P = 5^2 - 2 \cdot 3 = 25 - 6 = 19$. Xong! Nhanh gấp ngàn lần ôm căn vả vào Hằng đẳng thức!
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 3: Tìm 2 kích thước chữ nhật biết Chu vi & Diện tích**
+**Phương pháp:** 
+- Chu vi vả ra Tổng nửa 2 cạnh: S = Dài + Rộng.
+- Diện tích xì ra Tích 2 cạnh: P = Dài × Rộng.
+- Gom S và P lập phương trình Vi-ét Đảo $X^2 - SX + P = 0$. Rối ra nghiệm $\rightarrow$ Nó chính là kích thước!
+
+</div>
+
+**Ví dụ 3:** Khu vườn có chu vi $28\text{m}$, diện tích $48\text{m}^2$. Tìm 2 cạnh?
+**Hướng dẫn:** 
+- Tổng 2 cạnh $S = 28 / 2 = 14\text{m}$.
+- Tích 2 cạnh $P = 48\text{m}^2$.
+- Dài và Rộng là 2 con nghiệm của Lò $X^2 - 14X + 48 = 0$.
+- Kẻ Delta cho luồn khuyết: Giải lanh lẹ $X = 8$ hoặc $X = 6$.
+Vậy Dài $8\text{m}$ Rộng $6\text{m}$ (Vì dài $>$ rộng).
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Nhẩm hệ số cạn kiệt):** Không dùng tay vào nháp Delta, hãy đọc lóm nhẩm miệng các nghiệm của dàn phương trình sau đây:
+
+a) $8x^2 - 5x - 3 = 0$
+
+b) $\sqrt{2} x^2 - (\sqrt{2} - 1) x - 1 = 0$ (Coi chừng cái mảng $a, b, c$).
+
+c) $3x^2 + 10x + 7 = 0$
+
+**Bài 2 (Ráp công thức Thượng Đỉnh Biến Đổi):**
+Cho phương trình sạch đẹp: $x^2 - 7x + 10 = 0$. Rút 2 nghiệm ngầm $x_1, x_2$.
+KHÔNG ĐƯỢC GIẢI RA CHI TIẾT NGHIỆM! Hãy xướng tính lén bằng Viète các biểu thức tàng hình sau:
+
+a) Mảng độ nghịch $A = \frac{1}{x_1} + \frac{1}{x_2}$
+
+b) Mảng Bình phương Kép $B = x_1^2 + x_2^2$
+
+c) Mảng Mũ Ba Chết Người $C = x_1^3 + x_2^3$
+*(Gợi ý mảng C: Dùng hằng đẳng thức mở: $(A+B)^3 - 3AB(A+B)$ tức là $S^3 - 3 \cdot P \cdot S$)*.
+
+**Bài 3 (Mũi Kích Parameter M):** Tìm kẽ hở $m$ để chèn vào phương trình $x^2 - 6x + m - 2 = 0$.
+
+a) Yêu cầu nó phải có 2 nghiệm. (Chặn Delta).
+
+b) Đòi hỏi cắc cớ: 2 nghiệm đó có móc xích thỏa mãn $x_1^2 + x_2^2 = 20$. Tìm đúng chốt giá trị $m$?
+
+**Bài 4 (Chiến đấu thực tế):** Hai bà nông dân đang rào chung vách ngăn đất. Thửa ruộng nẹp vách có tổng nửa chu vi là $25\text{m}$. Diện tích gieo hạt là $150\text{m}^2$. Hỏi cạnh dài mọc lên mét bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) $a+b+c = 8 - 5 - 3 = 0 \Rightarrow x_1 = 1, x_2 = c/a = -3/8$.
+b) Gỡ dây Hệ số: $a = \sqrt{2}, b = -\sqrt{2} + 1, c = -1$.
+Lấy $a+b+c = \sqrt{2} - \sqrt{2} + 1 - 1 = 0 \Rightarrow x_1 = 1, x_2 = -1/\sqrt{2}$. (Trùm cuối cũng bó tay vì quá dễ).
+c) Mảng Đan Dấu: $a-b+c = 3 - 10 + 7 = 0 \Rightarrow x_1 = -1, x_2 = -c/a = -7/3$.
+
+**Bài 2:**
+Tất cả đều múc từ 1 lu: $S = x_1+x_2 = 7$, $P = 10$. (Do $\Delta = 49 - 40 = 9 > 0$).
+a) $A = S/P = 7/10 = 0.7$.
+b) $B = S^2 - 2P = 7^2 - 2(10) = 49 - 20 = 29$.
+c) $C = S^3 - 3PS = 7^3 - 3 \cdot 10 \cdot 7 = 343 - 210 = 133$. (Làm mệt mỏi nhưng cực Cool!).
+
+**Bài 3:**
+a) Chặn Delta phải $>0$ hoặc $\ge 0$. Đề bảo "Có 2 nghiệm" chung chung $\Rightarrow \Delta' = 9 - 1 \cdot (m-2) \ge 0 \Rightarrow 11 - m \ge 0 \Rightarrow m \le 11$.
+b) Ráp súng Viète: $S = 6; P = m - 2$.
+Cắm Viết vào yêu cầu: $x_1^2 + x_2^2 = 20 \Rightarrow S^2 - 2P = 20 \Rightarrow 6^2 - 2(m-2) = 20 \Rightarrow 36 - 2m + 4 = 20 \Rightarrow 40 - 2m = 20 \Rightarrow 2m = 20 \Rightarrow m = 10$.
+(Xong Check điều kiện $10 \le 11$ - Trúng Tuyển Hoàn Hảo!).
+
+**Bài 4:**
+Nửa Chu vi lộ mặt Tổng: $S = 25$. Diện tích lộ Tích: $P = 150$.
+Lập vỏ ốc Đảo: $X^2 - 25X + 150 = 0$.
+Bấm Delta $= (-25)^2 - 4(150) = 625 - 600 = 25 > 0$. 
+Búng ngón Tay $\Rightarrow X = \frac{25+5}{2} = 15$ hoặc $X = \frac{25-5}{2} = 10$.
+Vậy lườn Dài ruộng rộng là $15\text{m}$ (Rộng $10\text{m}$).
+
+</div>
+</details>

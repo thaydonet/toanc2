@@ -1,0 +1,466 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 4 - Toán 6"
+description: "Ôn tập toàn bộ kiến thức chương 4 Toán 6 KNTT về hình phẳng"
+grade: "Lớp 6"
+chapter: "Chương IV: Một số hình phẳng trong thực tiễn"
+currentSlug: "lop6/bai-on-tap-chuong-4"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Chu vi hình vuông cạnh 5 cm là:",
+    option_a: "$20$ cm",
+    option_b: "$25$ cm",
+    option_c: "$10$ cm",
+    option_d: "$15$ cm",
+    correct_option: "A",
+    explanation: "Chu vi = $4 \\times 5 = 20$ cm",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình chữ nhật dài 8 cm, rộng 5 cm là:",
+    option_a: "$40$ cm²",
+    option_b: "$26$ cm²",
+    option_c: "$13$ cm²",
+    option_d: "$80$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích = $8 \\times 5 = 40$ cm²",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình tam giác có đáy 6 cm, chiều cao 4 cm là:",
+    option_a: "$12$ cm²",
+    option_b: "$24$ cm²",
+    option_c: "$10$ cm²",
+    option_d: "$20$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích = $\\frac{1}{2} \\times 6 \\times 4 = 12$ cm²",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chu vi hình tròn bán kính 3 cm là (lấy π ≈ 3,14):",
+    option_a: "$18,84$ cm",
+    option_b: "$28,26$ cm",
+    option_c: "$9,42$ cm",
+    option_d: "$6,28$ cm",
+    correct_option: "A",
+    explanation: "Chu vi = $2\\pi r = 2 \\times 3,14 \\times 3 = 18,84$ cm",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình tròn bán kính 2 cm là (lấy π ≈ 3,14):",
+    option_a: "$12,56$ cm²",
+    option_b: "$6,28$ cm²",
+    option_c: "$25,12$ cm²",
+    option_d: "$3,14$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích = $\\pi r^2 = 3,14 \\times 2^2 = 12,56$ cm²",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình tam giác đều có bao nhiêu cạnh bằng nhau?",
+    option_a: "$3$",
+    option_b: "$2$",
+    option_c: "$4$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Hình tam giác đều có 3 cạnh bằng nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình vuông có bao nhiêu góc vuông?",
+    option_a: "$4$",
+    option_b: "$2$",
+    option_c: "$3$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Hình vuông có 4 góc vuông",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình thoi có hai đường chéo 6 cm và 8 cm là:",
+    option_a: "$24$ cm²",
+    option_b: "$48$ cm²",
+    option_c: "$14$ cm²",
+    option_d: "$28$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích = $\\frac{1}{2} \\times 6 \\times 8 = 24$ cm²",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình lục giác đều có bao nhiêu cạnh?",
+    option_a: "$6$",
+    option_b: "$5$",
+    option_c: "$4$",
+    option_d: "$8$",
+    correct_option: "A",
+    explanation: "Hình lục giác đều có 6 cạnh",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chu vi hình chữ nhật dài 10 cm, rộng 6 cm là:",
+    option_a: "$32$ cm",
+    option_b: "$60$ cm",
+    option_c: "$16$ cm",
+    option_d: "$30$ cm",
+    correct_option: "A",
+    explanation: "Chu vi = $2 \\times (10 + 6) = 32$ cm",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 4 — Hình phẳng</h3>
+
+Chương 4 giới thiệu các hình phẳng cơ bản và cách tính chu vi, diện tích của chúng. Đây là kiến thức quan trọng trong hình học.
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⬜</div>
+    <strong>Hình cơ bản</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Vuông, chữ nhật, tam giác</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Chu vi</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính chu vi hình</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Diện tích</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính diện tích hình</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="hinh-vuong">1. Hình vuông</h4>
+
+<div class="box-dinh-nghia">
+
+**Tính chất:** 4 cạnh bằng nhau, 4 góc vuông
+
+**Chu vi:** $P = 4a$ (với $a$ là cạnh)
+
+**Diện tích:** $S = a^2$
+
+</div>
+
+<h4 id="hinh-chu-nhat">2. Hình chữ nhật</h4>
+
+<div class="box-dinh-nghia">
+
+**Tính chất:** Chiều dài và chiều rộng, 4 góc vuông
+
+**Chu vi:** $P = 2(a + b)$ (với $a$ là dài, $b$ là rộng)
+
+**Diện tích:** $S = a \times b$
+
+</div>
+
+<h4 id="hinh-tam-giac">3. Hình tam giác</h4>
+
+<div class="box-dinh-nghia">
+
+**Chu vi:** $P = a + b + c$ (tổng 3 cạnh)
+
+**Diện tích:** $S = \frac{1}{2} \times \text{đáy} \times \text{chiều cao}$
+
+**Tam giác đều:** 3 cạnh bằng nhau, 3 góc bằng nhau (60°)
+
+</div>
+
+<h4 id="hinh-tron">4. Hình tròn</h4>
+
+<div class="box-dinh-ly">
+
+**Chu vi:** $C = 2\pi r = \pi d$ (với $r$ là bán kính, $d$ là đường kính)
+
+**Diện tích:** $S = \pi r^2$
+
+**Lưu ý:** $\pi \approx 3,14$
+
+</div>
+
+<h4 id="hinh-thoi">5. Hình thoi</h4>
+
+<div class="box-dinh-nghia">
+
+**Tính chất:** 4 cạnh bằng nhau, 2 đường chéo vuông góc
+
+**Chu vi:** $P = 4a$
+
+**Diện tích:** $S = \frac{1}{2} \times d_1 \times d_2$ (với $d_1, d_2$ là 2 đường chéo)
+
+</div>
+
+<h4 id="hinh-binh-hanh">6. Hình bình hành</h4>
+
+<div class="box-dinh-nghia">
+
+**Tính chất:** Cạnh đối bằng nhau, góc đối bằng nhau
+
+**Chu vi:** $P = 2(a + b)$
+
+**Diện tích:** $S = \text{đáy} \times \text{chiều cao}$
+
+</div>
+
+<h4 id="hinh-luc-giac">7. Hình lục giác đều</h4>
+
+<div class="box-dinh-nghia">
+
+**Tính chất:** 6 cạnh bằng nhau, 6 góc bằng nhau (120°)
+
+**Chu vi:** $P = 6a$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Hình vuông</h4>
+
+Một hình vuông có cạnh 6 cm. Tính:
+
+a) Chu vi hình vuông
+
+b) Diện tích hình vuông
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Chu vi = $4 \times 6 = 24$ cm
+
+b) Diện tích = $6^2 = 36$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Hình chữ nhật</h4>
+
+Một hình chữ nhật có chiều dài 12 cm, chiều rộng 8 cm. Tính:
+
+a) Chu vi
+
+b) Diện tích
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Chu vi = $2 \times (12 + 8) = 40$ cm
+
+b) Diện tích = $12 \times 8 = 96$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Hình tam giác</h4>
+
+Một hình tam giác có đáy 10 cm, chiều cao 6 cm. Tính diện tích.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Diện tích = $\frac{1}{2} \times 10 \times 6 = 30$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Hình tròn</h4>
+
+Một hình tròn có bán kính 5 cm. Tính (lấy $\pi \approx 3,14$):
+
+a) Chu vi
+
+b) Diện tích
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Chu vi = $2 \times 3,14 \times 5 = 31,4$ cm
+
+b) Diện tích = $3,14 \times 5^2 = 78,5$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Hình thoi</h4>
+
+Một hình thoi có hai đường chéo 8 cm và 6 cm. Tính diện tích.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Diện tích = $\frac{1}{2} \times 8 \times 6 = 24$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán thực tế</h4>
+
+Một mảnh đất hình chữ nhật có chiều dài 20 m, chiều rộng 15 m. Người ta muốn rào xung quanh mảnh đất. Hỏi:
+
+a) Cần bao nhiêu mét hàng rào?
+
+b) Diện tích mảnh đất là bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Cần hàng rào = $2 \times (20 + 15) = 70$ m
+
+b) Diện tích = $20 \times 15 = 300$ m²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán kết hợp (Câu lớn)</h4>
+
+Một hình chữ nhật có chiều dài gấp đôi chiều rộng. Biết chiều rộng là 5 cm.
+
+a) Chiều dài là bao nhiêu?
+
+b) Chu vi hình chữ nhật?
+
+c) Diện tích hình chữ nhật?
+
+d) Nếu chia hình chữ nhật thành 2 hình tam giác bằng nhau, diện tích mỗi tam giác là bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Chiều dài = $2 \times 5 = 10$ cm
+
+b) Chu vi = $2 \times (10 + 5) = 30$ cm
+
+c) Diện tích = $10 \times 5 = 50$ cm²
+
+d) Diện tích mỗi tam giác = $50 \div 2 = 25$ cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán nâng cao (Câu lớn)</h4>
+
+Một hình tròn có đường kính 10 cm. Tính (lấy $\pi \approx 3,14$):
+
+a) Bán kính hình tròn
+
+b) Chu vi hình tròn
+
+c) Diện tích hình tròn
+
+d) Nếu vẽ một hình vuông nội tiếp hình tròn (4 đỉnh vuông nằm trên đường tròn), cạnh hình vuông xấp xỉ bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Bán kính = $10 \div 2 = 5$ cm
+
+b) Chu vi = $3,14 \times 10 = 31,4$ cm
+
+c) Diện tích = $3,14 \times 5^2 = 78,5$ cm²
+
+d) Cạnh hình vuông = $5\sqrt{2} \approx 7,07$ cm
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Hình vuông:** $P = 4a$, $S = a^2$
+- **Hình chữ nhật:** $P = 2(a+b)$, $S = a \times b$
+- **Hình tam giác:** $S = \frac{1}{2} \times \text{đáy} \times \text{cao}$
+- **Hình tròn:** $C = 2\pi r$, $S = \pi r^2$
+- **Hình thoi:** $S = \frac{1}{2} \times d_1 \times d_2$
+- **Hình bình hành:** $S = \text{đáy} \times \text{cao}$
+- **Lục giác đều:** $P = 6a$
+
+</GhiNho>

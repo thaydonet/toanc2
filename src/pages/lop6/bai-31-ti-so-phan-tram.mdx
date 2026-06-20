@@ -1,0 +1,428 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 31: Một số bài toán về tỉ số và tỉ số phần trăm"
+description: "Tỉ số và tỉ số phần trăm - Toán 6 KNTT Chương 7"
+grade: "Lớp 6"
+chapter: "Chương VII: Số thập phân"
+currentSlug: "lop6/bai-31-ti-so-phan-tram"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tỉ số của 3 và 5 là:",
+    option_a: "$\\frac{3}{5}$",
+    option_b: "$60\\%$",
+    option_c: "$\\frac{5}{3}$",
+    option_d: "0,6",
+    correct_option: "A",
+    explanation: "Tỉ số của 3 và 5 là 3:5 = 3/5 = 0,6",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tỉ số phần trăm của 3 và 5 là:",
+    option_a: "60%",
+    option_b: "50%",
+    option_c: "40%",
+    option_d: "80%",
+    correct_option: "A",
+    explanation: "3/5 × 100% = 60%",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tìm 25% của 80:",
+    option_a: "20",
+    option_b: "25",
+    option_c: "30",
+    option_d: "15",
+    correct_option: "A",
+    explanation: "25% × 80 = 25/100 × 80 = 20",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biết 30% của một số là 45. Tìm số đó:",
+    option_a: "150",
+    option_b: "135",
+    option_c: "75",
+    option_d: "120",
+    correct_option: "A",
+    explanation: "Số = 45 ÷ 30% = 45 ÷ 30/100 = 45 × 100/30 = 150",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một lớp có 40 học sinh, trong đó 60% là nữ. Hỏi lớp có bao nhiêu học sinh nữ?",
+    option_a: "24",
+    option_b: "16",
+    option_c: "20",
+    option_d: "30",
+    correct_option: "A",
+    explanation: "60% × 40 = 60/100 × 40 = 24 học sinh",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tìm tỉ số phần trăm của 7 và 20:",
+    option_a: "35%",
+    option_b: "0,35%",
+    option_c: "350%",
+    option_d: "3,5%",
+    correct_option: "A",
+    explanation: "7/20 × 100% = 35%",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá tiền của một chiếc bút là 15000 đồng. Giảm giá 20%. Giá mới là:",
+    option_a: "12000 đồng",
+    option_b: "13000 đồng",
+    option_c: "3000 đồng",
+    option_d: "11000 đồng",
+    correct_option: "A",
+    explanation: "Giá mới = 15000 - 20% × 15000 = 15000 - 3000 = 12000 đồng",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Lớp 6A có 25 học sinh nam và 20 học sinh nữ. Tỉ số phần trăm của học sinh nam so với nữ là:",
+    option_a: "125%",
+    option_b: "80%",
+    option_c: "20%",
+    option_d: "44%",
+    correct_option: "A",
+    explanation: "25/20 × 100% = 125%",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một sản phẩm có giá 200 000 đồng, được tăng giá 10%. Giá mới là:",
+    option_a: "220 000 đồng",
+    option_b: "210 000 đồng",
+    option_c: "180 000 đồng",
+    option_d: "190 000 đồng",
+    correct_option: "A",
+    explanation: "Giá mới = 200000 + 10% × 200000 = 200000 + 20000 = 220000 đồng",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong 50 kg nước biển có 1,5 kg muối. Tỉ số phần trăm của muối trong nước biển là:",
+    option_a: "3%",
+    option_b: "1,5%",
+    option_c: "0,3%",
+    option_d: "30%",
+    correct_option: "A",
+    explanation: "1,5/50 × 100% = 3%",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🏪 Giảm giá</h3>
+
+Một cửa hàng giảm giá **20%** cho một chiếc túi có giá **150 000 đồng**. Làm thế nào để tính được giá mới của chiếc túi?
+
+Để trả lời, ta cần học về **tỉ số phần trăm**.
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="ti-so" style="margin-top:2rem;">📖 1. Tỉ số</h3>
+
+<div class="box-dinh-nghia">
+
+**Tỉ số** của hai số $a$ và $b$ ($b \neq 0$) là thương của phép chia $a$ cho $b$:
+
+$$\frac{a}{b} = a:b$$
+
+**Tỉ số phần trăm** là tỉ số có dạng $\frac{a}{100}$, kí hiệu là $a\%$
+
+</div>
+
+**Ví dụ 1:**
+- Tỉ số của 3 và 5: $\frac{3}{5} = 0,6$
+- Tỉ số của 7 và 20: $\frac{7}{20} = 0,35$
+
+<h3 id="ti-so-phan-tram" style="margin-top:2rem;">📖 2. Tỉ số phần trăm</h3>
+
+<div class="box-dinh-ly">
+
+**Cách tính tỉ số phần trăm:**
+
+$$\frac{a}{b} \times 100\%$$
+
+</div>
+
+**Ví dụ 2:** Tìm tỉ số phần trăm của 7 và 20
+
+$\frac{7}{20} \times 100\% = \frac{7 \times 5}{20 \times 5} \times 100\% = \frac{35}{100} = 35\%$
+
+**Ví dụ 3:** Tìm 25% của 80
+
+$25\% \times 80 = \frac{25}{100} \times 80 = \frac{25 \times 80}{100} = 20$
+
+<h3 id="bai-toan-tim-phan-tram" style="margin-top:2rem;">📖 3. Bài toán tìm giá trị phần trăm</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1:** Tìm $a\%$ của số $A$
+
+$$A \times a\% = A \times \frac{a}{100}$$
+
+</div>
+
+**Ví dụ 4:** Tìm 15% của 240
+
+$240 \times 15\% = 240 \times \frac{15}{100} = 36$
+
+<div class="box-dinh-ly" style="margin-top:1rem;">
+
+**Dạng 2:** Tìm một số khi biết $a\%$ của nó là $B$
+
+$$B : \frac{a}{100}$$
+
+</div>
+
+**Ví dụ 5:** Biết 30% của một số là 45. Tìm số đó.
+
+$Số = 45 : 30\% = 45 : \frac{30}{100} = 45 \times \frac{100}{30} = 150$
+
+<h3 id="bai-toan-phan-tram" style="margin-top:2rem;">📖 4. Bài toán tăng, giảm phần trăm</h3>
+
+<div class="box-dinh-ly">
+
+**Tăng $a\%$:**
+
+Giá mới = Giá cũ + Giá cũ × $a\%$ = Giá cũ × $(1 + a\%)$
+
+**Giảm $a\%$:**
+
+Giá mới = Giá cũ - Giá cũ × $a\%$ = Giá cũ × $(1 - a\%)$
+
+</div>
+
+**Ví dụ 6:** Giá một chiếc xe đạp là 2 500 000 đồng. Giảm giá 15%. Tính giá mới.
+
+Giá mới = $2 500 000 \times (1 - 15\%) = 2 500 000 \times \frac{85}{100} = 2 125 000$ đồng
+
+**Ví dụ 7:** Lương của công nhân là 8 000 000 đồng. Tăng lương 10%. Tính lương mới.
+
+Lương mới = $8 000 000 \times (1 + 10\%) = 8 000 000 \times \frac{110}{100} = 8 800 000$ đồng
+
+</KhamPha>
+
+<LuyenTap title="Luyện tập">
+
+**Bài 1:** Tìm tỉ số phần trăm của:
+
+a) 3 và 4 b) 7 và 25 c) 15 và 60
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 75% b) 28% c) 25%
+
+</div>
+
+**Bài 2:** Tính:
+
+a) 20% của 150 b) 45% của 80 c) 75% của 200
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 30 b) 36 c) 150
+
+</div>
+
+**Bài 3:** Tìm số, biết:
+
+a) 25% của nó là 50 b) 40% của nó là 32 c) 60% của nó là 90
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 200 b) 80 c) 150
+
+</div>
+
+**Bài 4:** Một cửa hàng có 120 chiếc xe đạp, trong đó 75% là xe đạp thể thao. Hỏi cửa hàng có bao nhiêu xe đạp thể thao?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Số xe đạp thể thao = 120 × 75% = 90 xe
+
+</div>
+
+**Bài 5:** Giá một chiếc tivi là 8 000 000 đồng. Giảm giá 12%. Tính giá mới.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Giá mới = 8 000 000 × (1 - 12%) = 8 000 000 × 88% = 7 040 000 đồng
+
+</div>
+
+</LuyenTap>
+
+<VanDung title="Vận dụng">
+
+**Bài 1:** Một xưởng sản xuất có 250 công nhân, trong đó số công nhân nữ chiếm 40%. Tính số công nhân nam.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Số công nhân nữ = 250 × 40% = 100
+
+Số công nhân nam = 250 - 100 = 150
+
+</div>
+
+**Bài 2:** Một người gửi tiết kiệm 50 000 000 đồng với lãi suất 7% một năm. Sau một năm, người đó nhận được bao nhiêu tiền cả gốc và lãi?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Lãi = 50 000 000 × 7% = 3 500 000 đồng
+
+Tổng = 50 000 000 + 3 500 000 = 53 500 000 đồng
+
+</div>
+
+**Bài 3:** Một cửa hàng nhập một chiếc quạt với giá 600 000 đồng. Cửa hàng bán với giá 750 000 đồng. Tính phần trăm lãi so với giá nhập.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tiền lãi = 750 000 - 600 000 = 150 000 đồng
+
+Phần trăm lãi = 150 000 / 600 000 × 100% = 25%
+
+</div>
+
+</VanDung>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính tỉ số phần trăm của:
+
+a) 4 và 5 b) 12 và 25 c) 18 và 40
+
+**Bài 2:** Tìm:
+
+a) 35% của 200 b) 8% của 1500 c) 125% của 80
+
+**Bài 3:** Tìm số, biết:
+
+a) 15% là 45 b) 24% là 72 c) 75% là 150
+
+**Bài 4:** Một cửa hàng điện tử nhập 50 chiếc máy tính, mỗi chiếc giá 12 000 000 đồng. Cửa hàng đã bán hết với giá mỗi chiếc 15 000 000 đồng. Hỏi cửa hàng lãi bao nhiêu phần trăm?
+
+**Bài 5:** Một người đi bộ quãng đường AB trong 3 giờ. Giờ thứ nhất đi được 35% quãng đường, giờ thứ hai đi được 40% quãng đường. Hỏi giờ thứ ba người đó còn phải đi bao nhiêu phần trăm quãng đường?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 80%; b) 48%; c) 45%
+
+**Bài 2:** a) 70; b) 120; c) 100
+
+**Bài 3:** a) 300; b) 300; c) 200
+
+**Bài 4:** 25%
+
+**Bài 5:** 25%
+
+</div>
+</details>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Tổng kết bài học:**
+
+**1. Tỉ số:**
+- Tỉ số của a và b: $\frac{a}{b} = a:b$
+- Tỉ số phần trăm: $\frac{a}{b} \times 100\%$
+
+**2. Các dạng toán:**
+
+*Dạng 1:* Tìm $a\%$ của số $A$
+- $A \times a\%$
+
+*Dạng 2:* Tìm số khi biết $a\%$ của nó là $B$
+- $B : a\%$
+
+*Dạng 3:* Tăng/giảm $a\%$
+- Tăng $a\%$: $A \times (1 + a\%)$
+- Giảm $a\%$: $A \times (1 - a\%)$
+
+**3. Công thức cần nhớ:**
+- Tìm tỉ số: $a/b \times 100\%$
+- Tìm phần trăm: $a\% \times b$
+- Tìm số: $b : a\%$
+
+</div>
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính tỉ số phần trăm của:
+
+a) 4 và 5 b) 12 và 25 c) 18 và 40
+
+**Bài 2:** Tìm:
+
+a) 35% của 200 b) 8% của 1500 c) 125% của 80
+
+**Bài 3:** Tìm số, biết:
+
+a) 15% là 45 b) 24% là 72 c) 75% là 150
+
+**Bài 4:** Một cửa hàng điện tử nhập 50 chiếc máy tính, mỗi chiếc giá 12 000 000 đồng. Cửa hàng đã bán hết với giá mỗi chiếc 15 000 000 đồng. Hỏi cửa hàng lãi bao nhiêu phần trăm?
+
+**Bài 5:** Một người đi bộ quãng đường AB trong 3 giờ. Giờ thứ nhất đi được 35% quãng đường, giờ thứ hai đi được 40% quãng đường. Hỏi giờ thứ ba người đó còn phải đi bao nhiêu phần trăm quãng đường?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 80%; b) 48%; c) 45%
+
+**Bài 2:** a) 70; b) 120; c) 100
+
+**Bài 3:** a) 300; b) 300; c) 200
+
+**Bài 4:** 25%
+
+**Bài 5:** 25%
+
+</div>
+</details>
+
+<QuizSession client:load questions={quizData} />
+

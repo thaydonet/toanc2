@@ -1,0 +1,350 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 9: Hai đường thẳng song song và dấu hiệu nhận biết"
+description: "Đường thẳng song song, dấu hiệu nhận biết - Toán 7 KNTT Chương 3"
+grade: "Lớp 7"
+chapter: "Chương III: Góc và đường thẳng song song"
+currentSlug: "lop7/bai-9-duong-thang-song-song"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai đường thẳng song song là:",
+    option_a: "Hai đường thẳng không có điểm chung",
+    option_b: "Hai đường thẳng cắt nhau",
+    option_c: "Hai đường thẳng trùng nhau",
+    option_d: "Hai đường thẳng vuông góc",
+    correct_option: "A",
+    explanation: "Hai đường thẳng song song là hai đường thẳng không có điểm chung.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ký hiệu hai đường thẳng $a$ và $b$ song song là:",
+    option_a: "$a \\parallel b$",
+    option_b: "$a \\perp b$",
+    option_c: "$a = b$",
+    option_d: "$a \\cap b$",
+    correct_option: "A",
+    explanation: "Ký hiệu song song là $\\parallel$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu hai góc so le trong bằng nhau thì:",
+    option_a: "Hai đường thẳng song song",
+    option_b: "Hai đường thẳng cắt nhau",
+    option_c: "Hai đường thẳng vuông góc",
+    option_d: "Không kết luận được",
+    correct_option: "A",
+    explanation: "Dấu hiệu nhận biết: Hai góc so le trong bằng nhau thì hai đường thẳng song song.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu hai góc đồng vị bằng nhau thì:",
+    option_a: "Hai đường thẳng song song",
+    option_b: "Hai đường thẳng cắt nhau",
+    option_c: "Hai đường thẳng trùng nhau",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Dấu hiệu: Hai góc đồng vị bằng nhau thì hai đường thẳng song song.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu hai góc trong cùng phía bù nhau thì:",
+    option_a: "Hai đường thẳng song song",
+    option_b: "Hai đường thẳng cắt nhau",
+    option_c: "Hai đường thẳng vuông góc",
+    option_d: "Không kết luận được",
+    correct_option: "A",
+    explanation: "Dấu hiệu: Hai góc trong cùng phía bù nhau thì hai đường thẳng song song.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Dấu hiệu nào để nhận biết hai đường thẳng song song?",
+    option_a: "Hai góc so le trong bằng nhau",
+    option_b: "Hai góc đồng vị bằng nhau",
+    option_c: "Hai góc trong cùng phía bù nhau",
+    option_d: "Hai góc đối đỉnh bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "Ba dấu hiệu nhận biết hai đường thẳng song song: so le trong bằng nhau, đồng vị bằng nhau, trong cùng phía bù nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Đường thẳng song song</h3>
+
+Hai đường thẳng song song là hai đường thẳng không bao giờ gặp nhau!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">∥</div>
+    <strong>Song song</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Không giao nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Góc so le trong</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bằng nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Góc đồng vị</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bằng nhau</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm đường thẳng song song</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hai đường thẳng song song là hai đường thẳng không có điểm chung.
+
+**Ký hiệu:** $a \parallel b$ (đọc là: $a$ song song với $b$)
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="200" viewBox="0 0 400 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Đường thẳng a */}
+  <line x1="50" y1="60" x2="350" y2="60" stroke="#3b82f6" stroke-width="3"/>
+  <polygon points="350,60 340,55 340,65" fill="#3b82f6"/>
+  <text x="360" y="65" font-size="16" font-weight="bold" fill="#3b82f6">a</text>
+  
+  {/* Đường thẳng b */}
+  <line x1="50" y1="140" x2="350" y2="140" stroke="#10b981" stroke-width="3"/>
+  <polygon points="350,140 340,135 340,145" fill="#10b981"/>
+  <text x="360" y="145" font-size="16" font-weight="bold" fill="#10b981">b</text>
+  
+  {/* Ký hiệu song song */}
+  <text x="200" y="100" font-size="18" font-weight="bold" text-anchor="middle" fill="#1f2937">a ∥ b</text>
+</svg>
+</div>
+
+<h3 id="goc-tao-boi-cat-tuyen" style="margin-top:2rem;">📐 2. Góc tạo bởi đường thẳng cắt hai đường thẳng</h3>
+
+Khi một đường thẳng $c$ cắt hai đường thẳng $a$ và $b$, tạo ra 8 góc.
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="500" height="300" viewBox="0 0 500 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Đường thẳng a */}
+  <line x1="50" y1="80" x2="450" y2="80" stroke="#3b82f6" stroke-width="2"/>
+  <text x="460" y="85" font-size="14" font-weight="bold" fill="#3b82f6">a</text>
+  
+  {/* Đường thẳng b */}
+  <line x1="50" y1="220" x2="450" y2="220" stroke="#10b981" stroke-width="2"/>
+  <text x="460" y="225" font-size="14" font-weight="bold" fill="#10b981">b</text>
+  
+  {/* Đường cắt c */}
+  <line x1="200" y1="20" x2="300" y2="280" stroke="#f59e0b" stroke-width="2"/>
+  <text x="310" y="290" font-size="14" font-weight="bold" fill="#f59e0b">c</text>
+  
+  {/* Điểm A, B */}
+  <circle cx="230" cy="80" r="3" fill="#1f2937"/>
+  <text x="240" y="75" font-size="12" fill="#1f2937">A</text>
+  
+  <circle cx="270" cy="220" r="3" fill="#1f2937"/>
+  <text x="280" y="215" font-size="12" fill="#1f2937">B</text>
+  
+  {/* Đánh số các góc */}
+  <text x="210" y="70" font-size="12" fill="#1f2937">1</text>
+  <text x="245" y="70" font-size="12" fill="#1f2937">2</text>
+  <text x="245" y="95" font-size="12" fill="#1f2937">3</text>
+  <text x="210" y="95" font-size="12" fill="#1f2937">4</text>
+  
+  <text x="250" y="210" font-size="12" fill="#1f2937">5</text>
+  <text x="285" y="210" font-size="12" fill="#1f2937">6</text>
+  <text x="285" y="235" font-size="12" fill="#1f2937">7</text>
+  <text x="250" y="235" font-size="12" fill="#1f2937">8</text>
+</svg>
+</div>
+
+**Các cặp góc đặc biệt:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. **Góc so le trong:** Nằm ở hai phía của cắt tuyến, trong khoảng hai đường thẳng
+   - Góc 3 và góc 5
+   - Góc 4 và góc 6
+
+2. **Góc đồng vị:** Nằm cùng phía của cắt tuyến, cùng vị trí
+   - Góc 1 và góc 5
+   - Góc 2 và góc 6
+   - Góc 3 và góc 7
+   - Góc 4 và góc 8
+
+3. **Góc trong cùng phía:** Nằm cùng phía của cắt tuyến, trong khoảng hai đường thẳng
+   - Góc 3 và góc 6
+   - Góc 4 và góc 5
+
+</div>
+
+<h3 id="dau-hieu" style="margin-top:2rem;">✓ 3. Dấu hiệu nhận biết hai đường thẳng song song</h3>
+
+<div class="box-dinh-ly">
+
+**Dấu hiệu 1:** Nếu hai góc so le trong bằng nhau thì hai đường thẳng song song.
+
+**Dấu hiệu 2:** Nếu hai góc đồng vị bằng nhau thì hai đường thẳng song song.
+
+**Dấu hiệu 3:** Nếu hai góc trong cùng phía bù nhau (tổng bằng $180^\\circ$) thì hai đường thẳng song song.
+
+</div>
+
+**Ví dụ 1:** Cho hình vẽ, biết góc 3 = góc 5 = $60^\\circ$. Chứng minh $a \parallel b$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Góc 3 và góc 5 là hai góc so le trong và bằng nhau.
+
+Theo dấu hiệu nhận biết, ta có: $a \parallel b$
+
+</div>
+
+**Ví dụ 2:** Cho hình vẽ, biết góc 1 = $70^\\circ$, góc 5 = $70^\\circ$. Chứng minh $a \parallel b$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Góc 1 và góc 5 là hai góc đồng vị và bằng nhau.
+
+Theo dấu hiệu nhận biết, ta có: $a \parallel b$
+
+</div>
+
+**Ví dụ 3:** Cho hình vẽ, biết góc 3 = $70^\\circ$, góc 6 = $110^\\circ$. Chứng minh $a \parallel b$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Góc 3 và góc 6 là hai góc trong cùng phía.
+
+Ta có: góc 3 + góc 6 = $70^\\circ + 110^\\circ = 180^\\circ$
+
+Hai góc trong cùng phía bù nhau nên $a \parallel b$
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 4. Tính chất</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất:**
+
+1. Qua một điểm nằm ngoài một đường thẳng, có duy nhất một đường thẳng song song với đường thẳng đó.
+
+2. Nếu $a \parallel b$ và $b \parallel c$ thì $a \parallel c$ (tính chất bắc cầu)
+
+3. Hai đường thẳng cùng song song với đường thẳng thứ ba thì song song với nhau.
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Hai thanh ray đường tàu là hai đường thẳng song song. Một thanh gỗ ngang cắt hai thanh ray tạo thành các góc. Biết một góc so le trong bằng $85^\\circ$.
+
+a) Tính góc so le trong còn lại.
+
+b) Tính các góc đồng vị.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Vì hai thanh ray song song nên hai góc so le trong bằng nhau = $85^\\circ$
+
+b) Góc đồng vị = góc so le trong = $85^\\circ$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Đường thẳng song song**: Không có điểm chung, ký hiệu $a \parallel b$
+- **Dấu hiệu 1**: Góc so le trong bằng nhau → song song
+- **Dấu hiệu 2**: Góc đồng vị bằng nhau → song song
+- **Dấu hiệu 3**: Góc trong cùng phía bù nhau → song song
+- Qua một điểm ngoài đường thẳng có duy nhất một đường song song
+- Tính chất bắc cầu: $a \parallel b$, $b \parallel c$ → $a \parallel c$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Biết hai góc so le trong bằng $75^\\circ$. Chứng minh $a \parallel b$.
+
+**Bài 2:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Biết hai góc đồng vị bằng $50^\\circ$. Chứng minh $a \parallel b$.
+
+**Bài 3:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Biết hai góc trong cùng phía là $70^\\circ$ và $110^\\circ$. Chứng minh $a \parallel b$.
+
+**Bài 4:** Cho $a \parallel b$, đường thẳng $c$ cắt $a$ tại $A$ và cắt $b$ tại $B$. Biết một góc so le trong bằng $65^\\circ$. Tính góc so le trong còn lại.
+
+**Bài 5:** Cho $a \parallel b$, đường thẳng $c$ cắt $a$ và $b$. Biết một góc đồng vị bằng $80^\\circ$. Tính:
+
+a) Góc đồng vị còn lại
+
+b) Các góc trong cùng phía
+
+**Bài 6:** Cho ba đường thẳng $a$, $b$, $c$. Biết $a \parallel b$ và $b \parallel c$. Chứng minh $a \parallel c$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** Hai góc so le trong bằng nhau nên $a \parallel b$
+
+**Bài 2:** Hai góc đồng vị bằng nhau nên $a \parallel b$
+
+**Bài 3:** $70^\\circ + 110^\\circ = 180^\\circ$, hai góc trong cùng phía bù nhau nên $a \parallel b$
+
+**Bài 4:** $65^\\circ$ (hai góc so le trong bằng nhau khi hai đường thẳng song song)
+
+**Bài 5:** a) $80^\\circ$; b) $80^\\circ$ và $100^\\circ$
+
+**Bài 6:** Theo tính chất bắc cầu
+
+</div>
+</details>

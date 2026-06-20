@@ -1,0 +1,449 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 13: Hình chữ nhật"
+description: "Định nghĩa, tính chất và dấu hiệu nhận biết hình chữ nhật - Toán 8 KNTT Chương 3"
+grade: "Lớp 8"
+chapter: "Chương 3: Tứ giác"
+currentSlug: "lop8/bai-13-hinh-chu-nhat"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình chữ nhật là hình bình hành có:",
+    option_a: "Một góc vuông",
+    option_b: "Bốn góc vuông",
+    option_c: "Hai đường chéo vuông góc",
+    option_d: "Bốn cạnh bằng nhau",
+    correct_option: "A",
+    explanation: "Hình chữ nhật là hình bình hành có một góc vuông (suy ra bốn góc đều vuông).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong hình chữ nhật, hai đường chéo:",
+    option_a: "Bằng nhau và cắt nhau tại trung điểm mỗi đường",
+    option_b: "Vuông góc với nhau",
+    option_c: "Không bằng nhau",
+    option_d: "Song song với nhau",
+    correct_option: "A",
+    explanation: "Hai đường chéo của hình chữ nhật bằng nhau và cắt nhau tại trung điểm của mỗi đường.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chữ nhật có chiều dài $8$ cm, chiều rộng $5$ cm. Chu vi bằng:",
+    option_a: "$26$ cm",
+    option_b: "$40$ cm",
+    option_c: "$13$ cm",
+    option_d: "$16$ cm",
+    correct_option: "A",
+    explanation: "Chu vi $= 2 \\times (8 + 5) = 26$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình bình hành có hai đường chéo bằng nhau là:",
+    option_a: "Hình chữ nhật",
+    option_b: "Hình thoi",
+    option_c: "Hình vuông",
+    option_d: "Hình thang cân",
+    correct_option: "A",
+    explanation: "Đây là dấu hiệu nhận biết hình chữ nhật.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Hình chữ nhật có những tính chất nào?",
+    option_a: "Bốn góc vuông",
+    option_b: "Các cạnh đối bằng nhau",
+    option_c: "Hai đường chéo bằng nhau",
+    option_d: "Hai đường chéo cắt nhau tại trung điểm mỗi đường",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng. Hình chữ nhật có đầy đủ các tính chất này.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hình chữ nhật có chiều dài $12$ cm, chiều rộng $7$ cm. Diện tích bằng bao nhiêu cm²?",
+    correct_option: "84",
+    explanation: "Diện tích $= 12 \\times 7 = 84$ cm².",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chữ nhật có chiều dài $!a#15!$ cm, chiều rộng $!b#8!$ cm. Chu vi bằng:",
+    option_a: "$!tinh: 2 * (!a! + !b!)!$ cm",
+    option_b: "$!tinh: !a! + !b!!$ cm",
+    option_c: "$!tinh: !a! * !b!!$ cm",
+    option_d: "$!tinh: 4 * !a!!$ cm",
+    correct_option: "A",
+    explanation: "Chu vi $= 2 \\times (!a! + !b!) = !tinh: 2 * (!a! + !b!)!$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Hình chữ nhật có chiều dài $!a#20!$ cm, chiều rộng $!b#12!$ cm. Diện tích bằng:",
+    option_a: "$!tinh: !a! * !b!!$ cm²",
+    option_b: "$!tinh: 2 * (!a! + !b!)!$ cm²",
+    option_c: "$!tinh: !a! + !b!!$ cm²",
+    option_d: "$!tinh: !a! - !b!!$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích $= !a! \\times !b! = !tinh: !a! * !b!!$ cm².",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">▭ Hình chữ nhật — Hình quen thuộc nhất</h3>
+
+Hình chữ nhật là hình học phổ biến nhất trong cuộc sống!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📱</div>
+    <strong>Màn hình</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Điện thoại, TV, máy tính</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📄</div>
+    <strong>Giấy tờ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Sách vở, tài liệu</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏠</div>
+    <strong>Kiến trúc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cửa, cửa sổ, phòng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia">📖 1. Định nghĩa hình chữ nhật</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình chữ nhật là hình bình hành có một góc vuông.
+
+</div>
+
+**Hình minh họa:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="280" viewBox="0 0 400 280" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Hình chữ nhật ABCD */}
+  <rect x="80" y="70" width="240" height="140" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5" opacity="0.4"/>
+  
+  {/* Các cạnh */}
+  <line x1="80" y1="70" x2="320" y2="70" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="320" y1="70" x2="320" y2="210" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="320" y1="210" x2="80" y2="210" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="80" y1="210" x2="80" y2="70" stroke="#3b82f6" stroke-width="2.5"/>
+  
+  {/* Đường chéo */}
+  <line x1="80" y1="70" x2="320" y2="210" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <line x1="320" y1="70" x2="80" y2="210" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
+  
+  {/* Giao điểm O */}
+  <circle cx="200" cy="140" r="4" fill="#ef4444"/>
+  <text x="210" y="135" font-size="16" font-weight="bold" fill="#ef4444">O</text>
+  
+  {/* Đánh dấu góc vuông */}
+  <rect x="80" y="70" width="12" height="12" fill="none" stroke="#10b981" stroke-width="2"/>
+  <rect x="308" y="70" width="12" height="12" fill="none" stroke="#10b981" stroke-width="2"/>
+  <rect x="308" y="198" width="12" height="12" fill="none" stroke="#10b981" stroke-width="2"/>
+  <rect x="80" y="198" width="12" height="12" fill="none" stroke="#10b981" stroke-width="2"/>
+  
+  {/* Các đỉnh */}
+  <circle cx="80" cy="70" r="4" fill="#3b82f6"/>
+  <text x="60" y="65" font-size="18" font-weight="bold" fill="#3b82f6">A</text>
+  
+  <circle cx="320" cy="70" r="4" fill="#3b82f6"/>
+  <text x="330" y="65" font-size="18" font-weight="bold" fill="#3b82f6">B</text>
+  
+  <circle cx="320" cy="210" r="4" fill="#3b82f6"/>
+  <text x="330" y="225" font-size="18" font-weight="bold" fill="#3b82f6">C</text>
+  
+  <circle cx="80" cy="210" r="4" fill="#3b82f6"/>
+  <text x="60" y="225" font-size="18" font-weight="bold" fill="#3b82f6">D</text>
+  
+  {/* Nhãn chiều dài và chiều rộng */}
+  <text x="185" y="55" font-size="14" fill="#059669" font-style="italic">Chiều dài</text>
+  <text x="340" y="145" font-size="14" fill="#059669" font-style="italic">Chiều rộng</text>
+  
+  {/* Nhãn đường chéo */}
+  <text x="150" y="130" font-size="14" fill="#ef4444" font-style="italic">AC</text>
+  <text x="240" y="130" font-size="14" fill="#ef4444" font-style="italic">BD</text>
+</svg>
+</div>
+
+**Trong hình chữ nhật $ABCD$:**
+- $\hat{A} = \hat{B} = \hat{C} = \hat{D} = 90°$
+- $AB = DC$ (chiều dài), $AD = BC$ (chiều rộng)
+- $AC = BD$ (hai đường chéo bằng nhau)
+
+<h3 id="tinh-chat" style="margin-top:2rem;">🔑 2. Tính chất hình chữ nhật</h3>
+
+<div class="box-dinh-ly">
+
+**Định lý:** Hình chữ nhật có tất cả các tính chất của hình bình hành và:
+
+1. Bốn góc đều là góc vuông
+2. Hai đường chéo bằng nhau và cắt nhau tại trung điểm của mỗi đường
+
+</div>
+
+**Chứng minh:**
+
+Vì hình chữ nhật là hình bình hành có một góc vuông nên:
+
+- Các góc đối bằng nhau $\Rightarrow$ có hai góc vuông
+- Hai góc kề một cạnh bù nhau $\Rightarrow$ hai góc còn lại cũng vuông
+- Vậy bốn góc đều vuông
+
+Xét $\triangle ABC$ và $\triangle DCB$:
+- $AB = DC$ (cạnh đối hình bình hành)
+- $BC$ chung
+- $\hat{ABC} = \hat{DCB} = 90°$
+
+$\Rightarrow \triangle ABC = \triangle DCB$ (c.g.c)
+
+$\Rightarrow AC = DB$ (hai cạnh tương ứng)
+
+**Tính chất tổng hợp:**
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. Bốn góc vuông: $\hat{A} = \hat{B} = \hat{C} = \hat{D} = 90°$
+2. Các cạnh đối bằng nhau: $AB = DC$, $AD = BC$
+3. Hai đường chéo bằng nhau: $AC = BD$
+4. Hai đường chéo cắt nhau tại trung điểm: $OA = OC = OB = OD = \frac{AC}{2} = \frac{BD}{2}$
+
+</div>
+
+**Ví dụ 1:** Hình chữ nhật $ABCD$ có $AB = 12$ cm, $BC = 5$ cm. Tính chu vi và độ dài đường chéo.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Chu vi: $P = 2(AB + BC) = 2(12 + 5) = 34$ cm
+
+Đường chéo: Áp dụng định lý Pythagore trong $\triangle ABC$ vuông tại $B$:
+
+$AC = \sqrt{AB^2 + BC^2} = \sqrt{12^2 + 5^2} = \sqrt{144 + 25} = \sqrt{169} = 13$ cm
+
+</div>
+
+<h3 id="dau-hieu" style="margin-top:2rem;">✓ 3. Dấu hiệu nhận biết</h3>
+
+<div class="box-dinh-ly">
+
+**Dấu hiệu nhận biết hình chữ nhật:**
+
+1. Hình bình hành có một góc vuông
+2. Hình bình hành có hai đường chéo bằng nhau
+3. Tứ giác có ba góc vuông
+4. Hình thang cân có một góc vuông
+
+</div>
+
+**Ví dụ 2:** Hình bình hành $ABCD$ có $AC = BD$. Chứng minh $ABCD$ là hình chữ nhật.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Hình bình hành $ABCD$ có $AC = BD$ (hai đường chéo bằng nhau)
+
+$\Rightarrow ABCD$ là hình chữ nhật (dấu hiệu 2)
+
+</div>
+
+**Ví dụ 3:** Tứ giác $ABCD$ có $\hat{A} = \hat{B} = \hat{C} = 90°$. Chứng minh $ABCD$ là hình chữ nhật.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tứ giác $ABCD$ có ba góc vuông
+
+$\Rightarrow ABCD$ là hình chữ nhật (dấu hiệu 3)
+
+</div>
+
+<h3 id="cong-thuc" style="margin-top:2rem;">📐 4. Công thức</h3>
+
+**Chu vi:** $P = 2(a + b)$
+
+**Diện tích:** $S = a \times b$
+
+**Đường chéo:** $d = \sqrt{a^2 + b^2}$ (định lý Pythagore)
+
+(với $a$ là chiều dài, $b$ là chiều rộng)
+
+**Ví dụ 4:** Hình chữ nhật có chu vi $28$ cm, chiều dài $10$ cm. Tính chiều rộng và diện tích.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Chiều rộng: $b = \frac{P}{2} - a = \frac{28}{2} - 10 = 4$ cm
+
+Diện tích: $S = 10 \times 4 = 40$ cm²
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Một phòng học hình chữ nhật có chiều dài $8$ m, chiều rộng $6$ m.
+
+a) Tính chu vi phòng học.
+
+b) Tính diện tích phòng học.
+
+c) Nếu lát gạch với giá $300.000$ đồng/m², tính chi phí.
+
+d) Tính độ dài đường chéo phòng học.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi: $P = 2(8 + 6) = 28$ m
+
+b) Diện tích: $S = 8 \times 6 = 48$ m²
+
+c) Chi phí: $48 \times 300.000 = 14.400.000$ đồng
+
+d) Đường chéo: $d = \sqrt{8^2 + 6^2} = \sqrt{64 + 36} = \sqrt{100} = 10$ m
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định nghĩa**: hình bình hành có một góc vuông
+- **Tính chất**: bốn góc vuông, hai đường chéo bằng nhau
+- **Dấu hiệu**: 4 cách nhận biết
+- **Chu vi**: $P = 2(a + b)$
+- **Diện tích**: $S = a \times b$
+- **Đường chéo**: $d = \sqrt{a^2 + b^2}$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho hình chữ nhật $ABCD$ có $AB = 15$ cm, $BC = 8$ cm.
+
+a) Tính chu vi hình chữ nhật.
+
+b) Tính diện tích hình chữ nhật.
+
+c) Tính độ dài đường chéo $AC$.
+
+d) Gọi $O$ là giao điểm hai đường chéo. Tính $OA$, $OB$.
+
+**Bài 2:** Cho hình bình hành $ABCD$ có $AC = BD$.
+
+a) Chứng minh $ABCD$ là hình chữ nhật.
+
+b) Biết $AB = 12$ cm, $BC = 9$ cm, tính chu vi.
+
+c) Tính diện tích.
+
+d) Tính độ dài đường chéo.
+
+**Bài 3:** Hình chữ nhật có:
+
+a) Chiều dài $20$ cm, chiều rộng $12$ cm. Tính chu vi và diện tích.
+
+b) Chu vi $60$ cm, chiều dài $18$ cm. Tính chiều rộng và diện tích.
+
+c) Diện tích $96$ cm², chiều dài $12$ cm. Tính chiều rộng và chu vi.
+
+d) Đường chéo $13$ cm, chiều dài $12$ cm. Tính chiều rộng và diện tích.
+
+**Bài 4:** Chứng minh:
+
+a) Tứ giác có ba góc vuông là hình chữ nhật.
+
+b) Hình thang cân có một góc vuông là hình chữ nhật.
+
+c) Trong hình chữ nhật, hai đường chéo cắt nhau tại trung điểm của mỗi đường.
+
+d) Hình chữ nhật có hai cạnh kề bằng nhau là hình vuông.
+
+**Bài 5:** Cho hình chữ nhật $ABCD$ có $O$ là giao điểm hai đường chéo, $AB = 16$ cm, $BC = 12$ cm.
+
+a) Tính $AC$, $BD$.
+
+b) Tính $OA$, $OB$, $OC$, $OD$.
+
+c) Chứng minh $OA = OB = OC = OD$.
+
+d) Chứng minh bốn điểm $A$, $B$, $C$, $D$ cùng nằm trên đường tròn tâm $O$.
+
+**Bài 6 (Thực tế):** Một mảnh vườn hình chữ nhật có chiều dài $25$ m, chiều rộng $15$ m.
+
+a) Tính chu vi mảnh vườn.
+
+b) Tính diện tích mảnh vườn.
+
+c) Nếu rào xung quanh với giá $80.000$ đồng/m, tính chi phí.
+
+d) Nếu tăng chiều dài thêm $5$ m, diện tích tăng thêm bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $46$ cm; b) $120$ cm²; c) $17$ cm; d) $OA = OB = 8{,}5$ cm
+
+**Bài 2:** a) Dấu hiệu 2; b) $42$ cm; c) $108$ cm²; d) $15$ cm
+
+**Bài 3:** a) $P = 64$ cm, $S = 240$ cm²; b) $b = 12$ cm, $S = 216$ cm²; c) $b = 8$ cm, $P = 40$ cm; d) $b = 5$ cm, $S = 60$ cm²
+
+**Bài 4:** Chứng minh bằng định lý và tính chất
+
+**Bài 5:** a) $AC = BD = 20$ cm; b) $OA = OB = OC = OD = 10$ cm; c, d) Chứng minh bằng tính chất
+
+**Bài 6:** a) $80$ m; b) $375$ m²; c) $6.400.000$ đồng; d) Tăng $75$ m²
+
+</div>
+</details>
+

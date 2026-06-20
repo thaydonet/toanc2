@@ -1,0 +1,459 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 9 - Toán 9"
+description: "Ôn tập chương 9 Toán 9 KNTT: Góc nội tiếp, Tứ giác nội tiếp, Đường tròn nội tiếp và ngoại tiếp tam giác, đa giác đều"
+grade: "Lớp 9"
+chapter: "Chương IX: Đường tròn ngoại tiếp và đường tròn nội tiếp"
+currentSlug: "lop9/bai-on-tap-chuong-9"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Góc nội tiếp chắn nửa đường tròn có số đo bằng bao nhiêu?",
+    option_a: "60°",
+    option_b: "90°",
+    option_c: "120°",
+    option_d: "180°",
+    correct_option: "B",
+    explanation: "Theo hệ quả của góc nội tiếp: Góc nội tiếp chắn nửa đường tròn là góc vuông (90°).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số đo của góc nội tiếp bằng:",
+    option_a: "Số đo cung bị chắn",
+    option_b: "Hai lần số đo cung bị chắn",
+    option_c: "Nửa số đo cung bị chắn",
+    option_d: "Nửa số đo góc ở tâm chắn cùng cung",
+    correct_option: "C",
+    explanation: "Định lí góc nội tiếp: Số đo của góc nội tiếp bằng nửa số đo cung bị chắn (và bằng nửa số đo góc ở tâm chắn cùng cung đó).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tâm đường tròn ngoại tiếp tam giác là:",
+    option_a: "Giao điểm của 3 đường cao",
+    option_b: "Giao điểm của 3 đường trung tuyến",
+    option_c: "Giao điểm của 3 đường phân giác",
+    option_d: "Giao điểm của 3 đường trung trực",
+    correct_option: "D",
+    explanation: "Đường trung trực của các cạnh tam giác cắt nhau tại một điểm. Điểm này cách đều 3 đỉnh của tam giác nên là tâm đường tròn ngoại tiếp.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tâm đường tròn nội tiếp tam giác là:",
+    option_a: "Giao điểm của 3 đường cao",
+    option_b: "Giao điểm của 3 đường trung tuyến",
+    option_c: "Giao điểm của 3 đường phân giác trong",
+    option_d: "Giao điểm của 3 đường trung trực",
+    correct_option: "C",
+    explanation: "Các đường phân giác trong của tam giác cắt nhau tại một điểm cách đều 3 cạnh. Nó là tâm đường tròn nội tiếp tiếp xúc với 3 cạnh.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tứ giác ABCD nội tiếp một đường tròn. Biết góc A = 70°. Hỏi số đo góc C đối diện bằng bao nhiêu?",
+    option_a: "70°",
+    option_b: "110°",
+    option_c: "90°",
+    option_d: "20°",
+    correct_option: "B",
+    explanation: "Tính chất tứ giác nội tiếp: Tổng hai góc đối diện bằng 180°. Do đó góc C = 180° - 70° = 110°.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dấu hiệu nào sau đây KHÔNG đảm bảo một tứ giác nội tiếp đường tròn?",
+    option_a: "Tứ giác có 4 đỉnh cách đều một điểm",
+    option_b: "Tứ giác có tổng hai góc đối bằng 180°",
+    option_c: "Tứ giác có 2 đỉnh kề nhau cùng nhìn cạnh chứa 2 đỉnh còn lại dưới góc α",
+    option_d: "Tứ giác có hai đường chéo cắt nhau",
+    correct_option: "D",
+    explanation: "Hai đường chéo cắt nhau là đặc điểm tự nhiên của mọi tứ giác lồi, không phải là dấu hiệu chứng minh nội tiếp.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc ở tâm của một lục giác đều là bao nhiêu?",
+    option_a: "60°",
+    option_b: "90°",
+    option_c: "120°",
+    option_d: "72°",
+    correct_option: "A",
+    explanation: "Góc ở tâm đa giác đều $n$ cạnh là $360°/n$. Với lục giác đều $n=6$, góc ở tâm bằng $360°/6 = 60°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hình ngũ giác đều có bao nhiêu trục đối xứng?",
+    option_a: "1",
+    option_b: "3",
+    option_c: "5",
+    option_d: "Vô số",
+    correct_option: "C",
+    explanation: "Bất kỳ đa giác đều $n$ cạnh nào cũng có $n$ trục đối xứng. Ngũ giác đều có 5 đường thẳng nối đỉnh và trung điểm cạnh đối diện (trục đối xứng).",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các đường nào sau đây của đa giác đều trùng nhau?",
+    option_a: "Đường tròn ngoại tiếp đa giác đều",
+    option_b: "Đường tròn nội tiếp đa giác đều",
+    option_c: "Tâm của hai đường tròn trên trùng làm một",
+    option_d: "Đường chéo đa giác đều là đường kính",
+    correct_option: "C",
+    explanation: "Tâm đường tròn nội tiếp và ngoại tiếp của một đa giác đều trùng nhau, gọi là tâm của đa giác đều. (A, B) không trùng nhau vì chúng là 2 đường tròn khác biệt (bán kính R và r).",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Cho hình chữ nhật ABCD có AB = 6cm, AD = 8cm. Tính bán kính đường tròn ngoại tiếp của hình chữ nhật đó (cm).",
+    correct_option: "5",
+    explanation: "Hình chữ nhật nội tiếp đường tròn có đường chéo là đường kính. BD = $\\sqrt{6^2 + 8^2} = \\sqrt{100} = 10$. Bán kính = BD / 2 = 5.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Số đo một góc trong đỉnh của ngũ giác đều bằng bao nhiêu độ?",
+    correct_option: "108",
+    explanation: "Góc trong đa giác đều n cạnh: $\\frac{(n-2) \\times 180^\\circ}{n}$. Với $n=5$: $\\frac{3 \\times 180}{5} = 108^\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 9 — Mối tình giữa Đa giác và Đường tròn</h3>
+
+Chương 9 là một trong những phần quan trọng bậc nhất của Hình học 9. Kỹ năng chứng minh Tứ giác nội tiếp sẽ là chìa khoá hóa giải vô số các câu hỏi trong đề thi tuyển sinh ở cả cấp độ cơ bản và phân loại giỏi!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a78bfa;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Góc Nội Tiếp</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Góc có đỉnh nằm trên đường tròn, số đo bằng nửa góc ở tâm.</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #34d399;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">💍</div>
+    <strong>Tứ giác nội tiếp</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">4 đỉnh cùng nằm trên đường tròn, tổng 2 góc đối = 180°.</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="goc-noi-tiep">1. Góc nội tiếp</h4>
+- **Định nghĩa:** Góc nội tiếp là góc có đỉnh nằm trên đường tròn và hai cạnh chứa hai dây cung của đường tròn đó.
+- **Định lí:** Số đo góc nội tiếp bằng nửa số đo của cung bị chắn. (Hệ quả: Bằng nửa số đo góc ở tâm chắn cùng cung).
+- **Hệ quả quan trọng:**
+  + Các góc nội tiếp cùng chắn một cung (hoặc chắn các cung bằng nhau) thì bằng nhau.
+  + Góc nội tiếp phân biệt chắn nửa đường tròn là góc vuông ($90^\circ$).
+
+<h4 id="dt-noi-ngoai-tiep-tam-giac">2. Đường tròn nội tiếp, ngoại tiếp tam giác</h4>
+- **Đường tròn ngoại tiếp $\triangle ABC$:** Là đường tròn đi qua ba đỉnh $A, B, C$. Tâm của nó là giao điểm 3 đường trung trực của tam giác.
+  + *Đặc biệt:* Tâm đường tròn ngoại tiếp tam giác vuông nằm ở trung điểm cạnh huyền.
+- **Đường tròn nội tiếp $\triangle ABC$:** Là đường tròn tiếp xúc với cả ba cạnh của tam giác. Tâm của nó là giao điểm 3 đường phân giác trong.
+
+<h4 id="tu-giac-noi-tiep">3. Tứ giác nội tiếp</h4>
+- **Định nghĩa:** Một tứ giác có bốn đỉnh nằm trên một đường tròn được gọi là tứ giác nội tiếp đường tròn đó.
+- **Tính chất:** Trong một tứ giác nội tiếp, tổng số đo hai góc đối diện bằng $180^\circ$.
+- **Dấu hiệu nhận biết (Cách chứng minh):** Một tứ giác là nội tiếp khi thoả mãn một trong các điều sau:
+  1. Tứ giác có tổng hai góc đối bằng $180^\circ$.
+  2. Tứ giác có góc ngoài tại một đỉnh bằng góc trong của đỉnh đối diện.
+  3. Tứ giác có hai đỉnh cùng kề sát cùng nhìn cạnh chứa hai đỉnh còn lại dưới một góc $\alpha$ bằng nhau (Bài toán quỹ tích cung chứa góc).
+  4. Tứ giác có 4 đỉnh cách đều một điểm (điểm đó là tâm).
+
+<h4 id="da-giac-deu">4. Đa giác đều</h4>
+- Đa giác đều có tất cả các cạnh bằng nhau và các góc bằng nhau.
+- Bất kì đa giác đều nào cũng có một và chỉ một đường tròn nội tiếp, có một và chỉ một đường tròn ngoại tiếp.
+- Tâm của hai đường tròn này trùng nhau và được gọi chung là tâm của đa giác đều.
+- **Góc ở đỉnh:** $\alpha = \frac{(n-2) \cdot 180^\circ}{n}$. **Góc ở tâm:** $\beta = \frac{360^\circ}{n}$.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luyen-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tính số đo góc nội tiếp</h4>
+
+Cho đường tròn $(O)$, đường kính $AB$. Lấy điểm $C$ thuộc đường tròn sao cho cung $AC$ nhỏ hơn cung $BC$. Vẽ dây $CD \perp AB$ tại $H$.
+a) Tính góc $\widehat{ACB}$.
+b) Biết $\widehat{CAB} = 30^\circ$, hãy tính số đo các góc $\widehat{CBA}$ và số đo cung nhỏ $AD$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Ta có góc $\widehat{ACB}$ là góc nội tiếp chắn nửa đường tròn đường kính $AB$.
+Suy ra $\widehat{ACB} = 90^\circ$.
+
+b) Xét tam giác vuông $ABC$ có $\widehat{CAB} = 30^\circ \Rightarrow \widehat{CBA} = 90^\circ - 30^\circ = 60^\circ$.
+Vì dây $CD \perp$ đường kính $AB$ tại $H$, nên đường kính $AB$ đi qua trung điểm của dây $CD$ và chia đôi cung bị trương.
+Do đó cung $AC =$ cung $AD$.
+Số đo góc nội tiếp $\widehat{CBA} = 60^\circ$ chắn cung $AC$, nên sđ(cung $AC$) $= 2 \cdot 60^\circ = 120^\circ$.
+Vậy sđ(cung $AD$) = sđ(cung $AC$) $= 120^\circ$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tứ giác nội tiếp (Dấu hiệu tổng 2 góc đối)</h4>
+
+Cho tam giác nhọn $ABC$ nội tiếp đường tròn $(O)$. Kẻ hai đường cao $BD$ và $CE$ cắt nhau tại $H$. 
+Chứng minh tứ giác $ADHE$ nội tiếp được đường tròn. Xác định tâm của đường tròn đó.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Vì $BD \perp AC$ tại $D$ nên $\widehat{ADH} = 90^\circ$.
+Vì $CE \perp AB$ tại $E$ nên $\widehat{AEH} = 90^\circ$.
+Xét tứ giác $ADHE$, ta có $\widehat{ADH} + \widehat{AEH} = 90^\circ + 90^\circ = 180^\circ$.
+Mà hai góc này là hai góc đối diện nên tứ giác $ADHE$ nội tiếp được trong một đường tròn.
+Đường tròn ngoại tiếp $ADHE$ nhận đoạn $AH$ làm đường kính (vì tam giác $ADH$ và $AEH$ vuông chung cạnh huyền $AH$). Tâm đường tròn là trung điểm của $AH$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tứ giác nội tiếp (Dấu hiệu đỉnh kề nhau)</h4>
+
+Tiếp tục bài 2, chứng minh tứ giác $BCDE$ nội tiếp. Xác định đường kính và tâm đường tròn ngoại tiếp tứ giác này.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Xét tứ giác $BCDE$, ta có:
+$\widehat{BEC} = 90^\circ$ (do $CE \perp AB$).
+$\widehat{BDC} = 90^\circ$ (do $BD \perp AC$).
+Suy ra hai đỉnh kề nhau là $E$ và $D$ cùng nhìn cạnh $BC$ dưới một góc vuông ($90^\circ$).
+Theo dấu hiệu nhận biết, tứ giác $BCDE$ nội tiếp trong một đường tròn.
+Đường tròn ngoại tiếp tứ giác $BCDE$ nhận $BC$ làm đường kính. Tâm là trung điểm của $BC$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bán kính đường tròn ngoại tiếp, nội tiếp tam giác vuông</h4>
+
+Cho tam giác $ABC$ vuông tại $A$ có $AB = 6\text{ cm}, AC = 8\text{ cm}$.
+a) Tính bán kính $R$ của đường tròn ngoại tiếp $\triangle ABC$.
+b) Tính bán kính $r$ của đường tròn nội tiếp $\triangle ABC$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Theo định lý Pytago, cạnh huyền $BC = \sqrt{AB^2 + AC^2} = \sqrt{6^2 + 8^2} = 10\text{ cm}$.
+a) Tam giác $ABC$ vuông tại $A$ nên tâm đường tròn ngoại tiếp là trung điểm cạnh huyền $BC$.
+Bán kính $R = \frac{BC}{2} = 5\text{ cm}$.
+
+b) Bán kính đường tròn nội tiếp tam giác vuông được tính bằng công thức: $r = \frac{AB + AC - BC}{2}$.
+Suy ra $r = \frac{6 + 8 - 10}{2} = \frac{4}{2} = 2\text{ cm}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Bán kính đường tròn ngoại tiếp, nội tiếp tam giác đều</h4>
+
+Cho tam giác đều $ABC$ cạnh $a$.
+a) Tính bán kính đường tròn ngoại tiếp $R$ theo $a$.
+b) Tính bán kính đường tròn nội tiếp $r$ theo $a$. Khi $a = 2\sqrt{3}\text{ cm}$, tính diện tích hình tròn nội tiếp.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi $H$ là trung điểm $BC$. Đường cao $AH = \frac{a\sqrt{3}}{2}$.
+Tâm $O$ của đường tròn ngoại tiếp và nội tiếp tam giác đều trùng với trọng tâm $G$.
+a) $R = OA = \frac{2}{3}AH = \frac{2}{3} \cdot \frac{a\sqrt{3}}{2} = \frac{a\sqrt{3}}{3}$.
+b) $r = OH = \frac{1}{3}AH = \frac{1}{3} \cdot \frac{a\sqrt{3}}{2} = \frac{a\sqrt{3}}{6}$.
+(Luôn có $R = 2r$).
+
+Khi $a = 2\sqrt{3}\text{ cm}$, $r = \frac{2\sqrt{3} \cdot \sqrt{3}}{6} = \frac{6}{6} = 1\text{ cm}$.
+Diện tích hình tròn nội tiếp: $S = \pi r^2 = \pi \cdot 1^2 = \pi$ ($\text{cm}^2$).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Các thông số của đa giác đều</h4>
+
+Cho một ngũ giác đều và một lục giác đều cùng nội tiếp đường tròn $(O; R)$.
+a) Tính số đo góc ở đỉnh (góc trong) của ngũ giác đều và lục giác đều.
+b) Tính số đo góc ở tâm chắn một cạnh của mỗi hình.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Góc trong của đa giác đều $n$ cạnh là: $\frac{(n-2)180^\circ}{n}$.
+- Ngũ giác đều ($n=5$): $\frac{(5-2)180^\circ}{5} = \frac{3 \cdot 180^\circ}{5} = 108^\circ$.
+- Lục giác đều ($n=6$): $\frac{(6-2)180^\circ}{6} = \frac{4 \cdot 180^\circ}{6} = 120^\circ$.
+
+b) Góc ở tâm chắn một cạnh của đa giác đều $n$ cạnh là: $\frac{360^\circ}{n}$.
+- Ngũ giác đều: $\frac{360^\circ}{5} = 72^\circ$.
+- Lục giác đều: $\frac{360^\circ}{6} = 60^\circ$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Chứng minh năm điểm cùng thuộc đường tròn</h4>
+
+Từ điểm $M$ ngoài đường tròn $(O)$, kẻ hai tiếp tuyến $MA, MB$ ($A, B$ là hai tiếp điểm). Lấy $H$ là trung điểm đoạn đoạn thẳng chứa tâm $O$ và một dây cung nào đó, giả sử kẻ cát tuyến $MCD$ ($C$ nằm giữa $M$ và $D$, $CD$ không qua $O$). Kẻ $OH \perp CD$ tại $H$.
+Chứng minh 5 điểm $M, A, B, O, H$ cùng thuộc một đường tròn.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Ta có:
+- $MA$ là tiếp tuyến nên $\widehat{MAO} = 90^\circ \Rightarrow A$ thuộc đường tròn đường kính $MO$.
+- $MB$ là tiếp tuyến nên $\widehat{MBO} = 90^\circ \Rightarrow B$ thuộc đường tròn đường kính $MO$.
+- $OH \perp CD$ tại $H$ (theo giả thiết hoặc do $H$ là trung điểm dây cung) nên $\widehat{MHO} = 90^\circ \Rightarrow H$ thuộc đường tròn đường kính $MO$.
+Ba điểm $A, B, H$ cùng nhìn đoạn $MO$ dưới góc $90^\circ$. 
+Vậy 5 điểm $M, A, B, O, H$ cùng thuộc đường tròn đường kính $MO$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Tính chất của Tứ giác nội tiếp và song song</h4>
+
+Cho tứ giác $ABCD$ nội tiếp đường tròn. Gọi $I, J, K, L$ lần lượt là giao điểm các phân giác ngoài của các góc $\widehat{A}, \widehat{B}, \widehat{C}, \widehat{D}$ tạo thành một tứ giác ngoài $IJKL$.
+Một tính chất quen thuộc là "Các đường phân giác trong cắt nhau tạo thành tứ giác nội tiếp".
+Tại mức độ lớp 9, hãy làm bài toán sau: Tứ giác $ABCD$ nội tiếp đường tròn $(O)$. Đường thẳng đi qua $A$ song song với $BC$ cắt đường tròn tại $E$. Chứng minh $\widehat{BAE} = \widehat{DAC}$ (hoặc cung $BE = $ cung $DC$).
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Vì $AE \parallel BC$, tứ giác $AEBC$ là hình thang nội tiếp đường tròn $(O)$.
+Hình thang nội tiếp đường tròn bắt buộc phải là hình thang cân.
+Nên suy ra $AB = CE$ hoặc cung $AB =$ cung $CE$.
+Ta xét dây // cung: $AE \parallel BC \Rightarrow$ cung $AB =$ cung $EC$.
+Lại có cung $BE =$ cung $AC$.
+Từ đó, $\widehat{BAE}$ chắn cung $BE$ và $\widehat{DAC}$ chắn cung $ED$ (Tùy vị trí điểm, bạn cần chỉ rõ).
+Chuẩn: Cung chắn giữa hai dây song song thì bằng nhau $\Rightarrow$ cung $AB =$ cung $EC$.
+Mặt khác $\widehat{BCA} = \widehat{EAC}$ (so le trong vì $AE \parallel BC$).
+Mà $\widehat{BCA}$ chắn cung $AB$, $\widehat{EAC}$ chắn cung $EC \Rightarrow$ cung $AB =$ cung $EC$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Phương tích của một điểm đối với đường tròn</h4>
+
+Nối tiếp bài 7, có tiếp tuyến $MA$ và cát tuyến $MCD$.
+Chứng minh $MA^2 = MC \cdot MD$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Xét $\triangle MAC$ và $\triangle MDA$ có:
+- Góc $\widehat{M}$ chung.
+- Góc $\widehat{MAC}$ là góc tạo bởi tiếp tuyến và dây cung, chắn cung $AC$.
+- Góc $\widehat{MDA}$ là góc nội tiếp, cũng chắn cung $AC$.
+Suy ra $\widehat{MAC} = \widehat{MDA}$.
+Vậy $\triangle MAC \sim \triangle MDA$ (g.g).
+Từ đó suy ra tỉ số: $\frac{MA}{MD} = \frac{MC}{MA} \Rightarrow MA^2 = MC \cdot MD$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Quỹ tích cung chứa góc</h4>
+
+Một thước eke có góc $60^\circ$ di chuyển sao cho 2 cạnh góc vuông luôn trượt trên 2 điểm cố định $A$ và $B$ cách nhau $10\text{ cm}$. Đỉnh $M$ của góc $60^\circ$ đó sẽ vẽ nên một đường gì? Điểm $M$ thuộc đường tròn có bán kính lớn bằng bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Vì $\widehat{AMB} = 60^\circ$ không đổi và luôn nhìn đoạn thẳng $AB$ cố định bằng góc $60^\circ$.
+Theo quỹ tích cung chứa góc, điểm $M$ sẽ trượt trên **hai cung chứa góc $60^\circ$** dựng trên đoạn $AB$.
+Bán kính đường tròn chứa cung này:
+Trong đường tròn $(O; R)$, góc $\widehat{AMB} = 60^\circ$ nội tiếp chắn cung $AB \Rightarrow$ cung $AB = 120^\circ$.
+Góc ở tâm $\widehat{AOB} = 120^\circ$. Kẻ $OH \perp AB \Rightarrow AH = 5\text{ cm}$ và $\widehat{AOH} = 60^\circ$.
+Trong tam giác vuông $OAH$: $\sin 60^\circ = \frac{AH}{OA} \Rightarrow R = OA = \frac{AH}{\sin 60^\circ} = \frac{5}{\frac{\sqrt{3}}{2}} = \frac{10}{\sqrt{3}} \approx 5,77\text{ cm}$.
+Vậy $M$ vẽ nên 2 cung tròn thuộc đường tròn bán kính $R = \frac{10\sqrt{3}}{3}\text{ cm}$.
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Lời khuyên</h3>
+
+- **Bài toán chứng minh Tứ giác nội tiếp** có mặt ở 99% các đề tuyển sinh lớp 10. Bí kíp là tìm ra **2 góc vuông đối diện** hoặc tìm ra **2 góc bằng nhau cùng nhìn 1 cạnh**. Đừng bỏ cuộc khi chưa nhìn ra góc, hãy dùng màu để tô cung/bị chắn!
+- Hình vẽ cực kỳ quan trọng, kẻ càng sạch và chính xác bằng compa thì chứng minh càng dễ xuất hiện. Nhất là vẽ sai tam giác nhọn thành tam giác tù thì mọi chứng minh góc đều đảo ngược.
+
+</GhiNho>

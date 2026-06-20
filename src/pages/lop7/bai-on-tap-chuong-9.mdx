@@ -1,0 +1,420 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 9 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 9 Toán 7 KNTT: Quan hệ giữa các yếu tố trong tam giác, góc và cạnh, đường vuông góc, ba cạnh, đồng quy"
+grade: "Lớp 7"
+chapter: "Chương IX: Quan hệ giữa các yếu tố trong tam giác"
+currentSlug: "lop7/bai-on-tap-chuong-9"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Trong tam giác, cạnh đối diện với góc lớn hơn là:",
+    option_a: "Cạnh lớn hơn",
+    option_b: "Cạnh nhỏ hơn",
+    option_c: "Cạnh bằng nhau",
+    option_d: "Không có quan hệ",
+    correct_option: "A",
+    explanation: "Cạnh đối diện với góc lớn hơn là cạnh lớn hơn",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác, góc đối diện với cạnh lớn hơn là:",
+    option_a: "Góc lớn hơn",
+    option_b: "Góc nhỏ hơn",
+    option_c: "Góc bằng nhau",
+    option_d: "Không có quan hệ",
+    correct_option: "A",
+    explanation: "Góc đối diện với cạnh lớn hơn là góc lớn hơn",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường vuông góc từ một điểm đến một đường thẳng là:",
+    option_a: "Đoạn thẳng ngắn nhất từ điểm đó đến đường thẳng",
+    option_b: "Đoạn thẳng dài nhất từ điểm đó đến đường thẳng",
+    option_c: "Bất kỳ đoạn thẳng nào từ điểm đó đến đường thẳng",
+    option_d: "Không có định nghĩa",
+    correct_option: "A",
+    explanation: "Đường vuông góc là đoạn thẳng ngắn nhất",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bất đẳng thức tam giác phát biểu rằng:",
+    option_a: "Tổng hai cạnh bất kỳ lớn hơn cạnh thứ ba",
+    option_b: "Tổng hai cạnh bất kỳ nhỏ hơn cạnh thứ ba",
+    option_c: "Tổng hai cạnh bất kỳ bằng cạnh thứ ba",
+    option_d: "Không có quan hệ",
+    correct_option: "A",
+    explanation: "Bất đẳng thức tam giác: $a + b > c$, $b + c > a$, $c + a > b$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường trung tuyến của tam giác là:",
+    option_a: "Đoạn thẳng nối đỉnh với trung điểm cạnh đối diện",
+    option_b: "Đoạn thẳng nối hai trung điểm của hai cạnh",
+    option_c: "Đoạn thẳng chia góc thành hai phần bằng nhau",
+    option_d: "Đoạn thẳng vuông góc với một cạnh",
+    correct_option: "A",
+    explanation: "Đường trung tuyến nối đỉnh với trung điểm cạnh đối diện",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ba đường trung tuyến của tam giác đồng quy tại:",
+    option_a: "Trọng tâm",
+    option_b: "Trực tâm",
+    option_c: "Tâm đường tròn ngoại tiếp",
+    option_d: "Tâm đường tròn nội tiếp",
+    correct_option: "A",
+    explanation: "Ba đường trung tuyến đồng quy tại trọng tâm",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ba đường phân giác của tam giác đồng quy tại:",
+    option_a: "Tâm đường tròn nội tiếp",
+    option_b: "Trọng tâm",
+    option_c: "Trực tâm",
+    option_d: "Tâm đường tròn ngoại tiếp",
+    correct_option: "A",
+    explanation: "Ba đường phân giác đồng quy tại tâm đường tròn nội tiếp",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ba đường cao của tam giác đồng quy tại:",
+    option_a: "Trực tâm",
+    option_b: "Trọng tâm",
+    option_c: "Tâm đường tròn ngoại tiếp",
+    option_d: "Tâm đường tròn nội tiếp",
+    correct_option: "A",
+    explanation: "Ba đường cao đồng quy tại trực tâm",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ba đường trung trực của tam giác đồng quy tại:",
+    option_a: "Tâm đường tròn ngoại tiếp",
+    option_b: "Trọng tâm",
+    option_c: "Trực tâm",
+    option_d: "Tâm đường tròn nội tiếp",
+    correct_option: "A",
+    explanation: "Ba đường trung trực đồng quy tại tâm đường tròn ngoại tiếp",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác, khoảng cách từ một điểm đến một đường thẳng là:",
+    option_a: "Độ dài đường vuông góc từ điểm đó đến đường thẳng",
+    option_b: "Độ dài bất kỳ đoạn thẳng từ điểm đó đến đường thẳng",
+    option_c: "Độ dài đoạn thẳng dài nhất từ điểm đó đến đường thẳng",
+    option_d: "Không có định nghĩa",
+    correct_option: "A",
+    explanation: "Khoảng cách là độ dài đường vuông góc",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 9 — Quan hệ giữa các yếu tố trong tam giác</h3>
+
+Chương 9 giới thiệu các quan hệ giữa góc, cạnh và các đường đặc biệt trong tam giác. Hãy cùng ôn tập lại toàn bộ kiến thức!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Góc và cạnh</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Quan hệ, bất đẳng thức</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⊥</div>
+    <strong>Đường vuông góc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Khoảng cách</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔄</div>
+    <strong>Đồng quy</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Trọng tâm, trực tâm</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="quan-he-goc-canh">1. Quan hệ giữa góc và cạnh</h4>
+
+**Định lí 1:** Trong một tam giác, cạnh đối diện với góc lớn hơn là cạnh lớn hơn.
+
+**Định lí 2:** Trong một tam giác, góc đối diện với cạnh lớn hơn là góc lớn hơn.
+
+**Hệ quả:** Trong tam giác vuông, cạnh huyền là cạnh lớn nhất.
+
+<h4 id="bat-dang-thuc-tam-giac">2. Bất đẳng thức tam giác</h4>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Trong một tam giác, tổng độ dài hai cạnh bất kỳ lớn hơn độ dài cạnh thứ ba.
+
+$$a + b > c, \quad b + c > a, \quad c + a > b$$
+
+**Hệ quả:** Hiệu độ dài hai cạnh bất kỳ nhỏ hơn độ dài cạnh thứ ba.
+
+$$|a - b| < c, \quad |b - c| < a, \quad |c - a| < b$$
+
+</div>
+
+<h4 id="duong-vuong-goc">3. Đường vuông góc</h4>
+
+**Định nghĩa:** Đường vuông góc từ một điểm đến một đường thẳng là đoạn thẳng ngắn nhất từ điểm đó đến đường thẳng.
+
+**Khoảng cách:** Độ dài đường vuông góc từ một điểm đến một đường thẳng gọi là khoảng cách từ điểm đó đến đường thẳng.
+
+<h4 id="duong-trung-tuyen">4. Đường trung tuyến</h4>
+
+**Định nghĩa:** Đường trung tuyến của tam giác là đoạn thẳng nối đỉnh với trung điểm cạnh đối diện.
+
+**Tính chất:** Ba đường trung tuyến của tam giác đồng quy tại một điểm gọi là trọng tâm.
+
+**Trọng tâm:** Chia mỗi đường trung tuyến thành hai phần, phần từ đỉnh đến trọng tâm bằng $\frac{2}{3}$ độ dài đường trung tuyến.
+
+<h4 id="duong-phan-giac">5. Đường phân giác</h4>
+
+**Định nghĩa:** Đường phân giác của tam giác là đoạn thẳng chia góc thành hai phần bằng nhau.
+
+**Tính chất:** Ba đường phân giác của tam giác đồng quy tại một điểm gọi là tâm đường tròn nội tiếp.
+
+<h4 id="duong-cao">6. Đường cao</h4>
+
+**Định nghĩa:** Đường cao của tam giác là đoạn thẳng vuông góc từ đỉnh đến đường thẳng chứa cạnh đối diện.
+
+**Tính chất:** Ba đường cao của tam giác đồng quy tại một điểm gọi là trực tâm.
+
+<h4 id="duong-trung-truc">7. Đường trung trực</h4>
+
+**Định nghĩa:** Đường trung trực của một cạnh tam giác là đường thẳng vuông góc với cạnh đó tại trung điểm.
+
+**Tính chất:** Ba đường trung trực của tam giác đồng quy tại một điểm gọi là tâm đường tròn ngoại tiếp.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Bất đẳng thức tam giác</h4>
+
+Kiểm tra xem ba độ dài sau có thể tạo thành tam giác không:
+
+a) 3 cm, 4 cm, 5 cm
+
+b) 2 cm, 3 cm, 6 cm
+
+c) 5 cm, 5 cm, 8 cm
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $3 + 4 = 7 > 5$, $4 + 5 = 9 > 3$, $5 + 3 = 8 > 4$ ✓ Có thể tạo thành tam giác
+
+b) $2 + 3 = 5 < 6$ ✗ Không thể tạo thành tam giác
+
+c) $5 + 5 = 10 > 8$, $5 + 8 = 13 > 5$, $8 + 5 = 13 > 5$ ✓ Có thể tạo thành tam giác
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Quan hệ góc và cạnh</h4>
+
+Cho tam giác $ABC$ có $\angle A = 50°$, $\angle B = 60°$, $\angle C = 70°$.
+
+a) Sắp xếp các cạnh theo thứ tự tăng dần
+
+b) Cạnh nào là cạnh lớn nhất?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Cạnh đối diện với góc lớn hơn là cạnh lớn hơn.
+
+a) $\angle A < \angle B < \angle C$ nên $BC < AC < AB$
+
+b) Cạnh $AB$ là cạnh lớn nhất (đối diện với góc $C$ lớn nhất)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Đường trung tuyến</h4>
+
+Cho tam giác $ABC$ có $M$ là trung điểm của $BC$. Gọi $G$ là trọng tâm.
+
+a) Nếu $AM = 9$ cm, tính $AG$ và $GM$
+
+b) Nếu $AG = 6$ cm, tính $AM$ và $GM$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Trọng tâm chia đường trung tuyến thành hai phần: $AG = \frac{2}{3}AM$, $GM = \frac{1}{3}AM$
+
+a) $AG = \frac{2}{3} \times 9 = 6$ cm, $GM = \frac{1}{3} \times 9 = 3$ cm
+
+b) $AM = \frac{3}{2} \times 6 = 9$ cm, $GM = 9 - 6 = 3$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bài toán kết hợp</h4>
+
+Cho tam giác $ABC$ có $AB = 5$ cm, $AC = 7$ cm. Tìm khoảng cách $BC$ có thể là bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Theo bất đẳng thức tam giác:
+
+$|AB - AC| < BC < AB + AC$
+
+$|5 - 7| < BC < 5 + 7$
+
+$2 < BC < 12$
+
+Vậy $BC$ có thể là bất kỳ giá trị nào trong khoảng $(2, 12)$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho tam giác $ABC$ có ba đường trung tuyến $AM$, $BN$, $CP$ đồng quy tại trọng tâm $G$.
+
+a) Nếu $AM = 12$ cm, tính $AG$ và $GM$
+
+b) Nếu $BN = 15$ cm, tính $BG$ và $GN$
+
+c) Nếu $CP = 18$ cm, tính $CG$ và $GP$
+
+d) Tính tổng $AG + BG + CG$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $AG = \frac{2}{3} \times 12 = 8$ cm, $GM = 4$ cm
+
+b) $BG = \frac{2}{3} \times 15 = 10$ cm, $GN = 5$ cm
+
+c) $CG = \frac{2}{3} \times 18 = 12$ cm, $GP = 6$ cm
+
+d) $AG + BG + CG = 8 + 10 + 12 = 30$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho tam giác $ABC$ có $AB = 6$ cm, $AC = 8$ cm, $BC = 10$ cm.
+
+a) Chứng minh tam giác $ABC$ là tam giác vuông
+
+b) Tìm cạnh lớn nhất
+
+c) Tính khoảng cách từ $A$ đến $BC$
+
+d) Tính diện tích tam giác $ABC$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $AB^2 + AC^2 = 6^2 + 8^2 = 36 + 64 = 100 = 10^2 = BC^2$
+
+Vậy tam giác $ABC$ là tam giác vuông tại $A$
+
+b) Cạnh lớn nhất là $BC = 10$ cm (cạnh huyền)
+
+c) Khoảng cách từ $A$ đến $BC$ = $\frac{AB \times AC}{BC} = \frac{6 \times 8}{10} = 4.8$ cm
+
+d) Diện tích = $\frac{1}{2} \times AB \times AC = \frac{1}{2} \times 6 \times 8 = 24$ (cm²)
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Quan hệ góc-cạnh**: Cạnh đối diện với góc lớn hơn là cạnh lớn hơn
+- **Bất đẳng thức tam giác**: $a + b > c$, $|a - b| < c$
+- **Đường vuông góc**: Đoạn thẳng ngắn nhất từ điểm đến đường thẳng
+- **Đường trung tuyến**: Nối đỉnh với trung điểm cạnh đối diện
+- **Trọng tâm**: Giao điểm ba đường trung tuyến, chia mỗi đường thành tỉ lệ 2:1
+- **Đường phân giác**: Chia góc thành hai phần bằng nhau
+- **Đường cao**: Vuông góc từ đỉnh đến cạnh đối diện
+- **Trực tâm**: Giao điểm ba đường cao
+- **Đường trung trực**: Vuông góc với cạnh tại trung điểm
+- **Tâm đường tròn ngoại tiếp**: Giao điểm ba đường trung trực
+
+</GhiNho>

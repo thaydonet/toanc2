@@ -1,0 +1,549 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 4 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 4 Toán 7 KNTT: Tam giác bằng nhau, tổng góc, các trường hợp bằng nhau, tam giác vuông, tam giác cân"
+grade: "Lớp 7"
+chapter: "Chương IV: Tam giác bằng nhau"
+currentSlug: "lop7/bai-on-tap-chuong-4"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tổng ba góc của một tam giác bằng:",
+    option_a: "$180°$",
+    option_b: "$90°$",
+    option_c: "$360°$",
+    option_d: "$270°$",
+    correct_option: "A",
+    explanation: "Tổng ba góc của một tam giác bằng $180°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trường hợp bằng nhau cạnh-cạnh-cạnh (CCC) của tam giác là:",
+    option_a: "Ba cạnh của tam giác này bằng ba cạnh của tam giác kia",
+    option_b: "Hai cạnh và góc xen giữa bằng nhau",
+    option_c: "Hai góc và cạnh xen giữa bằng nhau",
+    option_d: "Một cạnh và hai góc kề bằng nhau",
+    correct_option: "A",
+    explanation: "Trường hợp CCC: Ba cạnh của tam giác này bằng ba cạnh của tam giác kia",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trường hợp bằng nhau cạnh-góc-cạnh (CGC) của tam giác là:",
+    option_a: "Hai cạnh và góc xen giữa bằng nhau",
+    option_b: "Ba cạnh bằng nhau",
+    option_c: "Hai góc và cạnh xen giữa bằng nhau",
+    option_d: "Một cạnh và hai góc kề bằng nhau",
+    correct_option: "A",
+    explanation: "Trường hợp CGC: Hai cạnh và góc xen giữa bằng nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trường hợp bằng nhau góc-cạnh-góc (GCG) của tam giác là:",
+    option_a: "Hai góc và cạnh xen giữa bằng nhau",
+    option_b: "Ba cạnh bằng nhau",
+    option_c: "Hai cạnh và góc xen giữa bằng nhau",
+    option_d: "Một cạnh và hai góc kề bằng nhau",
+    correct_option: "A",
+    explanation: "Trường hợp GCG: Hai góc và cạnh xen giữa bằng nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác vuông là tam giác có:",
+    option_a: "Một góc bằng $90°$",
+    option_b: "Hai góc bằng $90°$",
+    option_c: "Ba góc bằng $90°$",
+    option_d: "Không có góc $90°$",
+    correct_option: "A",
+    explanation: "Tam giác vuông là tam giác có một góc bằng $90°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác cân là tam giác có:",
+    option_a: "Hai cạnh bằng nhau",
+    option_b: "Ba cạnh bằng nhau",
+    option_c: "Một cạnh bằng nhau",
+    option_d: "Không có cạnh bằng nhau",
+    correct_option: "A",
+    explanation: "Tam giác cân là tam giác có hai cạnh bằng nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác đều là tam giác có:",
+    option_a: "Ba cạnh bằng nhau",
+    option_b: "Hai cạnh bằng nhau",
+    option_c: "Một cạnh bằng nhau",
+    option_d: "Không có cạnh bằng nhau",
+    correct_option: "A",
+    explanation: "Tam giác đều là tam giác có ba cạnh bằng nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác cân, hai góc ở đáy:",
+    option_a: "Bằng nhau",
+    option_b: "Không bằng nhau",
+    option_c: "Bù nhau",
+    option_d: "Phụ nhau",
+    correct_option: "A",
+    explanation: "Trong tam giác cân, hai góc ở đáy bằng nhau",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác đều, mỗi góc bằng:",
+    option_a: "$60°$",
+    option_b: "$90°$",
+    option_c: "$45°$",
+    option_d: "$120°$",
+    correct_option: "A",
+    explanation: "Trong tam giác đều, mỗi góc bằng $\\frac{180°}{3} = 60°$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Định lí Pytago phát biểu rằng:",
+    option_a: "Trong tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông",
+    option_b: "Trong tam giác vuông, cạnh huyền bằng tổng hai cạnh góc vuông",
+    option_c: "Trong tam giác vuông, cạnh huyền bằng hiệu hai cạnh góc vuông",
+    option_d: "Trong tam giác vuông, bình phương cạnh huyền bằng hiệu bình phương hai cạnh góc vuông",
+    correct_option: "A",
+    explanation: "Định lí Pytago: $c^2 = a^2 + b^2$ (với $c$ là cạnh huyền, $a, b$ là hai cạnh góc vuông)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 4 — Tam giác bằng nhau</h3>
+
+Chương 4 giới thiệu các trường hợp bằng nhau của tam giác và các tính chất của tam giác đặc biệt. Hãy cùng ôn tập lại toàn bộ kiến thức!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">△</div>
+    <strong>Tam giác bằng nhau</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">CCC, CGC, GCG</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Tam giác đặc biệt</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Vuông, cân, đều</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Định lí Pytago</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tam giác vuông</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="tong-goc-tam-giac">1. Tổng ba góc của tam giác</h4>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Tổng ba góc của một tam giác bằng $180°$.
+
+$$\angle A + \angle B + \angle C = 180°$$
+
+**Hệ quả:** Trong một tam giác, góc ngoài bằng tổng hai góc trong không kề với nó.
+
+</div>
+
+<h4 id="tam-giac-bang-nhau">2. Tam giác bằng nhau</h4>
+
+**Định nghĩa:** Hai tam giác bằng nhau nếu chúng có các cạnh tương ứng bằng nhau và các góc tương ứng bằng nhau.
+
+**Ba trường hợp bằng nhau:**
+
+**a) Trường hợp CCC (Cạnh-Cạnh-Cạnh):**
+Nếu ba cạnh của tam giác này bằng ba cạnh của tam giác kia thì hai tam giác bằng nhau.
+
+**b) Trường hợp CGC (Cạnh-Góc-Cạnh):**
+Nếu hai cạnh và góc xen giữa của tam giác này bằng hai cạnh và góc xen giữa của tam giác kia thì hai tam giác bằng nhau.
+
+**c) Trường hợp GCG (Góc-Cạnh-Góc):**
+Nếu hai góc và cạnh xen giữa của tam giác này bằng hai góc và cạnh xen giữa của tam giác kia thì hai tam giác bằng nhau.
+
+<h4 id="tam-giac-vuong">3. Tam giác vuông</h4>
+
+**Định nghĩa:** Tam giác vuông là tam giác có một góc bằng $90°$.
+
+**Tính chất:** Trong tam giác vuông, hai góc nhọn phụ nhau (tổng = $90°$).
+
+**Trường hợp bằng nhau của tam giác vuông:**
+- Cạnh huyền - Cạnh góc vuông (CH-CGV)
+- Hai cạnh góc vuông (CGV-CGV)
+
+<h4 id="tam-giac-can">4. Tam giác cân</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Tam giác cân là tam giác có hai cạnh bằng nhau.
+
+**Tính chất:** Trong tam giác cân, hai góc ở đáy bằng nhau.
+
+**Dấu hiệu nhận biết:** Nếu một tam giác có hai góc bằng nhau thì tam giác đó là tam giác cân.
+
+</div>
+
+<h4 id="tam-giac-deu">5. Tam giác đều</h4>
+
+**Định nghĩa:** Tam giác đều là tam giác có ba cạnh bằng nhau.
+
+**Tính chất:** Trong tam giác đều, ba góc đều bằng $60°$.
+
+**Dấu hiệu nhận biết:** 
+- Tam giác có ba cạnh bằng nhau là tam giác đều
+- Tam giác cân có một góc bằng $60°$ là tam giác đều
+
+<h4 id="dinh-li-pytago">6. Định lí Pytago</h4>
+
+<div class="box-dinh-ly">
+
+**Định lí Pytago:** Trong một tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông.
+
+$$c^2 = a^2 + b^2$$
+
+(với $c$ là cạnh huyền, $a, b$ là hai cạnh góc vuông)
+
+**Định lí Pytago đảo:** Nếu một tam giác có bình phương một cạnh bằng tổng bình phương hai cạnh kia thì tam giác đó là tam giác vuông.
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tổng ba góc của tam giác</h4>
+
+Cho tam giác $ABC$ có $\angle A = 50°$, $\angle B = 60°$.
+
+a) Tính $\angle C$
+
+b) Tam giác $ABC$ là tam giác gì?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle C = 180° - 50° - 60° = 70°$
+
+b) Tam giác $ABC$ là tam giác nhọn (vì cả ba góc đều nhỏ hơn $90°$)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tam giác bằng nhau (CCC)</h4>
+
+Cho $\triangle ABC$ và $\triangle DEF$ có $AB = DE$, $BC = EF$, $CA = FD$.
+
+Chứng minh $\triangle ABC = \triangle DEF$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Vì $AB = DE$, $BC = EF$, $CA = FD$ nên theo trường hợp CCC:
+
+$\triangle ABC = \triangle DEF$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tam giác cân</h4>
+
+Cho tam giác $ABC$ cân tại $A$ với $\angle A = 80°$.
+
+a) Tính $\angle B$ và $\angle C$
+
+b) Nếu $\angle A = 60°$, tam giác $ABC$ là tam giác gì?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Vì tam giác $ABC$ cân tại $A$ nên $\angle B = \angle C$
+
+$\angle B + \angle C = 180° - 80° = 100°$
+
+$\angle B = \angle C = 50°$
+
+b) Nếu $\angle A = 60°$ thì $\angle B = \angle C = 60°$, nên tam giác $ABC$ là tam giác đều
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Tam giác vuông</h4>
+
+Cho tam giác $ABC$ vuông tại $A$ với $\angle B = 35°$.
+
+a) Tính $\angle C$
+
+b) Tính $AB^2 + AC^2$ nếu $BC = 10$ cm
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle C = 90° - 35° = 55°$
+
+b) Theo định lí Pytago: $AB^2 + AC^2 = BC^2 = 10^2 = 100$ (cm²)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Định lí Pytago</h4>
+
+Cho tam giác $ABC$ vuông tại $A$ với $AB = 3$ cm, $AC = 4$ cm.
+
+a) Tính $BC$
+
+b) Kiểm tra xem tam giác có phải là tam giác vuông không nếu $AB = 5$, $AC = 12$, $BC = 13$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $BC^2 = AB^2 + AC^2 = 3^2 + 4^2 = 9 + 16 = 25$
+
+$BC = 5$ (cm)
+
+b) $5^2 + 12^2 = 25 + 144 = 169 = 13^2$
+
+Vậy tam giác là tam giác vuông (vuông tại $A$)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán kết hợp</h4>
+
+Cho tam giác $ABC$ cân tại $A$ với $AB = AC = 5$ cm, $BC = 6$ cm. Gọi $M$ là trung điểm của $BC$.
+
+a) Chứng minh $AM \perp BC$
+
+b) Tính $AM$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Vì tam giác $ABC$ cân tại $A$ và $M$ là trung điểm của $BC$ nên $AM$ là đường trung tuyến đồng thời là đường cao. Vậy $AM \perp BC$
+
+b) $BM = \frac{BC}{2} = 3$ cm
+
+Trong tam giác vuông $ABM$: $AM^2 = AB^2 - BM^2 = 5^2 - 3^2 = 25 - 9 = 16$
+
+$AM = 4$ (cm)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán thực tế</h4>
+
+Một cái thang dựa vào tường. Chân thang cách tường 3 m, đỉnh thang cách mặt đất 4 m. Tính độ dài của thang.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Thang, tường và mặt đất tạo thành một tam giác vuông với:
+- Một cạnh góc vuông = 3 m
+- Cạnh góc vuông kia = 4 m
+- Cạnh huyền = độ dài thang
+
+Theo định lí Pytago: $c^2 = 3^2 + 4^2 = 9 + 16 = 25$
+
+$c = 5$ (m)
+
+Vậy độ dài thang là 5 m
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán kết hợp</h4>
+
+Cho tam giác $ABC$ có $\angle A = 90°$, $\angle B = 60°$, $AB = 5$ cm.
+
+a) Tính $\angle C$
+
+b) Tính $AC$ và $BC$
+
+c) Tính diện tích tam giác $ABC$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle C = 90° - 60° = 30°$
+
+b) $\tan 60° = \frac{AC}{AB}$ nên $AC = AB \times \tan 60° = 5\sqrt{3}$ cm
+
+$BC = \frac{AB}{\cos 60°} = \frac{5}{0.5} = 10$ cm
+
+c) Diện tích = $\frac{1}{2} \times AB \times AC = \frac{1}{2} \times 5 \times 5\sqrt{3} = \frac{25\sqrt{3}}{2}$ (cm²)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho tam giác $ABC$ cân tại $A$ với $\angle A = 120°$, $AB = AC = 6$ cm.
+
+a) Tính $\angle B$ và $\angle C$
+
+b) Gọi $M$ là trung điểm của $BC$. Chứng minh $AM \perp BC$
+
+c) Tính $BC$
+
+d) Tính diện tích tam giác $ABC$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle B = \angle C = \frac{180° - 120°}{2} = 30°$
+
+b) Vì tam giác $ABC$ cân tại $A$ và $M$ là trung điểm của $BC$ nên $AM$ là đường cao. Vậy $AM \perp BC$
+
+c) Trong tam giác vuông $ABM$: $BM = AB \times \sin 30° = 6 \times 0.5 = 3$ cm
+
+$BC = 2 \times BM = 6$ cm
+
+d) $AM = AB \times \cos 30° = 6 \times \frac{\sqrt{3}}{2} = 3\sqrt{3}$ cm
+
+Diện tích = $\frac{1}{2} \times BC \times AM = \frac{1}{2} \times 6 \times 3\sqrt{3} = 9\sqrt{3}$ (cm²)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho tam giác $ABC$ vuông tại $A$ với $AB = 6$ cm, $AC = 8$ cm. Gọi $M$ là trung điểm của $BC$.
+
+a) Tính $BC$
+
+b) Tính $AM$
+
+c) Chứng minh $AM = \frac{BC}{2}$
+
+d) Tính diện tích tam giác $ABC$
+
+e) Nếu vẽ đường cao $AH$ từ $A$ đến $BC$, tính $AH$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $BC^2 = AB^2 + AC^2 = 6^2 + 8^2 = 36 + 64 = 100$
+
+$BC = 10$ cm
+
+b) $M$ là trung điểm của $BC$ nên $AM = \frac{BC}{2} = 5$ cm
+
+c) Đây là tính chất: Trong tam giác vuông, đường trung tuyến ứng với cạnh huyền bằng nửa cạnh huyền
+
+d) Diện tích = $\frac{1}{2} \times AB \times AC = \frac{1}{2} \times 6 \times 8 = 24$ (cm²)
+
+e) Diện tích = $\frac{1}{2} \times BC \times AH$
+
+$24 = \frac{1}{2} \times 10 \times AH$
+
+$AH = 4.8$ (cm)
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Tổng ba góc tam giác:** $\angle A + \angle B + \angle C = 180°$
+- **Ba trường hợp bằng nhau:** CCC, CGC, GCG
+- **Tam giác cân:** Hai cạnh bằng nhau, hai góc ở đáy bằng nhau
+- **Tam giác đều:** Ba cạnh bằng nhau, ba góc bằng $60°$
+- **Tam giác vuông:** Một góc bằng $90°$, hai góc nhọn phụ nhau
+- **Định lí Pytago:** $c^2 = a^2 + b^2$ (với $c$ là cạnh huyền)
+- **Đường trung tuyến tam giác vuông:** Bằng nửa cạnh huyền
+
+</GhiNho>

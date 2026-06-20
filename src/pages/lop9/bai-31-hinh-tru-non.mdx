@@ -1,0 +1,296 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 31: Hình trụ và hình nón"
+description: "Khái niệm, công thức tính diện tích và thể tích của hình trụ, hình nón - Toán 9 Kết nối tri thức"
+grade: "Lớp 9"
+chapter: "Chương X: Một số hình khối trong thực tiễn"
+currentSlug: "lop9/bai-31-hinh-tru-non"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import Geometry3DCalculator from '../../components/interactive/Geometry3DCalculator';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình trụ được tạo thành khi ta quay hình phẳng nào sau đây quanh một trục cố định?",
+    option_a: "Quay một tam giác cân quanh đường cao.",
+    option_b: "Quay một hình chữ nhật quanh một cạnh cố định của nó.",
+    option_c: "Quay một nửa hình tròn quanh đường kính.",
+    option_d: "Quay một hình thoi quanh đường chéo.",
+    correct_option: "B",
+    explanation: "Khi quay một hình chữ nhật một vòng quanh một cạnh cố định làm trục quay, ta thu được một hình trụ. Hai mặt đáy của hình trụ là hai hình tròn bằng nhau nảy sinh từ hai cạnh đối diện với mép tạo.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đối với hình nón, mối quan hệ giữa đường sinh $l$, chiều cao $h$ và bán kính đáy $r$ là gì?",
+    option_a: "$l = h + r$",
+    option_b: "$l^2 = h^2 - r^2$",
+    option_c: "$l^2 = h^2 + r^2$",
+    option_d: "$l = h \\cdot r$",
+    correct_option: "C",
+    explanation: "Trong hình nón vuông, đường sinh $l$ đóng vai trò là cạnh huyền của một tam giác vuông có hai cạnh góc vuông lần lượt là chiều cao $h$ và bán kính đáy $r$. Theo định lí Pytago: $l^2 = h^2 + r^2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính diện tích xung quanh của một hình trụ có bán kính đáy $r$ và chiều cao $h$ là:",
+    option_a: "$S_{xq} = 2\\pi rh$",
+    option_b: "$S_{xq} = \\pi r^2h$",
+    option_c: "$S_{xq} = \\pi rh$",
+    option_d: "$S_{xq} = \\frac{1}{3}\\pi r^2h$",
+    correct_option: "A",
+    explanation: "Diện tích xung quanh hình trụ bằng chu vi đáy nhân với chiều cao thiết diện cong: $S_{xq} = 2\\pi r \\cdot h = 2\\pi rh$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một chiếc nón lá hình nón có bán kính đáy $R$ và đường sinh $l$. Công thức tính lượng lá (diện tích xung quanh) cần dùng để bọc hình nón đó là:",
+    option_a: "$S_{xq} = 2\\pi R l$",
+    option_b: "$S_{xq} = \\pi R l$",
+    option_c: "$S_{xq} = \\pi R^2 + \\pi R l$",
+    option_d: "$S_{xq} = \\frac{1}{3}\\pi R^2 l$",
+    correct_option: "B",
+    explanation: "Diện tích xung quanh của hình nón chỉ bao phủ vùng chóp nón (không tính đáy) có công thức là $S_{xq} = \\pi R l$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai khối 3D gồm một hình trụ và một hình nón có cùng chung kích thước bán kính đáy $R$ và chiều cao $h$. Thể tích hình trụ so với hình nón như thế nào?",
+    option_a: "Hình trụ có thể tích bằng hình nón.",
+    option_b: "Hình trụ có thể tích gấp đôi hình nón.",
+    option_c: "Hình trụ có thể tích gấp 3 lần hình nón.",
+    option_d: "Hình nón có thể tích lớn hơn hình trụ 3 lần.",
+    correct_option: "C",
+    explanation: "Thể tích hình trụ là $V_{\\text{trụ}} = \\pi R^2h$. Thể tích hình nón là $V_{\\text{nón}} = \\frac{1}{3}\\pi R^2h$. Do đó thể tích trụ lớn gấp đúng $3$ lần thể tích nón khi cùng đường biểu diễn kích thước.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một hình trụ có bán kính đáy $r = 5\\text{ cm}$ và chiều cao $h = 10\\text{ cm}$. Tính thể tích không gian $V$ của vùng trục trụ này (lấy số $\\pi$, không cần nhập đơn vị, chỉ ghi hệ số trước $\\pi$).",
+    correct_option: "250",
+    explanation: "Thể tích hình trụ: $V = \\pi r^2 h = \\pi \\cdot 5^2 \\cdot 10 = 250\\pi$. Hệ số là 250.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một chiếc nón hứng nước mưa có thiết diện với chiều cao $h = 4\\text{ dm}$ và đường sinh chéo qua mép đỉnh $l = 5\\text{ dm}$. Tính bán kính mở đáy $r$ của nón nước (đơn vị: dm).",
+    correct_option: "3",
+    explanation: "Áp dụng định lí Pytago $l^2 = h^2 + r^2 \\Rightarrow 5^2 = 4^2 + r^2 \\Rightarrow 25 = 16 + r^2 \\Rightarrow r^2 = 9 \\Rightarrow r = 3\\text{ dm}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🏺 Nền móng thiết kế của kiến trúc khối tròn xoay</h3>
+
+Những chiếc cốc uống nước, lon nước ngọt bằng thiếc, hay những cây cột đình vững chãi,... đều mang chung một đặc điểm đồng nhất: Mặt cắt ngang của chúng là một thiết kế hình tròn, dọc thân đều có chiều thẳng đứng và chứa đựng được một khoảng không gian khối tích bên trong. Hình khối dạng này gọi là **Hình trụ**.
+
+Tương tự, chiếc nón lá quen thuộc của Việt Nam, hay phần bánh ốc quế đựng kem nhọn hoắt... lại sở hữu hình dáng thuôn nhỏ dần lên trên thành một đỉnh duy nhất. Đây được gọi là **Hình nón**.
+
+Trong chương X Toán lớp 9 (sách Kết nối tri thức), phần hình học không gian bắt đầu mở rộng sang các khối tròn xoay. Bài học yêu cầu học sinh làm quen với việc nắm được kết cấu tạo hình, từ đó ứng dụng ba công thức tính diện tích bao bề mặt và đo thể tích dung tích tích trữ của những vật dụng quen thuộc trong đời sống.
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="hinh-tru" style="margin-top:2rem;">📖 1. Hình trụ (Cylinder) và các đại lượng đặc trưng</h3>
+
+<div class="box-dinh-nghia">
+
+- **Sự tạo thành:** Khi quay vòng một hình chữ nhật $ABCD$ quanh cố định một trục chứa cạnh $CD$, mặt ngoài cùng của nó sẽ quét và giới hạn lập thành một **hình trụ**.
+- Đoạn $CD$ cố định là **trục** của hình trụ.
+- Hai cạnh quét ra hai vòng mặt đối diện nhau (mặt trên và mặt dưới) tạo ra hai hình tròn song song, bằng nhau. Đó là hai **mặt đáy** của hình trụ.
+- **Bán kính đáy $R$** là bán kính của hình tròn mặt đáy ($R = BC = AD$).
+- **Chiều cao $h$** là khoảng cách thẳng đứng giữa mặt trên và mặt dưới ($h = CD = AB$).
+- **Đường sinh $l$**: Kẻ các đường quét tạo nên biên dọc của hình trụ (Trong hình trụ ta luôn có $l = h$).
+
+</div>
+
+**Các công thức định lượng Hình Trụ:**
+1. **Diện tích xung quanh** (chỉ tính phần thân vỏ lon cong bao quanh, không tính 2 nắp):
+$$S_{xq} = 2\pi R h$$
+2. **Diện tích toàn phần** (bằng vỏ xung quanh bao bì cộng thêm diện tích hình tròn 2 đáy kín nắp):
+$$S_{tp} = S_{xq} + S_{2\text{đáy}} = 2\pi R h + 2\pi R^2 = 2\pi R(h+R)$$
+3. **Thể tích** (Dung tích khối lượng nước chứa đựng bên trong lồng trụ):
+$$V = S_{\text{đáy}} \cdot h = \pi R^2 h$$
+
+*(Trong đó $\pi \approx 3.14159...$)*
+
+<h3 id="hinh-non" style="margin-top:2rem;">📖 2. Hình nón (Cone) và các đại lượng đặc trưng</h3>
+
+<div class="box-dinh-nghia">
+
+- **Sự tạo thành:** Khi quay một tam giác vuông $ABC$ (vuông tại đỉnh $A$) xung quanh trục giới hạn $AB$, ta lấy mốc tam giác quay lượn tạo ra một **hình nón**.
+- Cạnh góc vuông làm trục quay ($AB$) tạo nên **chiều cao $h$** của dải chóp nón đỉnh $B$.
+- Cạnh đáy $AC$ khi quay bao quát mặt sàn tạo nên một mặt hình tròn gọi là **mặt đáy**. Cạnh này ứng với độ lớn **bán kính đáy $R$** ($R = AC$).
+- Cạnh huyền $BC$ khi nghiêng chạy vòng quanh tạo thành vỏ chóp **mặt xung quanh**. Chiều dài vát mảnh này gọi là **đường sinh $l$** ($l = BC$).
+- Mối liên hệ Pytago cơ bản của bộ ba đại lượng hình nón dốc vuông: $l^2 = R^2 + h^2$.
+
+</div>
+
+**Các công thức định lượng Hình Nón:**
+1. **Diện tích xung quanh** (Chỉ tính riêng phần khung thân nón bao bọc, không tính phần nắp đáy):
+$$S_{xq} = \pi R l$$
+2. **Diện tích toàn phần** (Là diện tích xung quanh hợp gộp với đáy lót tròn):
+$$S_{tp} = S_{xq} + S_{\text{đáy}} = \pi R l + \pi R^2 = \pi R(l+R)$$
+3. **Thể tích** khối nón chiếm (Chung mốc đường cao đáy thì luôn bằng $1/3$ khối trụ):
+$$V = \frac{1}{3} \pi R^2 h$$
+
+<h3 id="hinh-ve-tru-non" style="margin-top:2rem;">💡 Hình ảnh không gian của khối tròn xoay</h3>
+
+<div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap", margin: "2rem 0"}}>
+
+{/* Hình Trụ */}
+<div style={{textAlign: "center"}}>
+<svg width="200" height="250" viewBox="0 0 200 250">
+  {/* Mặt đáy trên (Ellipse) */}
+  <ellipse cx="100" cy="50" rx="60" ry="20" fill="none" stroke="#2563eb" strokeWidth="2" />
+  
+  {/* Hai đường sinh (Viền dọc trái phải thân trụ) */}
+  <line x1="40" y1="50" x2="40" y2="200" stroke="#2563eb" strokeWidth="2" />
+  <line x1="160" y1="50" x2="160" y2="200" stroke="#2563eb" strokeWidth="2" />
+  
+  {/* Mặt đáy dưới (Nửa Elipse thấy được ở trước) */}
+  <path d="M 40 200 A 60 20 0 0 0 160 200" fill="none" stroke="#2563eb" strokeWidth="2" />
+  {/* Mặt đáy dưới (Nửa đứt nét bị khuất ở sau lưng) */}
+  <path d="M 40 200 A 60 20 0 0 1 160 200" fill="none" stroke="#9ca3af" strokeWidth="2" strokeDasharray="5,5" />
+  
+  {/* Bán kính R đáy dưới */}
+  <line x1="100" y1="200" x2="160" y2="200" stroke="#ef4444" strokeWidth="2" />
+  {/* Chiều cao trục h khuất giữa */}
+  <line x1="100" y1="50" x2="100" y2="200" stroke="#ef4444" strokeWidth="2" strokeDasharray="5,5" />
+  
+  {/* Nhãn ký hiệu */}
+  <text x="125" y="195" fill="#ef4444" fontWeight="bold">R</text>
+  <text x="85" y="130" fill="#ef4444" fontWeight="bold">h</text>
+  <text x="170" y="130" fill="#2563eb" fontWeight="bold">l</text>
+</svg>
+<p style={{fontStyle: "italic", fontSize:"0.9rem"}}>Hình trụ có $l=h$</p>
+</div>
+
+{/* Hình Nón */}
+<div style={{textAlign: "center"}}>
+<svg width="200" height="250" viewBox="0 0 200 250">
+  {/* Mặt đáy (Nửa Elipse trước) */}
+  <path d="M 40 200 A 60 20 0 0 0 160 200" fill="none" stroke="#10b981" strokeWidth="2" />
+  {/* Mặt đáy (Nửa đứt nét khép kín cong sườn sau) */}
+  <path d="M 40 200 A 60 20 0 0 1 160 200" fill="none" stroke="#9ca3af" strokeWidth="2" strokeDasharray="5,5" />
+  
+  {/* Hai đường sinh nghiêng dốc về đỉnh chóp */}
+  <line x1="100" y1="30" x2="40" y2="200" stroke="#10b981" strokeWidth="2" />
+  <line x1="100" y1="30" x2="160" y2="200" stroke="#10b981" strokeWidth="2" />
+  
+  {/* Bán kính đáy chéo r */}
+  <line x1="100" y1="200" x2="160" y2="200" stroke="#f59e0b" strokeWidth="2" />
+  {/* Trục chính đường cao chóp */}
+  <line x1="100" y1="30" x2="100" y2="200" stroke="#f59e0b" strokeWidth="2" strokeDasharray="5,5" />
+  
+  {/* Ký hiệu hệ thức chữ */}
+  <text x="125" y="195" fill="#f59e0b" fontWeight="bold">R</text>
+  <text x="85" y="130" fill="#f59e0b" fontWeight="bold">h</text>
+  <text x="145" y="115" fill="#10b981" fontWeight="bold">l</text>
+</svg>
+<p style={{fontStyle: "italic", fontSize:"0.9rem"}}>Hình nón có $l^2 = R^2 + h^2$</p>
+</div>
+
+</div>
+
+<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Hệ thống mô phỏng 3D Máy tính kích cỡ</h3>
+
+Nhập số liệu thực tế đo đạc của bạn vào công cụ tự động tính thể tích và các hệ số diện tích phủ mặt để trực tiếp thu được kết quả nhanh chóng khi so sánh các bài tập.
+
+
+<Geometry3DCalculator client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Bài toán diện tích, chi phí phủ sơn vật liệu Hình Trụ / Hình Nón**
+**Phương pháp:** 
+- Phân tích cẩn trọng đề bài xem yêu cầu che phủ vật liệu dạng nào: Chỉ che phủ vỏ quanh (Dùng $S_{xq}$), che luôn phần nắp hay đáy kín bịt hai đầu (Dùng $S_{tp}$). Ví dụ: sơn chỉ ống nước rỗng hai đầu nắp thì sẽ là diện tích xung quanh, nhưng khi làm một hộp sữa kín hoàn toàn thì lại cần diện tích toàn phần cộng bù 2 đáy.
+- Cần chú ý cẩn thận khi sử dụng các dữ kiện Pytago $l^2 = h^2 + R^2$ đối với riêng cấu trúc dốc của Hình Nón.
+- Rà soát sự nhất quán về số liệu độ dài trong bản vẽ kỹ thuật (quy đổi chung về cm, mét...).
+
+</div>
+
+**Ví dụ 1:** 
+Một xưởng sản xuất lon nhôm đựng ngũ cốc (dạng khối trụ kín 2 bưng nắp). Các kích thước kĩ thuật là: đường kính đáy lớn đoạt $10\text{ cm}$, dọc thân cao tổng $12\text{ cm}$. Xác suất tính diện tích mặt nhôm bao bọc tiêu hao cho một dây rập lon? ($(\pi \approx 3.14)$)
+**Hướng dẫn:** 
+- Nắp hộp có hình dạng chu vi đường kính chia nhỏ. Bán kính cấu trúc đáy bằng phân nửa đường kính: $R = \frac{10}{2} = 5\text{ cm}$.
+- Nhu cầu tiêu hao trọn lon thiếc buộc phải được đo bằng diện tích tính toán toàn phần hở:
+$S_{tp} = 2\pi R(h+R) = 2 \cdot 3.14 \cdot 5 \cdot (12 + 5) = 31.4 \cdot 17 = 533.8\text{ cm}^2$.
+Nhôm che phủ yêu cầu khoảng $533.8\text{ cm}^2$.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Bài toán lưu lượng quy đổi Thể Tích / Đựng lượng nước / Khối lượng tịnh**
+**Phương pháp:** 
+- Áp dụng các phương trình chứa (nhớ kĩ nhân ba $\frac{1}{3}$ với đỉnh nhọn nón thóp, khối trụ mòn thì không cần). Công thức gốc căn bản chung quy vẫn là $V = S_{đáy} \cdot h$.
+- Quy luật đổi thể tích chuẩn: $1\text{ dm}^3 = 1\text{ lít nước}$, $1\text{ m}^3 = 1000\text{ lít nước}$. (Đo khối lượng riêng quy đổi theo $m = V \cdot d$).
+
+</div>
+
+**Ví dụ 2:**  Để chứa chóp đống lượng lúa thu hoạch, ông lão tạo một hệ thống kho lều đựng hình nón với bề bán kính khép biên trệt $R = 3\text{ m}$, điểm chóp mái dốc cao $h = 4\text{ m}$. Hỏi nhà bạt lều này nhét vào tối đa kích cỡ được bao nhiêu mét khối lúa? (Giá số $\pi = 3.14$).
+**Hướng dẫn:** 
+- Chi tiết đống chóp thuông dần là kết tụ thuộc khối lùi $V_{\text{nón}}$.
+Thể tích lưu trữ tối đa gộp được là: $V = \frac{1}{3} \cdot \pi R^2 h = \frac{1}{3} \cdot 3.14 \cdot 3^2 \cdot 4 = \frac{1}{3} \cdot 3.14 \cdot 9 \cdot 4 = 37.68\text{ m}^3$.
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cốc đựng cà phê take-away ở cửa hàng (loại hình trụ đứng) có thành phần cao tiêu chuẩn $15\text{ cm}$, bán kính đường mở thiết diện mép trên rơi là $4\text{ cm}$.
+a) Khối lượng thể tích chất lỏng kịch kim rót tràn mặt cốc chứa nổi không lượng nước là bao nhiêu centi-mét khối?
+b) Nhà sản xuất muốn bọc vách giấy carton viền sát xung quanh bao lấy sườn và phần đáy cốc (đương nhiên ống nắp trên rỗng bỏ qua). Biểu diễn diện tích lớp giấy ép in nhãn logo cần kẹp cắt đoạt tốn kém cỡ nào? (làm tròn phẩy một phân hạng, dùng $\pi = 3.14$).
+
+**Bài 2:** Một chiếc mũ chóp nón lá thủ công (không có vành đáy như nón bình thường mà nhọn hoắt chóp sinh) được đội đầu cản nắng kẹp chiều sâu trục vạch $h = 16\text{ cm}$, viền đội vòng bao biên dưới có bán kính bán độ $R = 12\text{ cm}$. 
+a) Hãy phân lớp số đo chiều dài của một nan tre thẳng (đường sinh $l$) ráp chạy dọc bên mép dốc bề mặt mũ nón đội bọc.
+b) Diện tích phủ mặt lá nón để chợp chép dán chồng ôm lấy phần vỏ ngoài của thân nón bọc là diện tích che phủ đạt mốc nhiêu? (Chỉ lấy mức biểu thị bằng $\pi$).
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+Hệ số cố định với trụ thẳng $h = 15$, kích mốc bán nguyệt $R = 4$.
+a) Thể tích toàn khối tích trữ (Dung lượng):
+$V = \pi R^2 h = 3.14 \cdot 4^2 \cdot 15 = 3.14 \cdot 16 \cdot 15 = 753.6\text{ cm}^3$ (Tương đương đựng được khoảng mốc khít 753.6 ml chất lỏng nhầy).
+b) Cốc nước hở hụt một mặt mở miệng mui trần, chỉ ráp giấy ở mặt xung quanh vách sườn và vỏ đáy cúp bế kín trôn:
+Diện tích ráp giấy $S_{\text{giấy}} = S_{xq} + 1\text{ S}_{đáy} = 2\pi Rh + \pi R^2$.
+$= 2 \cdot 3.14 \cdot 4 \cdot 15 + 3.14 \cdot 4^2 = 376.8 + 50.24 = 427.04\text{ cm}^2$.
+
+**Bài 2:**
+Nón lá chóp định $h = 16\text{ cm}, R = 12\text{ cm}$.
+a) Vận dụng định lí Pytago tính đường sinh nối mép $l$:
+$l = \sqrt{h^2 + R^2} = \sqrt{16^2 + 12^2} = \sqrt{256 + 144} = \sqrt{400} = 20\text{ cm}$.
+b) Sàn nón mũ đục thủng trên không để che hở đội lồng chóp sọ (nghĩa là không bị bọc và phủ ở sàn đáy). Diện tích lá chuối úp lấy cần mua là diện tích mặt rũ xung quanh sườn nón:
+$S_{xq} = \pi R l = \pi \cdot 12 \cdot 20 = 240\pi (\text{cm}^2)$.
+
+</div>
+</details>

@@ -1,0 +1,390 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 12: Tổng các góc trong một tam giác"
+description: "Định lí tổng ba góc trong tam giác - Toán 7 KNTT Chương 4"
+grade: "Lớp 7"
+chapter: "Chương IV: Tam giác bằng nhau"
+currentSlug: "lop7/bai-12-tong-cac-goc-tam-giac"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tổng ba góc trong một tam giác bằng:",
+    option_a: "$180^\\circ$",
+    option_b: "$90^\\circ$",
+    option_c: "$360^\\circ$",
+    option_d: "$270^\\circ$",
+    correct_option: "A",
+    explanation: "Định lí: Tổng ba góc trong một tam giác bằng $180^\\circ$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác có hai góc bằng $50^\\circ$ và $60^\\circ$. Góc thứ ba bằng:",
+    option_a: "$70^\\circ$",
+    option_b: "$110^\\circ$",
+    option_c: "$80^\\circ$",
+    option_d: "$90^\\circ$",
+    correct_option: "A",
+    explanation: "Góc thứ ba = $180^\\circ - 50^\\circ - 60^\\circ = 70^\\circ$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc ngoài của tam giác bằng:",
+    option_a: "Tổng hai góc trong không kề với nó",
+    option_b: "Một góc trong",
+    option_c: "$180^\\circ$",
+    option_d: "$90^\\circ$",
+    correct_option: "A",
+    explanation: "Định lí: Góc ngoài của tam giác bằng tổng hai góc trong không kề với nó.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác vuông có một góc nhọn bằng $35^\\circ$. Góc nhọn còn lại bằng:",
+    option_a: "$55^\\circ$",
+    option_b: "$45^\\circ$",
+    option_c: "$65^\\circ$",
+    option_d: "$90^\\circ$",
+    correct_option: "A",
+    explanation: "Hai góc nhọn trong tam giác vuông có tổng $90^\\circ$, nên góc còn lại = $90^\\circ - 35^\\circ = 55^\\circ$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác đều có mỗi góc bằng:",
+    option_a: "$60^\\circ$",
+    option_b: "$90^\\circ$",
+    option_c: "$45^\\circ$",
+    option_d: "$120^\\circ$",
+    correct_option: "A",
+    explanation: "Tam giác đều có ba góc bằng nhau, mỗi góc = $180^\\circ : 3 = 60^\\circ$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Trong tam giác vuông, khẳng định nào đúng?",
+    option_a: "Có một góc vuông",
+    option_b: "Hai góc nhọn phụ nhau",
+    option_c: "Tổng ba góc bằng $180^\\circ$",
+    option_d: "Có ba góc nhọn",
+    correct_option: "A,B,C",
+    explanation: "Tam giác vuông có một góc vuông, hai góc nhọn phụ nhau (tổng $90^\\circ$), và tổng ba góc bằng $180^\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Tổng các góc trong tam giác</h3>
+
+Một trong những định lí quan trọng nhất về tam giác!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">△</div>
+    <strong>Tam giác</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ba góc, ba cạnh</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">180°</div>
+    <strong>Tổng ba góc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Luôn bằng $180^\\circ$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Góc ngoài</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tổng hai góc trong</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-li">📖 1. Định lí tổng ba góc trong tam giác</h3>
+
+<div class="box-dinh-nghia">
+
+**Định lí:** Tổng ba góc trong một tam giác bằng $180^\circ$.
+
+Với tam giác $ABC$:
+$$\widehat{A} + \widehat{B} + \widehat{C} = 180^\circ$$
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="300" viewBox="0 0 400 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="200,50 100,250 300,250" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Điểm A, B, C */}
+  <circle cx="200" cy="50" r="4" fill="#1f2937"/>
+  <text x="200" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  <circle cx="100" cy="250" r="4" fill="#1f2937"/>
+  <text x="85" y="270" font-size="16" font-weight="bold" fill="#1f2937">B</text>
+  
+  <circle cx="300" cy="250" r="4" fill="#1f2937"/>
+  <text x="315" y="270" font-size="16" font-weight="bold" fill="#1f2937">C</text>
+  
+  {/* Góc A */}
+  <path d="M 180,80 A 40,40 0 0,1 220,80" fill="none" stroke="#10b981" stroke-width="2"/>
+  <text x="200" y="95" font-size="14" text-anchor="middle" fill="#10b981">Â</text>
+  
+  {/* Góc B */}
+  <path d="M 130,240 A 40,40 0 0,1 115,210" fill="none" stroke="#f59e0b" stroke-width="2"/>
+  <text x="125" y="225" font-size="14" fill="#f59e0b">B̂</text>
+  
+  {/* Góc C */}
+  <path d="M 285,210 A 40,40 0 0,1 270,240" fill="none" stroke="#ec4899" stroke-width="2"/>
+  <text x="275" y="225" font-size="14" fill="#ec4899">Ĉ</text>
+  
+  {/* Công thức */}
+  <text x="200" y="160" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">Â + B̂ + Ĉ = 180°</text>
+</svg>
+</div>
+
+**Chứng minh:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Vẽ đường thẳng $d$ qua $A$ song song với $BC$.
+
+Vì $d \parallel BC$ nên:
+- $\widehat{B} = \widehat{B_1}$ (so le trong)
+- $\widehat{C} = \widehat{C_1}$ (so le trong)
+
+Mà $\widehat{B_1} + \widehat{A} + \widehat{C_1} = 180^\\circ$ (góc bẹt)
+
+Suy ra: $\widehat{B} + \widehat{A} + \widehat{C} = 180^\\circ$
+
+</div>
+
+**Ví dụ 1:** Tam giác $ABC$ có $\widehat{A} = 70^\\circ$, $\widehat{B} = 50^\\circ$. Tính $\widehat{C}$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$$\widehat{C} = 180^\\circ - \widehat{A} - \widehat{B} = 180^\\circ - 70^\\circ - 50^\\circ = 60^\\circ$$
+
+</div>
+
+<h3 id="tam-giac-vuong" style="margin-top:2rem;">📐 2. Tam giác vuông</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Trong tam giác vuông, hai góc nhọn phụ nhau (tổng bằng $90^\\circ$).
+
+Nếu tam giác $ABC$ vuông tại $A$ thì:
+$$\widehat{B} + \widehat{C} = 90^\\circ$$
+
+</div>
+
+**Ví dụ 2:** Tam giác $ABC$ vuông tại $A$, có $\widehat{B} = 35^\\circ$. Tính $\widehat{C}$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$$\widehat{C} = 90^\\circ - \widehat{B} = 90^\\circ - 35^\\circ = 55^\\circ$$
+
+</div>
+
+<h3 id="goc-ngoai" style="margin-top:2rem;">↗️ 3. Góc ngoài của tam giác</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Góc ngoài của tam giác tại một đỉnh là góc kề bù với góc trong tại đỉnh đó.
+
+**Định lí:** Góc ngoài của tam giác bằng tổng hai góc trong không kề với nó.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="450" height="300" viewBox="0 0 450 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="200,50 100,250 300,250" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Kéo dài BC */}
+  <line x1="300" y1="250" x2="400" y2="250" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  {/* Điểm A, B, C, D */}
+  <circle cx="200" cy="50" r="4" fill="#1f2937"/>
+  <text x="200" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  <circle cx="100" cy="250" r="4" fill="#1f2937"/>
+  <text x="85" y="270" font-size="16" font-weight="bold" fill="#1f2937">B</text>
+  
+  <circle cx="300" cy="250" r="4" fill="#1f2937"/>
+  <text x="300" y="270" font-size="16" font-weight="bold" fill="#1f2937">C</text>
+  
+  <text x="410" y="255" font-size="16" font-weight="bold" fill="#1f2937">D</text>
+  
+  {/* Góc ngoài ACD */}
+  <path d="M 320,250 A 30,30 0 0,0 330,225" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="2"/>
+  <text x="340" y="240" font-size="14" font-weight="bold" fill="#ef4444">Góc ngoài</text>
+  
+  {/* Công thức */}
+  <text x="225" y="150" font-size="14" text-anchor="middle" fill="#1f2937">∠ACD = ∠A + ∠B</text>
+</svg>
+</div>
+
+**Ví dụ 3:** Tam giác $ABC$ có $\widehat{A} = 60^\\circ$, $\widehat{B} = 50^\\circ$. Tính góc ngoài tại đỉnh $C$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Góc ngoài tại $C = \widehat{A} + \widehat{B} = 60^\\circ + 50^\\circ = 110^\\circ$
+
+</div>
+
+<h3 id="cac-loai" style="margin-top:2rem;">📊 4. Các loại tam giác đặc biệt</h3>
+
+**a) Tam giác đều**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tam giác đều có ba góc bằng nhau, mỗi góc bằng:
+$$\dfrac{180^\\circ}{3} = 60^\\circ$$
+
+</div>
+
+**b) Tam giác vuông cân**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tam giác vuông cân có:
+- Một góc vuông: $90^\\circ$
+- Hai góc nhọn bằng nhau: mỗi góc $45^\\circ$
+
+</div>
+
+**c) Tam giác cân**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tam giác cân có hai góc ở đáy bằng nhau.
+
+Nếu $\widehat{B} = \widehat{C}$ thì:
+$$\widehat{A} = 180^\\circ - 2\widehat{B}$$
+
+</div>
+
+**Ví dụ 4:** Tam giác cân có góc ở đỉnh bằng $40^\\circ$. Tính các góc ở đáy.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tổng hai góc ở đáy: $180^\\circ - 40^\\circ = 140^\\circ$
+
+Mỗi góc ở đáy: $140^\\circ : 2 = 70^\\circ$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Một mái nhà có dạng tam giác. Góc ở đỉnh mái là $120^\\circ$, hai góc ở chân mái bằng nhau.
+
+a) Tính mỗi góc ở chân mái.
+
+b) Nếu góc ở đỉnh giảm xuống $100^\\circ$, mỗi góc ở chân mái là bao nhiêu?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tổng hai góc ở chân: $180^\\circ - 120^\\circ = 60^\\circ$
+
+Mỗi góc: $60^\\circ : 2 = 30^\\circ$
+
+b) Tổng hai góc: $180^\\circ - 100^\\circ = 80^\\circ$
+
+Mỗi góc: $80^\\circ : 2 = 40^\\circ$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định lí**: Tổng ba góc trong tam giác = $180^\\circ$
+- **Tam giác vuông**: Hai góc nhọn phụ nhau (tổng $90^\\circ$)
+- **Góc ngoài**: Bằng tổng hai góc trong không kề
+- **Tam giác đều**: Mỗi góc $60^\\circ$
+- **Tam giác vuông cân**: Hai góc nhọn mỗi góc $45^\\circ$
+- **Tam giác cân**: Hai góc ở đáy bằng nhau
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính góc còn lại của tam giác, biết:
+
+a) Hai góc bằng $45^\\circ$ và $65^\\circ$
+
+b) Hai góc bằng $30^\\circ$ và $80^\\circ$
+
+c) Hai góc bằng $55^\\circ$ và $55^\\circ$
+
+**Bài 2:** Tam giác vuông có một góc nhọn bằng:
+
+a) $40^\\circ$ &nbsp;&nbsp;&nbsp; b) $25^\\circ$ &nbsp;&nbsp;&nbsp; c) $60^\\circ$
+
+Tính góc nhọn còn lại.
+
+**Bài 3:** Tam giác có góc ngoài tại một đỉnh bằng $130^\\circ$. Biết hai góc trong không kề với góc ngoài này bằng nhau. Tính các góc của tam giác.
+
+**Bài 4:** Tam giác cân có góc ở đỉnh bằng:
+
+a) $80^\\circ$ &nbsp;&nbsp;&nbsp; b) $100^\\circ$ &nbsp;&nbsp;&nbsp; c) $50^\\circ$
+
+Tính các góc ở đáy.
+
+**Bài 5:** Tam giác $ABC$ có $\widehat{A} = 2\widehat{B}$ và $\widehat{B} = \widehat{C}$. Tính các góc của tam giác.
+
+**Bài 6:** Chứng minh: Trong tam giác vuông, góc ngoài tại đỉnh góc vuông bằng $90^\\circ$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $70^\\circ$; b) $70^\\circ$; c) $70^\\circ$
+
+**Bài 2:** a) $50^\\circ$; b) $65^\\circ$; c) $30^\\circ$
+
+**Bài 3:** Hai góc bằng nhau mỗi góc $65^\\circ$, góc còn lại $50^\\circ$
+
+**Bài 4:** a) $50^\\circ$; b) $40^\\circ$; c) $65^\\circ$
+
+**Bài 5:** $\widehat{A} = 90^\\circ$, $\widehat{B} = \widehat{C} = 45^\\circ$
+
+**Bài 6:** Góc ngoài = tổng hai góc nhọn = $90^\\circ$
+
+</div>
+</details>

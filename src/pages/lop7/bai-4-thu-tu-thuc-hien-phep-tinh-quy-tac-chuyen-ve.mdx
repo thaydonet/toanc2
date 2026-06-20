@@ -1,0 +1,517 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 4: Thứ tự thực hiện các phép tính. Quy tắc chuyển vế"
+description: "Thứ tự ưu tiên các phép toán và quy tắc chuyển vế - Toán 7 KNTT Chương 1"
+grade: "Lớp 7"
+chapter: "Chương I: Số hữu tỉ"
+currentSlug: "lop7/bai-4-thu-tu-thuc-hien-phep-tinh-quy-tac-chuyen-ve"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Kết quả của phép tính $2 + 3 \\times 4$ là:",
+    option_a: "$14$",
+    option_b: "$20$",
+    option_c: "$24$",
+    option_d: "$12$",
+    correct_option: "A",
+    explanation: "Nhân trước, cộng sau: $2 + 3 \\times 4 = 2 + 12 = 14$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của phép tính $(5 + 3) \\times 2$ là:",
+    option_a: "$16$",
+    option_b: "$11$",
+    option_c: "$13$",
+    option_d: "$10$",
+    correct_option: "A",
+    explanation: "Thực hiện trong ngoặc trước: $(5 + 3) \\times 2 = 8 \\times 2 = 16$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của phép tính $2^3 + 4 \\times 5$ là:",
+    option_a: "$28$",
+    option_b: "$70$",
+    option_c: "$48$",
+    option_d: "$32$",
+    correct_option: "A",
+    explanation: "Lũy thừa trước, nhân sau, cộng cuối: $2^3 + 4 \\times 5 = 8 + 20 = 28$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải phương trình $x + 5 = 12$ bằng quy tắc chuyển vế:",
+    option_a: "$x = 7$",
+    option_b: "$x = 17$",
+    option_c: "$x = -7$",
+    option_d: "$x = 5$",
+    correct_option: "A",
+    explanation: "Chuyển vế: $x = 12 - 5 = 7$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải phương trình $3x = 15$:",
+    option_a: "$x = 5$",
+    option_b: "$x = 45$",
+    option_c: "$x = 12$",
+    option_d: "$x = 18$",
+    correct_option: "A",
+    explanation: "Chia cả hai vế cho 3: $x = 15 : 3 = 5$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Thứ tự ưu tiên thực hiện phép tính (từ cao đến thấp) là:",
+    option_a: "Ngoặc đơn",
+    option_b: "Lũy thừa",
+    option_c: "Nhân, chia",
+    option_d: "Cộng, trừ",
+    correct_option: "A,B,C,D",
+    explanation: "Thứ tự đúng: Ngoặc → Lũy thừa → Nhân, chia → Cộng, trừ",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Thứ tự và quy tắc — Chìa khóa tính đúng</h3>
+
+Biết thứ tự thực hiện phép tính và quy tắc chuyển vế giúp giải toán chính xác!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📋</div>
+    <strong>Thứ tự phép tính</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ngoặc → Lũy thừa → Nhân, chia → Cộng, trừ</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">↔️</div>
+    <strong>Quy tắc chuyển vế</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đổi dấu khi chuyển vế</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="thu-tu">📋 1. Thứ tự thực hiện các phép tính</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc thứ tự ưu tiên:**
+
+1. **Ngoặc đơn** ( ), ngoặc vuông [ ], ngoặc nhọn { }
+2. **Lũy thừa**
+3. **Nhân và chia** (từ trái sang phải)
+4. **Cộng và trừ** (từ trái sang phải)
+
+**Ghi nhớ:** **N**goặc - **L**ũy thừa - **N**hân **C**hia - **C**ộng **T**rừ
+
+</div>
+
+**Ví dụ 1:** Tính theo thứ tự đúng
+
+a) $5 + 3 \times 2$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Nhân trước: $3 \times 2 = 6$
+
+Cộng sau: $5 + 6 = 11$
+
+**Kết quả:** $11$
+
+</div>
+
+b) $(5 + 3) \times 2$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Ngoặc trước: $5 + 3 = 8$
+
+Nhân sau: $8 \times 2 = 16$
+
+**Kết quả:** $16$
+
+</div>
+
+c) $2^3 + 4 \times 5 - 6$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Lũy thừa: $2^3 = 8$
+
+Nhân: $4 \times 5 = 20$
+
+Cộng trừ: $8 + 20 - 6 = 22$
+
+**Kết quả:** $22$
+
+</div>
+
+**Ví dụ 2:** Biểu thức phức tạp hơn
+
+$$3 \times [5 + (7 - 2)^2] : 6$$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Ngoặc đơn trong cùng: $7 - 2 = 5$
+
+$$= 3 \times [5 + 5^2] : 6$$
+
+**Bước 2:** Lũy thừa: $5^2 = 25$
+
+$$= 3 \times [5 + 25] : 6$$
+
+**Bước 3:** Ngoặc vuông: $5 + 25 = 30$
+
+$$= 3 \times 30 : 6$$
+
+**Bước 4:** Nhân và chia từ trái sang phải: $3 \times 30 = 90$, rồi $90 : 6 = 15$
+
+**Kết quả:** $15$
+
+</div>
+
+<h3 id="quy-tac-chuyen-ve" style="margin-top:2rem;">↔️ 2. Quy tắc chuyển vế</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc chuyển vế:**
+
+Khi chuyển một số hạng từ vế này sang vế kia của một đẳng thức, ta phải **đổi dấu** số hạng đó.
+
+- Nếu ở vế này là **cộng** (+), sang vế kia thành **trừ** (-)
+- Nếu ở vế này là **trừ** (-), sang vế kia thành **cộng** (+)
+
+</div>
+
+**Ví dụ 3:** Áp dụng quy tắc chuyển vế
+
+a) $x + 5 = 12$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chuyển $+5$ sang vế phải thành $-5$:
+
+$$x = 12 - 5$$
+
+$$x = 7$$
+
+</div>
+
+b) $x - 3 = 8$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chuyển $-3$ sang vế phải thành $+3$:
+
+$$x = 8 + 3$$
+
+$$x = 11$$
+
+</div>
+
+c) $\dfrac{2}{3} + x = \dfrac{5}{6}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chuyển $\dfrac{2}{3}$ sang vế phải:
+
+$$x = \dfrac{5}{6} - \dfrac{2}{3}$$
+
+$$x = \dfrac{5}{6} - \dfrac{4}{6} = \dfrac{1}{6}$$
+
+</div>
+
+<h3 id="nhan-chia" style="margin-top:2rem;">✖️➗ 3. Quy tắc với phép nhân và chia</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc nhân chia:**
+
+- Khi chuyển một **thừa số** từ vế này sang vế kia, nó trở thành **ước số** (chia)
+- Khi chuyển một **ước số** từ vế này sang vế kia, nó trở thành **thừa số** (nhân)
+
+</div>
+
+**Ví dụ 4:**
+
+a) $3x = 15$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chuyển thừa số $3$ sang vế phải thành chia:
+
+$$x = 15 : 3$$
+
+$$x = 5$$
+
+</div>
+
+b) $\dfrac{x}{4} = 2$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chuyển ước số $4$ sang vế phải thành nhân:
+
+$$x = 2 \times 4$$
+
+$$x = 8$$
+
+</div>
+
+c) $\dfrac{2}{3}x = \dfrac{4}{9}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chia cả hai vế cho $\dfrac{2}{3}$ (hoặc nhân với $\dfrac{3}{2}$):
+
+$$x = \dfrac{4}{9} : \dfrac{2}{3} = \dfrac{4}{9} \times \dfrac{3}{2} = \dfrac{12}{18} = \dfrac{2}{3}$$
+
+</div>
+
+<h3 id="bai-toan-tong-hop" style="margin-top:2rem;">🔬 4. Bài toán tổng hợp</h3>
+
+**Ví dụ 5:** Giải phương trình
+
+a) $2x + 5 = 13$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Chuyển vế $+5$:
+
+$$2x = 13 - 5$$
+
+$$2x = 8$$
+
+**Bước 2:** Chia cả hai vế cho $2$:
+
+$$x = 8 : 2$$
+
+$$x = 4$$
+
+</div>
+
+b) $\dfrac{x}{3} - 2 = 4$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Chuyển vế $-2$:
+
+$$\dfrac{x}{3} = 4 + 2$$
+
+$$\dfrac{x}{3} = 6$$
+
+**Bước 2:** Nhân cả hai vế với $3$:
+
+$$x = 6 \times 3$$
+
+$$x = 18$$
+
+</div>
+
+c) $3(x - 2) = 12$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Chia cả hai vế cho $3$:
+
+$$x - 2 = 12 : 3$$
+
+$$x - 2 = 4$$
+
+**Bước 2:** Chuyển vế $-2$:
+
+$$x = 4 + 2$$
+
+$$x = 6$$
+
+</div>
+
+<h3 id="luu-y" style="margin-top:2rem;">⚠️ 5. Lưu ý quan trọng</h3>
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Những sai lầm thường gặp:**
+
+1. **Quên đổi dấu khi chuyển vế:**
+   - Sai: $x + 5 = 12 \Rightarrow x = 12 + 5$ ❌
+   - Đúng: $x + 5 = 12 \Rightarrow x = 12 - 5$ ✓
+
+2. **Không tuân thủ thứ tự phép tính:**
+   - Sai: $2 + 3 \times 4 = 5 \times 4 = 20$ ❌
+   - Đúng: $2 + 3 \times 4 = 2 + 12 = 14$ ✓
+
+3. **Quên tính ngoặc trước:**
+   - Sai: $2 \times (3 + 4) = 6 + 4 = 10$ ❌
+   - Đúng: $2 \times (3 + 4) = 2 \times 7 = 14$ ✓
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Một cửa hàng bán áo. Giá mỗi chiếc áo là $x$ nghìn đồng. Bạn mua 3 chiếc áo và được giảm giá 15 nghìn đồng, tổng cộng phải trả 135 nghìn đồng.
+
+a) Viết phương trình biểu diễn bài toán.
+
+b) Tìm giá mỗi chiếc áo.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Phương trình: $3x - 15 = 135$
+
+b) Giải phương trình:
+
+Chuyển vế $-15$:
+$$3x = 135 + 15$$
+$$3x = 150$$
+
+Chia cả hai vế cho $3$:
+$$x = 150 : 3$$
+$$x = 50$$
+
+**Vậy giá mỗi chiếc áo là 50 nghìn đồng.**
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Thứ tự phép tính**: Ngoặc → Lũy thừa → Nhân, chia → Cộng, trừ
+- **Quy tắc chuyển vế**: Đổi dấu khi chuyển vế
+  - $(+)$ thành $(-)$, $(-)$ thành $(+)$
+- **Nhân chia**: Thừa số ↔ Ước số
+- **Kiểm tra**: Luôn thay kết quả vào phương trình để kiểm tra
+- **Lưu ý**: Thực hiện từ trái sang phải với các phép cùng cấp
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Thực hiện phép tính (theo đúng thứ tự):
+
+a) $15 - 3 \times 4 + 2$
+
+b) $(15 - 3) \times 4 + 2$
+
+c) $2^3 + 3 \times 4 - 5$
+
+d) $5 + 2 \times (8 - 3)^2$
+
+e) $100 : [25 - (3 + 2)^2]$
+
+**Bài 2:** Tính giá trị biểu thức:
+
+a) $\dfrac{1}{2} + \dfrac{1}{3} \times 6$
+
+b) $\left(\dfrac{1}{2} + \dfrac{1}{3}\right) \times 6$
+
+c) $\dfrac{2}{3} \times \dfrac{3}{4} + \dfrac{1}{4}$
+
+d) $\left(\dfrac{1}{2}\right)^2 + \dfrac{3}{4} : \dfrac{1}{2}$
+
+**Bài 3:** Giải phương trình bằng quy tắc chuyển vế:
+
+a) $x + 7 = 15$
+
+b) $x - 5 = 12$
+
+c) $\dfrac{2}{3} + x = \dfrac{5}{6}$
+
+d) $x - \dfrac{1}{4} = \dfrac{3}{8}$
+
+**Bài 4:** Giải phương trình:
+
+a) $5x = 35$
+
+b) $\dfrac{x}{6} = 3$
+
+c) $\dfrac{3}{4}x = \dfrac{9}{16}$
+
+d) $\dfrac{x}{5} = -\dfrac{2}{3}$
+
+**Bài 5:** Giải phương trình tổng hợp:
+
+a) $3x + 7 = 22$
+
+b) $2x - 5 = 11$
+
+c) $\dfrac{x}{4} + 3 = 7$
+
+d) $5(x - 2) = 15$
+
+e) $\dfrac{2x + 1}{3} = 5$
+
+**Bài 6:** Tìm $x$, biết:
+
+a) $2(x + 3) - 5 = 11$
+
+b) $3x - (x + 5) = 7$
+
+c) $\dfrac{x + 2}{5} = \dfrac{3}{10}$
+
+d) $(x - 1)^2 = 16$
+
+**Bài 7 (Thực tế):** Một người đi xe đạp với vận tốc $x$ km/h trong 3 giờ, được quãng đường 45 km.
+
+a) Viết phương trình biểu diễn bài toán.
+
+b) Tìm vận tốc xe đạp.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $5$; b) $50$; c) $15$; d) $55$; e) $-20$
+
+**Bài 2:** a) $\dfrac{5}{2}$; b) $5$; c) $\dfrac{3}{4}$; d) $\dfrac{7}{4}$
+
+**Bài 3:** a) $x = 8$; b) $x = 17$; c) $x = \dfrac{1}{6}$; d) $x = \dfrac{5}{8}$
+
+**Bài 4:** a) $x = 7$; b) $x = 18$; c) $x = \dfrac{3}{4}$; d) $x = -\dfrac{10}{3}$
+
+**Bài 5:** a) $x = 5$; b) $x = 8$; c) $x = 16$; d) $x = 5$; e) $x = 7$
+
+**Bài 6:** a) $x = 5$; b) $x = 6$; c) $x = -\dfrac{1}{2}$; d) $x = 5$ hoặc $x = -3$
+
+**Bài 7:** a) $3x = 45$; b) $x = 15$ km/h
+
+</div>
+</details>

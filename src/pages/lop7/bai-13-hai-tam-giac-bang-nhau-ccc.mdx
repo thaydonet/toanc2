@@ -1,0 +1,213 @@
+﻿---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 13: Hai tam giác bằng nhau. Trường hợp bằng nhau thứ nhất"
+description: "Tam giác bằng nhau và trường hợp c.c.c - Toán 7 KNTT Chương 4"
+grade: "Lớp 7"
+chapter: "Chương IV: Tam giác bằng nhau"
+currentSlug: "lop7/bai-13-hai-tam-giac-bang-nhau-ccc"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai tam giác bằng nhau khi:",
+    option_a: "Các cạnh và góc tương ứng bằng nhau",
+    option_b: "Chỉ các cạnh bằng nhau",
+    option_c: "Chỉ các góc bằng nhau",
+    option_d: "Diện tích bằng nhau",
+    correct_option: "A",
+    explanation: "Hai tam giác bằng nhau khi các cạnh và góc tương ứng bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trường hợp bằng nhau c.c.c là:",
+    option_a: "Ba cạnh bằng nhau từng đôi một",
+    option_b: "Ba góc bằng nhau",
+    option_c: "Hai cạnh và một góc",
+    option_d: "Một cạnh và hai góc",
+    correct_option: "A",
+    explanation: "Trường hợp c.c.c: Nếu ba cạnh của tam giác này bằng ba cạnh của tam giác kia thì hai tam giác bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ký hiệu hai tam giác ABC và DEF bằng nhau là:",
+    option_a: "$\\\\triangle ABC = \\\\triangle DEF$",
+    option_b: "$\\\\triangle ABC \\\\sim \\\\triangle DEF$",
+    option_c: "$\\\\triangle ABC \\\\parallel \\\\triangle DEF$",
+    option_d: "$\\\\triangle ABC \\\\perp \\\\triangle DEF$",
+    correct_option: "A",
+    explanation: "Ký hiệu bằng nhau là dấu =",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\\\triangle ABC = \\\\triangle DEF$. Cạnh tương ứng với AB là:",
+    option_a: "DE",
+    option_b: "EF",
+    option_c: "DF",
+    option_d: "FD",
+    correct_option: "A",
+    explanation: "Cạnh tương ứng với AB là DE (theo thứ tự đỉnh).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để chứng minh hai tam giác bằng nhau theo c.c.c cần:",
+    option_a: "Ba cạnh của tam giác này",
+    option_b: "Ba cạnh của tam giác kia",
+    option_c: "Chứng minh ba cặp cạnh tương ứng bằng nhau",
+    option_d: "Chứng minh các góc bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "Cần chứng minh ba cặp cạnh tương ứng bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau"> Hai tam giác bằng nhau</h3>
+
+Khi nào hai tam giác được coi là bằng nhau?
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;"> = </div>
+    <strong>Bằng nhau</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cạnh và góc tương ứng bằng nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">c.c.c</div>
+    <strong>Trường hợp 1</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ba cạnh bằng nhau</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem"> 1. Hai tam giác bằng nhau</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hai tam giác bằng nhau là hai tam giác có các cạnh tương ứng bằng nhau và các góc tương ứng bằng nhau.
+
+**Ký hiệu:** $\\triangle ABC = \\triangle DEF$
+
+</div>
+
+**Ví dụ 1:** Nếu $\\triangle ABC = \\triangle DEF$ thì:
+-  = DE$,  = EF$,  = FD$
+- $\\widehat{A} = \\widehat{D}$, $\\widehat{B} = \\widehat{E}$, $\\widehat{C} = \\widehat{F}$
+
+<h3 id="truong-hop-ccc" style="margin-top:2rem;"> 2. Trường hợp bằng nhau c.c.c</h3>
+
+<div class="box-dinh-ly">
+
+**Trường hợp bằng nhau cạnh - cạnh - cạnh (c.c.c):**
+
+Nếu ba cạnh của tam giác này lần lượt bằng ba cạnh của tam giác kia thì hai tam giác đó bằng nhau.
+
+</div>
+
+**Ví dụ 2:** Cho $\\triangle ABC$ và $\\triangle DEF$ có:
+-  = DE = 5$ cm
+-  = EF = 6$ cm  
+-  = FD = 7$ cm
+
+Kết luận: $\\triangle ABC = \\triangle DEF$ (c.c.c)
+
+<h3 id="chung-minh" style="margin-top:2rem;"> 3. Cách chứng minh</h3>
+
+**Các bước chứng minh hai tam giác bằng nhau:**
+
+1. Xét hai tam giác cần chứng minh
+2. Chỉ ra ba cặp cạnh tương ứng bằng nhau
+3. Kết luận hai tam giác bằng nhau theo c.c.c
+
+**Ví dụ 3:** Cho $\\triangle ABC$ có  = AC$. Gọi $ là trung điểm của $. Chứng minh $\\triangle ABM = \\triangle ACM$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Chứng minh:**
+
+Xét $\\triangle ABM$ và $\\triangle ACM$ có:
+-  = AC$ (gt)
+-  = CM$ ($ là trung điểm của $)
+- $ chung
+
+Vậy $\\triangle ABM = \\triangle ACM$ (c.c.c)
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung"> Vận dụng thực tế</h3>
+
+** Bài toán:** Hai mảnh ghép hình tam giác có ba cạnh lần lượt bằng nhau. Hai mảnh ghép này có giống hệt nhau không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:** Có, vì hai tam giác có ba cạnh tương ứng bằng nhau thì bằng nhau (c.c.c).
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Hai tam giác bằng nhau**: Cạnh và góc tương ứng bằng nhau
+- **Trường hợp c.c.c**: Ba cạnh bằng nhau  hai tam giác bằng nhau
+- **Ký hiệu**: $\\triangle ABC = \\triangle DEF$
+- Thứ tự đỉnh quan trọng khi viết bằng nhau
+- Cạnh chung, cạnh trung điểm thường dùng trong chứng minh
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;"> Bài tập tự luận</h3>
+
+**Bài 1:** Cho $\\triangle ABC = \\triangle MNP$. Biết  = 5$ cm,  = 6$ cm, $\\widehat{A} = 60^\\circ$. Tính $, $, $\\widehat{M}$.
+
+**Bài 2:** Cho $\\triangle ABC$ có  = AC$. Gọi $ là trung điểm của $. Chứng minh $\\triangle ABM = \\triangle ACM$.
+
+**Bài 3:** Cho đoạn thẳng $. Gọi $ là trung điểm. Trên cùng một nửa mặt phẳng bờ $, vẽ  = BD$ và  \\perp AB$,  \\perp AB$. Chứng minh $\\triangle AMC = \\triangle BMD$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;"> Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**  = 5$ cm,  = 6$ cm, $\\widehat{M} = 60^\\circ$
+
+**Bài 2:** Dùng c.c.c với  = AC$,  = CM$, $ chung
+
+**Bài 3:** Dùng c.c.c với  = BM$,  = BD$,  = MD$
+
+</div>
+</details>

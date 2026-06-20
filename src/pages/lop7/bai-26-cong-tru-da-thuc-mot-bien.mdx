@@ -1,0 +1,297 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 26: Phép cộng và phép trừ đa thức một biến"
+description: "Cộng trừ đa thức một biến - Toán 7 KNTT Chương 7"
+grade: "Lớp 7"
+chapter: "Chương VII: Biểu thức đại số và đa thức một biến"
+currentSlug: "lop7/bai-26-cong-tru-da-thuc-mot-bien"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Để cộng hai đa thức, ta:",
+    option_a: "Cộng các hạng tử đồng dạng",
+    option_b: "Cộng tất cả các hệ số",
+    option_c: "Cộng các bậc",
+    option_d: "Nhân các hệ số",
+    correct_option: "A",
+    explanation: "Cộng đa thức bằng cách cộng các hạng tử đồng dạng (cùng bậc).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $P(x) = 2x + 3$ và $Q(x) = 5x - 1$. Tính $P(x) + Q(x)$:",
+    option_a: "$7x + 2$",
+    option_b: "$7x + 4$",
+    option_c: "$3x + 2$",
+    option_d: "$10x + 2$",
+    correct_option: "A",
+    explanation: "$P(x) + Q(x) = (2x + 3) + (5x - 1) = 7x + 2$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $P(x) = 3x^2 - 2x$ và $Q(x) = x^2 + 5x$. Tính $P(x) - Q(x)$:",
+    option_a: "$2x^2 - 7x$",
+    option_b: "$4x^2 + 3x$",
+    option_c: "$2x^2 + 3x$",
+    option_d: "$4x^2 - 7x$",
+    correct_option: "A",
+    explanation: "$P(x) - Q(x) = (3x^2 - 2x) - (x^2 + 5x) = 2x^2 - 7x$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đa thức đối của $P(x) = 3x - 5$ là:",
+    option_a: "$-3x + 5$",
+    option_b: "$3x + 5$",
+    option_c: "$-3x - 5$",
+    option_d: "$5 - 3x$",
+    correct_option: "A",
+    explanation: "Đa thức đối là đổi dấu tất cả các hạng tử: $-P(x) = -3x + 5$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khi cộng hai đa thức, ta cần:",
+    option_a: "Bỏ dấu ngoặc",
+    option_b: "Nhóm các hạng tử đồng dạng",
+    option_c: "Cộng các hạng tử đồng dạng",
+    option_d: "Thu gọn kết quả",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các bước đều cần thiết khi cộng đa thức.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho $P(x) = 4x + 1$ và $Q(x) = 2x - 3$. Hệ số của x trong $P(x) + Q(x)$ là bao nhiêu?",
+    correct_option: "6",
+    explanation: "$P(x) + Q(x) = 6x - 2$, hệ số của x là 6",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Cộng và trừ đa thức</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">+</div>
+    <strong>Cộng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cộng hạng tử đồng dạng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">−</div>
+    <strong>Trừ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đổi dấu rồi cộng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="cong-da-thuc">📖 1. Phép cộng đa thức</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:** Để cộng hai đa thức, ta:
+
+1. Bỏ dấu ngoặc
+2. Nhóm các hạng tử đồng dạng (cùng bậc)
+3. Cộng các hạng tử đồng dạng
+4. Thu gọn kết quả
+
+</div>
+
+**Ví dụ 1:** Cho $P(x) = 3x^2 - 2x + 5$ và $Q(x) = x^2 + 4x - 3$. Tính $P(x) + Q(x)$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$P(x) + Q(x) = (3x^2 - 2x + 5) + (x^2 + 4x - 3)$
+
+$= 3x^2 - 2x + 5 + x^2 + 4x - 3$
+
+$= (3x^2 + x^2) + (-2x + 4x) + (5 - 3)$
+
+$= 4x^2 + 2x + 2$
+
+</div>
+
+<h3 id="tru-da-thuc" style="margin-top:2rem;">📖 2. Phép trừ đa thức</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:** Để trừ hai đa thức, ta:
+
+1. Đổi dấu tất cả các hạng tử của đa thức bị trừ
+2. Cộng đa thức thứ nhất với đa thức đối của đa thức thứ hai
+
+$$P(x) - Q(x) = P(x) + (-Q(x))$$
+
+</div>
+
+**Ví dụ 2:** Cho $P(x) = 5x^2 - 3x + 1$ và $Q(x) = 2x^2 + x - 4$. Tính $P(x) - Q(x)$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$P(x) - Q(x) = (5x^2 - 3x + 1) - (2x^2 + x - 4)$
+
+$= 5x^2 - 3x + 1 - 2x^2 - x + 4$
+
+$= (5x^2 - 2x^2) + (-3x - x) + (1 + 4)$
+
+$= 3x^2 - 4x + 5$
+
+</div>
+
+<h3 id="da-thuc-doi" style="margin-top:2rem;">📖 3. Đa thức đối</h3>
+
+<div class="box-dinh-nghia">
+
+**Đa thức đối** của $P(x)$ là $-P(x)$, được tạo bằng cách đổi dấu tất cả các hạng tử.
+
+$$P(x) + (-P(x)) = 0$$
+
+</div>
+
+**Ví dụ 3:** Tìm đa thức đối của $P(x) = 3x^2 - 5x + 2$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$-P(x) = -(3x^2 - 5x + 2) = -3x^2 + 5x - 2$
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📖 4. Tính chất</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất giao hoán:** $P(x) + Q(x) = Q(x) + P(x)$
+
+**Tính chất kết hợp:** $[P(x) + Q(x)] + R(x) = P(x) + [Q(x) + R(x)]$
+
+**Cộng với 0:** $P(x) + 0 = P(x)$
+
+**Cộng với đa thức đối:** $P(x) + (-P(x)) = 0$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Một hình chữ nhật có chiều dài $P(x) = 2x + 3$ và chiều rộng $Q(x) = x + 1$. Tính chu vi hình chữ nhật.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chu vi = $2[P(x) + Q(x)]$
+
+$= 2[(2x + 3) + (x + 1)]$
+
+$= 2(3x + 4)$
+
+$= 6x + 8$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Cộng**: nhóm và cộng hạng tử đồng dạng
+- **Trừ**: đổi dấu rồi cộng
+- **Đa thức đối**: đổi dấu tất cả hạng tử
+- **Tính chất**: giao hoán, kết hợp
+- **Lưu ý**: cẩn thận với dấu ngoặc
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính tổng:
+
+a) $(3x + 2) + (5x - 1)$
+
+b) $(x^2 - 3x + 1) + (2x^2 + x - 4)$
+
+c) $(4x^3 - 2x + 5) + (x^3 + 3x^2 - 1)$
+
+**Bài 2:** Tính hiệu:
+
+a) $(7x - 3) - (2x + 5)$
+
+b) $(3x^2 + 4x - 1) - (x^2 - 2x + 3)$
+
+c) $(5x^3 - x^2 + 2) - (2x^3 + 3x^2 - x)$
+
+**Bài 3:** Tìm đa thức đối:
+
+a) $P(x) = 5x - 7$
+
+b) $Q(x) = 2x^2 - 3x + 1$
+
+c) $R(x) = -x^3 + 4x - 2$
+
+**Bài 4:** Cho $P(x) = 2x^2 - 3x + 1$, $Q(x) = x^2 + 2x - 5$, $R(x) = -x^2 + x + 3$. Tính:
+
+a) $P(x) + Q(x)$
+
+b) $P(x) - Q(x)$
+
+c) $P(x) + Q(x) + R(x)$
+
+d) $P(x) - Q(x) + R(x)$
+
+**Bài 5:** Tìm đa thức $M(x)$ biết:
+
+a) $M(x) + (2x - 3) = 5x + 1$
+
+b) $M(x) - (x^2 - 2x) = 3x^2 + x - 1$
+
+c) $(3x^2 + 2x) - M(x) = x^2 - x + 5$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $8x + 1$; b) $3x^2 - 2x - 3$; c) $5x^3 + 3x^2 - 2x + 4$
+
+**Bài 2:** a) $5x - 8$; b) $2x^2 + 6x - 4$; c) $3x^3 - 4x^2 + x + 2$
+
+**Bài 3:** a) $-5x + 7$; b) $-2x^2 + 3x - 1$; c) $x^3 - 4x + 2$
+
+**Bài 4:** a) $3x^2 - x - 4$; b) $x^2 - 5x + 6$; c) $2x^2 - 2x - 1$; d) $-x - 3$
+
+**Bài 5:** a) $M(x) = 3x + 4$; b) $M(x) = 4x^2 - x - 1$; c) $M(x) = 2x^2 + 3x - 5$
+
+</div>
+</details>

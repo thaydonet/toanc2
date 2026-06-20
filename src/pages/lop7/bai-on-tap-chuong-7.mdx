@@ -1,0 +1,548 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 7 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 7 Toán 7 KNTT: Biểu thức đại số, đa thức, cộng trừ, nhân chia đa thức"
+grade: "Lớp 7"
+chapter: "Chương VII: Biểu thức đại số"
+currentSlug: "lop7/bai-on-tap-chuong-7"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Biểu thức đại số là:",
+    option_a: "Biểu thức gồm các số, biến và các phép toán",
+    option_b: "Chỉ gồm các số",
+    option_c: "Chỉ gồm các biến",
+    option_d: "Chỉ gồm các phép toán",
+    correct_option: "A",
+    explanation: "Biểu thức đại số gồm các số, biến và các phép toán",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đơn thức là:",
+    option_a: "Biểu thức gồm tích của các số và biến",
+    option_b: "Biểu thức gồm tổng của các số",
+    option_c: "Biểu thức gồm hiệu của các biến",
+    option_d: "Biểu thức gồm thương của các số",
+    correct_option: "A",
+    explanation: "Đơn thức là biểu thức gồm tích của các số và biến",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bậc của đơn thức $3x^2y^3$ là:",
+    option_a: "$5$",
+    option_b: "$3$",
+    option_c: "$2$",
+    option_d: "$6$",
+    correct_option: "A",
+    explanation: "Bậc = $2 + 3 = 5$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đa thức là:",
+    option_a: "Tổng của các đơn thức",
+    option_b: "Tích của các đơn thức",
+    option_c: "Hiệu của các đơn thức",
+    option_d: "Thương của các đơn thức",
+    correct_option: "A",
+    explanation: "Đa thức là tổng của các đơn thức",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bậc của đa thức $2x^3 + 3x^2 - x + 5$ là:",
+    option_a: "$3$",
+    option_b: "$2$",
+    option_c: "$1$",
+    option_d: "$5$",
+    correct_option: "A",
+    explanation: "Bậc của đa thức là bậc cao nhất của các hạng tử, đó là $3$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đơn thức đồng dạng là:",
+    option_a: "Hai đơn thức có cùng phần biến",
+    option_b: "Hai đơn thức có cùng hệ số",
+    option_c: "Hai đơn thức có cùng bậc",
+    option_d: "Hai đơn thức có cùng số biến",
+    correct_option: "A",
+    explanation: "Hai đơn thức đồng dạng có cùng phần biến",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $3x^2 + 2x^2$ là:",
+    option_a: "$5x^2$",
+    option_b: "$5x^4$",
+    option_c: "$6x^2$",
+    option_d: "$x^2$",
+    correct_option: "A",
+    explanation: "$3x^2 + 2x^2 = (3+2)x^2 = 5x^2$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $2x \\times 3x^2$ là:",
+    option_a: "$6x^3$",
+    option_b: "$5x^3$",
+    option_c: "$6x^2$",
+    option_d: "$5x^2$",
+    correct_option: "A",
+    explanation: "$2x \\times 3x^2 = (2 \\times 3) \\times (x \\times x^2) = 6x^3$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $(x + 2)(x + 3)$ là:",
+    option_a: "$x^2 + 5x + 6$",
+    option_b: "$x^2 + 5x + 5$",
+    option_c: "$x^2 + 6x + 6$",
+    option_d: "$x^2 + 3x + 6$",
+    correct_option: "A",
+    explanation: "$(x + 2)(x + 3) = x^2 + 3x + 2x + 6 = x^2 + 5x + 6$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của biểu thức $2x + 3$ khi $x = 1$ là:",
+    option_a: "$5$",
+    option_b: "$3$",
+    option_c: "$2$",
+    option_d: "$6$",
+    correct_option: "A",
+    explanation: "$2(1) + 3 = 2 + 3 = 5$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 7 — Biểu thức đại số</h3>
+
+Chương 7 giới thiệu biểu thức đại số, đơn thức, đa thức và các phép toán. Hãy cùng ôn tập lại toàn bộ kiến thức!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📝</div>
+    <strong>Biểu thức đại số</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đơn thức, đa thức</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
+    <strong>Phép cộng, trừ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đơn thức đồng dạng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✖️</div>
+    <strong>Phép nhân, chia</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đa thức</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="bieu-thuc-dai-so">1. Biểu thức đại số</h4>
+
+**Định nghĩa:** Biểu thức đại số là biểu thức gồm các số, biến và các phép toán.
+
+**Ví dụ:** $2x + 3$, $x^2 - 2xy + y^2$, $\frac{a+b}{2}$
+
+<h4 id="don-thuc">2. Đơn thức</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Đơn thức là biểu thức gồm tích của các số và biến.
+
+**Ví dụ:** $3x$, $-2xy^2$, $5$
+
+**Bậc của đơn thức:** Tổng số mũ của các biến.
+
+**Ví dụ:** Bậc của $3x^2y^3$ là $2 + 3 = 5$
+
+</div>
+
+**Đơn thức đồng dạng:** Hai đơn thức có cùng phần biến.
+
+**Ví dụ:** $3x^2$ và $-5x^2$ là đơn thức đồng dạng
+
+<h4 id="phep-cong-tru-don-thuc">3. Cộng, trừ đơn thức đồng dạng</h4>
+
+**Quy tắc:** Cộng (trừ) các hệ số, giữ nguyên phần biến.
+
+$$ax^n + bx^n = (a+b)x^n$$
+
+**Ví dụ:** $3x^2 + 2x^2 = 5x^2$
+
+<h4 id="phep-nhan-don-thuc">4. Nhân đơn thức</h4>
+
+**Quy tắc:** Nhân các hệ số với nhau, nhân các phần biến với nhau.
+
+$$ax^m \times bx^n = (ab)x^{m+n}$$
+
+**Ví dụ:** $2x \times 3x^2 = 6x^3$
+
+<h4 id="da-thuc">5. Đa thức</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Đa thức là tổng của các đơn thức.
+
+**Ví dụ:** $2x^2 + 3x - 5$, $x^3 - 2x^2 + x - 1$
+
+**Bậc của đa thức:** Bậc cao nhất của các hạng tử.
+
+**Ví dụ:** Bậc của $2x^3 + 3x^2 - x + 5$ là $3$
+
+</div>
+
+<h4 id="phep-cong-tru-da-thuc">6. Cộng, trừ đa thức</h4>
+
+**Quy tắc:** 
+- Viết các đa thức trong dấu ngoặc
+- Bỏ dấu ngoặc (chú ý dấu)
+- Nhóm các hạng tử đồng dạng
+- Cộng (trừ) các hạng tử đồng dạng
+
+**Ví dụ:** $(2x^2 + 3x - 1) + (x^2 - 2x + 3) = 3x^2 + x + 2$
+
+<h4 id="phep-nhan-da-thuc">7. Nhân đa thức</h4>
+
+**Quy tắc:** Nhân mỗi hạng tử của đa thức thứ nhất với từng hạng tử của đa thức thứ hai, rồi cộng các kết quả.
+
+**Ví dụ:** $(x + 2)(x + 3) = x^2 + 3x + 2x + 6 = x^2 + 5x + 6$
+
+<h4 id="phep-chia-da-thuc">8. Chia đa thức</h4>
+
+**Quy tắc:** Chia từng hạng tử của đa thức bị chia cho đơn thức chia.
+
+**Ví dụ:** $(6x^3 + 3x^2) \div 3x = 2x^2 + x$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Đơn thức</h4>
+
+Xác định bậc của các đơn thức:
+
+a) $3x^2$
+
+b) $-2xy^3$
+
+c) $5x^2yz$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Bậc của $3x^2$ là $2$
+
+b) Bậc của $-2xy^3$ là $1 + 3 = 4$
+
+c) Bậc của $5x^2yz$ là $2 + 1 + 1 = 4$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Cộng, trừ đơn thức đồng dạng</h4>
+
+Tính:
+
+a) $3x^2 + 2x^2 - x^2$
+
+b) $5xy - 2xy + xy$
+
+c) $-3a^2b + 4a^2b - a^2b$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $3x^2 + 2x^2 - x^2 = (3 + 2 - 1)x^2 = 4x^2$
+
+b) $5xy - 2xy + xy = (5 - 2 + 1)xy = 4xy$
+
+c) $-3a^2b + 4a^2b - a^2b = (-3 + 4 - 1)a^2b = 0$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Nhân đơn thức</h4>
+
+Tính:
+
+a) $2x \times 3x^2$
+
+b) $-3xy \times 2x^2y$
+
+c) $4a^2 \times (-5ab^2)$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $2x \times 3x^2 = 6x^3$
+
+b) $-3xy \times 2x^2y = -6x^3y^2$
+
+c) $4a^2 \times (-5ab^2) = -20a^3b^2$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Cộng, trừ đa thức</h4>
+
+Tính:
+
+a) $(2x^2 + 3x - 1) + (x^2 - 2x + 3)$
+
+b) $(3x^2 - 2x + 1) - (x^2 + x - 2)$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(2x^2 + 3x - 1) + (x^2 - 2x + 3) = 2x^2 + x^2 + 3x - 2x - 1 + 3 = 3x^2 + x + 2$
+
+b) $(3x^2 - 2x + 1) - (x^2 + x - 2) = 3x^2 - x^2 - 2x - x + 1 + 2 = 2x^2 - 3x + 3$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Nhân đa thức</h4>
+
+Tính:
+
+a) $(x + 2)(x + 3)$
+
+b) $(2x - 1)(x + 2)$
+
+c) $(x + 1)(x^2 - x + 1)$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(x + 2)(x + 3) = x^2 + 3x + 2x + 6 = x^2 + 5x + 6$
+
+b) $(2x - 1)(x + 2) = 2x^2 + 4x - x - 2 = 2x^2 + 3x - 2$
+
+c) $(x + 1)(x^2 - x + 1) = x^3 - x^2 + x + x^2 - x + 1 = x^3 + 1$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Chia đa thức</h4>
+
+Tính:
+
+a) $(6x^3 + 3x^2) \div 3x$
+
+b) $(10x^2y - 5xy^2) \div 5xy$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $(6x^3 + 3x^2) \div 3x = 2x^2 + x$
+
+b) $(10x^2y - 5xy^2) \div 5xy = 2x - y$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Giá trị của biểu thức</h4>
+
+Tính giá trị của biểu thức:
+
+a) $2x + 3$ khi $x = 1$
+
+b) $x^2 - 2x + 1$ khi $x = 2$
+
+c) $3xy - 2x + y$ khi $x = 1$, $y = 2$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $2(1) + 3 = 2 + 3 = 5$
+
+b) $2^2 - 2(2) + 1 = 4 - 4 + 1 = 1$
+
+c) $3(1)(2) - 2(1) + 2 = 6 - 2 + 2 = 6$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán kết hợp</h4>
+
+Cho đa thức $P(x) = 2x^2 - 3x + 1$ và $Q(x) = x^2 + 2x - 3$.
+
+a) Tính $P(x) + Q(x)$
+
+b) Tính $P(x) - Q(x)$
+
+c) Tính $P(1)$ và $Q(1)$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $P(x) + Q(x) = (2x^2 - 3x + 1) + (x^2 + 2x - 3) = 3x^2 - x - 2$
+
+b) $P(x) - Q(x) = (2x^2 - 3x + 1) - (x^2 + 2x - 3) = x^2 - 5x + 4$
+
+c) $P(1) = 2(1)^2 - 3(1) + 1 = 2 - 3 + 1 = 0$
+   $Q(1) = (1)^2 + 2(1) - 3 = 1 + 2 - 3 = 0$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho đa thức $P(x) = x^3 - 2x^2 + 3x - 1$.
+
+a) Tính $P(0)$, $P(1)$, $P(-1)$
+
+b) Tính $P(x) + (x^3 + 2x^2 - 3x + 1)$
+
+c) Tính $P(x) \times (x - 1)$
+
+d) Tính $P(x) \div (x - 1)$ (nếu có thể)
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $P(0) = -1$
+   $P(1) = 1 - 2 + 3 - 1 = 1$
+   $P(-1) = -1 - 2 - 3 - 1 = -7$
+
+b) $P(x) + (x^3 + 2x^2 - 3x + 1) = (x^3 - 2x^2 + 3x - 1) + (x^3 + 2x^2 - 3x + 1) = 2x^3$
+
+c) $P(x) \times (x - 1) = (x^3 - 2x^2 + 3x - 1)(x - 1) = x^4 - 3x^3 + 5x^2 - 4x + 1$
+
+d) Vì $P(1) = 1 \neq 0$, nên $(x - 1)$ không phải là nhân tử của $P(x)$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho biểu thức $A = (x + 1)(x - 1) + (x + 2)(x - 2) + (x + 3)(x - 3)$.
+
+a) Rút gọn $A$
+
+b) Tính giá trị của $A$ khi $x = 2$
+
+c) Tính giá trị của $A$ khi $x = -1$
+
+d) Tìm $x$ sao cho $A = 0$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $A = (x^2 - 1) + (x^2 - 4) + (x^2 - 9) = 3x^2 - 14$
+
+b) Khi $x = 2$: $A = 3(2)^2 - 14 = 12 - 14 = -2$
+
+c) Khi $x = -1$: $A = 3(-1)^2 - 14 = 3 - 14 = -11$
+
+d) $3x^2 - 14 = 0$ ⟹ $x^2 = \frac{14}{3}$ ⟹ $x = \pm\sqrt{\frac{14}{3}}$
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Biểu thức đại số**: Gồm số, biến và phép toán
+- **Đơn thức**: Tích của số và biến
+- **Bậc của đơn thức**: Tổng số mũ của các biến
+- **Đơn thức đồng dạng**: Cùng phần biến
+- **Cộng, trừ đơn thức đồng dạng**: Cộng (trừ) hệ số, giữ phần biến
+- **Đa thức**: Tổng của các đơn thức
+- **Bậc của đa thức**: Bậc cao nhất của các hạng tử
+- **Nhân đa thức**: Nhân từng hạng tử của đa thức này với từng hạng tử của đa thức kia
+- **Chia đa thức**: Chia từng hạng tử cho đơn thức chia
+
+</GhiNho>

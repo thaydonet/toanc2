@@ -1,0 +1,382 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 5 - Toán 6"
+description: "Ôn tập toàn bộ kiến thức chương 5 Toán 6 KNTT về tính đối xứng"
+grade: "Lớp 6"
+chapter: "Chương V: Tính đối xứng của hình phẳng trong tự nhiên"
+currentSlug: "lop6/bai-on-tap-chuong-5"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình nào có trục đối xứng?",
+    option_a: "Hình tam giác đều",
+    option_b: "Hình bất kỳ",
+    option_c: "Hình không đều",
+    option_d: "Hình vô định",
+    correct_option: "A",
+    explanation: "Hình tam giác đều có 3 trục đối xứng",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình vuông có bao nhiêu trục đối xứng?",
+    option_a: "$4$",
+    option_b: "$2$",
+    option_c: "$3$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Hình vuông có 4 trục đối xứng",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chữ nhật có bao nhiêu trục đối xứng?",
+    option_a: "$2$",
+    option_b: "$4$",
+    option_c: "$1$",
+    option_d: "$3$",
+    correct_option: "A",
+    explanation: "Hình chữ nhật có 2 trục đối xứng",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình tròn có bao nhiêu trục đối xứng?",
+    option_a: "Vô số",
+    option_b: "$1$",
+    option_c: "$2$",
+    option_d: "$4$",
+    correct_option: "A",
+    explanation: "Hình tròn có vô số trục đối xứng",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình nào có tâm đối xứng?",
+    option_a: "Hình vuông",
+    option_b: "Hình tam giác",
+    option_c: "Hình thang",
+    option_d: "Hình bất kỳ",
+    correct_option: "A",
+    explanation: "Hình vuông có tâm đối xứng là giao điểm 2 đường chéo",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình tròn có tâm đối xứng không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "Hình tròn có tâm đối xứng là tâm của hình tròn",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình tam giác đều có tâm đối xứng không?",
+    option_a: "Không",
+    option_b: "Có",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "Hình tam giác đều không có tâm đối xứng",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình lục giác đều có bao nhiêu trục đối xứng?",
+    option_a: "$6$",
+    option_b: "$3$",
+    option_c: "$4$",
+    option_d: "$2$",
+    correct_option: "A",
+    explanation: "Hình lục giác đều có 6 trục đối xứng",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thoi có bao nhiêu trục đối xứng?",
+    option_a: "$2$",
+    option_b: "$4$",
+    option_c: "$1$",
+    option_d: "$3$",
+    correct_option: "A",
+    explanation: "Hình thoi có 2 trục đối xứng (2 đường chéo)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chữ cái nào có trục đối xứng?",
+    option_a: "A",
+    option_b: "B",
+    option_c: "C",
+    option_d: "D",
+    correct_option: "A",
+    explanation: "Chữ A có 1 trục đối xứng",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 5 — Tính đối xứng</h3>
+
+Chương 5 giới thiệu khái niệm đối xứng - một tính chất quan trọng của các hình hình học và xuất hiện nhiều trong tự nhiên.
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🪞</div>
+    <strong>Trục đối xứng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đối xứng qua đường thẳng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>Tâm đối xứng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đối xứng qua điểm</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌿</div>
+    <strong>Tự nhiên</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đối xứng trong tự nhiên</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="truc-doi-xung">1. Hình có trục đối xứng</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Một hình có trục đối xứng nếu tồn tại một đường thẳng sao cho khi gập hình theo đường thẳng đó, hai nửa hình trùng khít với nhau.
+
+**Trục đối xứng:** Đường thẳng đó gọi là trục đối xứng.
+
+</div>
+
+**Số trục đối xứng của các hình:**
+- Hình tam giác đều: 3 trục
+- Hình vuông: 4 trục
+- Hình chữ nhật: 2 trục
+- Hình thoi: 2 trục
+- Hình tròn: Vô số trục
+- Hình lục giác đều: 6 trục
+
+<h4 id="tam-doi-xung">2. Hình có tâm đối xứng</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Một hình có tâm đối xứng nếu tồn tại một điểm sao cho khi quay hình 180° quanh điểm đó, hình trùng khít với chính nó.
+
+**Tâm đối xứng:** Điểm đó gọi là tâm đối xứng.
+
+</div>
+
+**Các hình có tâm đối xứng:**
+- Hình vuông (tâm là giao điểm 2 đường chéo)
+- Hình chữ nhật (tâm là giao điểm 2 đường chéo)
+- Hình thoi (tâm là giao điểm 2 đường chéo)
+- Hình tròn (tâm là tâm của hình tròn)
+- Hình lục giác đều (tâm là tâm của hình)
+
+**Các hình KHÔNG có tâm đối xứng:**
+- Hình tam giác (kể cả tam giác đều)
+- Hình thang
+
+<h4 id="doi-xung-tu-nhien">3. Đối xứng trong tự nhiên</h4>
+
+**Ví dụ:**
+- Cánh bướm: đối xứng qua trục
+- Hoa: thường có trục đối xứng
+- Lá cây: thường có trục đối xứng
+- Cơ thể con người: gần như đối xứng
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Xác định trục đối xứng</h4>
+
+Các hình sau có bao nhiêu trục đối xứng?
+
+a) Hình tam giác đều
+
+b) Hình vuông
+
+c) Hình chữ nhật
+
+d) Hình tròn
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) 3 trục đối xứng
+
+b) 4 trục đối xứng
+
+c) 2 trục đối xứng
+
+d) Vô số trục đối xứng
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Xác định tâm đối xứng</h4>
+
+Hình nào có tâm đối xứng?
+
+a) Hình tam giác đều
+
+b) Hình vuông
+
+c) Hình thang
+
+d) Hình tròn
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Không có tâm đối xứng
+
+b) Có tâm đối xứng (giao điểm 2 đường chéo)
+
+c) Không có tâm đối xứng
+
+d) Có tâm đối xứng (tâm hình tròn)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Chữ cái có trục đối xứng</h4>
+
+Trong các chữ cái A, B, C, D, E, hãy tìm những chữ cái có trục đối xứng.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Chữ cái có trục đối xứng: A, D
+
+(B, C, E không có trục đối xứng)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bài toán thực tế</h4>
+
+Quan sát các hình sau trong tự nhiên:
+
+a) Cánh bướm có đối xứng không?
+
+b) Hoa hướng dương có đối xứng không?
+
+c) Lá cây có đối xứng không?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Có, cánh bướm có trục đối xứng
+
+b) Có, hoa hướng dương có trục đối xứng
+
+c) Có, lá cây thường có trục đối xứng
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Bài toán kết hợp (Câu lớn)</h4>
+
+Cho hình vuông ABCD.
+
+a) Hình vuông có bao nhiêu trục đối xứng?
+
+b) Hình vuông có tâm đối xứng không?
+
+c) Nếu vẽ 2 đường chéo, chúng có tính chất gì?
+
+d) Giao điểm 2 đường chéo là tâm đối xứng của hình vuông không?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) 4 trục đối xứng
+
+b) Có tâm đối xứng
+
+c) 2 đường chéo bằng nhau, vuông góc, cắt nhau tại trung điểm
+
+d) Có, giao điểm 2 đường chéo là tâm đối xứng
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Trục đối xứng:** Đường thẳng mà khi gập hình theo đó, 2 nửa trùng khít
+- **Tâm đối xứng:** Điểm mà khi quay hình 180°, hình trùng khít với chính nó
+- **Hình vuông:** 4 trục đối xứng, có tâm đối xứng
+- **Hình chữ nhật:** 2 trục đối xứng, có tâm đối xứng
+- **Hình tam giác đều:** 3 trục đối xứng, KHÔNG có tâm đối xứng
+- **Hình tròn:** Vô số trục đối xứng, có tâm đối xứng
+- **Đối xứng trong tự nhiên:** Xuất hiện ở cánh bướm, hoa, lá cây, v.v.
+
+</GhiNho>

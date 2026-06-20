@@ -1,0 +1,428 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 15: Định lí Thales trong tam giác"
+description: "Định lí Thales và hệ quả trong tam giác - Toán 8 KNTT Chương 4"
+grade: "Lớp 8"
+chapter: "Chương 4: Định lí Thales"
+currentSlug: "lop8/bai-15-thales"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Trong tam giác $ABC$, nếu $DE \\parallel BC$ thì:",
+    option_a: "$\\dfrac{AD}{AB} = \\dfrac{AE}{AC}$",
+    option_b: "$\\dfrac{AD}{DB} = \\dfrac{AE}{EC}$",
+    option_c: "$\\dfrac{AD}{AB} = \\dfrac{AE}{AC} = \\dfrac{DE}{BC}$",
+    option_d: "Cả A, B, C đều đúng",
+    correct_option: "D",
+    explanation: "Định lí Thales và hệ quả cho ta cả ba tỉ lệ trên.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác $ABC$ có $D \\in AB$, $E \\in AC$, $DE \\parallel BC$. Biết $AD = 3$ cm, $DB = 6$ cm, $AE = 4$ cm. Độ dài $EC$ là:",
+    option_a: "$8$ cm",
+    option_b: "$12$ cm",
+    option_c: "$6$ cm",
+    option_d: "$2$ cm",
+    correct_option: "A",
+    explanation: "$\\dfrac{AD}{DB} = \\dfrac{AE}{EC} \\Rightarrow \\dfrac{3}{6} = \\dfrac{4}{EC} \\Rightarrow EC = 8$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác $ABC$ có $AB = 12$ cm, $AC = 15$ cm. Đường thẳng song song với $BC$ cắt $AB$, $AC$ tại $D$, $E$ sao cho $AD = 4$ cm. Độ dài $AE$ là:",
+    option_a: "$5$ cm",
+    option_b: "$6$ cm",
+    option_c: "$7$ cm",
+    option_d: "$8$ cm",
+    correct_option: "A",
+    explanation: "$\\dfrac{AD}{AB} = \\dfrac{AE}{AC} \\Rightarrow \\dfrac{4}{12} = \\dfrac{AE}{15} \\Rightarrow AE = 5$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Định lí Thales đảo cho biết: Nếu $\\dfrac{AD}{AB} = \\dfrac{AE}{AC}$ thì:",
+    option_a: "$DE \\parallel BC$",
+    option_b: "$DE \\perp BC$",
+    option_c: "$DE = BC$",
+    option_d: "$\\triangle ADE = \\triangle ABC$",
+    correct_option: "A",
+    explanation: "Định lí Thales đảo: Nếu tỉ lệ bằng nhau thì $DE \\parallel BC$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Tam giác $ABC$ có $DE \\parallel BC$ ($D \\in AB$, $E \\in AC$). Các tỉ lệ nào sau đây đúng?",
+    option_a: "$\\dfrac{AD}{AB} = \\dfrac{AE}{AC}$",
+    option_b: "$\\dfrac{AD}{DB} = \\dfrac{AE}{EC}$",
+    option_c: "$\\dfrac{AB}{AD} = \\dfrac{AC}{AE}$",
+    option_d: "$\\dfrac{DE}{BC} = \\dfrac{AD}{AB}$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng theo định lí Thales và hệ quả.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tam giác $ABC$ có $D \\in AB$, $E \\in AC$, $DE \\parallel BC$. Biết $AD = 6$ cm, $AB = 10$ cm, $AC = 15$ cm. Độ dài $AE$ bằng bao nhiêu cm?",
+    correct_option: "9",
+    explanation: "$\\dfrac{AD}{AB} = \\dfrac{AE}{AC} \\Rightarrow \\dfrac{6}{10} = \\dfrac{AE}{15} \\Rightarrow AE = 9$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác $ABC$ có $AB = !a#18!$ cm, $AC = !b#24!$ cm, $AD = !c#6!$ cm ($D \\in AB$). Đường thẳng qua $D$ song song $BC$ cắt $AC$ tại $E$. Độ dài $AE$ là:",
+    option_a: "$!tinh: !c! * !b! / !a!!$ cm",
+    option_b: "$!tinh: !a! * !b! / !c!!$ cm",
+    option_c: "$!tinh: !a! + !b!!$ cm",
+    option_d: "$!tinh: !b! - !c!!$ cm",
+    correct_option: "A",
+    explanation: "$\\dfrac{AD}{AB} = \\dfrac{AE}{AC} \\Rightarrow AE = \\dfrac{!c! \\times !b!}{!a!} = !tinh: !c! * !b! / !a!!$ cm.",
+    difficulty_level: "hard",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác có $AD = !a#5!$ cm, $DB = !b#10!$ cm, $AE = !c#4!$ cm, $DE \\parallel BC$. Độ dài $EC$ là:",
+    option_a: "$!tinh: !b! * !c! / !a!!$ cm",
+    option_b: "$!tinh: !a! * !c! / !b!!$ cm",
+    option_c: "$!tinh: !a! + !b!!$ cm",
+    option_d: "$!tinh: !b! - !a!!$ cm",
+    correct_option: "A",
+    explanation: "$\\dfrac{AD}{DB} = \\dfrac{AE}{EC} \\Rightarrow EC = \\dfrac{!b! \\times !c!}{!a!} = !tinh: !b! * !c! / !a!!$ cm.",
+    difficulty_level: "hard",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">📐 Định lí Thales — Tỉ lệ trong tam giác</h3>
+
+Định lí Thales là một trong những định lí quan trọng nhất về tỉ lệ trong hình học!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Đo đạc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính khoảng cách gián tiếp</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏗️</div>
+    <strong>Xây dựng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chia đoạn thẳng theo tỉ lệ</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🗺️</div>
+    <strong>Bản đồ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tỉ lệ thu phóng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-li">📖 1. Định lí Thales trong tam giác</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí Thales:** Nếu một đường thẳng song song với một cạnh của tam giác và cắt hai cạnh còn lại thì nó định ra trên hai cạnh đó những đoạn thẳng tương ứng tỉ lệ.
+
+</div>
+
+**Hình minh họa:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="320" viewBox="0 0 400 320" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="200,40 80,280 320,280" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" opacity="0.2"/>
+  
+  {/* Các cạnh tam giác */}
+  <line x1="200" y1="40" x2="80" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="200" y1="40" x2="320" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="80" y1="280" x2="320" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
+  
+  {/* Đường DE song song BC */}
+  <line x1="140" y1="160" x2="260" y2="160" stroke="#ef4444" stroke-width="2.5"/>
+  
+  {/* Đánh dấu song song */}
+  <line x1="190" y1="155" x2="195" y2="155" stroke="#10b981" stroke-width="2"/>
+  <line x1="190" y1="150" x2="195" y2="150" stroke="#10b981" stroke-width="2"/>
+  <line x1="190" y1="275" x2="195" y2="275" stroke="#10b981" stroke-width="2"/>
+  <line x1="190" y1="280" x2="195" y2="280" stroke="#10b981" stroke-width="2"/>
+  
+  {/* Các đỉnh */}
+  <circle cx="200" cy="40" r="4" fill="#3b82f6"/>
+  <text x="185" y="30" font-size="18" font-weight="bold" fill="#3b82f6">A</text>
+  
+  <circle cx="80" cy="280" r="4" fill="#3b82f6"/>
+  <text x="60" y="300" font-size="18" font-weight="bold" fill="#3b82f6">B</text>
+  
+  <circle cx="320" cy="280" r="4" fill="#3b82f6"/>
+  <text x="330" y="300" font-size="18" font-weight="bold" fill="#3b82f6">C</text>
+  
+  {/* Điểm D, E */}
+  <circle cx="140" cy="160" r="4" fill="#ef4444"/>
+  <text x="120" y="155" font-size="18" font-weight="bold" fill="#ef4444">D</text>
+  
+  <circle cx="260" cy="160" r="4" fill="#ef4444"/>
+  <text x="270" y="155" font-size="18" font-weight="bold" fill="#ef4444">E</text>
+  
+  {/* Nhãn */}
+  <text x="160" y="100" font-size="14" fill="#059669" font-style="italic">AD</text>
+  <text x="100" y="230" font-size="14" fill="#059669" font-style="italic">DB</text>
+  <text x="230" y="100" font-size="14" fill="#059669" font-style="italic">AE</text>
+  <text x="290" y="230" font-size="14" fill="#059669" font-style="italic">EC</text>
+  <text x="190" y="145" font-size="14" fill="#ef4444" font-weight="bold">DE // BC</text>
+</svg>
+</div>
+
+**Phát biểu toán học:**
+
+Cho tam giác $ABC$, đường thẳng $d$ song song với $BC$ cắt $AB$ tại $D$ và $AC$ tại $E$.
+
+Khi đó: $\dfrac{AD}{AB} = \dfrac{AE}{AC}$
+
+<h3 id="he-qua" style="margin-top:2rem;">🔑 2. Hệ quả của định lí Thales</h3>
+
+<div class="box-dinh-ly">
+
+**Hệ quả 1:** Nếu $DE \parallel BC$ thì:
+
+$\dfrac{AD}{DB} = \dfrac{AE}{EC}$
+
+**Hệ quả 2:** Nếu $DE \parallel BC$ thì:
+
+$\dfrac{AD}{AB} = \dfrac{AE}{AC} = \dfrac{DE}{BC}$
+
+</div>
+
+**Chứng minh hệ quả 1:**
+
+Từ $\dfrac{AD}{AB} = \dfrac{AE}{AC}$
+
+$\Rightarrow \dfrac{AD}{AD + DB} = \dfrac{AE}{AE + EC}$
+
+Áp dụng tính chất tỉ lệ thức:
+
+$\dfrac{AD}{DB} = \dfrac{AE}{EC}$
+
+**Ví dụ 1:** Tam giác $ABC$ có $D \in AB$, $E \in AC$, $DE \parallel BC$. Biết $AD = 4$ cm, $DB = 6$ cm, $AE = 6$ cm. Tính $EC$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Theo hệ quả 1: $\dfrac{AD}{DB} = \dfrac{AE}{EC}$
+
+$\Rightarrow \dfrac{4}{6} = \dfrac{6}{EC}$
+
+$\Rightarrow EC = \dfrac{6 \times 6}{4} = 9$ cm
+
+</div>
+
+<h3 id="dinh-li-dao" style="margin-top:2rem;">↔️ 3. Định lí Thales đảo</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí Thales đảo:** Nếu một đường thẳng cắt hai cạnh của tam giác và định ra trên hai cạnh đó những đoạn thẳng tương ứng tỉ lệ thì đường thẳng đó song song với cạnh còn lại.
+
+</div>
+
+**Phát biểu toán học:**
+
+Cho tam giác $ABC$, $D \in AB$, $E \in AC$.
+
+Nếu $\dfrac{AD}{AB} = \dfrac{AE}{AC}$ thì $DE \parallel BC$
+
+**Ví dụ 2:** Tam giác $ABC$ có $AB = 12$ cm, $AC = 15$ cm, $AD = 8$ cm, $AE = 10$ cm. Chứng minh $DE \parallel BC$.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Ta có: $\dfrac{AD}{AB} = \dfrac{8}{12} = \dfrac{2}{3}$
+
+$\dfrac{AE}{AC} = \dfrac{10}{15} = \dfrac{2}{3}$
+
+Vì $\dfrac{AD}{AB} = \dfrac{AE}{AC}$ nên $DE \parallel BC$ (định lí Thales đảo)
+
+</div>
+
+**Ví dụ 3:** Tam giác $ABC$ có $AB = 10$ cm, $AC = 12$ cm, $BC = 15$ cm. Đường thẳng song song với $BC$ cắt $AB$, $AC$ tại $D$, $E$ sao cho $AD = 4$ cm. Tính $AE$ và $DE$.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Theo định lí Thales: $\dfrac{AD}{AB} = \dfrac{AE}{AC} = \dfrac{DE}{BC}$
+
+$\Rightarrow \dfrac{4}{10} = \dfrac{AE}{12} = \dfrac{DE}{15}$
+
+Từ $\dfrac{4}{10} = \dfrac{AE}{12}$: $AE = \dfrac{4 \times 12}{10} = 4{,}8$ cm
+
+Từ $\dfrac{4}{10} = \dfrac{DE}{15}$: $DE = \dfrac{4 \times 15}{10} = 6$ cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Đo chiều cao:** Một cây cột cao $6$ m có bóng dài $4$ m. Cùng lúc đó, một tòa nhà có bóng dài $28$ m. Tính chiều cao tòa nhà.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Ánh sáng mặt trời tạo ra các tia song song, nên theo định lí Thales:
+
+$\dfrac{\text{Chiều cao cột}}{\text{Bóng cột}} = \dfrac{\text{Chiều cao nhà}}{\text{Bóng nhà}}$
+
+$\Rightarrow \dfrac{6}{4} = \dfrac{h}{28}$
+
+$\Rightarrow h = \dfrac{6 \times 28}{4} = 42$ m
+
+Vậy tòa nhà cao $42$ m.
+
+</div>
+
+**📝 Bài toán 2 — Chia đất:** Một mảnh đất hình tam giác $ABC$ cần chia thành hai phần có diện tích bằng nhau bằng đường thẳng song song với $BC$. Biết $AB = 20$ m, tính khoảng cách từ $A$ đến đường chia.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Gọi $DE \parallel BC$ là đường chia, với $D \in AB$.
+
+Để diện tích bằng nhau: $S_{ADE} = \dfrac{1}{2}S_{ABC}$
+
+Vì $DE \parallel BC$ nên $\triangle ADE \sim \triangle ABC$ với tỉ số $k = \dfrac{AD}{AB}$
+
+$\Rightarrow \dfrac{S_{ADE}}{S_{ABC}} = k^2 = \dfrac{1}{2}$
+
+$\Rightarrow k = \dfrac{1}{\sqrt{2}} = \dfrac{\sqrt{2}}{2}$
+
+$\Rightarrow AD = 20 \times \dfrac{\sqrt{2}}{2} = 10\sqrt{2} \approx 14{,}14$ m
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định lí Thales**: $DE \parallel BC \Rightarrow \dfrac{AD}{AB} = \dfrac{AE}{AC}$
+- **Hệ quả 1**: $\dfrac{AD}{DB} = \dfrac{AE}{EC}$
+- **Hệ quả 2**: $\dfrac{AD}{AB} = \dfrac{AE}{AC} = \dfrac{DE}{BC}$
+- **Định lí đảo**: $\dfrac{AD}{AB} = \dfrac{AE}{AC} \Rightarrow DE \parallel BC$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tam giác $ABC$ có $D \in AB$, $E \in AC$, $DE \parallel BC$.
+
+a) Biết $AD = 5$ cm, $AB = 15$ cm, $AC = 18$ cm. Tính $AE$.
+
+b) Biết $AD = 4$ cm, $DB = 8$ cm, $AE = 6$ cm. Tính $EC$.
+
+c) Biết $AB = 20$ cm, $AC = 24$ cm, $DE = 10$ cm, $BC = 30$ cm. Tính $AD$.
+
+d) Chứng minh $\dfrac{AD}{AB} = \dfrac{DE}{BC}$.
+
+**Bài 2:** Tam giác $ABC$ có $AB = 12$ cm, $AC = 16$ cm, $BC = 20$ cm.
+
+a) Đường thẳng song song với $BC$ cắt $AB$ tại $D$ sao cho $AD = 6$ cm. Tính $AE$ ($E \in AC$).
+
+b) Tính $DE$.
+
+c) Tính chu vi tam giác $ADE$.
+
+d) Tính tỉ số diện tích $\dfrac{S_{ADE}}{S_{ABC}}$.
+
+**Bài 3:** Cho tam giác $ABC$ có $D \in AB$, $E \in AC$.
+
+a) Biết $AD = 6$ cm, $AB = 10$ cm, $AE = 9$ cm, $AC = 15$ cm. Chứng minh $DE \parallel BC$.
+
+b) Biết $\dfrac{AD}{DB} = \dfrac{2}{3}$, $\dfrac{AE}{EC} = \dfrac{2}{3}$. Chứng minh $DE \parallel BC$.
+
+c) Biết $AD = 8$ cm, $DB = 4$ cm, $AE = 10$ cm, $EC = 6$ cm. $DE$ có song song $BC$ không?
+
+d) Biết $AB = 15$ cm, $AC = 18$ cm, $AD = 5$ cm, $AE = 7$ cm. $DE$ có song song $BC$ không?
+
+**Bài 4:** Chứng minh:
+
+a) Nếu $DE \parallel BC$ thì $\dfrac{AB}{AD} = \dfrac{AC}{AE}$.
+
+b) Nếu $DE \parallel BC$ thì $\dfrac{DB}{AD} = \dfrac{EC}{AE}$.
+
+c) Trong tam giác, đường thẳng song song với một cạnh chia hai cạnh còn lại thành những đoạn tỉ lệ.
+
+d) Nếu hai đường thẳng song song cắt hai cạnh của tam giác thì chúng chia hai cạnh đó thành những đoạn tương ứng tỉ lệ.
+
+**Bài 5:** Tam giác $ABC$ có $AB = 9$ cm, $AC = 12$ cm. Các đường thẳng song song với $BC$ cắt $AB$, $AC$ tại $D$, $E$ và $D'$, $E'$.
+
+a) Biết $AD = 3$ cm, $AD' = 6$ cm. Tính $AE$, $AE'$.
+
+b) Tính $\dfrac{DE}{BC}$, $\dfrac{D'E'}{BC}$.
+
+c) So sánh $DE$ và $D'E'$.
+
+d) Chứng minh $DE \parallel D'E'$.
+
+**Bài 6 (Thực tế):** Một cây cột điện cao $8$ m có bóng dài $5$ m.
+
+a) Cùng lúc đó, một cây có bóng dài $3$ m. Tính chiều cao cây.
+
+b) Một tòa nhà có bóng dài $35$ m. Tính chiều cao tòa nhà.
+
+c) Muốn đo chiều cao một ngọn núi có bóng $2$ km, cần cột cao bao nhiêu nếu bóng cột $4$ m?
+
+d) Giải thích tại sao phương pháp này hoạt động.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $6$ cm; b) $12$ cm; c) $\dfrac{20}{3}$ cm; d) Chứng minh bằng hệ quả 2
+
+**Bài 2:** a) $8$ cm; b) $10$ cm; c) $24$ cm; d) $\dfrac{1}{4}$
+
+**Bài 3:** a) $\dfrac{6}{10} = \dfrac{9}{15}$ nên $DE \parallel BC$; b) Chứng minh bằng định lí đảo; c) Không ($\dfrac{8}{4} \neq \dfrac{10}{6}$); d) Không ($\dfrac{5}{15} \neq \dfrac{7}{18}$)
+
+**Bài 4:** Chứng minh bằng định lí Thales và tính chất tỉ lệ
+
+**Bài 5:** a) $AE = 4$ cm, $AE' = 8$ cm; b) $\dfrac{1}{3}$, $\dfrac{2}{3}$; c) $DE < D'E'$; d) Cùng song song với $BC$
+
+**Bài 6:** a) $4{,}8$ m; b) $56$ m; c) $16$ m; d) Ánh sáng mặt trời tạo tia song song, áp dụng định lí Thales
+
+</div>
+</details>

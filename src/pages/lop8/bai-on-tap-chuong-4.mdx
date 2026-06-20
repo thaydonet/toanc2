@@ -1,0 +1,542 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 4 - Toán 8"
+description: "Ôn tập toàn bộ kiến thức chương 4 Toán 8 KNTT: Định lí Thales, đường trung bình tam giác, tính chất đường phân giác"
+grade: "Lớp 8"
+chapter: "Chương IV: Định lí Thales"
+currentSlug: "lop8/bai-on-tap-chuong-4"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Định lí Thales phát biểu rằng: Nếu một đường thẳng song song với một cạnh của tam giác thì:",
+    option_a: "Nó cắt hai cạnh còn lại tại trung điểm",
+    option_b: "Nó chia hai cạnh còn lại thành các đoạn tỉ lệ",
+    option_c: "Nó tạo thành tam giác đồng dạng",
+    option_d: "Nó vuông góc với hai cạnh còn lại",
+    correct_option: "B",
+    explanation: "Định lí Thales: Nếu một đường thẳng song song với một cạnh của tam giác và cắt hai cạnh còn lại thì nó chia hai cạnh đó thành các đoạn tỉ lệ",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường trung bình của tam giác là đoạn thẳng nối:",
+    option_a: "Hai đỉnh của tam giác",
+    option_b: "Trung điểm của hai cạnh",
+    option_c: "Một đỉnh và trung điểm cạnh đối diện",
+    option_d: "Trung điểm của một cạnh và một đỉnh",
+    correct_option: "B",
+    explanation: "Đường trung bình của tam giác là đoạn thẳng nối trung điểm của hai cạnh",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính chất của đường trung bình tam giác:",
+    option_a: "Song song với cạnh thứ ba và bằng nửa cạnh đó",
+    option_b: "Vuông góc với cạnh thứ ba",
+    option_c: "Bằng cạnh thứ ba",
+    option_d: "Chia tam giác thành hai phần bằng nhau",
+    correct_option: "A",
+    explanation: "Đường trung bình của tam giác song song với cạnh thứ ba và bằng nửa cạnh đó",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác ABC, M là trung điểm AB, N là trung điểm AC. Nếu MN = 5cm thì BC = ?",
+    option_a: "5cm",
+    option_b: "10cm",
+    option_c: "2.5cm",
+    option_d: "7.5cm",
+    correct_option: "B",
+    explanation: "MN là đường trung bình nên $MN = \\frac{BC}{2}$, suy ra $BC = 2 \\times MN = 2 \\times 5 = 10$ cm",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường phân giác của một góc trong tam giác chia cạnh đối diện thành:",
+    option_a: "Hai đoạn bằng nhau",
+    option_b: "Hai đoạn tỉ lệ với hai cạnh kề",
+    option_c: "Hai đoạn tỉ lệ với hai cạnh đối",
+    option_d: "Hai đoạn có tỉ số 1:2",
+    correct_option: "B",
+    explanation: "Tính chất đường phân giác: Đường phân giác của một góc trong tam giác chia cạnh đối diện thành hai đoạn tỉ lệ với hai cạnh kề",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác ABC, AD là đường phân giác của góc A (D trên BC). Nếu AB = 6cm, AC = 9cm, BD = 4cm thì DC = ?",
+    option_a: "6cm",
+    option_b: "8cm",
+    option_c: "4cm",
+    option_d: "9cm",
+    correct_option: "A",
+    explanation: "Theo tính chất đường phân giác: $\\frac{BD}{DC} = \\frac{AB}{AC}$, suy ra $\\frac{4}{DC} = \\frac{6}{9}$, nên $DC = \\frac{4 \\times 9}{6} = 6$ cm",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Định lí Thales đảo phát biểu rằng: Nếu một đường thẳng chia hai cạnh của tam giác thành các đoạn tỉ lệ thì:",
+    option_a: "Nó song song với cạnh thứ ba",
+    option_b: "Nó vuông góc với cạnh thứ ba",
+    option_c: "Nó đi qua đỉnh đối diện",
+    option_d: "Nó là đường trung bình",
+    correct_option: "A",
+    explanation: "Định lí Thales đảo: Nếu một đường thẳng chia hai cạnh của tam giác thành các đoạn tỉ lệ thì nó song song với cạnh thứ ba",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác ABC, M trên AB, N trên AC sao cho $\\frac{AM}{MB} = \\frac{AN}{NC}$. Khi đó MN:",
+    option_a: "Song song với BC",
+    option_b: "Vuông góc với BC",
+    option_c: "Bằng BC",
+    option_d: "Cắt BC tại trung điểm",
+    correct_option: "A",
+    explanation: "Theo định lí Thales đảo, nếu $\\frac{AM}{MB} = \\frac{AN}{NC}$ thì MN song song với BC",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một tam giác có ba đường trung bình. Các đường trung bình này tạo thành:",
+    option_a: "Một tam giác đồng dạng với tam giác ban đầu với tỉ số 1:2",
+    option_b: "Một tam giác có diện tích bằng 1/4 diện tích tam giác ban đầu",
+    option_c: "Một tam giác có chu vi bằng 1/2 chu vi tam giác ban đầu",
+    option_d: "Cả A, B, C đều đúng",
+    correct_option: "D",
+    explanation: "Ba đường trung bình tạo thành tam giác đồng dạng với tỉ số 1:2, diện tích 1/4, chu vi 1/2",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu trong tam giác ABC, $\\frac{AM}{AB} = \\frac{AN}{AC} = \\frac{1}{3}$ thì MN chia BC thành:",
+    option_a: "Hai đoạn bằng nhau",
+    option_b: "Hai đoạn tỉ lệ 1:2",
+    option_c: "Hai đoạn tỉ lệ 1:3",
+    option_d: "Không chia BC",
+    correct_option: "D",
+    explanation: "Vì $\\frac{AM}{AB} = \\frac{AN}{AC}$ nên MN song song với BC, do đó MN không cắt BC",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về Định lí Thales:",
+    option_a: "Nếu MN song song với BC thì $\\frac{AM}{MB} = \\frac{AN}{NC}$",
+    option_b: "Nếu $\\frac{AM}{AB} = \\frac{AN}{AC}$ thì MN song song với BC",
+    option_c: "Đường trung bình là trường hợp đặc biệt của Định lí Thales",
+    option_d: "Định lí Thales chỉ áp dụng cho tam giác vuông",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai: Định lí Thales áp dụng cho mọi tam giác, không chỉ tam giác vuông.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq", 
+    question: "Xét tính đúng sai của các khẳng định sau về đường trung bình:",
+    option_a: "Đường trung bình song song với cạnh thứ ba",
+    option_b: "Đường trung bình bằng nửa cạnh thứ ba",
+    option_c: "Ba đường trung bình tạo thành tam giác có diện tích 1/4 tam giác ban đầu",
+    option_d: "Đường trung bình chia tam giác thành hai tam giác bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai: đường trung bình chia tam giác thành một tam giác và một hình thang, không phải hai tam giác bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về đường phân giác:",
+    option_a: "Đường phân giác chia cạnh đối diện thành hai đoạn tỉ lệ với hai cạnh kề",
+    option_b: "Nếu AD là đường phân giác thì $\\frac{BD}{DC} = \\frac{AB}{AC}$",
+    option_c: "Đường phân giác luôn chia cạnh đối diện thành hai đoạn bằng nhau",
+    option_d: "Ba đường phân giác của tam giác đồng quy tại một điểm",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai: đường phân giác chỉ chia cạnh đối diện thành hai đoạn bằng nhau khi tam giác cân.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về ứng dụng Thales:",
+    option_a: "Nếu M, N lần lượt là trung điểm AB, AC thì MN = BC/2",
+    option_b: "Nếu MN song song BC và MN = 3cm, BC = 6cm thì M, N là trung điểm",
+    option_c: "Nếu $\\frac{AM}{MB} = \\frac{2}{3}$ và MN song song BC thì $\\frac{AN}{NC} = \\frac{2}{3}$",
+    option_d: "Định lí Thales có thể dùng để chứng minh hai đường thẳng song song",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng. Đây là các ứng dụng quan trọng của Định lí Thales và định lí đảo.",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một tam giác ABC có AB = 12cm, AC = 18cm. Trên AB lấy M sao cho AM = 4.8cm, trên AC lấy N sao cho AN = 7.2cm. Tính độ dài MN biết BC = 15cm.",
+    correct_option: "6.0",
+    explanation: "Kiểm tra: $\\frac{AM}{AB} = \\frac{4.8}{12} = 0.4$, $\\frac{AN}{AC} = \\frac{7.2}{18} = 0.4$. Vì $\\frac{AM}{AB} = \\frac{AN}{AC}$ nên MN song song BC. Do đó $MN = 0.4 \\times BC = 0.4 \\times 15 = 6$ cm",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Một tam giác ABC có M, N lần lượt là trung điểm của AB, AC. Biết MN = 8.5cm, tính độ dài BC.",
+    correct_option: "17.0",
+    explanation: "Vì M, N là trung điểm nên MN là đường trung bình. Theo tính chất: $MN = \\frac{BC}{2}$, suy ra $BC = 2 \\times MN = 2 \\times 8.5 = 17$ cm",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },{
+    type: "sa",
+    question: "Một tam giác ABC có chu vi 60cm. Gọi M, N, P lần lượt là trung điểm của AB, AC, BC. Tính chu vi tam giác MNP.",
+    correct_answer: "30.0",
+    explanation: "Vì M, N, P là trung điểm nên MN, NP, PM là các đường trung bình. Do đó: $MN = \\frac{BC}{2}$, $NP = \\frac{AB}{2}$, $PM = \\frac{AC}{2}$. Chu vi MNP = $MN + NP + PM = \\frac{BC + AB + AC}{2} = \\frac{60}{2} = 30$ cm",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Trong tam giác ABC, đường phân giác AD chia cạnh BC thành hai đoạn BD = 6cm và DC = 9cm. Biết AB = 8cm, tính độ dài AC.",
+    correct_answer: "12.0",
+    explanation: "Theo tính chất đường phân giác: $\\frac{BD}{DC} = \\frac{AB}{AC}$. Thay số: $\\frac{6}{9} = \\frac{8}{AC} \\Rightarrow AC = \\frac{8 \\times 9}{6} = 12$ cm",
+    difficulty_level: "hard",
+    is_dynamic: false
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 4 — Định lí Thales</h3>
+
+Chương 4 giới thiệu một trong những định lí quan trọng nhất của hình học: Định lí Thales!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Định lí Thales</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tỉ lệ đoạn thẳng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➗</div>
+    <strong>Đường trung bình</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính chất và ứng dụng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✂️</div>
+    <strong>Đường phân giác</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chia cạnh tỉ lệ</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="dinh-li-thales">1. Định lí Thales</h4>
+
+<div class="box-dinh-nghia">
+
+**Định lí Thales:** Nếu một đường thẳng song song với một cạnh của tam giác và cắt hai cạnh còn lại thì nó chia hai cạnh đó thành các đoạn tỉ lệ.
+
+**Phát biểu toán học:** Trong tam giác ABC, nếu MN song song với BC (M ∈ AB, N ∈ AC) thì:
+$$\frac{AM}{MB} = \frac{AN}{NC} = \frac{AM}{AB} = \frac{AN}{AC}$$
+
+</div>
+
+**Định lí Thales đảo:** Nếu một đường thẳng chia hai cạnh của tam giác thành các đoạn tỉ lệ thì nó song song với cạnh thứ ba.
+
+<h4 id="duong-trung-binh">2. Đường trung bình của tam giác</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Đường trung bình của tam giác là đoạn thẳng nối trung điểm của hai cạnh.
+
+**Tính chất:** Đường trung bình của tam giác song song với cạnh thứ ba và bằng nửa cạnh đó.
+
+**Phát biểu toán học:** Nếu M, N lần lượt là trung điểm của AB, AC thì:
+$$MN \parallel BC \text{ và } MN = \frac{BC}{2}$$
+
+</div>
+
+**Hệ quả:** Ba đường trung bình của tam giác tạo thành một tam giác có:
+- Các cạnh song song với các cạnh của tam giác ban đầu
+- Diện tích bằng $\frac{1}{4}$ diện tích tam giác ban đầu
+- Chu vi bằng $\frac{1}{2}$ chu vi tam giác ban đầu
+
+<h4 id="duong-phan-giac">3. Tính chất đường phân giác</h4>
+
+<div class="box-dinh-nghia">
+
+**Tính chất:** Đường phân giác của một góc trong tam giác chia cạnh đối diện thành hai đoạn tỉ lệ với hai cạnh kề.
+
+**Phát biểu toán học:** Trong tam giác ABC, nếu AD là đường phân giác của góc A (D ∈ BC) thì:
+$$\frac{BD}{DC} = \frac{AB}{AC}$$
+
+</div>
+
+**Ứng dụng:** Dùng để tìm vị trí điểm D trên BC khi biết AB, AC.
+
+<h4 id="ung-dung">4. Ứng dụng thực tế</h4>
+
+- **Đo chiều cao:** Dùng Thales để đo chiều cao của các vật thể
+- **Chia đoạn thẳng:** Chia một đoạn thẳng thành các phần bằng nhau
+- **Xác định song song:** Kiểm tra xem hai đường thẳng có song song không
+- **Tính toán khoảng cách:** Tính khoảng cách gián tiếp
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Áp dụng Định lí Thales</h4>
+
+a) Trong tam giác ABC, MN song song với BC (M ∈ AB, N ∈ AC). Nếu AM = 3cm, MB = 2cm, AN = 4.5cm, tính NC
+
+b) Cho tam giác ABC, M trên AB, N trên AC sao cho MN song song BC. Nếu AM = 2cm, AB = 5cm, AC = 7.5cm, tính AN
+
+c) Chứng minh rằng nếu MN song song BC thì $\frac{AM}{AB} = \frac{AN}{AC}$
+
+d) Trong tam giác ABC, lấy M, N sao cho $\frac{AM}{MB} = \frac{AN}{NC} = \frac{2}{3}$. Chứng minh MN song song BC
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Theo Thales: $\frac{AM}{MB} = \frac{AN}{NC}$ → $\frac{3}{2} = \frac{4.5}{NC}$ → $NC = 3$ cm
+
+b) $\frac{AM}{AB} = \frac{AN}{AC}$ → $\frac{2}{5} = \frac{AN}{7.5}$ → $AN = 3$ cm
+
+c) Vì MN // BC, theo Thales: $\frac{AM}{MB} = \frac{AN}{NC}$ → $\frac{AM}{AB} = \frac{AN}{AC}$
+
+d) Vì $\frac{AM}{MB} = \frac{AN}{NC}$, theo định lí Thales đảo: MN // BC
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Đường trung bình tam giác</h4>
+
+a) Trong tam giác ABC, M là trung điểm AB, N là trung điểm AC. Chứng minh MN song song BC và MN = BC/2
+
+b) Tam giác ABC có AB = 10cm, AC = 12cm, BC = 14cm. Tính chu vi tam giác tạo bởi ba đường trung bình
+
+c) Nếu tam giác ABC có diện tích 48cm², tính diện tích tam giác tạo bởi ba đường trung bình
+
+d) Chứng minh ba đường trung bình chia tam giác thành 4 tam giác bằng nhau
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Theo Thales: MN // BC và MN = BC/2
+
+b) Chu vi tam giác trung bình = $\frac{10 + 12 + 14}{2} = 18$ cm
+
+c) Diện tích tam giác trung bình = $\frac{48}{4} = 12$ cm²
+
+d) Ba đường trung bình tạo 4 tam giác đồng dạng với tam giác ban đầu, mỗi tam giác có diện tích 1/4
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Đường phân giác tam giác</h4>
+
+a) Trong tam giác ABC, AD là đường phân giác (D trên BC). Nếu AB = 6cm, AC = 9cm, BD = 4cm, tính DC
+
+b) Tam giác ABC có AB = 8cm, AC = 12cm, BC = 10cm. Đường phân giác AD chia BC thành hai đoạn. Tính BD và DC
+
+c) Chứng minh rằng $\frac{BD}{DC} = \frac{AB}{AC}$
+
+d) Nếu BD = 3cm, DC = 5cm, AB = 6cm, tính AC
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{BD}{DC} = \frac{AB}{AC}$ → $\frac{4}{DC} = \frac{6}{9}$ → $DC = 6$ cm
+
+b) $\frac{BD}{DC} = \frac{AB}{AC} = \frac{8}{12} = \frac{2}{3}$
+   BD + DC = 10 → BD = 4cm, DC = 6cm
+
+c) Theo tính chất đường phân giác
+
+d) $\frac{BD}{DC} = \frac{AB}{AC}$ → $\frac{3}{5} = \frac{6}{AC}$ → $AC = 10$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bài toán tổng hợp</h4>
+
+a) Tam giác ABC có AB = 12cm, AC = 18cm, BC = 15cm. M, N lần lượt là trung điểm AB, AC. Tính MN
+
+b) Trong tam giác ABC, M là trung điểm AB, N là trung điểm AC, P là trung điểm BC. Chứng minh BMNP là hình bình hành
+
+c) Tam giác ABC có chu vi 60cm. Tính chu vi tam giác tạo bởi ba đường trung bình
+
+d) Nếu tam giác ABC có diện tích 100cm², tính diện tích tam giác tạo bởi ba đường trung bình
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) MN = BC/2 = 15/2 = 7.5cm
+
+b) MN // BC và MN = BC/2 → BMNP là hình bình hành
+
+c) Chu vi tam giác trung bình = 60/2 = 30cm
+
+d) Diện tích tam giác trung bình = 100/4 = 25cm²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Bài toán thực tế</h4>
+
+a) Một cây cột cao 8m có bóng dài 6m. Cùng lúc đó, một cây khác có bóng dài 9m. Tính chiều cao cây thứ hai (dùng Thales)
+
+b) Một con đường song song với một cạnh của tam giác. Nếu con đường cắt hai cạnh còn lại tại M, N với AM = 4km, MB = 6km, AN = 5km, tính NC
+
+c) Một tam giác có ba cạnh 20cm, 24cm, 28cm. Tính chu vi tam giác tạo bởi ba đường trung bình
+
+d) Một mảnh đất hình tam giác có diện tích 200m². Tính diện tích phần đất giữa ba đường trung bình
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Dùng Thales: $\frac{8}{6} = \frac{h}{9}$ → $h = 12$ m
+
+b) $\frac{AM}{MB} = \frac{AN}{NC}$ → $\frac{4}{6} = \frac{5}{NC}$ → $NC = 7.5$ km
+
+c) Chu vi = (20 + 24 + 28)/2 = 36cm
+
+d) Diện tích phần giữa = 200/4 = 50m²
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho tam giác ABC với AB = 10cm, AC = 15cm, BC = 12cm. Gọi M, N, P lần lượt là trung điểm AB, AC, BC.
+
+a) Tính MN, NP, PM
+
+b) Chứng minh tam giác MNP đồng dạng với tam giác ABC
+
+c) Tính tỉ số đồng dạng
+
+d) Nếu diện tích ABC = 60cm², tính diện tích MNP
+
+e) Tính chu vi tam giác MNP
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) MN = BC/2 = 6cm, NP = AB/2 = 5cm, PM = AC/2 = 7.5cm
+
+b) Các cạnh tương ứng tỉ lệ → tam giác MNP ~ ABC
+
+c) Tỉ số đồng dạng = 1/2
+
+d) Diện tích MNP = 60/4 = 15cm²
+
+e) Chu vi MNP = (10 + 15 + 12)/2 = 18.5cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho tam giác ABC với AB = 12cm, AC = 18cm, BC = 15cm. AD là đường phân giác (D trên BC).
+
+a) Tính BD và DC
+
+b) Tính tỉ số $\frac{BD}{DC}$
+
+c) Nếu M là trung điểm AB, N là trung điểm AC, chứng minh MN // BC
+
+d) Tính MN
+
+e) Chứng minh rằng MN = $\frac{BC}{2}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{BD}{DC} = \frac{AB}{AC} = \frac{12}{18} = \frac{2}{3}$
+   BD + DC = 15 → BD = 6cm, DC = 9cm
+
+b) $\frac{BD}{DC} = \frac{2}{3}$
+
+c) M, N là trung điểm → MN // BC (theo Thales)
+
+d) MN = BC/2 = 7.5cm
+
+e) Theo tính chất đường trung bình
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Định lí Thales:** Nếu MN // BC thì $\frac{AM}{MB} = \frac{AN}{NC}$
+- **Định lí Thales đảo:** Nếu $\frac{AM}{MB} = \frac{AN}{NC}$ thì MN // BC
+- **Đường trung bình:** Song song với cạnh thứ ba và bằng nửa cạnh đó
+- **Đường phân giác:** $\frac{BD}{DC} = \frac{AB}{AC}$
+- **Ba đường trung bình:** Tạo tam giác có diện tích 1/4 tam giác ban đầu
+- **Tỉ số đồng dạng:** Nếu MN // BC thì tỉ số = $\frac{AM}{AB} = \frac{AN}{AC} = \frac{MN}{BC}$
+
+</GhiNho>

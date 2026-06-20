@@ -1,0 +1,549 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 17: Phép chia hết. Ước và bội của một số nguyên"
+description: "Phép chia hết số nguyên, ước và bội - Toán 6 KNTT Chương 3"
+grade: "Lớp 6"
+chapter: "Chương III: Số nguyên"
+currentSlug: "lop6/bai-17-chia-het"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tính: $(-20) : 5$",
+    option_a: "$-4$",
+    option_b: "$4$",
+    option_c: "$-15$",
+    option_d: "$15$",
+    correct_option: "A",
+    explanation: "Khác dấu nên kết quả âm: $(-20) : 5 = -4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(-36) : (-9)$",
+    option_a: "$4$",
+    option_b: "$-4$",
+    option_c: "$-27$",
+    option_d: "$27$",
+    correct_option: "A",
+    explanation: "Cùng dấu âm nên kết quả dương: $(-36) : (-9) = 4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào là ước của $-12$?",
+    option_a: "$-3$",
+    option_b: "$5$",
+    option_c: "$7$",
+    option_d: "$8$",
+    correct_option: "A",
+    explanation: "$-12 : (-3) = 4$ nên $-3$ là ước của $-12$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào là ước của $-18$?",
+    option_a: "$-6$",
+    option_b: "$3$",
+    option_c: "$-9$",
+    option_d: "$5$",
+    correct_option: "A,B,C",
+    explanation: "$-18$ chia hết cho $-6, 3, -9$ nên chúng là ước của $-18$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào là bội của $-5$?",
+    option_a: "$-15$",
+    option_b: "$7$",
+    option_c: "$12$",
+    option_d: "$8$",
+    correct_option: "A",
+    explanation: "$-15 = (-5) \\times 3$ nên $-15$ là bội của $-5$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính: $0 : (-7)$",
+    correct_option: "0",
+    explanation: "$0$ chia cho số khác $0$ luôn bằng $0$: $0 : (-7) = 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(!a#-48!) : (!b#8!)$",
+    option_a: "$!tinh: !a! / !b!!$",
+    option_b: "$!tinh: abs(!a! / !b!)!$",
+    option_c: "$!tinh: !a! - !b!!$",
+    option_d: "$!tinh: !a! + !b!!$",
+    correct_option: "A",
+    explanation: "Khác dấu nên kết quả âm: $!a! : !b! = !tinh: !a! / !b!!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(!a#-56!) : (!b#-7!)$",
+    option_a: "$!tinh: !a! / !b!!$",
+    option_b: "$!tinh: -(!a! / !b!)!$",
+    option_c: "$!tinh: abs(!a!) / abs(!b!)!$",
+    option_d: "$0$",
+    correct_option: "A",
+    explanation: "Cùng dấu âm nên kết quả dương: $!a! : !b! = !tinh: !a! / !b!!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">➗ Phép chia số nguyên — Mở rộng phép chia</h3>
+
+Phép chia số nguyên có quy tắc dấu giống phép nhân!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕ ÷ ➕</div>
+    <strong>Dương ÷ Dương</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả dương</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➖ ÷ ➖</div>
+    <strong>Âm ÷ Âm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả dương</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fecaca;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕ ÷ ➖</div>
+    <strong>Khác dấu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả âm</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="phep-chia-het">📖 1. Phép chia hết số nguyên</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số nguyên $a$ chia hết cho số nguyên $b$ (với $b \neq 0$) nếu tồn tại số nguyên $q$ sao cho:
+
+$a = b \times q$
+
+Khi đó: $a : b = q$
+
+**Quy tắc dấu:**
+- **Khác dấu**: Kết quả âm
+  - $(+) : (-) = (-)$
+  - $(-) : (+) = (-)$
+- **Cùng dấu**: Kết quả dương
+  - $(+) : (+) = (+)$
+  - $(-) : (-) = (+)$
+
+**Lưu ý:** Không chia cho $0$!
+
+</div>
+
+**Ví dụ 1:** Phép chia số nguyên khác dấu
+
+a) $15 : (-3)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Chia giá trị tuyệt đối: $15 : 3 = 5$
+
+**Bước 2:** Đặt dấu âm (khác dấu): $15 : (-3) = -5$
+
+**Kiểm tra:** $(-3) \times (-5) = 15$ ✓
+
+</div>
+
+b) $(-28) : 7$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$28 : 7 = 4$
+
+$(-28) : 7 = -4$
+
+**Kiểm tra:** $7 \times (-4) = -28$ ✓
+
+</div>
+
+**Ví dụ 2:** Phép chia số nguyên cùng dấu
+
+a) $24 : 6$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Hai số dương: $24 : 6 = 4$
+
+</div>
+
+b) $(-45) : (-9)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Chia giá trị tuyệt đối: $45 : 9 = 5$
+
+**Bước 2:** Kết quả dương (cùng dấu): $(-45) : (-9) = 5$
+
+**Kiểm tra:** $(-9) \times 5 = -45$ ✓
+
+</div>
+
+<h3 id="bang-quy-tac" style="margin-top:2rem;">📊 Bảng quy tắc dấu</h3>
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Số bị chia</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Số chia</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Thương</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;color:#22c55e;font-weight:bold;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$20 : 5 = 4$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;color:#ef4444;font-weight:bold;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$20 : (-5) = -4$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;color:#ef4444;font-weight:bold;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$(-20) : 5 = -4$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;color:#22c55e;font-weight:bold;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$(-20) : (-5) = 4$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="uoc-so-nguyen" style="margin-top:2rem;">📖 2. Ước của số nguyên</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số nguyên $b$ được gọi là **ước** của số nguyên $a$ nếu $a$ chia hết cho $b$ (với $b \neq 0$).
+
+Ký hiệu: $a \vdots b$ hoặc $b \mid a$
+
+**Tính chất:**
+- Nếu $b$ là ước của $a$ thì $-b$ cũng là ước của $a$
+- $1$ và $-1$ là ước của mọi số nguyên
+- Mọi số nguyên khác $0$ đều là ước của $0$
+
+**Ví dụ:**
+- Ước của $12$: $\pm 1, \pm 2, \pm 3, \pm 4, \pm 6, \pm 12$
+- Ước của $-15$: $\pm 1, \pm 3, \pm 5, \pm 15$
+
+</div>
+
+**Ví dụ 3:** Tìm ước của số nguyên
+
+a) Tìm các ước của $-18$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Tìm ước dương của $18$: $1, 2, 3, 6, 9, 18$
+
+**Bước 2:** Thêm ước âm: $-1, -2, -3, -6, -9, -18$
+
+**Đáp án:** Ước của $-18$ là: $\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18$
+
+</div>
+
+b) Kiểm tra $-4$ có phải là ước của $-20$ không?
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chia: $(-20) : (-4) = 5$ (chia hết)
+
+Vậy $-4$ là ước của $-20$ ✓
+
+</div>
+
+<h3 id="boi-so-nguyen" style="margin-top:2rem;">📖 3. Bội của số nguyên</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số nguyên $a$ được gọi là **bội** của số nguyên $b$ (với $b \neq 0$) nếu $a$ chia hết cho $b$.
+
+**Tính chất:**
+- Nếu $a$ là bội của $b$ thì $-a$ cũng là bội của $b$
+- $0$ là bội của mọi số nguyên khác $0$
+- Mọi số nguyên đều là bội của $1$ và $-1$
+
+**Ví dụ:**
+- Bội của $3$: $0, \pm 3, \pm 6, \pm 9, \pm 12, ...$
+- Bội của $-5$: $0, \pm 5, \pm 10, \pm 15, \pm 20, ...$
+
+</div>
+
+**Ví dụ 4:** Tìm bội của số nguyên
+
+a) Viết 5 bội của $-4$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Bội của $-4$: $(-4) \times k$ với $k \in \mathbb{Z}$
+
+**5 bội:** $0, -4, 4, -8, 8$
+
+(hoặc: $-12, -8, -4, 0, 4$)
+
+</div>
+
+b) Kiểm tra $-30$ có phải là bội của $6$ không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Chia: $(-30) : 6 = -5$ (chia hết)
+
+Vậy $-30$ là bội của $6$ ✓
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 4. Tính chất</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 1:** $0 : a = 0$ (với $a \neq 0$)
+
+**Tính chất 2:** $a : 1 = a$; $a : (-1) = -a$
+
+**Tính chất 3:** $a : a = 1$ (với $a \neq 0$)
+
+**Tính chất 4:** $a : (-a) = -1$ (với $a \neq 0$)
+
+**Tính chất 5:** Nếu $a \vdots b$ và $b \vdots c$ thì $a \vdots c$
+
+**Tính chất 6:** Nếu $a \vdots c$ và $b \vdots c$ thì $(a + b) \vdots c$ và $(a - b) \vdots c$
+
+</div>
+
+**Ví dụ 5:** Áp dụng tính chất
+
+a) Tính: $(-48) : [(-12) : 3]$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Tính trong ngoặc: $(-12) : 3 = -4$
+
+**Bước 2:** Chia: $(-48) : (-4) = 12$
+
+</div>
+
+b) Biết $(-36) \vdots 9$ và $(-27) \vdots 9$. Chứng tỏ $(-36) + (-27)$ chia hết cho $9$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Theo tính chất 6:
+
+Nếu $a \vdots c$ và $b \vdots c$ thì $(a + b) \vdots c$
+
+Vậy $(-36) + (-27) = -63$ chia hết cho $9$ ✓
+
+**Kiểm tra:** $(-63) : 9 = -7$ ✓
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một người nợ ngân hàng $12000000$ đồng và trả đều trong $6$ tháng.
+
+a) Viết biểu thức tính số tiền trả mỗi tháng.
+
+b) Tính số tiền trả mỗi tháng.
+
+c) Sau $4$ tháng, người đó còn nợ bao nhiêu?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Biểu thức: $(-12000000) : 6$
+
+b) Số tiền mỗi tháng:
+
+$(-12000000) : 6 = -2000000$ đồng
+
+(Trả $2000000$ đồng mỗi tháng)
+
+c) Sau 4 tháng đã trả:
+
+$(-2000000) \times 4 = -8000000$ đồng
+
+Còn nợ:
+
+$(-12000000) - (-8000000) = -4000000$ đồng
+
+(Còn nợ $4000000$ đồng)
+
+</div>
+
+**📝 Bài toán 2:** Nhiệt độ giảm từ $20°C$ xuống $-10°C$ đều trong $6$ giờ.
+
+a) Tính độ giảm nhiệt độ.
+
+b) Tính độ giảm trung bình mỗi giờ.
+
+c) Sau $3$ giờ, nhiệt độ là bao nhiêu?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Độ giảm:
+
+$(-10) - 20 = -30°C$
+
+b) Độ giảm mỗi giờ:
+
+$(-30) : 6 = -5°C$/giờ
+
+c) Sau 3 giờ:
+
+$20 + [(-5) \times 3] = 20 + (-15) = 5°C$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Quy tắc dấu**: Giống phép nhân
+  - Cùng dấu → dương
+  - Khác dấu → âm
+- **Ước của $a$**: Số $b$ sao cho $a \vdots b$
+  - Nếu $b$ là ước thì $-b$ cũng là ước
+- **Bội của $b$**: Số $a$ sao cho $a \vdots b$
+  - Nếu $a$ là bội thì $-a$ cũng là bội
+- **Tính chất**: $0 : a = 0$; $a : 1 = a$; $a : (-1) = -a$
+- **Không chia cho 0**!
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Thực hiện phép chia:
+
+a) $35 : (-7)$
+
+b) $(-48) : 6$
+
+c) $(-56) : (-8)$
+
+d) $72 : (-9)$
+
+**Bài 2:** Thực hiện phép chia:
+
+a) $0 : (-15)$
+
+b) $(-25) : 1$
+
+c) $40 : (-1)$
+
+d) $(-30) : (-30)$
+
+**Bài 3:** Tìm tất cả các ước của:
+
+a) $-16$
+
+b) $-24$
+
+c) $-30$
+
+d) $-36$
+
+**Bài 4:** Viết 6 bội của:
+
+a) $-3$
+
+b) $7$
+
+c) $-8$
+
+d) $-10$
+
+**Bài 5:** Tính:
+
+a) $(-72) : [(-18) : 3]$
+
+b) $[(-60) : 5] : (-3)$
+
+c) $(-100) : [25 : (-5)]$
+
+d) $[(-84) : (-7)] : 2$
+
+**Bài 6 (Thực tế):** Một thang máy xuống từ tầng $30$ xuống tầng $-6$ (hầm 6) đều trong $12$ giây.
+
+a) Tính tổng số tầng đã xuống.
+
+b) Tính số tầng xuống trung bình mỗi giây.
+
+c) Sau $8$ giây, thang máy ở tầng nào?
+
+d) Sau bao nhiêu giây thang máy đến tầng $0$ (trệt)?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $-5$; b) $-8$; c) $7$; d) $-8$
+
+**Bài 2:** a) $0$; b) $-25$; c) $-40$; d) $1$
+
+**Bài 3:** a) $\pm 1, \pm 2, \pm 4, \pm 8, \pm 16$; b) $\pm 1, \pm 2, \pm 3, \pm 4, \pm 6, \pm 8, \pm 12, \pm 24$; c) $\pm 1, \pm 2, \pm 3, \pm 5, \pm 6, \pm 10, \pm 15, \pm 30$; d) $\pm 1, \pm 2, \pm 3, \pm 4, \pm 6, \pm 9, \pm 12, \pm 18, \pm 36$
+
+**Bài 4:** a) $0, \pm 3, \pm 6, \pm 9$; b) $0, \pm 7, \pm 14, \pm 21$; c) $0, \pm 8, \pm 16, \pm 24$; d) $0, \pm 10, \pm 20, \pm 30$
+
+**Bài 5:** a) $12$; b) $4$; c) $20$; d) $6$
+
+**Bài 6:** a) $36$ tầng; b) $3$ tầng/giây; c) Tầng $6$; d) $10$ giây
+
+</div>
+</details>

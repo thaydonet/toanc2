@@ -1,0 +1,338 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 29: Làm quen với biến cố"
+description: "Biến cố và các loại biến cố - Toán 7 KNTT Chương 8"
+grade: "Lớp 7"
+chapter: "Chương VIII: Làm quen với biến cố và xác suất của biến cố"
+currentSlug: "lop7/bai-29-lam-quen-voi-bien-co"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Biến cố là gì?",
+    option_a: "Sự kiện có thể xảy ra hoặc không xảy ra trong một phép thử",
+    option_b: "Kết quả chắc chắn xảy ra",
+    option_c: "Kết quả không thể xảy ra",
+    option_d: "Kết quả đã xảy ra",
+    correct_option: "A",
+    explanation: "Biến cố là sự kiện có thể xảy ra hoặc không xảy ra trong một phép thử.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biến cố chắc chắn là biến cố:",
+    option_a: "Luôn xảy ra trong mọi phép thử",
+    option_b: "Không bao giờ xảy ra",
+    option_c: "Có thể xảy ra hoặc không",
+    option_d: "Xảy ra một lần",
+    correct_option: "A",
+    explanation: "Biến cố chắc chắn là biến cố luôn xảy ra trong mọi phép thử.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung xúc xắc, biến cố 'Được mặt có số chấm lớn hơn 6' là:",
+    option_a: "Biến cố không thể",
+    option_b: "Biến cố chắc chắn",
+    option_c: "Biến cố ngẫu nhiên",
+    option_d: "Biến cố có thể",
+    correct_option: "A",
+    explanation: "Xúc xắc chỉ có mặt từ 1 đến 6, nên không thể có mặt lớn hơn 6.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung đồng xu, biến cố 'Được mặt sấp hoặc ngửa' là:",
+    option_a: "Biến cố chắc chắn",
+    option_b: "Biến cố không thể",
+    option_c: "Biến cố ngẫu nhiên",
+    option_d: "Biến cố hiếm",
+    correct_option: "A",
+    explanation: "Đồng xu chỉ có 2 mặt: sấp hoặc ngửa, nên biến cố này luôn xảy ra.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các loại biến cố bao gồm:",
+    option_a: "Biến cố chắc chắn",
+    option_b: "Biến cố không thể",
+    option_c: "Biến cố ngẫu nhiên",
+    option_d: "Tất cả các loại trên",
+    correct_option: "A,B,C,D",
+    explanation: "Có 3 loại biến cố: chắc chắn, không thể, và ngẫu nhiên.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tung xúc xắc, có bao nhiêu kết quả thuận lợi cho biến cố 'Được số chẵn'?",
+    correct_option: "3",
+    explanation: "Các số chẵn trên xúc xắc là 2, 4, 6. Có 3 kết quả thuận lợi.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Biến cố</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #86efac;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✓</div>
+    <strong>Chắc chắn</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Luôn xảy ra</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">?</div>
+    <strong>Ngẫu nhiên</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Có thể xảy ra</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fca5a5;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✗</div>
+    <strong>Không thể</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Không xảy ra</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem-bien-co">📖 1. Khái niệm biến cố</h3>
+
+<div class="box-dinh-nghia">
+
+**Biến cố** là sự kiện có thể xảy ra hoặc không xảy ra khi thực hiện một phép thử ngẫu nhiên.
+
+**Phép thử ngẫu nhiên** là một hành động mà kết quả của nó không thể biết trước được.
+
+</div>
+
+**Ví dụ:**
+
+- Tung đồng xu: Biến cố "Được mặt sấp"
+- Tung xúc xắc: Biến cố "Được số 6"
+- Rút thẻ: Biến cố "Được thẻ đỏ"
+
+<h3 id="bien-co-chac-chan" style="margin-top:2rem;">📖 2. Biến cố chắc chắn</h3>
+
+<div class="box-dinh-ly">
+
+**Biến cố chắc chắn** là biến cố luôn xảy ra trong mọi phép thử.
+
+Ký hiệu: $\Omega$ (Omega)
+
+</div>
+
+**Ví dụ:**
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. Tung xúc xắc: Biến cố "Được số từ 1 đến 6" (chắc chắn xảy ra)
+
+2. Tung đồng xu: Biến cố "Được mặt sấp hoặc ngửa" (chắc chắn xảy ra)
+
+3. Rút bi từ hộp có 5 bi đỏ: Biến cố "Được bi đỏ" (chắc chắn xảy ra)
+
+</div>
+
+<h3 id="bien-co-khong-the" style="margin-top:2rem;">📖 3. Biến cố không thể</h3>
+
+<div class="box-dinh-ly">
+
+**Biến cố không thể** là biến cố không bao giờ xảy ra trong bất kỳ phép thử nào.
+
+Ký hiệu: $\emptyset$ (tập rỗng)
+
+</div>
+
+**Ví dụ:**
+
+<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. Tung xúc xắc: Biến cố "Được số 7" (không thể xảy ra)
+
+2. Tung đồng xu: Biến cố "Được cả sấp và ngửa cùng lúc" (không thể xảy ra)
+
+3. Rút bi từ hộp có 5 bi đỏ: Biến cố "Được bi xanh" (không thể xảy ra)
+
+</div>
+
+<h3 id="bien-co-ngau-nhien" style="margin-top:2rem;">📖 4. Biến cố ngẫu nhiên</h3>
+
+<div class="box-dinh-ly">
+
+**Biến cố ngẫu nhiên** là biến cố có thể xảy ra hoặc không xảy ra khi thực hiện phép thử.
+
+Đây là loại biến cố phổ biến nhất trong thực tế.
+
+</div>
+
+**Ví dụ:**
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. Tung xúc xắc: Biến cố "Được số chẵn" = {2, 4, 6}
+
+2. Tung đồng xu: Biến cố "Được mặt sấp"
+
+3. Rút bi từ hộp có 3 bi đỏ và 2 bi xanh: Biến cố "Được bi đỏ"
+
+</div>
+
+<h3 id="ket-qua-thuan-loi" style="margin-top:2rem;">📖 5. Kết quả thuận lợi</h3>
+
+<div class="box-dinh-nghia">
+
+**Kết quả thuận lợi** cho một biến cố là những kết quả làm cho biến cố đó xảy ra.
+
+Số kết quả thuận lợi được ký hiệu là $n(A)$ với $A$ là biến cố.
+
+</div>
+
+**Ví dụ:** Tung xúc xắc
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Biến cố $A$: "Được số chẵn" = {2, 4, 6}
+  
+  → Số kết quả thuận lợi: $n(A) = 3$
+
+- Biến cố $B$: "Được số lớn hơn 4" = {5, 6}
+  
+  → Số kết quả thuận lợi: $n(B) = 2$
+
+- Biến cố $C$: "Được số 3" = {3}
+  
+  → Số kết quả thuận lợi: $n(C) = 1$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Một hộp có 10 viên bi: 4 viên đỏ, 3 viên xanh, 3 viên vàng. Rút ngẫu nhiên 1 viên bi.
+
+Xét các biến cố sau và cho biết loại biến cố:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**a) Biến cố $A$:** "Được bi đỏ"
+
+→ Biến cố ngẫu nhiên (có 4 bi đỏ trong 10 bi)
+
+**b) Biến cố $B$:** "Được bi màu đỏ, xanh hoặc vàng"
+
+→ Biến cố chắc chắn (tất cả bi đều có 3 màu này)
+
+**c) Biến cố $C$:** "Được bi màu tím"
+
+→ Biến cố không thể (không có bi màu tím)
+
+**d) Biến cố $D$:** "Được bi xanh hoặc vàng"
+
+→ Biến cố ngẫu nhiên (có 6 bi xanh và vàng trong 10 bi)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Biến cố**: sự kiện có thể xảy ra hoặc không
+- **Biến cố chắc chắn**: luôn xảy ra ($\Omega$)
+- **Biến cố không thể**: không bao giờ xảy ra ($\emptyset$)
+- **Biến cố ngẫu nhiên**: có thể xảy ra hoặc không
+- **Kết quả thuận lợi**: kết quả làm biến cố xảy ra
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tung một đồng xu. Xét các biến cố sau và cho biết loại biến cố:
+
+a) Biến cố $A$: "Được mặt sấp"
+
+b) Biến cố $B$: "Được mặt sấp hoặc ngửa"
+
+c) Biến cố $C$: "Được cả hai mặt cùng lúc"
+
+**Bài 2:** Tung một xúc xắc. Xét các biến cố:
+
+a) Biến cố $A$: "Được số lẻ". Liệt kê các kết quả thuận lợi.
+
+b) Biến cố $B$: "Được số chia hết cho 3". Liệt kê các kết quả thuận lợi.
+
+c) Biến cố $C$: "Được số nhỏ hơn 7". Đây là loại biến cố gì?
+
+**Bài 3:** Một hộp có 8 thẻ đánh số từ 1 đến 8. Rút ngẫu nhiên 1 thẻ. Xét các biến cố:
+
+a) Biến cố $A$: "Được số chẵn"
+
+b) Biến cố $B$: "Được số nguyên tố"
+
+c) Biến cố $C$: "Được số lớn hơn 8"
+
+Cho biết loại biến cố và số kết quả thuận lợi (nếu có).
+
+**Bài 4:** Gieo hai đồng xu cùng lúc. Xét biến cố $A$: "Được ít nhất một mặt sấp".
+
+a) Liệt kê tất cả các kết quả có thể xảy ra
+
+b) Liệt kê các kết quả thuận lợi cho biến cố $A$
+
+c) Tính số kết quả thuận lợi
+
+**Bài 5:** Cho biết các biến cố sau là loại biến cố gì:
+
+a) Mặt trời mọc ở hướng Đông
+
+b) Tháng 2 có 30 ngày
+
+c) Ngày mai trời mưa
+
+d) Tung xúc xắc được số 10
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Ngẫu nhiên; b) Chắc chắn; c) Không thể
+
+**Bài 2:** a) {1, 3, 5}, có 3 kết quả; b) {3, 6}, có 2 kết quả; c) Biến cố chắc chắn
+
+**Bài 3:** a) Ngẫu nhiên, {2, 4, 6, 8}, có 4 kết quả; b) Ngẫu nhiên, {2, 3, 5, 7}, có 4 kết quả; c) Không thể, 0 kết quả
+
+**Bài 4:** a) \{(Sấp,Sấp), (Sấp,Ngửa), (Ngửa,Sấp), (Ngửa,Ngửa)\}; b) \{(Sấp,Sấp), (Sấp,Ngửa), (Ngửa,Sấp)\}; c) 3 kết quả
+
+**Bài 5:** a) Chắc chắn; b) Không thể; c) Ngẫu nhiên; d) Không thể
+
+</div>
+</details>

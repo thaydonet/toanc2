@@ -1,0 +1,535 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 7 - Toán 9"
+description: "Ôn tập chương 7 Toán 9 KNTT: Tần số, Tần số tương đối, Ghép nhóm dữ liệu và các loại biểu đồ"
+grade: "Lớp 9"
+chapter: "Chương VII: Tần số và tần số tương đối"
+currentSlug: "lop9/bai-on-tap-chuong-7"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tần số của một giá trị trong mẫu số liệu là gì?",
+    option_a: "Giá trị lớn nhất của mẫu",
+    option_b: "Số lần xuất hiện của giá trị đó trong mẫu",
+    option_c: "Tổng tất cả các giá trị chia cho số lượng",
+    option_d: "Tỉ lệ phần trăm của giá trị đó",
+    correct_option: "B",
+    explanation: "Tần số là số lần một giá trị (hoặc một lớp/nhóm) xuất hiện trong một mẫu dữ liệu thống kê.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính tần số tương đối $f_i$ của một giá trị có tần số $n_i$ trong mẫu kích thước $N$ là:",
+    option_a: "$f_i = \\frac{n_i}{N} \\times 100\\%$",
+    option_b: "$f_i = \\frac{N}{n_i} \\times 100\\%$",
+    option_c: "$f_i = n_i \\times N$",
+    option_d: "$f_i = \\frac{n_i + N}{2}$",
+    correct_option: "A",
+    explanation: "Tần số tương đối biểu diễn dưới dạng tỉ lệ hay phần trăm: $f_i = \\frac{n_i}{N} \\times 100\\%$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong một lớp có 40 học sinh, có 10 bạn giỏi Toán. Tần số tương đối của số học sinh giỏi Toán là:",
+    option_a: "10%",
+    option_b: "40%",
+    option_c: "25%",
+    option_d: "20%",
+    correct_option: "C",
+    explanation: "$f = \\frac{10}{40} = 0.25 = 25\\%$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tổng các tần số của tất cả các giá trị trong một mẫu số liệu bằng:",
+    option_a: "100",
+    option_b: "1",
+    option_c: "Kích thước của mẫu số liệu ($N$)",
+    option_d: "Giá trị lớn nhất của mẫu",
+    correct_option: "C",
+    explanation: "Tổng tất cả các tần số ($n_1 + n_2 + ... + n_k$) luôn bằng tổng số phần tử thu thập được ($N$).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tổng các tần số tương đối (tính theo phần trăm) của tất cả các giá trị bằng:",
+    option_a: "1%",
+    option_b: "100%",
+    option_c: "$N$ %",
+    option_d: "10%",
+    correct_option: "B",
+    explanation: "Tổng các tần số tương đối luôn bằng $1$ (nếu tính theo số thập phân) hoặc $100\\%$ (nếu tính theo phần trăm).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một cửa hàng bán được 50 chiếc áo, trong đó cỡ M bán được 20 chiếc, cỡ L bán được 15 chiếc, còn lại là cỡ XL. Tần số tương đối của cỡ XL là:",
+    option_a: "15%",
+    option_b: "30%",
+    option_c: "20%",
+    option_d: "40%",
+    correct_option: "B",
+    explanation: "Số lượng cỡ XL là $50 - 20 - 15 = 15$ chiếc. Tần số tương đối: $15 / 50 = 30\\%$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ nào thích hợp nhất để biểu diễn phần trăm (tần số tương đối) của các phần trong một tổng thể?",
+    option_a: "Biểu đồ cột",
+    option_b: "Biểu đồ hình quạt tròn",
+    option_c: "Biểu đồ đoạn thẳng",
+    option_d: "Biểu đồ phân tán",
+    correct_option: "B",
+    explanation: "Biểu đồ hình quạt tròn được sử dụng tốt nhất để so sánh các phần so với một tổng thể (tỷ lệ phần trăm).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong biểu đồ hình quạt tròn, một hình quạt có góc ở tâm là $90^\\circ$ thì tương ứng với tần số tương đối là bao nhiêu?",
+    option_a: "10%",
+    option_b: "90%",
+    option_c: "25%",
+    option_d: "50%",
+    correct_option: "C",
+    explanation: "Tần số tương đối ứng với quạt $x^\\circ$ là $\\frac{x}{360} \\times 100\\%$. Với $90^\\circ$: $\\frac{90}{360} \\times 100\\% = 25\\%$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Người ta thường sử dụng mẫu dữ liệu ghép nhóm khi nào?",
+    option_a: "Dữ liệu liên tục hoặc các giá trị rời rạc có quá nhiều loại khác nhau",
+    option_b: "Kích thước mẫu dữ liệu quá nhỏ (dưới 10)",
+    option_c: "Muốn nhìn thấy sự phân bố của dữ liệu trong các khoảng nhất định",
+    option_d: "Chỉ khi tất cả các giá trị đều giống nhau",
+    correct_option: "A,C",
+    explanation: "Dữ liệu ghép nhóm rất hữu ích khi tập dữ liệu lớn, nhiều giá trị rời rạc gần nhau hoặc khi biến số định lượng liên tục (trọng lượng, chiều cao).",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Khảo sát điểm thi của 40 học sinh, có 8 bạn đạt điểm 9. Vậy góc ở tâm của hình quạt biểu diễn số học sinh đạt điểm 9 trên biểu đồ ứng với bao nhiêu độ?",
+    correct_option: "72",
+    explanation: "Góc ở tâm: $360^\\circ \\times \\frac{8}{40} = 360^\\circ \\times 0.2 = 72^\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Trong một bảng thống kê phân loại rác thải của 200 hộ gia đình, nhóm rác hữu cơ có tần số tương đối là 65%. Tính tần số (số hộ gia đình) xả mức rác hữu cơ này.",
+    correct_option: "130",
+    explanation: "Số hộ gia đình: $200 \\times 65\\% = 200 \\times 0.65 = 130$ hộ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 7 — Tần số và tần số tương đối</h3>
+
+Chào mừng các bạn đến với công việc của một "Nhà phân tích dữ liệu" hay Data Analyst thực thụ! Hãy cùng hệ thống lại các khái niệm để đưa ra những báo cáo tổng quan và những biểu đồ đẹp mắt!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fdba74;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🧮</div>
+    <strong>Tần số & Tỷ lệ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Số lần xuất hiện (Tần số) và Phần trăm chiếm chỗ (Tần số tương đối)</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #5eead4;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Biểu đồ thống kê</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cột, Đoạn thẳng, Quạt tròn và Số liệu ghép nhóm</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="tan-so">1. Tần số</h4>
+- Ký hiệu: $n$. Kích thước mẫu (tổng số liệu): $N$.
+- **Tần số** của một giá trị (hoặc một nhóm) là số lần xuất hiện của nó trong dãy số liệu mẫu.
+- **Tính chất:** Tổng tất cả các tần số bằng số liệu thu thập: $n_1 + n_2 + ... + n_k = N$.
+
+<h4 id="tan-so-tuong-doi">2. Tần số tương đối (Tỉ lệ phần trăm)</h4>
+- Tần số tương đối cho biết tỉ lệ phần trăm của mỗi giá trị/lớp so với tổng thể.
+- **Công thức:** $f = \frac{n}{N} \cdot 100\%$ hoặc $f = \frac{n}{N}$ (viết dưới dạng số thập phân).
+- **Tính chất:** Tổng tất cả các tần số tương đối luôn bằng $1$ (hay $100\%$).
+
+<h4 id="bieu-do">3. Các loại biểu đồ thường dùng</h4>
+
+1. **Biểu đồ cột (Bar chart):** Biểu diễn sự biến động hoặc so sánh tần số/tần số tương đối của các đối tượng độc lập.
+2. **Biểu đồ đoạn thẳng (Line chart):** Hay dùng để thể hiện sự thay đổi xu hướng của các nhóm dữ liệu theo thời gian (hoặc tiến trình liên tục nào đó).
+3. **Biểu đồ hình quạt tròn (Pie chart):** Cực kỳ hiệu quả khi muốn mô tả tỷ lệ phần trăm (tần số tương đối) đóng góp của các phần vào tổng thể $100\%$. Góc ở tâm cho 1 phần là: $\alpha = 360^\circ \cdot f$ ($f$ là tỉ lệ).
+
+<h4 id="ghep-nhom">4. Bảng dữ liệu ghép nhóm</h4>
+
+- Khi dữ liệu thu thập được có số lượng lớn, đa dạng nhiều giá trị, và là các đại lượng liên tục (ví dụ: điểm số có chi tiết $0.25$, chiều cao, cân nặng, thu nhập), ta sử dụng **ghép nhóm**.
+- Thường ghép thành các nửa khoảng dạng: $[a; b)$, $[b; c)$, $[c; d)$...
+- *Lưu ý:* Giá trị x rơi vào $[a; b)$ nghĩa là $a \leq x < b$. Mút phải luôn luôn là ngước đống và chứa vào nhóm kế tiếp.
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luyen-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tính tần số và tần số tương đối</h4>
+
+Điều tra số giờ tự học ở nhà trong một ngày của 20 học sinh lớp 9 thu được dãy số liệu sau:
+`1; 2; 1; 3; 2; 4; 2; 1; 3; 2; 1; 2; 3; 4; 2; 1; 2; 3; 2; 2`
+a) Lập bảng tần số của mẫu số liệu trên.
+b) Tính tần số tương đối của từng giá trị và lập bảng tần số tương đối.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Các giá trị xuất hiện trong mẫu số liệu là: 1, 2, 3, 4.
+Đếm số lần xuất hiện (tần số $n_i$):
+- Giá trị 1: 5 học sinh
+- Giá trị 2: 9 học sinh
+- Giá trị 3: 4 học sinh
+- Giá trị 4: 2 học sinh
+(Tổng $N = 5 + 9 + 4 + 2 = 20$)
+
+Bảng tần số:
+| Số giờ | 1 | 2 | 3 | 4 | **Tổng** |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Tần số ($n$) | 5 | 9 | 4 | 2 | **20** |
+
+b) Tính tần số tương đối ($f_i = \frac{n_i}{N} \cdot 100\%$):
+- Số giờ 1: $f_1 = \frac{5}{20} \cdot 100\% = 25\%$
+- Số giờ 2: $f_2 = \frac{9}{20} \cdot 100\% = 45\%$
+- Số giờ 3: $f_3 = \frac{4}{20} \cdot 100\% = 20\%$
+- Số giờ 4: $f_4 = \frac{2}{20} \cdot 100\% = 10\%$
+
+Bảng tần số tương đối:
+| Số giờ | 1 | 2 | 3 | 4 | **Tổng** |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Tần số tương đối (%) | 25 | 45 | 20 | 10 | **100** |
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Điền thông tin còn khuyết vào bảng</h4>
+
+Cho bảng thống kê các loại trái cây yêu thích của 50 người như sau. Một số thông tin bị làm mờ (kí hiệu chữ cái). Hãy tìm các giá trị $a, b, c, d$.
+
+| Loại quả | Tần số | Tần số tương đối |
+| :--- | :---: | :---: |
+| Cam | 15 | $a$ |
+| Táo | $b$ | $20\%$ |
+| Xoài | 12 | $c$ |
+| Nho | $d$ | $26\%$ |
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số liệu $N = 50$.
+- Tính $a$: $a = \frac{15}{50} \cdot 100\% = 30\%$. Vậy $a = 30\%$.
+- Tính $b$: Từ $f = 20\% \Rightarrow b = 50 \cdot 20\% = 10$. Vậy $b = 10$.
+- Tính $c$: $c = \frac{12}{50} \cdot 100\% = 24\%$. Vậy $c = 24\%$.
+- Tính $d$: Từ $f = 26\% \Rightarrow d = 50 \cdot 26\% = 13$. Vậy $d = 13$.
+(Thử lại tổng tần số: $15 + 10 + 12 + 13 = 50$. Tổng %: $30 + 20 + 24 + 26 = 100\%$. Thỏa mãn).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Tính góc ở tâm biểu đồ quạt tròn</h4>
+
+Kết quả đánh giá rèn luyện học kỳ 1 của 40 học sinh lớp 9B được cho trong bảng:
+| Mức độ | Tốt | Khá | Đạt |
+| :--- | :---: | :---: | :---: |
+| Số HS | 22 | 14 | 4 |
+
+Để biểu diễn dữ liệu bằng biểu đồ hình quạt tròn, tính số đo góc ở tâm tương ứng với từng hình quạt biểu diễn từng mức độ rèn luyện.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số học sinh $N = 40$.
+Công thức tính số đo góc ở tâm: $\alpha = 360^\circ \cdot \frac{n_i}{N}$.
+- Quạt biểu diễn mức "Tốt": $\alpha_1 = 360^\circ \cdot \frac{22}{40} = 198^\circ$.
+- Quạt biểu diễn mức "Khá": $\alpha_2 = 360^\circ \cdot \frac{14}{40} = 126^\circ$.
+- Quạt biểu diễn mức "Đạt": $\alpha_3 = 360^\circ \cdot \frac{4}{40} = 36^\circ$.
+(Tổng $198^\circ + 126^\circ + 36^\circ = 360^\circ$. Thỏa mãn).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Đọc hiểu biểu đồ hình quạt tròn</h4>
+
+Biểu đồ hình quạt tròn biểu diễn tỉ lệ các môn thể thao yêu thích của 120 học sinh khối 9. Trong đó: 
+- Môn Bóng đá chiếm góc $120^\circ$.
+- Môn Cầu lông chiếm góc $90^\circ$.
+- Môn Bơi lội chiếm chiếm tỉ lệ $25\%$.
+- Còn lại là môn Bóng rổ.
+a) Môn Bóng đá và Cầu lông có tần số tương đối (tỉ lệ phần trăm) là bao nhiêu?
+b) Môn Bóng rổ chiếm bao nhiêu phần trăm?
+c) Tính số học sinh yêu thích môn Bóng rổ.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tần số tương đối tính từ góc: $f = \frac{\alpha}{360^\circ} \cdot 100\%$.
+- Môn Bóng đá: $f_1 = \frac{120}{360} \cdot 100\% \approx 33,33\%$.
+- Môn Cầu lông: $f_2 = \frac{90}{360} \cdot 100\% = 25\%$.
+
+b) Môn Bơi lội chiếm $25\%$.
+Tỉ lệ phần trăm của môn Bóng rổ là:
+$100\% - (33,33\% + 25\% + 25\%) = 100\% - 83,33\% = 16,67\%$. 
+(Hoàn toàn chính xác thì Bóng đá là $1/3$, Cầu lông $1/4$, Bơi $1/4$. Bóng rổ $= 1 - (1/3 + 1/4 + 1/4) = 1 - 5/6 = 1/6 \approx 16,67\%$).
+
+c) Số học sinh yêu thích Bóng rổ: $n = 120 \cdot \frac{1}{6} = 20$ học sinh.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Đọc biểu đồ cột</h4>
+
+Cho biểu đồ cột biểu diễn doanh thu (triệu đồng) trong 5 tháng đầu năm của cửa hàng X:
+- Tháng 1: 50
+- Tháng 2: 70
+- Tháng 3: 65
+- Tháng 4: 90
+- Tháng 5: 125
+a) Tổng doanh thu 5 tháng là bao nhiêu?
+b) Tính tần số tương đối (tỉ lệ doanh thu) của tháng 5 so với cả 5 tháng (làm tròn đến chữ số thập phân thứ nhất).
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tổng doanh thu $N = 50 + 70 + 65 + 90 + 125 = 400$ (triệu đồng).
+b) Tỉ lệ doanh thu của tháng 5 (Tần số tương đối):
+$f = \frac{125}{400} \cdot 100\% = 31,25\% \approx 31,3\%$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Lập bảng tần số ghép nhóm từ dữ liệu rời rạc</h4>
+
+Chiều cao (cm) của 20 cây con trong trạm ươm giống được ghi lại như sau:
+`15,3; 16,2; 18,1; 15,8; 17,4; 19,1; 16,7; 15,9; 17,9; 16,0`
+`18,5; 15,2; 16,8; 17,0; 19,5; 18,9; 15,5; 17,5; 16,1; 18,3`
+
+Hãy lập bảng tần số ghép nhóm với các nhóm: $[15; 16), [16; 17), [17; 18), [18; 19), [19; 20)$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Đếm số liệu thuộc mỗi khoảng (nửa mở):
+- $[15; 16)$: `15,3; 15,8; 15,9; 15,2; 15,5` $\rightarrow$ 5 cây.
+- $[16; 17)$: `16,2; 16,7; 16,0; 16,8; 16,1` $\rightarrow$ 5 cây.
+- $[17; 18)$: `17,4; 17,9; 17,0; 17,5` $\rightarrow$ 4 cây.
+- $[18; 19)$: `18,1; 18,5; 18,9; 18,3` $\rightarrow$ 4 cây.
+- $[19; 20)$: `19,1; 19,5` $\rightarrow$ 2 cây.
+
+Bảng tần số ghép nhóm:
+| Nhóm chiều cao (cm) | $[15; 16)$ | $[16; 17)$ | $[17; 18)$ | $[18; 19)$ | $[19; 20)$ | **Tổng** |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Tần số | 5 | 5 | 4 | 4 | 2 | **20** |
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bảng tần số tương đối ghép nhóm</h4>
+
+Từ kết quả bài 6, hãy lập bảng tần số tương đối ghép nhóm. Mức chiều cao từ 17cm trở lên chiếm bao nhiêu phần trăm tổng số cây?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Tổng số cây $N = 20$.
+Tính tần số tương đối:
+- Nhóm $[15; 16): 5 / 20 = 25\%$
+- Nhóm $[16; 17): 5 / 20 = 25\%$
+- Nhóm $[17; 18): 4 / 20 = 20\%$
+- Nhóm $[18; 19): 4 / 20 = 20\%$
+- Nhóm $[19; 20): 2 / 20 = 10\%$
+
+Bảng tần số tương đối:
+| Nhóm chiều cao (cm) | $[15; 16)$ | $[16; 17)$ | $[17; 18)$ | $[18; 19)$ | $[19; 20)$ | **Tổng** |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Tần số t.đối (%) | 25 | 25 | 20 | 20 | 10 | **100** |
+
+Cây cao từ 17cm trở lên thuộc các nhóm $[17; 18), [18; 19), [19; 20)$.
+Tỉ lệ là: $20\% + 20\% + 10\% = 50\%$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Khôi phục dữ liệu từ biểu đồ tần số tương đối ghép nhóm (Histogram)</h4>
+
+Trong một trường THPT có 500 học sinh khối 10. Biểu đồ Histogram thể hiện điểm thi khảo sát Toán có tần số tương đối ở các nhóm như sau:
+- Nhóm $[0; 4)$: $10\%$
+- Nhóm $[4; 6)$: $25\%$
+- Nhóm $[6; 8)$: $45\%$
+- Nhóm $[8; 10]$: $20\%$
+a) Tính số học sinh trong mỗi nhóm điểm.
+b) Nếu quy định học sinh đạt dưới 6 điểm phải tham gia lớp phụ đạo, tính số học sinh khối 10 tham gia học phụ đạo.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tổng số học sinh $N = 500$.
+- Nhóm $[0; 4)$: Số HS $n_1 = 500 \cdot 10\% = 50$ học sinh.
+- Nhóm $[4; 6)$: Số HS $n_2 = 500 \cdot 25\% = 125$ học sinh.
+- Nhóm $[6; 8)$: Số HS $n_3 = 500 \cdot 45\% = 225$ học sinh.
+- Nhóm $[8; 10]$: Số HS $n_4 = 500 \cdot 20\% = 100$ học sinh.
+
+b) Nhóm điểm dưới 6 là các nhóm $[0; 4)$ và $[4; 6)$.
+Tổng số học sinh phải học phụ đạo là $n_1 + n_2 = 50 + 125 = 175$ học sinh.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán xử lý tỉ lệ</h4>
+
+Trong đợt tuyển dụng nhân sự, công ty A ghi nhận có 200 ứng viên phỏng vấn vòng 1. Tần số tương đối ứng viên nhóm ngành Kỹ thuật là $40\%$, Kinh tế là $35\%$, còn lại là nhóm Khác. Sau vòng 1, có $50\%$ ứng viên Kỹ thuật, $40\%$ ứng viên Kinh tế, và $20\%$ ứng viên nhóm Khác được lọt vào vòng 2.
+a) Hỏi có bao nhiêu ứng viên lọt vào vòng 2?
+b) Tính tần số tương đối của ứng viên Kỹ thuật TRONG SỐ các ứng viên lọt vào vòng 2.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Số lượng ứng viên tham gia vòng 1 theo mỗi nhóm ngành:
+- Kỹ thuật: $200 \cdot 40\% = 80$ ứng viên.
+- Kinh tế: $200 \cdot 35\% = 70$ ứng viên.
+- Khác: $200 - 80 - 70 = 50$ ứng viên. (Tỉ lệ $25\%$).
+
+Số ứng viên lọt vào vòng 2 của từng nhóm:
+- Kỹ thuật thi đỗ: $80 \cdot 50\% = 40$ người.
+- Kinh tế thi đỗ: $70 \cdot 40\% = 28$ người.
+- Khác thi đỗ: $50 \cdot 20\% = 10$ người.
+
+Tổng số người vào vòng 2: $N_2 = 40 + 28 + 10 = 78$ người.
+
+b) Tần số tương đối của ứng viên Kỹ thuật trong vòng 2:
+$f = \frac{40}{78} \cdot 100\% \approx 51,28\%$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Nhận xét mẫu dữ liệu</h4>
+
+Bảng sau hiển thị lượng calo trung bình tiêu thụ hàng ngày (khoảng) của nam và nữ trong một nhóm kiểm tra:
+
+| Nhóm Calo (kcal) | $[1500; 2000)$ | $[2000; 2500)$ | $[2500; 3000)$ | $[3000; 3500)$ | Tổng |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Tần số Nam | 2 | 8 | 15 | 5 | 30 |
+| Tần số Nữ | 8 | 16 | 6 | 0 | 30 |
+
+a) Cập nhật và tính tần số tương đối của từng nhóm cho Nam và Nữ.
+b) Nhóm tiêu thụ calo phổ biến nhất ở Nam và ở Nữ là nhóm nào? Đưa ra nhận xét ngắn gọn.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tần số tương đối ($N = 30$ cho cả 2 giới):
+- **Nam (%):** 
+ $[1500; 2000): 2/30 \approx 6,7\%$
+ $[2000; 2500): 8/30 \approx 26,7\%$
+ $[2500; 3000): 15/30 = 50\%$
+ $[3000; 3500): 5/30 \approx 16,7\%$
+
+- **Nữ (%):**
+ $[1500; 2000): 8/30 \approx 26,7\%$
+ $[2000; 2500): 16/30 \approx 53,3\%$
+ $[2500; 3000): 6/30 = 20\%$
+ $[3000; 3500): 0/30 = 0\%$
+
+b) Nhóm phổ biến nhất:
+- Với Nam: nhóm $[2500; 3000)$ chiếm $50\%$.
+- Với Nữ: nhóm $[2000; 2500)$ chiếm $53,3\%$.
+**Nhận xét:** Nam giới nhóm này tiêu thụ lượng calo cao hơn rõ rệt so với nữ giới, phần lớn tập trung dải 2500-3000 kcal, trong khi nữ giới tập trung dải 2000-2500 kcal.
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Lời khuyên</h3>
+
+- Rất dễ bị nhầm lẫn giữa Tần số (số thô, đếm n) và Tần số tương đối (số %, $f$). Hãy đọc kỹ đề bài yêu cầu Đại lượng nào!
+- Để có biểu đồ quạt tròn chính xác, việc nhân phần trăm cho góc $360^\circ$ là bắt buộc để chia độ trên mặt tròn thước đo góc.
+- Luôn cẩn thận với Mức giá trị biên trong Bảng dữ liệu ghép nhóm. Ví dụ khoảng $[150; 160)$ tức là chiều cao nằm trong mức từ 150cm (Bao gồm người đúng 150cm) đến DƯỚI 160cm (Người đúng 160cm nằm ở khoảng tiếp theo).
+
+</GhiNho>

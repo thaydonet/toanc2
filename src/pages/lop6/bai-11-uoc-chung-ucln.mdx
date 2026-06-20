@@ -1,0 +1,526 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 11: Ước chung. Ước chung lớn nhất"
+description: "Khái niệm và cách tìm ƯCLN - Toán 6 KNTT Chương 2"
+grade: "Lớp 6"
+chapter: "Chương II: Tính chia hết trong tập hợp các số tự nhiên"
+currentSlug: "lop6/bai-11-uoc-chung-ucln"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Ước chung của $12$ và $18$ là:",
+    option_a: "$1, 2, 3, 6$",
+    option_b: "$1, 2, 3$",
+    option_c: "$1, 2$",
+    option_d: "$1, 3$",
+    correct_option: "A",
+    explanation: "Ước của $12$: $1, 2, 3, 4, 6, 12$. Ước của $18$: $1, 2, 3, 6, 9, 18$. Ước chung: $1, 2, 3, 6$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "ƯCLN$(12, 18)$ bằng:",
+    option_a: "$3$",
+    option_b: "$6$",
+    option_c: "$9$",
+    option_d: "$12$",
+    correct_option: "B",
+    explanation: "Ước chung của $12$ và $18$ là $1, 2, 3, 6$. Ước chung lớn nhất là $6$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "ƯCLN$(15, 25)$ bằng:",
+    option_a: "$3$",
+    option_b: "$5$",
+    option_c: "$15$",
+    option_d: "$25$",
+    correct_option: "B",
+    explanation: "$15 = 3 \\times 5$, $25 = 5^2$. ƯCLN = $5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những cặp số nào nguyên tố cùng nhau?",
+    option_a: "$(8, 15)$",
+    option_b: "$(12, 18)$",
+    option_c: "$(7, 11)$",
+    option_d: "$(9, 16)$",
+    correct_option: "A,C,D",
+    explanation: "ƯCLN$(8,15)=1$, ƯCLN$(12,18)=6$, ƯCLN$(7,11)=1$, ƯCLN$(9,16)=1$. Nguyên tố cùng nhau: A, C, D.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "ƯCLN$(a, 1)$ bằng:",
+    option_a: "$a$",
+    option_b: "$1$",
+    option_c: "$0$",
+    option_d: "Không xác định",
+    correct_option: "B",
+    explanation: "Ước duy nhất của $1$ là $1$, nên ƯCLN$(a, 1) = 1$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm ƯCLN$(24, 36)$.",
+    correct_option: "12",
+    explanation: "$24 = 2^3 \\times 3$, $36 = 2^2 \\times 3^2$. ƯCLN = $2^2 \\times 3 = 12$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tìm ƯCLN$(!a#18!, !b#24!)$.",
+    option_a: "$!tinh: __import__('math').gcd(!a!, !b!)!$",
+    option_b: "$!tinh: !a! * !b!!$",
+    option_c: "$!tinh: !a! + !b!!$",
+    option_d: "$!tinh: abs(!a! - !b!)!$",
+    correct_option: "A",
+    explanation: "ƯCLN$(!a!, !b!) = !tinh: __import__('math').gcd(!a!, !b!)!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Hai số $!a#15!$ và $!b#28!$ có phải nguyên tố cùng nhau không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "ƯCLN$(!a!, !b!) = !tinh: __import__('math').gcd(!a!, !b!)! = 1$ nên hai số nguyên tố cùng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔗 Ước chung — Tìm điểm chung</h3>
+
+Ước chung giúp tìm số lớn nhất có thể chia hết cho nhiều số!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔍</div>
+    <strong>Ước chung</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ước của cả hai số</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⬆️</div>
+    <strong>ƯCLN</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ước chung lớn nhất</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>Ứng dụng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chia đều, rút gọn</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="uoc-chung">📖 1. Ước chung</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số tự nhiên $d$ được gọi là **ước chung** của hai số $a$ và $b$ nếu $d$ vừa là ước của $a$, vừa là ước của $b$.
+
+**Ký hiệu:** $ƯC(a, b)$ là tập hợp các ước chung của $a$ và $b$.
+
+**Ví dụ:** Tìm $ƯC(12, 18)$
+
+- Ước của $12$: $\{1, 2, 3, 4, 6, 12\}$
+- Ước của $18$: $\{1, 2, 3, 6, 9, 18\}$
+- $ƯC(12, 18) = \{1, 2, 3, 6\}$
+
+</div>
+
+**Ví dụ 1:** Tìm ước chung
+
+a) Tìm $ƯC(8, 12)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Ước của $8$: $\{1, 2, 4, 8\}$
+- Ước của $12$: $\{1, 2, 3, 4, 6, 12\}$
+- $ƯC(8, 12) = \{1, 2, 4\}$
+
+</div>
+
+b) Tìm $ƯC(15, 20)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Ước của $15$: $\{1, 3, 5, 15\}$
+- Ước của $20$: $\{1, 2, 4, 5, 10, 20\}$
+- $ƯC(15, 20) = \{1, 5\}$
+
+</div>
+
+<h3 id="ucln" style="margin-top:2rem;">📖 2. Ước chung lớn nhất (ƯCLN)</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** **Ước chung lớn nhất** của hai số $a$ và $b$ là số lớn nhất trong tập hợp các ước chung của chúng.
+
+**Ký hiệu:** ƯCLN$(a, b)$ hoặc $(a, b)$
+
+**Ví dụ:**
+- $ƯC(12, 18) = \{1, 2, 3, 6\}$ → ƯCLN$(12, 18) = 6$
+- $ƯC(8, 12) = \{1, 2, 4\}$ → ƯCLN$(8, 12) = 4$
+
+**Tính chất:**
+- ƯCLN$(a, b) \geq 1$
+- Mọi ước chung của $a$ và $b$ đều là ước của ƯCLN$(a, b)$
+
+</div>
+
+**Ví dụ 2:** Tìm ƯCLN
+
+a) Tìm ƯCLN$(15, 25)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Ước của $15$: $\{1, 3, 5, 15\}$
+- Ước của $25$: $\{1, 5, 25\}$
+- $ƯC(15, 25) = \{1, 5\}$
+- ƯCLN$(15, 25) = 5$
+
+</div>
+
+b) Tìm ƯCLN$(7, 11)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Ước của $7$: $\{1, 7\}$
+- Ước của $11$: $\{1, 11\}$
+- $ƯC(7, 11) = \{1\}$
+- ƯCLN$(7, 11) = 1$
+
+</div>
+
+<h3 id="cach-tim" style="margin-top:2rem;">🔍 3. Cách tìm ƯCLN</h3>
+
+<div class="box-dinh-ly">
+
+**Phương pháp 1: Liệt kê ước**
+
+1. Liệt kê tất cả các ước của mỗi số
+2. Tìm các ước chung
+3. Chọn ước chung lớn nhất
+
+**Phương pháp 2: Phân tích ra thừa số nguyên tố**
+
+1. Phân tích mỗi số ra thừa số nguyên tố
+2. Chọn các thừa số nguyên tố **chung** với **số mũ nhỏ nhất**
+3. Nhân các thừa số đã chọn
+
+**Công thức:** Nếu $a = p_1^{a_1} \times p_2^{a_2} \times \ldots$ và $b = p_1^{b_1} \times p_2^{b_2} \times \ldots$
+
+Thì ƯCLN$(a, b) = p_1^{\min(a_1, b_1)} \times p_2^{\min(a_2, b_2)} \times \ldots$
+
+</div>
+
+**Ví dụ 3:** Tìm ƯCLN bằng phân tích
+
+a) Tìm ƯCLN$(24, 36)$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Phân tích
+- $24 = 2^3 \times 3$
+- $36 = 2^2 \times 3^2$
+
+**Bước 2:** Chọn thừa số chung với số mũ nhỏ nhất
+- Thừa số chung: $2, 3$
+- $2$: $\min(3, 2) = 2$ → $2^2$
+- $3$: $\min(1, 2) = 1$ → $3^1$
+
+**Bước 3:** Nhân
+- ƯCLN$(24, 36) = 2^2 \times 3 = 4 \times 3 = 12$
+
+</div>
+
+b) Tìm ƯCLN$(60, 90)$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Phân tích:**
+- $60 = 2^2 \times 3 \times 5$
+- $90 = 2 \times 3^2 \times 5$
+
+**Chọn thừa số chung:**
+- $2$: $\min(2, 1) = 1$ → $2^1$
+- $3$: $\min(1, 2) = 1$ → $3^1$
+- $5$: $\min(1, 1) = 1$ → $5^1$
+
+**Kết quả:**
+- ƯCLN$(60, 90) = 2 \times 3 \times 5 = 30$
+
+</div>
+
+<h3 id="nguyen-to-cung-nhau" style="margin-top:2rem;">🔗 4. Hai số nguyên tố cùng nhau</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hai số $a$ và $b$ được gọi là **nguyên tố cùng nhau** nếu ƯCLN$(a, b) = 1$.
+
+**Ví dụ:**
+- ƯCLN$(8, 15) = 1$ → $8$ và $15$ nguyên tố cùng nhau
+- ƯCLN$(7, 11) = 1$ → $7$ và $11$ nguyên tố cùng nhau
+- ƯCLN$(12, 18) = 6 \neq 1$ → $12$ và $18$ không nguyên tố cùng nhau
+
+**Lưu ý:** Hai số nguyên tố cùng nhau không nhất thiết phải là số nguyên tố.
+
+</div>
+
+**Ví dụ 4:** Kiểm tra nguyên tố cùng nhau
+
+a) $9$ và $16$ có nguyên tố cùng nhau không?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $9 = 3^2$
+- $16 = 2^4$
+- Không có thừa số chung
+- ƯCLN$(9, 16) = 1$
+
+Vậy $9$ và $16$ **nguyên tố cùng nhau** ✓
+
+</div>
+
+b) $14$ và $21$ có nguyên tố cùng nhau không?
+
+<div style="background:#fee2e2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $14 = 2 \times 7$
+- $21 = 3 \times 7$
+- Thừa số chung: $7$
+- ƯCLN$(14, 21) = 7 \neq 1$
+
+Vậy $14$ và $21$ **không nguyên tố cùng nhau** ✗
+
+</div>
+
+
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 5. Tính chất của ƯCLN</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 1:** ƯCLN$(a, 1) = 1$ với mọi $a \geq 1$
+
+**Tính chất 2:** Nếu $a \vdots b$ thì ƯCLN$(a, b) = b$
+
+**Tính chất 3:** ƯCLN$(a, b) = $ ƯCLN$(b, a)$ (tính giao hoán)
+
+**Tính chất 4:** Mọi ước chung của $a$ và $b$ đều là ước của ƯCLN$(a, b)$
+
+**Tính chất 5:** Nếu $d = $ ƯCLN$(a, b)$ thì ƯCLN$\left(\frac{a}{d}, \frac{b}{d}\right) = 1$
+
+</div>
+
+**Ví dụ 5:** Áp dụng tính chất
+
+a) Tìm ƯCLN$(30, 6)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$30 = 6 \times 5$ nên $30 \vdots 6$
+
+Theo tính chất 2: ƯCLN$(30, 6) = 6$
+
+</div>
+
+b) Cho ƯCLN$(24, 36) = 12$. Tìm ƯCLN$(2, 3)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$\frac{24}{12} = 2$, $\frac{36}{12} = 3$
+
+Theo tính chất 5: ƯCLN$(2, 3) = 1$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một cửa hàng có $24$ quyển vở và $36$ cây bút. Người bán muốn chia đều vào các túi quà, mỗi túi có số vở và số bút như nhau.
+
+a) Có thể chia được nhiều nhất bao nhiêu túi?
+
+b) Mỗi túi có bao nhiêu vở và bao nhiêu bút?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Số túi nhiều nhất = ƯCLN$(24, 36)$
+
+Phân tích:
+- $24 = 2^3 \times 3$
+- $36 = 2^2 \times 3^2$
+
+ƯCLN$(24, 36) = 2^2 \times 3 = 12$
+
+**Có thể chia được nhiều nhất 12 túi.**
+
+b) Mỗi túi có:
+- Số vở: $24 : 12 = 2$ (quyển)
+- Số bút: $36 : 12 = 3$ (cây)
+
+</div>
+
+**📝 Bài toán 2:** Một mảnh đất hình chữ nhật có chiều dài $60$ m và chiều rộng $48$ m. Người ta muốn chia mảnh đất thành các ô vuông bằng nhau, cạnh có độ dài là số tự nhiên (tính bằng mét).
+
+a) Tìm độ dài cạnh lớn nhất của mỗi ô vuông.
+
+b) Có tất cả bao nhiêu ô vuông?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Độ dài cạnh lớn nhất = ƯCLN$(60, 48)$
+
+Phân tích:
+- $60 = 2^2 \times 3 \times 5$
+- $48 = 2^4 \times 3$
+
+ƯCLN$(60, 48) = 2^2 \times 3 = 12$
+
+**Độ dài cạnh lớn nhất: 12 m**
+
+b) Số ô vuông:
+- Theo chiều dài: $60 : 12 = 5$ (ô)
+- Theo chiều rộng: $48 : 12 = 4$ (ô)
+- Tổng số ô: $5 \times 4 = 20$ (ô)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Ước chung**: Số vừa là ước của $a$, vừa là ước của $b$
+- **ƯCLN**: Ước chung lớn nhất của $a$ và $b$
+- **Cách tìm ƯCLN**:
+  1. Liệt kê ước → chọn ước chung lớn nhất
+  2. Phân tích → chọn thừa số chung với số mũ nhỏ nhất
+- **Nguyên tố cùng nhau**: ƯCLN$(a, b) = 1$
+- **Tính chất**: ƯCLN$(a, 1) = 1$; Nếu $a \vdots b$ thì ƯCLN$(a, b) = b$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tìm ước chung của các cặp số sau:
+
+a) $ƯC(10, 15)$
+
+b) $ƯC(18, 24)$
+
+c) $ƯC(20, 30)$
+
+d) $ƯC(12, 16)$
+
+**Bài 2:** Tìm ƯCLN bằng cách liệt kê ước:
+
+a) ƯCLN$(12, 18)$
+
+b) ƯCLN$(15, 25)$
+
+c) ƯCLN$(20, 30)$
+
+d) ƯCLN$(14, 21)$
+
+**Bài 3:** Tìm ƯCLN bằng phân tích ra thừa số nguyên tố:
+
+a) ƯCLN$(24, 36)$
+
+b) ƯCLN$(48, 72)$
+
+c) ƯCLN$(60, 90)$
+
+d) ƯCLN$(100, 150)$
+
+**Bài 4:** Kiểm tra các cặp số sau có nguyên tố cùng nhau không:
+
+a) $(8, 15)$
+
+b) $(12, 18)$
+
+c) $(9, 16)$
+
+d) $(14, 21)$
+
+**Bài 5:** Tìm ƯCLN của ba số:
+
+a) ƯCLN$(12, 18, 24)$
+
+b) ƯCLN$(20, 30, 40)$
+
+c) ƯCLN$(15, 25, 35)$
+
+d) ƯCLN$(24, 36, 48)$
+
+**Bài 6 (Thực tế):** Một lớp học có $30$ học sinh nam và $24$ học sinh nữ. Cô giáo muốn chia đều thành các nhóm, mỗi nhóm có số nam và số nữ như nhau.
+
+a) Có thể chia được nhiều nhất bao nhiêu nhóm?
+
+b) Mỗi nhóm có bao nhiêu học sinh nam và bao nhiêu học sinh nữ?
+
+c) Mỗi nhóm có tất cả bao nhiêu học sinh?
+
+d) Nếu muốn mỗi nhóm có đúng $9$ học sinh, có thể chia được không?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\{1, 5\}$; b) $\{1, 2, 3, 6\}$; c) $\{1, 2, 5, 10\}$; d) $\{1, 2, 4\}$
+
+**Bài 2:** a) $6$; b) $5$; c) $10$; d) $7$
+
+**Bài 3:** a) $12$; b) $24$; c) $30$; d) $50$
+
+**Bài 4:** a) Có; b) Không; c) Có; d) Không
+
+**Bài 5:** a) $6$; b) $10$; c) $5$; d) $12$
+
+**Bài 6:** a) $6$ nhóm; b) $5$ nam, $4$ nữ; c) $9$ học sinh; d) Có (vì $5 + 4 = 9$)
+
+</div>
+</details>
+

@@ -1,0 +1,315 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 40: Biểu đồ cột"
+description: "Cách vẽ và đọc biểu đồ cột - Toán 6 KNTT Chương IX"
+grade: "Lớp 6"
+chapter: "Chương IX: Dữ liệu và xác suất thực nghiệm"
+currentSlug: "lop6/bai-40-bieu-do-cot"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Biểu đồ cột dùng để làm gì?",
+    option_a: "Biểu diễn dữ liệu bằng các cột hình chữ nhật",
+    option_b: "Vẽ hình",
+    option_c: "Tính toán",
+    option_d: "Viết văn",
+    correct_option: "A",
+    explanation: "Biểu đồ cột dùng các cột hình chữ nhật để biểu diễn dữ liệu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ưu điểm của biểu đồ cột là gì?",
+    option_a: "Dễ so sánh, trực quan, chính xác",
+    option_b: "Khó hiểu",
+    option_c: "Không có ưu điểm",
+    option_d: "Chỉ dùng cho trẻ em",
+    correct_option: "A",
+    explanation: "Biểu đồ cột dễ so sánh các giá trị, trực quan và chính xác.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Biểu đồ cột — Cách biểu diễn dữ liệu hiệu quả</h3>
+
+Biểu đồ cột giúp ta dễ dàng so sánh các giá trị dữ liệu!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Biểu đồ cột</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">So sánh dữ liệu</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
+    <strong>Trực quan</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Dễ hiểu ngay</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm biểu đồ cột</h3>
+
+<div class="box-dinh-nghia">
+
+**Biểu đồ cột** là biểu đồ dùng các cột hình chữ nhật để biểu diễn dữ liệu.
+
+Chiều cao của mỗi cột tương ứng với giá trị dữ liệu.
+
+</div>
+
+<h3 id="thanh-phan" style="margin-top:2rem;">📖 2. Các thành phần của biểu đồ cột</h3>
+
+- **Tiêu đề:** Tên của biểu đồ
+- **Trục ngang (Ox):** Biểu diễn các tiêu chí, loại, danh mục
+- **Trục dọc (Oy):** Biểu diễn số lượng, tần số, giá trị
+- **Các cột:** Hình chữ nhật có chiều cao tương ứng với dữ liệu
+- **Chú thích:** Giải thích các ký hiệu (nếu có)
+
+<h3 id="vi-du" style="margin-top:2rem;">📖 3. Ví dụ biểu đồ cột</h3>
+
+**Ví dụ:** Điều tra sở thích ăn trái cây của 35 học sinh:
+
+Cam: 8, Xoài: 12, Chuối: 5, Dâu tây: 10
+
+| Loại trái cây | Số học sinh |
+|---|---|
+| Cam | 8 |
+| Xoài | 12 |
+| Chuối | 5 |
+| Dâu tây | 10 |
+
+Từ bảng này, ta có thể vẽ biểu đồ cột với:
+- Trục ngang: Cam, Xoài, Chuối, Dâu tây
+- Trục dọc: Số học sinh (0 đến 12)
+- Các cột có chiều cao: 8, 12, 5, 10
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Điều tra số lượng sách yêu thích của 30 học sinh:
+
+Truyện tranh: 10, Tiểu thuyết: 8, Sách khoa học: 7, Sách lịch sử: 5
+
+a) Lập bảng thống kê
+
+b) Loại sách nào được yêu thích nhất?
+
+c) Loại sách nào được yêu thích ít nhất?
+
+</VanDung>
+
+<BaiTapTuLuan>
+
+**Bài 1:** Điểm trung bình môn Toán của 5 học sinh:
+
+An: 8,5 điểm, Bình: 7,0 điểm, Chi: 9,0 điểm, Dũng: 6,5 điểm, Hoa: 8,0 điểm
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ cột (trục dọc từ 0 đến 10)
+
+c) Học sinh nào có điểm cao nhất?
+
+d) Tính điểm trung bình của cả 5 học sinh
+
+**Bài 2:** Doanh thu bán hàng của một cửa hàng trong 4 tháng (đơn vị: triệu đồng):
+
+Tháng 1: 50, Tháng 2: 60, Tháng 3: 55, Tháng 4: 70
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ cột
+
+c) Tháng nào có doanh thu cao nhất?
+
+d) Tính tổng doanh thu 4 tháng
+
+e) Tính doanh thu trung bình mỗi tháng
+
+**Bài 3:** Số lượng sách mượn tại thư viện trong 5 ngày:
+
+Thứ 2: 45 quyển, Thứ 3: 50 quyển, Thứ 4: 40 quyển, Thứ 5: 55 quyển, Thứ 6: 60 quyển
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ cột
+
+c) Ngày nào có nhiều người mượn sách nhất?
+
+d) Tính tổng số sách được mượn trong tuần
+
+**Bài 4:** Chiều cao của 6 cây trong vườn (đơn vị: mét):
+
+Cây 1: 2,5m, Cây 2: 3,0m, Cây 3: 2,8m, Cây 4: 3,5m, Cây 5: 2,2m, Cây 6: 3,2m
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ cột
+
+c) Cây nào cao nhất? Cây nào thấp nhất?
+
+d) Tính chiều cao trung bình của các cây
+
+**Bài 5:** Số lượng học sinh tham gia các câu lạc bộ:
+
+Toán: 25, Văn: 20, Anh: 30, Tin học: 15, Thể thao: 35
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ cột
+
+c) Câu lạc bộ nào có nhiều học sinh nhất?
+
+d) Tính tổng số học sinh tham gia các câu lạc bộ
+
+e) Nếu mỗi học sinh chỉ tham gia 1 câu lạc bộ, có bao nhiêu học sinh tham gia?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1: Điểm trung bình môn Toán**
+
+a) **Bảng thống kê:**
+
+| Học sinh | Điểm |
+|----------|------|
+| An | 8,5 |
+| Bình | 7,0 |
+| Chi | 9,0 |
+| Dũng | 6,5 |
+| Hoa | 8,0 |
+
+b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 10, mỗi học sinh là một cột)
+
+c) Học sinh có điểm cao nhất: **Chi** (9,0 điểm)
+
+d) Điểm trung bình: (8,5 + 7,0 + 9,0 + 6,5 + 8,0) ÷ 5 = 39 ÷ 5 = **7,8 điểm**
+
+---
+
+**Bài 2: Doanh thu bán hàng**
+
+a) **Bảng thống kê:**
+
+| Tháng | Doanh thu (triệu đồng) |
+|-------|------------------------|
+| Tháng 1 | 50 |
+| Tháng 2 | 60 |
+| Tháng 3 | 55 |
+| Tháng 4 | 70 |
+
+b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 80, mỗi tháng là một cột)
+
+c) Tháng có doanh thu cao nhất: **Tháng 4** (70 triệu đồng)
+
+d) Tổng doanh thu: 50 + 60 + 55 + 70 = **235 triệu đồng**
+
+e) Doanh thu trung bình: 235 ÷ 4 = **58,75 triệu đồng/tháng**
+
+---
+
+**Bài 3: Sách mượn tại thư viện**
+
+a) **Bảng thống kê:**
+
+| Ngày | Số sách (quyển) |
+|------|-----------------|
+| Thứ 2 | 45 |
+| Thứ 3 | 50 |
+| Thứ 4 | 40 |
+| Thứ 5 | 55 |
+| Thứ 6 | 60 |
+
+b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 70)
+
+c) Ngày có nhiều người mượn sách nhất: **Thứ 6** (60 quyển)
+
+d) Tổng số sách: 45 + 50 + 40 + 55 + 60 = **250 quyển**
+
+---
+
+**Bài 4: Chiều cao các cây**
+
+a) **Bảng thống kê:**
+
+| Cây | Chiều cao (m) |
+|-----|---------------|
+| Cây 1 | 2,5 |
+| Cây 2 | 3,0 |
+| Cây 3 | 2,8 |
+| Cây 4 | 3,5 |
+| Cây 5 | 2,2 |
+| Cây 6 | 3,2 |
+
+b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 4)
+
+c) 
+- Cây cao nhất: **Cây 4** (3,5m)
+- Cây thấp nhất: **Cây 5** (2,2m)
+
+d) Chiều cao trung bình: (2,5 + 3,0 + 2,8 + 3,5 + 2,2 + 3,2) ÷ 6 = 17,2 ÷ 6 ≈ **2,87m**
+
+---
+
+**Bài 5: Câu lạc bộ**
+
+a) **Bảng thống kê:**
+
+| Câu lạc bộ | Số học sinh |
+|------------|-------------|
+| Toán | 25 |
+| Văn | 20 |
+| Anh | 30 |
+| Tin học | 15 |
+| Thể thao | 35 |
+
+b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 40)
+
+c) Câu lạc bộ có nhiều học sinh nhất: **Thể thao** (35 học sinh)
+
+d) Tổng số học sinh tham gia: 25 + 20 + 30 + 15 + 35 = **125 lượt tham gia**
+
+e) Nếu mỗi học sinh chỉ tham gia 1 câu lạc bộ: **125 học sinh**
+
+</div>
+</details>
+
+</BaiTapTuLuan>
+
+<GhiNho>
+
+- **Biểu đồ cột:** Dùng các cột hình chữ nhật để biểu diễn dữ liệu
+- **Thành phần:** Tiêu đề, trục ngang, trục dọc, các cột, chú thích
+- **Ưu điểm:** Dễ so sánh, trực quan, chính xác
+
+</GhiNho>

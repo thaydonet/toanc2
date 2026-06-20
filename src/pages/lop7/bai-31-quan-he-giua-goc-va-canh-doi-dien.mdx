@@ -1,0 +1,318 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 31: Quan hệ giữa góc và cạnh đối diện trong một tam giác"
+description: "Quan hệ giữa góc và cạnh đối diện - Toán 7 KNTT Chương 9"
+grade: "Lớp 7"
+chapter: "Chương IX: Quan hệ giữa các yếu tố trong tam giác"
+currentSlug: "lop7/bai-31-quan-he-giua-goc-va-canh-doi-dien"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Trong tam giác, cạnh đối diện với góc lớn hơn thì:",
+    option_a: "Lớn hơn",
+    option_b: "Nhỏ hơn",
+    option_c: "Bằng nhau",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Trong tam giác, góc lớn hơn đối diện với cạnh lớn hơn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác $ABC$ có $AB < AC$. So sánh $\\\\widehat{C}$ và $\\\\widehat{B}$:",
+    option_a: "$\\\\widehat{C} < \\\\widehat{B}$",
+    option_b: "$\\\\widehat{C} > \\\\widehat{B}$",
+    option_c: "$\\\\widehat{C} = \\\\widehat{B}$",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "Cạnh $AB$ đối diện với góc $C$, cạnh $AC$ đối diện với góc $B$. Vì $AB < AC$ nên $\\\\widehat{C} < \\\\widehat{B}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác vuông, cạnh nào là cạnh lớn nhất?",
+    option_a: "Cạnh huyền",
+    option_b: "Cạnh góc vuông",
+    option_c: "Cạnh đối diện góc nhọn",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Góc vuông là góc lớn nhất trong tam giác vuông, nên cạnh huyền (đối diện góc vuông) là cạnh lớn nhất.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác $ABC$ có $\\\\widehat{A} = 70^\\\\circ$, $\\\\widehat{B} = 60^\\\\circ$, $\\\\widehat{C} = 50^\\\\circ$. Cạnh lớn nhất là:",
+    option_a: "$BC$",
+    option_b: "$AC$",
+    option_c: "$AB$",
+    option_d: "Cả ba bằng nhau",
+    correct_option: "A",
+    explanation: "Góc $A$ lớn nhất nên cạnh đối diện $BC$ lớn nhất.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Trong tam giác $ABC$, nếu $\\\\widehat{A} > \\\\widehat{B} > \\\\widehat{C}$ thì:",
+    option_a: "$BC > AC > AB$",
+    option_b: "Cạnh $BC$ lớn nhất",
+    option_c: "Cạnh $AB$ nhỏ nhất",
+    option_d: "$BC > AC$ và $AC > AB$",
+    correct_option: "A,B,C,D",
+    explanation: "Góc lớn hơn đối diện với cạnh lớn hơn, nên $BC > AC > AB$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tam giác cân có góc ở đỉnh bằng $40^\\\\circ$. Góc lớn nhất của tam giác là bao nhiêu độ?",
+    correct_option: "70",
+    explanation: "Hai góc ở đáy bằng nhau, mỗi góc = $(180^\\\\circ - 40^\\\\circ) : 2 = 70^\\\\circ$. Góc lớn nhất là $70^\\\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Góc và cạnh đối diện</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">∠</div>
+    <strong>Góc lớn hơn</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cạnh đối diện lớn hơn</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">━</div>
+    <strong>Cạnh lớn hơn</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Góc đối diện lớn hơn</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-li-1">📖 1. Góc đối diện với cạnh lớn hơn</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí 1:** Trong một tam giác, góc đối diện với cạnh lớn hơn là góc lớn hơn.
+
+Trong tam giác $ABC$:
+
+Nếu $AB > AC$ thì $\widehat{C} > \widehat{B}$
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="300" viewBox="0 0 400 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="200,50 80,250 320,250" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Cạnh AB (dài hơn) */}
+  <line x1="200" y1="50" x2="80" y2="250" stroke="#ef4444" stroke-width="3"/>
+  <text x="120" y="140" font-size="14" font-weight="bold" fill="#ef4444">AB (dài)</text>
+  
+  {/* Cạnh AC */}
+  <line x1="200" y1="50" x2="320" y2="250" stroke="#3b82f6" stroke-width="2"/>
+  <text x="280" y="140" font-size="14" fill="#3b82f6">AC</text>
+  
+  {/* Điểm A, B, C */}
+  <circle cx="200" cy="50" r="4" fill="#1f2937"/>
+  <text x="200" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  <circle cx="80" cy="250" r="4" fill="#1f2937"/>
+  <text x="65" y="270" font-size="16" font-weight="bold" fill="#1f2937">B</text>
+  
+  <circle cx="320" cy="250" r="4" fill="#1f2937"/>
+  <text x="335" y="270" font-size="16" font-weight="bold" fill="#1f2937">C</text>
+  
+  {/* Góc C (lớn hơn) */}
+  <path d="M 290,250 A 40,40 0 0,0 305,220" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="2"/>
+  <text x="285" y="230" font-size="14" font-weight="bold" fill="#ef4444">Ĉ (lớn)</text>
+  
+  {/* Góc B */}
+  <path d="M 110,250 A 40,40 0 0,1 95,220" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="105" y="230" font-size="14" fill="#3b82f6">B̂</text>
+</svg>
+</div>
+
+**Ví dụ 1:** Tam giác $ABC$ có $BC = 5$ cm, $AC = 7$ cm, $AB = 9$ cm. Sắp xếp các góc theo thứ tự tăng dần.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Ta có: $BC < AC < AB$
+
+Góc đối diện với $BC$ là $\widehat{A}$
+
+Góc đối diện với $AC$ là $\widehat{B}$
+
+Góc đối diện với $AB$ là $\widehat{C}$
+
+Vậy: $\widehat{A} < \widehat{B} < \widehat{C}$
+
+</div>
+
+<h3 id="dinh-li-2" style="margin-top:2rem;">📖 2. Cạnh đối diện với góc lớn hơn</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí 2:** Trong một tam giác, cạnh đối diện với góc lớn hơn là cạnh lớn hơn.
+
+Trong tam giác $ABC$:
+
+Nếu $\widehat{B} > \widehat{C}$ thì $AC > AB$
+
+</div>
+
+**Ví dụ 2:** Tam giác $ABC$ có $\widehat{A} = 80^\circ$, $\widehat{B} = 60^\circ$, $\widehat{C} = 40^\circ$. Sắp xếp các cạnh theo thứ tự giảm dần.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Ta có: $\widehat{A} > \widehat{B} > \widehat{C}$
+
+Cạnh đối diện với $\widehat{A}$ là $BC$
+
+Cạnh đối diện với $\widehat{B}$ là $AC$
+
+Cạnh đối diện với $\widehat{C}$ là $AB$
+
+Vậy: $BC > AC > AB$
+
+</div>
+
+<h3 id="he-qua" style="margin-top:2rem;">📖 3. Hệ quả</h3>
+
+<div class="box-dinh-ly">
+
+**Hệ quả 1:** Trong tam giác vuông, cạnh huyền là cạnh lớn nhất.
+
+**Hệ quả 2:** Trong tam giác tù, cạnh đối diện với góc tù là cạnh lớn nhất.
+
+**Hệ quả 3:** Trong tam giác cân, hai cạnh bên bằng nhau và hai góc ở đáy bằng nhau.
+
+</div>
+
+**Ví dụ 3:** Tam giác $ABC$ vuông tại $A$. So sánh các cạnh.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$\widehat{A} = 90^\circ$ là góc lớn nhất
+
+Cạnh đối diện $BC$ (cạnh huyền) là cạnh lớn nhất
+
+Vậy: $BC > AB$ và $BC > AC$
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">📖 4. Ứng dụng</h3>
+
+**Bài toán:** Cho tam giác $ABC$ có $AB = 6$ cm, $AC = 8$ cm, $BC = 10$ cm. Chứng minh tam giác $ABC$ vuông tại $A$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Ta có: $AB < AC < BC$
+
+Suy ra: $\widehat{C} < \widehat{B} < \widehat{A}$
+
+Vậy $\widehat{A}$ là góc lớn nhất.
+
+Kiểm tra: $AB^2 + AC^2 = 6^2 + 8^2 = 36 + 64 = 100 = 10^2 = BC^2$
+
+Theo định lí Pythagore đảo, tam giác $ABC$ vuông tại $A$.
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Ba địa điểm $A$, $B$, $C$ tạo thành tam giác. Biết khoảng cách $AB = 5$ km, $AC = 7$ km, $BC = 9$ km.
+
+a) Góc nào là góc lớn nhất?
+
+b) Nếu đứng tại $A$ nhìn sang $B$ và $C$, góc nhìn là bao nhiêu so với các góc khác?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Ta có: $AB < AC < BC$
+
+Góc đối diện với cạnh lớn nhất $BC$ là $\widehat{A}$
+
+Vậy $\widehat{A}$ là góc lớn nhất.
+
+b) Góc nhìn từ $A$ chính là $\widehat{A}$, là góc lớn nhất trong ba góc.
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Góc lớn hơn** → cạnh đối diện lớn hơn
+- **Cạnh lớn hơn** → góc đối diện lớn hơn
+- **Tam giác vuông**: cạnh huyền lớn nhất
+- **Tam giác tù**: cạnh đối diện góc tù lớn nhất
+- **Tam giác cân**: hai cạnh bên bằng nhau
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tam giác $ABC$ có $AB = 4$ cm, $AC = 6$ cm, $BC = 7$ cm. Sắp xếp các góc theo thứ tự tăng dần.
+
+**Bài 2:** Tam giác $ABC$ có $\widehat{A} = 50^\circ$, $\widehat{B} = 70^\circ$, $\widehat{C} = 60^\circ$. Sắp xếp các cạnh theo thứ tự giảm dần.
+
+**Bài 3:** Tam giác $ABC$ vuông tại $A$, có $AB = 3$ cm, $AC = 4$ cm. Tính $BC$ và so sánh các cạnh.
+
+**Bài 4:** Tam giác cân $ABC$ có $AB = AC = 5$ cm, $BC = 6$ cm. So sánh các góc của tam giác.
+
+**Bài 5:** Cho tam giác $ABC$ có $\widehat{A} > 90^\circ$. Chứng minh $BC$ là cạnh lớn nhất.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** $\widehat{C} < \widehat{B} < \widehat{A}$
+
+**Bài 2:** $AC > AB > BC$
+
+**Bài 3:** $BC = 5$ cm; $BC > AC > AB$
+
+**Bài 4:** $\widehat{A} < \widehat{B} = \widehat{C}$
+
+**Bài 5:** $\widehat{A}$ là góc lớn nhất nên $BC$ (đối diện $\widehat{A}$) là cạnh lớn nhất
+
+</div>
+</details>

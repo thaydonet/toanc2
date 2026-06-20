@@ -1,0 +1,314 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 16: Vị trí tương đối của đường thẳng và đường tròn"
+description: "Cát tuyến, Tiếp tuyến và các vị trí tương đối giữa đường thẳng và đường tròn - Toán 9 KNTT Chương 5"
+grade: "Lớp 9"
+chapter: "Chương V: Đường tròn"
+currentSlug: "lop9/bai-16-vi-tri-tuong-doi-dt-dt"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Đường thẳng và đường tròn có THỂ có nhiều nhất bao nhiêu điểm chung?",
+    option_a: "0",
+    option_b: "1",
+    option_c: "2",
+    option_d: "Vô số",
+    correct_option: "C",
+    explanation: "Đường thẳng (thẳng tắp) cắt qua đường tròn (cong) nhiều nhất chỉ tại 2 điểm (xuyên táo).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi đường thẳng và đường tròn chỉ có CHÍNH XÁC MỘT điểm chung, đường thẳng đó được gọi là gì?",
+    option_a: "Cát tuyến",
+    option_b: "Tiếp tuyến",
+    option_c: "Phân giác",
+    option_d: "Trung trực",
+    correct_option: "B",
+    explanation: "Đường thẳng gác nhẹ một tay lên đường tròn (1 điểm) được phong tước hiệu là 'Tiếp tuyến'.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho đường tròn $(O; R)$ và đường thẳng $d$. Kẻ $OH \\perp d$. Nếu $OH < R$ thì $d$ là:",
+    option_a: "Tiếp tuyến của đường tròn",
+    option_b: "Không giao nhau với đường tròn",
+    option_c: "Cát tuyến (Cắt đường tròn tại 2 điểm)",
+    option_d: "Đường kính của đường tròn",
+    correct_option: "C",
+    explanation: "Khoảng cách $d$ mà bé hơn bán kính, tức là đường thẳng đó lún sâu vào bên trong hình tròn, do đó nó sẽ cắt vòng tròn tại 2 điểm tách biệt.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính chất cốt lõi của Tiếp Tuyến là nó KHÔNG THỂ sống thiếu yếu tố nào sau đây tại tiếp điểm?",
+    option_a: "Song song với đường kính",
+    option_b: "Vuông góc với một dây cung bất kì",
+    option_c: "Song song với một tiếp tuyến khác",
+    option_d: "Vuông góc với bán kính đi qua tiếp điểm đó",
+    correct_option: "D",
+    explanation: "Đây là định lý Vàng: Mệnh danh là Tiếp tuyến thì bắt buộc phải vuông góc với bán kính gác qua nó tại chính cái 'Điểm chung' duy nhất ấy.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường thẳng $a, b$ cắt nhau tại điểm $M$, đồng thời chúng đều là tiếp tuyến của đường tròn $(O)$ ở hai bên góc. Kẻ đoạn nối tâm $OM$ thì tia $OM$ là gì?",
+    option_a: "Tia nằm hoang dã",
+    option_b: "Đường trung tuyến",
+    option_c: "Tia phân giác của góc tạo bởi 2 tiếp tuyến",
+    option_d: "Đường cao góc chóp",
+    correct_option: "C",
+    explanation: "Tính chất hai tiếp tuyến cắt nhau tại 1 điểm: Tia chẻ từ điểm đó đến tâm chia góc mở đó thành 2 góc bằng nhau (Tia phân giác).",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điều kiện Cần và Đủ nào sau chứng tỏ d là Tiếp Tuyến?",
+    option_a: "$d = R$",
+    option_b: "d cắt ngang O",
+    option_c: "$d > R$",
+    option_d: "$d < R$",
+    correct_option: "A",
+    explanation: "Khi khoảng cách từ Tâm đến đường thẳng ĐÚNG BẰNG bán kính ($d = R$) thì đường nằm sát biên và tạo thành Tiếp tuyến duy nhất.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Hai tiếp tuyến của một đường tròn cắt nhau tại 1 đỉnh A. Tiếp điểm là B và C. Các tính chất nào luôn ĐÚNG?",
+    option_a: "$AB = AC$ (Khoảng cách kẹp bằng nhau)",
+    option_b: "$OA$ là đường trung trực của đoạn $BC$",
+    option_c: "Góc $OAB$ và มุม $OAC$ cộng nhau bằng $180^\\circ$",
+    option_d: "Tia $OA$ là phân giác của góc độ mở $BAC$",
+    correct_option: "A,B,D",
+    explanation: "Tính chất tuyệt đỉnh của chóp tiếp tuyến: Hai cánh tay kẹp mút dài bằng nhau ($AB = AC$). $OA$ chẻ đôi góc $A$ (phân giác) và chẻ luôn cả Góc nách $O$ (phân giác góc ở tâm). Do $AB=AC, OB=OC=R \Rightarrow OA$ là trung trực của Dây Cung liên lạc $B-C$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Trong mặt phẳng, có mấy vị trí tương đối giữa đường thẳng và đường tròn?",
+    option_a: "Chéo nhau",
+    option_b: "Cắt nhau",
+    option_c: "Tiếp xúc",
+    option_d: "Không giao nhau",
+    correct_option: "B,C,D",
+    explanation: "Chỉ có 3 vị trí: Xuyên qua (2 mút - Cắt), Cọ sát (1 mút - Tiếp xúc), và Đi thẳng không chạm biên (0 mút - Không giao). Đường thẳng chéo nhau thuộc hình học lập thể Không Gian 3D.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Đường tròn tâm O bán kính $R = 8\\text{cm}$. Một đường thẳng $d$ cách quỹ đạo hình tròn một đoạn sát đúng $4\\text{cm}$. Hỏi đường thẳng $d$ cắt đường tròn tại bao nhiêu điểm?",
+    correct_option: "2",
+    explanation: "Vì khoảng cách từ O đến d là $d = 4\\text{cm} < R = 8\\text{cm}$. Đường thẳng xuyên thấu bên trong nên cưa 2 đoạn, giao nhau 2 điểm TẠO Cát Tuyến.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Từ điểm A ở ngoài đường tròn tâm O, kẻ hai tiếp tuyến thẳng căng nẹp vào đường tròn tại B và C. Biết góc ở nách A ($BAC$) bằng $60^\\circ$. Hỏi góc nới ở tâm đỉnh $BOC$ góc vuông bằng bao nhiêu độ?",
+    correct_option: "120",
+    explanation: "Tứ giác Tiếp tuyến $ABOC$ có 2 góc tiếp điểm $B$ và $C = 90^\circ$ nên tổng là $180^\circ$. Khép kín $360 \Rightarrow$ Hai góc đối diện $A$ và $O$ bù nhau (cộng lại $180^\circ$). Do $A = 60^\circ \Rightarrow O = 180 - 60 = 120^\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🌅 Mặt Trời lặn xuống mặt biển</h3>
+
+Mặt biển phẳng lặng có thể được coi là môt **\"Đường thẳng\"**, còn Mặt trời đỏ rực lúc xế chiều chính là một **\"Đường tròn\"**.
+Quá trình lặn của Mặt Trời chính là một hình ảnh thị giác hoàn hảo mô phỏng sự tương tác giữa Môt đường tròn chuyển động và Môt đường thẳng ngang:
+- Lờ mờ trên cao chói sáng: Mặt trời **KHÔNG GIAO NHAU** với mặt biển.
+- Đáy vực chạm nhẹ nếp sóng: Mặt trời **TIẾP XÚC** với gầm biển.
+- Một nửa chìm dần xuống mờ đi: Mặt biển cưa đôi Mặt trời (2 điểm viền chạm ranh giới), hay còn gọi là **CẮT NHAU**.
+
+Tính Toán học được giấu ngay trong hoàng hôn! Cùng tìm hiểu cách đo đếm xem Mặt trời lặn sâu bao nhiêu phân chỉ qua khoảng cách từ \"Tâm\" Mặt Trời giăng thẳng vào Biển nhé!
+
+<div style="display:flex;justify-content:center;margin:2rem 0;gap:1.5rem;">
+<svg width="120" height="120" viewBox="0 0 120 120" style="background:#fefce8;border-radius:8px;">
+  <circle cx="60" cy="40" r="25" fill="#f97316"/>
+  <line x1="10" y1="90" x2="110" y2="90" stroke="#0ea5e9" stroke-width="4"/>
+  <text x="60" y="115" font-size="12" text-anchor="middle" fill="#52525b">1. Không giao ($d > R$)</text>
+</svg>
+<svg width="120" height="120" viewBox="0 0 120 120" style="background:#fefce8;border-radius:8px;">
+  <circle cx="60" cy="65" r="25" fill="#ea580c"/>
+  <line x1="10" y1="90" x2="110" y2="90" stroke="#0ea5e9" stroke-width="4"/>
+  <text x="60" y="115" font-size="12" text-anchor="middle" fill="#52525b">2. Tiếp xúc ($d = R$)</text>
+</svg>
+<svg width="120" height="120" viewBox="0 0 120 120" style="background:#fefce8;border-radius:8px;">
+  <circle cx="60" cy="90" r="25" fill="#c2410c"/>
+  <line x1="10" y1="90" x2="110" y2="90" stroke="#0ea5e9" stroke-width="4"/>
+  <text x="60" y="115" font-size="12" text-anchor="middle" fill="#52525b">3. Cắt nhau ($d < R$)</text>
+</svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="vi-tri-tuong-doi" style="margin-top:2rem;">📖 1. Ba vị trí tương đối</h3>
+
+Gọi $R$ là bán kính của đường tròn $(O)$. Gọi $d$ là **khoảng cách nét cắt vuông góc** từ tâm $O$ chĩa chéo ra một đường thẳng $a$ bất kỳ.
+
+Ta có màn so tài sống còn giữa Khoảng Cách ($d$) và Bán Kính ($R$), quy định chặt chẽ sự tương đụng này:
+
+<div class="box-dinh-nghia">
+
+1. **Đường thẳng cắt đường tròn (Có 2 điểm chung):**
+   Xảy ra khi **$d < R$**.
+   Đường thẳng xuyên vào lãnh thổ đường tròn. Hai nút giao tạo thành một Dây Cung. Lúc này đường thẳng cưa đôi gọi là **Cát Tuyến**.
+2. **Đường thẳng tiếp xúc đường tròn (Có 1 điểm chung duy nhất):**
+   Xảy ra khi **$d = R$**.
+   Đường thẳng ép mỏng dính vào biên giới đường tròn. Điểm chạm duy nhất đấy gọi là **Tiếp điểm**, và Đường thẳng được vinh danh là **Tiếp Tuyến**.
+3. **Đường thẳng không giao đường tròn (Có 0 điểm chung):**
+   Xảy ra khi **$d > R$**. Khoảng cách quá xoay xở nên không chạm nổi rìa.
+
+</div>
+
+<h3 id="tiep-tuyen" style="margin-top:2rem;">📖 2. Tiếp tuyến và Dấu hiệu nhận biết</h3>
+
+Tiếp tuyến là trạng thái đẹp nhất của mối quan hệ này (giống bánh lốp rẽ đất chạy qua đường băng phẳng), đòi hỏi một Định lý nòng cốt:
+
+<div class="box-dinh-ly">
+
+**Tính chất cơ bản:**
+Nếu một đường thẳng là Tiếp Tuyến của một đường tròn thì nó bắt buộc **VUÔNG GÓC** với Bán Kính đi qua cái Tiếp Điểm chạm nhạy cảm đó.
+
+**Dấu hiệu nhận biết Tiếp Tuyến (Làm Toán):**
+Nếu một đường thẳng nào đó có thể đi qua 1 mút (nằm trên đường tròn) CHẬP VUÔNG GÓC với đoạn nối vạch từ tâm $O$ thẳng tới mút đó... $\Rightarrow$ Đường ngầm đó là một **Tiếp tuyến xịn**!
+
+</div>
+
+<h3 id="hai-tiep-tuyen-cat-nhau" style="margin-top:2rem;">📖 3. Tính chất của hai tiếp tuyến cắt nhau</h3>
+
+Khi đứng từ 1 điểm $A$ nằm **NGOÀI** chiếc giếng (đường tròn), bạn kéo căng 2 sợi chỉ sao cho chúng ôm chặt khít vừa chạm viền vỏ cái giếng ở 2 phía, bạn sẽ có góc nhọn tạo ra 2 Tiếp Tuyến.
+
+<div class="box-dinh-ly">
+
+**Định lý \"Cái Nón Sinh Đôi\":** 
+Nếu hai tiếp tuyến của môt đường tròn cắt nhau tại môt đỉnh chung $A$, thì:
+1. $A$ cách đều cặp 2 tiếp điểm chạm thành: Độ dài hai dây kẹp là Bằng Nhau ($AB = AC$).
+2. Góc chẻ ngang tại mắt nhìn ($A$) sẽ bị Đường thẳng đâm dọc từ $A$ đi qua Tâm $O$ chẻ đôi làm tia Phân giác. (Góc ngắm $A_1 = A_2$).
+3. Tương tự, nếu ngồi từ Tâm $O$ nhìn ra cánh hoa tiếp điểm $\Rightarrow$ Tia $OA$ cũng bổ đôi thành Tia phân giác của góc nách ở chính giữa rọi về $A$.
+
+</div>
+
+Nhờ tính chất này mà một \"Tứ Giác Nội Tiếp Cây Kem Ốc Quế\" tạo thành từ 2 đỉnh Tiếp Điểm chập Góc $A$ và Tâm $O$ sinh ra vô vàn biến trở Toán học hay cho học sinh khám phá.
+
+</KhamPha>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Luật giải siêu năng:** 
+Cứ nghe đến chữ \"Tiếp Tuyến\" ở đâu trong bài Hình Học Không Gian hay Tam Giác, bạn phải VUNG TAY KẺ NGAY MỘT ĐƯỜNG GIẰNG VUÔNG GÓC tại chỗ tiếp điểm. 
+Thiếu góc vuông là bạn không có cơ sở sử dụng Py-ta-go hay Lượng Giác gì cả. Đóng dấu Góc Vuông $\rightarrow$ Tạo Tam Giác Vuông $\rightarrow$ Giải ra cạnh Tâm.
+
+</div>
+
+</GhiNho>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho đường thẳng $d$ cách quỹ đạo của tâm môt đường tròn tâm O bán kính $R=10\text{cm}$ một khoảng $d$. 
+Xác định vị trí tương đối giữa đường thẳng $d$ và $(O; 10)$ ứng trực với các trường hợp:
+
+a) $d = 5\text{cm}$
+
+b) $d = 12\text{cm}$
+
+c) $d = 10\text{cm}$
+
+**Bài 2:** Cho điểm A nằm xa tít đường biên đường tròn tâm O bán kính 6cm. Từ A kẻ 2 tiếp tuyến kẹp thành hai đùi gánh AB và AC cho hình tròn (B,C là tiếp xúc điểm gác).
+
+a) Nhịp dây gánh AB dài $8\text{cm}$. Hãy đo khoảng cách nối A chọc qua Tâm O xem dài bao nhiêu cm? Nêu lý luận cụ thể.
+
+b) Nêu trị đoạn tay càng gánh AC không cần đo. Nó dài bao nhiêu? Tại sao?
+
+**Bài 3:** Cho tam giác $ABC$ có cạnh đáy $BC$ chia đều cho phân giác đường thẳng ngang và có góc $A=90^\circ, AB=6, AC=8$. (Vậy tam giác $ABC$ vuông đỉnh A).
+MỘT Hình tròn đi qua B cắm mút ở Tâm là đỉnh C. Hình tròn $(C; CB)$ đó Cắt đường thẳng xuyên ngang của AB không? (Bán kính hình chữ tròn lấy mốc bán kính nẹp viền CB dài bao nhiêu? Khoảng d từ Tâm C xuống đường nằm ngang lườn AB dài bao nhiêu?).
+
+**Bài 4:** Góc Nhìn. 
+Cánh diều hình lục giác có thanh chéo AB và AC lượn giao đường viền ống thép mỏng ở 2 điểm chạm B và C. Thanh giữ thăng bằng nằm ở tâm O nẹp chéo qua ngọn A, chia cánh diều làm 2 Góc Bằng Nhau.
+Góc rọi từ A đo được bằng $40^\circ$. Tính độ lớn góc sải cánh sứt giữa đỉnh $BOC$ của vòng nhựa? 
+
+**Bài 5 (Thực tế - Vệ Tinh Viễn Thông Ngắm Trái Đất):**
+Trái Đất là một khối hình cầu siêu lớn (có thể xem như hình tròn Bán Kính $R = 6400\text{km}$ khi cắt ngang mặt cắt vĩ tuyến). Môt vệ tinh nhân tạo nhắm điểm viễn vọng xa A lơ lửng ngoài vũ trụ. Để vệ tinh gửi tín hiệu Phủ sóng cho vừa trọn bề mặt trái đất mà KHÔNG BAO GIỜ bị rớt sóng vỡ mặt nạ đập vào núi, 2 Tia sóng truyền rìa ngoài cùng chính là 2 cánh rọi **\"Tiếp Tuyến\"** đáp xuống đĩa tròn Trái Đất tại điểm B và C.
+Góc phóng tầm ngắm $BAC = 60^\circ$. 
+Hỏi Vệ Tinh này đang bay quanh trái đất cách mốc ở TRUNG TÂM lõi Trái Đất (đoạn OA) khoảng bao xa kílômét? Từ đó tìm ra nó bay Cách MẶT ĐẤT (chiều cao h khỏi đất) bao nhiêu $\text{km}$?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+- Bán kính $R = 10$.
+
+a) Khoảng cách $d = 5 < 10 \Rightarrow$ Đường thẳng $d$ phăng sâu vào trong (Đường CẮT Nhau tạo thành Cát Tuyến 2 đỉnh viền).
+
+b) Khoảng cách $d = 12 > 10 \Rightarrow$ Đường thẳng bay lơ lửng ngọn cao (KHÔNG GIAO NHAU 0 điểm).
+
+c) Mức gác $d = 10 = R \Rightarrow$ Đè viền cọ biên $\Rightarrow$ Đường TIẾP XÚC với đường tròn (Tiếp tuyến duy nhất 1 điểm).
+
+**Bài 2:**
+
+a) Vì AB là Tiếp Tuyến gác lên tiếp điểm B $\Rightarrow AB \perp OB$ (Tính chất Ghi Nhớ cữ vàng).
+Hình dạng OBA biến thành Tam giác Vuông tại Nút B.
+Áp dụng Định Lý Pytago: $OA^2 = OB^2 + AB^2$ (Huyền OA là đường cắm thẳng chọc từ Tâm Mũi về O).
+$OA^2 = R^2 + AB^2 = 6^2 + 8^2 = 36 + 64 = 100$.
+$\Rightarrow OA = \sqrt{100} = 10\text{cm}$.
+
+b) Tay càng gánh $AC$ lằn nẹp mốc $C = AB$ là bởi Định Lý Nón: Giao nối của 2 Tiếp Tuyến chập tại $A$ sẽ kẹp ra 2 cạnh độ bằng nhau. $\Rightarrow AC = AB = 8\text{cm}$.
+
+**Bài 3:**
+Tam giác Vuông A đo theo Py-Ta-Go, $BC^2 = AB^2 + AC^2 = 36 + 64 = 100 \Rightarrow BC = 10\text{cm}$.
+Đường tròn khoét tâm vòng tròn ở điểm C, nắn đường Bán Kính từ C phóng tận B sẽ có $R_c = C \Rightarrow B = 10$.
+Hỏi Đường AB cắt hình tròn kia không? 
+Khoảng Cự ngầm vuông góc d(từ Tâm C xuống rãnh AB) LÀ GÌ? Do góc BA Vuông rồi $\Rightarrow$ Cánh ngang $d$ chính là nẹp $CA = 8$.
+Ta thấy $d = 8 < R = 10 \Rightarrow$ Đương Nhiên Đâm Xuyên Cắt Tứ Tung Tại 2 Điểm. 
+
+**Bài 4:**
+Tứ Giác đắp cạnh $ABOC$ sở hữu 2 đỉnh mạc $B = 90^\circ$ và $C= 90^\circ \Rightarrow O$ và góc $A$ bù nhau ngầm.
+Trong tổng Tứ giác $360^\circ$: Góc tâm ngắm $O = 360 - 90 - 90 - A$. Hay bằng $180^\circ - 40^\circ = 140^\circ$. Góc $BOC$ mở đà $140^\circ$.
+
+**Bài 5:**
+*Giải mã Vệ Tinh (Bài khó Tự hào môn Toán):*
+Vì tính chất 2 phân tiếp tuyến kéo chéo nhọn điểm A, đỉnh $OA$ đi xuyên chia nếp GÓC NHỌN phóng $A$ làm hai nhánh: $\angle OAB = 60^\circ / 2 = 30^\circ$.
+Kẻ vuông góc $OB \perp AB$ vì điểm nối là biên của Tiếp Tuyến.
+Đoạn thẳng bay sà cao $OA$ tạo nên đường Cạnh Huyền của Tam giác OBA vuông ở B. 
+Theo Tỉ Số Lượng Giác Vàng: $\sin(\text{Góc } 30^\circ) = \text{Đối } OB / \text{Huyền } OA$. 
+$\Rightarrow \sin(30^\circ) = 1/2$.
+Vậy $1/2 = R / OA$. $\Rightarrow OA$ dài GẤP ĐÔI Bán Kính!
+$\Rightarrow OA = 2 \cdot R = 2 \cdot 6400 = 12800\text{km}$.
+Sóng Vệ Tinh bay cách Tâm Lõi mốc OA $= 12800\text{km}$.
+Vòm Vỏ Đất lồi ra $6400\text{km} \Rightarrow$ Chiều Cao Sống $h$ ngoi lên vỏ Mặt đất là: $12800 - 6400 = 6400\text{km}$ cất xa khoảng lốm đốm khí quyển Địa. 
+Môn Hình Học 9 có thể giải cứu cả Vũ Trụ!
+
+</div>
+</details>

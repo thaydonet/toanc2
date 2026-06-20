@@ -1,0 +1,318 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 15: Độ dài cung tròn. Diện tích hình quạt tròn"
+description: "Công thức tính chu vi, độ dài cung tròn và diện tích hình quạt tròn - Toán 9 KNTT Chương 5"
+grade: "Lớp 9"
+chapter: "Chương V: Đường tròn"
+currentSlug: "lop9/bai-15-cung-tron-quat-tron"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import CircleCalculator from '../../components/interactive/CircleCalculator';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Công thức tính độ dài (chu vi) đường tròn bán kính R là:",
+    option_a: "$C = \\pi R^2$",
+    option_b: "$C = 2\\pi R$",
+    option_c: "$C = \\pi R / 2$",
+    option_d: "$C = 4\\pi R$",
+    correct_option: "B",
+    explanation: "Chu vi đường tròn Bằng Bán kính nhân 2 nhân Pi (Hoặc Đường kính nhân Pi: $C = \\pi d$).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số $\\pi$ (Pi) xấp xỉ bằng bao nhiêu?",
+    option_a: "3.14",
+    option_b: "3.15",
+    option_c: "3.14159...",
+    option_d: "Cả A và C đều đúng trong tính toán",
+    correct_option: "D",
+    explanation: "Trong toán phổ thông, $\\pi$ thường được lấy xấp xỉ là $3.14$ để tính toán nhanh, hoặc bấm trực tiếp máy tính lấy giá trị chính xác hơn $3.14159265...$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình tròn có bán kính $R = 5\\text{cm}$ (lấy $\\pi \\approx 3.14$) là:",
+    option_a: "$31.4 \\text{ cm}^2$",
+    option_b: "$15.7 \\text{ cm}^2$",
+    option_c: "$78.5 \\text{ cm}^2$",
+    option_d: "$100 \\text{ cm}^2$",
+    correct_option: "C",
+    explanation: "Áp dụng công thức Diện tích $S = \\pi R^2 = 3.14 \\cdot 5^2 = 3.14 \\cdot 25 = 78.5 \\text{ cm}^2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính độ dài cung tròn $n^\\circ$ của đường tròn bán kính $R$ là:",
+    option_a: "$l = \\frac{\\pi R n}{360}$",
+    option_b: "$l = \\frac{\\pi R^2 n}{180}$",
+    option_c: "$l = \\frac{\\pi R n}{180}$",
+    option_d: "$l = \\frac{180}{\\pi R n}$",
+    correct_option: "C",
+    explanation: "Độ dài nguyên vòng $360^\\circ$ là $2\\pi R$. Vậy độ dài môt cung 1 độ là $\\frac{2\\pi R}{360} = \\frac{\\pi R}{180}$. Nhân lên với $n$ độ ta có công thức $l = \\frac{\\pi R n}{180}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình quạt tròn bán kính R, cung $n^\\circ$ tính theo độ dài cung $l$ của nó là:",
+    option_a: "$S = l \\cdot R$",
+    option_b: "$S = \\frac{l \\cdot R}{2}$",
+    option_c: "$S = 2 \\cdot l \\cdot R$",
+    option_d: "$S = \\pi \\cdot l \\cdot R$",
+    correct_option: "B",
+    explanation: "Nếu đã biết độ dài cung $l$, ta có công thức tính nhanh diện tích quạt tròn như \"diện tích tam giác\": Đáy ($l$) nhân chiều cao ($R$) chia 2.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu tăng bán kính đường tròn lên gấp ĐÔI, thì DIỆN TÍCH hình tròn thay đổi thế nào?",
+    option_a: "Tăng gấp 2 lần",
+    option_b: "Tăng gấp 4 lần",
+    option_c: "Tăng gấp 8 lần",
+    option_d: "Không đổi",
+    correct_option: "B",
+    explanation: "Vì công thức là $S = \\pi R^2$, R được bình phương lên. Tăng 2 thì diện tích thành $(2R)^2 = 4R^2$, tức là gấp 4 lần.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho một miếng bánh pizza hình quạt có bán kính 10cm, bẻ lấy góc $90^\\circ$. Khẳng định nào sau đây là Đúng?",
+    option_a: "Miếng bánh này chiếm chính xác $1/4$ cái bánh tròn.",
+    option_b: "Độ dài cung (viền ngoài vỏ bánh) là $5\\pi$ cm.",
+    option_c: "Diện tích miếng bánh là $50\\pi$ cm².",
+    option_d: "Nếu bẻ góc $45^\\circ$ thì diện tích miếng đó sẽ là $12.5\\pi$ cm².",
+    correct_option: "A,B,D",
+    explanation: "A: Đúng vì $90^\\circ/360^\\circ = 1/4$. B: Chu vi cả bánh $= 20\\pi$, $1/4$ là $5\\pi$. C: Sai, cả bánh diện tích là $\\pi 10^2 = 100\\pi$, $1/4$ là $25\\pi$.  D: Đúng, $45^\\circ$ là một nửa của $90^\\circ$, diện tích chia đôi $25\\pi / 2 = 12.5\\pi$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Biết diện tích hình tròn là $16\\pi \\text{ cm}^2$. Các số đo nào liên quan là:",
+    option_a: "Bán kính $R = 4\\text{cm}$",
+    option_b: "Đường kính $d = 8\\text{cm}$",
+    option_c: "Chu vi $C = 8\\pi \\text{ cm}$",
+    option_d: "Nếu đường kính là 4cm thì vô lý",
+    correct_option: "A,B,C,D",
+    explanation: "$S = \\pi R^2 = 16\\pi \\Rightarrow R^2 = 16 \\Rightarrow R = 4$. $d = 2R = 8$. $C = \\pi d = 8\\pi$. Mọi đáp án đều hợp logic.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một chiếc đồng hồ treo tường có kim phút dài 12cm. Trong vòng 15 phút, đầu kim phút vạch được một cung tròn dài bao nhiêu? (Lấy $\\pi = 3.14$, làm tròn 1 chữ số thập phân).",
+    correct_option: "18.8",
+    explanation: "15 phút là 1/4 vòng quay (góc $90^\\circ$). Độ dài cung = $1/4$ Chu vi = $\\frac{1}{4} \\cdot 2 \\cdot 3.14 \\cdot 12 = 0.5 \\cdot 3.14 \\cdot 12 = 18.84 \\approx 18.8 \\text{ cm}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính diện tích hình quạt tròn bán kính R = 6cm, góc ở tâm n = 120 độ. (Làm tròn đến kết quả nguyên, lấy $\\pi = 3.14$).",
+    correct_option: "38",
+    explanation: "$S = \\frac{\\pi R^2 n}{360} = \\frac{3.14 \\cdot 6^2 \\cdot 120}{360} = \\frac{3.14 \\cdot 36 \\cdot 1}{3} = 3.14 \\cdot 12 = 37.68$. Làm tròn số nguyên là 38.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🍕 Chia bánh Pizza công bằng</h3>
+
+Bố mua một chiếc Pizza khổng lồ (size XXL) đường kính $40\text{cm}$ mang về. Bố bảo cắt cho bé Bo một \"hình quạt\" có góc mũi ở tâm là $45^\circ$, và cho anh Bin một nửa của góc đó nhưng lấy phần viền bánh dài gấp đôi.
+Khoan đã, Bo muốn biết liệu mình có bị chia ít hơn phần viền phô mai bọc quanh vỏ vỏ bánh không? Bo vội nhớ lại bài Toán 9 để tính xem \"Độ dài sợi viền phô mai đó\" (Độ dài cung tròn) và \"Độ phình của nguyên phần topping\" (Diện tích quạt tròn) là bao nhiêu để còn đi kiện bố!
+
+Cùng học công thức ở bên dưới để cắt bánh khỏi bị lỗ nhé. 😁
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="250" height="200" viewBox="0 0 250 200">
+  {/* The Pizza Pan (Full Circle background) */}
+  <circle cx="125" cy="100" r="80" fill="#fef3c7" stroke="#fbbf24" strokeWidth="4" strokeDasharray="8 8"/>
+  
+  {/* The Slice (Sector / Quạt tròn) */}
+  <path d="M 125,100 L 205,100 A 80,80 0 0,0 181.5,43.4 Z" fill="#f59e0b" stroke="#d97706" strokeWidth="2"/>
+  
+  {/* Pepperoni toppings */}
+  <circle cx="170" cy="80" r="8" fill="#ef4444"/>
+  <circle cx="150" cy="60" r="6" fill="#ef4444"/>
+  <circle cx="138" cy="85" r="7" fill="#ef4444"/>
+  
+  {/* Arc length annotation (Độ dài l) */}
+  <path d="M 215,100 A 90,90 0 0,0 188,37" fill="none" stroke="#dc2626" strokeWidth="3" />
+  <text x="220" y="60" fontWeight="bold" fill="#dc2626" fontStyle="italic">Cung l</text>
+  
+  {/* Angle annotation (Góc n) */}
+  <path d="M 145,100 A 20,20 0 0,0 139,85.8" fill="none" stroke="#1f2937" strokeWidth="2" />
+  <text x="150" y="98" fontSize="12" fontWeight="bold">n°</text>
+  
+  {/* Radius */}
+  <text x="165" y="115" fontWeight="bold" fill="#334155">R = 20</text>
+</svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="chu-vi-cung" style="margin-top:2rem;">📖 1. Độ dài đường tròn và cung tròn</h3>
+
+Nhắc lại kiến thức cũ, **Chu vi đường tròn** (chiều dài của toàn bộ vỏ viền 1 vòng) được tính bằng công thức:
+$C = 2\pi R = \pi d$
+*(Trong đó R là bán kính, d là đường kính, $\pi \approx 3.14$)*
+
+**Công thức tính Độ dài Cung Tròn $l$:**
+Một vòng hoàn chỉnh là $360^\circ$ thì dài $2\pi R$. Do đó chỉ với $n^\circ$, độ dài kéo theo tỷ lệ thuận sẽ nhỏ dần:
+$$l = \frac{\pi R n}{180}$$
+
+<h3 id="dien-tich-quat" style="margin-top:2rem;">📖 2. Diện tích hình tròn và hình quạt tròn</h3>
+
+**Diện tích Toàn bộ hình tròn** (Bao gồm cả phần bị bao bọc bên trong):
+$$S = \pi R^2$$
+
+Hình quạt tròn là hình giới hạn bởi hai bán kính và môt cung tròn. 
+**Công thức tính Diện tích Hình Quạt Tròn $S_q$:**
+Tương tự cung tròn, diện tích chiếm tỷ lệ thuận với độ loe góc $n^\circ$ so với chuẩn $360^\circ$:
+$$S_q = \frac{\pi R^2 n}{360}$$
+Hoặc tính nhánh theo sợi độ dài cung $l$: 
+$$S_q = \frac{l \cdot R}{2}$$
+
+<h3 id="thu-nghiem" style="margin-top:2rem;">🖩 3. Máy Tính Siêu Tốc Bán Kính & Cung Tròn</h3>
+Để làm quen với mọi phép biến đổi tính toán ngược, hãy thử dùng cỗ máy nhập liệu bên dưới nhé:
+
+<CircleCalculator client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Tính các đại lượng vòng tròn cơ bản**
+**Phương pháp:** 
+- Ghi nhớ 4 đại lượng thay đổi qua lại: Bán kính, Đường kính, Chu vi, Diện tích.
+- Chỉ cần biết môt đại lượng, áp dụng công thức để suy các đại lượng còn lại theo dây chuyền.
+
+</div>
+
+**Ví dụ 1:** Tính Chu vi và Diện tích của bánh xe tải có đường kính $80\text{cm}$. Lấy $\pi \approx 3.14$.
+**Hướng dẫn:** 
+Bán kính xe $R = 80 / 2 = 40\text{cm}$.
+Chu vi $C = 2 \cdot 3.14 \cdot 40 = 251.2\text{cm}$.
+Diện tích $S = 3.14 \cdot 40^2 = 3.14 \cdot 1600 = 5024\text{cm}^2$.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Tính Đoạn Cung Tròn & Quạt Khuyết**
+**Phương pháp:** 
+- Xác định R (Bán kính) và $n$ (số đo góc ở đỉnh tâm).
+- Dùng công thức $l = \frac{\pi R n}{180}$ để tính vành viền. Dùng $S_q = \frac{\pi R^2 n}{360}$ để quy đài phần diện tích cạo ăn được.
+
+</div>
+
+**Ví dụ 2:** Miếng bánh Pizza của Bo có $R = 20\text{cm}, n = 45^\circ$. Tính diện tích phần Topping và chiều dài Cung viền Phô mai.
+**Hướng dẫn:** 
+Cung Phô mai dài: $l = \frac{\pi \cdot 20 \cdot 45}{180} = 5\pi \approx 15.7\text{cm}$.
+Diện tích mặt nạ Topping: $S_q = \frac{l \cdot R}{2} = \frac{5\pi \cdot 20}{2} = 50\pi \approx 157\text{cm}^2$.
+
+**Ví dụ 3:** (Bài toán lật ngược). Một cái quạt xếp Nhật Bản mở ra một góc $120^\circ$. Biết diện tích che giấy của nó là $30\pi\text{ cm}^2$. Tính bán kính R của cây quạt gọng tre?
+**Hướng dẫn:** 
+Áp dụng công thức lật: $S_q = \frac{\pi \cdot R^2 \cdot n}{360}$.
+Ta có: $30\pi = \frac{\pi \cdot R^2 \cdot 120}{360} = \frac{\pi \cdot R^2}{3}$.
+$\Rightarrow R^2 = 30 \cdot 3 = 90 \Rightarrow R = \sqrt{90} = 3\sqrt{10}\text{cm} \approx 9.48\text{cm}$.
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Cơ bản):** Tính các số đo (Áp dụng máy tính vòng):
+
+a) Tính bán kính hình tròn biết chu vi là $25.12\text{cm}$ (lấy $\pi = 3.14$).
+
+b) Tính chu vi của hình tròn biết diện tích là $314\text{cm}^2$.
+
+c) Một cung tròn $60^\circ$ có độ dài viền $\pi\text{ cm}$, hỏi Bán kính là bao nhiêu?
+
+d) Phân biệt Đường Kính và Chu Vi, số liệu nào quan trọng hơn khi mua ống nước?
+
+**Bài 2 (Trung bình):** (Vẽ hình). Cho hình vuông ABCD có cạnh bằng $a$. Từ tâm góc A, vẽ cung tròn bên trong có bán kính $R=a$ cắt kéo xoáy từ D tới B quạt ra 1 khoảng trăng khuyết chẽn vào. Phần góc khuất đó được gọi là Hình Quạt BAB. 
+
+a) Diện tích của Hình quạt BAB bằng bao nhiêu?
+
+b) Tính diện tích phần vát mỡ nằm NGOÀI miếng quạt nhưng TRONG hình vuông.
+
+**Bài 3 (Thực tế): Bánh răng Cơ khí**
+Một kĩ sư đứng chế tạo dây băng tải cao su cuộn quấn quanh môt trục tuabin hình trụ. Trục tuabin có đường kính phi 50 (nghĩa là đường kính $d=50\text{mm}$). Tuabin quay rẽ băng quấn kéo môt góc chệch xé đà $72^\circ$. 
+
+a) Hãy tính chiều dài mảnh dây băng cao su tiếp xúc nẹp vào bề lõi (chiều dài cung xoắn) trong vòng lõi xoắn $72^\circ$ (theo mm).
+
+b) Kĩ sư muốn thay một trục khổng lồ hơn để trong vòng xoay NHỎ HƠN là $36^\circ$ mà vẫn cuộn được đoạn dây dẫu y hệt độ dài. Vậy đường kính trục mới phải là phi bao nhiêu?
+
+**Bài 4 (Tổng hợp): Trò chơi Bóng Ngựa Công viên**
+Bàn xoay đu ngựa gỗ có bán kính rào an toàn vòng ngoài là $6\text{m}$, vòng chốt bên trong có ngựa gỗ chạy là bán kính r=$4\text{m}$.
+
+a) Tính diện tích Vành đầm nằm xen giữa vòng trong và vòng Ngoài (Diện tích Hình vành Khuyên).
+
+b) Nếu trò chơi chạy được thời gian bằng $150^\circ$, em hãy tính Quãng Đường thực tế bé A đi được nếu bé ngồi trên ngựa mâm nằm chính giữa ($4\text{m}$).
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $C = 2 \cdot 3.14 \cdot R = 25.12 \Rightarrow R = 25.12 / 6.28 = 4\text{cm}$.
+
+b) $S = 3.14 \cdot R^2 = 314 \Rightarrow R^2 = 100 \Rightarrow R = 10\text{cm}$. Chu vi $C = 20 \cdot 3.14 = 62.8\text{cm}$.
+
+c) $l = \pi = \pi \cdot R \cdot 60 / 180 = \pi \cdot R / 3 \Rightarrow R = 3\text{cm}$.
+
+d) Khi mua ống nước thường dùng hệ đo gọi tên quy cách "Đường kính" (Phi 21, phi 27). Nên D quan trọng nhất trong cơ khí khớp nối. 
+
+**Bài 2:**
+
+a) Hình vuông có góc tâm $A = 90^\circ \Rightarrow$ Cây quạt chia $90^\circ$ chiếm $1/4$ cái vòng tròn.
+$S_{\text{quạt}} = \frac{\pi a^2 \cdot 90}{360} = \frac{\pi a^2}{4}$.
+
+b) Nằm ngoài quạt: Dùng diện tích Tổng Hình Vuông trừ đi Miếng Nhát Cắt:
+$S_{\text{vát}} = S_{\text{vuông}} - S_{\text{quạt}} = a^2 - \frac{\pi a^2}{4} = a^2 \cdot (1 - \pi/4)$.
+
+**Bài 3:**
+
+a) $d=50 \Rightarrow R=25\text{mm}$. $n = 72^\circ$.
+Đoạn cung l băng tải $= \frac{\pi \cdot 25 \cdot 72}{180} = \frac{1800\pi}{180} = 10\pi\text{ mm}$.
+
+b) Kĩ sư muốn góc bé đi chỉ còn $36^\circ$ mà vẫn nuốt y nguyên được $10\pi$ đoạn dây.
+$10\pi = \frac{\pi \cdot R_{mới} \cdot 36}{180} = \frac{\pi \cdot R_{mới}}{5} \Rightarrow R_{mới} = 50\text{mm}$.
+$\Rightarrow$ Đường kính vòm trục mới phải Mập Gấp Đôi $\rightarrow \phi 100$.
+
+**Bài 4:**
+
+a) Vành khuyên = S Vòng to - S Vòng bé $= \pi \cdot 6^2 - \pi \cdot 4^2 = 36\pi - 16\pi = 20\pi \approx 62.8\text{m}^2$.
+
+b) Quãng đường chạy là 1 cung tròn vệt bánh xe của vòng bên trong R=4.
+$l = \frac{\pi \cdot 4 \cdot 150}{180} = \frac{\pi \cdot 600}{180} = \frac{10\pi}{3} \approx 10.47\text{m}$.
+</div>
+</details>

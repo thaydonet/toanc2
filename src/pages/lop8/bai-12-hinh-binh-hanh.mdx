@@ -1,0 +1,445 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 12: Hình bình hành"
+description: "Định nghĩa, tính chất và dấu hiệu nhận biết hình bình hành - Toán 8 KNTT Chương 3"
+grade: "Lớp 8"
+chapter: "Chương 3: Tứ giác"
+currentSlug: "lop8/bai-12-hinh-binh-hanh"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình bình hành là tứ giác có:",
+    option_a: "Hai cạnh đối song song",
+    option_b: "Bốn cạnh bằng nhau",
+    option_c: "Bốn góc vuông",
+    option_d: "Hai đường chéo bằng nhau",
+    correct_option: "A",
+    explanation: "Hình bình hành là tứ giác có các cạnh đối song song với nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong hình bình hành, hai góc kề một cạnh:",
+    option_a: "Bù nhau",
+    option_b: "Bằng nhau",
+    option_c: "Phụ nhau",
+    option_d: "Tổng bằng $90°$",
+    correct_option: "A",
+    explanation: "Hai góc kề một cạnh của hình bình hành bù nhau (tổng bằng $180°$).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình bình hành $ABCD$ có $\hat{A} = 70°$. Số đo góc $C$ là:",
+    option_a: "$70°$",
+    option_b: "$110°$",
+    option_c: "$90°$",
+    option_d: "$140°$",
+    correct_option: "A",
+    explanation: "Trong hình bình hành, hai góc đối bằng nhau nên $\hat{C} = \hat{A} = 70°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là:",
+    option_a: "Hình bình hành",
+    option_b: "Hình thang",
+    option_c: "Hình thang cân",
+    option_d: "Tứ giác bất kỳ",
+    correct_option: "A",
+    explanation: "Đây là dấu hiệu nhận biết hình bình hành.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Hình bình hành có những tính chất nào?",
+    option_a: "Các cạnh đối bằng nhau",
+    option_b: "Các góc đối bằng nhau",
+    option_c: "Hai đường chéo cắt nhau tại trung điểm mỗi đường",
+    option_d: "Hai góc kề một cạnh bù nhau",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng. Đây là các tính chất của hình bình hành.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hình bình hành có hai cạnh kề là $5$ cm và $8$ cm. Chu vi bằng bao nhiêu cm?",
+    correct_option: "26",
+    explanation: "Chu vi $= 2 \\times (5 + 8) = 26$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình bình hành có một góc bằng $!a#65!°$. Góc kề với nó bằng:",
+    option_a: "$!tinh: 180 - !a!!°$",
+    option_b: "$!a!°$",
+    option_c: "$90°$",
+    option_d: "$!tinh: 360 - !a!!°$",
+    correct_option: "A",
+    explanation: "Hai góc kề một cạnh bù nhau: $180° - !a!° = !tinh: 180 - !a!!°$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Hình bình hành có cạnh $!a#7!$ cm và $!b#10!$ cm. Chu vi bằng:",
+    option_a: "$!tinh: 2 * (!a! + !b!)!$ cm",
+    option_b: "$!tinh: !a! + !b!!$ cm",
+    option_c: "$!tinh: !a! * !b!!$ cm",
+    option_d: "$!tinh: 4 * !a!!$ cm",
+    correct_option: "A",
+    explanation: "Chu vi $= 2 \\times (!a! + !b!) = !tinh: 2 * (!a! + !b!)!$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">▱ Hình bình hành — Đối xứng hoàn hảo</h3>
+
+Hình bình hành có tính đối xứng qua tâm, xuất hiện nhiều trong đời sống!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏗️</div>
+    <strong>Kết cấu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Khung sắt hình bình hành</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎨</div>
+    <strong>Nghệ thuật</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Họa tiết trang trí</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔧</div>
+    <strong>Cơ khí</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cơ cấu bản lề</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia">📖 1. Định nghĩa hình bình hành</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình bình hành là tứ giác có các cạnh đối song song.
+
+</div>
+
+**Hình minh họa:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="380" height="260" viewBox="0 0 380 260" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Hình bình hành ABCD */}
+  <polygon points="80,70 280,70 320,190 120,190" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5" opacity="0.4"/>
+  
+  {/* Các cạnh */}
+  <line x1="80" y1="70" x2="280" y2="70" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="280" y1="70" x2="320" y2="190" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="320" y1="190" x2="120" y2="190" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="120" y1="190" x2="80" y2="70" stroke="#3b82f6" stroke-width="2.5"/>
+  
+  {/* Đường chéo */}
+  <line x1="80" y1="70" x2="320" y2="190" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <line x1="280" y1="70" x2="120" y2="190" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
+  
+  {/* Giao điểm O */}
+  <circle cx="200" cy="130" r="4" fill="#ef4444"/>
+  <text x="210" y="125" font-size="16" font-weight="bold" fill="#ef4444">O</text>
+  
+  {/* Đánh dấu song song AB // DC */}
+  <line x1="170" y1="65" x2="175" y2="65" stroke="#10b981" stroke-width="2"/>
+  <line x1="170" y1="60" x2="175" y2="60" stroke="#10b981" stroke-width="2"/>
+  <line x1="210" y1="185" x2="215" y2="185" stroke="#10b981" stroke-width="2"/>
+  <line x1="210" y1="190" x2="215" y2="190" stroke="#10b981" stroke-width="2"/>
+  
+  {/* Đánh dấu song song AD // BC */}
+  <line x1="95" y1="125" x2="100" y2="130" stroke="#10b981" stroke-width="2"/>
+  <line x1="90" y1="125" x2="95" y2="130" stroke="#10b981" stroke-width="2"/>
+  <line x1="295" y1="125" x2="300" y2="130" stroke="#10b981" stroke-width="2"/>
+  <line x1="290" y1="125" x2="295" y2="130" stroke="#10b981" stroke-width="2"/>
+  
+  {/* Các đỉnh */}
+  <circle cx="80" cy="70" r="4" fill="#3b82f6"/>
+  <text x="60" y="65" font-size="18" font-weight="bold" fill="#3b82f6">A</text>
+  
+  <circle cx="280" cy="70" r="4" fill="#3b82f6"/>
+  <text x="290" y="65" font-size="18" font-weight="bold" fill="#3b82f6">B</text>
+  
+  <circle cx="320" cy="190" r="4" fill="#3b82f6"/>
+  <text x="330" y="195" font-size="18" font-weight="bold" fill="#3b82f6">C</text>
+  
+  <circle cx="120" cy="190" r="4" fill="#3b82f6"/>
+  <text x="100" y="205" font-size="18" font-weight="bold" fill="#3b82f6">D</text>
+  
+  {/* Nhãn */}
+  <text x="160" y="50" font-size="14" fill="#059669">AB // DC</text>
+  <text x="50" y="130" font-size="14" fill="#059669">AD // BC</text>
+</svg>
+</div>
+
+**Trong hình bình hành $ABCD$:**
+- $AB \parallel DC$ và $AD \parallel BC$
+- Hai đường chéo $AC$ và $BD$ cắt nhau tại $O$
+
+<h3 id="tinh-chat" style="margin-top:2rem;">🔑 2. Tính chất hình bình hành</h3>
+
+<div class="box-dinh-ly">
+
+**Định lý:** Trong hình bình hành:
+
+1. Các cạnh đối bằng nhau
+2. Các góc đối bằng nhau
+3. Hai đường chéo cắt nhau tại trung điểm của mỗi đường
+
+</div>
+
+**Chứng minh tính chất 1 và 2:**
+
+Xét hình bình hành $ABCD$ có $AB \parallel DC$, $AD \parallel BC$.
+
+Xét $\triangle ABC$ và $\triangle CDA$:
+- $AC$ chung
+- $\hat{BAC} = \hat{DCA}$ (so le trong, $AB \parallel DC$)
+- $\hat{BCA} = \hat{DAC}$ (so le trong, $AD \parallel BC$)
+
+$\Rightarrow \triangle ABC = \triangle CDA$ (g.c.g)
+
+$\Rightarrow AB = DC$, $BC = DA$ và $\hat{B} = \hat{D}$
+
+Tương tự: $\hat{A} = \hat{C}$
+
+**Chứng minh tính chất 3:**
+
+Gọi $O$ là giao điểm của $AC$ và $BD$.
+
+Xét $\triangle AOB$ và $\triangle COD$:
+- $AB = CD$ (cạnh đối)
+- $\hat{ABO} = \hat{CDO}$ (so le trong)
+- $\hat{BAO} = \hat{DCO}$ (so le trong)
+
+$\Rightarrow \triangle AOB = \triangle COD$ (g.c.g)
+
+$\Rightarrow OA = OC$ và $OB = OD$
+
+**Hệ quả:**
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. $AB = DC$ và $AD = BC$ (cạnh đối bằng nhau)
+2. $\hat{A} = \hat{C}$ và $\hat{B} = \hat{D}$ (góc đối bằng nhau)
+3. $\hat{A} + \hat{B} = 180°$ (hai góc kề một cạnh bù nhau)
+4. $OA = OC = \frac{AC}{2}$ và $OB = OD = \frac{BD}{2}$
+
+</div>
+
+**Ví dụ 1:** Hình bình hành $ABCD$ có $AB = 8$ cm, $BC = 5$ cm, $\hat{A} = 60°$. Tính chu vi và các góc còn lại.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Chu vi: $P = 2(AB + BC) = 2(8 + 5) = 26$ cm
+
+Các góc:
+- $\hat{C} = \hat{A} = 60°$ (góc đối)
+- $\hat{B} = 180° - \hat{A} = 120°$ (góc kề bù nhau)
+- $\hat{D} = \hat{B} = 120°$ (góc đối)
+
+</div>
+
+<h3 id="dau-hieu" style="margin-top:2rem;">✓ 3. Dấu hiệu nhận biết</h3>
+
+<div class="box-dinh-ly">
+
+**Dấu hiệu nhận biết hình bình hành:**
+
+1. Tứ giác có các cạnh đối song song
+2. Tứ giác có các cạnh đối bằng nhau
+3. Tứ giác có các góc đối bằng nhau
+4. Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường
+5. Tứ giác có hai cạnh đối song song và bằng nhau
+
+</div>
+
+**Ví dụ 2:** Tứ giác $ABCD$ có $AB = DC = 6$ cm, $AB \parallel DC$. Chứng minh $ABCD$ là hình bình hành.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tứ giác $ABCD$ có:
+- $AB \parallel DC$ (giả thiết)
+- $AB = DC$ (giả thiết)
+
+$\Rightarrow ABCD$ là hình bình hành (dấu hiệu 5)
+
+</div>
+
+<h3 id="cong-thuc" style="margin-top:2rem;">📐 4. Công thức</h3>
+
+**Chu vi:** $P = 2(a + b)$
+
+(với $a$, $b$ là độ dài hai cạnh kề)
+
+**Diện tích:** $S = a \cdot h = a \cdot b \cdot \sin\alpha$
+
+(với $h$ là chiều cao, $\alpha$ là góc giữa hai cạnh kề)
+
+**Ví dụ 3:** Hình bình hành có cạnh $a = 10$ cm, chiều cao tương ứng $h = 6$ cm. Tính diện tích.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$S = a \cdot h = 10 \times 6 = 60$ cm²
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Một mảnh vườn hình bình hành có cạnh $15$ m và $20$ m, chiều cao tương ứng với cạnh $20$ m là $12$ m.
+
+a) Tính chu vi mảnh vườn.
+
+b) Tính diện tích mảnh vườn.
+
+c) Nếu trồng cỏ với giá $100.000$ đồng/m², tính chi phí.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi: $P = 2(15 + 20) = 70$ m
+
+b) Diện tích: $S = 20 \times 12 = 240$ m²
+
+c) Chi phí: $240 \times 100.000 = 24.000.000$ đồng
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định nghĩa**: các cạnh đối song song
+- **Tính chất**: cạnh đối bằng nhau, góc đối bằng nhau, đường chéo cắt nhau tại trung điểm
+- **Dấu hiệu**: 5 cách nhận biết
+- **Chu vi**: $P = 2(a + b)$
+- **Diện tích**: $S = a \cdot h$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho hình bình hành $ABCD$ có $AB = 10$ cm, $BC = 6$ cm, $\hat{A} = 70°$.
+
+a) Tính chu vi hình bình hành.
+
+b) Tính các góc $\hat{B}$, $\hat{C}$, $\hat{D}$.
+
+c) So sánh $AB$ và $DC$, $AD$ và $BC$.
+
+d) Gọi $O$ là giao điểm hai đường chéo. So sánh $OA$ và $OC$, $OB$ và $OD$.
+
+**Bài 2:** Cho tứ giác $ABCD$ có $AB \parallel DC$, $AB = DC = 8$ cm.
+
+a) Chứng minh $ABCD$ là hình bình hành.
+
+b) Biết $AD = 5$ cm, tính chu vi.
+
+c) Biết $\hat{A} = 65°$, tính các góc còn lại.
+
+d) Nếu chiều cao $h = 4$ cm, tính diện tích.
+
+**Bài 3:** Hình bình hành có:
+
+a) Hai cạnh kề $7$ cm và $12$ cm. Tính chu vi.
+
+b) Cạnh $a = 15$ cm, chiều cao $h = 8$ cm. Tính diện tích.
+
+c) Chu vi $48$ cm, một cạnh $10$ cm. Tính cạnh kề.
+
+d) Diện tích $120$ cm², cạnh $15$ cm. Tính chiều cao tương ứng.
+
+**Bài 4:** Chứng minh:
+
+a) Trong hình bình hành, hai góc kề một cạnh bù nhau.
+
+b) Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành.
+
+c) Hình bình hành có một góc vuông là hình chữ nhật.
+
+d) Hình bình hành có hai cạnh kề bằng nhau là hình thoi.
+
+**Bài 5:** Cho hình bình hành $ABCD$ có $O$ là giao điểm hai đường chéo.
+
+a) Chứng minh $OA = OC$, $OB = OD$.
+
+b) Biết $AC = 12$ cm, $BD = 16$ cm. Tính $OA$, $OB$.
+
+c) Chứng minh $\triangle AOB = \triangle COD$.
+
+d) Chứng minh $\triangle AOD = \triangle COB$.
+
+**Bài 6 (Thực tế):** Một sân chơi hình bình hành có cạnh $30$ m và $40$ m, chiều cao tương ứng với cạnh $40$ m là $25$ m.
+
+a) Tính chu vi sân chơi.
+
+b) Tính diện tích sân chơi.
+
+c) Nếu lát gạch với giá $200.000$ đồng/m², tính chi phí.
+
+d) Nếu tăng mỗi cạnh thêm $5$ m, chu vi tăng thêm bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $32$ cm; b) $\hat{B} = 110°$, $\hat{C} = 70°$, $\hat{D} = 110°$; c) $AB = DC$, $AD = BC$; d) $OA = OC$, $OB = OD$
+
+**Bài 2:** a) Dấu hiệu 5; b) $26$ cm; c) $\hat{B} = 115°$, $\hat{C} = 65°$, $\hat{D} = 115°$; d) $32$ cm²
+
+**Bài 3:** a) $38$ cm; b) $120$ cm²; c) $14$ cm; d) $8$ cm
+
+**Bài 4:** Chứng minh bằng định lý và tính chất
+
+**Bài 5:** a) Tính chất hình bình hành; b) $OA = 6$ cm, $OB = 8$ cm; c, d) Chứng minh bằng c.g.c
+
+**Bài 6:** a) $140$ m; b) $1000$ m²; c) $200.000.000$ đồng; d) Tăng $20$ m
+
+</div>
+</details>
+

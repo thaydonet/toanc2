@@ -1,0 +1,582 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 5 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 5 Toán 7 KNTT: Thu thập và biểu diễn dữ liệu, biểu đồ hình quạt, biểu đồ đoạn thẳng"
+grade: "Lớp 7"
+chapter: "Chương V: Thu thập và biểu diễn dữ liệu"
+currentSlug: "lop7/bai-on-tap-chuong-5"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Dữ liệu là:",
+    option_a: "Thông tin được thu thập từ các cuộc điều tra, thí nghiệm",
+    option_b: "Chỉ là những con số",
+    option_c: "Chỉ là những chữ cái",
+    option_d: "Không có ý nghĩa",
+    correct_option: "A",
+    explanation: "Dữ liệu là thông tin được thu thập từ các cuộc điều tra, thí nghiệm",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ hình quạt tròn được sử dụng để:",
+    option_a: "Biểu diễn tỉ lệ phần trăm của các thành phần trong một tổng thể",
+    option_b: "Biểu diễn sự thay đổi theo thời gian",
+    option_c: "Biểu diễn tần số của dữ liệu",
+    option_d: "Biểu diễn mối quan hệ giữa hai biến",
+    correct_option: "A",
+    explanation: "Biểu đồ hình quạt tròn biểu diễn tỉ lệ phần trăm của các thành phần",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ đoạn thẳng được sử dụng để:",
+    option_a: "Biểu diễn sự thay đổi của dữ liệu theo thời gian",
+    option_b: "Biểu diễn tỉ lệ phần trăm",
+    option_c: "Biểu diễn tần số",
+    option_d: "Biểu diễn mối quan hệ giữa hai biến",
+    correct_option: "A",
+    explanation: "Biểu đồ đoạn thẳng biểu diễn sự thay đổi theo thời gian",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tần số của một giá trị là:",
+    option_a: "Số lần giá trị đó xuất hiện trong dữ liệu",
+    option_b: "Giá trị lớn nhất trong dữ liệu",
+    option_c: "Giá trị nhỏ nhất trong dữ liệu",
+    option_d: "Trung bình cộng của dữ liệu",
+    correct_option: "A",
+    explanation: "Tần số là số lần giá trị đó xuất hiện",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tần số tương đối của một giá trị là:",
+    option_a: "Tỉ số giữa tần số và tổng số dữ liệu",
+    option_b: "Tần số chia cho 2",
+    option_c: "Tần số nhân với 2",
+    option_d: "Tần số cộng với tổng số dữ liệu",
+    correct_option: "A",
+    explanation: "Tần số tương đối = $\\frac{\\text{Tần số}}{\\text{Tổng số dữ liệu}}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trung bình cộng của dữ liệu được tính bằng:",
+    option_a: "Tổng các giá trị chia cho số lượng giá trị",
+    option_b: "Giá trị lớn nhất trừ giá trị nhỏ nhất",
+    option_c: "Giá trị xuất hiện nhiều nhất",
+    option_d: "Giá trị ở giữa khi sắp xếp theo thứ tự",
+    correct_option: "A",
+    explanation: "Trung bình cộng = $\\frac{\\text{Tổng các giá trị}}{\\text{Số lượng giá trị}}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số trung vị là:",
+    option_a: "Giá trị ở giữa khi sắp xếp dữ liệu theo thứ tự",
+    option_b: "Giá trị xuất hiện nhiều nhất",
+    option_c: "Trung bình cộng của dữ liệu",
+    option_d: "Giá trị lớn nhất",
+    correct_option: "A",
+    explanation: "Số trung vị là giá trị ở giữa khi sắp xếp theo thứ tự",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Mốt của dữ liệu là:",
+    option_a: "Giá trị xuất hiện nhiều nhất",
+    option_b: "Giá trị ở giữa",
+    option_c: "Trung bình cộng",
+    option_d: "Giá trị lớn nhất",
+    correct_option: "A",
+    explanation: "Mốt là giá trị xuất hiện nhiều nhất trong dữ liệu",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bảng tần số được sử dụng để:",
+    option_a: "Tổng hợp và đếm số lần xuất hiện của mỗi giá trị",
+    option_b: "Biểu diễn sự thay đổi theo thời gian",
+    option_c: "Tính trung bình cộng",
+    option_d: "Tìm giá trị lớn nhất",
+    correct_option: "A",
+    explanation: "Bảng tần số tổng hợp số lần xuất hiện của mỗi giá trị",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ cột được sử dụng để:",
+    option_a: "So sánh các giá trị khác nhau",
+    option_b: "Biểu diễn tỉ lệ phần trăm",
+    option_c: "Biểu diễn sự thay đổi theo thời gian",
+    option_d: "Tính trung bình cộng",
+    correct_option: "A",
+    explanation: "Biểu đồ cột dùng để so sánh các giá trị khác nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 5 — Thu thập và biểu diễn dữ liệu</h3>
+
+Chương 5 giới thiệu cách thu thập, tổ chức và biểu diễn dữ liệu. Hãy cùng ôn tập lại toàn bộ kiến thức!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Dữ liệu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thu thập, tổ chức</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
+    <strong>Biểu đồ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình quạt, đoạn thẳng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
+    <strong>Thống kê</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Trung bình, trung vị, mốt</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="du-lieu">1. Dữ liệu</h4>
+
+**Định nghĩa:** Dữ liệu là thông tin được thu thập từ các cuộc điều tra, thí nghiệm hoặc quan sát.
+
+**Cách thu thập dữ liệu:**
+- Điều tra trực tiếp
+- Điều tra gián tiếp
+- Thí nghiệm
+- Quan sát
+
+<h4 id="tan-so">2. Tần số và tần số tương đối</h4>
+
+**Tần số:** Số lần một giá trị xuất hiện trong dữ liệu.
+
+**Tần số tương đối:** 
+$$\text{Tần số tương đối} = \frac{\text{Tần số}}{\text{Tổng số dữ liệu}}$$
+
+**Bảng tần số:** Bảng tổng hợp số lần xuất hiện của mỗi giá trị.
+
+<h4 id="trung-binh-cong">3. Trung bình cộng</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Trung bình cộng của dữ liệu là:
+
+$$\bar{x} = \frac{x_1 + x_2 + ... + x_n}{n}$$
+
+(với $x_1, x_2, ..., x_n$ là các giá trị dữ liệu, $n$ là số lượng giá trị)
+
+</div>
+
+<h4 id="so-trung-vi">4. Số trung vị</h4>
+
+**Định nghĩa:** Số trung vị là giá trị ở giữa khi sắp xếp dữ liệu theo thứ tự tăng dần (hoặc giảm dần).
+
+**Cách tìm:**
+- Nếu số lượng dữ liệu là lẻ: Trung vị là giá trị ở giữa
+- Nếu số lượng dữ liệu là chẵn: Trung vị là trung bình cộng của hai giá trị ở giữa
+
+<h4 id="mot">5. Mốt</h4>
+
+**Định nghĩa:** Mốt là giá trị xuất hiện nhiều nhất trong dữ liệu.
+
+**Lưu ý:** Một dữ liệu có thể có một mốt, nhiều mốt hoặc không có mốt.
+
+<h4 id="bieu-do-hinh-quat">6. Biểu đồ hình quạt tròn</h4>
+
+**Định nghĩa:** Biểu đồ hình quạt tròn biểu diễn tỉ lệ phần trăm của các thành phần trong một tổng thể.
+
+**Cách vẽ:**
+- Tính tỉ lệ phần trăm của mỗi thành phần
+- Tính góc ở tâm: Góc = Tỉ lệ % × 360°
+- Vẽ các hình quạt tương ứng
+
+<h4 id="bieu-do-doan-thang">7. Biểu đồ đoạn thẳng</h4>
+
+**Định nghĩa:** Biểu đồ đoạn thẳng biểu diễn sự thay đổi của dữ liệu theo thời gian.
+
+**Cách vẽ:**
+- Vẽ hai trục: trục hoành (thời gian), trục tung (giá trị)
+- Đánh dấu các điểm tương ứng
+- Nối các điểm bằng các đoạn thẳng
+
+<h4 id="bieu-do-cot">8. Biểu đồ cột</h4>
+
+**Định nghĩa:** Biểu đồ cột dùng để so sánh các giá trị khác nhau.
+
+**Cách vẽ:**
+- Vẽ hai trục: trục hoành (các danh mục), trục tung (giá trị)
+- Vẽ các cột hình chữ nhật tương ứng với mỗi giá trị
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tần số và tần số tương đối</h4>
+
+Cho dữ liệu: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4
+
+a) Lập bảng tần số
+
+b) Tính tần số tương đối của mỗi giá trị
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Bảng tần số:
+
+| Giá trị | 1 | 2 | 3 | 4 |
+|--------|---|---|---|---|
+| Tần số | 1 | 2 | 3 | 4 |
+
+b) Tần số tương đối:
+- Giá trị 1: $\frac{1}{10} = 0.1 = 10\%$
+- Giá trị 2: $\frac{2}{10} = 0.2 = 20\%$
+- Giá trị 3: $\frac{3}{10} = 0.3 = 30\%$
+- Giá trị 4: $\frac{4}{10} = 0.4 = 40\%$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Trung bình cộng</h4>
+
+Tính trung bình cộng của dữ liệu: 5, 7, 8, 9, 10, 11
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+$\bar{x} = \frac{5 + 7 + 8 + 9 + 10 + 11}{6} = \frac{50}{6} = \frac{25}{3} \approx 8.33$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Số trung vị</h4>
+
+Tìm số trung vị của dữ liệu:
+
+a) 3, 5, 7, 9, 11
+
+b) 2, 4, 6, 8, 10, 12
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Số lượng dữ liệu là 5 (lẻ), nên trung vị là giá trị ở giữa: **7**
+
+b) Số lượng dữ liệu là 6 (chẵn), nên trung vị là trung bình cộng của hai giá trị ở giữa:
+
+Trung vị = $\frac{6 + 8}{2} = 7$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Mốt</h4>
+
+Tìm mốt của dữ liệu: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Đếm tần số:
+- 1 xuất hiện 1 lần
+- 2 xuất hiện 2 lần
+- 3 xuất hiện 3 lần
+- 4 xuất hiện 4 lần
+- 5 xuất hiện 1 lần
+
+Mốt là **4** (xuất hiện nhiều nhất, 4 lần)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Biểu đồ hình quạt</h4>
+
+Một lớp học có 40 học sinh. Số học sinh yêu thích các môn học:
+- Toán: 10 học sinh
+- Văn: 8 học sinh
+- Anh: 12 học sinh
+- Khoa học: 10 học sinh
+
+a) Tính tỉ lệ phần trăm của mỗi môn
+
+b) Tính góc ở tâm của mỗi hình quạt
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tỉ lệ phần trăm:
+- Toán: $\frac{10}{40} \times 100\% = 25\%$
+- Văn: $\frac{8}{40} \times 100\% = 20\%$
+- Anh: $\frac{12}{40} \times 100\% = 30\%$
+- Khoa học: $\frac{10}{40} \times 100\% = 25\%$
+
+b) Góc ở tâm:
+- Toán: $25\% \times 360° = 90°$
+- Văn: $20\% \times 360° = 72°$
+- Anh: $30\% \times 360° = 108°$
+- Khoa học: $25\% \times 360° = 90°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán kết hợp</h4>
+
+Cho dữ liệu điểm kiểm tra của 10 học sinh: 6, 7, 7, 8, 8, 8, 9, 9, 9, 10
+
+a) Tính trung bình cộng
+
+b) Tìm số trung vị
+
+c) Tìm mốt
+
+d) Lập bảng tần số
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\bar{x} = \frac{6 + 7 + 7 + 8 + 8 + 8 + 9 + 9 + 9 + 10}{10} = \frac{81}{10} = 8.1$
+
+b) Trung vị = $\frac{8 + 8}{2} = 8$
+
+c) Mốt = 8 và 9 (cùng xuất hiện 3 lần)
+
+d) Bảng tần số:
+
+| Điểm | 6 | 7 | 8 | 9 | 10 |
+|------|---|---|---|---|----|
+| Tần số | 1 | 2 | 3 | 3 | 1 |
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán thực tế</h4>
+
+Một cửa hàng bán quần áo có doanh thu hàng tháng (triệu đồng):
+Tháng 1: 50, Tháng 2: 55, Tháng 3: 60, Tháng 4: 65, Tháng 5: 70
+
+a) Tính doanh thu trung bình
+
+b) Vẽ biểu đồ đoạn thẳng
+
+c) Nhận xét về xu hướng doanh thu
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Doanh thu trung bình = $\frac{50 + 55 + 60 + 65 + 70}{5} = \frac{300}{5} = 60$ (triệu đồng)
+
+b) Biểu đồ đoạn thẳng: Vẽ các điểm (1, 50), (2, 55), (3, 60), (4, 65), (5, 70) và nối chúng
+
+c) Doanh thu tăng đều đặn mỗi tháng 5 triệu đồng
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán kết hợp</h4>
+
+Một trường học có 200 học sinh. Số học sinh theo các khối:
+- Khối 6: 50 học sinh
+- Khối 7: 60 học sinh
+- Khối 8: 55 học sinh
+- Khối 9: 35 học sinh
+
+a) Tính tỉ lệ phần trăm của mỗi khối
+
+b) Tính góc ở tâm của mỗi hình quạt
+
+c) Vẽ biểu đồ hình quạt
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tỉ lệ phần trăm:
+- Khối 6: $\frac{50}{200} \times 100\% = 25\%$
+- Khối 7: $\frac{60}{200} \times 100\% = 30\%$
+- Khối 8: $\frac{55}{200} \times 100\% = 27.5\%$
+- Khối 9: $\frac{35}{200} \times 100\% = 17.5\%$
+
+b) Góc ở tâm:
+- Khối 6: $25\% \times 360° = 90°$
+- Khối 7: $30\% \times 360° = 108°$
+- Khối 8: $27.5\% \times 360° = 99°$
+- Khối 9: $17.5\% \times 360° = 63°$
+
+c) Vẽ biểu đồ hình quạt với các góc tương ứng
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Một lớp học có 30 học sinh. Điểm kiểm tra Toán của các học sinh:
+6, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 5, 5, 6, 6, 7, 8, 9, 9, 10, 10, 8, 7
+
+a) Lập bảng tần số
+
+b) Tính trung bình cộng
+
+c) Tìm số trung vị
+
+d) Tìm mốt
+
+e) Tính tỉ lệ phần trăm học sinh đạt điểm 8 trở lên
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Bảng tần số:
+
+| Điểm | 5 | 6 | 7 | 8 | 9 | 10 |
+|------|---|---|---|---|---|----|
+| Tần số | 2 | 3 | 5 | 6 | 6 | 8 |
+
+b) $\bar{x} = \frac{5 \times 2 + 6 \times 3 + 7 \times 5 + 8 \times 6 + 9 \times 6 + 10 \times 8}{30} = \frac{240}{30} = 8$
+
+c) Trung vị = $\frac{8 + 8}{2} = 8$
+
+d) Mốt = 10 (xuất hiện 8 lần)
+
+e) Học sinh đạt 8 trở lên: $6 + 6 + 8 = 20$ học sinh
+
+Tỉ lệ: $\frac{20}{30} \times 100\% = 66.67\%$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Một công ty bán hàng có doanh thu (triệu đồng) trong 12 tháng:
+100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210
+
+a) Tính doanh thu trung bình
+
+b) Tìm số trung vị
+
+c) Tính tỉ lệ phần trăm tăng trưởng từ tháng 1 đến tháng 12
+
+d) Vẽ biểu đồ đoạn thẳng
+
+e) Dự đoán doanh thu tháng 13
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Doanh thu trung bình = $\frac{100 + 110 + ... + 210}{12} = \frac{1800}{12} = 150$ (triệu đồng)
+
+b) Trung vị = $\frac{150 + 160}{2} = 155$ (triệu đồng)
+
+c) Tỉ lệ tăng trưởng = $\frac{210 - 100}{100} \times 100\% = 110\%$
+
+d) Vẽ biểu đồ đoạn thẳng với các điểm (1, 100), (2, 110), ..., (12, 210)
+
+e) Doanh thu tăng 10 triệu đồng mỗi tháng, nên tháng 13 dự đoán: $210 + 10 = 220$ (triệu đồng)
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Dữ liệu**: Thông tin được thu thập từ điều tra, thí nghiệm
+- **Tần số**: Số lần giá trị xuất hiện
+- **Tần số tương đối**: $\frac{\text{Tần số}}{\text{Tổng số dữ liệu}}$
+- **Trung bình cộng**: $\bar{x} = \frac{\text{Tổng các giá trị}}{\text{Số lượng giá trị}}$
+- **Số trung vị**: Giá trị ở giữa khi sắp xếp theo thứ tự
+- **Mốt**: Giá trị xuất hiện nhiều nhất
+- **Biểu đồ hình quạt**: Biểu diễn tỉ lệ phần trăm
+- **Biểu đồ đoạn thẳng**: Biểu diễn sự thay đổi theo thời gian
+- **Góc ở tâm**: Tỉ lệ % × 360°
+
+</GhiNho>

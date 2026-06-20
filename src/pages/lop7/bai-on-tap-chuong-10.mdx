@@ -1,0 +1,426 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 10 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 10 Toán 7 KNTT: Hình khối trong thực tiễn, hình hộp chữ nhật, hình lăng trụ"
+grade: "Lớp 7"
+chapter: "Chương X: Hình khối trong thực tiễn"
+currentSlug: "lop7/bai-on-tap-chuong-10"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hình hộp chữ nhật có bao nhiêu mặt?",
+    option_a: "$6$",
+    option_b: "$8$",
+    option_c: "$12$",
+    option_d: "$4$",
+    correct_option: "A",
+    explanation: "Hình hộp chữ nhật có 6 mặt (4 mặt bên + 2 mặt đáy)",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình hộp chữ nhật có bao nhiêu đỉnh?",
+    option_a: "$8$",
+    option_b: "$6$",
+    option_c: "$12$",
+    option_d: "$4$",
+    correct_option: "A",
+    explanation: "Hình hộp chữ nhật có 8 đỉnh",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình hộp chữ nhật có bao nhiêu cạnh?",
+    option_a: "$12$",
+    option_b: "$8$",
+    option_c: "$6$",
+    option_d: "$4$",
+    correct_option: "A",
+    explanation: "Hình hộp chữ nhật có 12 cạnh",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích hình hộp chữ nhật được tính bằng:",
+    option_a: "$V = a \\times b \\times c$",
+    option_b: "$V = a + b + c$",
+    option_c: "$V = 2(ab + bc + ca)$",
+    option_d: "$V = \\frac{1}{3}abc$",
+    correct_option: "A",
+    explanation: "Thể tích = chiều dài × chiều rộng × chiều cao",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích toàn phần hình hộp chữ nhật được tính bằng:",
+    option_a: "$S = 2(ab + bc + ca)$",
+    option_b: "$V = a \\times b \\times c$",
+    option_c: "$S = ab + bc + ca$",
+    option_d: "$S = 4(a + b + c)$",
+    correct_option: "A",
+    explanation: "Diện tích toàn phần = 2(ab + bc + ca)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình lập phương là:",
+    option_a: "Hình hộp chữ nhật có ba cạnh bằng nhau",
+    option_b: "Hình hộp chữ nhật có hai cạnh bằng nhau",
+    option_c: "Hình hộp chữ nhật có một cạnh bằng nhau",
+    option_d: "Hình hộp chữ nhật không có cạnh bằng nhau",
+    correct_option: "A",
+    explanation: "Hình lập phương có ba cạnh bằng nhau",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích hình lập phương cạnh $a$ là:",
+    option_a: "$V = a^3$",
+    option_b: "$V = a^2$",
+    option_c: "$V = 3a$",
+    option_d: "$V = 6a^2$",
+    correct_option: "A",
+    explanation: "Thể tích hình lập phương = $a^3$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình lăng trụ đứng tam giác có bao nhiêu mặt?",
+    option_a: "$5$",
+    option_b: "$6$",
+    option_c: "$8$",
+    option_d: "$4$",
+    correct_option: "A",
+    explanation: "Hình lăng trụ đứng tam giác có 5 mặt (2 mặt đáy + 3 mặt bên)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích hình lăng trụ được tính bằng:",
+    option_a: "$V = S_{đáy} \\times h$",
+    option_b: "$V = S_{đáy} + h$",
+    option_c: "$V = \\frac{1}{3}S_{đáy} \\times h$",
+    option_d: "$V = 2S_{đáy} \\times h$",
+    correct_option: "A",
+    explanation: "Thể tích lăng trụ = Diện tích đáy × Chiều cao",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích xung quanh hình lăng trụ được tính bằng:",
+    option_a: "$S_{xq} = P_{đáy} \\times h$",
+    option_b: "$S_{xq} = S_{đáy} \\times h$",
+    option_c: "$S_{xq} = \\frac{1}{2}P_{đáy} \\times h$",
+    option_d: "$S_{xq} = 2P_{đáy} \\times h$",
+    correct_option: "A",
+    explanation: "Diện tích xung quanh = Chu vi đáy × Chiều cao",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 10 — Hình khối trong thực tiễn</h3>
+
+Chương 10 giới thiệu các hình khối cơ bản và cách tính thể tích, diện tích. Hãy cùng ôn tập lại toàn bộ kiến thức!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📦</div>
+    <strong>Hình hộp chữ nhật</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thể tích, diện tích</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Hình lập phương</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Trường hợp đặc biệt</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔺</div>
+    <strong>Hình lăng trụ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tam giác, tứ giác</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="hinh-hop-chu-nhat">1. Hình hộp chữ nhật</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình hộp chữ nhật là hình khối có 6 mặt đều là hình chữ nhật.
+
+**Các yếu tố:**
+- 8 đỉnh
+- 12 cạnh
+- 6 mặt
+
+**Công thức:**
+- Thể tích: $V = a \times b \times c$ (với $a, b, c$ là ba cạnh)
+- Diện tích toàn phần: $S = 2(ab + bc + ca)$
+- Diện tích xung quanh: $S_{xq} = 2(a + b) \times c$
+
+</div>
+
+<h4 id="hinh-lap-phuong">2. Hình lập phương</h4>
+
+**Định nghĩa:** Hình lập phương là hình hộp chữ nhật có ba cạnh bằng nhau.
+
+**Công thức (với cạnh $a$):**
+- Thể tích: $V = a^3$
+- Diện tích toàn phần: $S = 6a^2$
+- Diện tích xung quanh: $S_{xq} = 4a^2$
+
+<h4 id="hinh-lang-tru">3. Hình lăng trụ đứng</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hình lăng trụ đứng là hình khối có hai mặt đáy là hai đa giác bằng nhau và song song, các mặt bên là hình chữ nhật.
+
+**Phân loại:**
+- Hình lăng trụ đứng tam giác: 2 mặt đáy là tam giác, 3 mặt bên
+- Hình lăng trụ đứng tứ giác: 2 mặt đáy là tứ giác, 4 mặt bên
+
+**Công thức:**
+- Thể tích: $V = S_{đáy} \times h$
+- Diện tích xung quanh: $S_{xq} = P_{đáy} \times h$
+- Diện tích toàn phần: $S = S_{xq} + 2S_{đáy}$
+
+(với $S_{đáy}$ là diện tích đáy, $P_{đáy}$ là chu vi đáy, $h$ là chiều cao)
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Hình hộp chữ nhật</h4>
+
+Cho hình hộp chữ nhật có chiều dài 5 cm, chiều rộng 4 cm, chiều cao 3 cm.
+
+a) Tính thể tích
+
+b) Tính diện tích toàn phần
+
+c) Tính diện tích xung quanh
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $V = 5 \times 4 \times 3 = 60$ (cm³)
+
+b) $S = 2(5 \times 4 + 4 \times 3 + 3 \times 5) = 2(20 + 12 + 15) = 2 \times 47 = 94$ (cm²)
+
+c) $S_{xq} = 2(5 + 4) \times 3 = 2 \times 9 \times 3 = 54$ (cm²)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Hình lập phương</h4>
+
+Cho hình lập phương cạnh 4 cm.
+
+a) Tính thể tích
+
+b) Tính diện tích toàn phần
+
+c) Tính diện tích xung quanh
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $V = 4^3 = 64$ (cm³)
+
+b) $S = 6 \times 4^2 = 6 \times 16 = 96$ (cm²)
+
+c) $S_{xq} = 4 \times 4^2 = 4 \times 16 = 64$ (cm²)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Hình lăng trụ đứng tam giác</h4>
+
+Cho hình lăng trụ đứng tam giác có đáy là tam giác vuông với hai cạnh góc vuông 3 cm và 4 cm, chiều cao 5 cm.
+
+a) Tính diện tích đáy
+
+b) Tính thể tích
+
+c) Tính chu vi đáy
+
+d) Tính diện tích xung quanh
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích đáy = $\frac{1}{2} \times 3 \times 4 = 6$ (cm²)
+
+b) Thể tích = $6 \times 5 = 30$ (cm³)
+
+c) Cạnh huyền = $\sqrt{3^2 + 4^2} = 5$ cm
+   Chu vi đáy = $3 + 4 + 5 = 12$ (cm)
+
+d) Diện tích xung quanh = $12 \times 5 = 60$ (cm²)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Bài toán kết hợp</h4>
+
+Một bể nước hình hộp chữ nhật có chiều dài 2 m, chiều rộng 1.5 m, chiều cao 1 m.
+
+a) Tính thể tích bể nước
+
+b) Nếu đổ đầy nước, bể chứa bao nhiêu lít nước? (1 m³ = 1000 lít)
+
+c) Tính diện tích toàn phần của bể
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $V = 2 \times 1.5 \times 1 = 3$ (m³)
+
+b) Thể tích nước = $3 \times 1000 = 3000$ (lít)
+
+c) $S = 2(2 \times 1.5 + 1.5 \times 1 + 1 \times 2) = 2(3 + 1.5 + 2) = 2 \times 6.5 = 13$ (m²)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho hình lăng trụ đứng tứ giác có đáy là hình chữ nhật với chiều dài 6 cm, chiều rộng 4 cm, chiều cao lăng trụ 8 cm.
+
+a) Tính diện tích đáy
+
+b) Tính thể tích
+
+c) Tính chu vi đáy
+
+d) Tính diện tích xung quanh
+
+e) Tính diện tích toàn phần
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích đáy = $6 \times 4 = 24$ (cm²)
+
+b) Thể tích = $24 \times 8 = 192$ (cm³)
+
+c) Chu vi đáy = $2(6 + 4) = 20$ (cm)
+
+d) Diện tích xung quanh = $20 \times 8 = 160$ (cm²)
+
+e) Diện tích toàn phần = $160 + 2 \times 24 = 160 + 48 = 208$ (cm²)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán nâng cao (Câu lớn)</h4>
+
+Một hộp quà hình lập phương có cạnh 10 cm. Người ta muốn dán giấy bao quanh hộp (không dán mặt đáy).
+
+a) Tính diện tích giấy cần dùng
+
+b) Nếu giấy có giá 5000 đồng/m², tính chi phí dán giấy
+
+c) Tính thể tích hộp quà
+
+d) Nếu muốn làm một hộp lập phương khác có thể tích gấp 8 lần, cạnh của hộp mới là bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Diện tích giấy = $5 \times 10^2 = 500$ (cm²) = $0.05$ (m²)
+
+b) Chi phí = $0.05 \times 5000 = 250$ (đồng)
+
+c) Thể tích = $10^3 = 1000$ (cm³)
+
+d) Thể tích mới = $1000 \times 8 = 8000$ (cm³)
+   Cạnh mới = $\sqrt[3]{8000} = 20$ (cm)
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Hình hộp chữ nhật**: 6 mặt, 8 đỉnh, 12 cạnh
+- **Thể tích hộp chữ nhật**: $V = a \times b \times c$
+- **Diện tích toàn phần hộp chữ nhật**: $S = 2(ab + bc + ca)$
+- **Hình lập phương**: Hộp chữ nhật có 3 cạnh bằng nhau
+- **Thể tích lập phương**: $V = a^3$
+- **Diện tích toàn phần lập phương**: $S = 6a^2$
+- **Hình lăng trụ đứng**: 2 mặt đáy song song, các mặt bên là hình chữ nhật
+- **Thể tích lăng trụ**: $V = S_{đáy} \times h$
+- **Diện tích xung quanh lăng trụ**: $S_{xq} = P_{đáy} \times h$
+- **Diện tích toàn phần lăng trụ**: $S = S_{xq} + 2S_{đáy}$
+
+</GhiNho>

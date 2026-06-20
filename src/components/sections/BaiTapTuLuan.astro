@@ -1,0 +1,29 @@
+---
+interface Props { title?: string; so?: number }
+const { title = 'Bài tập tự luận', so } = Astro.props;
+---
+<section class="lesson-section section-bai-tap-tu-luan animate-fade-in-up">
+  <span class="section-badge">📝 {title}{so ? ` ${so}` : ''}</span>
+  <slot />
+</section>
+
+<style>
+  .section-bai-tap-tu-luan {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid #f97316;
+  }
+
+  .section-badge {
+    display: inline-block;
+    background: #f97316;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+</style>

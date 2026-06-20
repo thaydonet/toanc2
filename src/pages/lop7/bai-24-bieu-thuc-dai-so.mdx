@@ -1,0 +1,429 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 24: Biểu thức đại số"
+description: "Biểu thức đại số - Toán 7 KNTT Chương 7"
+grade: "Lớp 7"
+chapter: "Chương VII: Biểu thức đại số và đa thức một biến"
+currentSlug: "lop7/bai-24-bieu-thuc-dai-so"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Biểu thức đại số là gì?",
+    option_a: "Biểu thức có chứa chữ (biến)",
+    option_b: "Chỉ có số",
+    option_c: "Chỉ có phép tính",
+    option_d: "Không có ý nghĩa",
+    correct_option: "A",
+    explanation: "Biểu thức đại số là biểu thức có chứa chữ (biến) và các phép toán.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho biểu thức $A = 2x + 3$. Khi $x = 5$ thì giá trị của A là:",
+    option_a: "13",
+    option_b: "10",
+    option_c: "8",
+    option_d: "11",
+    correct_option: "A",
+    explanation: "$A = 2 \\\\times 5 + 3 = 10 + 3 = 13$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu thức nào sau đây là biểu thức đại số?",
+    option_a: "$3x^2 - 5x + 1$",
+    option_b: "$2 + 3 - 5$",
+    option_c: "$10 \\\\times 5$",
+    option_d: "$\\\\frac{8}{4}$",
+    correct_option: "A",
+    explanation: "Biểu thức đại số phải có chứa biến (chữ).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $B = x^2 - 4$. Khi $x = 3$ thì B bằng:",
+    option_a: "5",
+    option_b: "9",
+    option_c: "13",
+    option_d: "1",
+    correct_option: "A",
+    explanation: "$B = 3^2 - 4 = 9 - 4 = 5$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các biểu thức nào là biểu thức đại số?",
+    option_a: "$5x + 7$",
+    option_b: "$x^2 + y^2$",
+    option_c: "$\\\\frac{3}{x}$",
+    option_d: "$2 + 3 + 4$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đều chứa biến nên là biểu thức đại số. D chỉ có số.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho $C = 3x - 2$. Khi $x = 4$ thì C bằng bao nhiêu?",
+    correct_option: "10",
+    explanation: "$C = 3 \\\\times 4 - 2 = 12 - 2 = 10$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Biểu thức đại số</h3>
+
+Biểu thức đại số giúp ta biểu diễn các công thức và quy luật bằng chữ!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">x</div>
+    <strong>Biến</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chữ đại diện cho số</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">+−×÷</div>
+    <strong>Phép toán</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cộng trừ nhân chia</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Công thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Biểu diễn quy luật</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia">📖 1. Định nghĩa biểu thức đại số</h3>
+
+<div class="box-dinh-nghia">
+
+**Biểu thức đại số** là biểu thức có chứa chữ (biến) và các phép toán cộng, trừ, nhân, chia, nâng lên lũy thừa.
+
+Các chữ trong biểu thức đại số gọi là **biến** (hay **ẩn**).
+
+</div>
+
+**Ví dụ 1:** Các biểu thức đại số:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $2x + 5$ (biến $x$)
+- $3x^2 - 4x + 1$ (biến $x$)
+- $x^2 + y^2$ (biến $x, y$)
+- $\frac{5}{x} + 3$ (biến $x$)
+- $2a - 3b + c$ (biến $a, b, c$)
+
+**Không phải biểu thức đại số:**
+- $2 + 3 - 5$ (chỉ có số)
+- $10 \times 4$ (chỉ có số)
+
+</div>
+
+<h3 id="gia-tri" style="margin-top:2rem;">📖 2. Giá trị của biểu thức đại số</h3>
+
+<div class="box-dinh-nghia">
+
+**Giá trị của biểu thức đại số** là kết quả thu được khi thay các biến bằng những số cụ thể và thực hiện các phép tính.
+
+</div>
+
+**Ví dụ 2:** Tính giá trị của biểu thức $A = 3x + 2$ khi $x = 4$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Thay $x = 4$ vào biểu thức:
+
+$A = 3 \times 4 + 2 = 12 + 2 = 14$
+
+Vậy khi $x = 4$ thì $A = 14$
+
+</div>
+
+**Ví dụ 3:** Tính giá trị của biểu thức $B = x^2 - 5x + 6$ khi $x = 3$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Thay $x = 3$ vào biểu thức:
+
+$B = 3^2 - 5 \times 3 + 6 = 9 - 15 + 6 = 0$
+
+Vậy khi $x = 3$ thì $B = 0$
+
+</div>
+
+**Ví dụ 4:** Tính giá trị của biểu thức $C = 2x + 3y$ khi $x = 2$ và $y = 5$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Thay $x = 2$ và $y = 5$ vào biểu thức:
+
+$C = 2 \times 2 + 3 \times 5 = 4 + 15 = 19$
+
+Vậy khi $x = 2, y = 5$ thì $C = 19$
+
+</div>
+
+<h3 id="don-thuc" style="margin-top:2rem;">📖 3. Đơn thức</h3>
+
+<div class="box-dinh-nghia">
+
+**Đơn thức** là biểu thức đại số chỉ gồm một số, hoặc một biến, hoặc tích của các số và biến.
+
+**Hệ số** của đơn thức là phần số trong đơn thức.
+
+**Bậc** của đơn thức là tổng số mũ của các biến.
+
+</div>
+
+**Ví dụ 5:** Các đơn thức:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $5$ (hệ số 5, bậc 0)
+- $x$ (hệ số 1, bậc 1)
+- $3x$ (hệ số 3, bậc 1)
+- $-2x^2$ (hệ số -2, bậc 2)
+- $4xy$ (hệ số 4, bậc 2)
+- $5x^2y^3$ (hệ số 5, bậc 5)
+
+**Không phải đơn thức:**
+- $x + 2$ (có phép cộng)
+- $3x - 5$ (có phép trừ)
+
+</div>
+
+<h3 id="da-thuc" style="margin-top:2rem;">📖 4. Đa thức</h3>
+
+<div class="box-dinh-nghia">
+
+**Đa thức** là tổng của các đơn thức.
+
+Mỗi đơn thức trong tổng gọi là một **hạng tử** của đa thức.
+
+</div>
+
+**Ví dụ 6:** Các đa thức:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $3x + 5$ (2 hạng tử: $3x$ và $5$)
+- $x^2 - 4x + 3$ (3 hạng tử: $x^2$, $-4x$, $3$)
+- $2x^2 + 3xy - y^2$ (3 hạng tử: $2x^2$, $3xy$, $-y^2$)
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">📖 5. Ứng dụng của biểu thức đại số</h3>
+
+**Biểu thức đại số được dùng để:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. **Biểu diễn công thức:**
+   - Chu vi hình chữ nhật: $P = 2(a + b)$
+   - Diện tích hình vuông: $S = a^2$
+   - Quãng đường: $s = vt$
+
+2. **Biểu diễn quy luật:**
+   - Số chẵn: $2n$ (với $n$ là số tự nhiên)
+   - Số lẻ: $2n + 1$ (với $n$ là số tự nhiên)
+
+3. **Giải bài toán:**
+   - Tổng hai số: $x + y$
+   - Tích hai số liên tiếp: $n(n + 1)$
+
+</div>
+
+**Ví dụ 7:** Viết biểu thức đại số biểu diễn:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) Tổng của $x$ và $5$: $x + 5$
+
+b) Tích của $3$ và $x$: $3x$
+
+c) Bình phương của $x$: $x^2$
+
+d) Tổng bình phương của $x$ và $y$: $x^2 + y^2$
+
+e) Chu vi hình chữ nhật có chiều dài $a$ và chiều rộng $b$: $P = 2(a + b)$
+
+f) Diện tích hình tròn có bán kính $r$: $S = \pi r^2$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**Bài toán:** Một cửa hàng bán áo với giá $x$ đồng một chiếc. Nếu mua 3 chiếc thì được giảm giá 50000 đồng.
+
+a) Viết biểu thức biểu diễn số tiền phải trả khi mua 3 chiếc áo
+
+b) Tính số tiền phải trả khi $x = 200000$ đồng
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Số tiền phải trả: $T = 3x - 50000$ (đồng)
+
+b) Khi $x = 200000$:
+
+$T = 3 \times 200000 - 50000 = 600000 - 50000 = 550000$ (đồng)
+
+Vậy phải trả 550000 đồng.
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Biểu thức đại số**: có chứa chữ (biến) và phép toán
+- **Giá trị**: thay số vào biến rồi tính
+- **Đơn thức**: tích của số và biến (không có +, −)
+- **Hệ số**: phần số trong đơn thức
+- **Bậc**: tổng số mũ của các biến
+- **Đa thức**: tổng các đơn thức
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Trong các biểu thức sau, biểu thức nào là biểu thức đại số?
+
+a) $5x + 3$
+
+b) $2 + 7 - 4$
+
+c) $x^2 - 9$
+
+d) $10 \times 5$
+
+e) $\frac{3}{x} + 2$
+
+**Bài 2:** Tính giá trị của các biểu thức sau:
+
+a) $A = 5x - 3$ khi $x = 2$
+
+b) $B = x^2 + 2x$ khi $x = 3$
+
+c) $C = 2x - 3y$ khi $x = 4, y = 2$
+
+d) $D = x^2 - 4x + 4$ khi $x = 5$
+
+**Bài 3:** Xác định hệ số và bậc của các đơn thức:
+
+a) $7x$
+
+b) $-3x^2$
+
+c) $5xy$
+
+d) $2x^2y^3$
+
+e) $-x^3$
+
+**Bài 4:** Viết biểu thức đại số biểu diễn:
+
+a) Tổng của $x$ và $7$
+
+b) Hiệu của $2x$ và $5$
+
+c) Tích của $3$ và $x^2$
+
+d) Thương của $x$ và $4$
+
+e) Bình phương của tổng $x$ và $y$
+
+**Bài 5:** Một hình chữ nhật có chiều dài $x$ cm và chiều rộng $y$ cm.
+
+a) Viết biểu thức biểu diễn chu vi hình chữ nhật
+
+b) Viết biểu thức biểu diễn diện tích hình chữ nhật
+
+c) Tính chu vi và diện tích khi $x = 8, y = 5$
+
+**Bài 6:** Một ô tô chạy với vận tốc $v$ km/h trong $t$ giờ.
+
+a) Viết biểu thức biểu diễn quãng đường ô tô đi được
+
+b) Tính quãng đường khi $v = 60, t = 3$
+
+**Bài 7:** Cho biểu thức $P = x^2 - 2x + 1$.
+
+a) Tính giá trị của $P$ khi $x = 0$
+
+b) Tính giá trị của $P$ khi $x = 1$
+
+c) Tính giá trị của $P$ khi $x = 2$
+
+d) Tính giá trị của $P$ khi $x = -1$
+
+**Bài 8:** Một cửa hàng bán sách với giá $x$ đồng một quyển. Nếu mua $n$ quyển thì được giảm giá $10\%$.
+
+a) Viết biểu thức biểu diễn số tiền phải trả
+
+b) Tính số tiền phải trả khi $x = 50000, n = 5$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Có; b) Không; c) Có; d) Không; e) Có
+
+**Bài 2:** a) $A = 7$; b) $B = 15$; c) $C = 2$; d) $D = 9$
+
+**Bài 3:** a) Hệ số 7, bậc 1; b) Hệ số -3, bậc 2; c) Hệ số 5, bậc 2; d) Hệ số 2, bậc 5; e) Hệ số -1, bậc 3
+
+**Bài 4:** a) $x + 7$; b) $2x - 5$; c) $3x^2$; d) $\frac{x}{4}$; e) $(x + y)^2$
+
+**Bài 5:** a) $P = 2(x + y)$; b) $S = xy$; c) $P = 26$ cm, $S = 40$ cm²
+
+**Bài 6:** a) $s = vt$; b) $s = 180$ km
+
+**Bài 7:** a) $P = 1$; b) $P = 0$; c) $P = 1$; d) $P = 4$
+
+**Bài 8:** a) $T = nx \times 0.9 = 0.9nx$; b) $T = 225000$ đồng
+
+</div>
+</details>

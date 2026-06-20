@@ -1,0 +1,495 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 15: Quy tắc dấu ngoặc"
+description: "Quy tắc bỏ dấu ngoặc và thêm dấu ngoặc - Toán 6 KNTT Chương 3"
+grade: "Lớp 6"
+chapter: "Chương III: Số nguyên"
+currentSlug: "lop6/bai-15-quy-tac-dau-ngoac"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Bỏ dấu ngoặc: $15 + (-8 + 3)$",
+    option_a: "$15 - 8 + 3$",
+    option_b: "$15 + 8 - 3$",
+    option_c: "$15 - 8 - 3$",
+    option_d: "$15 + 8 + 3$",
+    correct_option: "A",
+    explanation: "Trước ngoặc là dấu $+$ nên giữ nguyên dấu trong ngoặc: $15 + (-8 + 3) = 15 - 8 + 3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bỏ dấu ngoặc: $20 - (5 - 7)$",
+    option_a: "$20 - 5 + 7$",
+    option_b: "$20 - 5 - 7$",
+    option_c: "$20 + 5 - 7$",
+    option_d: "$20 + 5 + 7$",
+    correct_option: "A",
+    explanation: "Trước ngoặc là dấu $-$ nên đổi dấu trong ngoặc: $20 - (5 - 7) = 20 - 5 + 7$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $25 - (10 - 8)$",
+    option_a: "$23$",
+    option_b: "$27$",
+    option_c: "$7$",
+    option_d: "$43$",
+    correct_option: "A",
+    explanation: "$25 - (10 - 8) = 25 - 10 + 8 = 23$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những biểu thức nào bằng $10 - 5 + 3$?",
+    option_a: "$10 + (-5 + 3)$",
+    option_b: "$10 - (5 - 3)$",
+    option_c: "$(10 - 5) + 3$",
+    option_d: "$10 + (-5) + 3$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều bằng $10 - 5 + 3 = 8$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thêm dấu ngoặc vào $15 - 8 + 3$ với dấu $-$ đằng trước:",
+    option_a: "$15 - (8 - 3)$",
+    option_b: "$15 - (8 + 3)$",
+    option_c: "$15 + (8 - 3)$",
+    option_d: "$15 + (8 + 3)$",
+    correct_option: "A",
+    explanation: "Thêm dấu $-$ trước ngoặc thì đổi dấu trong ngoặc: $15 - 8 + 3 = 15 - (8 - 3)$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính: $30 - (12 - 5)$",
+    correct_option: "23",
+    explanation: "$30 - (12 - 5) = 30 - 12 + 5 = 23$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bỏ dấu ngoặc: $!a#20! + (!b#-8! + !c#5!)$",
+    option_a: "$!a! + !b! + !c!$",
+    option_b: "$!a! - !b! - !c!$",
+    option_c: "$!a! + !b! - !c!$",
+    option_d: "$!a! - !b! + !c!$",
+    correct_option: "A",
+    explanation: "Trước ngoặc là $+$ nên giữ nguyên: $!a! + (!b! + !c!) = !a! + !b! + !c!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $!a#50! - (!b#15! - !c#8!)$",
+    option_a: "$!tinh: !a! - !b! + !c!!$",
+    option_b: "$!tinh: !a! - !b! - !c!!$",
+    option_c: "$!tinh: !a! + !b! - !c!!$",
+    option_d: "$!tinh: !a! + !b! + !c!!$",
+    correct_option: "A",
+    explanation: "$!a! - (!b! - !c!) = !a! - !b! + !c! = !tinh: !a! - !b! + !c!!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔓 Quy tắc dấu ngoặc — Đơn giản hóa biểu thức</h3>
+
+Quy tắc dấu ngoặc giúp bỏ ngoặc và tính toán nhanh hơn!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕ ( )</div>
+    <strong>Dấu + trước ngoặc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Giữ nguyên dấu trong ngoặc</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➖ ( )</div>
+    <strong>Dấu - trước ngoặc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đổi dấu trong ngoặc</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="quy-tac-bo-ngoac">📖 1. Quy tắc bỏ dấu ngoặc</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc 1:** Khi bỏ dấu ngoặc có dấu "$+$" đằng trước, ta giữ nguyên dấu của các số hạng trong ngoặc.
+
+$a + (b + c) = a + b + c$
+
+$a + (b - c) = a + b - c$
+
+**Quy tắc 2:** Khi bỏ dấu ngoặc có dấu "$-$" đằng trước, ta đổi dấu tất cả các số hạng trong ngoặc.
+
+$a - (b + c) = a - b - c$
+
+$a - (b - c) = a - b + c$
+
+</div>
+
+**Ví dụ 1:** Bỏ dấu ngoặc với dấu "$+$" trước ngoặc
+
+a) $15 + (8 - 3)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Trước ngoặc là dấu "$+$" nên giữ nguyên dấu:
+
+$15 + (8 - 3) = 15 + 8 - 3 = 20$
+
+</div>
+
+b) $(-20) + (-5 + 12)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$(-20) + (-5 + 12) = -20 - 5 + 12 = -13$
+
+</div>
+
+**Ví dụ 2:** Bỏ dấu ngoặc với dấu "$-$" trước ngoặc
+
+a) $25 - (10 - 4)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Trước ngoặc là dấu "$-$" nên đổi dấu:
+
+$25 - (10 - 4) = 25 - 10 + 4 = 19$
+
+</div>
+
+b) $30 - (15 + 8)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$30 - (15 + 8) = 30 - 15 - 8 = 7$
+
+</div>
+
+c) $(-12) - (-7 + 3)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$(-12) - (-7 + 3) = -12 + 7 - 3 = -8$
+
+</div>
+
+<h3 id="bang-tom-tat" style="margin-top:2rem;">📊 Bảng tóm tắt quy tắc</h3>
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Dấu trước ngoặc</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Quy tắc</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Giữ nguyên dấu</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$a + (b - c) = a + b - c$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Đổi dấu</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$a - (b - c) = a - b + c$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="quy-tac-them-ngoac" style="margin-top:2rem;">📖 2. Quy tắc thêm dấu ngoặc</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc 1:** Khi thêm dấu ngoặc có dấu "$+$" đằng trước, ta giữ nguyên dấu của các số hạng trong ngoặc.
+
+$a + b - c = a + (b - c)$
+
+**Quy tắc 2:** Khi thêm dấu ngoặc có dấu "$-$" đằng trước, ta đổi dấu tất cả các số hạng trong ngoặc.
+
+$a - b + c = a - (b - c)$
+
+$a - b - c = a - (b + c)$
+
+</div>
+
+**Ví dụ 3:** Thêm dấu ngoặc
+
+a) Thêm dấu ngoặc vào $20 - 8 + 5$ với dấu "$-$" đằng trước
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Đổi dấu trong ngoặc:
+
+$20 - 8 + 5 = 20 - (8 - 5)$
+
+**Kiểm tra:** $20 - (8 - 5) = 20 - 8 + 5 = 17$ ✓
+
+</div>
+
+b) Thêm dấu ngoặc vào $15 + 7 - 3$ với dấu "$+$" đằng trước
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Giữ nguyên dấu:
+
+$15 + 7 - 3 = 15 + (7 - 3)$
+
+**Kiểm tra:** $15 + (7 - 3) = 15 + 7 - 3 = 19$ ✓
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">⚡ 3. Ứng dụng tính nhanh</h3>
+
+**Ví dụ 4:** Tính nhanh bằng quy tắc dấu ngoặc
+
+a) $125 - (25 + 18)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Cách 1:** Tính trong ngoặc trước
+
+$125 - (25 + 18) = 125 - 43 = 82$
+
+**Cách 2:** Bỏ ngoặc
+
+$125 - (25 + 18) = 125 - 25 - 18 = 100 - 18 = 82$
+
+</div>
+
+b) $(-37) + (37 - 15)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Bỏ ngoặc:
+
+$(-37) + (37 - 15) = -37 + 37 - 15 = 0 - 15 = -15$
+
+</div>
+
+c) $250 - (150 - 50)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$250 - (150 - 50) = 250 - 150 + 50 = 100 + 50 = 150$
+
+</div>
+
+<h3 id="nhieu-ngoac" style="margin-top:2rem;">🔢 4. Biểu thức có nhiều dấu ngoặc</h3>
+
+**Ví dụ 5:** Bỏ nhiều dấu ngoặc
+
+a) $50 - [20 - (8 - 3)]$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Bỏ ngoặc tròn trong cùng
+
+$50 - [20 - (8 - 3)] = 50 - [20 - 8 + 3]$
+
+**Bước 2:** Tính trong ngoặc vuông
+
+$= 50 - [15]$
+
+**Bước 3:** Bỏ ngoặc vuông
+
+$= 50 - 15 = 35$
+
+</div>
+
+b) $100 + [(-25) - (15 - 40)]$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$= 100 + [(-25) - 15 + 40]$
+
+$= 100 + [0]$
+
+$= 100$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một cửa hàng có $500$ sản phẩm. Buổi sáng bán được $120$ sản phẩm và nhập thêm $80$ sản phẩm. Buổi chiều bán được $150$ sản phẩm và nhập thêm $100$ sản phẩm.
+
+a) Viết biểu thức tính số sản phẩm còn lại.
+
+b) Tính số sản phẩm còn lại.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Biểu thức:
+
+$500 - (120 - 80) - (150 - 100)$
+
+b) Tính:
+
+$= 500 - 120 + 80 - 150 + 100$
+
+$= (500 + 80 + 100) - (120 + 150)$
+
+$= 680 - 270 = 410$ (sản phẩm)
+
+</div>
+
+**📝 Bài toán 2:** Nhiệt độ ban đầu là $20°C$. Sau đó giảm $8°C$ rồi tăng $5°C$. Tiếp theo giảm $12°C$ rồi tăng $10°C$.
+
+a) Viết biểu thức tính nhiệt độ cuối cùng.
+
+b) Tính nhiệt độ cuối cùng.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Biểu thức:
+
+$20 - (8 - 5) - (12 - 10)$
+
+b) Tính:
+
+$= 20 - 8 + 5 - 12 + 10$
+
+$= (20 + 5 + 10) - (8 + 12)$
+
+$= 35 - 20 = 15°C$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Bỏ ngoặc với dấu +**: Giữ nguyên dấu trong ngoặc
+  - $a + (b - c) = a + b - c$
+- **Bỏ ngoặc với dấu -**: Đổi dấu trong ngoặc
+  - $a - (b - c) = a - b + c$
+- **Thêm ngoặc với dấu +**: Giữ nguyên dấu
+- **Thêm ngoặc với dấu -**: Đổi dấu
+- **Nhiều ngoặc**: Bỏ từ trong ra ngoài
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Bỏ dấu ngoặc và tính:
+
+a) $25 + (15 - 8)$
+
+b) $40 - (12 + 7)$
+
+c) $(-18) + (-5 + 12)$
+
+d) $30 - (20 - 15)$
+
+**Bài 2:** Bỏ dấu ngoặc và tính:
+
+a) $100 - (50 - 20)$
+
+b) $(-25) + (15 - 30)$
+
+c) $75 - (25 + 15)$
+
+d) $(-40) - (-20 + 10)$
+
+**Bài 3:** Thêm dấu ngoặc với dấu "$-$" đằng trước:
+
+a) $50 - 20 + 10$
+
+b) $35 - 15 - 8$
+
+c) $(-25) + 10 - 5$
+
+d) $100 - 40 + 15$
+
+**Bài 4:** Tính nhanh:
+
+a) $250 - (150 - 50)$
+
+b) $(-75) + (75 - 25)$
+
+c) $180 - (80 + 50)$
+
+d) $(-120) - (-80 + 40)$
+
+**Bài 5:** Bỏ nhiều dấu ngoặc và tính:
+
+a) $100 - [50 - (20 - 10)]$
+
+b) $80 + [(-30) - (15 - 40)]$
+
+c) $150 - [60 + (25 - 15)]$
+
+d) $(-50) + [30 - (10 + 5)]$
+
+**Bài 6 (Thực tế):** Một tài khoản có $2000000$ đồng. Tuần 1 chi $500000$ đồng và thu $300000$ đồng. Tuần 2 chi $400000$ đồng và thu $600000$ đồng.
+
+a) Viết biểu thức tính số tiền còn lại (dùng dấu ngoặc).
+
+b) Bỏ dấu ngoặc và tính số tiền còn lại.
+
+c) Nếu tuần 3 chi $700000$ đồng và thu $500000$ đồng, tài khoản còn bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $32$; b) $21$; c) $-11$; d) $25$
+
+**Bài 2:** a) $70$; b) $-40$; c) $35$; d) $-30$
+
+**Bài 3:** a) $50 - (20 - 10)$; b) $35 - (15 + 8)$; c) $(-25) - (-10 + 5)$; d) $100 - (40 - 15)$
+
+**Bài 4:** a) $150$; b) $-25$; c) $50$; d) $-80$
+
+**Bài 5:** a) $60$; b) $135$; c) $80$; d) $-35$
+
+**Bài 6:** a) $2000000 - (500000 - 300000) - (400000 - 600000)$; b) $2200000$ đồng; c) $1800000$ đồng
+
+</div>
+</details>

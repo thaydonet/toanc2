@@ -1,0 +1,297 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 27: Phép nhân đa thức một biến"
+description: "Nhân đa thức một biến - Toán 7 KNTT Chương 7"
+grade: "Lớp 7"
+chapter: "Chương VII: Biểu thức đại số và đa thức một biến"
+currentSlug: "lop7/bai-27-nhan-da-thuc-mot-bien"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Nhân đơn thức với đa thức, ta:",
+    option_a: "Nhân đơn thức với từng hạng tử của đa thức",
+    option_b: "Nhân đơn thức với hạng tử đầu",
+    option_c: "Cộng đơn thức với đa thức",
+    option_d: "Chia đơn thức cho đa thức",
+    correct_option: "A",
+    explanation: "Nhân đơn thức với từng hạng tử của đa thức rồi cộng các tích lại.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $2x(3x - 5)$:",
+    option_a: "$6x^2 - 10x$",
+    option_b: "$6x - 10x$",
+    option_c: "$5x^2 - 10x$",
+    option_d: "$6x^2 - 5x$",
+    correct_option: "A",
+    explanation: "$2x(3x - 5) = 2x \\\\cdot 3x - 2x \\\\cdot 5 = 6x^2 - 10x$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $(x + 2)(x + 3)$:",
+    option_a: "$x^2 + 5x + 6$",
+    option_b: "$x^2 + 6$",
+    option_c: "$x^2 + 5x$",
+    option_d: "$2x + 5$",
+    correct_option: "A",
+    explanation: "$(x + 2)(x + 3) = x^2 + 3x + 2x + 6 = x^2 + 5x + 6$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bậc của tích hai đa thức bằng:",
+    option_a: "Tổng bậc của hai đa thức",
+    option_b: "Hiệu bậc của hai đa thức",
+    option_c: "Tích bậc của hai đa thức",
+    option_d: "Bậc của đa thức lớn hơn",
+    correct_option: "A",
+    explanation: "Bậc của tích bằng tổng bậc của các đa thức.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khi nhân hai đa thức, ta cần:",
+    option_a: "Nhân từng hạng tử của đa thức này với từng hạng tử của đa thức kia",
+    option_b: "Cộng các tích lại",
+    option_c: "Thu gọn các hạng tử đồng dạng",
+    option_d: "Sắp xếp theo bậc",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các bước đều cần thiết khi nhân đa thức.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính $(x + 1)(x - 1)$. Hệ số tự do là bao nhiêu?",
+    correct_option: "-1",
+    explanation: "$(x + 1)(x - 1) = x^2 - 1$, hệ số tự do là -1",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Nhân đa thức</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">×</div>
+    <strong>Nhân từng hạng tử</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Phân phối</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">+</div>
+    <strong>Thu gọn</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cộng đồng dạng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="nhan-don-thuc">📖 1. Nhân đơn thức với đa thức</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:** Nhân đơn thức với từng hạng tử của đa thức rồi cộng các tích lại.
+
+$$a \cdot (b + c) = ab + ac$$
+
+</div>
+
+**Ví dụ 1:** Tính $3x(2x^2 - 5x + 1)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$3x(2x^2 - 5x + 1)$
+
+$= 3x \cdot 2x^2 - 3x \cdot 5x + 3x \cdot 1$
+
+$= 6x^3 - 15x^2 + 3x$
+
+</div>
+
+<h3 id="nhan-da-thuc" style="margin-top:2rem;">📖 2. Nhân đa thức với đa thức</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc:** Nhân từng hạng tử của đa thức này với từng hạng tử của đa thức kia, rồi cộng các tích lại và thu gọn.
+
+$$(a + b)(c + d) = ac + ad + bc + bd$$
+
+</div>
+
+**Ví dụ 2:** Tính $(x + 3)(2x - 1)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$(x + 3)(2x - 1)$
+
+$= x \cdot 2x + x \cdot (-1) + 3 \cdot 2x + 3 \cdot (-1)$
+
+$= 2x^2 - x + 6x - 3$
+
+$= 2x^2 + 5x - 3$
+
+</div>
+
+**Ví dụ 3:** Tính $(x^2 - 2x + 1)(x + 2)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$(x^2 - 2x + 1)(x + 2)$
+
+$= x^2 \cdot x + x^2 \cdot 2 - 2x \cdot x - 2x \cdot 2 + 1 \cdot x + 1 \cdot 2$
+
+$= x^3 + 2x^2 - 2x^2 - 4x + x + 2$
+
+$= x^3 - 3x + 2$
+
+</div>
+
+<h3 id="hang-dang-thuc" style="margin-top:2rem;">📖 3. Các hằng đẳng thức đáng nhớ</h3>
+
+<div class="box-dinh-ly">
+
+**1. Bình phương của một tổng:**
+
+$$(a + b)^2 = a^2 + 2ab + b^2$$
+
+**2. Bình phương của một hiệu:**
+
+$$(a - b)^2 = a^2 - 2ab + b^2$$
+
+**3. Hiệu hai bình phương:**
+
+$$(a + b)(a - b) = a^2 - b^2$$
+
+</div>
+
+**Ví dụ 4:** Áp dụng hằng đẳng thức:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $(x + 3)^2 = x^2 + 2 \cdot x \cdot 3 + 3^2 = x^2 + 6x + 9$
+
+b) $(2x - 1)^2 = (2x)^2 - 2 \cdot 2x \cdot 1 + 1^2 = 4x^2 - 4x + 1$
+
+c) $(x + 5)(x - 5) = x^2 - 5^2 = x^2 - 25$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Một hình chữ nhật có chiều dài $(x + 5)$ cm và chiều rộng $(x + 2)$ cm. Tính diện tích.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$S = (x + 5)(x + 2)$
+
+$= x^2 + 2x + 5x + 10$
+
+$= x^2 + 7x + 10$ (cm²)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Nhân đơn thức - đa thức**: nhân với từng hạng tử
+- **Nhân đa thức - đa thức**: nhân từng hạng tử với từng hạng tử
+- **Hằng đẳng thức**: $(a±b)^2$, $(a+b)(a-b)$
+- **Bậc tích**: bằng tổng các bậc
+- **Lưu ý**: thu gọn hạng tử đồng dạng
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Thực hiện phép nhân:
+
+a) $5x(2x - 3)$
+
+b) $-2x^2(3x + 4)$
+
+c) $x(x^2 - 2x + 1)$
+
+**Bài 2:** Tính:
+
+a) $(x + 2)(x + 5)$
+
+b) $(2x - 1)(x + 3)$
+
+c) $(x - 4)(x - 2)$
+
+**Bài 3:** Áp dụng hằng đẳng thức:
+
+a) $(x + 4)^2$
+
+b) $(3x - 2)^2$
+
+c) $(x + 7)(x - 7)$
+
+d) $(2x + 1)(2x - 1)$
+
+**Bài 4:** Rút gọn:
+
+a) $(x + 1)(x - 1) - (x - 2)^2$
+
+b) $(x + 3)^2 - (x - 3)^2$
+
+c) $(2x + 1)^2 - 4x(x + 1)$
+
+**Bài 5:** Tính giá trị biểu thức:
+
+a) $(x + 2)(x - 2)$ tại $x = 5$
+
+b) $(x - 1)^2$ tại $x = 3$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $10x^2 - 15x$; b) $-6x^3 - 8x^2$; c) $x^3 - 2x^2 + x$
+
+**Bài 2:** a) $x^2 + 7x + 10$; b) $2x^2 + 5x - 3$; c) $x^2 - 6x + 8$
+
+**Bài 3:** a) $x^2 + 8x + 16$; b) $9x^2 - 12x + 4$; c) $x^2 - 49$; d) $4x^2 - 1$
+
+**Bài 4:** a) $-3x + 5$; b) $12x$; c) $1$
+
+**Bài 5:** a) 21; b) 4
+
+</div>
+</details>

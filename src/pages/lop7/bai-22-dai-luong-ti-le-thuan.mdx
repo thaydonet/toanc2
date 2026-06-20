@@ -1,0 +1,407 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 22: Đại lượng tỉ lệ thuận"
+description: "Đại lượng tỉ lệ thuận - Toán 7 KNTT Chương 6"
+grade: "Lớp 7"
+chapter: "Chương VI: Tỉ lệ thức và đại lượng tỉ lệ"
+currentSlug: "lop7/bai-22-dai-luong-ti-le-thuan"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai đại lượng tỉ lệ thuận khi:",
+    option_a: "Tỉ số của hai giá trị tương ứng luôn không đổi",
+    option_b: "Tích của hai giá trị tương ứng luôn không đổi",
+    option_c: "Tổng của hai giá trị tương ứng luôn không đổi",
+    option_d: "Hiệu của hai giá trị tương ứng luôn không đổi",
+    correct_option: "A",
+    explanation: "Hai đại lượng tỉ lệ thuận khi tỉ số của hai giá trị tương ứng luôn không đổi.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu y tỉ lệ thuận với x theo hệ số k thì:",
+    option_a: "$y = kx$",
+    option_b: "$y = \\\\frac{k}{x}$",
+    option_c: "$y = x + k$",
+    option_d: "$y = x - k$",
+    correct_option: "A",
+    explanation: "Công thức đại lượng tỉ lệ thuận: $y = kx$ với k là hệ số tỉ lệ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho y tỉ lệ thuận với x. Khi x = 2 thì y = 6. Hệ số tỉ lệ k là:",
+    option_a: "3",
+    option_b: "2",
+    option_c: "4",
+    option_d: "12",
+    correct_option: "A",
+    explanation: "Từ $y = kx$, ta có $6 = k \\\\times 2$, suy ra $k = 3$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu y tỉ lệ thuận với x và x tăng 2 lần thì y:",
+    option_a: "Tăng 2 lần",
+    option_b: "Giảm 2 lần",
+    option_c: "Không đổi",
+    option_d: "Tăng 4 lần",
+    correct_option: "A",
+    explanation: "Khi x tăng (hoặc giảm) bao nhiêu lần thì y cũng tăng (hoặc giảm) bấy nhiêu lần.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Ví dụ nào là đại lượng tỉ lệ thuận?",
+    option_a: "Quãng đường và thời gian (với vận tốc không đổi)",
+    option_b: "Khối lượng và thể tích (với khối lượng riêng không đổi)",
+    option_c: "Chu vi hình tròn và bán kính",
+    option_d: "Vận tốc và thời gian (với quãng đường không đổi)",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đều là tỉ lệ thuận. D là tỉ lệ nghịch.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho y tỉ lệ thuận với x theo hệ số k = 5. Khi x = 4 thì y bằng bao nhiêu?",
+    correct_option: "20",
+    explanation: "$y = kx = 5 \\\\times 4 = 20$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Đại lượng tỉ lệ thuận</h3>
+
+Khi một đại lượng tăng thì đại lượng kia cũng tăng theo tỉ lệ!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">↗️</div>
+    <strong>Cùng tăng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tăng cùng lúc</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">↘️</div>
+    <strong>Cùng giảm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Giảm cùng lúc</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">k</div>
+    <strong>Hệ số k</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tỉ lệ không đổi</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia">📖 1. Định nghĩa đại lượng tỉ lệ thuận</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Đại lượng $y$ được gọi là **tỉ lệ thuận** với đại lượng $x$ nếu:
+
+$$y = kx$$
+
+trong đó $k$ là một số khác 0, gọi là **hệ số tỉ lệ**.
+
+**Tương đương:** $\frac{y}{x} = k$ (không đổi)
+
+</div>
+
+**Ví dụ 1:** Quãng đường $s$ (km) và thời gian $t$ (giờ) với vận tốc $v = 60$ km/h:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$s = 60t$
+
+Đây là công thức tỉ lệ thuận với hệ số $k = 60$.
+
+| Thời gian (h) | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|
+| Quãng đường (km) | 60 | 120 | 180 | 240 |
+
+Tỉ số: $\frac{60}{1} = \frac{120}{2} = \frac{180}{3} = \frac{240}{4} = 60$ (không đổi)
+
+</div>
+
+**Ví dụ 2:** Chu vi hình tròn $C$ và bán kính $r$:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$C = 2\pi r$
+
+Đây là công thức tỉ lệ thuận với hệ số $k = 2\pi \approx 6.28$.
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📖 2. Tính chất của đại lượng tỉ lệ thuận</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 1:** Nếu $y$ tỉ lệ thuận với $x$ theo hệ số $k$ thì:
+
+- Khi $x$ tăng (hoặc giảm) bao nhiêu lần thì $y$ cũng tăng (hoặc giảm) bấy nhiêu lần.
+
+**Tính chất 2:** Nếu hai đại lượng $y$ và $x$ tỉ lệ thuận với nhau thì:
+
+$$\frac{y_1}{x_1} = \frac{y_2}{x_2} = \frac{y_3}{x_3} = ... = k$$
+
+</div>
+
+**Ví dụ 3:** Cho $y$ tỉ lệ thuận với $x$. Khi $x = 3$ thì $y = 12$.
+
+a) Tìm hệ số tỉ lệ $k$
+
+b) Tính $y$ khi $x = 5$
+
+c) Nếu $x$ tăng 3 lần thì $y$ thay đổi như thế nào?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Từ $y = kx$, ta có: $12 = k \times 3$, suy ra $k = 4$
+
+b) Khi $x = 5$: $y = 4 \times 5 = 20$
+
+c) Nếu $x$ tăng 3 lần thì $y$ cũng tăng 3 lần (từ 12 lên 36)
+
+</div>
+
+<h3 id="bai-toan" style="margin-top:2rem;">📖 3. Các dạng bài toán</h3>
+
+**Dạng 1: Tìm hệ số tỉ lệ**
+
+**Ví dụ 4:** Biết $y$ tỉ lệ thuận với $x$. Khi $x = 4$ thì $y = 20$. Tìm công thức liên hệ giữa $y$ và $x$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Vì $y$ tỉ lệ thuận với $x$ nên $y = kx$
+
+Thay $x = 4, y = 20$:
+
+$20 = k \times 4$
+
+$k = 5$
+
+Vậy công thức: $y = 5x$
+
+</div>
+
+**Dạng 2: Tìm giá trị chưa biết**
+
+**Ví dụ 5:** Cho hai đại lượng $x$ và $y$ tỉ lệ thuận với nhau. Khi $x = 2$ thì $y = 8$, khi $x = 5$ thì $y = ?$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+**Cách 1:** Tìm hệ số $k$
+
+$k = \frac{y}{x} = \frac{8}{2} = 4$
+
+Khi $x = 5$: $y = 4 \times 5 = 20$
+
+**Cách 2:** Dùng tính chất tỉ lệ thức
+
+$\frac{y_1}{x_1} = \frac{y_2}{x_2}$
+
+$\frac{8}{2} = \frac{y_2}{5}$
+
+$y_2 = \frac{8 \times 5}{2} = 20$
+
+</div>
+
+**Dạng 3: Chia theo tỉ lệ thuận**
+
+**Ví dụ 6:** Chia số 120 thành ba phần $x, y, z$ tỉ lệ thuận với 2, 3, 4.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Vì $x, y, z$ tỉ lệ thuận với 2, 3, 4 nên:
+
+$\frac{x}{2} = \frac{y}{3} = \frac{z}{4}$
+
+Áp dụng tính chất dãy tỉ số bằng nhau:
+
+$\frac{x}{2} = \frac{y}{3} = \frac{z}{4} = \frac{x + y + z}{2 + 3 + 4} = \frac{120}{9} = \frac{40}{3}$
+
+Suy ra:
+- $x = 2 \times \frac{40}{3} = \frac{80}{3}$
+- $y = 3 \times \frac{40}{3} = 40$
+- $z = 4 \times \frac{40}{3} = \frac{160}{3}$
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">📖 4. Ứng dụng thực tế</h3>
+
+**Các ví dụ về đại lượng tỉ lệ thuận:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1. **Quãng đường và thời gian** (với vận tốc không đổi): $s = vt$
+
+2. **Khối lượng và thể tích** (với khối lượng riêng không đổi): $m = DV$
+
+3. **Chu vi hình tròn và bán kính**: $C = 2\pi r$
+
+4. **Diện tích hình vuông và bình phương cạnh**: $S = a^2$
+
+5. **Tiền lương và số ngày làm việc** (với lương ngày không đổi)
+
+6. **Giá tiền và số lượng hàng** (với đơn giá không đổi): $T = p \times n$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**Bài toán:** Một ô tô chạy với vận tốc 60 km/h. Sau 2 giờ, ô tô đi được 120 km.
+
+a) Quãng đường có tỉ lệ thuận với thời gian không? Tìm hệ số tỉ lệ.
+
+b) Nếu ô tô chạy 5 giờ thì đi được bao nhiêu km?
+
+c) Để đi được 300 km thì cần bao nhiêu thời gian?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Có, quãng đường $s$ tỉ lệ thuận với thời gian $t$ theo công thức $s = vt$
+
+Hệ số tỉ lệ: $k = v = 60$ km/h
+
+b) Khi $t = 5$ giờ: $s = 60 \times 5 = 300$ km
+
+c) Khi $s = 300$ km: $t = \frac{s}{v} = \frac{300}{60} = 5$ giờ
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định nghĩa**: $y = kx$ (k là hệ số tỉ lệ, $k \neq 0$)
+- **Tỉ số không đổi**: $\frac{y}{x} = k$
+- **Tính chất**: x tăng/giảm n lần → y tăng/giảm n lần
+- **Dãy tỉ số**: $\frac{y_1}{x_1} = \frac{y_2}{x_2} = \frac{y_3}{x_3} = k$
+- **Ứng dụng**: quãng đường-thời gian, khối lượng-thể tích, giá-số lượng
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho biết $y$ tỉ lệ thuận với $x$ theo hệ số $k = 3$.
+
+a) Viết công thức liên hệ giữa $y$ và $x$
+
+b) Tính $y$ khi $x = 7$
+
+c) Tính $x$ khi $y = 24$
+
+**Bài 2:** Biết $y$ tỉ lệ thuận với $x$. Khi $x = 5$ thì $y = 15$.
+
+a) Tìm hệ số tỉ lệ
+
+b) Tính $y$ khi $x = 8$
+
+c) Nếu $x$ giảm 2 lần thì $y$ thay đổi như thế nào?
+
+**Bài 3:** Cho hai đại lượng $x$ và $y$ tỉ lệ thuận. Điền vào bảng:
+
+| x | 2 | 4 | ? | 10 |
+|---|---|---|---|---|
+| y | 6 | ? | 18 | ? |
+
+**Bài 4:** Chia số 240 thành ba phần tỉ lệ thuận với:
+
+a) 2, 3, 5
+
+b) 1, 3, 4
+
+c) 3, 4, 5
+
+**Bài 5:** Một người công nhân làm việc 8 giờ được trả 400000 đồng.
+
+a) Tiền lương có tỉ lệ thuận với số giờ làm việc không?
+
+b) Nếu làm 12 giờ thì được trả bao nhiêu tiền?
+
+c) Muốn được trả 600000 đồng thì phải làm bao nhiêu giờ?
+
+**Bài 6:** Một vật có khối lượng riêng $D = 7.8$ g/cm³. Biết khi thể tích $V = 10$ cm³ thì khối lượng $m = 78$ g.
+
+a) Chứng tỏ khối lượng tỉ lệ thuận với thể tích
+
+b) Tính khối lượng khi thể tích là 25 cm³
+
+c) Tính thể tích khi khối lượng là 156 g
+
+**Bài 7:** Ba lớp 7A, 7B, 7C trồng cây. Số cây của ba lớp tỉ lệ thuận với số học sinh của mỗi lớp là 40, 35, 45. Biết tổng số cây ba lớp trồng được là 360 cây. Tính số cây mỗi lớp.
+
+**Bài 8:** Một ô tô đi từ A đến B với vận tốc 50 km/h mất 4 giờ.
+
+a) Tính quãng đường AB
+
+b) Nếu vận tốc tăng lên 60 km/h thì thời gian đi là bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $y = 3x$; b) $y = 21$; c) $x = 8$
+
+**Bài 2:** a) $k = 3$; b) $y = 24$; c) $y$ giảm 2 lần
+
+**Bài 3:** x: 2, 4, 6, 10; y: 6, 12, 18, 30
+
+**Bài 4:** a) 48, 72, 120; b) 30, 90, 120; c) 60, 80, 100
+
+**Bài 5:** a) Có; b) 600000 đồng; c) 12 giờ
+
+**Bài 6:** a) $m = 7.8V$; b) $m = 195$ g; c) $V = 20$ cm³
+
+**Bài 7:** 7A: 120 cây, 7B: 105 cây, 7C: 135 cây
+
+**Bài 8:** a) 200 km; b) $\frac{10}{3}$ giờ (≈ 3.33 giờ)
+
+</div>
+</details>

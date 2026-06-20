@@ -1,0 +1,445 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 18: Thu thập và phân loại dữ liệu"
+description: "Phương pháp thu thập và phân loại dữ liệu thống kê - Toán 8 KNTT Chương 5"
+grade: "Lớp 8"
+chapter: "Chương 5: Dữ liệu và biểu đồ"
+currentSlug: "lop8/bai-18-thu-thap-du-lieu"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Dữ liệu là:",
+    option_a: "Thông tin được thu thập về một vấn đề nghiên cứu",
+    option_b: "Chỉ là các con số",
+    option_c: "Chỉ là các chữ cái",
+    option_d: "Kết quả tính toán",
+    correct_option: "A",
+    explanation: "Dữ liệu là thông tin được thu thập về một vấn đề nghiên cứu, có thể là số hoặc chữ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dữ liệu định lượng là:",
+    option_a: "Dữ liệu có thể đo đếm được bằng số",
+    option_b: "Dữ liệu chỉ mô tả tính chất",
+    option_c: "Dữ liệu không thể đo được",
+    option_d: "Dữ liệu chỉ có hai giá trị",
+    correct_option: "A",
+    explanation: "Dữ liệu định lượng là dữ liệu có thể đo đếm được bằng số (chiều cao, cân nặng, điểm số...).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dữ liệu định tính là:",
+    option_a: "Dữ liệu mô tả tính chất, đặc điểm",
+    option_b: "Dữ liệu chỉ là số",
+    option_c: "Dữ liệu có thể cộng trừ",
+    option_d: "Dữ liệu luôn lớn hơn 0",
+    correct_option: "A",
+    explanation: "Dữ liệu định tính mô tả tính chất, đặc điểm (màu sắc, giới tính, nghề nghiệp...).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phương pháp nào sau đây là phương pháp thu thập dữ liệu?",
+    option_a: "Điều tra, khảo sát",
+    option_b: "Quan sát, đo đạc",
+    option_c: "Tra cứu tài liệu",
+    option_d: "Tất cả đều đúng",
+    correct_option: "D",
+    explanation: "Tất cả đều là phương pháp thu thập dữ liệu phổ biến.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Dữ liệu nào sau đây là dữ liệu định lượng?",
+    option_a: "Chiều cao học sinh",
+    option_b: "Màu sắc yêu thích",
+    option_c: "Điểm kiểm tra",
+    option_d: "Số sách đọc trong tháng",
+    correct_option: "A,C,D",
+    explanation: "Chiều cao, điểm số, số sách là dữ liệu định lượng (đo đếm được). Màu sắc là dữ liệu định tính.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một lớp có 40 học sinh. Điều tra cho thấy 25 học sinh thích bóng đá. Tỉ lệ phần trăm học sinh thích bóng đá là bao nhiêu?",
+    correct_option: "62.5",
+    explanation: "Tỉ lệ $= \\dfrac{25}{40} \\times 100\\% = 62{,}5\\%$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điều tra $!a#50!$ học sinh về môn học yêu thích. Có $!b#20!$ học sinh chọn Toán. Tỉ lệ phần trăm là:",
+    option_a: "$!tinh: !b! * 100 / !a!!\\%$",
+    option_b: "$!tinh: !a! * 100 / !b!!\\%$",
+    option_c: "$!tinh: !a! + !b!!\\%$",
+    option_d: "$!tinh: !a! - !b!!\\%$",
+    correct_option: "A",
+    explanation: "Tỉ lệ $= \\dfrac{!b!}{!a!} \\times 100\\% = !tinh: !b! * 100 / !a!!\\%$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Trong $!a#80!$ học sinh được hỏi, $!b#60!$ học sinh thích thể thao. Số học sinh không thích thể thao là:",
+    option_a: "$!tinh: !a! - !b!!$ học sinh",
+    option_b: "$!tinh: !a! + !b!!$ học sinh",
+    option_c: "$!b!$ học sinh",
+    option_d: "$!a!$ học sinh",
+    correct_option: "A",
+    explanation: "Số học sinh không thích $= !a! - !b! = !tinh: !a! - !b!!$ học sinh.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">📊 Dữ liệu — Nền tảng của thống kê</h3>
+
+Dữ liệu xuất hiện khắp nơi trong cuộc sống và là cơ sở cho mọi quyết định!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏫</div>
+    <strong>Giáo dục</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Điểm số, tỉ lệ đỗ đại học</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏥</div>
+    <strong>Y tế</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chiều cao, cân nặng, nhịp tim</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">💼</div>
+    <strong>Kinh doanh</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Doanh thu, lợi nhuận, khách hàng</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm dữ liệu</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Dữ liệu là thông tin được thu thập về một vấn đề nghiên cứu nào đó.
+
+</div>
+
+**Ví dụ về dữ liệu:**
+- Điểm kiểm tra của học sinh trong lớp
+- Chiều cao và cân nặng của học sinh
+- Màu sắc yêu thích của mọi người
+- Số lượng sách bán ra mỗi tháng
+- Nhiệt độ trung bình hàng ngày
+
+<h3 id="phan-loai" style="margin-top:2rem;">🔍 2. Phân loại dữ liệu</h3>
+
+<div class="box-dinh-ly">
+
+**Hai loại dữ liệu chính:**
+
+1. **Dữ liệu định lượng (Quantitative Data):** Dữ liệu có thể đo đếm được bằng số
+2. **Dữ liệu định tính (Qualitative Data):** Dữ liệu mô tả tính chất, đặc điểm
+
+</div>
+
+**Bảng so sánh:**
+
+<div style="overflow-x:auto;margin:2rem 0;">
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Loại</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Đặc điểm</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Định lượng</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Có thể đo, đếm, tính toán</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Chiều cao (165 cm), Điểm số (8.5), Tuổi (15)</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Định tính</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Mô tả tính chất, không tính toán</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Màu sắc (đỏ), Giới tính (nam/nữ), Nghề nghiệp</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+**Ví dụ 1:** Phân loại các dữ liệu sau:
+
+a) Số học sinh trong lớp: **Định lượng** (đếm được)
+b) Màu tóc: **Định tính** (mô tả tính chất)
+c) Nhiệt độ: **Định lượng** (đo được)
+d) Môn học yêu thích: **Định tính** (mô tả sở thích)
+
+<h3 id="thu-thap" style="margin-top:2rem;">📋 3. Phương pháp thu thập dữ liệu</h3>
+
+<div class="box-dinh-ly">
+
+**Các phương pháp thu thập dữ liệu:**
+
+1. **Điều tra, khảo sát:** Sử dụng phiếu điều tra, bảng hỏi
+2. **Quan sát, đo đạc:** Quan sát trực tiếp và ghi chép
+3. **Thí nghiệm:** Tiến hành thí nghiệm và ghi kết quả
+4. **Tra cứu tài liệu:** Tìm kiếm từ sách, báo, internet
+
+</div>
+
+**Ví dụ 2:** Điều tra chiều cao của 30 học sinh lớp 8A (đơn vị: cm):
+
+```
+155, 160, 158, 162, 165, 157, 161, 159, 163, 156,
+158, 160, 162, 164, 157, 159, 161, 163, 165, 158,
+160, 162, 156, 159, 161, 163, 157, 160, 164, 162
+```
+
+Đây là dữ liệu định lượng, thu thập bằng phương pháp đo đạc.
+
+<h3 id="phan-loai-du-lieu" style="margin-top:2rem;">📊 4. Phân loại và sắp xếp dữ liệu</h3>
+
+**Bước 1: Sắp xếp dữ liệu**
+
+Sắp xếp dữ liệu chiều cao theo thứ tự tăng dần:
+
+```
+155, 156, 156, 157, 157, 157, 158, 158, 158, 158,
+159, 159, 159, 159, 160, 160, 160, 160, 161, 161,
+161, 161, 162, 162, 162, 162, 163, 163, 163, 164,
+164, 165, 165
+```
+
+**Bước 2: Đếm tần số**
+
+| Chiều cao (cm) | Số học sinh |
+|:---:|:---:|
+| 155 | 1 |
+| 156 | 2 |
+| 157 | 3 |
+| 158 | 4 |
+| 159 | 4 |
+| 160 | 4 |
+| 161 | 4 |
+| 162 | 4 |
+| 163 | 3 |
+| 164 | 2 |
+| 165 | 2 |
+
+**Ví dụ 3:** Điều tra môn học yêu thích của 40 học sinh:
+
+- Toán: 15 học sinh (37,5%)
+- Văn: 10 học sinh (25%)
+- Anh: 8 học sinh (20%)
+- Lý: 7 học sinh (17,5%)
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Điều tra sở thích:** Một lớp có 45 học sinh được hỏi về môn thể thao yêu thích:
+
+- Bóng đá: 18 học sinh
+- Bóng rổ: 12 học sinh
+- Cầu lông: 10 học sinh
+- Bơi lội: 5 học sinh
+
+a) Đây là dữ liệu định lượng hay định tính?
+
+b) Tính tỉ lệ phần trăm mỗi môn.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Đây là dữ liệu định tính (mô tả sở thích)
+
+b) Tỉ lệ phần trăm:
+- Bóng đá: $\dfrac{18}{45} \times 100\% = 40\%$
+- Bóng rổ: $\dfrac{12}{45} \times 100\% \approx 26{,}7\%$
+- Cầu lông: $\dfrac{10}{45} \times 100\% \approx 22{,}2\%$
+- Bơi lội: $\dfrac{5}{45} \times 100\% \approx 11{,}1\%$
+
+</div>
+
+**📝 Bài toán 2 — Điều tra chiều cao:** Điều tra chiều cao 20 học sinh (cm):
+
+```
+155, 160, 158, 162, 160, 157, 160, 159, 158, 160,
+158, 161, 162, 160, 157, 159, 160, 163, 158, 160
+```
+
+a) Sắp xếp dữ liệu theo thứ tự tăng dần.
+
+b) Lập bảng tần số.
+
+c) Chiều cao nào xuất hiện nhiều nhất?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Sắp xếp: 155, 157, 157, 158, 158, 158, 158, 159, 159, 160, 160, 160, 160, 160, 160, 160, 160, 161, 162, 162, 163
+
+b) Bảng tần số:
+
+| Chiều cao | 155 | 157 | 158 | 159 | 160 | 161 | 162 | 163 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Số HS | 1 | 2 | 4 | 2 | 8 | 1 | 2 | 1 |
+
+c) Chiều cao 160 cm xuất hiện nhiều nhất (8 học sinh)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Dữ liệu**: thông tin thu thập về vấn đề nghiên cứu
+- **Dữ liệu định lượng**: đo đếm được bằng số
+- **Dữ liệu định tính**: mô tả tính chất, đặc điểm
+- **Phương pháp thu thập**: điều tra, quan sát, thí nghiệm, tra cứu
+- **Tần số**: số lần xuất hiện của mỗi giá trị
+- **Tỉ lệ phần trăm**: $\dfrac{\text{Số lần xuất hiện}}{\text{Tổng số}} \times 100\%$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Phân loại các dữ liệu sau thành định lượng hoặc định tính:
+
+a) Số điện thoại của học sinh
+
+b) Cân nặng của học sinh
+
+c) Màu sắc yêu thích
+
+d) Số sách đọc trong tháng
+
+**Bài 2:** Điều tra 50 học sinh về phương tiện đi học:
+
+- Xe đạp: 20 học sinh
+- Xe máy: 15 học sinh
+- Đi bộ: 10 học sinh
+- Xe buýt: 5 học sinh
+
+a) Đây là dữ liệu gì?
+
+b) Tính tỉ lệ phần trăm mỗi phương tiện.
+
+c) Phương tiện nào được sử dụng nhiều nhất?
+
+d) Vẽ biểu đồ cột thể hiện dữ liệu.
+
+**Bài 3:** Điểm kiểm tra Toán của 25 học sinh:
+
+```
+7, 8, 6, 9, 7, 8, 7, 6, 8, 9,
+7, 8, 7, 9, 8, 7, 6, 8, 9, 7,
+8, 7, 9, 8, 7
+```
+
+a) Sắp xếp dữ liệu theo thứ tự tăng dần.
+
+b) Lập bảng tần số.
+
+c) Điểm nào xuất hiện nhiều nhất?
+
+d) Tính tỉ lệ phần trăm học sinh đạt điểm 8 trở lên.
+
+**Bài 4:** Thiết kế phiếu điều tra:
+
+a) Thiết kế phiếu điều tra về sở thích đọc sách của học sinh.
+
+b) Nêu ít nhất 5 câu hỏi trong phiếu.
+
+c) Xác định loại dữ liệu của mỗi câu hỏi.
+
+d) Đề xuất cách thu thập và xử lý dữ liệu.
+
+**Bài 5:** Điều tra thời gian học bài mỗi ngày của 30 học sinh (phút):
+
+```
+60, 90, 75, 120, 60, 90, 75, 60, 90, 120,
+75, 90, 60, 75, 90, 120, 75, 90, 60, 75,
+90, 120, 75, 90, 60, 75, 90, 120, 75, 90
+```
+
+a) Lập bảng tần số.
+
+b) Tính tỉ lệ phần trăm mỗi mức thời gian.
+
+c) Thời gian nào phổ biến nhất?
+
+d) Tính thời gian trung bình.
+
+**Bài 6 (Thực tế):** Điều tra thu nhập hàng tháng của 40 gia đình (triệu đồng):
+
+```
+8, 10, 12, 15, 8, 10, 12, 8, 10, 15,
+12, 10, 8, 12, 10, 15, 12, 10, 8, 12,
+10, 15, 12, 10, 8, 12, 10, 15, 12, 10,
+8, 12, 10, 15, 12, 10, 8, 12, 10, 15
+```
+
+a) Lập bảng tần số.
+
+b) Tính tỉ lệ phần trăm mỗi mức thu nhập.
+
+c) Mức thu nhập nào chiếm tỉ lệ cao nhất?
+
+d) Nhận xét về phân bố thu nhập.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Định tính; b) Định lượng; c) Định tính; d) Định lượng
+
+**Bài 2:** a) Định tính; b) Xe đạp 40%, Xe máy 30%, Đi bộ 20%, Xe buýt 10%; c) Xe đạp; d) Vẽ biểu đồ
+
+**Bài 3:** a) Sắp xếp; b) Điểm 6: 3, Điểm 7: 9, Điểm 8: 8, Điểm 9: 5; c) Điểm 7; d) 52%
+
+**Bài 4:** Tự thiết kế
+
+**Bài 5:** a) 60 phút: 6, 75 phút: 9, 90 phút: 11, 120 phút: 4; b) 20%, 30%, 36,7%, 13,3%; c) 90 phút; d) 82,5 phút
+
+**Bài 6:** a) 8 triệu: 8, 10 triệu: 13, 12 triệu: 13, 15 triệu: 6; b) 20%, 32,5%, 32,5%, 15%; c) 10 và 12 triệu (32,5%); d) Phân bố tương đối đều
+
+</div>
+</details>

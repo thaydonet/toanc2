@@ -1,0 +1,377 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 20: Tỉ lệ thức"
+description: "Tỉ lệ thức và tính chất - Toán 7 KNTT Chương 6"
+grade: "Lớp 7"
+chapter: "Chương VI: Tỉ lệ thức và đại lượng tỉ lệ"
+currentSlug: "lop7/bai-20-ti-le-thuc"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tỉ lệ thức là gì?",
+    option_a: "Đẳng thức của hai tỉ số",
+    option_b: "Tổng của hai số",
+    option_c: "Hiệu của hai số",
+    option_d: "Tích của hai số",
+    correct_option: "A",
+    explanation: "Tỉ lệ thức là đẳng thức của hai tỉ số: $\\\\frac{a}{b} = \\\\frac{c}{d}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tỉ lệ thức $\\\\frac{a}{b} = \\\\frac{c}{d}$, a và d gọi là:",
+    option_a: "Ngoại tỉ",
+    option_b: "Trung tỉ",
+    option_c: "Tỉ số",
+    option_d: "Phân số",
+    correct_option: "A",
+    explanation: "a và d là hai ngoại tỉ, b và c là hai trung tỉ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính chất cơ bản của tỉ lệ thức là:",
+    option_a: "Tích ngoại tỉ bằng tích trung tỉ",
+    option_b: "Tổng ngoại tỉ bằng tổng trung tỉ",
+    option_c: "Hiệu ngoại tỉ bằng hiệu trung tỉ",
+    option_d: "Thương ngoại tỉ bằng thương trung tỉ",
+    correct_option: "A",
+    explanation: "Nếu $\\\\frac{a}{b} = \\\\frac{c}{d}$ thì $a \\\\cdot d = b \\\\cdot c$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tỉ lệ thức $\\\\frac{2}{3} = \\\\frac{4}{6}$. Tích ngoại tỉ là:",
+    option_a: "12",
+    option_b: "8",
+    option_c: "6",
+    option_d: "24",
+    correct_option: "A",
+    explanation: "Tích ngoại tỉ: $2 \\\\times 6 = 12$. Tích trung tỉ: $3 \\\\times 4 = 12$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Từ tỉ lệ thức $\\\\frac{a}{b} = \\\\frac{c}{d}$ có thể suy ra:",
+    option_a: "$a \\\\cdot d = b \\\\cdot c$",
+    option_b: "$\\\\frac{a}{c} = \\\\frac{b}{d}$",
+    option_c: "$\\\\frac{b}{a} = \\\\frac{d}{c}$",
+    option_d: "$a + d = b + c$",
+    correct_option: "A,B,C",
+    explanation: "Từ tỉ lệ thức có thể suy ra tích ngoại tỉ bằng tích trung tỉ và các tỉ lệ thức khác bằng cách hoán đổi.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm x trong tỉ lệ thức $\\\\frac{x}{3} = \\\\frac{4}{6}$",
+    correct_option: "2",
+    explanation: "$x \\\\times 6 = 3 \\\\times 4 = 12$, suy ra $x = 2$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Tỉ lệ thức</h3>
+
+Tỉ lệ thức là một công cụ quan trọng trong toán học và đời sống!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">=</div>
+    <strong>Đẳng thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hai tỉ số bằng nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">×</div>
+    <strong>Tính chất</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tích ngoại tỉ = tích trung tỉ</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia">📖 1. Định nghĩa tỉ lệ thức</h3>
+
+<div class="box-dinh-nghia">
+
+**Tỉ lệ thức** là đẳng thức của hai tỉ số:
+
+$$\frac{a}{b} = \frac{c}{d} \quad \text{hoặc} \quad a : b = c : d$$
+
+Trong đó:
+- $a, d$ gọi là **ngoại tỉ**
+- $b, c$ gọi là **trung tỉ**
+
+</div>
+
+**Ví dụ 1:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $\frac{2}{3} = \frac{4}{6}$ là một tỉ lệ thức
+  - Ngoại tỉ: 2 và 6
+  - Trung tỉ: 3 và 4
+
+- $\frac{6}{9} = \frac{2}{3}$ là một tỉ lệ thức
+  - Ngoại tỉ: 6 và 3
+  - Trung tỉ: 9 và 2
+
+- $3 : 5 = 6 : 10$ là một tỉ lệ thức
+  - Ngoại tỉ: 3 và 10
+  - Trung tỉ: 5 và 6
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📖 2. Tính chất cơ bản của tỉ lệ thức</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 1:** Nếu $\frac{a}{b} = \frac{c}{d}$ thì $a \cdot d = b \cdot c$
+
+(Tích ngoại tỉ bằng tích trung tỉ)
+
+**Tính chất 2 (Đảo):** Nếu $a \cdot d = b \cdot c$ và $b, d \neq 0$ thì $\frac{a}{b} = \frac{c}{d}$
+
+</div>
+
+**Ví dụ 2:** Kiểm tra $\frac{3}{4} = \frac{9}{12}$ có phải là tỉ lệ thức không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tích ngoại tỉ: $3 \times 12 = 36$
+
+Tích trung tỉ: $4 \times 9 = 36$
+
+Vì $3 \times 12 = 4 \times 9$ nên $\frac{3}{4} = \frac{9}{12}$ là tỉ lệ thức.
+
+</div>
+
+<h3 id="tinh-chat-hoan-vi" style="margin-top:2rem;">📖 3. Tính chất hoán vị</h3>
+
+<div class="box-dinh-ly">
+
+Từ tỉ lệ thức $\frac{a}{b} = \frac{c}{d}$ ta có thể suy ra:
+
+**1. Hoán vị ngoại tỉ:** $\frac{d}{b} = \frac{c}{a}$
+
+**2. Hoán vị trung tỉ:** $\frac{a}{c} = \frac{b}{d}$
+
+**3. Đảo tỉ lệ thức:** $\frac{b}{a} = \frac{d}{c}$
+
+**4. Hoán vị cả hai:** $\frac{d}{c} = \frac{b}{a}$
+
+</div>
+
+**Ví dụ 3:** Từ tỉ lệ thức $\frac{2}{3} = \frac{4}{6}$, hãy viết các tỉ lệ thức khác.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+- Hoán vị ngoại tỉ: $\frac{6}{3} = \frac{4}{2}$ hay $\frac{6}{3} = \frac{4}{2} = 2$
+
+- Hoán vị trung tỉ: $\frac{2}{4} = \frac{3}{6}$ hay $\frac{2}{4} = \frac{3}{6} = \frac{1}{2}$
+
+- Đảo tỉ lệ thức: $\frac{3}{2} = \frac{6}{4}$ hay $\frac{3}{2} = \frac{6}{4} = 1.5$
+
+</div>
+
+<h3 id="tim-so-chua-biet" style="margin-top:2rem;">📖 4. Tìm số chưa biết trong tỉ lệ thức</h3>
+
+**Phương pháp:** Áp dụng tính chất tích ngoại tỉ bằng tích trung tỉ.
+
+**Ví dụ 4:** Tìm $x$ trong tỉ lệ thức $\frac{x}{5} = \frac{6}{15}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Áp dụng tính chất tỉ lệ thức:
+
+$x \times 15 = 5 \times 6$
+
+$15x = 30$
+
+$x = 2$
+
+**Vậy** $x = 2$
+
+</div>
+
+**Ví dụ 5:** Tìm $x$ trong tỉ lệ thức $\frac{3}{x} = \frac{9}{12}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Áp dụng tính chất tỉ lệ thức:
+
+$3 \times 12 = x \times 9$
+
+$36 = 9x$
+
+$x = 4$
+
+**Vậy** $x = 4$
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">📖 5. Ứng dụng của tỉ lệ thức</h3>
+
+Tỉ lệ thức được ứng dụng rộng rãi trong:
+
+- **Bản đồ:** Tỉ lệ bản đồ 1:100000 nghĩa là 1 cm trên bản đồ tương ứng 100000 cm = 1 km ngoài thực tế
+- **Công thức hóa học:** Tỉ lệ các nguyên tố trong hợp chất
+- **Nấu ăn:** Tỉ lệ nguyên liệu trong công thức
+- **Kinh tế:** Tỉ lệ giá cả, lãi suất
+- **Hình học:** Tỉ lệ các cạnh trong tam giác đồng dạng
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**Bài toán:** Một công thức làm bánh cần 3 cốc bột mì và 2 cốc đường để làm 12 chiếc bánh. Hỏi cần bao nhiêu cốc bột mì và đường để làm 36 chiếc bánh?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Gọi $x$ là số cốc bột mì cần dùng, $y$ là số cốc đường cần dùng.
+
+Ta có tỉ lệ thức:
+
+$\frac{3}{x} = \frac{12}{36}$ (tỉ lệ bột mì)
+
+$3 \times 36 = 12 \times x$
+
+$108 = 12x$
+
+$x = 9$ (cốc bột mì)
+
+$\frac{2}{y} = \frac{12}{36}$ (tỉ lệ đường)
+
+$2 \times 36 = 12 \times y$
+
+$72 = 12y$
+
+$y = 6$ (cốc đường)
+
+**Vậy** cần 9 cốc bột mì và 6 cốc đường.
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Tỉ lệ thức**: $\frac{a}{b} = \frac{c}{d}$ (đẳng thức hai tỉ số)
+- **Ngoại tỉ**: $a, d$ - **Trung tỉ**: $b, c$
+- **Tính chất**: $a \cdot d = b \cdot c$ (tích ngoại tỉ = tích trung tỉ)
+- **Hoán vị**: có thể hoán đổi ngoại tỉ, trung tỉ, hoặc đảo tỉ lệ thức
+- **Tìm x**: dùng tính chất tích ngoại tỉ = tích trung tỉ
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Kiểm tra các đẳng thức sau có phải là tỉ lệ thức không:
+
+a) $\frac{5}{7} = \frac{15}{21}$
+
+b) $\frac{4}{9} = \frac{8}{16}$
+
+c) $\frac{6}{10} = \frac{3}{5}$
+
+d) $2 : 5 = 6 : 15$
+
+**Bài 2:** Tìm $x$ trong các tỉ lệ thức sau:
+
+a) $\frac{x}{4} = \frac{9}{12}$
+
+b) $\frac{5}{x} = \frac{15}{9}$
+
+c) $\frac{x}{7} = \frac{2}{14}$
+
+d) $\frac{3}{8} = \frac{x}{24}$
+
+**Bài 3:** Từ tỉ lệ thức $\frac{4}{5} = \frac{8}{10}$, hãy viết:
+
+a) Tỉ lệ thức có được bằng cách hoán vị ngoại tỉ
+
+b) Tỉ lệ thức có được bằng cách hoán vị trung tỉ
+
+c) Tỉ lệ thức có được bằng cách đảo tỉ lệ thức
+
+**Bài 4:** Tìm hai số $x$ và $y$ biết:
+
+a) $\frac{x}{3} = \frac{y}{5}$ và $x + y = 24$
+
+b) $\frac{x}{2} = \frac{y}{7}$ và $x - y = 15$
+
+**Bài 5:** Trên bản đồ tỉ lệ 1:500000, khoảng cách giữa hai thành phố là 8 cm. Tính khoảng cách thực tế giữa hai thành phố đó (đơn vị km).
+
+**Bài 6:** Một công thức làm nước chanh cần 2 quả chanh và 3 thìa đường cho 4 ly nước. Hỏi cần bao nhiêu quả chanh và thìa đường để làm 12 ly nước?
+
+**Bài 7:** Cho tỉ lệ thức $\frac{a}{b} = \frac{c}{d}$. Chứng minh rằng:
+
+a) $\frac{a + b}{b} = \frac{c + d}{d}$
+
+b) $\frac{a - b}{b} = \frac{c - d}{d}$
+
+**Bài 8:** Ba số $x, y, z$ tỉ lệ với 2, 3, 5 và tổng của chúng bằng 50. Tìm $x, y, z$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) Có ($5 \times 21 = 7 \times 15 = 105$); b) Không ($4 \times 16 = 64 \neq 9 \times 8 = 72$); c) Có ($6 \times 5 = 10 \times 3 = 30$); d) Có ($2 \times 15 = 5 \times 6 = 30$)
+
+**Bài 2:** a) $x = 3$; b) $x = 3$; c) $x = 1$; d) $x = 9$
+
+**Bài 3:** a) $\frac{10}{5} = \frac{8}{4}$ hay $2 = 2$; b) $\frac{4}{8} = \frac{5}{10}$ hay $\frac{1}{2} = \frac{1}{2}$; c) $\frac{5}{4} = \frac{10}{8}$ hay $1.25 = 1.25$
+
+**Bài 4:** a) $x = 9, y = 15$; b) $x = 6, y = -9$ (hoặc $x = -6, y = -21$)
+
+**Bài 5:** Khoảng cách thực tế: $8 \times 500000 = 4000000$ cm $= 40$ km
+
+**Bài 6:** 6 quả chanh và 9 thìa đường
+
+**Bài 7:** Chứng minh bằng cách biến đổi từ $a \cdot d = b \cdot c$
+
+**Bài 8:** $x = 10, y = 15, z = 25$
+
+</div>
+</details>

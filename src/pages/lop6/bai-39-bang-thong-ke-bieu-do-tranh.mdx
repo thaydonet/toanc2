@@ -1,0 +1,339 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 39: Bảng thống kê và biểu đồ tranh"
+description: "Cách lập bảng thống kê và vẽ biểu đồ tranh - Toán 6 KNTT Chương IX"
+grade: "Lớp 6"
+chapter: "Chương IX: Dữ liệu và xác suất thực nghiệm"
+currentSlug: "lop6/bai-39-bang-thong-ke-bieu-do-tranh"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Bảng thống kê dùng để làm gì?",
+    option_a: "Tổ chức và trình bày dữ liệu một cách rõ ràng",
+    option_b: "Vẽ hình",
+    option_c: "Tính toán",
+    option_d: "Viết văn",
+    correct_option: "A",
+    explanation: "Bảng thống kê giúp tổ chức và trình bày dữ liệu một cách rõ ràng, dễ hiểu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ tranh là gì?",
+    option_a: "Biểu đồ dùng hình vẽ hoặc ký hiệu để biểu diễn dữ liệu",
+    option_b: "Một bức tranh đẹp",
+    option_c: "Một bảng số liệu",
+    option_d: "Một bài thơ",
+    correct_option: "A",
+    explanation: "Biểu đồ tranh dùng hình vẽ hoặc ký hiệu để biểu diễn dữ liệu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Bảng thống kê và biểu đồ tranh</h3>
+
+Để dễ hiểu dữ liệu, ta cần tổ chức chúng thành bảng hoặc vẽ thành biểu đồ!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📋</div>
+    <strong>Bảng thống kê</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tổ chức dữ liệu</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎨</div>
+    <strong>Biểu đồ tranh</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình vẽ dữ liệu</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="bang-thong-ke">📖 1. Bảng thống kê</h3>
+
+<div class="box-dinh-nghia">
+
+**Bảng thống kê** là bảng dùng để tổ chức và trình bày dữ liệu một cách rõ ràng, dễ hiểu.
+
+</div>
+
+**Ví dụ bảng thống kê:**
+
+Điều tra sở thích ăn trái cây của 35 học sinh lớp 6A:
+
+| Loại trái cây | Số học sinh |
+|---|---|
+| Cam | 8 |
+| Xoài | 12 |
+| Chuối | 5 |
+| Dâu tây | 10 |
+| **Tổng cộng** | **35** |
+
+<h3 id="bieu-do-tranh" style="margin-top:2rem;">📖 2. Biểu đồ tranh</h3>
+
+<div class="box-dinh-nghia">
+
+**Biểu đồ tranh** là biểu đồ dùng hình vẽ hoặc ký hiệu để biểu diễn dữ liệu.
+
+Mỗi hình vẽ hoặc ký hiệu đại diện cho một số lượng nhất định.
+
+</div>
+
+**Ví dụ biểu đồ tranh:**
+
+Biểu đồ tranh về sở thích ăn trái cây (mỗi ★ = 2 học sinh):
+
+Cam: ★ ★ ★ ★ (8 học sinh)
+
+Xoài: ★ ★ ★ ★ ★ ★ (12 học sinh)
+
+Chuối: ★ ★ ☆ (5 học sinh, ☆ = 1 học sinh)
+
+Dâu tây: ★ ★ ★ ★ ★ (10 học sinh)
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Điều tra sở thích thể thao của 40 học sinh lớp 6:
+
+Bóng đá: 15, Bóng chuyền: 10, Cầu lông: 8, Bơi lội: 7
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ tranh (mỗi ⚽ = 5 học sinh)
+
+</VanDung>
+
+<BaiTapTuLuan>
+
+**Bài 1:** Điều tra sở thích môn học của 40 học sinh lớp 6B, kết quả như sau:
+
+Toán: 12 học sinh, Văn: 10 học sinh, Anh: 8 học sinh, Khoa học: 6 học sinh, Thể dục: 4 học sinh
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ tranh (mỗi ký hiệu 📚 = 2 học sinh)
+
+c) Môn học nào được yêu thích nhất?
+
+d) Môn học nào được yêu thích ít nhất?
+
+**Bài 2:** Số lượng cây được trồng ở các lớp trong tuần lễ xanh:
+
+Lớp 6A: 15 cây, Lớp 6B: 20 cây, Lớp 6C: 18 cây, Lớp 6D: 12 cây
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ tranh (mỗi ký hiệu 🌳 = 5 cây)
+
+c) Lớp nào trồng nhiều cây nhất?
+
+d) Tính tổng số cây đã trồng
+
+**Bài 3:** Một cửa hàng bán trái cây trong một ngày:
+
+Cam: 25 kg, Táo: 30 kg, Chuối: 20 kg, Xoài: 15 kg, Nho: 10 kg
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ tranh (mỗi ký hiệu 🍎 = 5 kg)
+
+c) Loại trái cây nào bán chạy nhất?
+
+d) Tính tổng khối lượng trái cây đã bán
+
+**Bài 4:** Số lượng xe qua ngã tư trong 5 giờ:
+
+Xe máy: 120, Ô tô: 80, Xe đạp: 40, Xe tải: 20
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ tranh (tự chọn ký hiệu và giá trị phù hợp)
+
+c) Loại xe nào đi qua nhiều nhất?
+
+d) Tính tổng số xe đã qua ngã tư
+
+**Bài 5:** Em hãy tự thu thập dữ liệu về màu sắc yêu thích của 20 bạn trong lớp, sau đó:
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ tranh
+
+c) Nhận xét về kết quả
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1: Sở thích môn học**
+
+a) **Bảng thống kê:**
+
+| Môn học | Số học sinh |
+|---------|-------------|
+| Toán | 12 |
+| Văn | 10 |
+| Anh | 8 |
+| Khoa học | 6 |
+| Thể dục | 4 |
+| **Tổng** | **40** |
+
+b) **Biểu đồ tranh** (mỗi 📚 = 2 học sinh):
+
+- Toán: 📚 📚 📚 📚 📚 📚 (12 học sinh)
+- Văn: 📚 📚 📚 📚 📚 (10 học sinh)
+- Anh: 📚 📚 📚 📚 (8 học sinh)
+- Khoa học: 📚 📚 📚 (6 học sinh)
+- Thể dục: 📚 📚 (4 học sinh)
+
+c) Môn học được yêu thích nhất: **Toán** (12 học sinh)
+
+d) Môn học được yêu thích ít nhất: **Thể dục** (4 học sinh)
+
+---
+
+**Bài 2: Số cây trồng trong tuần lễ xanh**
+
+a) **Bảng thống kê:**
+
+| Lớp | Số cây |
+|-----|--------|
+| 6A | 15 |
+| 6B | 20 |
+| 6C | 18 |
+| 6D | 12 |
+| **Tổng** | **65** |
+
+b) **Biểu đồ tranh** (mỗi 🌳 = 5 cây):
+
+- Lớp 6A: 🌳 🌳 🌳 (15 cây)
+- Lớp 6B: 🌳 🌳 🌳 🌳 (20 cây)
+- Lớp 6C: 🌳 🌳 🌳 🌲 (18 cây, 🌲 = 3 cây)
+- Lớp 6D: 🌳 🌳 🌲 (12 cây, 🌲 = 2 cây)
+
+c) Lớp trồng nhiều cây nhất: **Lớp 6B** (20 cây)
+
+d) Tổng số cây đã trồng: 15 + 20 + 18 + 12 = **65 cây**
+
+---
+
+**Bài 3: Trái cây bán được**
+
+a) **Bảng thống kê:**
+
+| Loại trái cây | Khối lượng (kg) |
+|---------------|-----------------|
+| Cam | 25 |
+| Táo | 30 |
+| Chuối | 20 |
+| Xoài | 15 |
+| Nho | 10 |
+| **Tổng** | **100** |
+
+b) **Biểu đồ tranh** (mỗi 🍎 = 5 kg):
+
+- Cam: 🍎 🍎 🍎 🍎 🍎 (25 kg)
+- Táo: 🍎 🍎 🍎 🍎 🍎 🍎 (30 kg)
+- Chuối: 🍎 🍎 🍎 🍎 (20 kg)
+- Xoài: 🍎 🍎 🍎 (15 kg)
+- Nho: 🍎 🍎 (10 kg)
+
+c) Loại trái cây bán chạy nhất: **Táo** (30 kg)
+
+d) Tổng khối lượng: 25 + 30 + 20 + 15 + 10 = **100 kg**
+
+---
+
+**Bài 4: Xe qua ngã tư**
+
+a) **Bảng thống kê:**
+
+| Loại xe | Số lượng |
+|---------|----------|
+| Xe máy | 120 |
+| Ô tô | 80 |
+| Xe đạp | 40 |
+| Xe tải | 20 |
+| **Tổng** | **260** |
+
+b) **Biểu đồ tranh** (mỗi 🚗 = 20 xe):
+
+- Xe máy: 🚗 🚗 🚗 🚗 🚗 🚗 (120 xe)
+- Ô tô: 🚗 🚗 🚗 🚗 (80 xe)
+- Xe đạp: 🚗 🚗 (40 xe)
+- Xe tải: 🚗 (20 xe)
+
+c) Loại xe đi qua nhiều nhất: **Xe máy** (120 xe)
+
+d) Tổng số xe: 120 + 80 + 40 + 20 = **260 xe**
+
+---
+
+**Bài 5: Màu sắc yêu thích (Ví dụ)**
+
+a) **Bảng thống kê:**
+
+| Màu sắc | Số học sinh |
+|---------|-------------|
+| Xanh | 7 |
+| Đỏ | 5 |
+| Vàng | 4 |
+| Hồng | 3 |
+| Tím | 1 |
+| **Tổng** | **20** |
+
+b) **Biểu đồ tranh** (mỗi ⭐ = 1 học sinh):
+
+- Xanh: ⭐⭐⭐⭐⭐⭐⭐
+- Đỏ: ⭐⭐⭐⭐⭐
+- Vàng: ⭐⭐⭐⭐
+- Hồng: ⭐⭐⭐
+- Tím: ⭐
+
+c) **Nhận xét:**
+   - Màu xanh được yêu thích nhất (7 học sinh = 35%)
+   - Màu tím được yêu thích ít nhất (1 học sinh = 5%)
+   - Màu xanh và đỏ chiếm 60% tổng số học sinh
+   - Các màu sáng (xanh, đỏ, vàng) được ưa chuộng hơn màu tối
+   - Có sự chênh lệch rõ rệt giữa màu được yêu thích nhất và ít nhất
+
+</div>
+</details>
+
+</BaiTapTuLuan>
+
+<GhiNho>
+
+- **Bảng thống kê:** Tổ chức dữ liệu thành bảng với cột tiêu chí và cột số lượng
+- **Biểu đồ tranh:** Dùng hình vẽ/ký hiệu để biểu diễn dữ liệu
+- **Ưu điểm:** Dễ hiểu, trực quan, hấp dẫn
+
+</GhiNho>

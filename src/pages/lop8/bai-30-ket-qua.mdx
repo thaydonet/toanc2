@@ -1,0 +1,487 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 30: Kết quả có thể và kết quả thuận lợi"
+description: "Khái niệm kết quả có thể, kết quả thuận lợi và không gian mẫu - Toán 8 KNTT Chương 8"
+grade: "Lớp 8"
+chapter: "Chương 8: Mở đầu về tính xác suất của biến cố"
+currentSlug: "lop8/bai-30-ket-qua"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc, số kết quả có thể là:",
+    option_a: "$6$",
+    option_b: "$5$",
+    option_c: "$4$",
+    option_d: "$3$",
+    correct_option: "A",
+    explanation: "Xúc xắc có 6 mặt: 1, 2, 3, 4, 5, 6. Vậy có 6 kết quả có thể.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung một đồng xu, biến cố 'Xuất hiện mặt ngửa' có bao nhiêu kết quả thuận lợi?",
+    option_a: "$1$",
+    option_b: "$2$",
+    option_c: "$0$",
+    option_d: "$3$",
+    correct_option: "A",
+    explanation: "Chỉ có 1 kết quả thuận lợi là mặt ngửa (N).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc, biến cố 'Xuất hiện mặt chẵn' có bao nhiêu kết quả thuận lợi?",
+    option_a: "$3$",
+    option_b: "$2$",
+    option_c: "$4$",
+    option_d: "$6$",
+    correct_option: "A",
+    explanation: "Các mặt chẵn là: 2, 4, 6. Có 3 kết quả thuận lợi.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Rút ngẫu nhiên một lá bài từ bộ 52 lá, số kết quả có thể là:",
+    option_a: "$52$",
+    option_b: "$13$",
+    option_c: "$4$",
+    option_d: "$26$",
+    correct_option: "A",
+    explanation: "Bộ bài có 52 lá, nên có 52 kết quả có thể.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung hai đồng xu, số kết quả có thể là:",
+    option_a: "$4$",
+    option_b: "$2$",
+    option_c: "$3$",
+    option_d: "$6$",
+    correct_option: "A",
+    explanation: "Các kết quả: (N,N), (N,S), (S,N), (S,S). Có 4 kết quả có thể.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc, biến cố 'Xuất hiện mặt lớn hơn 4' có bao nhiêu kết quả thuận lợi?",
+    option_a: "$2$",
+    option_b: "$3$",
+    option_c: "$4$",
+    option_d: "$1$",
+    correct_option: "A",
+    explanation: "Các mặt lớn hơn 4 là: 5, 6. Có 2 kết quả thuận lợi.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Gieo một con xúc xắc, những biến cố nào sau đây có 3 kết quả thuận lợi?",
+    option_a: "Xuất hiện mặt chẵn",
+    option_b: "Xuất hiện mặt lẻ",
+    option_c: "Xuất hiện mặt lớn hơn 3",
+    option_d: "Xuất hiện mặt nhỏ hơn 4",
+    correct_option: "A,B,C,D",
+    explanation: "A) 2,4,6 ✓\nB) 1,3,5 ✓\nC) 4,5,6 ✓\nD) 1,2,3 ✓",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Trong hộp có 5 bi đỏ và 3 bi xanh. Lấy ngẫu nhiên 1 bi, số kết quả có thể là bao nhiêu?",
+    correct_option: "8",
+    explanation: "Tổng số bi: $5 + 3 = 8$. Có 8 kết quả có thể.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc có $!a#4!$ mặt (đánh số từ 1 đến $!a!$). Số kết quả có thể là:",
+    option_a: "$!a!$",
+    option_b: "$!tinh: !a! - 1!$",
+    option_c: "$!tinh: !a! + 1!$",
+    option_d: "$!tinh: !a! * 2!$",
+    correct_option: "A",
+    explanation: "Xúc xắc có $!a!$ mặt nên có $!a!$ kết quả có thể.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎲 Mở đầu — Xác suất trong cuộc sống</h3>
+
+Xác suất giúp ta dự đoán khả năng xảy ra của các sự kiện:
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
+    <strong>Trò chơi</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Gieo xúc xắc, tung đồng xu - Khả năng nào sẽ xảy ra?</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌦️</div>
+    <strong>Dự báo thời tiết</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Xác suất mưa 70% - Nên mang ô không?</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>Xổ số</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cơ hội trúng thưởng là bao nhiêu?</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #e9d5ff;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏥</div>
+    <strong>Y học</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tỷ lệ thành công của phương pháp điều trị</p>
+  </div>
+</div>
+
+💬 *Để tính xác suất, trước tiên ta cần hiểu kết quả có thể và kết quả thuận lợi!*
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="phep-thu">📖 1. Phép thử ngẫu nhiên</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Phép thử ngẫu nhiên là một hành động hoặc thí nghiệm mà:
+- Có thể lặp lại nhiều lần trong cùng điều kiện
+- Kết quả không thể dự đoán trước được
+- Có thể liệt kê được tất cả các kết quả có thể xảy ra
+
+</div>
+
+**Ví dụ các phép thử ngẫu nhiên:**
+
+| Phép thử | Kết quả có thể |
+|:---|:---|
+| Tung một đồng xu | Ngửa (N) hoặc Sấp (S) |
+| Gieo một con xúc xắc | 1, 2, 3, 4, 5, 6 |
+| Rút một lá bài từ bộ 52 lá | 52 lá bài khác nhau |
+| Chọn ngẫu nhiên 1 học sinh trong lớp 30 người | 30 học sinh |
+
+<h3 id="ket-qua-co-the" style="margin-top:2rem;">🎯 2. Kết quả có thể</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Kết quả có thể (hay kết quả sơ cấp) là mỗi kết quả có thể xảy ra của một phép thử ngẫu nhiên.
+
+**Không gian mẫu** (ký hiệu $\Omega$) là tập hợp tất cả các kết quả có thể của phép thử.
+
+**Số kết quả có thể** (ký hiệu $n(\Omega)$) là số phần tử của không gian mẫu.
+
+</div>
+
+**Ví dụ 1:** Tung một đồng xu.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+- Không gian mẫu: $\Omega = \{N, S\}$
+- Số kết quả có thể: $n(\Omega) = 2$
+
+</div>
+
+**Ví dụ 2:** Gieo một con xúc xắc.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+- Không gian mẫu: $\Omega = \{1, 2, 3, 4, 5, 6\}$
+- Số kết quả có thể: $n(\Omega) = 6$
+
+</div>
+
+**Ví dụ 3:** Tung hai đồng xu.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+- Không gian mẫu: $\Omega = \{(N,N), (N,S), (S,N), (S,S)\}$
+- Số kết quả có thể: $n(\Omega) = 4$
+
+**Giải thích:** 
+- $(N,N)$: Cả hai đều ngửa
+- $(N,S)$: Đồng 1 ngửa, đồng 2 sấp
+- $(S,N)$: Đồng 1 sấp, đồng 2 ngửa
+- $(S,S)$: Cả hai đều sấp
+
+</div>
+
+<h3 id="bien-co" style="margin-top:2rem;">🎪 3. Biến cố</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Biến cố là một tập hợp các kết quả có thể của phép thử, thỏa mãn một điều kiện nào đó.
+
+Mỗi biến cố là một tập con của không gian mẫu $\Omega$.
+
+</div>
+
+**Ví dụ 4:** Gieo một con xúc xắc, xét các biến cố:
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Biến cố $A$: "Xuất hiện mặt chẵn" = $\{2, 4, 6\}$
+- Biến cố $B$: "Xuất hiện mặt lớn hơn 4" = $\{5, 6\}$
+- Biến cố $C$: "Xuất hiện mặt 3" = $\{3\}$
+- Biến cố $D$: "Xuất hiện mặt nhỏ hơn 7" = $\{1, 2, 3, 4, 5, 6\}$ (biến cố chắc chắn)
+
+</div>
+
+<h3 id="ket-qua-thuan-loi" style="margin-top:2rem;">✅ 4. Kết quả thuận lợi</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Kết quả thuận lợi cho một biến cố là mỗi kết quả có thể làm cho biến cố đó xảy ra.
+
+**Số kết quả thuận lợi** (ký hiệu $n(A)$) là số phần tử của biến cố $A$.
+
+</div>
+
+**Ví dụ 5:** Gieo một con xúc xắc, tìm số kết quả thuận lợi cho các biến cố:
+
+<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) Biến cố $A$: "Xuất hiện mặt chẵn"
+- Kết quả thuận lợi: $\{2, 4, 6\}$
+- Số kết quả thuận lợi: $n(A) = 3$
+
+b) Biến cố $B$: "Xuất hiện mặt lớn hơn 4"
+- Kết quả thuận lợi: $\{5, 6\}$
+- Số kết quả thuận lợi: $n(B) = 2$
+
+c) Biến cố $C$: "Xuất hiện mặt 7"
+- Kết quả thuận lợi: $\{\}$ (không có)
+- Số kết quả thuận lợi: $n(C) = 0$ (biến cố không thể)
+
+</div>
+
+<h3 id="vi-du-phuc-tap" style="margin-top:2rem;">🎯 5. Ví dụ phức tạp hơn</h3>
+
+**Ví dụ 6:** Trong hộp có 5 bi đỏ và 3 bi xanh. Lấy ngẫu nhiên 1 bi.
+
+a) Tìm số kết quả có thể
+
+b) Tìm số kết quả thuận lợi cho biến cố "Lấy được bi đỏ"
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tổng số bi: $5 + 3 = 8$
+
+Số kết quả có thể: $n(\Omega) = 8$
+
+b) Biến cố $A$: "Lấy được bi đỏ"
+
+Số kết quả thuận lợi: $n(A) = 5$ (có 5 bi đỏ)
+
+</div>
+
+**Ví dụ 7:** Gieo hai con xúc xắc. Tìm số kết quả thuận lợi cho biến cố "Tổng hai mặt bằng 7".
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Các cặp có tổng bằng 7:
+- $(1, 6)$: $1 + 6 = 7$
+- $(2, 5)$: $2 + 5 = 7$
+- $(3, 4)$: $3 + 4 = 7$
+- $(4, 3)$: $4 + 3 = 7$
+- $(5, 2)$: $5 + 2 = 7$
+- $(6, 1)$: $6 + 1 = 7$
+
+**Số kết quả thuận lợi:** $n(A) = 6$
+
+**Số kết quả có thể:** $n(\Omega) = 6 \times 6 = 36$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Xổ số:**
+
+Một vé số có 2 chữ số cuối từ 00 đến 99. Bạn chọn số 25.
+
+a) Có bao nhiêu kết quả có thể?
+
+b) Có bao nhiêu kết quả thuận lợi cho việc bạn trúng thưởng?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Các số từ 00 đến 99: có $100$ số
+
+**Số kết quả có thể:** $n(\Omega) = 100$
+
+b) Chỉ có 1 số 25
+
+**Số kết quả thuận lợi:** $n(A) = 1$
+
+</div>
+
+---
+
+**📝 Bài toán 2 — Chọn học sinh:**
+
+Trong lớp có 15 nam và 20 nữ. Giáo viên chọn ngẫu nhiên 1 học sinh lên bảng.
+
+a) Có bao nhiêu kết quả có thể?
+
+b) Tìm số kết quả thuận lợi cho biến cố "Chọn được học sinh nữ"
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tổng số học sinh: $15 + 20 = 35$
+
+**Số kết quả có thể:** $n(\Omega) = 35$
+
+b) Biến cố $A$: "Chọn được học sinh nữ"
+
+**Số kết quả thuận lợi:** $n(A) = 20$
+
+</div>
+
+---
+
+**📝 Bài toán 3 — Rút bài:**
+
+Từ bộ bài 52 lá, rút ngẫu nhiên 1 lá. Tìm số kết quả thuận lợi cho biến cố "Rút được lá bài cơ".
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Bộ bài 52 lá gồm 4 chất: Cơ, Rô, Chuồn, Bích. Mỗi chất có 13 lá.
+
+**Số kết quả có thể:** $n(\Omega) = 52$
+
+**Số kết quả thuận lợi:** $n(A) = 13$ (13 lá bài cơ)
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Phép thử ngẫu nhiên**: Kết quả không dự đoán trước được
+- **Kết quả có thể**: Mỗi kết quả có thể xảy ra
+- **Không gian mẫu** $\Omega$: Tập hợp tất cả kết quả có thể
+- **Biến cố**: Tập hợp các kết quả thỏa mãn điều kiện
+- **Kết quả thuận lợi**: Kết quả làm biến cố xảy ra
+- $n(\Omega)$: Số kết quả có thể, $n(A)$: Số kết quả thuận lợi
+
+</GhiNho>
+
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ):** Xác định số kết quả có thể trong các phép thử sau:
+
+a) Tung một đồng xu.
+
+b) Gieo một con xúc xắc.
+
+c) Rút một lá bài từ bộ 52 lá.
+
+d) Chọn ngẫu nhiên một học sinh trong lớp 40 người.
+
+**Bài 2 (Dễ):** Gieo một con xúc xắc. Tìm số kết quả thuận lợi cho các biến cố:
+
+a) Xuất hiện mặt chẵn.
+
+b) Xuất hiện mặt lớn hơn 3.
+
+c) Xuất hiện mặt nhỏ hơn 5.
+
+d) Xuất hiện mặt chia hết cho 3.
+
+
+**Bài 3 (Trung bình):** Tung hai đồng xu.
+
+a) Liệt kê tất cả các kết quả có thể.
+
+b) Tìm số kết quả thuận lợi cho biến cố "Cả hai đều ngửa".
+
+c) Tìm số kết quả thuận lợi cho biến cố "Có ít nhất một mặt ngửa".
+
+d) Tìm số kết quả thuận lợi cho biến cố "Hai mặt khác nhau".
+
+**Bài 4 (Khá):** Trong hộp có 6 bi đỏ, 4 bi xanh và 5 bi vàng.
+
+a) Lấy ngẫu nhiên 1 bi, có bao nhiêu kết quả có thể?
+
+b) Tìm số kết quả thuận lợi cho biến cố "Lấy được bi đỏ".
+
+c) Tìm số kết quả thuận lợi cho biến cố "Lấy được bi không phải màu xanh".
+
+d) Tìm số kết quả thuận lợi cho biến cố "Lấy được bi đỏ hoặc vàng".
+
+
+**Bài 5 (Khó - Ứng dụng thực tế):** 
+
+a) Gieo hai con xúc xắc. Liệt kê tất cả các kết quả có thể (dùng cặp số). Có bao nhiêu kết quả?
+
+b) Tìm số kết quả thuận lợi cho biến cố "Tổng hai mặt bằng 8".
+
+c) Tìm số kết quả thuận lợi cho biến cố "Tích hai mặt là số chẵn".
+
+d) Một lớp có 25 học sinh, trong đó 15 nữ và 10 nam. Giáo viên chọn ngẫu nhiên 1 học sinh làm lớp trưởng và 1 học sinh khác làm lớp phó. Có bao nhiêu cách chọn?
+
+e) Từ các chữ số 1, 2, 3, 4, 5, lập số tự nhiên có 2 chữ số khác nhau. Có bao nhiêu số như vậy?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 2; b) 6; c) 52; d) 40
+
+**Bài 2:** a) 3 (mặt 2,4,6); b) 3 (mặt 4,5,6); c) 4 (mặt 1,2,3,4); d) 2 (mặt 3,6)
+
+**Bài 3:** a) (N,N), (N,S), (S,N), (S,S) - 4 kết quả; b) 1; c) 3; d) 2
+
+**Bài 4:** a) 15; b) 6; c) 11; d) 11
+
+**Bài 5:** a) 36 kết quả; b) 5 kết quả: (2,6), (3,5), (4,4), (5,3), (6,2); c) 27 kết quả; d) 600 cách; e) 20 số
+
+</div>
+</details>

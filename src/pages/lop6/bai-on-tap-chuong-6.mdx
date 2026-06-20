@@ -1,0 +1,554 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 6 - Toán 6"
+description: "Ôn tập toàn bộ kiến thức chương 6 Toán 6 KNTT về phân số"
+grade: "Lớp 6"
+chapter: "Chương VI: Phân số"
+currentSlug: "lop6/bai-on-tap-chuong-6"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{3}{5}$ có tử số là bao nhiêu?",
+    option_a: "$3$",
+    option_b: "$5$",
+    option_c: "$8$",
+    option_d: "$15$",
+    correct_option: "A",
+    explanation: "Tử số là số ở trên, mẫu số là số ở dưới. Vậy tử số là 3",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "So sánh $\\frac{2}{3}$ và $\\frac{3}{4}$",
+    option_a: "$\\frac{2}{3} < \\frac{3}{4}$",
+    option_b: "$\\frac{2}{3} > \\frac{3}{4}$",
+    option_c: "$\\frac{2}{3} = \\frac{3}{4}$",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "$\\frac{2}{3} = \\frac{8}{12}$ và $\\frac{3}{4} = \\frac{9}{12}$, nên $\\frac{2}{3} < \\frac{3}{4}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $\\frac{1}{2} + \\frac{1}{3}$ là",
+    option_a: "$\\frac{5}{6}$",
+    option_b: "$\\frac{2}{5}$",
+    option_c: "$\\frac{1}{5}$",
+    option_d: "$\\frac{2}{6}$",
+    correct_option: "A",
+    explanation: "$\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $\\frac{3}{4} - \\frac{1}{4}$ là",
+    option_a: "$\\frac{1}{2}$",
+    option_b: "$\\frac{2}{4}$",
+    option_c: "$\\frac{2}{8}$",
+    option_d: "$\\frac{4}{8}$",
+    correct_option: "A",
+    explanation: "$\\frac{3}{4} - \\frac{1}{4} = \\frac{2}{4} = \\frac{1}{2}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $\\frac{2}{3} \\times \\frac{3}{4}$ là",
+    option_a: "$\\frac{1}{2}$",
+    option_b: "$\\frac{6}{12}$",
+    option_c: "$\\frac{5}{7}$",
+    option_d: "$\\frac{6}{7}$",
+    correct_option: "A",
+    explanation: "$\\frac{2}{3} \\times \\frac{3}{4} = \\frac{6}{12} = \\frac{1}{2}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của $\\frac{2}{3} \\div \\frac{4}{5}$ là",
+    option_a: "$\\frac{5}{6}$",
+    option_b: "$\\frac{8}{15}$",
+    option_c: "$\\frac{10}{12}$",
+    option_d: "$\\frac{6}{5}$",
+    correct_option: "A",
+    explanation: "$\\frac{2}{3} \\div \\frac{4}{5} = \\frac{2}{3} \\times \\frac{5}{4} = \\frac{10}{12} = \\frac{5}{6}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{6}{9}$ rút gọn được thành",
+    option_a: "$\\frac{2}{3}$",
+    option_b: "$\\frac{3}{4}$",
+    option_c: "$\\frac{1}{3}$",
+    option_d: "$\\frac{2}{4}$",
+    correct_option: "A",
+    explanation: "$\\frac{6}{9} = \\frac{6÷3}{9÷3} = \\frac{2}{3}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{-3}{5}$ bằng phân số nào?",
+    option_a: "$\\frac{3}{-5}$",
+    option_b: "$\\frac{-3}{-5}$",
+    option_c: "$\\frac{3}{5}$",
+    option_d: "$\\frac{-6}{10}$",
+    correct_option: "A",
+    explanation: "$\\frac{-3}{5} = \\frac{3}{-5}$ (dấu âm có thể ở tử hoặc mẫu)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Quy đồng mẫu số $\\frac{1}{2}$ và $\\frac{1}{3}$ được",
+    option_a: "$\\frac{3}{6}$ và $\\frac{2}{6}$",
+    option_b: "$\\frac{2}{6}$ và $\\frac{3}{6}$",
+    option_c: "$\\frac{1}{6}$ và $\\frac{1}{6}$",
+    option_d: "$\\frac{3}{6}$ và $\\frac{3}{6}$",
+    correct_option: "A",
+    explanation: "BCNN(2,3) = 6, nên $\\frac{1}{2} = \\frac{3}{6}$ và $\\frac{1}{3} = \\frac{2}{6}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{5}{8}$ ở dạng tối giản chưa?",
+    option_a: "Rồi",
+    option_b: "Chưa",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "ƯCLN(5,8) = 1, nên $\\frac{5}{8}$ đã ở dạng tối giản",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 6 — Phân số</h3>
+
+Chương 6 giới thiệu khái niệm phân số - một cách biểu diễn mới của số, mở rộng khái niệm số tự nhiên.
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Khái niệm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tử số, mẫu số</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚖️</div>
+    <strong>So sánh</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Quy đồng, rút gọn</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
+    <strong>Phép tính</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cộng, trừ, nhân, chia</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="khai-niem">1. Khái niệm phân số</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Phân số $\frac{a}{b}$ (đọc là "a phần b") là một cách biểu diễn số, trong đó:
+- $a$ gọi là **tử số** (số ở trên)
+- $b$ gọi là **mẫu số** (số ở dưới), $b \neq 0$
+
+</div>
+
+**Ví dụ:** $\frac{3}{5}$, $\frac{-2}{7}$, $\frac{0}{4}$
+
+**Chú ý:**
+- Mẫu số phải khác 0
+- Phân số có thể âm: $\frac{-a}{b} = \frac{a}{-b} = -\frac{a}{b}$
+
+<h4 id="rut-gon">2. Rút gọn phân số</h4>
+
+<div class="box-dinh-nghia">
+
+**Tính chất:** Nếu chia cả tử và mẫu cho cùng một ước chung, ta được phân số bằng phân số ban đầu.
+
+$$\frac{a}{b} = \frac{a÷d}{b÷d}$$ (với $d$ là ước chung của $a$ và $b$)
+
+**Phân số tối giản:** Phân số không thể rút gọn được nữa (ƯCLN của tử và mẫu bằng 1)
+
+</div>
+
+**Ví dụ:** $\frac{6}{9} = \frac{2}{3}$ (rút gọn cho 3)
+
+<h4 id="quy-dong">3. Quy đồng mẫu số</h4>
+
+<div class="box-dinh-nghia">
+
+**Quy đồng mẫu số:** Biến đổi các phân số khác mẫu thành các phân số có cùng mẫu.
+
+**Cách làm:**
+1. Tìm BCNN của các mẫu số
+2. Nhân cả tử và mẫu của mỗi phân số với thương của BCNN chia cho mẫu đó
+
+</div>
+
+**Ví dụ:** Quy đồng $\frac{1}{2}$ và $\frac{1}{3}$
+- BCNN(2,3) = 6
+- $\frac{1}{2} = \frac{3}{6}$ và $\frac{1}{3} = \frac{2}{6}$
+
+<h4 id="so-sanh">4. So sánh phân số</h4>
+
+**Cách so sánh:**
+- Cùng mẫu: So sánh tử số
+- Khác mẫu: Quy đồng rồi so sánh tử số
+- Với 1: Nếu tử < mẫu thì phân số < 1; tử = mẫu thì phân số = 1; tử > mẫu thì phân số > 1
+
+**Ví dụ:** $\frac{2}{3} < \frac{3}{4}$ (vì $\frac{8}{12} < \frac{9}{12}$)
+
+<h4 id="phep-toan">5. Phép tính với phân số</h4>
+
+**Cộng phân số:**
+$$\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}$$
+
+Hoặc quy đồng mẫu rồi cộng tử.
+
+**Trừ phân số:**
+$$\frac{a}{b} - \frac{c}{d} = \frac{ad - bc}{bd}$$
+
+**Nhân phân số:**
+$$\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}$$
+
+**Chia phân số:**
+$$\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c} = \frac{ad}{bc}$$
+
+**Ví dụ:**
+- $\frac{1}{2} + \frac{1}{3} = \frac{3}{6} + \frac{2}{6} = \frac{5}{6}$
+- $\frac{2}{3} \times \frac{3}{4} = \frac{6}{12} = \frac{1}{2}$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Rút gọn phân số</h4>
+
+Rút gọn các phân số sau:
+
+a) $\frac{12}{18}$
+
+b) $\frac{20}{30}$
+
+c) $\frac{15}{25}$
+
+d) $\frac{24}{36}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{12}{18} = \frac{2}{3}$ (chia cho 6)
+
+b) $\frac{20}{30} = \frac{2}{3}$ (chia cho 10)
+
+c) $\frac{15}{25} = \frac{3}{5}$ (chia cho 5)
+
+d) $\frac{24}{36} = \frac{2}{3}$ (chia cho 12)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Quy đồng mẫu số</h4>
+
+Quy đồng mẫu số các phân số:
+
+a) $\frac{1}{2}$ và $\frac{1}{4}$
+
+b) $\frac{2}{3}$ và $\frac{3}{5}$
+
+c) $\frac{1}{2}$, $\frac{1}{3}$ và $\frac{1}{6}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) BCNN(2,4) = 4: $\frac{2}{4}$ và $\frac{1}{4}$
+
+b) BCNN(3,5) = 15: $\frac{10}{15}$ và $\frac{9}{15}$
+
+c) BCNN(2,3,6) = 6: $\frac{3}{6}$, $\frac{2}{6}$ và $\frac{1}{6}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: So sánh phân số</h4>
+
+So sánh các phân số:
+
+a) $\frac{3}{5}$ và $\frac{2}{5}$
+
+b) $\frac{2}{3}$ và $\frac{3}{4}$
+
+c) $\frac{5}{6}$ và $\frac{7}{9}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{3}{5} > \frac{2}{5}$ (cùng mẫu, so sánh tử)
+
+b) $\frac{2}{3} = \frac{8}{12}$ và $\frac{3}{4} = \frac{9}{12}$, nên $\frac{2}{3} < \frac{3}{4}$
+
+c) $\frac{5}{6} = \frac{15}{18}$ và $\frac{7}{9} = \frac{14}{18}$, nên $\frac{5}{6} > \frac{7}{9}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Cộng và trừ phân số</h4>
+
+Tính:
+
+a) $\frac{1}{2} + \frac{1}{3}$
+
+b) $\frac{3}{4} - \frac{1}{6}$
+
+c) $\frac{2}{5} + \frac{3}{5} - \frac{1}{5}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{1}{2} + \frac{1}{3} = \frac{3}{6} + \frac{2}{6} = \frac{5}{6}$
+
+b) $\frac{3}{4} - \frac{1}{6} = \frac{9}{12} - \frac{2}{12} = \frac{7}{12}$
+
+c) $\frac{2}{5} + \frac{3}{5} - \frac{1}{5} = \frac{2+3-1}{5} = \frac{4}{5}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Nhân và chia phân số</h4>
+
+Tính:
+
+a) $\frac{2}{3} \times \frac{3}{4}$
+
+b) $\frac{5}{6} \div \frac{2}{3}$
+
+c) $\frac{1}{2} \times \frac{2}{3} \times \frac{3}{4}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{2}{3} \times \frac{3}{4} = \frac{6}{12} = \frac{1}{2}$
+
+b) $\frac{5}{6} \div \frac{2}{3} = \frac{5}{6} \times \frac{3}{2} = \frac{15}{12} = \frac{5}{4}$
+
+c) $\frac{1}{2} \times \frac{2}{3} \times \frac{3}{4} = \frac{6}{24} = \frac{1}{4}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán thực tế về phân số</h4>
+
+Một chiếc bánh được chia thành 8 phần bằng nhau. Sáng ăn $\frac{2}{8}$ chiếc bánh, chiều ăn $\frac{3}{8}$ chiếc bánh.
+
+a) Tổng cộng ăn bao nhiêu phần bánh?
+
+b) Còn lại bao nhiêu phần bánh?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Tổng cộng ăn: $\frac{2}{8} + \frac{3}{8} = \frac{5}{8}$ chiếc bánh
+
+b) Còn lại: $1 - \frac{5}{8} = \frac{3}{8}$ chiếc bánh
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán kết hợp (Câu lớn)</h4>
+
+Cho ba phân số: $\frac{1}{2}$, $\frac{2}{3}$, $\frac{3}{4}$
+
+a) Quy đồng mẫu số ba phân số
+
+b) Sắp xếp ba phân số theo thứ tự tăng dần
+
+c) Tính tổng ba phân số
+
+d) Tính hiệu của phân số lớn nhất và phân số nhỏ nhất
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) BCNN(2,3,4) = 12
+- $\frac{1}{2} = \frac{6}{12}$
+- $\frac{2}{3} = \frac{8}{12}$
+- $\frac{3}{4} = \frac{9}{12}$
+
+b) Thứ tự tăng dần: $\frac{1}{2} < \frac{2}{3} < \frac{3}{4}$
+
+c) $\frac{1}{2} + \frac{2}{3} + \frac{3}{4} = \frac{6}{12} + \frac{8}{12} + \frac{9}{12} = \frac{23}{12}$
+
+d) $\frac{3}{4} - \frac{1}{2} = \frac{9}{12} - \frac{6}{12} = \frac{3}{12} = \frac{1}{4}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Phân số âm</h4>
+
+Tính:
+
+a) $\frac{-2}{3} + \frac{1}{3}$
+
+b) $\frac{-1}{2} - \frac{1}{4}$
+
+c) $\frac{-2}{3} \times \frac{3}{4}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{-2}{3} + \frac{1}{3} = \frac{-2+1}{3} = \frac{-1}{3}$
+
+b) $\frac{-1}{2} - \frac{1}{4} = \frac{-2}{4} - \frac{1}{4} = \frac{-3}{4}$
+
+c) $\frac{-2}{3} \times \frac{3}{4} = \frac{-6}{12} = \frac{-1}{2}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Tìm x</h4>
+
+Tìm x:
+
+a) $x + \frac{1}{3} = \frac{5}{6}$
+
+b) $x - \frac{2}{5} = \frac{1}{5}$
+
+c) $\frac{2}{3} \times x = \frac{4}{9}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $x = \frac{5}{6} - \frac{1}{3} = \frac{5}{6} - \frac{2}{6} = \frac{3}{6} = \frac{1}{2}$
+
+b) $x = \frac{1}{5} + \frac{2}{5} = \frac{3}{5}$
+
+c) $x = \frac{4}{9} \div \frac{2}{3} = \frac{4}{9} \times \frac{3}{2} = \frac{12}{18} = \frac{2}{3}$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Một lớp học có 40 học sinh. Số học sinh giỏi chiếm $\frac{1}{4}$ lớp, số học sinh khá chiếm $\frac{1}{2}$ lớp, còn lại là học sinh trung bình.
+
+a) Tính số học sinh giỏi
+
+b) Tính số học sinh khá
+
+c) Tính số học sinh trung bình
+
+d) Phân số chỉ số học sinh trung bình là bao nhiêu?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Số học sinh giỏi: $40 \times \frac{1}{4} = 10$ học sinh
+
+b) Số học sinh khá: $40 \times \frac{1}{2} = 20$ học sinh
+
+c) Số học sinh trung bình: $40 - 10 - 20 = 10$ học sinh
+
+d) Phân số chỉ số học sinh trung bình: $\frac{10}{40} = \frac{1}{4}$
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Phân số:** $\frac{a}{b}$ với $a$ là tử, $b$ là mẫu ($b \neq 0$)
+- **Rút gọn:** Chia cả tử và mẫu cho ƯCLN
+- **Quy đồng:** Tìm BCNN của các mẫu
+- **So sánh:** Quy đồng rồi so sánh tử
+- **Cộng/Trừ:** Quy đồng mẫu rồi cộng/trừ tử
+- **Nhân:** $\frac{a}{b} \times \frac{c}{d} = \frac{ac}{bd}$
+- **Chia:** $\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c}$
+- **Phân số âm:** $\frac{-a}{b} = \frac{a}{-b} = -\frac{a}{b}$
+
+</GhiNho>

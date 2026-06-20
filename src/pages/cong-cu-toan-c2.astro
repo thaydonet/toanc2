@@ -1,0 +1,68 @@
+---
+import LessonLayout from '../layouts/LessonLayout.astro';
+
+// Đại số
+import LinearEquationSolver from '../components/interactive/LinearEquationSolver';
+import LinearFunctionGrapher from '../components/interactive/LinearFunctionGrapher';
+import QuadraticEquationSolver from '../components/interactive/QuadraticEquationSolver';
+import SystemOfEquationsSolver from '../components/interactive/SystemOfEquationsSolver';
+import LinearInequalitySolver from '../components/interactive/LinearInequalitySolver';
+import FractionOperation from '../components/interactive/FractionOperation';
+import RationalSimplifier from '../components/interactive/RationalSimplifier';
+
+// Hình học
+import RightTriangleCalculator from '../components/interactive/RightTriangleCalculator';
+import CircleCalculator from '../components/interactive/CircleCalculator';
+import Geometry3DCalculator from '../components/interactive/Geometry3DCalculator';
+---
+
+<LessonLayout
+  title="Công cụ Toán Tương Tác"
+  description="Tập hợp các công cụ toán học tương tác hỗ trợ học sinh THCS"
+  currentSlug="cong-cu-toan-c2"
+>
+  <div slot="home-sidebar" class="sidebar">
+    <div class="sidebar-title">🧮 Mục lục Công cụ</div>
+    <ul class="sidebar-lesson-list">
+      <li><a href="#dai-so" class="active">Đại số</a></li>
+      <li><a href="#hinh-hoc">Hình học</a></li>
+    </ul>
+    
+    <div style="margin-top:2rem; padding:1.25rem; background:#f0fdf4; border:2px dashed #bbf7d0; border-radius:12px;">
+      <div style="font-size:1.1rem; font-weight:700; margin-bottom:.5rem; color:#166534;">💡 Thiết kế Độc lập</div>
+      <p style="font-size:.85rem; color:#14532d; margin:0; line-height:1.5;">Các công cụ này chạy độc lập với nhau, giúp bạn mô phỏng trực quan các khái niệm Đại số và Hình học dễ dàng.</p>
+    </div>
+  </div>
+
+  <div class="hero" style="border-radius: 20px; margin-bottom: 2rem; background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #0ea5e9 100%);">
+    <h1 class="animate-fade-in-up text-white text-3xl font-bold mb-4">Trang Công cụ Toán Học</h1>
+    <p class="animate-fade-in-up text-white/90" style="animation-delay: 0.1s; max-width: 650px;">
+      Nơi trải nghiệm các ứng dụng giải toán tương tác được tích hợp sẵn trên nền tảng: giải phương trình, vẽ đồ thị hàm số và máy tính hình học phẳng & không gian.
+    </p>
+  </div>
+
+  <div class="tools-container">
+    <h2 id="dai-so" style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #1e293b; display: flex; align-items: center; gap: 0.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">
+      <span>🔢</span> Đại số
+    </h2>
+    <div style="display:flex; flex-direction:column; gap:2rem; margin-bottom: 4rem;">
+        <LinearEquationSolver client:load />
+        <LinearFunctionGrapher client:load />
+        <QuadraticEquationSolver client:load />
+        <SystemOfEquationsSolver client:load />
+        <LinearInequalitySolver client:load />
+        <FractionOperation client:load />
+        <RationalSimplifier client:load />
+    </div>
+
+    <h2 id="hinh-hoc" style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #1e293b; display: flex; align-items: center; gap: 0.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">
+      <span>📐</span> Hình học
+    </h2>
+    <div style="display:flex; flex-direction:column; gap:2rem; margin-bottom: 3rem;">
+        <RightTriangleCalculator client:load />
+        <CircleCalculator client:load />
+        <Geometry3DCalculator client:load />
+    </div>
+  </div>
+
+</LessonLayout>

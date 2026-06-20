@@ -1,0 +1,549 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 16: Phép nhân số nguyên"
+description: "Quy tắc nhân số nguyên và tính chất - Toán 6 KNTT Chương 3"
+grade: "Lớp 6"
+chapter: "Chương III: Số nguyên"
+currentSlug: "lop6/bai-16-nhan-so-nguyen"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tính: $(-5) \\times 3$",
+    option_a: "$-15$",
+    option_b: "$15$",
+    option_c: "$-8$",
+    option_d: "$8$",
+    correct_option: "A",
+    explanation: "Khác dấu nên kết quả âm: $(-5) \\times 3 = -15$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(-4) \\times (-7)$",
+    option_a: "$28$",
+    option_b: "$-28$",
+    option_c: "$-11$",
+    option_d: "$11$",
+    correct_option: "A",
+    explanation: "Cùng dấu âm nên kết quả dương: $(-4) \\times (-7) = 28$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $8 \\times (-5)$",
+    option_a: "$-40$",
+    option_b: "$40$",
+    option_c: "$-13$",
+    option_d: "$13$",
+    correct_option: "A",
+    explanation: "Khác dấu nên kết quả âm: $8 \\times (-5) = -40$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phép tính nào có kết quả dương?",
+    option_a: "$(-6) \\times (-5)$",
+    option_b: "$7 \\times 4$",
+    option_c: "$(-8) \\times 3$",
+    option_d: "$(-10) \\times (-2)$",
+    correct_option: "A,B,D",
+    explanation: "Cùng dấu cho kết quả dương: $(-6) \\times (-5) = 30$; $7 \\times 4 = 28$; $(-10) \\times (-2) = 20$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(-3) \\times 5 \\times (-2)$",
+    option_a: "$30$",
+    option_b: "$-30$",
+    option_c: "$-10$",
+    option_d: "$10$",
+    correct_option: "A",
+    explanation: "$(-3) \\times 5 = -15$; $(-15) \\times (-2) = 30$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính: $(-12) \\times 0$",
+    correct_option: "0",
+    explanation: "Nhân với $0$ luôn bằng $0$: $(-12) \\times 0 = 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(!a#-6!) \\times (!b#8!)$",
+    option_a: "$!tinh: !a! * !b!!$",
+    option_b: "$!tinh: abs(!a! * !b!)!$",
+    option_c: "$!tinh: !a! + !b!!$",
+    option_d: "$!tinh: !a! - !b!!$",
+    correct_option: "A",
+    explanation: "Khác dấu nên kết quả âm: $!a! \\times !b! = !tinh: !a! * !b!!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $(!a#-5!) \\times (!b#-9!)$",
+    option_a: "$!tinh: !a! * !b!!$",
+    option_b: "$!tinh: -(!a! * !b!)!$",
+    option_c: "$!tinh: !a! + !b!!$",
+    option_d: "$!tinh: abs(!a!) * abs(!b!)!$",
+    correct_option: "A",
+    explanation: "Cùng dấu âm nên kết quả dương: $!a! \\times !b! = !tinh: !a! * !b!!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">✖️ Phép nhân số nguyên — Quy tắc dấu</h3>
+
+Phép nhân số nguyên có quy tắc dấu đơn giản!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕ × ➕</div>
+    <strong>Dương × Dương</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả dương</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➖ × ➖</div>
+    <strong>Âm × Âm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả dương</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fecaca;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕ × ➖</div>
+    <strong>Khác dấu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả âm</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="nhan-khac-dau">📖 1. Nhân hai số nguyên khác dấu</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc:** Để nhân hai số nguyên khác dấu:
+1. Nhân hai giá trị tuyệt đối
+2. Đặt dấu "$-$" trước kết quả
+
+**Công thức:**
+
+$a \times (-b) = -(a \times b)$
+
+$(-a) \times b = -(a \times b)$
+
+**Kết luận:** Tích của hai số khác dấu là một số âm.
+
+</div>
+
+**Ví dụ 1:** Nhân hai số khác dấu
+
+a) $5 \times (-3)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Nhân giá trị tuyệt đối: $5 \times 3 = 15$
+
+**Bước 2:** Đặt dấu âm: $5 \times (-3) = -15$
+
+</div>
+
+b) $(-7) \times 4$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$|{-7}| \times |4| = 7 \times 4 = 28$
+
+$(-7) \times 4 = -28$
+
+</div>
+
+c) $12 \times (-5)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$12 \times 5 = 60$
+
+$12 \times (-5) = -60$
+
+</div>
+
+<h3 id="nhan-cung-dau" style="margin-top:2rem;">📖 2. Nhân hai số nguyên cùng dấu</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc:** Để nhân hai số nguyên cùng dấu:
+1. Nhân hai giá trị tuyệt đối
+2. Kết quả là số dương
+
+**Công thức:**
+
+$a \times b = a \times b$ (hai số dương)
+
+$(-a) \times (-b) = a \times b$ (hai số âm)
+
+**Kết luận:** Tích của hai số cùng dấu là một số dương.
+
+</div>
+
+**Ví dụ 2:** Nhân hai số cùng dấu
+
+a) $6 \times 7$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Hai số dương: $6 \times 7 = 42$
+
+</div>
+
+b) $(-5) \times (-8)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Nhân giá trị tuyệt đối: $5 \times 8 = 40$
+
+**Bước 2:** Kết quả dương: $(-5) \times (-8) = 40$
+
+</div>
+
+c) $(-12) \times (-3)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 0 1.25rem;">
+
+$12 \times 3 = 36$
+
+$(-12) \times (-3) = 36$
+
+</div>
+
+<h3 id="bang-quy-tac" style="margin-top:2rem;">📊 Bảng quy tắc dấu</h3>
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Dấu số thứ nhất</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Dấu số thứ hai</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Dấu kết quả</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;color:#22c55e;font-weight:bold;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$5 \times 3 = 15$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;color:#ef4444;font-weight:bold;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$5 \times (-3) = -15$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;color:#ef4444;font-weight:bold;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$(-5) \times 3 = -15$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;">$-$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;text-align:center;color:#22c55e;font-weight:bold;">$+$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$(-5) \times (-3) = 15$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0;">
+
+**Ghi nhớ:**
+- **Cùng dấu** (cả hai dương hoặc cả hai âm): Kết quả **dương**
+- **Khác dấu** (một dương một âm): Kết quả **âm**
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 3. Tính chất của phép nhân</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 1 (Giao hoán):** $a \times b = b \times a$
+
+**Tính chất 2 (Kết hợp):** $(a \times b) \times c = a \times (b \times c)$
+
+**Tính chất 3 (Nhân với 1):** $a \times 1 = 1 \times a = a$
+
+**Tính chất 4 (Nhân với 0):** $a \times 0 = 0 \times a = 0$
+
+**Tính chất 5 (Nhân với -1):** $a \times (-1) = -a$
+
+**Tính chất 6 (Phân phối):** $a \times (b + c) = a \times b + a \times c$
+
+</div>
+
+**Ví dụ 3:** Áp dụng tính chất
+
+a) $(-5) \times 7 \times (-2)$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Cách 1:** Tính từ trái sang phải
+
+$(-5) \times 7 = -35$
+
+$(-35) \times (-2) = 70$
+
+**Cách 2:** Kết hợp
+
+$(-5) \times [7 \times (-2)] = (-5) \times (-14) = 70$
+
+</div>
+
+b) $(-4) \times (25 + 5)$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Cách 1:** Tính trong ngoặc
+
+$(-4) \times 30 = -120$
+
+**Cách 2:** Phân phối
+
+$(-4) \times 25 + (-4) \times 5 = -100 + (-20) = -120$
+
+</div>
+
+<h3 id="nhieu-so" style="margin-top:2rem;">🔢 4. Nhân nhiều số nguyên</h3>
+
+<div class="box-dinh-nghia">
+
+**Quy tắc dấu khi nhân nhiều số:**
+
+- Nếu có **số chẵn** số âm: Kết quả **dương**
+- Nếu có **số lẻ** số âm: Kết quả **âm**
+
+**Ví dụ:**
+- $(-2) \times (-3) \times (-5)$ có 3 số âm (lẻ) → Kết quả âm: $-30$
+- $(-2) \times (-3) \times (-5) \times (-1)$ có 4 số âm (chẵn) → Kết quả dương: $30$
+
+</div>
+
+**Ví dụ 4:** Nhân nhiều số
+
+a) $(-2) \times 3 \times (-5)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Có 2 số âm (chẵn) → Kết quả dương
+
+$2 \times 3 \times 5 = 30$
+
+$(-2) \times 3 \times (-5) = 30$
+
+</div>
+
+b) $(-1) \times (-2) \times (-3) \times (-4)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Có 4 số âm (chẵn) → Kết quả dương
+
+$1 \times 2 \times 3 \times 4 = 24$
+
+$(-1) \times (-2) \times (-3) \times (-4) = 24$
+
+</div>
+
+c) $(-5) \times 2 \times (-1) \times (-3)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Có 3 số âm (lẻ) → Kết quả âm
+
+$5 \times 2 \times 1 \times 3 = 30$
+
+$(-5) \times 2 \times (-1) \times (-3) = -30$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Nhiệt độ giảm $3°C$ mỗi giờ trong $5$ giờ.
+
+a) Viết biểu thức tính độ giảm nhiệt độ.
+
+b) Tính tổng độ giảm nhiệt độ.
+
+c) Nếu nhiệt độ ban đầu là $15°C$, nhiệt độ sau $5$ giờ là bao nhiêu?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Biểu thức: $(-3) \times 5$
+
+b) Độ giảm: $(-3) \times 5 = -15°C$
+
+c) Nhiệt độ sau 5 giờ:
+
+$15 + (-15) = 0°C$
+
+</div>
+
+**📝 Bài toán 2:** Một người nợ ngân hàng $2000000$ đồng mỗi tháng trong $6$ tháng.
+
+a) Viết biểu thức tính tổng nợ.
+
+b) Tính tổng nợ.
+
+c) Nếu người đó trả được $5000000$ đồng, còn nợ bao nhiêu?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Biểu thức: $(-2000000) \times 6$
+
+b) Tổng nợ: $(-2000000) \times 6 = -12000000$ đồng
+
+c) Sau khi trả:
+
+$(-12000000) + 5000000 = -7000000$ đồng
+
+Còn nợ $7000000$ đồng
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Khác dấu**: Kết quả âm
+  - $(+) \times (-) = (-)$
+  - $(-) \times (+) = (-)$
+- **Cùng dấu**: Kết quả dương
+  - $(+) \times (+) = (+)$
+  - $(-) \times (-) = (+)$
+- **Nhân với 0**: Kết quả bằng $0$
+- **Nhân với 1**: Giữ nguyên số
+- **Nhân với -1**: Đổi dấu số
+- **Nhiều số âm**: Chẵn số âm → dương; Lẻ số âm → âm
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Thực hiện phép nhân:
+
+a) $7 \times (-5)$
+
+b) $(-8) \times 6$
+
+c) $(-9) \times (-4)$
+
+d) $12 \times (-3)$
+
+**Bài 2:** Thực hiện phép nhân:
+
+a) $(-15) \times 0$
+
+b) $(-20) \times 1$
+
+c) $25 \times (-1)$
+
+d) $(-30) \times (-1)$
+
+**Bài 3:** Tính:
+
+a) $(-3) \times 5 \times (-2)$
+
+b) $(-4) \times (-2) \times (-5)$
+
+c) $2 \times (-3) \times 4 \times (-1)$
+
+d) $(-1) \times (-1) \times (-1) \times (-1)$
+
+**Bài 4:** Áp dụng tính chất phân phối:
+
+a) $(-5) \times (20 + 4)$
+
+b) $7 \times (10 - 3)$
+
+c) $(-8) \times (15 - 5)$
+
+d) $(-6) \times (12 + 8)$
+
+**Bài 5:** Tính nhanh:
+
+a) $(-25) \times 13 \times 4$
+
+b) $(-5) \times 17 \times (-2)$
+
+c) $125 \times (-7) \times 8$
+
+d) $(-50) \times 19 \times (-2)$
+
+**Bài 6 (Thực tế):** Một thang máy xuống $5$ tầng mỗi lần trong $4$ lần.
+
+a) Viết biểu thức tính tổng số tầng đã xuống.
+
+b) Tính tổng số tầng đã xuống.
+
+c) Nếu xuất phát từ tầng $20$, thang máy ở tầng nào?
+
+d) Nếu tiếp tục xuống thêm $3$ lần nữa, thang máy ở tầng nào?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $-35$; b) $-48$; c) $36$; d) $-36$
+
+**Bài 2:** a) $0$; b) $-20$; c) $-25$; d) $30$
+
+**Bài 3:** a) $30$; b) $-40$; c) $24$; d) $1$
+
+**Bài 4:** a) $-120$; b) $49$; c) $-80$; d) $-120$
+
+**Bài 5:** a) $-1300$; b) $170$; c) $-7000$; d) $1900$
+
+**Bài 6:** a) $(-5) \times 4$; b) $-20$ tầng; c) Tầng $0$ (trệt); d) Tầng $-15$ (hầm 15)
+
+</div>
+</details>

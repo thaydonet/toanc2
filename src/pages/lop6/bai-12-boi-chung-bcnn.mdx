@@ -1,0 +1,564 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 12: Bội chung. Bội chung nhỏ nhất"
+description: "Khái niệm và cách tìm BCNN - Toán 6 KNTT Chương 2"
+grade: "Lớp 6"
+chapter: "Chương II: Tính chia hết trong tập hợp các số tự nhiên"
+currentSlug: "lop6/bai-12-boi-chung-bcnn"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Bội chung của $4$ và $6$ là:",
+    option_a: "$12, 24, 36, ...$",
+    option_b: "$2, 4, 6, ...$",
+    option_c: "$1, 2, 3, ...$",
+    option_d: "$6, 12, 18, ...$",
+    correct_option: "A",
+    explanation: "Bội của $4$: $4, 8, 12, 16, 20, 24, ...$. Bội của $6$: $6, 12, 18, 24, ...$. Bội chung: $12, 24, 36, ...$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "BCNN$(4, 6)$ bằng:",
+    option_a: "$6$",
+    option_b: "$12$",
+    option_c: "$24$",
+    option_d: "$2$",
+    correct_option: "B",
+    explanation: "Bội chung của $4$ và $6$ là $12, 24, 36, ...$. Bội chung nhỏ nhất là $12$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "BCNN$(6, 9)$ bằng:",
+    option_a: "$18$",
+    option_b: "$27$",
+    option_c: "$36$",
+    option_d: "$54$",
+    correct_option: "A",
+    explanation: "$6 = 2 \\times 3$, $9 = 3^2$. BCNN = $2 \\times 3^2 = 18$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào là bội chung của $3$ và $5$?",
+    option_a: "$15$",
+    option_b: "$30$",
+    option_c: "$45$",
+    option_d: "$50$",
+    correct_option: "A,B,C",
+    explanation: "Bội chung của $3$ và $5$ là các bội của $15$: $15, 30, 45, 60, ...$. Số $50$ không chia hết cho $3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "BCNN$(a, 1)$ bằng:",
+    option_a: "$a$",
+    option_b: "$1$",
+    option_c: "$0$",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Mọi số đều là bội của $1$, nên BCNN$(a, 1) = a$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm BCNN$(8, 12)$.",
+    correct_option: "24",
+    explanation: "$8 = 2^3$, $12 = 2^2 \\times 3$. BCNN = $2^3 \\times 3 = 24$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tìm BCNN$(!a#6!, !b#8!)$.",
+    option_a: "$!tinh: (__import__('math').lcm(!a!, !b!) if hasattr(__import__('math'), 'lcm') else (!a! * !b!) // __import__('math').gcd(!a!, !b!))!$",
+    option_b: "$!tinh: !a! * !b!!$",
+    option_c: "$!tinh: !a! + !b!!$",
+    option_d: "$!tinh: __import__('math').gcd(!a!, !b!)!$",
+    correct_option: "A",
+    explanation: "BCNN$(!a!, !b!) = !tinh: (__import__('math').lcm(!a!, !b!) if hasattr(__import__('math'), 'lcm') else (!a! * !b!) // __import__('math').gcd(!a!, !b!))!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Nếu ƯCLN$(!a#12!, !b#18!) = 6$ thì BCNN$(!a!, !b!)$ bằng:",
+    option_a: "$!tinh: (!a! * !b!) // 6!$",
+    option_b: "$!tinh: !a! * !b!!$",
+    option_c: "$6$",
+    option_d: "$!tinh: !a! + !b!!$",
+    correct_option: "A",
+    explanation: "BCNN = $\\frac{a \\times b}{\\text{ƯCLN}} = \\frac{!a! \\times !b!}{6} = !tinh: (!a! * !b!) // 6!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔄 Bội chung — Tìm điểm gặp nhau</h3>
+
+Bội chung giúp tìm số nhỏ nhất chia hết cho nhiều số!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔍</div>
+    <strong>Bội chung</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bội của cả hai số</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⬇️</div>
+    <strong>BCNN</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bội chung nhỏ nhất</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
+    <strong>Ứng dụng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Quy đồng, lịch trình</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="boi-chung">📖 1. Bội chung</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số tự nhiên $m$ được gọi là **bội chung** của hai số $a$ và $b$ nếu $m$ vừa là bội của $a$, vừa là bội của $b$.
+
+**Ký hiệu:** $BC(a, b)$ là tập hợp các bội chung của $a$ và $b$.
+
+**Ví dụ:** Tìm $BC(4, 6)$
+
+- Bội của $4$: $\{0, 4, 8, 12, 16, 20, 24, 28, ...\}$
+- Bội của $6$: $\{0, 6, 12, 18, 24, 30, ...\}$
+- $BC(4, 6) = \{0, 12, 24, 36, ...\}$
+
+</div>
+
+**Ví dụ 1:** Tìm bội chung
+
+a) Tìm $BC(3, 5)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Bội của $3$: $\{0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, ...\}$
+- Bội của $5$: $\{0, 5, 10, 15, 20, 25, 30, ...\}$
+- $BC(3, 5) = \{0, 15, 30, 45, ...\}$
+
+</div>
+
+b) Tìm $BC(6, 8)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Bội của $6$: $\{0, 6, 12, 18, 24, 30, 36, 42, 48, ...\}$
+- Bội của $8$: $\{0, 8, 16, 24, 32, 40, 48, ...\}$
+- $BC(6, 8) = \{0, 24, 48, 72, ...\}$
+
+</div>
+
+<h3 id="bcnn" style="margin-top:2rem;">📖 2. Bội chung nhỏ nhất (BCNN)</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** **Bội chung nhỏ nhất** của hai số $a$ và $b$ (khác $0$) là số khác $0$ nhỏ nhất trong tập hợp các bội chung của chúng.
+
+**Ký hiệu:** BCNN$(a, b)$ hoặc $[a, b]$
+
+**Ví dụ:**
+- $BC(4, 6) = \{0, 12, 24, 36, ...\}$ → BCNN$(4, 6) = 12$
+- $BC(3, 5) = \{0, 15, 30, 45, ...\}$ → BCNN$(3, 5) = 15$
+
+**Tính chất:**
+- BCNN$(a, b) \geq \max(a, b)$
+- Mọi bội chung của $a$ và $b$ đều là bội của BCNN$(a, b)$
+
+</div>
+
+**Ví dụ 2:** Tìm BCNN
+
+a) Tìm BCNN$(6, 9)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Bội của $6$: $\{0, 6, 12, 18, 24, 30, ...\}$
+- Bội của $9$: $\{0, 9, 18, 27, 36, ...\}$
+- $BC(6, 9) = \{0, 18, 36, 54, ...\}$
+- BCNN$(6, 9) = 18$
+
+</div>
+
+b) Tìm BCNN$(10, 15)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- Bội của $10$: $\{0, 10, 20, 30, 40, ...\}$
+- Bội của $15$: $\{0, 15, 30, 45, ...\}$
+- $BC(10, 15) = \{0, 30, 60, 90, ...\}$
+- BCNN$(10, 15) = 30$
+
+</div>
+
+<h3 id="cach-tim" style="margin-top:2rem;">🔍 3. Cách tìm BCNN</h3>
+
+<div class="box-dinh-ly">
+
+**Phương pháp 1: Liệt kê bội**
+
+1. Liệt kê các bội của mỗi số
+2. Tìm các bội chung
+3. Chọn bội chung nhỏ nhất (khác $0$)
+
+**Phương pháp 2: Phân tích ra thừa số nguyên tố**
+
+1. Phân tích mỗi số ra thừa số nguyên tố
+2. Chọn các thừa số nguyên tố **chung và riêng** với **số mũ lớn nhất**
+3. Nhân các thừa số đã chọn
+
+**Công thức:** Nếu $a = p_1^{a_1} \times p_2^{a_2} \times \ldots$ và $b = p_1^{b_1} \times p_2^{b_2} \times \ldots$
+
+Thì BCNN$(a, b) = p_1^{\max(a_1, b_1)} \times p_2^{\max(a_2, b_2)} \times \ldots$
+
+</div>
+
+**Ví dụ 3:** Tìm BCNN bằng phân tích
+
+a) Tìm BCNN$(12, 18)$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Phân tích
+- $12 = 2^2 \times 3$
+- $18 = 2 \times 3^2$
+
+**Bước 2:** Chọn thừa số với số mũ lớn nhất
+- Thừa số: $2, 3$
+- $2$: $\max(2, 1) = 2$ → $2^2$
+- $3$: $\max(1, 2) = 2$ → $3^2$
+
+**Bước 3:** Nhân
+- BCNN$(12, 18) = 2^2 \times 3^2 = 4 \times 9 = 36$
+
+</div>
+
+b) Tìm BCNN$(20, 30)$
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Phân tích:**
+- $20 = 2^2 \times 5$
+- $30 = 2 \times 3 \times 5$
+
+**Chọn thừa số:**
+- $2$: $\max(2, 1) = 2$ → $2^2$
+- $3$: $\max(0, 1) = 1$ → $3^1$
+- $5$: $\max(1, 1) = 1$ → $5^1$
+
+**Kết quả:**
+- BCNN$(20, 30) = 2^2 \times 3 \times 5 = 60$
+
+</div>
+
+
+<h3 id="moi-lien-he" style="margin-top:2rem;">🔗 4. Mối liên hệ giữa ƯCLN và BCNN</h3>
+
+<div class="box-dinh-ly">
+
+**Định lý:** Với hai số tự nhiên $a$ và $b$ (khác $0$):
+
+$$\text{ƯCLN}(a, b) \times \text{BCNN}(a, b) = a \times b$$
+
+**Hệ quả:**
+
+$$\text{BCNN}(a, b) = \frac{a \times b}{\text{ƯCLN}(a, b)}$$
+
+$$\text{ƯCLN}(a, b) = \frac{a \times b}{\text{BCNN}(a, b)}$$
+
+</div>
+
+**Ví dụ 4:** Áp dụng mối liên hệ
+
+a) Biết ƯCLN$(12, 18) = 6$. Tìm BCNN$(12, 18)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$$\text{BCNN}(12, 18) = \frac{12 \times 18}{6} = \frac{216}{6} = 36$$
+
+</div>
+
+b) Biết BCNN$(15, 20) = 60$. Tìm ƯCLN$(15, 20)$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$$\text{ƯCLN}(15, 20) = \frac{15 \times 20}{60} = \frac{300}{60} = 5$$
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 5. Tính chất của BCNN</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất 1:** BCNN$(a, 1) = a$ với mọi $a \geq 1$
+
+**Tính chất 2:** Nếu $a \vdots b$ thì BCNN$(a, b) = a$
+
+**Tính chất 3:** BCNN$(a, b) = $ BCNN$(b, a)$ (tính giao hoán)
+
+**Tính chất 4:** Mọi bội chung của $a$ và $b$ đều là bội của BCNN$(a, b)$
+
+**Tính chất 5:** Nếu $a$ và $b$ nguyên tố cùng nhau thì BCNN$(a, b) = a \times b$
+
+</div>
+
+**Ví dụ 5:** Áp dụng tính chất
+
+a) Tìm BCNN$(24, 8)$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$24 = 8 \times 3$ nên $24 \vdots 8$
+
+Theo tính chất 2: BCNN$(24, 8) = 24$
+
+</div>
+
+b) Tìm BCNN$(7, 11)$ (biết $7$ và $11$ nguyên tố cùng nhau)
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Theo tính chất 5: BCNN$(7, 11) = 7 \times 11 = 77$
+
+</div>
+
+<h3 id="so-sanh" style="margin-top:2rem;">📊 6. So sánh ƯCLN và BCNN</h3>
+
+<div style="overflow-x:auto;margin:2rem 0;">
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#f3f4f6;">
+<th style="border:1px solid #d1d5db;padding:0.75rem;">Tiêu chí</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">ƯCLN</th>
+<th style="border:1px solid #d1d5db;padding:0.75rem;">BCNN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Định nghĩa</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Ước chung lớn nhất</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Bội chung nhỏ nhất</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">So với $a, b$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$\leq \min(a, b)$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$\geq \max(a, b)$</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Cách tìm</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Thừa số chung, mũ nhỏ nhất</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Thừa số chung + riêng, mũ lớn nhất</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Ứng dụng</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Chia đều, rút gọn</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Quy đồng, lịch trình</td>
+</tr>
+<tr>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">Với $(a, 1)$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$= 1$</td>
+<td style="border:1px solid #d1d5db;padding:0.75rem;">$= a$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Hai xe buýt xuất phát cùng lúc từ bến. Xe thứ nhất cứ $12$ phút lại về bến một lần, xe thứ hai cứ $18$ phút lại về bến một lần.
+
+a) Sau bao lâu hai xe lại cùng về bến?
+
+b) Trong $3$ giờ, hai xe cùng về bến bao nhiêu lần?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Thời gian hai xe cùng về bến = BCNN$(12, 18)$
+
+Phân tích:
+- $12 = 2^2 \times 3$
+- $18 = 2 \times 3^2$
+
+BCNN$(12, 18) = 2^2 \times 3^2 = 36$
+
+**Sau 36 phút hai xe lại cùng về bến.**
+
+b) $3$ giờ = $180$ phút
+
+Số lần cùng về bến: $180 : 36 = 5$ (lần)
+
+</div>
+
+**📝 Bài toán 2:** Một người muốn cắt hai tấm vải dài $48$ cm và $72$ cm thành các mảnh bằng nhau, mỗi mảnh có độ dài lớn nhất (tính bằng cm, là số tự nhiên).
+
+a) Mỗi mảnh vải dài bao nhiêu cm?
+
+b) Có tất cả bao nhiêu mảnh vải?
+
+c) Nếu muốn ghép các mảnh vải thành các tấm vuông nhỏ nhất, cạnh tấm vuông dài bao nhiêu?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Độ dài mỗi mảnh = ƯCLN$(48, 72)$
+
+Phân tích:
+- $48 = 2^4 \times 3$
+- $72 = 2^3 \times 3^2$
+
+ƯCLN$(48, 72) = 2^3 \times 3 = 24$
+
+**Mỗi mảnh dài 24 cm.**
+
+b) Số mảnh:
+- Tấm thứ nhất: $48 : 24 = 2$ (mảnh)
+- Tấm thứ hai: $72 : 24 = 3$ (mảnh)
+- Tổng: $2 + 3 = 5$ (mảnh)
+
+c) Cạnh tấm vuông = BCNN$(48, 72)$
+
+BCNN$(48, 72) = 2^4 \times 3^2 = 144$
+
+**Cạnh tấm vuông: 144 cm.**
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Bội chung**: Số vừa là bội của $a$, vừa là bội của $b$
+- **BCNN**: Bội chung nhỏ nhất (khác $0$) của $a$ và $b$
+- **Cách tìm BCNN**:
+  1. Liệt kê bội → chọn bội chung nhỏ nhất
+  2. Phân tích → chọn thừa số chung + riêng với số mũ lớn nhất
+- **Mối liên hệ**: ƯCLN$(a, b) \times$ BCNN$(a, b) = a \times b$
+- **Tính chất**: BCNN$(a, 1) = a$; Nếu $a \vdots b$ thì BCNN$(a, b) = a$
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tìm bội chung của các cặp số sau:
+
+a) $BC(4, 6)$ (5 số đầu tiên khác $0$)
+
+b) $BC(5, 10)$ (5 số đầu tiên khác $0$)
+
+c) $BC(6, 9)$ (5 số đầu tiên khác $0$)
+
+d) $BC(8, 12)$ (5 số đầu tiên khác $0$)
+
+**Bài 2:** Tìm BCNN bằng cách liệt kê bội:
+
+a) BCNN$(6, 8)$
+
+b) BCNN$(10, 15)$
+
+c) BCNN$(12, 16)$
+
+d) BCNN$(9, 12)$
+
+**Bài 3:** Tìm BCNN bằng phân tích ra thừa số nguyên tố:
+
+a) BCNN$(12, 18)$
+
+b) BCNN$(20, 30)$
+
+c) BCNN$(24, 36)$
+
+d) BCNN$(15, 25)$
+
+**Bài 4:** Áp dụng mối liên hệ giữa ƯCLN và BCNN:
+
+a) Biết ƯCLN$(12, 18) = 6$. Tìm BCNN$(12, 18)$
+
+b) Biết BCNN$(15, 20) = 60$. Tìm ƯCLN$(15, 20)$
+
+c) Biết ƯCLN$(24, 36) = 12$. Tìm BCNN$(24, 36)$
+
+d) Biết BCNN$(10, 15) = 30$. Tìm ƯCLN$(10, 15)$
+
+**Bài 5:** Tìm BCNN của ba số:
+
+a) BCNN$(4, 6, 8)$
+
+b) BCNN$(6, 9, 12)$
+
+c) BCNN$(10, 15, 20)$
+
+d) BCNN$(12, 18, 24)$
+
+**Bài 6 (Thực tế):** Ba đèn giao thông nhấp nháy cùng lúc lúc $6$ giờ sáng. Đèn thứ nhất nhấp nháy cứ $30$ giây một lần, đèn thứ hai cứ $45$ giây một lần, đèn thứ ba cứ $60$ giây một lần.
+
+a) Sau bao lâu ba đèn lại cùng nhấp nháy?
+
+b) Đến mấy giờ ba đèn lại cùng nhấp nháy lần thứ hai?
+
+c) Trong $1$ giờ, ba đèn cùng nhấp nháy bao nhiêu lần?
+
+d) Nếu chỉ xét hai đèn thứ nhất và thứ hai, sau bao lâu chúng cùng nhấp nháy?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $12, 24, 36, 48, 60$; b) $10, 20, 30, 40, 50$; c) $18, 36, 54, 72, 90$; d) $24, 48, 72, 96, 120$
+
+**Bài 2:** a) $24$; b) $30$; c) $48$; d) $36$
+
+**Bài 3:** a) $36$; b) $60$; c) $72$; d) $75$
+
+**Bài 4:** a) $36$; b) $5$; c) $72$; d) $5$
+
+**Bài 5:** a) $24$; b) $36$; c) $60$; d) $72$
+
+**Bài 6:** a) $180$ giây = $3$ phút; b) $6$ giờ $3$ phút; c) $20$ lần; d) $90$ giây = $1$ phút $30$ giây
+
+</div>
+</details>
+

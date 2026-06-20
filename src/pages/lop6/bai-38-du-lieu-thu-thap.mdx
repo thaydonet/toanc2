@@ -1,0 +1,450 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 38: Dữ liệu và thu thập dữ liệu"
+description: "Khái niệm dữ liệu, cách thu thập và phân loại dữ liệu - Toán 6 KNTT Chương IX"
+grade: "Lớp 6"
+chapter: "Chương IX: Dữ liệu và xác suất thực nghiệm"
+currentSlug: "lop6/bai-38-du-lieu-thu-thap"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Dữ liệu là gì?",
+    option_a: "Thông tin được thu thập từ các quan sát hoặc điều tra",
+    option_b: "Chỉ là những con số",
+    option_c: "Những câu chuyện kể lại",
+    option_d: "Những dự đoán về tương lai",
+    correct_option: "A",
+    explanation: "Dữ liệu là thông tin được thu thập từ các quan sát, điều tra hoặc thí nghiệm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cách nào là cách thu thập dữ liệu?",
+    option_a: "Quan sát trực tiếp",
+    option_b: "Phỏng vấn, khảo sát",
+    option_c: "Thí nghiệm",
+    option_d: "Tất cả các cách trên",
+    correct_option: "D",
+    explanation: "Dữ liệu có thể được thu thập bằng quan sát, phỏng vấn, khảo sát hoặc thí nghiệm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dữ liệu định tính là gì?",
+    option_a: "Dữ liệu mô tả tính chất, đặc điểm",
+    option_b: "Dữ liệu là những con số",
+    option_c: "Dữ liệu về thời gian",
+    option_d: "Dữ liệu về địa điểm",
+    correct_option: "A",
+    explanation: "Dữ liệu định tính mô tả tính chất, đặc điểm (ví dụ: màu sắc, hình dạng).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dữ liệu định lượng là gì?",
+    option_a: "Dữ liệu mô tả tính chất",
+    option_b: "Dữ liệu là những con số, có thể đo lường được",
+    option_c: "Dữ liệu về tên gọi",
+    option_d: "Dữ liệu về màu sắc",
+    correct_option: "B",
+    explanation: "Dữ liệu định lượng là những con số, có thể đo lường và so sánh được.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Dữ liệu — Thông tin quanh ta</h3>
+
+Mỗi ngày, chúng ta tiếp xúc với rất nhiều thông tin: điểm số, chiều cao, màu sắc, số lượng... Tất cả những thông tin này gọi là **dữ liệu**!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Dữ liệu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thông tin được thu thập</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔍</div>
+    <strong>Thu thập</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Quá trình lấy thông tin</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem-du-lieu">📖 1. Khái niệm dữ liệu</h3>
+
+<div class="box-dinh-nghia">
+
+**Dữ liệu** là những thông tin được thu thập từ các quan sát, điều tra, thí nghiệm hoặc các nguồn khác.
+
+**Ví dụ dữ liệu:**
+- Chiều cao của các học sinh
+- Điểm số bài kiểm tra
+- Màu sắc của các bông hoa
+- Số lượng sách trong thư viện
+- Nhiệt độ hàng ngày
+
+</div>
+
+<h3 id="phan-loai-du-lieu" style="margin-top:2rem;">📖 2. Phân loại dữ liệu</h3>
+
+Dữ liệu được chia thành hai loại chính:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Dữ liệu định tính (Qualitative Data)**
+
+Mô tả tính chất, đặc điểm, không phải là con số.
+
+**Ví dụ:**
+- Màu sắc: đỏ, xanh, vàng
+- Hình dạng: tròn, vuông, tam giác
+- Loại: nam, nữ
+- Cảm nhận: đẹp, xấu, tốt
+
+</div>
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Dữ liệu định lượng (Quantitative Data)**
+
+Là những con số, có thể đo lường và so sánh được.
+
+**Ví dụ:**
+- Chiều cao: 150 cm, 160 cm, 170 cm
+- Điểm số: 8, 9, 10
+- Số lượng: 5 quyển sách, 20 học sinh
+- Nhiệt độ: 25°C, 30°C
+
+</div>
+
+<h3 id="cach-thu-thap-du-lieu" style="margin-top:2rem;">📖 3. Cách thu thập dữ liệu</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Cách 1: Quan sát trực tiếp**
+
+Quan sát và ghi lại những gì nhìn thấy.
+
+**Ví dụ:** Quan sát số lượng xe ô tô đi qua một ngã tư trong 1 giờ.
+
+</div>
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Cách 2: Phỏng vấn / Khảo sát**
+
+Hỏi những người liên quan để thu thập thông tin.
+
+**Ví dụ:** Hỏi các học sinh về môn học yêu thích nhất.
+
+</div>
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Cách 3: Thí nghiệm**
+
+Tiến hành thí nghiệm để thu thập dữ liệu.
+
+**Ví dụ:** Đo chiều cao của các học sinh bằng thước đo.
+
+</div>
+
+<div style="background:#d1fae5;border-left:4px solid #059669;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Cách 4: Từ các nguồn có sẵn**
+
+Lấy dữ liệu từ các tài liệu, báo cáo, thống kê có sẵn.
+
+**Ví dụ:** Lấy dữ liệu dân số từ tổng cục thống kê.
+
+</div>
+
+<h3 id="vi-du-thu-thap" style="margin-top:2rem;">📖 4. Ví dụ thu thập dữ liệu</h3>
+
+**Ví dụ 1: Điều tra sở thích ăn uống**
+
+Để biết loại trái cây yêu thích nhất của các học sinh lớp 6, ta có thể:
+
+1. Hỏi từng học sinh: "Bạn thích ăn trái cây nào nhất?"
+2. Ghi lại câu trả lời: cam, xoài, chuối, dâu tây...
+3. Đây là dữ liệu định tính
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Dữ liệu thu thập:**
+- Cam: 8 học sinh
+- Xoài: 12 học sinh
+- Chuối: 5 học sinh
+- Dâu tây: 10 học sinh
+
+</div>
+
+**Ví dụ 2: Điều tra chiều cao học sinh**
+
+Để biết chiều cao của các học sinh lớp 6, ta có thể:
+
+1. Đo chiều cao từng học sinh bằng thước đo
+2. Ghi lại kết quả: 150 cm, 155 cm, 160 cm...
+3. Đây là dữ liệu định lượng
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Dữ liệu thu thập:**
+- 150 cm: 3 học sinh
+- 155 cm: 8 học sinh
+- 160 cm: 12 học sinh
+- 165 cm: 5 học sinh
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một lớp học muốn điều tra về sở thích xem phim của các học sinh.
+
+a) Dữ liệu cần thu thập là gì?
+
+b) Dữ liệu này là định tính hay định lượng?
+
+c) Nên dùng cách nào để thu thập dữ liệu?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Dữ liệu cần thu thập: Loại phim yêu thích của các học sinh
+
+b) Đây là dữ liệu định tính (mô tả loại phim)
+
+c) Nên dùng phỏng vấn/khảo sát
+
+</div>
+
+</VanDung>
+
+<BaiTapTuLuan>
+<h3>📝 Bài tập tự luận:</h3>
+
+**Bài 1:** Một lớp học muốn điều tra về phương tiện đi học của các học sinh.
+
+a) Dữ liệu cần thu thập là gì?
+
+b) Dữ liệu này là định tính hay định lượng?
+
+c) Nêu cách thu thập dữ liệu phù hợp.
+
+d) Dự đoán các kết quả có thể thu được.
+
+**Bài 2:** Em hãy thiết kế một bảng câu hỏi khảo sát để thu thập dữ liệu về sở thích đọc sách của các bạn trong lớp. Bảng câu hỏi cần có ít nhất 3 câu hỏi.
+
+**Bài 3:** Phân loại các dữ liệu sau thành định tính hoặc định lượng:
+
+a) Màu sắc của xe ô tô
+
+b) Số học sinh trong lớp
+
+c) Loại hoa yêu thích
+
+d) Chiều cao của cây
+
+e) Hình dạng của lá cây
+
+f) Nhiệt độ trong phòng
+
+**Bài 4:** Em muốn biết món ăn yêu thích của các bạn trong lớp. Hãy:
+
+a) Thiết kế phiếu khảo sát
+
+b) Nêu cách thu thập dữ liệu
+
+c) Dự đoán 5 món ăn có thể được yêu thích nhất
+
+**Bài 5:** Một cửa hàng muốn biết độ tuổi của khách hàng để có chiến lược kinh doanh phù hợp.
+
+a) Dữ liệu cần thu thập là gì?
+
+b) Đây là dữ liệu định tính hay định lượng?
+
+c) Nêu ít nhất 2 cách thu thập dữ liệu
+
+d) Giải thích tại sao dữ liệu này quan trọng với cửa hàng
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1: Điều tra phương tiện đi học**
+
+a) Dữ liệu cần thu thập: **Phương tiện đi học của các học sinh** (xe đạp, xe máy, đi bộ, ô tô, xe buýt...)
+
+b) Đây là **dữ liệu định tính** vì mô tả loại phương tiện (tính chất), không phải con số
+
+c) **Cách thu thập phù hợp:**
+   - **Phỏng vấn/Khảo sát:** Phát phiếu khảo sát cho tất cả học sinh
+   - **Quan sát trực tiếp:** Quan sát học sinh đến trường mỗi ngày
+   - **Hỏi trực tiếp:** Hỏi từng học sinh trong lớp
+
+d) **Các kết quả có thể thu được:**
+   - Xe đạp: 15 học sinh
+   - Xe máy: 10 học sinh
+   - Đi bộ: 8 học sinh
+   - Ô tô: 5 học sinh
+   - Xe buýt: 2 học sinh
+
+---
+
+**Bài 2: Thiết kế bảng câu hỏi khảo sát về sở thích đọc sách**
+
+**PHIẾU KHẢO SÁT SỞ THÍCH ĐỌC SÁCH**
+
+Họ tên: _________________  Lớp: _______
+
+**Câu 1:** Bạn có thích đọc sách không?
+- ☐ Có
+- ☐ Không
+
+**Câu 2:** Bạn thích đọc thể loại sách nào nhất?
+- ☐ Truyện tranh
+- ☐ Tiểu thuyết
+- ☐ Sách khoa học
+- ☐ Sách lịch sử
+- ☐ Sách kỹ năng sống
+- ☐ Khác: _______
+
+**Câu 3:** Bạn đọc sách bao nhiêu lần mỗi tuần?
+- ☐ Không đọc
+- ☐ 1-2 lần
+- ☐ 3-4 lần
+- ☐ Hàng ngày
+
+**Câu 4:** Bạn thích đọc sách ở đâu?
+- ☐ Nhà
+- ☐ Thư viện
+- ☐ Trường học
+- ☐ Khác: _______
+
+---
+
+**Bài 3: Phân loại dữ liệu**
+
+a) Màu sắc của xe ô tô → **Định tính** (mô tả tính chất: đỏ, xanh, vàng, trắng...)
+
+b) Số học sinh trong lớp → **Định lượng** (con số: 30, 35, 40 học sinh...)
+
+c) Loại hoa yêu thích → **Định tính** (mô tả loại: hồng, lan, cúc, hướng dương...)
+
+d) Chiều cao của cây → **Định lượng** (con số đo được: 2m, 3m, 5m...)
+
+e) Hình dạng của lá cây → **Định tính** (mô tả hình dạng: tròn, dài, răng cưa, hình tim...)
+
+f) Nhiệt độ trong phòng → **Định lượng** (con số đo được: 25°C, 30°C, 28°C...)
+
+---
+
+**Bài 4: Khảo sát món ăn yêu thích**
+
+a) **PHIẾU KHẢO SÁT MÓN ĂN YÊU THÍCH**
+
+   Họ tên: _________________
+   
+   **Câu hỏi:** Em thích món ăn nào nhất?
+   
+   ☐ Phở
+   ☐ Cơm rang
+   ☐ Bún chả
+   ☐ Bánh mì
+   ☐ Mì Ý
+   ☐ Bún bò
+   ☐ Cơm tấm
+   ☐ Khác: _______
+
+b) **Cách thu thập dữ liệu:**
+   1. Phát phiếu khảo sát cho tất cả học sinh trong lớp
+   2. Yêu cầu mỗi em chọn 1 món yêu thích nhất
+   3. Thu phiếu sau 5 phút
+   4. Đếm số lượng mỗi món được chọn
+   5. Lập bảng thống kê kết quả
+
+c) **Dự đoán 5 món ăn được yêu thích nhất:**
+   1. Phở (món truyền thống, phổ biến)
+   2. Cơm rang (dễ ăn, ngon)
+   3. Bún chả (đặc sản Hà Nội)
+   4. Bánh mì (tiện lợi, đa dạng)
+   5. Mì Ý (món Tây, hấp dẫn)
+
+---
+
+**Bài 5: Độ tuổi khách hàng**
+
+a) Dữ liệu cần thu thập: **Độ tuổi của khách hàng** 
+   - Có thể thu thập số tuổi cụ thể: 25, 30, 45...
+   - Hoặc nhóm tuổi: Dưới 18, 18-30, 31-45, 46-60, Trên 60
+
+b) Đây là **dữ liệu định lượng** (con số về tuổi, có thể đo lường và so sánh)
+
+c) **Ít nhất 2 cách thu thập dữ liệu:**
+
+   **Cách 1: Phỏng vấn trực tiếp**
+   - Hỏi khách hàng khi họ đến cửa hàng: "Xin cho biết độ tuổi của quý khách?"
+   - Ghi lại độ tuổi hoặc nhóm tuổi vào phiếu
+
+   **Cách 2: Phiếu khảo sát**
+   - Phát phiếu cho khách hàng khi mua hàng
+   - Yêu cầu điền độ tuổi hoặc chọn nhóm tuổi
+   - Thu phiếu và tổng hợp
+
+   **Cách 3: Quan sát và ước lượng**
+   - Quan sát và ước lượng độ tuổi khách hàng
+   - Ghi lại vào bảng thống kê theo nhóm tuổi
+
+d) **Tại sao dữ liệu này quan trọng:**
+   - **Hiểu khách hàng:** Biết được đối tượng khách hàng chính của cửa hàng
+   - **Chọn sản phẩm:** Lựa chọn sản phẩm phù hợp với từng độ tuổi (trẻ em, thanh niên, người lớn tuổi)
+   - **Marketing:** Thiết kế chiến lược quảng cáo phù hợp với từng nhóm tuổi
+   - **Bố trí cửa hàng:** Sắp xếp sản phẩm và dịch vụ theo nhu cầu khách hàng
+   - **Dự đoán xu hướng:** Biết được xu hướng tiêu dùng trong tương lai
+   - **Cạnh tranh:** Tạo lợi thế cạnh tranh bằng cách phục vụ đúng đối tượng
+
+</div>
+</details>
+
+</BaiTapTuLuan>
+
+<GhiNho>
+
+- **Dữ liệu** là thông tin được thu thập từ quan sát, điều tra, thí nghiệm
+- **Dữ liệu định tính:** Mô tả tính chất (màu sắc, hình dạng, loại...)
+- **Dữ liệu định lượng:** Là những con số (chiều cao, điểm số, số lượng...)
+- **Cách thu thập:** Quan sát, phỏng vấn, thí nghiệm, từ nguồn có sẵn
+
+</GhiNho>

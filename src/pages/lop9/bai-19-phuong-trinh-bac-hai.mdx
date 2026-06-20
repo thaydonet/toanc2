@@ -1,0 +1,308 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 19: Phương trình bậc hai một ẩn"
+description: "Cách giải phương trình ax^2+bx+c=0 và công thức nghiệm Delta - Toán 9 KNTT Chương 6"
+grade: "Lớp 9"
+chapter: "Chương VI: Hàm số y = ax² (a ≠ 0). Phương trình bậc hai một ẩn"
+currentSlug: "lop9/bai-19-phuong-trinh-bac-hai"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import QuadraticEquationSolver from '../../components/interactive/QuadraticEquationSolver';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Phương trình nào sau đây là phương trình bậc hai một ẩn?",
+    option_a: "3x - 5 = 0",
+    option_b: "-x^2 + 4x - 7 = 0",
+    option_c: "x^3 - 2x^2 + 1 = 0",
+    option_d: "0x^2 + 2x - 3 = 0",
+    correct_option: "B",
+    explanation: "Định dạng cốt lõi $ax^2 + bx + c = 0$ với quy tắc Thép là $a \\neq 0$. Đáp án D có $a = 0$ nên rớt hạng về bậc 1. B là chuẩn xác.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác định hệ số a, b, c của phương trình: $2x^2 - 5 = 0$",
+    option_a: "a = 2, b = -5, c = 0",
+    option_b: "a = 2, b = 0, c = -5",
+    option_c: "a = 2, b = 1, c = -5",
+    option_d: "a = 2, b = -5, c = 1",
+    correct_option: "B",
+    explanation: "Đây là dạng Khuyết b (mất cụm $bx$). Tức là $b = 0$, $a = 2, c = -5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính biệt thức $\\Delta$ (Delta) của phương trình $ax^2 + bx + c = 0$ là:",
+    option_a: "$b^2 + 4ac$",
+    option_b: "$a^2 - 4bc$",
+    option_c: "$b^2 - 4ac$",
+    option_d: "$b - 4ac$",
+    correct_option: "C",
+    explanation: "Công thức gốc $\\Delta = b^2 - 4ac$. Nếu dùng Delta phẩy $\\Delta' = (b')^2 - ac$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phương trình bậc hai có 2 nghiệm phân biệt khi nào?",
+    option_a: "$\\Delta < 0$",
+    option_b: "$\\Delta = 0$",
+    option_c: "$\\Delta > 0$",
+    option_d: "$\\Delta \\le 0$",
+    correct_option: "C",
+    explanation: "Căn bậc 2 của số Dương thì sinh ra 2 kết quả (+ và -). Nên $\\Delta > 0$ đẻ ra 2 nghiệm nhánh.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho phương trình $x^2 - 4x + 4 = 0$. Khẳng định nào ĐÚNG về số nghiệm?",
+    option_a: "Vô nghiệm",
+    option_b: "Có nghiệm kép $x_1 = x_2 = 2$",
+    option_c: "Có 2 nghiệm phân biệt x = 2 và x = -2",
+    option_d: "Có nghiệm kép $x_1 = x_2 = -2$",
+    correct_option: "B",
+    explanation: "Có dạng Hằng Đẳng Thức $(x - 2)^2 = 0$. $\\Delta = 16 - 16 = 0$. Nghiệm kép rút ngắn là $x = -b / 2a = 4 / 2 = 2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính biệt thức $\\Delta$ của PT: $3x^2 - x + 5 = 0$. Nó có nghiệm không?",
+    option_a: "$\\Delta = -59 < 0 \\Rightarrow$ Vô nghiệm",
+    option_b: "$\\Delta = 61 > 0 \\Rightarrow$ 2 nghiệm",
+    option_c: "$\\Delta = -59 < 0 \\Rightarrow$ 1 nghiệm kép",
+    option_d: "$\\Delta = -31 < 0 \\Rightarrow$ Vô nghiệm",
+    correct_option: "A",
+    explanation: "$(-1)^2 - 4 \\cdot 3 \\cdot 5 = 1 - 60 = -59 < 0$. Do Delta âm (Máy tính bấm Căn lỗi Math Error), vô nghiệm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những kiểu phương trình vô sinh (Vô nghiệm thực) nào dưới đây lộ mặt rõ ràng NGAY TỪ ÁNH NHÌN ĐẦU TIÊN?",
+    option_a: "$3x^2 + x - 1 = 0$",
+    option_b: "$x^2 + 5 = 0$",
+    option_c: "$2x^2 + 5x + 7 = 0$",
+    option_d: "$-x^2 - 1 = 0$",
+    correct_option: "B,D",
+    explanation: "B: $x^2 = -5$ vô lý. D: Nén $-x^2 = 1 \Rightarrow x^2 = -1$ vô lý. Các dạng $ax^2 + c = 0$ mà $a$ và $c$ cùng dấu (+ + hoặc - -) thì nhắm mắt điền Vô Nghiệm. (A) có a và c TRÁI DẤU chắc chắn có 2 nghiệm.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Bạn Mèo Giải bằng Delta và ra $\\Delta = 25$. Công thức Nghiệm của Mèo sẽ là gì?",
+    option_a: "$x_1 = \\frac{-b + 5}{2a}$",
+    option_b: "$x_1 = \\frac{b + 5}{2a}$",
+    option_c: "$x_2 = \\frac{-b - 5}{2a}$",
+    option_d: "$x_2 = \\frac{-b - 25}{2a}$",
+    correct_option: "A,C",
+    explanation: "Mèo áp Căn của 25 ra $\\sqrt{25} = 5$. Công thức chập $\\frac{-b \\pm \\sqrt{\\Delta}}{2a}$. Nên A và C khớp xác.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Giải phương trình khuyết dạng: $5x^2 - 20x = 0$. Tìm nghiệm KHÁC KHÔNG của phương trình.",
+    correct_option: "4",
+    explanation: "Dạng D khuyết C $(c=0)$. Rút $5x$ làm lõi chung $\\Rightarrow 5x(x - 4) = 0$. Có 2 cành rẽ $x = 0$ hoặc $x - 4 = 0 \\Rightarrow x = 4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm m để PT $x^2 - 6x + m = 0$ có nghiệm hoàn hảo kép (1 nghiệm duy nhất).",
+    correct_option: "9",
+    explanation: "Muốn nghiệm Kép, $\\Delta$ bắt buộc bị triệt tiêu bằng 0. $\\Delta = (-6)^2 - 4 \\cdot 1 \\cdot m = 36 - 4m = 0 \Rightarrow 4m = 36 \Rightarrow m = 9$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🕵️ Truy tìm Kích thước Rạp phim</h3>
+
+Một rạp chiếu phim muốn xây một màn hình hình chữ nhật siêu rộng. Yêu cầu diện tích màn phẳng là $48\text{m}^2$. Và chiều dài bắt buộc phải dài hơn chiều rộng mặn mà $2\text{m}$.
+Hỏi chiều rộng của màn chiếu đó bằng bao nhiêu?
+
+Nếu gọi chiều rộng là $x$, thì chiều dài ăn theo là $(x + 2)$.
+Ta lập được biểu thức Diện Tích: $x \cdot (x + 2) = 48$.
+Nhân ngầm tung lốc vào sẽ ra: $x^2 + 2x - 48 = 0$.
+Làm cách nào để truy tìm lại số $x$ bị nhốt trong cái xích Bậc 2 kia? Người Ả Rập (Khwarizmi) đã tìm ra lời giải cho cái xích này từ 1000 năm trước: Khai sinh ra **Phương trình bậc hai**.
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Định nghĩa và hệ số</h3>
+
+<div class="box-dinh-nghia">
+
+Phương trình bậc hai một ẩn (gọi tắt là phương trình bậc hai) là phương trình có dạng:
+$$a x^2 + b x + c = 0$$
+Trong đó hệ số gánh mũ hai **$a \neq 0$** (Tùy b và c bằng 0 cũng được nhưng gã cầm quyền khuyết a thì sụp nguồn).
+
+</div>
+
+Ví dụ: $2x^2 + 5x - 3 = 0$ có các tướng cầm đầu: $a = 2, b = 5, c = -3$.
+Phương trình khuyết: $-3x^2 + 12 = 0$ (Khuyết b=0).
+
+<h3 id="cong-thuc-nghiem" style="margin-top:2rem;">📖 2. \"Thần chú\" Công thức Nghiệm Tổng quát</h3>
+
+Để giải mã TẤT CẢ mọi kiểu phương trình chẵn lẻ khuyết đủ, toán học phát minh ra hòn đá vi diệu **Delta ($\\Delta$)**:
+
+<div class="box-dinh-ly">
+
+**Chìa khoá 1 (Tính Delta):**
+$$\Delta = b^2 - 4ac$$
+
+**Chìa khoá 2 (Bắt Cửa Tuỳ Mệnh Delta):**
+- **Sốc rủi ro ($\\Delta < 0$):** Phương trình Tắt Ngóm (VÔ NGHIỆM). Viết kết luận luôn và đi ngủ.
+- **Tình duyên chập 1 ($\\Delta = 0$):** Phương trình Đậu **Nghiệm Kép**: 
+$$x_1 = x_2 = \frac{-b}{2a}$$
+- **Vinh quang Bùng Nổ ($\\Delta > 0$):** Phương trình Chẻ 2 Nhánh **Nghiệm Phân Biệt**:
+$$x_{1} = \frac{-b + \sqrt{\Delta}}{2a}; \quad x_{2} = \frac{-b - \sqrt{\Delta}}{2a}$$
+
+</div>
+
+<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Cỗ Máy Giải Phương Trình Ảo Diệu</h3>
+Hãy thử điền hệ số bài toán màn chiếu rạp phim ở Khoảng Khởi Động ($1x^2 + 2x - 48 = 0$) vào máy này xem màn chiếu chốt bao nhiêu mét?
+
+<QuadraticEquationSolver client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Phương trình Khuyết ($b = 0$ hoặc $c = 0$)**
+**Phương pháp giải Cấp tốc (Không cần xài thần chú $\Delta$ chậm):** 
+- **Khuyết $c$:** Dạng $ax^2 + bx = 0$. Rút $x$ ra ngoài sân! $\Rightarrow x(ax + b) = 0$. $\Rightarrow x=0$ hoặc $x = -b/a$.
+- **Khuyết $b$:** Dạng $ax^2 + c = 0$. Kéo c qua Vế Phải! $\Rightarrow ax^2 = -c \Rightarrow x^2 = -c/a$. (Giá trị Âm thì vứt rác, giá trị Dương thì lấy Căn Cộng Trừ).
+
+</div>
+
+**Ví dụ 1:** Giải phương trình $-2x^2 + 18 = 0$.
+**Hướng dẫn:** 
+Đây là khuyết $b$. Ném số đi: $-2x^2 = -18$.
+Chặt $\Rightarrow x^2 = 9$. Lấy Căn hai chiều $\Rightarrow x = 3$ hoặc $x = -3$. 
+*(Giải thế này nhanh như Gió, tội gì phải bấm nẹp Delta cho $b=0$, mệt người đúng không!)*
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Phương trình Đủ (Giải bằng Delta Phương Cương)**
+**Phương pháp:** 
+- Đem xác định ĐÚNG DẤU $(-, +)$ các hệ số a, b, c đè lên dốc.
+- Lắp công thức Delta (cẩn thận dấu âm chập âm nảy lửa ra Dương trong chỗ $-4ac$).
+- Tra bảng Mệnh 3 Cửa Delta $\rightarrow$ Bung Căn Thức $\rightarrow$ Ráp Công Thức Chẻ $2a$ (lưu ý CHIA CHO 2A CHỨ KHÔNG PHẢI CHIA MỖI A).
+
+</div>
+
+**Ví dụ 2:** Giải phương trình $2x^2 - 7x + 3 = 0$.
+**Hướng dẫn:** 
+1. Hệ số $a = 2; b = -7; c = 3$.
+2. Xay sinh tố $\Delta = (-7)^2 - 4 \cdot 2 \cdot 3 = 49 - 24 = 25$. 
+3. Vì $25 > 0$, mở khoá nghiệm múc $\sqrt{25} = 5$.
+$x_1 = \frac{-(-7) + 5}{2 \cdot 2} = \frac{7 + 5}{4} = \frac{12}{4} = 3$.
+$x_2 = \frac{-(-7) - 5}{4} = \frac{7 - 5}{4} = \frac{2}{4} = \frac{1}{2}$.
+Nghiệm siêu đẹp!
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 3: Phương trình có Tham Số $m$**
+**Phương pháp:** 
+- Đề túm tóc hỏi $m$ để Phương trình... (Có Nghiệm, Có Nghiệm Kép, Vô Nghiệm).
+- Tí tính $\Delta$ dựa vào biến m (Biểu thức m vướng chữ).
+- Ép biểu thức Delta đấy về Mốc So Sánh $=0$, $<0$ hoặc $\ge 0$ tùy miệng đề bắt chẹt.
+
+</div>
+
+**Ví dụ 3:** Cấm nghiệm! Tìm $m$ để phương trình $x^2 - 4x - m = 0$ VÔ NGHIỆM.
+**Hướng dẫn:** 
+- $a=1, b=-4, c=-m$.
+- Lọc $\Delta = (-4)^2 - 4(1)(-m) = 16 + 4m$.
+- Để cỗ máy Vô NGhiệm $\Rightarrow$ Yêu cầu $\Delta < 0 \Rightarrow 16 + 4m < 0 \Rightarrow 4m < -16 \Rightarrow m < -4$. 
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Cửu chương sấy Delta):** Giải các phương trình sau cẩn thận theo bảng Delta:
+
+a) $x^2 - 5x + 6 = 0$
+
+b) $2x^2 + 2x + 1 = 0$
+
+c) $9x^2 - 12x + 4 = 0$
+
+d) $-3x^2 + 7x - 2 = 0$
+
+**Bài 2 (Đập hộp Khuyết m):** Giải khôn khéo bắng phương pháp tút x thẳng tay:
+
+a) $3x^2 - 15x = 0$
+
+b) $-4x^2 + 64 = 0$
+
+c) $(x - 5)^2 - 16 = 0$
+
+**Bài 3 (Mối nhân duyên Đặc Tính A-C Trái Dấu):** 
+Không cần giải con vít Delta nào ra giấy, em hãy giải thích tại sao hai phương trình sau lại "Luôn chắc nịch có 2 nghiệm phân biệt"? Ngầm quy luật gì ẩn chứa ở dấu hiệu $a$ và $c$?
+
+a) $5x^2 - 76x - 12 = 0$
+
+b) $-x^2 + 99x + 5 = 0$
+
+**Bài 4 (Truy quét biến M):** Cho phương trình $mx^2 + 2x - 1 = 0$ (ẩn $x$, tham số $m$).
+
+a) Tìm điều kiện ban thuở m để dính tem "Bậc Hai"? (Đừng quên móc khoá lớn nhất).
+
+b) Tìm m để phương trình trên có Nghiệm kép duy nhất? Đoạt mốc M, tìm xem Nghiệm M kép này là bằng mấy?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) $\Delta = 25 - 24 = 1 > 0 \Rightarrow x_1 = 3, x_2 = 2$.
+b) $\Delta = 4 - 8 = -4 < 0 \Rightarrow$ Vô nghiệm. 
+c) (Chia $2$ hằng đẳng thức): $\Delta = 144 - 144 = 0 \Rightarrow$ Kép $x_1=x_2 = 12/18 = 2/3$.
+d) Lọc $4ac = 4 \cdot (-3) \cdot (-2) = 24$. $\Delta = 49 - 24 = 25 \Rightarrow x_1 = \frac{-7+5}{-6} = 1/3, x_2 = \frac{-7-5}{-6} = 2$.
+
+**Bài 2:**
+a) Rút $3x(x - 5) = 0 \Rightarrow x=0$ hoặc $x=5$.
+b) Rút $4x^2 = 64 \Rightarrow x^2 = 16 \Rightarrow x = 4, x = -4$.
+c) $(x-5)^2 = 16$. Tung 2 cánh Căn $\Rightarrow x-5 = 4 \rightarrow x=9$, nhánh nớ $x-5 = -4 \rightarrow x=1$.
+
+**Bài 3:**
+a) $a = 5 > 0$ và $c = -12 < 0$. $a, c$ Trái dấu dẫn đến mảng trừ $-4ac = -4(+) \cdot (-) = +$. Tức là Số trừ luôn thành số Cộng Dương Mốc khổng lồ! 
+Với $\Delta = b^2 - 4ac$. Mã Bình phương $b^2 \ge 0$ cộng thêm 1 đống $4ac$ Dương nữa $\Rightarrow$ Delta Luôn Tuyệt Đối LỚN HƠN 0! (Hai nghiệm phân biệt muôn đời).
+
+**Bài 4:**
+a) Điều kiện Bậc hai cứng nhắc: Hệ số $m \neq 0$.
+b) Delta tính bằng $\Delta = 4 - 4 \cdot m \cdot (-1) = 4 + 4m$.
+Nghiệm khép nẹp $\Delta = 0 \Rightarrow 4 + 4m = 0 \Rightarrow m = -1$.
+Thay $m=-1$ vào Nghiệm Kép $= -b/2a = -2 / -2 = 1$. (Nghiệm gỡ điểm $x=1$).
+
+</div>
+</details>

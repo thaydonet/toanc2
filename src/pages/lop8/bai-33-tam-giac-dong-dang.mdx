@@ -1,0 +1,529 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 33: Hai tam giác đồng dạng"
+description: "Khái niệm, định nghĩa và tính chất của hai tam giác đồng dạng - Toán 8 KNTT Chương 9"
+grade: "Lớp 8"
+chapter: "Chương 9: Tam giác đồng dạng"
+currentSlug: "lop8/bai-33-tam-giac-dong-dang"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import TriangleBoard from '../../components/interactive/TriangleBoard';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hai tam giác đồng dạng có:",
+    option_a: "Các góc tương ứng bằng nhau và các cạnh tương ứng tỉ lệ",
+    option_b: "Các góc bằng nhau",
+    option_c: "Các cạnh bằng nhau",
+    option_d: "Diện tích bằng nhau",
+    correct_option: "A",
+    explanation: "Hai tam giác đồng dạng khi các góc tương ứng bằng nhau và các cạnh tương ứng tỉ lệ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC \\sim \\triangle DEF$ với tỉ số đồng dạng $k = 2$. Nếu $AB = 6$ cm thì $DE$ bằng:",
+    option_a: "$3$ cm",
+    option_b: "$12$ cm",
+    option_c: "$6$ cm",
+    option_d: "$9$ cm",
+    correct_option: "A",
+    explanation: "$k = \\dfrac{AB}{DE} = 2 \\Rightarrow DE = \\dfrac{AB}{2} = \\dfrac{6}{2} = 3$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai tam giác bằng nhau thì:",
+    option_a: "Đồng dạng với tỉ số $k = 1$",
+    option_b: "Không đồng dạng",
+    option_c: "Đồng dạng với tỉ số $k = 2$",
+    option_d: "Đồng dạng với tỉ số $k = 0$",
+    correct_option: "A",
+    explanation: "Hai tam giác bằng nhau là trường hợp đặc biệt của đồng dạng với $k = 1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC \\sim \\triangle MNP$ với $\\dfrac{AB}{MN} = \\dfrac{3}{2}$. Tỉ số chu vi hai tam giác là:",
+    option_a: "$\\dfrac{3}{2}$",
+    option_b: "$\\dfrac{2}{3}$",
+    option_c: "$\\dfrac{9}{4}$",
+    option_d: "$\\dfrac{4}{9}$",
+    correct_option: "A",
+    explanation: "Tỉ số chu vi bằng tỉ số đồng dạng: $\\dfrac{P_{ABC}}{P_{MNP}} = k = \\dfrac{3}{2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC \\sim \\triangle DEF$ với tỉ số $k = 3$. Tỉ số diện tích là:",
+    option_a: "$9$",
+    option_b: "$3$",
+    option_c: "$6$",
+    option_d: "$\\dfrac{1}{9}$",
+    correct_option: "A",
+    explanation: "Tỉ số diện tích bằng bình phương tỉ số đồng dạng: $\\dfrac{S_{ABC}}{S_{DEF}} = k^2 = 3^2 = 9$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $\\triangle ABC \\sim \\triangle DEF$ thì:",
+    option_a: "$\\triangle DEF \\sim \\triangle ABC$",
+    option_b: "$\\triangle ABC = \\triangle DEF$",
+    option_c: "$\\triangle ABC$ không đồng dạng $\\triangle DEF$",
+    option_d: "Không có quan hệ nào",
+    correct_option: "A",
+    explanation: "Tính chất đối xứng: Nếu $\\triangle ABC \\sim \\triangle DEF$ thì $\\triangle DEF \\sim \\triangle ABC$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho $\\triangle ABC \\sim \\triangle MNP$. Những khẳng định nào **đúng**?",
+    option_a: "$\\widehat{A} = \\widehat{M}$",
+    option_b: "$\\dfrac{AB}{MN} = \\dfrac{BC}{NP}$",
+    option_c: "$AB = MN$",
+    option_d: "$\\dfrac{AB}{MN} = \\dfrac{AC}{MP}$",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng theo định nghĩa đồng dạng. C sai vì các cạnh tỉ lệ chứ không bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho $\\triangle ABC \\sim \\triangle DEF$ với $AB = 6$ cm, $DE = 4$ cm. Tỉ số đồng dạng $k$ bằng bao nhiêu? (Viết dưới dạng phân số tối giản: a/b)",
+    correct_option: "3/2",
+    explanation: "$k = \\dfrac{AB}{DE} = \\dfrac{6}{4} = \\dfrac{3}{2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC \\sim \\triangle MNP$ với $AB = !a#3!$ cm, $MN = !b#2!$ cm. Tỉ số đồng dạng là:",
+    option_a: "$\\dfrac{!a!}{!b!}$",
+    option_b: "$\\dfrac{!b!}{!a!}$",
+    option_c: "$!tinh: !a! * !b!!$",
+    option_d: "$!tinh: !a! + !b!!$",
+    correct_option: "A",
+    explanation: "Tỉ số đồng dạng $k = \\dfrac{AB}{MN} = \\dfrac{!a!}{!b!}$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔍 Mở đầu — Hình đồng dạng trong thực tế</h3>
+
+Hai hình đồng dạng xuất hiện khắp nơi xung quanh ta:
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📸</div>
+    <strong>Ảnh phóng to/thu nhỏ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ảnh gốc và ảnh phóng to có hình dạng giống nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🗺️</div>
+    <strong>Bản đồ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bản đồ là hình thu nhỏ của địa hình thực tế</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏗️</div>
+    <strong>Mô hình kiến trúc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Mô hình nhà là phiên bản thu nhỏ của ngôi nhà thật</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #e9d5ff;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Thiết kế kỹ thuật</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bản vẽ kỹ thuật theo tỉ lệ</p>
+  </div>
+</div>
+
+💬 *Hai tam giác đồng dạng có hình dạng giống nhau nhưng kích thước có thể khác nhau!*
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia">📖 1. Định nghĩa tam giác đồng dạng</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hai tam giác $ABC$ và $A'B'C'$ được gọi là đồng dạng (ký hiệu: $\triangle ABC \sim \triangle A'B'C'$) nếu:
+
+1. **Các góc tương ứng bằng nhau:**
+   $$\widehat{A} = \widehat{A'}, \quad \widehat{B} = \widehat{B'}, \quad \widehat{C} = \widehat{C'}$$
+
+2. **Các cạnh tương ứng tỉ lệ:**
+   $$\frac{AB}{A'B'} = \frac{BC}{B'C'} = \frac{CA}{C'A'} = k$$
+
+Số $k$ gọi là **tỉ số đồng dạng** (hay hệ số đồng dạng).
+
+</div>
+
+**Lưu ý quan trọng:**
+- Thứ tự các đỉnh trong ký hiệu đồng dạng phải tương ứng
+- $\triangle ABC \sim \triangle A'B'C'$ nghĩa là: $A \leftrightarrow A'$, $B \leftrightarrow B'$, $C \leftrightarrow C'$
+
+**Ví dụ 1:** Cho $\triangle ABC$ có $AB = 6$ cm, $BC = 8$ cm, $CA = 10$ cm và $\triangle DEF$ có $DE = 3$ cm, $EF = 4$ cm, $FD = 5$ cm. Các góc tương ứng bằng nhau.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Kiểm tra tỉ lệ các cạnh:
+
+$$\frac{AB}{DE} = \frac{6}{3} = 2$$
+$$\frac{BC}{EF} = \frac{8}{4} = 2$$
+$$\frac{CA}{FD} = \frac{10}{5} = 2$$
+
+Vì các góc tương ứng bằng nhau và các cạnh tỉ lệ với $k = 2$:
+
+$$\triangle ABC \sim \triangle DEF$$
+
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📊 2. Tính chất của tam giác đồng dạng</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất:**
+
+1. **Phản xạ:** $\triangle ABC \sim \triangle ABC$ (với $k = 1$)
+
+2. **Đối xứng:** Nếu $\triangle ABC \sim \triangle A'B'C'$ thì $\triangle A'B'C' \sim \triangle ABC$
+
+3. **Bắc cầu:** Nếu $\triangle ABC \sim \triangle A'B'C'$ và $\triangle A'B'C' \sim \triangle A''B''C''$ thì $\triangle ABC \sim \triangle A''B''C''$
+
+4. **Tỉ số chu vi:** Nếu $\triangle ABC \sim \triangle A'B'C'$ với tỉ số $k$ thì:
+   $$\frac{P_{ABC}}{P_{A'B'C'}} = k$$
+
+5. **Tỉ số diện tích:** Nếu $\triangle ABC \sim \triangle A'B'C'$ với tỉ số $k$ thì:
+   $$\frac{S_{ABC}}{S_{A'B'C'}} = k^2$$
+
+</div>
+
+**Ví dụ 2:** Cho $\triangle ABC \sim \triangle DEF$ với $AB = 9$ cm, $DE = 6$ cm.
+
+a) Tính tỉ số đồng dạng
+
+b) Nếu chu vi $\triangle ABC$ là 27 cm, tính chu vi $\triangle DEF$
+
+c) Nếu diện tích $\triangle ABC$ là 36 cm², tính diện tích $\triangle DEF$
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tỉ số đồng dạng:
+
+$$k = \frac{AB}{DE} = \frac{9}{6} = \frac{3}{2}$$
+
+b) Tỉ số chu vi:
+
+$$\frac{P_{ABC}}{P_{DEF}} = k = \frac{3}{2}$$
+
+$$P_{DEF} = \frac{2 \times P_{ABC}}{3} = \frac{2 \times 27}{3} = 18 \text{ cm}$$
+
+c) Tỉ số diện tích:
+
+$$\frac{S_{ABC}}{S_{DEF}} = k^2 = \left(\frac{3}{2}\right)^2 = \frac{9}{4}$$
+
+$$S_{DEF} = \frac{4 \times S_{ABC}}{9} = \frac{4 \times 36}{9} = 16 \text{ cm}^2$$
+
+</div>
+
+<h3 id="truong-hop-dac-biet" style="margin-top:2rem;">⭐ 3. Trường hợp đặc biệt</h3>
+
+<div class="box-nhan-xet">
+
+**Hai tam giác bằng nhau:**
+
+Hai tam giác bằng nhau là trường hợp đặc biệt của tam giác đồng dạng với tỉ số $k = 1$.
+
+$$\triangle ABC = \triangle DEF \Rightarrow \triangle ABC \sim \triangle DEF \text{ (với } k = 1\text{)}$$
+
+</div>
+
+**Ví dụ 3:** Cho $\triangle ABC$ có $AB = 5$ cm, $BC = 7$ cm, $CA = 8$ cm và $\triangle MNP$ có $MN = 5$ cm, $NP = 7$ cm, $PM = 8$ cm.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Các cạnh tương ứng bằng nhau:
+
+$$\frac{AB}{MN} = \frac{5}{5} = 1$$
+$$\frac{BC}{NP} = \frac{7}{7} = 1$$
+$$\frac{CA}{PM} = \frac{8}{8} = 1$$
+
+Vậy $\triangle ABC = \triangle MNP$ (theo trường hợp c.c.c)
+
+Đồng thời: $\triangle ABC \sim \triangle MNP$ với $k = 1$
+
+</div>
+
+<h3 id="interactive" style="margin-top:2rem;">🔬 4. Công cụ tương tác</h3>
+
+<p>Khám phá tam giác đồng dạng với công cụ tương tác:</p>
+
+<TriangleBoard client:load />
+
+<h3 id="vi-du" style="margin-top:2rem;">✏️ 5. Ví dụ tổng hợp</h3>
+
+**Ví dụ 4:** Cho $\triangle ABC \sim \triangle MNP$ với $\widehat{A} = 50°$, $\widehat{B} = 60°$, $AB = 12$ cm, $MN = 8$ cm, $NP = 10$ cm.
+
+a) Tính $\widehat{C}$ và $\widehat{M}$, $\widehat{N}$, $\widehat{P}$
+
+b) Tính $BC$ và $CA$
+
+<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Trong $\triangle ABC$:
+
+$$\widehat{C} = 180° - \widehat{A} - \widehat{B} = 180° - 50° - 60° = 70°$$
+
+Vì $\triangle ABC \sim \triangle MNP$:
+
+$$\widehat{M} = \widehat{A} = 50°$$
+$$\widehat{N} = \widehat{B} = 60°$$
+$$\widehat{P} = \widehat{C} = 70°$$
+
+b) Tỉ số đồng dạng:
+
+$$k = \frac{AB}{MN} = \frac{12}{8} = \frac{3}{2}$$
+
+Tính $BC$:
+
+$$\frac{BC}{NP} = k \Rightarrow BC = k \times NP = \frac{3}{2} \times 10 = 15 \text{ cm}$$
+
+Để tính $CA$, cần biết $MP$ (không đủ dữ liệu trong đề).
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1 — Bản đồ:**
+
+Trên bản đồ tỉ lệ 1:50000, khoảng cách giữa hai điểm A và B là 6 cm. Tính khoảng cách thực tế.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tỉ lệ 1:50000 nghĩa là $k = \dfrac{1}{50000}$
+
+Khoảng cách thực tế:
+
+$$d = \frac{6}{k} = 6 \times 50000 = 300000 \text{ cm} = 3 \text{ km}$$
+
+</div>
+
+---
+
+**📝 Bài toán 2 — Mô hình kiến trúc:**
+
+Một mô hình nhà có chiều cao 30 cm, tương ứng với chiều cao thực tế 6 m. Nếu chiều dài mô hình là 40 cm, tính chiều dài thực tế.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Tỉ số đồng dạng:
+
+$$k = \frac{30 \text{ cm}}{600 \text{ cm}} = \frac{1}{20}$$
+
+Chiều dài thực tế:
+
+$$L = \frac{40}{k} = 40 \times 20 = 800 \text{ cm} = 8 \text{ m}$$
+
+</div>
+
+---
+
+**📝 Bài toán 3 — Đo chiều cao:**
+
+Một cây cao tạo bóng dài 12 m. Cùng lúc đó, một cột cao 2 m tạo bóng dài 3 m. Tính chiều cao của cây.
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Hai tam giác tạo bởi cây, bóng và tia sáng mặt trời đồng dạng:
+
+$$\frac{h_{cây}}{h_{cột}} = \frac{l_{cây}}{l_{cột}}$$
+
+$$\frac{h_{cây}}{2} = \frac{12}{3}$$
+
+$$h_{cây} = 2 \times 4 = 8 \text{ m}$$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Định nghĩa**: $\triangle ABC \sim \triangle A'B'C'$ khi góc bằng nhau và cạnh tỉ lệ
+- **Tỉ số đồng dạng**: $k = \dfrac{AB}{A'B'} = \dfrac{BC}{B'C'} = \dfrac{CA}{C'A'}$
+- **Tỉ số chu vi**: $\dfrac{P}{P'} = k$
+- **Tỉ số diện tích**: $\dfrac{S}{S'} = k^2$
+- **Tam giác bằng nhau**: Trường hợp đặc biệt với $k = 1$
+
+</GhiNho>
+
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho $\triangle ABC$ có $AB = 9$ cm, $BC = 12$ cm, $CA = 15$ cm và $\triangle DEF$ có $DE = 6$ cm, $EF = 8$ cm, $FD = 10$ cm. Các góc tương ứng bằng nhau.
+
+a) Chứng minh hai tam giác đồng dạng
+
+b) Tính tỉ số đồng dạng
+
+c) Nếu chu vi $\triangle ABC$ là 36 cm, tính chu vi $\triangle DEF$
+
+---
+
+**Bài 2:** Cho $\triangle MNP \sim \triangle M'N'P'$ với tỉ số đồng dạng $k = \dfrac{5}{3}$.
+
+a) Biết $MN = 10$ cm, tính $M'N'$
+
+b) Biết chu vi $\triangle MNP$ là 30 cm, tính chu vi $\triangle M'N'P'$
+
+c) Biết diện tích $\triangle MNP$ là 50 cm², tính diện tích $\triangle M'N'P'$
+
+d) Nếu $\widehat{M} = 45°$, tính $\widehat{M'}$
+
+---
+
+**Bài 3:** Cho $\triangle ABC$ có $\widehat{A} = 60°$, $\widehat{B} = 50°$, $AB = 8$ cm và $\triangle XYZ$ có $\widehat{X} = 60°$, $\widehat{Y} = 50°$, $XY = 12$ cm.
+
+a) Chứng minh $\triangle ABC \sim \triangle XYZ$
+
+b) Tính tỉ số đồng dạng
+
+c) Biết $BC = 6$ cm, tính $YZ$
+
+d) Nếu diện tích $\triangle ABC$ là 24 cm², tính diện tích $\triangle XYZ$
+
+---
+
+**Bài 4 (Ứng dụng thực tế):** Một kiến trúc sư thiết kế mô hình nhà theo tỉ lệ 1:50.
+
+a) Nếu chiều cao thực tế của ngôi nhà là 10 m, tính chiều cao mô hình (đơn vị: cm)
+
+b) Nếu chiều dài mô hình là 30 cm, tính chiều dài thực tế (đơn vị: m)
+
+c) Diện tích mặt bằng mô hình là 360 cm². Tính diện tích mặt bằng thực tế (đơn vị: m²)
+
+d) Nếu thể tích mô hình là 2160 cm³, tính thể tích thực tế (đơn vị: m³)
+
+---
+
+**Bài 5 (Nâng cao):** Cho $\triangle ABC$ có $AB = 6$ cm, $AC = 8$ cm, $BC = 10$ cm. Trên cạnh $AB$ lấy điểm $M$ sao cho $AM = 3$ cm, trên cạnh $AC$ lấy điểm $N$ sao cho $AN = 4$ cm.
+
+a) Chứng minh $\triangle AMN \sim \triangle ABC$
+
+b) Tính tỉ số đồng dạng
+
+c) Tính độ dài $MN$
+
+d) Tính tỉ số diện tích $\dfrac{S_{AMN}}{S_{ABC}}$
+
+e) Chứng minh $MN \parallel BC$
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $\dfrac{AB}{DE} = \dfrac{9}{6} = \dfrac{3}{2}$; $\dfrac{BC}{EF} = \dfrac{12}{8} = \dfrac{3}{2}$; $\dfrac{CA}{FD} = \dfrac{15}{10} = \dfrac{3}{2}$
+
+Ba cạnh tỉ lệ và các góc tương ứng bằng nhau $\Rightarrow \triangle ABC \sim \triangle DEF$
+
+b) $k = \dfrac{3}{2}$
+
+c) $P_{DEF} = \dfrac{2 \times 36}{3} = 24$ cm
+
+---
+
+**Bài 2:**
+
+a) $M'N' = \dfrac{3 \times 10}{5} = 6$ cm
+
+b) $P_{M'N'P'} = \dfrac{3 \times 30}{5} = 18$ cm
+
+c) $S_{M'N'P'} = \dfrac{9 \times 50}{25} = 18$ cm²
+
+d) $\widehat{M'} = 45°$ (góc tương ứng bằng nhau)
+
+---
+
+**Bài 3:**
+
+a) Có $\widehat{A} = \widehat{X} = 60°$ và $\widehat{B} = \widehat{Y} = 50°$ nên $\triangle ABC \sim \triangle XYZ$ (g.g)
+
+b) $k = \dfrac{XY}{AB} = \dfrac{12}{8} = \dfrac{3}{2}$
+
+c) $YZ = \dfrac{3 \times 6}{2} = 9$ cm
+
+d) $S_{XYZ} = \left(\dfrac{3}{2}\right)^2 \times 24 = \dfrac{9}{4} \times 24 = 54$ cm²
+
+---
+
+**Bài 4:**
+
+a) Chiều cao mô hình: $\dfrac{1000}{50} = 20$ cm
+
+b) Chiều dài thực tế: $30 \times 50 = 1500$ cm = 15 m
+
+c) Diện tích thực tế: $360 \times 50^2 = 360 \times 2500 = 900000$ cm² = 90 m²
+
+d) Thể tích thực tế: $2160 \times 50^3 = 2160 \times 125000 = 270000000$ cm³ = 270 m³
+
+---
+
+**Bài 5:**
+
+a) $\dfrac{AM}{AB} = \dfrac{3}{6} = \dfrac{1}{2}$; $\dfrac{AN}{AC} = \dfrac{4}{8} = \dfrac{1}{2}$
+
+Có $\dfrac{AM}{AB} = \dfrac{AN}{AC}$ và $\widehat{A}$ chung nên $\triangle AMN \sim \triangle ABC$ (c.g.c)
+
+b) $k = \dfrac{1}{2}$
+
+c) $MN = \dfrac{BC}{2} = \dfrac{10}{2} = 5$ cm
+
+d) $\dfrac{S_{AMN}}{S_{ABC}} = k^2 = \left(\dfrac{1}{2}\right)^2 = \dfrac{1}{4}$
+
+e) Vì $\triangle AMN \sim \triangle ABC$ nên $\widehat{AMN} = \widehat{ABC}$ (hai góc ở vị trí đồng vị) $\Rightarrow MN \parallel BC$
+
+</div>
+</details>

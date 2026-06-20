@@ -1,0 +1,377 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 16: Tam giác cân. Đường trung trực của đoạn thẳng"
+description: "Tam giác cân và đường trung trực - Toán 7 KNTT Chương 4"
+grade: "Lớp 7"
+chapter: "Chương IV: Tam giác bằng nhau"
+currentSlug: "lop7/bai-16-tam-giac-can-duong-trung-truc"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tam giác cân là tam giác có:",
+    option_a: "Hai cạnh bằng nhau",
+    option_b: "Ba cạnh bằng nhau",
+    option_c: "Hai góc vuông",
+    option_d: "Ba góc nhọn",
+    correct_option: "A",
+    explanation: "Tam giác cân là tam giác có hai cạnh bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác cân, hai góc ở đáy:",
+    option_a: "Bằng nhau",
+    option_b: "Vuông",
+    option_c: "Tù",
+    option_d: "Không bằng nhau",
+    correct_option: "A",
+    explanation: "Trong tam giác cân, hai góc ở đáy bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường trung trực của đoạn thẳng là:",
+    option_a: "Đường thẳng vuông góc với đoạn thẳng tại trung điểm",
+    option_b: "Đường thẳng đi qua trung điểm",
+    option_c: "Đường thẳng vuông góc với đoạn thẳng",
+    option_d: "Đường thẳng song song với đoạn thẳng",
+    correct_option: "A",
+    explanation: "Đường trung trực của đoạn thẳng là đường thẳng vuông góc với đoạn thẳng tại trung điểm của nó.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điểm nằm trên đường trung trực của đoạn thẳng AB thì:",
+    option_a: "Cách đều hai đầu mút A và B",
+    option_b: "Gần A hơn B",
+    option_c: "Gần B hơn A",
+    option_d: "Trùng với trung điểm",
+    correct_option: "A",
+    explanation: "Điểm nằm trên đường trung trực của đoạn thẳng thì cách đều hai đầu mút của đoạn thẳng đó.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Tính chất của tam giác cân:",
+    option_a: "Hai cạnh bên bằng nhau",
+    option_b: "Hai góc ở đáy bằng nhau",
+    option_c: "Đường cao từ đỉnh là đường trung tuyến",
+    option_d: "Đường cao từ đỉnh là đường phân giác",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều là tính chất của tam giác cân.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tam giác ABC cân tại A có góc A = 40°. Tính góc B (đơn vị độ).",
+    correct_option: "70",
+    explanation: "Góc B = góc C = (180° - 40°) : 2 = 70°",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Tam giác cân và đường trung trực</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">△</div>
+    <strong>Tam giác cân</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hai cạnh bằng nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⊥</div>
+    <strong>Đường trung trực</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Vuông góc tại trung điểm</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="tam-giac-can">📖 1. Tam giác cân</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Tam giác cân là tam giác có hai cạnh bằng nhau.
+
+Hai cạnh bằng nhau gọi là **hai cạnh bên**, cạnh còn lại gọi là **cạnh đáy**.
+
+Góc tạo bởi hai cạnh bên gọi là **góc ở đỉnh**, hai góc còn lại gọi là **hai góc ở đáy**.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="300" height="280" viewBox="0 0 300 280" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác cân ABC */}
+  <polygon points="150,50 80,220 220,220" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Đỉnh */}
+  <circle cx="150" cy="50" r="3" fill="#ef4444"/>
+  <text x="150" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  {/* Đáy trái */}  
+  <circle cx="80" cy="220" r="3" fill="#3b82f6"/>
+  <text x="70" y="245" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">B</text>
+  
+  {/* Đáy phải */}
+  <circle cx="220" cy="220" r="3" fill="#3b82f6"/>
+  <text x="230" y="245" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">C</text>
+  
+  {/* Cạnh bên trái */}
+  <text x="105" y="125" font-size="14" fill="#ef4444" transform="rotate(-60 105 125)">AB</text>
+  
+  {/* Cạnh bên phải */}
+  <text x="195" y="125" font-size="14" fill="#ef4444" transform="rotate(60 195 125)">AC</text>
+  
+  {/* Cạnh đáy */}
+  <text x="150" y="240" font-size="14" fill="#059669" text-anchor="middle">BC (đáy)</text>
+  
+  {/* Chú thích */}
+  <text x="150" y="270" font-size="13" text-anchor="middle" fill="#6b7280">AB = AC (cạnh bên)</text>
+</svg>
+</div>
+
+<h3 id="tinh-chat-tam-giac-can" style="margin-top:2rem;">⭐ 2. Tính chất của tam giác cân</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Trong tam giác cân, hai góc ở đáy bằng nhau.
+
+**Định lí đảo:** Nếu một tam giác có hai góc bằng nhau thì tam giác đó là tam giác cân.
+
+</div>
+
+**Ví dụ 1:** Tam giác $ABC$ cân tại $A$ có $\\widehat{A} = 40°$. Tính $\\widehat{B}$ và $\\widehat{C}$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Vì $\\triangle ABC$ cân tại $A$ nên $\\widehat{B} = \\widehat{C}$
+
+Ta có: $\\widehat{A} + \\widehat{B} + \\widehat{C} = 180°$
+
+$40° + \\widehat{B} + \\widehat{B} = 180°$
+
+$2\\widehat{B} = 140°$
+
+$\\widehat{B} = 70°$
+
+Vậy $\\widehat{B} = \\widehat{C} = 70°$
+
+</div>
+
+<h3 id="duong-cao-tam-giac-can" style="margin-top:2rem;">📐 3. Đường cao trong tam giác cân</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí:** Trong tam giác cân, đường cao xuất phát từ đỉnh đồng thời là:
+- Đường trung tuyến
+- Đường phân giác
+- Đường trung trực của cạnh đáy
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="300" height="280" viewBox="0 0 300 280" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác cân */}
+  <polygon points="150,50 80,220 220,220" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Đường cao AH */}
+  <line x1="150" y1="50" x2="150" y2="220" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  {/* Góc vuông tại H */}
+  <rect x="145" y="215" width="10" height="10" fill="none" stroke="#ef4444" stroke-width="1"/>
+  
+  {/* Các điểm */}
+  <circle cx="150" cy="50" r="3" fill="#3b82f6"/>
+  <text x="150" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  <circle cx="80" cy="220" r="3" fill="#3b82f6"/>
+  <text x="70" y="245" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">B</text>
+  
+  <circle cx="220" cy="220" r="3" fill="#3b82f6"/>
+  <text x="230" y="245" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">C</text>
+  
+  <circle cx="150" cy="220" r="3" fill="#ef4444"/>
+  <text x="150" y="245" font-size="16" font-weight="bold" text-anchor="middle" fill="#ef4444">H</text>
+  
+  {/* Chú thích */}
+  <text x="165" y="135" font-size="13" fill="#ef4444">AH ⊥ BC</text>
+  <text x="150" y="270" font-size="12" text-anchor="middle" fill="#6b7280">BH = HC (trung điểm)</text>
+</svg>
+</div>
+
+<h3 id="duong-trung-truc" style="margin-top:2rem;">📏 4. Đường trung trực của đoạn thẳng</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Đường trung trực của một đoạn thẳng là đường thẳng vuông góc với đoạn thẳng đó tại trung điểm của nó.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="300" height="250" viewBox="0 0 300 250" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Đoạn thẳng AB */}
+  <line x1="80" y1="150" x2="220" y2="150" stroke="#3b82f6" stroke-width="3"/>
+  
+  {/* Đường trung trực */}
+  <line x1="150" y1="50" x2="150" y2="230" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  {/* Góc vuông tại I */}
+  <rect x="145" y="145" width="10" height="10" fill="none" stroke="#ef4444" stroke-width="1"/>
+  
+  {/* Điểm A */}
+  <circle cx="80" cy="150" r="4" fill="#3b82f6"/>
+  <text x="70" y="140" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  {/* Điểm B */}
+  <circle cx="220" cy="150" r="4" fill="#3b82f6"/>
+  <text x="230" y="140" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">B</text>
+  
+  {/* Trung điểm I */}
+  <circle cx="150" cy="150" r="4" fill="#ef4444"/>
+  <text x="165" y="145" font-size="16" font-weight="bold" fill="#ef4444">I</text>
+  
+  {/* Điểm M trên đường trung trực */}
+  <circle cx="150" cy="80" r="3" fill="#059669"/>
+  <text x="165" y="80" font-size="16" font-weight="bold" fill="#059669">M</text>
+  
+  {/* Đoạn MA và MB */}
+  <line x1="150" y1="80" x2="80" y2="150" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="150" y1="80" x2="220" y2="150" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  {/* Chú thích */}
+  <text x="150" y="30" font-size="13" text-anchor="middle" fill="#ef4444">d (đường trung trực)</text>
+  <text x="150" y="220" font-size="12" text-anchor="middle" fill="#6b7280">IA = IB, d ⊥ AB</text>
+</svg>
+</div>
+
+<h3 id="tinh-chat-duong-trung-truc" style="margin-top:2rem;">⭐ 5. Tính chất đường trung trực</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí 1:** Điểm nằm trên đường trung trực của một đoạn thẳng thì cách đều hai đầu mút của đoạn thẳng đó.
+
+**Định lí 2 (Đảo):** Điểm cách đều hai đầu mút của một đoạn thẳng thì nằm trên đường trung trực của đoạn thẳng đó.
+
+</div>
+
+**Ví dụ 2:** Cho đoạn thẳng $AB$, $I$ là trung điểm. Đường thẳng $d$ vuông góc với $AB$ tại $I$. Điểm $M$ nằm trên $d$. Chứng minh $MA = MB$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Vì $d$ là đường trung trực của $AB$ (vuông góc với $AB$ tại trung điểm $I$)
+
+Điểm $M$ nằm trên $d$ nên $M$ cách đều hai đầu mút $A$ và $B$
+
+Vậy $MA = MB$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Cho tam giác $ABC$ cân tại $A$. Kẻ $AH \\perp BC$ tại $H$.
+
+a) Chứng minh $H$ là trung điểm của $BC$
+
+b) Chứng minh $AH$ là tia phân giác của góc $A$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Xét $\\triangle ABH$ và $\\triangle ACH$ (vuông tại $H$) có:
+- $AB = AC$ (gt: tam giác cân)
+- $AH$ chung
+
+Vậy $\\triangle ABH = \\triangle ACH$ (cạnh huyền - cạnh góc vuông)
+
+Suy ra $BH = CH$, do đó $H$ là trung điểm của $BC$
+
+b) Từ $\\triangle ABH = \\triangle ACH$ suy ra $\\widehat{BAH} = \\widehat{CAH}$
+
+Vậy $AH$ là tia phân giác của góc $A$
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Tam giác cân**: có hai cạnh bằng nhau
+- **Tính chất**: hai góc ở đáy bằng nhau
+- **Định lí đảo**: hai góc bằng nhau → tam giác cân
+- **Đường cao từ đỉnh**: là trung tuyến, phân giác, trung trực
+- **Đường trung trực**: vuông góc với đoạn thẳng tại trung điểm
+- **Tính chất**: điểm trên đường trung trực cách đều hai đầu mút
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho tam giác $ABC$ cân tại $A$, có $\\widehat{A} = 50°$. Tính $\\widehat{B}$ và $\\widehat{C}$.
+
+**Bài 2:** Cho tam giác $DEF$ có $\\widehat{D} = 70°$, $\\widehat{E} = 70°$. Chứng minh tam giác $DEF$ cân.
+
+**Bài 3:** Cho đoạn thẳng $AB$ dài 6 cm. Vẽ đường trung trực $d$ của $AB$. Lấy điểm $M$ trên $d$. Tính $MA + MB$.
+
+**Bài 4:** Cho tam giác $ABC$ cân tại $A$. Kẻ $AH \\perp BC$. Biết $BC = 8$ cm, $AH = 3$ cm. Tính chu vi tam giác $ABC$.
+
+**Bài 5:** Cho tam giác $MNP$ cân tại $M$, có $\\widehat{N} = 65°$. Tính $\\widehat{M}$.
+
+**Bài 6:** Cho đoạn thẳng $AB$. Điểm $M$ cách đều $A$ và $B$, điểm $N$ cách đều $A$ và $B$. Chứng minh $M$, $N$ nằm trên đường trung trực của $AB$.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** $\\widehat{B} = \\widehat{C} = 65°$
+
+**Bài 2:** Vì $\\widehat{D} = \\widehat{E} = 70°$ nên tam giác $DEF$ cân tại $F$
+
+**Bài 3:** $MA + MB = 2MA = 2MB$ (vì $MA = MB$). Không tính được giá trị cụ thể vì không biết vị trí $M$
+
+**Bài 4:** $BH = HC = 4$ cm. $AB = AC = \\sqrt{AH^2 + BH^2} = \\sqrt{9 + 16} = 5$ cm. Chu vi = $5 + 5 + 8 = 18$ cm
+
+**Bài 5:** $\\widehat{M} = 180° - 65° - 65° = 50°$
+
+**Bài 6:** Vì $M$ và $N$ đều cách đều hai đầu mút $A$, $B$ nên theo định lí đảo, chúng nằm trên đường trung trực của $AB$
+
+</div>
+</details>

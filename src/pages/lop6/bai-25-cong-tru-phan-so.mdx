@@ -1,0 +1,441 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 25: Phép cộng và phép trừ phân số"
+description: "Phép cộng và phép trừ phân số - Toán 6 KNTT Chương 6"
+grade: "Lớp 6"
+chapter: "Chương VI: Phân số"
+currentSlug: "lop6/bai-25-cong-tru-phan-so"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import FractionCalc from '../../components/interactive/FractionCalc';
+import FractionOperation from '../../components/interactive/FractionOperation';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tính $\\frac{1}{4} + \\frac{1}{4}$:",
+    option_a: "$\\frac{2}{4}$",
+    option_b: "$\\frac{1}{2}$",
+    option_c: "$\\frac{2}{8}$",
+    option_d: "$\\frac{1}{8}$",
+    correct_option: "B",
+    explanation: "$\\frac{1}{4} + \\frac{1}{4} = \\frac{2}{4} = \\frac{1}{2}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\frac{2}{3} - \\frac{1}{6}$:",
+    option_a: "$\\frac{1}{6}$",
+    option_b: "$\\frac{1}{3}$",
+    option_c: "$\\frac{3}{6}$",
+    option_d: "$\\frac{1}{2}$",
+    correct_option: "D",
+    explanation: "$\\frac{2}{3} = \\frac{4}{6}$. $\\frac{4}{6} - \\frac{1}{6} = \\frac{3}{6} = \\frac{1}{2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\frac{3}{5} + \\frac{1}{3}$:",
+    option_a: "$\\frac{4}{15}$",
+    option_b: "$\\frac{14}{15}$",
+    option_c: "$\\frac{4}{8}$",
+    option_d: "$\\frac{9}{15}$",
+    correct_option: "B",
+    explanation: "BCNN(5,3) = 15. $\\frac{3}{5} = \\frac{9}{15}$, $\\frac{1}{3} = \\frac{5}{15}$. Tổng: $\\frac{14}{15}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $-\\frac{2}{7} + \\frac{5}{7}$:",
+    option_a: "$\\frac{3}{7}$",
+    option_b: "$\\frac{7}{7}$",
+    option_c: "$-\\frac{3}{7}$",
+    option_d: "$\\frac{-3}{7}$",
+    correct_option: "A",
+    explanation: "$-\\frac{2}{7} + \\frac{5}{7} = \\frac{-2 + 5}{7} = \\frac{3}{7}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\frac{5}{6} - \\frac{7}{9}$:",
+    option_a: "$\\frac{-2}{18}$",
+    option_b: "$\\frac{1}{18}$",
+    option_c: "$\\frac{2}{3}$",
+    option_d: "$\\frac{5}{6}$",
+    correct_option: "B",
+    explanation: "BCNN(6,9) = 18. $\\frac{5}{6} = \\frac{15}{18}$, $\\frac{7}{9} = \\frac{14}{18}$. Hiệu: $\\frac{15-14}{18} = \\frac{1}{18}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $2 + \\frac{3}{4}$:",
+    option_a: "$\\frac{5}{4}$",
+    option_b: "$2\\frac{3}{4}$",
+    option_c: "$\\frac{11}{4}$",
+    option_d: "Cả A và B đều đúng",
+    correct_option: "D",
+    explanation: "$2 = \\frac{8}{4}$, $\\frac{8}{4} + \\frac{3}{4} = \\frac{11}{4} = 2\\frac{3}{4}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $\\frac{3}{8} + \\frac{5}{8} + \\frac{7}{8}$:",
+    option_a: "$\\frac{15}{8}$",
+    option_b: "$\\frac{15}{24}$",
+    option_c: "$1\\frac{7}{8}$",
+    option_d: "$\\frac{5}{8}$",
+    correct_option: "A",
+    explanation: "$\\frac{3+5+7}{8} = \\frac{15}{8}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của phép trừ $\\frac{5}{6} - \\frac{5}{6}$ là:",
+    option_a: "0",
+    option_b: "$\\frac{10}{6}$",
+    option_c: "$\\frac{0}{6}$",
+    option_d: "$\\frac{5}{6}$",
+    correct_option: "A",
+    explanation: "$\\frac{5}{6} - \\frac{5}{6} = 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính $-\\frac{1}{3} - \\frac{2}{3}$:",
+    option_a: "$-\\frac{3}{3}$",
+    option_b: "$-1$",
+    option_c: "$-3$",
+    option_d: "$\\frac{1}{3}$",
+    correct_option: "B",
+    explanation: "$-\\frac{1}{3} - \\frac{2}{3} = -\\frac{1+2}{3} = -\\frac{3}{3} = -1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phép cộng phân số có tính chất nào?",
+    option_a: "Giao hoán",
+    option_b: "Kết hợp",
+    option_c: "Cộng với 0",
+    option_d: "Tất cả đều đúng",
+    correct_option: "D",
+    explanation: "Phép cộng phân số có: giao hoán, kết hợp, cộng với 0.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🍕 Cộng phần bánh</h3>
+
+Lan mua $\dfrac{1}{4}$ cái bánh pizza, sau đó mua thêm $\dfrac{2}{4}$ cái bánh nữa. Hỏi Lan mua tất cả bao nhiêu phần bánh?
+
+<div style="display:flex; gap:2rem; align-items:center; flex-wrap:wrap; justify-content:center; margin:1.5rem 0;">
+  <div style="text-align:center;">
+    <p>$\dfrac{1}{4}$</p>
+  </div>
+  <div style="text-align:center;font-size:1.5rem;">+</div>
+  <div style="text-align:center;">
+    <p>$\dfrac{2}{4}$</p>
+  </div>
+  <div style="text-align:center;font-size:1.5rem;">=</div>
+  <div style="text-align:center;">
+    <p>$\dfrac{3}{4}$</p>
+  </div>
+</div>
+
+**Tổng: $\dfrac{1}{4} + \dfrac{2}{4} = \dfrac{3}{4}$**
+
+Nhưng nếu Lan mua $\dfrac{1}{3}$ và $\dfrac{1}{4}$ thì sao? Hãy học cách cộng các phân số khác mẫu!
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="cong-cung-mau" style="margin-top:2rem;">📖 1. Cộng phân số cùng mẫu</h3>
+
+<div class="box-dinh-ly">
+
+$$\frac{a}{m} + \frac{b}{m} = \frac{a + b}{m} \quad (m > 0)$$
+
+**Quy tắc:** Cộng các tử số, giữ nguyên mẫu số.
+
+</div>
+
+**Ví dụ 1:** $\dfrac{2}{9} + \dfrac{5}{9} = \dfrac{2 + 5}{9} = \dfrac{7}{9}$
+
+<h3 id="cong-khac-mau" style="margin-top:2rem;">📖 2. Cộng phân số khác mẫu</h3>
+
+<div class="box-dinh-ly">
+
+**Bước 1:** Quy đồng mẫu số các phân số
+
+**Bước 2:** Cộng các phân số cùng mẫu
+
+</div>
+
+**Ví dụ 2:** Tính $\dfrac{1}{3} + \dfrac{1}{4}$
+
+- BCNN(3, 4) = 12
+- $\dfrac{1}{3} = \dfrac{4}{12}$
+- $\dfrac{1}{4} = \dfrac{3}{12}$
+- $\dfrac{4}{12} + \dfrac{3}{12} = \dfrac{7}{12}$
+
+<FractionCalc client:load operation="add" />
+
+<h3 id="tru-phan-so" style="margin-top:2rem;">📖 3. Trừ phân số</h3>
+
+<div class="box-dinh-ly">
+
+$$\frac{a}{m} - \frac{b}{m} = \frac{a - b}{m} \quad (m > 0)$$
+
+**Quy tắc:** Trừ các tử số, giữ nguyên mẫu số (các phân số phải cùng mẫu).
+
+</div>
+
+**Ví dụ 3:** Tính $\dfrac{7}{10} - \dfrac{2}{5}$
+
+- $\dfrac{2}{5} = \dfrac{4}{10}$
+- $\dfrac{7}{10} - \dfrac{4}{10} = \dfrac{3}{10}$
+
+<FractionCalc client:load operation="subtract" />
+
+<h3 id="cong-tru-phan-am" style="margin-top:2rem;">📖 4. Cộng, trừ phân số âm</h3>
+
+<div class="box-luu-y">
+
+**Quy tắc cộng phân số có dấu:**
+
+1. Cùng dấu: cộng giá trị tuyệt đối, giữ ngấu chung
+2. Khác dấu: trừ giá trị tuyệt đối (lớn trừ nhỏ), lấy dấu của số có GTTĐ lớn hơn
+
+$$\frac{-a}{b} + \frac{c}{d} = \frac{-ad + bc}{bd}$$
+
+</div>
+
+**Ví dụ 4a:** $\dfrac{-2}{5} + \dfrac{-3}{5} = \dfrac{-5}{5} = -1$
+
+**Ví dụ 4b:** $\dfrac{-2}{5} + \dfrac{3}{5} = \dfrac{1}{5}$
+
+**Ví dụ 4c:** $\dfrac{3}{5} + \dfrac{-7}{5} = \dfrac{-4}{5}$
+
+<h3 id="tinh-chat" style="margin-top:2rem;">📖 5. Tính chất của phép cộng phân số</h3>
+
+<div class="box-dinh-ly">
+
+Phép cộng phân số có các tính chất:
+
+1. **Giao hoán:** $\dfrac{a}{b} + \dfrac{c}{d} = \dfrac{c}{d} + \dfrac{a}{b}$
+
+2. **Kết hợp:** $\left(\dfrac{a}{b} + \dfrac{c}{d}\right) + \dfrac{e}{f} = \dfrac{a}{b} + \left(\dfrac{c}{d} + \dfrac{e}{f}\right)$
+
+3. **Cộng với 0:** $\dfrac{a}{b} + 0 = \dfrac{a}{b}$
+
+</div>
+
+**Ví dụ 5:** Tính nhanh: $\dfrac{1}{2} + \dfrac{3}{7} + \dfrac{1}{2} + \dfrac{4}{7}$
+
+$\left(\dfrac{1}{2} + \dfrac{1}{2}\right) + \left(\dfrac{3}{7} + \dfrac{4}{7}\right) = 1 + 1 = 2$
+
+<h3 id="phep-tinh-lien-tiep" style="margin-top:2rem;">📖 6. Dãy phép tính cộng trừ phân số</h3>
+
+<div class="box-luu-y">
+
+Thực hiện từ **trái sang phải**, hoặc theo thứ tự:
+1. Trong ngoặc trước
+2. Cộng trừ liên tiếp
+
+</div>
+
+**Ví dụ 6:** Tính $\dfrac{3}{4} - \dfrac{1}{4} + \dfrac{2}{4}$
+
+$\dfrac{3 - 1 + 2}{4} = \dfrac{4}{4} = 1$
+
+<FractionOperation client:load operation="add" />
+
+</KhamPha>
+
+<LuyenTap title="Luyện tập">
+
+**Bài 1:** Tính:
+
+a) $\dfrac{3}{8} + \dfrac{2}{8}$ b) $\dfrac{7}{12} + \dfrac{1}{12}$ c) $\dfrac{9}{10} - \dfrac{4}{10}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $\dfrac{3+2}{8} = \dfrac{5}{8}$
+
+b) $\dfrac{7+1}{12} = \dfrac{8}{12} = \dfrac{2}{3}$
+
+c) $\dfrac{9-4}{10} = \dfrac{5}{10} = \dfrac{1}{2}$
+
+</div>
+
+**Bài 2:** Tính (quy đồng trước):
+
+a) $\dfrac{1}{2} + \dfrac{1}{3}$ b) $\dfrac{3}{4} - \dfrac{1}{6}$ c) $\dfrac{2}{5} + \dfrac{3}{7}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) BCNN(2,3) = 6: $\dfrac{3}{6} + \dfrac{2}{6} = \dfrac{5}{6}$
+
+b) BCNN(4,6) = 12: $\dfrac{9}{12} - \dfrac{2}{12} = \dfrac{7}{12}$
+
+c) BCNN(5,7) = 35: $\dfrac{14}{35} + \dfrac{15}{35} = \dfrac{29}{35}$
+
+</div>
+
+**Bài 3:** Tính:
+
+a) $-\dfrac{2}{5} + \dfrac{4}{5}$ b) $\dfrac{3}{-7} + \dfrac{-5}{-7}$ c) $\dfrac{-4}{9} - \dfrac{2}{9}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $\dfrac{-2+4}{5} = \dfrac{2}{5}$
+
+b) $\dfrac{3-5}{-7} = \dfrac{-2}{-7} = \dfrac{2}{7}$
+
+c) $\dfrac{-4-2}{9} = \dfrac{-6}{9} = \dfrac{-2}{3}$
+
+</div>
+
+**Bài 4:** Tính nhanh:
+
+a) $\dfrac{1}{3} + \dfrac{1}{4} + \dfrac{2}{3} + \dfrac{3}{4}$
+
+b) $\dfrac{5}{8} + \dfrac{3}{8} + \dfrac{7}{8}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $(\dfrac{1}{3} + \dfrac{2}{3}) + (\dfrac{1}{4} + \dfrac{3}{4}) = 1 + 1 = 2$
+
+b) $\dfrac{5+3+7}{8} = \dfrac{15}{8} = 1\dfrac{7}{8}$
+
+</div>
+
+</LuyenTap>
+
+<VanDung title="Vận dụng">
+
+**Bài 1:** Một người đi bộ trong ngày. Buổi sáng đi được $\dfrac{2}{5}$ km, buổi chiều đi được $\dfrac{3}{7}$ km. Hỏi cả ngày đi được bao nhiêu km?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+BCNN(5, 7) = 35
+
+$\dfrac{2}{5} = \dfrac{14}{35}$, $\dfrac{3}{7} = \dfrac{15}{35}$
+
+Tổng: $\dfrac{14 + 15}{35} = \dfrac{29}{35}$ km
+
+</div>
+
+**Bài 2:** Một bể nước có $\dfrac{3}{5}$ bể nước. Người ta dùng $\dfrac{1}{4}$ bể nước. Hỏi còn lại bao nhiêu phần bể nước?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+BCNN(5, 4) = 20
+
+$\dfrac{3}{5} = \dfrac{12}{20}$, $\dfrac{1}{4} = \dfrac{5}{20}$
+
+Còn lại: $\dfrac{12}{20} - \dfrac{5}{20} = \dfrac{7}{20}$ bể
+
+</div>
+
+**Bài 3:** Tính chu vi hình tam giác có các cạnh: $\dfrac{3}{4}$ cm, $\dfrac{5}{6}$ cm, $\dfrac{7}{12}$ cm
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+BCNN(4, 6, 12) = 12
+
+$\dfrac{3}{4} = \dfrac{9}{12}$, $\dfrac{5}{6} = \dfrac{10}{12}$, $\dfrac{7}{12} = \dfrac{7}{12}$
+
+Chu vi: $\dfrac{9+10+7}{12} = \dfrac{26}{12} = \dfrac{13}{6} = 2\dfrac{1}{6}$ cm
+
+</div>
+
+</VanDung>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Tổng kết bài học:**
+
+**1. Cộng phân số:**
+- Cùng mẫu: $\dfrac{a}{m} + \dfrac{b}{m} = \dfrac{a+b}{m}$
+- Khác mẫu: Quy đồng mẫu rồi cộng
+
+**2. Trừ phân số:**
+- Cùng mẫu: $\dfrac{a}{m} - \dfrac{b}{m} = \dfrac{a-b}{m}$
+- Khác mẫu: Quy đồng mẫu rồi trừ
+
+**3. Phân số âm:**
+- Cùng dấu: Cộng GTTĐ, giữ dấu chung
+- Khác dấu: Trừ GTTĐ, lấy dấu của số lớn hơn
+
+**4. Tính chất phép cộng:**
+- Giao hoán: $a + b = b + a$
+- Kết hợp: $(a + b) + c = a + (b + c)$
+- Cộng với 0: $a + 0 = a$
+
+</div>
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính:
+
+a) $\dfrac{3}{8} + \dfrac{5}{8}$ b) $\dfrac{7}{12} - \dfrac{5}{12}$ c) $\dfrac{2}{9} + \dfrac{5}{9} + \dfrac{4}{9}$
+
+**Bài 2:** Tính (quy đồng mẫu trước):
+
+a) $\dfrac{1}{2} + \dfrac{1}{5}$ b) $\dfrac{3}{4} - \dfrac{2}{7}$ c) $\dfrac{2}{3} + \dfrac{3}{5} - \dfrac{1}{15}$
+
+**Bài 3:** Tính:
+
+a) $-\dfrac{2}{5} + \dfrac{3}{5}$ b) $\dfrac{4}{-7} - \dfrac{5}{-7}$ c) $-\dfrac{3}{8} + \dfrac{-5}{8}$
+
+**Bài 4:** Tính nhanh:
+
+a) $\dfrac{1}{4} + \dfrac{2}{5} + \dfrac{3}{4} + \dfrac{3}{5}$ b) $\left(\dfrac{3}{7} + \dfrac{5}{11}\right) + \left(\dfrac{4}{7} + \dfrac{6}{11}\right)$
+
+**Bài 5:** Một người đi quãng đường AB. Buổi sáng đi được $\dfrac{2}{7}$ quãng đường, buổi chiều đi được $\dfrac{3}{5}$ quãng đường. Hỏi còn lại bao nhiêu phần quãng đường?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $1$; b) $\dfrac{1}{6}$; c) $1\dfrac{2}{9}$
+
+**Bài 2:** a) $\dfrac{7}{10}$; b) $\dfrac{13}{28}$; c) $1\dfrac{1}{5}$
+
+**Bài 3:** a) $\dfrac{1}{5}$; b) $\dfrac{1}{7}$; c) $-1$
+
+**Bài 4:** a) $2$; b) $2$
+
+**Bài 5:** $\dfrac{4}{35}$ quãng đường
+
+</div>
+</details>
+
+<QuizSession client:load questions={quizData} />
+

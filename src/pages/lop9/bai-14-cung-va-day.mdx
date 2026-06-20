@@ -1,0 +1,301 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 14: Cung và dây của một đường tròn"
+description: "Khái niệm và định lý liên hệ giữa cung, dây và đường kính trong đường tròn - Toán 9 KNTT Chương 5"
+grade: "Lớp 9"
+chapter: "Chương V: Đường tròn"
+currentSlug: "lop9/bai-14-cung-va-day"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Dây lớn nhất của đường tròn là dây nào?",
+    option_a: "Dây đi qua môt điểm bất kì",
+    option_b: "Đường kính",
+    option_c: "Dây vuông góc với bán kính",
+    option_d: "Dây song song với trục hoành",
+    correct_option: "B",
+    explanation: "Đường kính là dây đi qua tâm. So với mọi dây cung không đi qua tâm, nó luôn luôn có độ dài lớn nhất (Bằng 2 lần Bán kính).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số đo cung tròn của toàn bộ MỘT đường tròn bằng bao nhiêu độ?",
+    option_a: "$90^\\circ$",
+    option_b: "$180^\\circ$",
+    option_c: "$270^\\circ$",
+    option_d: "$360^\\circ$",
+    correct_option: "D",
+    explanation: "Một vòng xoay cạn kiệt đường tròn tương đương môt góc quét đầy là 360 độ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong một đường tròn (hoặc hai đường tròn bằng nhau), hai cung ĐƯỢC GỌI LÀ BẰNG NHAU khi nào?",
+    option_a: "Chúng có số đo bằng nhau",
+    option_b: "Chúng nằm trên cùng một nửa mặt phẳng",
+    option_c: "Chúng đối xứng qua tâm",
+    option_d: "Chúng có số đo tỉ lệ thuận với bán kính",
+    correct_option: "A",
+    explanation: "Nhận định A đúng. Hai cung bằng nhau nếu số đo cung của chúng (góc ở tâm) hoàn toàn bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Định lý quan hệ giữa đường kính và dây: Theo đó, đường kính vuông góc với một dây (không là đường kính) thì...",
+    option_a: "Sẽ cắt dây đó tại hai điểm phân biệt.",
+    option_b: "Sẽ đi qua trung điểm của dây đó.",
+    option_c: "Sẽ song song với tiếp tuyến tại trung điểm.",
+    option_d: "Sẽ chia đường tròn làm bốn phần.",
+    correct_option: "B",
+    explanation: "Định lý: Đường kính vuông góc với môt dây cung thì nó là đường trung trực của dây cung ấy, tức là ĐI QUA TRUNG ĐIỂM của dây.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính chất ĐẢO: Khi đường kính đi qua TRUNG ĐIỂM của một dây cung (dây này KHÔNG đi qua tâm), kết luận gì xảy ra?",
+    option_a: "Đường kính đó chia tâm.",
+    option_b: "Nó sẽ song song với dây.",
+    option_c: "Nó sẽ vuông góc với dây.",
+    option_d: "Dây đó là dây lớn nhất.",
+    correct_option: "C",
+    explanation: "Đây là chiều ngược lại: Đi qua trung điểm (của cung không phải đường kính) $\\Rightarrow$ Vuông góc với cung. Tránh bẫy nếu dây cung cũng là một đường kính chéo khác, thì chúng cắt nhau ở tâm (trung điểm) nhưng CHƯA CHẮC vuông góc.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho 2 dây AB và CD của một đường tròn. Biết $AB < CD$. Hỏi nhận định về cung NHỎ căng các dây này như thế nào?",
+    option_a: "Cung AB = Cung CD",
+    option_b: "Cung AB < Cung CD",
+    option_c: "Cung AB > Cung CD",
+    option_d: "Không so sánh được",
+    correct_option: "B",
+    explanation: "Dây lớn hơn căng cung lớn hơn. Do $AB < CD$ nên số đo Cung Nhỏ AB < số đo Cung Nhỏ CD.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Chọn các phát biểu ĐÚNG về Cung và Dây cung của hình tròn:",
+    option_a: "Có 2 khái niệm là Cung Nhỏ và Cung Lớn được chia bởi 1 dây cung.",
+    option_b: "Dây cung là đoạn cong giới hạn hai điểm.",
+    option_c: "Bán kính luôn vuông góc với mọi dây cung.",
+    option_d: "Dây căng một cung góc $180^\\circ$ chính là đường kính.",
+    correct_option: "A,D",
+    explanation: "B sai vì Dây là đoạn thẳng đi thẳng (như cung nỏ), còn Cung mới là đoạn cong trên biên hình tròn. C sai vì bán kính chỉ vuông góc khi đi qua trung điểm dây.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Một đường tròn (O; 5cm). Dây AB dài 8cm. Khoảng cách từ tâm O đến dây AB là $d$. Giá trị $d$ và các tính chất có liên quan là:",
+    option_a: "$d = 3\\text{cm}$",
+    option_b: "Đường hạ vuông góc từ O chia đoạn AB thành 2 phần 4cm.",
+    option_c: "$d = 4\\text{cm}$",
+    option_d: "Trung điểm của dây cung luôn xa tâm hơn các mút A, B.",
+    correct_option: "A,B",
+    explanation: "Kẻ OH $\\perp$ AB $\\Rightarrow$ H là trung điểm AB $\\Rightarrow$ AH = 4. Tam giác OHA vuông tại H có cạnh $OA = 5$ (bán kính), $AH = 4 \Rightarrow d = OH = \\sqrt{5^2 - 4^2} = 3$. D sai vì Mút nằm trên đường biên (xa R=5), còn trung điểm nằm gần tâm (D=3).",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Đường kính của môt đường tròn là 16cm. Dây cung lớn nhất của nó dài bao nhiêu cm?",
+    correct_option: "16",
+    explanation: "Dây cung lớn nhất của đường tròn BẰNG luôn đường kính. Vậy nó dài 16cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Đường tròn tâm O bán kính 10cm. Khoảng cách từ O đến môt dây là 6cm. Hỏi dây cung đó dài bao nhiêu cm?",
+    correct_option: "16",
+    explanation: "Pytago $\\Rightarrow$ nửa dây = $\\sqrt{10^2 - 6^2} = \\sqrt{64} = 8$. Vậy nguyên dây sẽ gấp đôi: $8 \\cdot 2 = 16\\text{cm}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🏹 Cây cung và môn Bắn Cung</h3>
+
+Trò chơi môn bắn cung của thế vận hội chia sẻ một từ mượn trong Toán Học: "Cung" và "Dây".
+Phần cong hình bán nguyệt làm bằng gỗ hoặc sợi carbon đàn hồi được gọi là một **"Cung"**, vì nó là một nhánh cong trích ra từ hình Tròn. 
+Sợi dây bện dẻo dai bị buộc nối thẳng tắp từ 2 đầu mũi của cây cung để làm vật liệu kéo bật mũi tên đi, người ta gọi đó là **"Dây cung"**.
+
+Trong toán học, chúng cũng có mối gắn kết kì lạ: Nếu bạn kéo căng vòng Cung ra to hơn, bạn bắt buộc phải dùng một sợi Dây cung dài hơn. Nếu hai người thợ làm 2 cây Cung y hệt nhau, thì 2 sợi dây họ đính vào cũng sẽ bằng nhau. 
+Đó là quy luật **"Liên hệ giữa Cung và Dây Cung"**.
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="250" height="200" viewBox="0 0 250 200" style="background:#fefce8;border-radius:12px;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+  {/* The Wood Bow (Cung) */}
+  <path d="M 40,30 Q 180,100 40,170" fill="none" stroke="#b45309" stroke-width="8" stroke-linecap="round"/>
+  {/* The String (Dây cung) */}
+  <line x1="40" y1="30" x2="40" y2="170" stroke="#475569" stroke-width="3" />
+  
+  <text x="50" y="105" font-weight="bold" fill="#334155" font-size="14">Dây cung (Thẳng)</text>
+  <text x="135" y="110" font-weight="bold" fill="#78350f" font-size="14">Cung (Cong)</text>
+  
+  {/* Arrow */}
+  <line x1="120" y1="100" x2="10" y2="100" stroke="#1f2937" stroke-width="4"/>
+  <polygon points="10,100 25,92 25,108" fill="#ef4444"/>
+</svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Định nghĩa Cung và Dây</h3>
+
+Cho đường tròn $(O)$. Hai điểm phân biệt $A, B$ tuỳ ý nằm trên đường tròn (nằm trên vòng viền cong):
+<div class="box-dinh-nghia">
+
+- **Dây cung (gọi tắt là Dây):** Là đoạn thẳng nối 2 mút $A$ và $B$. Đường kính là một loại Dây đặc biệt đi ngang qua Tâm đường tròn.
+- **Cung:** Là phần viền cong của đường tròn nằm giữa $A$ và $B$.
+  - Hai điểm A,B chia nguyên một vòng tròn thành 2 phần không đều nhau: phần nẹp nhỏ hơn gọi là **Cung nhỏ**, phần vòng bọc lớn hơn gọi là **Cung lớn**.
+  - Nếu A, B là đường kính, đường tròn bị chẻ đôi thành 2 Cung bằng nhau. Các cung này gọi là **Nửa đường tròn** (Số đo 180 độ).
+
+</div>
+
+**🔥 Ghi nhớ cực quan trọng:** 
+Trong tất cả các Dây cung được nẹp vào vòng tròn thì **Đường Kính là dây cung dài nhất** (Có độ lớn bằng 2 Bán kính).
+
+<h3 id="lien-he-cung-day" style="margin-top:2rem;">📖 2. Liên hệ kích thước giữa Cung và Dây</h3>
+
+Trong **Cùng một đường tròn** hoặc **Hai đường tròn bằng nhau** (Có cùng bán kính):
+
+<div class="box-dinh-ly">
+
+**Định lý 1 (Cung $\Leftrightarrow$ Dây):**
+- Hai cung bằng nhau luôn căng hai dây bằng nhau.
+- Hai dây bằng nhau luôn căng hai cung nhỏ bằng nhau.
+
+**Định lý 2 (So sánh Dây - Cung):**
+Cung nhỏ nào lớn hơn thì chắc chắn sẽ nối môt dây lớn hơn. Và ngược lại, nếu căng dây lớn hơn thì mảng cung nhỏ bị ngoạm ấy sẽ lớn hơn.
+
+*Nôm na:* Dây càng dài (dần tiến về đường kính) thì Cung nhỏ của nó sẽ phình càng lớn (tiến về một nửa đường tròn).
+
+</div>
+
+<h3 id="duong-kinh-day" style="margin-top:2rem;">📖 3. Đường kính và Dây Cung</h3>
+
+Có bao giờ bạn cắt một chiếc bánh Pizza dây tròn không đi ngang làm đôi, nhát dao vuông góc đi thẳng qua tâm? Điều kì diệu xảy ra.
+
+<div class="box-dinh-ly">
+
+**Định lý 3 (Vuông góc $\Rightarrow$ Đi qua Trung điểm):**
+Trong một đường tròn, môt đường kính VÀ vuông góc với một dây (bất kỳ), THÌ nó luôn ĐI QUA TRUNG ĐIỂM của dây ấy.
+
+**Định lý Đảo (Trung điểm $\Rightarrow$ Vuông góc):**
+Nếu một đường kính đi qua trung điểm của một dây (VỚI ĐIỀU KIỆN dây đấy không chạy qua tâm), thì nó sẽ VUÔNG GÓC với dây đấy.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Cảnh giác với Định lý Đảo! Tại sao phải ép điều kiện dây không đi qua tâm?**
+Hãy tưởng tượng nếu vẽ 2 cái đường kính cắt ngang nhau tại trung tâm (Chữ X). Rõ ràng Đường kính 1 đang "đi qua trung điểm" của Dây Đường kính 2. Nhưng chúng đâu có bắt buộc phải Vuông góc đâu? Chúng có thể tạo thành hình tam giác 30-60 độ, không bao giờ là hình Chữ Thập. Vậy nên Định lý Đảo chỉ xài đúng với Dây song song đi trệch khỏi hồng tâm!
+
+</div>
+
+</KhamPha>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Tuyệt Kỹ Cứu Cánh Pytago:** 
+Mỗi khi có bài toán bắt tính Khoảng Cách (kéo đường vuông góc $d$) từ tâm từ Tâm $O$ tới môt dây cung có độ dài $L$. Hãy NGAY LẬP TỨC Áp dụng chêm **Định lý 3** bên trên.
+$\Rightarrow$ Hạ đường vuông góc chia đôi sây cung ra thành $L/2$.
+Tạo thành môt Tam giác vuông lý tưởng giữa: Độ dài Khoảng Cách, Một nửa dây cung dài ($L/2$), và Bán Kính vòng xiếc Huyền ($R$).
+**Kết hợp Định lý Py-ta-go:** $R^2 = d^2 + (L/2)^2$ để moi lời giải!
+
+</div>
+
+</GhiNho>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cửa hàng kính thước có mảnh gương hình tròn bán kính 20cm bị vỡ đi một góc. Chỗ đường vỡ là môt đường thẳng tắp tạo thành một dây cung AB đo được bằng 24cm trên cạnh vỡ tàn tích đường tròn.
+Tính khoảng cách ngắn nhất từ tâm O của mảnh gương (tính từ vị trí la bàn chưa vỡ) đến phần vết cắt thẳng là dây cung AB?
+
+**Bài 2:** Cho đường tròn (O) đường kính AD = 10cm. Vẽ dây AB = 8cm vuông góc với môt mốc.
+
+a) Cho thấy rằng Tam giác ABD bắt buộc phải là tam giác Vuông. Tại sao?
+
+b) Tính độ dài mảng cầu dây BD.
+
+**Bài 3:** So sánh Dây cung. Cho hai dây cung $AB = 12\text{cm}$ và dây cung ngầm $CD = 10\text{cm}$ nằm trên hình tròn đường kính O có bán kính $R = 8\text{cm}$.
+
+a) Dây nào tạo cung nhỏ lớn hơn?
+
+b) Khoảng cách nào ngắn hơn khoảng cách từ O đến cung nhỏ dây C hay khoảng cách từ O đến cung nhỏ dây A? *(Trực giác).*
+
+**Bài 4:** Đặt môt đường tròn (O) và một dây cung MN. Môt bán kính OA cắt đoạn thẳng Dây MN tại giao điểm I. Được biết khoảng cách $MI = 3\text{cm}$, Khoảng cách góc $IN = 3\text{cm}$. 
+Chứng minh rằng Tam giác OMN là tam giác Cân và OA là đường phân giác.
+
+**Bài 5 (Thực tế - Kho kẹo M&M Vết Tích):**
+Các nhà khảo cổ học đào được môt hiện vật chiếc đĩa cổ quí hiếm bị vỡ. Họ chỉ có trong tay môt phần cung của cái đĩa và muốn phục chế bằng cách bồi đắp vật liệu tròn cho nó.
+Làm sao để với chiếc compa và thước thẳng chưa phân vạch, họ có thể Dựng Lại vẽ được nguyên vẹn chiếc đĩa và xác định được Tâm O của chiếc đồ cổ chỉ từ 1 đoạn mảnh vỡ cong hình lưỡi liềm? Giải thích rõ bằng nguyên lý Định lý Dây Cung và Cung Vòng.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+Gọi đường hạ góc từ tâm O xuống rãnh vỡ AB là điểm cắt H ($OH \perp AB$).
+Theo Định Lý trung trực Vuông góc: H sẽ cắt ngang giữa mảng Dây vỡ AB $\Rightarrow AH = HB = 24 / 2 = 12\text{cm}$.
+Xét tam giác vuông nhỏ (OAH) gồm: $OA$ (Huyền) $= R = 20\text{cm}$. $AH$ (Kề cạnh thẳng) $= 12\text{cm}$.
+Dùng Pytago khoảng cách d: $OH^2 = OA^2 - AH^2 = 20^2 - 12^2 = 400 - 144 = 256$.
+$\Rightarrow d = OH = \sqrt{256} = 16\text{cm}$.
+
+**Bài 2:**
+
+a) Định lý Bài đường tròn mốc: Tâm O nằm giữa đường vạch AD. Giao đường thẳng 3 trục nội tiếp đường chéo chập đường kính 3 góc đều tạo thành 1 Tam Giác Vuông nội tiếp góc B. Nghĩa là Tam giác nội tiếp có đường kính là cạnh huyền phải là tam giác VUÔNG. Tam giác ABD là tam giác Vuông tại B.
+
+b) Trong tam giác vuông ABD: $BD^2 = AD^2 - AB^2 = 10^2 - 8^2 = 100 - 64 = 36$.
+Vậy độ dài mảng cầu cầu dây ngang $BD = 6\text{cm}$.
+
+**Bài 3:**
+
+a) Do $AB (12) > CD (10) \Rightarrow$ Cung AB phình kéo căng rãnh góc Nhỏ LỚN HƠN Cung CD.
+
+b) Trực giác dây cung CÀNG LỚN (càng gần Đường Kính), thì Khoảng Cách tính bằng từ Tâm chĩa đến nó CÀNG BÉ (càng xáp gần tâm lại). Vậy đáp án là Khoảng Cách từ O đến AB ngấn hơn.
+
+**Bài 4:**
+Do $MI = 3$ và $IN = 3 \Rightarrow MI = IN \Rightarrow I$ là trung điểm của MN.
+Bán Kính đoạn gạch OA giao ngang (Đi thẳng vào điểm Mút của Dây cung nhỏ), chia 2 đoạn bằng nhau với DƯ kiện Dây MN không đi xuyên Tâm (tạo hình Trục đối xứng) $\Rightarrow$ Tam giác OMN có Trung ngực trùng với đường hạ Vuông ($OA \perp MN$) $\Rightarrow$ Nó là Tam giác Cân. Do đó nó kiêm luôn đường phân giới góc MON.
+
+**Bài 5:**
+Giải pháp Thực tế Cực Hay Của Khảo Cổ Học:
+- Bước 1 (Dựng 2 sợi dây bất kì): Chắp mảnh sứ ra, bắt bất kì 3 điểm ngẫu nhiên A, B, C viền vòng tròn nằm trên rìa miệng đĩa. Kẻ cái Dây Cung AB và 1 cái Dây cung BC.
+- Bước 2 (Lý thuyết Cứu Tinh): Theo Định Lý Dây chập Đường Kính Vuông Góc $\Rightarrow$ Đường bao trọn toàn bộ Trung Trực của điểm AB sẽ cắt thẳng lên hướng đi Tìm O (Tâm). Và Đường bao Trung Trực của chóp BC cũng sẽ đi về O (Tâm).
+- Bước 3 (Vẽ): Thợ bóc thước để xoay Trung điểm của Dây AB rồi hạ 1 nét bút vuông góc thẳng đè ra ngoài. Làm lại y chang với Dây BC kẻ một đường nét Vuông Góc.
+Hai Vết Bút Chì đó cắt ngang xẹt chéo nhau vào ĐIỂM NÀO, là "Mắt Thần" TÂM O lộ diện.
+Có Tâm bằng O có Bán kính tới móp, xoay 1 vòng Com-Pa là Hồi Sinh Lại Cái Cổ Vật liền!
+
+</div>
+</details>

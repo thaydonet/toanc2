@@ -1,0 +1,356 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 1: Tập hợp các số hữu tỉ"
+description: "Khái niệm số hữu tỉ và tập hợp số hữu tỉ - Toán 7 KNTT Chương 1"
+grade: "Lớp 7"
+chapter: "Chương I: Số hữu tỉ"
+currentSlug: "lop7/bai-1-tap-hop-so-huu-ti"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số hữu tỉ là số có thể viết dưới dạng:",
+    option_a: "$\\dfrac{a}{b}$ với $a, b \\in \\mathbb{Z}$, $b \\neq 0$",
+    option_b: "$\\dfrac{a}{b}$ với $a, b \\in \\mathbb{N}$",
+    option_c: "$\\dfrac{a}{b}$ với $a, b \\in \\mathbb{N}^*$",
+    option_d: "$a + b$ với $a, b \\in \\mathbb{Z}$",
+    correct_option: "A",
+    explanation: "Số hữu tỉ là số có thể viết dưới dạng phân số $\\dfrac{a}{b}$ với $a, b$ là các số nguyên và $b \\neq 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tập hợp các số hữu tỉ được ký hiệu là:",
+    option_a: "$\\mathbb{Q}$",
+    option_b: "$\\mathbb{N}$",
+    option_c: "$\\mathbb{Z}$",
+    option_d: "$\\mathbb{R}$",
+    correct_option: "A",
+    explanation: "Tập hợp các số hữu tỉ được ký hiệu là $\\mathbb{Q}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào sau đây là số hữu tỉ?",
+    option_a: "$-\\dfrac{3}{4}$",
+    option_b: "$\\sqrt{2}$",
+    option_c: "$\\pi$",
+    option_d: "$e$",
+    correct_option: "A",
+    explanation: "$-\\dfrac{3}{4}$ là số hữu tỉ vì có thể viết dưới dạng $\\dfrac{a}{b}$ với $a = -3$, $b = 4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nguyên $-5$ có phải là số hữu tỉ không?",
+    option_a: "Có, vì $-5 = \\dfrac{-5}{1}$",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
+    correct_option: "A",
+    explanation: "Mọi số nguyên đều là số hữu tỉ vì có thể viết dưới dạng phân số với mẫu số là 1.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào sau đây là số hữu tỉ?",
+    option_a: "$\\dfrac{2}{3}$",
+    option_b: "$-7$",
+    option_c: "$0$",
+    option_d: "$0,\\!5$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các số trên đều là số hữu tỉ: $\\dfrac{2}{3}$, $-7 = \\dfrac{-7}{1}$, $0 = \\dfrac{0}{1}$, $0,\\!5 = \\dfrac{1}{2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khẳng định nào đúng về mối quan hệ giữa các tập hợp số?",
+    option_a: "$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q}$",
+    option_b: "$\\mathbb{Q} \\subset \\mathbb{Z} \\subset \\mathbb{N}$",
+    option_c: "$\\mathbb{Z} \\subset \\mathbb{N} \\subset \\mathbb{Q}$",
+    option_d: "$\\mathbb{N} \\subset \\mathbb{Q} \\subset \\mathbb{Z}$",
+    correct_option: "A",
+    explanation: "Tập số tự nhiên $\\mathbb{N}$ là con của tập số nguyên $\\mathbb{Z}$, và tập số nguyên là con của tập số hữu tỉ $\\mathbb{Q}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Số hữu tỉ — Mở rộng thế giới số</h3>
+
+Từ số tự nhiên đến số nguyên, giờ đây chúng ta tiếp tục khám phá thế giới số với số hữu tỉ!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
+    <strong>Số tự nhiên</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\mathbb{N} = \{0, 1, 2, 3, ...\}$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➖</div>
+    <strong>Số nguyên</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\mathbb{Z} = \{..., -2, -1, 0, 1, 2, ...\}$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Số hữu tỉ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\mathbb{Q} = \{\dfrac{a}{b} \mid a, b \in \mathbb{Z}, b \neq 0\}$</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm số hữu tỉ</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Số hữu tỉ là số có thể viết dưới dạng phân số $\dfrac{a}{b}$ với $a, b \in \mathbb{Z}$ và $b \neq 0$.
+
+Tập hợp các số hữu tỉ được ký hiệu là $\mathbb{Q}$.
+
+</div>
+
+**Ví dụ 1:** Các số sau là số hữu tỉ:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+- $\dfrac{3}{4}$ (phân số dương)
+- $-\dfrac{2}{5}$ (phân số âm)
+- $7 = \dfrac{7}{1}$ (số nguyên dương)
+- $-3 = \dfrac{-3}{1}$ (số nguyên âm)
+- $0 = \dfrac{0}{1}$ (số không)
+- $0,\!5 = \dfrac{1}{2}$ (số thập phân hữu hạn)
+- $-1,\!25 = -\dfrac{5}{4}$ (số thập phân âm)
+
+</div>
+
+**Nhận xét quan trọng:**
+
+- Mọi số nguyên đều là số hữu tỉ (vì có thể viết với mẫu số là 1)
+- Mọi số tự nhiên đều là số hữu tỉ
+- Mọi phân số đều là số hữu tỉ
+- Mọi số thập phân hữu hạn đều là số hữu tỉ
+
+<h3 id="bieu-dien" style="margin-top:2rem;">📏 2. Biểu diễn số hữu tỉ trên trục số</h3>
+
+Số hữu tỉ có thể biểu diễn trên trục số, tương tự như số nguyên.
+
+**Ví dụ 2:** Biểu diễn $\dfrac{3}{4}$ trên trục số
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="600" height="120" viewBox="0 0 600 120" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Trục số */}
+  <line x1="50" y1="60" x2="550" y2="60" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="550,60 540,55 540,65" fill="#1f2937"/>
+  
+  {/* Điểm 0 */}
+  <line x1="150" y1="50" x2="150" y2="70" stroke="#1f2937" stroke-width="2"/>
+  <text x="150" y="90" font-size="16" text-anchor="middle" fill="#1f2937">0</text>
+  
+  {/* Điểm 1 */}
+  <line x1="450" y1="50" x2="450" y2="70" stroke="#1f2937" stroke-width="2"/>
+  <text x="450" y="90" font-size="16" text-anchor="middle" fill="#1f2937">1</text>
+  
+  {/* Chia đoạn [0,1] thành 4 phần */}
+  <line x1="225" y1="55" x2="225" y2="65" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="300" y1="55" x2="300" y2="65" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="375" y1="55" x2="375" y2="65" stroke="#94a3b8" stroke-width="1"/>
+  
+  {/* Điểm 3/4 */}
+  <circle cx="375" cy="60" r="6" fill="#3b82f6"/>
+  <text x="375" y="35" font-size="16" font-weight="bold" text-anchor="middle" fill="#3b82f6">3/4</text>
+</svg>
+</div>
+
+<h3 id="cac-cach-viet" style="margin-top:2rem;">✍️ 3. Các cách viết số hữu tỉ</h3>
+
+Một số hữu tỉ có thể viết dưới nhiều dạng khác nhau.
+
+**Ví dụ 3:** Số hữu tỉ $\dfrac{1}{2}$ có thể viết:
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$$\dfrac{1}{2} = \dfrac{2}{4} = \dfrac{3}{6} = \dfrac{4}{8} = \dfrac{-1}{-2} = 0,\!5$$
+
+</div>
+
+**Quy tắc:** Nếu nhân hoặc chia cả tử và mẫu của một phân số với cùng một số nguyên khác 0, ta được phân số bằng phân số đã cho.
+
+$$\dfrac{a}{b} = \dfrac{a \cdot m}{b \cdot m} = \dfrac{a : n}{b : n} \quad (m, n \in \mathbb{Z}^*, b \neq 0)$$
+
+<h3 id="moi-quan-he" style="margin-top:2rem;">🔗 4. Mối quan hệ giữa các tập hợp số</h3>
+
+<div class="box-dinh-ly">
+
+**Quan hệ bao hàm:**
+
+$$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}$$
+
+Có nghĩa là:
+- Mọi số tự nhiên đều là số nguyên
+- Mọi số nguyên đều là số hữu tỉ
+- Mọi số tự nhiên đều là số hữu tỉ
+
+</div>
+
+**Minh họa bằng sơ đồ Ven:**
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="300" viewBox="0 0 400 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tập Q */}
+  <ellipse cx="200" cy="150" rx="180" ry="130" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="320" y="40" font-size="18" font-weight="bold" fill="#f59e0b">ℚ</text>
+  
+  {/* Tập Z */}
+  <ellipse cx="200" cy="150" rx="130" ry="90" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="280" y="80" font-size="18" font-weight="bold" fill="#3b82f6">ℤ</text>
+  
+  {/* Tập N */}
+  <ellipse cx="200" cy="150" rx="80" ry="50" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="240" y="130" font-size="18" font-weight="bold" fill="#10b981">ℕ</text>
+  
+  {/* Ví dụ các số */}
+  <text x="200" y="155" font-size="14" text-anchor="middle" fill="#1f2937">0, 1, 2, 3,...</text>
+  <text x="150" y="200" font-size="14" text-anchor="middle" fill="#1f2937">-1, -2, -3,...</text>
+  <text x="100" y="120" font-size="14" text-anchor="middle" fill="#1f2937">-1/2, 2/3,...</text>
+</svg>
+</div>
+
+<h3 id="so-doi" style="margin-top:2rem;">↔️ 5. Số đối của số hữu tỉ</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hai số hữu tỉ gọi là đối nhau nếu tổng của chúng bằng 0.
+
+Số đối của số hữu tỉ $x$ được ký hiệu là $-x$.
+
+</div>
+
+**Ví dụ 4:**
+
+- Số đối của $\dfrac{3}{4}$ là $-\dfrac{3}{4}$
+- Số đối của $-\dfrac{2}{5}$ là $\dfrac{2}{5}$
+- Số đối của $0$ là $0$
+
+**Tính chất:** $x + (-x) = 0$ với mọi $x \in \mathbb{Q}$
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán:** Một chiếc bánh pizza được chia thành 8 phần bằng nhau. Bạn An ăn 3 phần, bạn Bình ăn 2 phần.
+
+a) Bạn An đã ăn bao nhiêu phần của chiếc bánh? Viết dưới dạng số hữu tỉ.
+
+b) Bạn Bình đã ăn bao nhiêu phần của chiếc bánh? Viết dưới dạng số hữu tỉ.
+
+c) Cả hai bạn đã ăn bao nhiêu phần của chiếc bánh?
+
+d) Còn lại bao nhiêu phần bánh?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Bạn An ăn: $\dfrac{3}{8}$ chiếc bánh
+
+b) Bạn Bình ăn: $\dfrac{2}{8} = \dfrac{1}{4}$ chiếc bánh
+
+c) Cả hai ăn: $\dfrac{3}{8} + \dfrac{2}{8} = \dfrac{5}{8}$ chiếc bánh
+
+d) Còn lại: $1 - \dfrac{5}{8} = \dfrac{8}{8} - \dfrac{5}{8} = \dfrac{3}{8}$ chiếc bánh
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Số hữu tỉ**: số viết được dưới dạng $\dfrac{a}{b}$ với $a, b \in \mathbb{Z}$, $b \neq 0$
+- **Ký hiệu**: $\mathbb{Q}$ - tập hợp các số hữu tỉ
+- **Quan hệ**: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}$
+- **Số đối**: $x$ và $-x$ là hai số đối nhau, $x + (-x) = 0$
+- Mọi số nguyên, số tự nhiên, phân số đều là số hữu tỉ
+- Một số hữu tỉ có nhiều cách viết khác nhau
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Trong các số sau, số nào là số hữu tỉ?
+
+a) $\dfrac{5}{7}$ &nbsp;&nbsp;&nbsp; b) $-3$ &nbsp;&nbsp;&nbsp; c) $0$ &nbsp;&nbsp;&nbsp; d) $2,\!5$ &nbsp;&nbsp;&nbsp; e) $\dfrac{-4}{9}$
+
+**Bài 2:** Viết các số sau dưới dạng phân số với mẫu số là số nguyên dương:
+
+a) $5$ &nbsp;&nbsp;&nbsp; b) $-7$ &nbsp;&nbsp;&nbsp; c) $0$ &nbsp;&nbsp;&nbsp; d) $0,\!25$ &nbsp;&nbsp;&nbsp; e) $-1,\!5$
+
+**Bài 3:** Viết ba phân số bằng phân số $\dfrac{2}{3}$
+
+**Bài 4:** Tìm số đối của các số sau:
+
+a) $\dfrac{3}{5}$ &nbsp;&nbsp;&nbsp; b) $-\dfrac{7}{8}$ &nbsp;&nbsp;&nbsp; c) $0$ &nbsp;&nbsp;&nbsp; d) $4$ &nbsp;&nbsp;&nbsp; e) $-2,\!5$
+
+**Bài 5:** Điền ký hiệu $\in$ hoặc $\notin$ vào chỗ trống:
+
+a) $\dfrac{1}{2}$ ... $\mathbb{Q}$ &nbsp;&nbsp;&nbsp; b) $-5$ ... $\mathbb{N}$ &nbsp;&nbsp;&nbsp; c) $3$ ... $\mathbb{Z}$ &nbsp;&nbsp;&nbsp; d) $0$ ... $\mathbb{Q}$
+
+**Bài 6:** Biểu diễn các số hữu tỉ sau trên trục số:
+
+a) $\dfrac{1}{2}$ &nbsp;&nbsp;&nbsp; b) $-\dfrac{3}{4}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{5}{2}$ &nbsp;&nbsp;&nbsp; d) $-2$
+
+**Bài 7 (Thực tế):** Một bể nước có dung tích 120 lít. Hiện tại bể đang chứa 75 lít nước.
+
+a) Tỉ lệ nước trong bể so với dung tích bể là bao nhiêu? Viết dưới dạng phân số tối giản.
+
+b) Tỉ lệ phần còn trống của bể là bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** Tất cả đều là số hữu tỉ
+
+**Bài 2:** a) $\dfrac{5}{1}$; b) $\dfrac{-7}{1}$; c) $\dfrac{0}{1}$; d) $\dfrac{1}{4}$; e) $\dfrac{-3}{2}$
+
+**Bài 3:** $\dfrac{4}{6}$, $\dfrac{6}{9}$, $\dfrac{8}{12}$ (hoặc các phân số khác bằng $\dfrac{2}{3}$)
+
+**Bài 4:** a) $-\dfrac{3}{5}$; b) $\dfrac{7}{8}$; c) $0$; d) $-4$; e) $2,\!5$
+
+**Bài 5:** a) $\in$; b) $\notin$; c) $\in$; d) $\in$
+
+**Bài 7:** a) $\dfrac{75}{120} = \dfrac{5}{8}$; b) $\dfrac{45}{120} = \dfrac{3}{8}$
+
+</div>
+</details>
+

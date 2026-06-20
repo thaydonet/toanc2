@@ -1,0 +1,565 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 6 - Toán 9"
+description: "Ôn tập chương 6 Toán 9 KNTT: Hàm số y = ax² (a ≠ 0), Phương trình bậc hai một ẩn, Định lí Viète"
+grade: "Lớp 9"
+chapter: "Chương VI: Hàm số y = ax² (a ≠ 0). Phương trình bậc hai một ẩn"
+currentSlug: "lop9/bai-on-tap-chuong-6"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Hàm số $y = -3x^2$ có tính chất nào sau đây?",
+    option_a: "Luôn đồng biến với mọi $x$",
+    option_b: "Nghịch biến khi $x < 0$ và đồng biến khi $x > 0$",
+    option_c: "Đồng biến khi $x < 0$ và nghịch biến khi $x > 0$",
+    option_d: "Hàm số không đồng biến, không nghịch biến",
+    correct_option: "C",
+    explanation: "Với hàm số $y = ax^2$ mà $a < 0$ (ở đây $a = -3 < 0$), hàm số đồng biến khi $x < 0$ và nghịch biến khi $x > 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đồ thị của hàm số $y = 2x^2$ là một parabol có bề lõm hướng về phía nào?",
+    option_a: "Hướng lên trên",
+    option_b: "Hướng xuống dưới",
+    option_c: "Hướng sang phải",
+    option_d: "Hướng sang trái",
+    correct_option: "A",
+    explanation: "Vì hệ số $a = 2 > 0$ nên bề lõm của parabol quay lên trên. Điểm thấp nhất của đồ thị là gốc tọa độ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biệt thức $\\Delta$ của phương trình $2x^2 - 5x + 3 = 0$ bằng:",
+    option_a: "1",
+    option_b: "-1",
+    option_c: "49",
+    option_d: "25",
+    correct_option: "A",
+    explanation: "$\\Delta = b^2 - 4ac = (-5)^2 - 4 \\cdot 2 \\cdot 3 = 25 - 24 = 1$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phương trình $x^2 - 4x + 4 = 0$ có số nghiệm là:",
+    option_a: "2 nghiệm phân biệt",
+    option_b: "Vô nghiệm",
+    option_c: "1 nghiệm kép",
+    option_d: "Vô số nghiệm",
+    correct_option: "C",
+    explanation: "Ta có $\\Delta' = (-2)^2 - 1 \\cdot 4 = 0$. Phương trình có nghiệm kép. Hoặc $(x-2)^2=0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phương trình nào dưới đây vô nghiệm?",
+    option_a: "$x^2 - 2x - 3 = 0$",
+    option_b: "$2x^2 + 3x + 5 = 0$",
+    option_c: "$x^2 - 6x + 9 = 0$",
+    option_d: "$-x^2 + x + 2 = 0$",
+    correct_option: "B",
+    explanation: "Đối với B: $\\Delta = 3^2 - 4 \\cdot 2 \\cdot 5 = 9 - 40 = -31 < 0$ nên PT vô nghiệm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho biểu thức $P(x) = x^2 - x - 2$. Khi nhẩm nghiệm của $P(x) = 0$, ta thấy:",
+    option_a: "$a+b+c=0$ nên có nghiệm $1$ và $-2$",
+    option_b: "$a-b+c=0$ nên có nghiệm $-1$ và $2$",
+    option_c: "$a-b+c=0$ nên có nghiệm $1$ và $2$",
+    option_d: "Không thể nhẩm nghiệm",
+    correct_option: "B",
+    explanation: "$a = 1, b = -1, c = -2$. Thấy $a - b + c = 1 - (-1) + (-2) = 0$. Phương trình có 2 nghiệm: $x_1 = -1$, $x_2 = -\\frac{c}{a} = -\\frac{-2}{1} = 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gọi $x_1, x_2$ là hai nghiệm của phương trình $2x^2 + 7x - 4 = 0$. Giá trị tổng $x_1 + x_2$ là:",
+    option_a: "$-7$",
+    option_b: "$-\\frac{7}{2}$",
+    option_c: "$\\frac{7}{2}$",
+    option_d: "$-2$",
+    correct_option: "B",
+    explanation: "Theo định lí Viète: $S = x_1 + x_2 = -\\frac{b}{a} = -\\frac{7}{2}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tích hai nghiệm của phương trình $3x^2 - 5x - 2 = 0$ bằng:",
+    option_a: "$\\frac{2}{3}$",
+    option_b: "$\\frac{5}{3}$",
+    option_c: "$-\\frac{5}{3}$",
+    option_d: "$-\\frac{2}{3}$",
+    correct_option: "D",
+    explanation: "Theo định lí Viète: $P = x_1 \\cdot x_2 = \\frac{c}{a} = \\frac{-2}{3} = -\\frac{2}{3}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai số $u, v$ có tổng $S = 5$ và tích $P = 6$. Hai số đó là nghiệm của phương trình nào?",
+    option_a: "$x^2 - 5x + 6 = 0$",
+    option_b: "$x^2 + 5x + 6 = 0$",
+    option_c: "$x^2 - 6x + 5 = 0$",
+    option_d: "$x^2 + 6x + 5 = 0$",
+    correct_option: "A",
+    explanation: "Hai số là nghiệm của phương trình $X^2 - SX + P = 0 \Rightarrow x^2 - 5x + 6 = 0$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các phát biểu nào sau đây đúng về hàm số $y = ax^2 (a \\neq 0)$?",
+    option_a: "Đồ thị luôn đi qua điểm $O(0; 0)$",
+    option_b: "Đồ thị nhận trục tung $(Oy)$ làm trục đối xứng",
+    option_c: "Nếu $a > 0$ thì giá trị nhỏ nhất của hàm số là $0$",
+    option_d: "Nếu $a < 0$ thì đồ thị nằm hoàn toàn phía trên trục hoành",
+    correct_option: "A,B,C",
+    explanation: "D sai vì khi $a < 0$, đồ thị quay bề lõm xuống dưới và nằm hoàn toàn phía dưới trục hoành (trừ đỉnh $O$). A, B, C đều là tính chất đúng của Parabol.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Phương trình $x^2 + bx + c = 0$ có bình phương một nghiệm bằng nửa nghiệm kia, thì chắc chắn có thể kết luận gì?",
+    option_a: "Tồn tại quan hệ phức tạp, không liên quan đến Viète",
+    option_b: "Từ $x_1^2 = \\frac{1}{2} x_2$ có thể dùng Viète để lập hệ",
+    option_c: "Có tối đa 2 tập số thỏa mãn",
+    option_d: "Nếu $b=c=0$ là một trường hợp đặc biệt",
+    correct_option: "B,D",
+    explanation: "Điều kiện kết hợp được với Viète $x_1+x_2=-b$, $x_1 x_2=c$. (D) đúng vì $x=0$ thì $0=0$ là 1 TH. (Câu này là lý thuyết hiểu biết Viète nâng cao cho trắc nghiệm chọn nhiều đúng).",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Phương trình $x^2 - 3x + 2 = 0$ có 2 nghiệm $x_1, x_2$. Giá trị của $x_1^2 + x_2^2$ bằng bao nhiêu?",
+    correct_option: "5",
+    explanation: "$x_1^2 + x_2^2 = (x_1+x_2)^2 - 2x_1 x_2 = 3^2 - 2(2) = 9 - 4 = 5$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm giá trị của $m$ để phương trình $x^2 - 2x + m = 0$ có nghiệm kép.",
+    correct_option: "1",
+    explanation: "Để phương trình có nghiệm kép thì $\\Delta' = (-1)^2 - m = 0 \Leftrightarrow 1 - m = 0 \Leftrightarrow m = 1$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 6 — Hàm số y = ax² và Phương trình bậc hai</h3>
+
+Chương 6 đưa chúng ta bước vào một hình học của "đường cong" - Parabol, và làm quen với "chúa tể" của các loại phương trình trung học: **Phương trình bậc hai**. Định lí Viète cũng là công cụ siêu mạnh sẽ đi theo các bạn rất lâu!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bef264;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
+    <strong>Đồ thị Parabol</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đồng biến, nghịch biến và cách vẽ đường cong</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #f9a8d4;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🧮</div>
+    <strong>Phương trình & Viète</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính Delta, nghiệm kép, tổng và tích nghiệm</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="ham-so-bac-hai">1. Hàm số $y = ax^2 (a \neq 0)$</h4>
+
+**Tính chất biến thiên:**
+- Nếu $a > 0$: Hàm số **nghịch biến** khi $x < 0$ và **đồng biến** khi $x > 0$. Giảm xuống 0 rồi tăng lên. $y=0$ là GTTN.
+- Nếu $a < 0$: Hàm số **đồng biến** khi $x < 0$ và **nghịch biến** khi $x > 0$. Tăng lên 0 rồi giảm xuống. $y=0$ là GTLN.
+
+**Đồ thị:**
+- Đồ thị là một đường cong gọi là **Parabol** với đỉnh là gốc tọa độ $O(0; 0)$.
+- Nhận trục tung $Oy$ làm **trục đối xứng**.
+- Bề lõm quay lên trên nếu $a > 0$, quay xuống dưới nếu $a < 0$.
+
+<h4 id="phuong-trinh-bac-hai">2. Phương trình bậc hai một ẩn $ax^2 + bx + c = 0 (a \neq 0)$</h4>
+
+**Công thức nghiệm ($\Delta$):**
+$\Delta = b^2 - 4ac$
+- $\Delta > 0$: PT có 2 nghiệm phân biệt: $x_1 = \frac{-b + \sqrt{\Delta}}{2a}$, $x_2 = \frac{-b - \sqrt{\Delta}}{2a}$.
+- $\Delta = 0$: PT có nghiệm kép: $x_1 = x_2 = -\frac{b}{2a}$.
+- $\Delta < 0$: PT vô nghiệm.
+
+**Công thức nghiệm thu gọn ($\Delta'$):** Dùng khi $b = 2b'$.
+$\Delta' = b'^2 - ac$
+- $\Delta' > 0$: 2 nghiệm phân biệt: $x_{1,2} = \frac{-b' \pm \sqrt{\Delta'}}{a}$.
+- $\Delta' = 0$: 1 nghiệm kép: $x = -\frac{b'}{a}$.
+- $\Delta' < 0$: Vô nghiệm.
+
+<h4 id="dinh-li-viete">3. Hệ thức Viète và ứng dụng</h4>
+
+**Định lí Viète:** Nếu phương trình bậc hai có 2 nghiệm $x_1, x_2$ thì:
+- Tổng hai nghiệm: $S = x_1 + x_2 = -\frac{b}{a}$
+- Tích hai nghiệm: $P = x_1 \cdot x_2 = \frac{c}{a}$
+
+**Nhẩm nghiệm:**
+- Nếu $a + b + c = 0$ $\Rightarrow$ PT có nghiệm $x_1 = 1, x_2 = \frac{c}{a}$.
+- Nếu $a - b + c = 0$ $\Rightarrow$ PT có nghiệm $x_1 = -1, x_2 = -\frac{c}{a}$.
+
+**Tìm hai số biết tổng và tích:**
+Nếu hai số có tổng là $S$ và tích là $P$ $\Rightarrow$ Hai số đó là nghiệm của phương trình $X^2 - SX + P = 0$. (Điều kiện để có 2 số là $S^2 \geq 4P$).
+
+<h4 id="giai-toan">4. Giải bài toán bằng lập pt bậc hai</h4>
+
+Quy trình 3 bước (như phương trình bậc nhất, nhưng phương trình sinh ra sẽ là bậc 2). Cần kiểm tra kỹ điều kiện sau khi giải ra $x_1, x_2$ (ví dụ: thời gian, độ dài không thể âm).
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luyen-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Khảo sát và vẽ đồ thị hàm số</h4>
+
+Cho hàm số $y = \frac{1}{2}x^2$ có đồ thị $(P)$.
+a) Lập bảng giá trị và vẽ đồ thị $(P)$ trên mặt phẳng tọa độ $Oxy$.
+b) Các điểm $A(2; 2), B(-4; 8), C(3; 5)$ có thuộc $(P)$ không? Vì sao?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Bảng giá trị:
+| $x$ | -4 | -2 | 0 | 2 | 4 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| $y$ | 8 | 2 | 0 | 2 | 8 |
+
+Trên trăng tọa độ, vẽ các điểm $(-4; 8), (-2; 2), (0; 0), (2; 2), (4; 8)$ rồi vẽ một đường cong parabol đi qua các điểm này, ta sẽ được đồ thị $(P)$. Đồ thị là parabol bề lõm quay lên trên, nhận trục $Oy$ làm trục đối xứng.
+
+b) Thay tọa độ các điểm vào hàm số $y = \frac{1}{2}x^2$:
+- Điểm $A(2; 2)$: $y = \frac{1}{2}(2)^2 = 2 \Rightarrow A \in (P)$.
+- Điểm $B(-4; 8)$: $y = \frac{1}{2}(-4)^2 = 8 \Rightarrow B \in (P)$.
+- Điểm $C(3; 5)$: $y = \frac{1}{2}(3)^2 = 4,5 \neq 5 \Rightarrow C \notin (P)$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tọa độ giao điểm của parabol và đường thẳng</h4>
+
+Cho parabol $(P): y = -x^2$ và đường thẳng $(d): y = x - 2$.
+a) Tìm tọa độ giao điểm của $(P)$ và $(d)$ bằng phép tính.
+b) Tìm giá trị của $m$ để đường thẳng $(d'): y = -2x + m$ tiếp xúc với $(P)$. Tìm tọa độ tiếp điểm đó.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Phương trình hoành độ giao điểm của $(P)$ và $(d)$:
+$-x^2 = x - 2 \Leftrightarrow x^2 + x - 2 = 0$.
+Nhẩm nghiệm $a + b + c = 1 + 1 - 2 = 0$. 
+Vậy phương trình có 2 nghiệm: $x_1 = 1, x_2 = -2$.
+Với $x_1 = 1$, $y_1 = -1^2 = -1 \Rightarrow$ Giao điểm thứ nhất $(1; -1)$.
+Với $x_2 = -2$, $y_2 = -(-2)^2 = -4 \Rightarrow$ Giao điểm thứ hai $(-2; -4)$.
+
+b) Phương trình hoành độ giao điểm của $(P)$ và $(d')$:
+$-x^2 = -2x + m \Leftrightarrow x^2 - 2x + m = 0 \quad (1)$.
+Để $(d')$ tiếp xúc với $(P)$ thì phương trình $(1)$ phải có nghiệm kép:
+$\Delta' = (-1)^2 - 1 \cdot m = 0 \Leftrightarrow 1 - m = 0 \Leftrightarrow m = 1$.
+Khi $m = 1$, nghiệm kép của phương trình là $x = -\frac{b'}{a} = 1$.
+Thay $x = 1$ vào phương trình $(P)$ ta có $y = -1$. 
+Tọa độ tiếp điểm là $(1; -1)$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Giải phương trình bậc hai cơ bản</h4>
+
+Giải các phương trình sau:
+a) $3x^2 - 7x + 2 = 0$
+b) $-2x^2 + 4x - 2 = 0$
+c) $5x^2 - x + 2 = 0$
+d) $4x^2 - 9 = 0$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Có $\Delta = (-7)^2 - 4 \cdot 3 \cdot 2 = 49 - 24 = 25 > 0$. Phương trình có 2 nghiệm phân biệt:
+$x_1 = \frac{7 + \sqrt{25}}{6} = \frac{12}{6} = 2$; $x_2 = \frac{7 - 5}{6} = \frac{2}{6} = \frac{1}{3}$.
+
+b) Mất bớt dấu âm cho dễ nhìn: $2x^2 - 4x + 2 = 0 \Leftrightarrow x^2 - 2x + 1 = 0 \Leftrightarrow (x - 1)^2 = 0$.
+Phương trình có nghiệm kép $x = 1$.
+
+c) Có $\Delta = (-1)^2 - 4 \cdot 5 \cdot 2 = 1 - 40 = -39 < 0$.
+Phương trình vô nghiệm.
+
+d) $4x^2 - 9 = 0 \Leftrightarrow x^2 = \frac{9}{4} \Leftrightarrow x = \pm \frac{3}{2}$.
+Phương trình có 2 nghiệm phân biệt: $x_1 = \frac{3}{2}, x_2 = -\frac{3}{2}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Phương trình quy về phương trình bậc hai</h4>
+
+Giải các phương trình sau:
+a) $x^4 - 8x^2 - 9 = 0$
+b) $\frac{x}{x-2} + \frac{x+2}{x} = \frac{5}{2}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Đặt $t = x^2 \ (t \geq 0)$, biến đổi phương trình thành: $t^2 - 8t - 9 = 0$.
+Nhẩm nghiệm có $a - b + c = 1 - (-8) + (-9) = 0$, nên $t_1 = -1$ (loại), $t_2 = 9$ (nhận).
+Với $t = 9 \Leftrightarrow x^2 = 9 \Leftrightarrow x = \pm 3$. Tập nghiệm $S = \{-3; 3\}$.
+
+b) ĐKXĐ: $x \neq 0$ và $x \neq 2$. Quy đồng mẫu số là $2x(x-2)$:
+$2x \cdot x + 2(x+2)(x-2) = 5x(x-2)$
+$\Leftrightarrow 2x^2 + 2(x^2 - 4) = 5x^2 - 10x$
+$\Leftrightarrow 4x^2 - 8 = 5x^2 - 10x \Leftrightarrow x^2 - 10x + 8 = 0$.
+$\Delta' = (-5)^2 - 1 \cdot 8 = 25 - 8 = 17 > 0$.
+Phương trình có 2 nghiệm là $x = 5 \pm \sqrt{17}$ (đều thỏa mãn ĐKXĐ).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Tìm hai số biết tổng và tích</h4>
+
+a) Tìm hai số $u, v$ biết $u + v = 15$ và $u \cdot v = 36$.
+b) Kích thước của một tivi là 32 inch (khoảng 81 cm - đường chéo). Biết tỉ lệ kích thước chiều rộng và chiều cao màn hình tạo thành diện tích xấp xỉ 3150 cm². Hãy tìm chiều rộng và chiều cao của chiếc tivi đó (làm tròn số). Biết rằng tổng của (chiều rộng)² và (chiều cao)² bằng (đường chéo)².
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hai số $u, v$ là nghiệm của phương trình biến X: $X^2 - SX + P = 0$
+$\Leftrightarrow X^2 - 15X + 36 = 0$.
+$\Delta = (-15)^2 - 4 \cdot 1 \cdot 36 = 225 - 144 = 81 > 0 \Rightarrow \sqrt{\Delta} = 9$.
+$X_1 = \frac{15 + 9}{2} = 12$; $X_2 = \frac{15 - 9}{2} = 3$.
+Vậy hai số cần tìm là 12 và 3.
+
+b) Gọi $x, y$ lần lượt là chiều rộng và chiều cao của tivi ($x, y > 0$).
+Ta có: $x^2 + y^2 = 81^2 = 6561$.
+Diện tích màn hình $xy = 3150$.
+Hệ có $(x+y)^2 = x^2 + y^2 + 2xy = 6561 + 2(3150) = 12861 \Rightarrow x + y = \sqrt{12861} \approx 113,4$.
+Tổng $S = 113,4$, Tích $P = 3150$.
+Hai số $x, y$ là nghiệm phương trình $X^2 - 113,4 X + 3150 = 0$.
+$\Delta \approx 12861 - 12600 = 261 \Rightarrow \sqrt{\Delta} \approx 16,155$.
+$x \approx \frac{113,4 + 16,155}{2} \approx 64,8$ cm.
+$y \approx \frac{113,4 - 16,155}{2} \approx 48,6$ cm.
+(Tivi có kích thước khoảng 65cm x 49cm).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Biện luận số nghiệm theo tham số m</h4>
+
+Cho phương trình $x^2 - 2(m-1)x + 2m - 4 = 0$ (với ẩn là x).
+a) C/m phương trình luôn có 2 nghiệm phân biệt với mọi giá trị của m.
+b) Tìm m để phương trình có 1 nghiệm bằng 3. Tìm nghiệm còn lại.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\Delta' = (-(m-1))^2 - 1(2m - 4) = m^2 - 2m + 1 - 2m + 4 = m^2 - 4m + 5$.
+$\Delta' = (m - 2)^2 + 1$.
+Vì $(m - 2)^2 \geq 0$ với mọi m nên $(m - 2)^2 + 1 \geq 1 > 0$ với mọi m.
+Vậy $\Delta' > 0$ với mọi m, phương trình luôn có 2 nghiệm phân biệt.
+
+b) Thay $x = 3$ vào phương trình:
+$3^2 - 2(m-1)\cdot 3 + 2m - 4 = 0$
+$\Leftrightarrow 9 - 6m + 6 + 2m - 4 = 0 \Leftrightarrow -4m + 11 = 0 \Leftrightarrow 4m = 11 \Leftrightarrow m = \frac{11}{4} = 2,75$.
+Theo Viète, $x_1 + x_2 = 2(m-1) \Rightarrow 3 + x_2 = 2(2,75 - 1) = 3,5 \Rightarrow x_2 = 0,5$.
+Vậy nghiệm còn lại là $x = 0,5$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Tính giá trị biểu thức đối xứng của các nghiệm</h4>
+
+Cho phương trình $x^2 - 6x + 7 = 0$. Hai nghiệm của phương trình là $x_1, x_2$. Không giải phương trình, hãy tính:
+a) $x_1^2 + x_2^2$
+b) $x_1^3 + x_2^3$
+c) $|x_1 - x_2|$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Có $\Delta = (-6)^2 - 4 \cdot 7 = 36 - 28 = 8 > 0$. Phương trình chắc chắn có 2 nghiệm.
+Theo Viète: $S = x_1 + x_2 = 6$; $P = x_1 x_2 = 7$.
+
+a) $x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2 = 6^2 - 2(7) = 36 - 14 = 22$.
+
+b) $x_1^3 + x_2^3 = (x_1 + x_2)(x_1^2 - x_1 x_2 + x_2^2) = (x_1 + x_2)[(x_1 + x_2)^2 - 3x_1 x_2]$
+$= 6 \cdot (6^2 - 3 \cdot 7) = 6 \cdot (36 - 21) = 6 \cdot 15 = 90$.
+
+c) Xét $(x_1 - x_2)^2 = (x_1 + x_2)^2 - 4x_1 x_2 = 6^2 - 4(7) = 36 - 28 = 8$.
+Vì vậy $|x_1 - x_2| = \sqrt{(x_1 - x_2)^2} = \sqrt{8} = 2\sqrt{2}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Định lí Viète nâng cao</h4>
+
+Cho phương trình $x^2 - (m+2)x + 2m = 0$. 
+Tìm $m$ để phương trình có hai nghiệm phân biệt $x_1, x_2$ thỏa mãn $x_1^2 + x_2^2 = 20$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Điều kiện để có hai nghiệm phân biệt: $\Delta > 0 \Leftrightarrow (m+2)^2 - 4(2m) > 0 \Leftrightarrow m^2 + 4m + 4 - 8m > 0 \Leftrightarrow m^2 - 4m + 4 > 0 \Leftrightarrow (m-2)^2 > 0 \Leftrightarrow m \neq 2$.
+
+Theo hệ thức Viète, ta có:
+$x_1 + x_2 = m + 2$
+$x_1 x_2 = 2m$
+
+Hệ thức đề bài: $x_1^2 + x_2^2 = 20 \Leftrightarrow (x_1 + x_2)^2 - 2x_1 x_2 = 20$.
+Thay biểu thức Viète vào:
+$(m+2)^2 - 2(2m) = 20$
+$\Leftrightarrow m^2 + 4m + 4 - 4m = 20$
+$\Leftrightarrow m^2 + 4 = 20 \Leftrightarrow m^2 = 16 \Leftrightarrow m = 4$ hay $m = -4$.
+Cả hai giá trị $m = 4$ và $m = -4$ đều khác 2 (thỏa mãn điều kiện).
+Vậy $m \in \{4; -4\}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Giải bài toán bằng cách lập phương trình (Năng suất)</h4>
+
+Hai vòi nước cùng chảy vào một bể không có nước thì sau 4 giờ 48 phút sẽ đầy bể. Nếu mở vòi I chảy trong 3 giờ, sau đó mở tiếp vòi II chảy thêm 4 giờ nữa thì được $\frac{3}{4}$ bể. Hỏi nếu mỗi vòi chảy một mình thì mất bao lâu sẽ đầy bể?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Đổi 4 giờ 48 phút = $4 + \frac{48}{60} = \frac{24}{5}$ giờ.
+Gọi năng suất của vòi I và vòi II trong 1 giờ làm được lần lượt là $x$ và $y$ (bể/giờ) ($x>0, y>0$).
+Mỗi giờ cả hai vòi chảy được: $x + y = \frac{1}{\frac{24}{5}} = \frac{5}{24}$ (1)
+
+Mở vòi I trong 3 giờ ta được: $3x$.
+Mở vòi II chảy thêm 4 giờ nữa (nghĩa là vòi I và II cùng mở thêm 4 giờ, tức là lượng phần bể đầy = $3x + \dots$).
+Khoan, đề ghi "mở vòi I 3 giờ, SAU ĐÓ mở TIẾP vòi II chảy thêm 4 giờ nữa" (cả hai vòi chảy cùng lúc trong 4 giờ sau). 
+Hoặc diễn giải là Vòi I chảy tổng cộng $3 + 4 = 7$ giờ, vòi II chảy 4 giờ. Lượng nước: $7x + 4y = \frac{3}{4}$ (2).
+
+Giải hệ (1) & (2): 
+$x + y = \frac{5}{24} \Rightarrow 4x + 4y = \frac{20}{24} = \frac{5}{6}$.
+Lấy (2) trừ cho pt mới: $3x = \frac{3}{4} - \frac{5}{6} = \frac{9}{12} - \frac{10}{12} = -\frac{1}{12}$ (âm, vô lý).
+Như vậy đề có thể hiểu: Vòi I chảy 3 giờ, sau đó **chỉ** vòi II chảy tiếp 4 giờ?
+$\Rightarrow 3x + 4y = \frac{3}{4}$.
+Thử lại: $y = \frac{5}{24} - x$. $3x + 4(\frac{5}{24} - x) = \frac{3}{4} \Rightarrow -x + \frac{5}{6} = \frac{3}{4} \Rightarrow x = \frac{5}{6} - \frac{3}{4} = \frac{1}{12}$.
+$y = \frac{5}{24} - \frac{2}{24} = \frac{3}{24} = \frac{1}{8}$.
+Lượng nước 1 giờ vòi I chảy là $1/12$ bể $\Rightarrow$ Vòi I chảy một mình mất 12 giờ.
+Lượng nước 1 giờ vòi II chảy là $1/8$ bể $\Rightarrow$ Vòi II chảy một mình mất 8 giờ.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Giải bài toán bằng cách lập phương trình (Chuyển động)</h4>
+
+Một ô tô đi từ tỉnh A đến tỉnh B cách nhau 150 km. Lúc về, ô tô tăng vận tốc thêm 15 km/h so với lúc đi, do đó thời gian về ít hơn thời gian đi là 30 phút. Tính vận tốc lúc đi của chiếc ô tô đó.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Đổi 30 phút = $\frac{1}{2}$ giờ.
+Gọi vận tốc lúc đi của ô tô là $x$ (km/h) Điều kiện: $x > 0$.
+Thời gian lúc đi là: $\frac{150}{x}$ (giờ).
+Vận tốc lúc về là: $x + 15$ (km/h).
+Thời gian lúc về là: $\frac{150}{x + 15}$ (giờ).
+
+Vì thời gian về ít hơn thời gian đi 30 phút, ta có phương trình:
+$\frac{150}{x} - \frac{150}{x + 15} = \frac{1}{2}$
+$\Leftrightarrow 150 \cdot 2 \cdot (x + 15) - 150 \cdot 2 \cdot x = x(x + 15)$
+$\Leftrightarrow 300(x + 15) - 300x = x^2 + 15x$
+$\Leftrightarrow 300x + 4500 - 300x = x^2 + 15x$
+$\Leftrightarrow x^2 + 15x - 4500 = 0$.
+
+$\Delta = 15^2 - 4(-4500) = 225 + 18000 = 18225 = 135^2$.
+Nghiệm của phương trình:
+$x_1 = \frac{-15 + 135}{2} = \frac{120}{2} = 60$ (thỏa mãn).
+$x_2 = \frac{-15 - 135}{2} = \frac{-150}{2} = -75$ (loại).
+
+Vậy vận tốc lúc đi của xe ô tô là 60 km/h.
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Lời khuyên</h3>
+
+- Rất nhiều bạn giải phương trình bằng nhẩm nghiệm sai do sơ ý dấu. **Khuyên:** Luôn lấy giấy nháp kiểm tra nhẩm lại $x_1 + x_2$ xem có bằng $-b/a$ không.
+- Giao điểm parabol và đường thẳng là một dạng kinh điển xuất hiện ở **gần như 100% đề thi tuyển sinh**, hãy ôn thật rành!
+
+</GhiNho>

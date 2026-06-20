@@ -1,0 +1,438 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 28: Số thập phân"
+description: "Số thập phân - Toán 6 KNTT Chương 7"
+grade: "Lớp 6"
+chapter: "Chương VII: Số thập phân"
+currentSlug: "lop6/bai-28-so-thap-phan"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{17}{10}$ viết dưới dạng số thập phân là:",
+    option_a: "1,7",
+    option_b: "0,17",
+    option_c: "17,0",
+    option_d: "0,017",
+    correct_option: "A",
+    explanation: "$\\frac{17}{10}$ có mẫu 10 nên dịch dấu phẩy sang trái 1 chữ số: 1,7.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số thập phân 0,025 được viết dưới dạng phân số là:",
+    option_a: "$\\frac{25}{1000}$",
+    option_b: "$\\frac{25}{100}$",
+    option_c: "$\\frac{25}{10}$",
+    option_d: "$\\frac{25}{10000}$",
+    correct_option: "A",
+    explanation: "0,025 = $\\frac{25}{1000}$ vì có 3 chữ số sau dấu phẩy.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số đối của -3,5 là:",
+    option_a: "3,5",
+    option_b: "-3,5",
+    option_c: "0,35",
+    option_d: "35",
+    correct_option: "A",
+    explanation: "Số đối của -3,5 là 3,5 vì -3,5 + 3,5 = 0.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "So sánh 3,14 và 3,2:",
+    option_a: "3,14 < 3,2",
+    option_b: "3,14 > 3,2",
+    option_c: "3,14 = 3,2",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "So sánh phần nguyên: 3 = 3, so sánh phần thập phân: 14 < 20 nên 3,14 < 3,2.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Sắp xếp theo thứ tự tăng dần: 0; -2,5; 1,3; -1,8",
+    option_a: "-2,5 < -1,8 < 0 < 1,3",
+    option_b: "0 < 1,3 < -1,8 < -2,5",
+    option_c: "-1,8 < -2,5 < 0 < 1,3",
+    option_d: "1,3 < 0 < -1,8 < -2,5",
+    correct_option: "A",
+    explanation: "Sắp xếp: -2,5 < -1,8 < 0 < 1,3.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\frac{-35}{100}$ viết dưới dạng số thập phân là:",
+    option_a: "-0,35",
+    option_b: "0,35",
+    option_c: "-3,5",
+    option_d: "3,5",
+    correct_option: "A",
+    explanation: "$\\frac{-35}{100}$ = -0,35.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong các số sau, số nào lớn nhất: 2,5; -1,2; 0,8; -3,1?",
+    option_a: "2,5",
+    option_b: "-1,2",
+    option_c: "0,8",
+    option_d: "-3,1",
+    correct_option: "A",
+    explanation: "2,5 là số dương lớn nhất trong các số đã cho.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số thập phân 4,175 có bao nhiêu chữ số ở phần thập phân?",
+    option_a: "3",
+    option_b: "2",
+    option_c: "1",
+    option_d: "4",
+    correct_option: "A",
+    explanation: "4,175 có 3 chữ số ở phần thập phân (1, 7, 5).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Viết số thập phân 0,75 dưới dạng phân số tối giản:",
+    option_a: "$\\frac{3}{4}$",
+    option_b: "$\\frac{75}{100}$",
+    option_c: "$\\frac{75}{10}$",
+    option_d: "$\\frac{7}{10}$",
+    correct_option: "A",
+    explanation: "0,75 = $\\frac{75}{100} = \\frac{3}{4}$ (rút gọn với ƯCLN = 25).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nhiệt độ nào thấp hơn: -2,3°C hay -5,7°C?",
+    option_a: "-5,7°C",
+    option_b: "-2,3°C",
+    option_c: "Bằng nhau",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Vì -5,7 < -2,3 nên -5,7°C thấp hơn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">📏 Đo chiều cao</h3>
+
+Bạn Nam cao **1,7 mét**, cao hơn bạn Hùng **0,15 mét**. Em có biết cách viết các phân số thập phân như $\frac{17}{10}$, $\frac{34}{100}$ dưới dạng số thập phân không?
+
+Hãy học bài này để biết nhé!
+
+<div style="text-align:center;margin:1.5rem 0;">
+  <svg viewBox="0 0 300 200" style="width:100%;max-width:300px;height:auto;">
+    {/* Thước đo */}
+    <line x1="50" y1="150" x2="250" y2="150" stroke="#374151" strokeWidth="3"/>
+    {/* Vạch chia */}
+    {Array.from({length: 21}, (_, i) => (
+      <line x1={50 + i * 10} y1="150" x2={50 + i * 10} y2={i % 5 === 0 ? 130 : 140} stroke="#374151" strokeWidth="1"/>
+    ))}
+    {/* Nam */}
+    <line x1="120" y1="60" x2="120" y2="150" stroke="#2563eb" strokeWidth="4"/>
+    <text x="120" y="50" textAnchor="middle" fill="#2563eb" fontWeight="bold">Nam: 1,7m</text>
+    {/* Hùng */}
+    <line x1="180" y1="75" x2="180" y2="150" stroke="#dc2626" strokeWidth="4"/>
+    <text x="180" y="65" textAnchor="middle" fill="#dc2626" fontWeight="bold">Hùng: 1,55m</text>
+  </svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="phan-so-thap-phan" style="margin-top:2rem;">📖 1. Phân số thập phân và số thập phân</h3>
+
+<div class="box-dinh-nghia">
+
+**Phân số thập phân** là phân số có mẫu là $10^n$ ($n$ là số tự nhiên).
+
+**Số thập phân** gồm hai phần:
+- **Phần nguyên** (trước dấu phẩy)
+- **Phần thập phân** (sau dấu phẩy)
+
+</div>
+
+**Cách chuyển đổi:**
+
+| Phân số thập phân | Số thập phân |
+|------------------|--------------|
+| $\frac{17}{10}$ | 1,7 |
+| $\frac{34}{100}$ | 0,34 |
+| $\frac{25}{1000}$ | 0,025 |
+| $\frac{-7}{100}$ | -0,07 |
+
+**Quy tắc:** Mỗi chữ số ở mẫu tương ứng với một chữ số ở phần thập phân.
+
+**Ví dụ 1:** Viết $\frac{798}{10}$ dưới dạng số thập phân
+
+$\frac{798}{10} = 79,8$ (dịch dấu phẩy sang trái 1 chữ số)
+
+<h3 id="so-doi" style="margin-top:2rem;">📖 2. Số đối của số thập phân</h3>
+
+<div class="box-dinh-nghia">
+
+**Số đối** của số thập phân $a$ là số $-a$ sao cho $a + (-a) = 0$.
+
+</div>
+
+**Ví dụ 2:**
+- Số đối của $3,5$ là $-3,5$
+- Số đối của $-2,17$ là $2,17$
+- Số đối của $0$ là $0$
+
+<h3 id="so-sanh" style="margin-top:2rem;">📖 3. So sánh hai số thập phân</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc so sánh:**
+1. Số thập phân dương > số thập phân âm
+2. Số thập phân âm nhỏ hơn 0
+3. So sánh phần nguyên trước
+4. Nếu phần nguyên bằng nhau, so sánh phần thập phân (thêm chữ số 0 nếu cần)
+
+</div>
+
+**Ví dụ 3:** So sánh 3,14 và 3,2
+
+- Phần nguyên: $3 = 3$
+- Phần thập phân: $14 < 20$ (so sánh $0,14$ và $0,2$)
+- Vậy $3,14 < 3,2$
+
+**Ví dụ 4:** Sắp xếp: $-8,9$; $-8,152$; $0$; $0,12$ theo thứ tự tăng dần
+
+$-8,9 < -8,152 < 0 < 0,12$
+
+<h3 id="vi-du-thuc-te" style="margin-top:2rem;">📖 4. Ứng dụng thực tế</h3>
+
+Số thập phân được sử dụng rộng rãi trong đo lường:
+
+| Đại lượng | Ví dụ số thập phân |
+|-----------|---------------------|
+| Chiều cao | 1,65 m |
+| Cân nặng | 45,5 kg |
+| Nhiệt độ | 36,5°C |
+| Tiền | 125 000,00 đồng |
+
+</KhamPha>
+
+<LuyenTap title="Luyện tập">
+
+**Bài 1:** Viết các phân số thập phân sau dưới dạng số thập phân:
+
+a) $\frac{21}{10}$ b) $\frac{-35}{10}$ c) $\frac{-125}{100}$ d) $\frac{-89}{1000}$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 2,1 b) -3,5 c) -1,25 d) -0,089
+
+</div>
+
+**Bài 2:** Tìm số đối của các số thập phân sau:
+
+a) -1,2 b) 4,15 c) 19,2 d) -0,08
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 1,2 b) -4,15 c) -19,2 d) 0,08
+
+</div>
+
+**Bài 3:** So sánh các cặp số sau:
+
+a) 3,5 và 3,49 b) -2,1 và -2,3 c) 0,125 và 0,13
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) 3,5 > 3,49 b) -2,1 > -2,3 c) 0,125 < 0,13
+
+</div>
+
+**Bài 4:** Sắp xếp các số sau theo thứ tự tăng dần:
+
+$2,5$; $-1,3$; $0$; $-3,7$; $1,8$
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$-3,7 < -1,3 < 0 < 1,8 < 2,5$
+
+</div>
+
+**Bài 5:** Viết các số thập phân sau dưới dạng phân số:
+
+a) 0,7 b) -2,3 c) 0,25 d) 1,05
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+a) $\frac{7}{10}$ b) $\frac{-23}{10}$ c) $\frac{25}{100} = \frac{1}{4}$ d) $\frac{105}{100} = \frac{21}{20}$
+
+</div>
+
+</LuyenTap>
+
+<VanDung title="Vận dụng">
+
+**Bài 1:** Nhiệt độ đông đặc của ba chất như sau: Nước là 0°C, Thủy ngân là -38,83°C, Rượu là -117°C. Hãy sắp xếp theo thứ tự từ thấp đến cao.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Thứ tự từ thấp đến cao: Rượu (-117°C) < Thủy ngân (-38,83°C) < Nước (0°C)
+
+</div>
+
+**Bài 2:** Bạn Lan mua vở hết 15 000 đồng, mua bút hết 12 500 đồng. Hỏi Lan mua vở hay bút nhiều tiền hơn và nhiều hơn bao nhiêu?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Lan mua vở nhiều tiền hơn: 15 000 - 12 500 = 2 500 đồng
+
+</div>
+
+**Bài 3:** So sánh chiều cao của hai bạn, biết bạn A cao 1,58m và bạn B cao 1,6m.
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+1,58m < 1,6m nên bạn B cao hơn bạn A. Chênh lệch: 1,6 - 1,58 = 0,02m = 2cm
+
+</div>
+
+</VanDung>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Viết các phân số thập phân sau dưới dạng số thập phân:
+
+a) $\frac{47}{10}$ b) $\frac{253}{100}$ c) $\frac{-89}{1000}$ d) $\frac{7}{100000}$
+
+**Bài 2:** Tìm số đối của:
+
+a) 12,5 b) -0,34 c) 100,01 d) -25,7
+
+**Bài 3:** So sánh:
+
+a) 7,25 và 7,3 b) -4,56 và -4,6 c) 0,99 và 1
+
+**Bài 4:** Sắp xếp các số sau theo thứ tự giảm dần:
+
+$3,5$; $-1,2$; $0,8$; $-3,1$; $2,1$
+
+**Bài 5:** Viết các số thập phân sau dưới dạng phân số tối giản:
+
+a) 0,8 b) 0,75 c) 2,5 d) 1,25
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 4,7; b) 2,53; c) -0,089; d) 0,00007
+
+**Bài 2:** a) -12,5; b) 0,34; c) -100,01; d) 25,7
+
+**Bài 3:** a) 7,25 < 7,3; b) -4,56 > -4,6; c) 0,99 < 1
+
+**Bài 4:** $3,5 > 2,1 > 0,8 > -1,2 > -3,1$
+
+**Bài 5:** a) $\frac{4}{5}$; b) $\frac{3}{4}$; c) $\frac{5}{2}$; d) $\frac{5}{4}$
+
+</div>
+</details>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Tổng kết bài học:**
+
+**1. Phân số thập phân và số thập phân**
+- Phân số thập phân: mẫu là $10^n$
+- Số thập phân gồm phần nguyên + phần thập phân (ngăn cách bởi dấu phẩy)
+
+**2. Chuyển đổi**
+- $\frac{a}{10^n}$ = chuyển dấu phẩy sang trái $n$ vị trí
+- Số thập phân $a,bcd$ = $\frac{abcd}{10^n}$ ($n$ là số chữ số phần thập phân)
+
+**3. Số đối**
+- Số đối của $a$ là $-a$
+- $a + (-a) = 0$
+
+**4. So sánh số thập phân**
+- Dương > 0 > Âm
+- So sánh phần nguyên trước
+- Nếu bằng nhau, so sánh phần thập phân
+
+</div>
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Viết các phân số thập phân sau dưới dạng số thập phân:
+
+a) $\frac{47}{10}$ b) $\frac{253}{100}$ c) $\frac{-89}{1000}$ d) $\frac{7}{100000}$
+
+**Bài 2:** Tìm số đối của:
+
+a) 12,5 b) -0,34 c) 100,01 d) -25,7
+
+**Bài 3:** So sánh:
+
+a) 7,25 và 7,3 b) -4,56 và -4,6 c) 0,99 và 1
+
+**Bài 4:** Sắp xếp các số sau theo thứ tự giảm dần:
+
+$3,5$; $-1,2$; $0,8$; $-3,1$; $2,1$
+
+**Bài 5:** Viết các số thập phân sau dưới dạng phân số tối giản:
+
+a) 0,8 b) 0,75 c) 2,5 d) 1,25
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 4,7; b) 2,53; c) -0,089; d) 0,00007
+
+**Bài 2:** a) -12,5; b) 0,34; c) -100,01; d) 25,7
+
+**Bài 3:** a) 7,25 < 7,3; b) -4,56 > -4,6; c) 0,99 < 1
+
+**Bài 4:** $3,5 > 2,1 > 0,8 > -1,2 > -3,1$
+
+**Bài 5:** a) $\frac{4}{5}$; b) $\frac{3}{4}$; c) $\frac{5}{2}$; d) $\frac{5}{4}$
+
+</div>
+</details>
+
+<QuizSession client:load questions={quizData} />
+

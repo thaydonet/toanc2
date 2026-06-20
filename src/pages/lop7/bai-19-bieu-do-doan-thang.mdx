@@ -1,0 +1,404 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 19: Biểu đồ đoạn thẳng"
+description: "Biểu đồ đoạn thẳng - Toán 7 KNTT Chương 5"
+grade: "Lớp 7"
+chapter: "Chương V: Thu thập và biểu diễn dữ liệu"
+currentSlug: "lop7/bai-19-bieu-do-doan-thang"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Biểu đồ đoạn thẳng thích hợp để biểu diễn:",
+    option_a: "Sự thay đổi của dữ liệu theo thời gian",
+    option_b: "Chỉ số lượng cố định",
+    option_c: "Tỉ lệ phần trăm",
+    option_d: "Màu sắc",
+    correct_option: "A",
+    explanation: "Biểu đồ đoạn thẳng thích hợp để biểu diễn sự thay đổi của dữ liệu theo thời gian.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong biểu đồ đoạn thẳng, các điểm dữ liệu được nối với nhau bằng:",
+    option_a: "Các đoạn thẳng",
+    option_b: "Các đường cong",
+    option_c: "Các mũi tên",
+    option_d: "Không nối",
+    correct_option: "A",
+    explanation: "Các điểm dữ liệu được nối với nhau bằng các đoạn thẳng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ưu điểm của biểu đồ đoạn thẳng là:",
+    option_a: "Thể hiện rõ xu hướng thay đổi",
+    option_b: "Khó vẽ",
+    option_c: "Không chính xác",
+    option_d: "Chỉ dùng cho số nhỏ",
+    correct_option: "A",
+    explanation: "Biểu đồ đoạn thẳng thể hiện rõ xu hướng tăng, giảm của dữ liệu theo thời gian.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trục ngang trong biểu đồ đoạn thẳng thường biểu diễn:",
+    option_a: "Thời gian hoặc các mốc thời gian",
+    option_b: "Số lượng",
+    option_c: "Tỉ lệ phần trăm",
+    option_d: "Màu sắc",
+    correct_option: "A",
+    explanation: "Trục ngang thường biểu diễn thời gian hoặc các mốc thời gian.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Biểu đồ đoạn thẳng giúp ta:",
+    option_a: "Nhận biết xu hướng tăng giảm",
+    option_b: "So sánh giá trị giữa các thời điểm",
+    option_c: "Dự đoán xu hướng tương lai",
+    option_d: "Xác định giá trị lớn nhất, nhỏ nhất",
+    correct_option: "A,B,C,D",
+    explanation: "Biểu đồ đoạn thẳng có tất cả các ưu điểm trên.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Nhiệt độ tăng từ 25°C lên 30°C. Nhiệt độ tăng bao nhiêu độ?",
+    correct_option: "5",
+    explanation: "Nhiệt độ tăng: 30 - 25 = 5°C",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Biểu đồ đoạn thẳng</h3>
+
+Biểu đồ đoạn thẳng giúp ta thấy rõ sự thay đổi của dữ liệu theo thời gian!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
+    <strong>Xu hướng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tăng hay giảm</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⏱️</div>
+    <strong>Thời gian</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Theo dõi biến đổi</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Dữ liệu</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Các điểm nối nhau</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm biểu đồ đoạn thẳng</h3>
+
+<div class="box-dinh-nghia">
+
+**Biểu đồ đoạn thẳng** (hay biểu đồ đường) là biểu đồ dùng các điểm biểu diễn dữ liệu và nối các điểm đó bằng các đoạn thẳng.
+
+Biểu đồ này thích hợp để biểu diễn sự thay đổi của dữ liệu theo thời gian hoặc theo một biến số liên tục.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="400" height="300" viewBox="0 0 400 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Trục tọa độ */}
+  <line x1="50" y1="250" x2="350" y2="250" stroke="#1f2937" stroke-width="2"/>
+  <line x1="50" y1="250" x2="50" y2="50" stroke="#1f2937" stroke-width="2"/>
+  
+  {/* Mũi tên */}
+  <polygon points="350,250 345,245 345,255" fill="#1f2937"/>
+  <polygon points="50,50 45,55 55,55" fill="#1f2937"/>
+  
+  {/* Nhãn trục */}
+  <text x="360" y="255" font-size="12" fill="#1f2937">Tháng</text>
+  <text x="30" y="45" font-size="12" fill="#1f2937">°C</text>
+  
+  {/* Các điểm dữ liệu */}
+  <circle cx="80" cy="200" r="4" fill="#3b82f6"/>
+  <circle cx="130" cy="180" r="4" fill="#3b82f6"/>
+  <circle cx="180" cy="150" r="4" fill="#3b82f6"/>
+  <circle cx="230" cy="120" r="4" fill="#3b82f6"/>
+  <circle cx="280" cy="100" r="4" fill="#3b82f6"/>
+  <circle cx="330" cy="90" r="4" fill="#3b82f6"/>
+  
+  {/* Nối các điểm */}
+  <polyline points="80,200 130,180 180,150 230,120 280,100 330,90" 
+    fill="none" stroke="#3b82f6" stroke-width="2"/>
+  
+  {/* Nhãn trục ngang */}
+  <text x="75" y="270" font-size="11" text-anchor="middle" fill="#6b7280">T1</text>
+  <text x="125" y="270" font-size="11" text-anchor="middle" fill="#6b7280">T2</text>
+  <text x="175" y="270" font-size="11" text-anchor="middle" fill="#6b7280">T3</text>
+  <text x="225" y="270" font-size="11" text-anchor="middle" fill="#6b7280">T4</text>
+  <text x="275" y="270" font-size="11" text-anchor="middle" fill="#6b7280">T5</text>
+  <text x="325" y="270" font-size="11" text-anchor="middle" fill="#6b7280">T6</text>
+  
+  {/* Nhãn trục dọc */}
+  <text x="40" y="255" font-size="11" text-anchor="end" fill="#6b7280">20</text>
+  <text x="40" y="205" font-size="11" text-anchor="end" fill="#6b7280">22</text>
+  <text x="40" y="155" font-size="11" text-anchor="end" fill="#6b7280">25</text>
+  <text x="40" y="105" font-size="11" text-anchor="end" fill="#6b7280">28</text>
+  <text x="40" y="55" font-size="11" text-anchor="end" fill="#6b7280">32</text>
+  
+  {/* Tiêu đề */}
+  <text x="200" y="25" font-size="14" font-weight="bold" text-anchor="middle" fill="#1f2937">Nhiệt độ trung bình các tháng</text>
+</svg>
+</div>
+
+<h3 id="thanh-phan" style="margin-top:2rem;">📖 2. Các thành phần của biểu đồ đoạn thẳng</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**1. Tiêu đề:** Tên của biểu đồ, mô tả nội dung
+
+**2. Trục ngang (Ox):** Biểu diễn thời gian hoặc biến số độc lập
+- Ví dụ: tháng, năm, ngày, tuần
+
+**3. Trục dọc (Oy):** Biểu diễn giá trị dữ liệu
+- Ví dụ: nhiệt độ, doanh số, điểm số
+
+**4. Các điểm dữ liệu:** Biểu diễn giá trị tại mỗi thời điểm
+
+**5. Các đoạn thẳng:** Nối các điểm dữ liệu với nhau
+
+**6. Chú thích:** Giải thích ý nghĩa (nếu có nhiều đường)
+
+</div>
+
+<h3 id="cach-ve" style="margin-top:2rem;">📖 3. Các bước vẽ biểu đồ đoạn thẳng</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Bước 1:** Vẽ hệ trục tọa độ Oxy
+
+Trục ngang (Ox) và trục dọc (Oy) vuông góc với nhau.
+
+**Bước 2:** Chia độ và ghi nhãn cho các trục
+
+- Trục ngang: các mốc thời gian (tháng 1, 2, 3...)
+- Trục dọc: các giá trị dữ liệu (0, 10, 20, 30...)
+
+**Bước 3:** Đánh dấu các điểm dữ liệu
+
+Với mỗi cặp (thời gian, giá trị), đánh dấu một điểm trên biểu đồ.
+
+**Bước 4:** Nối các điểm bằng đoạn thẳng
+
+Nối các điểm theo thứ tự thời gian.
+
+**Bước 5:** Ghi tiêu đề và chú thích
+
+</div>
+
+**Ví dụ:** Nhiệt độ trung bình các tháng (°C):
+
+| Tháng | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| Nhiệt độ | 20 | 22 | 25 | 28 | 30 | 32 |
+
+Từ bảng này, ta vẽ biểu đồ đoạn thẳng như hình trên.
+
+<h3 id="doc-bieu-do" style="margin-top:2rem;">📖 4. Cách đọc và phân tích biểu đồ đoạn thẳng</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Nhận biết xu hướng:**
+
+- **Đường đi lên:** Dữ liệu tăng theo thời gian
+- **Đường đi xuống:** Dữ liệu giảm theo thời gian
+- **Đường nằm ngang:** Dữ liệu không đổi
+- **Đường gấp khúc:** Dữ liệu tăng giảm không đều
+
+**So sánh giá trị:**
+
+- Điểm cao nhất: giá trị lớn nhất
+- Điểm thấp nhất: giá trị nhỏ nhất
+- So sánh giữa các thời điểm
+
+**Dự đoán xu hướng:**
+
+Dựa vào xu hướng hiện tại để dự đoán giá trị tương lai.
+
+</div>
+
+<h3 id="uu-nhuoc-diem" style="margin-top:2rem;">📖 5. Ưu điểm và nhược điểm</h3>
+
+**Ưu điểm:**
+
+- Thể hiện rõ xu hướng thay đổi theo thời gian
+- Dễ nhận biết sự tăng giảm
+- Có thể so sánh nhiều dữ liệu (vẽ nhiều đường)
+- Giúp dự đoán xu hướng tương lai
+
+**Nhược điểm:**
+
+- Không thích hợp cho dữ liệu rời rạc
+- Có thể gây hiểu lầm nếu không chọn thang đo phù hợp
+- Khó đọc khi có quá nhiều đường
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**Bài toán:** Điểm trung bình môn Toán của An qua các kỳ:
+
+| Kỳ | Kỳ 1 | Kỳ 2 | Kỳ 3 | Kỳ 4 | Kỳ 5 |
+|---|---|---|---|---|---|
+| Điểm | 6.5 | 7.0 | 7.5 | 8.0 | 8.5 |
+
+a) Vẽ biểu đồ đoạn thẳng
+
+b) Nhận xét về xu hướng điểm số của An
+
+c) Dự đoán điểm số kỳ 6 của An
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Vẽ biểu đồ với:
+- Trục ngang: Kỳ 1, 2, 3, 4, 5
+- Trục dọc: Điểm số (0 đến 10)
+- Đánh dấu các điểm (1, 6.5), (2, 7.0), (3, 7.5), (4, 8.0), (5, 8.5)
+- Nối các điểm bằng đoạn thẳng
+
+b) Nhận xét:
+- Điểm số của An tăng đều qua các kỳ
+- Mỗi kỳ tăng 0.5 điểm
+- Xu hướng tích cực, An học tập tiến bộ
+
+c) Dự đoán:
+- Nếu xu hướng tiếp tục, kỳ 6 An có thể đạt: 8.5 + 0.5 = 9.0 điểm
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Biểu đồ đoạn thẳng**: nối các điểm dữ liệu bằng đoạn thẳng
+- **Thích hợp**: biểu diễn sự thay đổi theo thời gian
+- **Ưu điểm**: thể hiện rõ xu hướng tăng giảm
+- **Đọc biểu đồ**: nhận biết xu hướng, so sánh, dự đoán
+- **Thành phần**: tiêu đề, trục Ox (thời gian), trục Oy (giá trị)
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Doanh số bán hàng của một cửa hàng (triệu đồng):
+
+| Tháng | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| Doanh số | 50 | 55 | 60 | 58 | 65 | 70 |
+
+a) Vẽ biểu đồ đoạn thẳng
+
+b) Tháng nào có doanh số cao nhất? Thấp nhất?
+
+c) Nhận xét xu hướng doanh số
+
+**Bài 2:** Số lượng sách mượn tại thư viện mỗi ngày trong tuần:
+
+Thứ 2: 30, Thứ 3: 35, Thứ 4: 40, Thứ 5: 38, Thứ 6: 45, Thứ 7: 50
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ đoạn thẳng
+
+c) Ngày nào có nhiều người mượn sách nhất?
+
+**Bài 3:** Quan sát biểu đồ đoạn thẳng về nhiệt độ trong ngày:
+
+6h: 20°C, 9h: 25°C, 12h: 30°C, 15h: 32°C, 18h: 28°C, 21h: 22°C
+
+a) Nhiệt độ cao nhất vào lúc nào?
+
+b) Nhiệt độ thay đổi như thế nào từ 6h đến 15h?
+
+c) Nhiệt độ thay đổi như thế nào từ 15h đến 21h?
+
+**Bài 4:** Cân nặng của Bình qua các tháng (kg):
+
+Tháng 1: 45, Tháng 2: 46, Tháng 3: 47, Tháng 4: 48, Tháng 5: 49
+
+a) Vẽ biểu đồ đoạn thẳng
+
+b) Cân nặng của Bình thay đổi như thế nào?
+
+c) Dự đoán cân nặng tháng 6
+
+**Bài 5:** So sánh hai biểu đồ đoạn thẳng và biểu đồ cột. Khi nào nên dùng biểu đồ đoạn thẳng?
+
+**Bài 6:** Điểm kiểm tra của hai bạn An và Bình qua 5 lần:
+
+| Lần | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| An | 7 | 7.5 | 8 | 8.5 | 9 |
+| Bình | 8 | 7.5 | 7 | 7.5 | 8 |
+
+Vẽ hai đường trên cùng một biểu đồ và nhận xét.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** 
+b) Cao nhất: tháng 6 (70 triệu); Thấp nhất: tháng 1 (50 triệu)
+c) Xu hướng tăng, có giảm nhẹ tháng 4
+
+**Bài 2:** 
+c) Thứ 7 (50 quyển)
+
+**Bài 3:** 
+a) 15h (32°C)
+b) Tăng dần từ 20°C lên 32°C
+c) Giảm dần từ 32°C xuống 22°C
+
+**Bài 4:** 
+b) Tăng đều 1 kg mỗi tháng
+c) Dự đoán: 50 kg
+
+**Bài 5:** Dùng biểu đồ đoạn thẳng khi muốn thể hiện sự thay đổi theo thời gian, xu hướng tăng giảm. Dùng biểu đồ cột khi muốn so sánh số lượng giữa các nhóm.
+
+**Bài 6:** An có xu hướng tăng đều, Bình có xu hướng giảm rồi tăng lại. An tiến bộ hơn Bình.
+
+</div>
+</details>

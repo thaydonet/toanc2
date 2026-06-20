@@ -1,0 +1,428 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 35: Trung điểm của đoạn thẳng"
+description: "Khái niệm trung điểm, tính chất, công thức - Toán 6 KNTT Chương VIII"
+grade: "Lớp 6"
+chapter: "Chương VIII: Những hình hình học cơ bản"
+currentSlug: "lop6/bai-35-trung-diem"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Trung điểm của đoạn thẳng AB là gì?",
+    option_a: "Điểm M nằm giữa A và B sao cho AM = MB",
+    option_b: "Điểm M bất kỳ nằm trên AB",
+    option_c: "Điểm M ở ngoài AB",
+    option_d: "Điểm M là một đầu mút của AB",
+    correct_option: "A",
+    explanation: "Trung điểm của đoạn thẳng AB là điểm M nằm giữa A và B sao cho AM = MB.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu M là trung điểm của AB, thì:",
+    option_a: "AM = MB = AB/2",
+    option_b: "AM = 2MB",
+    option_c: "MB = 2AM",
+    option_d: "AM + MB = 2AB",
+    correct_option: "A",
+    explanation: "Nếu M là trung điểm của AB, thì AM = MB = AB/2.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho AB = 10 cm, M là trung điểm của AB. Tính AM.",
+    option_a: "5 cm",
+    option_b: "10 cm",
+    option_c: "2,5 cm",
+    option_d: "20 cm",
+    correct_option: "A",
+    explanation: "AM = AB/2 = 10/2 = 5 cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào đúng về trung điểm?",
+    option_a: "Trung điểm nằm giữa hai đầu mút",
+    option_b: "Trung điểm chia đoạn thẳng thành hai phần bằng nhau",
+    option_c: "Mỗi đoạn thẳng có duy nhất một trung điểm",
+    option_d: "Trung điểm có thể nằm ở ngoài đoạn thẳng",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì trung điểm luôn nằm giữa hai đầu mút.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho AB = 16 cm, M là trung điểm của AB. Tính MB.",
+    option_a: "8 cm",
+    option_b: "16 cm",
+    option_c: "4 cm",
+    option_d: "32 cm",
+    correct_option: "A",
+    explanation: "MB = AB/2 = 16/2 = 8 cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho AB = 24 cm, M là trung điểm của AB. Tính AM + MB.",
+    correct_option: "24",
+    explanation: "AM + MB = AB = 24 cm (vì M là trung điểm, AM = MB = 12 cm).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu AM = MB = 6 cm, thì AB = ?",
+    option_a: "12 cm",
+    option_b: "6 cm",
+    option_c: "3 cm",
+    option_d: "24 cm",
+    correct_option: "A",
+    explanation: "AB = AM + MB = 6 + 6 = 12 cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Để xác định trung điểm M của đoạn AB, ta cần:",
+    option_a: "M nằm giữa A và B, và AM = MB",
+    option_b: "M nằm trên AB",
+    option_c: "M ở gần A hoặc B",
+    option_d: "M là điểm bất kỳ",
+    correct_option: "A",
+    explanation: "Để xác định trung điểm M, ta cần M nằm giữa A và B, và AM = MB.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🔷 Trung điểm — Điểm chia đôi đoạn thẳng</h3>
+
+Trung điểm là điểm đặc biệt nằm giữa hai đầu mút của một đoạn thẳng, chia nó thành hai phần bằng nhau!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">●</div>
+    <strong>Trung điểm</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Điểm chia đôi</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚖️</div>
+    <strong>Bằng nhau</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hai phần bằng nhau</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="dinh-nghia-trung-diem">📖 1. Định nghĩa trung điểm</h3>
+
+<div class="box-dinh-nghia">
+
+**Trung điểm của đoạn thẳng AB** là điểm M nằm giữa A và B sao cho **AM = MB**.
+
+**Ký hiệu:** M là trung điểm của AB
+
+**Tính chất:** Trung điểm chia đoạn thẳng thành hai phần bằng nhau.
+
+</div>
+
+**Biểu diễn trung điểm:**
+
+<svg viewBox="0 0 300 100" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="50" y1="50" x2="250" y2="50" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="50" cy="50" r="4" fill="#dc2626"/>
+  <circle cx="150" cy="50" r="5" fill="#059669"/>
+  <circle cx="250" cy="50" r="4" fill="#dc2626"/>
+  <text x="50" y="75" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="150" y="75" text-anchor="middle" font-size="12" fill="#1f2937">M</text>
+  <text x="250" y="75" text-anchor="middle" font-size="12" fill="#1f2937">B</text>
+  <text x="100" y="30" text-anchor="middle" font-size="10" fill="#059669">AM</text>
+  <text x="200" y="30" text-anchor="middle" font-size="10" fill="#059669">MB</text>
+</svg>
+
+<h3 id="cong-thuc-tinh-toan" style="margin-top:2rem;">📖 2. Công thức tính toán</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Nếu M là trung điểm của AB, thì:**
+
+$$AM = MB = \frac{AB}{2}$$
+
+</div>
+
+**Ví dụ 1:**
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Cho AB = 10 cm, M là trung điểm của AB. Tính AM và MB.
+
+**Giải:**
+- AM = AB/2 = 10/2 = 5 cm
+- MB = AB/2 = 10/2 = 5 cm
+
+</div>
+
+**Ví dụ 2:**
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Cho AB = 20 cm, M là trung điểm của AB. Tính AM.
+
+**Giải:**
+AM = AB/2 = 20/2 = 10 cm
+
+</div>
+
+<h3 id="cach-xac-dinh-trung-diem" style="margin-top:2rem;">📖 3. Cách xác định trung điểm</h3>
+
+**Cách 1: Dùng thước đo**
+
+1. Đo độ dài AB
+2. Tính AB/2
+3. Từ A, đo một khoảng bằng AB/2, đánh dấu điểm M
+
+**Cách 2: Dùng compa**
+
+1. Mở compa bằng độ dài AB
+2. Đặt compa sao cho hai chân trùng với A và B
+3. Vẽ hai cung tròn, một từ A, một từ B
+4. Hai cung tròn cắt nhau tại hai điểm, nối chúng lại được đường trung trực
+5. Giao điểm của đường trung trực với AB là trung điểm M
+
+**Ví dụ:**
+
+<svg viewBox="0 0 300 150" style="width:100%;max-width:300px;margin:1rem 0;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+  <line x1="50" y1="80" x2="250" y2="80" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="50" cy="80" r="4" fill="#dc2626"/>
+  <circle cx="150" cy="80" r="5" fill="#059669"/>
+  <circle cx="250" cy="80" r="4" fill="#dc2626"/>
+  
+  <circle cx="50" cy="80" r="100" stroke="#d1d5db" stroke-width="1" fill="none"/>
+  <circle cx="250" cy="80" r="100" stroke="#d1d5db" stroke-width="1" fill="none"/>
+  
+  <line x1="150" y1="20" x2="150" y2="140" stroke="#059669" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <text x="50" y="105" text-anchor="middle" font-size="12" fill="#1f2937">A</text>
+  <text x="150" y="105" text-anchor="middle" font-size="12" fill="#1f2937">M</text>
+  <text x="250" y="105" text-anchor="middle" font-size="12" fill="#1f2937">B</text>
+</svg>
+
+<h3 id="tinh-chat-trung-diem" style="margin-top:2rem;">📖 4. Tính chất của trung điểm</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Tính chất 1:** Mỗi đoạn thẳng có **duy nhất một trung điểm**.
+
+</div>
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Tính chất 2:** Trung điểm **chia đoạn thẳng thành hai phần bằng nhau**.
+
+</div>
+
+<div style="background:#fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Tính chất 3:** Nếu M là trung điểm của AB, thì **AM = MB = AB/2**.
+
+</div>
+
+<h3 id="vi-du-tinh-toan" style="margin-top:2rem;">📖 5. Ví dụ tính toán</h3>
+
+**Ví dụ 1:** Cho AB = 14 cm, M là trung điểm của AB. Tính AM và MB.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+- AM = AB/2 = 14/2 = 7 cm
+- MB = AB/2 = 14/2 = 7 cm
+
+</div>
+
+**Ví dụ 2:** Cho AB = 18 cm, M là trung điểm của AB, N là trung điểm của AM. Tính AN.
+
+<div style="background:#dbeafe;border-left:4px solid #1e40af;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+- AM = AB/2 = 18/2 = 9 cm
+- AN = AM/2 = 9/2 = 4,5 cm
+
+</div>
+
+**Ví dụ 3:** Cho AB = 24 cm, M là trung điểm của AB, N là trung điểm của MB. Tính MN.
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+- MB = AB/2 = 24/2 = 12 cm
+- MN = MB/2 = 12/2 = 6 cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**📝 Bài toán 1:** Một sợi dây dài 40 cm. Người ta muốn tìm trung điểm của sợi dây để gắn một cái móc.
+
+a) Trung điểm cách mỗi đầu dây bao nhiêu cm?
+
+b) Nếu gắn móc tại trung điểm, móc đó chia sợi dây thành mấy phần?
+
+c) Nếu gắn móc tại điểm cách một đầu 15 cm, điểm đó có phải trung điểm không?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Trung điểm cách mỗi đầu: 40/2 = 20 cm
+
+b) Móc chia sợi dây thành **2 phần bằng nhau**
+
+c) Không, vì 15 ≠ 20
+
+</div>
+
+**📝 Bài toán 2:** Trên một con đường thẳng, có hai thành phố A và B cách nhau 60 km. Người ta muốn xây một trạm dừng tại trung điểm của AB.
+
+a) Trạm dừng cách mỗi thành phố bao nhiêu km?
+
+b) Nếu xây trạm dừng tại điểm cách A 25 km, điểm đó có phải trung điểm không?
+
+c) Nếu xây hai trạm dừng tại trung điểm của AM và MB (M là trung điểm của AB), hai trạm dừng cách nhau bao nhiêu km?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Trạm dừng cách mỗi thành phố: 60/2 = 30 km
+
+b) Không, vì 25 ≠ 30
+
+c) Hai trạm dừng cách nhau: 30/2 + 30/2 = 15 + 15 = 30 km
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Trung điểm của AB** là điểm M nằm giữa A và B sao cho AM = MB
+- **Công thức:** AM = MB = AB/2
+- **Tính chất:** Trung điểm chia đoạn thẳng thành hai phần bằng nhau
+- **Mỗi đoạn thẳng có duy nhất một trung điểm**
+- **Cách xác định:** Dùng thước đo hoặc compa
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho AB = 12 cm, M là trung điểm của AB. Tính:
+
+a) AM
+
+b) MB
+
+c) AM + MB
+
+d) So sánh AM và MB
+
+**Bài 2:** Cho AB = 20 cm, M là trung điểm của AB. Tính:
+
+a) AM
+
+b) MB
+
+c) Nếu lấy N sao cho AN = 6 cm, so sánh AN và AM
+
+d) Nếu lấy P sao cho BP = 8 cm, so sánh BP và BM
+
+**Bài 3:** Cho AB = 16 cm, M là trung điểm của AB, N là trung điểm của AM. Tính:
+
+a) AM
+
+b) AN
+
+c) MN
+
+d) NB
+
+**Bài 4:** Cho AB = 24 cm, M là trung điểm của AB, N là trung điểm của MB. Tính:
+
+a) MB
+
+b) MN
+
+c) AN
+
+d) NB
+
+**Bài 5:** Cho AB = 30 cm, M là trung điểm của AB. Lấy điểm N trên AB sao cho AN = 10 cm. Tính:
+
+a) AM
+
+b) MN
+
+c) NB
+
+d) So sánh AN, MN, NB
+
+**Bài 6 (Thực tế):** Một sợi dây dài 50 cm. Người ta muốn cắt dây tại trung điểm M, rồi cắt tiếp tại trung điểm N của AM.
+
+a) Tính AM.
+
+b) Tính AN.
+
+c) Tính MN.
+
+d) Nếu cắt dây thành bốn phần bằng nhau, mỗi phần dài bao nhiêu?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) 6 cm; b) 6 cm; c) 12 cm; d) AM = MB
+
+**Bài 2:** a) 10 cm; b) 10 cm; c) AN < AM; d) BP < BM
+
+**Bài 3:** a) 8 cm; b) 4 cm; c) 4 cm; d) 12 cm
+
+**Bài 4:** a) 12 cm; b) 6 cm; c) 18 cm; d) 6 cm
+
+**Bài 5:** a) 15 cm; b) 5 cm; c) 20 cm; d) AN < MN < NB
+
+**Bài 6:** a) 25 cm; b) 12,5 cm; c) 12,5 cm; d) 12,5 cm
+
+</div>
+</details>

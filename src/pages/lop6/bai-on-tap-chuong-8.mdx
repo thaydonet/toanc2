@@ -1,0 +1,537 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 8 - Toán 6"
+description: "Ôn tập toàn bộ kiến thức chương 8 Toán 6 KNTT về hình học cơ bản"
+grade: "Lớp 6"
+chapter: "Chương VIII: Hình học cơ bản"
+currentSlug: "lop6/bai-on-tap-chuong-8"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Điểm là gì?",
+    option_a: "Vị trí xác định trong không gian",
+    option_b: "Một đoạn thẳng",
+    option_c: "Một hình tròn",
+    option_d: "Một góc",
+    correct_option: "A",
+    explanation: "Điểm là vị trí xác định trong không gian, không có kích thước",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường thẳng có bao nhiêu điểm?",
+    option_a: "Vô số",
+    option_b: "$1$",
+    option_c: "$2$",
+    option_d: "$3$",
+    correct_option: "A",
+    explanation: "Đường thẳng chứa vô số điểm",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tia là gì?",
+    option_a: "Phần của đường thẳng bị giới hạn bởi một điểm",
+    option_b: "Phần của đường thẳng bị giới hạn bởi hai điểm",
+    option_c: "Một đoạn thẳng",
+    option_d: "Một góc",
+    correct_option: "A",
+    explanation: "Tia là phần của đường thẳng bị giới hạn bởi một điểm (gốc)",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đoạn thẳng AB có bao nhiêu điểm cuối?",
+    option_a: "$2$",
+    option_b: "$1$",
+    option_c: "$0$",
+    option_d: "Vô số",
+    correct_option: "A",
+    explanation: "Đoạn thẳng AB có 2 điểm cuối là A và B",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc là gì?",
+    option_a: "Hình tạo bởi hai tia chung gốc",
+    option_b: "Một đoạn thẳng",
+    option_c: "Một điểm",
+    option_d: "Một đường thẳng",
+    correct_option: "A",
+    explanation: "Góc là hình tạo bởi hai tia chung gốc",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc vuông bằng bao nhiêu độ?",
+    option_a: "$90°$",
+    option_b: "$180°$",
+    option_c: "$45°$",
+    option_d: "$60°$",
+    correct_option: "A",
+    explanation: "Góc vuông bằng $90°$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc bẹt bằng bao nhiêu độ?",
+    option_a: "$180°$",
+    option_b: "$90°$",
+    option_c: "$360°$",
+    option_d: "$45°$",
+    correct_option: "A",
+    explanation: "Góc bẹt bằng $180°$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc nhọn là góc có số đo",
+    option_a: "Từ $0°$ đến $90°$",
+    option_b: "Từ $90°$ đến $180°$",
+    option_c: "Bằng $90°$",
+    option_d: "Bằng $180°$",
+    correct_option: "A",
+    explanation: "Góc nhọn là góc có số đo từ $0°$ đến $90°$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Góc tù là góc có số đo",
+    option_a: "Từ $90°$ đến $180°$",
+    option_b: "Từ $0°$ đến $90°$",
+    option_c: "Bằng $90°$",
+    option_d: "Bằng $180°$",
+    correct_option: "A",
+    explanation: "Góc tù là góc có số đo từ $90°$ đến $180°$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai góc phụ nhau có tổng số đo bằng",
+    option_a: "$90°$",
+    option_b: "$180°$",
+    option_c: "$360°$",
+    option_d: "$45°$",
+    correct_option: "A",
+    explanation: "Hai góc phụ nhau có tổng số đo bằng $90°$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 8 — Hình học cơ bản</h3>
+
+Chương 8 giới thiệu các khái niệm cơ bản của hình học: điểm, đường thẳng, tia, đoạn thẳng và góc.
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📍</div>
+    <strong>Điểm & Đường</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Điểm, đường thẳng, tia</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
+    <strong>Đoạn thẳng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Độ dài, trung điểm</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">∠</div>
+    <strong>Góc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Số đo, phân loại</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="diem-duong-thang">1. Điểm và đường thẳng</h4>
+
+<div class="box-dinh-nghia">
+
+**Điểm:** Là vị trí xác định trong không gian, không có kích thước. Ký hiệu: $A, B, C, ...$
+
+**Đường thẳng:** Là tập hợp vô số điểm, không có điểm đầu, không có điểm cuối. Ký hiệu: $a, b, c, ...$ hoặc $AB, CD, ...$
+
+**Tính chất:** Qua hai điểm phân biệt, chỉ có một đường thẳng duy nhất.
+
+</div>
+
+<h4 id="tia">2. Tia</h4>
+
+<div class="box-dinh-nghia">
+
+**Tia:** Là phần của đường thẳng bị giới hạn bởi một điểm (gọi là gốc), có điểm đầu nhưng không có điểm cuối.
+
+**Ký hiệu:** Tia $Ox$ (gốc là $O$, đi qua điểm $x$)
+
+**Chú ý:** Hai tia đối nhau là hai tia có cùng gốc và nằm trên cùng một đường thẳng nhưng hướng ngược nhau.
+
+</div>
+
+<h4 id="doan-thang">3. Đoạn thẳng</h4>
+
+<div class="box-dinh-nghia">
+
+**Đoạn thẳng:** Là phần của đường thẳng bị giới hạn bởi hai điểm (gọi là hai điểm cuối).
+
+**Ký hiệu:** Đoạn thẳng $AB$ (có hai điểm cuối là $A$ và $B$)
+
+**Độ dài:** Khoảng cách giữa hai điểm cuối, ký hiệu $AB$ hoặc $|AB|$
+
+**Trung điểm:** Điểm $M$ nằm trên đoạn thẳng $AB$ sao cho $MA = MB = \frac{AB}{2}$
+
+</div>
+
+<h4 id="goc">4. Góc</h4>
+
+<div class="box-dinh-nghia">
+
+**Góc:** Là hình tạo bởi hai tia chung gốc. Gốc chung gọi là đỉnh của góc, hai tia gọi là hai cạnh của góc.
+
+**Ký hiệu:** $\angle AOB$ hoặc $\angle O$ (với $O$ là đỉnh)
+
+**Số đo góc:** Được đo bằng độ ($°$), từ $0°$ đến $180°$
+
+</div>
+
+<h4 id="phan-loai-goc">5. Phân loại góc</h4>
+
+**Góc nhọn:** Góc có số đo từ $0°$ đến $90°$ (không bao gồm $0°$ và $90°$)
+
+**Góc vuông:** Góc có số đo bằng $90°$
+
+**Góc tù:** Góc có số đo từ $90°$ đến $180°$ (không bao gồm $90°$ và $180°$)
+
+**Góc bẹt:** Góc có số đo bằng $180°$
+
+<h4 id="goc-phu-bu">6. Các góc đặc biệt</h4>
+
+**Hai góc phụ nhau:** Hai góc có tổng số đo bằng $90°$
+
+**Hai góc bù nhau:** Hai góc có tổng số đo bằng $180°$
+
+**Hai góc kề nhau:** Hai góc có chung một cạnh, hai cạnh còn lại nằm trên hai nửa mặt phẳng đối nhau
+
+**Ví dụ:**
+- Góc $30°$ và góc $60°$ là hai góc phụ nhau (vì $30° + 60° = 90°$)
+- Góc $60°$ và góc $120°$ là hai góc bù nhau (vì $60° + 120° = 180°$)
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Điểm và đường thẳng</h4>
+
+Cho ba điểm $A$, $B$, $C$ không thẳng hàng.
+
+a) Có bao nhiêu đường thẳng đi qua hai điểm trong ba điểm đó?
+
+b) Liệt kê các đường thẳng đó
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Có 3 đường thẳng
+
+b) Các đường thẳng: $AB$, $AC$, $BC$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tia</h4>
+
+Cho điểm $O$ nằm trên đường thẳng $xy$.
+
+a) Có bao nhiêu tia gốc $O$?
+
+b) Hai tia nào là hai tia đối nhau?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Có 2 tia gốc $O$ (tia $Ox$ và tia $Oy$)
+
+b) Tia $Ox$ và tia $Oy$ là hai tia đối nhau
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Đoạn thẳng</h4>
+
+Cho đoạn thẳng $AB = 10$ cm. Điểm $M$ là trung điểm của $AB$.
+
+a) Tính $AM$ và $MB$
+
+b) Nếu lấy điểm $N$ trên $AB$ sao cho $AN = 3$ cm, tính $NB$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $AM = MB = \frac{AB}{2} = \frac{10}{2} = 5$ cm
+
+b) $NB = AB - AN = 10 - 3 = 7$ cm
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Phân loại góc</h4>
+
+Phân loại các góc sau:
+
+a) Góc $45°$
+
+b) Góc $90°$
+
+c) Góc $120°$
+
+d) Góc $180°$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Góc $45°$ là góc nhọn
+
+b) Góc $90°$ là góc vuông
+
+c) Góc $120°$ là góc tù
+
+d) Góc $180°$ là góc bẹt
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Góc phụ nhau</h4>
+
+Tìm góc phụ của các góc sau:
+
+a) Góc $30°$
+
+b) Góc $45°$
+
+c) Góc $60°$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Góc phụ của $30°$ là $90° - 30° = 60°$
+
+b) Góc phụ của $45°$ là $90° - 45° = 45°$
+
+c) Góc phụ của $60°$ là $90° - 60° = 30°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Góc bù nhau</h4>
+
+Tìm góc bù của các góc sau:
+
+a) Góc $60°$
+
+b) Góc $90°$
+
+c) Góc $120°$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Góc bù của $60°$ là $180° - 60° = 120°$
+
+b) Góc bù của $90°$ là $180° - 90° = 90°$
+
+c) Góc bù của $120°$ là $180° - 120° = 60°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán kết hợp (Câu lớn)</h4>
+
+Cho đoạn thẳng $AB = 12$ cm. Lấy điểm $M$ trên $AB$ sao cho $AM = 4$ cm, điểm $N$ trên $AB$ sao cho $AN = 8$ cm.
+
+a) Tính $MB$ và $NB$
+
+b) Tính $MN$
+
+c) Điểm $M$ có phải là trung điểm của $AN$ không? Vì sao?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $MB = AB - AM = 12 - 4 = 8$ cm
+
+   $NB = AB - AN = 12 - 8 = 4$ cm
+
+b) $MN = AN - AM = 8 - 4 = 4$ cm
+
+c) Không, vì $AM = 4$ cm và $MN = 4$ cm, nên $AM = MN$, tức $M$ là trung điểm của $AN$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Tính toán với góc</h4>
+
+Cho hai góc kề nhau $\angle AOB$ và $\angle BOC$ với $\angle AOB = 35°$ và $\angle BOC = 55°$.
+
+a) Tính $\angle AOC$
+
+b) Hai góc $\angle AOB$ và $\angle BOC$ có phải là hai góc phụ nhau không?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle AOC = \angle AOB + \angle BOC = 35° + 55° = 90°$
+
+b) Có, vì $\angle AOB + \angle BOC = 35° + 55° = 90°$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán về tia</h4>
+
+Cho ba tia $Ox$, $Oy$, $Oz$ chung gốc $O$. Biết $\angle xOy = 40°$, $\angle yOz = 50°$.
+
+a) Tính $\angle xOz$
+
+b) Tia $Oy$ có phải là tia phân giác của $\angle xOz$ không?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\angle xOz = \angle xOy + \angle yOz = 40° + 50° = 90°$
+
+b) Không, vì $\angle xOy = 40° \neq 50° = \angle yOz$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho đoạn thẳng $AB = 20$ cm. Lấy điểm $M$ trên $AB$ sao cho $AM = 8$ cm, điểm $N$ trên $AB$ sao cho $BN = 6$ cm.
+
+a) Tính $MB$ và $AN$
+
+b) Tính $MN$
+
+c) Gọi $I$ là trung điểm của $MN$. Tính $MI$ và $IN$
+
+d) Tính khoảng cách từ $I$ đến $A$ và từ $I$ đến $B$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $MB = AB - AM = 20 - 8 = 12$ cm
+
+   $AN = AB - BN = 20 - 6 = 14$ cm
+
+b) $MN = AN - AM = 14 - 8 = 6$ cm
+
+c) $MI = IN = \frac{MN}{2} = \frac{6}{2} = 3$ cm
+
+d) $AI = AM + MI = 8 + 3 = 11$ cm
+
+   $BI = BN + IN = 6 + 3 = 9$ cm
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Điểm:** Vị trí xác định, không có kích thước
+- **Đường thẳng:** Vô số điểm, không có điểm đầu cuối
+- **Tia:** Có gốc, không có điểm cuối
+- **Đoạn thẳng:** Có hai điểm cuối
+- **Trung điểm:** Chia đoạn thẳng thành hai phần bằng nhau
+- **Góc nhọn:** $0° < \angle < 90°$
+- **Góc vuông:** $\angle = 90°$
+- **Góc tù:** $90° < \angle < 180°$
+- **Góc bẹt:** $\angle = 180°$
+- **Hai góc phụ nhau:** Tổng = $90°$
+- **Hai góc bù nhau:** Tổng = $180°$
+
+</GhiNho>

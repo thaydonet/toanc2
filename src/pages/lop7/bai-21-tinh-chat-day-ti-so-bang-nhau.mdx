@@ -1,0 +1,408 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 21: Tính chất của dãy tỉ số bằng nhau"
+description: "Tính chất dãy tỉ số bằng nhau - Toán 7 KNTT Chương 6"
+grade: "Lớp 7"
+chapter: "Chương VI: Tỉ lệ thức và đại lượng tỉ lệ"
+currentSlug: "lop7/bai-21-tinh-chat-day-ti-so-bang-nhau"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Cho $\\\\frac{a}{b} = \\\\frac{c}{d}$. Tỉ số này bằng:",
+    option_a: "$\\\\frac{a + c}{b + d}$",
+    option_b: "$\\\\frac{a - c}{b - d}$",
+    option_c: "$\\\\frac{a \\\\cdot c}{b \\\\cdot d}$",
+    option_d: "$a + b + c + d$",
+    correct_option: "A",
+    explanation: "Tính chất: $\\\\frac{a}{b} = \\\\frac{c}{d} = \\\\frac{a + c}{b + d}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\\\frac{x}{2} = \\\\frac{y}{3} = \\\\frac{z}{5}$ và $x + y + z = 30$. Giá trị của x là:",
+    option_a: "6",
+    option_b: "9",
+    option_c: "15",
+    option_d: "10",
+    correct_option: "A",
+    explanation: "Đặt $\\\\frac{x}{2} = \\\\frac{y}{3} = \\\\frac{z}{5} = k$, suy ra $x = 2k, y = 3k, z = 5k$. Từ $x + y + z = 30$ ta có $10k = 30$, suy ra $k = 3$. Vậy $x = 6$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $\\\\frac{a}{b} = \\\\frac{c}{d} = \\\\frac{e}{f}$ thì tỉ số này cũng bằng:",
+    option_a: "$\\\\frac{a + c + e}{b + d + f}$",
+    option_b: "$a + c + e$",
+    option_c: "$b + d + f$",
+    option_d: "$\\\\frac{a}{b + d + f}$",
+    correct_option: "A",
+    explanation: "Tính chất mở rộng: tỉ số bằng tổng các tử chia tổng các mẫu.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\\\frac{a}{2} = \\\\frac{b}{3}$. Tỉ số $\\\\frac{a - b}{b}$ bằng:",
+    option_a: "$-\\\\frac{1}{3}$",
+    option_b: "$\\\\frac{1}{3}$",
+    option_c: "$-\\\\frac{2}{3}$",
+    option_d: "$\\\\frac{2}{3}$",
+    correct_option: "A",
+    explanation: "Đặt $\\\\frac{a}{2} = \\\\frac{b}{3} = k$, suy ra $a = 2k, b = 3k$. Vậy $\\\\frac{a - b}{b} = \\\\frac{2k - 3k}{3k} = \\\\frac{-k}{3k} = -\\\\frac{1}{3}$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho $\\\\frac{a}{b} = \\\\frac{c}{d}$. Các đẳng thức nào đúng?",
+    option_a: "$\\\\frac{a}{b} = \\\\frac{a + c}{b + d}$",
+    option_b: "$\\\\frac{c}{d} = \\\\frac{a + c}{b + d}$",
+    option_c: "$\\\\frac{a}{b} = \\\\frac{a - c}{b - d}$",
+    option_d: "$\\\\frac{a + b}{c + d} = \\\\frac{a}{c}$",
+    correct_option: "A,B,C",
+    explanation: "Tất cả các tỉ số đều bằng nhau theo tính chất dãy tỉ số bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho $\\\\frac{x}{3} = \\\\frac{y}{4}$ và $x + y = 21$. Tìm x.",
+    correct_option: "9",
+    explanation: "Đặt $\\\\frac{x}{3} = \\\\frac{y}{4} = k$, suy ra $x = 3k, y = 4k$. Từ $x + y = 21$ ta có $7k = 21$, suy ra $k = 3$. Vậy $x = 9$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Dãy tỉ số bằng nhau</h3>
+
+Khi có nhiều tỉ số bằng nhau, ta có những tính chất đặc biệt!
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚖️</div>
+    <strong>Dãy tỉ số</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Nhiều tỉ số bằng nhau</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕</div>
+    <strong>Tính chất</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tổng tử / tổng mẫu</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="tinh-chat">📖 1. Tính chất của dãy tỉ số bằng nhau</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất:** Từ dãy tỉ số bằng nhau:
+
+$$\frac{a}{b} = \frac{c}{d}$$
+
+Ta có:
+
+$$\frac{a}{b} = \frac{c}{d} = \frac{a + c}{b + d} = \frac{a - c}{b - d}$$
+
+(với điều kiện các mẫu số khác 0 và $b \neq d$ trong trường hợp trừ)
+
+</div>
+
+**Chứng minh:**
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Đặt $\frac{a}{b} = \frac{c}{d} = k$
+
+Suy ra: $a = bk$ và $c = dk$
+
+Ta có:
+
+$\frac{a + c}{b + d} = \frac{bk + dk}{b + d} = \frac{k(b + d)}{b + d} = k$
+
+$\frac{a - c}{b - d} = \frac{bk - dk}{b - d} = \frac{k(b - d)}{b - d} = k$
+
+Vậy $\frac{a}{b} = \frac{c}{d} = \frac{a + c}{b + d} = \frac{a - c}{b - d} = k$
+
+</div>
+
+**Ví dụ 1:** Cho $\frac{3}{4} = \frac{6}{8}$. Kiểm tra tính chất.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+$\frac{3}{4} = \frac{6}{8} = 0.75$
+
+$\frac{3 + 6}{4 + 8} = \frac{9}{12} = 0.75$ ✓
+
+$\frac{3 - 6}{4 - 8} = \frac{-3}{-4} = 0.75$ ✓
+
+</div>
+
+<h3 id="mo-rong" style="margin-top:2rem;">📖 2. Tính chất mở rộng</h3>
+
+<div class="box-dinh-ly">
+
+**Tính chất mở rộng:** Từ dãy tỉ số bằng nhau:
+
+$$\frac{a}{b} = \frac{c}{d} = \frac{e}{f}$$
+
+Ta có:
+
+$$\frac{a}{b} = \frac{c}{d} = \frac{e}{f} = \frac{a + c + e}{b + d + f} = \frac{a - c + e}{b - d + f}$$
+
+(với điều kiện các mẫu số khác 0)
+
+</div>
+
+**Ví dụ 2:** Cho $\frac{2}{3} = \frac{4}{6} = \frac{6}{9}$. Tính $\frac{2 + 4 + 6}{3 + 6 + 9}$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Theo tính chất mở rộng:
+
+$\frac{2 + 4 + 6}{3 + 6 + 9} = \frac{2}{3} = \frac{4}{6} = \frac{6}{9} = \frac{2}{3}$
+
+Kiểm tra: $\frac{12}{18} = \frac{2}{3}$ ✓
+
+</div>
+
+<h3 id="ung-dung" style="margin-top:2rem;">📖 3. Ứng dụng: Tìm số chưa biết</h3>
+
+**Phương pháp:** Đặt các tỉ số bằng $k$, biểu diễn các số theo $k$, rồi giải phương trình.
+
+**Ví dụ 3:** Tìm $x, y$ biết $\frac{x}{3} = \frac{y}{5}$ và $x + y = 24$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Đặt $\frac{x}{3} = \frac{y}{5} = k$
+
+Suy ra: $x = 3k$ và $y = 5k$
+
+Thay vào điều kiện: $x + y = 24$
+
+$3k + 5k = 24$
+
+$8k = 24$
+
+$k = 3$
+
+Vậy: $x = 3 \times 3 = 9$ và $y = 5 \times 3 = 15$
+
+</div>
+
+**Ví dụ 4:** Tìm $x, y, z$ biết $\frac{x}{2} = \frac{y}{3} = \frac{z}{5}$ và $x + y + z = 50$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Đặt $\frac{x}{2} = \frac{y}{3} = \frac{z}{5} = k$
+
+Suy ra: $x = 2k$, $y = 3k$, $z = 5k$
+
+Thay vào điều kiện: $x + y + z = 50$
+
+$2k + 3k + 5k = 50$
+
+$10k = 50$
+
+$k = 5$
+
+Vậy: $x = 10$, $y = 15$, $z = 25$
+
+</div>
+
+**Ví dụ 5:** Tìm $a, b$ biết $\frac{a}{4} = \frac{b}{7}$ và $a - b = 9$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Đặt $\frac{a}{4} = \frac{b}{7} = k$
+
+Suy ra: $a = 4k$ và $b = 7k$
+
+Thay vào điều kiện: $a - b = 9$
+
+$4k - 7k = 9$
+
+$-3k = 9$
+
+$k = -3$
+
+Vậy: $a = 4 \times (-3) = -12$ và $b = 7 \times (-3) = -21$
+
+</div>
+
+<h3 id="bai-toan-chia-ti-le" style="margin-top:2rem;">📖 4. Bài toán chia tỉ lệ</h3>
+
+**Dạng bài:** Chia một số thành các phần tỉ lệ với các số cho trước.
+
+**Ví dụ 6:** Chia số 120 thành ba phần tỉ lệ với 2, 3, 5.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Gọi ba phần cần tìm là $x, y, z$.
+
+Theo đề bài: $\frac{x}{2} = \frac{y}{3} = \frac{z}{5}$ và $x + y + z = 120$
+
+Đặt $\frac{x}{2} = \frac{y}{3} = \frac{z}{5} = k$
+
+Suy ra: $x = 2k$, $y = 3k$, $z = 5k$
+
+Từ $x + y + z = 120$:
+
+$2k + 3k + 5k = 120$
+
+$10k = 120$
+
+$k = 12$
+
+Vậy: $x = 24$, $y = 36$, $z = 60$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+**Bài toán:** Ba lớp 7A, 7B, 7C tham gia trồng cây. Số cây của ba lớp tỉ lệ với 4, 5, 6. Biết lớp 7A trồng ít hơn lớp 7C là 20 cây. Hỏi mỗi lớp trồng được bao nhiêu cây?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Gọi số cây của ba lớp 7A, 7B, 7C lần lượt là $a, b, c$ (cây).
+
+Theo đề bài: $\frac{a}{4} = \frac{b}{5} = \frac{c}{6}$ và $c - a = 20$
+
+Đặt $\frac{a}{4} = \frac{b}{5} = \frac{c}{6} = k$
+
+Suy ra: $a = 4k$, $b = 5k$, $c = 6k$
+
+Từ $c - a = 20$:
+
+$6k - 4k = 20$
+
+$2k = 20$
+
+$k = 10$
+
+Vậy:
+- Lớp 7A: $a = 40$ cây
+- Lớp 7B: $b = 50$ cây
+- Lớp 7C: $c = 60$ cây
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Tính chất**: $\frac{a}{b} = \frac{c}{d} = \frac{a + c}{b + d} = \frac{a - c}{b - d}$
+- **Mở rộng**: $\frac{a}{b} = \frac{c}{d} = \frac{e}{f} = \frac{a + c + e}{b + d + f}$
+- **Phương pháp**: Đặt các tỉ số bằng $k$, biểu diễn theo $k$
+- **Ứng dụng**: Tìm số chưa biết, chia tỉ lệ
+- **Điều kiện**: Các mẫu số khác 0
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tìm $x, y$ biết:
+
+a) $\frac{x}{5} = \frac{y}{7}$ và $x + y = 36$
+
+b) $\frac{x}{3} = \frac{y}{4}$ và $x - y = 5$
+
+c) $\frac{x}{2} = \frac{y}{5}$ và $2x + y = 27$
+
+**Bài 2:** Tìm $x, y, z$ biết:
+
+a) $\frac{x}{2} = \frac{y}{3} = \frac{z}{4}$ và $x + y + z = 45$
+
+b) $\frac{x}{3} = \frac{y}{5} = \frac{z}{7}$ và $x + y - z = 5$
+
+c) $\frac{x}{4} = \frac{y}{5} = \frac{z}{6}$ và $2x - y + z = 21$
+
+**Bài 3:** Chia số 180 thành ba phần:
+
+a) Tỉ lệ với 2, 3, 4
+
+b) Tỉ lệ với 1, 2, 3
+
+c) Tỉ lệ với 3, 5, 7
+
+**Bài 4:** Ba đội công nhân làm việc, số sản phẩm của ba đội tỉ lệ với 3, 4, 5. Biết đội thứ nhất làm ít hơn đội thứ ba 40 sản phẩm. Tính số sản phẩm mỗi đội.
+
+**Bài 5:** Chu vi một tam giác là 48 cm. Ba cạnh của tam giác tỉ lệ với 3, 4, 5. Tính độ dài mỗi cạnh.
+
+**Bài 6:** Cho $\frac{a}{b} = \frac{c}{d}$. Chứng minh rằng:
+
+a) $\frac{a + b}{a - b} = \frac{c + d}{c - d}$
+
+b) $\frac{a^2 + c^2}{b^2 + d^2} = \frac{ac}{bd}$
+
+**Bài 7:** Tìm ba số $x, y, z$ biết $\frac{x}{2} = \frac{y}{3} = \frac{z}{5}$ và $x^2 + y^2 + z^2 = 380$.
+
+**Bài 8:** Một hình chữ nhật có chu vi 56 cm. Tỉ số giữa chiều dài và chiều rộng là $\frac{4}{3}$. Tính diện tích hình chữ nhật.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $x = 15, y = 21$; b) $x = 15, y = 20$; c) $x = 6, y = 15$
+
+**Bài 2:** a) $x = 10, y = 15, z = 20$; b) $x = 15, y = 25, z = 35$; c) $x = 12, y = 15, z = 18$
+
+**Bài 3:** a) 40, 60, 80; b) 30, 60, 90; c) 36, 60, 84
+
+**Bài 4:** Đội 1: 60 sp, Đội 2: 80 sp, Đội 3: 100 sp
+
+**Bài 5:** 12 cm, 16 cm, 20 cm
+
+**Bài 6:** Chứng minh bằng cách đặt $\frac{a}{b} = \frac{c}{d} = k$
+
+**Bài 7:** $x = 4, y = 6, z = 10$ (hoặc $x = -4, y = -6, z = -10$)
+
+**Bài 8:** Chiều dài 16 cm, chiều rộng 12 cm, diện tích 192 cm²
+
+</div>
+</details>

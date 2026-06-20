@@ -1,0 +1,348 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 32: Quan hệ giữa đường vuông góc và đường xiên"
+description: "Đường vuông góc và đường xiên - Toán 7 KNTT Chương 9"
+grade: "Lớp 7"
+chapter: "Chương IX: Quan hệ giữa các yếu tố trong tam giác"
+currentSlug: "lop7/bai-32-quan-he-giua-duong-vuong-goc-va-duong-xien"
+
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Trong các đoạn thẳng nối từ một điểm đến một đường thẳng, đoạn nào ngắn nhất?",
+    option_a: "Đường vuông góc",
+    option_b: "Đường xiên",
+    option_c: "Đường bất kỳ",
+    option_d: "Tất cả bằng nhau",
+    correct_option: "A",
+    explanation: "Đường vuông góc là đoạn thẳng ngắn nhất từ một điểm đến một đường thẳng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khoảng cách từ điểm $A$ đến đường thẳng $d$ là:",
+    option_a: "Độ dài đường vuông góc từ $A$ đến $d$",
+    option_b: "Độ dài đường xiên từ $A$ đến $d$",
+    option_c: "Độ dài đoạn thẳng bất kỳ từ $A$ đến $d$",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Khoảng cách từ điểm đến đường thẳng là độ dài đường vuông góc.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường xiên có hình chiếu bằng nhau thì:",
+    option_a: "Bằng nhau",
+    option_b: "Không bằng nhau",
+    option_c: "Một lớn hơn một",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "Hai đường xiên có hình chiếu bằng nhau thì bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường xiên nào có hình chiếu lớn hơn thì:",
+    option_a: "Lớn hơn",
+    option_b: "Nhỏ hơn",
+    option_c: "Bằng nhau",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Trong hai đường xiên, đường xiên nào có hình chiếu lớn hơn thì lớn hơn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho điểm $A$ nằm ngoài đường thẳng $d$. Khẳng định nào đúng?",
+    option_a: "Đường vuông góc ngắn nhất",
+    option_b: "Đường xiên dài hơn đường vuông góc",
+    option_c: "Hai đường xiên có hình chiếu bằng nhau thì bằng nhau",
+    option_d: "Đường xiên có hình chiếu lớn hơn thì lớn hơn",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các khẳng định đều đúng về quan hệ giữa đường vuông góc và đường xiên.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Từ điểm $A$ cách đường thẳng $d$ một khoảng 3 cm, kẻ đường xiên $AB = 5$ cm. Hình chiếu của $AB$ trên $d$ dài bao nhiêu cm?",
+    correct_option: "4",
+    explanation: "Theo định lí Pythagore: hình chiếu = $\\\\sqrt{5^2 - 3^2} = \\\\sqrt{25 - 9} = \\\\sqrt{16} = 4$ cm",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Đường vuông góc và đường xiên</h3>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #86efac;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⊥</div>
+    <strong>Đường vuông góc</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ngắn nhất</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">↗</div>
+    <strong>Đường xiên</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Dài hơn</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="khai-niem">📖 1. Khái niệm</h3>
+
+<div class="box-dinh-nghia">
+
+**Đường vuông góc:** Từ điểm $A$ nằm ngoài đường thẳng $d$, đường vuông góc kẻ từ $A$ đến $d$ là đoạn thẳng $AH$ vuông góc với $d$ tại $H$.
+
+**Đường xiên:** Đường xiên kẻ từ $A$ đến $d$ là đoạn thẳng nối $A$ với một điểm bất kỳ trên $d$ (khác $H$).
+
+**Hình chiếu:** Hình chiếu của đường xiên $AB$ trên $d$ là đoạn thẳng $HB$.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="450" height="300" viewBox="0 0 450 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Đường thẳng d */}
+  <line x1="50" y1="250" x2="400" y2="250" stroke="#1f2937" stroke-width="2"/>
+  <text x="410" y="255" font-size="16" font-weight="bold" fill="#1f2937">d</text>
+  
+  {/* Điểm A */}
+  <circle cx="200" cy="80" r="4" fill="#1f2937"/>
+  <text x="200" y="65" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  {/* Đường vuông góc AH */}
+  <line x1="200" y1="80" x2="200" y2="250" stroke="#22c55e" stroke-width="3"/>
+  <text x="180" y="165" font-size="14" font-weight="bold" fill="#22c55e">AH</text>
+  
+  {/* Ký hiệu vuông góc */}
+  <rect x="195" y="245" width="10" height="10" fill="none" stroke="#22c55e" stroke-width="2"/>
+  
+  {/* Điểm H */}
+  <circle cx="200" cy="250" r="4" fill="#1f2937"/>
+  <text x="200" y="275" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">H</text>
+  
+  {/* Đường xiên AB */}
+  <line x1="200" y1="80" x2="320" y2="250" stroke="#f59e0b" stroke-width="2"/>
+  <text x="270" y="150" font-size="14" font-weight="bold" fill="#f59e0b">AB (xiên)</text>
+  
+  {/* Điểm B */}
+  <circle cx="320" cy="250" r="4" fill="#1f2937"/>
+  <text x="320" y="275" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">B</text>
+  
+  {/* Hình chiếu HB */}
+  <line x1="200" y1="250" x2="320" y2="250" stroke="#3b82f6" stroke-width="3"/>
+  <text x="260" y="240" font-size="14" font-weight="bold" fill="#3b82f6">HB (hình chiếu)</text>
+</svg>
+</div>
+
+<h3 id="dinh-li-1" style="margin-top:2rem;">📖 2. Đường vuông góc ngắn nhất</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí 1:** Trong các đoạn thẳng nối từ một điểm nằm ngoài một đường thẳng đến các điểm trên đường thẳng đó, đường vuông góc là đoạn thẳng ngắn nhất.
+
+$AH < AB$ với $AB$ là đường xiên bất kỳ.
+
+**Khoảng cách** từ điểm $A$ đến đường thẳng $d$ là độ dài đường vuông góc $AH$.
+
+</div>
+
+**Ví dụ 1:** Từ điểm $A$ cách đường thẳng $d$ một khoảng 4 cm. Kẻ đường xiên $AB = 5$ cm. So sánh $AH$ và $AB$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+$AH = 4$ cm (đường vuông góc)
+
+$AB = 5$ cm (đường xiên)
+
+Vậy $AH < AB$ (đường vuông góc ngắn hơn đường xiên)
+
+</div>
+
+<h3 id="dinh-li-2" style="margin-top:2rem;">📖 3. So sánh hai đường xiên</h3>
+
+<div class="box-dinh-ly">
+
+**Định lí 2:** Trong hai đường xiên kẻ từ một điểm nằm ngoài một đường thẳng đến đường thẳng đó:
+
+a) Hai đường xiên bằng nhau khi và chỉ khi chúng có hình chiếu bằng nhau.
+
+b) Đường xiên nào có hình chiếu lớn hơn thì lớn hơn.
+
+c) Đường xiên nào lớn hơn thì có hình chiếu lớn hơn.
+
+</div>
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="450" height="300" viewBox="0 0 450 300" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Đường thẳng d */}
+  <line x1="50" y1="250" x2="400" y2="250" stroke="#1f2937" stroke-width="2"/>
+  <text x="410" y="255" font-size="16" font-weight="bold" fill="#1f2937">d</text>
+  
+  {/* Điểm A */}
+  <circle cx="200" cy="80" r="4" fill="#1f2937"/>
+  <text x="200" y="65" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  
+  {/* Đường vuông góc AH */}
+  <line x1="200" y1="80" x2="200" y2="250" stroke="#22c55e" stroke-width="2" stroke-dasharray="3,3"/>
+  
+  {/* Điểm H */}
+  <circle cx="200" cy="250" r="4" fill="#1f2937"/>
+  <text x="200" y="275" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">H</text>
+  
+  {/* Đường xiên AB */}
+  <line x1="200" y1="80" x2="280" y2="250" stroke="#3b82f6" stroke-width="2"/>
+  <text x="230" y="150" font-size="14" fill="#3b82f6">AB</text>
+  <circle cx="280" cy="250" r="4" fill="#1f2937"/>
+  <text x="280" y="275" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">B</text>
+  
+  {/* Đường xiên AC */}
+  <line x1="200" y1="80" x2="340" y2="250" stroke="#ef4444" stroke-width="2"/>
+  <text x="280" y="150" font-size="14" fill="#ef4444">AC</text>
+  <circle cx="340" cy="250" r="4" fill="#1f2937"/>
+  <text x="340" y="275" font-size="16" font-weight="bold" text-anchor="middle" fill="#1f2937">C</text>
+  
+  {/* Hình chiếu */}
+  <line x1="200" y1="255" x2="280" y2="255" stroke="#3b82f6" stroke-width="2"/>
+  <text x="240" y="270" font-size="12" fill="#3b82f6">HB</text>
+  
+  <line x1="200" y1="260" x2="340" y2="260" stroke="#ef4444" stroke-width="2"/>
+  <text x="270" y="275" font-size="12" fill="#ef4444">HC (dài hơn)</text>
+</svg>
+</div>
+
+**Ví dụ 2:** Từ điểm $A$ nằm ngoài đường thẳng $d$, kẻ $AH \perp d$. Trên $d$ lấy các điểm $B$, $C$ sao cho $HB = 3$ cm, $HC = 5$ cm. So sánh $AB$ và $AC$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Hình chiếu của $AB$ là $HB = 3$ cm
+
+Hình chiếu của $AC$ là $HC = 5$ cm
+
+Vì $HB < HC$ nên $AB < AC$
+
+</div>
+
+<h3 id="dinh-li-pythagore" style="margin-top:2rem;">📖 4. Áp dụng định lí Pythagore</h3>
+
+**Ví dụ 3:** Từ điểm $A$ cách đường thẳng $d$ một khoảng 6 cm, kẻ đường xiên $AB = 10$ cm. Tính độ dài hình chiếu $HB$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Tam giác $AHB$ vuông tại $H$:
+
+$AH = 6$ cm, $AB = 10$ cm
+
+Theo định lí Pythagore:
+
+$HB^2 = AB^2 - AH^2 = 10^2 - 6^2 = 100 - 36 = 64$
+
+$HB = 8$ cm
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 Vận dụng</h3>
+
+**Bài toán:** Một cột đèn cao 8 m đặt vuông góc với mặt đất. Từ đỉnh cột, người ta căng dây đến mặt đất. Dây thứ nhất dài 10 m, dây thứ hai có chân cách chân cột 9 m.
+
+a) Tính khoảng cách từ chân dây thứ nhất đến chân cột.
+
+b) Tính độ dài dây thứ hai.
+
+c) Dây nào dài hơn?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Gọi $A$ là đỉnh cột, $H$ là chân cột, $B$ là chân dây thứ nhất.
+
+Tam giác $AHB$ vuông tại $H$: $AH = 8$ m, $AB = 10$ m
+
+$HB = \sqrt{AB^2 - AH^2} = \sqrt{100 - 64} = 6$ m
+
+b) Gọi $C$ là chân dây thứ hai, $HC = 9$ m
+
+Tam giác $AHC$ vuông tại $H$:
+
+$AC = \sqrt{AH^2 + HC^2} = \sqrt{64 + 81} = \sqrt{145} \approx 12.04$ m
+
+c) Vì $HC = 9$ m $> HB = 6$ m nên $AC > AB$
+
+Dây thứ hai dài hơn.
+
+</div>
+
+</VanDung>
+
+<GhiNho>
+
+- **Đường vuông góc**: ngắn nhất
+- **Khoảng cách**: độ dài đường vuông góc
+- **Hình chiếu bằng nhau** → đường xiên bằng nhau
+- **Hình chiếu lớn hơn** → đường xiên lớn hơn
+- **Đường xiên lớn hơn** → hình chiếu lớn hơn
+
+</GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Từ điểm $A$ cách đường thẳng $d$ một khoảng 5 cm. Kẻ các đường xiên $AB = 13$ cm, $AC = 10$ cm. Tính độ dài các hình chiếu $HB$ và $HC$.
+
+**Bài 2:** Từ điểm $A$ nằm ngoài đường thẳng $d$, kẻ $AH \perp d$. Trên $d$ lấy điểm $B$ sao cho $HB = 12$ cm, $AB = 13$ cm. Tính $AH$.
+
+**Bài 3:** Cho điểm $A$ cách đường thẳng $d$ một khoảng 8 cm. Trên $d$ lấy hai điểm $B$, $C$ sao cho $HB = 6$ cm, $HC = 15$ cm. So sánh $AB$ và $AC$.
+
+**Bài 4:** Từ điểm $A$ cách đường thẳng $d$ một khoảng 7 cm, kẻ đường xiên $AB$ có hình chiếu $HB = 24$ cm. Tính $AB$.
+
+**Bài 5:** Chứng minh: Nếu hai đường xiên bằng nhau thì có hình chiếu bằng nhau.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** $HB = 12$ cm, $HC = \sqrt{75} = 5\sqrt{3} \approx 8.66$ cm
+
+**Bài 2:** $AH = 5$ cm
+
+**Bài 3:** $AB = 10$ cm, $AC = 17$ cm. Vậy $AB < AC$
+
+**Bài 4:** $AB = 25$ cm
+
+**Bài 5:** Sử dụng định lí Pythagore và tính chất tam giác vuông
+
+</div>
+</details>

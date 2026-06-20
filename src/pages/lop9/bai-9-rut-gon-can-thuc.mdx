@@ -1,0 +1,345 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 9: Biến đổi đơn giản và rút gọn biểu thức chứa căn bậc hai"
+description: "Trục căn thức, đưa thừa số ra ngoài hay vào trong dấu căn - Toán 9 KNTT Chương 3"
+grade: "Lớp 9"
+chapter: "Chương III: Căn bậc hai và căn bậc ba"
+currentSlug: "lop9/bai-9-rut-gon-can-thuc"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Đưa thừa số $3$ vào trong dấu căn của biểu thức $3\\sqrt{5}$, ta được:",
+    option_a: "$\\sqrt{15}$",
+    option_b: "$\\sqrt{45}$",
+    option_c: "$\\sqrt{30}$",
+    option_d: "$\\sqrt{20}$",
+    correct_option: "B",
+    explanation: "$3 = \\sqrt{3^2} = \\sqrt{9}$. Vậy $3\\sqrt{5} = \\sqrt{9 \\cdot 5} = \\sqrt{45}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đưa thừa số ra ngoài dấu căn của biểu thức $\\sqrt{72}$, ta được:",
+    option_a: "$8\\sqrt{9}$",
+    option_b: "$9\\sqrt{8}$",
+    option_c: "$6\\sqrt{2}$",
+    option_d: "$2\\sqrt{6}$",
+    correct_option: "C",
+    explanation: "$\\sqrt{72} = \\sqrt{36 \\cdot 2} = \\sqrt{36} \\cdot \\sqrt{2} = 6\\sqrt{2}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kỹ thuật 'Trục căn thức ở mẫu' có ý nghĩa là gì?",
+    option_a: "Biến đổi để mẫu số không còn chứa căn thức",
+    option_b: "Biến đổi để tử số không còn chứa căn thức",
+    option_c: "Nhân chéo biểu thức",
+    option_d: "Xóa dấu căn trên toàn bộ phương trình",
+    correct_option: "A",
+    explanation: "Trục căn thức (Rationalizing the denominator) là quá trình làm mất căn dưới dạng vô tỉ ở phân số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Lượng liên hợp của biểu thức $( \\sqrt{a} - \\sqrt{b} )$ là:",
+    option_a: "$( \\sqrt{a} - \\sqrt{b} )$",
+    option_b: "$( a - b )$",
+    option_c: "$( \\sqrt{a} + \\sqrt{b} )$",
+    option_d: "$( a + b )$",
+    correct_option: "C",
+    explanation: "Lượng liên hợp dùng để tạo hằng đẳng thức $(A-B)(A+B) = A^2-B^2$ nhằm phá mẫu thức.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trục căn thức biểu thức $\\frac{1}{\\sqrt{3} - 1}$. Kết quả là:",
+    option_a: "$\\frac{\\sqrt{3} + 1}{2}$",
+    option_b: "$\\frac{\\sqrt{3} + 1}{4}$",
+    option_c: "$\\sqrt{3} + 1$",
+    option_d: "$\\frac{\\sqrt{3} - 1}{2}$",
+    correct_option: "A",
+    explanation: "Nhân mẫu và tử cho liên hợp $\\sqrt{3}+1$. Mẫu sẽ thành $3 - 1 = 2$. Kết quả: $\\frac{\\sqrt{3}+1}{2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi $a < 0$, đưa thừa số a vào trong dấu của biểu thức $a\\sqrt{b}$, kết quả sẽ là:",
+    option_a: "$\\sqrt{a^2b}$",
+    option_b: "$-\\sqrt{a^2b}$",
+    option_c: "$\\sqrt{-a^2b}$",
+    option_d: "$-\\sqrt{-a^2b}$",
+    correct_option: "B",
+    explanation: "Vì $a$ âm, ta phải để lại dấu trừ bên ngoài. $a\\sqrt{b} = -(-a)\\sqrt{b} = -\\sqrt{(-a)^2b} = -\\sqrt{a^2b}$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các biểu thức nào sau đây bằng với $\\sqrt{8}$ ?",
+    option_a: "$2\\sqrt{2}$",
+    option_b: "$4\\sqrt{2}/2$",
+    option_c: "$2.82842$ (số gần đúng)",
+    option_d: "$\\sqrt{4}$",
+    correct_option: "A,B,C",
+    explanation: "$\\sqrt{8} = 2\\sqrt{2} = 4\\sqrt{2}/2 \\approx 2.828$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để rút gọn $5\\sqrt{2} + 3\\sqrt{2} - \\sqrt{18}$, ta thực hiện:",
+    option_a: "Rút gọn $- \\sqrt{18} = -3\\sqrt{2}$",
+    option_b: "Nhóm làm nhân tử chung $\\sqrt{2}$",
+    option_c: "Kết quả ra $5\\sqrt{2}$",
+    option_d: "Cộng lại thành $\\sqrt{20}$",
+    correct_option: "A,B,C",
+    explanation: "$5\\sqrt{2} + 3\\sqrt{2} - 3\\sqrt{2} = \\sqrt{2}(5 + 3 - 3) = 5\\sqrt{2}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Đưa thừa số $-5$ vào trong căn của $ -5\\sqrt{2} $. KẾT QUẢ CÒN DẤU TRỪ BÊN NGOÀI, SỐ BÊN TRONG (VD: 10) LÀ BAO NHIÊU?",
+    correct_option: "50",
+    explanation: "$-5\\sqrt{2} = -\\sqrt{5^2 \\cdot 2} = -\\sqrt{50}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Trục căn ở mẫu biểu thức $6/\\sqrt{3}$. Giá trị là $a\\sqrt{3}$. Tìm a.",
+    correct_option: "2",
+    explanation: "$6/\\sqrt{3} = 6\\sqrt{3} / 3 = 2\\sqrt{3}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">💄 Trang điểm cho Biểu thức</h3>
+
+Trong giải toán, ta không thích những biểu thức "kém sắc" như $\frac{10}{\sqrt{5}}$ chứa căn ở dưới mẫu, hay những cụm $\sqrt{200}$ quá to lớn nhìn rối mắt.
+Vì vậy, người ta tìm ra các thuật **Biến đổi đơn giản**:
+- $\sqrt{200}$ có thể "tút tát" nhỏ gọn thành $10\sqrt{2}$.
+- $\frac{10}{\sqrt{5}}$ có thể triệt tiêu căn ở mẫu thành $2\sqrt{5}$.
+
+Vậy những công cụ trang điểm đó hoạt động như thế nào? Cùng tìm hiểu ba phép biến đổi thần thánh:
+1. Đưa thừa số ra ngoài dấu căn.
+2. Đưa thừa số vào trong dấu căn.
+3. Trục căn thức ở mẫu.
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="dua-ra-ngoai" style="margin-top:2rem;">📖 1. Đưa thừa số ra ngoài dấu căn</h3>
+
+Đôi khi biểu thức trong căn chứa những số chính phương to bự, ta có thể "khai tống" nó ra ngoài và cho đứng cạnh làm hệ số.
+
+<div class="box-dinh-ly">
+
+Với hai biểu thức $A, B$ mà $B \ge 0$, ta có:
+$$\sqrt{A^2 \cdot B} = |A|\sqrt{B}$$
+- Nếu $A \ge 0$, thì $\sqrt{A^2 B} = A\sqrt{B}$.
+- Nếu $A < 0$, thì $\sqrt{A^2 B} = -A\sqrt{B}$.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ:**
+- $\sqrt{18} = \sqrt{9 \cdot 2} = \sqrt{3^2 \cdot 2} = 3\sqrt{2}$.
+- Đưa ra ngoài dấu căn với $y < 0$: $\sqrt{5y^4} = |y^2|\sqrt{5} = y^2\sqrt{5}$ (Vì mũ chẵn luôn dương).
+- $\sqrt{8x^3} = \sqrt{4x^2 \cdot 2x} = 2x\sqrt{2x}$ (điều kiện $x > 0$).
+
+</div>
+
+<h3 id="dua-vao-trong" style="margin-top:2rem;">📖 2. Đưa thừa số vào trong dấu căn</h3>
+
+Biến đổi ngược lại với Đưa ra ngoài (Dùng nhiều để so sánh các số hữu tỉ lai với vô tỉ).
+
+<div class="box-dinh-ly">
+
+- Nếu $A \ge 0$ và $B \ge 0$ thì $A\sqrt{B} = \sqrt{A^2 \cdot B}$.
+- Nếu $A < 0$ và $B \ge 0$ thì $A\sqrt{B} = -\sqrt{A^2 \cdot B}$. (Hãy cảnh giác với số âm!)
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ:** 
+- So sánh $3\sqrt{7}$ và $\sqrt{28}$:
+Đưa 3 vào trong: $3\sqrt{7} = \sqrt{3^2 \cdot 7} = \sqrt{63}$.
+Vì $63 > 28 \Rightarrow \sqrt{63} > \sqrt{28} \Rightarrow 3\sqrt{7} > \sqrt{28}$.
+- Đưa hệ số $-5$ vào trong $\sqrt{2}$:
+$-5\sqrt{2} = -\sqrt{5^2 \cdot 2} = -\sqrt{50}$.
+
+</div>
+
+<h3 id="truc-can-thuc" style="margin-top:2rem;">📖 3. Trục căn thức ở mẫu</h3>
+
+Quy tắc cối lõi là tìm cách nhân thêm vào mẫu một thứ mà khi nhân cấu trúc nó sẽ MẤT DẤU CĂN. Thứ đó được gọi là **Lượng Liên Hợp**.
+
+<div class="box-dinh-ly">
+
+**Trường hợp 1: Mẫu là căn đơn $\sqrt{B}$**
+Nhân cả tử và mẫu với chính $\sqrt{B}$:
+$$\frac{A}{\sqrt{B}} = \frac{A\sqrt{B}}{B}$$
+
+**Trường hợp 2: Mẫu là một nhị thức $\sqrt{A} \pm B$ hoặc $\sqrt{A} \pm \sqrt{B}$**
+Ta nhân tử và mẫu với lượng liên hợp nhằm kích hoạt hằng đẳng thức $(x-y)(x+y) = x^2-y^2$.
+- Lượng liên hợp của $(\sqrt{A} - \sqrt{B})$ là $(\sqrt{A} + \sqrt{B})$.
+- Do: $(\sqrt{A} - \sqrt{B})(\sqrt{A} + \sqrt{B}) = A - B$.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ:**
+Trục căn thức phân số: $\frac{10}{3 - \sqrt{5}}$.
+**Giải:**
+Lượng liên hợp của mẫu là $(3 + \sqrt{5})$.
+Ta có: $\frac{10(3 + \sqrt{5})}{(3 - \sqrt{5})(3 + \sqrt{5})} = \frac{10(3 + \sqrt{5})}{3^2 - (\sqrt{5})^2} = \frac{10(3 + \sqrt{5})}{9 - 5} = \frac{10(3 + \sqrt{5})}{4} = \frac{5(3 + \sqrt{5})}{2}$
+
+</div>
+
+</KhamPha>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+Biểu thức sau tút tát trông rõ ràng, sạch sẽ hơn và giúp chúng ta dễ dàng cộng trừ các "Căn đồng dạng" với nhau. Quá trình giải một biểu thức chứa toàn căn dài ngoằng thường quy về **đưa ra ngoài dấu căn**, sau đó **cộng trừ hệ số** ở ngoài với nhau.
+
+</div>
+
+</GhiNho>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Đưa thừa số ra ngoài dấu căn:
+
+a) $\sqrt{20}$
+
+b) $\sqrt{54}$
+
+c) $\sqrt{28a^4b^2}$ ($b>0$)
+
+d) $\sqrt{75x^2y^3}$ ($x<0, y>0$)
+
+**Bài 2:** Đưa thừa số vào trong dấu căn:
+
+a) $4\sqrt{3}$
+
+b) $-6\sqrt{2}$
+
+c) $x\sqrt{5/x}$ ($x>0$)
+
+d) $x\sqrt{-7/x}$ ($x<0$)
+
+**Bài 3:** Trục căn thức ở mẫu cơ bản:
+
+a) $\frac{5}{\sqrt{10}}$
+
+b) $\frac{3}{\sqrt{12}}$
+
+c) $\frac{1}{\sqrt{7} - \sqrt{5}}$
+
+d) $\frac{6}{\sqrt{3} + 1}$
+
+**Bài 4:** Rút gọn biểu thức tổng hợp:
+
+a) $A = 3\sqrt{12} - 2\sqrt{27} + \frac{1}{2}\sqrt{48}$
+
+b) $B = \frac{\sqrt{5} - \sqrt{3}}{\sqrt{5} + \sqrt{3}}$ (Gợi ý: Trục mẫu)
+
+c) $C = (\sqrt{14} - \sqrt{7}) / (1 - \sqrt{2})$
+
+d) $D = x - (\sqrt{x^2 - 4x + 4})$ với $x < 2$.
+
+**Bài 5 (Nâng cao):** Cầu vượt.
+Một cầu vượt đi bộ có một chân chống hình tam giác vuông. Cạnh huyền có độ dài $\sqrt{50} + \sqrt{18}$ mét.
+
+a) Chuyển độ dài cạnh huyền về dạng thu gọn nhất $a\sqrt{2}$.
+
+b) Để gia tăng kết cấu, ngta bọc một trụ đỡ có kích thước đo được là $\frac{8}{\sqrt{2}}$. Hệ số nào lớn hơn? So sánh.
+
+c) Biết chi phí nguyên liệu tính bằng bình phương chiều dài. (giá $C = k \cdot length^2$). Chi phí cho cạnh huyền tỷ lệ bao nhiêu với trụ đỡ? (Toán học $\frac{l_{huyen}^2}{l_{tru}^2}$).
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) $2\sqrt{5}$
+
+b) $3\sqrt{6}$
+
+c) $2a^2b\sqrt{7}$
+
+d) $|x|y\sqrt{75y} = -5xy\sqrt{3y}$.
+
+**Bài 2:**
+
+a) $\sqrt{48}$
+
+b) $-\sqrt{72}$
+
+c) $\sqrt{x^2 \cdot 5/x} = \sqrt{5x}$
+
+d) Vì $x<0$, ta đưa $-(-x)$ vào $\Rightarrow -\sqrt{x^2 \cdot (-7/x)} = -\sqrt{-7x}$.
+
+**Bài 3:**
+
+a) $\frac{5\sqrt{10}}{10} = \frac{\sqrt{10}}{2}$.
+
+b) $\frac{3\sqrt{12}}{12} = \frac{3 \cdot 2\sqrt{3}}{12} = \frac{\sqrt{3}}{2}$.
+
+c) $\frac{\sqrt{7}+\sqrt{5}}{7-5} = \frac{\sqrt{7}+\sqrt{5}}{2}$.
+
+d) $\frac{6(\sqrt{3}-1)}{3-1} = 3(\sqrt{3}-1)$.
+
+**Bài 4:**
+
+a) $A = 3(2\sqrt{3}) - 2(3\sqrt{3}) + 0.5(4\sqrt{3}) = 6\sqrt{3} - 6\sqrt{3} + 2\sqrt{3} = 2\sqrt{3}$.
+
+b) Tử nhân tử ra bình phương, mẫu ra $5-3=2$. $\Rightarrow \frac{(\sqrt{5}-\sqrt{3})^2}{2} = \frac{8 - 2\sqrt{15}}{2} = 4 - \sqrt{15}$.
+
+c) Đặt nhân tử $\sqrt{7}$ tại tử: $\sqrt{7}(\sqrt{2} - 1)$. Rút với $-\sqrt{2} + 1 = -(1-\sqrt{2})$. Rút mẫu $\Rightarrow C = -\sqrt{7}$.
+
+d) $\sqrt{(x-2)^2} = |x-2|$. Vì $x<2 \Rightarrow |x-2|=2-x$. Vậy $D = x - (2-x) = 2x - 2$.
+
+**Bài 5:**
+
+a) $\sqrt{50} = 5\sqrt{2}$. $\sqrt{18} = 3\sqrt{2}$. Cạnh huyền dài $8\sqrt{2}$.
+
+b) Trụ đỡ: $\frac{8\sqrt{2}}{2} = 4\sqrt{2}$. Nên cạnh huyền lớn gấp đôi.
+
+c) $\frac{(8\sqrt{2})^2}{(4\sqrt{2})^2} = \frac{128}{32} = 4$. Chi phí gấp 4 lần.
+
+</div>
+</details>

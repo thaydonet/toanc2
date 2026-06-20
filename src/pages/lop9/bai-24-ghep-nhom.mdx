@@ -1,0 +1,301 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 24: Bảng tần số, tần số tương đối ghép nhóm và biểu đồ"
+description: "Mẫu số liệu ghép nhóm, bảng tần số ghép nhóm và biểu đồ histogram - Toán 9 Kết nối tri thức"
+grade: "Lớp 9"
+chapter: "Chương VII: Tần số và tần số tương đối"
+currentSlug: "lop9/bai-24-ghep-nhom"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+import StatisticsCalculator from '../../components/interactive/StatisticsCalculator';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Mục đích chính của việc lập bảng tần số ghép nhóm là gì?",
+    option_a: "Để loại bỏ các giá trị dị biệt trong dải băng số liệu.",
+    option_b: "Nhằm giúp dễ bề phân tích và thu gọn tổng quan khi mẫu số liệu có quá nhiều giá trị khác nhau hoặc phân bố trên một khoảng giá trị rộng lớn.",
+    option_c: "Đảm bảo tần số của các nhóm luôn luôn bằng 1.",
+    option_d: "Dễ dàng tính toán giá trị trung bình chính xác tuyệt đối.",
+    correct_option: "B",
+    explanation: "Khi phổ số liệu phong phú (chiều cao, cân nặng biến thiên liên tục qua mọi số thập phân), ta không lập bảng thông thường vì rất dài. Ghép nhóm giúp tóm tắt dữ liệu quy nạp trong các khoảng cho trước để tối ưu góc nhìn của người quan sát.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một nhóm được kí hiệu trên bảng số liệu là $[40; 50)$. Giá trị $x = 50$ có thuộc nhóm này không?",
+    option_a: "Có, vì đó là giới hạn của nhóm.",
+    option_b: "Không, vì dấu ')' chỉ nửa khoảng, không bao gồm giá trị mút bên phải.",
+    option_c: "Có thể phụ thuộc vào người đo lường số lượng.",
+    option_d: "Phải xem xét nhóm tiếp theo $[50; 60)$.",
+    correct_option: "B",
+    explanation: "Quy ước tiêu chuẩn đối với nửa khoảng $[a; b)$ là lấy phần tử $a \le x < b$. Phân giá trị biên phải sẽ không được tính (không gồm 50) vào khoảng này, mà thuộc về khoảng ngay liền kề $[50; 60)$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Độ dài của một nhóm dữ liệu có kích thước dạng nửa khoảng $[a; b)$ được tính bằng cách nào?",
+    option_a: "$a + b$",
+    option_b: "$b - a$",
+    option_c: "$(a + b) / 2$",
+    option_d: "$a \\cdot b$",
+    correct_option: "B",
+    explanation: "Độ dài (phạm vi, độ rộng) của nhóm, đôi khi gọi là $L$, chính bằng hiệu số mút trên và mút dưới là $b - a$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ cột biểu diễn tần số ghép nhóm (Histogram) có điểm gì đặc trưng so với biểu đồ cột thông thường?",
+    option_a: "Các cột rời rạc nhau bằng một khoảng trắng nhất định.",
+    option_b: "Chiề rộng bề ngang của tất cả các cột bằng độ không độ dài nhóm, các cột đứng liền kề sát nách, không có khe hở, thể hiện tính nối tiếp của dòng giá trị miền liên tục.",
+    option_c: "Mọi biểu đồ cột histogram phải có chiều cao giới hạn như nhau.",
+    option_d: "Mẫu biểu diễn tần số trên trục hoành thay vì trục tung.",
+    correct_option: "B",
+    explanation: "Đặc điểm nhận diện lớn nhất của một Histogram thống kê là các cột kề sát nhau, che khuất dải phổ giá trị kéo liền một dải để không ngắt quãng (biểu diễn nửa khoảng $[a; b)$ kết hợp ngay lập tức với $[b; c)$).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đường gấp khúc tần số trong biểu đồ tổ chức nhận dạng được vẽ bằng cách nối:",
+    option_a: "Khu vực đỉnh thấp nhất của các cột biểu đồ ghép nhóm đan xen với nhau.",
+    option_b: "Tâm điểm đáy của các cột trong trục.",
+    option_c: "Trung điểm ở mép trên (chỉnh đỉnh trên cùng) của các hình chữ nhật liền kề.",
+    option_d: "Điểm có giá trị lớn nhất trong số liệu.",
+    correct_option: "C",
+    explanation: "Để tạo đường gấp khúc thể hiện đà tăng giảm tần số, ta sử dụng điểm trung tâm tại nóc các cột chữ nhật để nối điểm đầu đến cuối lại bằng đường thẳng liền.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Yêu cầu nào sau đây đúng khi phân nhóm mẫu số liệu về mặt chuẩn mực?",
+    option_a: "Các nhóm phải bao phủ đầy đủ toàn bộ giá trị có trong số liệu từ nhỏ nhất đến lớn nhất.",
+    option_b: "Mọi nhóm trong bảng nhất định phải có cùng độ dài như bằng nhau.",
+    option_c: "Các nhóm được biểu diễn không thể chứa phần giao thoa chung (các nửa khoảng rời rạc).",
+    option_d: "Số lượng nhóm nên nằm trong dải 5–15 cho hợp lý, tránh phân tích quá ít hoặc quá nhiều nhóm.",
+    correct_option: "A,C,D",
+    explanation: "Quy tắc cốt yếu: Bao trùm đủ phổ dải dữ liệu ($[x_{min}, x_{max}]$), không chồng lấn lọt khe số liệu chung đụng hai nhóm, và số lượng nhóm chia vừa phải mới tối ưu quá trình theo dõi. Chiều dài nhóm hoàn toàn có thể chênh lệch không đồng đều dựa trên mục đích phân tích (dù khuyến cáo nên để bằng nhau).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một khảo sát chia chiều cao nam thanh niên vào các nhóm từ $[150; 160), [160; 170), [170; 180)$. Một thanh niên được cân đo ở mức chuẩn xác đúng $170\text{ cm}$. Anh sinh viên này sẽ được xếp vào nhóm chiều cao nào (nếu đại diện là số chẵn trục đầu mốc 170)?",
+    correct_option: "170",
+    explanation: "Anh A thu nhận $170\text{cm}$ sẽ không nằm ở khoảng $[160; 170)$ vì nó nhận nửa mút biên ($< 170$). Rơi thẳng vào nửa khoảng $[170; 180)$, tương ứng mốc tính từ số 170.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Dữ kiện tần số trong nhóm thời lượng là: $[0; 2)$ với $n_1=4$, $[2; 4)$ với $n_2=12$, $[4; 6)$ với $n_3=8$, $[6; 8]$ với $n_4=6$. Tính kích cỡ tổng quát $N$ của quần thể khảo sát (Số quan sát)?",
+    correct_option: "30",
+    explanation: "Tiến hành lấy tổng tần số của mọi nhóm được liệt kê: $N = 4 + 12 + 8 + 6 = 30$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">📏 Khi dải dữ liệu vượt ngoài tầm kiểm soát</h3>
+
+Trong bài nghiên cứu về "Chiều cao của thanh thiếu niên" cho hồ sơ tuyển sinh vận động viên cấp tỉnh, liên đoàn điền kinh thu thập chiều cao (đơn vị: cm) của 100 em học sinh. Phổ phân phối của mẫu số liệu sẽ được chia nhỏ không ngừng tuỳ thuộc vào các giá trị: $155.1$, $167.3$, $158.4$, v...v.
+
+Vì đây là dữ liệu hình thái liên tục nên có hàng trăm chỉ số phân độ chiều cao, rất hiếm các số liệu trong phổ có sự trùng lặp hoàn toàn 100%. Nếu chúng ta sử dụng **Bảng tần số chuẩn** từ bài 22, ta sẽ phải lập một dải liệt kê hàng ngang dài đến hàng trăm cột đại diện, điều này khiến cho số lượng đếm ở tần số từng chỉ số luôn rơi vào vùng vi phân nhỏ (1 hoặc 2 giá trị) và làm cho công cụ bảng thất bại thảm hại trong phân tích xu thế.
+ 
+Để tóm lược mẫu số liệu liên tục hiệu quả, giới toán học thống kê chia phổ quan sát thành các khung mốc như: "Nhóm những người cao từ $150–160\text{ cm}$", "Nhóm cao $160–170\text{ cm}$"... gọi là quá trình **Ghép nhóm dữ liệu**. Cụ thể chúng ta nghiên cứu các đặc tính trong Bài 24 dưới đây!
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="tan-so-ghep-nhom" style="margin-top:2rem;">📖 1. Bảng tần số, tần số tương đối ghép nhóm</h3>
+
+<div class="box-dinh-nghia">
+
+Khi mẫu số liệu lưu trữ trong kho tham khảo là liên tục (như đo đạc chiều dài, cân nặng, hoặc độ lớn thời gian) và có nhiều nhóm phân bố rất đa dạng trải dài, ta thường phân mẫu thành các nhóm số liệu dưới dạng nửa khoảng $[a; b)$ để phục vụ cho lập bảng phân phối.
+- Giá trị biên bên phải (mút $b$) không được tính cho nhóm hiện tại và được gộp vào nhóm liền kề sau đó. Ngoại trừ giới hạn nhóm cuối cùng, có thể sử dụng đoạn $[a; b]$ để giữ mút giới hạn.
+- Chiều dài của một khoảng $[a; b)$ được đánh giá qua sự chênh lệch $L = b - a$.
+
+</div>
+
+Khi đó ta nói tần số $n$ của một nhóm là số lượng các giá trị được quy tụ trong khoảng chênh lệch số liệu thực tế thuộc nhóm đó. Tương tự, ta xác định đại lượng tần số tương đối ghép nhóm là tỉ số phần trăm giữa tần số $n$ và cỡ số liệu khảo khát $N$ ($f_i = \frac{n_i}{N} \cdot 100\%$). 
+
+**Ví dụ Lập biểu:** Bảng tần số học kỳ thể hiện giờ tự tập gym (phút) của sinh viên:
+
+| Khoảng giờ tự học | $[0; 30)$ | $[30; 60)$ | $[60; 90)$ | $[90; 120]$ | Tổng |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Tần số ($n$) | 5 | 18 | 12 | 5 | $N=40$ |
+| Tần số t/đối ($f\%$) | 12.5% | 45.0% | 30.0% | 12.5% | 100% |
+
+<h3 id="bieu-do-ghep-nhom" style="margin-top:2rem;">📖 2. Biểu đồ hình cột Tổ chức (Histogram)</h3>
+
+Nhằm minh họa trực quan sự lên xuống của tần số trong mẫu dữ liệu nhóm này, ta vẽ bảng khảo sát biểu diễn thông qua một khối liên cột gọi là Biểu đồ tổ chức (Histogram).
+
+- **Trục hoành:** Các mốc số liệu tạo lập nửa khoảng ghép nhóm.
+- **Trục tung:** Đại diện cho số lượng phần tử lọt nhóm hoặc tần số đo đếm (Tần số $n$ hoặc Tần số $f\%$).
+- **Đặc tính cơ bản:** Vì biến thiên thông số trên đoạn hoành là dải thực liên tục, nên mép của mỗi hộp chữ nhật phải dựa sát thẳng vào hộp bên cạnh (Khoảng $[0; 30)$ liền khối với $[30; 60)$).
+
+**Mở rộng về Đường Gấp khúc tần số (Frequency Polygon)**
+Thay đổi dạng thể hiện thành nối ghép các điểm tọa độ nằm lộn xộn, người ta bổ sung đường gấp khúc vào biểu đồ để kiểm chứng mô hình biểu thức biến thiên dữ kiện bằng cách tìm phần giữa của mái trên mỗi thỏi chữ nhật đồ thị rồi xâu liên tiếp bằng đường gấp khúc dài.
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="450" height="250" viewBox="0 0 450 250">
+  {/* Axes */}
+  <path d="M 50,20 L 50,200 L 420,200" fill="none" stroke="#334155" strokeWidth="2" markerEnd="url(#arrowhead)"/>
+  
+  {/* Y-axis Ticks & Labels */}
+  {['0', '5', '10', '15', '20'].map((val, index) => (
+    <g key={index}>
+      <line x1="45" y1={200 - index*40} x2="55" y2={200 - index*40} stroke="#475569" strokeWidth="2"/>
+      <text x="35" y={200 - index*40 + 5} textAnchor="end" fontSize="12" fill="#475569">{val}</text>
+    </g>
+  ))}
+  
+  {/* X-axis Ticks & Labels */}
+  {['0', '30', '60', '90', '120'].map((val, index) => (
+    <g key={index}>
+      <line x1={80 + index*80} y1="200" x2={80 + index*80} y2="205" stroke="#475569" strokeWidth="2"/>
+      <text x={80 + index*80} y="220" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#334155">{val}</text>
+    </g>
+  ))}
+  
+  {/* Histogram Bars (kề sát nhau) */}
+  {/* $[0;30) -> freq 5 -> height 40 */}
+  <rect x="80" y={200 - 40} width="80" height="40" fill="#3b82f6" opacity="0.6" stroke="#1e40af" strokeWidth="1"/> 
+  {/* $[30;60) -> freq 18 -> height 144 */}
+  <rect x="160" y={200 - 144} width="80" height="144" fill="#3b82f6" opacity="0.6" stroke="#1e40af" strokeWidth="1"/> 
+  {/* $[60;90) -> freq 12 -> height 96 */}
+  <rect x="240" y={200 - 96} width="80" height="96" fill="#3b82f6" opacity="0.6" stroke="#1e40af" strokeWidth="1"/> 
+  {/* $[90;120] -> freq 5 -> height 40 */}
+  <rect x="320" y={200 - 40} width="80" height="40" fill="#3b82f6" opacity="0.6" stroke="#1e40af" strokeWidth="1"/> 
+  
+  {/* Frequency Polygon (Đường gấp khúc) */}
+  {/* Centroids: 120, 200, 280, 360 */}
+  <path d="M 120,160 L 200,56 L 280,104 L 360,160" fill="none" stroke="#ef4444" strokeWidth="3" strokeLinejoin="round"/>
+  
+  <circle cx="120" cy="160" r="4" fill="#ef4444" />
+  <circle cx="200" cy="56" r="4" fill="#ef4444" />
+  <circle cx="280" cy="104" r="4" fill="#ef4444" />
+  <circle cx="360" cy="160" r="4" fill="#ef4444" />
+  
+  {/* Labels */}
+  <text x="40" y="15" fontWeight="bold" fill="#475569">Tần số</text>
+  <text x="400" y="190" fontWeight="bold" fill="#475569">Phút</text>
+</svg>
+</div>
+
+<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Hệ thống xử lí mốc số liệu thống kê máy tính</h3>
+
+<StatisticsCalculator client:load />
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Chuyển dữ liệu sang Bảng Tần số Ghép nhóm**
+**Phương pháp:** 
+- Xét toàn bộ mẫu số liệu gốc gồm nhiều phần tử.
+- Đặt các khoảng cho trước ở cấu trúc nửa đoạn $[a; b)$ (thường là để độ chia bằng nhau giữa các nửa khoảng).
+- Thẩm định lại từng con số đo xem nó thuộc về giới hạn nào, cẩn thận số lượng trùng khớp vào số liệu mút đầu mút cuối theo quy tắc bao gồm/loại trừ (giao và hợp).
+- Sau khi tổng kết đếm nhặt, ta lập tần số $n$ hoặc tỉ lệ phần trăm $f_i\%$ cho mỗi nhóm.
+*(Phải chắc chắn tổng tần số vẫn duy trì bằng chuẩn Cỡ mẫu $N$)*.
+
+</div>
+
+**Ví dụ 1:** 
+Phòng y tế của trường tiểu học kiểm tra chiều cao (cm) của 20 học sinh theo dải số liệu:
+`110, 112, 115, 120, 121, 119, 122, 125, 128, 129, 131, 135, 137, 138, 140, ...` (Để thuận tiện, coi như ta đã tổng hợp nhanh tần số thu thập như bên dưới).
+Với kích cỡ phân bố chiều cao $L = 10\text{ cm}$. Hãy xây dựng bảng nhóm và rút ra nhóm đạt nhiều quan sát nhất (Mốt nhóm).
+
+**Hướng dẫn:** 
+- Quá trình phân chia cỡ nửa khoảng $10\text{ cm}$:
+$ $[110; 120), [120; 130), [130; 140), [140; 150] $ $
+- Tính tần số và ta kết luận được mảng tần số tương tự như sau:
+  + Khoảng $[110; 120)$ ghi nhận 6 học sinh.
+  + Khoảng $[120; 130)$ ghi nhận 5 học sinh.
+  + Khoảng $[130; 140)$ ghi nhận 7 học sinh.
+  + Khoảng $[140; 150]$ ghi nhận 2 học sinh.
+- Nhóm chiều cao thu thập nhiều phần tử học sinh nhất là khoảng $[130; 140)$ với tần số đạt n=7. Do đó trong mô hình này, đây được coi là **"Nhóm chứa mốt"**.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Phân tích số liệu từ biểu đồ ghép nhóm Histogram**
+**Phương pháp:** 
+- Khởi điểm ở đáy Hoành trên biểu đồ, ta xét độ dài dải $L = b - a$ để biết chi tiết mức độ lớn bé.
+- Phóng đối chiếu độ tịnh tiến thẳng lên mốc cột để tiếp nhận độ dày / tần số $n_i$ bằng cột độ dài tung ứng chiếu sang vạch trục $Oy$.
+- Từ những kết xuất quan sát đó, có thể thiết lập ngay lập tức Bảng chỉ số đối chiếu chuẩn bị số liệu.
+
+</div>
+
+**Ví dụ 2:** Dựa theo cột đầu tiên của biểu đồ Histogram phía trên (nửa khoảng $[0; 30)$). Hỏi khoảng thời lượng giờ tập này gồm mấy bạn sinh viên được ghi nhận?
+**Hướng dẫn:** 
+- Hình chữ nhật tại tọa độ $[0; 30)$ trên trục hoành có độ cao tương ứng chạm vào màng vạch kẻ ngang của số $5$ trên trục tung. Tần số bằng 5. Có $5$ người.
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cửa hàng điện máy kiểm tra tuổi thọ của bóng đèn (đơn vị: nghìn giờ) từ bộ xét nghiệm 50 bóng trong nhà máy. Thống kê kết xuất trong bộ bảng nửa khoảng phân độ như sau:
+
+| Tuổi thọ bóng ($x$) | $[2; 3)$ | $[3; 4)$ | $[4; 5)$ | $[5; 6]$ |
+| :--- | :---: | :---: | :---: | :---: |
+| Tần số phát hiện ($n$) | $5$ | $15$ | $20$ | $10$ |
+
+a) Độ lớn quy mô nhóm chiều dài ở các phân khúc đánh giá mẫu vật kiểm tra là bao nhiêu? Giá trị tuổi thọ $4\text{ nghìn giờ}$ sẽ bị quy kết ở ô tần số nào?
+b) Hãy tính tần số tương đối ứng với từng vùng thời gian hoạt động tuổi thọ. 
+c) Nhận xét khung khoảng không gian tuổi thọ hoạt động điển hình có độ phủ sóng cao nhất.
+
+**Bài 2:** Theo dữ liệu khí tượng về lượng mưa trung bình một tháng (đơn vị: mm) của các địa bàn thị xã gồm 30 trạm đo thu nhận được mảng tần số tương đối như sau:
+
+| Lượng mưa ($x$) | $[50; 100)$ | $[100; 150)$ | $[150; 200)$ | $[200; 250]$ |
+| :--- | :---: | :---: | :---: | :---: |
+| Tần số tương đối (\%)| $10\%$ | $40\%$ | $m\%$ | $20\%$ |
+
+a) Dựa trên định luật toàn phần trong tổng chuẩn tương đối, xác định tham số chênh lệch về tỉ lệ $m\%$?
+b) Tính cụ thể có bao nhiêu xã tương ứng của đại diện khu vực vượt lượng mưa chuẩn $[100; 150)$?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) Chiều rộng các mảng thời gian: $L = 3 - 2 = 1\text{ (nghìn giờ)}$. Tuổi thọ định mức $= 4.0\text{ nghìn giờ}$ sẽ trượt khỏi vòng giới hạn của nhóm thứ 2 là $[3; 4)$, do nửa khoảng không ôm góc mút 4, nó sẽ thụt về vào mảng quy kết số đếm ở nhóm thứ 3 là $[4; 5)$.
+b) Tính quy mô Tần số tương đối do $N = 50$:
+- Nhóm 1: $\frac{5}{50} \cdot 100\% = 10\%$.
+- Nhóm 2: $\frac{15}{50} \cdot 100\% = 30\%$.
+- Nhóm 3: $\frac{20}{50} \cdot 100\% = 40\%$.
+- Nhóm 4: $\frac{10}{50} \cdot 100\% = 20\%$.
+*(Tổng trọn vẹn $100\%$).*
+c) Độ phủ sóng của lô hàng chiếm mạnh mẽ nhất tại phân định tuổi thọ $[4; 5)$ với số bóng đại diện lọt tỷ trọng dẫn đầu $40\%$.
+
+**Bài 2:**
+a) Dựa trên tiêu chuẩn 100% trong số tần số: 
+$10\% + 40\% + m\% + 20\% = 100\% \Rightarrow 70\% + m\% = 100\% \Rightarrow m = 30\%$.
+Do đó giá trị lượng mưa nhóm $[150; 200)$ có tần số tương đối $30\%$.
+b) Ghi chú cho số liệu của lượng mưa phân độ $[100; 150)$ chiếm tương ứng $40\%$. 
+Áp dụng công thức quy xuất số hạng số lượng quan sát là: $n = \frac{40 \cdot 30}{100} = 12$ trạm đo thời tiết.
+
+</div>
+</details>

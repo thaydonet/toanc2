@@ -1,0 +1,249 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 27: Góc nội tiếp"
+description: "Khái niệm góc nội tiếp, định lí và hệ quả về số đo góc nội tiếp chắn cung - Toán 9 Kết nối tri thức"
+grade: "Lớp 9"
+chapter: "Chương IX: Đường tròn ngoại tiếp và đường tròn nội tiếp"
+currentSlug: "lop9/bai-27-goc-noi-tiep"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Góc nội tiếp là góc có đặc điểm gì đối với một đường tròn?",
+    option_a: "Có đỉnh trùng với tâm đường tròn.",
+    option_b: "Có đỉnh nằm trên đường tròn và hai cạnh chứa hai dây cung của đường tròn đó.",
+    option_c: "Có đỉnh nằm bên ngoài đường tròn và hai cạnh cắt đường tròn.",
+    option_d: "Có một cạnh là tiếp tuyến và đỉnh nằm trên đường tròn.",
+    correct_option: "B",
+    explanation: "Theo định nghĩa hình học không gian, góc nội tiếp là góc có đỉnh nằm ngay trên đường cong của đường tròn, đồng thời hai cạnh của góc đó chứa hai dây cung.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Mối liên hệ giữa số đo của góc nội tiếp và số đo của cung bị chắn bởi góc đó là gì?",
+    option_a: "Số đo góc nội tiếp bằng số đo cung bị chắn.",
+    option_b: "Số đo góc nội tiếp bằng một nửa số đo cung bị chắn.",
+    option_c: "Số đo góc nội tiếp gấp đôi số đo cung bị chắn.",
+    option_d: "Số đo góc nội tiếp cộng với cung bị chắn bằng 180 độ.",
+    correct_option: "B",
+    explanation: "Định lí góc nội tiếp khẳng định rằng trong một đường tròn, số đo của góc nội tiếp bằng một nửa số đo của cung bị chắn nằm giữa hai cạnh của góc.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong cùng một đường tròn, hai góc nội tiếp cùng chắn một cung thì có quan hệ gì với nhau?",
+    option_a: "Có tổng bằng 90 độ.",
+    option_b: "Phụ nhau.",
+    option_c: "Bằng nhau.",
+    option_d: "Có tổng bằng 180 độ.",
+    correct_option: "C",
+    explanation: "Các góc nội tiếp cùng chắn một cung (thậm chí chắn các cung bằng nhau trong cùng một đường tròn) thì luôn luôn có số đo bằng nhau (vì đều bằng một nửa số đo cung đó).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một góc nội tiếp chắn nửa đường tròn (cung 180 độ) thì góc đó bằng bao nhiêu độ?",
+    option_a: "60 độ",
+    option_b: "90 độ",
+    option_c: "120 độ",
+    option_d: "180 độ",
+    correct_option: "B",
+    explanation: "Do số đo cung nửa đường tròn bằng $180^\\circ$, theo định lí, góc nội tiếp chắn nửa đường tròn sẽ bằng một nửa của $180^\\circ$, tức là $\\frac{180^\\circ}{2} = 90^\\circ$ (góc vuông).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khẳng định nào sau đây là MỘT hệ quả đúng được suy ra từ bài toán định lí góc nội tiếp trong một đường tròn?",
+    option_a: "Góc nội tiếp chắn nửa đường tròn là góc vuông.",
+    option_b: "Góc nội tiếp nhỏ hơn hoặc bằng 90 độ có số đo bằng nửa số đo của góc ở tâm cùng chắn một cung.",
+    option_c: "Số đo góc ở tâm luôn luôn bằng một nửa số đo góc nội tiếp chắn cùng một cung đó.",
+    option_d: "Các góc nội tiếp chắn các cung bằng nhau thì bằng nhau.",
+    correct_option: "A,B,D",
+    explanation: "Góc ở tâm có số đo bằng đúng số đo cung bị chắn. Do đó góc nội tiếp (bằng nửa cung) sẽ bằng nửa góc ở tâm (đáp án B đúng). Tính chất C bị đảo ngược sai logic.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Trên đường tròn tâm O, cho cung nhỏ AB có số đo bằng 80 độ. Lấy điểm C bất kì nằm trên cung lớn cung AB. Hãy tính số đo (bằng độ) của góc nội tiếp $\\widehat{ACB}$.",
+    correct_option: "40",
+    explanation: "Góc $\\widehat{ACB}$ là góc nội tiếp chắn cung bị chắn là cung nhỏ AB. Số đo góc bằng một nửa số đo cung bị chắn: $\\frac{80^\\circ}{2} = 40^\\circ$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Biết tam giác MNP nội tiếp đường tròn tâm O, cạnh MN là đường kính của đường tròn. Hãy cho biết số đo của góc $\\widehat{MPN}$ (góc nội tiếp đỉnh P) là bao nhiêu độ?",
+    correct_option: "90",
+    explanation: "Vì MN là đường kính của đường tròn, nên cung MN bị chắn bởi góc $\\widehat{MPN}$ là nửa đường tròn (số đo $180^\\circ$). Góc nội tiếp $\\widehat{MPN}$ chắn nửa đường tròn nên có số đo là $90^\\circ$. Góc $\\widehat{MPN}$ là góc vuông.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">📐 Góc nhìn bao quát từ nhiều vị trí sân khấu</h3>
+
+Một rạp xiếc ngoài trời có thiết kế hình tròn. Sân khấu (biểu diễn cho khán giả) là một dải cung bằng thép căng ngang trên mép sàn (cung $AB$). Khán giả được sắp xếp ngồi dọc kín men theo bờ chu vi của rạp xiếc từ điểm cung lớn còn lại.
+
+Họa viên xây dựng muốn kiểm tra xem: Liệu những khán giả ngồi ở hàng ghế khác nhau trên dọc viền vòng tròn (tại đỉnh $C_1, C_2, C_3\dots$) thì góc quan sát mở rộng từ mắt họ đến hết hai đầu khán đài sân khấu $A, B$ có bị thay đổi do đổi vị trí hay không?
+
+Sử dụng định lý đo lường "Góc nội tiếp" trong toán hình học phẳng, chúng ta sẽ có ngay luận cứ để chứng minh một sự thật bất ngờ: Chừng nào khán giả còn ngồi trên viền của rạp tròn hình vòng cung ấy, thì góc nhìn sân khấu sẽ đảm bảo sự bằng nhau ở mọi tọa độ chỗ ngồi!
+
+</KhoiDong>
+
+<KhamPha title="I. Lý thuyết trọng tâm">
+
+<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Định nghĩa Góc nội tiếp</h3>
+
+<div class="box-dinh-nghia">
+
+Trong phân tích trên đường tròn tâm $(O)$:
+- **Góc nội tiếp** là góc thỏa mãn đồng thời hai yếu tố cốt lõi: 1) Đỉnh của góc phải nằm trên đường tròn. 2) Hai cạnh của góc phải chứa hai dây cung của đường tròn (kéo dài cắt đường tròn).
+- Phần cung tròn nằm bên trong khoang không gian giữa hai cạnh góc đó (kể cả có đi qua tâm hay không) được gọi là **cung bị chắn**.
+
+</div>
+
+**Ví dụ:** Cho đường tròn $(O)$, lấy ba điểm $A, B, C$ phân biệt cùng nằm trên đường tròn. Khi đó góc tạo bởi ba đỉnh $\widehat{BAC}$ được gọi là một góc nội tiếp.
+Hai cạnh của góc là dây cung $AB$ và dây cung $AC$. Cung nhỏ $BC$ (nằm lọt trong góc) chính là cung bị chắn.
+
+<h3 id="dinh-li" style="margin-top:2rem;">📖 2. Định lí về số đo của góc nội tiếp</h3>
+
+Sự liên kết chặt chẽ giữa góc đỉnh nằm ngoài hoặc trên biên và số đo vòng cung đo được trong đường tròn tuân theo định lý cơ sở:
+
+<div class="box-dinh-ly">
+
+**Định lí:** Trong một đường tròn, số đo của một góc nội tiếp luôn luôn **bằng một nửa** số đo của cung bị chắn bởi góc đó.
+$$\widehat{BAC} = \frac{1}{2}\text{sđ}\overparen{BC}$$
+
+</div>
+
+*(Nhắc lại: Trong bài Góc ở tâm, góc đỉnh trùng với tâm $O$ luôn trực tiếp bằng số đo cung bị chắn. Như vậy, góc nội tiếp có đỉnh xa lùi về lề chu vi sẽ bằng một nửa góc ở tâm cho trước)*.
+
+<h3 id="he-qua" style="margin-top:2rem;">📖 3. Hệ quả quan trọng từ Định lí góc nội tiếp</h3>
+
+Từ định lý tỷ lệ một phần hai $\frac{1}{2}$ kể trên, ta có khả năng suy ra các tính chất (hệ quả) hình học hỗ trợ giải hệ phương trình chứng minh nhanh chóng:
+
+1. **Các góc nội tiếp bằng nhau chắn các cung bằng nhau:** Trong một đường tròn (hoặc hai đường tròn bằng nhau), hai góc nội tiếp bằng nhau thì hai dây cung bị chắn của chúng cũng có số đo bằng nhau, và ngược lại.
+2. **Cùng chắn một cung:** Các góc nội tiếp cùng chắn một cung (thậm chí là cùng chắn các cung bằng nhau) thì bằng nhau.
+3. **Mối quan hệ với góc ở tâm:** Góc nội tiếp (nhỏ hơn hoặc bằng $90^\circ$) có số đo bằng chính xác một nửa số đo của **góc ở tâm** cùng chắn chung một cung đó. $\Rightarrow \widehat{BAC} = \frac{1}{2}\widehat{BOC}$.
+4. **Góc nội tiếp chắn nửa đường tròn luôn là góc vuông ($90^\circ$)**. Hệ quả kinh điển để chứng minh quan hệ tam giác vuông nội tiếp nhanh nhất.
+
+<div style={{display: "flex", justifyContent: "center", margin: "2rem 0"}}>
+<svg width="250" height="250" viewBox="0 0 250 250">
+  {/* Circle */}
+  <circle cx="125" cy="125" r="100" fill="none" stroke="#2563eb" strokeWidth="2"/>
+  
+  {/* Diameter (Half-circle) */}
+  <line x1="25" y1="125" x2="225" y2="125" stroke="#10b981" strokeWidth="2" strokeDasharray="4,4"/>
+  <text x="15" y="130" fill="#10b981" fontWeight="bold">B</text>
+  <text x="230" y="130" fill="#10b981" fontWeight="bold">C</text>
+  <circle cx="125" cy="125" r="4" fill="#ef4444" />
+  <text x="120" y="145" fill="#ef4444" fontWeight="bold">O</text>
+
+  {/* Inscribed angle on the top half */}
+  <path d="M 25,125 L 125,25 L 225,125" fill="none" stroke="#f59e0b" strokeWidth="2"/>
+  <circle cx="125" cy="25" r="4" fill="#f59e0b" />
+  <text x="120" y="15" fill="#f59e0b" fontWeight="bold">A</text>
+  
+  {/* Right angle symbol at A */}
+  <path d="M 115,35 L 125,45 L 135,35" fill="none" stroke="#f59e0b" strokeWidth="1.5"/>
+
+  {/* Different text for chord arc */}
+  <path d="M 25,125 A 100 100 0 0 0 225 125" fill="none" stroke="#ef4444" strokeWidth="3"/>
+  <text x="125" y="240" textAnchor="middle" fill="#ef4444" fontWeight="bold">Cung BC 180 độ</text>
+</svg>
+</div>
+
+</KhamPha>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Tính số đo góc hoặc số đo cung bị chắn trên đường tròn**
+**Phương pháp:** 
+- Áp dụng hệ thức nền tảng của bài: Số đo góc nội tiếp $\widehat{AMB} = \frac{1}{2}\text{sđ}\overparen{AB}$.
+- Do đó nếu đề bài đã cho thông số cung chắn $\Rightarrow$ Tính một nửa là ra góc. Nếu đề cho thông số góc nội tiếp $\Rightarrow$ Nhân đôi lên để tính độ mở của cung (số đo góc ở tâm đi kèm).
+- Có thể áp dụng kết hợp cùng góc ở tâm $\widehat{AOB}$ do liên kết đồng cung. $\widehat{AMB} = \frac{1}{2}\widehat{AOB}$.
+
+</div>
+
+**Ví dụ 1:** 
+Cho đường tròn điểm tâm $O$. Gọi $M, N$ là hai điểm nằm trên đường tròn sao cho cung nhỏ $MN$ có số đo đạt $60^\circ$. Điểm $P$ chạy trên vòng cung lớn $MN$ của thiết diện. 
+Tính số đo của phần góc nội tiếp: $\widehat{MPN}$ và góc ở tâm $\widehat{MON}$.
+**Hướng dẫn:** 
+- Theo định lý góc nội tiếp bao bọc dây cung, vì $\widehat{MPN}$ chắn cung nhỏ $MN$:
+$\widehat{MPN} = \frac{1}{2}\text{sđ}\overparen{MN} = \frac{1}{2} \cdot 60^\circ = 30^\circ$.
+- Góc ở tâm tương ứng trùm chắn cung tròn nhỏ $MN$ luôn bằng đúng số đo cung đó:
+$\widehat{MON} = \text{sđ}\overparen{MN} = 60^\circ$.
+
+<div class="box-dinh-ly" style="margin-top:2rem">
+
+**Dạng 2: Ứng dụng để chứng minh hai góc lượng bằng nhau, tam giác vuông**
+**Phương pháp:** 
+- Các điểm di chuyển trên một cung tròn cùng hướng tầm mắt nhìn dây cung còn lại dưới cùng một nấc góc đo (Các góc nội tiếp chung 1 cung hoặc chung đoạn chắn).
+- Để chứng minh đường vuông góc (hoặc một tam giác có hình thái vuông), ta nên mượn tính chất phụ thuộc là tìm ra góc góc nội tiếp tựa đỉnh trên đường tròn và chắn dải cung đường kính (cung $180^\circ$).
+
+</div>
+
+**Ví dụ 2:** Cho hệ đường tròn đường kính thẳng $BC$. Một điểm $A$ nằm ngay trên phần biên của đường tròn ($A$ khác tọa độ $B$ và $C$). Dựng $AD$ vuông góc với dây $BC$ (điểm $D$ trên dây $BC$). Biết góc nhọn $\widehat{B} = 30^\circ$, khẳng định điểm số đo góc $\widehat{C}$ bằng bao nhiêu ở đơn vị độ?
+**Hướng dẫn:** 
+- Vì $BC$ đóng vai trò là đường kính của tròn, góc nhọn nội tiếp $\widehat{BAC}$ tiến hành chắn sát nửa đường tròn giới hạn cung tròn biên dải. Suy ra tam giác đó phải vuông tại $A$ tương ứng $\widehat{BAC} = 90^\circ$.
+- Xét theo phân bổ độ trong tam giác phân luồng $ABC$ vuông tại $A$:
+$\widehat{B} + \widehat{C} = 90^\circ \Rightarrow \widehat{C} = 90^\circ - 30^\circ = 60^\circ$.
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Cho tứ giác đa điểm $ABCD$ có tất cả 4 mút cùng nằm biên tại một đường tròn tâm $O$. Gọi các góc và định hướng trên mặt phẳng cho biết $\widehat{ADB} = 45^\circ$ và đặc tính số đo cung nhỏ đoạt được của $\overparen{CD} = 80^\circ$. 
+
+a) Phân tích số đo cung nhỏ $\overparen{AB}$?
+b) Tính thông số độ của phần góc nội tiếp $\widehat{CAD}$?
+c) Hai dải góc $\widehat{ACB}$ và $\widehat{ADB}$ chia sẻ cung nào? Do đó, chúng có mối hệ tương đương ra sao?
+
+**Bài 2:** (Ứng dụng bài toán vẽ sơ đồ thực tiễn)
+Một sân chơi bóng nằm trên trục có cấu trúc là nửa đường tròn dải tâm $O$ đường kính bằng phẳng nằm ngang $MN$. Từ một điểm $P$ tùy ý đứng trên hành lang cung tròn, em dựng một ống trụ $PH$ chiếu thẳng vuông góc với dải ngang vỉa phân cách của đường kính $MN$ ($H$ là trục chân cao thuộc đường tròn). Đoán biết kích thước $MN = 10\text{ m}$ và $MH = 2\text{ m}$. Hãy định thức số lý độ dựa trên hệ thức lượng giác tính bình phương cành đường cao tam giác vuông cho biến $PH$?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) Với đỉnh D, ta thấy góc tạo lập $\widehat{ADB}$ chính là góc nội tiếp chắn phần cung nhỏ dây $\overparen{AB}$. 
+Theo định lý liên hệ cấu trúc: $\text{sđ}\overparen{AB} = 2 \cdot \widehat{ADB} = 2 \cdot 45^\circ = 90^\circ$.
+b) Dựa sát từ $\text{sđ}\overparen{CD} = 80^\circ$, quan sát góc đa đỉnh $\widehat{CAD}$ cũng là góc nội tiếp chắn lấn đúng rào rợp phía cung $\overparen{CD}$. 
+Suy ra nhanh chóng: $\widehat{CAD} = \frac{1}{2}\text{sđ}\overparen{CD} = \frac{1}{2} \cdot 80^\circ = 40^\circ$.
+c) Góc $\widehat{ACB}$ và góc $\widehat{ADB}$ là hai cung lồng nội tiếp cùng hội tụ và thu chắn một đối tượng duy trì là cung $\overparen{AB}$. Dựa vào hệ quả góc nội tiếp, hai góc này phải giữ bằng nhau: $\widehat{ACB} = \widehat{ADB} = 45^\circ$.
+
+**Bài 2:**
+Vì tổ hợp 3 điểm $M, N, P$ chóp đỉnh cùng thuộc vào phân nhóm hệ đường tròn và có dải $MN$ thiết lập đường kính, áp dụng định lí góc chắn nửa đường tròn thì góc góc $\widehat{MPN}$ hiển nhiên là góc vuông ($90^\circ$). Do đó, tam giác hợp mệnh $\triangle MPN$ đang trong trạng thái đồng dạng vuông tại $P$.
+Sử dụng cung hình hệ thức lượng thiết lập trong tam giác vuông mở rộng với điểm chiếu $PH$ vuông dải $MN$:
+$PH^2 = MH \cdot HN$. 
+Ta có tính toán sơ khởi: Đường kính dải $MN = 10$, khoảng ngắn $MH = 2 \Rightarrow$ Chiều dài đoạn nối tiếp $HN = 10 - 2 = 8\text{ m}$.
+Vậy có công thức: $PH^2 = 2 \cdot 8 = 16$. Do đó rút bình phương ta khai đoạn thẳng độ dài $PH = 4\text{ m}$.
+
+</div>
+</details>

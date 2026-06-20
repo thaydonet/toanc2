@@ -1,0 +1,600 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 1 - Toán 9"
+description: "Ôn tập toàn bộ kiến thức chương 1 Toán 9 KNTT: Phương trình và hệ hai phương trình bậc nhất hai ẩn"
+grade: "Lớp 9"
+chapter: "Chương I: Phương trình và hệ hai phương trình bậc nhất hai ẩn"
+currentSlug: "lop9/bai-on-tap-chuong-1"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Phương trình nào sau đây là phương trình bậc nhất hai ẩn?",
+    option_a: "$2x - 3y = 5$",
+    option_b: "$x^2 + y = 3$",
+    option_c: "$2x - 3y + z = 1$",
+    option_d: "$x + y^2 = 0$",
+    correct_option: "A",
+    explanation: "Phương trình bậc nhất hai ẩn có dạng $ax + by = c$ với $a, b$ không đồng thời bằng 0. Chỉ có $2x - 3y = 5$ thỏa mãn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cặp số $(x; y) = (3; 1)$ là nghiệm của phương trình nào?",
+    option_a: "$x + y = 5$",
+    option_b: "$x - y = 2$",
+    option_c: "$2x + y = 8$",
+    option_d: "$x - 3y = 1$",
+    correct_option: "B",
+    explanation: "Thay $x=3, y=1$: $3 - 1 = 2$ (đúng). Vậy $(3;1)$ là nghiệm của $x - y = 2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phương trình bậc nhất hai ẩn $ax + by = c$ có tập nghiệm được biểu diễn bởi:",
+    option_a: "Một điểm trên mặt phẳng tọa độ",
+    option_b: "Một đường thẳng trên mặt phẳng tọa độ",
+    option_c: "Một parabol",
+    option_d: "Một đường tròn",
+    correct_option: "B",
+    explanation: "Tập nghiệm của phương trình bậc nhất hai ẩn là một đường thẳng trên mặt phẳng tọa độ $Oxy$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hệ phương trình $\\begin{cases} x + y = 5 \\\\ x - y = 1 \\end{cases}$ có nghiệm là:",
+    option_a: "$(3; 2)$",
+    option_b: "$(2; 3)$",
+    option_c: "$(4; 1)$",
+    option_d: "$(1; 4)$",
+    correct_option: "A",
+    explanation: "Cộng hai phương trình: $2x = 6 \\Rightarrow x = 3$. Suy ra $y = 5 - 3 = 2$. Nghiệm là $(3; 2)$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải hệ $\\begin{cases} 2x + y = 7 \\\\ x - y = 2 \\end{cases}$ bằng phương pháp cộng, ta được:",
+    option_a: "$x = 3, y = 1$",
+    option_b: "$x = 2, y = 3$",
+    option_c: "$x = 1, y = 5$",
+    option_d: "$x = 4, y = -1$",
+    correct_option: "A",
+    explanation: "Cộng hai pt: $3x = 9 \\Rightarrow x = 3$. Thay vào pt 2: $3 - y = 2 \\Rightarrow y = 1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải hệ $\\begin{cases} x = 2y - 1 \\\\ 3x + y = 13 \\end{cases}$ bằng phương pháp thế, ta được:",
+    option_a: "$x = 3, y = 2$",
+    option_b: "$x = 2, y = 3$",
+    option_c: "$x = 5, y = 3$",
+    option_d: "$x = 3, y = 4$",
+    correct_option: "A",
+    explanation: "Thế $x = 2y-1$ vào pt 2: $3(2y-1)+y=13 \\Rightarrow 7y=16 \\Rightarrow y=2$. Suy ra $x=3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai đường thẳng song song nhau thì hệ phương trình tương ứng:",
+    option_a: "Có vô số nghiệm",
+    option_b: "Có đúng một nghiệm",
+    option_c: "Vô nghiệm",
+    option_d: "Có hai nghiệm",
+    correct_option: "C",
+    explanation: "Hai đường thẳng song song không có điểm chung, nên hệ phương trình vô nghiệm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một bài toán: Tuổi cha hơn tuổi con 25 tuổi. Tổng tuổi hai bố con là 55. Tuổi con là bao nhiêu?",
+    option_a: "15 tuổi",
+    option_b: "20 tuổi",
+    option_c: "25 tuổi",
+    option_d: "30 tuổi",
+    correct_option: "A",
+    explanation: "Gọi tuổi con là $y$, tuổi cha là $x$. Hệ: $x - y = 25$ và $x + y = 55$. Giải ra: $y = 15$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hệ $\\begin{cases} 2x - y = 3 \\\\ 4x - 2y = 6 \\end{cases}$ có:",
+    option_a: "Vô số nghiệm",
+    option_b: "Đúng một nghiệm",
+    option_c: "Vô nghiệm",
+    option_d: "Hai nghiệm",
+    correct_option: "A",
+    explanation: "Phương trình 2 gấp đôi phương trình 1 ($4x-2y=6$ tức $2(2x-y)=6$), hai đường thẳng trùng nhau nên có vô số nghiệm.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị $k$ để hệ $\\begin{cases} kx + 2y = 3 \\\\ 2x + ky = 6 \\end{cases}$ vô nghiệm là:",
+    option_a: "$k = 2$",
+    option_b: "$k = -2$",
+    option_c: "$k = 0$",
+    option_d: "$k = 3$",
+    correct_option: "A",
+    explanation: "Hệ vô nghiệm khi $\\frac{k}{2} = \\frac{2}{k} \\neq \\frac{3}{6}$. Từ $k^2 = 4 \\Rightarrow k = \\pm 2$. Kiểm tra $k=2$: $\\frac{k}{2}=1 \\neq \\frac{1}{2}$, thỏa mãn.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai của các khẳng định sau về phương trình bậc nhất hai ẩn:",
+    option_a: "Phương trình $2x + 3y = 0$ là phương trình bậc nhất hai ẩn",
+    option_b: "Phương trình $x + y^2 = 4$ là phương trình bậc nhất hai ẩn",
+    option_c: "Phương trình bậc nhất hai ẩn luôn có vô số nghiệm",
+    option_d: "Nếu $(x_0; y_0)$ là nghiệm thì $(-x_0; -y_0)$ cũng là nghiệm của $ax + by = 0$",
+    correct_option: "A,C,D",
+    explanation: "B sai vì có $y^2$ (bậc 2). A, C, D đều đúng theo định nghĩa và tính chất của phương trình bậc nhất hai ẩn.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Xét tính đúng sai về phương pháp giải hệ phương trình:",
+    option_a: "Phương pháp thế: Biểu diễn một ẩn qua ẩn kia rồi thay vào phương trình còn lại",
+    option_b: "Phương pháp cộng: Nhân các phương trình với hệ số thích hợp rồi cộng hoặc trừ",
+    option_c: "Hệ có hai đường thẳng cắt nhau luôn có đúng một nghiệm duy nhất",
+    option_d: "Hệ phương trình chỉ có thể giải bằng phương pháp thế",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng theo lý thuyết. D sai vì còn phương pháp cộng đại số và nhiều phương pháp khác.",
+    difficulty_level: "medium",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Khi lập hệ phương trình để giải toán, bước nào sau đây là đúng?",
+    option_a: "Đặt ẩn và nêu điều kiện của ẩn",
+    option_b: "Lập hệ phương trình biểu thị các quan hệ trong bài",
+    option_c: "Giải hệ phương trình",
+    option_d: "Trả lời mà không cần kiểm tra điều kiện",
+    correct_option: "A,B,C",
+    explanation: "Phải đặt ẩn, lập hệ, giải hệ và kiểm tra điều kiện rồi mới trả lời. D sai vì bắt buộc phải kiểm tra điều kiện.",
+    difficulty_level: "easy",
+    is_dynamic: false
+  },
+  {
+    type: "msq",
+    question: "Hệ $\\begin{cases} 3x - 2y = 4 \\\\ x + y = 3 \\end{cases}$ có nghiệm $(x_0; y_0)$. Chọn các khẳng định đúng:",
+    option_a: "$x_0 + y_0 = 3$",
+    option_b: "$x_0 = 2$",
+    option_c: "$y_0 = 1$",
+    option_d: "$x_0 - y_0 = 0$",
+    correct_option: "A,B,C",
+    explanation: "Giải hệ: từ pt 2 $x = 3-y$. Thay vào pt 1: $3(3-y)-2y=4 \\Rightarrow 9-5y=4 \\Rightarrow y=1$. Suy ra $x=2$. Kiểm tra: A đúng ($2+1=3$), B đúng, C đúng, D sai ($2-1=1\\neq 0$).",
+    difficulty_level: "hard",
+    is_dynamic: false
+  },
+  {
+    type: "sa",
+    question: "Giải hệ $\\begin{cases} x + y = 10 \\\\ x - y = 4 \\end{cases}$. Tìm giá trị $x$.",
+    correct_option: "7",
+    explanation: "Cộng hai phương trình: $2x = 14 \\Rightarrow x = 7$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một đội có 2 loại công nhân. Loại A làm được 5 sản phẩm/giờ, loại B làm được 3 sản phẩm/giờ. Có 10 người, mỗi giờ làm 42 sản phẩm. Số công nhân loại A là bao nhiêu?",
+    correct_option: "6",
+    explanation: "Gọi số công nhân loại A là $x$, loại B là $y$. Hệ: $x+y=10$ và $5x+3y=42$. Từ pt 1: $y=10-x$. Thay vào: $5x+30-3x=42 \\Rightarrow 2x=12 \\Rightarrow x=6$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 1 — Phương trình và hệ hai phương trình bậc nhất hai ẩn</h3>
+
+Chương 1 trang bị cho em các công cụ đại số quan trọng để mô hình hóa và giải các bài toán thực tế bằng hệ phương trình!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Phương trình bậc nhất hai ẩn</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Dạng $ax + by = c$, tập nghiệm là đường thẳng</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔗</div>
+    <strong>Hệ hai phương trình</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Phương pháp thế và cộng đại số</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌍</div>
+    <strong>Giải toán thực tế</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Lập hệ phương trình giải bài toán</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="pt-bac-nhat-hai-an">1. Phương trình bậc nhất hai ẩn</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Phương trình bậc nhất hai ẩn $x, y$ là hệ thức dạng:
+
+$$ax + by = c$$
+
+Trong đó $a, b, c$ là các số đã biết và $a, b$ không đồng thời bằng 0.
+
+**Nghiệm:** Mọi cặp số $(x_0; y_0)$ thay vào làm phương trình thỏa mãn gọi là một **nghiệm**. Phương trình bậc nhất hai ẩn luôn có **vô số nghiệm**.
+
+**Biểu diễn hình học:** Tập nghiệm của $ax + by = c$ là một **đường thẳng** trên mặt phẳng tọa độ $Oxy$.
+
+</div>
+
+**Cách tìm nghiệm đặc biệt:**
+- Cho $x = 0$, tìm $y$: nghiệm có dạng $(0; \frac{c}{b})$
+- Cho $y = 0$, tìm $x$: nghiệm có dạng $(\frac{c}{a}; 0)$
+
+<h4 id="he-pt">2. Hệ hai phương trình bậc nhất hai ẩn</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Hệ hai phương trình bậc nhất hai ẩn có dạng:
+
+$$\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}$$
+
+**Nghiệm của hệ:** Cặp số $(x_0; y_0)$ thỏa mãn **đồng thời cả hai** phương trình.
+
+</div>
+
+**Số nghiệm của hệ** phụ thuộc vào vị trí tương đối hai đường thẳng:
+
+| Vị trí hai đường thẳng | Số nghiệm của hệ |
+|---|---|
+| Cắt nhau (tại 1 điểm) | Đúng một nghiệm duy nhất |
+| Song song | Vô nghiệm |
+| Trùng nhau | Vô số nghiệm |
+
+<h4 id="pp-the">3. Phương pháp thế</h4>
+
+**Các bước:**
+1. Từ một phương trình, biểu diễn một ẩn theo ẩn kia (ví dụ: $x$ theo $y$)
+2. Thay biểu thức đó vào phương trình còn lại → phương trình một ẩn
+3. Giải phương trình một ẩn, tìm giá trị của ẩn đó
+4. Thay ngược lại để tìm ẩn còn lại
+
+**Ví dụ:** Giải hệ $\begin{cases} x - 2y = 1 \\ 2x + y = 7 \end{cases}$
+
+Từ pt (1): $x = 2y + 1$. Thay vào pt (2): $2(2y+1) + y = 7 \Rightarrow 5y = 5 \Rightarrow y = 1$. Suy ra $x = 3$.
+
+<h4 id="pp-cong">4. Phương pháp cộng đại số</h4>
+
+**Các bước:**
+1. Nhân các phương trình với hệ số thích hợp để hệ số của một ẩn bằng nhau (hoặc đối nhau)
+2. Cộng (hoặc trừ) hai phương trình để khử một ẩn
+3. Giải phương trình một ẩn còn lại
+4. Thay ngược lại tìm ẩn kia
+
+**Ví dụ:** Giải hệ $\begin{cases} 3x + 2y = 8 \\ x - 2y = 0 \end{cases}$
+
+Cộng hai phương trình: $4x = 8 \Rightarrow x = 2$. Thay vào pt (2): $2 - 2y = 0 \Rightarrow y = 1$.
+
+<h4 id="giai-toan-lap-he">5. Giải toán bằng cách lập hệ phương trình</h4>
+
+**Các bước giải:**
+1. **Đặt ẩn:** Chọn hai ẩn $x, y$ có ý nghĩa phù hợp với bài toán và nêu rõ đơn vị, điều kiện
+2. **Lập hệ:** Từ các dữ kiện bài toán, lập hệ hai phương trình
+3. **Giải hệ:** Dùng phương pháp thế hoặc cộng đại số
+4. **Kiểm tra và kết luận:** Kiểm tra điều kiện của ẩn và trả lời bài toán
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luyen-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Nhận biết phương trình bậc nhất hai ẩn</h4>
+
+a) Trong các phương trình sau, phương trình nào là phương trình bậc nhất hai ẩn? Xác định hệ số $a, b, c$ của các phương trình đó: 
+$2x - y = 5$; $x^2 + 3y = 4$; $0x - 2y = 6$; $3x + 0y = 0$; $0x + 0y = 2$.
+
+b) Cho phương trình $3x - 2y = 6$. Cặp số $(2; 0)$, $(0; -3)$, $(4; 3)$ có phải là nghiệm của phương trình không?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Các phương trình bậc nhất hai ẩn là:
+- $2x - y = 5$ ($a=2, b=-1, c=5$)
+- $0x - 2y = 6$ ($a=0, b=-2, c=6$)
+- $3x + 0y = 0$ ($a=3, b=0, c=0$)
+($x^2 + 3y = 4$ có bậc 2; $0x + 0y = 2$ có $a=b=0$ nên không phải).
+
+b) Thay tọa độ vào phương trình $3x - 2y = 6$:
+- $(2; 0): 3(2) - 2(0) = 6$ (Đúng - Là nghiệm)
+- $(0; -3): 3(0) - 2(-3) = 6$ (Đúng - Là nghiệm)
+- $(4; 3): 3(4) - 2(3) = 6$ (Đúng - Là nghiệm)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Biểu diễn tập nghiệm của phương trình bậc nhất hai ẩn</h4>
+
+Tìm nghiệm tổng quát và biểu diễn hình học tập nghiệm của các phương trình sau trên mặt phẳng tọa độ:
+
+a) $2x - y = 3$
+
+b) $0x + 3y = 6$
+
+c) $-2x + 0y = 4$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $2x - y = 3 \Rightarrow y = 2x - 3$. Nghiệm tổng quát: $(x \in \mathbb{R}; y = 2x - 3)$. Tập nghiệm được biểu diễn bởi đường thẳng $y = 2x - 3$ đi qua $(0; -3)$ và $(1,5; 0)$.
+
+b) $0x + 3y = 6 \Rightarrow y = 2$. Nghiệm tổng quát: $(x \in \mathbb{R}; y = 2)$. Biểu diễn là đường thẳng song song trục hoành, đi qua $(0; 2)$.
+
+c) $-2x + 0y = 4 \Rightarrow x = -2$. Nghiệm tổng quát: $(x = -2; y \in \mathbb{R})$. Biểu diễn là đường thẳng song song trục tung, đi qua $(-2; 0)$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Giải hệ phương trình bằng phương pháp thế</h4>
+
+Giải các hệ phương trình sau bằng phương pháp thế:
+
+a) $\begin{cases} x - 3y = 2 \\ 2x + 5y = 15 \end{cases}$
+
+b) $\begin{cases} 4x + y = 2 \\ 8x + 2y = 1 \end{cases}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Từ pt(1) $\Rightarrow x = 3y + 2$. Thế vào pt(2): $2(3y + 2) + 5y = 15 \Rightarrow 6y + 4 + 5y = 15 \Rightarrow 11y = 11 \Rightarrow y = 1$.
+Thay $y=1$ vào $x \Rightarrow x = 3(1) + 2 = 5$. Nghiệm: $(5; 1)$.
+
+b) Từ pt(1) $\Rightarrow y = 2 - 4x$. Thế vào pt(2): $8x + 2(2 - 4x) = 1 \Rightarrow 8x + 4 - 8x = 1 \Rightarrow 4 = 1$ (vô lý). 
+Vậy hệ phương trình vô nghiệm.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Giải hệ phương trình bằng phương pháp cộng đại số</h4>
+
+Giải các hệ phương trình sau bằng phương pháp cộng đại số:
+
+a) $\begin{cases} 3x + 2y = 7 \\ 2x - 2y = 3 \end{cases}$
+
+b) $\begin{cases} 5x - 4y = 3 \\ 2x + 3y = 15 \end{cases}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Cộng vế theo vế hai phương trình: $5x = 10 \Rightarrow x = 2$.
+Thay $x=2$ vào pt(1): $3(2) + 2y = 7 \Rightarrow 6 + 2y = 7 \Rightarrow 2y = 1 \Rightarrow y = 0,5$. 
+Nghiệm: $(2; 0,5)$.
+
+b) Nhân pt(1) với $3$, nhân pt(2) với $4$:
+$\begin{cases} 15x - 12y = 9 \\ 8x + 12y = 60 \end{cases}$
+Cộng vế theo vế: $23x = 69 \Rightarrow x = 3$.
+Thay $x=3$ vào pt(2): $2(3) + 3y = 15 \Rightarrow 6 + 3y = 15 \Rightarrow 3y = 9 \Rightarrow y = 3$.
+Nghiệm: $(3; 3)$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Biến đổi hệ phương trình về dạng cơ bản</h4>
+
+Giải các hệ phương trình sau:
+
+a) $\begin{cases} 2(x + y) + 3(x - y) = 4 \\ (x + y) + 2(x - y) = 5 \end{cases}$
+
+b) $\begin{cases} \frac{x + 1}{3} - \frac{y + 2}{4} = \frac{2(x - y)}{5} \\ \frac{x - 3}{4} - \frac{y - 3}{3} = 2y - x \end{cases}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Rút gọn từng phương trình:
+$\begin{cases} 2x + 2y + 3x - 3y = 4 \\ x + y + 2x - 2y = 5 \end{cases} \Leftrightarrow \begin{cases} 5x - y = 4 \\ 3x - y = 5 \end{cases}$
+Trừ vế theo vế hai PT: $2x = -1 \Rightarrow x = -0,5$.
+Thay $x = -0,5$ vào $3x - y = 5$: $3(-0,5) - y = 5 \Rightarrow -1,5 - y = 5 \Rightarrow y = -6,5$.
+Nghiệm: $(-0,5; -6,5)$.
+
+b) Quy đồng và khử mẫu:
+Pt(1) nhân với 60: $20(x + 1) - 15(y + 2) = 24(x - y) \Rightarrow 20x + 20 - 15y - 30 = 24x - 24y \Rightarrow -4x + 9y = 10$.
+Pt(2) nhân với 12: $3(x - 3) - 4(y - 3) = 12(2y - x) \Rightarrow 3x - 9 - 4y + 12 = 24y - 12x \Rightarrow 15x - 28y = -3$.
+Giải hệ $\begin{cases} -4x + 9y = 10 \\ 15x - 28y = -3 \end{cases} \Rightarrow \begin{cases} x = -11 \\ y = -3,8 \end{cases}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Định lý, biện luận tham số trong hệ phương trình</h4>
+
+Cho hệ phương trình $\begin{cases} 2x - y = m + 1 \\ x + 2y = 2m - 1 \end{cases}$.
+
+a) Giải hệ phương trình khi $m = 2$.
+b) Tìm $m$ để hệ có nghiệm duy nhất $(x; y)$ thỏa mãn $x + y = 3$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Khi $m = 2$, hệ trở thành $\begin{cases} 2x - y = 3 \\ x + 2y = 3 \end{cases}$.
+Từ pt(2) $x = 3 - 2y$, thế vào pt(1): $2(3 - 2y) - y = 3 \Rightarrow 6 - 5y = 3 \Rightarrow y = \frac{3}{5}$.
+Nên $x = 3 - 2(\frac{3}{5}) = \frac{9}{5}$. Nghiệm $(\frac{9}{5}; \frac{3}{5})$.
+
+b) Từ pt(2) $x = 2m - 1 - 2y$, thế vào pt(1): $2(2m - 1 - 2y) - y = m + 1 \Rightarrow 4m - 2 - 5y = m + 1 \Rightarrow 5y = 3m - 3 \Rightarrow y = \frac{3m - 3}{5}$.
+Thay vào tìm $x$: $x = 2m - 1 - 2(\frac{3m - 3}{5}) = \frac{10m - 5 - 6m + 6}{5} = \frac{4m + 1}{5}$.
+Thay $x, y$ vào $x + y = 3$: $\frac{4m + 1}{5} + \frac{3m - 3}{5} = 3 \Rightarrow \frac{7m - 2}{5} = 3 \Rightarrow 7m - 2 = 15 \Rightarrow 7m = 17 \Rightarrow m = \frac{17}{7}$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Giải bài toán bằng cách lập hệ phương trình (Toán tìm số/Toán học)</h4>
+
+Tổng của hai số tự nhiên bằng 156. Nếu lấy số lớn chia cho số bé thì được thương là 6 dư 16. Tìm hai số đó.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi số lớn là $x$, số bé là $y$ ($x, y \in \mathbb{N}^*, x > y, y > 16$).
+Theo đề bài, tổng hai số là 156 nên: $x + y = 156$ (1).
+Số lớn chia số bé được thương là 6, dư 16 nên: $x = 6y + 16$ hay $x - 6y = 16$ (2).
+Ta có hệ phương trình: $\begin{cases} x + y = 156 \\ x - 6y = 16 \end{cases}$.
+Trừ (1) với (2): $7y = 140 \Rightarrow y = 20$.
+Thế vào (1): $x + 20 = 156 \Rightarrow x = 136$.
+Vậy hai số cần tìm là 136 và 20.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Giải bài toán bằng cách lập hệ phương trình (Toán chuyển động)</h4>
+
+Một canô chạy xuôi dòng một khúc sông dài 90 km, sau đó chạy ngược dòng 36 km hết tổng cộng 6 giờ. Một lần khác, canô chạy xuôi dòng 60 km rồi ngược dòng 48 km cũng hết 6 giờ. Tính vận tốc thực của canô và vận tốc dòng nước.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi vận tốc thực của canô là $x$ (km/h) và vận tốc dòng nước là $y$ (km/h) ($x > y > 0$).
+Vận tốc xuôi dòng là $x + y$, ngược dòng là $x - y$.
+Thời gian lần thứ nhất: $\frac{90}{x+y} + \frac{36}{x-y} = 6$.
+Thời gian lần thứ hai: $\frac{60}{x+y} + \frac{48}{x-y} = 6$.
+
+Đặt $u = \frac{1}{x+y}$ và $v = \frac{1}{x-y}$, ta có hệ:
+$\begin{cases} 90u + 36v = 6 \\ 60u + 48v = 6 \end{cases} \Leftrightarrow \begin{cases} 15u + 6v = 1 \\ 10u + 8v = 1 \end{cases}$.
+Giải hệ này ta được $u = \frac{1}{30}$ và $v = \frac{1}{12}$.
+Suy ra $\begin{cases} x + y = 30 \\ x - y = 12 \end{cases}$. Cộng đại số được $2x = 42 \Rightarrow x = 21$; $y = 9$.
+Vận tốc thực là 21 km/h, vận tốc dòng nước là 9 km/h.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Giải bài toán bằng cách lập hệ phương trình (Toán năng suất)</h4>
+
+Hai đội công nhân cùng làm chung một công việc thì sau 12 ngày hoàn thành. Nếu đội thứ nhất làm một mình trong 5 ngày rồi nghỉ, đội thứ hai làm tiếp trong 15 ngày thì cả hai đội hoàn thành được $75\%$ khối lượng công việc đó. Hỏi nếu mỗi đội làm một mình thì sau bao lâu sẽ hoàn thành xong công việc?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi thời gian để đội thứ nhất và đội thứ hai làm một mình xong công việc lần lượt là $x$ và $y$ (ngày, $x > 12, y > 12$).
+Trong 1 ngày, đội 1 làm được $\frac{1}{x}$ (CV), đội 2 làm được $\frac{1}{y}$ (CV).
+Cùng làm xong trong 12 ngày: $\frac{1}{x} + \frac{1}{y} = \frac{1}{12}$.
+Đội 1 làm 5 ngày, đội 2 làm 15 ngày được $75\% = \frac{3}{4}$ CV nên: $5\frac{1}{x} + 15\frac{1}{y} = \frac{3}{4}$.
+
+Đặt $u = \frac{1}{x}, v = \frac{1}{y}$, ta có hệ:
+$\begin{cases} u + v = \frac{1}{12} \\ 5u + 15v = \frac{3}{4} \end{cases} \Leftrightarrow \begin{cases} 5u + 5v = \frac{5}{12} \\ 5u + 15v = \frac{3}{4} \end{cases}$.
+Trừ vế: $10v = \frac{3}{4} - \frac{5}{12} = \frac{1}{3} \Rightarrow v = \frac{1}{30}$.
+Suy ra $u = \frac{1}{12} - \frac{1}{30} = \frac{1}{20}$.
+Vậy $x = 20$, $y = 30$. Đội 1 làm 1 mình hết 20 ngày, đội 2 hết 30 ngày.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Giải bài toán bằng cách lập hệ phương trình (Tính toán thực tế)</h4>
+
+Vào một ngày cuối tuần, siêu thị điện máy A có chương trình khuyến mãi giảm giá đối với nhiều mặt hàng. Bác Tám mua một chiếc Tivi và một cái quạt điện với tổng chi phí theo giá niêm yết là 12 500 000 đồng. Tuy nhiên, do Tivi được giảm giá 15% và quạt được giảm giá 10% nên bác Tám chỉ phải trả số tiền là 10 850 000 đồng. Tính giá niêm yết ban đầu của chiếc Tivi và chiếc quạt điện.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi giá niêm yết của chiếc Tivi là $x$ (đồng) và chiếc quạt là $y$ (đồng) ($0 < x, y < 12 500 000$).
+Theo giá niêm yết tổng tiền là 12 500 000 đ: $x + y = 12 500 000$.
+Tivi giảm 15% nên giá bán thực tế là $0,85x$. Quạt giảm 10% nên giá bán thực tế là $0,9y$.
+Tổng số tiền thực tế phải trả là 10 850 000 đ: $0,85x + 0,9y = 10 850 000$.
+
+Ta có hệ phương trình:
+$\begin{cases} x + y = 12 500 000 \\ 0,85x + 0,9y = 10 850 000 \end{cases}$
+Nhân pt(1) với $0,9$: $\begin{cases} 0,9x + 0,9y = 11 250 000 \\ 0,85x + 0,9y = 10 850 000 \end{cases}$
+Trừ vế: $0,05x = 400 000 \Rightarrow x = 8 000 000$.
+Suy ra $y = 12 500 000 - 8 000 000 = 4 500 000$.
+Vậy giá niêm yết của Tivi là 8.000.000 đồng, của quạt là 4.500.000 đồng.
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Phương trình bậc nhất hai ẩn**: Dạng $ax + by = c$ ($a, b$ không đồng thời bằng 0), có vô số nghiệm, tập nghiệm là một đường thẳng
+- **Hệ hai phương trình**: Cặp (x; y) thỏa mãn đồng thời cả hai phương trình
+- **Số nghiệm**: Cắt nhau → 1 nghiệm; Song song → vô nghiệm; Trùng nhau → vô số nghiệm
+- **Phương pháp thế**: Biểu diễn 1 ẩn theo ẩn kia, thay vào phương trình còn lại
+- **Phương pháp cộng**: Nhân với hệ số thích hợp để khử một ẩn
+- **Giải toán bằng hệ PT**: Đặt ẩn → lập hệ → giải hệ → kiểm tra → kết luận
+- **Điều kiện ẩn**: Luôn kiểm tra điều kiện của ẩn (nguyên, dương, hợp lý...) trước khi kết luận
+
+</GhiNho>

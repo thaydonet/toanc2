@@ -1,0 +1,523 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Ôn tập chương 6 - Toán 7"
+description: "Ôn tập toàn bộ kiến thức chương 6 Toán 7 KNTT: Tỉ lệ thức, dãy tỉ số bằng nhau, tỉ lệ thuận, tỉ lệ nghịch"
+grade: "Lớp 7"
+chapter: "Chương VI: Tỉ lệ thức và đại lượng tỉ lệ"
+currentSlug: "lop7/bai-on-tap-chuong-6"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Tỉ lệ thức là:",
+    option_a: "Đẳng thức của hai tỉ số",
+    option_b: "Tỉ số của hai số",
+    option_c: "Hiệu của hai số",
+    option_d: "Tích của hai số",
+    correct_option: "A",
+    explanation: "Tỉ lệ thức là đẳng thức của hai tỉ số: $\\frac{a}{b} = \\frac{c}{d}$",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tỉ lệ thức $\\frac{a}{b} = \\frac{c}{d}$, $a$ và $d$ được gọi là:",
+    option_a: "Ngoại tỉ",
+    option_b: "Trung tỉ",
+    option_c: "Tỉ số",
+    option_d: "Đại lượng",
+    correct_option: "A",
+    explanation: "$a$ và $d$ là ngoại tỉ, $b$ và $c$ là trung tỉ",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính chất cơ bản của tỉ lệ thức là:",
+    option_a: "$ad = bc$",
+    option_b: "$a + d = b + c$",
+    option_c: "$a - d = b - c$",
+    option_d: "$\\frac{a}{d} = \\frac{b}{c}$",
+    correct_option: "A",
+    explanation: "Tính chất: Nếu $\\frac{a}{b} = \\frac{c}{d}$ thì $ad = bc$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dãy tỉ số bằng nhau là:",
+    option_a: "$\\frac{a}{b} = \\frac{c}{d} = \\frac{e}{f}$",
+    option_b: "$a + b = c + d = e + f$",
+    option_c: "$a - b = c - d = e - f$",
+    option_d: "$a \\times b = c \\times d = e \\times f$",
+    correct_option: "A",
+    explanation: "Dãy tỉ số bằng nhau: $\\frac{a}{b} = \\frac{c}{d} = \\frac{e}{f}$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $y = kx$ (với $k$ là hằng số khác 0) thì:",
+    option_a: "$y$ tỉ lệ thuận với $x$",
+    option_b: "$y$ tỉ lệ nghịch với $x$",
+    option_c: "$y$ không tỉ lệ với $x$",
+    option_d: "$x$ tỉ lệ thuận với $y$",
+    correct_option: "A",
+    explanation: "Nếu $y = kx$ thì $y$ tỉ lệ thuận với $x$, $k$ là hệ số tỉ lệ",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $y = \\frac{k}{x}$ (với $k$ là hằng số khác 0) thì:",
+    option_a: "$y$ tỉ lệ nghịch với $x$",
+    option_b: "$y$ tỉ lệ thuận với $x$",
+    option_c: "$y$ không tỉ lệ với $x$",
+    option_d: "$x$ tỉ lệ nghịch với $y$",
+    correct_option: "A",
+    explanation: "Nếu $y = \\frac{k}{x}$ thì $y$ tỉ lệ nghịch với $x$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $y$ tỉ lệ thuận với $x$ và $y = 6$ khi $x = 2$, thì hệ số tỉ lệ là:",
+    option_a: "$3$",
+    option_b: "$2$",
+    option_c: "$6$",
+    option_d: "$12$",
+    correct_option: "A",
+    explanation: "$k = \\frac{y}{x} = \\frac{6}{2} = 3$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $y$ tỉ lệ nghịch với $x$ và $y = 4$ khi $x = 3$, thì hệ số tỉ lệ là:",
+    option_a: "$12$",
+    option_b: "$3$",
+    option_c: "$4$",
+    option_d: "$7$",
+    correct_option: "A",
+    explanation: "$k = xy = 4 \\times 3 = 12$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $\\frac{a}{b} = \\frac{c}{d}$ thì:",
+    option_a: "$\\frac{a+c}{b+d} = \\frac{a}{b}$",
+    option_b: "$\\frac{a-c}{b-d} = \\frac{a}{b}$",
+    option_c: "Cả A và B đều đúng",
+    option_d: "Không có kết luận nào đúng",
+    correct_option: "C",
+    explanation: "Tính chất dãy tỉ số bằng nhau: $\\frac{a+c}{b+d} = \\frac{a-c}{b-d} = \\frac{a}{b}$",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $x$ và $y$ tỉ lệ thuận, $x = 2$ khi $y = 4$, thì $x = ?$ khi $y = 10$",
+    option_a: "$5$",
+    option_b: "$10$",
+    option_c: "$20$",
+    option_d: "$2.5$",
+    correct_option: "A",
+    explanation: "$k = \\frac{y}{x} = \\frac{4}{2} = 2$, nên $x = \\frac{y}{k} = \\frac{10}{2} = 5$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+];
+
+
+<KhoiDong>
+
+<h3 id="mo-dau">🎯 Ôn tập chương 6 — Tỉ lệ thức và đại lượng tỉ lệ</h3>
+
+Chương 6 giới thiệu tỉ lệ thức và các đại lượng tỉ lệ. Hãy cùng ôn tập lại toàn bộ kiến thức!
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚖️</div>
+    <strong>Tỉ lệ thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đẳng thức hai tỉ số</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
+    <strong>Tỉ lệ thuận</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$y = kx$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔄</div>
+    <strong>Tỉ lệ nghịch</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$y = \\frac{k}{x}$</p>
+  </div>
+</div>
+
+</KhoiDong>
+
+<KhamPha>
+
+<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+
+<h4 id="ti-le-thuc">1. Tỉ lệ thức</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Tỉ lệ thức là đẳng thức của hai tỉ số:
+
+$$\frac{a}{b} = \frac{c}{d}$$
+
+**Ký hiệu:** $a : b = c : d$
+
+**Các thành phần:**
+- $a, d$ gọi là ngoại tỉ
+- $b, c$ gọi là trung tỉ
+
+</div>
+
+<h4 id="tinh-chat-ti-le-thuc">2. Tính chất của tỉ lệ thức</h4>
+
+**Tính chất cơ bản:** Nếu $\frac{a}{b} = \frac{c}{d}$ thì $ad = bc$
+
+**Tính chất đảo:** Nếu $ad = bc$ (với $b, d \neq 0$) thì $\frac{a}{b} = \frac{c}{d}$
+
+**Các tính chất khác:**
+- $\frac{a}{b} = \frac{c}{d} \Rightarrow \frac{b}{a} = \frac{d}{c}$
+- $\frac{a}{b} = \frac{c}{d} \Rightarrow \frac{a}{c} = \frac{b}{d}$
+- $\frac{a}{b} = \frac{c}{d} \Rightarrow \frac{d}{b} = \frac{c}{a}$
+
+<h4 id="day-ti-so-bang-nhau">3. Dãy tỉ số bằng nhau</h4>
+
+**Định nghĩa:** Dãy tỉ số bằng nhau là:
+
+$$\frac{a}{b} = \frac{c}{d} = \frac{e}{f}$$
+
+**Tính chất:** 
+$$\frac{a}{b} = \frac{c}{d} = \frac{e}{f} = \frac{a+c+e}{b+d+f} = \frac{a-c}{b-d}$$
+
+<h4 id="ti-le-thuan">4. Tỉ lệ thuận</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Nếu $y = kx$ (với $k$ là hằng số khác 0) thì $y$ tỉ lệ thuận với $x$, $k$ gọi là hệ số tỉ lệ.
+
+**Tính chất:**
+- Nếu $y$ tỉ lệ thuận với $x$ thì $\frac{y_1}{x_1} = \frac{y_2}{x_2}$
+- Nếu $y$ tỉ lệ thuận với $x$ thì $\frac{y_1}{y_2} = \frac{x_1}{x_2}$
+
+</div>
+
+<h4 id="ti-le-nghich">5. Tỉ lệ nghịch</h4>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Nếu $y = \frac{k}{x}$ (với $k$ là hằng số khác 0) thì $y$ tỉ lệ nghịch với $x$, $k$ gọi là hệ số tỉ lệ.
+
+**Tính chất:**
+- Nếu $y$ tỉ lệ nghịch với $x$ thì $x_1 y_1 = x_2 y_2$
+- Nếu $y$ tỉ lệ nghịch với $x$ thì $\frac{y_1}{y_2} = \frac{x_2}{x_1}$
+
+</div>
+
+</KhamPha>
+
+<LuyenTap>
+
+<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+<VanDung>
+
+<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+
+<h4 id="bai-1">Bài 1: Tỉ lệ thức</h4>
+
+Kiểm tra xem các cặp tỉ số sau có lập thành tỉ lệ thức không:
+
+a) $\frac{2}{3}$ và $\frac{4}{6}$
+
+b) $\frac{3}{5}$ và $\frac{6}{11}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{2}{3} = \frac{4}{6}$ vì $2 \times 6 = 3 \times 4 = 12$ ✓
+
+b) $\frac{3}{5} \neq \frac{6}{11}$ vì $3 \times 11 = 33 \neq 5 \times 6 = 30$ ✗
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tìm số hạng chưa biết</h4>
+
+Tìm $x$ trong các tỉ lệ thức:
+
+a) $\frac{x}{4} = \frac{3}{2}$
+
+b) $\frac{5}{x} = \frac{10}{6}$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) $\frac{x}{4} = \frac{3}{2}$ ⟹ $x = \frac{3 \times 4}{2} = 6$
+
+b) $\frac{5}{x} = \frac{10}{6}$ ⟹ $x = \frac{5 \times 6}{10} = 3$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Dãy tỉ số bằng nhau</h4>
+
+Cho $\frac{a}{2} = \frac{b}{3} = \frac{c}{5}$ và $a + b + c = 20$. Tìm $a$, $b$, $c$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Theo tính chất dãy tỉ số bằng nhau:
+
+$\frac{a}{2} = \frac{b}{3} = \frac{c}{5} = \frac{a+b+c}{2+3+5} = \frac{20}{10} = 2$
+
+Vậy:
+- $a = 2 \times 2 = 4$
+- $b = 3 \times 2 = 6$
+- $c = 5 \times 2 = 10$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Tỉ lệ thuận</h4>
+
+Cho $y$ tỉ lệ thuận với $x$. Biết $y = 6$ khi $x = 2$.
+
+a) Tìm hệ số tỉ lệ
+
+b) Viết công thức liên hệ giữa $y$ và $x$
+
+c) Tính $y$ khi $x = 5$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hệ số tỉ lệ: $k = \frac{y}{x} = \frac{6}{2} = 3$
+
+b) Công thức: $y = 3x$
+
+c) Khi $x = 5$: $y = 3 \times 5 = 15$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Tỉ lệ nghịch</h4>
+
+Cho $y$ tỉ lệ nghịch với $x$. Biết $y = 4$ khi $x = 3$.
+
+a) Tìm hệ số tỉ lệ
+
+b) Viết công thức liên hệ giữa $y$ và $x$
+
+c) Tính $y$ khi $x = 6$
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hệ số tỉ lệ: $k = xy = 4 \times 3 = 12$
+
+b) Công thức: $y = \frac{12}{x}$
+
+c) Khi $x = 6$: $y = \frac{12}{6} = 2$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Bài toán thực tế</h4>
+
+Một công nhân làm việc với năng suất không đổi. Nếu làm 8 giờ được 40 sản phẩm.
+
+a) Tìm hệ số tỉ lệ
+
+b) Nếu làm 10 giờ, được bao nhiêu sản phẩm?
+
+c) Để làm được 100 sản phẩm, cần bao nhiêu giờ?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+a) Hệ số tỉ lệ: $k = \frac{40}{8} = 5$ (sản phẩm/giờ)
+
+b) Làm 10 giờ: $5 \times 10 = 50$ (sản phẩm)
+
+c) Để làm 100 sản phẩm: $\frac{100}{5} = 20$ (giờ)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Bài toán kết hợp</h4>
+
+Cho $\frac{a}{3} = \frac{b}{4} = \frac{c}{5}$ và $2a + b - c = 10$. Tìm $a$, $b$, $c$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Đặt $\frac{a}{3} = \frac{b}{4} = \frac{c}{5} = k$
+
+Suy ra: $a = 3k$, $b = 4k$, $c = 5k$
+
+Thay vào: $2(3k) + 4k - 5k = 10$
+
+$6k + 4k - 5k = 10$
+
+$5k = 10$
+
+$k = 2$
+
+Vậy: $a = 6$, $b = 8$, $c = 10$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán thực tế</h4>
+
+Một hình chữ nhật có chiều dài và chiều rộng tỉ lệ với 3 và 2. Nếu chiều dài là 12 cm, tìm chiều rộng.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi chiều dài là $a$, chiều rộng là $b$.
+
+$\frac{a}{3} = \frac{b}{2}$
+
+$\frac{12}{3} = \frac{b}{2}$
+
+$4 = \frac{b}{2}$
+
+$b = 8$ (cm)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
+
+Cho $\frac{a}{2} = \frac{b}{3} = \frac{c}{4}$ và $a^2 + b^2 + c^2 = 116$. Tìm $a$, $b$, $c$.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Đặt $\frac{a}{2} = \frac{b}{3} = \frac{c}{4} = k$
+
+Suy ra: $a = 2k$, $b = 3k$, $c = 4k$
+
+Thay vào: $(2k)^2 + (3k)^2 + (4k)^2 = 116$
+
+$4k^2 + 9k^2 + 16k^2 = 116$
+
+$29k^2 = 116$
+
+$k^2 = 4$
+
+$k = \pm 2$
+
+Nếu $k = 2$: $a = 4$, $b = 6$, $c = 8$
+
+Nếu $k = -2$: $a = -4$, $b = -6$, $c = -8$
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+
+Một đội công nhân có 3 người. Năng suất làm việc của họ tỉ lệ với 2, 3, 4. Nếu tổng sản phẩm trong một ngày là 180 sản phẩm, tìm số sản phẩm mỗi người làm được.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Lời giải:**
+
+Gọi số sản phẩm của 3 người lần lượt là $a$, $b$, $c$.
+
+$\frac{a}{2} = \frac{b}{3} = \frac{c}{4}$ và $a + b + c = 180$
+
+Theo tính chất dãy tỉ số bằng nhau:
+
+$\frac{a}{2} = \frac{b}{3} = \frac{c}{4} = \frac{a+b+c}{2+3+4} = \frac{180}{9} = 20$
+
+Vậy:
+- Người 1: $a = 2 \times 20 = 40$ (sản phẩm)
+- Người 2: $b = 3 \times 20 = 60$ (sản phẩm)
+- Người 3: $c = 4 \times 20 = 80$ (sản phẩm)
+
+</div>
+</details>
+
+</VanDung>
+
+<GhiNho>
+
+<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
+
+- **Tỉ lệ thức**: $\frac{a}{b} = \frac{c}{d}$ ⟺ $ad = bc$
+- **Ngoại tỉ**: $a, d$; **Trung tỉ**: $b, c$
+- **Dãy tỉ số bằng nhau**: $\frac{a}{b} = \frac{c}{d} = \frac{a+c}{b+d}$
+- **Tỉ lệ thuận**: $y = kx$ (với $k$ là hệ số tỉ lệ)
+- **Tỉ lệ nghịch**: $y = \frac{k}{x}$ (với $k$ là hệ số tỉ lệ)
+- **Tính chất tỉ lệ thuận**: $\frac{y_1}{x_1} = \frac{y_2}{x_2}$
+- **Tính chất tỉ lệ nghịch**: $x_1 y_1 = x_2 y_2$
+
+</GhiNho>

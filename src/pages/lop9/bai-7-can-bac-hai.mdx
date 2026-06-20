@@ -1,0 +1,343 @@
+---
+layout: ../../layouts/MdxLessonLayout.astro
+title: "Bài 7: Căn bậc hai và căn thức bậc hai"
+description: "Khái niệm căn bậc hai và căn thức bậc hai - Toán 9 KNTT Chương 3"
+grade: "Lớp 9"
+chapter: "Chương III: Căn bậc hai và căn bậc ba"
+currentSlug: "lop9/bai-7-can-bac-hai"
+---
+
+import KhoiDong from '../../components/sections/KhoiDong.astro';
+import KhamPha from '../../components/sections/KhamPha.astro';
+import LuyenTap from '../../components/sections/LuyenTap.astro';
+import VanDung from '../../components/sections/VanDung.astro';
+import GhiNho from '../../components/sections/GhiNho.astro';
+import QuizSession from '../../components/ui/QuizSession';
+
+export const quizData = [
+  {
+    type: "mcq",
+    question: "Số 9 có bao nhiêu căn bậc hai?",
+    option_a: "1",
+    option_b: "2",
+    option_c: "0",
+    option_d: "Vô số",
+    correct_option: "B",
+    explanation: "Số dương a có hai căn bậc hai là hai số đối nhau: $\\sqrt{a}$ và $-\\sqrt{a}$. Vậy 9 có hai căn bậc hai là 3 và -3.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số dương $a$ có căn bậc hai số học là gì?",
+    option_a: "$\\sqrt{a}$",
+    option_b: "$-\\sqrt{a}$",
+    option_c: "Cả $\\sqrt{a}$ và $-\\sqrt{a}$",
+    option_d: "Không có",
+    correct_option: "A",
+    explanation: "Căn bậc hai số học của một số dương $a$ là số dương $\\sqrt{a}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu thức $\\sqrt{x - 3}$ xác định (có nghĩa) khi nào?",
+    option_a: "$x \\ge 0$",
+    option_b: "$x \\le 3$",
+    option_c: "$x \\ge 3$",
+    option_d: "$x > 3$",
+    correct_option: "C",
+    explanation: "Căn thức bậc hai $\\sqrt{A}$ có nghĩa khi biểu thức dưới dấu căn không âm: $A \\ge 0$. Nên $x - 3 \\ge 0 \\Rightarrow x \\ge 3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu thức $\\sqrt{x^2}$ bằng với biểu thức nào sau đây?",
+    option_a: "$x$",
+    option_b: "$-x$",
+    option_c: "$|x|$",
+    option_d: "$2x$",
+    correct_option: "C",
+    explanation: "Hằng đẳng thức quan trọng: $\\sqrt{A^2} = |A|$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khẳng định nào sau đây là SAl?",
+    option_a: "Số 0 chỉ có một căn bậc hai là 0.",
+    option_b: "Số âm không có căn bậc hai.",
+    option_c: "Mọi số thực dương đều có đúng hai căn bậc hai.",
+    option_d: "Căn bậc hai số học luôn mang giá trị âm hoặc bằng 0.",
+    correct_option: "D",
+    explanation: "Căn bậc hai số học của một số không âm luôn là số KHÔNG ÂM (lớn hơn hoặc bằng 0).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính giá trị của biểu thức $\\sqrt{(-5)^2}$.",
+    option_a: "-5",
+    option_b: "5",
+    option_c: "25",
+    option_d: "-25",
+    correct_option: "B",
+    explanation: "$\\sqrt{(-5)^2} = |-5| = 5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Các biểu thức nào sau đây xác định với mọi $x \\in \\mathbb{R}$?",
+    option_a: "$\\sqrt{x^2}$",
+    option_b: "$\\sqrt{x^2 + 1}$",
+    option_c: "$\\sqrt{-x}$",
+    option_d: "$\\sqrt{x-2}$",
+    correct_option: "A,B",
+    explanation: "Vì $x^2 \\ge 0$ và $x^2 + 1 > 0$ với mọi số thực $x$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Nghiệm của phương trình $x^2 = 16$ là:",
+    option_a: "4",
+    option_b: "-4",
+    option_c: "16",
+    option_d: "-16",
+    correct_option: "A,B",
+    explanation: "Phương trình $x^2 = a (a > 0)$ có hai nghiệm $x = \\pm\\sqrt{a}$. Vậy $x = 4$ và $x = -4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính giá trị: $\\sqrt{144}$.",
+    correct_option: "12",
+    explanation: "Căn bậc hai số học của 144 là 12 vì $12^2 = 144$ và $12 > 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm $x$ biết: $\\sqrt{x} = 5$.",
+    correct_option: "25",
+    explanation: "Bình phương hai vế: $x = 5^2 = 25$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
+];
+
+<KhoiDong title="Khởi động">
+
+<h3 id="mo-dau">🧱 Bài toán Lát gạch</h3>
+
+Bác thợ xây cần lát gạch cho một căn phòng hình vuông có diện tích là $36 \text{ m}^2$. Hỏi cạnh của căn phòng dài bao nhiêu mét?
+Gọi $x$ (mét) là độ dài cạnh của căn phòng ($x > 0$), ta có diện tích:
+$$x^2 = 36$$
+
+Phép toán để tìm ra $x$ ngược lại với phép bình phương. Quá trình đó được gọi là tìm **căn bậc hai**. Cùng khám phá sâu hơn về phép toán thú vị này nhé!
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="200" height="200" viewBox="0 0 200 200" style="background:#e0f2fe;border:2px solid #000;">
+  <rect x="0" y="0" width="100%" height="100%" fill="none" stroke="#2563eb" stroke-width="4" stroke-dasharray="20 20"/>
+  <text x="100" y="100" font-size="24" font-weight="bold" fill="#0369a1" text-anchor="middle">S = 36</text>
+  <text x="100" y="190" font-size="20" font-weight="bold" fill="#0c4a6e" text-anchor="middle">Cạnh x = ?</text>
+  <text x="10" y="100" font-size="20" font-weight="bold" fill="#0c4a6e" text-anchor="middle" transform="rotate(-90 20 100)">Cạnh x = ?</text>
+</svg>
+</div>
+
+</KhoiDong>
+
+<KhamPha title="Khám phá">
+
+<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Căn bậc hai và Căn bậc hai số học</h3>
+
+<div class="box-dinh-nghia">
+
+- Căn bậc hai của một số $a$ không âm là số $x$ sao cho $x^2 = a$.
+- Số dương $a$ có đúng hai căn bậc hai là $\sqrt{a}$ và $-\sqrt{a}$.
+- Số $0$ có đúng một căn bậc hai là chính số $0$.
+- **Số âm KHÔNG có căn bậc hai.** (Vì bình phương của mọi số thực đều không âm).
+
+Với số dương $a$, số $\sqrt{a}$ được gọi là **căn bậc hai số học** của $a$.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ:**
+- Căn bậc hai của 25 là 5 và -5.
+- Căn bậc hai số học của 25 là $\sqrt{25} = 5$.
+
+</div>
+
+<h3 id="can-thuc" style="margin-top:2rem;">📖 2. Căn thức bậc hai</h3>
+
+<div class="box-dinh-ly">
+
+Với $A$ là một biểu thức đại số, người ta gọi $\sqrt{A}$ là **căn thức bậc hai** của $A$.
+$\sqrt{A}$ **xác định** (hay có nghĩa) khi $A$ lấy giá trị **không âm**, tức là $A \ge 0$.
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ:** Tìm điều kiện xác định của các biểu thức sau:
+1. $\sqrt{2x - 4}$. 
+   **Giải:** Xác định khi $2x - 4 \ge 0 \Rightarrow 2x \ge 4 \Rightarrow x \ge 2$.
+2. $\sqrt{-3x}$.
+   **Giải:** Xác định khi $-3x \ge 0 \Rightarrow x \le 0$ (chia hai vế cho -3, nhớ đổi chiều).
+
+</div>
+
+<h3 id="hang-dang-thuc" style="margin-top:2rem;">📖 3. Hằng đẳng thức $\sqrt{A^2} = |A|$</h3>
+
+<div class="box-dinh-ly">
+
+Với mọi biểu thức $A$, ta luôn có:
+$$\sqrt{A^2} = |A| = \begin{cases} A \text{ nếu } A \ge 0 \\ -A \text{ nếu } A < 0 \end{cases} $$
+
+</div>
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ rút gọn:**
+- $\sqrt{(\sqrt{2} - 1)^2} = |\sqrt{2} - 1| = \sqrt{2} - 1$ (Vì $\sqrt{2} > 1$).
+- $\sqrt{(1 - \sqrt{3})^2} = |1 - \sqrt{3}| = \sqrt{3} - 1$ (Vì $1 < \sqrt{3}$). 
+
+</div>
+
+</KhamPha>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Nhầm lẫn cực phổ biến:**
+Học sinh thường ghi nhanh $\sqrt{x^2} = x$.
+Điều này LÀ SAI nếu bạn chưa biết gía trị $x$ âm hay dương!
+Bắt buộc phải có **dấu giá trị tuyệt đối** là $\sqrt{x^2} = |x|$ để đảm bảo kết quả an toàn trước khi phá ngoặc.
+
+</div>
+
+</GhiNho>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+  
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1:** Tính giá trị căn bậc hai số học:
+
+a) $\sqrt{81}$
+
+b) $\sqrt{0.04}$
+
+c) $\sqrt{\frac{16}{25}}$
+
+d) $\sqrt{2.25}$
+
+**Bài 2:** Tìm điều kiện xác định của các căn thức:
+
+a) $\sqrt{5x + 10}$
+
+b) $\sqrt{7 - 2x}$
+
+c) $\sqrt{\frac{1}{x+2}}$
+
+d) $\sqrt{x^2 + 4}$
+
+**Bài 3:** Rút gọn biểu thức chứa căn:
+
+a) $\sqrt{(3 - \sqrt{5})^2}$
+
+b) $\sqrt{(2 - \sqrt{5})^2}$
+
+c) $\sqrt{a^2}$ với $a \ge 0$
+
+d) $2\sqrt{b^2}$ với $b < 0$
+
+**Bài 4:** Giải các phương trình tìm $x$:
+
+a) $\sqrt{x} = 4$
+
+b) $\sqrt{2x - 1} = 3$
+
+c) $x^2 = 100$
+
+d) $\sqrt{x} = -2$
+
+**Bài 5 (Thực tế):** Quãng đường rơi và trọng lực
+Một vật rơi tự do, quãng đường $S$ (mét) rơi được trong t (giây) tính theo công thức $S = \frac{1}{2}gt^2$ (lấy gia tốc $g \approx 10 \text{m/s}^2$). Vậy $S = 5t^2$.
+
+a) Tính quãng đường vật rơi được sau 2 giây.
+
+b) Chóp tòa tháp cao 45m. Tính thời gian để viên sỏi rơi từ chóp tháp xuống chạm đất. (Trình bày phương trình bậc 2).
+
+c) Khi viết $t = \sqrt{S/5}$, ta đang dùng khái niệm gì? Tại sao t không nhận giá trị âm?
+
+d) Ở hành tinh khác có $g=2$, vật rơi 10 giây được bao xa?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+
+a) 9
+
+b) 0.2
+
+c) $4/5$
+
+d) 1.5
+
+**Bài 2:**
+
+a) $x \ge -2$
+
+b) $x \le 3.5$
+
+c) Mẫu phải dương: $x + 2 > 0 \Rightarrow x > -2$
+
+d) $x \in \mathbb{R}$ (Vì $x^2 + 4 > 0$ với mọi $x$).
+
+**Bài 3:**
+
+a) $|3 - \sqrt{5}| = 3 - \sqrt{5}$
+
+b) $|2 - \sqrt{5}| = \sqrt{5} - 2$
+
+c) $|a| = a$ (Vì $a \ge 0$)
+
+d) $2|b| = -2b$ (Vì $b < 0$)
+
+**Bài 4:**
+
+a) $x = 16$
+
+b) Điều kiện: $x \ge 0.5$. Bình phương: $2x - 1 = 9 \Rightarrow 2x = 10 \Rightarrow x = 5$ (TM)
+
+c) $x = 10$ hoặc $x = -10$
+
+d) Vô nghiệm (Căn bậc hai số học không thể âm).
+
+**Bài 5:**
+
+a) $S = 5(2^2) = 20\text{m}$.
+
+b) $5t^2 = 45 \Rightarrow t^2 = 9 \Rightarrow t = 3$ (Vì thời gian $t > 0$).
+
+c) Khái niệm Căn bậc hai số học. Thời gian không âm.
+
+d) $S = \frac{1}{2}(2)(10^2) = 100\text{m}$.
+
+</div>
+</details>
