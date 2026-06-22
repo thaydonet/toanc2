@@ -1,5 +1,6 @@
 ---
 import katex from 'katex';
+import { withSuppressedKatexMetricWarnings } from '../../lib/katex-silence.mjs';
 
 interface Props {
   formula: string;
@@ -8,9 +9,11 @@ interface Props {
 
 const { formula, block = false } = Astro.props;
 
-const html = katex.renderToString(formula, {
-  displayMode: block,
-  throwOnError: false,
+const html = withSuppressedKatexMetricWarnings(() => {
+  return katex.renderToString(formula, {
+    displayMode: block,
+    throwOnError: false,
+  });
 });
 ---
 

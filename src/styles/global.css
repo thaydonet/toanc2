@@ -1,7 +1,9 @@
 /* ===== KNTT DESIGN SYSTEM ===== */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
-@import "katex/dist/katex.min.css";
+/* Google Fonts import moved to the HTML head to avoid Vite/Astro dev CSS pipeline timeouts */
+/* KaTeX CSS is loaded via <link> in LessonLayout.astro — no @import needed here */
 /* JSXGraph CSS is loaded via <link> in LessonLayout.astro — no @import needed here */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@400;600;700;800&display=swap');
 
 :root {
   --kntt-blue-50: #eff6ff;
@@ -26,7 +28,7 @@
   --kntt-red-500: #ef4444;
   --kntt-purple-100: #f3e8ff;
   --kntt-purple-600: #9333ea;
-  --font-body: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', 'Playfair Display', system-ui, -apple-system, sans-serif;
   --sidebar-w: 260px;
   --header-h: 64px;
   --content-max: 880px;
@@ -561,6 +563,11 @@ strong {
 
 .katex {
   font-size: 1.05em;
+}
+
+/* Ensure KaTeX text mode uses the body font for Vietnamese support */
+.katex .text {
+  font-family: var(--font-body) !important;
 }
 
 /* Buttons */

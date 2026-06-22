@@ -33,18 +33,26 @@ const getGradeIcon = (g: string) => {
 
 // Tự động phát hiện các file trang thực tế tồn tại
 // import.meta.glob trả về object { './path': () => ... }
-const allPageFiles = import.meta.glob('../pages/**/*.{astro,mdx,md}');
+const curriculumHrefs = Object.values(curriculumData).flatMap(curriculum =>
+  curriculum.volumes.flatMap(volume =>
+    volume.chapters.flatMap(chapter =>
+      chapter.lessons.map(lesson => lesson.href)
+    )
+  )
+);
 
 // Chuyển các path file → href dạng /lop6/bai-1-tap-hop
-const availableHrefs = new Set(
-  Object.keys(allPageFiles)
-    .map(p => p
+/*
+const availableHrefs = new Set(curriculumHrefs
+  
       .replace('../pages', '')           // bỏ prefix
       .replace(/\.(astro|mdx|md)$/, '') // bỏ extension
       .replace(/\/index$/, '')           // bỏ /index
     )
     .filter(h => h !== '' && h !== '/')
 );
+*/
+const availableHrefs = new Set(curriculumHrefs);
 ---
 <!doctype html>
 <html lang="vi">
@@ -55,6 +63,12 @@ const availableHrefs = new Set(
   <meta name="description" content={description} />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   
+  <!-- Google Fonts (load from head to avoid dev CSS pipeline fetches) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
+
+  <!-- KaTeX CSS (loaded as plain link to bypass Vite CSS pipeline) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.37/dist/katex.min.css" crossorigin="anonymous" />
+
   <!-- JSXGraph (must load before React components, sets window.JXG) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.12.2/distrib/jsxgraph.css" />
   <script is:inline src="https://cdn.jsdelivr.net/npm/jsxgraph@1.12.2/distrib/jsxgraphcore.js"></script>
@@ -62,10 +76,10 @@ const availableHrefs = new Set(
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4789233598401236" crossorigin="anonymous"></script>
 
-  <!-- KaTeX Auto Render — chỉ dùng $ và $ để tránh render nhầm (...) thường thành toán -->
+  <!-- KaTeX Auto Render - only use dollar delimiters to avoid rendering normal parentheses as math -->
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.37/dist/katex.min.js" crossorigin="anonymous"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.37/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-      onload="renderMathInElement(document.body, { delimiters: [{left: '$', right: '$', display: true}, {left: '$', right: '$', display: false}] });"></script>
+      onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] });"></script>
 </head>
 <body>
   <div class="site-wrapper">

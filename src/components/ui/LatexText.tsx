@@ -4,6 +4,7 @@
  * - Văn bản thường (kể cả dấu ngoặc đơn) KHÔNG bị render nhầm.
  */
 import katex from 'katex';
+import { withSuppressedKatexMetricWarnings } from '../../lib/katex-silence.mjs';
 
 interface Props {
   children: string;
@@ -55,10 +56,12 @@ export default function LatexText({ children, className }: Props) {
         const isDisplay = seg.type === 'math-display';
         let html = '';
         try {
-          html = katex.renderToString(seg.content, {
-            displayMode: isDisplay,
-            throwOnError: false,
-            output: 'htmlAndMathml',
+          html = withSuppressedKatexMetricWarnings(() => {
+            return katex.renderToString(seg.content, {
+              displayMode: isDisplay,
+              throwOnError: false,
+              output: 'htmlAndMathml',
+            });
           });
         } catch {
           html = seg.content;

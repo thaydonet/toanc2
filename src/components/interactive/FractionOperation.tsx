@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import katex from 'katex';
+import { withSuppressedKatexMetricWarnings } from '../../lib/katex-silence.mjs';
 
 interface Term {
   coeff: number;
@@ -167,9 +168,11 @@ export default function FractionOperation() {
       containerRef.current?.querySelectorAll('.math-render').forEach((el) => {
         const span = el as HTMLElement;
         if (span.dataset.rendered !== 'true') {
-          katex.render(span.textContent || '', span, {
-            displayMode: true,
-            throwOnError: false,
+          withSuppressedKatexMetricWarnings(() => {
+            katex.render(span.textContent || '', span, {
+              displayMode: true,
+              throwOnError: false,
+            });
           });
           span.dataset.rendered = 'true';
         }
