@@ -13,6 +13,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import RightTriangleCalculator from '../../components/interactive/RightTriangleCalculator';
 
 export const quizData = [
   {
@@ -182,6 +183,21 @@ Các Tỉ số lượng giác của góc $\alpha$ được định nghĩa bằng
 
 </div>
 
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+  <svg width="300" height="220" viewBox="0 0 300 220" style="background:transparent;border-radius:6px;">
+    <polygon points="60,180 240,180 60,40" fill="#fff7ed" stroke="#fb923c" stroke-width="3" />
+    <polyline points="60,160 80,160 80,180" fill="none" stroke="#fb923c" stroke-width="3" />
+    <text x="45" y="195" font-size="18" font-weight="700" fill="#0f172a">A</text>
+    <text x="250" y="195" font-size="18" font-weight="700" fill="#0f172a">C</text>
+    <text x="40" y="30" font-size="18" font-weight="700" fill="#0f172a">B</text>
+    <text x="120" y="100" font-size="16" fill="#d97706">a (BC)</text>
+    <text x="150" y="200" font-size="16" fill="#2563eb">b (AB)</text>
+    <text x="20" y="110" font-size="16" fill="#2563eb">c (AC)</text>
+    <path d="M 95 170 A 30 30 0 0 1 125 145" fill="none" stroke="#ef4444" stroke-width="2" />
+    <text x="115" y="165" font-size="16" font-weight="600" fill="#ef4444">α</text>
+  </svg>
+</div>
+
 *Mẹo dân gian ghi nhớ:* Chữ cái đầu mỗi từ.
 - \*\*S\*\*in \*\*Đ\*\*i \*\*H\*\*ọc (Sin = Đối/Huyền)
 - \*\*C\*\*ứ \*\*K\*\*hóc \*\*H\*\*oài (Cos = Kề/Huyền)
@@ -248,6 +264,18 @@ Nên Biểu thức = $\sin^2 25^\circ + \cos^2 25^\circ = 1$. Lời giải chỉ
 </div>
 
 </GhiNho>
+
+<VanDung title="Phân dạng & Thực hành">
+
+<h3 id="phan-dang" style="margin-top:1rem;">🔎 Phân dạng toán</h3>
+<p>Phổ biến: <em>Cho tam giác vuông ABC vuông tại A</em>. Biết hai cạnh là số hoặc biết một cạnh và một góc nhọn (ví dụ góc B = <span style="font-weight:700;">α</span>), yêu cầu tính các tỉ số lượng giác của góc B: <code>sin B, cos B, tan B, cot B</code>.</p>
+
+<h3 id="thuc-hanh" style="margin-top:1rem;">🧮 Thực hành tính toán</h3>
+<p>Nhập dữ liệu số vào máy tính bên dưới (ít nhất 2 thông số, trong đó phải có ít nhất 1 cạnh). Máy sẽ tính các cạnh còn lại, các góc và đưa ra các tỉ số lượng giác chính xác.</p>
+
+<RightTriangleCalculator client:load />
+
+</VanDung>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
   
