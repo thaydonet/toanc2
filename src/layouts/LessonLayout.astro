@@ -61,7 +61,7 @@ const availableHrefs = new Set(curriculumHrefs);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} | Toán THCS</title>
   <meta name="description" content={description} />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/toanc2/favicon.svg" type="image/svg+xml" />
   
   <!-- Google Fonts (load from head to avoid dev CSS pipeline fetches) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" />
@@ -93,7 +93,7 @@ const availableHrefs = new Set(curriculumHrefs);
         </svg>
       </button>
 
-      <a href="/" class="logo">
+      <a href="/toanc2/" class="logo">
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
           <rect width="34" height="34" rx="9" fill="rgba(255,255,255,0.22)"/>
           <text x="17" y="24" text-anchor="middle" font-size="20" font-weight="bold" fill="white" font-family="Georgia,serif">π</text>
@@ -101,12 +101,12 @@ const availableHrefs = new Set(curriculumHrefs);
         Toán THCS
       </a>
       <nav class="desktop-nav">
-        <a href="/" class={!currentGradeSlug ? 'active' : ''}>Trang chủ</a>
-        <a href="/lop6" class={currentGradeSlug === 'lop6' ? 'active' : ''}>Lớp 6</a>
-        <a href="/lop7" class={currentGradeSlug === 'lop7' ? 'active' : ''}>Lớp 7</a>
-        <a href="/lop8" class={currentGradeSlug === 'lop8' ? 'active' : ''}>Lớp 8</a>
-        <a href="/lop9" class={currentGradeSlug === 'lop9' ? 'active' : ''}>Lớp 9</a>
-        <a href="/cong-cu-toan-c2" class={currentGradeSlug === 'cong-cu-toan-c2' ? 'active' : ''}>Công cụ Toán</a>
+        <a href="/toanc2/" class={!currentGradeSlug ? 'active' : ''}>Trang chủ</a>
+        <a href="/toanc2/lop6" class={currentGradeSlug === 'lop6' ? 'active' : ''}>Lớp 6</a>
+        <a href="/toanc2/lop7" class={currentGradeSlug === 'lop7' ? 'active' : ''}>Lớp 7</a>
+        <a href="/toanc2/lop8" class={currentGradeSlug === 'lop8' ? 'active' : ''}>Lớp 8</a>
+        <a href="/toanc2/lop9" class={currentGradeSlug === 'lop9' ? 'active' : ''}>Lớp 9</a>
+        <a href="/toanc2/cong-cu-toan-c2" class={currentGradeSlug === 'cong-cu-toan-c2' ? 'active' : ''}>Công cụ Toán</a>
       </nav>
     </header>
 

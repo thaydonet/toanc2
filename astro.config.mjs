@@ -14,7 +14,8 @@ function rehypeKatexWithoutMetricWarnings(options) {
 }
 
 export default defineConfig({
-  site: 'https://toan.booktoan.com',
+  site: 'https://booktoan.com',
+  base: '/toanc2',
   markdown: {
     remarkPlugins: [
       [remarkMath, {

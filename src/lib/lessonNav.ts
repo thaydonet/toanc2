@@ -21,7 +21,7 @@ export function getPrevNextLesson(currentSlug: string): {
 } {
     const gradeSlug = currentSlug.split('/')[0];
     const lessons = getAllLessons(gradeSlug);
-    const href = '/' + currentSlug;
+    const href = '/toanc2/' + currentSlug;
     const idx = lessons.findIndex(l => l.href === href);
 
     if (idx === -1) return { prevLesson: undefined, nextLesson: undefined };
