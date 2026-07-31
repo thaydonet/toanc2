@@ -107,7 +107,7 @@ export default function StatisticsCalculator() {
                   </tr>
                 ))}
                 <tr className="bg-teal-50 font-bold border-t-2 border-teal-200">
-                  <td className="px-4 py-3 text-teal-900">Tổng Vị Trí</td>
+                  <td className="px-4 py-3 text-teal-900">Tổng</td>
                   <td className="px-4 py-3 text-indigo-800">N = {stats.totalData}</td>
                   <td className="px-4 py-3 text-teal-800">100%</td>
                 </tr>

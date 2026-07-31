@@ -13,6 +13,8 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import ProductEquationSolver from '../../components/interactive/ProductEquationSolver';
+import RationalEquationSolver from '../../components/interactive/RationalEquationSolver';
 
 export const quizData = [
   {
@@ -162,21 +164,26 @@ $$A(x) \cdot B(x) = 0 \Leftrightarrow \left[ \begin{array}{l} A(x) = 0 \\ B(x) =
 <div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
 
 **Ví dụ 1:** Giải phương trình $(x - 3)(2x + 4) = 0$
+
 **Giải:**
 $$ \Leftrightarrow \left[ \begin{array}{l} x - 3 = 0 \\ 2x + 4 = 0 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} x = 3 \\ x = -2 \end{array} \right.$$
 Vậy tập nghiệm của phương trình là $S = \{3; -2\}$.
 
 **Ví dụ 2:** Giải pt: $x^2 - 5x = 0$
+
 **Giải:** Ta đưa về PT tích bằng cách đặt $x$ làm nhân tử chung.
 $x(x - 5) = 0 \Leftrightarrow \left[ \begin{array}{l} x = 0 \\ x - 5 = 0 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} x = 0 \\ x = 5 \end{array} \right.$
 
 **Ví dụ 3:** Giải pt: $(2x - 1)^2 - (x + 3)^2 = 0$
+
 **Giải:** Phân tích hằng đẳng thức $A^2 - B^2 = (A-B)(A+B)$:
 $(2x - 1 - x - 3)(2x - 1 + x + 3) = 0$
 $\Leftrightarrow (x - 4)(3x + 2) = 0$
 $\Leftrightarrow \left[ \begin{array}{l} x - 4 = 0 \\ 3x + 2 = 0 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} x = 4 \\ x = -2/3 \end{array} \right.$
 
 </div>
+
+<ProductEquationSolver client:load />
 
 <h3 id="pt-an-o-mau" style="margin-top:2rem;">📖 2. Phương trình chứa ẩn ở mẫu</h3>
 
@@ -195,6 +202,7 @@ Khi ẩn số xuất hiện ở dưới mẫu thức, ta không thể quy đồn
 <div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
 
 **Ví dụ 4:** Giải pt $\frac{x+2}{x} = \frac{2x+3}{2x-2}$
+
 **Giải:**
 - **Bước 1 (ĐKXĐ):** $x \neq 0$ và $2x-2 \neq 0 \Rightarrow x \neq 1$. Vậy ĐKXĐ: $x \neq 0, x \neq 1$. Mẫu thức chung: $x(2x-2)$.
 - **Bước 2 (Quy đồng & khử mẫu):**
@@ -208,6 +216,7 @@ $-x = 4 \Rightarrow x = -4$.
 $\Rightarrow$ KL: Tập nghiệm $S = \{-4\}$.
 
 **Ví dụ 5:** Giải pt $\frac{x}{x-1} = \frac{1}{x-1} + 2$
+
 **Giải:**
 - ĐKXĐ: $x \neq 1$. MTC: $x-1$.
 - PT $\Rightarrow \frac{x}{x-1} = \frac{1 + 2(x-1)}{x-1}$
@@ -217,6 +226,8 @@ $\Rightarrow$ KL: Tập nghiệm $S = \{-4\}$.
 - Chốt: PT vô nghiệm.
 
 </div>
+
+<RationalEquationSolver client:load />
 
 </KhamPha>
 

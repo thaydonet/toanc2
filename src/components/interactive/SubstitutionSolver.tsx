@@ -182,6 +182,32 @@ function buildSteps(a1: number, b1: number, c1: number, a2: number, b2: number, 
   return steps;
 }
 
+/* ── Random generator ─────────────────────────────────────── */
+function randomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomSystem() {
+  // Đảm bảo có ít nhất một hệ số ±1 để dễ biểu diễn
+  const which = randomInt(0, 3);
+  let a1: number, b1: number, c1: number;
+  let a2: number, b2: number, c2: number;
+  do {
+    a1 = randomInt(-5, 5); b1 = randomInt(-5, 5); c1 = randomInt(-5, 5);
+    a2 = randomInt(-5, 5); b2 = randomInt(-5, 5); c2 = randomInt(-5, 5);
+    // Đặt hệ số ±1 vào vị trí đã chọn
+    const val = Math.random() < 0.5 ? 1 : -1;
+    if (which === 0)      { a1 = val; }
+    else if (which === 1) { b1 = val; }
+    else if (which === 2) { a2 = val; }
+    else                  { b2 = val; }
+  } while (
+    (a1 === 0 && b1 === 0) || (a2 === 0 && b2 === 0) ||
+    (a1 * b2 - a2 * b1 === 0) // hệ suy biến
+  );
+  return { a1, b1, c1, a2, b2, c2 };
+}
+
 /* ── Component ────────────────────────────────────────────── */
 export default function SubstitutionSolver() {
   const [a1, setA1] = useState(1),  [b1, setB1] = useState(-3), [c1, setC1] = useState(2);
@@ -194,7 +220,12 @@ export default function SubstitutionSolver() {
     setSteps(buildSteps(a1, b1, c1, a2, b2, c2));
     setSolved(true); setRevealed(1);
   };
-  const handleReset = () => { setSolved(false); setSteps([]); setRevealed(0); };
+  const handleReset = () => {
+    const sys = randomSystem();
+    setA1(sys.a1); setB1(sys.b1); setC1(sys.c1);
+    setA2(sys.a2); setB2(sys.b2); setC2(sys.c2);
+    setSolved(false); setSteps([]); setRevealed(0);
+  };
 
   const iSt: React.CSSProperties = {
     width: 56, padding: '6px 4px', textAlign: 'center',

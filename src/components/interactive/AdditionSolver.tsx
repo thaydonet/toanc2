@@ -82,90 +82,188 @@ function buildSteps(a1: number, b1: number, c1: number, a2: number, b2: number, 
   }
 
   // ── Trường hợp thông thường: cả a1 ≠ 0 và a2 ≠ 0 ──────────
-  const g  = gcd(Math.abs(a1), Math.abs(a2));
-  const k1 = Math.abs(a2) / g;   // nhân pt(1) với k1
-  const k2 = Math.abs(a1) / g;   // nhân pt(2) với k2
+  // Ưu tiên khử y nếu |b₁| = |b₂| (đã bằng trị tuyệt đối)
+  const preferY = b1 !== 0 && b2 !== 0 && Math.abs(b1) === Math.abs(b2);
 
-  const na1 = k1 * a1, nb1 = k1 * b1, nc1 = k1 * c1;
-  const na2 = k2 * a2, nb2 = k2 * b2, nc2 = k2 * c2;
+  if (preferY) {
+    // ═══════════════ Khử y ═══════════════
+    const g  = gcd(Math.abs(b1), Math.abs(b2));
+    const k1 = Math.abs(b2) / g;
+    const k2 = Math.abs(b1) / g;
 
-  // Hiển thị bước nhân (chỉ khi thực sự cần)
-  if (k1 !== 1 || k2 !== 1) {
-    const lines: string[] = [];
-    if (k1 !== 1) lines.push(`Nhân (1) với ${k1}: ${eqStr(na1, nb1, nc1)}   (1')`);
-    else           lines.push(`Giữ nguyên (1): ${eqStr(na1, nb1, nc1)}   (1')`);
-    if (k2 !== 1) lines.push(`Nhân (2) với ${k2}: ${eqStr(na2, nb2, nc2)}   (2')`);
-    else           lines.push(`Giữ nguyên (2): ${eqStr(na2, nb2, nc2)}   (2')`);
-    steps.push({ label: 'Bước 1 — Nhân để cùng hệ số |x|', lines });
-  } else {
+    const na1 = k1 * a1, nb1 = k1 * b1, nc1 = k1 * c1;
+    const na2 = k2 * a2, nb2 = k2 * b2, nc2 = k2 * c2;
+
+    if (k1 !== 1 || k2 !== 1) {
+      const lines: string[] = [];
+      if (k1 !== 1) lines.push(`Nhân (1) với ${k1}: ${eqStr(na1, nb1, nc1)}   (1')`);
+      else           lines.push(`Giữ nguyên (1): ${eqStr(na1, nb1, nc1)}   (1')`);
+      if (k2 !== 1) lines.push(`Nhân (2) với ${k2}: ${eqStr(na2, nb2, nc2)}   (2')`);
+      else           lines.push(`Giữ nguyên (2): ${eqStr(na2, nb2, nc2)}   (2')`);
+      steps.push({ label: 'Bước 1 — Nhân để cùng hệ số |y|', lines });
+    } else {
+      steps.push({
+        label: 'Bước 1 — Hai phương trình đã có |hệ số y| bằng nhau',
+        lines: [`|${b1}| = |${b2}| = ${Math.abs(b1)}, không cần nhân thêm`],
+      });
+    }
+
+    const sameSign = (nb1 > 0 && nb2 > 0) || (nb1 < 0 && nb2 < 0);
+
+    let xCoef: number, xRHS: number, opStr: string;
+    if (sameSign) {
+      const opt1 = { xC: na2 - na1, xR: nc2 - nc1, op: "(2') − (1')" };
+      const opt2 = { xC: na1 - na2, xR: nc1 - nc2, op: "(1') − (2')" };
+      const chosen = opt1.xC >= 0 ? opt1 : opt2;
+      xCoef = chosen.xC; xRHS = chosen.xR; opStr = chosen.op;
+    } else {
+      xCoef = na1 + na2; xRHS = nc1 + nc2; opStr = "(1') + (2')";
+    }
+
     steps.push({
-      label: 'Bước 1 — Hai phương trình đã có |hệ số x| bằng nhau',
-      lines: [`|${a1}| = |${a2}| = ${Math.abs(a1)}, không cần nhân thêm`],
+      label: `Bước 2 — ${sameSign ? 'Trừ' : 'Cộng'} vế để khử ẩn y`,
+      lines: [
+        `Thực hiện ${opStr}: ẩn y bị triệt tiêu`,
+        `→  ${intCf(xCoef, 'x', true)} = ${xRHS}`,
+      ],
+    });
+
+    if (xCoef === 0) {
+      steps.push({
+        label: 'Kết luận', isResult: true,
+        lines: xRHS === 0
+          ? ['Hệ có VÔ SỐ NGHIỆM (hai pt tương đương)']
+          : ['Hệ VÔ NGHIỆM (hai đường thẳng song song)'],
+      });
+      return steps;
+    }
+
+    const xFrac = frac(xRHS, xCoef);
+    steps.push({
+      label: 'Bước 3 — Tìm x',
+      lines: [`${intCf(xCoef, 'x', true)} = ${xRHS}`, `→  x = ${xFrac}`],
+    });
+
+    // Thế ngược vào (1) để tìm y: a1·x + b1·y = c1 → b1·y = c1 - a1·x
+    const yRhsNum = c1 * D - a1 * Dx;
+    const yFrac = frac(Dy, D);
+
+    steps.push({
+      label: 'Bước 4 — Thế x vào (1), tìm y',
+      lines: [
+        `Thay x = ${xFrac} vào (1): ${eqStr(a1, b1, c1)}`,
+        `→  ${intCf(b1, 'y', true)} = ${frac(yRhsNum, D)}`,
+        `→  y = ${yFrac}`,
+      ],
+    });
+
+    steps.push({
+      label: '✅ Kết luận nghiệm', isResult: true,
+      lines: [
+        'Hệ phương trình có nghiệm duy nhất:',
+        `x = ${frac(Dx, D)}   ;   y = ${frac(Dy, D)}`,
+      ],
+    });
+  } else {
+    // ═══════════════ Khử x (logic cũ) ═══════════════
+    const g  = gcd(Math.abs(a1), Math.abs(a2));
+    const k1 = Math.abs(a2) / g;
+    const k2 = Math.abs(a1) / g;
+
+    const na1 = k1 * a1, nb1 = k1 * b1, nc1 = k1 * c1;
+    const na2 = k2 * a2, nb2 = k2 * b2, nc2 = k2 * c2;
+
+    if (k1 !== 1 || k2 !== 1) {
+      const lines: string[] = [];
+      if (k1 !== 1) lines.push(`Nhân (1) với ${k1}: ${eqStr(na1, nb1, nc1)}   (1')`);
+      else           lines.push(`Giữ nguyên (1): ${eqStr(na1, nb1, nc1)}   (1')`);
+      if (k2 !== 1) lines.push(`Nhân (2) với ${k2}: ${eqStr(na2, nb2, nc2)}   (2')`);
+      else           lines.push(`Giữ nguyên (2): ${eqStr(na2, nb2, nc2)}   (2')`);
+      steps.push({ label: 'Bước 1 — Nhân để cùng hệ số |x|', lines });
+    } else {
+      steps.push({
+        label: 'Bước 1 — Hai phương trình đã có |hệ số x| bằng nhau',
+        lines: [`|${a1}| = |${a2}| = ${Math.abs(a1)}, không cần nhân thêm`],
+      });
+    }
+
+    const sameSign = (na1 > 0 && na2 > 0) || (na1 < 0 && na2 < 0);
+
+    let yCoef: number, yRHS: number, opStr: string;
+    if (sameSign) {
+      const opt1 = { yC: nb2 - nb1, yR: nc2 - nc1, op: "(2') − (1')" };
+      const opt2 = { yC: nb1 - nb2, yR: nc1 - nc2, op: "(1') − (2')" };
+      const chosen = opt1.yC >= 0 ? opt1 : opt2;
+      yCoef = chosen.yC; yRHS = chosen.yR; opStr = chosen.op;
+    } else {
+      yCoef = nb1 + nb2; yRHS = nc1 + nc2; opStr = "(1') + (2')";
+    }
+
+    steps.push({
+      label: `Bước 2 — ${sameSign ? 'Trừ' : 'Cộng'} vế để khử ẩn x`,
+      lines: [
+        `Thực hiện ${opStr}: ẩn x bị triệt tiêu`,
+        `→  ${intCf(yCoef, 'y', true)} = ${yRHS}`,
+      ],
+    });
+
+    if (yCoef === 0) {
+      steps.push({
+        label: 'Kết luận', isResult: true,
+        lines: yRHS === 0
+          ? ['Hệ có VÔ SỐ NGHIỆM (hai pt tương đương)']
+          : ['Hệ VÔ NGHIỆM (hai đường thẳng song song)'],
+      });
+      return steps;
+    }
+
+    const yFrac = frac(yRHS, yCoef);
+    steps.push({
+      label: 'Bước 3 — Tìm y',
+      lines: [`${intCf(yCoef, 'y', true)} = ${yRHS}`, `→  y = ${yFrac}`],
+    });
+
+    const rhsNum = c1 * D - b1 * Dy;
+    const xFrac  = frac(Dx, D);
+
+    steps.push({
+      label: 'Bước 4 — Thế y vào (1), tìm x',
+      lines: [
+        `Thay y = ${yFrac} vào (1): ${eqStr(a1, b1, c1)}`,
+        `→  ${intCf(a1, 'x', true)} = ${frac(rhsNum, D)}`,
+        `→  x = ${xFrac}`,
+      ],
+    });
+
+    steps.push({
+      label: '✅ Kết luận nghiệm', isResult: true,
+      lines: [
+        'Hệ phương trình có nghiệm duy nhất:',
+        `x = ${frac(Dx, D)}   ;   y = ${frac(Dy, D)}`,
+      ],
     });
   }
-
-  // Cộng hay trừ?
-  const sameSign = (na1 > 0 && na2 > 0) || (na1 < 0 && na2 < 0);
-
-  // Tính kết quả: chọn chiều cho hệ số y dương nếu được
-  let yCoef: number, yRHS: number, opStr: string;
-  if (sameSign) {
-    const opt1 = { yC: nb2 - nb1, yR: nc2 - nc1, op: "(2') − (1')" };
-    const opt2 = { yC: nb1 - nb2, yR: nc1 - nc2, op: "(1') − (2')" };
-    const chosen = opt1.yC >= 0 ? opt1 : opt2;
-    yCoef = chosen.yC; yRHS = chosen.yR; opStr = chosen.op;
-  } else {
-    yCoef = nb1 + nb2; yRHS = nc1 + nc2; opStr = "(1') + (2')";
-  }
-
-  steps.push({
-    label: `Bước 2 — ${sameSign ? 'Trừ' : 'Cộng'} vế để khử ẩn x`,
-    lines: [
-      `Thực hiện ${opStr}: ẩn x bị triệt tiêu`,
-      `→  ${intCf(yCoef, 'y', true)} = ${yRHS}`,
-    ],
-  });
-
-  if (yCoef === 0) {
-    steps.push({
-      label: 'Kết luận', isResult: true,
-      lines: yRHS === 0
-        ? ['Hệ có VÔ SỐ NGHIỆM (hai pt tương đương)']
-        : ['Hệ VÔ NGHIỆM (hai đường thẳng song song)'],
-    });
-    return steps;
-  }
-
-  const yFrac = frac(yRHS, yCoef);
-  steps.push({
-    label: 'Bước 3 — Tìm y',
-    lines: [`${intCf(yCoef, 'y', true)} = ${yRHS}`, `→  y = ${yFrac}`],
-  });
-
-  // Thế ngược vào pt(1) để tìm x
-  // a1·x + b1·y = c1 → a1·x = c1 - b1·(Dy/D)
-  // a1·x = (c1·D - b1·Dy) / D = a1·Dx / D
-  const rhsNum = c1 * D - b1 * Dy; // = a1·Dx
-  const xFrac  = frac(Dx, D);
-
-  steps.push({
-    label: 'Bước 4 — Thế y vào (1), tìm x',
-    lines: [
-      `Thay y = ${yFrac} vào (1): ${eqStr(a1, b1, c1)}`,
-      `→  ${intCf(a1, 'x', true)} = ${frac(rhsNum, D)}`,
-      `→  x = ${xFrac}`,
-    ],
-  });
-
-  steps.push({
-    label: '✅ Kết luận nghiệm', isResult: true,
-    lines: [
-      'Hệ phương trình có nghiệm duy nhất:',
-      `x = ${frac(Dx, D)}   ;   y = ${frac(Dy, D)}`,
-    ],
-  });
 
   return steps;
+}
+
+/* ── Random generator ─────────────────────────────────────── */
+function randomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomSystem() {
+  let a1: number, b1: number, c1: number;
+  let a2: number, b2: number, c2: number;
+  do {
+    a1 = randomInt(-5, 5); b1 = randomInt(-5, 5); c1 = randomInt(-5, 5);
+    a2 = randomInt(-5, 5); b2 = randomInt(-5, 5); c2 = randomInt(-5, 5);
+  } while (
+    (a1 === 0 && a2 === 0) || // cả hai x đều 0 → không dùng được pp cộng
+    (a1 === 0 && b1 === 0) || (a2 === 0 && b2 === 0) ||
+    (a1 * b2 - a2 * b1 === 0) // hệ suy biến
+  );
+  return { a1, b1, c1, a2, b2, c2 };
 }
 
 /* ── Component ────────────────────────────────────────────── */
@@ -180,7 +278,12 @@ export default function AdditionSolver() {
     setSteps(buildSteps(a1, b1, c1, a2, b2, c2));
     setSolved(true); setRevealed(1);
   };
-  const handleReset = () => { setSolved(false); setSteps([]); setRevealed(0); };
+  const handleReset = () => {
+    const sys = randomSystem();
+    setA1(sys.a1); setB1(sys.b1); setC1(sys.c1);
+    setA2(sys.a2); setB2(sys.b2); setC2(sys.c2);
+    setSolved(false); setSteps([]); setRevealed(0);
+  };
 
   const iSt: React.CSSProperties = {
     width: 56, padding: '6px 4px', textAlign: 'center',

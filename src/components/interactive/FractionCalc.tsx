@@ -10,13 +10,16 @@ export default function FractionCalc({ operation = 'add' }: Props) {
   const [showSteps, setShowSteps] = useState(false);
 
   const compute = () => {
+    if (op === 'divide' && n2 === 0) {
+      return { rn: null, rd: null, rawN: null, rawD: null, g: null, error: 'Không thể chia cho phân số có tử số bằng 0.' };
+    }
     let rn = 0, rd = 1;
     if (op === 'add')      { rn = n1*d2 + n2*d1; rd = d1*d2; }
     if (op === 'subtract') { rn = n1*d2 - n2*d1; rd = d1*d2; }
     if (op === 'multiply') { rn = n1*n2; rd = d1*d2; }
     if (op === 'divide')   { rn = n1*d2; rd = d1*n2; }
     const g = Math.abs(Number(gcd(rn, rd)));
-    return { rn: rn/g, rd: rd/g, rawN: rn, rawD: rd, g };
+    return { rn: rn/g, rd: rd/g, rawN: rn, rawD: rd, g, error: null };
   };
 
   const result = compute();
@@ -55,12 +58,18 @@ export default function FractionCalc({ operation = 'add' }: Props) {
 
         <span style={{ fontSize:'2rem', fontWeight:800 }}>=</span>
 
-        <div style={{ padding:'.75rem 1.25rem', background:'#eff6ff', border:'2px solid #93c5fd', borderRadius:'12px' }}>
+        <div style={{ padding:'.75rem 1.25rem', background: result.error ? '#fee2e2' : '#eff6ff', border:'2px solid ' + (result.error ? '#fca5a5' : '#93c5fd'), borderRadius:'12px' }}>
+          {result.error ? (
+            <div style={{ color:'#dc2626', fontWeight:700, fontSize:'1rem', textAlign:'center' }}>
+              ⚠️ {result.error}
+            </div>
+          ) : (
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', fontSize:'1.5rem', fontWeight:800 }}>
             <span style={{ color:'#2563eb' }}>{result.rn}</span>
             <div style={{ width:'50px', height:'2.5px', background:'#1e293b', margin:'3px 0', borderRadius:'99px' }} />
             <span>{result.rd}</span>
           </div>
+          )}
         </div>
       </div>
 
@@ -76,19 +85,25 @@ export default function FractionCalc({ operation = 'add' }: Props) {
               <li>Mẫu chung: <strong>{d1} × {d2} = {d1*d2}</strong></li>
               <li>Quy đồng: <code style={{background:'#dbeafe',padding:'2px 6px',borderRadius:'4px'}}>{n1}/{d1} {sym} {n2}/{d2} = {n1*d2}/{d1*d2} {sym} {n2*d1}/{d1*d2}</code></li>
               <li>Tính: <strong>{n1*d2} {sym} {n2*d1} = {result.rawN}</strong></li>
-              {result.g>1 && <li>Rút gọn (÷{result.g}): <strong style={{color:'#2563eb'}}>{result.rn}/{result.rd}</strong></li>}
+              {result.g !== null && result.g>1 && <li>Rút gọn (÷{result.g}): <strong style={{color:'#2563eb'}}>{result.rn}/{result.rd}</strong></li>}
             </>}
             {op==='multiply' && <>
               <li>Tử × tử = <strong>{n1} × {n2} = {n1*n2}</strong></li>
               <li>Mẫu × mẫu = <strong>{d1} × {d2} = {d1*d2}</strong></li>
-              {result.g>1 && <li>Rút gọn (÷{result.g}): <strong style={{color:'#2563eb'}}>{result.rn}/{result.rd}</strong></li>}
+              {result.g !== null && result.g>1 && <li>Rút gọn (÷{result.g}): <strong style={{color:'#2563eb'}}>{result.rn}/{result.rd}</strong></li>}
             </>}
             {op==='divide' && <>
+              {result.error ? (
+                <li><strong style={{color:'#dc2626'}}>⚠️ {result.error}</strong></li>
+              ) : (
+              <>
               <li>Lấy nghịch đảo phân số 2: <code style={{background:'#dbeafe',padding:'2px 6px',borderRadius:'4px'}}>{n2}/{d2} → {d2}/{n2}</code></li>
-              <li>Nhân: <code style={{background:'#dbeafe',padding:'2px 6px',borderRadius:'4px'}}>{n1}/{d1} × {d2}/{n2} = {n1*d2}/{d1*n2}</code></li>
-              {result.g>1 && <li>Rút gọn (÷{result.g}): <strong style={{color:'#2563eb'}}>{result.rn}/{result.rd}</strong></li>}
+              <li>Nhân: <code style={{background:'#dbeafe',padding:'2px 6px',borderRadius:'4px'}}>{n1}/{d1} × {d2}/{n2} = {result.rawN}/{result.rawD}</code></li>
+              {result.g && result.g>1 && <li>Rút gọn (÷{result.g}): <strong style={{color:'#2563eb'}}>{result.rn}/{result.rd}</strong></li>}
+              </>
+              )}
             </>}
-            <li>✅ Kết quả: <strong style={{color:'#2563eb',fontSize:'1.1rem'}}>{result.rn}/{result.rd}</strong></li>
+            {!result.error && <li>✅ Kết quả: <strong style={{color:'#2563eb',fontSize:'1.1rem'}}>{result.rn}/{result.rd}</strong></li>}
           </ol>
         </div>
       )}

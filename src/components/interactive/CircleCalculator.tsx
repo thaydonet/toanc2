@@ -91,7 +91,7 @@ export default function CircleCalculator() {
              <line x1="100" y1="100" x2="180" y2="100" stroke="#1d4ed8" strokeWidth="2" strokeDasharray="4 4" />
              <text x="130" y="95" fill="#1e3a8a" fontSize="14" fontWeight="bold">R</text>
              {/* If n is entered, draw sector */}
-             {inputs.n && !isNaN(parseFloat(inputs.n)) && parseFloat(inputs.n) <= 360 && (
+             {inputs.n && !isNaN(parseFloat(inputs.n)) && parseFloat(inputs.n) > 0 && parseFloat(inputs.n) <= 360 && (
                <>
                  <path 
                    d={`M 100,100 L 180,100 A 80,80 0 ${parseFloat(inputs.n) > 180 ? 1 : 0},1 ${100 + 80 * Math.cos((parseFloat(inputs.n) * Math.PI) / 180)},${100 - 80 * Math.sin((parseFloat(inputs.n) * Math.PI) / 180)} Z`} 

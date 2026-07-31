@@ -13,7 +13,7 @@ export default function RationalSimplifier({ height = 380 }: Props) {
     const boardId = useRef(uid());
     const boardRef = useRef<any>(null);
     const holeRef = useRef<any>(null);
-    const asymRef = useRef<any>(null);
+    const holeGuideRef = useRef<any>(null);
     const lineRef = useRef<any>(null);
     const [a, setA] = useState(2);
 
@@ -41,8 +41,8 @@ export default function RationalSimplifier({ height = 380 }: Props) {
                 name: '', size: 7, fillColor: 'white', strokeColor: '#f97316', strokeWidth: 2.5, fixed: true,
             });
 
-            asymRef.current = board.create('line', [[2, -10], [2, 10]], {
-                strokeColor: '#ef4444', strokeWidth: 1.5, dash: 2, highlight: false,
+            holeGuideRef.current = board.create('line', [[2, -10], [2, 10]], {
+                strokeColor: '#94a3b8', strokeWidth: 1.5, dash: 2, highlight: false,
             });
         };
         init();
@@ -60,8 +60,8 @@ export default function RationalSimplifier({ height = 380 }: Props) {
         b.__aVal = a;
         b.suspendUpdate();
         holeRef.current?.setPosition(JXG.COORDS_BY_USER, [a, 2 * a]);
-        asymRef.current?.point1?.setPosition(JXG.COORDS_BY_USER, [a, -10]);
-        asymRef.current?.point2?.setPosition(JXG.COORDS_BY_USER, [a, 10]);
+        holeGuideRef.current?.point1?.setPosition(JXG.COORDS_BY_USER, [a, -10]);
+        holeGuideRef.current?.point2?.setPosition(JXG.COORDS_BY_USER, [a, 10]);
         b.unsuspendUpdate();
     }, [a]);
 
@@ -83,7 +83,7 @@ export default function RationalSimplifier({ height = 380 }: Props) {
                 <input type="range" min={-4} max={4} step={0.5} value={a}
                     onChange={e => setA(Number(e.target.value))} />
                 <p style={{ fontSize: '.78rem', color: '#64748b', marginTop: '.3rem' }}>
-                    Điểm cam ⭕ = điểm không xác định ($x = {a}$) | Đường đỏ nét đứt = tiệm cận đứng
+                    Điểm <span style={{color:'#f97316'}}>⭕</span> = điểm không xác định (lỗ hổng) tại $x = {a}$ | Đường <span style={{color:'#94a3b8'}}>nét đứt</span> = đường gióng $x = {a}$
                 </p>
             </div>
 

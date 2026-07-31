@@ -251,6 +251,19 @@ Trong đó $a, b, c$ là các số đã biết và $a, b$ không đồng thời 
 - Cho $x = 0$, tìm $y$: nghiệm có dạng $(0; \frac{c}{b})$
 - Cho $y = 0$, tìm $x$: nghiệm có dạng $(\frac{c}{a}; 0)$
 
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ 1 (Nhận biết phương trình bậc nhất hai ẩn):** Trong các phương trình $2x - y = 5$; $x^2 + 3y = 4$; $0x - 2y = 6$; $3x + 0y = 0$, phương trình nào là phương trình bậc nhất hai ẩn?
+- **Lời giải:** $2x - y = 5$ có $a = 2, b = -1 \neq 0$ (đúng); $x^2 + 3y = 4$ có ẩn $x$ bậc 2 (sai); $0x - 2y = 6$ có $b = -2 \neq 0$ (đúng); $3x + 0y = 0$ có $a = 3 \neq 0$ (đúng).
+
+**Ví dụ 2 (Kiểm tra nghiệm):** Cặp số $(3; 1)$ có là nghiệm của phương trình $2x - 3y = 3$ không?
+- **Lời giải:** Thay $x = 3, y = 1$: $2 \cdot 3 - 3 \cdot 1 = 6 - 3 = 3$ (bằng vế phải). Vậy $(3; 1)$ là một nghiệm của phương trình.
+
+**Ví dụ 3 (Nghiệm tổng quát):** Viết nghiệm tổng quát của phương trình $2x + y = 4$ và chỉ ra hai nghiệm cụ thể.
+- **Lời giải:** $y = 4 - 2x$ với $x \in \mathbb{R}$, viết gọn là $(x; 4 - 2x)$. Chọn $x = 0$ được $(0; 4)$; chọn $x = 1$ được $(1; 2)$.
+
+</div>
+
 <h4 id="he-pt">2. Hệ hai phương trình bậc nhất hai ẩn</h4>
 
 <div class="box-dinh-nghia">
@@ -271,6 +284,19 @@ $$\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}$$
 | Song song | Vô nghiệm |
 | Trùng nhau | Vô số nghiệm |
 
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ 1 (Kiểm tra nghiệm của hệ):** Cặp số $(2; 1)$ có là nghiệm của hệ $\begin{cases} x + y = 3 \\ 2x - y = 3 \end{cases}$ không?
+- **Lời giải:** $2 + 1 = 3$ (thỏa mãn pt 1) và $2 \cdot 2 - 1 = 3$ (thỏa mãn pt 2). Vậy $(2; 1)$ là nghiệm của hệ.
+
+**Ví dụ 2 (Số nghiệm theo vị trí hai đường thẳng):** Không giải hệ, hãy cho biết số nghiệm của: (a) $\begin{cases} x + y = 2 \\ x - y = 4 \end{cases}$; (b) $\begin{cases} x + y = 2 \\ 2x + 2y = 5 \end{cases}$; (c) $\begin{cases} x + y = 2 \\ 2x + 2y = 4 \end{cases}$.
+- **Lời giải:** (a) Hai đường thẳng cắt nhau nên hệ có đúng 1 nghiệm. (b) Hai đường thẳng song song (cùng hệ số góc $-1$ nhưng khác tung độ gốc) nên hệ vô nghiệm. (c) Phương trình thứ hai bằng 2 lần phương trình thứ nhất nên hai đường thẳng trùng nhau, hệ có vô số nghiệm.
+
+**Ví dụ 3 (Viết hệ từ dữ kiện):** Hai số có tổng bằng 10, hiệu bằng 2. Hãy lập hệ phương trình biểu diễn bài toán.
+- **Lời giải:** Gọi hai số là $x, y$. Tổng: $x + y = 10$; hiệu: $x - y = 2$. Vậy hệ là $\begin{cases} x + y = 10 \\ x - y = 2 \end{cases}$.
+
+</div>
+
 <h4 id="pp-the">3. Phương pháp thế</h4>
 
 **Các bước:**
@@ -279,9 +305,18 @@ $$\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}$$
 3. Giải phương trình một ẩn, tìm giá trị của ẩn đó
 4. Thay ngược lại để tìm ẩn còn lại
 
-**Ví dụ:** Giải hệ $\begin{cases} x - 2y = 1 \\ 2x + y = 7 \end{cases}$
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
 
-Từ pt (1): $x = 2y + 1$. Thay vào pt (2): $2(2y+1) + y = 7 \Rightarrow 5y = 5 \Rightarrow y = 1$. Suy ra $x = 3$.
+**Ví dụ 1:** Giải hệ $\begin{cases} x - 2y = 1 \\ 2x + y = 7 \end{cases}$
+- **Lời giải:** Từ pt (1): $x = 2y + 1$. Thay vào pt (2): $2(2y+1) + y = 7 \Rightarrow 5y = 5 \Rightarrow y = 1$. Suy ra $x = 3$. Hệ có nghiệm $(3; 1)$.
+
+**Ví dụ 2:** Giải hệ $\begin{cases} x + 2y = 5 \\ 3x - y = 8 \end{cases}$
+- **Lời giải:** Từ pt (1): $x = 5 - 2y$. Thay vào pt (2): $3(5 - 2y) - y = 8 \Rightarrow 15 - 7y = 8 \Rightarrow y = 1$. Suy ra $x = 3$. Hệ có nghiệm $(3; 1)$.
+
+**Ví dụ 3:** Giải hệ $\begin{cases} 2x - y = 4 \\ 4x - 2y = 7 \end{cases}$
+- **Lời giải:** Từ pt (1): $y = 2x - 4$. Thay vào pt (2): $4x - 2(2x - 4) = 7 \Rightarrow 8 = 7$ (vô lý). Vậy hệ vô nghiệm.
+
+</div>
 
 <h4 id="pp-cong">4. Phương pháp cộng đại số</h4>
 
@@ -291,9 +326,18 @@ Từ pt (1): $x = 2y + 1$. Thay vào pt (2): $2(2y+1) + y = 7 \Rightarrow 5y = 5
 3. Giải phương trình một ẩn còn lại
 4. Thay ngược lại tìm ẩn kia
 
-**Ví dụ:** Giải hệ $\begin{cases} 3x + 2y = 8 \\ x - 2y = 0 \end{cases}$
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
 
-Cộng hai phương trình: $4x = 8 \Rightarrow x = 2$. Thay vào pt (2): $2 - 2y = 0 \Rightarrow y = 1$.
+**Ví dụ 1:** Giải hệ $\begin{cases} 3x + 2y = 8 \\ x - 2y = 0 \end{cases}$
+- **Lời giải:** Cộng hai phương trình: $4x = 8 \Rightarrow x = 2$. Thay vào pt (2): $2 - 2y = 0 \Rightarrow y = 1$. Hệ có nghiệm $(2; 1)$.
+
+**Ví dụ 2:** Giải hệ $\begin{cases} x + y = 6 \\ x - y = 2 \end{cases}$
+- **Lời giải:** Cộng vế theo vế: $2x = 8 \Rightarrow x = 4$. Thay vào pt (2): $4 - y = 2 \Rightarrow y = 2$. Hệ có nghiệm $(4; 2)$.
+
+**Ví dụ 3:** Giải hệ $\begin{cases} 3x + 2y = 8 \\ 2x - 3y = 1 \end{cases}$
+- **Lời giải:** Nhân pt (1) với 3, pt (2) với 2 để khử $y$: $\begin{cases} 9x + 6y = 24 \\ 4x - 6y = 2 \end{cases}$. Cộng vế theo vế: $13x = 26 \Rightarrow x = 2$. Thay vào pt (1): $3 \cdot 2 + 2y = 8 \Rightarrow y = 1$. Hệ có nghiệm $(2; 1)$.
+
+</div>
 
 <h4 id="giai-toan-lap-he">5. Giải toán bằng cách lập hệ phương trình</h4>
 
@@ -302,6 +346,19 @@ Cộng hai phương trình: $4x = 8 \Rightarrow x = 2$. Thay vào pt (2): $2 - 2
 2. **Lập hệ:** Từ các dữ kiện bài toán, lập hệ hai phương trình
 3. **Giải hệ:** Dùng phương pháp thế hoặc cộng đại số
 4. **Kiểm tra và kết luận:** Kiểm tra điều kiện của ẩn và trả lời bài toán
+
+<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+**Ví dụ 1 (Toán tìm số):** Tìm hai số tự nhiên biết tổng của chúng bằng 12 và hiệu của chúng bằng 2.
+- **Lời giải:** Gọi hai số là $x, y$ ($x, y \in \mathbb{N}, x > y$). Hệ: $\begin{cases} x + y = 12 \\ x - y = 2 \end{cases}$. Cộng vế theo vế: $2x = 14 \Rightarrow x = 7$; suy ra $y = 5$. Vậy hai số cần tìm là 7 và 5.
+
+**Ví dụ 2 (Toán chuyển động):** Một xe máy và một ô tô cùng khởi hành từ hai địa điểm A và B cách nhau 120 km, đi ngược chiều nhau và gặp nhau sau 1,5 giờ. Biết vận tốc ô tô lớn hơn vận tốc xe máy là 10 km/h. Tìm vận tốc mỗi xe.
+- **Lời giải:** Gọi vận tốc xe máy là $x$, ô tô là $y$ (km/h, $y > x > 0$). Quãng đường: $1,5x + 1,5y = 120 \Rightarrow x + y = 80$; chênh lệch vận tốc: $y - x = 10$. Hệ: $\begin{cases} x + y = 80 \\ y - x = 10 \end{cases}$. Cộng vế: $2y = 90 \Rightarrow y = 45$, suy ra $x = 35$. Vậy xe máy chạy 35 km/h, ô tô chạy 45 km/h.
+
+**Ví dụ 3 (Toán thực tế – mua hàng):** Mua 5 quyển vở và 3 cây bút hết 96 nghìn đồng; mua 3 quyển vở và 2 cây bút hết 60 nghìn đồng. Hỏi giá mỗi quyển vở và mỗi cây bút là bao nhiêu?
+- **Lời giải:** Gọi giá 1 quyển vở là $x$, 1 cây bút là $y$ (nghìn đồng, $x, y > 0$). Hệ: $\begin{cases} 5x + 3y = 96 \\ 3x + 2y = 60 \end{cases}$. Nhân pt (1) với 2 và pt (2) với 3: $\begin{cases} 10x + 6y = 192 \\ 9x + 6y = 180 \end{cases}$. Trừ vế theo vế: $x = 12$. Thay vào pt (2): $3 \cdot 12 + 2y = 60 \Rightarrow 2y = 24 \Rightarrow y = 12$. Vậy mỗi quyển vở giá 12 nghìn đồng, mỗi cây bút giá 12 nghìn đồng.
+
+</div>
 
 </KhamPha>
 

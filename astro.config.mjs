@@ -7,6 +7,10 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { withSuppressedKatexMetricWarnings } from './src/lib/katex-silence.mjs';
 
+/**
+ * @param {Readonly<import('rehype-katex').Options>} options
+ * @returns {ReturnType<typeof rehypeKatex>}
+ */
 function rehypeKatexWithoutMetricWarnings(options) {
   const transform = rehypeKatex(options);
 

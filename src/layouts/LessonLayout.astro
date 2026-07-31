@@ -246,7 +246,7 @@ const availableHrefs = new Set(curriculumHrefs);
 
   <script>
     // ── Helpers ──────────────────────────────────────────────────────────────
-    function slugify(text) {
+    function slugify(text: string) {
       return text
         .toLowerCase()
         .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // bỏ dấu
@@ -378,9 +378,9 @@ const availableHrefs = new Set(curriculumHrefs);
     // ── Toast "bài học đang soạn" ───────────────────────────────────────
     const toast = document.getElementById('coming-soon-toast');
     const toastMsg = document.getElementById('coming-soon-toast-msg');
-    let toastTimer = null;
+    let toastTimer: ReturnType<typeof setTimeout> | undefined;
 
-    function showComingSoonToast(title) {
+    function showComingSoonToast(title: string) {
       if (!toast) return;
       if (toastMsg) toastMsg.textContent = `"${title}" đang được soạn...`;
       toast.style.transform = 'translateX(-50%) translateY(0)';
@@ -392,7 +392,7 @@ const availableHrefs = new Set(curriculumHrefs);
       }, 2800);
     }
 
-    document.querySelectorAll('a.lesson-coming-soon').forEach(link => {
+    document.querySelectorAll<HTMLAnchorElement>('a.lesson-coming-soon').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const title = link.dataset.title || 'Bài học';

@@ -21,19 +21,20 @@ export default function QuadraticEquationSolver() {
     }
 
     const delta = numB * numB - 4 * numA * numC;
-    let solutions = [];
+    let solutions: number[] = [];
     let message = '';
     
     // Viète
     const sum = -numB / numA;
     const prod = numC / numA;
 
-    if (delta > 0) {
+    const eps = 1e-10;
+    if (delta > eps) {
       const x1 = (-numB + Math.sqrt(delta)) / (2 * numA);
       const x2 = (-numB - Math.sqrt(delta)) / (2 * numA);
       solutions = [x1, x2];
       message = "Phương trình có 2 nghiệm phân biệt";
-    } else if (delta === 0) {
+    } else if (Math.abs(delta) <= eps) {
       const x = -numB / (2 * numA);
       solutions = [x];
       message = "Phương trình có nghiệm kép";
@@ -90,7 +91,7 @@ export default function QuadraticEquationSolver() {
             <p className="mb-2"><span className="font-semibold text-gray-700">1. Tính Δ (Delta):</span> Δ = b² - 4ac = ({result.b})² - 4·({result.a})·({result.c}) = <b className="text-lg">{result.delta}</b></p>
             
             <p className="mb-2">
-              <span className="font-semibold text-gray-700">2. Số nghiệm:</span> Vì Δ {result.delta > 0 ? '> 0' : result.delta === 0 ? '= 0' : '< 0'}, {result.message.toLowerCase()}.
+              <span className="font-semibold text-gray-700">2. Số nghiệm:</span> Vì Δ {result.delta > 1e-10 ? '> 0' : Math.abs(result.delta) <= 1e-10 ? '= 0' : '< 0'}, {result.message.toLowerCase()}.
             </p>
             
             {result.solutions.length > 0 && (

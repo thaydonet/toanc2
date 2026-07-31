@@ -11,9 +11,10 @@ interface Props {
 export default function MathFormula({ math, display = false, className }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
-    if (ref.current) {
+    const el = ref.current;
+    if (el) {
       withSuppressedKatexMetricWarnings(() => {
-        katex.render(math, ref.current, {
+        katex.render(math, el, {
           displayMode: display,
           throwOnError: false,
           output: 'htmlAndMathml',
