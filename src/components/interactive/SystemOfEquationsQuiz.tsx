@@ -131,19 +131,20 @@ const QuizCard = ({ problem, onAnswer, feedback, index }: {
         alignItems: 'center', justifyContent: 'center',
         padding: '16px', borderRadius: '12px',
         backgroundColor: 'white', border: '1px solid #e5e7eb',
-        marginBottom: '16px',
+        marginBottom: '16px', maxWidth: '100%', overflowX: 'auto',
       }}>
         <div style={{ fontSize: '13px', color: '#6b7280', marginBottom: '8px' }}>
           {isIdentify ? 'Hệ phương trình' : 'Hệ phương trình'}
         </div>
         <div style={{
-          fontSize: '17px', fontWeight: 'bold', padding: '10px 20px',
+          fontSize: '17px', fontWeight: 'bold', padding: '10px 16px',
           borderRadius: '8px', backgroundColor: colors.eqBg, color: colors.eqColor,
+          maxWidth: '100%', overflowX: 'auto', textAlign: 'center',
         }}>
           <KatexDisplay math={problem.eqStr} block={true} />
         </div>
         {!isIdentify && (
-          <div style={{ marginTop: '12px', fontSize: '14px', color: '#6b7280' }}>
+          <div style={{ marginTop: '12px', fontSize: '14px', color: '#6b7280', textAlign: 'center' }}>
             Kiểm tra cặp số:{' '}
             <span style={{ fontWeight: 'bold', fontSize: '16px' }}>
               <KatexDisplay math={`(${problem.x}; ${problem.y})`} />
@@ -153,23 +154,23 @@ const QuizCard = ({ problem, onAnswer, feedback, index }: {
       </div>
 
       {/* Buttons */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '24px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
         <button
           onClick={() => onAnswer(true)}
           onMouseEnter={() => setHoveredBtn('true')}
           onMouseLeave={() => setHoveredBtn(null)}
           style={{
-            padding: '10px 32px',
+            padding: '8px 24px',
             borderRadius: '999px',
             fontWeight: 'bold',
-            fontSize: '16px',
+            fontSize: '15px',
             color: 'white',
             backgroundColor: hoveredBtn === 'true' ? '#16a34a' : '#22c55e',
             border: 'none',
             borderBottom: '4px solid #15803d',
             boxShadow: '0 4px 0 #15803d',
             cursor: 'pointer',
-            minWidth: '100px',
+            minWidth: '90px',
             transform: hoveredBtn === 'true' ? 'translateY(2px)' : 'translateY(0)',
             transition: 'all 0.15s ease',
             outline: 'none',
@@ -182,17 +183,17 @@ const QuizCard = ({ problem, onAnswer, feedback, index }: {
           onMouseEnter={() => setHoveredBtn('false')}
           onMouseLeave={() => setHoveredBtn(null)}
           style={{
-            padding: '10px 32px',
+            padding: '8px 24px',
             borderRadius: '999px',
             fontWeight: 'bold',
-            fontSize: '16px',
+            fontSize: '15px',
             color: 'white',
             backgroundColor: hoveredBtn === 'false' ? '#dc2626' : '#ef4444',
             border: 'none',
             borderBottom: '4px solid #b91c1c',
             boxShadow: '0 4px 0 #b91c1c',
             cursor: 'pointer',
-            minWidth: '100px',
+            minWidth: '90px',
             transform: hoveredBtn === 'false' ? 'translateY(2px)' : 'translateY(0)',
             transition: 'all 0.15s ease',
             outline: 'none',
@@ -274,9 +275,8 @@ const SystemOfEquationsQuiz = () => {
   const totalScore = scores[0] + scores[1];
 
   return (
-    <div style={{
+    <div className="p-4 sm:p-6" style={{
       backgroundColor: '#f8fafc',
-      padding: '24px',
       borderRadius: '24px',
       border: '1px solid #e2e8f0',
       boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)',
@@ -294,7 +294,7 @@ const SystemOfEquationsQuiz = () => {
       }} />
 
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', gap: '8px' }}>
         <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 'bold', color: '#334155' }}>
           📘 Luyện tập - Hệ hai phương trình bậc nhất hai ẩn
         </h3>
@@ -304,17 +304,14 @@ const SystemOfEquationsQuiz = () => {
           fontWeight: 'bold', fontSize: '14px',
           boxShadow: '0 2px 6px rgba(124,58,237,0.4)',
           display: 'flex', alignItems: 'center', gap: '6px',
+          flexShrink: 0,
         }}>
           <span>🏆</span><span>{totalScore}</span>
         </div>
       </div>
 
-      {/* Grid 2 columns */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '16px',
-      }}>
+      {/* Grid 1 column on mobile, 2 columns on desktop */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <QuizCard
           problem={problems[0]}
           onAnswer={(choice) => handleAnswer(0, choice)}
