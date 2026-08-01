@@ -354,7 +354,8 @@ strong {
 .sidebar-lesson-list a.active {
   background: var(--kntt-blue-100);
   color: var(--kntt-blue-800);
-  font-weight: 700;
+  font-weight: 800;
+  box-shadow: inset 3px 0 0 var(--kntt-blue-800);
 }
 
 /* Bài chưa có link thực — vẫn xanh, click sẽ toast */

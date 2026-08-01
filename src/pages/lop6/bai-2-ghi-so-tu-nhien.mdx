@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 2: Cách ghi số tự nhiên"
-description: "Hệ thập phân và cách ghi số tự nhiên - Toán 6 KNTT Chương 1"
+description: "Hệ thập phân, phân tích số theo hàng, đọc và viết số tự nhiên, số La Mã - Toán 6 KNTT Chương 1"
 grade: "Lớp 6"
 chapter: "Chương I: Tập hợp các số tự nhiên"
 currentSlug: "lop6/bai-2-ghi-so-tu-nhien"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,123 +13,153 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import SoThapPhanInteractive from '../../components/interactive/SoThapPhanInteractive';
 
 export const quizData = [
   {
     type: "mcq",
     question: "Hệ thập phân sử dụng bao nhiêu chữ số?",
-    option_a: "$10$ chữ số",
-    option_b: "$9$ chữ số",
-    option_c: "$11$ chữ số",
-    option_d: "$8$ chữ số",
+    option_a: "$10$ chữ số: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9",
+    option_b: "$9$ chữ số: 1, 2, 3, 4, 5, 6, 7, 8, 9",
+    option_c: "$11$ chữ số: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+    option_d: "$8$ chữ số: 0, 1, 2, 3, 4, 5, 6, 7",
     correct_option: "A",
-    explanation: "Hệ thập phân sử dụng 10 chữ số: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.",
+    explanation: "Hệ thập phân sử dụng đúng 10 chữ số: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Lưu ý: 10 không phải là chữ số mà là một số có 2 chữ số.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Trong số $345$, chữ số $4$ ở hàng nào?",
-    option_a: "Hàng chục",
-    option_b: "Hàng trăm",
-    option_c: "Hàng đơn vị",
-    option_d: "Hàng nghìn",
+    question: "Trong số $3456$, chữ số $4$ nằm ở hàng nào và có giá trị bao nhiêu?",
+    option_a: "Hàng trăm, giá trị $400$",
+    option_b: "Hàng chục, giá trị $40$",
+    option_c: "Hàng nghìn, giá trị $4000$",
+    option_d: "Hàng đơn vị, giá trị $4$",
     correct_option: "A",
-    explanation: "Trong số 345, chữ số 4 ở hàng chục.",
+    explanation: "Trong số 3456, viết theo hàng: 3 (nghìn) 4 (trăm) 5 (chục) 6 (đơn vị). Chữ số 4 ở hàng trăm, giá trị = 4 × 100 = 400.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Số $2567$ được viết dưới dạng tổng là:",
-    option_a: "$2000 + 500 + 60 + 7$",
-    option_b: "$2 + 5 + 6 + 7$",
-    option_c: "$25 + 67$",
-    option_d: "$256 + 7$",
-    correct_option: "A",
-    explanation: "$2567 = 2 \\times 1000 + 5 \\times 100 + 6 \\times 10 + 7 = 2000 + 500 + 60 + 7$.",
+    question: "Số $5008$ được viết dưới dạng tổng các thừa số là:",
+    option_a: "$5000 + 0 + 0 + 8$",
+    option_b: "$5000 + 8$",
+    option_c: "$5 \\times 1000 + 8 \\times 1$",
+    option_d: "Cả A, B và C đều đúng",
+    correct_option: "D",
+    explanation: "Số 5008 có 5 ở hàng nghìn và 8 ở hàng đơn vị, các hàng trăm và chục bằng 0. Vậy 5008 = 5000 + 8 = 5×1000 + 8×1.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Số La Mã XIV có giá trị bằng:",
-    option_a: "$14$",
-    option_b: "$15$",
-    option_c: "$16$",
-    option_d: "$13$",
+    question: "Số La Mã XL có giá trị bằng bao nhiêu?",
+    option_a: "$60$",
+    option_b: "$40$",
+    option_c: "$15$",
+    option_d: "$90$",
+    correct_option: "B",
+    explanation: "XL: Ký hiệu X (10) đứng trước L (50) → L - X = 50 - 10 = 40.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Viết số 2025 bằng số La Mã là:",
+    option_a: "$\\text{MMXXV}$",
+    option_b: "$\\text{MMLV}$",
+    option_c: "$\\text{MMXXIV}$",
+    option_d: "$\\text{MCMXXV}$",
     correct_option: "A",
-    explanation: "XIV = X + IV = 10 + 4 = 14.",
+    explanation: "2025 = 2000 + 20 + 5 = M + M + X + X + V = MMXXV.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Những chữ số nào thuộc hệ thập phân?",
-    option_a: "$0$",
-    option_b: "$5$",
-    option_c: "$9$",
-    option_d: "$10$",
-    correct_option: "A,B,C",
-    explanation: "Hệ thập phân gồm 10 chữ số từ 0 đến 9. Số 10 không phải là chữ số.",
+    question: "Những phát biểu nào sau đây là **SAI** về hệ thập phân?",
+    option_a: "Chữ số 10 là chữ số lớn nhất trong hệ thập phân",
+    option_b: "Mỗi vị trí có giá trị gấp 10 lần vị trí bên trái",
+    option_c: "Hệ thập phân có 10 chữ số từ 0 đến 9",
+    option_d: "Số 100 có 3 chữ số",
+    correct_option: "A,B",
+    explanation: "A SAI: 10 không phải là chữ số. B SAI: Vị trí bên PHẢI mới có giá trị gấp 10 lần (đơn vị × 10 = chục). C và D đúng.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Số $3000 + 400 + 20 + 5$ bằng bao nhiêu?",
-    correct_option: "3425",
-    explanation: "$3000 + 400 + 20 + 5 = 3425$.",
+    question: "Phân tích số $7205$ theo hàng: $7205 = \\text{?}$",
+    correct_option: "7000+200+5",
+    explanation: "$7207 = 7 \\times 1000 + 2 \\times 100 + 0 \\times 10 + 5 \\times 1 = 7000 + 200 + 5$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Số $!a#5!234$ có chữ số hàng nghìn là:",
-    option_a: "$!a!$",
-    option_b: "$2$",
-    option_c: "$3$",
-    option_d: "$4$",
-    correct_option: "A",
-    explanation: "Chữ số hàng nghìn là chữ số đầu tiên từ trái sang: $!a!$.",
+    question: "Số $XIII$ bằng bao nhiêu?",
+    option_a: "$11$",
+    option_b: "$13$",
+    option_c: "$14$",
+    option_d: "$12$",
+    correct_option: "B",
+    explanation: "$XIII = X + I + I + I = 10 + 1 + 1 + 1 = 13$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số $!a#4!000 + !b#3!00 + !c#2!0 + !d#1!$ bằng:",
+    option_a: "$!a!!b!!c!!d!$",
+    option_b: "$!tinh: !a! * 1000 + !b! * 100 + !c! * 10 + !d!!$",
+    option_c: "$!tinh: !a! + !b! + !c! + !d!!$",
+    option_d: "$!tinh: (!a! + !b! + !c! + !d!) * 10!!$",
+    correct_option: "B",
+    explanation: "Tổng = $!a!000 + !b!00 + !c!0 + !d! = !tinh: !a! * 1000 + !b! * 100 + !c! * 10 + !d!!$.",
     difficulty_level: "easy",
     is_dynamic: true,
   },
   {
     type: "mcq",
-    question: "Số $!a#3!000 + !b#400! + !c#50! + !d#6!$ bằng:",
-    option_a: "$!tinh: !a! * 1000 + !b! + !c! + !d!!$",
-    option_b: "$!tinh: !a! + !b! + !c! + !d!!$",
-    option_c: "$!a!!b!!c!!d!$",
-    option_d: "$!tinh: !a! * !b! * !c! * !d!!$",
+    question: "Số La Mã $CXLIX$ có giá trị bằng:",
+    option_a: "$149$",
+    option_b: "$159$",
+    option_c: "$161$",
+    option_d: "$119$",
     correct_option: "A",
-    explanation: "Tổng = $!a!000 + !b! + !c! + !d! = !tinh: !a! * 1000 + !b! + !c! + !d!!$.",
+    explanation: "$CXLIX = C + XL + IX = 100 + 40 + 9 = 149$.",
     difficulty_level: "medium",
-    is_dynamic: true,
+    is_dynamic: false,
   },
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🔢 Cách ghi số — Ngôn ngữ toán học</h3>
+<h3 id="mo-dau">🔢 Khởi động: Số tự nhiên quanh ta</h3>
 
-Số được ghi theo nhiều cách khác nhau trong lịch sử!
+Trong cuộc sống, chúng ta sử dụng số tự nhiên ở khắp mọi nơi:
 
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
-    <strong>Hệ thập phân</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">0, 1, 2, 3, 4, 5, 6, 7, 8, 9</p>
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #bfdbfe;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">🏠</div>
+    <strong style="color:#1e3a8a;font-size:1.05rem;">Số nhà</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Nhà số 42 đường Lê Lợi</p>
   </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏛️</div>
-    <strong>Số La Mã</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">I, V, X, L, C, D, M</p>
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #a7f3d0;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">📞</div>
+    <strong style="color:#065f46;font-size:1.05rem;">Số điện thoại</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">1900 1234 (số hotline)</p>
   </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌍</div>
-    <strong>Các hệ khác</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Nhị phân, bát phân...</p>
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #fde68a;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">📚</div>
+    <strong style="color:#92400e;font-size:1.05rem;">Sách vở</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cuốn sách có 256 trang</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #c4b5fd;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">🏛️</div>
+    <strong style="color:#5b21b6;font-size:1.05rem;">Đồng hồ</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đồng hồ mặt La Mã XII = 12 giờ</p>
   </div>
 </div>
 
@@ -138,315 +167,677 @@ Số được ghi theo nhiều cách khác nhau trong lịch sử!
 
 <KhamPha>
 
-<h3 id="he-thap-phan">📖 1. Hệ thập phân</h3>
+## 📚 I. LÝ THUYẾT BÀI HỌC
+
+<h3 id="he-thap-phan">1. Hệ thập phân và các chữ số</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Hệ thập phân là hệ đếm sử dụng 10 chữ số:
+**Định nghĩa:** Hệ thập phân là hệ đếm phổ biến nhất, sử dụng **10 chữ số** từ 0 đến 9:
 
-$0, 1, 2, 3, 4, 5, 6, 7, 8, 9$
+$$\text{Các chữ số: } 0, \ 1, \ 2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9$$
 
-</div>
-
-**Đặc điểm:**
-- Mỗi vị trí có giá trị gấp 10 lần vị trí bên phải
-- Vị trí của chữ số quyết định giá trị của nó
-
-**Bảng giá trị theo vị trí:**
-
-<div style="overflow-x:auto;margin:2rem 0;">
-<table style="width:100%;border-collapse:collapse;">
-<thead>
-<tr style="background:#f3f4f6;">
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Hàng</th>
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Giá trị</th>
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Ví dụ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Đơn vị</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$1$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$7 = 7 \times 1$</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Chục</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$10$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$30 = 3 \times 10$</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Trăm</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$100$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$500 = 5 \times 100$</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Nghìn</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$1000$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$2000 = 2 \times 1000$</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Vạn</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$10000$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$40000 = 4 \times 10000$</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<h3 id="phan-tich" style="margin-top:2rem;">🔍 2. Phân tích số theo hàng</h3>
-
-**Ví dụ 1:** Phân tích số $3456$
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$3456 = 3 \times 1000 + 4 \times 100 + 5 \times 10 + 6 \times 1$
-
-$= 3000 + 400 + 50 + 6$
-
-**Giải thích:**
-- Chữ số $3$ ở hàng nghìn: $3 \times 1000 = 3000$
-- Chữ số $4$ ở hàng trăm: $4 \times 100 = 400$
-- Chữ số $5$ ở hàng chục: $5 \times 10 = 50$
-- Chữ số $6$ ở hàng đơn vị: $6 \times 1 = 6$
+**Lưu ý quan trọng:** "10" **không phải** là một chữ số mà là một số có 2 chữ số (1 và 0).
 
 </div>
-
-**Ví dụ 2:** Viết số có:
-- 5 nghìn
-- 2 trăm
-- 0 chục
-- 8 đơn vị
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Số cần tìm: $5208$
-
-$5208 = 5 \times 1000 + 2 \times 100 + 0 \times 10 + 8 \times 1$
-
-</div>
-
-<h3 id="so-la-ma" style="margin-top:2rem;">🏛️ 3. Số La Mã</h3>
 
 <div class="box-dinh-ly">
 
-**Các ký hiệu cơ bản:**
-
-| Ký hiệu | I | V | X | L | C | D | M |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Giá trị | 1 | 5 | 10 | 50 | 100 | 500 | 1000 |
-
-**Quy tắc:**
-- Ký hiệu nhỏ đứng sau ký hiệu lớn: **cộng**
-- Ký hiệu nhỏ đứng trước ký hiệu lớn: **trừ**
+📌 **ĐẶC ĐIỂM CỦA HỆ THẬP PHÂN:**
+1. Mỗi vị trí của chữ số có **giá trị gấp 10 lần** vị trí đứng ngay bên **phải** nó.
+2. Vị trí chữ số quyết định giá trị của chữ số đó trong số.
+3. Ta có thể viết số dưới dạng tổng các thừa số của 10.
 
 </div>
 
-**Ví dụ 3:** Đọc số La Mã
+**Ví dụ 1:** Xác định các chữ số trong hệ thập phân.
+- Các chữ số là: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+- Số 10 có 2 chữ số: 1 và 0. Số 2025 có 4 chữ số: 2, 0, 2, 5.
+
+**Ví dụ 2:** Bảng giá trị theo vị trí các hàng chữ số.
 
 <div style="overflow-x:auto;margin:1.5rem 0;">
 <table style="width:100%;border-collapse:collapse;">
 <thead>
-<tr style="background:#f3f4f6;">
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Số La Mã</th>
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Cách đọc</th>
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Giá trị</th>
+<tr style="background:#eff6ff;">
+<th style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;font-weight:700;color:#1d4ed8;">Hàng chữ số</th>
+<th style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;font-weight:700;color:#1d4ed8;">Đơn vị</th>
+<th style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;font-weight:700;color:#1d4ed8;">Chục</th>
+<th style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;font-weight:700;color:#1d4ed8;">Trăm</th>
+<th style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;font-weight:700;color:#1d4ed8;">Nghìn</th>
+<th style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;font-weight:700;color:#1d4ed8;">Vạn</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">III</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">I + I + I</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">3</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;font-weight:600;">Giá trị</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">1</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">10</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">100</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">1.000</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">10.000</td>
 </tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">IV</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">V - I</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">4</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">VI</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">V + I</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">6</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">IX</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">X - I</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">9</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">XIV</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">X + (V - I)</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">14</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">XIX</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">X + (X - I)</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">19</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">XL</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">L - X</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">40</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">XC</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">C - X</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">90</td>
+<tr style="background:#f0f9ff;">
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;font-weight:600;">Ví dụ</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">7 × 1 = 7</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">3 × 10 = 30</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">5 × 100 = 500</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">2 × 1.000 = 2.000</td>
+<td style="border:1px solid #93c5fd;padding:0.75rem;text-align:center;">4 × 10.000 = 40.000</td>
 </tr>
 </tbody>
 </table>
 </div>
 
-**Ví dụ 4:** Viết số La Mã
+**Ví dụ 3:** Xác định chữ số và giá trị trong số 4.567.
+- Chữ số 4 ở hàng nghìn → giá trị: 4 × 1.000 = 4.000
+- Chữ số 5 ở hàng trăm → giá trị: 5 × 100 = 500
+- Chữ số 6 ở hàng chục → giá trị: 6 × 10 = 60
+- Chữ số 7 ở hàng đơn vị → giá trị: 7 × 1 = 7
 
-- $15 = 10 + 5 = \text{XV}$
-- $24 = 20 + 4 = \text{XXIV}$
-- $49 = 40 + 9 = \text{XLIX}$
-- $2023 = 2000 + 20 + 3 = \text{MMXXIII}$
+**🎨 Hình vẽ minh họa 1: Giá trị chữ số theo vị trí**
 
-</KhamPha>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="500" height="120" viewBox="0 0 500 120" style="background:#fff;border-radius:12px;border:2px solid #e2e8f0;">
+  {/* Number: 4567 */}
+  <text x="250" y="25" font-size="16" font-weight="bold" text-anchor="middle" fill="#64748b">Số: 4567</text>
 
-<LuyenTap>
+  {/* Digits */}
+  <rect x="105" y="40" width="70" height="40" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="140" y="68" font-size="28" font-weight="bold" text-anchor="middle" fill="#1d4ed8">4</text>
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+  <rect x="195" y="40" width="70" height="40" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="230" y="68" font-size="28" font-weight="bold" text-anchor="middle" fill="#15803d">5</text>
 
-<QuizSession client:load questions={quizData} />
+  <rect x="285" y="40" width="70" height="40" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
+  <text x="320" y="68" font-size="28" font-weight="bold" text-anchor="middle" fill="#b45309">6</text>
 
-</LuyenTap>
+  <rect x="375" y="40" width="70" height="40" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+  <text x="410" y="68" font-size="28" font-weight="bold" text-anchor="middle" fill="#dc2626">7</text>
 
-<VanDung>
+  {/* Labels */}
+  <text x="140" y="100" font-size="12" font-weight="bold" text-anchor="middle" fill="#1d4ed8">Nghìn</text>
+  <text x="230" y="100" font-size="12" font-weight="bold" text-anchor="middle" fill="#15803d">Trăm</text>
+  <text x="320" y="100" font-size="12" font-weight="bold" text-anchor="middle" fill="#b45309">Chục</text>
+  <text x="410" y="100" font-size="12" font-weight="bold" text-anchor="middle" fill="#dc2626">Đơn vị</text>
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+  {/* Values */}
+  <text x="140" y="115" font-size="10" text-anchor="middle" fill="#64748b">× 1.000</text>
+  <text x="230" y="115" font-size="10" text-anchor="middle" fill="#64748b">× 100</text>
+  <text x="320" y="115" font-size="10" text-anchor="middle" fill="#64748b">× 10</text>
+  <text x="410" y="115" font-size="10" text-anchor="middle" fill="#64748b">× 1</text>
+</svg>
+</div>
 
-**📝 Bài toán 1:** Một cuốn sách có 2567 trang.
+---
 
-a) Phân tích số 2567 theo hàng.
+<h3 id="phan-tich-so" style="margin-top:2.5rem;">2. Phân tích số theo hàng và đọc số tự nhiên</h3>
 
-b) Chữ số 5 ở hàng nào?
+<div class="box-dinh-nghia">
 
-c) Giá trị của chữ số 5 là bao nhiêu?
+**Phân tích số theo hàng** là viết một số dưới dạng tổng các thừa số của 10 dựa trên vị trí chữ số.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) $2567 = 2 \times 1000 + 5 \times 100 + 6 \times 10 + 7 \times 1$
-
-$= 2000 + 500 + 60 + 7$
-
-b) Chữ số 5 ở hàng trăm
-
-c) Giá trị của chữ số 5 là $5 \times 100 = 500$
+**Công thức:** Số = (chữ số hàng nghìn × 1000) + (chữ số hàng trăm × 100) + (chữ số hàng chục × 10) + (chữ số hàng đơn vị × 1)
 
 </div>
 
-**📝 Bài toán 2:** Đồng hồ trên tháp chuông ghi số La Mã XII.
+<div class="box-dinh-ly">
 
-a) Số XII có giá trị bằng bao nhiêu?
+📌 **CÁCH ĐỌC SỐ TỰ NHIÊN:**
+1. Đọc từng **bộ ba chữ số** từ trái sang phải.
+2. Bộ ba đầu tiên đọc theo kiểu "X trăm Y chục Z".
+3. Các bộ ba tiếp theo đọc kèm đơn vị: **nghìn**, **vạn**, **triệu**, **tỷ**.
+4. Chữ số 0 ở giữa bộ ba đọc là **"linh"**.
 
-b) Viết số 15 bằng số La Mã.
+</div>
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 1:** Phân tích số 3.456 theo hàng.
+$$3.456 = 3 \times 1.000 + 4 \times 100 + 5 \times 10 + 6 \times 1 = 3.000 + 400 + 50 + 6$$
+- Đọc: Ba nghìn bốn trăm năm mươi sáu.
 
-**Giải:**
+**Ví dụ 2:** Phân tích số 20.408 theo hàng.
+$$20.408 = 2 \times 10.000 + 0 \times 1.000 + 4 \times 100 + 0 \times 10 + 8 \times 1$$
+$$= 20.000 + 0 + 400 + 0 + 8$$
+- Đọc: Hai mươi nghìn bốn trăm linh tám.
 
-a) XII = X + I + I = 10 + 1 + 1 = 12
+**Ví dụ 3:** Viết số có: 3 triệu, 5 nghìn, 7 trăm, 0 chục, 2 đơn vị.
+- Số cần viết: 3.005.702
+- Phân tích: 3 × 1.000.000 + 0 × 100.000 + 0 × 10.000 + 5 × 1.000 + 7 × 100 + 0 × 10 + 2 × 1
+- Đọc: Ba triệu năm nghìn bảy trăm linh hai.
 
-b) 15 = 10 + 5 = XV
+**🎨 Hình vẽ minh họa 2: Cấu trúc bộ ba chữ số**
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="520" height="140" viewBox="0 0 520 140" style="background:#fff;border-radius:12px;border:2px solid #e2e8f0;">
+  {/* Blocks */}
+  <rect x="20" y="20" width="140" height="50" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="42" font-size="14" font-weight="bold" text-anchor="middle" fill="#1d4ed8">3.456.789</text>
+  <text x="90" y="58" font-size="10" text-anchor="middle" fill="#475569">Triệu</text>
+
+  <rect x="170" y="20" width="100" height="50" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="220" y="42" font-size="14" font-weight="bold" text-anchor="middle" fill="#15803d">3.456</text>
+  <text x="220" y="58" font-size="10" text-anchor="middle" fill="#475569">Nghìn</text>
+
+  <rect x="280" y="20" width="100" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="330" y="42" font-size="14" font-weight="bold" text-anchor="middle" fill="#b45309">789</text>
+  <text x="330" y="58" font-size="10" text-anchor="middle" fill="#475569">(đơn vị)</text>
+
+  {/* Arrows */}
+  <text x="160" y="50" font-size="20" fill="#64748b">→</text>
+  <text x="275" y="50" font-size="20" fill="#64748b">→</text>
+
+  {/* Bottom text */}
+  <text x="260" y="100" font-size="13" font-weight="bold" text-anchor="middle" fill="#1e293b">Đọc: Ba triệu bốn trăm năm mươi sáu nghìn</text>
+  <text x="260" y="118" font-size="13" font-weight="bold" text-anchor="middle" fill="#1e293b">bảy trăm tám mươi chín</text>
+</svg>
+</div>
+
+---
+
+<h3 id="viet-so" style="margin-top:2.5rem;">3. Viết số tự nhiên từ phân tích theo hàng</h3>
+
+<div class="box-dinh-ly">
+
+📌 **PHƯƠNG PHÁP VIẾT SỐ TỪ PHÂN TÍCH:**
+1. Xác định giá trị từng hàng chữ số từ phân tích đã cho.
+2. Viết chữ số tương ứng vào đúng vị trí (hàng nghìn, hàng trăm, hàng chục, hàng đơn vị).
+3. Nếu một hàng nào đó có hệ số 0, ta viết chữ số 0 vào vị trí đó.
+
+</div>
+
+**Ví dụ 1:** Viết số có: 4 nghìn, 3 trăm, 0 chục, 7 đơn vị.
+- 4 nghìn → chữ số 4 ở hàng nghìn
+- 3 trăm → chữ số 3 ở hàng trăm
+- 0 chục → chữ số 0 ở hàng chục
+- 7 đơn vị → chữ số 7 ở hàng đơn vị
+- Số cần viết: **4.307**
+
+**Ví dụ 2:** Viết số có: 2 vạn, 0 nghìn, 5 trăm, 8 chục, 1 đơn vị.
+- 2 vạn → chữ số 2 ở hàng vạn (chục nghìn)
+- 0 nghìn → chữ số 0 ở hàng nghìn
+- 5 trăm → chữ số 5 ở hàng trăm
+- 8 chục → chữ số 8 ở hàng chục
+- 1 đơn vị → chữ số 1 ở hàng đơn vị
+- Số cần viết: **20.581**
+
+**Ví dụ 3:** Viết số từ tổng: $5 \times 10.000 + 3 \times 1.000 + 0 \times 100 + 2 \times 10 + 9 \times 1$
+- = 50.000 + 3.000 + 0 + 20 + 9
+- Số cần viết: **53.029**
+
+**🎨 Hình vẽ minh họa 3: Các cách biểu diễn cùng một số**
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:1rem;margin:1.5rem 0;">
+  <div style="background:#f0f9ff;border:2px solid #bae6fd;border-radius:12px;padding:1.25rem;text-align:center;">
+    <span style="font-size:1.8rem;">📝</span>
+    <h4 style="margin:.5rem 0;color:#0369a1;font-size:1rem;">Viết số thông thường</h4>
+    <div style="background:white;padding:.75rem;border-radius:8px;font-size:1.3rem;color:#0284c7;font-weight:bold;margin-top:.5rem;">
+      34.567
+    </div>
+  </div>
+
+  <div style="background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px;padding:1.25rem;text-align:center;">
+    <span style="font-size:1.8rem;">🔍</span>
+    <h4 style="margin:.5rem 0;color:#15803d;font-size:1rem;">Phân tích theo hàng</h4>
+    <div style="background:white;padding:.75rem;border-radius:8px;font-size:1rem;color:#16a34a;font-weight:bold;margin-top:.5rem;">
+      30.000 + 4.000 + 500 + 60 + 7
+    </div>
+  </div>
+
+  <div style="background:#fff7ed;border:2px solid #fdba74;border-radius:12px;padding:1.25rem;text-align:center;">
+    <span style="font-size:1.8rem;">✖️</span>
+    <h4 style="margin:.5rem 0;color:#c2410c;font-size:1rem;">Dạng nhân - tổng</h4>
+    <div style="background:white;padding:.75rem;border-radius:8px;font-size:1rem;color:#ea580c;font-weight:bold;margin-top:.5rem;">
+      3×10.000 + 4×1.000 + 5×100 + 6×10 + 7×1
+    </div>
+  </div>
+
+  <div style="background:#fdf2f8;border:2px solid #f9a8d4;border-radius:12px;padding:1.25rem;text-align:center;">
+    <span style="font-size:1.8rem;">📖</span>
+    <h4 style="margin:.5rem 0;color:#be185d;font-size:1rem;">Đọc số</h4>
+    <div style="background:white;padding:.75rem;border-radius:8px;font-size:1rem;color:#db2777;font-weight:bold;margin-top:.5rem;">
+      Ba mươi bốn nghìn năm trăm sáu mươi bảy
+    </div>
+  </div>
+</div>
+
+---
+
+<h3 id="so-la-ma" style="margin-top:2.5rem;">4. Số La Mã</h3>
+
+<div class="box-dinh-nghia">
+
+Số La Mã là hệ đếm được phát minh bởi người La Mã cổ đại, sử dụng **7 ký hiệu cơ bản**:
+
+| Ký hiệu | **I** | **V** | **X** | **L** | **C** | **D** | **M** |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Giá trị** | 1 | 5 | 10 | 50 | 100 | 500 | 1000 |
+
+</div>
+
+<div class="box-dinh-ly">
+
+📌 **QUY TẮC VIẾT SỐ LA MÃ:**
+1. **Quy tắc cộng:** Ký hiệu nhỏ đứng **sau** ký hiệu lớn → **cộng** giá trị.
+   - VI = V + I = 5 + 1 = 6
+   - XIII = X + I + I + I = 10 + 3 = 13
+2. **Quy tắc trừ:** Ký hiệu nhỏ đứng **trước** ký hiệu lớn → **trừ** giá trị.
+   - IV = V - I = 5 - 1 = 4
+   - IX = X - I = 10 - 1 = 9
+   - XL = L - X = 50 - 10 = 40
+   - XC = C - X = 100 - 10 = 90
+3. **Quy tắc viết:** Ký hiệu lặp lại tối đa **3 lần**.
+
+</div>
+
+**Ví dụ 1:** Đọc và tính giá trị các số La Mã sau:
+a) $XV = 10 + 5 = 15$ (mười lăm)
+b) $XIV = 10 + (5 - 1) = 14$ (mười bốn)
+c) $XXIX = 10 + 10 + (10 - 1) = 29$ (hai mươi chín)
+
+**Ví dụ 2:** Viết các số sau bằng số La Mã:
+a) $6 = 5 + 1 = \text{VI}$
+b) $11 = 10 + 1 = \text{XI}$
+c) $44 = 40 + 4 = \text{XL} + \text{IV} = \text{XLIV}$
+d) $199 = 100 + 90 + 9 = \text{C} + \text{XC} + \text{IX} = \text{CXCIX}$
+
+**Ví số 3:** Viết năm 2026 bằng số La Mã.
+$$2026 = 2000 + 20 + 6 = \text{MM} + \text{XX} + \text{VI} = \text{MMXXVI}$$
+
+**🎨 Hình vẽ minh họa 4: Bảng tra cứu số La Mã từ 1 đến 30**
+
+<div style="overflow-x:auto;margin:1.5rem 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+<thead>
+<tr style="background:#eff6ff;">
+<th style="border:1px solid #93c5fd;padding:0.5rem;text-align:center;">1-10</th>
+<th style="border:1px solid #93c5fd;padding:0.5rem;text-align:center;">11-20</th>
+<th style="border:1px solid #93c5fd;padding:0.5rem;text-align:center;">21-30</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">I = 1</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XI = 11</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXI = 21</td>
+</tr>
+<tr style="background:#f0f9ff;">
+<td style="border:1px solid #93c5fd;padding:0.5rem;">II = 2</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XII = 12</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXII = 22</td>
+</tr>
+<tr>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">III = 3</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XIII = 13</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXIII = 23</td>
+</tr>
+<tr style="background:#f0f9ff;">
+<td style="border:1px solid #93c5fd;padding:0.5rem;">IV = 4</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XIV = 14</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXIV = 24</td>
+</tr>
+<tr>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">V = 5</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XV = 15</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXV = 25</td>
+</tr>
+<tr style="background:#f0f9ff;">
+<td style="border:1px solid #93c5fd;padding:0.5rem;">VI = 6</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XVI = 16</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXVI = 26</td>
+</tr>
+<tr>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">VII = 7</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XVII = 17</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXVII = 27</td>
+</tr>
+<tr style="background:#f0f9ff;">
+<td style="border:1px solid #93c5fd;padding:0.5rem;">VIII = 8</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XVIII = 18</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXVIII = 28</td>
+</tr>
+<tr>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">IX = 9</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XIX = 19</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXIX = 29</td>
+</tr>
+<tr style="background:#f0f9ff;">
+<td style="border:1px solid #93c5fd;padding:0.5rem;">X = 10</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XX = 20</td>
+<td style="border:1px solid #93c5fd;padding:0.5rem;">XXX = 30</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+---
+
+## 🎯 II. CÁC DẠNG TOÁN THƯỜNG GẶP
+
+### 📌 Dạng 1: Phân tích số theo hàng và viết dạng tổng
+
+**Phương pháp giải:**
+1. Xác định từng chữ số trong số cần phân tích.
+2. Xác định vị trí (hàng) của từng chữ số.
+3. Viết mỗi chữ số × giá trị hàng của nó.
+4. Tổng các kết quả lại.
+
+---
+
+**Ví dụ 1:** Phân tích số 12.345 theo hàng.
+
+*Lời giải:*
+- Chữ số 1 ở hàng vạn: 1 × 10.000 = 10.000
+- Chữ số 2 ở hàng nghìn: 2 × 1.000 = 2.000
+- Chữ số 3 ở hàng trăm: 3 × 100 = 300
+- Chữ số 4 ở hàng chục: 4 × 10 = 40
+- Chữ số 5 ở hàng đơn vị: 5 × 1 = 5
+
+$$12.345 = 10.000 + 2.000 + 300 + 40 + 5$$
+
+---
+
+**Ví dụ 2:** Viết số $7.000.000 + 400.000 + 3.000 + 200 + 5$ dưới dạng số thông thường.
+
+*Lời giải:*
+- 7.000.000 → chữ số 7 ở hàng triệu
+- 400.000 → chữ số 4 ở hàng trăm nghìn
+- 3.000 → chữ số 3 ở hàng nghìn
+- 200 → chữ số 2 ở hàng trăm
+- 5 → chữ số 5 ở hàng đơn vị
+
+Số cần viết: **7.403.205**
+
+---
+
+**Ví dụ 3:** Phân tích số 100.050 và nhận xét.
+
+*Lời giải:*
+$$100.050 = 1 \times 100.000 + 0 \times 10.000 + 0 \times 1.000 + 0 \times 100 + 5 \times 10 + 0 \times 1$$
+
+Nhận xét: Các chữ số 0 ở hàng chục nghìn, hàng nghìn, hàng trăm và hàng đơn vị có giá trị bằng 0. Khi viết tổng, ta có thể bỏ qua các thừa số có hệ số 0.
+
+---
+
+### 📌 Dạng 2: Xác định chữ số và giá trị theo vị trí
+
+**Phương pháp giải:**
+1. Viết số theo dãy chữ số từ trái sang phải.
+2. Đếm vị trí từ phải sang trái (bắt đầu từ 0).
+3. Xác định hàng chữ số và giá trị = chữ số × giá trị hàng.
+
+---
+
+**Ví dụ 1:** Trong số 45.678, xác định chữ số ở hàng nghìn và giá trị của nó.
+
+*Lời giải:*
+- Viết số: 4 5 6 7 8
+- Hàng đơn vị: 8, Hàng chục: 7, Hàng trăm: 6, Hàng nghìn: 5, Hàng vạn: 4
+- Chữ số ở hàng nghìn là 5.
+- Giá trị: 5 × 1.000 = 5.000.
+
+---
+
+**Ví dụ 2:** Cho số 80.006. Số này có bao nhiêu chữ số 0? Tổng các chữ số bằng bao nhiêu?
+
+*Lời giải:*
+- Số 80.006 có các chữ số: 8, 0, 0, 0, 6
+- Số này có **3 chữ số 0**.
+- Tổng các chữ số: 8 + 0 + 0 + 0 + 6 = 14.
+
+---
+
+**Ví dụ 3:** Tìm số tự nhiên có 5 chữ số, biết chữ số ở hàng nghìn là 3, chữ số ở hàng trăm là 7, các chữ số còn lại bằng 0.
+
+*Lời giải:*
+- Số có 5 chữ số: _ _ _ _ _
+- Chữ số hàng vạn: chưa biết
+- Chữ số hàng nghìn: 3
+- Chữ số hàng trăm: 7
+- Chữ số hàng chục: 0
+- Chữ số hàng đơn vị: 0
+
+Vì đề bài cho số có 5 chữ số mà không cho biết chữ số hàng vạn, ta cần thêm thông tin. Giả sử chữ số hàng vạn là 1 (số nhỏ nhất có 5 chữ số), ta có: **13.700**.
+
+---
+
+### 📌 Dạng 3: Chuyển đổi giữa hệ thập phân và số La Mã
+
+**Phương pháp giải:**
+- **Thập phân → La Mã:** Phân tích số thành tổng các thừa số của 10, sau đó viết từng thừa số bằng ký hiệu La Mã.
+- **La Mã → Thập phân:** Đọc từ trái sang phải, nếu ký hiệu nhỏ hơn ký hiệu tiếp theo thì trừ, ngược lại thì cộng.
+
+---
+
+**Ví dụ 1:** Viết số 1.984 bằng số La Mã.
+
+*Lời giải:*
+$$1.984 = 1.000 + 900 + 80 + 4 = \text{M} + \text{CM} + \text{LXXX} + \text{IV} = \text{MCMLXXXIV}$$
+
+---
+
+**Ví dụ 2:** Đọc số La Mã DLV và tính giá trị.
+
+*Lời giải:*
+- D = 500, L = 50, V = 5
+- DLV: D(500) + L(50) + V(5) = 555
+- Đọc: Năm trăm năm mươi lăm.
+
+---
+
+**Ví dụ 3:** Viết các năm sau bằng số La Mã: 2000, 2024, 1999.
+
+*Lời giải:*
+- 2000 = 2 × 1000 = MM
+- 2024 = 2000 + 20 + 4 = MM + XX + IV = MMXXIV
+- 1999 = 1000 + 900 + 90 + 9 = M + CM + XC + IX = MCMXCIX
+
+</KhamPha>
+
+---
+
+## 💻 III. THỰC HÀNH TƯƠNG TÁC
+
+Hãy tự mình làm thử bài tập thực hành tương tác dưới đây:
+
+<SoThapPhanInteractive client:load />
+
+---
+
+<VanDung>
+
+## 🌍 IV. VẬN DỤNG THỰC TẾ
+
+<div style="background:#f0f9ff;border-left:4px solid #0284c7;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Thư viện trường):**
+Thư viện trường mua 15.432 cuốn sách mới trong năm học. a) Phân tích số 15.432 theo hàng. b) Chữ số nào có giá trị lớn nhất? c) Tổng các chữ số trong số 15.432 bằng bao nhiêu?
+
+**Lời giải:**
+a) 15.432 = 1×10.000 + 5×1.000 + 4×100 + 3×10 + 2×1 = 10.000 + 5.000 + 400 + 30 + 2
+b) Chữ số 1 ở hàng vạn có giá trị lớn nhất: 1 × 10.000 = 10.000.
+c) Tổng các chữ số: 1 + 5 + 4 + 3 + 2 = 15.
+
+</div>
+
+<div style="background:#f0fdf4;border-left:4px solid #16a34a;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Đồng hồ La Mã):**
+Đồng hồ cổ trên tháp churches có các số La Mã: I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII. a) Số XII chỉ mấy giờ? b) Số IX chỉ mấy giờ? c) Số IV chỉ mấy giờ? (Gợi ý: Đọc theo quy tắc La Mã).
+
+**Lời giải:**
+a) XII = X + I + I = 10 + 1 + 1 = 12 → 12 giờ.
+b) IX = X - I = 10 - 1 = 9 → 9 giờ.
+c) IV = V - I = 5 - 1 = 4 → 4 giờ.
+
+</div>
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Số điện thoại):**
+Số điện thoại hotline của hãng hàng không là 1900 1544. a) Số này có bao nhiêu chữ số? b) Chữ số nào xuất hiện nhiều nhất? c) Tổng các chữ số chẵn trong số này là bao nhiêu?
+
+**Lời giải:**
+a) Số 19001544 có 8 chữ số.
+b) Các chữ số: 1, 9, 0, 0, 1, 5, 4, 4. Chữ số 0, 1, 4 mỗi số xuất hiện 2 lần (nhiều nhất).
+c) Các chữ số chẵn: 0, 0, 4, 4. Tổng: 0 + 0 + 4 + 4 = 8.
 
 </div>
 
 </VanDung>
 
+<LuyenTap>
+
+## ❓ V. TRẮC NGHIỆM TỰ LUYỆN (10 CÂU)
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Hệ thập phân**: 10 chữ số (0-9)
-- **Giá trị theo vị trí**: đơn vị, chục, trăm, nghìn, vạn...
-- **Phân tích số**: $3456 = 3000 + 400 + 50 + 6$
-- **Số La Mã**: I(1), V(5), X(10), L(50), C(100), D(500), M(1000)
-- **Quy tắc La Mã**: nhỏ sau lớn → cộng, nhỏ trước lớn → trừ
+## 📌 VI. GHI NHỚ TRỌNG TÂM
+
+- **Hệ thập phân**: 10 chữ số từ 0 đến 9.
+- **Giá trị theo vị trí**: Mỗi hàng chữ số có giá trị gấp 10 lần hàng bên phải.
+- **Phân tích số**: Số = tổng các thừa số × giá trị hàng chữ số.
+- **Đọc số**: Đọc từng bộ ba chữ số kèm đơn vị (nghìn, vạn, triệu, tỷ). chữ số 0 ở giữa đọc là "linh".
+- **Số La Mã**: I(1), V(5), X(10), L(50), C(100), D(500), M(1000).
+- **Quy tắc La Mã**: Nhỏ sau lớn → cộng (+); Nhỏ trước lớn → trừ (−). Lặp tối đa 3 lần.
 
 </GhiNho>
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+## 📝 VII. BÀI TẬP TỰ LUẬN (10 CÂU TỪ DỄ ĐẾN KHÓ)
 
-**Bài 1:** Phân tích các số sau theo hàng:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) $1234$
+**Bài 1 (Dễ - Nhận biết):** Viết các chữ số thuộc hệ thập phân.
 
-b) $5678$
+**Bài 2 (Dễ - Nhận biết):** Phân tích các số sau theo hàng:
+a) 5.678 &nbsp;&nbsp;&nbsp;&nbsp; b) 12.004 &nbsp;&nbsp;&nbsp;&nbsp; c) 100.100
 
-c) $9012$
+**Bài 3 (Thông hiểu):** Viết số có:
+a) 6 nghìn, 0 trăm, 3 chục, 5 đơn vị
+b) 1 vạn, 2 nghìn, 0 trăm, 0 chục, 9 đơn vị
+c) 3 triệu, 5 vạn, 0 nghìn, 4 trăm, 2 đơn vị
 
-d) $20456$
+**Bài 4 (Thông hiểu):** Trong số 40.267:
+a) Chữ số nào ở hàng nghìn?
+b) Chữ số nào có giá trị lớn nhất?
+c) Chữ số nào có giá trị nhỏ nhất (khác 0)?
 
-**Bài 2:** Viết số có:
+**Bài 5 (Thông hiểu):** Viết các số sau bằng số La Mã:
+a) 9 &nbsp;&nbsp;&nbsp;&nbsp; b) 14 &nbsp;&nbsp;&nbsp;&nbsp; c) 40 &nbsp;&nbsp;&nbsp;&nbsp; d) 299
 
-a) 3 nghìn, 4 trăm, 5 chục, 6 đơn vị
+**Bài 6 (Vận dụng):** Đọc các số La Mã sau và viết dạng thập phân:
+a) LXVII &nbsp;&nbsp;&nbsp;&nbsp; b) XCIV &nbsp;&nbsp;&nbsp;&nbsp; c) CXL &nbsp;&nbsp;&nbsp;&nbsp; d) MMXXIII
 
-b) 7 nghìn, 0 trăm, 8 chục, 9 đơn vị
+**Bài 7 (Vận dụng thực tế):** Sách Toán lớp 6 có 172 trang. a) Phân tích số 172 theo hàng. b) Viết số 172 bằng số La Mã. c) Viết số La Mã cho trang sách thứ 100.
 
-c) 1 vạn, 2 nghìn, 3 trăm, 0 chục, 5 đơn vị
+**Bài 8 (Vận dụng):** Viết số La Mã cho các năm: 2000, 2010, 2020, 2025, 2026.
 
-d) 5 vạn, 0 nghìn, 0 trăm, 0 chục, 7 đơn vị
+**Bài 9 (Vận dụng cao):** Tìm số tự nhiên có 4 chữ số, biết rằng: Tổng các chữ số bằng 18; Chữ số hàng trăm gấp đôi chữ số hàng nghìn; Chữ số hàng chục bằng 0; Chữ số hàng đơn vị lớn hơn chữ số hàng nghìn 1 đơn vị.
 
-**Bài 3:** Trong số $4567$:
+**Bài 10 (Vận dụng cao):** a) Viết số lớn nhất và số nhỏ nhất có 5 chữ số mà tổng các chữ số bằng 20. b) Có bao nhiêu số La Mã đọc được bằng 50? (Gợi ý: Liệt kê các cách viết số 50 bằng cách kết hợp các ký hiệu La Mã hợp lệ).
 
-a) Chữ số 4 ở hàng nào?
+</div>
 
-b) Chữ số 5 có giá trị bằng bao nhiêu?
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-c) Chữ số 6 ở hàng nào?
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-d) Chữ số 7 có giá trị bằng bao nhiêu?
+**Bài 1:**
+Các chữ số thuộc hệ thập phân là: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 
-**Bài 4:** Viết các số sau bằng số La Mã:
+---
 
-a) $7$
+**Bài 2:**
+a) $5.678 = 5 \times 1.000 + 6 \times 100 + 7 \times 10 + 8 \times 1 = 5.000 + 600 + 70 + 8$
+b) $12.004 = 1 \times 10.000 + 2 \times 1.000 + 0 \times 100 + 0 \times 10 + 4 \times 1 = 10.000 + 2.000 + 4$
+c) $100.100 = 1 \times 100.000 + 0 \times 10.000 + 0 \times 1.000 + 1 \times 100 + 0 \times 10 + 0 \times 1 = 100.000 + 100$
 
-b) $12$
+---
 
-c) $18$
+**Bài 3:**
+a) 6.035 (6 nghìn + 0 trăm + 3 chục + 5 đơn vị)
+b) 12.009 (1 vạn + 2 nghìn + 0 trăm + 0 chục + 9 đơn vị)
+c) 350.402 (3 triệu + 5 vạn + 0 nghìn + 4 trăm + 0 chục + 2 đơn vị)
 
-d) $25$
+---
 
-**Bài 5:** Đọc các số La Mã sau:
+**Bài 4:**
+a) Chữ số ở hàng nghìn là **0**.
+b) Chữ số 4 ở hàng vạn có giá trị lớn nhất: 4 × 10.000 = 40.000.
+c) Chữ số 2 ở hàng chục có giá trị nhỏ nhất (khác 0): 2 × 10 = 20.
 
-a) VIII
+---
 
-b) XIII
+**Bài 5:**
+a) $9 = 10 - 1 = \text{IX}$
+b) $14 = 10 + 4 = \text{XIV}$
+c) $40 = 50 - 10 = \text{XL}$
+d) $299 = 200 + 90 + 9 = \text{CC} + \text{XC} + \text{IX} = \text{CCXCIX}$
 
-c) XVII
+---
 
-d) XXIV
+**Bài 6:**
+a) $\text{LXVII} = 50 + 10 + 5 + 1 + 1 = 67$ (sáu mươi bảy)
+b) $\text{XCIV} = (100 - 10) + (5 - 1) = 90 + 4 = 94$ (chín mươi bốn)
+c) $\text{CXL} = 100 + (50 - 10) = 100 + 40 = 140$ (một trăm bốn mươi)
+d) $\text{MMXXIII} = 1000 + 1000 + 10 + 10 + 1 + 1 + 1 = 2023$ (hai nghìn không trăm hai mươi ba)
 
-**Bài 6 (Thực tế):** Năm 2024 được viết bằng số La Mã là MMXXIV.
+---
 
-a) Giải thích cách viết số La Mã này.
+**Bài 7:**
+a) $172 = 1 \times 100 + 7 \times 10 + 2 \times 1 = 100 + 70 + 2$
+b) $172 = 100 + 70 + 2 = \text{CLXXII}$
+c) Trang thứ 100 bằng số La Mã: $\text{C}$
 
-b) Viết năm 2025 bằng số La Mã.
+---
 
-c) Viết năm sinh của bạn bằng số La Mã.
+**Bài 8:**
+- 2000 = MM
+- 2010 = MMX
+- 2020 = MMXX
+- 2025 = MMXXV
+- 2026 = MMXXVI
 
-d) Tại sao đồng hồ thường dùng số La Mã?
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 9:**
+Gọi số cần tìm có các chữ số theo hàng: nghìn (a), trăm (b), chục (c), đơn vị (d).
 
-**Bài 1:** a) $1000 + 200 + 30 + 4$; b) $5000 + 600 + 70 + 8$; c) $9000 + 0 + 10 + 2$; d) $20000 + 400 + 50 + 6$
+Theo đề bài:
+- Tổng chữ số: $a + b + c + d = 18$
+- Chữ số hàng trăm gấp đôi hàng nghìn: $b = 2a$
+- Chữ số hàng chục: $c = 0$
+- Chữ số hàng đơn vị lớn hơn hàng nghìn 1: $d = a + 1$
 
-**Bài 2:** a) $3456$; b) $7089$; c) $12305$; d) $50007$
+Thay vào tổng: $a + 2a + 0 + (a + 1) = 18 \Rightarrow 4a + 1 = 18 \Rightarrow 4a = 17 \Rightarrow a = 4.25$
 
-**Bài 3:** a) Hàng nghìn; b) $500$; c) Hàng chục; d) $7$
+Vì $a$ phải là số tự nhiên nguyên, **bài toán này không có nghiệm** trong tập hợp số tự nhiên. (Đây là bài toán luyện tư duy, giúp học sinh nhận ra điều kiện vô nghiệm).
 
-**Bài 4:** a) VII; b) XII; c) XVIII; d) XXV
+---
 
-**Bài 5:** a) $8$; b) $13$; c) $17$; d) $24$
+**Bài 10:**
+a) **Số lớn nhất** có 5 chữ số mà tổng chữ số = 20:
+   - Số lớn nhất → chữ số hàng vạn lớn nhất có thể: 9.
+   - Tổng còn lại: 20 - 9 = 11, phân bổ cho 4 chữ số còn lại.
+   - Hàng nghìn lấy max = 9, còn 11 - 9 = 2.
+   - Hàng trăm lấy max = 2, còn 0.
+   - **Số lớn nhất: 99.200**
 
-**Bài 6:** a) MM (2000) + XX (20) + IV (4) = 2024; b) MMXXV; c) Tự làm; d) Truyền thống, thẩm mỹ
+b) **Số nhỏ nhất** có 5 chữ số mà tổng chữ số = 20:
+   - Số nhỏ nhất → chữ số hàng vạn nhỏ nhất: 1.
+   - Tổng còn lại: 20 - 1 = 19, phân bổ cho 4 chữ số còn lại sao cho số nhỏ nhất.
+   - Hàng đơn vị lấy max = 9 (để hàng khác nhỏ), còn 19 - 9 = 10.
+   - Hàng chục lấy max = 9, còn 10 - 9 = 1.
+   - Hàng trăm lấy 1, hàng nghìn lấy 0.
+   - **Số nhỏ nhất: 10.199**
 
 </div>
 </details>

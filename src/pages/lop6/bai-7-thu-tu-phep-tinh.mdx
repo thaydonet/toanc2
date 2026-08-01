@@ -14,79 +14,49 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import ThuTuPhepTinhInteractive from '../../components/interactive/ThuTuPhepTinhInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
-    question: "Tính: $5 + 3 \\times 2$",
-    option_a: "$16$",
-    option_b: "$11$",
-    option_c: "$13$",
-    option_d: "$10$",
+    question: "Trong biểu thức $8 + 4 \\times 2$, phép tính nào được thực hiện trước?",
+    option_a: "Cộng",
+    option_b: "Nhân",
+    option_c: "Cả hai cùng lúc",
+    option_d: "Tùy ý",
     correct_option: "B",
-    explanation: "Nhân trước, cộng sau: $5 + 3 \\times 2 = 5 + 6 = 11$.",
+    explanation: "Nhân có ưu tiên cao hơn cộng. Ta tính $4 \\times 2 = 8$ trước, rồi $8 + 8 = 16$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tính: $(8 + 2) \\times 3$",
-    option_a: "$14$",
-    option_b: "$24$",
-    option_c: "$30$",
-    option_d: "$26$",
-    correct_option: "C",
-    explanation: "Tính trong ngoặc trước: $(8 + 2) \\times 3 = 10 \\times 3 = 30$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trong biểu thức không có dấu ngoặc, phép tính nào được thực hiện đầu tiên?",
-    option_a: "Lũy thừa",
-    option_b: "Nhân, chia",
-    option_c: "Cộng, trừ",
-    option_d: "Từ trái sang phải",
-    correct_option: "A",
-    explanation: "Thứ tự ưu tiên: Lũy thừa → Nhân, chia → Cộng, trừ.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "msq",
-    question: "Những biểu thức nào có giá trị bằng $20$?",
-    option_a: "$10 + 5 \\times 2$",
-    option_b: "$(10 + 5) \\times 2$",
-    option_c: "$30 - 2 \\times 5$",
-    option_d: "$4 \\times 5$",
-    correct_option: "A,C,D",
-    explanation: "A: $10 + 10 = 20$; B: $15 \\times 2 = 30$; C: $30 - 10 = 20$; D: $20$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tính: $2^3 + 4 \\times 5$",
-    option_a: "$28$",
+    question: "Tính: $(12 + 3) \\times 4$",
+    option_a: "$24$",
     option_b: "$48$",
     option_c: "$60$",
-    option_d: "$13$",
-    correct_option: "A",
-    explanation: "Lũy thừa và nhân trước: $2^3 + 4 \\times 5 = 8 + 20 = 28$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Tính: $100 - 20 : 4$",
-    correct_option: "95",
-    explanation: "Chia trước, trừ sau: $100 - 20 : 4 = 100 - 5 = 95$.",
-    difficulty_level: "medium",
+    option_d: "$52$",
+    correct_option: "C",
+    explanation: "Tính trong ngoặc trước: $12 + 3 = 15$, sau đó nhân: $15 \\times 4 = 60$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tính: $!a#10! + !b#5! \\times !c#2!$",
+    question: "Tính: $3^2 + 5 \\times 4$",
+    option_a: "$19$",
+    option_b: "$29$",
+    option_c: "$39$",
+    option_d: "$49$",
+    correct_option: "B",
+    explanation: "Lũy thừa trước: $3^2 = 9$. Nhân: $5 \\times 4 = 20$. Cộng: $9 + 20 = 29$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $!a:10:30! + !b:2:9! \\times !c:2:5!$",
     option_a: "$!tinh: !a! + !b! * !c!!$",
     option_b: "$!tinh: (!a! + !b!) * !c!!$",
     option_c: "$!tinh: !a! * !b! + !c!!$",
@@ -98,7 +68,7 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Tính: $(!a#8! + !b#2!) \\times !c#3!$",
+    question: "Tính: $(!a:5:15! + !b:2:8!) \\times !c:2:4!$",
     option_a: "$!tinh: (!a! + !b!) * !c!!$",
     option_b: "$!tinh: !a! + !b! * !c!!$",
     option_c: "$!tinh: !a! * !c! + !b!!$",
@@ -106,6 +76,86 @@ export const quizData = [
     correct_option: "A",
     explanation: "Tính trong ngoặc trước: $(!a! + !b!) \\times !c! = !tinh: !a! + !b!! \\times !c! = !tinh: (!a! + !b!) * !c!!$.",
     difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $!a:10:30! - !b:2:9! : !c:2:5!$",
+    option_a: "$!tinh: !a! - !b! / !c!!$",
+    option_b: "$!tinh: !a! - !b! * !c!!$",
+    option_c: "$!tinh: (!a! - !b!) / !c!!$",
+    option_d: "$!tinh: !a! + !b! / !c!!$",
+    correct_option: "A",
+    explanation: "Chia trước, trừ sau: $!a! - !b! : !c! = !a! - !tinh: !b! / !c!! = !tinh: !a! - !b! / !c!!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tính: $[(2 + 3) \\times 4 + !a:2:5!] : !b:2:3!$",
+    option_a: "$!tinh: (20 + !a!) / !b!!$",
+    option_b: "$!tinh: (20 + !a!) * !b!!$",
+    option_c: "$!tinh: 20 + !a! / !b!!$",
+    option_d: "$!tinh: (2 + 3) * 4 + !a! / !b!!$",
+    correct_option: "A",
+    explanation: "Ngoặc tròn: $2+3=5$. Nhân: $5\\times4=20$. Cộng: $20+!a!$. Ngoặc vuông xong. Chia cho $!b!$: $(20+!a!) : !b! = !tinh: (20 + !a!) / !b!!$.",
+    difficulty_level: "hard",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Biểu thức nào có giá trị lớn nhất?",
+    option_a: "$10 + 5 \\times 2$",
+    option_b: "$(10 + 5) \\times 2$",
+    option_c: "$20 - 3 \\times 4$",
+    option_d: "$(20 - 3) \\times 4$",
+    correct_option: "D",
+    explanation: "A: $10+10=20$. B: $15\\times2=30$. C: $20-12=8$. D: $17\\times4=68$. Vậy D lớn nhất.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+
+  // ─── Phần 2: MSQ (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những biểu thức nào có giá trị bằng $35$?",
+    option_a: "$20 + 3 \\times 5$",
+    option_b: "$(20 + 3) \\times 5$",
+    option_c: "$50 - 3 \\times 5$",
+    option_d: "$5 \\times 7$",
+    correct_option: "A,C,D",
+    explanation: "A: $20+15=35$; B: $23\\times5=115$; C: $50-15=35$; D: $35$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Với $!a:5:12!$, $!b:2:4!$, $!c:2:5!$, những đẳng thức nào đúng?",
+    option_a: "$!a! + !b! \\times !c! = !a! + !tinh: !b! * !c!!$",
+    option_b: "$(!a! + !b!) \\times !c! = !tinh: (!a! + !b!) * !c!!$",
+    option_c: "$!a! - !b! : !c! = !a! - !tinh: !b! / !c!!$",
+    option_d: "$!a! + !b! + !c! = !tinh: !a! + !b! + !c!!$",
+    correct_option: "A,B,C",
+    explanation: "A đúng (nhân trước cộng sau), B đúng (ngoặc trước nhân sau), C đúng (chia trước trừ sau). D sai vì phép cộng và trừ cùng mức ưu tiên nên tính từ trái sang phải, không phải phép cộng trước.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 3: SA (2 câu) ─────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tính: $!a:10:30! + !b:2:8! \\times !c:2:6!$",
+    correct_option: "!tinh: !a! + !b! * !c!!",
+    explanation: "Nhân trước, cộng sau: $!a! + !b! \\times !c! = !a! + !tinh: !b! * !c!! = !tinh: !a! + !b! * !c!!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "sa",
+    question: "Tính: $[(!a:5:10! + !b:2:5!) \\times !c:2:4!] : !d:2:3!$",
+    correct_option: "!tinh: (!a! + !b!) * !c! / !d!!",
+    explanation: "Ngoặc tròn: $!a! + !b!$. Nhân: $(!a! + !b!) \\times !c!$. Ngoặc vuông xong. Chia cho $!d!$: $!tinh: (!a! + !b!) * !c! / !d!!$.",
+    difficulty_level: "hard",
     is_dynamic: true,
   },
 ];
@@ -163,7 +213,7 @@ Thứ tự thực hiện phép tính quyết định kết quả đúng!
 <svg viewBox="0 0 600 200" style="width:100%;max-width:600px;height:auto;">
   {/* Mức 1 - Ngoặc */}
   <rect x="50" y="20" width="500" height="35" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2" rx="8" />
-  <text x="300" y="43" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#1e40af">1. Ngoặc đơn ( ), ngoặc vuông [ ], ngoặc nhọn \{ \}</text>
+  <text x="300" y="43" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#1e40af">1. Ngoặc đơn ( ), ngoặc vuông [ ], ngoặc nhọn &#123; &#125;</text>
   
   {/* Mũi tên */}
   <line x1="300" y1="55" x2="300" y2="70" stroke="#6b7280" strokeWidth="2" markerEnd="url(#arrow)" />
@@ -376,7 +426,9 @@ Biểu thức: $\{50 - 30\} : 5$
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<ThuTuPhepTinhInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -422,6 +474,29 @@ Nếu chia hết: Mỗi bạn có $37$ viên (còn dư $1$ viên)
 
 </div>
 
+**📝 Bài toán 3:** Một công ty sản xuất $250$ sản phẩm/ngày. Trừ ngày thứ Bảy và Chủ Nhật nghỉ, công ty làm việc $5$ ngày/tuần.
+
+a) Viết biểu thức tính tổng sản phẩm sản xuất được trong $1$ tuần.
+
+b) Nếu mỗi sản phẩm bán được $50$ đồng, viết biểu thức tính doanh thu tuần.
+
+c) Tính kết quả cả hai biểu thức trên.
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tổng sản phẩm 1 tuần: $250 \times 5$
+
+b) Doanh thu tuần: $(250 \times 5) \times 50$
+
+c) Số sản phẩm: $250 \times 5 = 1250$ (cái)
+   Doanh thu: $1250 \times 50 = 62500$ (đồng)
+
+**Đáp số:** a) 1250 sản phẩm; b) 62500 đồng
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -438,83 +513,237 @@ Nếu chia hết: Mỗi bạn có $37$ viên (còn dư $1$ viên)
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Thực hiện phép tính:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) $15 + 5 \times 3$
+**Bài 1 (Dễ - Nhận biết):** Thực hiện phép tính:
 
-b) $40 - 20 : 4$
+a) $25 + 5 \times 4$
 
-c) $2^4 + 3 \times 5$
+b) $50 - 20 : 5$
+
+c) $3^2 + 4 \times 6$
 
 d) $100 - 2^3 \times 5$
 
-**Bài 2:** Thực hiện phép tính (có dấu ngoặc):
+**Bài 2 (Dễ - Nhận biết):** Thực hiện phép tính (có dấu ngoặc đơn):
 
-a) $(15 + 5) \times 3$
+a) $(25 + 5) \times 4$
 
-b) $(40 - 20) : 4$
+b) $(50 - 20) : 5$
 
-c) $(2^4 + 6) : 2$
+c) $(3^2 + 7) : 2$
 
 d) $100 - (20 + 30)$
 
-**Bài 3:** Thực hiện phép tính:
+**Bài 3 (Thông hiểu):** Thực hiện phép tính có lũy thừa:
 
-a) $3 \times 4 + 2^3 - 10 : 5$
+a) $4 \times 5 + 2^3 - 10 : 2$
 
-b) $(5 + 3) \times 2 - 4$
+b) $(2^3 + 2) \times (15 - 3 \times 4)$
 
 c) $50 - [20 + (8 - 3) \times 2]$
 
 d) $\{100 - [50 - (20 - 5)]\} : 5$
 
-**Bài 4:** Đặt dấu ngoặc để được kết quả đúng:
+**Bài 4 (Thông hiểu):** Đặt dấu ngoặc để được kết quả đúng:
 
-a) $5 + 3 \times 2 = 16$
+a) $8 + 4 \times 2 = 24$
 
-b) $20 - 10 : 2 = 5$
+b) $30 - 10 : 2 = 10$
 
-c) $3 + 2 \times 4 = 20$
+c) $6 + 3 \times 4 = 36$
 
-d) $15 - 3 + 2 = 10$
+d) $20 - 5 + 3 = 12$
 
-**Bài 5:** So sánh (không tính):
+**Bài 5 (Thông hiểu):** So sánh (không tính giá trị):
 
-a) $5 + 3 \times 2$ và $(5 + 3) \times 2$
+a) $8 + 4 \times 2$ và $(8 + 4) \times 2$
 
-b) $20 - 10 : 2$ và $(20 - 10) : 2$
+b) $30 - 10 : 2$ và $(30 - 10) : 2$
 
-c) $2^3 + 4$ và $(2 + 1)^3$
+c) $2^3 + 6$ và $(2 + 2)^2$
 
-d) $10 \times 2 + 5$ và $10 \times (2 + 5)$
+d) $12 \times 3 + 4$ và $12 \times (3 + 4)$
 
-**Bài 6 (Thực tế):** Một lớp học có $40$ học sinh. Cô giáo chia lớp thành $5$ nhóm đều nhau, mỗi nhóm được phát $3$ quyển vở.
+**Bài 6 (Vận dụng thực tế):** Một xe khách đi $60$ km/giờ. Trên đường gặp $3$ trạm nghỉ, mỗi trạm nghỉ $10$ phút.
 
-a) Viết biểu thức tính số học sinh trong mỗi nhóm.
+a) Viết biểu thức tính thời gian đi $240$ km (không kể nghỉ).
 
-b) Viết biểu thức tính tổng số vở đã phát.
+b) Viết biểu thức tính tổng thời gian nghỉ.
 
-c) Nếu mỗi quyển vở giá $5000$ đồng, viết biểu thức tính tổng số tiền.
+c) Viết biểu thức tính tổng thời gian cả hành trình.
 
-d) Tính kết quả các biểu thức trên.
+d) Tính kết quả (giờ, phút).
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 7 (Vận dụng thực tế):** Một hương ly có $40$ học sinh. Thầy giáo muốn chia thành các nhóm $5$ người, mỗi nhóm được phát $4$ cây bút.
 
-**Bài 1:** a) $30$; b) $35$; c) $31$; d) $60$
+a) Viết biểu thức tính số nhóm.
 
-**Bài 2:** a) $60$; b) $5$; c) $11$; d) $50$
+b) Viết biểu thức tính tổng số bút cần phát.
 
-**Bài 3:** a) $18$; b) $12$; c) $20$; d) $7$
+c) Nếu mỗi cây bút giá $2500$ đồng, viết biểu thức tính tổng tiền mua bút.
 
-**Bài 4:** a) $(5 + 3) \times 2 = 16$; b) $(20 - 10) : 2 = 5$; c) $(3 + 2) \times 4 = 20$; d) $15 - (3 + 2) = 10$
+d) Tính kết quả.
 
-**Bài 5:** a) $<$; b) $>$; c) $<$; d) $<$
+**Bài 8 (Vận dụng):** Tìm $x$ trong các biểu thức:
 
-**Bài 6:** a) $40 : 5 = 8$ học sinh; b) $5 \times 3 = 15$ quyển; c) $5 \times 3 \times 5000 = 75000$ đồng; d) $8$ học sinh, $15$ quyển, $75000$ đồng
+a) $x + 5 \times 4 = 45$
+
+b) $(x - 10) \times 3 = 24$
+
+c) $100 - x : 5 = 90$
+
+d) $2^3 \times x + 10 = 42$
+
+**Bài 9 (Vận dụng thực tế):** Một cửa hàng bán được $120$ kg gạo. Giờ đầu bán $15$ kg/giờ trong $3$ giờ, giờ sau bán $20$ kg/giờ.
+
+a) Viết biểu thức tính số kg gạo bán được $3$ giờ đầu.
+
+b) Viết biểu thức tính số kg gạo còn lại.
+
+c) Viết biểu thức tính số giờ cần để bán hết gạo còn lại (bán $20$ kg/giờ).
+
+d) Tính tổng số giờ bán.
+
+**Bài 10 (Vận dụng cao):** So sánh $A = 50 - [20 + (8 - 3) \times 2]$ và $B = \{100 - [50 - (20 - 5)]\} : 5$.
+
+</div>
+
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
+
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
+
+**Bài 1:**
+a) $25 + 5 \times 4 = 25 + 20 = 45$
+
+b) $50 - 20 : 5 = 50 - 4 = 46$
+
+c) $3^2 + 4 \times 6 = 9 + 24 = 33$
+
+d) $100 - 2^3 \times 5 = 100 - 8 \times 5 = 100 - 40 = 60$
+
+---
+
+**Bài 2:**
+a) $(25 + 5) \times 4 = 30 \times 4 = 120$
+
+b) $(50 - 20) : 5 = 30 : 5 = 6$
+
+c) $(3^2 + 7) : 2 = (9 + 7) : 2 = 16 : 2 = 8$
+
+d) $100 - (20 + 30) = 100 - 50 = 50$
+
+---
+
+**Bài 3:**
+a) $4 \times 5 + 2^3 - 10 : 2$
+   - Lũy thừa: $2^3 = 8$ → $4 \times 5 + 8 - 10 : 2$
+   - Nhân, chia: $4 \times 5 = 20$, $10 : 2 = 5$ → $20 + 8 - 5$
+   - Cộng, trừ: $20 + 8 = 28$, $28 - 5 = 23$
+
+b) $(2^3 + 2) \times (15 - 3 \times 4)$
+   - Ngoặc 1: $2^3 = 8$, $8 + 2 = 10$
+   - Ngoặc 2: $3 \times 4 = 12$, $15 - 12 = 3$
+   - Nhân: $10 \times 3 = 30$
+
+c) $50 - [20 + (8 - 3) \times 2]$
+   - Ngoặc tròn: $8 - 3 = 5$
+   - Ngoặc vuông: $5 \times 2 = 10$, $20 + 10 = 30$
+   - Trừ: $50 - 30 = 20$
+
+d) $\{100 - [50 - (20 - 5)]\} : 5$
+   - Ngoặc tròn: $20 - 5 = 15$
+   - Ngoặc vuông: $50 - 15 = 35$
+   - Ngoặc nhọn: $100 - 35 = 65$
+   - Chia: $65 : 5 = 13$
+
+---
+
+**Bài 4:**
+a) $(8 + 4) \times 2 = 12 \times 2 = 24$ ✓
+
+b) $(30 - 10) : 2 = 20 : 2 = 10$ ✓
+
+c) $(6 + 3) \times 4 = 9 \times 4 = 36$ ✓
+
+d) $20 - (5 + 3) = 20 - 8 = 12$ ✓
+
+---
+
+**Bài 5:**
+a) $8 + 4 \times 2 = 8 + 8 = 16$; $(8 + 4) \times 2 = 12 \times 2 = 24$ → $16 < 24$
+
+b) $30 - 10 : 2 = 30 - 5 = 25$; $(30 - 10) : 2 = 20 : 2 = 10$ → $25 > 10$
+
+c) $2^3 + 6 = 8 + 6 = 14$; $(2 + 2)^2 = 4^2 = 16$ → $14 < 16$
+
+d) $12 \times 3 + 4 = 36 + 4 = 40$; $12 \times (3 + 4) = 12 \times 7 = 84$ → $40 < 84$
+
+---
+
+**Bài 6:**
+a) Thời gian đi: $240 : 60$ (giờ)
+
+b) Thời gian nghỉ: $3 \times 10$ (phút) = $30$ phút
+
+c) Tổng thời gian: $(240 : 60) + (3 \times 10 : 60)$ (giờ)
+
+d) $240 : 60 = 4$ giờ; $30$ phút = $0.5$ giờ; Tổng = $4.5$ giờ = $4$ giờ $30$ phút
+
+---
+
+**Bài 7:**
+a) Số nhóm: $40 : 5 = 8$ (nhóm)
+
+b) Tổng bút: $8 \times 4 = 32$ (cây)
+
+c) Tổng tiền: $32 \times 2500$ (đồng)
+
+d) Tổng tiền: $32 \times 2500 = 80000$ đồng
+
+---
+
+**Bài 8:**
+a) $x + 5 \times 4 = 45$ → $x + 20 = 45$ → $x = 45 - 20 = 25$ (ktra: $25 + 20 = 45$ ✓)
+
+b) $(x - 10) \times 3 = 24$ → $x - 10 = 24 : 3 = 8$ → $x = 8 + 10 = 18$ (ktra: $(18-10)\times3 = 24$ ✓)
+
+c) $100 - x : 5 = 90$ → $x : 5 = 100 - 90 = 10$ → $x = 10 \times 5 = 50$ (ktra: $100 - 50:5 = 90$ ✓)
+
+d) $2^3 \times x + 10 = 42$ → $8 \times x + 10 = 42$ → $8x = 32$ → $x = 4$ (ktra: $8 \times 4 + 10 = 42$ ✓)
+
+---
+
+**Bài 9:**
+a) Gạo bán 3h đầu: $15 \times 3 = 45$ kg
+
+b) Gạo còn lại: $120 - 45 = 75$ kg
+
+c) Giờ bán hết: $75 : 20 = 3$ (giờ) dư $15$ kg → Cần $4$ giờ (giờ cuối bán dư $15$ kg)
+
+d) Tổng giờ: $3 + 4 = 7$ giờ
+
+---
+
+**Bài 10:**
+Tính $A$:
+- $A = 50 - [20 + (8 - 3) \times 2]$
+- $= 50 - [20 + 5 \times 2]$
+- $= 50 - [20 + 10]$
+- $= 50 - 30 = 20$
+
+Tính $B$:
+- $B = \{100 - [50 - (20 - 5)]\} : 5$
+- $= \{100 - [50 - 15]\} : 5$
+- $= \{100 - 35\} : 5$
+- $= 65 : 5 = 13$
+
+Vậy $A = 20 > 13 = B$.
 
 </div>
 </details>

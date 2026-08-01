@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 3: Thứ tự trong tập hợp các số tự nhiên"
-description: "So sánh và sắp xếp các số tự nhiên - Toán 6 KNTT Chương 1"
+description: "So sánh, sắp xếp và đếm số tự nhiên - Toán 6 KNTT Chương 1"
 grade: "Lớp 6"
 chapter: "Chương I: Tập hợp các số tự nhiên"
 currentSlug: "lop6/bai-3-thu-tu-so-tu-nhien"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,6 +13,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import ThuTuSoInteractive from '../../components/interactive/ThuTuSoInteractive';
 
 export const quizData = [
   {
@@ -24,7 +24,7 @@ export const quizData = [
     option_c: "$657$",
     option_d: "$675$",
     correct_option: "D",
-    explanation: "So sánh từ trái sang phải: 675 có chữ số hàng trăm lớn nhất nên 675 là số lớn nhất.",
+    explanation: "So sánh từ trái sang phải: 675 có chữ số hàng trăm lớn nhất (6) nên 675 là số lớn nhất.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
@@ -53,18 +53,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những khẳng định nào đúng?",
-    option_a: "$15 < 20$",
-    option_b: "$30 > 25$",
-    option_c: "$12 > 15$",
-    option_d: "$8 < 10$",
-    correct_option: "A,B,D",
-    explanation: "15 < 20 (đúng), 30 > 25 (đúng), 12 > 15 (sai), 8 < 10 (đúng).",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Có bao nhiêu số tự nhiên nằm giữa $5$ và $10$?",
     option_a: "$3$ số",
@@ -72,7 +60,19 @@ export const quizData = [
     option_c: "$5$ số",
     option_d: "$6$ số",
     correct_option: "B",
-    explanation: "Các số tự nhiên nằm giữa 5 và 10 là: 6, 7, 8, 9. Có 4 số.",
+    explanation: "Các số tự nhiên nằm giữa 5 và 10 là: 6, 7, 8, 9. Có 4 số. Công thức: $10 - 5 - 1 = 4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những khẳng định nào **SAI**?",
+    option_a: "$15 < 20$",
+    option_b: "$30 > 25$",
+    option_c: "$12 > 15$",
+    option_d: "$8 < 10$",
+    correct_option: "C",
+    explanation: "A đúng (15 < 20), B đúng (30 > 25), C SAI (12 < 15 chứ không phải 12 > 15), D đúng (8 < 10).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -86,51 +86,76 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "So sánh: $!a#234! \\text{ và } !b#245!$",
-    option_a: "$!a! < !b!$",
-    option_b: "$!a! > !b!$",
-    option_c: "$!a! = !b!$",
-    option_d: "Không so sánh được",
-    correct_option: "A",
-    explanation: "Vì $!a! < !b!$ nên $!a! < !b!$.",
+    question: "Có bao nhiêu số tự nhiên từ $10$ đến $20$?",
+    option_a: "$10$ số",
+    option_b: "$11$ số",
+    option_c: "$9$ số",
+    option_d: "$20$ số",
+    correct_option: "B",
+    explanation: "Số các số tự nhiên từ 10 đến 20 là: $20 - 10 + 1 = 11$ số.",
     difficulty_level: "easy",
-    is_dynamic: true,
+    is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Có bao nhiêu số tự nhiên nằm giữa $!a#10!$ và $!b#15!$?",
-    option_a: "$!tinh: !b! - !a! - 1!$ số",
-    option_b: "$!tinh: !b! - !a!!$ số",
-    option_c: "$!tinh: !b! - !a! + 1!$ số",
-    option_d: "$!tinh: !b! + !a!!$ số",
+    question: "Sắp xếp $345, 354, 435, 453$ theo thứ tự tăng dần, ta được:",
+    option_a: "$345, 354, 435, 453$",
+    option_b: "$453, 435, 354, 345$",
+    option_c: "$345, 435, 354, 453$",
+    option_d: "$354, 345, 453, 435$",
     correct_option: "A",
-    explanation: "Số các số tự nhiên nằm giữa $!a!$ và $!b!$ là $!b! - !a! - 1 = !tinh: !b! - !a! - 1!$ số.",
+    explanation: "So sánh: 345 < 354 < 435 < 453. Thứ tự tăng dần: 345, 354, 435, 453.",
     difficulty_level: "medium",
-    is_dynamic: true,
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $a < b$ và $b < c$ thì theo tính bắc cầu:",
+    option_a: "$a < c$",
+    option_b: "$a > c$",
+    option_c: "$a = c$",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Theo tính bắc cầu: Nếu $a < b$ và $b < c$ thì $a < c$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Có bao nhiêu số tự nhiên nằm giữa $15$ và $25$?",
+    correct_option: "9",
+    explanation: "Số các số nằm giữa 15 và 25 là: $25 - 15 - 1 = 9$ số (16, 17, 18, 19, 20, 21, 22, 23, 24).",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">📊 Thứ tự — Sắp xếp thế giới xung quanh</h3>
+<h3 id="mo-dau">📊 Khởi động: Thứ tự quanh ta</h3>
 
-Trong cuộc sống, chúng ta thường xuyên so sánh và sắp xếp!
+Trong cuộc sống hàng ngày, chúng ta luôn so sánh và sắp xếp:
 
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
-    <strong>Chiều cao</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ai cao hơn?</p>
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #bfdbfe;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">📏</div>
+    <strong style="color:#1e3a8a;font-size:1.05rem;">Chiều cao</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ai cao hơn? Ai thấp hơn?</p>
   </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏆</div>
-    <strong>Điểm số</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ai đạt điểm cao hơn?</p>
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #a7f3d0;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">🏆</div>
+    <strong style="color:#065f46;font-size:1.05rem;">Điểm số</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ai nhất? Ai nhì? Ai ba?</p>
   </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
-    <strong>Số thứ tự</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ai đứng trước?</p>
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #fde68a;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">🔢</div>
+    <strong style="color:#92400e;font-size:1.05rem;">Thứ tự xếp hàng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ai đứng trước? Ai đứng sau?</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #c4b5fd;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">📅</div>
+    <strong style="color:#5b21b6;font-size:1.05rem;">Ngày tháng</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ngày nào đến trước? Ngày nào đến sau?</p>
   </div>
 </div>
 
@@ -138,356 +163,608 @@ Trong cuộc sống, chúng ta thường xuyên so sánh và sắp xếp!
 
 <KhamPha>
 
-<h3 id="so-sanh">📖 1. So sánh hai số tự nhiên</h3>
+## 📚 I. LÝ THUYẾT BÀI HỌC
+
+<h3 id="so-sanh">1. So sánh hai số tự nhiên</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Cho hai số tự nhiên $a$ và $b$:
-
-- $a < b$ (đọc là "$a$ nhỏ hơn $b$") nếu $a$ đứng bên trái $b$ trên trục số
-- $a > b$ (đọc là "$a$ lớn hơn $b$") nếu $a$ đứng bên phải $b$ trên trục số
-- $a = b$ (đọc là "$a$ bằng $b$") nếu $a$ và $b$ cùng biểu diễn một điểm trên trục số
-
-</div>
-
-**Trục số tự nhiên:**
-
-<div style="margin:2rem 0;">
-<svg viewBox="0 0 600 80" style="width:100%;max-width:600px;height:auto;">
-  <defs>
-    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#1e40af" />
-    </marker>
-  </defs>
-  
-  {/* Trục số */}
-  <line x1="30" y1="40" x2="570" y2="40" stroke="#1e40af" strokeWidth="2" markerEnd="url(#arrowhead)" />
-  
-  {/* Các điểm */}
-  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-    <g key={n}>
-      <circle cx={30 + n * 50} cy="40" r="4" fill="#1e40af" />
-      <text x={30 + n * 50} y="65" textAnchor="middle" fontSize="16" fill="#1e40af">{n}</text>
-    </g>
-  ))}
-  
-  {/* Mũi tên chỉ hướng tăng */}
-  <text x="550" y="25" fontSize="14" fill="#059669" fontWeight="bold">Tăng →</text>
-</svg>
-</div>
-
-**Quy tắc so sánh:**
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Bước 1:** So sánh số chữ số
-- Số nào có nhiều chữ số hơn thì lớn hơn
-- Ví dụ: $1234 > 567$ (4 chữ số > 3 chữ số)
-
-**Bước 2:** Nếu có cùng số chữ số, so sánh từ trái sang phải
-- So sánh chữ số hàng cao nhất trước
-- Ví dụ: $567 > 534$ (vì $5 = 5$, nhưng $6 > 3$)
+**Định nghĩa:** Cho hai số tự nhiên $a$ và $b$, ta có ba quan hệ:
+- $a < b$: "$a$ **nhỏ hơn** $b$" khi $a$ đứng bên trái $b$ trên trục số
+- $a > b$: "$a$ **lớn hơn** $b$" khi $a$ đứng bên phải $b$ trên trục số
+- $a = b$: "$a$ **bằng** $b$" khi $a$ và $b$ biểu diễn cùng một điểm trên trục số
 
 </div>
-
-**Ví dụ 1:** So sánh các cặp số
-
-a) $45$ và $123$
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$45$ có 2 chữ số, $123$ có 3 chữ số
-
-Vậy $45 < 123$
-
-</div>
-
-b) $567$ và $576$
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Cùng 3 chữ số, so sánh từ trái sang:
-- Hàng trăm: $5 = 5$
-- Hàng chục: $6 < 7$
-
-Vậy $567 < 576$
-
-</div>
-
-<h3 id="lien-sau-lien-truoc" style="margin-top:2rem;">🔄 2. Số liền sau và số liền trước</h3>
 
 <div class="box-dinh-ly">
 
-**Định nghĩa:**
+📌 **QUY TẮC SO SÁNH HAI SỐ TỰ NHIÊN:**
+1. **Bước 1:** So sánh số chữ số → Số nào có **nhiều chữ số hơn** thì **lớn hơn**.
+2. **Bước 2:** Nếu cùng số chữ số → So sánh **từ trái sang phải**, chữ số nào lớn hơn ở hàng cao nhất thì số đó lớn hơn.
 
-- **Số liền sau** của số tự nhiên $n$ là số $n + 1$
-- **Số liền trước** của số tự nhiên $n$ (với $n > 0$) là số $n - 1$
+</div>
+
+**🎨 Hình vẽ minh họa 1: Trục số tự nhiên**
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="100" viewBox="0 0 620 100" style="background:#fff;border-radius:12px;border:2px solid #e2e8f0;">
+  <defs>
+    <marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#1e40af" />
+    </marker>
+  </defs>
+  <line x1="20" y1="50" x2="590" y2="50" stroke="#1e40af" strokeWidth="3" markerEnd="url(#arrow3)" />
+  {[0,1,2,3,4,5,6,7,8,9,10].map(n => (
+    <g key={n}>
+      <circle cx={30 + n * 54} cy="50" r={4} fill="#1e40af" />
+      <text x={30 + n * 54} y="75" textAnchor="middle" fontSize="16" fontWeight={n===3||n===7 ? "bold" : "normal"} fill={n===3?"#2563eb":n===7?"#ef4444":"#1e40af"}>{n}</text>
+    </g>
+  ))}
+  <text x="570" y="30" fontSize="13" fontWeight="bold" fill="#059669">Tăng →</text>
+  <text x={30 + 3 * 54} y="30" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#2563eb">3</text>
+  <text x={30 + 7 * 54} y="30" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#ef4444">7</text>
+  <text x="320" y="95" textAnchor="middle" fontSize="11" fill="#64748b">3 đứng bên trái 7 nên 3 {'<'} 7</text>
+</svg>
+</div>
+
+**Ví dụ 1:** So sánh $45$ và $123$.
+- $45$ có 2 chữ số, $123$ có 3 chữ số.
+- Số chữ số khác nhau → Số nào nhiều chữ số hơn thì lớn hơn.
+- Vậy **$45 < 123$**.
+
+**Ví dụ 2:** So sánh $567$ và $576$.
+- Cùng có 3 chữ số → So sánh từ trái sang phải.
+- Hàng trăm: $5 = 5$ (bằng nhau → xét hàng tiếp).
+- Hàng chục: $6 < 7$ (hàng chục của 567 nhỏ hơn).
+- Vậy **$567 < 576$**.
+
+**Ví dụ 3:** So sánh $3.456$ và $3.465$.
+- Cùng có 4 chữ số → So sánh từ trái sang phải.
+- Hàng nghìn: $3 = 3$; Hàng trăm: $4 = 4$; Hàng chục: $5 < 6$.
+- Vậy **$3.456 < 3.465$**.
+
+---
+
+<h3 id="lien-sau-truoc" style="margin-top:2.5rem;">2. Số liền sau và số liền trước</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:**
+- **Số liền sau** của số tự nhiên $n$ là số $n + 1$.
+- **Số liền trước** của số tự nhiên $n$ (với $n > 0$) là số $n - 1$.
 
 **Lưu ý:** Số $0$ không có số liền trước trong tập hợp số tự nhiên.
 
 </div>
 
-**Ví dụ 2:**
+**🎨 Hình vẽ minh họa 2: Số liền trước và số liền sau trên trục số**
 
-<div style="overflow-x:auto;margin:1.5rem 0;">
-<table style="width:100%;border-collapse:collapse;">
-<thead>
-<tr style="background:#f3f4f6;">
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Số</th>
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Số liền trước</th>
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Số liền sau</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$0$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Không có</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$1$</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$5$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$4$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$6$</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$99$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$98$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$100$</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$1000$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$999$</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">$1001$</td>
-</tr>
-</tbody>
-</table>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="500" height="80" viewBox="0 0 500 80" style="background:#fff;border-radius:12px;border:2px solid #e2e8f0;">
+  <line x1="20" y1="40" x2="480" y2="40" stroke="#cbd5e1" strokeWidth="2" />
+  {[6,7,8,9,10,11,12].map((n, i) => (
+    <g key={n}>
+      <circle cx={40 + i * 68} cy="40" r={n===9 ? 12 : 5} fill={n===8?"#10b981":n===9?"#2563eb":n===10?"#f59e0b":"#94a3b8"} />
+      <text x={40 + i * 68} y="70" textAnchor="middle" fontSize="15" fontWeight={n>=8&&n<=10?"bold":"normal"} fill={n>=8&&n<=10?"#1e293b":"#64748b"}>{n}</text>
+    </g>
+  ))}
+  <text x={40 + 2 * 68} y="18" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#10b981">Liền trước</text>
+  <text x={40 + 3 * 68} y="18" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#2563eb">Số n</text>
+  <text x={40 + 4 * 68} y="18" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#f59e0b">Liền sau</text>
+  <path d="M 120,25 L 176,25" stroke="#10b981" strokeWidth="1.5" markerEnd="url(#arrow3)" fill="none" />
+  <path d="M 244,25 L 312,25" stroke="#f59e0b" strokeWidth="1.5" markerEnd="url(#arrow3)" fill="none" />
+</svg>
 </div>
 
-<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 3. Tính chất của thứ tự</h3>
+**Ví dụ 1:** Tìm số liền trước và số liền sau của số $45$.
+- Số liền trước: $45 - 1 = 44$.
+- Số liền sau: $45 + 1 = 46$.
+
+**Ví dụ 2:** Tìm số liền trước và số liền sau của số $99$.
+- Số liền trước: $99 - 1 = 98$.
+- Số liền sau: $99 + 1 = 100$.
+
+**Ví dụ 3:** Tìm số liền trước và số liền sau của số $0$.
+- Số $0$ **không có** số liền trước trong tập hợp số tự nhiên.
+- Số liền sau: $0 + 1 = 1$.
+
+---
+
+<h3 id="tinh-chat" style="margin-top:2.5rem;">3. Tính chất của thứ tự</h3>
 
 <div class="box-dinh-ly">
 
-**Tính chất:**
+📌 **CÁC TÍNH CHẤT QUAN TRỌNG:**
 
-1. **Tính bắc cầu:** Nếu $a < b$ và $b < c$ thì $a < c$
+1. **Tính bắc cầu:** Nếu $a < b$ và $b < c$ thì $a < c$.
 
-2. **Tính cộng:** Nếu $a < b$ thì $a + c < b + c$ với mọi số tự nhiên $c$
+2. **Tính cộng:** Nếu $a < b$ thì $a + c < b + c$ (với mọi $c \geq 0$).
 
-3. **Tính nhân:** Nếu $a < b$ và $c > 0$ thì $a \times c < b \times c$
+3. **Tính nhân:** Nếu $a < b$ và $c > 0$ thì $a \times c < b \times c$.
 
-</div>
-
-**Ví dụ 3:** Áp dụng tính chất
-
-a) Biết $5 < 8$ và $8 < 12$. So sánh $5$ và $12$.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Theo tính chất bắc cầu: $5 < 12$
+4. **Mối quan hệ giữa ba quan hệ:** Với hai số $a$ và $b$ bất kỳ, chỉ có **đúng một** trong ba khẳng định sau: $a < b$, $a > b$, hoặc $a = b$.
 
 </div>
 
-b) Biết $7 < 10$. So sánh $7 + 3$ và $10 + 3$.
+**Ví dụ 1:** Biết $5 < 8$ và $8 < 12$. Chứng minh $5 < 12$.
+- Theo **tính bắc cầu**: Vì $5 < 8$ và $8 < 12$ nên $5 < 12$.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 2:** Biết $7 < 10$. So sánh $7 + 3$ và $10 + 3$.
+- Theo **tính cộng**: Vì $7 < 10$ nên $7 + 3 < 10 + 3$, tức là $10 < 13$.
 
-Theo tính chất cộng: $7 + 3 < 10 + 3$
+**Ví dụ 3:** Biết $4 < 6$. So sánh $4 \times 5$ và $6 \times 5$.
+- Theo **tính nhân**: Vì $4 < 6$ và $5 > 0$ nên $4 \times 5 < 6 \times 5$, tức là $20 < 30$.
 
-Hay $10 < 13$
+---
 
-</div>
-
-<h3 id="dem-so" style="margin-top:2rem;">🔢 4. Đếm số các số tự nhiên</h3>
+<h3 id="sap-xep" style="margin-top:2.5rem;">4. Sắp xếp các số tự nhiên</h3>
 
 <div class="box-dinh-ly">
 
-**Công thức:**
+📌 **PHƯƠNG PHÁP SẮP XẾP:**
+1. **Tăng dần (nhỏ → lớn):** Đặt số nhỏ nhất lên đầu, số lớn nhất lên cuối.
+2. **Giảm dần (lớn → nhỏ):** Đặt số lớn nhất lên đầu, số nhỏ nhất lên cuối.
 
-- Số các số tự nhiên từ $a$ đến $b$ (với $a \leq b$) là: $b - a + 1$
-- Số các số tự nhiên nằm giữa $a$ và $b$ (không kể $a, b$) là: $b - a - 1$
-
-</div>
-
-**Ví dụ 4:**
-
-a) Có bao nhiêu số tự nhiên từ $5$ đến $10$?
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Số các số tự nhiên từ 5 đến 10 là:
-
-$10 - 5 + 1 = 6$ (số)
-
-Đó là: $5, 6, 7, 8, 9, 10$
+**Bước thực hiện:**
+- So sánh từng cặp số theo quy tắc so sánh.
+- Hoặc so sánh theo hàng chữ số: so hàng cao nhất trước, nếu bằng thì xét hàng tiếp.
 
 </div>
 
-b) Có bao nhiêu số tự nhiên nằm giữa $5$ và $10$?
+**🎨 Hình vẽ minh họa 3: Sắp xếp tăng và giảm dần**
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:1rem;margin:1.5rem 0;">
+  <div style="background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px;padding:1.25rem;text-align:center;">
+    <span style="font-size:1.5rem;">📈</span>
+    <h4 style="margin:.5rem 0;color:#15803d;font-size:1rem;">Tăng dần ↑</h4>
+    <div style="display:flex;justify-content:center;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+      {['23','45','67','89'].map((n,i)=>(
+        <span key={i} style={{display:'inline-block',padding:'0.3rem 0.6rem',borderRadius:'6px',fontWeight:700,fontSize:'1rem',backgroundColor:i===0?'#dcfce7':i===3?'#fee2e2':'#eff6ff',color:i===0?'#166534':i===3?'#991b1b':'#1d4ed8',border:`1px solid ${i===0?'#86efac':i===3?'#fca5a5':'#bfdbfe'}`}}>{n}</span>
+      ))}
+    </div>
+    <p style="margin:.5rem 0 0;font-size:.85rem;color:#64748b;">Nhỏ nhất → Lớn nhất</p>
+  </div>
 
-Số các số tự nhiên nằm giữa 5 và 10 là:
+  <div style="background:#fef2f2;border:2px solid #fca5a5;border-radius:12px;padding:1.25rem;text-align:center;">
+    <span style="font-size:1.5rem;">📉</span>
+    <h4 style="margin:.5rem 0;color:#dc2626;font-size:1rem;">Giảm dần ↓</h4>
+    <div style="display:flex;justify-content:center;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+      {['89','67','45','23'].map((n,i)=>(
+        <span key={i} style={{display:'inline-block',padding:'0.3rem 0.6rem',borderRadius:'6px',fontWeight:700,fontSize:'1rem',backgroundColor:i===0?'#fee2e2':i===3?'#dcfce7':'#eff6ff',color:i===0?'#991b1b':i===3?'#166534':'#1d4ed8',border:`1px solid ${i===0?'#fca5a5':i===3?'#86efac':'#bfdbfe'}`}}>{n}</span>
+      ))}
+    </div>
+    <p style="margin:.5rem 0 0;font-size:.85rem;color:#64748b;">Lớn nhất → Nhỏ nhất</p>
+  </div>
+</div>
 
-$10 - 5 - 1 = 4$ (số)
+**Ví dụ 1:** Sắp xếp $345, 354, 435, 453$ theo thứ tự tăng dần.
+- So sánh hàng trăm: $3 < 4$ nên $345, 354$ nhỏ hơn $435, 453$.
+- So sánh tiếp: $345 < 354$ (hàng chục $4 < 5$); $435 < 453$ (hàng chục $3 < 5$).
+- Kết quả: **$345 < 354 < 435 < 453$**.
 
-Đó là: $6, 7, 8, 9$
+**Ví dụ 2:** Sắp xếp $1.234, 1.243, 1.324, 1.342$ theo thứ tự giảm dần.
+- Hàng nghìn: $1 = 1 = 1 = 1$ → xét hàng trăm.
+- Hàng trăm: $2 < 3$ → $1.234, 1.243$ nhỏ hơn $1.324, 1.342$.
+- Kết quả giảm dần: **$1.342 > 1.324 > 1.243 > 1.234$**.
+
+**Ví dụ 3:** Sắp xếp $567, 576, 657, 675$ theo thứ tự tăng dần.
+- Hàng trăm: $5 < 6$ → $567, 576$ nhỏ hơn $657, 675$.
+- Trong nhóm 5xx: $567 < 576$ (hàng chục $6 < 7$).
+- Trong nhóm 6xx: $657 < 675$ (hàng chục $5 < 7$).
+- Kết quả: **$567 < 576 < 657 < 675$**.
+
+---
+
+<h3 id="dem-so" style="margin-top:2.5rem;">5. Đếm số các số tự nhiên</h3>
+
+<div class="box-dinh-ly">
+
+📌 **CÔNG THỨC ĐẾM SỐ:**
+1. Số các số tự nhiên từ $a$ đến $b$ (kể cả $a$ và $b$, với $a \leq b$):
+   $$\text{Số phần tử} = b - a + 1$$
+
+2. Số các số tự nhiên **nằm giữa** $a$ và $b$ (không kể $a$ và $b$):
+   $$\text{Số nằm giữa} = b - a - 1$$
+
+3. **Lưu ý:** Nếu $b - a - 1 \leq 0$ thì không có số nào nằm giữa $a$ và $b$.
 
 </div>
+
+**🎨 Hình vẽ minh họa 4: Công thức đếm số**
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:1rem;margin:1.5rem 0;">
+  <div style="background:#f0f9ff;border:2px solid #bae6fd;border-radius:12px;padding:1.25rem;">
+    <h4 style="margin:0 0 0.75rem;color:#0369a1;font-size:1rem;">Từ a đến b (kể cả a, b)</h4>
+    <div style="background:white;padding:.75rem;border-radius:8px;text-align:center;font-size:1.3rem;font-weight:800;color:#0284c7;">
+      b - a + 1
+    </div>
+    <p style="margin:.5rem 0 0;font-size:.85rem;color:#64748b;">Ví dụ: Từ 5 đến 10 có 10 - 5 + 1 = 6 số</p>
+  </div>
+
+  <div style="background:#fff7ed;border:2px solid #fdba74;border-radius:12px;padding:1.25rem;">
+    <h4 style="margin:0 0 0.75rem;color:#c2410c;font-size:1rem;">Nằm giữa a và b (không kể a, b)</h4>
+    <div style="background:white;padding:.75rem;border-radius:8px;text-align:center;font-size:1.3rem;font-weight:800;color:#ea580c;">
+      b - a - 1
+    </div>
+    <p style="margin:.5rem 0 0;font-size:.85rem;color:#64748b;">Ví dụ: Giữa 5 và 10 có 10 - 5 - 1 = 4 số</p>
+  </div>
+</div>
+
+**Ví dụ 1:** Có bao nhiêu số tự nhiên từ $1$ đến $20$?
+- Số phần tử: $20 - 1 + 1 = 20$ (số).
+- Đó là: $1, 2, 3, ..., 20$.
+
+**Ví dụ 2:** Có bao nhiêu số tự nhiên nằm giữa $10$ và $20$?
+- Số nằm giữa: $20 - 10 - 1 = 9$ (số).
+- Đó là: $11, 12, 13, 14, 15, 16, 17, 18, 19$.
+
+**Ví dụ 3:** Có bao nhiêu số tự nhiên có hai chữ số?
+- Số có 2 chữ số nhỏ nhất: $10$; lớn nhất: $99$.
+- Số phần tử: $99 - 10 + 1 = 90$ (số).
 
 </KhamPha>
 
-<LuyenTap>
+---
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+## 🎯 II. CÁC DẠN TOÁN THƯỜNG GẶP
 
-<QuizSession client:load questions={quizData} />
+### 📌 Dạng 1: So sánh hai hoặc nhiều số tự nhiên
 
-</LuyenTap>
+**Phương pháp giải:**
+1. So sánh số chữ số → nhiều chữ số hơn thì lớn hơn.
+2. Cùng số chữ số → so sánh từ trái sang phải, hàng cao nhất trước.
+3. Nếu vẫn bằng nhau → xét hàng tiếp theo cho đến khi tìm được chữ số khác.
+
+---
+
+**Ví dụ 1:** So sánh $4.567$ và $4.576$.
+
+*Lời giải:*
+- Cùng 4 chữ số → so sánh từ trái sang phải:
+- Hàng nghìn: $4 = 4$ → xét hàng trăm.
+- Hàng trăm: $5 = 5$ → xét hàng chục.
+- Hàng chục: $6 < 7$.
+- Vậy **$4.567 < 4.576$**.
+
+---
+
+**Ví dụ 2:** So sánh $12.345$ và $1.234.567$.
+
+*Lời giải:*
+- $12.345$ có 5 chữ số, $1.234.567$ có 7 chữ số.
+- $5 < 7$ → $12.345$ nhỏ hơn.
+- Vậy **$12.345 < 1.234.567$**.
+
+---
+
+**Ví dụ 3:** So sánh $12.345.678$ và $12.345.687$.
+
+*Lời giải:*
+- Cùng 8 chữ số → so sánh từ trái sang phải.
+- 7 chữ số đầu: $12.345.67$ giống nhau.
+- Chữ số hàng đơn vị: $8 > 7$.
+- Vậy **$12.345.678 > 12.345.687$**.
+
+---
+
+### 📌 Dạng 2: Tìm số liền trước, số liền sau
+
+**Phương pháp giải:**
+- Số liền trước của $n$: tính $n - 1$ (nếu $n > 0$).
+- Số liền sau của $n$: tính $n + 1$.
+- Chú ý: Khi $n$ có dạng $99...9$ (toàn 9), số liền sau sẽ có thêm 1 chữ số.
+
+---
+
+**Ví dụ 1:** Tìm số liền trước và số liền sau của $567$.
+
+*Lời giải:*
+- Số liền trước: $567 - 1 = 566$.
+- Số liền sau: $567 + 1 = 568$.
+
+---
+
+**Ví dụ 2:** Tìm số liền trước và số liền sau của $999$.
+
+*Lời giải:*
+- Số liền trước: $999 - 1 = 998$.
+- Số liền sau: $999 + 1 = 1000$.
+- Nhận xét: Số $999$ toàn chữ số 9, số liền sau tăng thêm 1 chữ số.
+
+---
+
+**Ví dụ 3:** Số liền sau của số nào là $10.000$?
+
+*Lời giải:*
+- Gọi số đó là $x$, ta có: $x + 1 = 10.000 \Rightarrow x = 10.000 - 1 = 9.999$.
+- Vậy số cần tìm là **$9.999$**.
+
+---
+
+### 📌 Dạng 3: Sắp xếp dãy số theo thứ tự
+
+**Phương pháp giải:**
+1. Liệt kê tất cả các số.
+2. So sánh từng cặp để tìm số nhỏ nhất (hoặc lớn nhất).
+3. Loại số đó ra, tiếp tục tìm số nhỏ nhất (hoặc lớn nhất) trong dãy còn lại.
+4. Lặp lại cho đến khi hết số.
+
+---
+
+**Ví dụ 1:** Sắp xếp $78, 125, 45, 230, 12, 99$ theo thứ tự tăng dần.
+
+*Lời giải:*
+- So sánh: $12 < 45 < 78 < 99 < 125 < 230$.
+- Thứ tự tăng dần: **$12, 45, 78, 99, 125, 230$**.
+
+---
+
+**Ví dụ 2:** Sắp xếp $5.678, 5.768, 5.687, 5.786$ theo thứ tự giảm dần.
+
+*Lời giải:*
+- Cùng 4 chữ số, hàng nghìn = 5, hàng trăm: $6 < 7$.
+- Nhóm 5.6xx: $5.678 < 5.687$ (hàng chục $7 < 8$).
+- Nhóm 5.7xx: $5.768 < 5.786$ (hàng chục $6 < 8$).
+- Thứ tự giảm dần: **$5.786 > 5.768 > 5.687 > 5.678$**.
+
+---
+
+**Ví dụ 3:** Sắp xếp $345, 354, 435, 453, 534, 543$ theo thứ tự tăng dần.
+
+*Lời giải:*
+- Hàng trăm: $3 < 4 < 5$.
+- Nhóm 3xx: $345 < 354$ (hàng chục $4 < 5$).
+- Nhóm 4xx: $435 < 453$ (hàng chục $3 < 5$).
+- Nhóm 5xx: $534 < 543$ (hàng chục $3 < 4$).
+- Thứ tự tăng dần: **$345, 354, 435, 453, 534, 543$**.
+
+---
+
+### 📌 Dạng 4: Đếm số và áp dụng công thức
+
+**Phương pháp giải:**
+- Xác định $a$ (số đầu) và $b$ (số cuối).
+- Áp dụng công thức: $b - a + 1$ (từ $a$ đến $b$) hoặc $b - a - 1$ (nằm giữa).
+
+---
+
+**Ví dụ 1:** Có bao nhiêu số tự nhiên 3 chữ số?
+
+*Lời giải:*
+- Số có 3 chữ số nhỏ nhất: $100$; lớn nhất: $999$.
+- Số phần tử: $999 - 100 + 1 = 900$ (số).
+
+---
+
+**Ví dụ 2:** Có bao nhiêu số chẵn từ $1$ đến $100$?
+
+*Lời giải:*
+- Số chẵn từ 1 đến 100: $2, 4, 6, ..., 100$.
+- Đây là dãy cách đều 2, số đầu = 2, số cuối = 100.
+- Số phần tử: $(100 - 2) : 2 + 1 = 49 + 1 = 50$ (số).
+
+---
+
+**Ví dụ 3:** Có bao nhiêu số tự nhiên nhỏ hơn $50$ mà chia hết cho $3$?
+
+*Lời giải:*
+- Số chia hết cho 3 nhỏ nhất ≥ 0: $0$ (hoặc $3$ nếu xét $\mathbb{N}^*$).
+- Số chia hết cho 3 lớn nhất < 50: $48$.
+- Số phần tử (với $0$): $(48 - 0) : 3 + 1 = 17$ (số).
+- Đó là: $0, 3, 6, 9, ..., 48$.
+
+---
+
+## 💻 III. THỰC HÀNH TƯƠNG TÁC
+
+<ThuTuSoInteractive client:load />
+
+---
 
 <VanDung>
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+## 🌍 IV. VẬN DỤNG THỰC TẾ
 
-**📝 Bài toán 1:** Ba bạn An, Bình, Chi có số điểm lần lượt là $85$, $92$, $78$.
+<div style="background:#f0f9ff;border-left:4px solid #0284c7;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-a) Sắp xếp điểm số theo thứ tự tăng dần.
+**📝 Câu 1 (Cuộc thiathlete):**
+Kết quả chạy 100m của 5 vận động viên: An (12s), Bình (11s), Chi (13s), Dũng (10s), Em (12s). a) Sắp xếp kết quả theo thứ tự từ nhanh đến chậm. b) Ai chạy nhanh nhất? c) Ai chạy chậm nhất? d) Có bao nhiêu bạn chạy cùng kết quả?
 
-b) Bạn nào có điểm cao nhất?
-
-c) Bạn nào có điểm thấp nhất?
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) So sánh: $78 < 85 < 92$
-
-Thứ tự tăng dần: Chi ($78$), An ($85$), Bình ($92$)
-
-b) Bạn Bình có điểm cao nhất ($92$ điểm)
-
-c) Bạn Chi có điểm thấp nhất ($78$ điểm)
+**Lời giải:**
+a) Thời gian nhỏ hơn = chạy nhanh hơn. Sắp xếp tăng dần: 10s, 11s, 12s, 12s, 13s → Dũng, Bình, An/Em, Chi.
+b) Dũng chạy nhanh nhất (10 giây).
+c) Chi chạy chậm nhất (13 giây).
+d) An và Em cùng chạy 12 giây → có 2 bạn chạy cùng kết quả.
 
 </div>
 
-**📝 Bài toán 2:** Một cuốn sách có các trang được đánh số từ trang $1$ đến trang $50$.
+<div style="background:#f0fdf4;border-left:4px solid #16a34a;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-a) Cuốn sách có bao nhiêu trang?
+**📝 Câu 2 (Thư viện):**
+Thư viện có các tủ sách đánh số từ 1 đến 50. a) Tủ sách cuối cùng đánh số mấy? b) Có bao nhiêu tủ sách? c) Tủ sách thứ 25 có đánh số không? d) Số tủ sách nằm giữa tủ 10 và tủ 40 là bao nhiêu?
 
-b) Có bao nhiêu số trang nằm giữa trang $10$ và trang $20$?
+**Lời giải:**
+a) Tủ sách cuối cùng là tủ số 50.
+b) Số tủ sách: 50 - 1 + 1 = 50 (tủ).
+c) Tủ thứ 25 đánh số 25.
+d) Số tủ nằm giữa tủ 10 và tủ 40: 40 - 10 - 1 = 29 (tủ).
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+</div>
 
-**Giải:**
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-a) Số trang của cuốn sách:
+**📝 Câu 3 (Đặt vé xe):**
+Vé xe bus có số thứ tự từ 001 đến 150. a) Vé số cuối cùng là số mấy? b) Tổng số vé là bao nhiêu? c) Vé nằm giữa vé 50 và vé 100 có bao nhiêu vé? d) Nếuulled bán hết 120 vé, vé tiếp theo sẽ có số mấy?
 
-$50 - 1 + 1 = 50$ (trang)
-
-b) Số các số trang nằm giữa trang 10 và trang 20:
-
-$20 - 10 - 1 = 9$ (trang)
-
-Đó là: $11, 12, 13, 14, 15, 16, 17, 18, 19$
+**Lời giải:**
+a) Vé cuối cùng là số 150.
+b) Tổng số vé: 150 - 1 + 1 = 150 (vé).
+c) Số vé nằm giữa vé 50 và vé 100: 100 - 50 - 1 = 49 (vé).
+d) Vé tiếp theo sau vé 120 là: 120 + 1 = 121.
 
 </div>
 
 </VanDung>
 
+<LuyenTap>
+
+## ❓ V. TRẮC NGHIỆM TỰ LUYỆN (10 CÂU)
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **So sánh số tự nhiên**: So sánh số chữ số, nếu bằng nhau thì so sánh từ trái sang phải
-- **Số liền sau** của $n$: $n + 1$
-- **Số liền trước** của $n$: $n - 1$ (với $n > 0$)
-- **Tính bắc cầu**: $a < b$ và $b < c$ thì $a < c$
-- **Đếm số**: Từ $a$ đến $b$ có $b - a + 1$ số; nằm giữa $a$ và $b$ có $b - a - 1$ số
+## 📌 VI. GHI NHỚ TRỌNG TÂM
+
+- **So sánh**: Nhiều chữ số hơn → lớn hơn. Cùng số chữ số → so từ trái sang phải.
+- **Số liền trước** của $n$: $n - 1$ ($n > 0$). **Số liền sau** của $n$: $n + 1$.
+- **Tính bắc cầu**: $a < b, b < c \Rightarrow a < c$.
+- **Tính cộng**: $a < b \Rightarrow a + c < b + c$.
+- **Tính nhân**: $a < b, c > 0 \Rightarrow a \times c < b \times c$.
+- **Đếm số từ $a$ đến $b$**: $b - a + 1$.
+- **Đếm số nằm giữa $a$ và $b$**: $b - a - 1$.
 
 </GhiNho>
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+## 📝 VII. BÀI TẬP TỰ LUẬN (10 CÂU TỪ DỄ ĐẾN KHÓ)
 
-**Bài 1:** So sánh các cặp số sau:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) $234$ và $243$
+**Bài 1 (Dễ - Nhận biết):** So sánh các cặp số sau:
+a) $234$ và $243$ &nbsp;&nbsp;&nbsp;&nbsp; b) $567$ và $5670$ &nbsp;&nbsp;&nbsp;&nbsp; c) $1000$ và $999$ &nbsp;&nbsp;&nbsp;&nbsp; d) $4567$ và $4576$
 
-b) $567$ và $5670$
+**Bài 2 (Dễ - Nhận biết):** Tìm số liền trước và số liền sau:
+a) $15$ &nbsp;&nbsp;&nbsp;&nbsp; b) $99$ &nbsp;&nbsp;&nbsp;&nbsp; c) $1000$ &nbsp;&nbsp;&nbsp;&nbsp; d) $10.000$
 
-c) $1000$ và $999$
+**Bài 3 (Thông hiểu):** Sắp xếp các số sau theo thứ tự tăng dần:
+a) $45, 54, 34, 43$ &nbsp;&nbsp;&nbsp;&nbsp; b) $123, 132, 213, 231$
+c) $567, 576, 657, 675$ &nbsp;&nbsp;&nbsp;&nbsp; d) $1234, 1243, 1324, 1342$
 
-d) $4567$ và $4576$
+**Bài 4 (Thông hiểu):** Tính số các số tự nhiên:
+a) Từ $1$ đến $20$ &nbsp;&nbsp;&nbsp;&nbsp; b) Từ $10$ đến $30$
+c) Nằm giữa $5$ và $15$ &nbsp;&nbsp;&nbsp;&nbsp; d) Nằm giữa $20$ và $40$
 
-**Bài 2:** Tìm số liền sau và số liền trước của các số:
+**Bài 5 (Thông hiểu):** Điền dấu $<, >, =$ thích hợp:
+a) $15 + 3$ ... $20 - 2$ &nbsp;&nbsp;&nbsp;&nbsp; b) $7 \times 2$ ... $10 + 4$
+c) $25 - 5$ ... $4 \times 5$ &nbsp;&nbsp;&nbsp;&nbsp; d) $30 : 3$ ... $5 + 5$
 
-a) $15$
+**Bài 6 (Vận dụng):** Trong cuộc thi chạy, 5 bạn về đích: An (45s), Bình (42s), Chi (48s), Dũng (40s), Em (43s). a) Sắp xếp thời gian theo thứ tự tăng dần. b) Bạn nào về đích nhanh nhất? c) Bạn nào về đích chậm nhất?
 
-b) $99$
+**Bài 7 (Vận dụng):** Sách Toán lớp 6 có 172 trang. a) Trang sách đầu tiên đánh số mấy? b) Trang cuối cùng? c) Có bao nhiêu trang sách? d) Có bao nhiêu trang nằm giữa trang 50 và trang 100?
 
-c) $1000$
+**Bài 8 (Vận dụng cao):** Tìm số tự nhiên có 4 chữ số, biết rằng: Tổng các chữ số = 18; Chữ số hàng trăm gấp đôi chữ số hàng nghìn; Chữ số hàng chục bằng 0; Chữ số hàng đơn vị lớn hơn hàng nghìn 1 đơn vị.
 
-d) $10000$
+**Bài 9 (Vận dụng cao):** a) Có bao nhiêu số tự nhiên có 3 chữ số mà chia hết cho 5? b) Có bao nhiêu số tự nhiên 2 chữ số mà tổng hai chữ số bằng 10?
 
-**Bài 3:** Sắp xếp các số sau theo thứ tự tăng dần:
+**Bài 10 (Vận dụng cao):** Cho 5 số: $A = 1.234, B = 1.243, C = 1.324, D = 1.342, E = 1.423$. a) Sắp xếp 5 số theo thứ tự tăng dần. b) Có bao nhiêu số trong danh sách trên lớn hơn $1.300$? c) Thay số $C$ bằng số $F$ sao cho $A < B < F < D < E$. Tìm số $F$ thỏa mãn.
 
-a) $45, 54, 34, 43$
+</div>
 
-b) $123, 132, 213, 231$
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-c) $567, 576, 657, 675$
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-d) $1234, 1243, 1324, 1342$
+**Bài 1:**
+a) $234 < 243$ (cùng 3 chữ số, hàng chục $3 < 4$)
+b) $567 < 5670$ ($567$ có 3 chữ số, $5670$ có 4 chữ số)
+c) $1000 > 999$ ($1000$ có 4 chữ số, $999$ có 3 chữ số)
+d) $4567 < 4576$ (cùng 4 chữ số, hàng chục $6 < 7$)
 
-**Bài 4:** Tính số các số tự nhiên:
+---
 
-a) Từ $1$ đến $20$
+**Bài 2:**
+a) Liền trước: $14$, liền sau: $16$
+b) Liền trước: $98$, liền sau: $100$
+c) Liền trước: $999$, liền sau: $1.001$
+d) Liền trước: $9.999$, liền sau: $10.001$
 
-b) Từ $10$ đến $30$
+---
 
-c) Nằm giữa $5$ và $15$
+**Bài 3:**
+a) $34, 43, 45, 54$ (tăng dần)
+b) $123, 132, 213, 231$ (tăng dần)
+c) $567, 576, 657, 675$ (tăng dần)
+d) $1234, 1243, 1324, 1342$ (tăng dần)
 
-d) Nằm giữa $20$ và $40$
+---
 
-**Bài 5:** Điền dấu $<, >, =$ thích hợp vào chỗ trống:
+**Bài 4:**
+a) $20 - 1 + 1 = 20$ (số)
+b) $30 - 10 + 1 = 21$ (số)
+c) $15 - 5 - 1 = 9$ (số)
+d) $40 - 20 - 1 = 19$ (số)
 
-a) $15 + 3$ ... $20 - 2$
+---
 
-b) $7 \times 2$ ... $10 + 4$
+**Bài 5:**
+a) $15 + 3 = 18$; $20 - 2 = 18$ → **$=$**
+b) $7 \times 2 = 14$; $10 + 4 = 14$ → **$=$**
+c) $25 - 5 = 20$; $4 \times 5 = 20$ → **$=$**
+d) $30 : 3 = 10$; $5 + 5 = 10$ → **$=$**
 
-c) $25 - 5$ ... $4 \times 5$
+---
 
-d) $30 : 3$ ... $5 + 5$
+**Bài 6:**
+a) Sắp xếp tăng dần: $40, 42, 43, 45, 48$ (giây).
+b) Dũng về đích nhanh nhất ($40$ giây).
+c) Chi về đích chậm nhất ($48$ giây).
 
-**Bài 6 (Thực tế):** Trong một cuộc thi chạy, 4 bạn về đích với thời gian (tính bằng giây):
-- An: $45$ giây
-- Bình: $42$ giây
-- Chi: $48$ giây
-- Dũng: $40$ giây
+---
 
-a) Sắp xếp thời gian theo thứ tự tăng dần.
+**Bài 7:**
+a) Trang đầu tiên đánh số $1$.
+b) Trang cuối cùng đánh số $172$.
+c) Số trang: $172 - 1 + 1 = 172$ (trang).
+d) Số trang nằm giữa trang 50 và trang 100: $100 - 50 - 1 = 49$ (trang).
 
-b) Bạn nào về đích nhanh nhất?
+---
 
-c) Bạn nào về đích chậm nhất?
+**Bài 8:**
+Gọi số cần tìm có 4 chữ số: $a$ (nghìn), $b$ (trăm), $c$ (chục), $d$ (đơn vị).
 
-d) Giải thích tại sao thời gian nhỏ hơn lại chạy nhanh hơn?
+Đề bài cho:
+- $a + b + c + d = 18$
+- $b = 2a$
+- $c = 0$
+- $d = a + 1$
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+Thay vào tổng: $a + 2a + 0 + (a + 1) = 18 \Rightarrow 4a + 1 = 18 \Rightarrow 4a = 17 \Rightarrow a = 4.25$
 
-**Bài 1:** a) $234 < 243$; b) $567 < 5670$; c) $1000 > 999$; d) $4567 < 4576$
+Vì $a$ phải là số tự nhiên nguyên, **bài toán này không có nghiệm** trong $\mathbb{N}$.
 
-**Bài 2:** a) Liền trước: $14$, liền sau: $16$; b) Liền trước: $98$, liền sau: $100$; c) Liền trước: $999$, liền sau: $1001$; d) Liền trước: $9999$, liền sau: $10001$
+---
 
-**Bài 3:** a) $34, 43, 45, 54$; b) $123, 132, 213, 231$; c) $567, 576, 657, 675$; d) $1234, 1243, 1324, 1342$
+**Bài 9:**
+a) Số có 3 chữ số chia hết cho 5:
+- Số nhỏ nhất: $100$; lớn nhất: $995$ (chữ số đơn vị = 0 hoặc 5).
+- Số chia hết cho 5 có dạng: $100, 105, 110, ..., 995$.
+- Khoảng cách $d = 5$.
+- Số phần tử: $(995 - 100) : 5 + 1 = 895 : 5 + 1 = 179 + 1 = 180$ (số).
 
-**Bài 4:** a) $20$ số; b) $21$ số; c) $9$ số; d) $19$ số
+b) Số có 2 chữ số mà tổng hai chữ số = 10:
+- Liệt kê: $19, 28, 37, 46, 55, 64, 73, 82, 91$.
+- Có **9 số** thỏa mãn.
 
-**Bài 5:** a) $=$; b) $=$; c) $=$; d) $=$
+---
 
-**Bài 6:** a) $40, 42, 45, 48$ (giây); b) Dũng (40 giây); c) Chi (48 giây); d) Thời gian ít hơn nghĩa là chạy nhanh hơn
+**Bài 10:**
+a) Sắp xếp tăng dần: $A = 1.234 < B = 1.243 < C = 1.324 < D = 1.342 < E = 1.423$.
+
+b) Số lớn hơn $1.300$: $C = 1.324, D = 1.342, E = 1.423$.
+→ Có **3 số** lớn hơn $1.300$.
+
+c) Cần tìm $F$ sao cho $A < B < F < D < E$:
+- $B = 1.243 < F < D = 1.342$.
+- $F$ phải là số tự nhiên có 4 chữ số, nằm giữa $1.243$ và $1.342$.
+- Ví dụ: $F = 1.300$ hoặc $F = 1.320$ hoặc $F = 1.250$.
+- **Có nhiều số $F$ thỏa mãn**, ví dụ: $F = 1.300$.
 
 </div>
 </details>
-

@@ -1,0 +1,9 @@
+câu hỏi động: 
+nếu yêu cầu câu hỏi động thì các số dùng biến !a! là sinh số ngẫu nhiên từ -10 đến 10; !a:1:23! là sinh số nguyên từ 1 đến 23; 
+!a#0! sinh số nguyên khác 0;
+Tính toán: {tinh: biểu_thức} (dùng math.js để tính toán)
+
+Ví dụ: {tinh: !a! + !b!} là tính a+b; 
+Chọn phần tử trong nhóm là !b(2,4,6)! là b lấy phần tử ngẫu nhiên 2 hoặc 4 hoặc 6; 
+Lệnh if then Nếu !a! >0 thì dương, âm là iff(!a!>0, dương,âm); 
+khi tạo câu hỏi động type="mcq" bạn chú ý tính toán cho 4 đáp án ABCD khi sinh số không trùng nhau và phải có đáp án đúng. thank you.

@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 1: Tập hợp"
-description: "Khái niệm tập hợp và cách biểu diễn tập hợp - Toán 6 KNTT Chương 1"
+description: "Khái niệm tập hợp, các cách cho tập hợp, tập hợp số tự nhiên N và N*, sơ đồ Venn - Toán 6 KNTT Chương 1"
 grade: "Lớp 6"
 chapter: "Chương I: Tập hợp các số tự nhiên"
 currentSlug: "lop6/bai-1-tap-hop"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,97 +13,122 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import TapHopInteractive from '../../components/interactive/TapHopInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Tập hợp là (cái nào?):",
-    option_a: "Một nhóm các đối tượng xác định",
-    option_b: "Chỉ là các con số",
-    option_c: "Chỉ là các chữ cái",
-    option_d: "Không có ý nghĩa",
+    question: "Tập hợp là gì?",
+    option_a: "Một nhóm các đối tượng được xác định rõ ràng",
+    option_b: "Chỉ bao gồm các con số tự nhiên",
+    option_c: "Chỉ bao gồm các chữ cái trong bảng chữ cái",
+    option_d: "Các hình vẽ bất kỳ trong toán học",
     correct_option: "A",
-    explanation: "Tập hợp là một nhóm các đối tượng được xác định rõ ràng.",
+    explanation: "Tập hợp là khái niệm cơ bản của toán học, dùng để chỉ một nhóm các đối tượng được xác định rõ ràng.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Ký hiệu nào dùng để chỉ phần tử thuộc tập hợp?",
-    option_a: "$\\in$",
-    option_b: "$\\notin$",
-    option_c: "$=$",
-    option_d: "$\\subset$",
-    correct_option: "A",
-    explanation: "Ký hiệu $\\in$ có nghĩa là 'thuộc', dùng để chỉ phần tử thuộc tập hợp.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tập hợp $A = \\{1, 2, 3\\}$ có bao nhiêu phần tử?",
-    option_a: "$3$",
-    option_b: "$2$",
-    option_c: "$1$",
-    option_d: "$4$",
-    correct_option: "A",
-    explanation: "Tập hợp $A$ có 3 phần tử là 1, 2, 3.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Cho $A = \\{2, 4, 6, 8\\}$. Khẳng định nào đúng?",
-    option_a: "$4 \\in A$",
+    question: "Cho $A = \\{2; 4; 6; 8\\}$. Khẳng định nào sau đây là **ĐÚNG**?",
+    option_a: "$6 \\in A$",
     option_b: "$5 \\in A$",
-    option_c: "$1 \\in A$",
-    option_d: "$10 \\in A$",
+    option_c: "$2 \\notin A$",
+    option_d: "$8 \\notin A$",
     correct_option: "A",
-    explanation: "$4$ là phần tử của tập hợp $A$, nên $4 \\in A$.",
+    explanation: "Số 6 là một phần tử thuộc tập hợp $A$, do đó $6 \\in A$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ký hiệu nào dùng để chỉ phần tử **không thuộc** tập hợp?",
+    option_a: "$\\notin$",
+    option_b: "$\\in$",
+    option_c: "$\\subset$",
+    option_d: "$=$",
+    correct_option: "A",
+    explanation: "Ký hiệu $\\notin$ đọc là 'không thuộc', dùng để chỉ một đối tượng không phải là phần tử của tập hợp.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Viết tập hợp $B = \\{x \\in \\mathbb{N} \\mid 3 < x \\le 7\\}$ bằng cách liệt kê các phần tử:",
+    option_a: "$B = \\{4; 5; 6; 7\\}$",
+    option_b: "$B = \\{3; 4; 5; 6; 7\\}$",
+    option_c: "$B = \\{4; 5; 6\\}$",
+    option_d: "$B = \\{3; 4; 5; 6\\}$",
+    correct_option: "A",
+    explanation: "$x$ là số tự nhiên lớn hơn 3 (không lấy 3) và nhỏ hơn hoặc bằng 7 (lấy 7), nên $B = \\{4; 5; 6; 7\\}$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Cho $B = \\{1, 3, 5, 7, 9\\}$. Những số nào thuộc $B$?",
-    option_a: "$1$",
-    option_b: "$2$",
-    option_c: "$5$",
-    option_d: "$9$",
-    correct_option: "A,C,D",
-    explanation: "Các số 1, 5, 9 đều là phần tử của tập hợp $B$. Số 2 không thuộc $B$.",
+    question: "Cho tập hợp $M = \\{0; 2; 4; 6; 8\\}$. Khẳng định nào sau đây là **ĐÚNG**?",
+    option_a: "$0 \\in M$",
+    option_b: "$4 \\in M$",
+    option_c: "$5 \\notin M$",
+    option_d: "$8 \\notin M$",
+    correct_option: "A,B,C",
+    explanation: "$0 \\in M$, $4 \\in M$, $5 \\notin M$ là các phát biểu đúng. $8 \\notin M$ là sai vì $8 \\in M$.",
     difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tập hợp $\\mathbb{N}^*$ khác tập hợp $\\mathbb{N}$ ở điểm nào?",
+    option_a: "$\\mathbb{N}^*$ không chứa số $0$",
+    option_b: "$\\mathbb{N}^*$ không chứa các số chẵn",
+    option_c: "$\\mathbb{N}^*$ chứa cả số âm",
+    option_d: "$\\mathbb{N}^*$ là tập hợp rỗng",
+    correct_option: "A",
+    explanation: "$\\mathbb{N} = \\{0; 1; 2; 3; ...\\}$ còn $\\mathbb{N}^* = \\{1; 2; 3; ...\\}$ (không có số 0).",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tập hợp các số tự nhiên nhỏ hơn 5 có bao nhiêu phần tử?",
-    correct_option: "5",
-    explanation: "Các số tự nhiên nhỏ hơn 5 là: 0, 1, 2, 3, 4. Có 5 phần tử.",
+    question: "Tập hợp $C = \\{10; 11; 12; ...; 99\\}$ có bao nhiêu phần tử?",
+    correct_option: "90",
+    explanation: "Số phần tử của tập hợp các số tự nhiên liên tiếp từ 10 đến 99 là: $(99 - 10) : 1 + 1 = 90$ phần tử.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tập hợp $A = \\{!a#2!, !b#4!, !c#6!\\}$ có bao nhiêu phần tử?",
-    option_a: "$3$",
-    option_b: "$2$",
-    option_c: "$4$",
-    option_d: "$!tinh: !a! + !b! + !c!!$",
+    question: "Khi liệt kê các phần tử của một tập hợp, quy tắc nào sau đây là **ĐÚNG**?",
+    option_a: "Mỗi phần tử chỉ được liệt kê 1 lần, các phần tử ngăn cách nhau bởi dấu ';' hoặc ','",
+    option_b: "Các phần tử phải viết theo thứ tự từ bé đến lớn",
+    option_c: "Có thể lặp lại một phần tử nhiều lần nếu cần",
+    option_d: "Không được sử dụng dấu ngoặc nhọn $\\{ \\}$",
     correct_option: "A",
-    explanation: "Tập hợp có 3 phần tử bất kể giá trị của chúng.",
+    explanation: "Quy tắc viết tập hợp: Các phần tử đặt trong $\\{ \\}$, mỗi phần tử liệt kê đúng 1 lần, thứ tự tùy ý.",
     difficulty_level: "easy",
-    is_dynamic: true,
+    is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Cho $A = \\{1, 2, 3, 4, 5\\}$. Số $!a#3!$ có thuộc $A$ không?",
-    option_a: "Có",
-    option_b: "Không",
-    option_c: "Không xác định",
-    option_d: "Tùy trường hợp",
+    question: "Tập hợp không có phần tử nào được gọi là:",
+    option_a: "Tập hợp rỗng, ký hiệu $\\emptyset$",
+    option_b: "Tập hợp số 0, ký hiệu $\\{0\\}$",
+    option_c: "Tập hợp đơn vị, ký hiệu $\\{1\\}$",
+    option_d: "Tập hợp vô hạn",
     correct_option: "A",
-    explanation: "$!a!$ thuộc tập hợp $A$.",
+    explanation: "Tập hợp không chứa phần tử nào gọi là tập hợp rỗng, ký hiệu là $\\emptyset$. Chú ý $\\{0\\}$ có 1 phần tử là số 0.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $A = \\{1; 2; 3; 4; 5\\}$. Số $!a(2,3,4)!$ có thuộc tập hợp $A$ không?",
+    option_a: "Có, $!a! \\in A$",
+    option_b: "Không, $!a! \\notin A$",
+    option_c: "Không xác định",
+    option_d: "$!a! = A$",
+    correct_option: "A",
+    explanation: "Số $!a!$ nằm trong các phần tử $1, 2, 3, 4, 5$ nên $!a! \\in A$.",
     difficulty_level: "easy",
     is_dynamic: true,
   },
@@ -112,25 +136,25 @@ export const quizData = [
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Tập hợp — Khái niệm đầu tiên</h3>
+<h3 id="mo-dau">🎯 Khởi động: Tập hợp quanh ta</h3>
 
-Tập hợp là một trong những khái niệm cơ bản nhất trong toán học!
+Trong đời sống hằng ngày, chúng ta thường gặp khái niệm "tập hợp" một cách rất tự nhiên:
 
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">👥</div>
-    <strong>Nhóm bạn</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp các bạn trong lớp</p>
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin:1.25rem 0;">
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #bfdbfe;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">🎒</div>
+    <strong style="color:#1e3a8a;font-size:1.05rem;">Đồ dùng học tập</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp gồm: bút, thước, tẩy, sách, vở trong cặp sách của em.</p>
   </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📚</div>
-    <strong>Sách vở</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp các quyển sách</p>
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #a7f3d0;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">🗓️</div>
+    <strong style="color:#065f46;font-size:1.05rem;">Các ngày trong tuần</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp gồm các ngày từ Thứ Hai đến Chủ Nhật.</p>
   </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
-    <strong>Các số</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp các số tự nhiên</p>
+  <div style="background:white;border-radius:12px;padding:1.25rem;border:2px solid #fde68a;box-shadow:0 2px 4px rgba(0,0,0,0.04);">
+    <div style="font-size:1.8rem;margin-bottom:.5rem;">🔢</div>
+    <strong style="color:#92400e;font-size:1.05rem;">Tập hợp số</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp các số tự nhiên nhỏ hơn 10: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.</p>
   </div>
 </div>
 
@@ -138,231 +162,639 @@ Tập hợp là một trong những khái niệm cơ bản nhất trong toán h�
 
 <KhamPha>
 
-<h3 id="khai-niem">📖 1. Khái niệm tập hợp</h3>
+## 📚 I. LÝ THUYẾT BÀI HỌC
+
+<h3 id="khai-niem-tap-hop">1. Khái niệm Tập hợp & Phần tử của tập hợp</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Tập hợp là một nhóm các đối tượng được xác định rõ ràng.
+**Định nghĩa:**
+- **Tập hợp** là một nhóm các đối tượng được xác định rõ ràng.
+- Mỗi đối tượng trong tập hợp được gọi là một **phần tử** của tập hợp đó.
 
-Mỗi đối tượng trong tập hợp gọi là một **phần tử** của tập hợp đó.
+**Tên tập hợp:** Thường được đặt bằng các **chữ cái in hoa**: $A, B, C, X, Y, ...$
 
 </div>
-
-**Ví dụ về tập hợp:**
-
-- Tập hợp các học sinh trong lớp 6A
-- Tập hợp các ngày trong tuần
-- Tập hợp các số tự nhiên nhỏ hơn 10
-- Tập hợp các chữ cái trong bảng chữ cái tiếng Việt
-
-<h3 id="cach-viet" style="margin-top:2rem;">✍️ 2. Cách viết tập hợp</h3>
-
-**Cách 1: Liệt kê các phần tử**
-
-Viết các phần tử trong dấu ngoặc nhọn $\{ \}$, cách nhau bởi dấu phẩy.
-
-**Ví dụ 1:**
-- $A = \{1, 2, 3, 4, 5\}$ - Tập hợp các số tự nhiên từ 1 đến 5
-- $B = \{a, b, c, d\}$ - Tập hợp các chữ cái a, b, c, d
-- $C = \{2, 4, 6, 8\}$ - Tập hợp các số chẵn nhỏ hơn 10
-
-**Cách 2: Chỉ ra tính chất đặc trưng**
-
-Mô tả tính chất chung của các phần tử.
-
-**Ví dụ 2:**
-- $A = \{x \mid x \text{ là số tự nhiên nhỏ hơn 6}\}$
-- $B = \{x \mid x \text{ là số chẵn, } 0 < x < 10\}$
-
-<h3 id="ky-hieu" style="margin-top:2rem;">🔤 3. Ký hiệu</h3>
 
 <div class="box-dinh-ly">
 
-**Các ký hiệu quan trọng:**
-
-- $\in$ : thuộc (phần tử thuộc tập hợp)
-- $\notin$ : không thuộc (phần tử không thuộc tập hợp)
-- $\mathbb{N}$ : tập hợp các số tự nhiên
-- $\mathbb{N}^*$ : tập hợp các số tự nhiên khác 0
+**Ký hiệu thuộc $(\in)$ và không thuộc $(\notin)$:**
+- Nếu $x$ là một phần tử của tập hợp $A$, ta viết: $x \in A$ (đọc là: "$x$ thuộc $A$" hoặc "$x$ là phần tử của $A$").
+- Nếu $y$ không phải là phần tử của tập hợp $A$, ta viết: $y \notin A$ (đọc là: "$y$ không thuộc $A$" hoặc "$y$ không phải là phần tử của $A$").
 
 </div>
 
-**Ví dụ 3:** Cho $A = \{1, 2, 3, 4, 5\}$
+**Ví dụ 1:** Gọi $A$ là tập hợp các số tự nhiên nhỏ hơn 5.
+- Ta có $A = \{0; 1; 2; 3; 4\}$.
+- Các số $0, 1, 2, 3, 4$ là phần tử của $A$, nên $0 \in A, 3 \in A$.
+- Số $7$ không thuộc $A$, nên $7 \notin A$.
 
-- $3 \in A$ (đọc là: 3 thuộc A)
-- $6 \notin A$ (đọc là: 6 không thuộc A)
-- $1 \in A$, $2 \in A$, $5 \in A$
-- $0 \notin A$, $7 \notin A$
+**Ví dụ 2:** Gọi $B$ là tập hợp các chữ cái xuất hiện trong từ "TOÁN".
+- $B = \{\text{T}, \text{O}, \text{Á}, \text{N}\}$.
+- Ta có: $\text{T} \in B, \text{N} \in B$.
+- Ký hiệu $\text{H} \notin B, \text{M} \notin B$.
 
-<h3 id="so-phan-tu" style="margin-top:2rem;">🔢 4. Số phần tử của tập hợp</h3>
+**Ví dụ 3:** Cho tập hợp $C = \{2; 3; 5; 7\}$. Hãy kiểm tra các phát biểu sau:
+a) $3 \in C$ &nbsp;&nbsp;&nbsp;&nbsp; b) $4 \in C$ &nbsp;&nbsp;&nbsp;&nbsp; c) $7 \in C$ &nbsp;&nbsp;&nbsp;&nbsp; d) $9 \notin C$
+- *Lời giải:* Phát biểu a), c), d) đúng. Phát biểu b) sai vì $4$ không nằm trong tập hợp $C$ (viết đúng là $4 \notin C$).
 
-**Số phần tử** của tập hợp là số lượng các đối tượng trong tập hợp đó.
+**🎨 Hình vẽ minh họa 1: Tập hợp và các phần tử trong/ngoài tập hợp**
 
-**Ví dụ 4:**
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-- $A = \{1, 2, 3\}$ có **3 phần tử**
-- $B = \{a, b, c, d, e\}$ có **5 phần tử**
-- $C = \{2, 4, 6, 8, 10\}$ có **5 phần tử**
-- Tập hợp các ngày trong tuần có **7 phần tử**
-
-</div>
-
-**Tập hợp rỗng:** Tập hợp không có phần tử nào, ký hiệu $\emptyset$ hoặc $\{\}$
-
-**Ví dụ 5:** Tập hợp các số tự nhiên nhỏ hơn 0 là tập rỗng.
-
-<h3 id="bieu-dien" style="margin-top:2rem;">📊 5. Biểu diễn tập hợp bằng sơ đồ Ven</h3>
-
-**Sơ đồ Ven** dùng hình tròn hoặc hình khép kín để biểu diễn tập hợp.
-
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="300" height="250" viewBox="0 0 300 250" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Hình tròn biểu diễn tập hợp A */}
-  <circle cx="150" cy="125" r="80" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="380" height="220" viewBox="0 0 380 220" style="background:#fff;border-radius:12px;border:2px solid #e2e8f0;box-shadow:0 2px 4px rgba(0,0,0,0.05);">
+  <ellipse cx="180" cy="110" rx="120" ry="75" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="6 2"/>
+  <text x="75" y="60" font-size="20" font-weight="bold" fill="#1d4ed8">Tập hợp A</text>
   
-  {/* Nhãn tập hợp */}
-  <text x="150" y="50" font-size="18" font-weight="bold" text-anchor="middle" fill="#3b82f6">A</text>
+  {/* Inside elements */}
+  <circle cx="130" cy="100" r="16" fill="#3b82f6"/>
+  <text x="130" y="105" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">0</text>
   
-  {/* Các phần tử */}
-  <text x="150" y="90" font-size="16" text-anchor="middle" fill="#1f2937">1</text>
-  <text x="120" y="125" font-size="16" text-anchor="middle" fill="#1f2937">2</text>
-  <text x="180" y="125" font-size="16" text-anchor="middle" fill="#1f2937">3</text>
-  <text x="135" y="160" font-size="16" text-anchor="middle" fill="#1f2937">4</text>
-  <text x="165" y="160" font-size="16" text-anchor="middle" fill="#1f2937">5</text>
+  <circle cx="180" cy="85" r="16" fill="#3b82f6"/>
+  <text x="180" y="90" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">1</text>
   
-  {/* Chú thích */}
-  <text x="150" y="230" font-size="14" text-anchor="middle" fill="#6b7280">A = {1, 2, 3, 4, 5}</text>
+  <circle cx="230" cy="105" r="16" fill="#3b82f6"/>
+  <text x="230" y="110" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">2</text>
+
+  <circle cx="155" cy="145" r="16" fill="#3b82f6"/>
+  <text x="155" y="150" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">3</text>
+
+  <circle cx="205" cy="140" r="16" fill="#3b82f6"/>
+  <text x="205" y="145" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">4</text>
+
+  {/* Outside element */}
+  <circle cx="330" cy="110" r="16" fill="#ef4444"/>
+  <text x="330" y="115" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">7</text>
+  <text x="330" y="145" font-size="13" font-weight="bold" text-anchor="middle" fill="#dc2626">7 ∉ A</text>
+
+  <text x="180" y="200" font-size="13" font-weight="bold" text-anchor="middle" fill="#1e40af">0, 1, 2, 3, 4 ∈ A</text>
 </svg>
 </div>
 
+---
+
+<h3 id="cach-cho-tap-hop" style="margin-top:2.5rem;">2. Các cách cho (mô tả) một tập hợp</h3>
+
+Để cho một tập hợp, người ta thường dùng **2 cách**:
+
+<div style="background:#f8fafc;border:2px solid #cbd5e1;border-radius:12px;padding:1.25rem;margin:1rem 0;">
+
+**Cách 1: Liệt kê các phần tử của tập hợp**
+- Viết tất cả các phần tử của tập hợp trong hai dấu ngoặc nhọn $\{ \}$.
+- Các phần tử được ngăn cách bởi dấu chấm phẩy `;` (nếu các phần tử là số) hoặc dấu phẩy `,` (nếu là chữ/đối tượng khác).
+
+**Cách 2: Chỉ ra tính chất đặc trưng cho các phần tử của tập hợp**
+- Mô tả điều kiện chung mà chỉ các phần tử thuộc tập hợp đó mới có.
+- Thường viết dạng: $A = \{x \in \mathbb{N} \mid \text{điều kiện của } x\}$.
+
+</div>
+
+<div class="box-dinh-ly">
+
+📌 **CÁC CHÚ Ý QUAN TRỌNG KHI VIẾT TẬP HỢP:**
+1. Các phần tử của tập hợp được đặt trong hai dấu ngoặc nhọn $\{ \}$.
+2. Mỗi phần tử chỉ được liệt kê **đúng một lần**.
+3. Thứ tự liệt kê các phần tử là **tùy ý**.
+4. Khái niệm **Tập hợp rỗng**: Tập hợp không chứa phần tử nào gọi là tập hợp rỗng, ký hiệu là $\emptyset$. (Ví dụ: Tập hợp các số tự nhiên $x$ sao cho $x + 1 = 0$ là tập rỗng $\emptyset$).
+
+</div>
+
+**Ví dụ 1:** Cho tập hợp $M$ các số tự nhiên nhỏ hơn 6.
+- *Cách 1 (Liệt kê):* $M = \{0; 1; 2; 3; 4; 5\}$.
+- *Cách 2 (Tính chất đặc trưng):* $M = \{x \in \mathbb{N} \mid x < 6\}$.
+
+**Ví dụ 2:** Viết tập hợp các chữ cái trong từ "HỌC SINH".
+- Các chữ cái gồm: H, Ô, C, S, I, N, H.
+- Vì chữ H xuất hiện 2 lần nên ta chỉ viết 1 lần.
+- Kết quả: $K = \{\text{H}, \text{Ô}, \text{C}, \text{S}, \text{I}, \text{N}\}$.
+
+**Ví dụ 3:** Viết tập hợp $P = \{x \in \mathbb{N} \mid 10 < x \le 15\}$ bằng cách liệt kê các phần tử.
+- Lời giải: Các số tự nhiên $x$ thỏa mãn lớn hơn 10 và nhỏ hơn hoặc bằng 15 là: 11, 12, 13, 14, 15.
+- Vậy $P = \{11; 12; 13; 14; 15\}$.
+
+**🎨 Hình vẽ minh họa 2: Hai cách biểu diễn cùng một tập hợp**
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:1rem;margin:1.5rem 0;">
+  <div style="background:#f0f9ff;border:2px solid #bae6fd;border-radius:12px;padding:1.25rem;text-align:center;">
+    <span style="font-size:2rem;">📝</span>
+    <h4 style="margin:.5rem 0;color:#0369a1;font-size:1.1rem;">Cách 1: Liệt kê phần tử</h4>
+    <div style="background:white;padding:.75rem;border-radius:8px;font-family:monospace;font-size:1.1rem;color:#0284c7;font-weight:bold;margin-top:.5rem;">
+      A = &#123;0; 1; 2; 3; 4&#125;
+    </div>
+    <p style="margin:.5rem 0 0;font-size:.85rem;color:#64748b;">Liệt kê rõ ràng từng phần tử cụ thể</p>
+  </div>
+
+  <div style="background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px;padding:1.25rem;text-align:center;">
+    <span style="font-size:2rem;">🔍</span>
+    <h4 style="margin:.5rem 0;color:#15803d;font-size:1.1rem;">Cách 2: Tính chất đặc trưng</h4>
+    <div style="background:white;padding:.75rem;border-radius:8px;font-family:monospace;font-size:1.1rem;color:#16a34a;font-weight:bold;margin-top:.5rem;">
+      A = &#123;x ∈ ℕ | x &lt; 5&#125;
+    </div>
+    <p style="margin:.5rem 0 0;font-size:.85rem;color:#64748b;">Nêu điều kiện chung mà các phần tử thỏa mãn</p>
+  </div>
+</div>
+
+---
+
+<h3 id="tap-hop-so-tu-nhien" style="margin-top:2.5rem;">3. Tập hợp các số tự nhiên $\mathbb{N}$ và $\mathbb{N}^*$</h3>
+
+<div class="box-dinh-nghia">
+
+- **Tập hợp các số tự nhiên** được ký hiệu là $\mathbb{N}$:
+  $$\mathbb{N} = \{0; 1; 2; 3; 4; ...\}$$
+- **Tập hợp các số tự nhiên khác 0** được ký hiệu là $\mathbb{N}^*$:
+  $$\mathbb{N}^* = \{1; 2; 3; 4; ...\}$$
+
+</div>
+
+**Nhận xét:**
+- Số $0 \in \mathbb{N}$ nhưng $0 \notin \mathbb{N}^*$.
+- Mọi phần tử thuộc $\mathbb{N}^*$ đều thuộc $\mathbb{N}$ (ta nói $\mathbb{N}^*$ là tập hợp con của $\mathbb{N}$, ký hiệu $\mathbb{N}^* \subset \mathbb{N}$).
+
+**Ví dụ 1:** Điền ký hiệu $\in$ hoặc $\notin$ vào ô trống:
+a) $5 \quad \mathbb{N}$ &nbsp;&nbsp;&nbsp;&nbsp; b) $0 \quad \mathbb{N}^*$ &nbsp;&nbsp;&nbsp;&nbsp; c) $0 \quad \mathbb{N}$
+- *Lời giải:*
+  a) $5 \in \mathbb{N}$ &nbsp;&nbsp;&nbsp;&nbsp; b) $0 \notin \mathbb{N}^*$ &nbsp;&nbsp;&nbsp;&nbsp; c) $0 \in \mathbb{N}$
+
+**Ví dụ 2:** Viết tập hợp $E = \{x \in \mathbb{N}^* \mid x \le 4\}$ bằng cách liệt kê.
+- Lời giải: $x$ thuộc $\mathbb{N}^*$ nên $x$ lấy các giá trị từ $1$. Các số tự nhiên khác 0 nhỏ hơn hoặc bằng 4 là: 1, 2, 3, 4.
+- Vậy $E = \{1; 2; 3; 4\}$.
+
+**Ví dụ 3:** Viết tập hợp $F = \{x \in \mathbb{N} \mid x \le 4\}$ bằng cách liệt kê.
+- Lời giải: Vì $x \in \mathbb{N}$ nên $x$ lấy từ số $0$.
+- Vậy $F = \{0; 1; 2; 3; 4\}$.
+
+**🎨 Hình vẽ minh họa 3: Quan hệ giữa $\mathbb{N}$ và $\mathbb{N}^*$ trên tia số**
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="150" viewBox="0 0 420 150" style="background:#fff;border-radius:12px;border:2px solid #e2e8f0;">
+  {/* Axis line */}
+  <line x1="30" y1="70" x2="380" y1="70" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  {/* Ticks and Labels */}
+  {/* 0 */}
+  <circle cx="50" cy="70" r="5" fill="#ef4444"/>
+  <text x="50" y="100" font-size="14" font-weight="bold" text-anchor="middle" fill="#ef4444">0</text>
+  <text x="50" y="45" font-size="12" font-weight="bold" text-anchor="middle" fill="#ef4444">Chỉ có trong ℕ</text>
+
+  {/* 1 */}
+  <circle cx="120" cy="70" r="5" fill="#10b981"/>
+  <text x="120" y="100" font-size="14" font-weight="bold" text-anchor="middle" fill="#0f172a">1</text>
+
+  {/* 2 */}
+  <circle cx="190" cy="70" r="5" fill="#10b981"/>
+  <text x="190" y="100" font-size="14" font-weight="bold" text-anchor="middle" fill="#0f172a">2</text>
+
+  {/* 3 */}
+  <circle cx="260" cy="70" r="5" fill="#10b981"/>
+  <text x="260" y="100" font-size="14" font-weight="bold" text-anchor="middle" fill="#0f172a">3</text>
+
+  {/* 4 */}
+  <circle cx="330" cy="70" r="5" fill="#10b981"/>
+  <text x="330" y="100" font-size="14" font-weight="bold" text-anchor="middle" fill="#0f172a">4 ...</text>
+
+  {/* Bracket for N* */}
+  <path d="M 110,115 L 110,125 L 360,125 L 360,115" stroke="#10b981" stroke-width="2" fill="none"/>
+  <text x="235" y="142" font-size="13" font-weight="bold" text-anchor="middle" fill="#047857">Tập hợp ℕ* = {'{1; 2; 3; 4; ...}'}</text>
+</svg>
+</div>
+
+---
+
+<h3 id="so-phan-tu-ven" style="margin-top:2.5rem;">4. Biểu diễn tập hợp bằng Sơ đồ Venn & Số phần tử của tập hợp</h3>
+
+<div class="box-dinh-nghia">
+
+- **Sơ đồ Venn:** Dùng một đường cong kín (hình tròn, hình elip...) để minh họa một tập hợp. Các phần tử thuộc tập hợp được biểu diễn bằng các điểm nằm bên trong đường cong đó.
+- **Số phần tử của tập hợp:** Một tập hợp có thể có $1$ phần tử, nhiều phần tử, vô số phần tử hoặc không có phần tử nào (tập rỗng $\emptyset$).
+
+</div>
+
+<div class="box-dinh-ly">
+
+📐 **CÔNG THỨC TÍNH SỐ PHẦN TỬ CỦA TẬP HỢP CÁC SỐ CÁCH ĐỀU:**
+Đối với tập hợp $A = \{a; a+d; a+2d; ...; b\}$ gồm các số tự nhiên cách đều nhau $d$ đơn vị:
+$$\text{Số phần tử của tập hợp } A = \frac{b - a}{d} + 1$$
+*(với $a$ là số đầu, $b$ là số cuối, $d$ là khoảng cách giữa hai số liên tiếp)*
+
+</div>
+
+**Ví dụ 1:** Tính số phần tử của tập hợp $A = \{5; 6; 7; ...; 45\}$.
+- *Lời giải:* Đây là tập hợp các số tự nhiên liên tiếp từ $5$ đến $45$ (khoảng cách $d = 1$).
+- Số phần tử của $A$ là: $(45 - 5) : 1 + 1 = 41$ phần tử.
+
+**Ví dụ 2:** Tính số phần tử của tập hợp $B = \{2; 4; 6; 8; ...; 100\}$.
+- *Lời giải:* Đây là tập hợp các số chẵn từ $2$ đến $100$ (khoảng cách $d = 2$).
+- Số phần tử của $B$ là: $(100 - 2) : 2 + 1 = 50$ phần tử.
+
+**Ví dụ 3:** Cho tập hợp $X = \{x \in \mathbb{N} \mid x + 5 = 2\}$. Tìm số phần tử của tập hợp $X$.
+- *Lời giải:* Trong tập hợp số tự nhiên $\mathbb{N}$, không có số $x$ nào thỏa mãn $x + 5 = 2$.
+- Do đó $X$ không có phần tử nào, $X = \emptyset$. Vậy số phần tử của $X$ bằng $0$.
+
+**🎨 Hình vẽ minh họa 4: Sơ đồ Venn biểu diễn tập hợp $A = \{1; 3; 5; 7\}$**
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="320" height="200" viewBox="0 0 320 200" style="background:#fff;border-radius:12px;border:2px solid #e2e8f0;">
+  <circle cx="160" cy="100" r="75" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+  <text x="110" y="50" font-size="20" font-weight="bold" fill="#b45309">A</text>
+
+  <circle cx="130" cy="85" r="14" fill="#f59e0b"/>
+  <text x="130" y="90" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">1</text>
+
+  <circle cx="190" cy="85" r="14" fill="#f59e0b"/>
+  <text x="190" y="90" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">3</text>
+
+  <circle cx="140" cy="125" r="14" fill="#f59e0b"/>
+  <text x="140" y="130" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">5</text>
+
+  <circle cx="185" cy="125" r="14" fill="#f59e0b"/>
+  <text x="185" y="130" font-size="13" font-weight="bold" text-anchor="middle" fill="#fff">7</text>
+
+  <text x="160" y="190" font-size="13" font-weight="bold" text-anchor="middle" fill="#78350f">Tập hợp A gồm 4 phần tử</text>
+</svg>
+</div>
+
+---
+
+## 🎯 II. CÁC DẠNG TOÁN THƯỜNG GẶP
+
+### 📌 Dạng 1: Nhận biết tập hợp và kiểm tra phần tử thuộc / không thuộc tập hợp
+
+**Phương pháp giải:**
+1. Đọc kỹ mô tả hoặc các phần tử của tập hợp $A$.
+2. Kiểm tra đối tượng $x$ có nằm trong tập hợp $A$ hay không:
+   - Nếu có $x$ trong $A$ $\Rightarrow x \in A$.
+   - Nếu không có $x$ trong $A$ $\Rightarrow x \notin A$.
+
+---
+
+**Ví dụ 1:** Cho tập hợp $M = \{3; 5; 7; 9; 11\}$. Hãy điền ký hiệu thích hợp ($\in$ hoặc $\notin$) vào ô trống:
+a) $5 \quad M$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) $6 \quad M$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) $11 \quad M$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d) $0 \quad M$
+
+*Lời giải:*
+- a) $5 \in M$ (vì $5$ có trong $M$).
+- b) $6 \notin M$ (vì $6$ không có trong $M$).
+- c) $11 \in M$ (vì $11$ có trong $M$).
+- d) $0 \notin M$ (vì $0$ không có trong $M$).
+
+---
+
+**Ví dụ 2:** Gọi $P$ là tập hợp các số tự nhiên lẻ nhỏ hơn 10.
+a) Hãy viết tập hợp $P$.
+b) Trong các số $2, 5, 7, 10$, số nào thuộc $P$, số nào không thuộc $P$? Sử dụng ký hiệu $\in, \notin$.
+
+*Lời giải:*
+a) $P = \{1; 3; 5; 7; 9\}$.
+b) Ta có: $5 \in P, 7 \in P$, còn $2 \notin P, 10 \notin P$.
+
+---
+
+**Ví dụ 3:** Cho tập hợp $Q = \{x \in \mathbb{N} \mid x \text{ chia hết cho } 5 \text{ và } x < 25\}$. Khẳng định nào sau đây là đúng?
+a) $15 \in Q$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) $20 \notin Q$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) $25 \in Q$
+
+*Lời giải:*
+- Liệt kê tập hợp $Q = \{0; 5; 10; 15; 20\}$.
+- a) $15 \in Q$ là **ĐÚNG**.
+- b) $20 \notin Q$ là **SAI** (vì $20 \in Q$).
+- c) $25 \in Q$ là **SAI** (vì $x < 25$ nên không lấy $25$).
+
+---
+
+### 📌 Dạng 2: Viết tập hợp bằng hai cách (Liệt kê & Tính chất đặc trưng)
+
+**Phương pháp giải:**
+- **Chuyển từ Tính chất đặc trưng $\rightarrow$ Liệt kê:** Tìm tất cả các giá trị $x$ thỏa mãn điều kiện đề bài rồi viết trong $\{ \}$, ngăn cách bằng `;`.
+- **Chuyển từ Liệt kê $\rightarrow$ Tính chất đặc trưng:** Nhận xét quy luật chung của các phần tử (chẳng hạn: số tự nhiên liên tiếp, số chẵn, số lẻ, số chia hết cho $k$, nằm trong khoảng $[a, b]...$).
+
+---
+
+**Ví dụ 1:** Cho tập hợp $A = \{x \in \mathbb{N} \mid 7 < x \le 12\}$.
+a) Viết tập hợp $A$ bằng cách liệt kê các phần tử.
+b) Tập hợp $A$ có bao nhiêu phần tử?
+
+*Lời giải:*
+a) $x$ là các số tự nhiên lớn hơn $7$ và nhỏ hơn hoặc bằng $12$, gồm: $8, 9, 10, 11, 12$.
+$\Rightarrow A = \{8; 9; 10; 11; 12\}$.
+b) Tập hợp $A$ có $5$ phần tử.
+
+---
+
+**Ví dụ 2:** Viết tập hợp $B = \{10; 12; 14; 16; 18\}$ bằng cách chỉ ra tính chất đặc trưng cho các phần tử của nó.
+
+*Lời giải:*
+- Các phần tử $10, 12, 14, 16, 18$ đều là các số tự nhiên chẵn, lớn hơn $8$ và nhỏ hơn $20$ (hoặc từ $10$ đến $18$).
+- Cách viết 1: $B = \{x \in \mathbb{N} \mid x \text{ là số chẵn, } 9 < x < 19\}$.
+- Cách viết 2: $B = \{x \in \mathbb{N} \mid x \text{ chia hết cho } 2, 10 \le x \le 18\}$.
+
+---
+
+**Ví dụ 3:** Viết tập hợp các chữ cái tiếng Việt trong cụm từ "NHA TRANG".
+
+*Lời giải:*
+- Các chữ cái trong cụm từ "NHA TRANG" gồm: N, H, A, T, R, A, N, G.
+- Loại bỏ các chữ cái lặp lại (N xuất hiện 2 lần, A xuất hiện 2 lần).
+- Vậy tập hợp các chữ cái là: $C = \{\text{N}, \text{H}, \text{A}, \text{T}, \text{R}, \text{G}\}$.
+
+---
+
+### 📌 Dạng 3: Xác định số phần tử của tập hợp - Đếm số
+
+**Phương pháp giải:**
+- Áp dụng công thức đếm số phần tử của dãy số cách đều $d$ đơn vị:
+  $$\text{Số phần tử} = \frac{\text{Số cuối} - \text{Số đầu}}{\text{Khoảng cách}} + 1$$
+- Nếu tập hợp cho dưới dạng điều kiện, hãy tìm số đầu và số cuối thỏa mãn điều kiện đó trước.
+
+---
+
+**Ví dụ 1:** Tính số phần tử của tập hợp các số tự nhiên lẻ có hai chữ số.
+
+*Lời giải:*
+- Số tự nhiên lẻ có 2 chữ số nhỏ nhất là $11$ (số đầu).
+- Số tự nhiên lẻ có 2 chữ số lớn nhất là $99$ (số cuối).
+- Khoảng cách giữa hai số lẻ liên tiếp là $d = 2$.
+- Vậy tập hợp đó có số phần tử là: $(99 - 11) : 2 + 1 = 88 : 2 + 1 = 45$ phần tử.
+
+---
+
+**Ví dụ 2:** Cho tập hợp $D = \{x \in \mathbb{N} \mid 15 \le x \le 135 \text{ và } x \text{ chia hết cho } 3\}$. Tập hợp $D$ có bao nhiêu phần tử?
+
+*Lời giải:*
+- Số tự nhiên nhỏ nhất $\ge 15$ chia hết cho 3 là $15$ (số đầu).
+- Số tự nhiên lớn nhất $\le 135$ chia hết cho 3 là $135$ (số cuối).
+- Khoảng cách giữa các số chia hết cho 3 liên tiếp là $d = 3$.
+- Số phần tử của tập hợp $D$ là: $(135 - 15) : 3 + 1 = 120 : 3 + 1 = 41$ phần tử.
+
+---
+
+**Ví dụ 3:** Tìm số phần tử của tập hợp $E = \{x \in \mathbb{N} \mid x \cdot 0 = 0\}$.
+
+*Lời giải:*
+- Với mọi số tự nhiên $x \in \mathbb{N}$, phép nhân $x \cdot 0$ luôn bằng $0$.
+- Do đó mọi số tự nhiên đều là phần tử của tập hợp $E$.
+- Vậy tập hợp $E$ có **vô số phần tử**.
+
+---
+
+### 📌 Dạng 4: Biểu diễn sơ đồ Venn và các bài toán liên quan đến tập hợp con / tập rỗng
+
+**Phương pháp giải:**
+- Vẽ vòng kín đại diện cho tập hợp.
+- Điền các phần tử thuộc tập hợp vào bên trong vòng kín.
+- Tập hợp $A$ gọi là tập hợp con của tập hợp $B$ (ký hiệu $A \subset B$) nếu mọi phần tử của $A$ đều thuộc $B$.
+
+---
+
+**Ví dụ 1:** Cho hai tập hợp $A = \{1; 2; 3; 4; 5\}$ và $B = \{2; 4\}$.
+a) Biểu diễn hai tập hợp $A$ và $B$ bằng sơ đồ Venn.
+b) Cho biết mối quan hệ giữa hai tập hợp $A$ và $B$.
+
+*Lời giải:*
+a) Vẽ vòng tròn lớn biểu diễn tập $A$, bên trong chứa vòng tròn nhỏ biểu diễn tập $B = \{2; 4\}$. Các phần tử $1, 3, 5$ nằm ngoài vòng $B$ nhưng trong vòng $A$.
+b) Mọi phần tử của $B$ ($2$ và $4$) đều thuộc $A$, do đó $B$ là tập hợp con của $A$, ký hiệu $B \subset A$.
+
+---
+
+**Ví dụ 2:** Tìm tất cả các tập hợp con của tập hợp $X = \{a; b\}$.
+
+*Lời giải:*
+Các tập hợp con của $X$ gồm:
+- Tập hợp con không có phần tử nào: $\emptyset$.
+- Các tập hợp con có 1 phần tử: $\{a\}, \{b\}$.
+- Tập hợp con có 2 phần tử (chính là $X$): $\{a; b\}$.
+Vậy $X$ có tất cả $4$ tập hợp con.
+
+---
+
+**Ví dụ 3:** Cho tập hợp $M = \{x \in \mathbb{N} \mid x < 5\}$ và $N = \{x \in \mathbb{N}^* \mid x \le 4\}$. So sánh hai tập hợp $M$ và $N$.
+
+*Lời giải:*
+- Liệt kê tập hợp $M = \{0; 1; 2; 3; 4\}$ (có 5 phần tử).
+- Liệt kê tập hợp $N = \{1; 2; 3; 4\}$ (có 4 phần tử).
+- Ta thấy mọi phần tử của $N$ đều thuộc $M$, nhưng $0 \in M$ mà $0 \notin N$.
+- Do đó $N \subset M$ và $M \neq N$.
+
 </KhamPha>
 
-<LuyenTap>
+---
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+## 💻 III. THỰC HÀNH TƯƠNG TÁC
 
-<QuizSession client:load questions={quizData} />
+Hãy tự mình làm thử bài tập thực hành tương tác dưới đây để củng cố kiến thức:
 
-</LuyenTap>
+<TapHopInteractive client:load />
+
+---
 
 <VanDung>
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+## 🌍 IV. VẬN DỤNG THỰC TẾ
 
-**📝 Bài toán:** Trong lớp 6A có 40 học sinh. Gọi $A$ là tập hợp các học sinh trong lớp.
+<div style="background:#f0f9ff;border-left:4px solid #0284c7;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-a) Tập hợp $A$ có bao nhiêu phần tử?
+**📝 Câu 1 (Đội bóng học sinh):**
+Thầy giáo thể dục lập danh sách đội tuyển bóng đá lớp 6A gồm các bạn: An, Bình, Cường, Dũng, Giang.
+a) Hãy viết tập hợp $D$ gồm tên các bạn trong đội tuyển bóng đá.
+b) Bạn "Bình" có thuộc tập hợp $D$ không? Bạn "Hương" (lớp 6B) có thuộc $D$ không? Dùng ký hiệu $\in, \notin$ để biểu diễn.
+c) Tập hợp $D$ có bao nhiêu phần tử?
 
-b) Bạn An có thuộc tập hợp $A$ không?
+**Lời giải:**
+a) $D = \{\text{An}, \text{Bình}, \text{Cường}, \text{Dũng}, \text{Giang}\}$.
+b) Ta có: $\text{Bình} \in D$, còn $\text{Hương} \notin D$.
+c) Tập hợp $D$ có 5 phần tử.
 
-c) Bạn Bình học lớp 6B có thuộc tập hợp $A$ không?
+</div>
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+<div style="background:#f0fdf4;border-left:4px solid #16a34a;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-**Giải:**
+**📝 Câu 2 (Phân loại hoa quả trong gian hàng siêu thị):**
+Một siêu thị mini nhập về 5 loại trái cây: Táo, Cam, Chuối, Xoài, Dưa hấu.
+a) Viết tập hợp $F$ các loại trái cây có trong siêu thị.
+b) Nếu siêu thị bán hết Cam và Xoài, hãy viết tập hợp $F'$ các loại trái cây còn lại trong siêu thị.
+c) So sánh số phần tử của tập hợp $F$ và $F'$.
 
-a) Tập hợp $A$ có 40 phần tử (40 học sinh)
+**Lời giải:**
+a) $F = \{\text{Táo}, \text{Cam}, \text{Chuối}, \text{Xoài}, \text{Dưa hấu}\}$. Tập $F$ có 5 phần tử.
+b) Sau khi bán hết Cam và Xoài, tập hợp còn lại là: $F' = \{\text{Táo}, \text{Chuối}, \text{Dưa hấu}\}$.
+c) Tập hợp $F'$ có 3 phần tử. Số phần tử của $F'$ giảm 2 phần tử so với $F$.
 
-b) Nếu bạn An học lớp 6A thì An $\in A$
+</div>
 
-c) Bạn Bình học lớp 6B nên Bình $\notin A$
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Quản lý hàng ghế rạp chiếu phim):**
+Trong một rạp chiếu phim, các ghế ở hàng F được đánh số tự nhiên liên tiếp từ ghế số $105$ đến ghế số $145$.
+a) Viết tập hợp $G$ các số ghế ở hàng F bằng hai cách (liệt kê vắn tắt và chỉ ra tính chất đặc trưng).
+b) Hàng ghế F có tổng cộng bao nhiêu ghế ngồi cho khán giả?
+
+**Lời giải:**
+a)
+- Cách 1 (Liệt kê vắn tắt): $G = \{105; 106; 107; ...; 145\}$.
+- Cách 2 (Tính chất đặc trưng): $G = \{x \in \mathbb{N} \mid 105 \le x \le 145\}$.
+b) Số ghế ngồi ở hàng F chính là số phần tử của tập hợp $G$:
+  $$\text{Số ghế} = (145 - 105) : 1 + 1 = 40 + 1 = 41 \text{ (ghế)}$$
 
 </div>
 
 </VanDung>
 
+<LuyenTap>
+
+## ❓ V. TRẮC NGHIỆM TỰ LUYỆN (10 CÂU)
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Tập hợp**: nhóm các đối tượng xác định rõ ràng
-- **Phần tử**: mỗi đối tượng trong tập hợp
-- **Cách viết**: $A = \{1, 2, 3\}$ hoặc mô tả tính chất
-- **Ký hiệu**: $\in$ (thuộc), $\notin$ (không thuộc)
-- **Tập rỗng**: $\emptyset$ - tập hợp không có phần tử
-- **Sơ đồ Ven**: biểu diễn tập hợp bằng hình tròn
+## 📌 VI. GHI NHỚ TRỌNG TÂM
+
+- **Tập hợp**: Một nhóm đối tượng được xác định rõ ràng.
+- **Ký hiệu**: $x \in A$ ($x$ thuộc $A$), $y \notin A$ ($y$ không thuộc $A$).
+- **Hai cách mô tả tập hợp**:
+  1. Liệt kê các phần tử trong $\{ \}$, cách nhau bởi `;` hoặc `,`.
+  2. Chỉ ra tính chất đặc trưng cho các phần tử.
+- **Chú ý**: Mỗi phần tử chỉ viết 1 lần; thứ tự liệt kê tùy ý.
+- **Tập số tự nhiên**: $\mathbb{N} = \{0; 1; 2; 3; ...\}$, $\mathbb{N}^* = \{1; 2; 3; ...\}$ (không chứa số 0).
+- **Tập hợp rỗng**: Ký hiệu $\emptyset$ (tập hợp không chứa phần tử nào).
+- **Công thức đếm số phần tử dãy số cách đều**: $\text{Số phần tử} = (b - a) : d + 1$.
 
 </GhiNho>
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+## 📝 VII. BÀI TẬP TỰ LUẬN (10 CÂU TỪ DỄ ĐẾN KHÓ)
 
-**Bài 1:** Viết tập hợp sau bằng cách liệt kê các (phần tử):
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) $A$ là tập hợp các số tự nhiên nhỏ hơn 7
+**Bài 1 (Dễ - Nhận biết):** Viết tập hợp các chữ cái tiếng Việt trong các từ sau bằng cách liệt kê phần tử:
+a) "SÔNG HỒNG"
+b) "TOÁN HỌC"
 
-b) $B$ là tập hợp các số tự nhiên lớn hơn 3 và nhỏ hơn 9
+**Bài 2 (Dễ - Nhận biết):** Cho tập hợp $A = \{2; 3; 5; 7; 11\}$. Điền ký hiệu thích hợp ($\in$ hoặc $\notin$) vào các chỗ chấm sau:
+a) $3 ... A$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) $4 ... A$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) $11 ... A$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d) $0 ... A$
 
-c) $C$ là tập hợp các chữ cái trong từ "TOÁN"
+**Bài 3 (Thông hiểu):** Viết các tập hợp sau bằng cách liệt kê các phần tử:
+a) $B = \{x \in \mathbb{N} \mid 12 < x < 18\}$
+b) $C = \{x \in \mathbb{N}^* \mid x \le 5\}$
+c) $D = \{x \in \mathbb{N} \mid x \text{ chia hết cho } 4 \text{ và } x < 20\}$
 
-d) $D$ là tập hợp các tháng có 31 ngày
+**Bài 4 (Thông hiểu):** Viết các tập hợp sau bằng cách chỉ ra tính chất đặc trưng cho các phần tử của nó:
+a) $M = \{0; 1; 2; 3; 4; 5; 6; 7; 8; 9\}$
+b) $N = \{11; 13; 15; 17; 19\}$
 
-**Bài 2:** Cho $A = \{0, 1, 2, 3, 4, 5\}$. Điền ký hiệu $\in$ hoặc $\notin$ vào chỗ trống:
+**Bài 5 (Thông hiểu):** Tính số phần tử của các tập hợp sau:
+a) $E = \{15; 16; 17; ...; 85\}$
+b) $F = \{10; 12; 14; ...; 100\}$
+c) $G = \{5; 10; 15; ...; 205\}$
 
-a) $3 ... A$
+**Bài 6 (Vận dụng):** Cho hai tập hợp $A = \{1; 2; 3; 4; 5\}$ và $B = \{3; 4; 5; 6; 7\}$.
+a) Viết tập hợp $C$ gồm các phần tử vừa thuộc $A$ vừa thuộc $B$.
+b) Viết tập hợp $D$ gồm các phần tử thuộc $A$ nhưng không thuộc $B$.
 
-b) $7 ... A$
+**Bài 7 (Vận dụng thực tế):** Lập tập hợp $T$ gồm tên các tháng trong năm có 31 ngày. Tập hợp $T$ có bao nhiêu phần tử?
 
-c) $0 ... A$
+**Bài 8 (Vận dụng):** Tìm số tự nhiên $x$, biết rằng $x \in \mathbb{N}$ thỏa mãn $15 < x < 22$ và $x$ là số lẻ chia hết cho $3$. Viết tập hợp các giá trị $x$ tìm được.
 
-d) $10 ... A$
+**Bài 9 (Vận dụng cao):** Cho tập hợp $S = \{x \in \mathbb{N} \mid x \text{ chia cho } 3 \text{ dư } 1 \text{ và } 10 \le x \le 99\}$.
+a) Tập hợp $S$ có bao nhiêu phần tử?
+b) Tính tổng tất cả các phần tử của tập hợp $S$.
 
-**Bài 3:** Cho $B = \{2, 4, 6, 8, 10\}$
+**Bài 10 (Vận dụng cao):** Có bao nhiêu tập hợp $X$ thỏa mãn $\{1; 2\} \subset X \subset \{1; 2; 3; 4; 5\}$? Hãy viết tất cả các tập hợp $X$ đó.
 
-a) Tập hợp $B$ có bao nhiêu phần tử?
+</div>
 
-b) Viết tập hợp $B$ bằng cách chỉ ra tính chất đặc trưng.
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-c) Số 5 có thuộc $B$ không?
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-d) Số 8 có thuộc $B$ không?
+**Bài 1:**
+a) Từ "SÔNG HỒNG" có các chữ cái: S, Ô, N, G, H, Ô, N, G. Loại bỏ chữ cái lặp lại, ta được tập hợp $A = \{\text{S}, \text{Ô}, \text{N}, \text{G}, \text{H}\}$.
+b) Từ "TOÁN HỌC" có tập hợp các chữ cái là $B = \{\text{T}, \text{O}, \text{Á}, \text{N}, \text{H}, \text{Ọ}, \text{C}\}$.
 
-**Bài 4:** Viết tập hợp các số tự nhiên:
+---
 
-a) Lớn hơn 5 và nhỏ hơn 10
+**Bài 2:**
+a) $3 \in A$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) $4 \notin A$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) $11 \in A$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d) $0 \notin A$
 
-b) Nhỏ hơn hoặc bằng 4
+---
 
-c) Lớn hơn 10 và nhỏ hơn 15
+**Bài 3:**
+a) $B = \{13; 14; 15; 16; 17\}$
+b) Vì $x \in \mathbb{N}^*$ nên $x \ge 1 \Rightarrow C = \{1; 2; 3; 4; 5\}$
+c) các số tự nhiên $< 20$ chia hết cho 4 là: $0, 4, 8, 12, 16 \Rightarrow D = \{0; 4; 8; 12; 16\}$
 
-d) Bằng 0 hoặc lớn hơn 8 và nhỏ hơn 12
+---
 
-**Bài 5:** Cho $C = \{x \mid x \text{ là số tự nhiên, } x < 6\}$
+**Bài 4:**
+a) $M = \{x \in \mathbb{N} \mid x < 10\}$ (hoặc tập hợp các số tự nhiên có 1 chữ số).
+b) $N = \{x \in \mathbb{N} \mid x \text{ là số lẻ, } 10 < x < 20\}$.
 
-a) Viết tập hợp $C$ bằng cách liệt kê.
+---
 
-b) Tập hợp $C$ có bao nhiêu phần tử?
+**Bài 5:**
+a) Tập hợp $E$ gồm các số tự nhiên liên tiếp từ 15 đến 85:
+   $$\text{Số phần tử của } E = (85 - 15) : 1 + 1 = 71 \text{ phần tử}$$
+b) Tập hợp $F$ gồm các số chẵn từ 10 đến 100:
+   $$\text{Số phần tử của } F = (100 - 10) : 2 + 1 = 46 \text{ phần tử}$$
+c) Tập hợp $G$ gồm các số chia hết cho 5 từ 5 đến 205:
+   $$\text{Số phần tử của } G = (205 - 5) : 5 + 1 = 200 : 5 + 1 = 41 \text{ phần tử}$$
 
-c) Số 5 có thuộc $C$ không?
+---
 
-d) Số 6 có thuộc $C$ không?
+**Bài 6:**
+a) Các phần tử vừa thuộc $A$ vừa thuộc $B$ là $3, 4, 5 \Rightarrow C = \{3; 4; 5\}$.
+b) Các phần tử thuộc $A$ nhưng không thuộc $B$ là $1, 2 \Rightarrow D = \{1; 2\}$.
 
-**Bài 6 (Thực tế):** Trong một cửa hàng có 5 loại trái cây: táo, cam, chuối, xoài, nho.
+---
 
-a) Viết tập hợp $F$ các loại trái cây trong cửa hàng.
+**Bài 7:**
+Các tháng trong năm có 31 ngày gồm: Tháng 1, Tháng 3, Tháng 5, Tháng 7, Tháng 8, Tháng 10, Tháng 12.
+Vậy $T = \{\text{Tháng 1}, \text{Tháng 3}, \text{Tháng 5}, \text{Tháng 7}, \text{Tháng 8}, \text{Tháng 10}, \text{Tháng 12}\}$.
+Tập hợp $T$ có $7$ phần tử.
 
-b) Tập hợp $F$ có bao nhiêu phần tử?
+---
 
-c) Dưa hấu có thuộc $F$ không?
+**Bài 8:**
+Các số tự nhiên $x$ thỏa mãn $15 < x < 22$ là: $16, 17, 18, 19, 20, 21$.
+Trong đó, các số lẻ là: $17, 19, 21$.
+Số chia hết cho $3$ trong các số lẻ trên là $21$.
+Vậy $x = 21$, tập hợp các giá trị tìm được là $X = \{21\}$.
 
-d) Nếu cửa hàng thêm dưa hấu, tập hợp $F$ có bao nhiêu phần tử?
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 9:**
+a) $x$ là số có 2 chữ số chia cho 3 dư 1.
+- Số nhỏ nhất $\ge 10$ chia cho 3 dư 1 là $10$ (vì $10 = 3 \times 3 + 1$).
+- Số lớn nhất $\le 99$ chia cho 3 dư 1 là $97$ (vì $97 = 3 \times 32 + 1$).
+- Khoảng cách giữa hai số liên tiếp chia 3 dư 1 là $d = 3$.
+- Số phần tử của $S$ là: $(97 - 10) : 3 + 1 = 87 : 3 + 1 = 30$ phần tử.
 
-**Bài 1:** a) $A = \{0, 1, 2, 3, 4, 5, 6\}$; b) $B = \{4, 5, 6, 7, 8\}$; c) $C = \{T, O, Á, N\}$; d) $D = \{\text{Tháng 1, 3, 5, 7, 8, 10, 12}\}$
+b) Tổng tất cả các phần tử của $S$:
+$$Tổng = \frac{(\text{Số đầu} + \text{Số cuối}) \times \text{Số phần tử}}{2} = \frac{(10 + 97) \times 30}{2} = 107 \times 15 = 1605$$
 
-**Bài 2:** a) $3 \in A$; b) $7 \notin A$; c) $0 \in A$; d) $10 \notin A$
+---
 
-**Bài 3:** a) 5 phần tử; b) $B = \{x \mid x \text{ là số chẵn, } 0 < x \leq 10\}$; c) Không; d) Có
-
-**Bài 4:** a) $\{6, 7, 8, 9\}$; b) $\{0, 1, 2, 3, 4\}$; c) $\{11, 12, 13, 14\}$; d) $\{0, 9, 10, 11\}$
-
-**Bài 5:** a) $C = \{0, 1, 2, 3, 4, 5\}$; b) 6 phần tử; c) Có; d) Không
-
-**Bài 6:** a) $F = \{\text{táo, cam, chuối, xoài, nho}\}$; b) 5 phần tử; c) Không; d) 6 phần tử
+**Bài 10:**
+Tập hợp $X$ chứa $\{1; 2\}$ và là tập hợp con của $\{1; 2; 3; 4; 5\}$.
+Do đó, $X$ được tạo thành bằng cách thêm các phần tử của tập hợp $\{3; 4; 5\}$ vào $\{1; 2\}$.
+Các tập hợp con của $\{3; 4; 5\}$ gồm 8 tập: $\emptyset, \{3\}, \{4\}, \{5\}, \{3; 4\}, \{3; 5\}, \{4; 5\}, \{3; 4; 5\}$.
+Tương ứng, có **8 tập hợp $X$** thỏa mãn:
+1. $X_1 = \{1; 2\}$
+2. $X_2 = \{1; 2; 3\}$
+3. $X_3 = \{1; 2; 4\}$
+4. $X_4 = \{1; 2; 5\}$
+5. $X_5 = \{1; 2; 3; 4\}$
+6. $X_6 = \{1; 2; 3; 5\}$
+7. $X_7 = \{1; 2; 4; 5\}$
+8. $X_8 = \{1; 2; 3; 4; 5\}$
 
 </div>
 </details>

@@ -408,11 +408,26 @@ const availableHrefs = new Set(curriculumHrefs);
       });
     });
 
+    // ── Cuộn sidebar đến bài học đang mở ────────────────────────────────────
+    function scrollActiveLessonIntoView() {
+      const ls = document.getElementById('left-sidebar');
+      const activeLink = ls?.querySelector('.sidebar-lesson-list a.active');
+      if (!ls || !activeLink || ls.clientHeight === 0) return;
+      const lsRect = ls.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      const target = ls.scrollTop + (linkRect.top - lsRect.top) - (ls.clientHeight - linkRect.height) / 2;
+      ls.scrollTop = Math.max(0, target);
+    }
+
     // Chạy sau khi DOM sẵn sàng
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', buildAutoToc);
+      document.addEventListener('DOMContentLoaded', () => {
+        buildAutoToc();
+        scrollActiveLessonIntoView();
+      });
     } else {
       buildAutoToc();
+      scrollActiveLessonIntoView();
     }
   </script>
 </body>

@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import PhepNhanChiaInteractive from '../../components/interactive/PhepNhanChiaInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Tính: $15 \\times 4$",
@@ -42,6 +44,18 @@ export const quizData = [
   },
   {
     type: "mcq",
+    question: "Tính: $!a:5:12! \\times !b:2:5!$",
+    option_a: "$!tinh: !a! * !b!!$",
+    option_b: "$!tinh: !a! * !b! + 5!$",
+    option_c: "$!tinh: !a! * !b! - 5!$",
+    option_d: "$!tinh: !a! * !b! + 10!$",
+    correct_option: "A",
+    explanation: "$!a! \\times !b! = !tinh: !a! * !b!!$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
     question: "Phép nhân có tính chất nào sau đây?",
     option_a: "Giao hoán và kết hợp",
     option_b: "Phân phối với phép cộng",
@@ -49,18 +63,6 @@ export const quizData = [
     option_d: "Cả ba tính chất trên",
     correct_option: "D",
     explanation: "Phép nhân có cả ba tính chất: giao hoán, kết hợp, phân phối và nhân với 1.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "msq",
-    question: "Những đẳng thức nào đúng?",
-    option_a: "$5 \\times 8 = 8 \\times 5$",
-    option_b: "$(3 \\times 4) \\times 5 = 3 \\times (4 \\times 5)$",
-    option_c: "$7 \\times (2 + 3) = 7 \\times 2 + 7 \\times 3$",
-    option_d: "$0 : 5 = 5$",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng theo tính chất giao hoán, kết hợp và phân phối. D sai vì $0 : 5 = 0$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -77,6 +79,70 @@ export const quizData = [
     is_dynamic: false,
   },
   {
+    type: "mcq",
+    question: "Tìm $x$ biết: $x \\times !a(2,3,4)! = !tinh: !a! * !k(5,6,7,8)!!$",
+    option_a: "$!k!$",
+    option_b: "$!tinh: !a! * !k!!$",
+    option_c: "$!tinh: !k! - !a!!$",
+    option_d: "$!tinh: !k! + !a!!$",
+    correct_option: "A",
+    explanation: "$x = !tinh: !a! * !k!! : !a! = !k!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của phép chia: $37 : 5$ là:",
+    option_a: "$7$ dư $3$",
+    option_b: "$7$ dư $2$",
+    option_c: "$7$ dư $1$",
+    option_d: "$8$ dư $2$",
+    correct_option: "B",
+    explanation: "Vì $37 = 5 \\times 7 + 2$ nên $37 : 5 = 7$ dư $2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tính nhanh: $!a(25,50,75,125)! \\times !k(2,3,4,5)! \\times 4$",
+    option_a: "$!tinh: !a! * !k! * 4!!$",
+    option_b: "$!tinh: !a! * !k! * 4 + 10!$",
+    option_c: "$!tinh: !a! * !k! * 4 - 10!$",
+    option_d: "$!tinh: !a! * !k!!$",
+    correct_option: "A",
+    explanation: "Nhóm $!a! \\times 4 = !tinh: !a! * 4!!$, rồi nhân với $!k!$ được $!tinh: !a! * !k! * 4!!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 2: MSQ (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những đẳng thức nào đúng?",
+    option_a: "$5 \\times 8 = 8 \\times 5$",
+    option_b: "$(3 \\times 4) \\times 5 = 3 \\times (4 \\times 5)$",
+    option_c: "$7 \\times (2 + 3) = 7 \\times 2 + 7 \\times 3$",
+    option_d: "$0 : 5 = 5$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng theo tính chất giao hoán, kết hợp và phân phối. D sai vì $0 : 5 = 0$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Với $!a(6,8,10)!$ và $!b(3,4,5)!$, những đẳng thức nào đúng?",
+    option_a: "$!a! \\times !b! = !b! \\times !a!$",
+    option_b: "$!a! \\times 1 = !a!$",
+    option_c: "$!a! : 0 = 0$",
+    option_d: "$(!a! \\times !b!) \\times 2 = !a! \\times (!b! \\times 2)$",
+    correct_option: "A,B,D",
+    explanation: "A đúng (giao hoán), B đúng (nhân với 1), D đúng (kết hợp). C sai vì không thể chia cho 0.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 3: SA (2 câu) ─────────────────────────────────────────────────────
+  {
     type: "sa",
     question: "Tính nhanh: $25 \\times 17 \\times 4$",
     correct_option: "1700",
@@ -85,26 +151,10 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Tính: $!a#12! \\times !b#5!$",
-    option_a: "$!tinh: !a! * !b!!$",
-    option_b: "$!tinh: !a! + !b!!$",
-    option_c: "$!tinh: !a! - !b!!$",
-    option_d: "$!tinh: !a! * !b! + 10!$",
-    correct_option: "A",
-    explanation: "$!a! \\times !b! = !tinh: !a! * !b!!$.",
-    difficulty_level: "easy",
-    is_dynamic: true,
-  },
-  {
-    type: "mcq",
-    question: "Tìm $x$ biết: $x \\times !a#6! = !b#48!$",
-    option_a: "$!tinh: !b! / !a!!$",
-    option_b: "$!tinh: !b! * !a!!$",
-    option_c: "$!tinh: !b! - !a!!$",
-    option_d: "$!tinh: !b! + !a!!$",
-    correct_option: "A",
-    explanation: "$x = !b! : !a! = !tinh: !b! / !a!!$.",
+    type: "sa",
+    question: "Tính nhanh: $!a(25,125)! \\times !k(7,9,11,13)! \\times !b(4,8)!$",
+    correct_option: "!tinh: !a! * !k! * !b!!",
+    explanation: "Nhóm $!a! \\times !b! = !tinh: !a! * !b!!$, ta được $!tinh: !a! * !b!! \\times !k! = !tinh: !a! * !k! * !b!!$.",
     difficulty_level: "medium",
     is_dynamic: true,
   },
@@ -377,7 +427,9 @@ $x = 96 : 8 = 12$
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<PhepNhanChiaInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -429,6 +481,34 @@ $600 : 200 = 3$ (chuyến)
 
 </div>
 
+**📝 Bài toán 3:** Cô giáo mua $12$ hộp bút, mỗi hộp có $10$ cây. Cô chia đều cho $6$ tổ trong lớp.
+
+a) Cô giáo mua tất cả bao nhiêu cây bút?
+
+b) Mỗi tổ nhận được bao nhiêu cây bút?
+
+c) Nếu mỗi tổ lại chia số bút đó cho $5$ bạn học sinh, mỗi bạn nhận được bao nhiêu cây bút?
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tổng số bút cô mua:
+
+$12 \times 10 = 120$ (cây)
+
+b) Mỗi tổ nhận được:
+
+$120 : 6 = 20$ (cây)
+
+c) Mỗi bạn nhận được:
+
+$20 : 5 = 4$ (cây)
+
+**Đáp số:** a) 120 cây; b) 20 cây; c) 4 cây
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -446,9 +526,11 @@ $600 : 200 = 3$ (chuyến)
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Thực hiện phép tính:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
+
+**Bài 1 (Dễ - Nhận biết):** Thực hiện phép tính:
 
 a) $25 \times 16$
 
@@ -458,7 +540,7 @@ c) $125 \times 8$
 
 d) $360 : 15$
 
-**Bài 2:** Tính nhanh:
+**Bài 2 (Dễ - Nhận biết):** Tính nhanh:
 
 a) $25 \times 37 \times 4$
 
@@ -468,7 +550,7 @@ c) $125 \times 24 : 25$
 
 d) $(150 + 250) : 50$
 
-**Bài 3:** Tìm $x$ biết:
+**Bài 3 (Thông hiểu):** Tìm $x$ biết:
 
 a) $x \times 7 = 84$
 
@@ -478,7 +560,7 @@ c) $144 : x = 12$
 
 d) $x \times 15 = 225$
 
-**Bài 4:** Thực hiện phép chia có dư:
+**Bài 4 (Thông hiểu):** Thực hiện phép chia có dư:
 
 a) $37 : 5$
 
@@ -488,7 +570,7 @@ c) $100 : 9$
 
 d) $75 : 8$
 
-**Bài 5:** Áp dụng tính chất phân phối:
+**Bài 5 (Thông hiểu):** Áp dụng tính chất phân phối:
 
 a) $7 \times (10 + 5)$
 
@@ -498,7 +580,7 @@ c) $(60 + 90) : 15$
 
 d) $12 \times 101$
 
-**Bài 6 (Thực tế):** Một lớp học có $35$ học sinh. Cô giáo muốn chia đều $140$ quyển vở cho các em.
+**Bài 6 (Vận dụng thực tế):** Một lớp học có $35$ học sinh. Cô giáo muốn chia đều $140$ quyển vở cho các em.
 
 a) Mỗi học sinh nhận được bao nhiêu quyển vở?
 
@@ -508,21 +590,145 @@ c) Nếu có thêm $5$ học sinh chuyển đến, chia đều $140$ quyển v�
 
 d) Trong trường hợp câu c, còn dư bao nhiêu quyển vở?
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 7 (Vận dụng):** Dùng kỹ thuật tách thừa số để tính nhanh:
 
-**Bài 1:** a) $400$; b) $12$; c) $1000$; d) $24$
+a) $25 \times 12$
 
-**Bài 2:** a) $3700$; b) $792$; c) $120$; d) $8$
+b) $125 \times 32$
 
-**Bài 3:** a) $x = 12$; b) $x = 117$; c) $x = 12$; d) $x = 15$
+c) $15 \times 99$
 
-**Bài 4:** a) $7$ dư $2$; b) $8$ dư $2$; c) $11$ dư $1$; d) $9$ dư $3$
+d) $45 \times 11$
 
-**Bài 5:** a) $105$; b) $882$; c) $10$; d) $1212$
+**Bài 8 (Vận dụng thực tế):** Một đội xe có $12$ xe tải, mỗi xe chở $35$ tạ gạo về kho.
 
-**Bài 6:** a) $4$ quyển/học sinh; b) $700000$ đồng; c) $3$ quyển/học sinh; d) Dư $20$ quyển
+a) Cả đội xe chở được bao nhiêu tạ gạo?
+
+b) Nếu đem chia đều số gạo đó cho $15$ cửa hàng, mỗi cửa hàng nhận được bao nhiêu tạ gạo?
+
+**Bài 9 (Vận dụng cao):** Tìm $x$ trong các phép chia có dư:
+
+a) $x : 7 = 9$ dư $3$
+
+b) $85 : x = 6$ dư $1$
+
+c) Số dư lớn nhất có thể khi chia một số tự nhiên cho $8$ là bao nhiêu?
+
+d) Tìm số tự nhiên $x$ biết $x$ chia $8$ được thương $12$ và số dư là số dư lớn nhất có thể.
+
+**Bài 10 (Vận dụng cao):** Tìm hai số tự nhiên $a$ và $b$ với $a < b$, biết rằng $a \times b = 24$ và $a + b = 10$.
+
+</div>
+
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
+
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
+
+**Bài 1:**
+a) $25 \times 16 = 25 \times (4 \times 4) = (25 \times 4) \times 4 = 100 \times 4 = 400$
+
+b) $144 : 12 = 12$ (vì $12 \times 12 = 144$)
+
+c) $125 \times 8 = 1000$
+
+d) $360 : 15 = 24$ (vì $15 \times 24 = 360$)
+
+---
+
+**Bài 2:**
+a) $25 \times 37 \times 4 = (25 \times 4) \times 37 = 100 \times 37 = 3700$
+
+b) $8 \times 99 = 8 \times (100 - 1) = 8 \times 100 - 8 \times 1 = 800 - 8 = 792$
+
+c) $125 \times 24 : 25 = (125 : 25) \times 24 = 5 \times 24 = 120$
+
+d) $(150 + 250) : 50 = 150 : 50 + 250 : 50 = 3 + 5 = 8$
+
+---
+
+**Bài 3:**
+a) $x \times 7 = 84 \Rightarrow x = 84 : 7 = 12$
+
+b) $x : 9 = 13 \Rightarrow x = 13 \times 9 = 117$
+
+c) $144 : x = 12 \Rightarrow x = 144 : 12 = 12$
+
+d) $x \times 15 = 225 \Rightarrow x = 225 : 15 = 15$
+
+---
+
+**Bài 4:**
+a) Vì $37 = 5 \times 7 + 2$ nên $37 : 5 = 7$ dư $2$
+
+b) Vì $58 = 7 \times 8 + 2$ nên $58 : 7 = 8$ dư $2$
+
+c) Vì $100 = 9 \times 11 + 1$ nên $100 : 9 = 11$ dư $1$
+
+d) Vì $75 = 8 \times 9 + 3$ nên $75 : 8 = 9$ dư $3$
+
+---
+
+**Bài 5:**
+a) $7 \times (10 + 5) = 7 \times 10 + 7 \times 5 = 70 + 35 = 105$
+
+b) $9 \times 98 = 9 \times (100 - 2) = 900 - 18 = 882$
+
+c) $(60 + 90) : 15 = 60 : 15 + 90 : 15 = 4 + 6 = 10$
+
+d) $12 \times 101 = 12 \times (100 + 1) = 1200 + 12 = 1212$
+
+---
+
+**Bài 6:**
+a) Mỗi học sinh nhận được: $140 : 35 = 4$ (quyển)
+
+b) Tổng số tiền mua vở: $140 \times 5000 = 700000$ (đồng)
+
+c) Số học sinh sau khi có thêm $5$ bạn: $35 + 5 = 40$ (học sinh)
+Mỗi em nhận được: $140 : 40 = 3$ (quyển), dư $140 - 3 \times 40 = 20$ (quyển)
+
+d) Số vở dư là: $20$ quyển
+
+---
+
+**Bài 7:**
+a) $25 \times 12 = 25 \times (4 \times 3) = (25 \times 4) \times 3 = 100 \times 3 = 300$
+
+b) $125 \times 32 = 125 \times (8 \times 4) = (125 \times 8) \times 4 = 1000 \times 4 = 4000$
+
+c) $15 \times 99 = 15 \times (100 - 1) = 1500 - 15 = 1485$
+
+d) $45 \times 11 = 45 \times (10 + 1) = 450 + 45 = 495$
+
+---
+
+**Bài 8:**
+a) Cả đội xe chở được: $12 \times 35 = 420$ (tạ gạo)
+
+b) Mỗi cửa hàng nhận được: $420 : 15 = 28$ (tạ gạo)
+
+---
+
+**Bài 9:**
+a) $x = 7 \times 9 + 3 = 63 + 3 = 66$ (thử lại: $66 : 7 = 9$ dư $3$ ✓)
+
+b) $x = (85 - 1) : 6 = 84 : 6 = 14$ (thử lại: $85 : 14 = 6$ dư $1$ ✓)
+
+c) Số dư luôn nhỏ hơn số chia. Với số chia là $8$, số dư lớn nhất là $7$.
+
+d) Số dư lớn nhất khi chia cho $8$ là $7$. Vậy $x = 8 \times 12 + 7 = 96 + 7 = 103$ (thử lại: $103 : 8 = 12$ dư $7$ ✓)
+
+---
+
+**Bài 10:**
+Vì $a \times b = 24$, các cặp số tự nhiên $(a; b)$ với $a < b$ là: $(1; 24), (2; 12), (3; 8), (4; 6)$.
+
+Tính tổng từng cặp: $1 + 24 = 25$, $2 + 12 = 14$, $3 + 8 = 11$, $4 + 6 = 10$.
+
+Chỉ cặp $(4; 6)$ có tổng bằng $10$. Vậy $a = 4$ và $b = 6$.
 
 </div>
 </details>

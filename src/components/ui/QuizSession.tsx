@@ -3,11 +3,16 @@
  *  - type: "mcq" | "msq" | "sa" | "tl"
  *  - option_a / option_b / option_c / option_d
  *  - correct_option: "A" | "A,C" | "8" | string
- *  - Câu hỏi động: !var!, !var:min:max!, !var(2,4,6)!, !var#0!
- *  - Tính toán: {tinh: expr} — eval sau khi đã thay biến
+ *  - Câu hỏi động (quy tắc quiz-dong.txt): !var!, !var:min:max!, !var(2,4,6)!,
+ *    !var#0!, và mở rộng !var#N! | !var#-N! (#N → số dương 1..N, #-N → số âm -N..-1)
+ *  - Tính toán: {tinh: expr} hoặc !tinh: expr! — dùng mathjs evaluate sau khi thay biến
+ *    (mathjs hiểu ^ là luỹ thừa, hỗ trợ gcd/lcm/abs/floor/... và ký tự LaTeX như \times)
+ *  - Python syntax translator: __import__('math').gcd/lcm, sum([int(d)...]), //, hasattr
  *  - iff(cond, trueval, falseval)
+ *  - MCQ/MSQ động: thử lại nhiều lần để 4 đáp án không trùng nhau và không lỗi
  */
 import { useState, useCallback, useEffect, useMemo } from 'react';
+import { evaluate } from 'mathjs/number';
 import 'katex/dist/katex.min.css';
 import LatexText from './LatexText';
 
@@ -39,6 +44,9 @@ type AnyQuestion = QuizQuestion | LegacyQuestion;
 
 interface Props {
   questions: AnyQuestion[];
+  /** Khi true: khi "Làm lại" chỉ trộn câu trong từng phần (mcq → msq → sa → tl),
+   *  không trộn lẫn giữa các phần. Mặc định (false): trộn toàn bộ câu hỏi. */
+  groupedShuffle?: boolean;
 }
 
 // ─── Dynamic engine ──────────────────────────────────────────────────────────
@@ -53,17 +61,27 @@ function pickFrom(arr: number[]): number {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+/** Regex nhận diện token động:
+ *  !name! | !name:min:max! | !name(a,b,c)! | !name#N! | !name#-N! | !name#0!
+ *  #N → số dương ngẫu nhiên 1..N ; #-N → số âm -N..-1 ; #0 → khác 0
+ *  Lưu ý: phần danh sách (a,b,c) dùng [^!)] để KHÔNG nuốt !tinh:/!var! lồng nhau
+ *  (vd "!x(x + !tinh: ...!)" không bị coi là token !x(...)!).
+ */
+const makeTokenRe = () => /!([a-zA-Z][a-zA-Z0-9]*)(#-?\d+)?(:\-?\d+:\-?\d+)?(\([^!)]+\))?!/g;
+
 /** Sinh tất cả biến động từ text của câu hỏi */
 function generateVars(text: string): VarMap {
   const vars: VarMap = {};
-  const simple = /!([a-zA-Z][a-zA-Z0-9]*)(#0)?(:\-?\d+:\-?\d+)?(\([^)]+\))?!/g;
+  const re = makeTokenRe();
   let m: RegExpExecArray | null;
-  while ((m = simple.exec(text)) !== null) {
+  while ((m = re.exec(text)) !== null) {
     const name = m[1];
     if (name in vars) continue;
-    const noZero = !!m[2];
+    const flag = m[2];       // "#0" | "#25" | "#-8" | undefined
     const range = m[3];
     const list = m[4];
+    const noZero = flag === '#0';
+    const flagNum = flag ? parseInt(flag.slice(1), 10) : NaN;
 
     if (list) {
       const nums = list.replace(/[()]/g, '').split(',').map(Number).filter(n => !isNaN(n));
@@ -74,6 +92,12 @@ function generateVars(text: string): VarMap {
       let v: number;
       do { v = randInt(min, max); } while (noZero && v === 0);
       vars[name] = v;
+    } else if (!isNaN(flagNum) && flagNum > 0) {
+      // #N → số dương 1..N
+      vars[name] = randInt(1, flagNum);
+    } else if (!isNaN(flagNum) && flagNum < 0) {
+      // #-N → số âm -N..-1
+      vars[name] = randInt(flagNum, -1);
     } else {
       let v: number;
       do { v = randInt(-10, 10); } while (noZero && v === 0);
@@ -83,15 +107,84 @@ function generateVars(text: string): VarMap {
   return vars;
 }
 
-/** Đánh giá biểu thức số học an toàn */
+// ─── Hàm toán học dùng trong biểu thức {tinh:} / !tinh:! ─────────────────────
+
+function gcd(a: number, b: number): number {
+  a = Math.abs(a); b = Math.abs(b);
+  while (b) { [a, b] = [b, a % b]; }
+  return a;
+}
+
+function lcm(a: number, b: number): number {
+  return a === 0 || b === 0 ? 0 : Math.abs(a * b) / gcd(a, b);
+}
+
+function sumDigits(n: number): number {
+  return String(Math.abs(Math.round(n))).split('').reduce((s, d) => s + Number(d), 0);
+}
+
+function abs(n: number): number {
+  return Math.abs(n);
+}
+
+/**
+ * Translate Python-only expressions to JS:
+ *  - __import__('math').gcd(...) → gcd(...)
+ *  - __import__('math').lcm(...) → lcm(...)
+ *  - hasattr(__import__('math'), 'lcm') → true  (lcm always available)
+ *  - sum([int(d) for d in str(N)]) → sumDigits(N)
+ *  - N // M (floor division) → Math.floor(N / M)
+ */
+function translatePy(e: string): string {
+  return e
+    // hasattr ternary: (A if hasattr(...) else B) → A  (lcm always available)
+    .replace(
+      /\(([^()]*)\s+if\s+hasattr\(__import__\('math'\),\s*'lcm'\)\s+else\s+\(([^()]*(?:\([^()]*\)[^()]*)*)\)\)/,
+      '$1',
+    )
+    // __import__('math').func → func  (remove module prefix)
+    .replace(/__import__\('math'\)\./g, '')
+    // sum([int(d) for d in str(N)]) → sumDigits(N)
+    .replace(/sum\(\[int\(d\)\s+for\s+d\s+in\s+str\(([^()]*)\)\]\)/g, 'sumDigits($1)')
+    // Floor division N // M → Math.floor(N / M)  (safe: N and M are plain numbers after token replacement)
+    .replace(/(-?\d+(?:\.\d+)?)\s*\/\/\s*(-?\d+(?:\.\d+)?)/g, 'Math.floor(($1) / ($2))')
+    // JS exponent ** → mathjs power ^
+    .replace(/\*\*/g, '^')
+    // Boolean && / || → mathjs and / or (dùng cho điều kiện iff)
+    .replace(/\&\&/g, ' and ')
+    .replace(/\|\|/g, ' or ');
+}
+
+/** Scope cho mathjs evaluate: hàm trợ giúp + bí danh Math.* (Math.min, Math.sqrt, ...) */
+const mathScope = {
+  gcd,
+  lcm,
+  sumDigits,
+  abs,
+  Math: {
+    min: Math.min,
+    max: Math.max,
+    sqrt: Math.sqrt,
+    floor: Math.floor,
+    ceil: Math.ceil,
+    round: Math.round,
+    abs: Math.abs,
+    pow: Math.pow,
+  },
+};
+
+/** Đánh giá biểu thức số học bằng mathjs (hỗ trợ ^ luỹ thừa, gcd/lcm/sumDigits/abs, Math.*) */
 function evalExpr(expr: string, vars: VarMap): number {
   let e = expr;
-  for (const [k, v] of Object.entries(vars)) {
-    e = e.replaceAll(k, String(v));
-  }
+  // Chỉ thay token !name! (tránh làm hỏng tên hàm như "Math", "gcd")
+  e = e.replace(makeTokenRe(), (_: string, name: string) => (name in vars ? String(vars[name]) : `!${name}!`));
+  // Fix double negatives: --8 → +8, - -8 → +8
+  e = fixSignedNumbers(e);
+  // Translate Python-only syntax to mathjs
+  e = translatePy(e);
   try {
-    // eslint-disable-next-line no-new-func
-    return Function('"use strict"; return (' + e + ')')() as number;
+    const val = evaluate(e, mathScope);
+    return typeof val === 'number' && !isNaN(val) ? (val as number) : NaN;
   } catch {
     return NaN;
   }
@@ -117,32 +210,37 @@ function fixSignedNumbers(text: string): string {
 }
 
 /** Thay thế tất cả token động trong text
- *  Thứ tự: !var! trước → rồi {tinh: expr} → rồi iff()
+ *  Thứ tự: !var! trước → rồi {tinh:} / !tinh:! → rồi iff()
  *  Điều này cho phép {tinh: !b!-4} hoạt động đúng
  */
 function applyVars(text: string, vars: VarMap): string {
   if (!text) return text;
 
-  // 1. !var! / !var:min:max! / !var(list)! / !var#0! — thay trước
-  text = text.replace(/!([a-zA-Z][a-zA-Z0-9]*)(#0)?(:\-?\d+:\-?\d+)?(\([^)]+\))?!/g, (_, name) => {
+  // 1. !var! / !var:min:max! / !var(list)! / !var#N! — thay trước
+  text = text.replace(makeTokenRe(), (_, name) => {
     return name in vars ? String(vars[name]) : `!${name}!`;
   });
 
   // 2. {tinh: expr} — tính toán sau khi biến đã được thay
   text = text.replace(/\{tinh:\s*([^}]+)\}/g, (_, expr) => fmt(evalExpr(expr, vars)));
 
-  // 3. iff(cond, trueVal, falseVal)
+  // 3. !tinh: expr! — biến thể dùng dấu chấm than.
+  //    Sau bước 1 không còn token !var! nên expr không chứa '!'
+  text = text.replace(/!tinh:\s*([^!]+)!/g, (_, expr) => fmt(evalExpr(expr, vars)));
+
+  // 4. iff(cond, trueVal, falseVal)
   text = text.replace(/iff\(([^,]+),([^,]+),([^)]+)\)/g, (_, cond, t, f) => {
     try {
       let c = cond;
-      for (const [k, v] of Object.entries(vars)) c = c.replaceAll(k, String(v));
-      // eslint-disable-next-line no-new-func
-      const result = Function('"use strict"; return (' + c + ')')();
+      c = c.replace(makeTokenRe(), (_: string, name: string) => (name in vars ? String(vars[name]) : `!${name}!`));
+      c = fixSignedNumbers(c);
+      c = translatePy(c);
+      const result = evaluate(c, mathScope);
       return result ? t.trim() : f.trim();
     } catch { return t.trim(); }
   });
 
-  // 4. Dọn dẹp +-n → -n, --n → +n
+  // 5. Dọn dẹp +-n → -n, --n → +n
   text = fixSignedNumbers(text);
 
   return text;
@@ -192,18 +290,31 @@ function normalise(q: AnyQuestion, shuffleOpts: boolean): NormalisedQ {
   }
 
   const nq = q as QuizQuestion;
-  const rawText = nq.question + (nq.option_a ?? '') + (nq.option_b ?? '') + (nq.option_c ?? '') + (nq.option_d ?? '');
-  const vars = nq.is_dynamic ? generateVars(rawText) : {};
-
+  const rawText = nq.question + (nq.option_a ?? '') + (nq.option_b ?? '') + (nq.option_c ?? '') + (nq.option_d ?? '') + (nq.explanation ?? '') + (nq.correct_option ?? '');
+  let vars: VarMap = nq.is_dynamic ? generateVars(rawText) : {};
   const apply = (t?: string) => (t ? applyVars(t, vars) : '');
 
   const optKeys = ['A', 'B', 'C', 'D'] as const;
   const rawOpts = [nq.option_a, nq.option_b, nq.option_c, nq.option_d];
+
+  // MCQ/MSQ động: thử lại nhiều lần để 4 đáp án không trùng nhau,
+  // không bị lỗi ('?' do eval NaN) và không còn token !var! chưa thay.
+  if (nq.is_dynamic && (nq.type === 'mcq' || nq.type === 'msq')) {
+    const unresolvedRe = /!([a-zA-Z][a-zA-Z0-9]*)(#-?\d+)?(:\-?\d+:\-?\d+)?(\([^!)]+\))?!/;
+    for (let attempt = 0; attempt < 30; attempt++) {
+      vars = generateVars(rawText);
+      const labels = rawOpts.map(o => (o ? applyVars(o, vars) : ''));
+      const present = labels.filter(l => l !== '');
+      if (present.some(l => l.includes('?') || unresolvedRe.test(l))) continue;
+      if (present.length <= 1 || new Set(present).size === present.length) break;
+    }
+  }
+
   let options = optKeys
     .map((k, i) => rawOpts[i] !== undefined ? { key: k, label: apply(rawOpts[i]) } : null)
     .filter(Boolean) as { key: string; label: string }[];
 
-  const correctRaw = nq.correct_option?.trim() ?? '';
+  const correctRaw = apply(nq.correct_option)?.trim() ?? '';
   const correctKeys = correctRaw.split(',').map(s => s.trim()).filter(Boolean);
 
   // Trộn đáp án: tạo mapping mới (key hiển thị → key gốc)
@@ -247,7 +358,7 @@ const diffColor: Record<string, string> = { easy: '#22c55e', medium: '#f59e0b', 
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function QuizSession({ questions }: Props) {
+export default function QuizSession({ questions, groupedShuffle = false }: Props) {
   // shuffleKey tăng mỗi lần "Làm lại" → kích hoạt re-normalise + shuffle mới
   const [shuffleKey, setShuffleKey] = useState(0);
 
@@ -255,9 +366,21 @@ export default function QuizSession({ questions }: Props) {
   const normed = useMemo(() => {
     const doShuffle = shuffleKey > 0;
     const list = questions.map(q => normalise(q, doShuffle));
-    return doShuffle ? shuffleArray(list) : list;
+    if (!doShuffle) return list;
+    if (groupedShuffle) {
+      // Trộn câu theo từng phần: mcq → msq → sa → tl
+      const order: NormalisedQ['type'][] = ['mcq', 'msq', 'sa', 'tl'];
+      const groups: Record<NormalisedQ['type'], NormalisedQ[]> = {
+        mcq: [], msq: [], sa: [], tl: [],
+      };
+      for (const item of list) groups[item.type].push(item);
+      const result: NormalisedQ[] = [];
+      for (const t of order) result.push(...shuffleArray(groups[t]));
+      return result;
+    }
+    return shuffleArray(list);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [questions, shuffleKey]);
+  }, [questions, shuffleKey, groupedShuffle]);
 
   const [current, setCurrent] = useState(0);
 

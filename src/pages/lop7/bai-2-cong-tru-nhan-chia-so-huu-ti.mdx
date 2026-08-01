@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 2: Cộng, trừ, nhân, chia số hữu tỉ"
-description: "Các phép toán cơ bản với số hữu tỉ - Toán 7 KNTT Chương 1"
+description: "Quy tắc cộng, trừ, nhân, chia số hữu tỉ, số nghịch đảo và tính chất phép toán - Toán 7 KNTT Chương 1"
 grade: "Lớp 7"
 chapter: "Chương I: Số hữu tỉ"
 currentSlug: "lop7/bai-2-cong-tru-nhan-chia-so-huu-ti"
@@ -13,6 +13,7 @@ import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
+import PhepToanSoHuuTiInteractive from '../../components/interactive/PhepToanSoHuuTiInteractive';
 import QuizSession from '../../components/ui/QuizSession';
 
 export const quizData = [
@@ -21,8 +22,8 @@ export const quizData = [
     question: "Kết quả của phép tính $\\dfrac{2}{3} + \\dfrac{1}{3}$ là:",
     option_a: "$1$",
     option_b: "$\\dfrac{3}{6}$",
-    option_c: "$\\dfrac{3}{3}$",
-    option_d: "$\\dfrac{2}{3}$",
+    option_c: "$\\dfrac{2}{6}$",
+    option_d: "$\\dfrac{1}{6}$",
     correct_option: "A",
     explanation: "$\\dfrac{2}{3} + \\dfrac{1}{3} = \\dfrac{2+1}{3} = \\dfrac{3}{3} = 1$",
     difficulty_level: "easy",
@@ -31,7 +32,7 @@ export const quizData = [
   {
     type: "mcq",
     question: "Kết quả của phép tính $\\dfrac{3}{4} \\times \\dfrac{2}{5}$ là:",
-    option_a: "$\\dfrac{6}{20} = \\dfrac{3}{10}$",
+    option_a: "$\\dfrac{3}{10}$",
     option_b: "$\\dfrac{5}{9}$",
     option_c: "$\\dfrac{6}{9}$",
     option_d: "$\\dfrac{3}{20}$",
@@ -55,9 +56,9 @@ export const quizData = [
   {
     type: "mcq",
     question: "Kết quả của phép tính $\\dfrac{5}{6} - \\dfrac{1}{6}$ là:",
-    option_a: "$\\dfrac{4}{6} = \\dfrac{2}{3}$",
-    option_b: "$\\dfrac{6}{6}$",
-    option_c: "$\\dfrac{4}{0}$",
+    option_a: "$\\dfrac{2}{3}$",
+    option_b: "$\\dfrac{4}{3}$",
+    option_c: "$\\dfrac{5}{3}$",
     option_d: "$\\dfrac{5}{6}$",
     correct_option: "A",
     explanation: "$\\dfrac{5}{6} - \\dfrac{1}{6} = \\dfrac{5-1}{6} = \\dfrac{4}{6} = \\dfrac{2}{3}$",
@@ -70,7 +71,7 @@ export const quizData = [
     option_a: "$\\dfrac{5}{6}$",
     option_b: "$\\dfrac{8}{15}$",
     option_c: "$\\dfrac{6}{5}$",
-    option_d: "$\\dfrac{10}{12}$",
+    option_d: "$\\dfrac{3}{5}$",
     correct_option: "A",
     explanation: "$\\dfrac{2}{3} : \\dfrac{4}{5} = \\dfrac{2}{3} \\times \\dfrac{5}{4} = \\dfrac{10}{12} = \\dfrac{5}{6}$",
     difficulty_level: "medium",
@@ -78,21 +79,69 @@ export const quizData = [
   },
   {
     type: "msq",
-    question: "Tính chất nào đúng với phép cộng số hữu tỉ?",
+    question: "Tính chất nào sau đây **đúng** với phép cộng và phép nhân số hữu tỉ?",
     option_a: "Giao hoán: $a + b = b + a$",
-    option_b: "Kết hợp: $(a + b) + c = a + (b + c)$",
-    option_c: "Có phần tử trung hòa là 0",
-    option_d: "Mọi số đều có số đối",
+    option_b: "Kết hợp: $(a \\times b) \\times c = a \\times (b \\times c)$",
+    option_c: "Phân phối: $a \\times (b + c) = a \\times b + a \\times c$",
+    option_d: "Nhân với 1: $a \\times 1 = a$",
     correct_option: "A,B,C,D",
-    explanation: "Phép cộng số hữu tỉ có đầy đủ các tính chất: giao hoán, kết hợp, có phần tử trung hòa và mọi số đều có số đối.",
+    explanation: "Phép cộng và phép nhân số hữu tỉ đều có tính giao hoán, kết hợp; phép nhân có tính phân phối đối với phép cộng; nhân với 1 bằng chính nó.",
     difficulty_level: "medium",
     is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nghịch đảo của $\\dfrac{!a#8!}{!b#8!}$ là:",
+    option_a: "$\\dfrac{!b#8!}{!a#8!}$",
+    option_b: "$-\\dfrac{!a#8!}{!b#8!}$",
+    option_c: "$\\dfrac{!a#8!}{!b#8!}$",
+    option_d: "$-\\dfrac{!b#8!}{!a#8!}$",
+    correct_option: "A",
+    explanation: "Số nghịch đảo của $\\dfrac{!a#8!}{!b#8!}$ là $\\dfrac{!b#8!}{!a#8!}$ vì $\\dfrac{!a#8!}{!b#8!} \\times \\dfrac{!b#8!}{!a#8!} = 1$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của phép tính $\\dfrac{!a#8!}{7} + \\dfrac{!c#8!}{7}$ là:",
+    option_a: "$\\dfrac{{tinh: !a! + !c!}}{7}$",
+    option_b: "$\\dfrac{{tinh: !a! - !c!}}{7}$",
+    option_c: "$\\dfrac{{tinh: !a! * !c!}}{7}$",
+    option_d: "$\\dfrac{{tinh: !c! - !a!}}{7}$",
+    correct_option: "A",
+    explanation: "Hai phân số cùng mẫu dương 7 nên ta cộng tử số: $\\dfrac{!a!}{7} + \\dfrac{!c!}{7} = \\dfrac{!a! + !c!}{7} = \\dfrac{{tinh: !a! + !c!}}{7}$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tính nhanh: $\\dfrac{2}{5} + \\dfrac{3}{7} + \\dfrac{3}{5}$:",
+    option_a: "$\\dfrac{10}{7}$",
+    option_b: "$\\dfrac{8}{17}$",
+    option_c: "$\\dfrac{13}{12}$",
+    option_d: "$\\dfrac{8}{10}$",
+    correct_option: "A",
+    explanation: "Nhóm các phân số cùng mẫu: $\\dfrac{2}{5} + \\dfrac{3}{5} + \\dfrac{3}{7} = 1 + \\dfrac{3}{7} = \\dfrac{10}{7}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của phép chia $\\dfrac{!a#8!}{!b#8!} : \\dfrac{!c#8!}{!d#8!}$ là:",
+    option_a: "$\\dfrac{{tinh: !a! * !d!}}{{tinh: !b! * !c!}}$",
+    option_b: "$\\dfrac{{tinh: !a! * !c!}}{{tinh: !b! * !d!}}$",
+    option_c: "$\\dfrac{{tinh: !a! * !b!}}{{tinh: !c! * !d!}}$",
+    option_d: "$\\dfrac{{tinh: !b! * !c!}}{{tinh: !a! * !d!}}$",
+    correct_option: "A",
+    explanation: "Muốn chia hai số hữu tỉ, ta nhân với số nghịch đảo của số chia: $\\dfrac{!a!}{!b!} : \\dfrac{!c!}{!d!} = \\dfrac{!a!}{!b!} \\times \\dfrac{!d!}{!c!} = \\dfrac{!a! \\times !d!}{!b! \\times !c!} = \\dfrac{{tinh: !a! * !d!}}{{tinh: !b! * !c!}}$.",
+    difficulty_level: "hard",
+    is_dynamic: true,
   },
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Các phép toán với số hữu tỉ</h3>
+<h3 id="mo-dau">🎯 Bốn phép tính với số hữu tỉ</h3>
 
 Học cách cộng, trừ, nhân, chia số hữu tỉ giúp chúng ta giải quyết nhiều bài toán thực tế!
 
@@ -110,7 +159,7 @@ Học cách cộng, trừ, nhân, chia số hữu tỉ giúp chúng ta giải qu
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">✖️</div>
     <strong>Nhân</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\dfrac{a}{b} \\times \dfrac{c}{d}$</p>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\dfrac{a}{b} \times \dfrac{c}{d}$</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fecaca;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">➗</div>
@@ -119,44 +168,61 @@ Học cách cộng, trừ, nhân, chia số hữu tỉ giúp chúng ta giải qu
   </div>
 </div>
 
+**Em có biết?** Khi nấu ăn, ta phải cộng các lượng nguyên liệu (½ thìa muối + ¼ thìa đường); khi mua hàng, ta nhân đơn giá với số lượng; khi chia bánh, ta thực hiện phép chia phân số. Mọi phép toán với số hữu tỉ đều xuất hiện quanh ta!
+
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="phep-cong">➕ 1. Phép cộng số hữu tỉ</h3>
+<h3 id="phep-cong">➕ 1. Phép cộng hai số hữu tỉ</h3>
 
 <div class="box-dinh-nghia">
 
 **Quy tắc cộng hai số hữu tỉ:**
 
-Với $x = \dfrac{a}{m}$ và $y = \dfrac{b}{m}$ (cùng mẫu số):
+Với $x = \dfrac{a}{m}$ và $y = \dfrac{b}{m}$ (cùng mẫu dương):
 
 $$x + y = \dfrac{a}{m} + \dfrac{b}{m} = \dfrac{a + b}{m}$$
 
-Nếu hai phân số khác mẫu, ta quy đồng mẫu số rồi cộng.
+Nếu hai số hữu tỉ có mẫu khác nhau, ta **quy đồng mẫu số** (lấy mẫu số chung là BCNN của các mẫu) rồi cộng tử số với nhau.
 
 </div>
 
-**Ví dụ 1:**
+**Ví dụ 1:** Tính $\dfrac{2}{5} + \dfrac{3}{5}$.
 
-a) $\dfrac{2}{5} + \dfrac{3}{5} = \dfrac{2+3}{5} = \dfrac{5}{5} = 1$
+*Lời giải:* $\dfrac{2}{5} + \dfrac{3}{5} = \dfrac{2 + 3}{5} = \dfrac{5}{5} = 1$.
 
-b) $\dfrac{1}{3} + \dfrac{1}{4} = \dfrac{4}{12} + \dfrac{3}{12} = \dfrac{7}{12}$
+**Ví dụ 2:** Tính $\dfrac{1}{3} + \dfrac{1}{4}$.
 
-c) $-\dfrac{2}{3} + \dfrac{5}{6} = -\dfrac{4}{6} + \dfrac{5}{6} = \dfrac{1}{6}$
+*Lời giải:* MSC = BCNN(3, 4) = 12. Ta có $\dfrac{1}{3} = \dfrac{4}{12}$ và $\dfrac{1}{4} = \dfrac{3}{12}$.
 
-**Tính chất của phép cộng:**
+Vậy $\dfrac{1}{3} + \dfrac{1}{4} = \dfrac{4}{12} + \dfrac{3}{12} = \dfrac{7}{12}$.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 3:** Tính $-\dfrac{2}{3} + \dfrac{5}{6}$.
 
-- **Giao hoán:** $a + b = b + a$
-- **Kết hợp:** $(a + b) + c = a + (b + c)$
-- **Cộng với 0:** $a + 0 = 0 + a = a$
-- **Số đối:** $a + (-a) = 0$
+*Lời giải:* MSC = 6. Ta có $-\dfrac{2}{3} = -\dfrac{4}{6}$.
 
+Vậy $-\dfrac{2}{3} + \dfrac{5}{6} = -\dfrac{4}{6} + \dfrac{5}{6} = \dfrac{1}{6}$.
+
+**Hình vẽ minh họa:** $\dfrac{1}{2} + \dfrac{1}{4} = \dfrac{3}{4}$ (mỗi ô nhỏ là $\dfrac{1}{4}$ đơn vị):
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="460" height="150" viewBox="0 0 460 150" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="40" y="25" width="320" height="55" rx="4" fill="#f1f5f9" stroke="#1f2937" stroke-width="2"/>
+  <rect x="40" y="25" width="160" height="55" fill="#3b82f6"/>
+  <rect x="200" y="25" width="80" height="55" fill="#10b981"/>
+  <line x1="120" y1="25" x2="120" y2="80" stroke="white" stroke-width="2"/>
+  <line x1="200" y1="25" x2="200" y2="80" stroke="white" stroke-width="2"/>
+  <line x1="280" y1="25" x2="280" y2="80" stroke="white" stroke-width="2"/>
+  <text x="120" y="60" font-size="17" font-weight="bold" fill="#ffffff" text-anchor="middle">1/2</text>
+  <text x="240" y="60" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">1/4</text>
+  <text x="360" y="55" font-size="12" fill="#64748b" text-anchor="middle">mỗi ô</text>
+  <text x="360" y="72" font-size="12" fill="#64748b" text-anchor="middle">= 1/4</text>
+  <text x="200" y="130" font-size="18" font-weight="bold" text-anchor="middle" fill="#1e293b">1/2 + 1/4 = 3/4</text>
+</svg>
 </div>
 
-<h3 id="phep-tru" style="margin-top:2rem;">➖ 2. Phép trừ số hữu tỉ</h3>
+<h3 id="phep-tru" style="margin-top:2rem;">➖ 2. Phép trừ hai số hữu tỉ</h3>
 
 <div class="box-dinh-nghia">
 
@@ -164,19 +230,55 @@ c) $-\dfrac{2}{3} + \dfrac{5}{6} = -\dfrac{4}{6} + \dfrac{5}{6} = \dfrac{1}{6}$
 
 $$x - y = x + (-y)$$
 
-Muốn trừ số hữu tỉ $y$, ta cộng với số đối của $y$.
+Muốn trừ số hữu tỉ $y$ cho số hữu tỉ $x$, ta **cộng $x$ với số đối của $y$**.
 
 </div>
 
-**Ví dụ 2:**
+**Ví dụ 1:** Tính $\dfrac{5}{7} - \dfrac{2}{7}$.
 
-a) $\dfrac{5}{7} - \dfrac{2}{7} = \dfrac{5-2}{7} = \dfrac{3}{7}$
+*Lời giải:* $\dfrac{5}{7} - \dfrac{2}{7} = \dfrac{5 - 2}{7} = \dfrac{3}{7}$.
 
-b) $\dfrac{3}{4} - \dfrac{1}{6} = \dfrac{9}{12} - \dfrac{2}{12} = \dfrac{7}{12}$
+**Ví dụ 2:** Tính $\dfrac{3}{4} - \dfrac{1}{6}$.
 
-c) $-\dfrac{2}{5} - \dfrac{3}{5} = -\dfrac{2}{5} + \left(-\dfrac{3}{5}\right) = -\dfrac{5}{5} = -1$
+*Lời giải:* MSC = BCNN(4, 6) = 12. Ta có $\dfrac{3}{4} = \dfrac{9}{12}$ và $\dfrac{1}{6} = \dfrac{2}{12}$.
 
-<h3 id="phep-nhan" style="margin-top:2rem;">✖️ 3. Phép nhân số hữu tỉ</h3>
+Vậy $\dfrac{3}{4} - \dfrac{1}{6} = \dfrac{9}{12} - \dfrac{2}{12} = \dfrac{7}{12}$.
+
+**Ví dụ 3:** Tính $-\dfrac{2}{5} - \dfrac{3}{5}$.
+
+*Lời giải:* $-\dfrac{2}{5} - \dfrac{3}{5} = -\dfrac{2}{5} + \left(-\dfrac{3}{5}\right) = \dfrac{-2 - 3}{5} = \dfrac{-5}{5} = -1$.
+
+**Hình vẽ minh họa:** $\dfrac{3}{4} - \dfrac{1}{4} = \dfrac{1}{2}$ trên trục số:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="600" height="150" viewBox="0 0 600 150" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <line x1="50" y1="80" x2="550" y2="80" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="550,80 540,75 540,85" fill="#1f2937"/>
+
+  <line x1="150" y1="70" x2="150" y2="90" stroke="#1f2937" stroke-width="2"/>
+  <text x="150" y="110" font-size="15" text-anchor="middle" fill="#1f2937">0</text>
+  <line x1="450" y1="70" x2="450" y2="90" stroke="#1f2937" stroke-width="2"/>
+  <text x="450" y="110" font-size="15" text-anchor="middle" fill="#1f2937">1</text>
+
+  <line x1="225" y1="75" x2="225" y2="85" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="300" y1="75" x2="300" y2="85" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="375" y1="75" x2="375" y2="85" stroke="#94a3b8" stroke-width="1"/>
+
+  <line x1="375" y1="80" x2="300" y2="80" stroke="#ef4444" stroke-width="3"/>
+  <polygon points="300,80 309,75 309,85" fill="#ef4444"/>
+  <text x="337" y="62" font-size="13" font-weight="bold" text-anchor="middle" fill="#ef4444">-1/4</text>
+
+  <circle cx="375" cy="80" r="6" fill="#3b82f6"/>
+  <text x="375" y="40" font-size="14" font-weight="bold" text-anchor="middle" fill="#3b82f6">3/4</text>
+
+  <circle cx="300" cy="80" r="6" fill="#059669"/>
+  <text x="300" y="40" font-size="14" font-weight="bold" text-anchor="middle" fill="#059669">1/2</text>
+
+  <text x="300" y="140" font-size="17" font-weight="bold" text-anchor="middle" fill="#1e293b">3/4 - 1/4 = 1/2</text>
+</svg>
+</div>
+
+<h3 id="phep-nhan" style="margin-top:2rem;">✖️ 3. Phép nhân hai số hữu tỉ</h3>
 
 <div class="box-dinh-nghia">
 
@@ -184,129 +286,356 @@ c) $-\dfrac{2}{5} - \dfrac{3}{5} = -\dfrac{2}{5} + \left(-\dfrac{3}{5}\right) = 
 
 $$\dfrac{a}{b} \times \dfrac{c}{d} = \dfrac{a \times c}{b \times d}$$
 
-Tử nhân tử, mẫu nhân mẫu.
+Tử nhân với tử, mẫu nhân với mẫu.
 
 </div>
 
-**Ví dụ 3:**
+**Ví dụ 1:** Tính $\dfrac{2}{3} \times \dfrac{4}{5}$.
 
-a) $\dfrac{2}{3} \times \dfrac{4}{5} = \dfrac{2 \times 4}{3 \times 5} = \dfrac{8}{15}$
+*Lời giải:* $\dfrac{2}{3} \times \dfrac{4}{5} = \dfrac{2 \times 4}{3 \times 5} = \dfrac{8}{15}$.
 
-b) $-\dfrac{3}{7} \times \dfrac{2}{5} = \dfrac{(-3) \times 2}{7 \times 5} = -\dfrac{6}{35}$
+**Ví dụ 2:** Tính $-\dfrac{3}{7} \times \dfrac{2}{5}$.
 
-c) $\dfrac{5}{6} \times \left(-\dfrac{3}{10}\right) = -\dfrac{15}{60} = -\dfrac{1}{4}$
+*Lời giải:* $-\dfrac{3}{7} \times \dfrac{2}{5} = \dfrac{(-3) \times 2}{7 \times 5} = -\dfrac{6}{35}$.
 
-**Tính chất của phép nhân:**
+**Ví dụ 3:** Tính $\dfrac{5}{6} \times \left(-\dfrac{3}{10}\right)$.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:* $\dfrac{5}{6} \times \left(-\dfrac{3}{10}\right) = -\dfrac{5 \times 3}{6 \times 10} = -\dfrac{15}{60} = -\dfrac{1}{4}$.
 
-- **Giao hoán:** $a \times b = b \times a$
-- **Kết hợp:** $(a \times b) \times c = a \times (b \times c)$
-- **Nhân với 1:** $a \times 1 = 1 \times a = a$
-- **Phân phối:** $a \times (b + c) = a \times b + a \times c$
+<div class="box-dinh-ly">
+
+**Quy tắc dấu trong phép nhân:**
+
+- $(+) \times (+) = (+)$ &nbsp;&nbsp;&nbsp; $(+) \times (-) = (-)$
+- $(-) \times (+) = (-)$ &nbsp;&nbsp;&nbsp; $(-) \times (-) = (+)$
+
+**Nói gọn:** *Cùng dấu thì dương, khác dấu thì âm.*
 
 </div>
 
-<h3 id="so-nghich-dao" style="margin-top:2rem;">🔄 4. Số nghịch đảo</h3>
+**Hình vẽ minh họa:** $\dfrac{1}{2} \times \dfrac{1}{3} = \dfrac{1}{6}$ (ô gạch chéo = phần giao nhau của cột $\dfrac{1}{2}$ và hàng $\dfrac{1}{3}$):
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="380" height="230" viewBox="0 0 380 230" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="70" y="40" width="180" height="120" fill="#f8fafc" stroke="#1f2937" stroke-width="2"/>
+
+  <rect x="70" y="40" width="90" height="120" fill="rgba(59,130,246,0.22)"/>
+  <rect x="70" y="80" width="180" height="40" fill="rgba(16,185,129,0.22)"/>
+  <rect x="70" y="80" width="90" height="40" fill="rgba(16,185,129,0.6)"/>
+
+  <line x1="160" y1="40" x2="160" y2="160" stroke="#1f2937" stroke-width="1.5"/>
+  <line x1="70" y1="80" x2="250" y2="80" stroke="#1f2937" stroke-width="1.5"/>
+  <line x1="70" y1="120" x2="250" y2="120" stroke="#1f2937" stroke-width="1.5"/>
+
+  <text x="115" y="28" font-size="15" font-weight="bold" text-anchor="middle" fill="#3b82f6">1/2</text>
+  <text x="50" y="105" font-size="15" font-weight="bold" text-anchor="middle" fill="#059669">1/3</text>
+
+  <text x="200" y="200" font-size="18" font-weight="bold" text-anchor="middle" fill="#1e293b">1/2 × 1/3 = 1/6</text>
+</svg>
+</div>
+
+<h3 id="so-nghich-dao" style="margin-top:2rem;">🔄 4. Phép chia hai số hữu tỉ</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Hai số gọi là nghịch đảo của nhau nếu tích của chúng bằng 1.
+**Số nghịch đảo:** Hai số gọi là **nghịch đảo của nhau** nếu tích của chúng bằng 1.
 
-Số nghịch đảo của $\dfrac{a}{b}$ (với $a, b \neq 0$) là $\dfrac{b}{a}$.
-
-</div>
-
-**Ví dụ 4:**
-
-- Số nghịch đảo của $\dfrac{3}{4}$ là $\dfrac{4}{3}$ vì $\dfrac{3}{4} \times \dfrac{4}{3} = 1$
-- Số nghịch đảo của $-\dfrac{5}{2}$ là $-\dfrac{2}{5}$
-- Số nghịch đảo của $7 = \dfrac{7}{1}$ là $\dfrac{1}{7}$
-- Số $0$ không có số nghịch đảo
-
-<h3 id="phep-chia" style="margin-top:2rem;">➗ 5. Phép chia số hữu tỉ</h3>
-
-<div class="box-dinh-nghia">
+Số nghịch đảo của $\dfrac{a}{b}$ (với $a, b \neq 0$) là $\dfrac{b}{a}$. Số $0$ **không có** số nghịch đảo.
 
 **Quy tắc chia hai số hữu tỉ:**
 
 $$\dfrac{a}{b} : \dfrac{c}{d} = \dfrac{a}{b} \times \dfrac{d}{c} \quad (c \neq 0)$$
 
-Muốn chia cho một số hữu tỉ, ta nhân với số nghịch đảo của nó.
+Muốn chia số hữu tỉ $x$ cho số hữu tỉ $y \neq 0$, ta nhân $x$ với **số nghịch đảo** của $y$.
 
 </div>
 
-**Ví dụ 5:**
+**Ví dụ 1:** Tính $\dfrac{3}{4} : \dfrac{2}{5}$.
 
-a) $\dfrac{3}{4} : \dfrac{2}{5} = \dfrac{3}{4} \times \dfrac{5}{2} = \dfrac{15}{8}$
+*Lời giải:* $\dfrac{3}{4} : \dfrac{2}{5} = \dfrac{3}{4} \times \dfrac{5}{2} = \dfrac{15}{8}$.
 
-b) $-\dfrac{5}{6} : \dfrac{2}{3} = -\dfrac{5}{6} \times \dfrac{3}{2} = -\dfrac{15}{12} = -\dfrac{5}{4}$
+**Ví dụ 2:** Tính $-\dfrac{5}{6} : \dfrac{2}{3}$.
 
-c) $\dfrac{7}{8} : (-2) = \dfrac{7}{8} : \left(-\dfrac{2}{1}\right) = \dfrac{7}{8} \times \left(-\dfrac{1}{2}\right) = -\dfrac{7}{16}$
+*Lời giải:* $-\dfrac{5}{6} : \dfrac{2}{3} = -\dfrac{5}{6} \times \dfrac{3}{2} = -\dfrac{15}{12} = -\dfrac{5}{4}$.
 
-<h3 id="quy-tac-dau" style="margin-top:2rem;">⚡ 6. Quy tắc dấu</h3>
+**Ví dụ 3:** Tính $\dfrac{7}{8} : (-2)$.
+
+*Lời giải:* $\dfrac{7}{8} : (-2) = \dfrac{7}{8} : \left(-\dfrac{2}{1}\right) = \dfrac{7}{8} \times \left(-\dfrac{1}{2}\right) = -\dfrac{7}{16}$.
+
+**Hình vẽ minh họa:** $\dfrac{1}{2} : \dfrac{1}{4} = 2$ — trong nửa đơn vị có 2 phần $\dfrac{1}{4}$:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="460" height="160" viewBox="0 0 460 160" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="40" y="30" width="320" height="55" rx="4" fill="#f1f5f9" stroke="#1f2937" stroke-width="2"/>
+  <rect x="40" y="30" width="80" height="55" fill="#10b981"/>
+  <rect x="120" y="30" width="80" height="55" fill="#3b82f6"/>
+  <line x1="120" y1="30" x2="120" y2="85" stroke="white" stroke-width="2"/>
+  <line x1="200" y1="30" x2="200" y2="85" stroke="white" stroke-width="2"/>
+  <line x1="280" y1="30" x2="280" y2="85" stroke="white" stroke-width="2"/>
+
+  <line x1="40" y1="30" x2="40" y2="115" stroke="#10b981" stroke-width="2.5"/>
+  <line x1="200" y1="30" x2="200" y2="115" stroke="#3b82f6" stroke-width="2.5"/>
+  <line x1="200" y1="115" x2="40" y2="115" stroke="#10b981" stroke-width="2.5"/>
+
+  <text x="120" y="138" font-size="15" font-weight="bold" text-anchor="middle" fill="#1e293b">1/2</text>
+  <text x="360" y="52" font-size="12" fill="#64748b" text-anchor="middle">mỗi ô</text>
+  <text x="360" y="68" font-size="12" fill="#64748b" text-anchor="middle">= 1/4</text>
+
+  <text x="200" y="155" font-size="16" font-weight="bold" text-anchor="middle" fill="#059669">1/2 : 1/4 = 2</text>
+</svg>
+</div>
+
+<h3 id="tinh-chat" style="margin-top:2rem;">💡 5. Tính chất của phép cộng và phép nhân</h3>
 
 <div class="box-dinh-ly">
 
-**Quy tắc dấu trong phép nhân và chia:**
+**Các tính chất quan trọng (với $a, b, c$ là số hữu tỉ):**
 
-- $(+) \times (+) = (+)$ &nbsp;&nbsp;&nbsp; $(+) : (+) = (+)$
-- $(+) \times (-) = (-)$ &nbsp;&nbsp;&nbsp; $(+) : (-) = (-)$
-- $(-) \times (+) = (-)$ &nbsp;&nbsp;&nbsp; $(-) : (+) = (-)$
-- $(-) \times (-) = (+)$ &nbsp;&nbsp;&nbsp; $(-) : (-) = (+)$
+- **Giao hoán:** $a + b = b + a$; $a \cdot b = b \cdot a$
+- **Kết hợp:** $(a + b) + c = a + (b + c)$; $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+- **Cộng với 0:** $a + 0 = 0 + a = a$; **Nhân với 1:** $a \cdot 1 = 1 \cdot a = a$
+- **Số đối:** $a + (-a) = 0$; **Số nghịch đảo:** $a \cdot \dfrac{1}{a} = 1$ (với $a \neq 0$)
+- **Phân phối:** $a \cdot (b + c) = a \cdot b + a \cdot c$
 
 </div>
 
-**Ví dụ 6:**
+Nhờ các tính chất này, ta có thể **tính nhanh** bằng cách đổi chỗ, nhóm các số hợp lí.
 
-a) $\left(-\dfrac{2}{3}\right) \times \left(-\dfrac{3}{4}\right) = \dfrac{2 \times 3}{3 \times 4} = \dfrac{1}{2}$
+**Ví dụ 1:** Tính nhanh $\dfrac{2}{5} + \dfrac{3}{7} + \dfrac{3}{5}$.
 
-b) $\left(-\dfrac{5}{6}\right) : \left(-\dfrac{2}{3}\right) = \dfrac{5}{6} \times \dfrac{3}{2} = \dfrac{5}{4}$
+*Lời giải:* Nhóm các phân số cùng mẫu:
+
+$$\dfrac{2}{5} + \dfrac{3}{7} + \dfrac{3}{5} = \left(\dfrac{2}{5} + \dfrac{3}{5}\right) + \dfrac{3}{7} = 1 + \dfrac{3}{7} = \dfrac{10}{7}$$
+
+**Ví dụ 2:** Tính nhanh $\dfrac{5}{6} \times \dfrac{2}{3} \times \dfrac{9}{10}$.
+
+*Lời giải:* $\dfrac{5}{6} \times \dfrac{2}{3} \times \dfrac{9}{10} = \dfrac{5 \times 2 \times 9}{6 \times 3 \times 10} = \dfrac{90}{180} = \dfrac{1}{2}$.
+
+**Ví dụ 3:** Tính $\left(\dfrac{1}{2} + \dfrac{1}{3}\right) \times 6$.
+
+*Lời giải:* Áp dụng tính phân phối:
+
+$$\left(\dfrac{1}{2} + \dfrac{1}{3}\right) \times 6 = \dfrac{1}{2} \times 6 + \dfrac{1}{3} \times 6 = 3 + 2 = 5$$
+
+**Hình vẽ minh họa:** Đổi chỗ và nhóm để tính nhanh:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="560" height="200" viewBox="0 0 560 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="40" y="22" width="90" height="40" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="85" y="48" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e3a8a">2/5</text>
+  <text x="140" y="48" font-size="18" font-weight="bold" text-anchor="middle" fill="#1f2937">+</text>
+  <rect x="150" y="22" width="90" height="40" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="195" y="48" font-size="16" font-weight="bold" text-anchor="middle" fill="#78350f">3/7</text>
+  <text x="250" y="48" font-size="18" font-weight="bold" text-anchor="middle" fill="#1f2937">+</text>
+  <rect x="260" y="22" width="90" height="40" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="305" y="48" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e3a8a">3/5</text>
+
+  <path d="M 305 68 C 305 92, 85 92, 85 68" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,4"/>
+  <polygon points="85,68 93,74 93,62" fill="#3b82f6"/>
+
+  <rect x="40" y="108" width="210" height="44" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="145" y="136" font-size="15" font-weight="bold" text-anchor="middle" fill="#1e40af">(2/5 + 3/5) = 1</text>
+  <text x="265" y="136" font-size="18" font-weight="bold" text-anchor="middle" fill="#1f2937">+</text>
+  <rect x="285" y="108" width="90" height="44" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="330" y="136" font-size="15" font-weight="bold" text-anchor="middle" fill="#78350f">3/7</text>
+
+  <text x="280" y="185" font-size="17" font-weight="bold" text-anchor="middle" fill="#059669">= 1 + 3/7 = 10/7</text>
+</svg>
+</div>
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
 
-<QuizSession client:load questions={quizData} />
+<PhepToanSoHuuTiInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Cộng, trừ số hữu tỉ**
+**Phương pháp giải:** Bước 1: Viết hai số hữu tỉ dưới dạng phân số (nếu cần). Bước 2: Quy đồng mẫu dương (MSC = BCNN của các mẫu). Bước 3: Cộng (hoặc trừ) tử số, giữ nguyên mẫu, rồi rút gọn kết quả.
+
+</div>
+
+**Ví dụ 1:** Tính $\dfrac{1}{2} + \dfrac{1}{3}$.
+
+*Lời giải:* MSC = 6. $\dfrac{1}{2} = \dfrac{3}{6}$; $\dfrac{1}{3} = \dfrac{2}{6}$.
+
+Vậy $\dfrac{1}{2} + \dfrac{1}{3} = \dfrac{3}{6} + \dfrac{2}{6} = \dfrac{5}{6}$.
+
+**Ví dụ 2:** Tính $-\dfrac{3}{4} - \dfrac{2}{5}$.
+
+*Lời giải:* MSC = 20. $-\dfrac{3}{4} = \dfrac{-15}{20}$; $\dfrac{2}{5} = \dfrac{8}{20}$.
+
+Vậy $-\dfrac{3}{4} - \dfrac{2}{5} = \dfrac{-15}{20} - \dfrac{8}{20} = \dfrac{-23}{20}$.
+
+**Ví dụ 3:** Tính $\dfrac{2}{7} + \left(-\dfrac{3}{14}\right)$.
+
+*Lời giải:* MSC = 14. $\dfrac{2}{7} = \dfrac{4}{14}$.
+
+Vậy $\dfrac{2}{7} + \left(-\dfrac{3}{14}\right) = \dfrac{4}{14} - \dfrac{3}{14} = \dfrac{1}{14}$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Nhân, chia số hữu tỉ**
+**Phương pháp giải:** Nhân: tử nhân tử, mẫu nhân mẫu rồi rút gọn. Chia: nhân với số nghịch đảo của số chia. Luôn xác định dấu của kết quả theo quy tắc "cùng dấu dương, khác dấu âm".
+
+</div>
+
+**Ví dụ 1:** Tính $\left(-\dfrac{2}{5}\right) \times \dfrac{5}{8}$.
+
+*Lời giải:* $\left(-\dfrac{2}{5}\right) \times \dfrac{5}{8} = -\dfrac{2 \times 5}{5 \times 8} = -\dfrac{10}{40} = -\dfrac{1}{4}$.
+
+**Ví dụ 2:** Tính $\dfrac{3}{10} : \left(-\dfrac{3}{5}\right)$.
+
+*Lời giải:* $\dfrac{3}{10} : \left(-\dfrac{3}{5}\right) = \dfrac{3}{10} \times \left(-\dfrac{5}{3}\right) = -\dfrac{15}{30} = -\dfrac{1}{2}$.
+
+**Ví dụ 3:** Tính $\left(-\dfrac{4}{9}\right) \times \left(-\dfrac{3}{16}\right)$.
+
+*Lời giải:* $\left(-\dfrac{4}{9}\right) \times \left(-\dfrac{3}{16}\right) = \dfrac{4 \times 3}{9 \times 16} = \dfrac{12}{144} = \dfrac{1}{12}$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 3: Tính nhanh nhờ tính chất phép toán**
+**Phương pháp giải:** Sử dụng tính giao hoán, kết hợp để nhóm các số hợp lí (các phân số cùng mẫu, các số đối nhau, số nghịch đảo); sử dụng tính phân phối $a(b+c) = ab + ac$ để đưa về phép tính gọn hơn.
+
+</div>
+
+**Ví dụ 1:** Tính nhanh $\dfrac{3}{7} + \left(-\dfrac{5}{11}\right) + \dfrac{4}{7} + \dfrac{5}{11}$.
+
+*Lời giải:* Nhóm các phân số cùng mẫu và các cặp đối nhau:
+
+$$\left(\dfrac{3}{7} + \dfrac{4}{7}\right) + \left(-\dfrac{5}{11} + \dfrac{5}{11}\right) = 1 + 0 = 1$$
+
+**Ví dụ 2:** Tính nhanh $\dfrac{7}{15} \times \dfrac{5}{8} + \dfrac{7}{15} \times \dfrac{3}{8}$.
+
+*Lời giải:* Đặt thừa số chung $\dfrac{7}{15}$:
+
+$$\dfrac{7}{15} \times \left(\dfrac{5}{8} + \dfrac{3}{8}\right) = \dfrac{7}{15} \times 1 = \dfrac{7}{15}$$
+
+**Ví dụ 3:** Tính nhanh $\left(-\dfrac{1}{2}\right) \times \dfrac{5}{9} + \dfrac{1}{2} \times \dfrac{5}{9}$.
+
+*Lời giải:* $\dfrac{5}{9} \times \left(-\dfrac{1}{2} + \dfrac{1}{2}\right) = \dfrac{5}{9} \times 0 = 0$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 4: Tìm số $x$ chưa biết**
+**Phương pháp giải:** Dùng phép toán ngược:
+
+- Nếu $x + a = b$ thì $x = b - a$.
+- Nếu $x - a = b$ thì $x = b + a$.
+- Nếu $a \cdot x = b$ thì $x = b : a$ (với $a \neq 0$).
+- Nếu $x : a = b$ thì $x = b \cdot a$ (với $a \neq 0$).
+
+</div>
+
+**Ví dụ 1:** Tìm $x$, biết $x + \dfrac{2}{5} = \dfrac{3}{4}$.
+
+*Lời giải:* $x = \dfrac{3}{4} - \dfrac{2}{5} = \dfrac{15}{20} - \dfrac{8}{20} = \dfrac{7}{20}$.
+
+**Ví dụ 2:** Tìm $x$, biết $x - \dfrac{1}{3} = \dfrac{5}{6}$.
+
+*Lời giải:* $x = \dfrac{5}{6} + \dfrac{1}{3} = \dfrac{5}{6} + \dfrac{2}{6} = \dfrac{7}{6}$.
+
+**Ví dụ 3:** Tìm $x$, biết $\dfrac{2}{3} \cdot x = \dfrac{4}{9}$.
+
+*Lời giải:* $x = \dfrac{4}{9} : \dfrac{2}{3} = \dfrac{4}{9} \times \dfrac{3}{2} = \dfrac{12}{18} = \dfrac{2}{3}$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 5: Tính giá trị biểu thức (nhiều phép tính)**
+**Phương pháp giải:** Thực hiện đúng thứ tự: **nhân chia trước, cộng trừ sau**; trong ngoặc làm trước (theo thứ tự ngoặc tròn rồi ngoặc vuông). Rút gọn từng bước và chú ý quy tắc dấu.
+
+</div>
+
+**Ví dụ 1:** Tính $\dfrac{1}{2} + \dfrac{3}{4} : \dfrac{1}{2}$.
+
+*Lời giải:* $\dfrac{1}{2} + \dfrac{3}{4} : \dfrac{1}{2} = \dfrac{1}{2} + \dfrac{3}{4} \times 2 = \dfrac{1}{2} + \dfrac{3}{2} = \dfrac{4}{2} = 2$.
+
+**Ví dụ 2:** Tính $\left(\dfrac{1}{2} - \dfrac{1}{4}\right) \times 8$.
+
+*Lời giải:* $\left(\dfrac{1}{2} - \dfrac{1}{4}\right) \times 8 = \dfrac{1}{4} \times 8 = 2$.
+
+**Ví dụ 3:** Tính $-\dfrac{3}{4} \times \dfrac{2}{5} + \dfrac{1}{10}$.
+
+*Lời giải:* $-\dfrac{3}{4} \times \dfrac{2}{5} + \dfrac{1}{10} = -\dfrac{6}{20} + \dfrac{1}{10} = -\dfrac{3}{10} + \dfrac{1}{10} = -\dfrac{2}{10} = -\dfrac{1}{5}$.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
 
 <h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-**📝 Bài toán:** Một công nhân hoàn thành $\dfrac{2}{5}$ công việc trong ngày đầu và $\dfrac{1}{4}$ công việc trong ngày thứ hai.
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-a) Sau hai ngày, công nhân đã hoàn thành bao nhiêu phần công việc?
+**📝 Câu 1 (Công việc):** Một công nhân hoàn thành $\dfrac{2}{5}$ công việc trong ngày đầu, $\dfrac{1}{4}$ công việc trong ngày thứ hai và $\dfrac{1}{3}$ công việc trong ngày thứ ba.
 
-b) Còn lại bao nhiêu phần công việc chưa hoàn thành?
+a) Sau hai ngày đầu, công nhân đã hoàn thành bao nhiêu phần công việc?
 
-c) Nếu ngày thứ ba hoàn thành $\dfrac{1}{3}$ công việc, thì tổng cộng đã hoàn thành bao nhiêu?
+b) Sau hai ngày đầu, còn lại bao nhiêu phần công việc?
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+c) Sau ba ngày, công nhân đã hoàn thành được bao nhiêu phần công việc?
 
-**Giải:**
+**Lời giải:**
 
-a) Sau hai ngày: $\dfrac{2}{5} + \dfrac{1}{4} = \dfrac{8}{20} + \dfrac{5}{20} = \dfrac{13}{20}$ công việc
+a) $\dfrac{2}{5} + \dfrac{1}{4} = \dfrac{8}{20} + \dfrac{5}{20} = \dfrac{13}{20}$ công việc.
 
-b) Còn lại: $1 - \dfrac{13}{20} = \dfrac{20}{20} - \dfrac{13}{20} = \dfrac{7}{20}$ công việc
+b) Còn lại: $1 - \dfrac{13}{20} = \dfrac{7}{20}$ công việc.
 
-c) Tổng cộng: $\dfrac{13}{20} + \dfrac{1}{3} = \dfrac{39}{60} + \dfrac{20}{60} = \dfrac{59}{60}$ công việc
+c) Sau ba ngày: $\dfrac{13}{20} + \dfrac{1}{3} = \dfrac{39}{60} + \dfrac{20}{60} = \dfrac{59}{60}$ công việc.
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Nấu ăn):** Một công thức làm bánh cần $\dfrac{3}{4}$ cốc bột. Bạn Mai chỉ muốn làm $\dfrac{1}{3}$ của công thức đó. Hỏi Mai cần dùng bao nhiêu cốc bột?
+
+**Lời giải:** Số bột Mai cần: $\dfrac{3}{4} \times \dfrac{1}{3} = \dfrac{3}{12} = \dfrac{1}{4}$ cốc bột.
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Bể nước):** Một bể nước đang chứa $\dfrac{3}{4}$ dung tích bể. Người ta dùng hết $\dfrac{1}{3}$ số nước có trong bể.
+
+a) Lượng nước đã dùng bằng bao nhiêu phần dung tích bể?
+
+b) Sau khi dùng, trong bể còn lại bao nhiêu phần dung tích bể?
+
+**Lời giải:**
+
+a) Lượng nước đã dùng: $\dfrac{3}{4} \times \dfrac{1}{3} = \dfrac{3}{12} = \dfrac{1}{4}$ dung tích bể.
+
+b) Còn lại: $\dfrac{3}{4} - \dfrac{1}{4} = \dfrac{1}{2}$ dung tích bể.
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Cộng**: Quy đồng mẫu rồi cộng tử: $\dfrac{a}{m} + \dfrac{b}{m} = \dfrac{a+b}{m}$
-- **Trừ**: Cộng với số đối: $x - y = x + (-y)$
-- **Nhân**: Tử nhân tử, mẫu nhân mẫu: $\dfrac{a}{b} \times \dfrac{c}{d} = \dfrac{ac}{bd}$
-- **Chia**: Nhân với số nghịch đảo: $\dfrac{a}{b} : \dfrac{c}{d} = \dfrac{a}{b} \times \dfrac{d}{c}$
-- **Số nghịch đảo**: $\dfrac{a}{b}$ và $\dfrac{b}{a}$ nghịch đảo nhau
-- **Quy tắc dấu**: Cùng dấu (+), khác dấu (-)
+- **Cộng (trừ)**: quy đồng mẫu dương rồi cộng (trừ) tử số: $\dfrac{a}{m} + \dfrac{b}{m} = \dfrac{a+b}{m}$; $x - y = x + (-y)$.
+- **Nhân**: tử nhân tử, mẫu nhân mẫu: $\dfrac{a}{b} \times \dfrac{c}{d} = \dfrac{ac}{bd}$.
+- **Chia**: nhân với số nghịch đảo: $\dfrac{a}{b} : \dfrac{c}{d} = \dfrac{a}{b} \times \dfrac{d}{c}$ ($c \neq 0$).
+- **Số nghịch đảo**: $\dfrac{a}{b}$ và $\dfrac{b}{a}$ ($a, b \neq 0$); số 0 không có số nghịch đảo.
+- **Quy tắc dấu**: cùng dấu kết quả dương, khác dấu kết quả âm.
+- **Tính chất**: giao hoán, kết hợp, cộng với 0, nhân với 1, phân phối — dùng để tính nhanh.
+- **Thứ tự thực hiện**: nhân chia trước, cộng trừ sau; trong ngoặc trước.
 
 </GhiNho>
 
@@ -314,61 +643,93 @@ c) Tổng cộng: $\dfrac{13}{20} + \dfrac{1}{3} = \dfrac{39}{60} + \dfrac{20}{6
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Thực hiện phép tính:
+**Bài 1 (Dễ):** Thực hiện phép tính:
 
 a) $\dfrac{3}{7} + \dfrac{2}{7}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{5}{6} - \dfrac{1}{3}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{2}{5} + \dfrac{3}{4}$
 
 d) $\dfrac{7}{8} - \dfrac{5}{12}$ &nbsp;&nbsp;&nbsp; e) $-\dfrac{3}{5} + \dfrac{2}{3}$
 
-**Bài 2:** Thực hiện phép tính:
+**Bài 2 (Dễ):** Thực hiện phép tính:
 
 a) $\dfrac{2}{3} \times \dfrac{5}{7}$ &nbsp;&nbsp;&nbsp; b) $-\dfrac{4}{9} \times \dfrac{3}{8}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{5}{6} \times \left(-\dfrac{2}{15}\right)$
 
 d) $\dfrac{3}{4} : \dfrac{2}{5}$ &nbsp;&nbsp;&nbsp; e) $-\dfrac{7}{10} : \left(-\dfrac{3}{5}\right)$
 
-**Bài 3:** Tìm số nghịch đảo của:
+**Bài 3 (Dễ):** Tìm số nghịch đảo của các số: $\dfrac{5}{8}$; $-\dfrac{3}{7}$; $4$; $-2$; $1$.
 
-a) $\dfrac{5}{8}$ &nbsp;&nbsp;&nbsp; b) $-\dfrac{3}{7}$ &nbsp;&nbsp;&nbsp; c) $4$ &nbsp;&nbsp;&nbsp; d) $-2$
+**Bài 4 (Trung bình):** Tính nhanh:
 
-**Bài 4:** Tính nhanh:
+a) $\dfrac{2}{5} + \dfrac{3}{7} + \dfrac{3}{5}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{5}{6} \times \dfrac{2}{3} \times \dfrac{9}{10}$ &nbsp;&nbsp;&nbsp; c) $\left(\dfrac{1}{2} + \dfrac{1}{3}\right) \times 6$
 
-a) $\dfrac{2}{5} + \dfrac{3}{7} + \dfrac{3}{5}$
+**Bài 5 (Trung bình):** Tính nhanh bằng cách nhóm hợp lí:
 
-b) $\dfrac{5}{6} \times \dfrac{2}{3} \times \dfrac{9}{10}$
+a) $\dfrac{3}{7} + \left(-\dfrac{5}{11}\right) + \dfrac{4}{7} + \dfrac{5}{11}$
 
-c) $\left(\dfrac{1}{2} + \dfrac{1}{3}\right) \times 6$
+b) $\dfrac{7}{15} \times \dfrac{5}{8} + \dfrac{7}{15} \times \dfrac{3}{8}$
 
-**Bài 5:** Tìm $x$, biết:
+c) $\left(-\dfrac{1}{2}\right) \times \dfrac{5}{9} + \dfrac{1}{2} \times \dfrac{5}{9}$
 
-a) $x + \dfrac{2}{5} = \dfrac{3}{4}$
+**Bài 6 (Trung bình):** Tìm $x$, biết:
 
-b) $x - \dfrac{1}{3} = \dfrac{5}{6}$
+a) $x + \dfrac{2}{5} = \dfrac{3}{4}$ &nbsp;&nbsp;&nbsp; b) $x - \dfrac{1}{3} = \dfrac{5}{6}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{2}{3} \times x = \dfrac{4}{9}$ &nbsp;&nbsp;&nbsp; d) $x : \dfrac{3}{5} = \dfrac{2}{7}$
 
-c) $\dfrac{2}{3} \times x = \dfrac{4}{9}$
+**Bài 7 (Khá):** Tính giá trị của biểu thức:
 
-d) $x : \dfrac{3}{5} = \dfrac{2}{7}$
+a) $\dfrac{1}{2} + \dfrac{3}{4} : \dfrac{1}{2}$ &nbsp;&nbsp;&nbsp; b) $\left(\dfrac{1}{2} - \dfrac{1}{4}\right) \times 8$ &nbsp;&nbsp;&nbsp; c) $-\dfrac{3}{4} \times \dfrac{2}{5} + \dfrac{1}{10}$
 
-**Bài 6 (Thực tế):** Một bể nước có $\dfrac{3}{4}$ bể đầy. Người ta dùng đi $\dfrac{1}{3}$ bể nước.
+**Bài 8 (Khá):** Tính bằng cách đặt thừa số chung:
 
-a) Hỏi trong bể còn lại bao nhiêu phần nước?
+a) $\dfrac{3}{4} \times \dfrac{7}{11} + \dfrac{3}{4} \times \dfrac{4}{11}$
 
-b) Nếu thêm vào $\dfrac{1}{6}$ bể nước nữa thì bể có đầy không?
+b) $\left(-\dfrac{2}{5}\right) \times \dfrac{1}{3} + \left(-\dfrac{2}{5}\right) \times \dfrac{2}{3}$
+
+c) $\dfrac{1}{2} \times \dfrac{3}{4} + \dfrac{1}{2} \times \dfrac{1}{4}$
+
+**Bài 9 (Khá — Thực tế):** Một cửa hàng bán được $\dfrac{2}{5}$ số gạo trong buổi sáng và $\dfrac{3}{10}$ số gạo trong buổi chiều.
+
+a) Cả hai buổi bán được bao nhiêu phần số gạo?
+
+b) Cửa hàng còn lại bao nhiêu phần số gạo?
+
+c) Nếu cửa hàng có 200 kg gạo thì buổi sáng bán được bao nhiêu ki-lô-gam?
+
+**Bài 10 (Khó — Tổng hợp):** Tính giá trị các biểu thức sau:
+
+a) $A = \dfrac{1}{2} + \dfrac{1}{3} - \dfrac{1}{4}$
+
+b) $B = \left(\dfrac{2}{3} - \dfrac{1}{4}\right) : \dfrac{5}{12}$
+
+c) $C = \dfrac{1}{2} \times \dfrac{2}{3} \times \dfrac{3}{4} \times ... \times \dfrac{9}{10}$
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $\dfrac{5}{7}$; b) $\dfrac{1}{2}$; c) $\dfrac{23}{20}$; d) $\dfrac{11}{24}$; e) $\dfrac{1}{15}$
+**Bài 1:** a) $\dfrac{5}{7}$; b) $\dfrac{1}{2}$; c) $\dfrac{23}{20}$; d) $\dfrac{11}{24}$; e) $\dfrac{1}{15}$.
 
-**Bài 2:** a) $\dfrac{10}{21}$; b) $-\dfrac{1}{6}$; c) $-\dfrac{1}{9}$; d) $\dfrac{15}{8}$; e) $\dfrac{7}{6}$
+**Bài 2:** a) $\dfrac{10}{21}$; b) $-\dfrac{1}{6}$; c) $-\dfrac{1}{9}$; d) $\dfrac{15}{8}$; e) $\dfrac{7}{6}$.
 
-**Bài 3:** a) $\dfrac{8}{5}$; b) $-\dfrac{7}{3}$; c) $\dfrac{1}{4}$; d) $-\dfrac{1}{2}$
+**Bài 3:** $\dfrac{8}{5}$; $-\dfrac{7}{3}$; $\dfrac{1}{4}$; $-\dfrac{1}{2}$; $1$.
 
-**Bài 4:** a) $\dfrac{8}{7}$; b) $\dfrac{1}{2}$; c) $5$
+**Bài 4:** a) $\dfrac{10}{7}$; b) $\dfrac{1}{2}$; c) $5$.
 
-**Bài 5:** a) $x = \dfrac{7}{20}$; b) $x = \dfrac{7}{6}$; c) $x = \dfrac{2}{3}$; d) $x = \dfrac{6}{35}$
+**Bài 5:** a) $1$; b) $\dfrac{7}{15}$; c) $0$.
 
-**Bài 6:** a) $\dfrac{5}{12}$ bể; b) Có, vì $\dfrac{5}{12} + \dfrac{1}{6} = \dfrac{7}{12} < 1$
+**Bài 6:** a) $x = \dfrac{7}{20}$; b) $x = \dfrac{7}{6}$; c) $x = \dfrac{2}{3}$; d) $x = \dfrac{6}{35}$.
+
+**Bài 7:** a) $2$; b) $2$; c) $-\dfrac{1}{5}$.
+
+**Bài 8:** a) $\dfrac{3}{4} \times \left(\dfrac{7}{11} + \dfrac{4}{11}\right) = \dfrac{3}{4}$; b) $\left(-\dfrac{2}{5}\right) \times \left(\dfrac{1}{3} + \dfrac{2}{3}\right) = -\dfrac{2}{5}$; c) $\dfrac{1}{2} \times \left(\dfrac{3}{4} + \dfrac{1}{4}\right) = \dfrac{1}{2}$.
+
+**Bài 9:** a) $\dfrac{2}{5} + \dfrac{3}{10} = \dfrac{7}{10}$; b) $1 - \dfrac{7}{10} = \dfrac{3}{10}$; c) $200 \times \dfrac{2}{5} = 80$ (kg).
+
+**Bài 10:**
+
+a) $A = \dfrac{6}{12} + \dfrac{4}{12} - \dfrac{3}{12} = \dfrac{7}{12}$.
+
+b) $B = \left(\dfrac{8}{12} - \dfrac{3}{12}\right) : \dfrac{5}{12} = \dfrac{5}{12} \times \dfrac{12}{5} = 1$.
+
+c) Các thừa số khử lần lượt: $C = \dfrac{1}{\cancel{2}} \times \dfrac{\cancel{2}}{\cancel{3}} \times \dfrac{\cancel{3}}{\cancel{4}} \times ... \times \dfrac{\cancel{9}}{10} = \dfrac{1}{10}$.
 
 </div>
 </details>
