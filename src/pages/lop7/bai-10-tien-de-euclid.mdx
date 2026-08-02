@@ -13,6 +13,7 @@ import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
+import TienDeEuclidInteractive from '../../components/interactive/TienDeEuclidInteractive';
 import QuizSession from '../../components/ui/QuizSession';
 
 export const quizData = [
@@ -87,6 +88,30 @@ export const quizData = [
     explanation: "Ba tính chất của hai đường thẳng song song.",
     difficulty_level: "medium",
     is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $a \\parallel b$, $c$ cắt cả hai. Một góc so le trong là ${tinh: !a!}\\circ$. Góc đồng vị tương ứng bằng:",
+    option_a: "${tinh: !a!}^\\circ$",
+    option_b: "${tinh: 180 - !a!}^\\circ$",
+    option_c: "${tinh: 90 - !a!}^\\circ$",
+    option_d: "${tinh: !a! * 2}^\\circ$",
+    correct_option: "A",
+    explanation: "Góc đồng vị bằng góc so le trong ${!a!}^\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho $a \\parallel b$, $c$ cắt cả hai. Một góc so le trong là ${tinh: !a!}\\circ$. Góc trong cùng phía với nó bằng:",
+    option_a: "${tinh: 180 - !a!}^\\circ$",
+    option_b: "${tinh: !a!}^\\circ$",
+    option_c: "${tinh: !a! + 90}^\\circ$",
+    option_d: "${tinh: 90 - !a!}^\\circ$",
+    correct_option: "A",
+    explanation: "Góc trong cùng phía bù với góc so le trong: ${tinh: 180 - !a!}^\\circ$.",
+    difficulty_level: "hard",
+    is_dynamic: true,
   },
 ];
 
@@ -220,9 +245,17 @@ Vậy $c \perp b$
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="thuc-tanh" style="display:none">Thực hành tương tác</h3>
+
+<TienDeEuclidInteractive client:load />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="trac-nghiem" style="display:none">Trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 

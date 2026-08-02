@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 2: Đa thức"
-description: "Khái niệm đa thức, bậc và sắp xếp đa thức - Toán 8 KNTT Chương 1"
+description: "Khái niệm đa thức, đa thức thu gọn, hạng tử, bậc của đa thức và tính giá trị đa thức - Toán 8 KNTT Chương 1"
 grade: "Lớp 8"
 chapter: "Chương 1: Đa thức"
 currentSlug: "lop8/bai-2-da-thuc"
@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import DaThucInteractive from '../../components/interactive/DaThucInteractive';
 
 export const quizData = [
   {
@@ -22,127 +23,139 @@ export const quizData = [
     option_a: "$x^2 + 3x - 5$",
     option_b: "$\\dfrac{1}{x} + 2$",
     option_c: "$\\sqrt{x} + 1$",
-    option_d: "$x^{-2} + x$",
+    option_d: "$\\dfrac{x+1}{y}$",
     correct_option: "A",
-    explanation: "Đa thức là tổng của các đơn thức. $x^2 + 3x - 5$ là đa thức, các biểu thức khác có phép chia biến hoặc căn thức.",
+    explanation: "Đa thức là tổng của những đơn thức. $x^2 + 3x - 5$ là đa thức.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Bậc của đa thức $3x^4 - 2x^2 + 5x - 1$ là:",
-    option_a: "$4$",
-    option_b: "$2$",
-    option_c: "$1$",
-    option_d: "$7$",
+    question: "Các hạng tử của đa thức $P = 3x^2y - 5xy + 7$ là:",
+    option_a: "$3x^2y; -5xy; 7$",
+    option_b: "$3x^2y; 5xy; 7$",
+    option_c: "$3x^2y; -5xy$",
+    option_d: "$3; -5; 7$",
     correct_option: "A",
-    explanation: "Bậc của đa thức là bậc của hạng tử có bậc cao nhất, ở đây là $3x^4$ có bậc 4.",
+    explanation: "Các hạng tử là những đơn thức cấu thành nên tổng: $3x^2y$, $-5xy$, và $7$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hệ số cao nhất của đa thức $-2x^3 + 5x^2 - x + 7$ là:",
-    option_a: "$-2$",
-    option_b: "$5$",
-    option_c: "$-1$",
-    option_d: "$7$",
+    question: "Bậc của đa thức $Q = 2x^3y^2 - 5x^4y + 3x^2 - 1$ là:",
+    option_a: "$5$",
+    option_b: "$4$",
+    option_c: "$3$",
+    option_d: "$2$",
     correct_option: "A",
-    explanation: "Hệ số cao nhất là hệ số của hạng tử có bậc cao nhất, ở đây là $-2$ (của $x^3$).",
+    explanation: "Hạng tử $2x^3y^2$ có bậc $3+2=5$, $5x^4y$ có bậc $4+1=5$. Bậc của $Q$ là 5.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hệ số tự do của đa thức $x^3 - 4x^2 + 2x - 9$ là:",
-    option_a: "$-9$",
-    option_b: "$1$",
+    question: "Cho đa thức $M = 3x^2y + 2xy^2 - 3x^2y + 5$. Đa thức thu gọn của $M$ là:",
+    option_a: "$2xy^2 + 5$",
+    option_b: "$6x^2y + 2xy^2 + 5$",
+    option_c: "$2xy^2 - 5$",
+    option_d: "$5$",
+    correct_option: "A",
+    explanation: "Thu gọn: $(3x^2y - 3x^2y) + 2xy^2 + 5 = 2xy^2 + 5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của đa thức $P(x) = 2x^2 - 3x + 1$ tại $x = -1$ là:",
+    option_a: "$6$",
+    option_b: "$0$",
     option_c: "$2$",
     option_d: "$-4$",
     correct_option: "A",
-    explanation: "Hệ số tự do là số hạng không chứa biến, ở đây là $-9$.",
+    explanation: "$P(-1) = 2(-1)^2 - 3(-1) + 1 = 2(1) + 3 + 1 = 6$.",
     difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Sắp xếp đa thức $5 - 3x + 2x^3 - x^2$ theo lũy thừa giảm dần của biến:",
-    option_a: "$2x^3 - x^2 - 3x + 5$",
-    option_b: "$5 - 3x - x^2 + 2x^3$",
-    option_c: "$-3x + 5 - x^2 + 2x^3$",
-    option_d: "$2x^3 + x^2 - 3x + 5$",
-    correct_option: "A",
-    explanation: "Sắp xếp theo bậc giảm dần: $x^3, x^2, x^1, x^0$ → $2x^3 - x^2 - 3x + 5$.",
-    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Đa thức $P(x) = x^3 - 2x + 1$ có những đặc điểm nào?",
-    option_a: "Bậc 3",
-    option_b: "Hệ số cao nhất là 1",
-    option_c: "Hệ số tự do là 1",
-    option_d: "Thiếu hạng tử bậc 2",
+    question: "Những khẳng định nào sau đây là đúng về đa thức $A = -5x^3 + 2x^2 - x + 4$?",
+    option_a: "Là đa thức một biến $x$",
+    option_b: "Có bậc bằng 3",
+    option_c: "Hệ số cao nhất là $-5$",
+    option_d: "Hệ số tự do là 4",
     correct_option: "A,B,C,D",
-    explanation: "Tất cả đều đúng: bậc 3, hệ số cao nhất 1, hệ số tự do 1, và thiếu $x^2$.",
+    explanation: "Tất cả các khẳng định đều đúng.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Cho đa thức $P(x) = 2x^2 - 3x + 5$. Giá trị $P(2)$ bằng bao nhiêu?",
+    question: "Bậc của đa thức $B = x^5y^2 - 2x^3y^4 + 7$ bằng bao nhiêu?",
     correct_option: "7",
-    explanation: "$P(2) = 2 \\cdot 2^2 - 3 \\cdot 2 + 5 = 8 - 6 + 5 = 7$.",
+    explanation: "$x^5y^2$ có bậc 7, $-2x^3y^4$ có bậc 7. Bậc của đa thức là 7.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Đa thức $!a#2!x^!n(3,4,5)! + !b#-1!x^!m(1,2)! + !c#5!$ có bậc là:",
-    option_a: "$!n!$",
-    option_b: "$!m!$",
-    option_c: "$!tinh: !n! + !m!!$",
-    option_d: "$!a!$",
+    question: "Cho đa thức $!a#2!x^!m#3! + !b#5!x - !c#1!$. Bậc của đa thức này là:",
+    option_a: "$!m!$",
+    option_b: "$1$",
+    option_c: "$0$",
+    option_d: "$!tinh: !m! + 1!$",
     correct_option: "A",
-    explanation: "Bậc của đa thức là bậc cao nhất trong các hạng tử. Vì $!n! > !m!$ nên bậc là $!n!$.",
+    explanation: "Hạng tử có bậc cao nhất là $!a!x^!m!$ với bậc $!m!$.",
     difficulty_level: "medium",
     is_dynamic: true,
   },
   {
     type: "mcq",
-    question: "Cho $P(x) = !a#3!x^2 + !b#-2!x + !c#1!$. Giá trị $P(!d#2!)$ bằng:",
-    option_a: "$!tinh: !a! * !d! * !d! + !b! * !d! + !c!!$",
-    option_b: "$!tinh: !a! + !b! + !c!!$",
-    option_c: "$!tinh: !a! * !d! + !b!!$",
-    option_d: "$!a!$",
+    question: "Đa thức nào sau đây đã ở dạng thu gọn?",
+    option_a: "$x^2y + 3xy - 2x^2y$",
+    option_b: "$4x^3 - 2x + 5$",
+    option_c: "$2a \cdot b + a^2$",
+    option_d: "$x^2 + y^2 - xy + xy$",
+    correct_option: "B",
+    explanation: "Các hạng tử của $4x^3 - 2x + 5$ không đồng dạng, mỗi hạng tử đều đã thu gọn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của đa thức $A = x^2y - xy^2$ tại $x = 2, y = 3$ là:",
+    option_a: "$-6$",
+    option_b: "$6$",
+    option_c: "$12$",
+    option_d: "$-12$",
     correct_option: "A",
-    explanation: "$P(!d!) = !a! \\cdot !d!^2 + !b! \\cdot !d! + !c! = !tinh: !a! * !d! * !d!! + !tinh: !b! * !d!! + !c! = !tinh: !a! * !d! * !d! + !b! * !d! + !c!!$.",
+    explanation: "$A = (2)^2(3) - (2)(3)^2 = 4 \cdot 3 - 2 \cdot 9 = 12 - 18 = -6$.",
     difficulty_level: "hard",
-    is_dynamic: true,
+    is_dynamic: false,
   },
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🏗️ Đa thức — Xây dựng từ đơn thức</h3>
+<h3 id="mo-dau">🧩 Đa thức — Tổng của những đơn thức</h3>
 
-Nếu đơn thức là viên gạch, thì đa thức là bức tường được xây từ nhiều viên gạch đó!
+Nếu mỗi đơn thức giống như một viên gạch, thì **đa thức** chính là bức tường vững chắc được ghép nối từ nhiều viên gạch đó bằng các phép cộng và trừ!
 
 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
-    <strong>Quỹ đạo vật thể</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$h = -5t^2 + 20t + 10$</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Chu vi tam giác</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$P = a + b + c$ (Đa thức 3 hạng tử)</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">💰</div>
-    <strong>Lãi suất kép</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$A = P(1 + r)^n$</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏡</div>
+    <strong>Diện tích mảnh vườn ghép</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$S = 2x^2 + 3xy - y^2$ (Đa thức 3 hạng tử)</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌡️</div>
-    <strong>Nhiệt độ theo thời gian</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$T = at^2 + bt + c$</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🚀</div>
+    <strong>Quãng đường chuyển động</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$s = v_0 t + \frac{1}{2}at^2$ (Đa thức bậc 2)</p>
   </div>
 </div>
 
@@ -154,215 +167,339 @@ Nếu đơn thức là viên gạch, thì đa thức là bức tường được
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Đa thức là tổng của các đơn thức. Mỗi đơn thức trong tổng gọi là một **hạng tử** của đa thức.
+**Định nghĩa đa thức:** Đa thức là một **tổng của những đơn thức**. Mỗi đơn thức trong tổng gọi là một **hạng tử** của đa thức đó.
+
+- Mỗi đơn thức cũng được coi là một đa thức (chỉ có 1 hạng tử).
+- Đơn thức 0 cũng gọi là đa thức 0.
 
 </div>
 
-**Ví dụ các đa thức:**
+**Ví dụ 1:** Trong các biểu thức $A = 3x^2 - 2x + 1$; $B = \dfrac{2}{x} + y$; $C = x^3y^2 - 4xy$, biểu thức nào là đa thức?
 
-| Đa thức | Số hạng tử | Phân tích |
-|:---:|:---:|:---|
-| $x^2 + 3x - 5$ | 3 | Ba hạng tử: $x^2$, $3x$, $-5$ |
-| $2x^3 - x + 1$ | 3 | Ba hạng tử: $2x^3$, $-x$, $1$ |
-| $5xy - 2x^2y + 3$ | 3 | Ba hạng tử: $5xy$, $-2x^2y$, $3$ |
-| $x^4$ | 1 | Một hạng tử (đơn thức cũng là đa thức) |
+*Lời giải:*
+- $A = 3x^2 - 2x + 1$ là đa thức (tổng của ba đơn thức $3x^2, -2x, 1$).
+- $C = x^3y^2 - 4xy$ là đa thức.
+- $B$ chứa phép chia cho biến $x$ ở mẫu nên **không là đa thức**.
 
-**Lưu ý:**
-- Mỗi đơn thức đều là đa thức (có 1 hạng tử)
-- Số 0 cũng được coi là đa thức (đa thức không)
+**Ví dụ 2:** Chỉ ra các hạng tử của đa thức $P = 4x^3y - 5xy^2 + 2x - 9$.
 
-<h3 id="bac" style="margin-top:2rem;">📊 2. Bậc của đa thức</h3>
+*Lời giải:* Đa thức $P$ có 4 hạng tử là: $4x^3y$, $-5xy^2$, $2x$, và $-9$.
+
+**Ví dụ 3:** Viết đa thức biểu thị diện tích hình thang có đáy lớn $a$, đáy nhỏ $b$ và chiều cao $h$.
+
+*Lời giải:* $S = \dfrac{(a + b)h}{2} = \dfrac{1}{2}ah + \dfrac{1}{2}bh$. Đây là đa thức hai hạng tử.
+
+**Hình vẽ minh họa:** Mô hình ghép các thẻ đơn thức thành đa thức:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="560" height="150" viewBox="0 0 560 150" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="30" y="45" width="110" height="60" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="85" y="80" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af">3x²</text>
+
+  <text x="160" y="82" font-size="22" font-weight="bold" fill="#475569">+</text>
+
+  <rect x="185" y="45" width="110" height="60" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="240" y="80" font-size="16" font-weight="bold" text-anchor="middle" fill="#065f46">-5xy</text>
+
+  <text x="315" y="82" font-size="22" font-weight="bold" fill="#475569">+</text>
+
+  <rect x="340" y="45" width="80" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="380" y="80" font-size="16" font-weight="bold" text-anchor="middle" fill="#b45309">7</text>
+
+  <text x="440" y="82" font-size="22" font-weight="bold" fill="#475569">=</text>
+  <text x="495" y="80" font-size="15" font-weight="bold" fill="#2563eb">ĐA THỨC P</text>
+</svg>
+</div>
+
+<h3 id="thu-gon" style="margin-top:2rem;">🧹 2. Thu gọn đa thức</h3>
 
 <div class="box-dinh-nghia">
 
-**Bậc của đa thức** là bậc của hạng tử có bậc cao nhất trong đa thức đó (sau khi đã thu gọn).
-
-**Quy ước:** Đa thức 0 không có bậc.
+**Định nghĩa:** Thu gọn đa thức là thực hiện cộng, trừ các đơn thức đồng dạng trong đa thức đó để không còn hai hạng tử nào đồng dạng với nhau.
 
 </div>
 
-**Ví dụ tính bậc:**
+**Ví dụ 1:** Thu gọn đa thức $M = 5x^2y - 3xy + 2x^2y + 4xy - 1$.
 
-| Đa thức | Bậc các hạng tử | Bậc đa thức |
-|:---:|:---|:---:|
-| $3x^4 - 2x^2 + 5$ | $4, 2, 0$ | $4$ |
-| $x^3y + 2xy^2 - 1$ | $4, 3, 0$ | $4$ |
-| $5x^2 - 3x^2 + x$ | $2, 2, 1$ → thu gọn: $2x^2 + x$ | $2$ |
-| $7$ | $0$ | $0$ |
+*Lời giải:* Nhóm các đơn thức đồng dạng:
+$$M = (5x^2y + 2x^2y) + (-3xy + 4xy) - 1 = 7x^2y + xy - 1$$
 
-<h3 id="he-so" style="margin-top:2rem;">🔢 3. Hệ số cao nhất và hệ số tự do</h3>
+**Ví dụ 2:** Thu gọn đa thức $N = 3x^3y - 2xy^2 + 5 - 3x^3y + 4xy^2$.
+
+*Lời giải:*
+$$N = (3x^3y - 3x^3y) + (-2xy^2 + 4xy^2) + 5 = 2xy^2 + 5$$
+
+**Ví dụ 3:** Cho đa thức $P = a^2b - 3ab^2 + 2a^2b + 5ab^2$. Rút gọn và chỉ ra các hạng tử của $P$ sau khi thu gọn.
+
+*Lời giải:*
+$$P = (a^2b + 2a^2b) + (-3ab^2 + 5ab^2) = 3a^2b + 2ab^2$$
+Sau khi thu gọn, $P$ gồm 2 hạng tử là $3a^2b$ và $2ab^2$.
+
+**Hình vẽ minh họa:** Quy trình thu gọn nhóm các đơn thức đồng dạng:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="580" height="150" viewBox="0 0 580 150" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="30" y="30" width="230" height="90" rx="10" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+  <text x="145" y="60" font-size="14" font-weight="bold" text-anchor="middle" fill="#991b1b">Đa thức chưa thu gọn</text>
+  <text x="145" y="85" font-size="13" text-anchor="middle" fill="#b91c1c">5x²y - 3xy + 2x²y + 4xy</text>
+
+  <line x1="275" y1="75" x2="325" y2="75" stroke="#94a3b8" stroke-width="3"/>
+  <polygon points="325,75 315,70 315,80" fill="#94a3b8"/>
+
+  <rect x="340" y="30" width="210" height="90" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="445" y="60" font-size="14" font-weight="bold" text-anchor="middle" fill="#065f46">Đa thức đã thu gọn</text>
+  <text x="445" y="85" font-size="15" font-weight="bold" text-anchor="middle" fill="#047857">7x²y + xy</text>
+</svg>
+</div>
+
+<h3 id="bac-da-thuc" style="margin-top:2rem;">📊 3. Bậc của đa thức</h3>
 
 <div class="box-dinh-nghia">
 
-**Hệ số cao nhất:** Hệ số của hạng tử có bậc cao nhất
+**Bậc của đa thức** (khác đa thức 0) là **bậc của hạng tử có bậc cao nhất** trong dạng thu gọn của đa thức đó.
 
-**Hệ số tự do:** Số hạng không chứa biến (hạng tử bậc 0)
+- Đa thức 0 không có bậc.
 
 </div>
 
-**Ví dụ:**
+**Ví dụ 1:** Tìm bậc của đa thức $A = 3x^4y - 5x^2y^3 + 2x - 7$.
 
-Cho đa thức $P(x) = 3x^4 - 2x^3 + 5x - 7$
+*Lời giải:*
+- Hạng tử $3x^4y$ có bậc $4 + 1 = 5$.
+- Hạng tử $-5x^2y^3$ có bậc $2 + 3 = 5$.
+- Hạng tử $2x$ có bậc $1$, hạng tử $-7$ có bậc $0$.
+Bậc cao nhất là $5 \Rightarrow$ Bậc của đa thức $A$ bằng $5$.
 
-- Bậc: $4$
-- Hệ số cao nhất: $3$
-- Hệ số tự do: $-7$
+**Ví dụ 2:** Tìm bậc của đa thức $B = x^5y - 2x^3y^2 - x^5y + 3xy^3$.
 
-<h3 id="sap-xep" style="margin-top:2rem;">📋 4. Sắp xếp đa thức</h3>
+*Lời giải:*
+Thu gọn trước: $B = (x^5y - x^5y) - 2x^3y^2 + 3xy^3 = -2x^3y^2 + 3xy^3$.
+- $-2x^3y^2$ có bậc $3 + 2 = 5$.
+- $3xy^3$ có bậc $1 + 3 = 4$.
+Bậc của đa thức $B$ bằng $5$.
+
+**Ví dụ 3:** Xác định hệ số cao nhất và hệ số tự do của đa thức một biến $P(x) = -4x^3 + 7x^2 - x + 9$.
+
+*Lời giải:*
+- Hạng tử bậc cao nhất là $-4x^3 \Rightarrow$ **Hệ số cao nhất** là $-4$.
+- Hạng tử không chứa biến là $9 \Rightarrow$ **Hệ số tự do** là $9$.
+
+**Hình vẽ minh họa:** Sơ đồ tìm bậc của đa thức:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="550" height="160" viewBox="0 0 550 160" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="40" y="30" width="130" height="50" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="105" y="60" font-size="15" font-weight="bold" text-anchor="middle" fill="#1e40af">3x²y³ (Bậc 5)</text>
+
+  <rect x="210" y="30" width="130" height="50" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="275" y="60" font-size="15" font-weight="bold" text-anchor="middle" fill="#065f46">-5x⁴ (Bậc 4)</text>
+
+  <rect x="380" y="30" width="130" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="445" y="60" font-size="15" font-weight="bold" text-anchor="middle" fill="#b45309">2x (Bậc 1)</text>
+
+  <rect x="180" y="100" width="190" height="40" rx="8" fill="#fdf4ff" stroke="#a855f7" stroke-width="2"/>
+  <text x="275" y="125" font-size="15" font-weight="bold" text-anchor="middle" fill="#6b21a8">BẬC ĐA THỨC = 5</text>
+</svg>
+</div>
+
+<h3 id="tinh-gia-tri" style="margin-top:2rem;">🧮 4. Tính giá trị của đa thức</h3>
 
 <div class="box-dinh-ly">
 
-**Sắp xếp đa thức** theo lũy thừa của biến có thể:
-- **Giảm dần:** Từ bậc cao đến bậc thấp
-- **Tăng dần:** Từ bậc thấp đến bậc cao
+Để tính giá trị của đa thức tại những giá trị cho trước của các biến, ta **thu gọn đa thức**, rồi **thay các giá trị cho trước đó vào đa thức thu gọn** và thực hiện phép tính.
 
 </div>
 
-**Ví dụ 1:** Sắp xếp $P(x) = 5 - 3x + 2x^3 - x^2$
+**Ví dụ 1:** Tính giá trị của đa thức $P = 2x^2y - 3xy + 5$ tại $x = 1, y = -2$.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:* Thay $x = 1, y = -2$ vào $P$:
+$$P = 2(1)^2(-2) - 3(1)(-2) + 5 = 2(1)(-2) + 6 + 5 = -4 + 6 + 5 = 7$$
 
-**Giảm dần:** $P(x) = 2x^3 - x^2 - 3x + 5$
+**Ví dụ 2:** Cho đa thức $Q = 3x^2y - 5xy^2 + 2x^2y + 4xy^2$. Tính giá trị $Q$ tại $x = -1, y = 2$.
 
-**Tăng dần:** $P(x) = 5 - 3x - x^2 + 2x^3$
+*Lời giải:*
+Thu gọn: $Q = (3x^2y + 2x^2y) + (-5xy^2 + 4xy^2) = 5x^2y - xy^2$.
+Thay $x = -1, y = 2$:
+$$Q = 5(-1)^2(2) - (-1)(2)^2 = 5(1)(2) - (-1)(4) = 10 + 4 = 14$$
 
-</div>
+**Ví dụ 3:** Tính giá trị biểu thức $A = x^3 - 3x^2 + 3x - 1$ tại $x = 11$.
 
-**Ví dụ 2:** Sắp xếp $Q(x) = x^2 - 5 + 3x^4 - 2x$
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giảm dần:** $Q(x) = 3x^4 + x^2 - 2x - 5$
-
-</div>
-
-<h3 id="gia-tri" style="margin-top:2rem;">🎯 5. Giá trị của đa thức</h3>
-
-<div class="box-dinh-nghia">
-
-**Giá trị của đa thức** tại một giá trị cụ thể của biến được tính bằng cách thay giá trị đó vào biến.
-
-Kí hiệu: $P(a)$ là giá trị của đa thức $P(x)$ tại $x = a$
-
-</div>
-
-**Ví dụ 3:** Cho $P(x) = x^2 - 3x + 2$. Tính $P(0)$, $P(1)$, $P(2)$.
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$P(0) = 0^2 - 3 \cdot 0 + 2 = 2$
-
-$P(1) = 1^2 - 3 \cdot 1 + 2 = 1 - 3 + 2 = 0$
-
-$P(2) = 2^2 - 3 \cdot 2 + 2 = 4 - 6 + 2 = 0$
-
-**Nhận xét:** $P(1) = P(2) = 0$, ta nói 1 và 2 là **nghiệm** của đa thức $P(x)$.
-
-</div>
-
-<h3 id="nghiem" style="margin-top:2rem;">🎲 6. Nghiệm của đa thức</h3>
-
-<div class="box-dinh-nghia">
-
-**Nghiệm của đa thức** $P(x)$ là giá trị của $x$ làm cho $P(x) = 0$.
-
-</div>
-
-**Ví dụ 4:** Tìm nghiệm của $P(x) = 2x - 6$
-
-<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Cho $P(x) = 0$:
-
-$2x - 6 = 0$
-
-$2x = 6$
-
-$x = 3$
-
-Vậy $x = 3$ là nghiệm của $P(x)$.
-
-</div>
-
-<h3 id="da-thuc-thu-gon" style="margin-top:2rem;">✂️ 7. Thu gọn đa thức</h3>
-
-<div class="box-dinh-ly">
-
-**Thu gọn đa thức:** Cộng các hạng tử đồng dạng lại với nhau.
-
-</div>
-
-**Ví dụ 5:** Thu gọn $P(x) = 3x^2 + 5x - 2x^2 + 3 - 2x$
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Nhóm các hạng tử đồng dạng:
-
-$P(x) = (3x^2 - 2x^2) + (5x - 2x) + 3$
-
-$P(x) = x^2 + 3x + 3$
-
-</div>
+*Lời giải:* Ta có $A = (x - 1)^3$. Thay $x = 11 \Rightarrow A = (11 - 1)^3 = 10^3 = 1000$.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
 
-<QuizSession client:load questions={quizData} />
+<DaThucInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
 
-**📝 Bài toán 1:** Một vật được ném lên cao với vận tốc ban đầu. Độ cao $h$ (m) sau $t$ giây được tính bởi công thức:
+<div class="box-dinh-ly">
 
-$h(t) = -5t^2 + 20t + 10$
-
-Tính độ cao sau 1 giây, 2 giây và 3 giây.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-$h(1) = -5 \cdot 1^2 + 20 \cdot 1 + 10 = -5 + 20 + 10 = 25$ m
-
-$h(2) = -5 \cdot 2^2 + 20 \cdot 2 + 10 = -20 + 40 + 10 = 30$ m
-
-$h(3) = -5 \cdot 3^2 + 20 \cdot 3 + 10 = -45 + 60 + 10 = 25$ m
+**Dạng 1: Nhận biết đa thức và xác định các hạng tử**
+**Phương pháp giải:** Kiểm tra các phép tính cấu thành. Đa thức chỉ gồm phép cộng, trừ, nhân và lũy thừa mũ nguyên dương của biến.
 
 </div>
 
-**📝 Bài toán 2:** Một công ty sản xuất có chi phí sản xuất $x$ sản phẩm được tính bởi:
+**Ví dụ 1:** Trong các biểu thức sau, đâu là đa thức?
+$$P = 2x^3 - 3xy + 5; \quad Q = \dfrac{x+1}{y-1}; \quad R = \sqrt{2}x^2y - y^3$$
 
-$C(x) = 0{,}5x^2 + 10x + 500$ (nghìn đồng)
+*Lời giải:* $P$ và $R$ là đa thức. $Q$ chứa phép chia cho biến ở mẫu nên không phải đa thức.
 
-Tính chi phí khi sản xuất 20 sản phẩm và 50 sản phẩm.
+**Ví dụ 2:** Tìm các hạng tử của đa thức $M = -5x^4 + 3x^2y - 2xy + 8$.
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:* Các hạng tử là $-5x^4; 3x^2y; -2xy; 8$.
 
-**Giải:**
+**Ví dụ 3:** Cho đa thức $N = ax^2 + bx + c$. Tìm $a, b, c$ để $N$ trở thành đơn thức $5x^2$.
 
-$C(20) = 0{,}5 \cdot 20^2 + 10 \cdot 20 + 500 = 200 + 200 + 500 = 900$ nghìn đồng
+*Lời giải:* $a = 5, b = 0, c = 0$.
 
-$C(50) = 0{,}5 \cdot 50^2 + 10 \cdot 50 + 500 = 1250 + 500 + 500 = 2250$ nghìn đồng
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Thu gọn đa thức**
+**Phương pháp giải:** Nhóm các đơn thức đồng dạng lại với nhau rồi cộng/trừ các hệ số.
+
+</div>
+
+**Ví dụ 1:** Thu gọn đa thức $A = 4x^2y - 3xy^2 + 2x^2y + 5xy^2 - 1$.
+
+*Lời giải:* $A = (4x^2y + 2x^2y) + (-3xy^2 + 5xy^2) - 1 = 6x^2y + 2xy^2 - 1$.
+
+**Ví dụ 2:** Rút gọn $B = 2x^3 - 5x^2 + 3x - 2x^3 + 5x^2 + 1$.
+
+*Lời giải:* $B = (2x^3 - 2x^3) + (-5x^2 + 5x^2) + 3x + 1 = 3x + 1$.
+
+**Ví dụ 3:** Rút gọn $C = x^2(y - 1) + y(x^2 + 1) - xy$.
+
+*Lời giải:* $C = x^2y - x^2 + x^2y + y - xy = 2x^2y - x^2 - xy + y$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 3: Tìm bậc của đa thức**
+**Phương pháp giải:** Thu gọn đa thức trước, sau đó tìm bậc cao nhất trong tất cả các hạng tử.
+
+</div>
+
+**Ví dụ 1:** Tìm bậc của đa thức $P = 5x^3y^2 - 2x^4y + 3xy - 9$.
+
+*Lời giải:* $5x^3y^2$ có bậc 5, $-2x^4y$ có bậc 5. Bậc đa thức là 5.
+
+**Ví dụ 2:** Tìm bậc của $Q = x^6 - 3x^4y^2 + 2xy - x^6 + 5$.
+
+*Lời giải:* Thu gọn $Q = -3x^4y^2 + 2xy + 5$. Bậc bằng $4 + 2 = 6$.
+
+**Ví dụ 3:** Cho đa thức $M = (m - 2)x^3 + 5x^2 - 1$. Tìm $m$ để $M$ có bậc bằng 2.
+
+*Lời giải:* Để $M$ có bậc bằng 2 thì hệ số của $x^3$ phải bằng $0 \Rightarrow m - 2 = 0 \Rightarrow m = 2$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 4: Tính giá trị của đa thức**
+**Phương pháp giải:** Thu gọn đa thức rồi thay giá trị cho trước của biến vào tính toán.
+
+</div>
+
+**Ví dụ 1:** Tính giá trị $A = 3x^2y - 2xy + 1$ tại $x = 2, y = -1$.
+
+*Lời giải:* $A = 3(2)^2(-1) - 2(2)(-1) + 1 = -12 + 4 + 1 = -7$.
+
+**Ví dụ 2:** Tính giá trị $B = x^2y^3 + 2x^2y^3 - 5$ tại $x = 1, y = 2$.
+
+*Lời giải:* Thu gọn $B = 3x^2y^3 - 5$. Thay $x=1, y=2 \Rightarrow B = 3(1)^2(8) - 5 = 19$.
+
+**Ví dụ 3:** Tính giá trị $C = x^2 - 2xy + y^2$ tại $x = 103, y = 3$.
+
+*Lời giải:* $C = (x - y)^2 = (103 - 3)^2 = 100^2 = 10000$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 5: Bài toán tổng hợp và chứng minh**
+
+</div>
+
+**Ví dụ 1:** Chứng minh rằng đa thức $P(x) = x^2 + 2x + 3$ luôn nhận giá trị dương với mọi $x$.
+
+*Lời giải:* $P(x) = (x + 1)^2 + 2 \ge 2 > 0$ với mọi $x$.
+
+**Ví dụ 2:** Tìm nghiệm của đa thức một biến $Q(x) = 2x - 6$.
+
+*Lời giải:* Cho $Q(x) = 0 \Rightarrow 2x - 6 = 0 \Rightarrow x = 3$.
+
+**Ví dụ 3:** Tìm $x$ biết $3x^2 - 6x = 0$.
+
+*Lời giải:* $3x(x - 2) = 0 \Rightarrow x = 0$ hoặc $x = 2$.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Diện tích mảnh vườn):** Mảnh vườn của gia đình bác An gồm hai phần: phần trồng rau hình chữ nhật kích thước $2x$ (m) và $y$ (m); phần trồng cây ăn quả hình vuông cạnh $3x$ (m).
+
+a) Viết đa thức $S$ biểu thị tổng diện tích mảnh vườn.
+b) Tìm bậc của đa thức $S$.
+c) Tính diện tích mảnh vườn khi $x = 5$ m, $y = 4$ m.
+
+**Lời giải:**
+a) $S = 2x \cdot y + (3x)^2 = 9x^2 + 2xy$ (m²).
+b) $9x^2$ bậc 2, $2xy$ bậc 2 $\Rightarrow$ Bậc của $S$ là 2.
+c) Thay $x = 5, y = 4 \Rightarrow S = 9(25) + 2(5)(4) = 225 + 40 = 265$ (m²).
+
+</div>
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Thể tích khối bê tông):** Một khối bê tông có dạng gồm hai khối hộp chữ nhật ghép lại: Khối 1 có các kích thước $x, 2x, h$; Khối 2 có các kích thước $3x, x, h$.
+
+a) Viết đa thức biểu thị thể tích $V$ của khối bê tông.
+b) Tính $V$ khi $x = 0,5$ m và $h = 1$ m.
+
+**Lời giải:**
+a) $V = x \cdot 2x \cdot h + 3x \cdot x \cdot h = 2x^2h + 3x^2h = 5x^2h$ (m³).
+b) Thay $x = 0,5, h = 1 \Rightarrow V = 5(0,25)(1) = 1,25$ (m³).
+
+</div>
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Kinh doanh sản phẩm):** Chi phí sản xuất $x$ sản phẩm là $C(x) = 50x + 1000$ (nghìn đồng). Doanh thu bán $x$ sản phẩm là $R(x) = 120x$ (nghìn đồng).
+
+a) Viết đa thức $P(x)$ biểu thị lợi nhuận thu được khi bán $x$ sản phẩm.
+b) Tính lợi nhuận khi bán 100 sản phẩm.
+
+**Lời giải:**
+a) Lợi nhuận $P(x) = R(x) - C(x) = 120x - (50x + 1000) = 70x - 1000$ (nghìn đồng).
+b) Thay $x = 100 \Rightarrow P(100) = 70(100) - 1000 = 6000$ (nghìn đồng) = 6 triệu đồng.
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Đa thức**: tổng các đơn thức
-- **Bậc**: bậc của hạng tử cao nhất
-- **Hệ số cao nhất**: hệ số của hạng tử bậc cao nhất
-- **Hệ số tự do**: số hạng không chứa biến
-- **Sắp xếp**: theo lũy thừa tăng/giảm
-- **Nghiệm**: giá trị làm $P(x) = 0$
-- **Thu gọn**: cộng các hạng tử đồng dạng
+- **Đa thức**: Tổng của những đơn thức. Mỗi đơn thức là 1 hạng tử.
+- **Thu gọn đa thức**: Nhóm và cộng/trừ các hạng tử đồng dạng.
+- **Bậc đa thức**: Bậc của hạng tử có bậc cao nhất trong dạng thu gọn.
+- **Hệ số cao nhất**: Hệ số của hạng tử có bậc cao nhất.
+- **Hệ số tự do**: Hạng tử không chứa biến.
+- **Giá trị đa thức**: Thu gọn đa thức trước, sau đó thay giá trị của biến vào tính.
 
 </GhiNho>
 
@@ -370,87 +507,131 @@ $C(50) = 0{,}5 \cdot 50^2 + 10 \cdot 50 + 500 = 1250 + 500 + 500 = 2250$ nghìn 
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho đa thức $P(x) = 3x^4 - 2x^2 + 5x - 7$
+**Bài 1 (Dễ — Nhận biết đa thức & Hạng tử):** Trong các biểu thức sau, đâu là đa thức? Với mỗi đa thức, hãy chỉ ra các hạng tử của nó:
 
-a) Xác định bậc của đa thức.
+a) $A = 3x^2y - 2xy + 5$ &nbsp;&nbsp;&nbsp; b) $B = \dfrac{4x + 1}{y}$ &nbsp;&nbsp;&nbsp; c) $C = -7x^3 + 2y^2 - 1$
 
-b) Xác định hệ số cao nhất và hệ số tự do.
+d) $D = \sqrt{3}x^2y - xy^2 + 4$ &nbsp;&nbsp;&nbsp; e) $E = \dfrac{5}{x^2 + 1} + 2y$ &nbsp;&nbsp;&nbsp; f) $F = x^4y^2 - 3x^2y + 9$
 
-c) Tính $P(0)$, $P(1)$, $P(-1)$.
+**Bài 2 (Dễ — Thu gọn đa thức):** Thu gọn các đa thức sau:
 
-d) Đa thức $P(x)$ có bao nhiêu hạng tử? Kể tên các hạng tử đó.
+a) $A = 4x^2y - 3xy^2 + 2x^2y + 5xy^2 - 1$ &nbsp;&nbsp;&nbsp; b) $B = 5x^3 - 2x^2 + 3 - 5x^3 + 4x^2 - 7$
 
-**Bài 2:** Thu gọn các đa thức sau:
+c) $C = 2a^2b - 3ab^2 + 5a^2b + 3ab^2$ &nbsp;&nbsp;&nbsp; d) $D = x^3y - 2xy^2 + 3x^3y + 4xy^2 - 5$
 
-a) $Q(x) = 5x^2 - 3x + 2x^2 + 7x - 1$
+e) $E = \dfrac{1}{2}x^2y^2 - 3xy + \dfrac{3}{2}x^2y^2 + 3xy$ &nbsp;&nbsp;&nbsp; f) $F = u^2v - 2uv^2 + 3u^2v - u^2v + 2uv^2$
 
-b) $R(x) = x^3 - 2x^2 + 3x - x^3 + 5x^2 - 2$
+**Bài 3 (Trung bình — Bậc & Giá trị của đa thức):**
 
-c) $S(x) = 4x^2y - 3xy^2 + 2x^2y - xy^2 + 5$
+a) Tìm bậc của đa thức $M = 3x^4y - 5x^2y^3 + 2x - 7$.
 
-d) $T(x) = -x^4 + 3x^2 - 2 + x^4 - x^2 + 7$
+b) Tìm bậc của đa thức $N = x^5y - 2x^3y^3 - x^5y + 4x^3y^3$.
 
-**Bài 3:** Sắp xếp các đa thức sau theo lũy thừa giảm dần của biến:
+c) Tìm hệ số cao nhất và hệ số tự do của đa thức $P(x) = -4x^3 + 7x^2 - x + 9$.
 
-a) $A(x) = 5 - 3x + 2x^3 - x^2$
+d) Tính giá trị của $A = 2x^2y - 3xy + 5$ tại $x = 1, y = -2$.
 
-b) $B(x) = x^2 - 5x^4 + 3x - 7 + 2x^3$
+e) Tính giá trị của $B = 3x^2y - 5xy^2 + 2x^2y + 4xy^2$ tại $x = -1, y = 2$.
 
-c) $C(y) = 3y - y^3 + 2y^2 - 4 + y^4$
+f) Tính giá trị của $C = x^3 - 3x^2 + 3x - 1$ tại $x = 11$.
 
-d) $D(t) = -t + 5t^3 - 2t^2 + 8 - 3t^4$
+**Bài 4 (Trung bình — Rút gọn & Tìm đa thức):**
 
-**Bài 4:** Cho đa thức $M(x) = x^3 - 4x^2 + 3x + 2$
+a) Rút gọn biểu thức $P = x^2(y - 1) + y(x^2 + 1) - xy$.
 
-a) Tính $M(0)$, $M(2)$, $M(-1)$.
+b) Cho $M + (2x^2y - 3xy^2) = 5x^2y + xy^2$. Tìm đa thức $M$.
 
-b) Chứng tỏ $x = 2$ là nghiệm của đa thức $M(x)$.
+**Bài 5 (Trung bình — Đa thức một biến):** Cho đa thức $P(x) = 3x^4 - 2x^3 + 5x^2 - x^4 + 2x^3 - 4x^2 + 1$.
 
-c) Tìm $a$ để $M(a) = 2$.
+a) Thu gọn và sắp xếp $P(x)$ theo lũy thừa giảm dần của biến.
 
-d) Tìm giá trị nhỏ nhất của $M(x)$ khi $x = 1$.
+b) Tìm bậc, hệ số cao nhất và hệ số tự do của $P(x)$.
 
-**Bài 5:** Cho hai đa thức:
+**Bài 6 (Khá — Tìm điều kiện số mũ/bậc):** Cho đa thức $Q(x) = (m - 2)x^3 + 5x^2 - 3x + 1$.
 
-$P(x) = 2x^3 - 3x^2 + 5x - 1$
+a) Tìm $m$ để $Q(x)$ là đa thức bậc 3.
 
-$Q(x) = -x^3 + 2x^2 - 3x + 4$
+b) Tìm $m$ để $Q(x)$ là đa thức bậc 2.
 
-a) Tính bậc của mỗi đa thức.
+**Bài 7 (Khá — Chứng minh biểu thức luôn dương/âm):**
 
-b) Tính $P(1)$ và $Q(1)$.
+a) Chứng minh đa thức $P(x) = x^2 + 4x + 5$ luôn nhận giá trị dương với mọi $x$.
 
-c) So sánh $P(2)$ và $Q(2)$.
+b) Chứng minh đa thức $Q(x) = -x^2 + 2x - 3$ luôn nhận giá trị âm với mọi $x$.
 
-d) Tìm $x$ để $P(x) = Q(x)$.
+**Bài 8 (Khá - Nâng cao — Xác định hệ số đa thức):** Cho đa thức $F(x) = ax^2 + bx + c$. Biết $F(0) = 5$, $F(1) = 8$, $F(-1) = 4$. Tìm các hệ số $a, b, c$.
 
-**Bài 6 (Thực tế):** Một vật được ném lên cao với độ cao (tính bằng mét) sau $t$ giây được cho bởi công thức:
+**Bài 9 (Ứng dụng thực tế 1 — Diện tích mảnh vườn ghép):** Mảnh vườn của gia đình bác An gồm hai phần: phần trồng rau hình chữ nhật kích thước $2x$ (m) và $y$ (m); phần trồng cây ăn quả hình vuông cạnh $3x$ (m).
 
-$h(t) = -5t^2 + 20t + 10$
+a) Viết đa thức $S$ biểu thị tổng diện tích mảnh vườn.
 
-a) Tính độ cao ban đầu của vật (khi $t = 0$).
+b) Tìm bậc của đa thức $S$ và tính diện tích mảnh vườn khi $x = 5$ m, $y = 4$ m.
 
-b) Tính độ cao của vật sau 1 giây, 2 giây, 3 giây.
+**Bài 10 (Ứng dụng thực tế 2 — Chi phí & Lợi nhuận kinh doanh):** Chi phí sản xuất $x$ sản phẩm là $C(x) = 50x + 1000$ (nghìn đồng). Doanh thu bán $x$ sản phẩm là $R(x) = 120x$ (nghìn đồng).
 
-c) Tại thời điểm nào vật đạt độ cao 30 m?
+a) Viết đa thức $P(x)$ biểu thị lợi nhuận thu được khi bán $x$ sản phẩm.
 
-d) Sau bao lâu vật chạm đất (tức $h(t) = 0$)?
+b) Tính lợi nhuận khi bán 100 sản phẩm và tìm số sản phẩm $x$ tối thiểu để hòa vốn ($P(x) \ge 0$).
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) Bậc 4; b) Hệ số cao nhất: $3$, hệ số tự do: $-7$; c) $P(0) = -7$, $P(1) = -1$, $P(-1) = -9$; d) 4 hạng tử: $3x^4$, $-2x^2$, $5x$, $-7$
+**Bài 1:**
+- $A = 3x^2y - 2xy + 5$ là đa thức; các hạng tử: $3x^2y; -2xy; 5$.
+- $B = \dfrac{4x + 1}{y}$ **không phải đa thức** (chứa biến $y$ ở mẫu).
+- $C = -7x^3 + 2y^2 - 1$ là đa thức; các hạng tử: $-7x^3; 2y^2; -1$.
+- $D = \sqrt{3}x^2y - xy^2 + 4$ là đa thức; các hạng tử: $\sqrt{3}x^2y; -xy^2; 4$.
+- $E = \dfrac{5}{x^2 + 1} + 2y$ **không phải đa thức** (chứa biến ở mẫu).
+- $F = x^4y^2 - 3x^2y + 9$ là đa thức; các hạng tử: $x^4y^2; -3x^2y; 9$.
 
-**Bài 2:** a) $7x^2 + 4x - 1$; b) $3x^2 + 3x - 2$; c) $6x^2y - 4xy^2 + 5$; d) $2x^2 + 5$
+**Bài 2:**
+a) $A = (4x^2y + 2x^2y) + (-3xy^2 + 5xy^2) - 1 = 6x^2y + 2xy^2 - 1$.
+b) $B = (5x^3 - 5x^3) + (-2x^2 + 4x^2) + (3 - 7) = 2x^2 - 4$.
+c) $C = (2a^2b + 5a^2b) + (-3ab^2 + 3ab^2) = 7a^2b$.
+d) $D = (x^3y + 3x^3y) + (-2xy^2 + 4xy^2) - 5 = 4x^3y + 2xy^2 - 5$.
+e) $E = \left(\dfrac{1}{2}x^2y^2 + \dfrac{3}{2}x^2y^2\right) + (-3xy + 3xy) = 2x^2y^2$.
+f) $F = (u^2v + 3u^2v - u^2v) + (-2uv^2 + 2uv^2) = 3u^2v$.
 
-**Bài 3:** a) $2x^3 - x^2 - 3x + 5$; b) $-5x^4 + 2x^3 + x^2 + 3x - 7$; c) $y^4 - y^3 + 2y^2 + 3y - 4$; d) $-3t^4 + 5t^3 - 2t^2 - t + 8$
+**Bài 3:**
+a) $3x^4y$ (bậc 5), $-5x^2y^3$ (bậc 5) $\Rightarrow$ Bậc của $M$ bằng $5$.
+b) Thu gọn $N = 2x^3y^3$. Bậc của $N$ bằng $6$.
+c) $P(x) = -4x^3 + 7x^2 - x + 9 \Rightarrow$ Hệ số cao nhất là $-4$, hệ số tự do là $9$.
+d) Thay $x = 1, y = -2 \Rightarrow A = 2(1)^2(-2) - 3(1)(-2) + 5 = -4 + 6 + 5 = 7$.
+e) Thu gọn $B = 5x^2y - xy^2$. Thay $x = -1, y = 2 \Rightarrow B = 5(-1)^2(2) - (-1)(2)^2 = 10 + 4 = 14$.
+f) $C = (x - 1)^3$. Thay $x = 11 \Rightarrow C = (11 - 1)^3 = 10^3 = 1000$.
 
-**Bài 4:** a) $M(0) = 2$, $M(2) = 0$, $M(-1) = -6$; b) $M(2) = 0$ nên $x = 2$ là nghiệm; c) $a = 0$; d) $M(1) = 2$
+**Bài 4:**
+a) $P = x^2y - x^2 + x^2y + y - xy = 2x^2y - x^2 - xy + y$.
+b) $M = (5x^2y + xy^2) - (2x^2y - 3xy^2) = 3x^2y + 4xy^2$.
 
-**Bài 5:** a) Cả hai đều bậc 3; b) $P(1) = 3$, $Q(1) = 2$; c) $P(2) = 13$, $Q(2) = -2$, vậy $P(2) > Q(2)$; d) $x = \dfrac{5}{3}$
+**Bài 5:**
+a) $P(x) = (3x^4 - x^4) + (-2x^3 + 2x^3) + (5x^2 - 4x^2) + 1 = 2x^4 + x^2 + 1$.
+b) Bậc: $4$; Hệ số cao nhất: $2$; Hệ số tự do: $1$.
 
-**Bài 6:** a) $h(0) = 10$ m; b) $h(1) = 25$ m, $h(2) = 30$ m, $h(3) = 25$ m; c) $t = 2$ giây; d) Khoảng $4{,}45$ giây
+**Bài 6:**
+a) Để $Q(x)$ là đa thức bậc 3 thì $m - 2 \neq 0 \Rightarrow m \neq 2$.
+b) Để $Q(x)$ là đa thức bậc 2 thì $m - 2 = 0 \Rightarrow m = 2$.
+
+**Bài 7:**
+a) $P(x) = (x^2 + 4x + 4) + 1 = (x + 2)^2 + 1 \ge 1 > 0$ với mọi $x$.
+b) $Q(x) = -(x^2 - 2x + 1) - 2 = -(x - 1)^2 - 2 \le -2 < 0$ với mọi $x$.
+
+**Bài 8:**
+- $F(0) = c = 5$.
+- $F(1) = a + b + 5 = 8 \Rightarrow a + b = 3$.
+- $F(-1) = a - b + 5 = 4 \Rightarrow a - b = -1$.
+Cộng hai pt: $2a = 2 \Rightarrow a = 1 \Rightarrow b = 2$.
+Vậy $a = 1, b = 2, c = 5$.
+
+**Bài 9:**
+a) $S = 2x \cdot y + (3x)^2 = 9x^2 + 2xy$ (m²).
+b) Bậc của $S$ là 2. Khi $x = 5, y = 4 \Rightarrow S = 9(25) + 2(5)(4) = 225 + 40 = 265$ (m²).
+
+**Bài 10:**
+a) Lợi nhuận $P(x) = R(x) - C(x) = 120x - (50x + 1000) = 70x - 1000$ (nghìn đồng).
+b) Với $x = 100 \Rightarrow P(100) = 70(100) - 1000 = 6000$ (nghìn đồng) = 6 triệu đồng.
+Hòa vốn khi $70x - 1000 \ge 0 \Rightarrow x \ge 14,28 \Rightarrow$ Số sản phẩm tối thiểu là 15 sản phẩm.
 
 </div>
 </details>

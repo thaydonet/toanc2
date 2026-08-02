@@ -13,6 +13,7 @@ import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
+import SoThapPhanVoHanInteractive from '../../components/interactive/SoThapPhanVoHanInteractive';
 import QuizSession from '../../components/ui/QuizSession';
 
 export const quizData = [
@@ -88,13 +89,61 @@ export const quizData = [
     difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "msq",
+    question: "Những số nào sau đây là số thập phân hữu hạn?",
+    option_a: "$0,\\!75$",
+    option_b: "$0,\\overline{12}$",
+    option_c: "$0,\\!5$",
+    option_d: "$0,\\!1\\overline{6}$",
+    correct_option: "A,C",
+    explanation: "$0,\\!75 = \\dfrac{3}{4}$ và $0,\\!5 = \\dfrac{1}{2}$ có hữu hạn chữ số sau dấu phẩy nên là số thập phân hữu hạn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân số $\\dfrac{!a(1,3,5,7)!}{9}$ viết dưới dạng số thập phân vô hạn tuần hoàn là:",
+    option_a: "$0,\\!\\overline{!a!}$",
+    option_b: "$0,\\!\\overline{{tinh: !a! + 1}}$",
+    option_c: "$0,\\!\\overline{{tinh: !a! + 2}}$",
+    option_d: "$!a!,\\!\\overline{!a!}$",
+    correct_option: "A",
+    explanation: "Vì $1 : 9 = 0,\\!\\overline{1}$ nên $!a! : 9 = 0,\\!\\overline{!a!}$, tức là $\\dfrac{!a!}{9} = 0,\\!\\overline{!a!}$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho hai số $x = 0,\\!\\overline{!a#8!}$ và $y = 0,\\!\\overline{{tinh: !a! + 1}}$ (với $!a!$ là số nguyên dương nhỏ hơn 9). Kết quả đúng là:",
+    option_a: "$x > y$",
+    option_b: "$x < y$",
+    option_c: "$x = y$",
+    option_d: "Không so sánh được",
+    correct_option: "B",
+    explanation: "Ta có $x = 0,\\!!a!!a!!a!...$ và $y = 0,\\!{tinh: !a! + 1}{tinh: !a! + 1}{tinh: !a! + 1}...$. Vì chữ số đầu tiên sau dấu phẩy của $x$ là $!a!$ nhỏ hơn của $y$ là ${tinh: !a! + 1}$ nên $x < y$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Khẳng định nào sau đây là **đúng**?",
+    option_a: "Mọi phân số đều viết được dưới dạng số thập phân hữu hạn hoặc vô hạn tuần hoàn",
+    option_b: "Mọi phân số đều viết được dưới dạng số thập phân hữu hạn",
+    option_c: "Mọi phân số đều là số thập phân vô hạn tuần hoàn",
+    option_d: "Không phân số nào viết được dưới dạng số thập phân vô hạn tuần hoàn",
+    correct_option: "A",
+    explanation: "Khi chia tử cho mẫu, ta luôn được số thập phân hữu hạn hoặc vô hạn tuần hoàn (vì số dư chỉ có hữu hạn giá trị nên sẽ lặp lại).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong>
 
 <h3 id="mo-dau">🎯 Số thập phân vô hạn tuần hoàn</h3>
 
-Khi chia một số cho một số khác, đôi khi ta được số thập phân có các chữ số lặp lại mãi!
+Khi chia một số cho một số khác, đôi khi ta được số thập phân có các chữ số lặp lại mãi mãi theo một quy luật!
 
 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
@@ -114,6 +163,8 @@ Khi chia một số cho một số khác, đôi khi ta được số thập phâ
   </div>
 </div>
 
+**Em có biết?** Khi chia đều $10$ nghìn đồng cho $3$ người, mỗi người được $3,\\!333...$ nghìn đồng — số $3$ lặp lại mãi mãi! Trong thực tế, người bán hàng thường làm tròn để trả tiền cho dễ. Số thập phân vô hạn tuần hoàn xuất hiện khắp nơi: chia bánh, chia tiền, đo lường...
+
 </KhoiDong>
 
 <KhamPha>
@@ -124,210 +175,405 @@ Khi chia một số cho một số khác, đôi khi ta được số thập phâ
 
 **Định nghĩa:** Số thập phân vô hạn tuần hoàn là số thập phân có một chữ số hoặc một nhóm chữ số liên tiếp lặp đi lặp lại vô hạn lần sau dấu phẩy.
 
-Nhóm chữ số lặp lại gọi là **chu kỳ**.
+Nhóm chữ số lặp lại gọi là **chu kỳ**. Để viết gọn, ta dùng dấu gạch ngang đặt trên đầu chu kỳ.
 
 </div>
 
-**Ví dụ 1:** Các số thập phân vô hạn tuần hoàn
+**Ví dụ 1:** Các số thập phân vô hạn tuần hoàn:
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:*
 
-- $0,\!333... = 0,\overline{3}$ (chu kỳ là 3)
-- $0,\!121212... = 0,\overline{12}$ (chu kỳ là 12)
-- $0,\!142857142857... = 0,\overline{142857}$ (chu kỳ là 142857)
-- $2,\!5666... = 2,\!5\overline{6}$ (chu kỳ là 6, bắt đầu từ vị trí thứ 2)
+- $0,\!333... = 0,\overline{3}$ — chu kỳ là $3$
+- $0,\!121212... = 0,\overline{12}$ — chu kỳ là $12$
+- $0,\!142857142857... = 0,\overline{142857}$ — chu kỳ là $142857$
+- $2,\!5666... = 2,\!5\overline{6}$ — chu kỳ là $6$
 
+**Ví dụ 2:** Xác định chu kỳ của mỗi số sau:
+
+*Lời giải:*
+
+- Chu kỳ của $0,\overline{7}$ là $7$
+- Chu kỳ của $5,\overline{36}$ là $36$
+- Chu kỳ của $0,\overline{09}$ là $09$ (nhóm gồm hai chữ số 0 và 9)
+
+**Ví dụ 3:** Phân biệt số thập phân vô hạn tuần hoàn với số thập phân hữu hạn.
+
+*Lời giải:* $0,\!5 = \dfrac{1}{2}$ và $1,\!25 = \dfrac{5}{4}$ có hữu hạn chữ số sau dấu phẩy nên là số thập phân **hữu hạn**. Còn $0,\overline{3} = 0,\!333...$ có chữ số $3$ lặp lại vô hạn nên là số thập phân **vô hạn tuần hoàn**.
+
+**Hình vẽ minh họa:** Nhóm chữ số lặp lại liên tiếp tạo thành chu kỳ:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="150" viewBox="0 0 620 150" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <text x="20" y="55" font-size="26" font-weight="bold" fill="#1e293b">0,</text>
+  <rect x="70" y="28" width="310" height="44" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="225" y="56" font-size="24" font-weight="bold" text-anchor="middle" fill="#1e40af">142857142857...</text>
+  <line x1="90" y1="72" x2="360" y2="72" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="360,72 352,67 352,77" fill="#3b82f6"/>
+  <text x="225" y="122" font-size="16" font-weight="bold" text-anchor="middle" fill="#dc2626">↻ Nhóm 142857 lặp lại mãi — đó chính là chu kỳ</text>
+</svg>
 </div>
 
-**Cách viết:** Dùng dấu gạch ngang trên đầu chu kỳ để viết gọn.
+<h3 id="phan-loai" style="margin-top:2rem;">📊 2. Phân loại: thuần tuý và không thuần tuý</h3>
 
-<h3 id="phan-loai" style="margin-top:2rem;">📊 2. Phân loại số thập phân vô hạn tuần hoàn</h3>
+**a) Số thập phân vô hạn tuần hoàn thuần tuý** — chu kỳ bắt đầu ngay sau dấu phẩy.
 
-**a) Số thập phân vô hạn tuần hoàn thuần tuý**
+**Ví dụ 1:** $0,\overline{3} = 0,\!333...$; $0,\overline{12} = 0,\!121212...$; $5,\overline{36} = 5,\!363636...$
 
-Chu kỳ bắt đầu ngay sau dấu phẩy.
+**b) Số thập phân vô hạn tuần hoàn không thuần tuý** — có một số chữ số không lặp lại trước chu kỳ.
 
-**Ví dụ 2:**
+**Ví dụ 2:** $0,\!1\overline{6} = 0,\!1666...$ (chữ số 1 không lặp, chữ số 6 lặp); $0,\!25\overline{3} = 0,\!25333...$ (25 không lặp, 3 lặp); $1,\!2\overline{45} = 1,\!24545...$ (2 không lặp, 45 lặp).
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 3:** Phân loại các số sau thành thuần tuý hoặc không thuần tuý: $0,\overline{7}$; $0,\!2\overline{5}$; $3,\overline{09}$; $1,\!7\overline{8}$.
 
-- $0,\overline{3} = 0,\!333...$
-- $0,\overline{7} = 0,\!777...$
-- $0,\overline{12} = 0,\!121212...$
-- $5,\overline{36} = 5,\!363636...$
+*Lời giải:* Thuần tuý: $0,\overline{7}$ (chu kỳ 7 ngay sau dấu phẩy), $3,\overline{09}$. Không thuần tuý: $0,\!2\overline{5}$ (chữ số 2 đứng trước chu kỳ), $1,\!7\overline{8}$.
 
-</div>
+**Hình vẽ minh họa:** Vị trí của chu kỳ (phần tô đỏ) trong hai loại:
 
-**b) Số thập phân vô hạn tuần hoàn không thuần tuý**
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="200" viewBox="0 0 620 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <text x="24" y="32" font-size="16" font-weight="bold" fill="#059669">Thuần tuý:</text>
+  <text x="24" y="70" font-size="22" font-weight="bold" fill="#1e293b">0,</text>
+  <rect x="56" y="48" width="40" height="40" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="76" y="75" font-size="22" font-weight="bold" text-anchor="middle" fill="#b91c1c">3</text>
+  <rect x="100" y="48" width="40" height="40" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="120" y="75" font-size="22" font-weight="bold" text-anchor="middle" fill="#b91c1c">3</text>
+  <rect x="144" y="48" width="40" height="40" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="164" y="75" font-size="22" font-weight="bold" text-anchor="middle" fill="#b91c1c">3</text>
+  <text x="200" y="74" font-size="22" font-weight="bold" fill="#94a3b8">...</text>
+  <text x="320" y="74" font-size="15" font-weight="bold" fill="#dc2626">Chu kỳ bắt đầu ngay sau dấu phẩy</text>
 
-Có một số chữ số không lặp lại trước chu kỳ.
-
-**Ví dụ 3:**
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-- $0,\!1\overline{6} = 0,\!1666...$ (1 không lặp, 6 lặp)
-- $0,\!25\overline{3} = 0,\!25333...$ (25 không lặp, 3 lặp)
-- $1,\!2\overline{45} = 1,\!24545...$ (2 không lặp, 45 lặp)
-
+  <text x="24" y="135" font-size="16" font-weight="bold" fill="#d97706">Không thuần tuý:</text>
+  <text x="24" y="173" font-size="22" font-weight="bold" fill="#1e293b">0,</text>
+  <rect x="56" y="151" width="40" height="40" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="76" y="178" font-size="22" font-weight="bold" text-anchor="middle" fill="#1e40af">1</text>
+  <rect x="100" y="151" width="40" height="40" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="120" y="178" font-size="22" font-weight="bold" text-anchor="middle" fill="#b91c1c">6</text>
+  <rect x="144" y="151" width="40" height="40" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="164" y="178" font-size="22" font-weight="bold" text-anchor="middle" fill="#b91c1c">6</text>
+  <text x="200" y="177" font-size="22" font-weight="bold" fill="#94a3b8">...</text>
+  <text x="320" y="177" font-size="15" font-weight="bold" fill="#2563eb">Chữ số 1 không lặp, chu kỳ 6 bắt đầu sau đó</text>
+</svg>
 </div>
 
 <h3 id="chuyen-doi" style="margin-top:2rem;">🔄 3. Chuyển phân số thành số thập phân</h3>
 
-Khi chia tử cho mẫu, ta có thể được:
-- Số thập phân hữu hạn
-- Số thập phân vô hạn tuần hoàn
+Khi chia tử số cho mẫu số, ta có thể nhận được:
+- **Số thập phân hữu hạn** (phép chia kết thúc khi số dư bằng 0).
+- **Số thập phân vô hạn tuần hoàn** (số dư lặp lại, làm cho các chữ số lặp lại).
 
-**Ví dụ 4:** Chuyển phân số thành số thập phân
+**Ví dụ 1:** Viết $\dfrac{1}{4}$ dưới dạng số thập phân.
 
-a) $\dfrac{1}{4} = 1 : 4 = 0,\!25$ (hữu hạn)
+*Lời giải:* $1 : 4 = 0,\!25$. Số dư trở về 0 nên $\dfrac{1}{4} = 0,\!25$ là số thập phân **hữu hạn**.
 
-b) $\dfrac{1}{3} = 1 : 3 = 0,\!333... = 0,\overline{3}$ (vô hạn tuần hoàn)
+**Ví dụ 2:** Viết $\dfrac{1}{3}$ dưới dạng số thập phân.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:* $1 : 3 = 0,\!333... = 0,\overline{3}$. Số dư luôn là 1, nên chữ số 3 lặp lại mãi mãi.
 
-**Phép chia:**
-```
-  1 : 3 = 0,333...
-  10
-   9
-  ---
-   10
-    9
-  ---
-   10
-    9
-  ---
-   ...
-```
+**Ví dụ 3:** Viết $\dfrac{1}{6}$ và $\dfrac{1}{7}$ dưới dạng số thập phân.
 
-Số dư luôn là 1, nên chữ số 3 lặp lại mãi.
+*Lời giải:* $\dfrac{1}{6} = 1 : 6 = 0,\!1666... = 0,\!1\overline{6}$; $\dfrac{1}{7} = 1 : 7 = 0,\!142857142857... = 0,\overline{142857}$.
 
+**Hình vẽ minh họa:** Phép chia $1 : 3$ — số dư lặp lại nên chữ số 3 lặp lại:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="560" height="240" viewBox="0 0 560 240" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <text x="330" y="35" font-size="18" font-weight="bold" fill="#1e293b">1 : 3 = 0,333...</text>
+  <rect x="210" y="52" width="130" height="34" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="275" y="74" font-size="16" text-anchor="middle" font-weight="bold" fill="#92400e">1 (số bị chia)</text>
+  <rect x="360" y="52" width="120" height="34" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="420" y="74" font-size="16" text-anchor="middle" font-weight="bold" fill="#92400e">3 (số chia)</text>
+  <line x1="210" y1="100" x2="480" y2="100" stroke="#1f2937" stroke-width="2"/>
+  <text x="60" y="130" font-size="16" font-weight="bold" fill="#dc2626">1 : 3</text>
+  <text x="220" y="130" font-size="16" fill="#1e293b">→ dư 1</text>
+  <text x="60" y="162" font-size="16" font-weight="bold" fill="#dc2626">10 : 3</text>
+  <text x="220" y="162" font-size="16" fill="#1e293b">→ dư 1</text>
+  <text x="60" y="194" font-size="16" font-weight="bold" fill="#dc2626">10 : 3</text>
+  <text x="220" y="194" font-size="16" fill="#1e293b">→ dư 1 ...</text>
+  <text x="60" y="225" font-size="14" font-weight="bold" fill="#92400e">Số dư lặp lại nên chữ số 3 lặp lại mãi!</text>
+</svg>
 </div>
 
-c) $\dfrac{5}{6} = 5 : 6 = 0,\!8333... = 0,\!8\overline{3}$
-
-d) $\dfrac{1}{7} = 1 : 7 = 0,\!142857142857... = 0,\overline{142857}$
-
-<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 4. Tính chất</h3>
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 4. Tính chất và nhận biết nhanh</h3>
 
 <div class="box-dinh-ly">
 
 **Tính chất quan trọng:**
 
-1. Mọi phân số đều viết được dưới dạng số thập phân hữu hạn hoặc vô hạn tuần hoàn.
-
+1. Mọi phân số đều viết được dưới dạng số thập phân **hữu hạn hoặc vô hạn tuần hoàn**.
 2. Mọi số thập phân hữu hạn hoặc vô hạn tuần hoàn đều viết được dưới dạng phân số.
+3. Số hữu tỉ $=$ số thập phân hữu hạn hoặc vô hạn tuần hoàn.
 
-3. Số hữu tỉ = Số thập phân hữu hạn hoặc vô hạn tuần hoàn
+**Nhận biết nhanh:** Với phân số tối giản $\dfrac{a}{b}$ ($b > 0$):
+- Nếu mẫu $b$ chỉ có ước nguyên tố $2$ và $5$ thì $\dfrac{a}{b}$ viết được dưới dạng số thập phân **hữu hạn**.
+- Nếu mẫu $b$ có ước nguyên tố khác $2$ và $5$ thì $\dfrac{a}{b}$ viết được dưới dạng số thập phân **vô hạn tuần hoàn**.
 
 </div>
 
-**Ví dụ 5:** Nhận biết chu kỳ
+**Ví dụ 1:** Vì $8 = 2^3$ chỉ có ước nguyên tố 2, nên $\dfrac{3}{8} = 0,\!375$ là số thập phân hữu hạn. Vì $12 = 2^2 \cdot 3$ có ước nguyên tố 3, nên $\dfrac{7}{12}$ là số thập phân vô hạn tuần hoàn.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 2:** Viết các phân số sau dưới dạng số thập phân rồi chỉ ra chu kỳ: $\dfrac{1}{2}$; $\dfrac{1}{3}$; $\dfrac{1}{6}$; $\dfrac{1}{9}$; $\dfrac{1}{11}$.
+
+*Lời giải:*
 
 | Phân số | Số thập phân | Chu kỳ |
 |---------|--------------|--------|
-| $\dfrac{1}{3}$ | $0,\overline{3}$ | 3 |
-| $\dfrac{2}{3}$ | $0,\overline{6}$ | 6 |
-| $\dfrac{1}{6}$ | $0,\!1\overline{6}$ | 6 |
-| $\dfrac{1}{9}$ | $0,\overline{1}$ | 1 |
-| $\dfrac{1}{11}$ | $0,\overline{09}$ | 09 |
+| $\dfrac{1}{2}$ | $0,\!5$ | (hữu hạn) |
+| $\dfrac{1}{3}$ | $0,\overline{3}$ | $3$ |
+| $\dfrac{1}{6}$ | $0,\!1\overline{6}$ | $6$ |
+| $\dfrac{1}{9}$ | $0,\overline{1}$ | $1$ |
+| $\dfrac{1}{11}$ | $0,\overline{09}$ | $09$ |
 
+**Ví dụ 3:** Không thực hiện phép chia, hãy cho biết các phân số sau viết được dưới dạng số thập phân hữu hạn hay vô hạn tuần hoàn: $\dfrac{3}{20}$; $\dfrac{5}{6}$; $\dfrac{9}{40}$; $\dfrac{7}{30}$.
+
+*Lời giải:* $20 = 2^2 \cdot 5$ (chỉ có ước 2, 5) nên $\dfrac{3}{20}$ hữu hạn; $40 = 2^3 \cdot 5$ nên $\dfrac{9}{40}$ hữu hạn; $6 = 2 \cdot 3$ nên $\dfrac{5}{6}$ vô hạn tuần hoàn; $30 = 2 \cdot 3 \cdot 5$ nên $\dfrac{7}{30}$ vô hạn tuần hoàn.
+
+**Hình vẽ minh họa:** Phân loại nhanh theo mẫu số:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="170" viewBox="0 0 620 170" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="20" y="20" width="580" height="52" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="40" y="51" font-size="15" font-weight="bold" fill="#065f46">Mẫu chỉ có ước nguyên tố 2 và 5</text>
+  <text x="40" y="66" font-size="14" fill="#065f46">→ Hữu hạn: 1/2 = 0,5 ; 1/4 = 0,25 ; 3/8 = 0,375 ; 3/20 = 0,15</text>
+
+  <rect x="20" y="90" width="580" height="52" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="40" y="121" font-size="15" font-weight="bold" fill="#92400e">Mẫu có ước nguyên tố khác 2 và 5</text>
+  <text x="40" y="136" font-size="14" fill="#92400e">→ Vô hạn tuần hoàn: 1/3 = 0,3̅ ; 1/6 = 0,16̅ ; 1/7 = 0,142857̅ ; 1/11 = 0,09̅</text>
+</svg>
 </div>
 
 <h3 id="so-sanh" style="margin-top:2rem;">⚖️ 5. So sánh số thập phân vô hạn tuần hoàn</h3>
 
-**Quy tắc:** So sánh từng chữ số từ trái sang phải, giống như so sánh số thập phân thông thường.
+**Quy tắc:** Viết mỗi số dưới dạng khai triển rồi so sánh **từng chữ số từ trái sang phải**, giống như so sánh số thập phân thông thường. Khi gặp hai chữ số khác nhau đầu tiên, chữ số nào lớn hơn thì số đó lớn hơn.
 
-**Ví dụ 6:**
+**Ví dụ 1:** So sánh $0,\overline{3}$ và $0,\!4$.
 
-a) So sánh $0,\overline{3}$ và $0,\!4$
+*Lời giải:* $0,\overline{3} = 0,\!333...$ và $0,\!4 = 0,\!400...$. Vì $3 < 4$ nên $0,\overline{3} < 0,\!4$.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 2:** So sánh $0,\!2\overline{5}$ và $0,\!25$.
 
-$0,\overline{3} = 0,\!333...$
+*Lời giải:* $0,\!2\overline{5} = 0,\!2555...$ và $0,\!25 = 0,\!2500...$. Vì $5 > 0$ nên $0,\!2\overline{5} > 0,\!25$.
 
-$0,\!4 = 0,\!400...$
+**Ví dụ 3:** So sánh $0,\overline{12}$ và $0,\!1212$.
 
-Vì $3 < 4$ nên $0,\overline{3} < 0,\!4$
+*Lời giải:* $0,\overline{12} = 0,\!121212...$ và $0,\!1212 = 0,\!121200...$. Bốn chữ số đầu giống nhau (1212), so đến chữ số thứ năm: $1 > 0$, nên $0,\overline{12} > 0,\!1212$.
 
-</div>
+**Hình vẽ minh họa:** Trên trục số, số nào nằm bên trái thì nhỏ hơn:
 
-b) So sánh $0,\!2\overline{5}$ và $0,\!25$
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="160" viewBox="0 0 620 160" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <line x1="60" y1="80" x2="560" y2="80" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="560,80 550,75 550,85" fill="#1f2937"/>
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+  <line x1="60" y1="72" x2="60" y2="88" stroke="#1f2937" stroke-width="2"/>
+  <text x="60" y="110" font-size="14" text-anchor="middle" fill="#1f2937">0</text>
 
-$0,\!2\overline{5} = 0,\!2555...$
+  <line x1="560" y1="72" x2="560" y2="88" stroke="#1f2937" stroke-width="2"/>
+  <text x="560" y="110" font-size="14" text-anchor="middle" fill="#1f2937">0,5</text>
 
-$0,\!25 = 0,\!2500...$
+  <line x1="310" y1="75" x2="310" y2="85" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="435" y1="75" x2="435" y2="85" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="560" y1="75" x2="560" y2="85" stroke="#94a3b8" stroke-width="1"/>
 
-Vì $5 > 0$ nên $0,\!2\overline{5} > 0,\!25$
+  <circle cx="310" cy="80" r="6" fill="#f59e0b"/>
+  <text x="310" y="52" font-size="15" font-weight="bold" text-anchor="middle" fill="#d97706">0,25</text>
 
-</div>
+  <circle cx="393" cy="80" r="6" fill="#3b82f6"/>
+  <text x="393" y="52" font-size="15" font-weight="bold" text-anchor="middle" fill="#2563eb">0,3̅</text>
 
-<h3 id="ung-dung" style="margin-top:2rem;">🔬 6. Ứng dụng thực tế</h3>
+  <circle cx="460" cy="80" r="6" fill="#10b981"/>
+  <text x="460" y="52" font-size="15" font-weight="bold" text-anchor="middle" fill="#059669">0,4</text>
 
-**Ví dụ 7:** Chia đều
-
-Ba người chia đều 10 nghìn đồng. Mỗi người được bao nhiêu?
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$10 : 3 = 3,\overline{3}$ nghìn đồng
-
-$= 3333,\!333...$ đồng
-
-Trong thực tế, ta làm tròn: mỗi người khoảng 3333 đồng.
-
+  <text x="310" y="140" font-size="13" text-anchor="middle" fill="#475569">Số bên trái nhỏ hơn số bên phải</text>
+</svg>
 </div>
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
 
-<QuizSession client:load questions={quizData} />
+<SoThapPhanVoHanInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Nhận biết số thập phân vô hạn tuần hoàn và xác định chu kỳ**
+**Phương pháp giải:** Số thập phân vô hạn tuần hoàn có dấu gạch trên đầu chu kỳ. Nhóm chữ số nằm dưới dấu gạch chính là chu kỳ. Với dạng khai triển (có dấu "…"), tìm nhóm chữ số lặp lại liên tiếp.
+
+</div>
+
+**Ví dụ 1:** Trong các số $0,\!75$; $1,\overline{6}$; $0,\overline{12}$; $3,\!2$; $0,\!5$, những số nào là số thập phân vô hạn tuần hoàn?
+
+*Lời giải:* Các số $1,\overline{6}$ và $0,\overline{12}$ là số thập phân vô hạn tuần hoàn (có dấu gạch trên đầu chu kỳ). Các số $0,\!75$; $3,\!2$; $0,\!5$ là số thập phân hữu hạn.
+
+**Ví dụ 2:** Tìm chu kỳ của mỗi số sau: $0,\overline{7}$; $5,\overline{36}$; $0,\overline{142857}$.
+
+*Lời giải:* Chu kỳ tương ứng là: $7$; $36$; $142857$.
+
+**Ví dụ 3:** Viết gọn rồi tìm chu kỳ của $0,\!121212...$.
+
+*Lời giải:* $0,\!121212... = 0,\overline{12}$, chu kỳ là $12$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Viết gọn và khai triển số thập phân vô hạn tuần hoàn**
+**Phương pháp giải:** Để viết gọn, đặt dấu gạch ngang trên nhóm chữ số lặp lại. Để khai triển, viết chu kỳ lặp lại vài lần rồi thêm dấu "…".
+
+</div>
+
+**Ví dụ 1:** Viết gọn các số sau: $0,\!777...$; $0,\!252525...$; $2,\!3444...$.
+
+*Lời giải:* $0,\!777... = 0,\overline{7}$; $0,\!252525... = 0,\overline{25}$; $2,\!3444... = 2,\!3\overline{4}$.
+
+**Ví dụ 2:** Khai triển các số sau: $0,\overline{3}$; $0,\overline{12}$; $1,\overline{56}$.
+
+*Lời giải:* $0,\overline{3} = 0,\!333...$; $0,\overline{12} = 0,\!121212...$; $1,\overline{56} = 1,\!565656...$.
+
+**Ví dụ 3:** Số chữ số của chu kỳ của mỗi số sau là bao nhiêu: $0,\overline{3}$; $0,\overline{12}$; $0,\overline{142857}$?
+
+*Lời giải:* Chu kỳ $3$ có 1 chữ số; chu kỳ $12$ có 2 chữ số; chu kỳ $142857$ có 6 chữ số.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 3: Chuyển phân số thành số thập phân và phân loại**
+**Phương pháp giải:** Cách 1: thực hiện phép chia tử cho mẫu. Cách 2 (nhanh): rút gọn phân số, rồi xét mẫu — nếu chỉ có ước nguyên tố 2 và 5 thì hữu hạn, ngược lại vô hạn tuần hoàn.
+
+</div>
+
+**Ví dụ 1:** Viết $\dfrac{1}{2}$; $\dfrac{1}{4}$; $\dfrac{1}{5}$ dưới dạng số thập phân.
+
+*Lời giải:* $\dfrac{1}{2} = 0,\!5$; $\dfrac{1}{4} = 0,\!25$; $\dfrac{1}{5} = 0,\!2$. Cả ba đều là số thập phân hữu hạn.
+
+**Ví dụ 2:** Viết $\dfrac{1}{3}$; $\dfrac{5}{6}$; $\dfrac{1}{7}$ dưới dạng số thập phân.
+
+*Lời giải:* $\dfrac{1}{3} = 0,\overline{3}$; $\dfrac{5}{6} = 0,\!8\overline{3}$; $\dfrac{1}{7} = 0,\overline{142857}$.
+
+**Ví dụ 3:** Không tính, hãy cho biết $\dfrac{3}{8}$; $\dfrac{7}{12}$; $\dfrac{9}{20}$ là số thập phân hữu hạn hay vô hạn tuần hoàn.
+
+*Lời giải:* $8 = 2^3$ → $\dfrac{3}{8}$ hữu hạn ($0,\!375$); $12 = 2^2 \cdot 3$ → $\dfrac{7}{12}$ vô hạn tuần hoàn; $20 = 2^2 \cdot 5$ → $\dfrac{9}{20}$ hữu hạn ($0,\!45$).
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 4: So sánh hai số thập phân vô hạn tuần hoàn**
+**Phương pháp giải:** Viết cả hai số dưới dạng khai triển, rồi so sánh từng chữ số từ trái sang phải. Gặp hai chữ số khác nhau đầu tiên thì dừng lại và kết luận.
+
+</div>
+
+**Ví dụ 1:** So sánh $0,\overline{6}$ và $0,\!7$.
+
+*Lời giải:* $0,\overline{6} = 0,\!666...$; $0,\!7 = 0,\!700...$. Vì $6 < 7$ nên $0,\overline{6} < 0,\!7$.
+
+**Ví dụ 2:** So sánh $0,\!2\overline{7}$ và $0,\!27$.
+
+*Lời giải:* $0,\!2\overline{7} = 0,\!2777...$; $0,\!27 = 0,\!2700...$. Vì $7 > 0$ nên $0,\!2\overline{7} > 0,\!27$.
+
+**Ví dụ 3:** So sánh $1,\overline{6}$ và $1,\!7$.
+
+*Lời giải:* $1,\overline{6} = 1,\!666...$; $1,\!7 = 1,\!700...$. Vì $6 < 7$ nên $1,\overline{6} < 1,\!7$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 5: Ứng dụng thực tế — chia đều và làm tròn**
+**Phương pháp giải:** Thực hiện phép chia; nếu kết quả là số thập phân vô hạn tuần hoàn, trong thực tế ta thường làm tròn đến một chữ số thập phân hoặc đến hàng đơn vị cho phù hợp.
+
+</div>
+
+**Ví dụ 1:** Ba người chia đều 10 nghìn đồng. Mỗi người được bao nhiêu nghìn đồng?
+
+*Lời giải:* $10 : 3 = 3,\overline{3}$ (nghìn đồng) $= 3333,\!333...$ đồng. Làm tròn, mỗi người được khoảng $3333$ đồng.
+
+**Ví dụ 2:** Chia đều 100 nghìn đồng cho 3 người. Mỗi người được bao nhiêu, còn thừa bao nhiêu?
+
+*Lời giải:* Mỗi người được $\dfrac{100}{3} = 33,\overline{3}$ nghìn đồng. Làm tròn đến hàng đơn vị: $33$ nghìn đồng/người. Tổng đã chia: $33 \times 3 = 99$ nghìn, còn thừa $100 - 99 = 1$ nghìn đồng.
+
+**Ví dụ 3:** Mỗi học sinh được chia $\dfrac{5}{6}$ chiếc bánh. Viết số bánh đó dưới dạng số thập phân rồi làm tròn đến hàng phần mười.
+
+*Lời giải:* $\dfrac{5}{6} = 0,\!8\overline{3} = 0,\!8333...$. Làm tròn đến hàng phần mười: $0,\!8$ chiếc bánh.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
 
 <h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-**📝 Bài toán:** Một chiếc bánh pizza được chia đều cho 3 người. Mỗi người được bao nhiêu phần của chiếc bánh?
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-a) Viết dưới dạng phân số.
+**📝 Câu 1 (Chia bánh):** Một chiếc bánh pizza được chia đều cho 3 người.
 
-b) Viết dưới dạng số thập phân.
+a) Mỗi người được bao nhiêu phần của chiếc bánh? Viết dưới dạng phân số và số thập phân.
 
-c) Nếu chia cho 6 người thì mỗi người được bao nhiêu?
+b) Nếu chia đều cho 6 người thì mỗi người được bao nhiêu?
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+c) Làm tròn kết quả ở câu a đến hàng phần trăm.
 
-**Giải:**
+**Lời giải:**
 
-a) Mỗi người được: $\dfrac{1}{3}$ chiếc bánh
+a) Mỗi người được $\dfrac{1}{3}$ chiếc bánh. Dạng số thập phân: $\dfrac{1}{3} = 0,\overline{3} = 0,\!333...$ chiếc bánh.
 
-b) Dạng số thập phân: $\dfrac{1}{3} = 0,\overline{3}$ chiếc bánh
+b) Chia cho 6 người: mỗi người được $\dfrac{1}{6} = 0,\!1\overline{6} = 0,\!1666...$ chiếc bánh.
 
-c) Chia cho 6 người: $\dfrac{1}{6} = 0,\!1\overline{6}$ chiếc bánh
+c) Làm tròn $0,\!333...$ đến hàng phần trăm: $0,\!33$ (vì chữ số thứ ba sau dấu phẩy là 3, nhỏ hơn 5).
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Góp quà):** Ba bạn An, Bình, Chi góp chung 200 nghìn đồng để mua quà tặng lớp. Số tiền chia đều cho ba bạn.
+
+a) Mỗi bạn phải góp bao nhiêu nghìn đồng? Viết kết quả dưới dạng số thập phân vô hạn tuần hoàn.
+
+b) Để trả tiền chẵn, mỗi bạn góp bao nhiêu nghìn đồng? Còn thừa bao nhiêu?
+
+**Lời giải:**
+
+a) Mỗi bạn góp: $200 : 3 = 66,\overline{6}$ (nghìn đồng) $= 66,\!666...$ nghìn đồng.
+
+b) Mỗi bạn góp $67$ nghìn đồng (làm tròn lên cho chẵn). Tổng góp: $67 \times 3 = 201$ nghìn, thừa $201 - 200 = 1$ nghìn đồng.
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Sợi dây):** Một sợi dây dài 7 m được chia đều cho 3 người.
+
+a) Mỗi người nhận được bao nhiêu mét? Viết kết quả dưới dạng số thập phân.
+
+b) Làm tròn đến hàng phần trăm, mỗi người nhận được bao nhiêu mét?
+
+**Lời giải:**
+
+a) Mỗi người nhận: $7 : 3 = 2,\overline{3}$ (m) $= 2,\!333...$ m.
+
+b) Làm tròn đến hàng phần trăm: $2,\!33$ m (vì chữ số thứ ba sau dấu phẩy là 3, nhỏ hơn 5).
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Số thập phân vô hạn tuần hoàn**: Có nhóm chữ số lặp lại vô hạn
-- **Chu kỳ**: Nhóm chữ số lặp lại
-- **Cách viết**: Dùng dấu gạch trên đầu chu kỳ: $0,\overline{3}$
-- **Thuần tuý**: Chu kỳ ngay sau dấu phẩy
-- **Không thuần tuý**: Có chữ số không lặp trước chu kỳ
-- Mọi phân số đều viết được dưới dạng số thập phân hữu hạn hoặc vô hạn tuần hoàn
-- Số hữu tỉ = Số thập phân hữu hạn hoặc vô hạn tuần hoàn
+- **Số thập phân vô hạn tuần hoàn**: có một nhóm chữ số lặp lại vô hạn sau dấu phẩy.
+- **Chu kỳ**: nhóm chữ số lặp lại, được viết trong dấu gạch trên đầu: $0,\overline{3}$.
+- **Thuần tuý**: chu kỳ bắt đầu ngay sau dấu phẩy ($0,\overline{12}$).
+- **Không thuần tuý**: có chữ số không lặp trước chu kỳ ($0,\!1\overline{6}$).
+- Mọi phân số đều viết được dưới dạng số thập phân hữu hạn hoặc vô hạn tuần hoàn.
+- Phân số tối giản có mẫu chỉ chứa ước nguyên tố 2, 5 thì viết được thành số thập phân hữu hạn.
+- Số hữu tỉ $=$ số thập phân hữu hạn hoặc vô hạn tuần hoàn.
+- **So sánh**: viết khai triển rồi so sánh từng chữ số từ trái sang phải.
 
 </GhiNho>
 
@@ -335,21 +581,31 @@ c) Chia cho 6 người: $\dfrac{1}{6} = 0,\!1\overline{6}$ chiếc bánh
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Viết các số sau dưới dạng số thập phân vô hạn tuần hoàn (nếu có):
+**Bài 1 (Dễ):** Viết gọn các số thập phân sau bằng dấu gạch trên đầu:
+
+a) $0,\!777...$ &nbsp;&nbsp;&nbsp; b) $0,\!252525...$ &nbsp;&nbsp;&nbsp; c) $0,\!1666...$ &nbsp;&nbsp;&nbsp; d) $2,\!3444...$
+
+**Bài 2 (Dễ):** Xác định chu kỳ của các số sau:
+
+a) $0,\overline{5}$ &nbsp;&nbsp;&nbsp; b) $0,\overline{12}$ &nbsp;&nbsp;&nbsp; c) $0,\!3\overline{7}$ &nbsp;&nbsp;&nbsp; d) $1,\!2\overline{45}$
+
+**Bài 3 (Dễ):** Phân loại các phân số sau thành số thập phân hữu hạn hoặc vô hạn tuần hoàn (không cần viết kết quả):
+
+a) $\dfrac{1}{2}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{1}{3}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{3}{4}$ &nbsp;&nbsp;&nbsp; d) $\dfrac{5}{6}$
+
+e) $\dfrac{7}{8}$ &nbsp;&nbsp;&nbsp; f) $\dfrac{2}{9}$ &nbsp;&nbsp;&nbsp; g) $\dfrac{5}{12}$ &nbsp;&nbsp;&nbsp; h) $\dfrac{1}{15}$
+
+**Bài 4 (Trung bình):** Viết các phân số sau dưới dạng số thập phân:
 
 a) $\dfrac{1}{3}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{2}{3}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{1}{6}$ &nbsp;&nbsp;&nbsp; d) $\dfrac{5}{6}$
 
 e) $\dfrac{1}{9}$ &nbsp;&nbsp;&nbsp; f) $\dfrac{2}{9}$ &nbsp;&nbsp;&nbsp; g) $\dfrac{1}{11}$ &nbsp;&nbsp;&nbsp; h) $\dfrac{1}{7}$
 
-**Bài 2:** Xác định chu kỳ của các số sau:
+**Bài 5 (Trung bình):** Tìm chu kỳ của các phân số sau khi viết dưới dạng số thập phân:
 
-a) $0,\overline{5}$ &nbsp;&nbsp;&nbsp; b) $0,\overline{12}$ &nbsp;&nbsp;&nbsp; c) $0,\!3\overline{7}$ &nbsp;&nbsp;&nbsp; d) $1,\!2\overline{45}$
+a) $\dfrac{1}{3}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{1}{7}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{1}{11}$ &nbsp;&nbsp;&nbsp; d) $\dfrac{1}{13}$
 
-**Bài 3:** Viết các số sau dưới dạng có dấu gạch trên đầu:
-
-a) $0,\!777...$ &nbsp;&nbsp;&nbsp; b) $0,\!252525...$ &nbsp;&nbsp;&nbsp; c) $0,\!1666...$ &nbsp;&nbsp;&nbsp; d) $2,\!3444...$
-
-**Bài 4:** So sánh các số sau:
+**Bài 6 (Trung bình):** So sánh các cặp số sau:
 
 a) $0,\overline{3}$ và $0,\!35$
 
@@ -359,17 +615,17 @@ c) $0,\!2\overline{7}$ và $0,\!27$
 
 d) $1,\overline{6}$ và $1,\!7$
 
-**Bài 5:** Phân loại các số sau thành số thập phân hữu hạn hoặc vô hạn tuần hoàn:
+**Bài 7 (Trung bình):** Viết gọn rồi so sánh:
 
-a) $\dfrac{1}{2}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{1}{3}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{3}{4}$ &nbsp;&nbsp;&nbsp; d) $\dfrac{5}{6}$
+a) $0,\!2555...$ và $0,\!25$
 
-e) $\dfrac{7}{8}$ &nbsp;&nbsp;&nbsp; f) $\dfrac{2}{9}$ &nbsp;&nbsp;&nbsp; g) $\dfrac{5}{12}$ &nbsp;&nbsp;&nbsp; h) $\dfrac{1}{15}$
+b) $0,\!121212...$ và $0,\!1212$
 
-**Bài 6:** Tìm chu kỳ của các phân số sau khi viết dưới dạng số thập phân:
+**Bài 8 (Khá):** Sắp xếp các số sau theo thứ tự tăng dần:
 
-a) $\dfrac{1}{3}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{1}{7}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{1}{11}$ &nbsp;&nbsp;&nbsp; d) $\dfrac{1}{13}$
+$$0,\overline{3}; \quad 0,\!25; \quad 0,\!2\overline{7}; \quad 0,\overline{12}; \quad 0,\!3$$
 
-**Bài 7 (Thực tế):** Chia đều 100 nghìn đồng cho 3 người.
+**Bài 9 (Khá — Thực tế):** Chia đều 100 nghìn đồng cho 3 người.
 
 a) Mỗi người được bao nhiêu nghìn đồng? Viết dưới dạng phân số và số thập phân.
 
@@ -377,23 +633,62 @@ b) Trong thực tế, nếu làm tròn đến hàng đơn vị, mỗi người �
 
 c) Còn thừa bao nhiêu tiền?
 
+**Bài 10 (Khó — Tổng hợp):** Cho các số sau: $0,\overline{5}$; $\dfrac{7}{9}$; $0,\!55$; $\dfrac{5}{6}$.
+
+a) Viết mỗi số dưới dạng số thập phân (viết gọn nếu là vô hạn tuần hoàn).
+
+b) So sánh từng cặp rồi sắp xếp các số theo thứ tự tăng dần.
+
+c) Số nào là số thập phân vô hạn tuần hoàn không thuần tuý? Vì sao?
+
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $0,\overline{3}$; b) $0,\overline{6}$; c) $0,\!1\overline{6}$; d) $0,\!8\overline{3}$; e) $0,\overline{1}$; f) $0,\overline{2}$; g) $0,\overline{09}$; h) $0,\overline{142857}$
+**Bài 1:** a) $0,\overline{7}$; b) $0,\overline{25}$; c) $0,\!1\overline{6}$; d) $2,\!3\overline{4}$.
 
-**Bài 2:** a) 5; b) 12; c) 7; d) 45
+**Bài 2:** a) 5; b) 12; c) 7; d) 45.
 
-**Bài 3:** a) $0,\overline{7}$; b) $0,\overline{25}$; c) $0,\!1\overline{6}$; d) $2,\!3\overline{4}$
+**Bài 3:** Hữu hạn: a, c, e, g. Vô hạn tuần hoàn: b, d, f, h. (Giải thích: mẫu $2, 4, 8$ chỉ có ước nguyên tố 2; còn mẫu $3, 6, 9, 12, 15$ có ước nguyên tố khác 2 và 5.)
 
-**Bài 4:** a) $0,\overline{3} < 0,\!35$; b) $0,\!5 > 0,\overline{4}$; c) $0,\!2\overline{7} > 0,\!27$; d) $1,\overline{6} < 1,\!7$
+**Bài 4:** a) $0,\overline{3}$; b) $0,\overline{6}$; c) $0,\!1\overline{6}$; d) $0,\!8\overline{3}$; e) $0,\overline{1}$; f) $0,\overline{2}$; g) $0,\overline{09}$; h) $0,\overline{142857}$.
 
-**Bài 5:** Hữu hạn: a, c, e, g; Vô hạn tuần hoàn: b, d, f, h
+**Bài 5:** a) 3; b) 142857; c) 09; d) 076923.
 
-**Bài 6:** a) 3; b) 142857; c) 09; d) 076923
+**Bài 6:**
 
-**Bài 7:** a) $\dfrac{100}{3}$ nghìn = $33,\overline{3}$ nghìn; b) 33 nghìn/người; c) Thừa 1 nghìn
+a) $0,\overline{3} = 0,\!333... < 0,\!35$.
+
+b) $0,\!5 = 0,\!500... > 0,\overline{4} = 0,\!444...$.
+
+c) $0,\!2\overline{7} = 0,\!2777... > 0,\!27 = 0,\!2700...$.
+
+d) $1,\overline{6} = 1,\!666... < 1,\!7 = 1,\!700...$.
+
+**Bài 7:**
+
+a) $0,\!2555... = 0,\!2\overline{5} > 0,\!25$.
+
+b) $0,\!121212... = 0,\overline{12} > 0,\!1212$ (chữ số thứ năm sau dấu phẩy: $1 > 0$).
+
+**Bài 8:** $0,\!25 < 0,\!2\overline{7} < 0,\overline{3} < 0,\!3 < 0,\overline{12}$. 
+(Chú ý: $0,\overline{12} = 0,\!1212...$; $0,\overline{3} = 0,\!333...$; $0,\!2\overline{7} = 0,\!2777...$.)
+
+**Bài 9:**
+
+a) Mỗi người được $\dfrac{100}{3} = 33,\overline{3}$ (nghìn đồng).
+
+b) Làm tròn đến hàng đơn vị: $33$ nghìn đồng/người.
+
+c) Đã chia $33 \times 3 = 99$ nghìn, còn thừa $100 - 99 = 1$ nghìn đồng.
+
+**Bài 10:**
+
+a) $0,\overline{5} = 0,\!555...$; $\dfrac{7}{9} = 0,\overline{7} = 0,\!777...$; $0,\!55$; $\dfrac{5}{6} = 0,\!8\overline{3}$.
+
+b) $0,\!55 < 0,\overline{5} < 0,\overline{7} < 0,\!8\overline{3}$, hay $0,\!55 < 0,\overline{5} < \dfrac{7}{9} < \dfrac{5}{6}$.
+
+c) $0,\!8\overline{3}$ (tức $\dfrac{5}{6}$) là số thập phân vô hạn tuần hoàn không thuần tuý, vì chữ số 8 đứng trước chu kỳ 3.
 
 </div>
 </details>

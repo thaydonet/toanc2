@@ -5,7 +5,6 @@ description: "Định nghĩa, tính chất và dấu hiệu nhận biết hình 
 grade: "Lớp 8"
 chapter: "Chương 3: Tứ giác"
 currentSlug: "lop8/bai-11-hinh-thang-can"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,346 +13,263 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import HinhThangCanInteractive from '../../components/interactive/HinhThangCanInteractive';
 
 export const quizData = [
   {
     type: "mcq",
     question: "Hình thang cân là hình thang có:",
     option_a: "Hai góc kề một đáy bằng nhau",
-    option_b: "Hai cạnh bên bằng nhau",
-    option_c: "Hai đường chéo bằng nhau",
-    option_d: "Cả A, B, C đều đúng",
-    correct_option: "D",
-    explanation: "Hình thang cân có cả ba tính chất: hai góc kề đáy bằng nhau, hai cạnh bên bằng nhau, hai đường chéo bằng nhau.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Hình thang $ABCD$ ($AB \parallel CD$) có $\hat{C} = 70°$. Để $ABCD$ là hình thang cân thì $\hat{D}$ bằng:",
-    option_a: "$70°$",
-    option_b: "$110°$",
-    option_c: "$90°$",
-    option_d: "$80°$",
+    option_b: "Hai góc đối bằng nhau",
+    option_c: "Hai góc kề một cạnh bên bằng nhau",
+    option_d: "Hai đáy bằng nhau",
     correct_option: "A",
-    explanation: "Hình thang cân có hai góc kề một đáy bằng nhau, nên $\hat{D} = \hat{C} = 70°$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trong hình thang cân, hai góc kề một cạnh bên:",
-    option_a: "Bù nhau",
-    option_b: "Bằng nhau",
-    option_c: "Phụ nhau",
-    option_d: "Tổng bằng $180°$",
-    correct_option: "A",
-    explanation: "Hai góc kề một cạnh bên của hình thang cân bù nhau (tổng bằng $180°$).",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Hình thang có hai đường chéo bằng nhau thì:",
-    option_a: "Là hình thang cân",
-    option_b: "Chưa chắc là hình thang cân",
-    option_c: "Là hình chữ nhật",
-    option_d: "Là hình vuông",
-    correct_option: "A",
-    explanation: "Đây là dấu hiệu nhận biết hình thang cân: hình thang có hai đường chéo bằng nhau là hình thang cân.",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "msq",
-    question: "Hình thang cân $ABCD$ có những tính chất nào?",
-    option_a: "$AD = BC$ (hai cạnh bên bằng nhau)",
-    option_b: "$\hat{A} = \hat{B}$ (hai góc kề đáy lớn)",
-    option_c: "$AC = BD$ (hai đường chéo bằng nhau)",
-    option_d: "$\hat{A} + \hat{D} = 180°$ (hai góc kề cạnh bên bù nhau)",
-    correct_option: "A,B,C,D",
-    explanation: "Tất cả đều đúng. Đây là các tính chất của hình thang cân.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Hình thang cân có đáy nhỏ $6$ cm, đáy lớn $10$ cm, cạnh bên $5$ cm. Chu vi bằng bao nhiêu cm?",
-    correct_option: "26",
-    explanation: "Chu vi $= 6 + 10 + 5 + 5 = 26$ cm.",
+    explanation: "Định nghĩa: Hình thang cân là hình thang có hai góc kề một đáy bằng nhau.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hình thang cân có góc kề đáy lớn bằng $!a#60!°$. Góc kề đáy nhỏ bằng:",
-    option_a: "$!tinh: 180 - !a!!°$",
-    option_b: "$!a!°$",
-    option_c: "$90°$",
-    option_d: "$!tinh: 360 - !a!!°$",
+    question: "Khẳng định nào sau đây SAI đối với hình thang cân $ABCD$ ($AB // CD$)?",
+    option_a: "$AD // BC$",
+    option_b: "$AD = BC$",
+    option_c: "$AC = BD$",
+    option_d: "$\\hat{C} = \\hat{D}$",
     correct_option: "A",
-    explanation: "Hai góc kề một cạnh bên bù nhau: góc kề đáy nhỏ $= 180° - !a!° = !tinh: 180 - !a!!°$.",
+    explanation: "Hình thang cân có 2 cạnh bên bằng nhau ($AD = BC$), nhưng hai cạnh bên nói chung KHÔNG song song (nếu song song nó thành hình bình hành).",
     difficulty_level: "medium",
-    is_dynamic: true,
+    is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hình thang cân có đáy nhỏ $!a#8!$ cm, đáy lớn $!b#12!$ cm, cạnh bên $!c#6!$ cm. Chu vi bằng:",
-    option_a: "$!tinh: !a! + !b! + 2 * !c!!$ cm",
-    option_b: "$!tinh: !a! + !b! + !c!!$ cm",
-    option_c: "$!tinh: 2 * (!a! + !b!)!$ cm",
-    option_d: "$!tinh: !a! * !b!!$ cm",
+    question: "Cho hình thang cân $ABCD$ ($AB // CD$) có $\\hat{A} = 70°$. Số đo góc $B$ là:",
+    option_a: "$70°$",
+    option_b: "$110°$",
+    option_c: "$80°$",
+    option_d: "$100°$",
     correct_option: "A",
-    explanation: "Chu vi $= !a! + !b! + !c! + !c! = !tinh: !a! + !b! + 2 * !c!!$ cm.",
-    difficulty_level: "medium",
-    is_dynamic: true,
+    explanation: "Hai góc kề đáy $AB$ bằng nhau: $\\hat{B} = \\hat{A} = 70°$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Cho hình thang cân $ABCD$ ($AB // CD$) có $\\hat{C} = 50°$. Số đo góc $A$ là:",
+    option_a: "$130°$",
+    option_b: "$50°$",
+    option_c: "$100°$",
+    option_d: "$120°$",
+    correct_option: "A",
+    explanation: "$\\hat{D} = \\hat{C} = 50° \\Rightarrow \\hat{A} = 180° - 50° = 130°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thang có hai đường chéo bằng nhau là:",
+    option_a: "Hình thang cân",
+    option_b: "Hình chữ nhật",
+    option_c: "Hình bình hành",
+    option_d: "Hình thoi",
+    correct_option: "A",
+    explanation: "Dấu hiệu nhận biết: Hình thang có hai đường chéo bằng nhau là hình thang cân.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những dấu hiệu nào sau đây chứng minh một hình thang là hình thang cân?",
+    option_a: "Có hai góc kề một đáy bằng nhau",
+    option_b: "Có hai đường chéo bằng nhau",
+    option_c: "Có hai cạnh bên bằng nhau",
+    option_d: "Có hai góc đối bù nhau",
+    correct_option: "A,B,D",
+    explanation: "A, B, D là các dấu hiệu đúng. C chưa chắc (hình thang có 2 cạnh bên bằng nhau nhưng không song song mới là hình thang cân, nếu 2 cạnh bên song song là HBH).",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho hình thang cân $ABCD$ ($AB // CD$) có $AB = 4$ cm, $CD = 10$ cm. Kẻ $AH \\perp CD$. Độ dài $DH$ bằng bao nhiêu cm?",
+    correct_option: "3",
+    explanation: "$DH = \\dfrac{CD - AB}{2} = \\dfrac{10 - 4}{2} = 3$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác $ABC$ cân tại A. Trên AB lấy D, trên AC lấy E sao cho $AD = AE$. Tứ giác $BDEC$ là:",
+    option_a: "Hình thang cân",
+    option_b: "Hình bình hành",
+    option_c: "Hình chữ nhật",
+    option_d: "Hình thoi",
+    correct_option: "A",
+    explanation: "$DE // BC$ (vì $\\widehat{ADE} = \\widehat{B}$) $\\Rightarrow BDEC$ là hình thang. Lại có $\\widehat{B} = \\widehat{C} \\Rightarrow BDEC$ là hình thang cân.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình thang cân có mấy trục đối xứng?",
+    option_a: "1 trục đối xứng",
+    option_b: "2 trục đối xứng",
+    option_c: "0 trục đối xứng",
+    option_d: "Vô số trục đối xứng",
+    correct_option: "A",
+    explanation: "Hình thang cân có 1 trục đối xứng là đường thẳng đi qua trung điểm hai đáy.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho hình thang cân $ABCD$ ($AB // CD$) có $\\hat{A} = 2\\hat{C}$. Số đo góc $D$ bằng:",
+    option_a: "$60°$",
+    option_b: "$120°$",
+    option_c: "$80°$",
+    option_d: "$90°$",
+    correct_option: "A",
+    explanation: "$\\hat{D} = \\hat{C}$. Ta có $\\hat{A} + \\hat{D} = 180° \\Rightarrow 2\\hat{D} + \\hat{D} = 180° \\Rightarrow 3\\hat{D} = 180° \\Rightarrow \\hat{D} = 60°$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🏛️ Hình thang cân — Đối xứng đẹp</h3>
+### 🎯 Khởi động bài học
 
-Hình thang cân có tính đối xứng đặc biệt, xuất hiện nhiều trong kiến trúc!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏛️</div>
-    <strong>Mái nhà</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình thang cân đối xứng</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌉</div>
-    <strong>Cầu</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Trụ cầu hình thang cân</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🪟</div>
-    <strong>Cửa sổ</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thiết kế đối xứng</p>
-  </div>
-</div>
+Một chiếc thang tre, mặt cắt của bờ đê hay hình ảnh của chậu cây treo đều chứa đựng hình ảnh của **Hình thang cân**. Bài học này sẽ giúp bạn nắm vững định nghĩa, tính chất hai đường chéo, hai cạnh bên và các dấu hiệu nhận biết hình thang cân!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="hinh-thang">📖 1. Ôn tập: Hình thang</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-nghia">
+#### 1. Định nghĩa và Tính chất của Hình thang cân
 
-**Định nghĩa:** Hình thang là tứ giác có hai cạnh đối song song.
+- **Hình thang** là tứ giác có hai cạnh đối song song.
+- **Hình thang cân** là hình thang có hai góc kề một đáy bằng nhau.
 
-Hai cạnh song song gọi là **hai đáy**, hai cạnh còn lại gọi là **hai cạnh bên**.
-
-</div>
-
-**Hình minh họa hình thang:**
-
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="320" height="220" viewBox="0 0 320 220" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Hình thang ABCD */}
-  <polygon points="60,50 260,50 220,170 100,170" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5" opacity="0.3"/>
-  
-  {/* Các cạnh */}
-  <line x1="60" y1="50" x2="260" y2="50" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="260" y1="50" x2="220" y2="170" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="220" y1="170" x2="100" y2="170" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="100" y1="170" x2="60" y2="50" stroke="#3b82f6" stroke-width="2.5"/>
-  
-  {/* Đánh dấu song song */}
-  <line x1="150" y1="45" x2="155" y2="45" stroke="#ef4444" stroke-width="2"/>
-  <line x1="150" y1="40" x2="155" y2="40" stroke="#ef4444" stroke-width="2"/>
-  <line x1="155" y1="165" x2="160" y2="165" stroke="#ef4444" stroke-width="2"/>
-  <line x1="155" y1="170" x2="160" y2="170" stroke="#ef4444" stroke-width="2"/>
-  
-  {/* Các đỉnh */}
-  <circle cx="60" cy="50" r="4" fill="#3b82f6"/>
-  <text x="45" y="45" font-size="18" font-weight="bold" fill="#3b82f6">A</text>
-  
-  <circle cx="260" cy="50" r="4" fill="#3b82f6"/>
-  <text x="270" y="45" font-size="18" font-weight="bold" fill="#3b82f6">B</text>
-  
-  <circle cx="220" cy="170" r="4" fill="#3b82f6"/>
-  <text x="230" y="185" font-size="18" font-weight="bold" fill="#3b82f6">C</text>
-  
-  <circle cx="100" cy="170" r="4" fill="#3b82f6"/>
-  <text x="80" y="185" font-size="18" font-weight="bold" fill="#3b82f6">D</text>
-  
-  {/* Nhãn */}
-  <text x="140" y="30" font-size="14" fill="#059669">Đáy nhỏ AB</text>
-  <text x="140" y="200" font-size="14" fill="#059669">Đáy lớn DC</text>
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="340" height="180" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="90,30 250,30 300,150 40,150" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  <line x1="90" y1="30" x2="300" y2="150" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="250" y1="30" x2="40" y2="150" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/>
+  <text x="80" y="25" font-size="14" font-weight="bold" fill="#1e40af">A</text>
+  <text x="255" y="25" font-size="14" font-weight="bold" fill="#1e40af">B</text>
+  <text x="305" y="165" font-size="14" font-weight="bold" fill="#1e40af">C</text>
+  <text x="25" y="165" font-size="14" font-weight="bold" fill="#1e40af">D</text>
 </svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Hình 1: Hình thang cân ABCD (AB // CD) có $AD = BC$ và $AC = BD$</em></p>
 </div>
 
-<h3 id="dinh-nghia" style="margin-top:2rem;">📖 2. Định nghĩa hình thang cân</h3>
+**Định lý 1 (Cạnh bên):** Trong hình thang cân, hai cạnh bên bằng nhau ($AD = BC$).  
+**Định lý 2 (Đường chéo):** Trong hình thang cân, hai đường chéo bằng nhau ($AC = BD$).
 
-<div class="box-dinh-nghia">
+**Ví dụ 1:** Cho hình thang cân $ABCD$ ($AB // CD$) có $\widehat{C} = 65^\circ$. Tính các góc còn lại.  
+*Lời giải:*  
+- Vì $ABCD$ là hình thang cân kề đáy $CD \Rightarrow \widehat{D} = \widehat{C} = 65^\circ$.  
+- Hai góc kề cạnh bên bù nhau $\Rightarrow \widehat{A} = 180^\circ - 65^\circ = 115^\circ$.  
+- Kề đáy $AB \Rightarrow \widehat{B} = \widehat{A} = 115^\circ$.
 
-**Định nghĩa:** Hình thang cân là hình thang có hai góc kề một đáy bằng nhau.
+**Ví dụ 2:** Cho hình thang cân $ABCD$ có $AD = 6$ cm. Tính độ dài cạnh $BC$.  
+*Lời giải:* Trong hình thang cân, hai cạnh bên bằng nhau nên $BC = AD = 6$ cm.
 
-</div>
+**Ví dụ 3:** Cho hình thang cân $ABCD$ có đường chéo $AC = 9$ cm. Tính độ dài $BD$.  
+*Lời giải:* Trong hình thang cân, hai đường chéo bằng nhau nên $BD = AC = 9$ cm.
 
-**Hình minh họa hình thang cân:**
+---
 
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="350" height="240" viewBox="0 0 350 240" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Hình thang cân ABCD */}
-  <polygon points="80,60 270,60 240,190 110,190" fill="#d1fae5" stroke="#10b981" stroke-width="2.5" opacity="0.4"/>
-  
-  {/* Các cạnh */}
-  <line x1="80" y1="60" x2="270" y2="60" stroke="#10b981" stroke-width="2.5"/>
-  <line x1="270" y1="60" x2="240" y2="190" stroke="#10b981" stroke-width="2.5"/>
-  <line x1="240" y1="190" x2="110" y2="190" stroke="#10b981" stroke-width="2.5"/>
-  <line x1="110" y1="190" x2="80" y2="60" stroke="#10b981" stroke-width="2.5"/>
-  
-  {/* Đường chéo */}
-  <line x1="80" y1="60" x2="240" y2="190" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
-  <line x1="270" y1="60" x2="110" y2="190" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
-  
-  {/* Đánh dấu song song */}
-  <line x1="170" y1="55" x2="175" y2="55" stroke="#ef4444" stroke-width="2"/>
-  <line x1="170" y1="50" x2="175" y2="50" stroke="#ef4444" stroke-width="2"/>
-  <line x1="170" y1="185" x2="175" y2="185" stroke="#ef4444" stroke-width="2"/>
-  <line x1="170" y1="190" x2="175" y2="190" stroke="#ef4444" stroke-width="2"/>
-  
-  {/* Đánh dấu cạnh bên bằng nhau */}
-  <line x1="95" y1="120" x2="100" y2="125" stroke="#f59e0b" stroke-width="2"/>
-  <line x1="250" y1="120" x2="255" y2="125" stroke="#f59e0b" stroke-width="2"/>
-  
-  {/* Các đỉnh */}
-  <circle cx="80" cy="60" r="4" fill="#10b981"/>
-  <text x="60" y="55" font-size="18" font-weight="bold" fill="#10b981">A</text>
-  
-  <circle cx="270" cy="60" r="4" fill="#10b981"/>
-  <text x="280" y="55" font-size="18" font-weight="bold" fill="#10b981">B</text>
-  
-  <circle cx="240" cy="190" r="4" fill="#10b981"/>
-  <text x="250" y="205" font-size="18" font-weight="bold" fill="#10b981">C</text>
-  
-  <circle cx="110" cy="190" r="4" fill="#10b981"/>
-  <text x="90" y="205" font-size="18" font-weight="bold" fill="#10b981">D</text>
-  
-  {/* Đánh dấu góc bằng nhau */}
-  <path d="M 95,60 Q 95,75 105,80" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
-  <path d="M 255,60 Q 255,75 245,80" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
-  
-  <path d="M 115,190 Q 115,175 105,170" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
-  <path d="M 235,190 Q 235,175 245,170" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
-</svg>
-</div>
+#### 2. Dấu hiệu nhận biết hình thang cân
 
-**Trong hình thang cân $ABCD$ ($AB \parallel CD$):**
-- $\hat{A} = \hat{B}$ (hai góc kề đáy nhỏ)
-- $\hat{D} = \hat{C}$ (hai góc kề đáy lớn)
+Một tứ giác là hình thang cân nếu thỏa mãn một trong các dấu hiệu sau:
+1. Hình thang có **hai góc kề một đáy bằng nhau**.
+2. Hình thang có **hai đường chéo bằng nhau**.
+3. Hình thang có **hai góc đối bù nhau**.
 
-<h3 id="tinh-chat" style="margin-top:2rem;">🔑 3. Tính chất hình thang cân</h3>
+**Ví dụ 1:** Cho hình thang $ABCD$ ($AB // CD$) có $AC = BD$. Tứ giác $ABCD$ là hình gì?  
+*Lời giải:* $ABCD$ là hình thang có hai đường chéo bằng nhau nên là hình thang cân.
 
-<div class="box-dinh-ly">
+**Ví dụ 2:** Cho tam giác $ABC$ cân tại A. Kẻ đường thẳng song song với $BC$ cắt $AB, AC$ lần lượt tại $D, E$. Chứng minh $BDEC$ là hình thang cân.  
+*Lời giải:*  
+- $DE // BC \Rightarrow BDEC$ là hình thang.  
+- $\triangle ABC$ cân tại A $\Rightarrow \widehat{B} = \widehat{C}$.  
+- Hình thang $BDEC$ có hai góc kề đáy $BC$ bằng nhau nên là hình thang cân.
 
-**Định lý:** Trong hình thang cân:
-
-1. Hai cạnh bên bằng nhau
-2. Hai đường chéo bằng nhau
-
-</div>
-
-**Chứng minh:**
-
-Xét hình thang cân $ABCD$ có $AB \parallel CD$, $\hat{A} = \hat{B}$.
-
-Kẻ $AH \perp CD$, $BK \perp CD$.
-
-Trong hai tam giác vuông $AHD$ và $BKC$:
-- $AH = BK$ (cùng chiều cao)
-- $\hat{D} = \hat{C}$ (hình thang cân)
-
-$\Rightarrow \triangle AHD = \triangle BKC$ (cạnh huyền - góc nhọn)
-
-$\Rightarrow AD = BC$ (hai cạnh tương ứng)
-
-**Tính chất tổng hợp:**
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-1. $AD = BC$ (hai cạnh bên bằng nhau)
-2. $AC = BD$ (hai đường chéo bằng nhau)
-3. $\hat{A} = \hat{B}$ và $\hat{D} = \hat{C}$
-4. $\hat{A} + \hat{D} = 180°$ (hai góc kề cạnh bên bù nhau)
-
-</div>
-
-<h3 id="dau-hieu" style="margin-top:2rem;">✓ 4. Dấu hiệu nhận biết</h3>
-
-<div class="box-dinh-ly">
-
-**Dấu hiệu nhận biết hình thang cân:**
-
-1. Hình thang có hai góc kề một đáy bằng nhau
-2. Hình thang có hai cạnh bên bằng nhau
-3. Hình thang có hai đường chéo bằng nhau
-
-</div>
-
-**Ví dụ:** Hình thang $ABCD$ có $AB \parallel CD$, $AC = BD$. Chứng minh $ABCD$ là hình thang cân.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Vì $AC = BD$ (hai đường chéo bằng nhau)
-
-$\Rightarrow ABCD$ là hình thang cân (dấu hiệu 3)
-
-</div>
-
-<h3 id="cong-thuc" style="margin-top:2rem;">📐 5. Công thức</h3>
-
-**Chu vi:** $P = AB + BC + CD + DA = AB + CD + 2 \cdot BC$
-
-(vì $AD = BC$)
-
-**Diện tích:** $S = \frac{(AB + CD) \cdot h}{2}$
-
-(với $h$ là chiều cao)
+**Ví dụ 3:** Cho hình thang $ABCD$ ($AB // CD$) có $\widehat{A} + \widehat{C} = 180^\circ$. Chứng minh $ABCD$ là hình thang cân.  
+*Lời giải:* Ta có $\widehat{A} + \widehat{D} = 180^\circ$ (hai góc trong cùng phía) $\Rightarrow \widehat{D} = \widehat{C} \Rightarrow ABCD$ là hình thang cân.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Hình thang cân</h3>
 
-<QuizSession client:load questions={quizData} />
+<HinhThangCanInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Các dạng toán & Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
 
-**📝 Bài toán:** Một mái nhà hình thang cân có đáy nhỏ $8$ m, đáy lớn $12$ m, cạnh bên $5$ m.
+<div class="box-dinh-ly">
 
-a) Tính chu vi mái nhà.
+**Dạng 1: Tính góc và độ dài đoạn thẳng trong hình thang cân**
+**Phương pháp:** Dùng tính chất hai góc kề một đáy bằng nhau, hai cạnh bên bằng nhau, hai đường chéo bằng nhau và kẻ đường cao $AH \perp CD, BK \perp CD$.
 
-b) Nếu chiều cao $4$ m, tính diện tích.
+</div>
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 1:** Cho hình thang cân $ABCD$ ($AB // CD$) có $AB = 5$ cm, $CD = 11$ cm. Kẻ đường cao $AH, BK \perp CD$. Tính $DH$.  
+*Lời giải:* $DH = \dfrac{CD - AB}{2} = \dfrac{11 - 5}{2} = 3$ cm.
 
-**Giải:**
+**Ví dụ 2:** Cho hình thang cân $ABCD$ ($AB // CD$) có $\widehat{A} = 120^\circ$. Tính $\widehat{C}$.  
+*Lời giải:* $\widehat{B} = \widehat{A} = 120^\circ \Rightarrow \widehat{C} = 180^\circ - 120^\circ = 60^\circ$.
 
-a) Chu vi $= 8 + 12 + 5 + 5 = 30$ m
+<div class="box-dinh-ly" style="margin-top:2rem;">
 
-b) Diện tích $= \frac{(8 + 12) \times 4}{2} = 40$ m²
+**Dạng 2: Chứng minh một tứ giác là hình thang cân**
+**Phương pháp:** Chứng minh tứ giác có 2 cạnh song song (hình thang), sau đó chứng minh 2 góc kề một đáy bằng nhau hoặc 2 đường chéo bằng nhau.
+
+</div>
+
+**Ví dụ 1:** Cho tam giác $ABC$ cân tại A. Gọi $M, N$ lần lượt là trung điểm của $AB, AC$. Chứng minh $BMNC$ là hình thang cân.  
+*Lời giải:* $MN$ là đường trung bình của $\triangle ABC \Rightarrow MN // BC \Rightarrow BMNC$ là hình thang. Do $\triangle ABC$ cân nên $\widehat{B} = \widehat{C} \Rightarrow BMNC$ là hình thang cân.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Mặt cắt bờ đê):** Mặt cắt ngang của một bờ đê có dạng hình thang cân $ABCD$ ($AB // CD$) với đáy trên $AB = 4$ m, đáy dưới $CD = 10$ m, chiều cao $h = 4$ m.
+
+a) Kẻ các đường cao $AH, BK \perp CD$. Tính độ dài $DH$ và $KC$.  
+b) Tính độ dài cạnh bên $AD$ của bờ đê.
+
+**Lời giải:**  
+a) $DH = KC = \dfrac{CD - AB}{2} = \dfrac{10 - 4}{2} = 3$ (m).  
+b) Áp dụng định lý Pythagore trong tam giác vuông $AHD$: $AD = \sqrt{AH^2 + DH^2} = \sqrt{4^2 + 3^2} = \sqrt{25} = 5$ (m).
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Định nghĩa**: hai góc kề một đáy bằng nhau
-- **Tính chất**: hai cạnh bên bằng nhau, hai đường chéo bằng nhau
-- **Dấu hiệu**: 3 cách nhận biết
-- **Chu vi**: $P = a + b + 2c$
-- **Diện tích**: $S = \frac{(a + b)h}{2}$
+- **Hình thang cân**: 2 góc kề một đáy bằng nhau, 2 cạnh bên bằng nhau, 2 đường chéo bằng nhau.
+- **Đoạn tách đáy khi kẻ 2 đường cao**: $DH = KC = \dfrac{CD - AB}{2}$.
 
 </GhiNho>
 
@@ -361,81 +277,119 @@ b) Diện tích $= \frac{(8 + 12) \times 4}{2} = 40$ m²
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho hình thang cân $ABCD$ ($AB \parallel CD$) có $\hat{A} = 70°$.
+**Bài 1 (Dễ — Nhận biết thuộc tính hình thang cân):** Cho hình thang cân $ABCD$ ($AB // CD$).
 
-a) Tính $\hat{B}$, $\hat{C}$, $\hat{D}$.
+a) Chỉ ra hai đáy của hình thang cân.  
+b) Chỉ ra hai cạnh bên của hình thang cân.  
+c) So sánh độ dài $AD$ và $BC$.  
+d) So sánh độ dài hai đường chéo $AC$ và $BD$.  
+e) So sánh hai góc $\widehat{A}$ và $\widehat{B}$.  
+f) So sánh hai góc $\widehat{C}$ và $\widehat{D}$.
 
-b) Chứng minh $AD = BC$.
+**Bài 2 (Dễ — Tính góc trong hình thang cân):** Tính các góc chưa biết của hình thang cân $ABCD$ ($AB // CD$):
 
-c) Chứng minh $AC = BD$.
+a) Biết $\widehat{A} = 80^\circ$. Tính $\widehat{B}, \widehat{C}, \widehat{D}$.  
+b) Biết $\widehat{C} = 55^\circ$. Tính $\widehat{A}, \widehat{B}, \widehat{D}$.  
+c) Biết $\widehat{D} = 70^\circ$. Tính $\widehat{A}, \widehat{B}, \widehat{C}$.  
+d) Biết $\widehat{A} = 115^\circ$. Tính $\widehat{B}, \widehat{C}, \widehat{D}$.  
+e) Biết $\widehat{A} = 2\widehat{D}$. Tính 4 góc.  
+f) Biết $\widehat{A} - \widehat{D} = 40^\circ$. Tính 4 góc.
 
-d) Tính tổng $\hat{A} + \hat{D}$.
+**Bài 3 (Trung bình — Tính độ dài các đoạn thẳng kẻ từ đường cao):** Cho hình thang cân $ABCD$ ($AB // CD$) có $AB = 6$ cm, $CD = 14$ cm. Kẻ $AH \perp CD, BK \perp CD$.
 
-**Bài 2:** Cho hình thang $ABCD$ ($AB \parallel CD$) có $AC = BD$.
+a) Tính độ dài đoạn $DH$.  
+b) Tính độ dài đoạn $HK$.  
+c) Tính độ dài đoạn $KC$.  
+d) Tính độ dài đoạn $HC$.  
+e) Biết $AH = 3$ cm, tính cạnh bên $AD$.  
+f) Tính chu vi hình thang cân $ABCD$.
 
-a) Chứng minh $ABCD$ là hình thang cân.
+**Bài 4 (Trung bình — Tam giác cân tạo thành từ hai đường chéo):** Cho hình thang cân $ABCD$ ($AB // CD$) có $AC$ cắt $BD$ tại $O$.
 
-b) Biết $\hat{C} = 80°$, tính các góc còn lại.
+a) Chứng minh $\triangle OAB$ cân tại $O$.  
+b) Chứng minh $\triangle OCD$ cân tại $O$.  
+c) Chứng minh $OA = OB$ và $OC = OD$.
 
-c) Nếu $AB = 6$ cm, $CD = 10$ cm, $BC = 5$ cm, tính chu vi.
+**Bài 5 (Trung bình — Chứng minh tứ giác là hình thang cân):** Cho tam giác $ABC$ cân tại A. Trên các cạnh $AB, AC$ lần lượt lấy hai điểm $M, N$ sao cho $AM = AN$.
 
-d) Nếu chiều cao $h = 4$ cm, tính diện tích.
+a) Chứng minh $MN // BC$.  
+b) Chứng minh tứ giác $BMNC$ là hình thang cân.
 
-**Bài 3:** Hình thang cân có:
+**Bài 6 (Khá — Hình thang cân có đường chéo là phân giác):** Cho hình thang cân $ABCD$ ($AB // CD$) có $DB$ là tia phân giác của góc $\widehat{D}$.
 
-a) Đáy nhỏ $8$ cm, đáy lớn $14$ cm, cạnh bên $5$ cm. Tính chu vi.
+a) Chứng minh $\triangle ABD$ cân tại A.  
+b) Tính chu vi hình thang cân nếu $AB = 5$ cm và $CD = 11$ cm.
 
-b) Đáy nhỏ $10$ cm, đáy lớn $16$ cm, chiều cao $6$ cm. Tính diện tích.
+**Bài 7 (Khá — Đường cao và cạnh bên):** Cho hình thang cân $ABCD$ ($AB // CD$, $AB < CD$). Kẻ hai đường cao $AH, BK$. Chứng minh $DH = CK = \dfrac{CD - AB}{2}$.
 
-c) Chu vi $40$ cm, đáy nhỏ $8$ cm, đáy lớn $12$ cm. Tính cạnh bên.
+**Bài 8 (Khá - Nâng cao — Tứ giác có 2 đường chéo bằng nhau):** Cho hình thang $ABCD$ ($AB // CD$). Gọi $O$ là giao điểm của $AC$ và $BD$. Biết $OA = OB$. Chứng minh $ABCD$ là hình thang cân.
 
-d) Diện tích $60$ cm², đáy nhỏ $7$ cm, đáy lớn $13$ cm. Tính chiều cao.
+**Bài 9 (Ứng dụng thực tế 1 — Mặt cắt đê sông):** Một mặt cắt bờ đê có dạng hình thang cân $ABCD$ ($AB // CD$) có $AB = 5$ m, $CD = 13$ m, đường cao $h = 3$ m.
 
-**Bài 4:** Chứng minh:
+a) Tính độ dài phần đất dốc bên cạnh $AD$.  
+b) Tính diện tích mặt cắt ngang của bờ đê.
 
-a) Hình thang có hai cạnh bên bằng nhau là hình thang cân.
+**Bài 10 (Ứng dụng thực tế 2 — Thiết kế chậu hoa treo):** Mặt bên của một chậu hoa bằng sứ dạng hình thang cân $ABCD$ ($AB // CD$) có góc kề đáy $\widehat{D} = 60^\circ$, đáy nhỏ $AB = 12$ cm, cạnh bên $AD = 10$ cm.
 
-b) Trong hình thang cân, hai góc kề một cạnh bên bù nhau.
-
-c) Hình thang cân có một góc vuông là hình chữ nhật.
-
-d) Đường trung bình của hình thang cân song song với hai đáy.
-
-**Bài 5:** Cho hình thang cân $ABCD$ có $AB = 6$ cm, $CD = 10$ cm, $\hat{D} = 60°$.
-
-a) Tính $\hat{A}$, $\hat{B}$, $\hat{C}$.
-
-b) Tính độ dài cạnh bên $AD$.
-
-c) Tính chiều cao của hình thang.
-
-d) Tính diện tích hình thang.
-
-**Bài 6 (Thực tế):** Một cửa sổ hình thang cân có đáy nhỏ $80$ cm, đáy lớn $120$ cm, chiều cao $60$ cm.
-
-a) Tính diện tích cửa sổ.
-
-b) Nếu làm khung cửa bằng nhôm, biết cạnh bên dài $70$ cm, tính tổng chiều dài nhôm cần dùng.
-
-c) Giá nhôm $50000$ đồng/mét. Tính chi phí làm khung.
-
-d) Nếu tăng đáy nhỏ thêm $20$ cm, diện tích tăng thêm bao nhiêu?
+a) Kẻ $AH \perp CD$. Tính độ dài $DH$ và đáy lớn $CD$.  
+b) Tính chu vi mặt bên của chậu hoa.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $\hat{B} = 70°$, $\hat{C} = \hat{D} = 110°$; b, c) Chứng minh bằng tính chất; d) $180°$
+**Bài 1:**
+a) $AB$ và $CD$.
+b) $AD$ và $BC$.
+c) $AD = BC$.
+d) $AC = BD$.
+e) $\widehat{A} = \widehat{B}$.
+f) $\widehat{C} = \widehat{D}$.
 
-**Bài 2:** a) Dấu hiệu nhận biết; b) $\hat{D} = 80°$, $\hat{A} = \hat{B} = 100°$; c) $26$ cm; d) $32$ cm²
+**Bài 2:**
+a) $\widehat{B} = 80^\circ, \widehat{C} = 100^\circ, \widehat{D} = 100^\circ$.
+b) $\widehat{D} = 55^\circ, \widehat{A} = 125^\circ, \widehat{B} = 125^\circ$.
+c) $\widehat{C} = 70^\circ, \widehat{A} = 110^\circ, \widehat{B} = 110^\circ$.
+d) $\widehat{B} = 115^\circ, \widehat{C} = 65^\circ, \widehat{D} = 65^\circ$.
+e) $\widehat{A} + \widehat{D} = 180^\circ \Rightarrow 3\widehat{D} = 180^\circ \Rightarrow \widehat{D} = \widehat{C} = 60^\circ, \widehat{A} = \widehat{B} = 120^\circ$.
+f) $\widehat{A} + \widehat{D} = 180^\circ \Rightarrow \widehat{A} = 110^\circ, \widehat{B} = 110^\circ, \widehat{C} = 70^\circ, \widehat{D} = 70^\circ$.
 
-**Bài 3:** a) $32$ cm; b) $78$ cm²; c) $10$ cm; d) $6$ cm
+**Bài 3:**
+a) $DH = \dfrac{CD - AB}{2} = \dfrac{14 - 6}{2} = 4$ cm.
+b) $HK = AB = 6$ cm.
+c) $KC = DH = 4$ cm.
+d) $HC = HK + KC = 6 + 4 = 10$ cm.
+e) $AD = \sqrt{AH^2 + DH^2} = \sqrt{3^2 + 4^2} = 5$ cm.
+f) Chu vi $= AB + CD + 2AD = 6 + 14 + 2(5) = 30$ cm.
 
-**Bài 4:** Chứng minh bằng định lý và tính chất
+**Bài 4:**
+a) Xét $\triangle ABD$ và $\triangle BAC$ có $AB$ chung, $AD = BC, BD = AC \Rightarrow \triangle ABD = \triangle BAC$ (c-c-c) $\Rightarrow \widehat{ABD} = \widehat{BAC} \Rightarrow \triangle OAB$ cân tại $O$.
+b) Do $\widehat{OAB} = \widehat{OBA}$ và $AB // CD \Rightarrow \widehat{OCD} = \widehat{ODC} \Rightarrow \triangle OCD$ cân tại $O$.
+c) Suy ra $OA = OB$ và $OC = OD$.
 
-**Bài 5:** a) $\hat{A} = \hat{B} = 120°$, $\hat{C} = 60°$; b) $4$ cm; c) $2\sqrt{3}$ cm; d) $16\sqrt{3}$ cm²
+**Bài 5:**
+a) $\triangle AMN$ cân tại A ($AM = AN$) $\Rightarrow \widehat{AMN} = \dfrac{180^\circ - \widehat{A}}{2}$. Do $\triangle ABC$ cân tại A $\Rightarrow \widehat{B} = \dfrac{180^\circ - \widehat{A}}{2} \Rightarrow \widehat{AMN} = \widehat{B} \Rightarrow MN // BC$.
+b) Hình thang $BMNC$ có $\widehat{B} = \widehat{C}$ nên là hình thang cân.
 
-**Bài 6:** a) $6000$ cm² = $0{,}6$ m²; b) $3{,}4$ m; c) $170{.}000$ đồng; d) $600$ cm²
+**Bài 6:**
+a) $DB$ là phân giác $\widehat{D} \Rightarrow \widehat{ADB} = \widehat{BDC}$. Mà $AB // CD \Rightarrow \widehat{ABD} = \widehat{BDC} \Rightarrow \widehat{ABD} = \widehat{ADB} \Rightarrow \triangle ABD$ cân tại A.
+b) $\Rightarrow AD = AB = 5$ cm. Do $ABCD$ cân $\Rightarrow BC = AD = 5$ cm. Chu vi $= 5 + 11 + 5 + 5 = 26$ cm.
+
+**Bài 7:**
+Chứng minh $\triangle AHD = \triangle BKC$ (cạnh huyền - góc nhọn) $\Rightarrow DH = CK$. Mặt khác $HK = AB$, nên $DH + CK = CD - AB \Rightarrow DH = CK = \dfrac{CD - AB}{2}$.
+
+**Bài 8:**
+$OA = OB \Rightarrow \widehat{OAB} = \widehat{OBA}$. Vì $AB // CD \Rightarrow \widehat{OCD} = \widehat{ODC} \Rightarrow \triangle OCD$ cân tại $O \Rightarrow OC = OD$.
+Suy ra $AC = OA + OC = OB + OD = BD$. Hình thang có 2 đường chéo bằng nhau là hình thang cân.
+
+**Bài 9:**
+a) $DH = \dfrac{13 - 5}{2} = 4$ m. Cạnh dốc $AD = \sqrt{h^2 + DH^2} = \sqrt{3^2 + 4^2} = 5$ m.
+b) $S = \dfrac{(AB + CD) \cdot h}{2} = \dfrac{(5 + 13) \cdot 3}{2} = 27$ m².
+
+**Bài 10:**
+a) Trong tam giác vuông $AHD$: $\widehat{HAD} = 90^\circ - 60^\circ = 30^\circ \Rightarrow DH = \dfrac{1}{2}AD = 5$ cm.  
+Đáy lớn $CD = AB + 2DH = 12 + 2(5) = 22$ cm.
+b) Chu vi $= AB + CD + 2AD = 12 + 22 + 20 = 54$ cm.
 
 </div>
 </details>

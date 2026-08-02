@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 5: Phép chia đa thức cho đơn thức"
-description: "Quy tắc chia đa thức cho đơn thức - Toán 8 KNTT Chương 1"
+description: "Chia đơn thức cho đơn thức, chia đa thức cho đơn thức, điều kiện chia hết và rút gọn biểu thức - Toán 8 KNTT Chương 1"
 grade: "Lớp 8"
 chapter: "Chương 1: Đa thức"
 currentSlug: "lop8/bai-5-chia-da-thuc"
@@ -14,118 +14,148 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import ChiaDaThucInteractive from '../../components/interactive/ChiaDaThucInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Thương của $(6x^3 - 9x^2) : 3x$ là:",
-    option_a: "$2x^2 - 3x$",
-    option_b: "$6x^2 - 9x$",
-    option_c: "$2x^3 - 3x^2$",
-    option_d: "$3x^2 - 6x$",
+    question: "Kết quả của phép chia $12x^4 : 3x^2$ là:",
+    option_a: "$4x^2$",
+    option_b: "$4x^6$",
+    option_c: "$9x^2$",
+    option_d: "$4x$",
     correct_option: "A",
-    explanation: "$(6x^3 - 9x^2) : 3x = 6x^3 : 3x - 9x^2 : 3x = 2x^2 - 3x$.",
+    explanation: "(12:3)x^{4-2} = 4x^2$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Thương của $(15x^4 - 10x^3 + 5x^2) : 5x^2$ là:",
-    option_a: "$3x^2 - 2x + 1$",
-    option_b: "$3x^2 - 2x$",
-    option_c: "$15x^2 - 10x + 5$",
-    option_d: "$3x^4 - 2x^3 + x^2$",
+    question: "Kết quả của $(-15x^3y^2) : (5xy^2)$ là:",
+    option_a: "$-3x^2$",
+    option_b: "$-3x^2y$",
+    option_c: "$3x^2$",
+    option_d: "$-3x^3$",
     correct_option: "A",
-    explanation: "Chia từng hạng tử: $15x^4 : 5x^2 = 3x^2$, $-10x^3 : 5x^2 = -2x$, $5x^2 : 5x^2 = 1$.",
+    explanation: "(-15:5)x^{3-1}y^{2-2} = -3x^2(1) = -3x^2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phép chia $(6x^3 - 9x^2 + 12x) : 3x$ cho kết quả thương là:",
+    option_a: "$2x^2 - 3x + 4$",
+    option_b: "$2x^2 - 3x$",
+    option_c: "$2x^3 - 3x^2 + 4x$",
+    option_d: "$2x^2 + 3x + 4$",
+    correct_option: "A",
+    explanation: "Chia từng hạng tử: 6x^3:3x - 9x^2:3x + 12x:3x = 2x^2 - 3x + 4.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Điều kiện để $(12x^3 - 8x^2 + 4x) : 4x$ thực hiện được là:",
-    option_a: "$x \\neq 0$",
-    option_b: "$x \\neq 4$",
-    option_c: "$x > 0$",
-    option_d: "Không có điều kiện",
+    question: "Đơn thức $A = 4x^3y^n$ chia hết cho đơn thức $B = 2x^m y^2$ khi:",
+    option_a: "$m \\le 3$ và $n \\ge 2$",
+    option_b: "$m \\ge 3$ và $n \\le 2$",
+    option_c: "$m = 3$ và $n = 2$",
+    option_d: "$m > 3$ và $n > 2$",
     correct_option: "A",
-    explanation: "Để phép chia thực hiện được, đơn thức chia phải khác 0, tức $4x \\neq 0 \\Rightarrow x \\neq 0$.",
+    explanation: "Đơn thức A chia hết cho B khi số mũ của mỗi biến trong A lớn hơn hoặc bằng số mũ tương ứng trong B.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Thương của $(x^3y^2 - x^2y^3) : xy$ là:",
-    option_a: "$x^2y - xy^2$",
-    option_b: "$x^2y^2 - xy^3$",
-    option_c: "$x^3y - x^2y^2$",
-    option_d: "$xy - y^2$",
+    question: "Kết quả của $(10x^4y^3 - 15x^3y^2) : (-5x^2y^2)$ là:",
+    option_a: "$-2x^2y + 3x$",
+    option_b: "$2x^2y - 3x$",
+    option_c: "$-2x^2y - 3x$",
+    option_d: "$2x^2y + 3x$",
     correct_option: "A",
-    explanation: "$(x^3y^2 - x^2y^3) : xy = x^3y^2 : xy - x^2y^3 : xy = x^2y - xy^2$.",
-    difficulty_level: "hard",
+    explanation: "10x^4y^3:(-5x^2y^2) - 15x^3y^2:(-5x^2y^2) = -2x^2y + 3x.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Khi chia đa thức cho đơn thức, ta cần:",
-    option_a: "Chia từng hạng tử của đa thức cho đơn thức",
-    option_b: "Cộng các thương vừa tìm được",
-    option_c: "Đơn thức chia phải khác 0",
-    option_d: "Nhân các hạng tử",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng. D sai vì ta chia chứ không nhân.",
+    question: "Những khẳng định nào sau đây đúng?",
+    option_a: "Phép chia $x^n : x^m = x^{n-m}$ với $n \\ge m$",
+    option_b: "$x^0 = 1$ với $x \\neq 0$",
+    option_c: "Đa thức chia hết cho đơn thức khi mọi hạng tử của đa thức đều chia hết cho đơn thức đó",
+    option_d: "$(A + B) : C = A:C + B:C$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các khẳng định trên đều chính xác.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Hệ số của $x$ trong thương $(8x^3 - 12x^2 + 4x) : 4x$ bằng bao nhiêu?",
-    correct_option: "-3",
-    explanation: "$(8x^3 - 12x^2 + 4x) : 4x = 2x^2 - 3x + 1$. Hệ số của $x$ là $-3$.",
+    question: "Giá trị của biểu thức $(15x^3 - 10x^2) : 5x^2$ tại $x = 4$ bằng bao nhiêu?",
+    correct_option: "10",
+    explanation: "Thương = 3x - 2. Tại x = 4 => 3(4) - 2 = 10.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tìm $x$ biết $(8x^3 - 4x^2) : 4x^2 = 3$:",
+    option_a: "$x = 2$",
+    option_b: "$x = 1$",
+    option_c: "$x = 3$",
+    option_d: "$x = 0$",
+    correct_option: "A",
+    explanation: "2x - 1 = 3 => 2x = 4 => x = 2.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Thương của $(!a(8,12,16,20)!x^3 - !b(8,12,16)!x^2) : 4x$ là:",
-    option_a: "$!tinh: !a! / 4!x^2 - !tinh: !b! / 4!x$",
-    option_b: "$!a!x^2 - !b!x$",
-    option_c: "$!tinh: !a! / 4!x - !tinh: !b! / 4!$",
-    option_d: "$!a!x^3 - !b!x^2$",
+    question: "Kết quả chia $!a#12!x^!m#4! : !b#3!x^2$ bằng:",
+    option_a: "$!tinh: !a! / !b!!x^!tinh: !m! - 2!$",
+    option_b: "$!tinh: !a! / !b!!x^!tinh: !m! + 2!$",
+    option_c: "$!a!x^!m!$",
+    option_d: "$!b!x^2$",
     correct_option: "A",
-    explanation: "$(!a!x^3 - !b!x^2) : 4x = !a!x^3 : 4x - !b!x^2 : 4x = !tinh: !a! / 4!x^2 - !tinh: !b! / 4!x$.",
+    explanation: "Lấy hệ số chia hệ số, lấy số mũ trừ số mũ: !a!:!b! = !tinh: !a! / !b!!, số mũ !m! - 2.",
     difficulty_level: "medium",
     is_dynamic: true,
   },
   {
     type: "mcq",
-    question: "Thương của $(!a(10,15,20,25)!x^!m(4,5)! - !b(10,15,20)!x^!n(3,4)!) : 5x^!p#2!$ là:",
-    option_a: "$!tinh: !a! / 5!x^!tinh: !m! - !p!! - !tinh: !b! / 5!x^!tinh: !n! - !p!!$",
-    option_b: "$!tinh: !a! / 5!x^!m! - !tinh: !b! / 5!x^!n!$",
-    option_c: "$!a!x^!m! - !b!x^!n!$",
-    option_d: "$!tinh: !a! - !b!!x^!tinh: !m! - !n!!$",
+    question: "Giá trị của $P = (12x^3y^2 - 8x^2y^3) : (4x^2y^2)$ tại $x = 2, y = 1$ bằng:",
+    option_a: "$4$",
+    option_b: "$2$",
+    option_c: "$6$",
+    option_d: "$8$",
     correct_option: "A",
-    explanation: "Chia hệ số, trừ số mũ: $!tinh: !a! / 5!x^{!m! - !p!} - !tinh: !b! / 5!x^{!n! - !p!} = !tinh: !a! / 5!x^!tinh: !m! - !p!! - !tinh: !b! / 5!x^!tinh: !n! - !p!!$.",
+    explanation: "Thương = 3x - 2y. Tại x=2, y=1 => 3(2) - 2(1) = 4.",
     difficulty_level: "hard",
-    is_dynamic: true,
+    is_dynamic: false,
   },
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">➗ Chia đa thức cho đơn thức</h3>
+<h3 id="mo-dau">➗ Phép chia đa thức cho đơn thức — Phân chia và Thu gọn</h3>
 
-Phép chia là phép toán ngược của phép nhân, giúp ta đơn giản hóa biểu thức!
+Phép chia đa thức cho đơn thức giúp ta thu gọn các biểu thức dạng tỉ lệ, tìm vận tốc, chiều cao hay năng suất trong các bài toán thực tế!
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📏</div>
-    <strong>Tìm chiều rộng</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$S = 6x^2 + 9x$, dài $3x$ → rộng $(6x^2 + 9x) : 3x$</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
+    <strong>Chiều cao hình chữ nhật</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$h = S : a$</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
-    <strong>Rút gọn biểu thức</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Đơn giản hóa công thức phức tạp</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🚗</div>
+    <strong>Thời gian chuyển động</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$t = s : v$</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">⏱️</div>
+    <strong>Năng suất lao động</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$N = A : t$</p>
   </div>
 </div>
 
@@ -133,104 +163,223 @@ Phép chia là phép toán ngược của phép nhân, giúp ta đơn giản hó
 
 <KhamPha>
 
-<h3 id="quy-tac">📖 1. Quy tắc chia đa thức cho đơn thức</h3>
+<h3 id="don-chia-don">📖 1. Chia đơn thức cho đơn thức</h3>
 
-<div class="box-dinh-ly">
+<div class="box-dinh-nghia">
 
-**Quy tắc:** Chia từng hạng tử của đa thức cho đơn thức, rồi cộng các thương lại.
+**Điều kiện chia hết:** Đơn thức $A$ chia hết cho đơn thức $B$ (khác 0) khi **mỗi biến của $B$ đều là biến của $A$** với **số mũ không lớn hơn số mũ của nó trong $A$**.
 
-$(a + b) : c = a : c + b : c$ (với $c \\neq 0$)
-
-</div>
-
-**Điều kiện:** Đơn thức chia phải khác 0 và mỗi hạng tử của đa thức phải chia hết cho đơn thức.
-
-<h3 id="vi-du" style="margin-top:2rem;">✏️ 2. Ví dụ minh họa</h3>
-
-**Ví dụ 1:** $(6x^3 - 9x^2 + 3x) : 3x$
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Chia từng hạng tử:
-
-$= 6x^3 : 3x - 9x^2 : 3x + 3x : 3x$
-
-$= 2x^2 - 3x + 1$
+**Quy tắc:**
+1. Chia hệ số của $A$ cho hệ số của $B$.
+2. Chia lũy thừa của từng biến trong $A$ cho lũy thừa của cùng biến đó trong $B$ (sử dụng $x^m : x^n = x^{m-n}$).
+3. Nhân các kết quả vừa tìm được với nhau.
 
 </div>
 
-**Ví dụ 2:** $(15x^4y - 10x^3y^2 + 5x^2y) : 5x^2y$
+**Ví dụ 1:** Thực hiện phép chia $15x^5y^3 : 3x^2y$.
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:*
+$$15x^5y^3 : 3x^2y = (15 : 3) \cdot (x^5 : x^2) \cdot (y^3 : y) = 5x^{5-2}y^{3-1} = 5x^3y^2$$
 
-$= 15x^4y : 5x^2y - 10x^3y^2 : 5x^2y + 5x^2y : 5x^2y$
+**Ví dụ 2:** Đơn thức $A = 6x^3y^2$ có chia hết cho $B = 2x^4y$ không? Vì sao?
 
-$= 3x^2 - 2xy + 1$
+*Lời giải:* Không chia hết, vì biến $x$ trong $B$ có số mũ là 4 lớn hơn số mũ của $x$ trong $A$ (là 3).
+
+**Ví dụ 3:** Tính $(-12a^4b^3c) : (-4a^2b^3)$.
+
+*Lời giải:*
+$$(-12 : -4) \cdot (a^4 : a^2) \cdot (b^3 : b^3) \cdot c = 3a^2 \cdot 1 \cdot c = 3a^2c$$
+
+**Hình vẽ minh họa:** Sơ đồ quy tắc trừ số mũ trong phép chia đơn thức:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="560" height="140" viewBox="0 0 560 140" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="40" y="35" width="160" height="70" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="120" y="65" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af">15x⁵y³</text>
+  <text x="120" y="88" font-size="12" text-anchor="middle" fill="#1d4ed8">(Tử số)</text>
+
+  <text x="225" y="75" font-size="22" font-weight="bold" fill="#475569">:</text>
+
+  <rect x="250" y="35" width="120" height="70" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="310" y="65" font-size="16" font-weight="bold" text-anchor="middle" fill="#065f46">3x²y¹</text>
+  <text x="310" y="88" font-size="12" text-anchor="middle" fill="#047857">(Mẫu số)</text>
+
+  <text x="395" y="75" font-size="22" font-weight="bold" fill="#475569">=</text>
+  <text x="475" y="75" font-size="18" font-weight="bold" fill="#2563eb">5x³y²</text>
+</svg>
+</div>
+
+<h3 id="da-chia-don" style="margin-top:2rem;">📖 2. Chia đa thức cho đơn thức</h3>
+
+<div class="box-dinh-nghia">
+
+**Định nghĩa:** Đa thức $A$ chia hết cho đơn thức $B$ nếu **mọi hạng tử của $A$ đều chia hết cho $B$**.
+
+**Quy tắc:** Muốn chia đa thức $A$ cho đơn thức $B$, ta **chia từng hạng tử của $A$ cho $B$** rồi cộng các kết quả lại với nhau.
+
+$$(X + Y - Z) : B = (X : B) + (Y : B) - (Z : B)$$
 
 </div>
 
-<h3 id="chu-y" style="margin-top:2rem;">⚠️ 3. Lưu ý quan trọng</h3>
+**Ví dụ 1:** Thực hiện phép chia $(6x^3 - 9x^2 + 12x) : 3x$.
 
-<div class="box-nhan-xet">
+*Lời giải:*
+$$(6x^3 - 9x^2 + 12x) : 3x = (6x^3 : 3x) + (-9x^2 : 3x) + (12x : 3x) = 2x^2 - 3x + 4$$
 
-1. Đơn thức chia phải khác 0
-2. Mỗi hạng tử phải chia hết cho đơn thức
-3. Khi chia: hệ số chia hệ số, số mũ trừ số mũ
+**Ví dụ 2:** Tính $(10x^4y^3 - 15x^3y^2 + 5x^2y^2) : 5x^2y^2$.
 
+*Lời giải:*
+$$= (10x^4y^3 : 5x^2y^2) - (15x^3y^2 : 5x^2y^2) + (5x^2y^2 : 5x^2y^2) = 2x^2y - 3x + 1$$
+
+**Ví dụ 3:** Rút gọn biểu thức $P = (12x^3 - 8x^2) : 4x - (3x - 1)x$.
+
+*Lời giải:*
+$$P = (3x^2 - 2x) - (3x^2 - x) = 3x^2 - 2x - 3x^2 + x = -x$$
+
+**Hình vẽ minh họa:** Sơ đồ chia từng hạng tử của đa thức cho đơn thức:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="560" height="150" viewBox="0 0 560 150" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="30" y="30" width="220" height="90" rx="10" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+  <text x="140" y="65" font-size="15" font-weight="bold" text-anchor="middle" fill="#6b21a8">(6x³ - 9x² + 12x) : 3x</text>
+
+  <line x1="270" y1="75" x2="320" y2="75" stroke="#94a3b8" stroke-width="3"/>
+  <polygon points="320,75 310,70 310,80" fill="#94a3b8"/>
+
+  <rect x="340" y="30" width="190" height="90" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="435" y="60" font-size="14" text-anchor="middle" fill="#065f46">6x³:3x - 9x²:3x + 12x:3x</text>
+  <text x="435" y="88" font-size="16" font-weight="bold" text-anchor="middle" fill="#047857">= 2x² - 3x + 4</text>
+</svg>
 </div>
-
-**Ví dụ 3:** Kiểm tra phép chia
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$(x^3 + x) : x^2$ **không thực hiện được** vì $x : x^2 = x^{-1}$ (số mũ âm)
-
-$(6x^2 - 4x) : 2x = 3x - 2$ ✓ (thực hiện được)
-
-</div>
-
-<h3 id="ung-dung" style="margin-top:2rem;">🔍 4. Ứng dụng</h3>
-
-**Phân tích đa thức thành nhân tử:**
-
-$6x^3 - 9x^2 + 3x = 3x(2x^2 - 3x + 1)$
-
-Kiểm tra: $3x(2x^2 - 3x + 1) = 6x^3 - 9x^2 + 3x$ ✓
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
 
-<QuizSession client:load questions={quizData} />
+<ChiaDaThucInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng</h3>
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
 
-**📝 Bài toán:** Một hình chữ nhật có diện tích $S = 12x^3 - 8x^2$ (cm²) và chiều dài $4x$ (cm). Tính chiều rộng.
+<div class="box-dinh-ly">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Dạng 1: Thực hiện phép chia đơn thức cho đơn thức, đa thức cho đơn thức**
 
-Chiều rộng $= S : $ chiều dài
+</div>
 
-$= (12x^3 - 8x^2) : 4x$
+**Ví dụ 1:** Tính $(-20x^5y^3) : (4x^2y^2)$.
 
-$= 3x^2 - 2x$ (cm)
+*Lời giải:* $-5x^3y$.
+
+**Ví dụ 2:** Tính $(15x^3y^2 - 10x^2y^3 + 5x^2y^2) : (-5x^2y^2)$.
+
+*Lời giải:* $-3x + 2y - 1$.
+
+**Ví dụ 3:** Tính $\left(\dfrac{1}{2}x^3y^4 - \dfrac{3}{4}x^2y^3\right) : \left(\dfrac{1}{4}x^2y^3\right)$.
+
+*Lời giải:* $2xy - 3$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Bài toán điều kiện chia hết**
+
+</div>
+
+**Ví dụ 1:** Tìm số tự nhiên $n$ để $x^5$ chia hết cho $x^n$.
+
+*Lời giải:* $n \le 5 \Rightarrow n \in \{0, 1, 2, 3, 4, 5\}$.
+
+**Ví dụ 2:** Tìm số tự nhiên $n$ để đơn thức $A = 4x^n y^3$ chia hết cho $B = 2x^2 y^n$.
+
+*Lời giải:* Để $A \vdots B \Rightarrow \begin{cases} n \ge 2 \\ 3 \ge n \end{cases} \Rightarrow 2 \le n \le 3 \Rightarrow n \in \{2, 3\}$.
+
+**Ví dụ 3:** Tìm $n \in \mathbb{N}$ để đa thức $P = 5x^4 - 3x^n$ chia hết cho $x^2$.
+
+*Lời giải:* Mỗi hạng tử phải chia hết cho $x^2 \Rightarrow n \ge 2$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 3: Rút gọn và tính giá trị của biểu thức**
+
+</div>
+
+**Ví dụ 1:** Tính giá trị $A = (12x^4y^2 - 8x^3y^3) : (4x^2y^2)$ tại $x = 2, y = 1$.
+
+*Lời giải:* $A = 3x^2 - 2xy$. Tại $x=2, y=1 \Rightarrow A = 3(4) - 2(2)(1) = 12 - 4 = 8$.
+
+**Ví dụ 2:** Rút gọn $B = (15x^3 - 10x^2) : 5x^2 - (x - 2)$.
+
+*Lời giải:* $B = (3x - 2) - x + 2 = 2x$.
+
+**Ví dụ 3:** Tìm $x$ biết $(6x^3 - 3x^2) : 3x^2 = 5$.
+
+*Lời giải:* $2x - 1 = 5 \Rightarrow 2x = 6 \Rightarrow x = 3$.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Tìm chiều rộng hình chữ nhật):** Một hình chữ nhật có diện tích $S = 6x^2y + 4xy^2$ (m²) và chiều dài là $a = 2xy$ (m).
+
+a) Viết biểu thức tính chiều rộng $b = S : a$.
+b) Tính chiều rộng khi $x = 3$ m, $y = 2$ m.
+
+**Lời giải:**
+a) $b = (6x^2y + 4xy^2) : 2xy = 3x + 2y$ (m).
+b) Thay $x = 3, y = 2 \Rightarrow b = 3(3) + 2(2) = 13$ (m).
+
+</div>
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Vận tốc chuyển động):** Một vật chuyển động trên quãng đường $s = 12t^3 + 6t^2$ (m) trong thời gian $t$ (giây).
+
+a) Viết biểu thức tính vận tốc trung bình $v = s : t$.
+b) Tính vận tốc tại thời điểm $t = 2$ giây.
+
+**Lời giải:**
+a) $v = (12t^3 + 6t^2) : t = 12t^2 + 6t$ (m/s).
+b) Thay $t = 2 \Rightarrow v = 12(4) + 6(2) = 48 + 12 = 60$ (m/s).
+
+</div>
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Chia đều tiền thưởng):** Một nhóm $5x$ học sinh nhận tổng số tiền thưởng là $T = 25x^2 + 15x$ (nghìn đồng).
+
+a) Viết đa thức tính số tiền mỗi học sinh nhận được.
+b) Tính số tiền mỗi học sinh nhận được khi $x = 4$.
+
+**Lời giải:**
+a) $M = (25x^2 + 15x) : 5x = 5x + 3$ (nghìn đồng).
+b) Thay $x = 4 \Rightarrow M = 5(4) + 3 = 23$ nghìn đồng.
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Quy tắc**: chia từng hạng tử cho đơn thức
-- **Điều kiện**: đơn thức chia $\\neq 0$
-- **Cách chia**: hệ số chia hệ số, số mũ trừ số mũ
-- **Kiểm tra**: nhân ngược lại để kiểm tra
+- **$x^m : x^n = x^{m-n}$** với $m \ge n$.
+- **Đơn thức chia đơn thức**: Lấy hệ số chia hệ số, số mũ trừ số mũ.
+- **Đa thức chia đơn thức**: Chia từng hạng tử của đa thức cho đơn thức rồi cộng lại.
 
 </GhiNho>
 
@@ -238,81 +387,145 @@ $= 3x^2 - 2x$ (cm)
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Thực hiện phép chia:
+**Bài 1 (Dễ — Chia đơn thức cho đơn thức):** Thực hiện phép tính:
 
-a) $(6x^3 - 9x^2 + 3x) : 3x$
+a) $18x^4y^3 : (6x^2y)$
 
-b) $(10x^4 - 15x^3 + 5x^2) : 5x^2$
+b) $-15a^3b^4 : (-3ab^2)$
 
-c) $(8y^5 - 12y^4 + 4y^3) : 4y^3$
+c) $12x^5y^2z : (4x^3y)$
 
-d) $(21a^4b^3 - 14a^3b^2 + 7a^2b) : 7a^2b$
+d) $\left(-\dfrac{3}{4}x^4y^3\right) : \left(\dfrac{1}{2}x^2y^2\right)$
 
-**Bài 2:** Thực hiện phép chia và tìm điều kiện:
+e) $(2x^2y)^3 : (4x^3y^2)$
 
-a) $(12x^3 - 8x^2 + 4x) : 4x$
+f) $-25a^4b^5c^2 : (5a^2b^3c)$
 
-b) $(15y^4 - 10y^3 + 5y^2) : 5y$
+**Bài 2 (Dễ — Chia đa thức cho đơn thức):** Thực hiện phép tính:
 
-c) $(18x^2y^3 - 12xy^2 + 6xy) : 6xy$
+a) $(8x^3 - 6x^2 + 4x) : (2x)$
 
-d) $(20a^3b^2 - 15a^2b^3 + 10ab^2) : 5ab$
+b) $(15x^3y^2 - 10x^2y^3 + 5x^2y^2) : (5x^2y^2)$
 
-**Bài 3:** Kiểm tra xem phép chia sau có thực hiện được không? Nếu được, hãy thực hiện:
+c) $(-12x^4y^3 + 8x^3y^2 - 4x^2y^2) : (-4x^2y^2)$
 
-a) $(x^4 - 2x^3 + x^2) : x^2$
+d) $(9a^3b^2 - 6a^2b^3 + 3a^2b^2) : (-3a^2b^2)$
 
-b) $(6x^3 - 4x) : 2x^2$
+e) $\left(\dfrac{1}{2}x^3y^4 - \dfrac{3}{4}x^2y^3\right) : \left(\dfrac{1}{4}x^2y^3\right)$
 
-c) $(9y^5 - 6y^3 + 3y) : 3y$
+f) $(4x^4 - 8x^3 + 12x^2) : (-4x^2)$
 
-d) $(12a^4 - 8a^2 + 4) : 4a$
+**Bài 3 (Trung bình — Rút gọn & Tính giá trị biểu thức chia):**
 
-**Bài 4:** Tìm đa thức $A$ biết:
+a) Rút gọn $A = (15x^3 - 10x^2) : 5x^2 - 3x + 1$.
 
-a) $A \\cdot 3x = 6x^3 - 9x^2 + 12x$
+b) Rút gọn $B = (12x^4y^2 - 8x^3y^3) : (4x^2y^2) - 3x^2 + 2xy$.
 
-b) $A \\cdot 2x^2 = 8x^4 - 6x^3 + 4x^2$
+c) Tính giá trị của $P = (20x^3y^2 - 12x^2y^3) : (4x^2y^2)$ tại $x = 3, y = 2$.
 
-c) $A \\cdot 5xy = 15x^3y^2 - 10x^2y^2 + 5xy^2$
+d) Tính giá trị của $Q = (18x^4y^3 - 12x^3y^4) : (6x^3y^2)$ tại $x = 2, y = -1$.
 
-d) $A \\cdot (-4x^2y) = 12x^4y^2 - 8x^3y^2 + 4x^2y^2$
+e) Tính giá trị của $M = (x^3 + 3x^2y + 3xy^2 + y^3) : (x + y)$ tại $x = 4, y = 6$.
 
-**Bài 5:** Cho đa thức $P(x) = 12x^4 - 18x^3 + 6x^2$
+f) Tính giá trị của $N = (x^3 - y^3) : (x - y) - xy$ tại $x = 10, y = 2$.
 
-a) Phân tích $P(x)$ thành nhân tử bằng cách đặt nhân tử chung.
+**Bài 4 (Trung bình — Tìm $x$ từ phép chia):**
 
-b) Tính giá trị của $P(x)$ khi $x = 2$.
+a) Tìm $x$ biết $(10x^2 - 5x) : 5x = 3$.
 
-c) Tìm $x$ để $P(x) = 0$.
+b) Tìm $x$ biết $(6x^3 - 3x^2) : 3x^2 = 5$.
 
-d) Chứng minh rằng $P(x)$ chia hết cho $6x^2$ với mọi $x \\neq 0$.
+c) Tìm $x$ biết $(12x^4 - 8x^3) : 4x^2 - 3x^2 = 7$.
 
-**Bài 6 (Thực tế):** Một hình chữ nhật có diện tích $S = 24x^3 - 18x^2 + 6x$ (cm²) và chiều dài $6x$ (cm).
+**Bài 5 (Trung bình — Tìm đơn thức chia):** Cho đa thức $M = 6x^4y^3 - 9x^3y^4 + 3x^2y^2$.
 
-a) Tìm biểu thức tính chiều rộng của hình chữ nhật.
+a) Tìm thương $Q = M : (3x^2y^2)$.
 
-b) Tính chiều rộng khi $x = 2$ cm.
+b) Tìm đơn thức $N$ sao cho $M : N = 2x^2y - 3xy^2 + 1$.
 
-c) Tìm $x$ để chiều rộng bằng $10$ cm.
+**Bài 6 (Khá — Điều kiện chia hết):**
 
-d) Nếu tăng chiều dài thêm $2x$ cm, diện tích tăng thêm bao nhiêu? (Chiều rộng không đổi)
+a) Tìm số tự nhiên $n$ để $x^5$ chia hết cho $x^n$.
+
+b) Tìm $n \in \mathbb{N}$ để đơn thức $A = 5x^n y^4$ chia hết cho $B = 3x^3 y^n$.
+
+**Bài 7 (Khá — Chứng minh chia hết & Giá trị nguyên):**
+
+a) Chứng minh đa thức $P = 12x^5y^3 - 8x^4y^4 + 4x^3y^2$ chia hết cho đơn thức $Q = 2x^3y^2$.
+
+b) Tìm các số nguyên $x$ để giá trị biểu thức $M = (x^3 - 3x^2 + 5x) : x$ nhận giá trị nguyên ($x \neq 0$).
+
+**Bài 8 (Khá - Nâng cao — Rút gọn biểu thức nâng cao):** Rút gọn biểu thức $K = [(2x - y)^3 + (2x + y)^3] : (4x)$.
+
+**Bài 9 (Ứng dụng thực tế 1 — Chiều rộng hình chữ nhật & Vận tốc):**
+
+a) Một hình chữ nhật có diện tích $S = 6x^2y + 4xy^2$ (m²) và chiều dài $a = 2xy$ (m). Viết biểu thức tính chiều rộng $b = S : a$ và tính $b$ khi $x = 3$ m, $y = 2$ m.
+
+b) Một ô tô đi quãng đường $s = 12t^3 + 6t^2$ (m) trong thời gian $t$ (giây). Viết biểu thức tính vận tốc $v = s : t$ và tính $v$ tại $t = 2$ giây.
+
+**Bài 10 (Ứng dụng thực tế 2 — Chia đều tiền thưởng & Năng suất):**
+
+a) Một nhóm $5x$ học sinh nhận tổng số tiền thưởng là $T = 25x^2 + 15x$ (nghìn đồng). Viết đa thức tính số tiền mỗi học sinh nhận được và tính khi $x = 4$.
+
+b) Một xưởng sản xuất tổng sản lượng $Q = 18a^3b^2 + 12a^2b^3$ (sản phẩm) trong $3a^2b^2$ ngày làm việc. Viết đa thức tính sản lượng trung bình mỗi ngày.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $2x^2 - 3x + 1$; b) $2x^2 - 3x + 1$; c) $2y^2 - 3y + 1$; d) $3a^2b^2 - 2ab + 1$
+**Bài 1:**
+a) $(18:6)x^{4-2}y^{3-1} = 3x^2y^2$.
+b) $(-15:-3)a^{3-1}b^{4-2} = 5a^2b^2$.
+c) $(12:4)x^{5-3}y^{2-1}z = 3x^2yz$.
+d) $\left(-\dfrac{3}{4} : \dfrac{1}{2}\right) x^{4-2}y^{3-2} = -\dfrac{3}{2}x^2y$.
+e) $(8x^6y^3) : (4x^3y^2) = 2x^3y$.
+f) $(-25:5)a^{4-2}b^{5-3}c^{2-1} = -5a^2b^2c$.
 
-**Bài 2:** a) $3x^2 - 2x + 1$ (ĐK: $x \\neq 0$); b) $3y^3 - 2y^2 + y$ (ĐK: $y \\neq 0$); c) $3xy^2 - 2y + 1$ (ĐK: $x \\neq 0, y \\neq 0$); d) $4a^2b - 3ab^2 + 2b$ (ĐK: $a \\neq 0, b \\neq 0$)
+**Bài 2:**
+a) $(8x^3:2x) - (6x^2:2x) + (4x:2x) = 4x^2 - 3x + 2$.
+b) $(15x^3y^2:5x^2y^2) - (10x^2y^3:5x^2y^2) + (5x^2y^2:5x^2y^2) = 3x - 2y + 1$.
+c) $3x^2y - 2x + 1$.
+d) $-3a + 2b - 1$.
+e) $2xy - 3$.
+f) $-x^2 + 2x - 3$.
 
-**Bài 3:** a) Được, $x^2 - 2x + 1$; b) Không được (vì $4x : 2x^2 = 2x^{-1}$); c) Được, $3y^4 - 2y^2 + 1$; d) Không được (vì $4 : 4a$ không chia hết)
+**Bài 3:**
+a) $A = (3x - 2) - 3x + 1 = -1$.
+b) $B = (3x^2y - 2xy) - 3x^2y + 2xy = 0$.
+c) $P = 5x - 3y$. Thay $x = 3, y = 2 \Rightarrow P = 5(3) - 3(2) = 15 - 6 = 9$.
+d) $Q = 3x - 2y$. Thay $x = 2, y = -1 \Rightarrow Q = 3(2) - 2(-1) = 6 + 2 = 8$.
+e) $M = (x + y)^3 : (x + y) = (x + y)^2$. Thay $x = 4, y = 6 \Rightarrow M = (4 + 6)^2 = 100$.
+f) $N = (x^2 + xy + y^2) - xy = x^2 + y^2$. Thay $x = 10, y = 2 \Rightarrow N = 100 + 4 = 104$.
 
-**Bài 4:** a) $A = 2x^2 - 3x + 4$; b) $A = 4x^2 - 3x + 2$; c) $A = 3x^2y - 2xy + y$; d) $A = -3x^2y - 2xy + y$
+**Bài 4:**
+a) $2x - 1 = 3 \Rightarrow 2x = 4 \Rightarrow x = 2$.
+b) $2x - 1 = 5 \Rightarrow 2x = 6 \Rightarrow x = 3$.
+c) $(3x^2 - 2x) - 3x^2 = 7 \Rightarrow -2x = 7 \Rightarrow x = -\dfrac{7}{2}$.
 
-**Bài 5:** a) $P(x) = 6x^2(2x^2 - 3x + 1)$; b) $P(2) = 120$; c) $x = 0$ hoặc $x = 1$ hoặc $x = \\dfrac{1}{2}$; d) $P(x) : 6x^2 = 2x^2 - 3x + 1$ (luôn nguyên)
+**Bài 5:**
+a) $Q = (6x^4y^3:3x^2y^2) - (9x^3y^4:3x^2y^2) + (3x^2y^2:3x^2y^2) = 2x^2y - 3xy^2 + 1$.
+b) $N = M : (2x^2y - 3xy^2 + 1) = 3x^2y^2$.
 
-**Bài 6:** a) Chiều rộng $= 4x^2 - 3x + 1$ (cm); b) $11$ cm; c) $x = 3$ cm; d) Tăng $(8x^3 - 6x^2 + 2x)$ cm²
+**Bài 6:**
+a) $n \le 5 \Rightarrow n \in \{0, 1, 2, 3, 4, 5\}$.
+b) Để $A \vdots B \Rightarrow \begin{cases} n \ge 3 \\ 4 \ge n \end{cases} \Rightarrow 3 \le n \le 4 \Rightarrow n \in \{3, 4\}$.
+
+**Bài 7:**
+a) Vì từng hạng tử $12x^5y^3 \vdots 2x^3y^2$, $-8x^4y^4 \vdots 2x^3y^2$, và $4x^3y^2 \vdots 2x^3y^2$ nên $P \vdots Q$. Thương $P:Q = 6x^2y - 4xy^2 + 2$.
+b) $M = x^2 - 3x + 5$. Với $x \in \mathbb{Z} \setminus \{0\}$, $x^2 - 3x + 5$ luôn là số nguyên.
+
+**Bài 8:**
+Biến đổi tử số: $(2x - y)^3 + (2x + y)^3 = (2x - y + 2x + y)[(2x - y)^2 - (2x - y)(2x + y) + (2x + y)^2]$
+$= 4x [(4x^2 - 4xy + y^2) - (4x^2 - y^2) + (4x^2 + 4xy + y^2)] = 4x (4x^2 + 3y^2)$.
+Do đó $K = 4x(4x^2 + 3y^2) : (4x) = 4x^2 + 3y^2$.
+
+**Bài 9:**
+a) $b = (6x^2y + 4xy^2) : 2xy = 3x + 2y$ (m). Thay $x = 3, y = 2 \Rightarrow b = 3(3) + 2(2) = 13$ (m).
+b) $v = (12t^3 + 6t^2) : t = 12t^2 + 6t$ (m/s). Thay $t = 2 \Rightarrow v = 12(4) + 6(2) = 60$ (m/s).
+
+**Bài 10:**
+a) $M = (25x^2 + 15x) : 5x = 5x + 3$ (nghìn đồng). Khi $x = 4 \Rightarrow M = 5(4) + 3 = 23$ nghìn đồng.
+b) Năng suất $N = (18a^3b^2 + 12a^2b^3) : 3a^2b^2 = 6a + 4b$ (sản phẩm/ngày).
 
 </div>
 </details>

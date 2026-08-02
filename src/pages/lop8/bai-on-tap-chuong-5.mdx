@@ -1,9 +1,9 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Ôn tập chương 5 - Toán 8"
-description: "Ôn tập toàn bộ kiến thức chương 5 Toán 8 KNTT: Thu thập dữ liệu, phân loại dữ liệu, biểu đồ tranh, biểu đồ cột, biểu đồ cột kép"
+title: "Bài Ôn tập Chương 5: Dữ liệu và biểu diễn dữ liệu"
+description: "Hệ thống hóa toàn bộ kiến thức Thu thập, Phân loại, Biểu diễn và Phân tích Dữ liệu Thống kê - Toán 8 KNTT Chương 5"
 grade: "Lớp 8"
-chapter: "Chương V: Dữ liệu và biểu đồ"
+chapter: "Chương 5: Dữ liệu và biểu diễn dữ liệu"
 currentSlug: "lop8/bai-on-tap-chuong-5"
 ---
 
@@ -13,574 +13,351 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong5Interactive from '../../components/interactive/OnTapChuong5Interactive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Dữ liệu là:",
-    option_a: "Thông tin được thu thập từ các cuộc khảo sát",
-    option_b: "Các con số hoặc thông tin được ghi lại",
-    option_c: "Kết quả của một thí nghiệm",
-    option_d: "Tất cả các đáp án trên",
-    correct_option: "D",
-    explanation: "Dữ liệu là các thông tin, con số được thu thập từ nhiều nguồn khác nhau",
+    question: "Dữ liệu thu thập được bao gồm hai loại chính là:",
+    option_a: "Dữ liệu định tính và Dữ liệu định lượng",
+    option_b: "Dữ liệu số và Dữ liệu bảng",
+    option_c: "Dữ liệu hợp lý và Dữ liệu không hợp lý",
+    option_d: "Dữ liệu cột và Dữ liệu tròn",
+    correct_option: "A",
+    explanation: "Dữ liệu thống kê phân thành 2 nhóm lớn: Định tính (chữ) và Định lượng (số).",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Phân loại dữ liệu thường được chia thành:",
-    option_a: "Dữ liệu định tính và dữ liệu định lượng",
-    option_b: "Dữ liệu lớn và dữ liệu nhỏ",
-    option_c: "Dữ liệu đúng và dữ liệu sai",
-    option_d: "Dữ liệu cũ và dữ liệu mới",
+    question: "Khi muốn biểu diễn tỉ lệ phần trăm các thành phần trong toàn thể 100%, ta nên ưu tiên chọn loại biểu đồ nào?",
+    option_a: "Biểu đồ hình quạt tròn",
+    option_b: "Biểu đồ cột đơn",
+    option_c: "Biểu đồ đoạn thẳng",
+    option_d: "Bảng số liệu thô",
     correct_option: "A",
-    explanation: "Dữ liệu được phân loại thành dữ liệu định tính (mô tả đặc điểm) và dữ liệu định lượng (con số)",
+    explanation: "Biểu đồ quạt tròn tối ưu nhất cho tỉ lệ %.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biểu đồ tranh dùng để:",
-    option_a: "Biểu diễn dữ liệu bằng các hình vẽ",
-    option_b: "So sánh các giá trị",
-    option_c: "Thể hiện tỉ lệ phần trăm",
-    option_d: "Cả A và B",
-    correct_option: "D",
-    explanation: "Biểu đồ tranh dùng các hình vẽ để biểu diễn dữ liệu và so sánh các giá trị",
+    question: "Khi muốn theo dõi diễn biến sự thay đổi của giá sản phẩm qua các tháng trong năm, ta nên chọn loại biểu đồ nào?",
+    option_a: "Biểu đồ đoạn thẳng",
+    option_b: "Biểu đồ hình quạt tròn",
+    option_c: "Biểu đồ cột đôi",
+    option_d: "Biểu đồ ô vuông",
+    correct_option: "A",
+    explanation: "Biểu đồ đoạn thẳng thể hiện xu hướng thay đổi qua thời gian.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biểu đồ cột được sử dụng để:",
-    option_a: "Biểu diễn sự thay đổi theo thời gian",
-    option_b: "So sánh các giá trị khác nhau",
-    option_c: "Thể hiện tỉ lệ phần trăm",
-    option_d: "Tất cả các đáp án trên",
-    correct_option: "B",
-    explanation: "Biểu đồ cột chủ yếu dùng để so sánh các giá trị khác nhau",
+    question: "Một biểu đồ hình quạt tròn có 4 phần. Góc ở tâm của 3 phần lần lượt là 90°, 108°, 72°. Góc ở tâm của phần thứ tư là:",
+    option_a: "$90°$",
+    option_b: "$80°$",
+    option_c: "$100°$",
+    option_d: "$60°$",
+    correct_option: "A",
+    explanation: "Tổng các góc ở tâm $= 360° \Rightarrow$ Góc thứ tư $= 360° - (90° + 108° + 72°) = 90°$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biểu đồ cột kép dùng để:",
-    option_a: "So sánh hai tập dữ liệu",
-    option_b: "Biểu diễn dữ liệu theo thời gian",
-    option_c: "Thể hiện tỉ lệ phần trăm",
-    option_d: "Tìm giá trị trung bình",
+    question: "Dãy dữ liệu nào sau đây CHỨA GIÁ TRỊ KHÔNG HỢP LÝ về chiều cao học sinh lớp 8 (m)?",
+    option_a: "1.52; 1.58; 3.20; 1.60",
+    option_b: "1.50; 1.55; 1.62; 1.58",
+    option_c: "1.48; 1.52; 1.65; 1.56",
+    option_d: "1.54; 1.61; 1.59; 1.57",
     correct_option: "A",
-    explanation: "Biểu đồ cột kép dùng để so sánh hai tập dữ liệu cùng một lúc",
+    explanation: "Giá trị `3.20` m không hợp lý đối với chiều cao người.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những công việc nào sau đây thuộc quy trình xử lý dữ liệu thống kê?",
+    option_a: "Thu thập dữ liệu",
+    option_b: "Phân loại dữ liệu và kiểm tra tính hợp lý",
+    option_c: "Biểu diễn dữ liệu bằng bảng, biểu đồ",
+    option_d: "Phân tích dữ liệu và rút ra kết luận",
+    correct_option: "A,B,C,D",
+    explanation: "Cả A, B, C, D tạo thành quy trình xử lý dữ liệu thống kê hoàn chỉnh.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho biểu đồ quạt tròn biểu diễn tỉ lệ học sinh thích các môn học. Môn Toán chiếm 30%. Tính số đo góc ở tâm tương ứng với môn Toán (độ).",
+    correct_option: "108",
+    explanation: "Góc ở tâm $= 30\\% \\cdot 360° = 0.3 \\cdot 360° = 108°$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biểu đồ đoạn thẳng dùng để:",
-    option_a: "So sánh các giá trị",
-    option_b: "Biểu diễn sự thay đổi theo thời gian",
-    option_c: "Thể hiện tỉ lệ phần trăm",
-    option_d: "Phân loại dữ liệu",
-    correct_option: "B",
-    explanation: "Biểu đồ đoạn thẳng dùng để biểu diễn sự thay đổi của dữ liệu theo thời gian",
+    question: "Biểu đồ cột kép thường được dùng để:",
+    option_a: "So sánh hai tập dữ liệu cùng loại của hai nhóm đối tượng",
+    option_b: "Biểu diễn cơ cấu tỉ lệ %",
+    option_c: "Thay thế biểu đồ đường",
+    option_d: "Tính diện tích hình tròn",
+    correct_option: "A",
+    explanation: "Biểu đồ cột kép dùng để so sánh song song 2 bộ số liệu.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Bảng tần số dùng để:",
-    option_a: "Liệt kê các giá trị và số lần xuất hiện",
-    option_b: "Tính giá trị trung bình",
-    option_c: "Vẽ biểu đồ",
-    option_d: "Tìm giá trị lớn nhất",
-    correct_option: "A",
-    explanation: "Bảng tần số liệt kê các giá trị và số lần xuất hiện (tần số) của mỗi giá trị",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tần số tương đối được tính bằng:",
-    option_a: "Tần số ÷ Tổng số dữ liệu",
-    option_b: "Tần số × Tổng số dữ liệu",
-    option_c: "Tần số + Tổng số dữ liệu",
-    option_d: "Tần số - Tổng số dữ liệu",
-    correct_option: "A",
-    explanation: "Tần số tương đối = Tần số ÷ Tổng số dữ liệu (thường được biểu diễn dưới dạng phần trăm)",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Giá trị trung bình (mean) được tính bằng:",
-    option_a: "Tổng tất cả giá trị ÷ Số lượng giá trị",
-    option_b: "Giá trị lớn nhất + Giá trị nhỏ nhất",
-    option_c: "Giá trị xuất hiện nhiều nhất",
-    option_d: "Giá trị ở giữa khi sắp xếp theo thứ tự",
-    correct_option: "A",
-    explanation: "Giá trị trung bình = (Tổng tất cả giá trị) ÷ (Số lượng giá trị)",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trung vị (median) là:",
-    option_a: "Giá trị xuất hiện nhiều nhất",
-    option_b: "Giá trị ở giữa khi sắp xếp theo thứ tự",
-    option_c: "Giá trị trung bình cộng",
+    question: "Mốt (Mode) của dãy dữ liệu là gì?",
+    option_a: "Giá trị xuất hiện với tần số nhiều nhất trong dãy số liệu",
+    option_b: "Giá trị trung bình cộng",
+    option_c: "Giá trị nằm chính giữa",
     option_d: "Hiệu giữa giá trị lớn nhất và nhỏ nhất",
-    correct_option: "B",
-    explanation: "Trung vị là giá trị ở giữa khi sắp xếp dữ liệu theo thứ tự tăng hoặc giảm",
-    difficulty_level: "hard",
+    correct_option: "A",
+    explanation: "Định nghĩa mốt của dãy số liệu.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về dữ liệu:",
-    option_a: "Dữ liệu định tính mô tả đặc điểm, không phải con số",
-    option_b: "Dữ liệu định lượng là các con số có thể so sánh",
-    option_c: "Tất cả dữ liệu đều phải là con số",
-    option_d: "Dữ liệu cần được phân loại trước khi phân tích",
-    correct_option: "A,B,D",
-    explanation: "A, B, D đúng. C sai: dữ liệu định tính không phải là con số.",
+    type: "mcq",
+    question: "Tỉ lệ tăng trưởng phần trăm (%) được tính bằng:",
+    option_a: "$\\dfrac{\\text{Số sau} - \\text{Số trước}}{\\text{Số trước}} \\cdot 100\\%$",
+    option_b: "$\\dfrac{\\text{Số trước} - \\text{Số sau}}{\\text{Số sau}} \\cdot 100\\%$",
+    option_c: "$\\dfrac{\\text{Số sau}}{\\text{Số trước}} \\cdot 100\\%$",
+    option_d: "$\\dfrac{\\text{Số trước}}{\\text{Số sau}} \\cdot 100\\%$",
+    correct_option: "A",
+    explanation: "Công thức tính tốc độ/tỉ lệ tăng trưởng %.",
     difficulty_level: "medium",
-    is_dynamic: false
-  },
-  {
-    type: "msq", 
-    question: "Xét tính đúng sai của các khẳng định sau về biểu đồ:",
-    option_a: "Biểu đồ tranh dùng hình vẽ để biểu diễn dữ liệu",
-    option_b: "Biểu đồ cột dùng để so sánh các giá trị",
-    option_c: "Biểu đồ đoạn thẳng biểu diễn sự thay đổi theo thời gian",
-    option_d: "Biểu đồ cột kép chỉ dùng để so sánh hai giá trị",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng. D sai: biểu đồ cột kép dùng để so sánh hai tập dữ liệu, không chỉ hai giá trị.",
-    difficulty_level: "medium",
-    is_dynamic: false
-  },
-  {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về bảng tần số:",
-    option_a: "Bảng tần số liệt kê các giá trị và số lần xuất hiện",
-    option_b: "Tần số tương đối = Tần số ÷ Tổng số dữ liệu",
-    option_c: "Tổng tất cả tần số tương đối bằng 1 (hoặc 100%)",
-    option_d: "Bảng tần số không cần sắp xếp theo thứ tự",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng. D sai: bảng tần số thường được sắp xếp theo thứ tự để dễ đọc.",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },
-  {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về các đại lượng thống kê:",
-    option_a: "Giá trị trung bình = Tổng ÷ Số lượng",
-    option_b: "Trung vị là giá trị ở giữa khi sắp xếp theo thứ tự",
-    option_c: "Mốt là giá trị xuất hiện nhiều nhất",
-    option_d: "Giá trị trung bình luôn bằng trung vị",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng. D sai: giá trị trung bình và trung vị có thể khác nhau.",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },
-  {
-    type: "sa",
-    question: "Một lớp học có 40 học sinh. Điểm kiểm tra của các em được ghi lại: 8 em được 8 điểm, 12 em được 7 điểm, 15 em được 6 điểm, 5 em được 5 điểm. Tính điểm trung bình của lớp.",
-    correct_option: "6.6",
-    explanation: "Điểm trung bình = $\\frac{8 \\times 8 + 12 \\times 7 + 15 \\times 6 + 5 \\times 5}{40} = \\frac{64 + 84 + 90 + 25}{40} = \\frac{263}{40} = 6.575 ≈ 6.6$ điểm",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },
-  {
-    type: "sa",
-    question: "Một cửa hàng bán được: 15 chiếc áo giá 120.000đ, 20 chiếc áo giá 150.000đ, 10 chiếc áo giá 180.000đ. Tính giá trung bình một chiếc áo.",
-    correct_option: "147.0",
-    explanation: "Giá trung bình = $\\frac{15 \\times 120 + 20 \\times 150 + 10 \\times 180}{15 + 20 + 10} = \\frac{1800 + 3000 + 1800}{45} = \\frac{6600}{45} = 146.67 ≈ 147$ nghìn đ",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },{
-    type: "sa",
-    question: "Một cửa hàng bán quần áo trong 5 ngày với doanh thu lần lượt là: 2.5 triệu, 3.2 triệu, 2.8 triệu, 3.5 triệu, 2.9 triệu đồng. Tính doanh thu trung bình mỗi ngày.",
-    correct_answer: "2.98",
-    explanation: "Doanh thu trung bình = $\\frac{2.5 + 3.2 + 2.8 + 3.5 + 2.9}{5} = \\frac{14.9}{5} = 2.98$ triệu đồng",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },
-  {
-    type: "sa",
-    question: "Trong một cuộc khảo sát 30 học sinh về số sách đã đọc trong tháng, kết quả như sau: 5 em đọc 2 cuốn, 10 em đọc 3 cuốn, 8 em đọc 4 cuốn, 7 em đọc 5 cuốn. Tính số sách trung bình mỗi học sinh đã đọc.",
-    correct_answer: "3.67",
-    explanation: "Số sách trung bình = $\\frac{5\\times2 + 10\\times3 + 8\\times4 + 7\\times5}{30} = \\frac{10 + 30 + 32 + 35}{30} = \\frac{107}{30} ≈ 3.57$ cuốn",
-    difficulty_level: "hard",
-    is_dynamic: false
+    is_dynamic: false,
   }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Ôn tập chương 5 — Dữ liệu và biểu đồ</h3>
+### 🎯 Ôn tập hệ thống kiến thức Chương 5
 
-Chương 5 dạy chúng ta cách thu thập, phân loại và biểu diễn dữ liệu một cách hiệu quả!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
-    <strong>Dữ liệu</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thu thập và phân loại</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
-    <strong>Biểu đồ</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tranh, cột, đoạn thẳng</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
-    <strong>Thống kê</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Trung bình, trung vị, mốt</p>
-  </div>
-</div>
+Chương 5 hoàn thiện năng lực xử lý dữ liệu thống kê từ A đến Z: **Thu thập $\rightarrow$ Phân loại $\rightarrow$ Kiểm tra tính hợp lý $\rightarrow$ Biểu diễn bằng Bảng/Biểu đồ $\rightarrow$ Phân tích rút ra bài học**. Hãy cùng ôn tập hệ thống hóa toàn bộ kiến thức nhé!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+### 📐 Sơ đồ tư duy & Các dạng toán trọng tâm
 
-<h4 id="du-lieu">1. Dữ liệu</h4>
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="600" height="320" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+  <rect x="200" y="10" width="200" height="40" rx="8" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="300" y="35" text-anchor="middle" font-size="15" font-weight="bold" fill="white">QUY TRÌNH XỬ LÝ DỮ LIỆU</text>
 
-<div class="box-dinh-nghia">
+  <line x1="300" y1="50" x2="90" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="230" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="370" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="510" y2="100" stroke="#475569" stroke-width="2"/>
 
-**Định nghĩa:** Dữ liệu là các thông tin, con số được thu thập từ các cuộc khảo sát, thí nghiệm hoặc quan sát.
+  <rect x="20" y="100" width="130" height="180" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="85" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">1. THU THẬP</text>
+  <text x="30" y="155" font-size="12" fill="#1e3a8a">• Trực tiếp:</text>
+  <text x="30" y="175" font-size="11" fill="#1e3a8a">Hỏi, đo, đếm</text>
+  <text x="30" y="205" font-size="12" fill="#1e3a8a">• Gián tiếp:</text>
+  <text x="30" y="225" font-size="11" fill="#1e3a8a">Sách, mạng</text>
 
-**Phân loại:**
-- **Dữ liệu định tính:** Mô tả đặc điểm, không phải con số (ví dụ: màu sắc, giới tính)
-- **Dữ liệu định lượng:** Là các con số có thể so sánh (ví dụ: chiều cao, cân nặng)
+  <rect x="160" y="100" width="130" height="180" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="225" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">2. PHÂN LOẠI</text>
+  <text x="170" y="155" font-size="12" fill="#14532d">• Định tính:</text>
+  <text x="170" y="175" font-size="11" fill="#14532d">Có/không thứ tự</text>
+  <text x="170" y="205" font-size="12" fill="#14532d">• Định lượng:</text>
+  <text x="170" y="225" font-size="11" fill="#14532d">Rời rạc/Liên tục</text>
 
+  <rect x="300" y="100" width="140" height="180" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="370" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">3. BIỂU DIỄN</text>
+  <text x="310" y="155" font-size="12" fill="#78350f">• Bảng thống kê</text>
+  <text x="310" y="180" font-size="12" fill="#78350f">• Biểu đồ cột</text>
+  <text x="310" y="205" font-size="12" fill="#78350f">• Biểu đồ quạt</text>
+  <text x="310" y="230" font-size="12" fill="#78350f">• Đoạn thẳng</text>
+
+  <rect x="450" y="100" width="130" height="180" rx="8" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+  <text x="515" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#9d174d">4. PHÂN TÍCH</text>
+  <text x="460" y="155" font-size="12" fill="#831843">• Tìm Min/Max</text>
+  <text x="460" y="180" font-size="12" fill="#831843">• So sánh tỉ lệ</text>
+  <text x="460" y="205" font-size="12" fill="#831843">• Tìm xu hướng</text>
+  <text x="460" y="230" font-size="12" fill="#831843">• Kết luận</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Sơ đồ tư duy toàn bộ Chương 5: Dữ liệu và Biểu diễn dữ liệu</em></p>
 </div>
 
-**Quy trình xử lý dữ liệu:**
-1. Thu thập dữ liệu
-2. Phân loại dữ liệu
-3. Tổ chức dữ liệu (bảng tần số)
-4. Biểu diễn dữ liệu (biểu đồ)
-5. Phân tích dữ liệu
+---
 
-<h4 id="bang-tan-so">2. Bảng tần số</h4>
+#### 1. Bảng tóm tắt các tiêu chí lựa chọn biểu đồ
 
-<div class="box-dinh-nghia">
-
-**Tần số:** Số lần xuất hiện của một giá trị trong dữ liệu.
-
-**Bảng tần số:** Bảng liệt kê các giá trị và tần số của chúng.
-
-**Tần số tương đối:** 
-$$\text{Tần số tương đối} = \frac{\text{Tần số}}{\text{Tổng số dữ liệu}}$$
-
-</div>
-
-**Tính chất:** Tổng tất cả tần số tương đối bằng 1 (hoặc 100%)
-
-<h4 id="bieu-do">3. Các loại biểu đồ</h4>
-
-**Biểu đồ tranh:** Dùng hình vẽ để biểu diễn dữ liệu, dễ hiểu và trực quan.
-
-**Biểu đồ cột:** Dùng các cột để so sánh các giá trị khác nhau.
-
-**Biểu đồ cột kép:** Dùng để so sánh hai tập dữ liệu cùng một lúc.
-
-**Biểu đồ đoạn thẳng:** Dùng để biểu diễn sự thay đổi của dữ liệu theo thời gian.
-
-**Biểu đồ hình quạt tròn:** Dùng để thể hiện tỉ lệ phần trăm của các phần trong tổng thể.
-
-<h4 id="dai-luong-thong-ke">4. Các đại lượng thống kê</h4>
-
-**Giá trị trung bình (Mean):**
-$$\bar{x} = \frac{x_1 + x_2 + ... + x_n}{n}$$
-
-**Trung vị (Median):** Giá trị ở giữa khi sắp xếp dữ liệu theo thứ tự.
-
-**Mốt (Mode):** Giá trị xuất hiện nhiều nhất trong dữ liệu.
-
-**Khoảng biến thiên (Range):** Hiệu giữa giá trị lớn nhất và nhỏ nhất.
+| Mục đích biểu diễn | Dạng biểu đồ khuyến nghị | Công thức quan trọng |
+| :--- | :--- | :--- |
+| **So sánh số lượng** | Biểu đồ cột (đơn / kép) | Độ cao cột tỉ lệ thuận với giá trị |
+| **Tỉ lệ phần trăm (%)** | Biểu đồ hình quạt tròn | Góc ở tâm $\alpha = x\% \cdot 360^\circ$ |
+| **Xu hướng theo thời gian** | Biểu đồ đoạn thẳng | Tăng trưởng $\% = \dfrac{B - A}{A} \cdot 100\%$ |
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Thử thách tổng hợp Ôn tập Chương 5</h3>
+
+<OnTapChuong5Interactive client:load />
+
+</LuyenTap>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Lập kế hoạch phát triển kinh doanh cửa hàng thời trang):** Chủ một cửa hàng thời trang thu thập dữ liệu doanh thu 4 quý năm 2023: Q1 (200 triệu), Q2 (250 triệu), Q3 (220 triệu), Q4 (330 triệu).
+
+a) Vẽ sơ lược xu hướng doanh thu và tính tổng doanh thu cả năm.  
+b) Tính tốc độ tăng trưởng doanh thu Q4 so với Q1.  
+c) Đưa ra nhận xét và định hướng kinh doanh cho năm 2024.
+
+**Lời giải:**  
+a) Tổng doanh thu $= 200 + 250 + 220 + 330 = 1000$ triệu đồng ($1$ tỉ đồng).  
+b) Tốc độ tăng trưởng Q4 so với Q1 $= \dfrac{330 - 200}{200} \cdot 100\% = 65\%$.  
+c) Nhận xét: Q4 có doanh thu bùng nổ mạnh nhất (do mùa lễ hội/Tết). Định hướng: Tập trung nhập nguồn hàng phong phú và đẩy mạnh marketing từ quý 3 chuẩn bị cho quý 4 năm 2024.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
-
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
-
-<h4 id="bai-1">Bài 1: Thu thập và phân loại dữ liệu</h4>
-
-a) Liệt kê 5 ví dụ về dữ liệu định tính
-
-b) Liệt kê 5 ví dụ về dữ liệu định lượng
-
-c) Phân loại các dữ liệu sau: chiều cao, màu sắc, cân nặng, giới tính, điểm số
-
-d) Thiết kế một bảng khảo sát để thu thập dữ liệu về sở thích của học sinh
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Dữ liệu định tính: màu sắc, giới tính, quốc tịch, nghề nghiệp, sở thích
-
-b) Dữ liệu định lượng: chiều cao, cân nặng, tuổi, điểm số, thu nhập
-
-c) Định tính: màu sắc, giới tính. Định lượng: chiều cao, cân nặng, điểm số
-
-d) Bảng khảo sát gồm: tên, tuổi, sở thích (thể thao, âm nhạc, đọc sách, v.v.)
-
-</div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Bảng tần số</h4>
-
-a) Lập bảng tần số cho dữ liệu: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5
-
-b) Tính tần số tương đối của mỗi giá trị
-
-c) Tính tổng tần số tương đối
-
-d) Vẽ biểu đồ cột từ bảng tần số trên
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Bảng tần số:
-| Giá trị | 1 | 2 | 3 | 4 | 5 |
-|--------|---|---|---|---|---|
-| Tần số | 1 | 2 | 3 | 4 | 1 |
-
-b) Tần số tương đối: 1/11, 2/11, 3/11, 4/11, 1/11
-
-c) Tổng = 1/11 + 2/11 + 3/11 + 4/11 + 1/11 = 11/11 = 1
-
-d) Vẽ biểu đồ cột với trục x là giá trị, trục y là tần số
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Các đại lượng thống kê</h4>
-
-a) Tính giá trị trung bình của dữ liệu: 5, 7, 8, 9, 6
-
-b) Tìm trung vị của dữ liệu: 3, 1, 4, 1, 5, 9, 2, 6
-
-c) Tìm mốt của dữ liệu: 2, 3, 3, 4, 4, 4, 5, 5, 6
-
-d) Tính khoảng biến thiên của dữ liệu: 10, 15, 20, 25, 30
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Trung bình = (5 + 7 + 8 + 9 + 6)/5 = 35/5 = 7
-
-b) Sắp xếp: 1, 1, 2, 3, 4, 5, 6, 9. Trung vị = (3 + 4)/2 = 3.5
-
-c) Mốt = 4 (xuất hiện 3 lần)
-
-d) Khoảng biến thiên = 30 - 10 = 20
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Biểu đồ</h4>
-
-a) Vẽ biểu đồ tranh cho dữ liệu: A: 10, B: 15, C: 20, D: 25
-
-b) Vẽ biểu đồ cột cho dữ liệu trên
-
-c) Vẽ biểu đồ đoạn thẳng cho dữ liệu theo thời gian: tháng 1: 100, tháng 2: 150, tháng 3: 120, tháng 4: 180
-
-d) Vẽ biểu đồ hình quạt tròn cho dữ liệu: A: 30%, B: 25%, C: 20%, D: 25%
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Biểu đồ tranh: Dùng hình vẽ để biểu diễn, mỗi hình = 5 đơn vị
-
-b) Biểu đồ cột: Trục x là A, B, C, D; trục y là giá trị
-
-c) Biểu đồ đoạn thẳng: Trục x là tháng, trục y là giá trị, nối các điểm
-
-d) Biểu đồ hình quạt: Chia hình tròn theo tỉ lệ phần trăm
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Bài toán tổng hợp</h4>
-
-a) Một lớp có 40 học sinh. Điểm kiểm tra: 8 em được 8 điểm, 12 em được 7 điểm, 15 em được 6 điểm, 5 em được 5 điểm. Tính điểm trung bình
-
-b) Lập bảng tần số tương đối cho dữ liệu trên
-
-c) Vẽ biểu đồ cột cho dữ liệu trên
-
-d) Tìm mốt và trung vị của dữ liệu
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Trung bình = (8×8 + 12×7 + 15×6 + 5×5)/40 = (64 + 84 + 90 + 25)/40 = 263/40 = 6.575
-
-b) Tần số tương đối: 8/40 = 0.2, 12/40 = 0.3, 15/40 = 0.375, 5/40 = 0.125
-
-c) Vẽ biểu đồ cột với điểm trên trục x, tần số trên trục y
-
-d) Mốt = 6 (15 em). Trung vị = 6 (giá trị ở giữa)
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Bài toán thực tế</h4>
-
-a) Một cửa hàng bán quần áo trong 5 ngày với doanh thu: 2.5, 3.2, 2.8, 3.5, 2.9 triệu đồng. Tính doanh thu trung bình
-
-b) Tính khoảng biến thiên của doanh thu
-
-c) Tìm ngày có doanh thu cao nhất và thấp nhất
-
-d) Vẽ biểu đồ đoạn thẳng cho dữ liệu trên
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Trung bình = (2.5 + 3.2 + 2.8 + 3.5 + 2.9)/5 = 14.9/5 = 2.98 triệu đồng
-
-b) Khoảng biến thiên = 3.5 - 2.5 = 1 triệu đồng
-
-c) Cao nhất: ngày 4 (3.5 triệu). Thấp nhất: ngày 1 (2.5 triệu)
-
-d) Vẽ biểu đồ đoạn thẳng với ngày trên trục x, doanh thu trên trục y
-
-</div>
-</details>
-
----
-
-<h4 id="bai-7">Bài 7: Bài toán nâng cao (Câu lớn)</h4>
-
-Một trường học khảo sát chiều cao của 50 học sinh lớp 8 với kết quả (cm):
-150, 152, 155, 155, 155, 158, 160, 160, 160, 160, 162, 162, 162, 162, 162, 165, 165, 165, 165, 165, 165, 168, 168, 168, 168, 168, 168, 168, 170, 170, 170, 170, 170, 170, 172, 172, 172, 172, 175, 175, 175, 175, 175, 178, 178, 178, 180, 180, 182, 185
-
-a) Lập bảng tần số cho dữ liệu
-
-b) Tính chiều cao trung bình
-
-c) Tìm mốt và trung vị
-
-d) Tính khoảng biến thiên
-
-e) Vẽ biểu đồ cột cho dữ liệu
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Bảng tần số: 150(1), 152(1), 155(3), 158(1), 160(4), 162(5), 165(6), 168(7), 170(6), 172(4), 175(5), 178(3), 180(2), 182(1), 185(1)
-
-b) Trung bình = (150 + 152 + 155×3 + ... + 185)/50 ≈ 167.6 cm
-
-c) Mốt = 168 cm (7 lần). Trung vị = 168 cm
-
-d) Khoảng biến thiên = 185 - 150 = 35 cm
-
-e) Vẽ biểu đồ cột với chiều cao trên trục x, tần số trên trục y
-
-</div>
-</details>
-
----
-
-<h4 id="bai-8">Bài 8: Bài toán nâng cao (Câu lớn)</h4>
-
-Một công ty điều tra mức lương của 100 nhân viên với kết quả:
-- 10 người: 5 triệu
-- 20 người: 7 triệu
-- 30 người: 10 triệu
-- 25 người: 12 triệu
-- 15 người: 15 triệu
-
-a) Lập bảng tần số tương đối
-
-b) Tính mức lương trung bình
-
-c) Tìm mốt của mức lương
-
-d) Vẽ biểu đồ hình quạt tròn
-
-e) Tính tỉ lệ nhân viên có mức lương từ 10 triệu trở lên
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Tần số tương đối: 10%, 20%, 30%, 25%, 15%
-
-b) Trung bình = (5×10 + 7×20 + 10×30 + 12×25 + 15×15)/100 = 1010/100 = 10.1 triệu
-
-c) Mốt = 10 triệu (30 người)
-
-d) Vẽ biểu đồ hình quạt với các góc: 36°, 72°, 108°, 90°, 54°
-
-e) Tỉ lệ = (30 + 25 + 15)/100 = 70%
-
-</div>
-</details>
-
-</VanDung>
-
 <GhiNho>
 
-<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
-
-- **Dữ liệu định tính:** Mô tả đặc điểm, không phải con số
-- **Dữ liệu định lượng:** Là các con số có thể so sánh
-- **Tần số:** Số lần xuất hiện của một giá trị
-- **Tần số tương đối:** Tần số ÷ Tổng số dữ liệu
-- **Giá trị trung bình:** Tổng ÷ Số lượng
-- **Trung vị:** Giá trị ở giữa khi sắp xếp theo thứ tự
-- **Mốt:** Giá trị xuất hiện nhiều nhất
-- **Khoảng biến thiên:** Giá trị lớn nhất - Giá trị nhỏ nhất
+- Thành thạo 4 bước: Thu thập $\rightarrow$ Phân loại $\rightarrow$ Biểu diễn $\rightarrow$ Phân tích.
+- Thuần thục chuyển đổi giữa tỉ lệ % và góc ở tâm hình quạt tròn ($\alpha = x\% \cdot 360^\circ$).
 
 </GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ — Phân loại dữ liệu tổng hợp):** Hãy phân loại các dữ liệu thu được sau:
+
+a) Thương hiệu máy tính yêu thích của 40 học sinh.  
+b) Số tiền chi tiêu hàng ngày của học sinh (nghìn đồng).  
+c) Xếp loại đạo đức cuối năm (Tốt, Khá, Đạt, Chưa đạt).  
+d) Nhiệt độ trung bình các tháng tại Hà Nội.  
+e) Tốc độ chạy 100m của các vận động viên (giây).  
+f) Nơi sinh của các thành viên trong câu lạc bộ.
+
+**Bài 2 (Dễ — Kiểm tra tính hợp lý):** Chỉ ra các điểm không hợp lý trong các dãy dữ liệu:
+
+a) Số lượng con trong gia đình: `2; 3; 1; -1; 4`.  
+b) Điểm thi học kỳ: `8; 9; 10; 12; 7.5`.  
+c) Tỉ lệ phần trăm các thành phần trong biểu đồ quạt: `40%; 30%; 20%; 20%`.  
+d) Năm sinh của học sinh lớp 8: `2010; 2011; 2010; 2025`.  
+e) Kích thước chiều cao học sinh (cm): `155; 160; 15.5; 158`.  
+f) Trình độ ngoại ngữ: `A1; A2; B1; 100; B2`.
+
+**Bài 3 (Trung bình — Chuyển đổi tỉ lệ % và số đo góc ở tâm):**
+
+a) Tính góc ở tâm cho tỉ lệ $15\%$.  
+b) Tính góc ở tâm cho tỉ lệ $30\%$.  
+c) Tính góc ở tâm cho tỉ lệ $45\%$.  
+d) Một góc ở tâm $126^\circ$ tương ứng tỉ lệ bao nhiêu %?  
+e) Một góc ở tâm $162^\circ$ tương ứng tỉ lệ bao nhiêu %?  
+f) Một góc ở tâm $18^\circ$ tương ứng tỉ lệ bao nhiêu %?
+
+**Bài 4 (Trung bình — Biểu diễn bằng bảng và tính tỉ lệ):** Cho số liệu điểm tổng kết môn Toán của 40 học sinh lớp 8A: Điểm 9-10 (10 bạn), Điểm 7-8 (18 bạn), Điểm 5-6 (10 bạn), Dưới 5 (2 bạn).
+
+a) Lập bảng thống kê số lượng và tỉ lệ phần trăm từng loại điểm.  
+b) Tính số đo góc ở tâm tương ứng để vẽ biểu đồ quạt tròn.
+
+**Bài 5 (Trung bình — Phân tích xu hướng từ biểu đồ đoạn thẳng):** Doanh số bán xe máy điện qua các tháng: Th1 (50 xe), Th2 (60 xe), Th3 (80 xe), Th4 (100 xe), Th5 (120 xe), Th6 (150 xe).
+
+a) Nhận xét về xu hướng tiêu thụ xe máy điện.  
+b) Tính số xe bán được trung bình mỗi tháng.  
+c) Tính tỉ lệ tăng trưởng doanh số tháng 6 so với tháng 1 (%).
+
+**Bài 6 (Khá — So sánh từ biểu đồ cột kép):** Biểu đồ cột kép thể hiện sản lượng lúa (triệu tấn) của hai vùng A và B: 2021 (Vùng A: 12, Vùng B: 15), 2022 (Vùng A: 14, Vùng B: 16), 2023 (Vùng A: 15, Vùng B: 18).
+
+a) Tính tổng sản lượng lúa của cả hai vùng qua 3 năm.  
+b) So sánh tốc độ tăng trưởng sản lượng của Vùng A và Vùng B từ 2021 đến 2023.
+
+**Bài 7 (Khá — Phát hiện giá trị nhiễu và xử lý dữ liệu):** Dãy số liệu thời gian đi từ nhà đến trường của một học sinh trong 10 ngày (phút): `15; 14; 16; 15; 120; 15; 14; 16; 15; 14`.
+
+a) Phát hiện giá trị bất thường và nêu lý do thực tế có thể xảy ra (ví dụ xe hỏng, tắc đường nghiêm trọng).  
+b) Tính thời gian đi học trung bình có gồm và không gồm giá trị bất thường.
+
+**Bài 8 (Khá - Nâng cao — Đánh giá tính đại diện của mẫu):** Một công ty nghiên cứu thị trường muốn đánh giá nhu cầu mua điện thoại di động giá rẻ dưới 5 triệu đồng. Họ tiến hành phát phiếu hỏi tại cửa hàng điện thoại đắt tiền cao cấp tại trung tâm thành phố. Đánh giá tính đại diện của mẫu thu thập và đề xuất cải tiến.
+
+**Bài 9 (Ứng dụng thực tế 1 — Phân tích cơ cấu nguồn thu ngân sách):** Cơ cấu thu ngân sách một địa phương: Thu từ thuế/phí (60%), Thu từ đất đai (25%), Thu khác (15%). Tính góc ở tâm để vẽ biểu đồ quạt tròn minh họa cho báo cáo HĐND.
+
+**Bài 10 (Ứng dụng thực tế 2 — Tối ưu hóa kế hoạch sản xuất nông nghiệp):** Năng suất lúa vụ Đông Xuân các năm (tạ/ha): 2020 (60), 2021 (62), 2022 (65), 2023 (68).
+
+a) Tính năng suất trung bình và tốc độ tăng trưởng năng suất qua các năm.  
+b) Dự báo năng suất lúa năm 2024 nếu tốc độ tăng trưởng được duy trì.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) Định tính không thứ tự.
+b) Định lượng rời rạc.
+c) Định tính có thứ tự.
+d) Định lượng liên tục.
+e) Định lượng liên tục.
+f) Định tính không thứ tự.
+
+**Bài 2:**
+a) `-1` không hợp lý.
+b) `12` không hợp lý.
+c) Tổng $= 110\% \neq 100\%$ (không hợp lý).
+d) `2025` không hợp lý.
+e) `15.5` cm quá nhỏ so với học sinh lớp 8.
+f) `100` không hợp lý.
+
+**Bài 3:**
+a) $54^\circ$.
+b) $108^\circ$.
+c) $162^\circ$.
+d) $35\%$.
+e) $45\%$.
+f) $5\%$.
+
+**Bài 4:**
+a) Điểm 9-10: $25\%$; 7-8: $45\%$; 5-6: $25\%$; Dưới 5: $5\%$.
+b) Góc tương ứng: $90^\circ; 162^\circ; 90^\circ; 18^\circ$.
+
+**Bài 5:**
+a) Xu hướng tăng liên tục qua các tháng.
+b) Trung bình $= (50 + 60 + 80 + 100 + 120 + 150) : 6 = 93.33$ xe/tháng.
+c) $\% = \dfrac{150 - 50}{50} \cdot 100\% = 200\%$.
+
+**Bài 6:**
+a) Tổng Vùng A $= 41$ triệu tấn. Tổng Vùng B $= 49$ triệu tấn. Tổng cả 2 vùng $= 90$ triệu tấn.
+b) Vùng A tăng $\dfrac{15-12}{12} = 25\%$. Vùng B tăng $\dfrac{18-15}{15} = 20\%$. Vùng A tăng nhanh hơn.
+
+**Bài 7:**
+a) Giá trị `120` bất thường (tắc đường/xe hỏng).
+b) Gồm 120: $25.9$ phút. Loại 120: $14.89$ phút (chuẩn hơn).
+
+**Bài 8:**
+Mẫu không có tính đại diện vì khách mua ở cửa hàng cao cấp thường có thu nhập cao, ít nhu cầu mua máy dưới 5 triệu. Nên khảo sát ngẫu nhiên ở các trường học, khu công nghiệp và đại lý phổ thông.
+
+**Bài 9:**
+Thuế/phí: $216^\circ$; Đất đai: $90^\circ$; Khác: $54^\circ$.
+
+**Bài 10:**
+a) Năng suất trung bình $= 63.75$ tạ/ha. Tăng đều khoảng $2 - 3$ tạ/ha mỗi năm.
+b) Dự báo 2024 năng suất khoảng $70 - 71$ tạ/ha.
+
+</div>
+</details>

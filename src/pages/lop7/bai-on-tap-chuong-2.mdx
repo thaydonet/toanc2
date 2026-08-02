@@ -12,6 +12,7 @@ import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
+import OnTapChuong2Interactive from '../../components/interactive/OnTapChuong2Interactive';
 import QuizSession from '../../components/ui/QuizSession';
 
 export const quizData = [
@@ -23,19 +24,7 @@ export const quizData = [
     option_c: "Là số nguyên",
     option_d: "Là số tự nhiên",
     correct_option: "A",
-    explanation: "Số vô tỉ là số không thể viết dưới dạng phân số $\\frac{a}{b}$",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Số nào là số vô tỉ?",
-    option_a: "$\\sqrt{2}$",
-    option_b: "$\\frac{1}{2}$",
-    option_c: "$3$",
-    option_d: "$0.5$",
-    correct_option: "A",
-    explanation: "$\\sqrt{2} \\approx 1.414...$ là số thập phân vô hạn không tuần hoàn",
+    explanation: "Số vô tỉ là số không thể viết được dưới dạng phân số $\\frac{a}{b}$, tức là số thập phân vô hạn không tuần hoàn.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
@@ -45,34 +34,22 @@ export const quizData = [
     option_a: "$3$",
     option_b: "$-3$",
     option_c: "$\\pm 3$",
-    option_d: "$4.5$",
+    option_d: "$4,\\!5$",
     correct_option: "A",
-    explanation: "$\\sqrt{9} = 3$ (căn bậc hai số học của 9)",
+    explanation: "$\\sqrt{9} = 3$ (căn bậc hai số học của 9, luôn lấy giá trị không âm).",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Giá trị của $\\sqrt{16}$ là:",
-    option_a: "$4$",
-    option_b: "$8$",
-    option_c: "$2$",
-    option_d: "$-4$",
+    question: "Số thập phân $0,\\!333...$ (chữ số 3 lặp lại) bằng:",
+    option_a: "$\\dfrac{1}{3}$",
+    option_b: "$\\dfrac{1}{2}$",
+    option_c: "$\\dfrac{3}{10}$",
+    option_d: "$\\dfrac{1}{4}$",
     correct_option: "A",
-    explanation: "$\\sqrt{16} = 4$ vì $4^2 = 16$",
+    explanation: "$0,\\!333... = 0,\\overline{3} = \\dfrac{1}{3}$ là số thập phân vô hạn tuần hoàn.",
     difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Số thập phân $0.333...$ (3 lặp lại) bằng:",
-    option_a: "$\\frac{1}{3}$",
-    option_b: "$\\frac{1}{2}$",
-    option_c: "$\\frac{3}{10}$",
-    option_d: "$\\frac{1}{4}$",
-    correct_option: "A",
-    explanation: "$0.333... = \\frac{1}{3}$ là số thập phân vô hạn tuần hoàn",
-    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
@@ -83,31 +60,19 @@ export const quizData = [
     option_c: "Chỉ số vô tỉ",
     option_d: "Chỉ số nguyên",
     correct_option: "A",
-    explanation: "$\\mathbb{R} = \\mathbb{Q} \\cup \\{\\text{số vô tỉ}\\}$",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Số nào là số thực?",
-    option_a: "Tất cả các đáp án trên",
-    option_b: "$\\sqrt{2}$",
-    option_c: "$\\frac{1}{2}$",
-    option_d: "$-3$",
-    correct_option: "A",
-    explanation: "Tất cả các số hữu tỉ và số vô tỉ đều là số thực",
+    explanation: "Tập hợp số thực $\\mathbb{R} = \\mathbb{Q} \\cup$ (tập hợp số vô tỉ).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
     question: "Giá trị gần đúng của $\\sqrt{2}$ là:",
-    option_a: "$1.414...$",
-    option_b: "$1.5$",
-    option_c: "$1.2$",
+    option_a: "$1,\\!414...$",
+    option_b: "$1,\\!5$",
+    option_c: "$1,\\!2$",
     option_d: "$2$",
     correct_option: "A",
-    explanation: "$\\sqrt{2} \\approx 1.414$ (chính xác đến 3 chữ số thập phân)",
+    explanation: "$\\sqrt{2} \\approx 1,\\!41421356...$ (vô hạn không tuần hoàn).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -119,7 +84,7 @@ export const quizData = [
     option_c: "Số nguyên",
     option_d: "Số tự nhiên",
     correct_option: "A",
-    explanation: "$\\pi \\approx 3.14159...$ là số thập phân vô hạn không tuần hoàn",
+    explanation: "$\\pi \\approx 3,\\!14159...$ là số thập phân vô hạn không tuần hoàn nên là số vô tỉ.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -131,12 +96,47 @@ export const quizData = [
     option_c: "$\\mathbb{Q} \\subset \\mathbb{Z} \\subset \\mathbb{N} \\subset \\mathbb{R}$",
     option_d: "$\\mathbb{R} \\subset \\mathbb{Q} \\subset \\mathbb{Z} \\subset \\mathbb{N}$",
     correct_option: "A",
-    explanation: "Quan hệ bao hàm: $\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$",
+    explanation: "Mọi số tự nhiên là số nguyên, mọi số nguyên là số hữu tỉ, mọi số hữu tỉ là số thực: $\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "msq",
+    question: "Những số nào sau đây là số vô tỉ?",
+    option_a: "$\\sqrt{2}$",
+    option_b: "$\\dfrac{1}{2}$",
+    option_c: "$\\sqrt{9}$",
+    option_d: "$\\pi$",
+    correct_option: "A,D",
+    explanation: "$\\sqrt{2}$ và $\\pi$ là số vô tỉ. Còn $\\dfrac{1}{2}$ là phân số và $\\sqrt{9} = 3$ là số nguyên — đều là số hữu tỉ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào sau đây là số thực?",
+    option_a: "$-3$",
+    option_b: "$\\sqrt{2}$",
+    option_c: "$\\dfrac{1}{2}$",
+    option_d: "$\\pi$",
+    correct_option: "A,B,C,D",
+    explanation: "Cả bốn số đều là số thực: $-3$ và $\\dfrac{1}{2}$ là số hữu tỉ; $\\sqrt{2}$ và $\\pi$ là số vô tỉ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị tuyệt đối của $!a#-9!$ là:",
+    option_a: "${tinh: abs(!a!)}$",
+    option_b: "$!a!$",
+    option_c: "$0$",
+    option_d: "${tinh: abs(!a!) + 1}$",
+    correct_option: "A",
+    explanation: "Vì $!a! < 0$ nên $|!a!| = -(!a!) = {tinh: abs(!a!)}$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
 ];
-
 
 <KhoiDong>
 
@@ -153,242 +153,503 @@ Chương 2 mở rộng khái niệm số từ số hữu tỉ sang số thực. 
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
     <strong>Số vô tỉ</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Căn bậc hai, số $\\pi$</p>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Căn bậc hai, số $\pi$</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
     <strong>Số thực</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp số thực</p>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp số thực $\mathbb{R}$</p>
   </div>
 </div>
+
+**Em có biết?** Người ta đã tính được hơn 100 nghìn tỉ chữ số thập phân của $\pi$ bằng máy tính siêu mạnh! Dù vậy, dãy chữ số đó vẫn không bao giờ lặp lại theo chu kỳ — nên $\pi$ là **số vô tỉ**. Trong tính toán hằng ngày, chỉ cần dùng $\pi \approx 3,\!14$ là đã đủ chính xác. Cũng vì thế, mọi phép đo trong thực tế (đo chiều dài, diện tích, khối lượng...) đều cho ra những giá trị gần đúng mà thôi.
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
-
-<h4 id="so-thap-phan-vo-han">1. Số thập phân vô hạn</h4>
-
-**Số thập phân vô hạn tuần hoàn:** Là số thập phân mà phần thập phân có một nhóm chữ số lặp lại vô hạn.
-
-**Ví dụ:** $0.333... = 0.\overline{3}$, $0.1666... = 0.1\overline{6}$
-
-**Số thập phân vô hạn không tuần hoàn:** Là số thập phân mà phần thập phân không có nhóm chữ số nào lặp lại.
-
-**Ví dụ:** $\sqrt{2} = 1.414...$, $\pi = 3.14159...$
-
-<h4 id="so-vo-ti">2. Số vô tỉ</h4>
+<h3 id="so-thap-phan-va-so-vo-ti">📖 1. Số thập phân vô hạn và số vô tỉ</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Số vô tỉ là số không thể viết dưới dạng $\frac{a}{b}$ với $a, b \in \mathbb{Z}, b \neq 0$.
+**Số thập phân vô hạn tuần hoàn** là số thập phân có một nhóm chữ số lặp lại vô hạn lần (chu kỳ), ví dụ $0,\overline{3}$; $0,\!1\overline{6}$.
 
-**Đặc điểm:** Số vô tỉ là số thập phân vô hạn không tuần hoàn.
+**Số thập phân vô hạn không tuần hoàn** là số thập phân không có nhóm chữ số nào lặp lại, ví dụ $\sqrt{2} = 1,\!414...$; $\pi = 3,\!14159...$.
 
-**Ký hiệu:** Tập hợp số vô tỉ được ký hiệu là $\mathbb{I}$ hoặc $\mathbb{R} \setminus \mathbb{Q}$.
+**Số vô tỉ** là số viết được dưới dạng số thập phân vô hạn không tuần hoàn, tức là số không thể viết được dưới dạng phân số $\dfrac{a}{b}$ ($a, b \in \mathbb{Z}$, $b \neq 0$).
 
 </div>
 
-**Ví dụ số vô tỉ:**
-- $\sqrt{2}, \sqrt{3}, \sqrt{5}, ...$ (căn bậc hai của số không chính phương)
-- $\pi \approx 3.14159...$
-- $e \approx 2.71828...$
+**Ví dụ 1:** Trong các số $0,\!5$; $0,\overline{3}$; $0,\!1\overline{6}$; $\sqrt{2}$, số nào là số thập phân hữu hạn, vô hạn tuần hoàn, vô hạn không tuần hoàn?
 
-<h4 id="can-bac-hai">3. Căn bậc hai</h4>
+*Lời giải:* $0,\!5$ là số thập phân hữu hạn; $0,\overline{3}$ và $0,\!1\overline{6}$ là số thập phân vô hạn tuần hoàn; $\sqrt{2} = 1,\!414...$ là số thập phân vô hạn không tuần hoàn.
 
-**Định nghĩa:** Căn bậc hai số học của số $a$ (với $a \geq 0$) là số $x$ không âm sao cho $x^2 = a$.
+**Ví dụ 2:** Nêu một số số vô tỉ thường gặp.
 
-**Ký hiệu:** $\sqrt{a}$
+*Lời giải:* $\sqrt{2} \approx 1,\!414...$; $\sqrt{3} \approx 1,\!732...$; $\sqrt{5} \approx 2,\!236...$ (căn bậc hai của số không chính phương); $\pi \approx 3,\!14159...$; $e \approx 2,\!71828...$.
 
-**Tính chất:**
-- $\sqrt{a} \geq 0$ với mọi $a \geq 0$
-- $(\sqrt{a})^2 = a$ với mọi $a \geq 0$
-- $\sqrt{a^2} = |a|$ với mọi $a$
+**Ví dụ 3:** Vì sao $\dfrac{1}{3} = 0,\overline{3}$ là số hữu tỉ còn $\sqrt{2}$ là số vô tỉ?
 
-**Ví dụ:**
-- $\sqrt{9} = 3$ vì $3^2 = 9$
-- $\sqrt{16} = 4$ vì $4^2 = 16$
-- $\sqrt{2} \approx 1.414...$
+*Lời giải:* $\dfrac{1}{3}$ viết được dưới dạng phân số nên là số hữu tỉ (dạng thập phân vô hạn tuần hoàn). Còn $\sqrt{2}$ là số thập phân vô hạn không tuần hoàn, không viết được dưới dạng phân số nên là số vô tỉ.
 
-<h4 id="tap-hop-so-thuc">4. Tập hợp số thực</h4>
+**Hình vẽ minh họa:** Phân loại số thập phân:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="200" viewBox="0 0 620 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <text x="310" y="35" font-size="17" font-weight="bold" text-anchor="middle" fill="#1e293b">Mọi số thập phân</text>
+
+  <rect x="40" y="60" width="260" height="110" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="170" y="85" font-size="15" font-weight="bold" text-anchor="middle" fill="#065f46">Hữu hạn / tuần hoàn → Hữu tỉ</text>
+  <text x="170" y="110" font-size="14" text-anchor="middle" fill="#065f46">0,5 ; 0,3̅ ; 0,16̅</text>
+  <text x="170" y="135" font-size="13" text-anchor="middle" fill="#065f46">= phân số a/b</text>
+  <text x="170" y="158" font-size="13" text-anchor="middle" fill="#065f46">∈ ℚ ⊂ ℝ</text>
+
+  <rect x="320" y="60" width="260" height="110" rx="10" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+  <text x="450" y="85" font-size="15" font-weight="bold" text-anchor="middle" fill="#6b21a8">Không tuần hoàn → Vô tỉ</text>
+  <text x="450" y="110" font-size="14" text-anchor="middle" fill="#6b21a8">√2 ; √3 ; π ; e</text>
+  <text x="450" y="135" font-size="13" text-anchor="middle" fill="#6b21a8">không viết được</text>
+  <text x="450" y="158" font-size="13" text-anchor="middle" fill="#6b21a8">dạng phân số, ∈ ℝ</text>
+
+  <line x1="170" y1="47" x2="170" y2="60" stroke="#10b981" stroke-width="2"/>
+  <line x1="450" y1="47" x2="450" y2="60" stroke="#a855f7" stroke-width="2"/>
+</svg>
+</div>
+
+<h3 id="can-bac-hai" style="margin-top:2rem;">√ 2. Căn bậc hai số học</h3>
 
 <div class="box-dinh-ly">
 
-**Định nghĩa:** Tập hợp số thực $\mathbb{R}$ là hợp của tập hợp số hữu tỉ $\mathbb{Q}$ và tập hợp số vô tỉ $\mathbb{I}$.
+**Căn bậc hai số học** của số $a$ không âm, ký hiệu $\sqrt{a}$, là số **không âm** $x$ sao cho $x^2 = a$:
 
-$$\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$$
+$$\sqrt{a} \geq 0 \quad \text{và} \quad (\sqrt{a})^2 = a$$
 
-**Quan hệ bao hàm:**
-$$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$$
+**Tính chất cơ bản:**
+
+1. $\sqrt{a^2} = |a|$ với mọi $a$
+2. Nếu $a < b$ (với $a, b \geq 0$) thì $\sqrt{a} < \sqrt{b}$
+3. $\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}$ (với $a, b \geq 0$)
 
 </div>
 
-<h4 id="so-sanh-so-thuc">5. So sánh số thực</h4>
+**Ví dụ 1:** Tính $\sqrt{4}$; $\sqrt{25}$; $\sqrt{100}$; $\sqrt{144}$.
 
-**Trên trục số:** Số thực được biểu diễn trên trục số. Số nằm bên trái nhỏ hơn số nằm bên phải.
+*Lời giải:* $\sqrt{4} = 2$; $\sqrt{25} = 5$; $\sqrt{100} = 10$; $\sqrt{144} = 12$.
 
-**Tính chất:**
-- Với hai số thực $a, b$ bất kỳ, ta có: $a < b$, $a = b$, hoặc $a > b$
-- Nếu $a < b$ và $b < c$ thì $a < c$
+**Ví dụ 2:** Tính $\sqrt{3^2}$; $\sqrt{(-5)^2}$; $-\sqrt{9}$.
 
-<h4 id="lam-tron-so-thuc">6. Làm tròn số thực</h4>
+*Lời giải:* $\sqrt{3^2} = |3| = 3$; $\sqrt{(-5)^2} = |-5| = 5$; $-\sqrt{9} = -3$.
 
-**Quy tắc làm tròn:**
-- Nếu chữ số bỏ đi < 5, giữ nguyên chữ số trước
-- Nếu chữ số bỏ đi ≥ 5, tăng chữ số trước lên 1
+**Ví dụ 3:** So sánh $\sqrt{2}$ và $1,\!5$.
 
-**Ví dụ:**
-- $\sqrt{2} \approx 1.41$ (làm tròn đến 2 chữ số thập phân)
-- $\pi \approx 3.14$ (làm tròn đến 2 chữ số thập phân)
+*Lời giải:* $(\sqrt{2})^2 = 2$ và $(1,\!5)^2 = 2,\!25$. Vì $2 < 2,\!25$ nên $\sqrt{2} < 1,\!5$.
+
+**Hình vẽ minh họa:** Diện tích hình vuông $S$ thì cạnh bằng $\sqrt{S}$:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="240" viewBox="0 0 620 240" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="110" y="35" width="150" height="150" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+  <text x="185" y="115" font-size="24" font-weight="bold" text-anchor="middle" fill="#1e40af">36 cm²</text>
+  <line x1="110" y1="185" x2="260" y2="185" stroke="#2563eb" stroke-width="2"/>
+  <line x1="110" y1="190" x2="110" y2="197" stroke="#2563eb" stroke-width="2"/>
+  <line x1="260" y1="190" x2="260" y2="197" stroke="#2563eb" stroke-width="2"/>
+  <text x="185" y="222" font-size="16" font-weight="bold" text-anchor="middle" fill="#2563eb">cạnh = √36 = 6 cm</text>
+
+  <text x="330" y="80" font-size="16" font-weight="bold" fill="#334155">Diện tích S = a²</text>
+  <text x="330" y="108" font-size="16" font-weight="bold" fill="#334155">Suy ra a = √S (a > 0)</text>
+  <text x="330" y="140" font-size="15" fill="#64748b">Nếu S là số chính phương thì</text>
+  <text x="330" y="162" font-size="15" fill="#64748b">cạnh là số hữu tỉ (√36 = 6).</text>
+  <text x="330" y="184" font-size="15" fill="#64748b">Nếu S không chính phương thì</text>
+  <text x="330" y="206" font-size="15" fill="#64748b">cạnh là số vô tỉ (√2 ≈ 1,41).</text>
+</svg>
+</div>
+
+<h3 id="tap-hop-so-thuc" style="margin-top:2rem;">⚡ 3. Tập hợp số thực</h3>
+
+<div class="box-dinh-ly">
+
+**Tập hợp số thực** $\mathbb{R}$ là hợp của tập hợp số hữu tỉ $\mathbb{Q}$ và tập hợp số vô tỉ.
+
+$$\mathbb{R} = \mathbb{Q} \cup \text{(Tập hợp số vô tỉ)}$$
+
+**Quan hệ bao hàm:**
+
+$$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$$
+
+Mọi số tự nhiên, số nguyên, số hữu tỉ, số vô tỉ đều là **số thực**.
+
+</div>
+
+**Ví dụ 1:** Điền ký hiệu $\in$; $\notin$; $\subset$ thích hợp vào chỗ chấm: $0$ … $\mathbb{N}$; $-7$ … $\mathbb{Z}$; $\dfrac{1}{2}$ … $\mathbb{Q}$; $\sqrt{2}$ … $\mathbb{Q}$; $\mathbb{N}$ … $\mathbb{R}$.
+
+*Lời giải:* $0 \in \mathbb{N}$; $-7 \in \mathbb{Z}$; $\dfrac{1}{2} \in \mathbb{Q}$; $\sqrt{2} \notin \mathbb{Q}$ (nhưng $\sqrt{2} \in \mathbb{R}$); $\mathbb{N} \subset \mathbb{R}$.
+
+**Ví dụ 2:** Khẳng định $\sqrt{2} \in \mathbb{R}$ đúng hay sai? Vì sao?
+
+*Lời giải:* Đúng, vì $\sqrt{2}$ là số vô tỉ, mà mọi số vô tỉ đều là số thực.
+
+**Ví dụ 3:** Số nào sau đây không phải là số thực: $-3$; $\sqrt{5}$; $0,\overline{7}$; $\dfrac{9}{4}$?
+
+*Lời giải:* Không có số nào — tất cả đều là số thực.
+
+**Hình vẽ minh họa:** Sơ đồ Ven các tập hợp số:
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="620" height="340" viewBox="0 0 620 340" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="25" y="20" width="570" height="300" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+  <text x="560" y="50" font-size="20" font-weight="bold" fill="#b45309">ℝ</text>
+
+  <ellipse cx="240" cy="180" rx="180" ry="130" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="375" y="95" font-size="18" font-weight="bold" fill="#2563eb">ℚ</text>
+
+  <ellipse cx="240" cy="180" rx="120" ry="84" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="320" y="138" font-size="18" font-weight="bold" fill="#059669">ℤ</text>
+
+  <ellipse cx="240" cy="180" rx="62" ry="42" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="268" y="177" font-size="18" font-weight="bold" fill="#db2777">ℕ</text>
+
+  <text x="240" y="164" font-size="12" text-anchor="middle" fill="#1f2937">0,1,2,…</text>
+  <text x="205" y="200" font-size="12" text-anchor="middle" fill="#1f2937">-1,-2,…</text>
+  <text x="175" y="150" font-size="12" text-anchor="middle" fill="#1f2937">1/2; 0,5</text>
+
+  <text x="455" y="270" font-size="14" fill="#1f2937">Số vô tỉ:</text>
+  <text x="455" y="290" font-size="14" fill="#1f2937">√2; π; e; …</text>
+  <text x="455" y="310" font-size="13" fill="#64748b">(nằm trong ℝ, ngoài ℚ)</text>
+</svg>
+</div>
+
+<h3 id="so-sanh-va-gttd" style="margin-top:2rem;">⚖️ 4. So sánh và giá trị tuyệt đối của số thực</h3>
+
+**So sánh số thực:** dựa vào vị trí trên trục số — số nào nằm bên trái thì nhỏ hơn. Với số vô tỉ, ta có thể xấp xỉ hoặc so sánh hai bình phương.
+
+**Giá trị tuyệt đối** của số thực $x$, ký hiệu $|x|$, là khoảng cách từ điểm $x$ đến điểm 0 trên trục số:
+
+$$|x| = \begin{cases} x & \text{nếu } x \geq 0 \\ -x & \text{nếu } x < 0 \end{cases}$$
+
+**Ví dụ 1:** So sánh $\sqrt{3}$ và $1,\!8$.
+
+*Lời giải:* $(\sqrt{3})^2 = 3$ và $(1,\!8)^2 = 3,\!24$. Vì $3 < 3,\!24$ nên $\sqrt{3} < 1,\!8$.
+
+**Ví dụ 2:** Tính $|-5|$; $|\sqrt{2}|$; $|-\pi|$.
+
+*Lời giải:* $|-5| = 5$; $|\sqrt{2}| = \sqrt{2}$ (vì $\sqrt{2} > 0$); $|-\pi| = \pi$ (vì $-\pi < 0$).
+
+**Ví dụ 3:** Tính $|3 - \pi|$.
+
+*Lời giải:* Vì $\pi \approx 3,\!14 > 3$ nên $3 - \pi < 0$, do đó $|3 - \pi| = -(3 - \pi) = \pi - 3$.
+
+**Hình vẽ minh họa:** $|-3| = 3$ — khoảng cách từ $-3$ đến 0:
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="620" height="180" viewBox="0 0 620 180" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <line x1="90" y1="105" x2="530" y2="105" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="530,105 520,100 520,110" fill="#1f2937"/>
+
+  <line x1="130" y1="97" x2="130" y2="113" stroke="#1f2937" stroke-width="2"/>
+  <text x="130" y="130" font-size="13" text-anchor="middle" fill="#1f2937">-4</text>
+
+  <line x1="210" y1="97" x2="210" y2="113" stroke="#1f2937" stroke-width="2"/>
+  <text x="210" y="130" font-size="13" text-anchor="middle" fill="#1f2937">-3</text>
+
+  <line x1="290" y1="97" x2="290" y2="113" stroke="#1f2937" stroke-width="2"/>
+  <text x="290" y="130" font-size="13" text-anchor="middle" fill="#1f2937">-2</text>
+
+  <line x1="370" y1="97" x2="370" y2="113" stroke="#1f2937" stroke-width="2"/>
+  <text x="370" y="130" font-size="13" text-anchor="middle" fill="#1f2937">-1</text>
+
+  <line x1="450" y1="97" x2="450" y2="113" stroke="#1f2937" stroke-width="2"/>
+  <text x="450" y="130" font-size="13" text-anchor="middle" fill="#1f2937">0</text>
+
+  <circle cx="210" cy="105" r="7" fill="#dc2626"/>
+  <circle cx="450" cy="105" r="7" fill="#2563eb"/>
+
+  <line x1="210" y1="62" x2="450" y2="62" stroke="#dc2626" stroke-width="3"/>
+  <line x1="210" y1="56" x2="210" y2="68" stroke="#dc2626" stroke-width="3"/>
+  <line x1="450" y1="56" x2="450" y2="68" stroke="#dc2626" stroke-width="3"/>
+  <text x="330" y="45" font-size="16" font-weight="bold" text-anchor="middle" fill="#dc2626">|-3| = 3 (khoảng cách từ -3 đến 0)</text>
+</svg>
+</div>
+
+<h3 id="lam-tron" style="margin-top:2rem;">🔄 5. Làm tròn số thực</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc làm tròn:** Khi làm tròn đến một hàng nào đó, ta xét chữ số ngay sau hàng đó:
+- Nếu chữ số đó **nhỏ hơn 5** → giữ nguyên hàng cần làm tròn.
+- Nếu chữ số đó **từ 5 trở lên** → tăng hàng cần làm tròn thêm 1 đơn vị.
+
+</div>
+
+**Ví dụ 1:** Làm tròn $\sqrt{2} = 1,\!41421...$ đến hàng phần mười.
+
+*Lời giải:* Chữ số ngay sau hàng phần mười là 1 (nhỏ hơn 5) nên giữ nguyên: $\sqrt{2} \approx 1,\!4$.
+
+**Ví dụ 2:** Làm tròn $\pi = 3,\!14159...$ đến hàng phần trăm.
+
+*Lời giải:* Chữ số ngay sau hàng phần trăm là 1 (nhỏ hơn 5) nên giữ nguyên: $\pi \approx 3,\!14$.
+
+**Ví dụ 3:** Làm tròn $\sqrt{3} = 1,\!73205...$ đến hàng phần mười.
+
+*Lời giải:* Chữ số ngay sau hàng phần mười là 3 (nhỏ hơn 5) nên giữ nguyên: $\sqrt{3} \approx 1,\!7$.
+
+**Hình vẽ minh họa:** $\sqrt{2} \approx 1,\!414$ nằm gần 1,4 hơn 1,5 nên làm tròn thành 1,4:
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="620" height="170" viewBox="0 0 620 170" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <line x1="90" y1="95" x2="540" y2="95" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="540,95 530,90 530,100" fill="#1f2937"/>
+
+  <line x1="160" y1="87" x2="160" y2="103" stroke="#1f2937" stroke-width="2"/>
+  <text x="160" y="122" font-size="14" text-anchor="middle" fill="#1f2937">1,3</text>
+
+  <line x1="310" y1="87" x2="310" y2="103" stroke="#1f2937" stroke-width="2"/>
+  <text x="310" y="122" font-size="14" text-anchor="middle" fill="#1f2937">1,4</text>
+
+  <line x1="425" y1="87" x2="425" y2="103" stroke="#1f2937" stroke-width="2"/>
+  <text x="425" y="122" font-size="14" text-anchor="middle" fill="#1f2937">1,5</text>
+
+  <line x1="540" y1="87" x2="540" y2="103" stroke="#1f2937" stroke-width="2"/>
+  <text x="540" y="122" font-size="14" text-anchor="middle" fill="#1f2937">1,6</text>
+
+  <circle cx="395" cy="95" r="7" fill="#dc2626"/>
+  <text x="395" y="55" font-size="15" font-weight="bold" text-anchor="middle" fill="#dc2626">√2 ≈ 1,414</text>
+
+  <line x1="310" y1="105" x2="310" y2="112" stroke="#10b981" stroke-width="2"/>
+  <line x1="425" y1="105" x2="425" y2="112" stroke="#10b981" stroke-width="2"/>
+  <line x1="310" y1="140" x2="425" y2="140" stroke="#10b981" stroke-width="2"/>
+  <text x="367" y="130" font-size="13" text-anchor="middle" fill="#059669">1,414 gần 1,4 hơn</text>
+  <text x="367" y="158" font-size="13" text-anchor="middle" fill="#059669">→ làm tròn thành 1,4</text>
+</svg>
+</div>
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
+
+<OnTapChuong2Interactive client:load />
+
+</LuyenTap>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Nhận biết số hữu tỉ, số vô tỉ, số thực**
+**Phương pháp giải:** Viết số dưới dạng số thập phân: hữu hạn hoặc vô hạn tuần hoàn → số hữu tỉ; vô hạn không tuần hoàn → số vô tỉ. $\sqrt{n}$ là số vô tỉ khi $n$ không phải số chính phương. Mọi số đã học đều là số thực.
+
+</div>
+
+**Ví dụ 1:** Trong các số $\dfrac{1}{2}$; $\sqrt{2}$; $3$; $\sqrt{4}$; $\pi$; $0,\!5$; $\sqrt{3}$, số nào là số vô tỉ?
+
+*Lời giải:* $\sqrt{2}$; $\pi$; $\sqrt{3}$ là số vô tỉ. Còn $\dfrac{1}{2} = 0,\!5$; $3$; $\sqrt{4} = 2$; $0,\!5$ là số hữu tỉ.
+
+**Ví dụ 2:** Trong các số $\sqrt{4}$; $\sqrt{5}$; $\sqrt{9}$; $\sqrt{10}$; $\sqrt{16}$, số nào là số hữu tỉ?
+
+*Lời giải:* $\sqrt{4} = 2$; $\sqrt{9} = 3$; $\sqrt{16} = 4$ là số hữu tỉ (vì 4, 9, 16 là số chính phương). Còn $\sqrt{5}$; $\sqrt{10}$ là số vô tỉ.
+
+**Ví dụ 3:** Điền vào chỗ chấm để được khẳng định đúng: "Tất cả các số ... đều là số thực".
+
+*Lời giải:* "Tất cả các số **hữu tỉ và vô tỉ** đều là số thực."
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Tính căn bậc hai số học**
+**Phương pháp giải:** Tìm số không âm có bình phương bằng số đã cho. Dùng các tính chất: $\sqrt{a^2} = |a|$; $\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}$; $\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}$.
+
+</div>
+
+**Ví dụ 1:** Tính $\sqrt{4} + \sqrt{9}$ và $\sqrt{16} - \sqrt{1}$.
+
+*Lời giải:* $\sqrt{4} + \sqrt{9} = 2 + 3 = 5$; $\sqrt{16} - \sqrt{1} = 4 - 1 = 3$.
+
+**Ví dụ 2:** Tính $\sqrt{25} \times \sqrt{4}$ và $\sqrt{100} : \sqrt{4}$.
+
+*Lời giải:* $\sqrt{25} \times \sqrt{4} = 5 \times 2 = 10$; $\sqrt{100} : \sqrt{4} = 10 : 2 = 5$.
+
+**Ví dụ 3:** Tính $\sqrt{4 \times 9}$ và $\sqrt{\dfrac{36}{49}}$.
+
+*Lời giải:* $\sqrt{4 \times 9} = \sqrt{4} \times \sqrt{9} = 2 \times 3 = 6$; $\sqrt{\dfrac{36}{49}} = \dfrac{\sqrt{36}}{\sqrt{49}} = \dfrac{6}{7}$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 3: So sánh và sắp xếp số thực**
+**Phương pháp giải:** Cách 1: xấp xỉ số vô tỉ rồi so sánh. Cách 2: so sánh hai bình phương (nếu $a, b \geq 0$ và $a^2 < b^2$ thì $a < b$). Với số âm, số nào có giá trị tuyệt đối lớn hơn thì nhỏ hơn.
+
+</div>
+
+**Ví dụ 1:** So sánh $\sqrt{2}$ và $1,\!5$.
+
+*Lời giải:* $(\sqrt{2})^2 = 2$; $(1,\!5)^2 = 2,\!25$. Vì $2 < 2,\!25$ nên $\sqrt{2} < 1,\!5$.
+
+**Ví dụ 2:** So sánh $\pi$ và $3,\!14$.
+
+*Lời giải:* $\pi \approx 3,\!14159... > 3,\!14$, nên $\pi > 3,\!14$.
+
+**Ví dụ 3:** Sắp xếp các số $-3$; $\sqrt{2}$; $\dfrac{1}{2}$; $\pi$; $0$; $\sqrt{4}$; $-\sqrt{3}$ theo thứ tự tăng dần.
+
+*Lời giải:* $-\sqrt{3} \approx -1,\!732$; $\sqrt{2} \approx 1,\!414$; $\sqrt{4} = 2$; $\pi \approx 3,\!14$. Thứ tự tăng dần: $-3 < -\sqrt{3} < 0 < \dfrac{1}{2} < \sqrt{2} < \sqrt{4} < \pi$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 4: Tìm $x$ chứa căn bậc hai và giá trị tuyệt đối**
+**Phương pháp giải:** $\sqrt{x} = m$ ($m \geq 0$) suy ra $x = m^2$. $x^2 = n$ với $x > 0$ suy ra $x = \sqrt{n}$. $|x| = a$ ($a \geq 0$) suy ra $x = a$ hoặc $x = -a$.
+
+</div>
+
+**Ví dụ 1:** Tìm $x$, biết $\sqrt{x} = 6$.
+
+*Lời giải:* $\sqrt{x} = 6$ nên $x = 6^2 = 36$.
+
+**Ví dụ 2:** Tìm số dương $x$, biết $x^2 = 49$.
+
+*Lời giải:* Vì $x > 0$ nên $x = \sqrt{49} = 7$.
+
+**Ví dụ 3:** Tìm $x$, biết $|x| = 4$ và $|x - 2| = 3$.
+
+*Lời giải:* $|x| = 4$ nên $x = 4$ hoặc $x = -4$. $|x - 2| = 3$ nên $x - 2 = 3$ (suy ra $x = 5$) hoặc $x - 2 = -3$ (suy ra $x = -1$).
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 5: Tính toán với căn bậc hai và làm tròn số thực**
+**Phương pháp giải:** Nhóm các biểu thức cùng chứa căn giống như nhóm hạng tử đồng dạng. Khi làm tròn, xét chữ số ngay sau hàng cần làm tròn theo quy tắc nhỏ hơn 5 giữ nguyên, từ 5 trở lên tăng thêm 1.
+
+</div>
+
+**Ví dụ 1:** Tính $\sqrt{2} + \sqrt{2}$ và $3\sqrt{3} - \sqrt{3}$.
+
+*Lời giải:* $\sqrt{2} + \sqrt{2} = 2\sqrt{2}$; $3\sqrt{3} - \sqrt{3} = 2\sqrt{3}$.
+
+**Ví dụ 2:** Tính $\sqrt{8} \times \sqrt{2}$ và $\dfrac{\sqrt{8}}{\sqrt{2}}$.
+
+*Lời giải:* $\sqrt{8} \times \sqrt{2} = \sqrt{16} = 4$; $\dfrac{\sqrt{8}}{\sqrt{2}} = \sqrt{4} = 2$.
+
+**Ví dụ 3:** Làm tròn $\sqrt{5} = 2,\!23606...$ đến hàng phần trăm.
+
+*Lời giải:* Chữ số thứ ba sau dấu phẩy là 6 (từ 5 trở lên) nên làm tròn lên: $\sqrt{5} \approx 2,\!24$.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Mảnh đất):** Một mảnh đất hình vuông có diện tích $169 \text{ m}^2$.
+
+a) Tính độ dài cạnh của mảnh đất.
+
+b) Tính chu vi của mảnh đất.
+
+c) Một mảnh đất khác hình vuông có diện tích $200 \text{ m}^2$. Tính cạnh của mảnh đất đó (làm tròn đến hàng phần mười).
+
+**Lời giải:**
+
+a) Cạnh: $a = \sqrt{169} = 13$ (m).
+
+b) Chu vi: $P = 4 \times 13 = 52$ (m).
+
+c) Cạnh: $a' = \sqrt{200} \approx 14,\!14$ (m). Làm tròn đến hàng phần mười: $14,\!1$ (m).
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Bồn hoa):** Một bồn hoa hình tròn có bán kính 3 m.
+
+a) Tính chu vi của bồn hoa (lấy $\pi \approx 3,\!14$).
+
+b) Tính diện tích của bồn hoa (lấy $\pi \approx 3,\!14$).
+
+c) Làm tròn diện tích đến hàng đơn vị.
+
+**Lời giải:**
+
+a) Chu vi: $C = 2 \times 3,\!14 \times 3 = 18,\!84$ (m).
+
+b) Diện tích: $S = 3,\!14 \times 3^2 = 3,\!14 \times 9 = 28,\!26$ (m²).
+
+c) Làm tròn $28,\!26$ đến hàng đơn vị: $28$ (m²).
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Tấm biển):** Một tấm biển quảng cáo hình chữ nhật có chiều dài $\sqrt{12}$ m và chiều rộng $\sqrt{3}$ m.
+
+a) Tính diện tích tấm biển.
+
+b) Tính độ dài đường chéo của tấm biển (làm tròn đến hàng phần mười).
+
+**Lời giải:**
+
+a) Diện tích: $S = \sqrt{12} \times \sqrt{3} = \sqrt{36} = 6$ (m²).
+
+b) Đường chéo: $d = \sqrt{(\sqrt{12})^2 + (\sqrt{3})^2} = \sqrt{12 + 3} = \sqrt{15} \approx 3,\!87$ (m). Làm tròn đến hàng phần mười: $3,\!9$ (m).
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
+<GhiNho>
 
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+- **Số vô tỉ**: không viết được dưới dạng phân số, là số thập phân vô hạn không tuần hoàn.
+- **Số hữu tỉ**: số thập phân hữu hạn hoặc vô hạn tuần hoàn.
+- **Căn bậc hai số học**: $\sqrt{a} \geq 0$ và $(\sqrt{a})^2 = a$; $\sqrt{a^2} = |a|$.
+- **Số thực**: $\mathbb{R} = \mathbb{Q} \cup$ (số vô tỉ).
+- **Quan hệ bao hàm**: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$.
+- **Giá trị tuyệt đối**: $|x|$ là khoảng cách từ $x$ đến 0; $|x| \geq 0$.
+- **So sánh**: số nằm bên trái trên trục số thì nhỏ hơn; so sánh bình phương khi cần.
+- **Làm tròn**: chữ số bỏ đi nhỏ hơn 5 giữ nguyên, từ 5 trở lên tăng thêm 1.
 
-<h4 id="bai-1">Bài 1: Căn bậc hai</h4>
-
-Tính:
-
-a) $\sqrt{4}$, $\sqrt{25}$, $\sqrt{100}$
-
-b) $\sqrt{0}$, $\sqrt{1}$, $\sqrt{144}$
-
-c) $-\sqrt{9}$, $-\sqrt{36}$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\sqrt{4} = 2$, $\sqrt{25} = 5$, $\sqrt{100} = 10$
-
-b) $\sqrt{0} = 0$, $\sqrt{1} = 1$, $\sqrt{144} = 12$
-
-c) $-\sqrt{9} = -3$, $-\sqrt{36} = -6$
-
-</div>
-</details>
+</GhiNho>
 
 ---
 
-<h4 id="bai-2">Bài 2: Số vô tỉ</h4>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-Trong các số sau, số nào là số vô tỉ?
+**Bài 1 (Dễ):** Tính:
 
-$\frac{1}{2}$, $\sqrt{2}$, $3$, $\sqrt{4}$, $\pi$, $0.5$, $\sqrt{3}$
+a) $\sqrt{4}$; $\sqrt{25}$; $\sqrt{100}$
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+b) $\sqrt{0}$; $\sqrt{1}$; $\sqrt{144}$
 
-**Lời giải:**
+c) $-\sqrt{9}$; $-\sqrt{36}$
 
-Các số vô tỉ là: $\sqrt{2}$, $\pi$, $\sqrt{3}$
+**Bài 2 (Dễ):** Trong các số $\dfrac{1}{2}$; $\sqrt{2}$; $3$; $\sqrt{4}$; $\pi$; $0,\!5$; $\sqrt{3}$, số nào là số vô tỉ?
 
-Giải thích:
-- $\frac{1}{2} = 0.5$ là số hữu tỉ
-- $\sqrt{2} \approx 1.414...$ là số vô tỉ
-- $3$ là số nguyên (số hữu tỉ)
-- $\sqrt{4} = 2$ là số nguyên (số hữu tỉ)
-- $\pi \approx 3.14159...$ là số vô tỉ
-- $0.5$ là số hữu tỉ
-- $\sqrt{3} \approx 1.732...$ là số vô tỉ
+**Bài 3 (Dễ):** Làm tròn các số sau:
 
-</div>
-</details>
+a) $\sqrt{2} = 1,\!414...$ đến 1 chữ số thập phân.
 
----
+b) $\pi = 3,\!14159...$ đến 2 chữ số thập phân.
 
-<h4 id="bai-3">Bài 3: So sánh số thực</h4>
+c) $\sqrt{3} = 1,\!732...$ đến 1 chữ số thập phân.
 
-So sánh:
+**Bài 4 (Trung bình):** So sánh:
 
-a) $\sqrt{2}$ và $1.5$
+a) $\sqrt{2}$ và $1,\!5$
 
-b) $\sqrt{3}$ và $2$
+b) $\sqrt{3}$ và 2
 
-c) $\pi$ và $3.14$
+c) $\pi$ và $3,\!14$
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 5 (Trung bình):** Phân loại các số sau thành số hữu tỉ và số vô tỉ:
 
-**Lời giải:**
+$$-2; \quad \dfrac{3}{4}; \quad \sqrt{5}; \quad 0; \quad \sqrt{9}; \quad \pi; \quad -\sqrt{2}; \quad 0,\!25$$
 
-a) $\sqrt{2} \approx 1.414 < 1.5$
-
-b) $\sqrt{3} \approx 1.732 < 2$
-
-c) $\pi \approx 3.14159... > 3.14$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Làm tròn số thực</h4>
-
-Làm tròn các số sau:
-
-a) $\sqrt{2} \approx 1.414...$ đến 1 chữ số thập phân
-
-b) $\pi \approx 3.14159...$ đến 2 chữ số thập phân
-
-c) $\sqrt{3} \approx 1.732...$ đến 1 chữ số thập phân
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\sqrt{2} \approx 1.4$ (làm tròn đến 1 chữ số thập phân)
-
-b) $\pi \approx 3.14$ (làm tròn đến 2 chữ số thập phân)
-
-c) $\sqrt{3} \approx 1.7$ (làm tròn đến 1 chữ số thập phân)
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Phân loại số thực</h4>
-
-Phân loại các số sau thành số hữu tỉ và số vô tỉ:
-
-$-2$, $\frac{3}{4}$, $\sqrt{5}$, $0$, $\sqrt{9}$, $\pi$, $-\sqrt{2}$, $0.25$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-**Số hữu tỉ:** $-2$, $\frac{3}{4}$, $0$, $\sqrt{9} = 3$, $0.25$
-
-**Số vô tỉ:** $\sqrt{5}$, $\pi$, $-\sqrt{2}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Tính toán với căn bậc hai</h4>
-
-Tính:
+**Bài 6 (Trung bình):** Tính:
 
 a) $\sqrt{4} + \sqrt{9}$
 
@@ -396,158 +657,109 @@ b) $\sqrt{16} - \sqrt{1}$
 
 c) $\sqrt{25} \times \sqrt{4}$
 
-d) $\sqrt{100} \div \sqrt{4}$
+d) $\sqrt{100} : \sqrt{4}$
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 7 (Trung bình):** Tìm $x$, biết:
 
-**Lời giải:**
+a) $\sqrt{x} = 6$
 
-a) $\sqrt{4} + \sqrt{9} = 2 + 3 = 5$
+b) $x^2 = 49$ (với $x > 0$)
 
-b) $\sqrt{16} - \sqrt{1} = 4 - 1 = 3$
+c) $|x| = 4$
 
-c) $\sqrt{25} \times \sqrt{4} = 5 \times 2 = 10$
+d) $\sqrt{x - 1} = 3$
 
-d) $\sqrt{100} \div \sqrt{4} = 10 \div 2 = 5$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-7">Bài 7: Bài toán thực tế</h4>
-
-Một hình vuông có diện tích 36 cm². Hỏi:
+**Bài 8 (Khá — Thực tế):** Một hình vuông có diện tích $36 \text{ cm}^2$.
 
 a) Cạnh của hình vuông là bao nhiêu?
 
 b) Chu vi của hình vuông là bao nhiêu?
 
-c) Nếu diện tích là 50 cm², cạnh của hình vuông là bao nhiêu (làm tròn đến 1 chữ số thập phân)?
+c) Nếu diện tích là $50 \text{ cm}^2$, cạnh của hình vuông là bao nhiêu (làm tròn đến 1 chữ số thập phân)?
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+**Bài 9 (Khá):** Cho hình chữ nhật có chiều dài $\sqrt{8}$ cm và chiều rộng $\sqrt{2}$ cm.
+
+a) Tính diện tích hình chữ nhật.
+
+b) Tính chu vi hình chữ nhật (làm tròn đến 1 chữ số thập phân).
+
+c) Tính độ dài đường chéo (làm tròn đến 1 chữ số thập phân).
+
+d) So sánh diện tích với $4 \text{ cm}^2$.
+
+**Bài 10 (Khó — Tổng hợp):** Cho các số $a = \sqrt{2}$; $b = \sqrt{3}$; $c = \sqrt{5}$.
+
+a) Tính $a + b + c$ (làm tròn đến 2 chữ số thập phân).
+
+b) Tính $a \times b \times c$ (làm tròn đến 2 chữ số thập phân).
+
+c) So sánh $a + b$ với $c$.
+
+d) So sánh $a^2 + b^2$ với $c^2$.
+
+e) Tìm giá trị gần đúng của $\dfrac{a + b}{c}$ (làm tròn đến 2 chữ số thập phân).
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Lời giải:**
+**Bài 1:** a) $\sqrt{4} = 2$; $\sqrt{25} = 5$; $\sqrt{100} = 10$. b) $\sqrt{0} = 0$; $\sqrt{1} = 1$; $\sqrt{144} = 12$. c) $-\sqrt{9} = -3$; $-\sqrt{36} = -6$.
 
-a) Cạnh = $\sqrt{36} = 6$ (cm)
+**Bài 2:** Số vô tỉ: $\sqrt{2}$; $\pi$; $\sqrt{3}$. (Các số còn lại $\dfrac{1}{2} = 0,\!5$; $3$; $\sqrt{4} = 2$; $0,\!5$ đều là số hữu tỉ.)
 
-b) Chu vi = $6 \times 4 = 24$ (cm)
+**Bài 3:** a) $1,\!4$; b) $3,\!14$; c) $1,\!7$.
 
-c) Cạnh = $\sqrt{50} \approx 7.1$ (cm)
+**Bài 4:**
+
+a) $\sqrt{2} < 1,\!5$ (vì $(\sqrt{2})^2 = 2 < 1,\!5^2 = 2,\!25$).
+
+b) $\sqrt{3} < 2$ (vì $3 < 4$).
+
+c) $\pi > 3,\!14$ (vì $\pi \approx 3,\!14159...$).
+
+**Bài 5:** Số hữu tỉ: $-2$; $\dfrac{3}{4}$; $0$; $\sqrt{9} = 3$; $0,\!25$. Số vô tỉ: $\sqrt{5}$; $\pi$; $-\sqrt{2}$.
+
+**Bài 6:** a) $2 + 3 = 5$; b) $4 - 1 = 3$; c) $5 \times 2 = 10$; d) $10 : 2 = 5$.
+
+**Bài 7:**
+
+a) $\sqrt{x} = 6$ nên $x = 36$.
+
+b) $x > 0$ nên $x = \sqrt{49} = 7$.
+
+c) $x = 4$ hoặc $x = -4$.
+
+d) $x - 1 = 9$ nên $x = 10$.
+
+**Bài 8:**
+
+a) Cạnh $= \sqrt{36} = 6$ (cm).
+
+b) Chu vi $= 6 \times 4 = 24$ (cm).
+
+c) Cạnh $= \sqrt{50} \approx 7,\!1$ (cm).
+
+**Bài 9:**
+
+a) Diện tích $= \sqrt{8} \times \sqrt{2} = \sqrt{16} = 4$ (cm²).
+
+b) Chu vi $= 2(\sqrt{8} + \sqrt{2}) = 2(2\sqrt{2} + \sqrt{2}) = 6\sqrt{2} \approx 8,\!5$ (cm).
+
+c) Đường chéo $= \sqrt{(\sqrt{8})^2 + (\sqrt{2})^2} = \sqrt{10} \approx 3,\!2$ (cm).
+
+d) Diện tích $= 4$ cm² (bằng $4$ cm²).
+
+**Bài 10:**
+
+a) $a + b + c \approx 1,\!41 + 1,\!73 + 2,\!24 = 5,\!38$.
+
+b) $a \times b \times c = \sqrt{2} \times \sqrt{3} \times \sqrt{5} = \sqrt{30} \approx 5,\!48$.
+
+c) $a + b \approx 3,\!15 > c \approx 2,\!24$.
+
+d) $a^2 + b^2 = 2 + 3 = 5 = c^2$ (bằng nhau).
+
+e) $\dfrac{a + b}{c} \approx \dfrac{3,\!15}{2,\!24} \approx 1,\!41$.
 
 </div>
 </details>
-
----
-
-<h4 id="bai-8">Bài 8: Bài toán kết hợp</h4>
-
-Cho các số: $-3$, $\sqrt{2}$, $\frac{1}{2}$, $\pi$, $0$, $\sqrt{4}$, $-\sqrt{3}$
-
-a) Sắp xếp các số theo thứ tự tăng dần
-
-b) Phân loại các số thành số hữu tỉ và số vô tỉ
-
-c) Tìm số lớn nhất và số nhỏ nhất
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Sắp xếp: $-3 < -\sqrt{3} < 0 < \frac{1}{2} < \sqrt{2} < \sqrt{4} < \pi$
-
-b) **Số hữu tỉ:** $-3$, $\frac{1}{2}$, $0$, $\sqrt{4} = 2$
-   **Số vô tỉ:** $\sqrt{2}$, $\pi$, $-\sqrt{3}$
-
-c) Số lớn nhất: $\pi$, Số nhỏ nhất: $-3$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
-
-Cho hình chữ nhật có chiều dài $\sqrt{8}$ cm, chiều rộng $\sqrt{2}$ cm.
-
-a) Tính diện tích hình chữ nhật
-
-b) Tính chu vi hình chữ nhật (làm tròn đến 1 chữ số thập phân)
-
-c) Tính độ dài đường chéo (làm tròn đến 1 chữ số thập phân)
-
-d) So sánh diện tích với 4 cm²
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Diện tích = $\sqrt{8} \times \sqrt{2} = \sqrt{16} = 4$ (cm²)
-
-b) Chu vi = $2(\sqrt{8} + \sqrt{2}) = 2(2\sqrt{2} + \sqrt{2}) = 2 \times 3\sqrt{2} = 6\sqrt{2} \approx 8.5$ (cm)
-
-c) Đường chéo = $\sqrt{(\sqrt{8})^2 + (\sqrt{2})^2} = \sqrt{8 + 2} = \sqrt{10} \approx 3.2$ (cm)
-
-d) Diện tích = 4 cm² (bằng 4 cm²)
-
-</div>
-</details>
-
----
-
-<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
-
-Cho các số: $a = \sqrt{2}$, $b = \sqrt{3}$, $c = \sqrt{5}$
-
-a) Tính $a + b + c$ (làm tròn đến 2 chữ số thập phân)
-
-b) Tính $a \times b \times c$ (làm tròn đến 2 chữ số thập phân)
-
-c) So sánh $a + b$ với $c$
-
-d) So sánh $a^2 + b^2$ với $c^2$
-
-e) Tìm giá trị gần đúng của $\frac{a + b}{c}$ (làm tròn đến 2 chữ số thập phân)
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $a + b + c = \sqrt{2} + \sqrt{3} + \sqrt{5} \approx 1.41 + 1.73 + 2.24 = 5.38$
-
-b) $a \times b \times c = \sqrt{2} \times \sqrt{3} \times \sqrt{5} = \sqrt{30} \approx 5.48$
-
-c) $a + b = \sqrt{2} + \sqrt{3} \approx 3.15 > \sqrt{5} \approx 2.24$
-
-d) $a^2 + b^2 = 2 + 3 = 5 = c^2$
-
-e) $\frac{a + b}{c} = \frac{\sqrt{2} + \sqrt{3}}{\sqrt{5}} \approx \frac{3.15}{2.24} \approx 1.41$
-
-</div>
-</details>
-
-</VanDung>
-
-<GhiNho>
-
-<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
-
-- **Số vô tỉ**: Không thể viết dưới dạng $\frac{a}{b}$, là số thập phân vô hạn không tuần hoàn
-- **Căn bậc hai**: $\sqrt{a}$ là số $x \geq 0$ sao cho $x^2 = a$
-- **Số thực**: $\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$ (hợp của số hữu tỉ và số vô tỉ)
-- **Quan hệ bao hàm**: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$
-- **Ví dụ số vô tỉ**: $\sqrt{2}$, $\sqrt{3}$, $\pi$, $e$
-- **Làm tròn**: Nếu chữ số bỏ đi < 5 giữ nguyên, ≥ 5 tăng lên 1
-- **Trục số**: Số thực được biểu diễn trên trục số, số bên trái nhỏ hơn số bên phải
-
-</GhiNho>

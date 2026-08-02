@@ -139,7 +139,7 @@ const availableHrefs = new Set(curriculumHrefs);
                       {chap.lessons.map(lesson => {
                         const isAvailable = availableHrefs.has(lesson.href);
                         const isDemo = lesson.title.includes('(Demo)');
-                        const isActive = currentSlug === lesson.href.slice(1);
+                        const isActive = currentSlug ? lesson.href.endsWith(currentSlug) : false;
                         const cleanTitle = lesson.title.replace(' (Demo)', '');
                         return (
                           <li>

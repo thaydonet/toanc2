@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 1: Đơn thức"
-description: "Khái niệm đơn thức, bậc và các phép toán với đơn thức - Toán 8 KNTT Chương 1"
+description: "Khái niệm đơn thức, đơn thức thu gọn, hệ số, phần biến, bậc, đơn thức đồng dạng và các phép toán cộng, trừ, nhân đơn thức - Toán 8 KNTT Chương 1"
 grade: "Lớp 8"
 chapter: "Chương 1: Đa thức"
 currentSlug: "lop8/bai-1-don-thuc"
@@ -14,42 +14,67 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import DonThucInteractive from '../../components/interactive/DonThucInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Biểu thức nào sau đây là đơn thức?",
+    question: "Biểu thức nào sau đây **KHÔNG** phải là đơn thức?",
     option_a: "$3x^2y$",
     option_b: "$x + 2y$",
-    option_c: "$\\dfrac{x}{y}$",
-    option_d: "$x^2 - 1$",
-    correct_option: "A",
-    explanation: "Đơn thức là tích của các số và biến. $3x^2y$ là đơn thức, còn các biểu thức khác có phép cộng, trừ hoặc chia.",
+    option_c: "$-7$",
+    option_d: "$\\dfrac{1}{2}x^3y^2$",
+    correct_option: "B",
+    explanation: "Đơn thức là tích của các số và biến. $x + 2y$ có phép cộng giữa hai số hạng nên là đa thức, không phải đơn thức.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Bậc của đơn thức $5x^3y^2z$ là:",
-    option_a: "$6$",
-    option_b: "$5$",
-    option_c: "$3$",
-    option_d: "$2$",
+    question: "Hệ số và phần biến của đơn thức $-5x^3y^2$ lần lượt là:",
+    option_a: "Hệ số $-5$, phần biến $x^3y^2$",
+    option_b: "Hệ số $5$, phần biến $x^3y^2$",
+    option_c: "Hệ số $-5x^3$, phần biến $y^2$",
+    option_d: "Hệ số $-5$, phần biến $xy$",
     correct_option: "A",
-    explanation: "Bậc = tổng số mũ của các biến: $3 + 2 + 1 = 6$.",
+    explanation: "Hệ số là phần số ($-5$), phần biến là tích các biến với số mũ tương ứng ($x^3y^2$).",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Đơn thức nào sau đây đồng dạng với $-2x^2y$?",
-    option_a: "$5x^2y$",
-    option_b: "$-2xy^2$",
-    option_c: "$3x^2$",
-    option_d: "$4xy$",
-    correct_option: "A",
-    explanation: "Hai đơn thức đồng dạng khi có cùng phần biến. $5x^2y$ và $-2x^2y$ đều có phần biến $x^2y$.",
+    question: "Bậc của đơn thức $-3x^4y^2z$ là:",
+    option_a: "$4$",
+    option_b: "$6$",
+    option_c: "$7$",
+    option_d: "$9$",
+    correct_option: "C",
+    explanation: "Bậc của đơn thức bằng tổng các số mũ của tất cả các biến: $4 + 2 + 1 = 7$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đơn thức nào sau đây đồng dạng với đơn thức $-2x^2y^3$?",
+    option_a: "$5x^3y^2$",
+    option_b: "$\\dfrac{3}{4}x^2y^3$",
+    option_c: "$-2x^2y^2$",
+    option_d: "$4xy^3$",
+    correct_option: "B",
+    explanation: "Hai đơn thức đồng dạng khi có hệ số khác 0 và có cùng phần biến. $\\dfrac{3}{4}x^2y^3$ và $-2x^2y^3$ đều có phần biến $x^2y^3$.",
     difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả của phép tính $4x^2y + (-7x^2y)$ là:",
+    option_a: "$-3x^2y$",
+    option_b: "$11x^2y$",
+    option_c: "$-3$",
+    option_d: "$-3x^4y^2$",
+    correct_option: "A",
+    explanation: "Cộng hai đơn thức đồng dạng: $4x^2y + (-7x^2y) = (4 - 7)x^2y = -3x^2y$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
@@ -58,91 +83,79 @@ export const quizData = [
     option_a: "$-6x^3y^4$",
     option_b: "$-6x^2y^3$",
     option_c: "$6x^3y^4$",
-    option_d: "$x^3y^4$",
+    option_d: "$-5x^3y^4$",
     correct_option: "A",
-    explanation: "$(3x^2y) \\cdot (-2xy^3) = 3 \\cdot (-2) \\cdot x^{2+1} \\cdot y^{1+3} = -6x^3y^4$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Bậc của đơn thức $-7$ là:",
-    option_a: "$0$",
-    option_b: "$1$",
-    option_c: "$-7$",
-    option_d: "Không xác định",
-    correct_option: "A",
-    explanation: "Đơn thức hằng số (khác 0) có bậc 0.",
+    explanation: "$(3x^2y) \\cdot (-2xy^3) = [3 \\cdot (-2)] \\cdot (x^2 \\cdot x) \\cdot (y \\cdot y^3) = -6x^{2+1}y^{1+3} = -6x^3y^4$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Những đơn thức nào sau đây đồng dạng với nhau?",
-    option_a: "$3xy^2$",
-    option_b: "$-5xy^2$",
-    option_c: "$2x^2y$",
-    option_d: "$\\dfrac{1}{2}xy^2$",
+    question: "Những đơn thức nào sau đây đã ở dạng thu gọn?",
+    option_a: "$2x^2y^3$",
+    option_b: "$-5ab^2$",
+    option_c: "$3x \\cdot 2y$",
+    option_d: "$\\dfrac{1}{3}xy^2z$",
     correct_option: "A,B,D",
-    explanation: "A, B, D đều có phần biến $xy^2$ nên đồng dạng. C có phần biến $x^2y$ khác.",
+    explanation: "A, B, D đều là các đơn thức thu gọn. C chưa thu gọn vì còn chứa phép nhân $3 \\cdot 2$ và biến $x, y$ chưa viết dạng tích lũy thừa thu gọn.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tổng của hai đơn thức $4x^2y$ và $-7x^2y$ có hệ số bằng bao nhiêu?",
-    correct_option: "-3",
-    explanation: "$4x^2y + (-7x^2y) = (4 - 7)x^2y = -3x^2y$. Hệ số là $-3$.",
-    difficulty_level: "easy",
+    question: "Cho đơn thức $A = (2x^2y)^3$. Hệ số của đơn thức $A$ sau khi thu gọn bằng bao nhiêu?",
+    correct_option: "8",
+    explanation: "$A = (2x^2y)^3 = 2^3 \\cdot (x^2)^3 \\cdot y^3 = 8x^6y^3$. Hệ số bằng $8$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Cho đơn thức $!a#2!x^!m#3!y^!n#2!$. Bậc của đơn thức này là:",
+    question: "Cho đơn thức $!a#3!x^!m#2!y^!n#3!$. Bậc của đơn thức này là:",
     option_a: "$!tinh: !m! + !n!!$",
     option_b: "$!m!$",
     option_c: "$!n!$",
     option_d: "$!a!$",
     correct_option: "A",
-    explanation: "Bậc = tổng số mũ của các biến: $!m! + !n! = !tinh: !m! + !n!!$.",
+    explanation: "Bậc bằng tổng số mũ của tất cả các biến: $!m! + !n! = !tinh: !m! + !n!!$.",
     difficulty_level: "medium",
     is_dynamic: true,
   },
   {
     type: "mcq",
-    question: "Tích của $!a#2!x^!m#2!$ và $!b#3!x^!n#3!$ là:",
-    option_a: "$!tinh: !a! * !b!!x^!tinh: !m! + !n!!$",
-    option_b: "$!tinh: !a! + !b!!x^!tinh: !m! * !n!!$",
-    option_c: "$!tinh: !a! * !b!!x^!tinh: !m! * !n!!$",
-    option_d: "$!a!x^!m!$",
+    question: "Giá trị của biểu thức $P = 3x^2y - 5x^2y$ tại $x = -1, y = 2$ là:",
+    option_a: "$-4$",
+    option_b: "$4$",
+    option_c: "$-8$",
+    option_d: "$8$",
     correct_option: "A",
-    explanation: "Nhân hệ số với nhau, cộng số mũ: $(!a!x^!m!) \\cdot (!b!x^!n!) = !tinh: !a! * !b!!x^{!m! + !n!} = !tinh: !a! * !b!!x^!tinh: !m! + !n!!$.",
+    explanation: "Thu gọn $P = (3 - 5)x^2y = -2x^2y$. Thay $x = -1, y = 2$: $P = -2(-1)^2(2) = -2(1)(2) = -4$.",
     difficulty_level: "hard",
-    is_dynamic: true,
+    is_dynamic: false,
   },
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🧮 Đơn thức — Khối xây dựng của đại số</h3>
+<h3 id="mo-dau">🧮 Đơn thức — Khối xây dựng của Đại số</h3>
 
-Đơn thức là những biểu thức đơn giản nhất trong đại số, giống như những viên gạch để xây nên các công trình toán học phức tạp hơn!
+Đơn thức là những biểu thức đại số nền tảng nhất. Giống như những viên gạch kết nối để xây dựng nên các công trình toán học phức tạp hơn, đơn thức xuất hiện khắp nơi trong các công thức tính toán thực tế!
 
 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">📦</div>
     <strong>Diện tích hình chữ nhật</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$S = xy$ (đơn thức bậc 2)</p>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$S = x \cdot y$ (Đơn thức bậc 2)</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
     <strong>Thể tích hình hộp</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$V = xyz$ (đơn thức bậc 3)</p>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$V = x \cdot y \cdot z$ (Đơn thức bậc 3)</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
-    <strong>Công suất</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$P = UI$ (đơn thức bậc 2)</p>
+    <strong>Quãng đường / Công suất</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$S = v \cdot t$ (Đơn thức bậc 2)</p>
   </div>
 </div>
 
@@ -150,220 +163,487 @@ export const quizData = [
 
 <KhamPha>
 
-<h3 id="khai-niem">📖 1. Khái niệm đơn thức</h3>
+<h3 id="khai-niem">📖 1. Khái niệm đơn thức và đơn thức thu gọn</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Đơn thức là biểu thức đại số chỉ gồm:
-- Một số, hoặc
-- Một biến, hoặc
-- Tích của các số và các biến
+**Định nghĩa đơn thức:** Đơn thức là biểu thức đại số chỉ gồm **chỉ một số**, hoặc **chỉ một biến**, hoặc **tích giữa các số và các biến**.
 
 </div>
 
-**Ví dụ các đơn thức:**
+<div class="box-dinh-nghia" style="margin-top:1rem;">
 
-| Đơn thức | Phân tích |
-|:---:|:---|
-| $5$ | Số |
-| $x$ | Biến |
-| $3x$ | Tích của số và biến |
-| $-2xy$ | Tích của số và hai biến |
-| $4x^2y^3$ | Tích của số và các lũy thừa của biến |
-| $\dfrac{1}{2}abc$ | Tích của số và ba biến |
+**Định nghĩa đơn thức thu gọn:** Đơn thức thu gọn là đơn thức chỉ gồm **tích của một số với các biến**, mà **mỗi biến chỉ được viết một lần** dưới dạng lũy thừa với số mũ nguyên dương.
 
-**Không phải đơn thức:**
+</div>
 
-| Biểu thức | Lý do |
-|:---:|:---|
-| $x + y$ | Có phép cộng |
-| $2x - 3$ | Có phép trừ |
-| $\dfrac{x}{y}$ | Có phép chia biến |
-| $\sqrt{x}$ | Có căn thức |
+**Ví dụ 1:** Trong các biểu thức $3x^2y$; $-5$; $x + 2y$; $\dfrac{4x}{y}$; $\sqrt{2}x^3$, biểu thức nào là đơn thức?
 
-<h3 id="he-so-phan-bien" style="margin-top:2rem;">🔍 2. Hệ số và phần biến</h3>
+*Lời giải:*
+- $3x^2y$ (tích của số 3 và các biến $x, y$) là đơn thức.
+- $-5$ (một số thực) là đơn thức.
+- $\sqrt{2}x^3$ (tích của số $\sqrt{2}$ và biến $x^3$) là đơn thức.
+- $x + 2y$ chứa phép cộng $\Rightarrow$ **không là đơn thức**.
+- $\dfrac{4x}{y}$ chứa phép chia cho biến $y$ ở mẫu $\Rightarrow$ **không là đơn thức**.
 
-Mỗi đơn thức gồm hai phần:
+**Ví dụ 2:** Trong các đơn thức $5x^2y^3$; $2x^2 \cdot 3xy$; $-a^2b$; $4x \cdot (-2)y^2$, đơn thức nào là đơn thức thu gọn?
+
+*Lời giải:*
+- $5x^2y^3$ và $-a^2b$ là các đơn thức thu gọn (mỗi biến chỉ xuất hiện 1 lần).
+- $2x^2 \cdot 3xy$ chưa thu gọn vì số 2 và 3 chưa nhân lại, biến $x$ xuất hiện 2 lần.
+- $4x \cdot (-2)y^2$ chưa thu gọn vì chưa thực hiện phép nhân các số.
+
+**Ví dụ 3:** Thu gọn các đơn thức sau: $A = 2x^2 \cdot 3xy^2$ và $B = -4a^2b \cdot \left(-\dfrac{1}{2}ab^3\right)$.
+
+*Lời giải:*
+- $A = (2 \cdot 3) \cdot (x^2 \cdot x) \cdot y^2 = 6x^3y^2$.
+- $B = \left[(-4) \cdot \left(-\dfrac{1}{2}\right)\right] \cdot (a^2 \cdot a) \cdot (b \cdot b^3) = 2a^3b^4$.
+
+**Hình vẽ minh họa:** Sơ đồ phễu lọc phân loại Biểu thức Đại số:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="600" height="210" viewBox="0 0 600 210" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="200" y="15" width="200" height="40" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="300" y="40" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e3a8a">BIỂU THỨC ĐẠI SỐ</text>
+
+  <path d="M 230 55 L 120 100" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 370 55 L 480 100" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="30" y="105" width="180" height="85" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="120" y="130" font-size="15" font-weight="bold" text-anchor="middle" fill="#065f46">✅ ĐƠN THỨC</text>
+  <text x="120" y="152" font-size="13" text-anchor="middle" fill="#047857">Ví dụ: 3x²y ; -7 ; ½ab³</text>
+  <text x="120" y="174" font-size="12" text-anchor="middle" fill="#059669">(Chỉ có phép nhân & lũy thừa)</text>
+
+  <rect x="390" y="105" width="180" height="85" rx="10" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+  <text x="480" y="130" font-size="15" font-weight="bold" text-anchor="middle" fill="#991b1b">❌ KHÔNG PHẢI ĐƠN THỨC</text>
+  <text x="480" y="152" font-size="13" text-anchor="middle" fill="#b91c1c">Ví dụ: x + 2y ; 3/x ; √y</text>
+  <text x="480" y="174" font-size="12" text-anchor="middle" fill="#dc2626">(Có phép cộng, trừ, chia biến)</text>
+</svg>
+</div>
+
+<h3 id="he-so-phan-bien" style="margin-top:2rem;">🔍 2. Hệ số, phần biến và bậc của đơn thức</h3>
 
 <div class="box-dinh-nghia">
 
-**Hệ số:** Phần số của đơn thức
-
-**Phần biến:** Phần chứa các biến và số mũ của chúng
+Trong một đơn thức thu gọn:
+- **Hệ số:** Là phần số (hằng số).
+- **Phần biến:** Là phần chứa các biến (viết dưới dạng lũy thừa).
+- **Bậc của đơn thức:** Là **tổng số mũ của tất cả các biến** có trong đơn thức đó.
 
 </div>
 
-**Ví dụ phân tích:**
+<div class="box-dinh-ly" style="margin-top:1rem;">
 
-| Đơn thức | Hệ số | Phần biến |
-|:---:|:---:|:---:|
-| $5x^2y$ | $5$ | $x^2y$ |
-| $-3ab^2$ | $-3$ | $ab^2$ |
-| $\dfrac{2}{3}xyz$ | $\dfrac{2}{3}$ | $xyz$ |
-| $x^3$ | $1$ | $x^3$ |
-| $-y$ | $-1$ | $y$ |
-| $7$ | $7$ | (không có) |
+**Quy ước quan trọng:**
+- Một số thực khác 0 là **đơn thức bậc 0** (ví dụ: số $5$ có bậc là $0$).
+- Số **0** là đơn thức **không có bậc**.
+- Khi viết đơn thức, nếu hệ số là $1$ thì ta không ghi (ví dụ: $x^2y$ hiểu là $1x^2y$), nếu hệ số là $-1$ thì ta chỉ ghi dấu âm (ví dụ: $-xy^2$ hiểu là $-1xy^2$).
 
-<h3 id="bac" style="margin-top:2rem;">📊 3. Bậc của đơn thức</h3>
+</div>
+
+**Ví dụ 1:** Phân tích đơn thức $M = 5x^3y^2z$.
+- **Hệ số:** $5$.
+- **Phần biến:** $x^3y^2z$.
+- **Bậc:** $3 + 2 + 1 = 6$ (vì biến $z = z^1$).
+
+**Ví dụ 2:** Tìm hệ số, phần biến và bậc của các đơn thức sau: $A = -x^4y$; $B = \dfrac{2}{5}a^2b^3$; $C = -9$.
+
+*Lời giải:*
+- $A = -x^4y$: Hệ số là $-1$, phần biến là $x^4y$, bậc bằng $4 + 1 = 5$.
+- $B = \dfrac{2}{5}a^2b^3$: Hệ số là $\dfrac{2}{5}$, phần biến là $a^2b^3$, bậc bằng $2 + 3 = 5$.
+- $C = -9$: Hệ số là $-9$, không có phần biến, bậc bằng $0$.
+
+**Ví dụ 3:** Cho đơn thức $N = -2,5 x^m y^3$ (với $m \in \mathbb{N}^*$). Biết $N$ có bậc bằng $7$, hãy tìm $m$.
+
+*Lời giải:* Bậc của đơn thức $N$ là tổng số mũ các biến: $m + 3$. Theo đề bài: $m + 3 = 7 \Rightarrow m = 4$.
+
+**Hình vẽ minh họa:** Phẫu thuật cấu trúc đơn thức $5x^3y^2z$:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="550" height="180" viewBox="0 0 550 180" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <text x="275" y="65" font-size="36" font-weight="800" text-anchor="middle" letter-spacing="2">
+    <tspan fill="#2563eb">5</tspan><tspan fill="#059669">x³</tspan><tspan fill="#d97706">y²</tspan><tspan fill="#9333ea">z¹</tspan>
+  </text>
+
+  <line x1="220" y1="75" x2="130" y2="125" stroke="#2563eb" stroke-width="2"/>
+  <rect x="60" y="125" width="130" height="35" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="125" y="147" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af">Hệ số: 5</text>
+
+  <line x1="310" y1="75" x2="410" y2="125" stroke="#059669" stroke-width="2"/>
+  <rect x="350" y="125" width="160" height="35" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="430" y="147" font-size="14" font-weight="bold" text-anchor="middle" fill="#065f46">Phần biến: x³y²z</text>
+
+  <rect x="200" y="5" width="150" height="28" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="275" y="24" font-size="13" font-weight="bold" text-anchor="middle" fill="#b45309">Bậc = 3 + 2 + 1 = 6</text>
+</svg>
+</div>
+
+<h3 id="don-thuc-dong-dang" style="margin-top:2rem;">🔗 3. Đơn thức đồng dạng</h3>
 
 <div class="box-dinh-nghia">
 
-**Bậc của đơn thức** là tổng số mũ của tất cả các biến trong đơn thức.
-
-**Quy ước:**
-- Đơn thức hằng số khác 0 có bậc 0
-- Đơn thức 0 không có bậc
+**Định nghĩa:** Hai đơn thức đồng dạng là hai đơn thức có **hệ số khác 0** và có **cùng phần biến**.
 
 </div>
 
-**Ví dụ tính bậc:**
+**Ví dụ 1:** Tìm các cặp đơn thức đồng dạng trong các đơn thức sau: $3x^2y$; $-5x^2y$; $7xy^2$; $\dfrac{1}{2}x^2y$; $-9$.
 
-| Đơn thức | Tính bậc | Bậc |
-|:---:|:---|:---:|
-| $3x^2y$ | $2 + 1 = 3$ | $3$ |
-| $-5x^3y^2z$ | $3 + 2 + 1 = 6$ | $6$ |
-| $7xy^4$ | $1 + 4 = 5$ | $5$ |
-| $x^5$ | $5$ | $5$ |
-| $-8$ | Hằng số | $0$ |
+*Lời giải:*
+- Các đơn thức $3x^2y$; $-5x^2y$; $\dfrac{1}{2}x^2y$ đồng dạng với nhau vì có cùng phần biến $x^2y$.
+- Đơn thức $7xy^2$ không đồng dạng với các đơn thức trên (vì phần biến là $xy^2 \neq x^2y$).
 
-<h3 id="don-thuc-dong-dang" style="margin-top:2rem;">🔗 4. Đơn thức đồng dạng</h3>
+**Ví dụ 2:** Hai đơn thức $A = 2x^2y$ và $B = 2xy^2$ có đồng dạng không? Vì sao?
 
-<div class="box-dinh-nghia">
+*Lời giải:* Không đồng dạng. Mặc dù chúng có cùng các chữ cái $x, y$ nhưng số mũ của $x$ và $y$ khác nhau (ở $A$ số mũ của $x$ là $2$, ở $B$ số mũ của $x$ là $1$), do đó phần biến khác nhau.
 
-**Hai đơn thức đồng dạng** là hai đơn thức có cùng phần biến (hoặc cả hai đều là hằng số).
+**Ví dụ 3:** Tìm số nguyên $m, n$ để hai đơn thức $U = 3x^{m+1}y^2$ và $V = -5x^3y^n$ đồng dạng.
 
+*Lời giải:* Để $U$ và $V$ đồng dạng thì phần biến của chúng phải giống nhau:
+- Số mũ của $x$: $m + 1 = 3 \Rightarrow m = 2$.
+- Số mũ của $y$: $n = 2$.
+Vậy $m = 2, n = 2$.
+
+**Hình vẽ minh họa:** Ghép cặp các thẻ đơn thức đồng dạng vào cùng hộp:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="580" height="160" viewBox="0 0 580 160" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="40" y="20" width="220" height="120" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="150" y="48" font-size="15" font-weight="bold" text-anchor="middle" fill="#1e40af">📦 Hộp phần biến x²y</text>
+  <rect x="60" y="65" width="80" height="30" rx="6" fill="#3b82f6"/>
+  <text x="100" y="85" font-size="14" font-weight="bold" text-anchor="middle" fill="white">3x²y</text>
+  <rect x="160" y="65" width="80" height="30" rx="6" fill="#3b82f6"/>
+  <text x="200" y="85" font-size="14" font-weight="bold" text-anchor="middle" fill="white">-5x²y</text>
+
+  <rect x="320" y="20" width="220" height="120" rx="12" fill="#fdf4ff" stroke="#a855f7" stroke-width="2"/>
+  <text x="430" y="48" font-size="15" font-weight="bold" text-anchor="middle" fill="#6b21a8">📦 Hộp phần biến xy²</text>
+  <rect x="340" y="65" width="80" height="30" rx="6" fill="#a855f7"/>
+  <text x="380" y="85" font-size="14" font-weight="bold" text-anchor="middle" fill="white">7xy²</text>
+  <rect x="440" y="65" width="80" height="30" rx="6" fill="#a855f7"/>
+  <text x="480" y="85" font-size="14" font-weight="bold" text-anchor="middle" fill="white">½xy²</text>
+</svg>
 </div>
 
-**Ví dụ:**
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Đồng dạng:**
-- $3x^2y$ và $-5x^2y$ (cùng phần biến $x^2y$)
-- $7ab^2$ và $\dfrac{1}{2}ab^2$ (cùng phần biến $ab^2$)
-- $5$ và $-3$ (cả hai đều là hằng số)
-
-**Không đồng dạng:**
-- $2x^2y$ và $2xy^2$ (phần biến khác nhau)
-- $3ab$ và $3abc$ (số biến khác nhau)
-
-</div>
-
-<h3 id="phep-toan" style="margin-top:2rem;">➕ 5. Các phép toán với đơn thức</h3>
-
-**a) Cộng, trừ đơn thức đồng dạng:**
+<h3 id="phep-toan" style="margin-top:2rem;">➕ 4. Cộng và trừ đơn thức đồng dạng</h3>
 
 <div class="box-dinh-ly">
 
-Để cộng (trừ) các đơn thức đồng dạng, ta cộng (trừ) các hệ số và giữ nguyên phần biến.
+**Quy tắc:** Để cộng (hoặc trừ) các đơn thức đồng dạng, ta **cộng (hoặc trừ) các hệ số** với nhau và **giữ nguyên phần biến**.
 
-$ax^my^n \pm bx^my^n = (a \pm b)x^my^n$
+$$a \cdot X \pm b \cdot X = (a \pm b) \cdot X$$
 
 </div>
 
-**Ví dụ 1:**
+**Ví dụ 1:** Tính tổng: $4x^2y + 7x^2y - 2x^2y$.
 
-$5x^2y + 3x^2y = (5 + 3)x^2y = 8x^2y$
+*Lời giải:* Các đơn thức đồng dạng có chung phần biến $x^2y$:
+$$4x^2y + 7x^2y - 2x^2y = (4 + 7 - 2)x^2y = 9x^2y$$
 
-$7ab^2 - 10ab^2 = (7 - 10)ab^2 = -3ab^2$
+**Ví dụ 2:** Tính: $-5ab^3 - 3ab^3 + 10ab^3$.
 
-**b) Nhân đơn thức:**
+*Lời giải:*
+$$-5ab^3 - 3ab^3 + 10ab^3 = (-5 - 3 + 10)ab^3 = 2ab^3$$
+
+**Ví dụ 3:** Rút gọn biểu thức $A = 3x^2y - 5xy^2 + 7x^2y + 2xy^2$.
+
+*Lời giải:* Nhóm các đơn thức đồng dạng lại với nhau:
+$$A = (3x^2y + 7x^2y) + (-5xy^2 + 2xy^2) = (3 + 7)x^2y + (-5 + 2)xy^2 = 10x^2y - 3xy^2$$
+
+**Hình vẽ minh họa:** Mô hình ghép diện tích ghép các hình chữ nhật cùng phần biến $x^2$:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="580" height="140" viewBox="0 0 580 140" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="30" y="35" width="120" height="60" rx="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+  <text x="90" y="70" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e40af">3x²</text>
+
+  <text x="175" y="72" font-size="22" font-weight="bold" fill="#475569">+</text>
+
+  <rect x="200" y="35" width="80" height="60" rx="6" fill="#a7f3d0" stroke="#059669" stroke-width="2"/>
+  <text x="240" y="70" font-size="16" font-weight="bold" text-anchor="middle" fill="#065f46">2x²</text>
+
+  <text x="305" y="72" font-size="22" font-weight="bold" fill="#475569">=</text>
+
+  <rect x="330" y="35" width="200" height="60" rx="6" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+  <text x="430" y="70" font-size="18" font-weight="bold" text-anchor="middle" fill="#b45309">5x² (Ghép diện tích)</text>
+</svg>
+</div>
+
+<h3 id="nhan-don-thuc" style="margin-top:2rem;">✖️ 5. Nhân hai đơn thức và nâng lên lũy thừa</h3>
 
 <div class="box-dinh-ly">
 
-Để nhân hai đơn thức:
-1. Nhân các hệ số với nhau
-2. Nhân các biến giống nhau (cộng số mũ)
+**Quy tắc nhân hai đơn thức:**
+Để nhân hai đơn thức, ta **nhân các hệ số với nhau** và **nhân các phần biến với nhau** (áp dụng quy tắc $x^m \cdot x^n = x^{m+n}$).
 
-$(ax^m) \cdot (bx^n) = (a \cdot b)x^{m+n}$
-
-</div>
-
-**Ví dụ 2:**
-
-$(3x^2y) \cdot (4xy^3) = (3 \cdot 4) \cdot x^{2+1} \cdot y^{1+3} = 12x^3y^4$
-
-$(-2ab^2) \cdot (5a^3b) = (-2 \cdot 5) \cdot a^{1+3} \cdot b^{2+1} = -10a^4b^3$
-
-**c) Lũy thừa của đơn thức:**
-
-<div class="box-dinh-ly">
-
-$(ax^m)^n = a^n \cdot x^{mn}$
+$$(a \cdot x^m y^n) \cdot (b \cdot x^p y^q) = (a \cdot b) \cdot x^{m+p} y^{n+q}$$
 
 </div>
 
-**Ví dụ 3:**
+<div class="box-dinh-nghia" style="margin-top:1rem;">
 
-$(2x^2y)^3 = 2^3 \cdot (x^2)^3 \cdot y^3 = 8x^6y^3$
+**Nâng lên lũy thừa:**
+$$(a \cdot x^m y^n)^k = a^k \cdot x^{m \cdot k} y^{n \cdot k}$$
 
-$(-3ab^2)^2 = (-3)^2 \cdot a^2 \cdot (b^2)^2 = 9a^2b^4$
+</div>
+
+**Ví dụ 1:** Thực hiện phép nhân: $(3x^2y) \cdot (-4xy^3)$.
+
+*Lời giải:*
+$$(3x^2y) \cdot (-4xy^3) = [3 \cdot (-4)] \cdot (x^2 \cdot x) \cdot (y \cdot y^3) = -12x^3y^4$$
+
+**Ví dụ 2:** Tính lũy thừa: $P = (-2x^2y^3)^3$.
+
+*Lời giải:*
+$$P = (-2)^3 \cdot (x^2)^3 \cdot (y^3)^3 = -8 x^{2 \cdot 3} y^{3 \cdot 3} = -8x^6y^9$$
+
+**Ví dụ 3:** Cho ba đơn thức $A = -\dfrac{2}{3}x^3y$, $B = 9xy^2$, $C = -x^2y^4$. Tính tích $M = A \cdot B \cdot C$ và tìm bậc của $M$.
+
+*Lời giải:*
+$$M = \left(-\dfrac{2}{3}x^3y\right) \cdot (9xy^2) \cdot (-x^2y^4) = \left[\left(-\dfrac{2}{3}\right) \cdot 9 \cdot (-1)\right] \cdot (x^3 \cdot x \cdot x^2) \cdot (y \cdot y^2 \cdot y^4) = 6x^6y^7$$
+Đơn thức tích $M = 6x^6y^7$ có hệ số là $6$, bậc bằng $6 + 7 = 13$.
+
+**Hình vẽ minh họa:** Nhân kích thước các cạnh để được thể tích $V = (2x)(3y)(4z) = 24xyz$:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="560" height="170" viewBox="0 0 560 170" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <path d="M 120 120 L 260 120 L 320 80 L 180 80 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <path d="M 120 120 L 120 40 L 180 0 L 180 80 Z" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+  <path d="M 120 40 L 260 40 L 320 0 L 180 0 Z" fill="#93c5fd" stroke="#2563eb" stroke-width="2"/>
+  <path d="M 260 120 L 260 40 L 320 0 L 320 80 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+
+  <text x="190" y="142" font-size="14" font-weight="bold" fill="#1e40af">Dài: 2x</text>
+  <text x="300" y="110" font-size="14" font-weight="bold" fill="#1e40af">Rộng: 3y</text>
+  <text x="80" y="80" font-size="14" font-weight="bold" fill="#1e40af">Cao: 4z</text>
+
+  <rect x="360" y="45" width="170" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="445" y="70" font-size="14" font-weight="bold" text-anchor="middle" fill="#b45309">Thể tích V = A · B · C</text>
+  <text x="445" y="92" font-size="16" font-weight="800" text-anchor="middle" fill="#d97706">= 24xyz</text>
+</svg>
+</div>
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
 
-<QuizSession client:load questions={quizData} />
+<DonThucInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Nhận biết đơn thức và thu gọn đơn thức**
+**Phương pháp giải:**
+- Kiểm tra xem biểu thức có chứa phép cộng, trừ giữa các biến hoặc chia cho biến hay không (nếu có thì không phải đơn thức).
+- Thu gọn: Nhân các hệ số với nhau, nhân các lũy thừa của cùng một biến (cộng số mũ).
+
+</div>
+
+**Ví dụ 1:** Trong các biểu thức sau, biểu thức nào là đơn thức? Thu gọn các đơn thức đó:
+$$A = 4x^2y \cdot (-2xy^2); \quad B = \dfrac{3x + y}{2}; \quad C = -7; \quad D = \dfrac{x^2}{y}$$
+
+*Lời giải:*
+- $A = 4x^2y \cdot (-2xy^2) = -8x^3y^3$ (là đơn thức).
+- $B$ có phép cộng giữa $3x$ và $y$ ở tử nên **không phải đơn thức**.
+- $C = -7$ (là đơn thức hằng số).
+- $D$ có chứa biến $y$ ở mẫu nên **không phải đơn thức**.
+
+**Ví dụ 2:** Thu gọn đơn thức $M = \left(-\dfrac{3}{4}x^2y^3\right) \cdot \left(\dfrac{8}{9}x^3y\right)$.
+
+*Lời giải:*
+$$M = \left[\left(-\dfrac{3}{4}\right) \cdot \dfrac{8}{9}\right] \cdot (x^2 \cdot x^3) \cdot (y^3 \cdot y) = -\dfrac{2}{3}x^5y^4$$
+
+**Ví dụ 3:** Thu gọn đơn thức $N = (-2xy^2)^3 \cdot (3x^3y)$.
+
+*Lời giải:*
+$$N = [(-2)^3 \cdot x^3 \cdot (y^2)^3] \cdot (3x^3y) = (-8x^3y^6) \cdot (3x^3y) = (-8 \cdot 3) \cdot (x^3 \cdot x^3) \cdot (y^6 \cdot y) = -24x^6y^7$$
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Xác định hệ số, phần biến và bậc của đơn thức**
+**Phương pháp giải:**
+- Bước 1: Thu gọn đơn thức về dạng chuẩn.
+- Bước 2: Chỉ ra phần số (hệ số), phần chứa các biến (phần biến).
+- Bước 3: Tính tổng số mũ của tất cả các biến để được bậc.
+
+</div>
+
+**Ví dụ 1:** Tìm hệ số, phần biến và bậc của đơn thức $P = -3x^2y^4z$.
+
+*Lời giải:*
+- Hệ số: $-3$.
+- Phần biến: $x^2y^4z$.
+- Bậc: $2 + 4 + 1 = 7$.
+
+**Ví dụ 2:** Cho đơn thức $Q = \left(-\dfrac{1}{2}x^2y\right) \cdot (4xy^3)$. Tìm hệ số và bậc của $Q$.
+
+*Lời giải:*
+Thu gọn $Q = \left(-\dfrac{1}{2} \cdot 4\right) (x^2 \cdot x) (y \cdot y^3) = -2x^3y^4$.
+- Hệ số của $Q$ là $-2$.
+- Bậc của $Q$ là $3 + 4 = 7$.
+
+**Ví dụ 3:** Cho đơn thức $K = (a - 2)x^3y^2$ (với $a$ là hằng số).
+a) Tìm $a$ để $K$ có hệ số bằng $5$.
+b) Tìm $a$ để $K$ là đơn thức 0.
+
+*Lời giải:*
+a) Hệ số của $K$ là $a - 2$. Để hệ số bằng $5 \Rightarrow a - 2 = 5 \Rightarrow a = 7$.
+b) Đơn thức $K$ là đơn thức 0 khi hệ số bằng $0 \Rightarrow a - 2 = 0 \Rightarrow a = 2$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 3: Nhận biết và tìm đơn thức đồng dạng**
+**Phương pháp giải:** So sánh phần biến của các đơn thức đã thu gọn (hệ số phải khác 0). Hai đơn thức đồng dạng khi có phần biến hoàn toàn giống nhau.
+
+</div>
+
+**Ví dụ 1:** Cho các đơn thức: $A = 2x^3y^2$; $B = -5x^2y^3$; $C = \dfrac{1}{3}x^3y^2$; $D = -x^3y^2$. Tìm các đơn thức đồng dạng với $A$.
+
+*Lời giải:* Đơn thức $A$ có phần biến là $x^3y^2$. Các đơn thức có cùng phần biến $x^3y^2$ là $C = \dfrac{1}{3}x^3y^2$ và $D = -x^3y^2$.
+
+**Ví dụ 2:** Giải thích vì sao hai đơn thức $M = 4x^2y$ và $N = 4x^2y^2$ không đồng dạng.
+
+*Lời giải:* Mặc dù hai đơn thức có cùng hệ số $4$ và chứa các biến $x, y$, nhưng số mũ của biến $y$ ở $M$ là $1$, còn ở $N$ là $2$. Do đó phần biến khác nhau nên $M$ và $N$ không đồng dạng.
+
+**Ví dụ 3:** Tìm các số nguyên $a, b$ để đơn thức $X = 5x^{a+1}y^4$ đồng dạng với đơn thức $Y = -2x^4y^{2b}$.
+
+*Lời giải:* Để $X$ và $Y$ đồng dạng:
+$$\begin{cases} a + 1 = 4 \Rightarrow a = 3 \\ 2b = 4 \Rightarrow b = 2 \end{cases}$$
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 4: Cộng, trừ các đơn thức đồng dạng**
+**Phương pháp giải:** Cộng hoặc trừ các hệ số, giữ nguyên phần biến. Nếu có nhiều nhóm đơn thức khác nhau, nhóm các đơn thức đồng dạng vào từng ngoặc rồi thu gọn.
+
+</div>
+
+**Ví dụ 1:** Tính $3x^2y^3 + 8x^2y^3 - 5x^2y^3$.
+
+*Lời giải:* $(3 + 8 - 5)x^2y^3 = 6x^2y^3$.
+
+**Ví dụ 2:** Rút gọn biểu thức $B = 5xy^2 - 3x^2y + 2xy^2 + 7x^2y$.
+
+*Lời giải:*
+$$B = (5xy^2 + 2xy^2) + (-3x^2y + 7x^2y) = (5 + 2)xy^2 + (-3 + 7)x^2y = 7xy^2 + 4x^2y$$
+
+**Ví dụ 3:** Tính giá trị của biểu thức $S = 4x^3y - 7x^3y + 2x^3y$ tại $x = -2, y = 3$.
+
+*Lời giải:*
+Thu gọn $S = (4 - 7 + 2)x^3y = -x^3y$.
+Thay $x = -2, y = 3$ vào $S$: $S = -(-2)^3 \cdot 3 = -(-8) \cdot 3 = 24$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 5: Nhân đơn thức và tính giá trị biểu thức**
+**Phương pháp giải:** Thực hiện phép nhân các đơn thức để rút gọn biểu thức về đơn thức thu gọn đơn giản nhất, sau đó thay giá trị của các biến vào để tính kết quả.
+
+</div>
+
+**Ví dụ 1:** Thực hiện phép nhân và tìm bậc của kết quả: $P = \left(-\dfrac{1}{3}x^2y\right) \cdot (6xy^2) \cdot \left(-\dfrac{1}{2}x^3\right)$.
+
+*Lời giải:*
+$$P = \left[\left(-\dfrac{1}{3}\right) \cdot 6 \cdot \left(-\dfrac{1}{2}\right)\right] \cdot (x^2 \cdot x \cdot x^3) \cdot (y \cdot y^2) = 1 \cdot x^6y^3 = x^6y^3$$
+Bậc của $P$ là $6 + 3 = 9$.
+
+**Ví dụ 2:** Cho $A = 2x^2y^3$ và $B = -3xy$. Tính $A \cdot B^2$.
+
+*Lời giải:*
+Ta có $B^2 = (-3xy)^2 = 9x^2y^2$.
+Nên $A \cdot B^2 = (2x^2y^3) \cdot (9x^2y^2) = (2 \cdot 9) (x^2 \cdot x^2) (y^3 \cdot y^2) = 18x^4y^5$.
+
+**Ví dụ 3:** Tính giá trị của đơn thức $M = (-x^2y)^3 \cdot (2xy^2)$ tại $x = 1, y = -1$.
+
+*Lời giải:*
+Thu gọn $M = (-x^6y^3) \cdot (2xy^2) = -2x^7y^5$.
+Thay $x = 1, y = -1$: $M = -2(1)^7(-1)^5 = -2(1)(-1) = 2$.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
 
 <h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-**📝 Bài toán 1:** Một hình chữ nhật có chiều dài $3x$ cm và chiều rộng $2y$ cm. Tính diện tích.
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**📝 Câu 1 (Hình học sân trường):** Một mảnh đất trong sân trường gồm hai khu vực hình chữ nhật ghép lại: Khu A có chiều dài $3x$ (m) và chiều rộng $2y$ (m); Khu B có chiều dài $5x$ (m) và chiều rộng $2y$ (m).
 
-**Giải:**
+a) Viết biểu thức đơn thức tính diện tích Khu A và Khu B.
+b) Viết biểu thức tính tổng diện tích mảnh đất.
+c) Tính tổng diện tích khi $x = 4$ m, $y = 3$ m.
 
-$S = 3x \cdot 2y = (3 \cdot 2) \cdot xy = 6xy$ (cm²)
+**Lời giải:**
 
-Đây là đơn thức bậc 2 với hệ số 6.
+a) Diện tích Khu A: $S_A = 3x \cdot 2y = 6xy$ (m²).
+Diện tích Khu B: $S_B = 5x \cdot 2y = 10xy$ (m²).
 
-</div>
+b) Tổng diện tích mảnh đất: $S = S_A + S_B = 6xy + 10xy = (6 + 10)xy = 16xy$ (m²).
 
-**📝 Bài toán 2:** Một hình hộp chữ nhật có ba kích thước $2a$, $3b$, $4c$ (cm). Tính thể tích.
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-$V = 2a \cdot 3b \cdot 4c = (2 \cdot 3 \cdot 4) \cdot abc = 24abc$ (cm³)
-
-Đây là đơn thức bậc 3 với hệ số 24.
+c) Thay $x = 4, y = 3$ vào $S$: $S = 16 \cdot 4 \cdot 3 = 192$ (m²).
 
 </div>
 
-**📝 Bài toán 3:** Một mảnh vườn hình vuông có cạnh $5x$ m. Người ta mở rộng mỗi cạnh thêm $2x$ m. Tính diện tích tăng thêm.
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**📝 Câu 2 (Thể tích bể chứa nước):** Một bể chứa nước hình hộp chữ nhật có ba kích thước lần lượt là $2a$ (m), $1,5a$ (m) và $h$ (m).
 
-**Giải:**
+a) Viết biểu thức đơn thức $V$ tính thể tích bể nước.
+b) Xác định hệ số và bậc của đơn thức $V$ theo hai biến $a$ và $h$.
+c) Nếu $a = 2$ m và chiều cao $h = 1,2$ m thì bể chứa được bao nhiêu mét khối nước?
 
-Diện tích ban đầu: $S_1 = (5x)^2 = 25x^2$ (m²)
+**Lời giải:**
 
-Cạnh mới: $5x + 2x = 7x$ (m)
+a) Thể tích bể nước là: $V = 2a \cdot 1,5a \cdot h = (2 \cdot 1,5) \cdot (a \cdot a) \cdot h = 3a^2h$ (m³).
 
-Diện tích mới: $S_2 = (7x)^2 = 49x^2$ (m²)
+b) Đơn thức $V = 3a^2h$ có hệ số là $3$, phần biến là $a^2h$, bậc bằng $2 + 1 = 3$.
 
-Diện tích tăng: $S_2 - S_1 = 49x^2 - 25x^2 = 24x^2$ (m²)
+c) Thay $a = 2$ m, $h = 1,2$ m vào $V$: $V = 3 \cdot (2)^2 \cdot 1,2 = 3 \cdot 4 \cdot 1,2 = 14,4$ (m³).
+
+</div>
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Bài toán chi phí siêu thị):** Bạn Nam đi siêu thị mua $x$ kg vở học sinh với đơn giá $30$ nghìn đồng/kg và $y$ hộp bút màu với đơn giá $45$ nghìn đồng/hộp. Siêu thị đang có chương trình giảm giá $10\%$ cho mặt hàng vở và giảm giá $20\%$ cho mặt hàng bút.
+
+a) Viết biểu thức số tiền Nam phải trả cho số vở đã mua.
+b) Viết biểu thức số tiền Nam phải trả cho số bút đã mua.
+c) Viết biểu thức tổng số tiền Nam phải trả khi mua $x$ kg vở và $y$ hộp bút màu.
+
+**Lời giải:**
+
+a) Giá vở sau khi giảm $10\%$: $30 \cdot (1 - 0,1) = 27$ (nghìn đồng/kg).
+Số tiền mua vở là đơn thức: $T_1 = 27x$ (nghìn đồng).
+
+b) Giá bút màu sau khi giảm $20\%$: $45 \cdot (1 - 0,2) = 36$ (nghìn đồng/hộp).
+Số tiền mua bút là đơn thức: $T_2 = 36y$ (nghìn đồng).
+
+c) Tổng số tiền Nam phải trả là: $T = T_1 + T_2 = 27x + 36y$ (nghìn đồng).
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Đơn thức**: tích của số và biến
-- **Hệ số**: phần số
-- **Phần biến**: phần chứa biến
-- **Bậc**: tổng số mũ của các biến
-- **Đồng dạng**: cùng phần biến
-- **Cộng/trừ**: chỉ với đơn thức đồng dạng
-- **Nhân**: nhân hệ số, cộng số mũ
+- **Đơn thức**: Biểu thức chỉ gồm một số, một biến, hoặc tích giữa các số và các biến.
+- **Đơn thức thu gọn**: Đơn thức mà mỗi biến chỉ xuất hiện 1 lần dưới dạng lũy thừa.
+- **Hệ số**: Phần số trong đơn thức thu gọn. (Chú ý dấu âm, hệ số 1 hoặc -1).
+- **Bậc của đơn thức**: Tổng tất cả số mũ của các biến trong đơn thức thu gọn. Hằng số $\neq 0$ có bậc 0, số 0 không có bậc.
+- **Đơn thức đồng dạng**: Có hệ số $\neq 0$ và có **cùng phần biến**.
+- **Cộng / Trừ đơn thức đồng dạng**: Cộng/trừ các hệ số với nhau, giữ nguyên phần biến.
+- **Nhân hai đơn thức**: Nhân các hệ số với nhau, nhân các phần biến với nhau.
+- **Nâng lên lũy thừa**: $(a \cdot x^m y^n)^k = a^k \cdot x^{m \cdot k} y^{n \cdot k}$.
 
 </GhiNho>
 
@@ -371,83 +651,123 @@ Diện tích tăng: $S_2 - S_1 = 49x^2 - 25x^2 = 24x^2$ (m²)
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho các biểu thức sau:
+**Bài 1 (Dễ — Nhận biết đơn thức):** Trong các biểu thức sau, biểu thức nào là đơn thức? Vì sao?
 
-$A = 5x^2y$; $B = -3xy^2$; $C = \dfrac{2x}{y}$; $D = 7x^2y$; $E = \sqrt{x}y$
+a) $4x^3y^2$ &nbsp;&nbsp;&nbsp; b) $-\dfrac{3}{5}a^2b$ &nbsp;&nbsp;&nbsp; c) $2x^2 - 3y$ &nbsp;&nbsp;&nbsp; d) $\dfrac{7x}{y^2}$ &nbsp;&nbsp;&nbsp; e) $-15$ &nbsp;&nbsp;&nbsp; f) $\sqrt{2}x^2y$
 
-a) Biểu thức nào là đơn thức?
+**Bài 2 (Dễ — Thu gọn đơn thức):** Thu gọn các đơn thức sau:
 
-b) Biểu thức nào không phải là đơn thức? Vì sao?
+a) $A = 3x^2y \cdot (-2xy^3)$ &nbsp;&nbsp;&nbsp; b) $B = -4a^2b \cdot \left(-\dfrac{1}{2}ab^2\right)$ &nbsp;&nbsp;&nbsp; c) $C = 2xy \cdot (-3x^2y) \cdot x^3$
 
-c) Trong các đơn thức, đơn thức nào đồng dạng với nhau?
+d) $D = \left(-\dfrac{2}{3}x^3y^2\right) \cdot (9x^2y^4)$ &nbsp;&nbsp;&nbsp; e) $E = (-2xy^2)^3 \cdot (3x^2y)$ &nbsp;&nbsp;&nbsp; f) $F = \left(-\dfrac{1}{2}a^2b\right)^2 \cdot (-4ab^3)$
 
-d) Tính tổng các đơn thức đồng dạng.
+**Bài 3 (Trung bình — Hệ số, phần biến, bậc & Giá trị):** Cho các đơn thức sau (sau khi thu gọn), xác định hệ số, phần biến, bậc và tính giá trị tại $x = 1, y = -1$:
 
-**Bài 2:** Cho đơn thức $M = -3x^2y^3z$
+a) $M = -5x^3y^2$ &nbsp;&nbsp;&nbsp; b) $N = \dfrac{3}{4}x^2y^4$ &nbsp;&nbsp;&nbsp; c) $P = -x^4y^3$
 
-a) Xác định hệ số và phần biến của đơn thức $M$.
+d) $Q = \left(-\dfrac{1}{3}xy^2\right) \cdot (6x^2y)$ &nbsp;&nbsp;&nbsp; e) $R = (-x^2y)^3$ &nbsp;&nbsp;&nbsp; f) $S = -12$
 
-b) Tính bậc của đơn thức $M$.
+**Bài 4 (Trung bình — Đơn thức đồng dạng & Cộng/Trừ):** Cho các đơn thức $A = 4x^3y^2$; $B = -7x^2y^3$; $C = -\dfrac{1}{2}x^3y^2$; $D = 5x^3y^2$; $E = 2x^2y^3$.
 
-c) Tính giá trị của $M$ khi $x = 1$, $y = -1$, $z = 2$.
+a) Tìm các đơn thức đồng dạng với $A$.
 
-d) Tìm đơn thức $N$ biết $N$ đồng dạng với $M$ và có hệ số bằng $5$.
+b) Tính tổng $A + C + D$.
 
-**Bài 3:** Thực hiện các phép tính:
+c) Tính hiệu $B - E$.
 
-a) $3x^2y + 5x^2y - 2x^2y$
+**Bài 5 (Trung bình — Tìm tham số):**
 
-b) $(2xy^2) \cdot (3x^2y)$
+a) Tìm $m, n \in \mathbb{N}$ để đơn thức $A = 3x^{m+1}y^4$ đồng dạng với $B = -5x^4y^{2n}$.
 
-c) $(-5a^2b) \cdot (2ab^3)$
+b) Tìm $a$ để đơn thức $C = (a - 3)x^5y^2$ có bậc bằng 7 và có hệ số bằng 4.
 
-d) $(3x^2y)^2$
+**Bài 6 (Khá — Rút gọn biểu thức tổng hợp):** Rút gọn biểu thức:
+$$P = 5x^2(xy^2) - 3x^3y^2 + 2xy(x^2y) - 7x^3y^2$$
 
-**Bài 4:** Cho hai đơn thức $A = 4x^3y^2$ và $B = -2xy$
+**Bài 7 (Khá — Chứng minh biểu thức không âm/không dương):**
 
-a) Tính tích $A \cdot B$.
+a) Chứng minh $M = (2x^2y)^2 \cdot (-3xy^3)^2 + 4x^6y^8 \ge 0$ với mọi $x, y$.
 
-b) Tính bậc của đơn thức tích vừa tìm được.
+b) Chứng minh $N = -3(x^2y^3)^4 \cdot (2x^4y)^2 \le 0$ với mọi $x, y$.
 
-c) Tìm đơn thức $C$ sao cho $A \cdot C = 12x^5y^4$.
+**Bài 8 (Khá - Nâng cao — Tìm điều kiện đơn thức 0):** Cho đơn thức $K = (m^2 - 4)x^3y^5$.
 
-d) Tính giá trị của biểu thức $A + 2B$ khi $x = 1$ và $y = -1$.
+a) Tìm $m$ để $K$ là đơn thức 0.
 
-**Bài 5:** Cho hình chữ nhật có chiều dài $5x$ (cm) và chiều rộng $3y$ (cm).
+b) Tìm $m$ để $K$ có hệ số bằng 5.
 
-a) Viết biểu thức tính chu vi hình chữ nhật.
+**Bài 9 (Ứng dụng thực tế 1 — Diện tích sân trường & Bồn hoa):** Một sân trường gồm mảnh sân hình chữ nhật kích thước $4x$ (m) và $3y$ (m), cùng một bồn hoa hình vuông cạnh $2x$ (m).
 
-b) Viết biểu thức tính diện tích hình chữ nhật.
+a) Viết các đơn thức biểu thị diện tích mảnh sân và diện tích bồn hoa.
 
-c) Tính chu vi và diện tích khi $x = 2$ cm, $y = 3$ cm.
+b) Viết đơn thức biểu thị tổng diện tích và tính tổng diện tích khi $x = 5$ m, $y = 4$ m.
 
-d) Nếu tăng chiều dài thêm $2x$ cm và chiều rộng thêm $y$ cm, diện tích tăng thêm bao nhiêu?
+**Bài 10 (Ứng dụng thực tế 2 — Thể tích và thời gian bơm nước):** Một bể chứa nước hình hộp chữ nhật có 3 kích thước là $3a$ (m), $2a$ (m) và $1,5a$ (m).
 
-**Bài 6 (Thực tế):** Một bể nước hình hộp chữ nhật có chiều dài $4a$ (m), chiều rộng $3a$ (m) và chiều cao $2a$ (m).
+a) Viết đơn thức biểu thị thể tích $V$ của bể nước.
 
-a) Viết biểu thức tính thể tích bể nước.
+b) Nếu mỗi giờ máy bơm bơm được lượng nước là $6a^2$ (m³), viết đơn thức biểu thị thời gian $t$ (giờ) để bơm đầy bể.
 
-b) Tính thể tích bể khi $a = 1{,}5$ m.
-
-c) Nếu mỗi giờ bơm được $6a^2$ m³ nước, viết biểu thức tính thời gian bơm đầy bể.
-
-d) Tính thời gian bơm đầy bể khi $a = 1{,}5$ m.
+c) Tính thời gian $t$ khi $a = 2$ m.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $A$, $B$, $D$ là đơn thức; b) $C$ (có phép chia biến), $E$ (có căn thức); c) $A$ và $D$ đồng dạng; d) $12x^2y$
+**Bài 1:**
+a) $4x^3y^2$ là đơn thức (tích của số và biến).
+b) $-\dfrac{3}{5}a^2b$ là đơn thức (tích của số và biến).
+c) $2x^2 - 3y$ **không phải đơn thức** (chứa phép trừ).
+d) $\dfrac{7x}{y^2}$ **không phải đơn thức** (chứa phép chia cho biến $y$ ở mẫu).
+e) $-15$ là đơn thức (đơn thức hằng số).
+f) $\sqrt{2}x^2y$ là đơn thức (hệ số $\sqrt{2}$ là số thực).
 
-**Bài 2:** a) Hệ số: $-3$, phần biến: $x^2y^3z$; b) Bậc: $6$; c) $M = 6$; d) $N = 5x^2y^3z$
+**Bài 2:**
+a) $A = [3 \cdot (-2)] (x^2 \cdot x) (y \cdot y^3) = -6x^3y^4$.
+b) $B = \left[(-4) \cdot \left(-\dfrac{1}{2}\right)\right] (a^2 \cdot a) (b \cdot b^2) = 2a^3b^3$.
+c) $C = [2 \cdot (-3)] (x \cdot x^2 \cdot x^3) (y \cdot y) = -6x^6y^2$.
+d) $D = \left[\left(-\dfrac{2}{3}\right) \cdot 9\right] (x^3 \cdot x^2) (y^2 \cdot y^4) = -6x^5y^6$.
+e) $E = (-8x^3y^6) \cdot (3x^2y) = -24x^5y^7$.
+f) $F = \left(\dfrac{1}{4}a^4b^2\right) \cdot (-4ab^3) = -a^5b^5$.
 
-**Bài 3:** a) $6x^2y$; b) $6x^3y^3$; c) $-10a^3b^4$; d) $9x^4y^2$
+**Bài 3:**
+a) $M = -5x^3y^2$: Hệ số $-5$, phần biến $x^3y^2$, bậc $5$. Giá trị: $-5(1)^3(-1)^2 = -5$.
+b) $N = \dfrac{3}{4}x^2y^4$: Hệ số $\dfrac{3}{4}$, phần biến $x^2y^4$, bậc $6$. Giá trị: $\dfrac{3}{4}(1)^2(-1)^4 = \dfrac{3}{4}$.
+c) $P = -x^4y^3$: Hệ số $-1$, phần biến $x^4y^3$, bậc $7$. Giá trị: $-1(1)^4(-1)^3 = 1$.
+d) $Q = -2x^3y^3$: Hệ số $-2$, phần biến $x^3y^3$, bậc $6$. Giá trị: $-2(1)^3(-1)^3 = 2$.
+e) $R = -x^6y^3$: Hệ số $-1$, phần biến $x^6y^3$, bậc $9$. Giá trị: $-1(1)^6(-1)^3 = 1$.
+f) $S = -12$: Hệ số $-12$, không có phần biến, bậc $0$. Giá trị luôn bằng $-12$.
 
-**Bài 4:** a) $-8x^4y^3$; b) Bậc $7$; c) $C = 3x^2y^2$; d) $8$
+**Bài 4:**
+a) Phần biến của $A$ là $x^3y^2$. Các đơn thức đồng dạng với $A$ là $C = -\dfrac{1}{2}x^3y^2$ và $D = 5x^3y^2$.
+b) $A + C + D = 4x^3y^2 + \left(-\dfrac{1}{2}x^3y^2\right) + 5x^3y^2 = \left(4 - \dfrac{1}{2} + 5\right)x^3y^2 = \dfrac{17}{2}x^3y^2$.
+c) $B - E = -7x^2y^3 - 2x^2y^3 = -9x^2y^3$.
 
-**Bài 5:** a) $P = 16x + 12y$ (cm); b) $S = 15xy$ (cm²); c) $P = 68$ cm, $S = 90$ cm²; d) Tăng $31xy$ cm²
+**Bài 5:**
+a) Để $A$ và $B$ đồng dạng: $m + 1 = 4 \Rightarrow m = 3$; $2n = 4 \Rightarrow n = 2$.
+b) Hệ số là $a - 3 = 4 \Rightarrow a = 7$. Khi $a = 7$, $C = 4x^5y^2$ có bậc $5 + 2 = 7$ (thỏa mãn).
 
-**Bài 6:** a) $V = 24a^3$ (m³); b) $V = 81$ m³; c) $t = 4a$ (giờ); d) $t = 6$ giờ
+**Bài 6:**
+Thu gọn từng đơn thức: $5x^2(xy^2) = 5x^3y^2$; $2xy(x^2y) = 2x^3y^2$.
+$$P = 5x^3y^2 - 3x^3y^2 + 2x^3y^2 - 7x^3y^2 = (5 - 3 + 2 - 7)x^3y^2 = -3x^3y^2$$
+
+**Bài 7:**
+a) $M = (4x^4y^2) \cdot (9x^2y^6) + 4x^6y^8 = 36x^6y^8 + 4x^6y^8 = 40x^6y^8$. Vì $x^6 \ge 0, y^8 \ge 0 \Rightarrow M = 40x^6y^8 \ge 0$ với mọi $x, y$.
+b) $N = -3(x^8y^{12}) \cdot (4x^8y^2) = -12x^{16}y^{14}$. Vì $x^{16} \ge 0, y^{14} \ge 0 \Rightarrow N \le 0$ với mọi $x, y$.
+
+**Bài 8:**
+a) $K$ là đơn thức 0 khi hệ số bằng $0 \Rightarrow m^2 - 4 = 0 \Rightarrow m = 2$ hoặc $m = -2$.
+b) $K$ có hệ số bằng $5 \Rightarrow m^2 - 4 = 5 \Rightarrow m^2 = 9 \Rightarrow m = 3$ hoặc $m = -3$.
+
+**Bài 9:**
+a) Diện tích mảnh sân: $S_1 = 4x \cdot 3y = 12xy$ (m²). Diện tích bồn hoa: $S_2 = (2x)^2 = 4x^2$ (m²).
+b) Tổng diện tích: $S = S_1 + S_2 = 12xy + 4x^2$ (m²).
+Khi $x = 5, y = 4 \Rightarrow S = 12(5)(4) + 4(5^2) = 240 + 100 = 340$ (m²).
+
+**Bài 10:**
+a) Thể tích $V = 3a \cdot 2a \cdot 1,5a = 9a^3$ (m³).
+b) Thời gian bơm đầy bể: $t = V : 6a^2 = 9a^3 : 6a^2 = 1,5a$ (giờ).
+c) Khi $a = 2 \Rightarrow t = 1,5 \cdot 2 = 3$ giờ.
 
 </div>
 </details>

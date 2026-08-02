@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 16: Đường trung bình của tam giác"
-description: "Định nghĩa và tính chất đường trung bình của tam giác - Toán 8 KNTT Chương 4"
+description: "Định nghĩa, tính chất đường trung bình của tam giác và ứng dụng trong chứng minh hình học - Toán 8 KNTT Chương 4"
 grade: "Lớp 8"
 chapter: "Chương 4: Định lí Thales"
 currentSlug: "lop8/bai-16-trung-binh-tam-giac"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,346 +13,249 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import TrungBinhTamGiacInteractive from '../../components/interactive/TrungBinhTamGiacInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Đường trung bình của tam giác là đoạn thẳng:",
-    option_a: "Nối trung điểm hai cạnh của tam giác",
-    option_b: "Nối đỉnh với trung điểm cạnh đối diện",
-    option_c: "Chia tam giác thành hai phần bằng nhau",
-    option_d: "Vuông góc với một cạnh",
+    question: "Đường trung bình của tam giác là đoạn thẳng nối:",
+    option_a: "Trung điểm hai cạnh của tam giác",
+    option_b: "Một đỉnh với trung điểm cạnh đối diện",
+    option_c: "Hai đỉnh của tam giác",
+    option_d: "Một đỉnh với chân đường cao",
     correct_option: "A",
-    explanation: "Đường trung bình của tam giác là đoạn thẳng nối trung điểm hai cạnh của tam giác.",
+    explanation: "Định nghĩa: Đường trung bình của tam giác là đoạn thẳng nối trung điểm hai cạnh của tam giác.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Đường trung bình của tam giác song song với cạnh thứ ba và bằng:",
-    option_a: "Một nửa cạnh đó",
-    option_b: "Cạnh đó",
-    option_c: "Hai lần cạnh đó",
-    option_d: "Một phần ba cạnh đó",
+    question: "Đường trung bình của tam giác có tính chất gì?",
+    option_a: "Song song với cạnh thứ ba và bằng một nửa cạnh đó",
+    option_b: "Vuông góc với cạnh thứ ba",
+    option_c: "Bằng cạnh thứ ba",
+    option_d: "Bằng một phần ba cạnh thứ ba",
     correct_option: "A",
-    explanation: "Đường trung bình song song và bằng một nửa cạnh thứ ba.",
+    explanation: "Tính chất: Đường trung bình của tam giác song song với cạnh thứ ba và bằng một nửa cạnh đó.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tam giác $ABC$ có $M$, $N$ lần lượt là trung điểm $AB$, $AC$. Biết $BC = 12$ cm. Độ dài $MN$ là:",
-    option_a: "$6$ cm",
-    option_b: "$12$ cm",
-    option_c: "$24$ cm",
-    option_d: "$3$ cm",
+    question: "Cho $\\triangle ABC$ có $BC = 16$ cm. Gọi M, N lần lượt là trung điểm của AB và AC. Độ dài đoạn MN bằng:",
+    option_a: "$8\\text{ cm}$",
+    option_b: "$16\\text{ cm}$",
+    option_c: "$32\\text{ cm}$",
+    option_d: "$4\\text{ cm}$",
     correct_option: "A",
-    explanation: "$MN$ là đường trung bình nên $MN = \\dfrac{BC}{2} = \\dfrac{12}{2} = 6$ cm.",
-    difficulty_level: "medium",
+    explanation: "$MN = \\dfrac{BC}{2} = \\dfrac{16}{2} = 8\\text{ cm}$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tam giác có một đường trung bình dài $8$ cm. Cạnh song song với đường trung bình đó dài:",
-    option_a: "$16$ cm",
-    option_b: "$8$ cm",
-    option_c: "$4$ cm",
-    option_d: "$12$ cm",
+    question: "Cho $\\triangle ABC$ có MN là đường trung bình ($M \\in AB, N \\in AC$). Biết $MN = 5$ cm. Độ dài $BC$ bằng:",
+    option_a: "$10\\text{ cm}$",
+    option_b: "$5\\text{ cm}$",
+    option_c: "$2.5\\text{ cm}$",
+    option_d: "$15\\text{ cm}$",
     correct_option: "A",
-    explanation: "Cạnh song song với đường trung bình gấp đôi đường trung bình: $2 \\times 8 = 16$ cm.",
+    explanation: "$BC = 2MN = 2 \\cdot 5 = 10\\text{ cm}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một tam giác có chu vi 30 cm. Chu vi tam giác tạo bởi 3 đường trung bình của tam giác đó là:",
+    option_a: "$15\\text{ cm}$",
+    option_b: "$10\\text{ cm}$",
+    option_c: "$60\\text{ cm}$",
+    option_d: "$7.5\\text{ cm}$",
+    correct_option: "A",
+    explanation: "Chu vi tam giác trung bình $= \\dfrac{1}{2} P_{ABC} = \\dfrac{30}{2} = 15\\text{ cm}$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Tam giác $ABC$ có $M$, $N$ là trung điểm $AB$, $AC$. Các khẳng định nào đúng?",
-    option_a: "$MN \\parallel BC$",
-    option_b: "$MN = \\dfrac{BC}{2}$",
-    option_c: "$BC = 2MN$",
-    option_d: "$AM = MB$, $AN = NC$",
-    correct_option: "A,B,C,D",
-    explanation: "Tất cả đều đúng theo định nghĩa và tính chất đường trung bình.",
-    difficulty_level: "medium",
+    question: "Cho $\\triangle ABC$ có M, N, P lần lượt là trung điểm của AB, AC, BC. Những khẳng định nào sau đây ĐÚNG?",
+    option_a: "$MN // BC$ và $MN = \\dfrac{1}{2}BC$",
+    option_b: "$MP // AC$ và $MP = \\dfrac{1}{2}AC$",
+    option_c: "$NP // AB$ và $NP = \\dfrac{1}{2}AB$",
+    option_d: "$S_{\\triangle MNP} = \\dfrac{1}{2} S_{\\triangle ABC}$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng theo tính chất 3 đường trung bình. D sai vì diện tích bằng $\\dfrac{1}{4} S_{ABC}$.",
+    difficulty_level: "hard",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tam giác có đường trung bình dài $7$ cm. Cạnh tương ứng dài bao nhiêu cm?",
-    correct_option: "14",
-    explanation: "Cạnh tương ứng $= 2 \\times 7 = 14$ cm.",
-    difficulty_level: "easy",
+    question: "Cho $\\triangle ABC$ có $AB = 6$ cm, $AC = 8$ cm, $BC = 10$ cm. Tổng độ dài 3 đường trung bình của $\\triangle ABC$ bằng bao nhiêu cm?",
+    correct_option: "12",
+    explanation: "Tổng độ dài 3 đường trung bình $= \\dfrac{AB + AC + BC}{2} = \\dfrac{6 + 8 + 10}{2} = 12$ cm.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tam giác có $BC = !a#20!$ cm, $M$, $N$ là trung điểm $AB$, $AC$. Độ dài $MN$ là:",
-    option_a: "$!tinh: !a! / 2!$ cm",
-    option_b: "$!a!$ cm",
-    option_c: "$!tinh: 2 * !a!!$ cm",
-    option_d: "$!tinh: !a! / 3!$ cm",
+    question: "Đường thẳng đi qua trung điểm một cạnh của tam giác và song song với cạnh thứ hai thì:",
+    option_a: "Đi qua trung điểm của cạnh thứ ba",
+    option_b: "Vuông góc với cạnh thứ ba",
+    option_c: "Bằng một phần ba cạnh thứ ba",
+    option_d: "Cắt cạnh thứ ba tại tỉ số $1:3$",
     correct_option: "A",
-    explanation: "$MN = \\dfrac{BC}{2} = \\dfrac{!a!}{2} = !tinh: !a! / 2!$ cm.",
+    explanation: "Định lý 1: Đường thẳng đi qua trung điểm một cạnh của tam giác và song song với cạnh thứ hai thì đi qua trung điểm của cạnh thứ ba.",
     difficulty_level: "medium",
-    is_dynamic: true,
+    is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tam giác có đường trung bình dài $!a#9!$ cm. Cạnh song song với nó dài:",
-    option_a: "$!tinh: 2 * !a!!$ cm",
-    option_b: "$!a!$ cm",
-    option_c: "$!tinh: !a! / 2!$ cm",
-    option_d: "$!tinh: 3 * !a!!$ cm",
+    question: "Tứ giác có các đỉnh là trung điểm 4 cạnh của một tứ giác bất kỳ là hình gì?",
+    option_a: "Hình bình hành",
+    option_b: "Hình chữ nhật",
+    option_c: "Hình thoi",
+    option_d: "Hình vuông",
     correct_option: "A",
-    explanation: "Cạnh $= 2 \\times !a! = !tinh: 2 * !a!!$ cm.",
-    difficulty_level: "medium",
-    is_dynamic: true,
+    explanation: "Theo tính chất đường trung bình trong tam giác tạo bởi hai đường chéo, tứ giác nối 4 trung điểm luôn là hình bình hành Varignon.",
+    difficulty_level: "hard",
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ có $MN$ là đường trung bình ($M \\in AB, N \\in AC$). Tỉ số diện tích $\\dfrac{S_{\\triangle AMN}}{S_{\\triangle ABC}}$ bằng:",
+    option_a: "$\\dfrac{1}{4}$",
+    option_b: "$\\dfrac{1}{2}$",
+    option_c: "$\\dfrac{1}{3}$",
+    option_d: "$\\dfrac{1}{8}$",
+    correct_option: "A",
+    explanation: "$\\triangle AMN \\sim \\triangle ABC$ với tỉ số $k = \\dfrac{1}{2} \\Rightarrow \\dfrac{S_{AMN}}{S_{ABC}} = k^2 = \\dfrac{1}{4}$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">📏 Đường trung bình — Đường đặc biệt</h3>
+### 🎯 Khởi động bài học
 
-Đường trung bình có tính chất đẹp và ứng dụng rộng rãi!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏗️</div>
-    <strong>Kết cấu</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thanh giằng giữa hai cột</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌉</div>
-    <strong>Cầu treo</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Dây cáp song song</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
-    <strong>Thiết kế</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chia tỉ lệ chính xác</p>
-  </div>
-</div>
+Một khái niệm hình học cực kỳ thanh thoát và hữu ích: **Đường trung bình của tam giác**. Không chỉ giúp đo đạc khoảng cách giữa hai điểm bị cản trở ngoài thực tế, nó còn là chìa khóa chứng minh hai đường thẳng song song và các điểm trung điểm!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="dinh-nghia">📖 1. Định nghĩa đường trung bình</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-nghia">
+#### 1. Định nghĩa và Định lý 1 của Đường trung bình
 
-**Định nghĩa:** Đường trung bình của tam giác là đoạn thẳng nối trung điểm hai cạnh của tam giác.
+- **Định nghĩa:** Đường trung bình của tam giác là đoạn thẳng nối trung điểm hai cạnh của tam giác.
+- **Định lý 1:** Đường thẳng đi qua trung điểm một cạnh của tam giác và song song với cạnh thứ hai thì đi qua trung điểm của cạnh thứ ba.
 
-</div>
-
-**Hình minh họa:**
-
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="400" height="320" viewBox="0 0 400 320" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Tam giác ABC */}
-  <polygon points="200,40 80,280 320,280" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" opacity="0.2"/>
-  
-  {/* Các cạnh tam giác */}
-  <line x1="200" y1="40" x2="80" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="200" y1="40" x2="320" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="80" y1="280" x2="320" y2="280" stroke="#3b82f6" stroke-width="2.5"/>
-  
-  {/* Đường trung bình MN */}
-  <line x1="140" y1="160" x2="260" y2="160" stroke="#ef4444" stroke-width="3"/>
-  
-  {/* Đánh dấu song song */}
-  <line x1="190" y1="155" x2="195" y2="155" stroke="#10b981" stroke-width="2"/>
-  <line x1="190" y1="150" x2="195" y2="150" stroke="#10b981" stroke-width="2"/>
-  <line x1="190" y1="275" x2="195" y2="275" stroke="#10b981" stroke-width="2"/>
-  <line x1="190" y1="280" x2="195" y2="280" stroke="#10b981" stroke-width="2"/>
-  
-  {/* Đánh dấu trung điểm */}
-  <line x1="135" y1="95" x2="145" y2="105" stroke="#10b981" stroke-width="2"/>
-  <line x1="135" y1="105" x2="145" y2="95" stroke="#10b981" stroke-width="2"/>
-  <line x1="255" y1="95" x2="265" y2="105" stroke="#10b981" stroke-width="2"/>
-  <line x1="255" y1="105" x2="265" y2="95" stroke="#10b981" stroke-width="2"/>
-  
-  {/* Các đỉnh */}
-  <circle cx="200" cy="40" r="4" fill="#3b82f6"/>
-  <text x="185" y="30" font-size="18" font-weight="bold" fill="#3b82f6">A</text>
-  
-  <circle cx="80" cy="280" r="4" fill="#3b82f6"/>
-  <text x="60" y="300" font-size="18" font-weight="bold" fill="#3b82f6">B</text>
-  
-  <circle cx="320" cy="280" r="4" fill="#3b82f6"/>
-  <text x="330" y="300" font-size="18" font-weight="bold" fill="#3b82f6">C</text>
-  
-  {/* Trung điểm M, N */}
-  <circle cx="140" cy="160" r="4" fill="#ef4444"/>
-  <text x="115" y="155" font-size="18" font-weight="bold" fill="#ef4444">M</text>
-  
-  <circle cx="260" cy="160" r="4" fill="#ef4444"/>
-  <text x="270" y="155" font-size="18" font-weight="bold" fill="#ef4444">N</text>
-  
-  {/* Nhãn */}
-  <text x="185" y="145" font-size="16" fill="#ef4444" font-weight="bold">MN</text>
-  <text x="190" y="300" font-size="14" fill="#059669">BC</text>
-  <text x="100" y="220" font-size="12" fill="#6b7280">AM = MB</text>
-  <text x="270" y="220" font-size="12" fill="#6b7280">AN = NC</text>
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="340" height="180" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="170,20 40,160 300,160" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  <line x1="105" y1="90" x2="235" y2="90" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="105" cy="90" r="4" fill="#dc2626"/>
+  <circle cx="235" cy="90" r="4" fill="#dc2626"/>
+  <text x="165" y="15" font-size="14" font-weight="bold" fill="#1e40af">A</text>
+  <text x="25" y="170" font-size="14" font-weight="bold" fill="#1e40af">B</text>
+  <text x="305" y="170" font-size="14" font-weight="bold" fill="#1e40af">C</text>
+  <text x="85" y="90" font-size="14" font-weight="bold" fill="#dc2626">M</text>
+  <text x="245" y="90" font-size="14" font-weight="bold" fill="#dc2626">N</text>
 </svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Hình 1: MN là đường trung bình của tam giác ABC ($M$ là trung điểm $AB$, $N$ là trung điểm $AC$)</em></p>
 </div>
 
-**Trong tam giác $ABC$:**
-- $M$ là trung điểm $AB$ ($AM = MB$)
-- $N$ là trung điểm $AC$ ($AN = NC$)
-- $MN$ là đường trung bình
+**Ví dụ 1:** Cho $\triangle ABC$. Gọi M là trung điểm $AB$. Qua M kẻ đường thẳng $m // BC$ cắt $AC$ tại N. Chứng minh N là trung điểm $AC$.  
+*Lời giải:* Áp dụng Định lý 1, đường thẳng qua trung điểm M của AB và song song với BC sẽ đi qua trung điểm N của AC.
 
-<h3 id="tinh-chat" style="margin-top:2rem;">🔑 2. Tính chất đường trung bình</h3>
+**Ví dụ 2:** Cho $\triangle ABC$ có $AB = 8$ cm. Gọi M là trung điểm $AB$. Tính $AM$.  
+*Lời giải:* $AM = \dfrac{AB}{2} = 4$ cm.
 
-<div class="box-dinh-ly">
+**Ví dụ 3:** Chỉ ra các đường trung bình của $\triangle ABC$ có 3 trung điểm M, N, P.  
+*Lời giải:* 3 đường trung bình là $MN, NP, PM$.
 
-**Định lí:** Đường trung bình của tam giác thì song song với cạnh thứ ba và bằng một nửa cạnh ấy.
+---
 
-</div>
+#### 2. Tính chất đường trung bình của tam giác (Định lý 2)
 
-**Phát biểu toán học:**
+- **Định lý 2:** Đường trung bình của tam giác thì song song với cạnh thứ ba và bằng một nửa cạnh đó.
+$$MN // BC \text{ và } MN = \dfrac{1}{2}BC$$
 
-Cho tam giác $ABC$, $M$ là trung điểm $AB$, $N$ là trung điểm $AC$.
+**Ví dụ 1:** Cho $\triangle ABC$ có $BC = 12$ cm. Gọi M, N lần lượt là trung điểm của AB và AC. Tính $MN$.  
+*Lời giải:* $MN = \dfrac{BC}{2} = \dfrac{12}{2} = 6$ cm.
 
-Khi đó: 
-1. $MN \parallel BC$
-2. $MN = \dfrac{BC}{2}$
+**Ví dụ 2:** Cho $\triangle ABC$ có $MN$ là đường trung bình ($M \in AB, N \in AC$). Biết $MN = 7$ cm. Tính $BC$.  
+*Lời giải:* $BC = 2MN = 2 \cdot 7 = 14$ cm.
 
-**Chứng minh:**
-
-Kẻ $MN$ và kéo dài đến $D$ sao cho $N$ là trung điểm $MD$.
-
-Xét $\triangle AMN$ và $\triangle CND$:
-- $AN = NC$ (giả thiết)
-- $\hat{ANM} = \hat{CND}$ (đối đỉnh)
-- $MN = ND$ (cách dựng)
-
-$\Rightarrow \triangle AMN = \triangle CND$ (c.g.c)
-
-$\Rightarrow AM = CD$ và $\hat{AMN} = \hat{CDN}$
-
-Mà $AM = MB$ (giả thiết) nên $MB = CD$
-
-Và $\hat{AMN} = \hat{CDN}$ (so le trong) nên $AB \parallel CD$
-
-Tứ giác $MBCD$ có $MB = CD$ và $MB \parallel CD$ nên là hình bình hành.
-
-$\Rightarrow MN \parallel BC$ và $MD = BC$
-
-Vì $MN = \dfrac{MD}{2}$ nên $MN = \dfrac{BC}{2}$
-
-**Ví dụ 1:** Tam giác $ABC$ có $BC = 18$ cm. $M$, $N$ lần lượt là trung điểm $AB$, $AC$. Tính $MN$.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-$MN$ là đường trung bình của tam giác $ABC$
-
-$\Rightarrow MN = \dfrac{BC}{2} = \dfrac{18}{2} = 9$ cm
-
-</div>
-
-<h3 id="dinh-li-dao" style="margin-top:2rem;">↔️ 3. Định lí đảo</h3>
-
-<div class="box-dinh-ly">
-
-**Định lí đảo:** Đường thẳng đi qua trung điểm một cạnh của tam giác và song song với cạnh thứ hai thì đi qua trung điểm cạnh thứ ba.
-
-</div>
-
-**Ví dụ 2:** Tam giác $ABC$ có $M$ là trung điểm $AB$. Đường thẳng qua $M$ song song với $BC$ cắt $AC$ tại $N$. Chứng minh $N$ là trung điểm $AC$.
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Theo định lí đảo về đường trung bình:
-
-Vì $M$ là trung điểm $AB$ và $MN \parallel BC$
-
-$\Rightarrow N$ là trung điểm $AC$
-
-</div>
-
-<h3 id="ung-dung" style="margin-top:2rem;">💡 4. Ứng dụng</h3>
-
-**Ví dụ 3:** Tam giác $ABC$ có $AB = 10$ cm, $AC = 12$ cm, $BC = 14$ cm. Tính chu vi tam giác tạo bởi ba đường trung bình.
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Gọi $M$, $N$, $P$ lần lượt là trung điểm $AB$, $AC$, $BC$.
-
-Ba đường trung bình là: $MN$, $NP$, $PM$
-
-- $MN = \dfrac{BC}{2} = \dfrac{14}{2} = 7$ cm
-- $NP = \dfrac{AB}{2} = \dfrac{10}{2} = 5$ cm
-- $PM = \dfrac{AC}{2} = \dfrac{12}{2} = 6$ cm
-
-Chu vi tam giác $MNP = 7 + 5 + 6 = 18$ cm
-
-**Nhận xét:** Chu vi tam giác tạo bởi ba đường trung bình bằng nửa chu vi tam giác ban đầu.
-
-</div>
+**Ví dụ 3:** Cho $\triangle ABC$ có chu vi bằng $18$ cm. Tính chu vi tam giác $MNP$ nối 3 trung điểm.  
+*Lời giải:* $P_{MNP} = \dfrac{1}{2} P_{ABC} = \dfrac{18}{2} = 9$ cm.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Đường trung bình của Tam giác</h3>
 
-<QuizSession client:load questions={quizData} />
+<TrungBinhTamGiacInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Các dạng toán & Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
 
-**📝 Bài toán 1 — Kết cấu cầu:** Một cây cầu có dạng tam giác $ABC$ với $AB = 30$ m, $AC = 40$ m, $BC = 50$ m. Người ta muốn làm thanh giằng nối trung điểm hai cột $AB$ và $AC$. Tính độ dài thanh giằng.
+<div class="box-dinh-ly">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Gọi $M$, $N$ lần lượt là trung điểm $AB$, $AC$.
-
-Thanh giằng $MN$ là đường trung bình của tam giác $ABC$
-
-$\Rightarrow MN = \dfrac{BC}{2} = \dfrac{50}{2} = 25$ m
-
-Vậy thanh giằng dài $25$ m.
+**Dạng 1: Tính độ dài đoạn thẳng và chu vi bằng đường trung bình**
+**Phương pháp:** Sử dụng $MN = \dfrac{1}{2}BC$ hoặc $BC = 2MN$.
 
 </div>
 
-**📝 Bài toán 2 — Chia đất:** Một mảnh đất hình tam giác có ba cạnh $60$ m, $80$ m, $100$ m. Người ta muốn chia thành bốn mảnh nhỏ bằng cách nối các trung điểm. Tính chu vi mỗi mảnh nhỏ ở giữa.
+**Ví dụ 1:** Cho $\triangle ABC$ có $AB = 6$ cm, $AC = 8$ cm, $BC = 10$ cm. Gọi M, N, P là trung điểm AB, AC, BC. Tính các cạnh của $\triangle MNP$.  
+*Lời giải:* $MN = 5$ cm, $NP = 3$ cm, $PM = 4$ cm.
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+<div class="box-dinh-ly" style="margin-top:2rem;">
 
-**Giải:**
-
-Gọi $M$, $N$, $P$ lần lượt là trung điểm ba cạnh.
-
-Tam giác $MNP$ (mảnh ở giữa) có:
-- $MN = \dfrac{100}{2} = 50$ m
-- $NP = \dfrac{60}{2} = 30$ m
-- $PM = \dfrac{80}{2} = 40$ m
-
-Chu vi tam giác $MNP = 50 + 30 + 40 = 120$ m
+**Dạng 2: Chứng minh hai đường thẳng song song hoặc trung điểm**
+**Phương pháp:** Chứng minh đoạn thẳng nối 2 trung điểm $\Rightarrow$ song song cạnh thứ ba; hoặc qua 1 trung điểm + song song $\Rightarrow$ đi qua trung điểm thứ hai.
 
 </div>
 
 </VanDung>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Đo khoảng cách hai vị trí qua hồ nước):** Hai vị trí A và B nằm ở hai bên một hồ nước lớn. Người ta chọn điểm C ngoài hồ và lấy M, N lần lượt là trung điểm của CA và CB. Đo được khoảng cách $MN = 45$ m.
+
+a) Giải thích vì sao $MN // AB$.  
+b) Tính khoảng cách $AB$ giữa hai vị trí qua hồ nước.
+
+**Lời giải:**  
+a) Do M, N là trung điểm của CA và CB nên MN là đường trung bình của $\triangle ABC \Rightarrow MN // AB$.  
+b) $AB = 2MN = 2 \cdot 45 = 90$ (m). Vậy khoảng cách qua hồ là $90$ m.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Định nghĩa**: đoạn nối trung điểm hai cạnh tam giác
-- **Tính chất**: $MN \parallel BC$ và $MN = \dfrac{BC}{2}$
-- **Định lí đảo**: qua trung điểm một cạnh, song song cạnh thứ hai thì qua trung điểm cạnh thứ ba
-- Tam giác có **3 đường trung bình**
-- Chu vi tam giác tạo bởi ba đường trung bình = $\dfrac{1}{2}$ chu vi tam giác ban đầu
+- **Đường trung bình tam giác**: Nối trung điểm 2 cạnh.
+- **Tính chất**: $MN // BC$ và $MN = \dfrac{1}{2}BC$.
+- **Định lý 1**: Qua trung điểm 1 cạnh + song song cạnh 2 $\Rightarrow$ đi qua trung điểm cạnh 3.
 
 </GhiNho>
 
@@ -361,81 +263,117 @@ Chu vi tam giác $MNP = 50 + 30 + 40 = 120$ m
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Tam giác $ABC$ có $M$, $N$ lần lượt là trung điểm $AB$, $AC$.
+**Bài 1 (Dễ — Tính độ dài bằng đường trung bình):** Cho $\triangle ABC$. Gọi M, N lần lượt là trung điểm của AB và AC.
 
-a) Biết $BC = 16$ cm. Tính $MN$.
+a) Biết $BC = 10$ cm. Tính $MN$.  
+b) Biết $BC = 15$ cm. Tính $MN$.  
+c) Biết $MN = 4.5$ cm. Tính $BC$.  
+d) Biết $MN = 7$ cm. Tính $BC$.  
+e) Biết $AB = 6$ cm, $AC = 8$ cm. Tính $AM$ và $AN$.  
+f) Cho $BC = 20$ cm, tính $MN$.
 
-b) Biết $MN = 9$ cm. Tính $BC$.
+**Bài 2 (Dễ — Chu vi tam giác trung bình):** Cho $\triangle ABC$ có $AB = 5$ cm, $AC = 7$ cm, $BC = 9$ cm. Gọi M, N, P lần lượt là trung điểm của AB, AC, BC.
 
-c) Chứng minh $MN \parallel BC$.
+a) Tính độ dài đoạn $MN$.  
+b) Tính độ dài đoạn $NP$.  
+c) Tính độ dài đoạn $PM$.  
+d) Tính chu vi tam giác $ABC$.  
+e) Tính chu vi tam giác $MNP$.  
+f) So sánh tỉ số chu vi $\dfrac{P_{MNP}}{P_{ABC}}$.
 
-d) Biết $AB = 12$ cm, $AC = 14$ cm. Tính chu vi tam giác $AMN$.
+**Bài 3 (Trung bình — Chứng minh trung điểm):** Cho $\triangle ABC$. Trên cạnh AB lấy điểm M sao cho $AM = MB$. Qua M kẻ đường thẳng song song với BC cắt AC tại N. Qua N kẻ đường thẳng song song với AB cắt BC tại P.
 
-**Bài 2:** Tam giác $ABC$ có $AB = 10$ cm, $AC = 12$ cm, $BC = 14$ cm.
+a) Chứng minh N là trung điểm của AC.  
+b) Chứng minh P là trung điểm của BC.  
+c) Chứng minh $BP = MN$.  
+d) Chứng minh $\triangle AMN = \triangle NPC$.  
+e) Chứng minh $MN = \dfrac{1}{2}BC$.  
+f) Tứ giác $MNPB$ là hình gì?
 
-a) Gọi $M$, $N$, $P$ lần lượt là trung điểm $AB$, $AC$, $BC$. Tính $MN$, $NP$, $PM$.
+**Bài 4 (Trung bình — Tứ giác Varignon):** Cho tứ giác lồi $ABCD$. Gọi M, N, P, Q lần lượt là trung điểm của $AB, BC, CD, DA$.
 
-b) Tính chu vi tam giác $MNP$.
+a) Chứng minh $MN // AC$ và $MN = \dfrac{1}{2}AC$.  
+b) Chứng minh $PQ // AC$ và $PQ = \dfrac{1}{2}AC$.  
+c) Chứng minh tứ giác $MNPQ$ là hình bình hành.
 
-c) So sánh chu vi tam giác $MNP$ với chu vi tam giác $ABC$.
+**Bài 5 (Trung bình — Trung tuyến và đường trung bình):** Cho $\triangle ABC$ có đường trung tuyến $AM$. Gọi I là trung điểm của $AM$. Tia $BI$ cắt $AC$ tại $N$. Qua M kẻ $MK // BN (K \in AC)$.
 
-d) Tính diện tích tam giác $MNP$ biết diện tích tam giác $ABC$ là $48$ cm².
+a) Chứng minh K là trung điểm của NC.  
+b) Chứng minh $N$ là trung điểm của AK.  
+c) Chứng minh $AN = \dfrac{1}{3}AC$.
 
-**Bài 3:** Tam giác $ABC$ có $M$ là trung điểm $AB$.
+**Bài 6 (Khá — Đường trung bình trong tam giác vuông):** Cho $\triangle ABC$ vuông tại A, đường cao $AH$. Gọi D, E lần lượt là trung điểm của AB và AC.
 
-a) Đường thẳng qua $M$ song song với $BC$ cắt $AC$ tại $N$. Chứng minh $N$ là trung điểm $AC$.
+a) Chứng minh $DE \perp AH$.  
+b) Gọi I là trung điểm của AH. Chứng minh D, I, E thẳng hàng.
 
-b) Biết $BC = 20$ cm. Tính $MN$.
+**Bài 7 (Khá — Chứng minh 3 đường thẳng đồng quy):** Cho hình bình hành $ABCD$. Gọi E, F lần lượt là trung điểm của AB và CD. Gọi M, N lần lượt là giao điểm của AF và CE với BD. Chứng minh $DM = MN = NB$.
 
-c) Chứng minh $AM = MB$, $AN = NC$.
+**Bài 8 (Khá - Nâng cao — Bất đẳng thức tam giác và đường trung bình):** Cho $\triangle ABC$ có 3 đường trung tuyến $AD, BE, CF$. Chứng minh $\dfrac{3}{4}(AB + BC + CA) < AD + BE + CF < AB + BC + CA$.
 
-d) Tính tỉ số $\dfrac{S_{AMN}}{S_{ABC}}$.
+**Bài 9 (Ứng dụng thực tế 1 — Đo khoảng cách hai chân cột điện):** Hai chân cột điện A và B nằm ở hai bên con kênh. Người ta lấy điểm C trên đất liền và đo trung điểm M của CA, N của CB thu được $MN = 18$ m. Tính khoảng cách giữa hai chân cột điện $AB$.
 
-**Bài 4:** Chứng minh:
+**Bài 10 (Ứng dụng thực tế 2 — Thiết kế giàn mái nhà tam giác):** Khung mái nhà tam giác $ABC$ có đáy $BC = 8$ m. Người ta hàn 2 thanh sắt ngang $MN$ và $PQ$ song song với $BC$, trong đó $M, N$ là trung điểm $AB, AC$ và $P, Q$ là trung điểm $AM, AN$.
 
-a) Ba đường trung bình của tam giác chia tam giác thành bốn tam giác bằng nhau.
-
-b) Chu vi tam giác tạo bởi ba đường trung bình bằng nửa chu vi tam giác ban đầu.
-
-c) Diện tích tam giác tạo bởi ba đường trung bình bằng một phần tư diện tích tam giác ban đầu.
-
-d) Trong tam giác vuông, đường trung bình ứng với cạnh huyền bằng nửa cạnh huyền.
-
-**Bài 5:** Tam giác $ABC$ vuông tại $A$ có $AB = 6$ cm, $AC = 8$ cm.
-
-a) Tính $BC$.
-
-b) Gọi $M$ là trung điểm $BC$. Tính $AM$.
-
-c) Chứng minh $AM = \dfrac{BC}{2}$.
-
-d) Gọi $D$, $E$ lần lượt là trung điểm $AB$, $AC$. Tính chu vi tam giác $ADE$.
-
-**Bài 6 (Thực tế):** Một mảnh vườn hình tam giác có ba cạnh $40$ m, $50$ m, $60$ m.
-
-a) Người ta nối các trung điểm ba cạnh. Tính chu vi tam giác tạo thành ở giữa.
-
-b) Tính tổng độ dài ba đường nối.
-
-c) Nếu rào xung quanh tam giác giữa với giá $50.000$ đồng/m, tính chi phí.
-
-d) So sánh diện tích tam giác giữa với diện tích mảnh vườn ban đầu.
+a) Tính độ dài thanh sắt $MN$.  
+b) Tính độ dài thanh sắt $PQ$.  
+c) Tính tổng độ dài 2 thanh sắt $MN + PQ$.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $8$ cm; b) $18$ cm; c) Tính chất đường trung bình; d) $17$ cm
+**Bài 1:**
+a) $MN = \dfrac{10}{2} = 5$ cm.
+b) $MN = \dfrac{15}{2} = 7.5$ cm.
+c) $BC = 2 \cdot 4.5 = 9$ cm.
+d) $BC = 2 \cdot 7 = 14$ cm.
+e) $AM = 3$ cm, $AN = 4$ cm.
+f) $MN = 10$ cm.
 
-**Bài 2:** a) $MN = 7$ cm, $NP = 5$ cm, $PM = 6$ cm; b) $18$ cm; c) Bằng nửa; d) $12$ cm²
+**Bài 2:**
+a) $MN = \dfrac{9}{2} = 4.5$ cm.
+b) $NP = \dfrac{5}{2} = 2.5$ cm.
+c) $PM = \dfrac{7}{2} = 3.5$ cm.
+d) $P_{ABC} = 5 + 7 + 9 = 21$ cm.
+e) $P_{MNP} = 4.5 + 2.5 + 3.5 = 10.5$ cm.
+f) $\dfrac{P_{MNP}}{P_{ABC}} = \dfrac{10.5}{21} = \dfrac{1}{2}$.
 
-**Bài 3:** a) Định lí đảo; b) $10$ cm; c) Theo định nghĩa trung điểm; d) $\dfrac{1}{4}$
+**Bài 3:**
+a) Định lý 1 $\Rightarrow N$ là trung điểm AC.
+b) $NP // AB \Rightarrow P$ là trung điểm BC.
+c) $MN = BP = \dfrac{1}{2}BC$.
+d) $\triangle AMN = \triangle NPC$ (c-g-c).
+e) $MN = \dfrac{1}{2}BC$.
+f) $MNPB$ có 2 cặp cạnh đối // nên là hình bình hành.
 
-**Bài 4:** Chứng minh bằng tính chất đường trung bình
+**Bài 4:**
+a) $MN$ là đường trung bình $\triangle ABC \Rightarrow MN // AC, MN = \dfrac{1}{2}AC$.
+b) $PQ$ là đường trung bình $\triangle ADC \Rightarrow PQ // AC, PQ = \dfrac{1}{2}AC$.
+c) Tứ giác $MNPQ$ có $MN // PQ$ và $MN = PQ$ nên là hình bình hành.
 
-**Bài 5:** a) $10$ cm; b) $5$ cm; c) Tính chất tam giác vuông; d) $7$ cm
+**Bài 5:**
+a) In $\triangle CNC$: $M$ là trung điểm BC, $MK // NC \Rightarrow K$ là trung điểm NC $\Rightarrow NK = KC$.
+b) In $\triangle AMK$: $I$ là trung điểm AM, $IN // MK \Rightarrow N$ là trung điểm AK $\Rightarrow AN = NK$.
+c) $AN = NK = KC \Rightarrow AN = \dfrac{1}{3}AC$.
 
-**Bài 6:** a) $75$ m; b) $75$ m; c) $3.750.000$ đồng; d) Bằng $\dfrac{1}{4}$
+**Bài 6:**
+a) $DE // BC$. Mà $AH \perp BC \Rightarrow DE \perp AH$.
+b) $DE$ cắt $AH$ tại trung điểm $I$ của $AH \Rightarrow D, I, E$ thẳng hàng.
+
+**Bài 7:**
+Sử dụng tính chất hình bình hành và đường trung bình $\Rightarrow DM = MN = NB$.
+
+**Bài 8:**
+Áp dụng bất đẳng thức tam giác cho các tam giác nối trung điểm $\Rightarrow \dfrac{3}{4}P < \text{Tổng trung tuyến} < P$.
+
+**Bài 9:**
+$AB = 2MN = 2 \cdot 18 = 36$ m.
+
+**Bài 10:**
+a) $MN = \dfrac{8}{2} = 4$ m.
+b) $PQ = \dfrac{MN}{2} = \dfrac{4}{2} = 2$ m.
+c) $MN + PQ = 4 + 2 = 6$ m.
 
 </div>
 </details>

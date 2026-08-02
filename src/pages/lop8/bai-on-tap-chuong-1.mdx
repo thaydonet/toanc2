@@ -1,10 +1,11 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Ôn tập chương 1 - Toán 8"
-description: "Ôn tập toàn bộ kiến thức chương 1 Toán 8 KNTT: Đơn thức, đa thức, phép cộng trừ nhân chia đa thức"
+title: "Bài ôn tập Chương 1: Đa thức"
+description: "Hệ thống hóa toàn bộ kiến thức Chương 1: Đơn thức, Đa thức, Cộng trừ nhân chia đa thức và các dạng bài tập tổng hợp - Toán 8 KNTT"
 grade: "Lớp 8"
-chapter: "Chương I: Đa thức"
+chapter: "Chương 1: Đa thức"
 currentSlug: "lop8/bai-on-tap-chuong-1"
+
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -13,215 +14,148 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong1Interactive from '../../components/interactive/OnTapChuong1Interactive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Đơn thức nào sau đây có bậc cao nhất?",
-    option_a: "$3x^2y$",
-    option_b: "$-5x^3$",
-    option_c: "$2x^2y^2z$",
-    option_d: "$7xy^3$",
-    correct_option: "C",
-    explanation: "Bậc của đơn thức $2x^2y^2z$ là $2+2+1=5$, cao nhất trong các đáp án",
+    question: "Biểu thức nào sau đây là đơn thức thu gọn?",
+    option_a: "$-5x^2y^3$",
+    option_b: "$2x^2 \cdot 3y$",
+    option_c: "$x + y$",
+    option_d: "$\\dfrac{x}{y}$",
+    correct_option: "A",
+    explanation: "$-5x^2y^3$ là đơn thức đã thu gọn (mỗi biến chỉ viết 1 lần).",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Kết quả của phép tính $3x^2 + 2x^2 - x^2$ là:",
-    option_a: "$4x^2$",
-    option_b: "$5x^2$",
-    option_c: "$6x^2$",
-    option_d: "$2x^2$",
+    question: "Bậc của đa thức $P = 3x^4y^2 - 5x^3y^4 + 2x^2 - 9$ là:",
+    option_a: "$7$",
+    option_b: "$6$",
+    option_c: "$4$",
+    option_d: "$9$",
     correct_option: "A",
-    explanation: "$3x^2 + 2x^2 - x^2 = (3+2-1)x^2 = 4x^2$",
+    explanation: "Hạng tử $-5x^3y^4$ có bậc $3+4=7$ là bậc cao nhất.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Đa thức $P(x) = 2x^3 - 3x + 1$ có bậc là:",
-    option_a: "1",
-    option_b: "2", 
-    option_c: "3",
-    option_d: "4",
-    correct_option: "C",
-    explanation: "Bậc của đa thức là số mũ cao nhất của biến, ở đây là 3",
+    question: "Tổng của hai đơn thức đồng dạng $4x^2y$ và $-7x^2y$ bằng:",
+    option_a: "$-3x^2y$",
+    option_b: "$11x^2y$",
+    option_c: "$-3x^4y^2$",
+    option_d: "$-3$",
+    correct_option: "A",
+    explanation: "$(4 - 7)x^2y = -3x^2y$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Kết quả của $(2x^2 - 3x + 1) + (x^2 + 2x - 5)$ là:",
-    option_a: "$3x^2 - x - 4$",
-    option_b: "$3x^2 + x - 4$",
-    option_c: "$x^2 - x + 6$",
-    option_d: "$3x^2 - 5x + 6$",
+    question: "Tích của hai đơn thức $(2x^2y) \cdot (-3xy^3)$ bằng:",
+    option_a: "$-6x^3y^4$",
+    option_b: "$-6x^2y^3$",
+    option_c: "$6x^3y^4$",
+    option_d: "$-5x^3y^4$",
     correct_option: "A",
-    explanation: "$(2x^2 - 3x + 1) + (x^2 + 2x - 5) = 3x^2 - x - 4$",
+    explanation: "[2(-3)](x^{2+1})(y^{1+3}) = -6x^3y^4$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Kết quả của $(3x^2 - 2x) - (x^2 + x - 1)$ là:",
-    option_a: "$2x^2 - 3x + 1$",
-    option_b: "$2x^2 - x + 1$",
-    option_c: "$4x^2 - x - 1$",
-    option_d: "$2x^2 + x - 1$",
+    question: "Khai triển và thu gọn tích $(x - 2)(x + 5)$ được kết quả:",
+    option_a: "$x^2 + 3x - 10$",
+    option_b: "$x^2 - 3x - 10$",
+    option_c: "$x^2 + 7x - 10$",
+    option_d: "$x^2 - 10$",
     correct_option: "A",
-    explanation: "$(3x^2 - 2x) - (x^2 + x - 1) = 3x^2 - 2x - x^2 - x + 1 = 2x^2 - 3x + 1$",
+    explanation: "$x^2 + 5x - 2x - 10 = x^2 + 3x - 10$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Kết quả của $2x(3x^2 - x + 1)$ là:",
-    option_a: "$6x^3 - 2x^2 + 2x$",
-    option_b: "$6x^3 + 2x^2 + 2x$",
-    option_c: "$6x^2 - 2x + 2$",
-    option_d: "$5x^3 - x^2 + x$",
+    question: "Kết quả của phép chia $(12x^3y^2 - 8x^2y^3) : (4x^2y^2)$ là:",
+    option_a: "$3x - 2y$",
+    option_b: "$3x + 2y$",
+    option_c: "$3x^2 - 2y^2$",
+    option_d: "$4x - 2y$",
     correct_option: "A",
-    explanation: "$2x(3x^2 - x + 1) = 6x^3 - 2x^2 + 2x$",
+    explanation: "12x^3y^2:4x^2y^2 - 8x^2y^3:4x^2y^2 = 3x - 2y.",
     difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Kết quả của $(x + 2)(x - 3)$ là:",
-    option_a: "$x^2 - x - 6$",
-    option_b: "$x^2 + x - 6$",
-    option_c: "$x^2 - x + 6$",
-    option_d: "$x^2 - 5x - 6$",
-    correct_option: "A",
-    explanation: "$(x + 2)(x - 3) = x^2 - 3x + 2x - 6 = x^2 - x - 6$",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Kết quả của $(6x^3 - 4x^2 + 2x) \\div 2x$ là:",
-    option_a: "$3x^2 - 2x + 1$",
-    option_b: "$3x^2 - 2x$",
-    option_c: "$6x^2 - 4x + 2$",
-    option_d: "$3x - 2 + \\frac{1}{x}$",
-    correct_option: "A",
-    explanation: "$(6x^3 - 4x^2 + 2x) \\div 2x = 3x^2 - 2x + 1$",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Giá trị của đa thức $P(x) = x^3 - 2x^2 + x - 1$ tại $x = 2$ là:",
-    option_a: "1",
-    option_b: "-1",
-    option_c: "3",
-    option_d: "5",
-    correct_option: "A",
-    explanation: "$P(2) = 2^3 - 2 \\cdot 2^2 + 2 - 1 = 8 - 8 + 2 - 1 = 1$",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Đa thức $(x^2 + 2x - 1)(x - 3)$ có bậc là:",
-    option_a: "2",
-    option_b: "3",
-    option_c: "4",
-    option_d: "5",
-    correct_option: "B",
-    explanation: "Khi nhân đa thức bậc 2 với đa thức bậc 1, ta được đa thức bậc $2+1=3$",
-    difficulty_level: "hard",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về đơn thức và đa thức:",
-    option_a: "Đơn thức $-3x^2y^3$ có bậc là 5",
-    option_b: "Đa thức $2x^3 - x + 5$ có hệ số cao nhất là 3",
-    option_c: "Hai đơn thức đồng dạng có thể cộng trừ được",
-    option_d: "Bậc của tích hai đa thức bằng tổng bậc của chúng",
-    correct_option: "A,C,D",
-    explanation: "A đúng: bậc = 2+3 = 5. B sai: hệ số cao nhất là 2. C đúng: đơn thức đồng dạng cộng trừ được. D đúng: bậc tích = tổng các bậc.",
+    question: "Những khẳng định nào sau đây **ĐÚNG**?",
+    option_a: "Mọi đơn thức đều là đa thức",
+    option_b: "Hai đơn thức đồng dạng có cùng phần biến và hệ số khác 0",
+    option_c: "$(a+b)(a-b) = a^2 - b^2$",
+    option_d: "Đa thức 0 có bậc bằng 0",
+    correct_option: "A,B,C",
+    explanation: "Đa thức 0 là đa thức KHÔNG có bậc (D sai). A, B, C đúng.",
     difficulty_level: "medium",
-    is_dynamic: false
-  },
-  {
-    type: "msq", 
-    question: "Xét tính đúng sai của các khẳng định sau về phép tính đa thức:",
-    option_a: "$(2x + 3) + (x - 1) = 3x + 2$",
-    option_b: "$(x^2 - 2x) - (x^2 + x) = -3x$",
-    option_c: "$3x(x^2 - 2) = 3x^3 - 6x$",
-    option_d: "$(x + 1)(x - 1) = x^2 + 1$",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng theo quy tắc tính. D sai: $(x+1)(x-1) = x^2 - 1$, không phải $x^2 + 1$.",
-    difficulty_level: "medium",
-    is_dynamic: false
-  },
-  {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về phép chia đa thức:",
-    option_a: "$(4x^3 - 2x^2) \\div 2x = 2x^2 - x$",
-    option_b: "Chia đa thức cho đơn thức, ta chia từng hạng tử",
-    option_c: "$(6x^2 + 3x) \\div 3x = 2x + 1$",
-    option_d: "Phép chia đa thức luôn cho kết quả là đa thức",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng theo quy tắc chia. D sai: có thể có phần dư, kết quả không phải đa thức.",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },
-  {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về giá trị đa thức:",
-    option_a: "Nếu $P(x) = x^2 - 1$ thì $P(1) = 0$",
-    option_b: "Đa thức $Q(x) = 2x + 3$ có giá trị âm khi $x < -1.5$",
-    option_c: "Nếu $P(a) = 0$ thì $a$ là nghiệm của đa thức $P(x)$",
-    option_d: "Đa thức bậc 2 có tối đa 3 nghiệm",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng theo định nghĩa. D sai: đa thức bậc 2 có tối đa 2 nghiệm.",
-    difficulty_level: "hard",
-    is_dynamic: false
+    is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Một mảnh đất hình chữ nhật có chiều dài $(2x + 3)$ mét và chiều rộng $(x + 1)$ mét. Tính diện tích mảnh đất khi $x = 5.5$ mét.",
-    correct_option: "91",
-    explanation: "Diện tích = $(2x + 3)(x + 1) = 2x^2 + 5x + 3$. Khi $x = 5.5$: $S = 2(5.5)^2 + 5(5.5) + 3 = 60.5 + 27.5 + 3 = 91.0$ m²",
-    difficulty_level: "hard",
-    is_dynamic: false
+    question: "Giá trị của biểu thức $P = (x - 1)(x + 1) - x^2 + 5$ bằng bao nhiêu?",
+    correct_option: "4",
+    explanation: "$P = x^2 - 1 - x^2 + 5 = 4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Một hộp có thể tích $(x^3 + 6x^2 + 9x)$ cm³. Nếu chiều cao của hộp là $x$ cm, thì diện tích đáy là bao nhiêu khi $x = 2.5$ cm?",
-    correct_option: "30.3",
-    explanation: "Diện tích đáy = Thể tích ÷ Chiều cao = $(x^3 + 6x^2 + 9x) \\div x = x^2 + 6x + 9$. Khi $x = 2.5$: $S = (2.5)^2 + 6(2.5) + 9 = 6.25 + 15 + 9 = 30.25 ≈ 30.3$ cm²",
+    type: "mcq",
+    question: "Thu gọn $A = 3x^2y - 2xy^2 + x^2y + 2xy^2$ được:",
+    option_a: "$4x^2y$",
+    option_b: "$4x^2y - 4xy^2$",
+    option_c: "$2x^2y$",
+    option_d: "$4xy^2$",
+    correct_option: "A",
+    explanation: "$(3+1)x^2y + (-2+2)xy^2 = 4x^2y$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của $A = (2x - 1)(x + 3) - 2x^2$ tại $x = 2$ là:",
+    option_a: "$9$",
+    option_b: "$7$",
+    option_c: "$5$",
+    option_d: "$11$",
+    correct_option: "A",
+    explanation: "Thu gọn $A = 5x - 3$. Thay $x = 2 \Rightarrow 5(2) - 3 = 7$... 5(2) - 3 = 7, chọn 7.",
     difficulty_level: "hard",
-    is_dynamic: false
-  }
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Ôn tập chương 1 — Đa thức</h3>
+<h3 id="mo-dau">🏆 Ôn tập Chương 1: Đa thức — Tổng hợp và Bứt phá</h3>
 
-Chương 1 giới thiệu về đơn thức, đa thức và các phép tính cơ bản. Đây là nền tảng quan trọng cho việc học đại số!
+Chương 1 đã trang bị cho chúng ta toàn bộ hệ thống công cụ Đại số cốt lõi: Đơn thức, Đa thức và các phép toán Cộng, Trừ, Nhân, Chia đa thức. Cùng hệ thống hóa lại kiến thức để bứt phá đạt điểm tối đa nhé!
 
 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
-    <strong>Đơn thức</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Định nghĩa và bậc</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🧮</div>
+    <strong>Đơn thức & Đa thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thu gọn, Hệ số, Phần biến, Bậc</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
-    <strong>Đa thức</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cộng, trừ, nhân</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">➕➖</div>
+    <strong>Cộng & Trừ đa thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Bỏ ngoặc, Đổi dấu, Ghép đồng dạng</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">➗</div>
-    <strong>Phép chia</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chia đa thức cho đơn thức</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">✖️➗</div>
+    <strong>Nhân & Chia đa thức</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Phân phối, Khai triển, Chia đơn thức</p>
   </div>
 </div>
 
@@ -229,431 +163,311 @@ Chương 1 giới thiệu về đơn thức, đa thức và các phép tính cơ
 
 <KhamPha>
 
-<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+<h3 id="so-do-tu-duy">🗺️ 1. Sơ đồ hệ thống hóa kiến thức Chương 1</h3>
 
-<h4 id="don-thuc">1. Đơn thức</h4>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="260" viewBox="0 0 620 260" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="230" y="15" width="160" height="40" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="310" y="40" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e3a8a">CHƯƠNG 1: ĐA THỨC</text>
 
-<div class="box-dinh-nghia">
+  <path d="M 250 55 L 100 100" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M 310 55 L 310 100" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M 370 55 L 520 100" stroke="#94a3b8" stroke-width="2"/>
 
-**Định nghĩa:** Đơn thức là biểu thức đại số chỉ gồm một số, hoặc một biến, hoặc một tích của các số và các biến.
+  <rect x="20" y="105" width="160" height="130" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="100" y="130" font-size="14" font-weight="bold" text-anchor="middle" fill="#065f46">1. ĐƠN THỨC</text>
+  <text x="100" y="155" font-size="12" text-anchor="middle" fill="#047857">• Tích số & biến</text>
+  <text x="100" y="180" font-size="12" text-anchor="middle" fill="#047857">• Đơn thức đồng dạng</text>
+  <text x="100" y="205" font-size="12" text-anchor="middle" fill="#047857">• Cộng/trừ hệ số</text>
 
-**Ví dụ:** $3$, $x$, $-2y$, $5x^2y^3$ đều là đơn thức.
+  <rect x="230" y="105" width="160" height="130" rx="10" fill="#fdf4ff" stroke="#a855f7" stroke-width="2"/>
+  <text x="310" y="130" font-size="14" font-weight="bold" text-anchor="middle" fill="#6b21a8">2. ĐA THỨC</text>
+  <text x="310" y="155" font-size="12" text-anchor="middle" fill="#7e22ce">• Tổng các đơn thức</text>
+  <text x="310" y="180" font-size="12" text-anchor="middle" fill="#7e22ce">• Thu gọn & Bậc</text>
+  <text x="310" y="205" font-size="12" text-anchor="middle" fill="#7e22ce">• Cộng & Trừ đa thức</text>
 
-**Bậc của đơn thức:** 
-- Đơn thức chỉ có số (khác 0): bậc 0
-- Đơn thức có biến: tổng số mũ của tất cả các biến
-
+  <rect x="440" y="105" width="160" height="130" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="520" y="130" font-size="14" font-weight="bold" text-anchor="middle" fill="#c2410c">3. NHÂN & CHIA</text>
+  <text x="520" y="155" font-size="12" text-anchor="middle" fill="#ea580c">• Đơn $\times$ Đa</text>
+  <text x="520" y="180" font-size="12" text-anchor="middle" fill="#ea580c">• Đa $\times$ Đa</text>
+  <text x="520" y="205" font-size="12" text-anchor="middle" fill="#ea580c">• Đa $:$ Đơn</text>
+</svg>
 </div>
 
-**Đơn thức đồng dạng:** Hai đơn thức đồng dạng là hai đơn thức có cùng phần biến.
+<h3 id="cac-dang-toan-cot-loi" style="margin-top:2rem;">📖 2. Ba dạng bài tập tổng hợp cốt lõi</h3>
 
-**Cộng, trừ đơn thức đồng dạng:** $ax^m + bx^m = (a+b)x^m$
+**Ví dụ 1 (Rút gọn biểu thức tổng hợp):**
+Rút gọn $P = (2x - y)(x + 2y) - (x + y)^2 + 3y^2$.
 
-<h4 id="da-thuc">2. Đa thức</h4>
+*Lời giải:*
+$$P = (2x^2 + 4xy - xy - 2y^2) - (x^2 + 2xy + y^2) + 3y^2$$
+$$= 2x^2 + 3xy - 2y^2 - x^2 - 2xy - y^2 + 3y^2 = x^2 + xy$$
 
-<div class="box-dinh-nghia">
+**Ví dụ 2 (Tìm $x$ từ đẳng thức):**
+Tìm $x$ biết $(3x + 1)(x - 2) - 3x(x + 2) = 11$.
 
-**Định nghĩa:** Đa thức là tổng của những đơn thức.
+*Lời giải:*
+$$3x^2 - 6x + x - 2 - 3x^2 - 6x = 11 \Rightarrow -11x - 2 = 11 \Rightarrow -11x = 13 \Rightarrow x = -\dfrac{13}{11}$$
 
-**Bậc của đa thức:** Bậc của đơn thức có bậc cao nhất trong đa thức đó.
+**Ví dụ 3 (Chứng minh biểu thức luôn nhận giá trị dương/âm):**
+Chứng minh $A = x(x - 6) + 10$ luôn nhận giá trị dương với mọi $x$.
 
-**Hệ số cao nhất:** Hệ số của đơn thức có bậc cao nhất.
-
-</div>
-
-**Sắp xếp đa thức:** Có thể sắp xếp theo lũy thừa tăng dần hoặc giảm dần của biến.
-
-**Giá trị của đa thức:** Thay giá trị cụ thể của biến vào đa thức.
-
-<h4 id="cong-tru-da-thuc">3. Phép cộng và phép trừ đa thức</h4>
-
-**Quy tắc:**
-- Cộng: $(P + Q)(x) = P(x) + Q(x)$
-- Trừ: $(P - Q)(x) = P(x) - Q(x)$
-
-**Cách thực hiện:**
-1. Bỏ dấu ngoặc (chú ý dấu trừ)
-2. Nhóm các đơn thức đồng dạng
-3. Cộng trừ các đơn thức đồng dạng
-
-<h4 id="nhan-da-thuc">4. Phép nhân đa thức</h4>
-
-**Nhân đơn thức với đa thức:**
-$A(x) \cdot (B(x) + C(x)) = A(x) \cdot B(x) + A(x) \cdot C(x)$
-
-**Nhân đa thức với đa thức:**
-$(A + B)(C + D) = AC + AD + BC + BD$
-
-**Tính chất:**
-- Giao hoán: $P \cdot Q = Q \cdot P$
-- Kết hợp: $(P \cdot Q) \cdot R = P \cdot (Q \cdot R)$
-- Phân phối: $P(Q + R) = PQ + PR$
-
-<h4 id="chia-da-thuc">5. Phép chia đa thức cho đơn thức</h4>
-
-**Điều kiện:** Mỗi hạng tử của đa thức phải chia hết cho đơn thức.
-
-**Quy tắc:** Chia từng hạng tử của đa thức cho đơn thức.
-
-$$\frac{A + B + C}{M} = \frac{A}{M} + \frac{B}{M} + \frac{C}{M}$$
-
-**Ví dụ:** $(6x^3 - 4x^2 + 2x) : 2x = 3x^2 - 2x + 1$
+*Lời giải:*
+$$A = x^2 - 6x + 10 = (x^2 - 6x + 9) + 1 = (x - 3)^2 + 1$$
+Vì $(x - 3)^2 \ge 0$ với mọi $x \Rightarrow (x - 3)^2 + 1 \ge 1 > 0$ với mọi $x$.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
+
+<OnTapChuong1Interactive client:load />
+
+</LuyenTap>
+
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Thu gọn, tìm bậc và tính giá trị biểu thức**
+
+</div>
+
+**Ví dụ 1:** Thu gọn $A = 3x^2y - 2xy^2 + 5x^2y + 4xy^2 - 1$.
+*Lời giải:* $A = 8x^2y + 2xy^2 - 1$. Bậc là 3.
+
+**Ví dụ 2:** Tính giá trị $B = (x - 2)(x + 2) - x^2$ tại $x = 2024$.
+*Lời giải:* $B = x^2 - 4 - x^2 = -4$. Giá trị luôn bằng $-4$.
+
+**Ví dụ 3:** Cho $x + y = 3$. Tính $M = x^2 + xy + 2x + 2y$.
+*Lời giải:* $M = x(x + y) + 2(x + y) = (x + 2)(x + y) = 3(x + 2)$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Phép tính cộng, trừ, nhân, chia đa thức tổng hợp**
+
+</div>
+
+**Ví dụ 1:** Tính $(12x^4y^3 - 9x^3y^2) : 3x^2y^2 - (4xy - 3x)$.
+*Lời giải:* $(4x^2y - 3x) - 4xy + 3x = 4x^2y - 4xy$.
+
+**Ví dụ 2:** Tính $(x + y)^2 - (x - y)^2$.
+*Lời giải:* $(x^2 + 2xy + y^2) - (x^2 - 2xy + y^2) = 4xy$.
+
+**Ví dụ 3:** Rút gọn $P = (2x - 1)(4x^2 + 2x + 1) - 8x^3$.
+*Lời giải:* $P = 8x^3 - 1 - 8x^3 = -1$.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế liên môn</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Thiết kế công viên):** Một công viên hình chữ nhật diện tích $S = 15x^2 + 10xy$ (m²). Người ta chia công viên làm 5 khu vực bằng nhau.
+
+a) Viết đa thức biểu thị diện tích mỗi khu vực.
+b) Tính diện tích mỗi khu vực khi $x = 10$ m, $y = 6$ m.
+
+**Lời giải:**
+a) $S_0 = (15x^2 + 10xy) : 5 = 3x^2 + 2xy$ (m²).
+b) Thay $x = 10, y = 6 \Rightarrow S_0 = 3(100) + 2(10)(6) = 300 + 120 = 420$ (m²).
+
+</div>
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Sản lượng nông nghiệp):** Năng suất lúa vụ 1 là $(x + 2)$ tấn/ha trên diện tích $x$ ha. Năng suất vụ 2 là $(x + 1)$ tấn/ha trên diện tích $(x + 3)$ ha.
+
+a) Viết đa thức tính tổng sản lượng lúa cả hai vụ.
+b) Tính tổng sản lượng khi $x = 5$ ha.
+
+**Lời giải:**
+a) $S = x(x + 2) + (x + 1)(x + 3) = (x^2 + 2x) + (x^2 + 4x + 3) = 2x^2 + 6x + 3$ (tấn).
+b) Thay $x = 5 \Rightarrow S = 2(25) + 6(5) + 3 = 50 + 30 + 3 = 83$ (tấn).
+
+</div>
+
+<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Kinh tế hộ gia đình):** Thu nhập gia đình gồm $2x$ triệu đồng từ lương và $y$ triệu đồng từ kinh doanh. Chi tiêu gia đình bằng $60\%$ thu nhập.
+
+a) Viết đa thức tính số tiền tiết kiệm hàng tháng $T$.
+b) Tính số tiền tiết kiệm khi $x = 10, y = 8$.
+
+**Lời giải:**
+a) $T = (2x + y) - 0,6(2x + y) = 0,4(2x + y) = 0,8x + 0,4y$ (triệu đồng).
+b) Thay $x = 10, y = 8 \Rightarrow T = 0,8(10) + 0,4(8) = 8 + 3,2 = 11,2$ triệu đồng.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
-<VanDung>
-
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
-
-<h4 id="bai-1">Bài 1: Đơn thức và bậc của đơn thức</h4>
-
-a) Xác định bậc của các đơn thức sau: $3x^2y$, $-5xy^3z^2$, $7$
-
-b) Tìm đơn thức đồng dạng với $2x^2y$ trong các đơn thức: $-3x^2y$, $5xy^2$, $x^2y$
-
-c) Tính: $3x^2y + (-2x^2y) + 5x^2y$
-
-d) Cho đơn thức $A = -2x^3y^2z$. Tìm hệ số và bậc của $A$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Bậc của các đơn thức:
-- $3x^2y$: bậc = $2 + 1 = 3$
-- $-5xy^3z^2$: bậc = $1 + 3 + 2 = 6$  
-- $7$: bậc = $0$
-
-b) Đơn thức đồng dạng với $2x^2y$: $-3x^2y$ và $x^2y$ (cùng phần biến $x^2y$)
-
-c) $3x^2y + (-2x^2y) + 5x^2y = (3 - 2 + 5)x^2y = 6x^2y$
-
-d) Đơn thức $A = -2x^3y^2z$:
-- Hệ số: $-2$
-- Bậc: $3 + 2 + 1 = 6$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Đa thức và sắp xếp đa thức</h4>
-
-a) Cho đa thức $P(x) = 3x^3 - 2x + 5x^2 - 1$. Xác định bậc và hệ số cao nhất
-
-b) Sắp xếp đa thức $P(x)$ theo lũy thừa giảm dần của biến
-
-c) Tính $P(1)$ và $P(-1)$
-
-d) Tìm $x$ để $P(x) = 5$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $P(x) = 3x^3 - 2x + 5x^2 - 1$
-- Bậc: $3$ (bậc cao nhất)
-- Hệ số cao nhất: $3$
-
-b) Sắp xếp: $P(x) = 3x^3 + 5x^2 - 2x - 1$
-
-c) Tính giá trị:
-- $P(1) = 3(1)^3 + 5(1)^2 - 2(1) - 1 = 3 + 5 - 2 - 1 = 5$
-- $P(-1) = 3(-1)^3 + 5(-1)^2 - 2(-1) - 1 = -3 + 5 + 2 - 1 = 3$
-
-d) Để $P(x) = 5$: $3x^3 + 5x^2 - 2x - 1 = 5$
-$3x^3 + 5x^2 - 2x - 6 = 0$
-Từ câu c, ta có $P(1) = 5$, nên $x = 1$ là một nghiệm.
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Phép cộng và trừ đa thức</h4>
-
-a) Tính $(2x^2 - 3x + 1) + (x^2 + 5x - 2)$
-
-b) Tính $(3x^3 - 2x^2 + x) - (x^3 + x^2 - 3x + 1)$
-
-c) Cho $A(x) = x^3 - 2x + 1$ và $B(x) = 2x^2 - x + 3$. Tính $A(x) + B(x)$
-
-d) Tìm đa thức $C(x)$ biết $A(x) + C(x) = B(x)$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $(2x^2 - 3x + 1) + (x^2 + 5x - 2) = 3x^2 + 2x - 1$
-
-b) $(3x^3 - 2x^2 + x) - (x^3 + x^2 - 3x + 1) = 2x^3 - 3x^2 + 4x - 1$
-
-c) $A(x) + B(x) = (x^3 - 2x + 1) + (2x^2 - x + 3) = x^3 + 2x^2 - 3x + 4$
-
-d) $C(x) = B(x) - A(x) = (2x^2 - x + 3) - (x^3 - 2x + 1) = -x^3 + 2x^2 + x + 2$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Phép nhân đa thức</h4>
-
-a) Tính $3x(2x^2 - x + 1)$
-
-b) Tính $(x + 2)(x - 3)$
-
-c) Tính $(2x - 1)(x^2 + x + 1)$
-
-d) Tính $(x + 1)(x - 1)(x + 2)$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $3x(2x^2 - x + 1) = 6x^3 - 3x^2 + 3x$
-
-b) $(x + 2)(x - 3) = x^2 - 3x + 2x - 6 = x^2 - x - 6$
-
-c) $(2x - 1)(x^2 + x + 1) = 2x^3 + 2x^2 + 2x - x^2 - x - 1 = 2x^3 + x^2 + x - 1$
-
-d) $(x + 1)(x - 1)(x + 2) = (x^2 - 1)(x + 2) = x^3 + 2x^2 - x - 2$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Phép chia đa thức cho đơn thức</h4>
-
-a) Tính $(6x^3 - 4x^2 + 2x) : 2x$
-
-b) Tính $(15x^4y - 10x^3y^2 + 5x^2y) : 5x^2y$
-
-c) Thực hiện phép chia: $(8x^3 - 12x^2 + 4x) : 4x$
-
-d) Tìm $a$ để $(ax^3 - 6x^2 + 3x) : 3x = 2x^2 - 2x + 1$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $(6x^3 - 4x^2 + 2x) : 2x = 3x^2 - 2x + 1$
-
-b) $(15x^4y - 10x^3y^2 + 5x^2y) : 5x^2y = 3x^2 - 2xy + 1$
-
-c) $(8x^3 - 12x^2 + 4x) : 4x = 2x^2 - 3x + 1$
-
-d) $(ax^3 - 6x^2 + 3x) : 3x = \frac{a}{3}x^2 - 2x + 1$
-Để bằng $2x^2 - 2x + 1$, ta cần $\frac{a}{3} = 2$, suy ra $a = 6$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Bài toán tổng hợp</h4>
-
-a) Cho $P(x) = x^3 - 2x^2 + x - 1$ và $Q(x) = x^2 - x + 2$. Tính $P(x) - Q(x)$
-
-b) Tính giá trị của biểu thức $P(x) - Q(x)$ tại $x = 2$
-
-c) Tìm nghiệm của đa thức $R(x) = x^2 - 3x + 2$
-
-d) Phân tích $R(x)$ thành tích các nhân tử
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $P(x) - Q(x) = (x^3 - 2x^2 + x - 1) - (x^2 - x + 2) = x^3 - 3x^2 + 2x - 3$
-
-b) Tại $x = 2$: $P(2) - Q(2) = 8 - 12 + 4 - 3 = -3$
-
-c) Để tìm nghiệm của $R(x) = x^2 - 3x + 2 = 0$:
-$(x - 1)(x - 2) = 0$
-Nghiệm: $x = 1$ hoặc $x = 2$
-
-d) $R(x) = x^2 - 3x + 2 = (x - 1)(x - 2)$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-7">Bài 7: Bài toán thực tế - Hình học</h4>
-
-a) Một hình chữ nhật có chiều dài $(2x + 3)$ cm và chiều rộng $(x + 1)$ cm. Viết biểu thức tính diện tích
-
-b) Tính diện tích khi $x = 5$ cm
-
-c) Một hình vuông có cạnh $(x + 2)$ cm. So sánh diện tích hình vuông và hình chữ nhật trên
-
-d) Tìm $x$ để diện tích hình vuông bằng diện tích hình chữ nhật
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Diện tích hình chữ nhật: $S_1 = (2x + 3)(x + 1) = 2x^2 + 5x + 3$ (cm²)
-
-b) Khi $x = 5$: $S_1 = 2(25) + 5(5) + 3 = 50 + 25 + 3 = 78$ cm²
-
-c) Diện tích hình vuông: $S_2 = (x + 2)^2 = x^2 + 4x + 4$ (cm²)
-
-d) Để $S_1 = S_2$: $2x^2 + 5x + 3 = x^2 + 4x + 4$
-$x^2 + x - 1 = 0$
-$x = \frac{-1 \pm \sqrt{5}}{2}$ (chỉ lấy nghiệm dương)
-
-</div>
-</details>
-
----
-
-<h4 id="bai-8">Bài 8: Bài toán thực tế - Vật lý</h4>
-
-a) Quãng đường một vật chuyển động được biểu diễn bởi $s(t) = 2t^2 + 3t + 1$ (m), với $t$ là thời gian (giây). Tính quãng đường sau 3 giây
-
-b) Vận tốc tức thời được tính bởi $v(t) = 4t + 3$ (m/s). Tính vận tốc sau 2 giây
-
-c) Gia tốc của vật là $a = 4$ (m/s²). Viết công thức tổng quát cho chuyển động này
-
-d) Tìm thời điểm vật có vận tốc 15 m/s
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Quãng đường sau 3 giây: $s(3) = 2(9) + 3(3) + 1 = 18 + 9 + 1 = 28$ m
-
-b) Vận tốc sau 2 giây: $v(2) = 4(2) + 3 = 11$ m/s
-
-c) Với gia tốc $a = 4$ m/s², vận tốc ban đầu $v_0 = 3$ m/s, vị trí ban đầu $s_0 = 1$ m:
-$s(t) = \frac{1}{2}at^2 + v_0t + s_0 = 2t^2 + 3t + 1$ m
-
-d) Để $v(t) = 15$: $4t + 3 = 15$, suy ra $t = 3$ giây
-
-</div>
-</details>
-
----
-
-<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
-
-Cho hai đa thức:
-- $P(x) = x^3 - 2x^2 + ax + b$
-- $Q(x) = x^2 - 3x + 2$
-
-a) Tính $P(x) + Q(x)$ và $P(x) - Q(x)$
-
-b) Tìm $a$ và $b$ biết $P(1) = 2$ và $P(2) = 6$
-
-c) Với giá trị $a, b$ vừa tìm được, tính $P(x) \cdot Q(x)$
-
-d) Thực hiện phép chia $P(x) : (x - 1)$ và tìm dư
-
-e) Chứng minh rằng $x = 1$ là nghiệm của $P(x)$ với $a, b$ tìm được
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $P(x) + Q(x) = x^3 - x^2 + (a-3)x + (b+2)$
-   $P(x) - Q(x) = x^3 - 3x^2 + (a+3)x + (b-2)$
-
-b) Từ điều kiện:
-   $P(1) = 1 - 2 + a + b = 2 \Rightarrow a + b = 3$
-   $P(2) = 8 - 8 + 2a + b = 6 \Rightarrow 2a + b = 6$
-   Giải hệ: $a = 3, b = 0$
-
-c) Với $a = 3, b = 0$: $P(x) = x^3 - 2x^2 + 3x$
-   $P(x) \cdot Q(x) = (x^3 - 2x^2 + 3x)(x^2 - 3x + 2) = x^5 - 5x^4 + 11x^3 - 15x^2 + 6x$
-
-d) $P(x) = (x-1)(x^2 - x + 2) + 0$, dư = 0
-
-e) $P(1) = 1 - 2 + 3 = 2 \neq 0$. Cần kiểm tra lại: với $a=3, b=0$, $P(1) = 2 \neq 0$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
-
-Một công ty sản xuất có chi phí sản xuất $x$ sản phẩm được biểu diễn bởi:
-$C(x) = 2x^2 + 10x + 50$ (nghìn đồng)
-
-a) Tính chi phí sản xuất 20 sản phẩm
-
-b) Doanh thu bán $x$ sản phẩm là $R(x) = 30x$ (nghìn đồng). Viết biểu thức lợi nhuận $L(x) = R(x) - C(x)$
-
-c) Tìm số sản phẩm cần sản xuất để lợi nhuận bằng 0 (hòa vốn)
-
-d) Tính lợi nhuận khi sản xuất 15 sản phẩm
-
-e) Tìm số sản phẩm để lợi nhuận đạt giá trị lớn nhất (gợi ý: dùng đạo hàm hoặc phương pháp đại số)
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Chi phí sản xuất 20 sản phẩm: $C(20) = 2(400) + 10(20) + 50 = 1050$ nghìn đồng
-
-b) Lợi nhuận: $L(x) = R(x) - C(x) = 30x - (2x^2 + 10x + 50) = -2x^2 + 20x - 50$
-
-c) Để hòa vốn: $L(x) = 0$
-   $-2x^2 + 20x - 50 = 0$
-   $x^2 - 10x + 25 = 0$
-   $(x - 5)^2 = 0$, suy ra $x = 5$ sản phẩm
-
-d) Lợi nhuận khi $x = 15$: $L(15) = -2(225) + 20(15) - 50 = -200$ nghìn đồng (lỗ)
-
-e) $L(x) = -2x^2 + 20x - 50 = -2(x^2 - 10x + 25) = -2(x - 5)^2$
-   Lợi nhuận lớn nhất khi $x = 5$ sản phẩm, $L_{max} = 0$
-
-</div>
-</details>
-
-</VanDung>
 
 <GhiNho>
 
-<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
-
-- **Đơn thức**: Biểu thức gồm số, biến hoặc tích của chúng
-- **Bậc đơn thức**: Tổng số mũ của các biến (số khác 0 có bậc 0)
-- **Đa thức**: Tổng các đơn thức, bậc là bậc cao nhất
-- **Cộng trừ đa thức**: Nhóm các đơn thức đồng dạng
-- **Nhân đa thức**: Áp dụng tính chất phân phối
-- **Chia đa thức cho đơn thức**: Chia từng hạng tử
-- **Giá trị đa thức**: Thay số vào biến
-- **Nghiệm đa thức**: Giá trị làm đa thức bằng 0
+- Ghi nhớ 4 phép tính: Cộng, Trừ, Nhân, Chia đa thức.
+- Luôn thu gọn đa thức về dạng chuẩn trước khi tính giá trị hoặc tìm bậc.
+- Chú ý quy tắc đổi dấu khi bỏ dấu ngoặc có dấu trừ đằng trước.
 
 </GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ — Thu gọn đơn thức & Đa thức tổng hợp):** Thu gọn các biểu thức sau và tìm bậc của chúng:
+
+a) $A = \left(-\dfrac{2}{3}x^2y^3\right) \cdot (9x^3y)$
+
+b) $B = (-2xy^2)^3 \cdot (3x^2y)$
+
+c) $C = 4x^3y - 2xy^2 + 3x^3y + 5xy^2 - 7$
+
+d) $D = 2x^4 - 3x^2 + 5x^4 + 3x^2 - 8$
+
+e) $E = a^2b - 3ab^2 + 2a^2b + 5ab^2$
+
+f) $F = \dfrac{1}{2}x^2y^2 - 3xy + \dfrac{3}{2}x^2y^2 + 3xy$
+
+**Bài 2 (Dễ — Phép cộng và trừ đa thức tổng hợp):** Thực hiện các phép tính:
+
+a) $(3x^2 + 2x - 1) + (x^2 - 5x + 4)$
+
+b) $(5x^2y - 3xy^2) - (2x^2y + 4xy^2)$
+
+c) $(2x^3 - x + 5) + (x^3 + 3x^2 - 2)$
+
+d) $(3x^2 - 5xy + 2) - (2x^2 - 5xy - 3)$
+
+e) Cho $M = 2x^2y - 3xy + 5$ và $N = x^2y + 4xy - 2$. Tính $M + N$.
+
+f) Cho $M = 2x^2y - 3xy + 5$ và $N = x^2y + 4xy - 2$. Tính $M - N$.
+
+**Bài 3 (Trung bình — Phép nhân và phép chia đa thức):** Thực hiện các phép tính:
+
+a) $2x^2(3x^2 - 4x + 5)$
+
+b) $(-2xy)(x^2y - 3xy^2 + 4)$
+
+c) $(x + 4)(x - 2)$
+
+d) $(2x - 3)(x^2 + 2x - 1)$
+
+e) $(18x^4y^3 - 12x^3y^2) : (6x^2y)$
+
+f) $(15x^4y^3 - 10x^3y^2 + 5x^2y^2) : (5x^2y^2)$
+
+**Bài 4 (Trung bình — Rút gọn & Tính giá trị biểu thức tổng hợp):**
+
+a) Rút gọn $P = (x - 3)(x + 3) - (x + 2)(x - 1)$. Tính giá trị $P$ tại $x = 10$.
+
+b) Rút gọn $Q = (12x^4y^2 - 8x^3y^3) : (4x^2y^2) - 3x^2 + 2xy$.
+
+c) Tính giá trị $M = (2x - y)(4x^2 + 2xy + y^2)$ tại $x = 2, y = 3$.
+
+**Bài 5 (Trung bình — Tìm $x$ từ các phép tính):**
+
+a) Tìm $x$ biết $2x(x - 3) - x(2x + 1) = 14$.
+
+b) Tìm $x$ biết $(x + 1)(x + 3) - x(x + 2) = 7$.
+
+c) Tìm $x$ biết $(10x^2 - 5x) : 5x = 3$.
+
+**Bài 6 (Khá — Biểu thức 3 đa thức & Tìm đa thức $X$):**
+
+a) Cho $A = 3x^2y - 2xy + 1$, $B = x^2y + 4xy - 3$, $C = -x^2y + 4xy - 2$. Tính $2A - 3B + C$.
+
+b) Tìm đa thức $X$ biết $X + (2x^2 - y^2) = 5x^2 + 3y^2 - 1$.
+
+**Bài 7 (Khá — Chứng minh biểu thức không phụ thuộc biến):**
+
+a) Chứng minh $M = (2x - 1)(3x + 2) - 6x(x + 1) + x = -2$ có giá trị không phụ thuộc vào $x$.
+
+b) Chứng minh $N = (x - 1)(x + 2) - (x + 1)(x - 2) - 2x = 0$ có giá trị không phụ thuộc vào $x$.
+
+**Bài 8 (Khá - Nâng cao — Đẳng thức nâng cao):** Cho $x - y = 7$ và $xy = 12$. Tính giá trị của $x^2 + y^2$ và $x^3 - y^3$.
+
+**Bài 9 (Ứng dụng thực tế 1 — Công viên & Năng suất nông nghiệp):**
+
+a) Một công viên hình chữ nhật diện tích $S = 15x^2 + 10xy$ (m²). Người ta chia công viên làm 5 khu vực bằng nhau. Viết đa thức biểu thị diện tích mỗi khu vực và tính khi $x = 10$ m, $y = 6$ m.
+
+b) Năng suất lúa vụ 1 là $(x + 2)$ tấn/ha trên diện tích $x$ ha. Năng suất vụ 2 là $(x + 1)$ tấn/ha trên diện tích $(x + 3)$ ha. Viết đa thức tính tổng sản lượng lúa cả hai vụ và tính khi $x = 5$ ha.
+
+**Bài 10 (Ứng dụng thực tế 2 — Tiết kiệm gia đình & Chi phí sản xuất):**
+
+a) Thu nhập gia đình gồm $2x$ triệu đồng từ lương và $y$ triệu đồng từ kinh doanh. Chi tiêu gia đình bằng $60\%$ thu nhập. Viết đa thức tính số tiền tiết kiệm hàng tháng $T$ và tính khi $x = 10, y = 8$.
+
+b) Chi phí sản xuất $x$ sản phẩm là $C(x) = 50x + 1000$ (nghìn đồng). Doanh thu bán $x$ sản phẩm là $R(x) = 120x$ (nghìn đồng). Viết đa thức lợi nhuận $P(x) = R(x) - C(x)$ và tính lợi nhuận khi bán 100 sản phẩm.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) $A = -6x^5y^4$, Bậc 9.
+b) $B = (-8x^3y^6) \cdot (3x^2y) = -24x^5y^7$, Bậc 12.
+c) $C = 7x^3y + 3xy^2 - 7$, Bậc 4.
+d) $D = 7x^4 - 8$, Bậc 4.
+e) $E = 3a^2b + 2ab^2$, Bậc 3.
+f) $F = 2x^2y^2$, Bậc 4.
+
+**Bài 2:**
+a) $4x^2 - 3x + 3$.
+b) $3x^2y - 7xy^2$.
+c) $3x^3 + 3x^2 - x + 3$.
+d) $x^2 + 5$.
+e) $M + N = 3x^2y + xy + 3$.
+f) $M - N = x^2y - 7xy + 7$.
+
+**Bài 3:**
+a) $6x^4 - 8x^3 + 10x^2$.
+b) $-2x^3y^2 + 6x^2y^3 - 8xy$.
+c) $x^2 + 2x - 8$.
+d) $2x^3 + x^2 - 8x + 3$.
+e) $3x^2y^2 - 2xy$.
+f) $3x^2y - 2x + 1$.
+
+**Bài 4:**
+a) $P = (x^2 - 9) - (x^2 + x - 2) = -x - 7$. Thay $x = 10 \Rightarrow P = -10 - 7 = -17$.
+b) $Q = (3x^2y - 2xy) - 3x^2y + 2xy = 0$.
+c) $M = 8x^3 - y^3$. Thay $x = 2, y = 3 \Rightarrow M = 8(8) - 27 = 37$.
+
+**Bài 5:**
+a) $2x^2 - 6x - 2x^2 - x = 14 \Rightarrow -7x = 14 \Rightarrow x = -2$.
+b) $(x^2 + 4x + 3) - (x^2 + 2x) = 7 \Rightarrow 2x + 3 = 7 \Rightarrow x = 2$.
+c) $2x - 1 = 3 \Rightarrow 2x = 4 \Rightarrow x = 2$.
+
+**Bài 6:**
+a) $2A - 3B + C = (6x^2y - 4xy + 2) - (3x^2y + 12xy - 9) + (-x^2y + 4xy - 2) = 2x^2y - 12xy + 9$.
+b) $X = (5x^2 + 3y^2 - 1) - (2x^2 - y^2) = 3x^2 + 4y^2 - 1$.
+
+**Bài 7:**
+a) $M = 6x^2 + 4x - 3x - 2 - 6x^2 - 6x + x = -2$ (hằng số với mọi $x$).
+b) $N = (x^2 + x - 2) - (x^2 - x - 2) - 2x = 2x - 2x = 0$ (không phụ thuộc vào $x$).
+
+**Bài 8:**
+- $x^2 + y^2 = (x - y)^2 + 2xy = 7^2 + 2(12) = 49 + 24 = 73$.
+- $x^3 - y^3 = (x - y)(x^2 + xy + y^2) = 7(73 + 12) = 7(85) = 595$.
+
+**Bài 9:**
+a) Diện tích mỗi khu vực: $S_0 = (15x^2 + 10xy) : 5 = 3x^2 + 2xy$ (m²). Thay $x = 10, y = 6 \Rightarrow S_0 = 3(100) + 2(10)(6) = 420$ (m²).
+b) Tổng sản lượng $S = x(x + 2) + (x + 1)(x + 3) = 2x^2 + 6x + 3$ (tấn). Thay $x = 5 \Rightarrow S = 2(25) + 6(5) + 3 = 83$ (tấn).
+
+**Bài 10:**
+a) Tiết kiệm hàng tháng $T = (2x + y) - 0,6(2x + y) = 0,4(2x + y) = 0,8x + 0,4y$ (triệu đồng). Thay $x = 10, y = 8 \Rightarrow T = 0,8(10) + 0,4(8) = 11,2$ triệu đồng.
+b) Lợi nhuận $P(x) = R(x) - C(x) = 120x - (50x + 1000) = 70x - 1000$ (nghìn đồng). Khi bán 100 sản phẩm $\Rightarrow P(100) = 70(100) - 1000 = 6000$ nghìn đồng = 6 triệu đồng.
+
+</div>
+</details>

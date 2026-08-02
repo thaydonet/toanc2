@@ -13,6 +13,7 @@ import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 import QuizSession from '../../components/ui/QuizSession';
 
 export const quizData = [
@@ -24,7 +25,7 @@ export const quizData = [
     option_c: "Số thập phân hữu hạn",
     option_d: "Phân số",
     correct_option: "A",
-    explanation: "Số vô tỉ là số thập phân vô hạn không tuần hoàn, không viết được dưới dạng phân số.",
+    explanation: "Số vô tỉ là số thập phân vô hạn không tuần hoàn, không viết được dưới dạng phân số $\\dfrac{a}{b}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
@@ -48,7 +49,7 @@ export const quizData = [
     option_c: "$\\pm 5$",
     option_d: "$12,\\!5$",
     correct_option: "A",
-    explanation: "$\\sqrt{25} = 5$ (chỉ lấy giá trị dương)",
+    explanation: "$\\sqrt{25} = 5$ (căn bậc hai số học luôn lấy giá trị không âm).",
     difficulty_level: "easy",
     is_dynamic: false,
   },
@@ -60,20 +61,20 @@ export const quizData = [
     option_c: "$0,\\overline{3}$",
     option_d: "$\\dfrac{1}{3}$",
     correct_option: "A",
-    explanation: "$\\sqrt{2} = 1,\\!414...$ là số vô tỉ. Các số còn lại đều là số hữu tỉ.",
+    explanation: "$\\sqrt{2} = 1,\\!414...$ là số thập phân vô hạn không tuần hoàn nên là số vô tỉ. Các số còn lại đều là số hữu tỉ.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "$\\sqrt{49}$ bằng:",
-    option_a: "$7$",
-    option_b: "$24,\\!5$",
-    option_c: "$-7$",
-    option_d: "$\\pm 7$",
+    question: "Căn bậc hai của 9 là:",
+    option_a: "$3$ và $-3$",
+    option_b: "chỉ $3$",
+    option_c: "chỉ $-3$",
+    option_d: "$9$",
     correct_option: "A",
-    explanation: "$\\sqrt{49} = 7$ vì $7^2 = 49$",
-    difficulty_level: "easy",
+    explanation: "Vì $3^2 = 9$ và $(-3)^2 = 9$ nên 9 có hai căn bậc hai là $3$ và $-3$ (hai số đối nhau).",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
@@ -84,7 +85,55 @@ export const quizData = [
     option_c: "$\\pi$",
     option_d: "$\\sqrt{5}$",
     correct_option: "A,C,D",
-    explanation: "$\\sqrt{3}$, $\\pi$, $\\sqrt{5}$ là số vô tỉ. $\\sqrt{9} = 3$ là số hữu tỉ.",
+    explanation: "$\\sqrt{3}$, $\\pi$, $\\sqrt{5}$ là số vô tỉ. Còn $\\sqrt{9} = 3$ là số hữu tỉ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào sau đây là số hữu tỉ?",
+    option_a: "$\\sqrt{4}$",
+    option_b: "$\\sqrt{2}$",
+    option_c: "$\\dfrac{1}{2}$",
+    option_d: "$\\sqrt{7}$",
+    correct_option: "A,C",
+    explanation: "$\\sqrt{4} = 2$ và $\\dfrac{1}{2}$ viết được dưới dạng phân số nên là số hữu tỉ. Còn $\\sqrt{2}$, $\\sqrt{7}$ là số vô tỉ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "$\\sqrt{!a#8!^2}$ bằng:",
+    option_a: "$!a!$",
+    option_b: "$-!a!$",
+    option_c: "$\\pm !a!$",
+    option_d: "${tinh: !a! * 2}$",
+    correct_option: "A",
+    explanation: "Vì $!a! > 0$ nên $\\sqrt{!a!^2} = |!a!| = !a!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tìm số dương $x$, biết $x^2 = {tinh: !a(3,4,5,6,7,8)!^2}$.",
+    option_a: "$x = !a!$",
+    option_b: "$x = -!a!$",
+    option_c: "$x = \\pm !a!$",
+    option_d: "$x = {tinh: !a! * 2}$",
+    correct_option: "A",
+    explanation: "Vì $x > 0$ và $x^2 = {tinh: !a!^2}$ nên $x = \\sqrt{{tinh: !a!^2}} = !a!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Khẳng định nào sau đây là **đúng**?",
+    option_a: "Mọi số vô tỉ đều viết được dưới dạng số thập phân vô hạn không tuần hoàn",
+    option_b: "Mọi số vô tỉ đều là số nguyên",
+    option_c: "Số vô tỉ viết được dưới dạng phân số $\\dfrac{a}{b}$",
+    option_d: "Số hữu tỉ là số thập phân vô hạn không tuần hoàn",
+    correct_option: "A",
+    explanation: "Số vô tỉ chính là số thập phân vô hạn không tuần hoàn, nên khẳng định A đúng.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -94,56 +143,60 @@ export const quizData = [
 
 <h3 id="mo-dau">🎯 Số vô tỉ — Khám phá thế giới số mới</h3>
 
-Không phải mọi số đều viết được dưới dạng phân số. Hãy khám phá số vô tỉ!
+Không phải mọi số đều viết được dưới dạng phân số. Hãy khám phá số vô tỉ và căn bậc hai số học!
 
 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
     <strong>Số hữu tỉ</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\\dfrac{1}{2} = 0,\\!5$</p>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\dfrac{1}{2} = 0,\!5$</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
     <strong>Số vô tỉ</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\\sqrt{2} = 1,\\!414...$</p>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\sqrt{2} = 1,\!414...$</p>
   </div>
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🥧</div>
-    <strong>Pi</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\\pi = 3,\\!14159...$</p>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">√</div>
+    <strong>Căn bậc hai</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$\sqrt{16} = 4$ vì $4^2 = 16$</p>
   </div>
 </div>
+
+**Em có biết?** Cách đây hơn 2500 năm, nhà toán học Hy Lạp cổ đại Pythagore tin rằng mọi thứ đều là số hữu tỉ. Nhưng khi các học trò của ông đo đường chéo của một hình vuông có cạnh bằng 1, họ nhận ra độ dài đó bằng $\sqrt{2} = 1,\!41421356...$ — một số thập phân không bao giờ kết thúc, không bao giờ lặp lại! Đó chính là **số vô tỉ** đầu tiên được loài người phát hiện. Từ đó, thế giới số mới mở ra trước mắt các nhà toán học.
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="so-vo-ti">📖 1. Số vô tỉ</h3>
+<h3 id="so-vo-ti">📖 1. Khái niệm số vô tỉ</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Số vô tỉ là số viết được dưới dạng số thập phân vô hạn không tuần hoàn.
+**Định nghĩa:** Số vô tỉ là số viết được dưới dạng số thập phân **vô hạn không tuần hoàn**.
 
 Số vô tỉ không thể viết được dưới dạng phân số $\dfrac{a}{b}$ với $a, b \in \mathbb{Z}$, $b \neq 0$.
 
 </div>
 
-**Ví dụ 1:** Các số vô tỉ
+**Ví dụ 1:** Nêu một số số vô tỉ thường gặp.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:*
 
 - $\sqrt{2} = 1,\!41421356...$ (căn bậc hai của 2)
 - $\sqrt{3} = 1,\!73205080...$ (căn bậc hai của 3)
-- $\pi = 3,\!14159265...$ (số pi, tỉ số chu vi và đường kính hình tròn)
-- $e = 2,\!71828182...$ (số Euler)
+- $\pi = 3,\!14159265...$ (tỉ số giữa chu vi và đường kính hình tròn)
+- $e = 2,\!71828182...$ (hằng số Euler)
 
-Các số này có vô hạn chữ số sau dấu phẩy và không lặp lại theo chu kỳ.
+Các số này có vô hạn chữ số sau dấu phẩy nhưng không lặp lại theo bất kỳ chu kỳ nào.
 
-</div>
+**Ví dụ 2:** Trong các số sau, số nào là số vô tỉ: $0,\!25$; $\sqrt{7}$; $\dfrac{1}{3}$; $\pi$?
 
-**So sánh số hữu tỉ và số vô tỉ:**
+*Lời giải:* $0,\!25 = \dfrac{1}{4}$ và $\dfrac{1}{3} = 0,\overline{3}$ là số hữu tỉ. Còn $\sqrt{7} = 2,\!64575...$ và $\pi = 3,\!14159...$ là số thập phân vô hạn không tuần hoàn nên là **số vô tỉ**.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 3:** So sánh số hữu tỉ và số vô tỉ.
+
+*Lời giải:*
 
 | Đặc điểm | Số hữu tỉ | Số vô tỉ |
 |----------|-----------|----------|
@@ -151,69 +204,87 @@ Các số này có vô hạn chữ số sau dấu phẩy và không lặp lại 
 | Số thập phân | Hữu hạn hoặc vô hạn tuần hoàn | Vô hạn không tuần hoàn |
 | Ví dụ | $\dfrac{1}{2}$, $0,\overline{3}$ | $\sqrt{2}$, $\pi$ |
 
+**Hình vẽ minh họa:** Đường chéo của hình vuông cạnh 1 — nguồn gốc của số vô tỉ đầu tiên:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="240" viewBox="0 0 620 240" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="120" y="35" width="140" height="140" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+  <line x1="120" y1="35" x2="260" y2="175" stroke="#dc2626" stroke-width="3"/>
+  <text x="115" y="25" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e293b">Cạnh 1</text>
+  <text x="70" y="112" font-size="18" font-weight="bold" fill="#2563eb">1</text>
+  <text x="185" y="203" font-size="18" font-weight="bold" text-anchor="middle" fill="#2563eb">1</text>
+  <text x="205" y="110" font-size="20" font-weight="bold" fill="#dc2626">√2 ≈ 1,414...</text>
+  <text x="390" y="75" font-size="16" font-weight="bold" fill="#334155">Hình vuông cạnh 1 có</text>
+  <text x="390" y="97" font-size="16" font-weight="bold" fill="#334155">đường chéo dài √2.</text>
+  <text x="390" y="128" font-size="15" fill="#64748b">√2 không viết được dưới</text>
+  <text x="390" y="148" font-size="15" fill="#64748b">dạng phân số, không phải</text>
+  <text x="390" y="168" font-size="15" fill="#64748b">số thập phân hữu hạn hay</text>
+  <text x="390" y="188" font-size="15" fill="#64748b">tuần hoàn — đó là số vô tỉ.</text>
+</svg>
 </div>
 
-<h3 id="can-bac-hai" style="margin-top:2rem;">√ 2. Căn bậc hai</h3>
+<h3 id="can-bac-hai" style="margin-top:2rem;">√ 2. Căn bậc hai và căn bậc hai số học</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Căn bậc hai của một số $a$ không âm là số $x$ sao cho $x^2 = a$.
+**Căn bậc hai:** Căn bậc hai của một số $a$ không âm là số $x$ sao cho $x^2 = a$.
 
-Mỗi số dương có hai căn bậc hai là hai số đối nhau.
+Mỗi số dương $a$ có **hai căn bậc hai** là hai số đối nhau: $x$ và $-x$.
 
-</div>
+**Căn bậc hai số học:** Căn bậc hai số học của số $a$ không âm, ký hiệu $\sqrt{a}$, là số **không âm** có bình phương bằng $a$:
 
-**Ví dụ 2:**
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-- Căn bậc hai của 9 là 3 và -3 vì $3^2 = 9$ và $(-3)^2 = 9$
-- Căn bậc hai của 16 là 4 và -4 vì $4^2 = 16$ và $(-4)^2 = 16$
-- Căn bậc hai của 0 là 0 vì $0^2 = 0$
+$$\sqrt{a} \geq 0 \quad \text{và} \quad (\sqrt{a})^2 = a$$
 
 </div>
 
-**Lưu ý:** Số âm không có căn bậc hai (trong tập số thực).
+**Ví dụ 1:** Tìm căn bậc hai của các số: 9; 16; 0; $-4$.
 
-<h3 id="can-bac-hai-so-hoc" style="margin-top:2rem;">✓ 3. Căn bậc hai số học</h3>
+*Lời giải:*
 
-<div class="box-dinh-nghia">
+- Căn bậc hai của 9 là $3$ và $-3$ vì $3^2 = 9$ và $(-3)^2 = 9$.
+- Căn bậc hai của 16 là $4$ và $-4$ vì $4^2 = 16$ và $(-4)^2 = 16$.
+- Căn bậc hai của 0 là $0$ vì $0^2 = 0$.
+- Số $-4$ **không có** căn bậc hai vì bình phương của mọi số đều không âm.
 
-**Định nghĩa:** Căn bậc hai số học của một số $a$ không âm, ký hiệu $\sqrt{a}$, là số không âm có bình phương bằng $a$.
+**Ví dụ 2:** Tính căn bậc hai số học của các số: 4; 9; 16; 25; 0; 1.
 
-$$\sqrt{a} \geq 0 \text{ và } (\sqrt{a})^2 = a$$
+*Lời giải:* $\sqrt{4} = 2$; $\sqrt{9} = 3$; $\sqrt{16} = 4$; $\sqrt{25} = 5$; $\sqrt{0} = 0$; $\sqrt{1} = 1$. (Luôn lấy giá trị không âm.)
 
+**Ví dụ 3:** Phân biệt "căn bậc hai của 9" và "căn bậc hai số học của 9".
+
+*Lời giải:* Căn bậc hai của 9 là **hai số** $3$ và $-3$ (hai số đối nhau). Còn căn bậc hai số học của 9 chỉ là $\sqrt{9} = 3$ (chỉ lấy giá trị không âm).
+
+**Hình vẽ minh họa:** Hai căn bậc hai của 9 trên trục số:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="180" viewBox="0 0 620 180" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <line x1="80" y1="100" x2="540" y2="100" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="540,100 530,95 530,105" fill="#1f2937"/>
+
+  <line x1="310" y1="92" x2="310" y2="108" stroke="#1f2937" stroke-width="2"/>
+  <text x="310" y="125" font-size="14" text-anchor="middle" fill="#1f2937">0</text>
+
+  <line x1="150" y1="92" x2="150" y2="108" stroke="#1f2937" stroke-width="2"/>
+  <circle cx="150" cy="100" r="6" fill="#94a3b8"/>
+  <text x="150" y="62" font-size="15" font-weight="bold" text-anchor="middle" fill="#64748b">-3</text>
+  <text x="150" y="145" font-size="12" text-anchor="middle" fill="#64748b">(căn bậc hai, không phải số học)</text>
+
+  <line x1="470" y1="92" x2="470" y2="108" stroke="#1f2937" stroke-width="2"/>
+  <circle cx="470" cy="100" r="6" fill="#22c55e"/>
+  <text x="470" y="62" font-size="15" font-weight="bold" text-anchor="middle" fill="#15803d">3</text>
+  <text x="470" y="145" font-size="12" text-anchor="middle" fill="#15803d">√9 = 3 (căn bậc hai số học)</text>
+
+  <text x="310" y="170" font-size="13" text-anchor="middle" fill="#475569">9 có hai căn bậc hai là -3 và 3, nhưng căn bậc hai số học chỉ là 3</text>
+</svg>
 </div>
 
-**Ví dụ 3:**
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-- $\sqrt{4} = 2$ (chỉ lấy giá trị dương)
-- $\sqrt{9} = 3$
-- $\sqrt{16} = 4$
-- $\sqrt{25} = 5$
-- $\sqrt{0} = 0$
-- $\sqrt{1} = 1$
-
-</div>
-
-**Chú ý phân biệt:**
-
-<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-- Căn bậc hai của 9: là 3 và -3
-- Căn bậc hai số học của 9: $\sqrt{9} = 3$ (chỉ lấy giá trị dương)
-
-</div>
-
-<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 4. Tính chất của căn bậc hai số học</h3>
+<h3 id="tinh-chat" style="margin-top:2rem;">⚡ 3. Tính chất của căn bậc hai số học</h3>
 
 <div class="box-dinh-ly">
 
 **Các tính chất cơ bản:**
 
-1. $\sqrt{a^2} = |a|$ với mọi $a$
+1. $\sqrt{a^2} = |a|$ với mọi số $a$
    - Nếu $a \geq 0$ thì $\sqrt{a^2} = a$
    - Nếu $a < 0$ thì $\sqrt{a^2} = -a$
 
@@ -227,49 +298,70 @@ $$\sqrt{a} \geq 0 \text{ và } (\sqrt{a})^2 = a$$
 
 </div>
 
-**Ví dụ 4:** Áp dụng tính chất
+**Ví dụ 1:** Tính $\sqrt{4 \times 9}$ và $\sqrt{36}$.
 
-a) $\sqrt{4 \times 9} = \sqrt{4} \times \sqrt{9} = 2 \times 3 = 6$
+*Lời giải:* $\sqrt{4 \times 9} = \sqrt{4} \times \sqrt{9} = 2 \times 3 = 6$; $\sqrt{36} = \sqrt{4 \times 9} = 6$. Như vậy $\sqrt{4 \times 9} = \sqrt{36}$ — phù hợp với tính chất 4.
 
-b) $\sqrt{36} = \sqrt{4 \times 9} = \sqrt{4} \times \sqrt{9} = 2 \times 3 = 6$
+**Ví dụ 2:** Tính $\sqrt{\dfrac{16}{25}}$; $\sqrt{3^2}$; $\sqrt{(-5)^2}$.
 
-c) $\sqrt{\dfrac{16}{25}} = \dfrac{\sqrt{16}}{\sqrt{25}} = \dfrac{4}{5}$
+*Lời giải:* $\sqrt{\dfrac{16}{25}} = \dfrac{\sqrt{16}}{\sqrt{25}} = \dfrac{4}{5}$; $\sqrt{3^2} = |3| = 3$; $\sqrt{(-5)^2} = |-5| = 5$.
 
-d) $\sqrt{3^2} = |3| = 3$
+**Ví dụ 3:** Tính $(\sqrt{7})^2$ và $(\sqrt{0})^2$.
 
-e) $\sqrt{(-5)^2} = |-5| = 5$
+*Lời giải:* $(\sqrt{7})^2 = 7$ và $(\sqrt{0})^2 = 0$ (theo tính chất 2).
 
-<h3 id="so-sanh" style="margin-top:2rem;">⚖️ 5. So sánh căn bậc hai số học</h3>
+**Hình vẽ minh họa:** $\sqrt{36} = \sqrt{4 \times 9} = 2 \times 3 = 6$:
 
-**Quy tắc:** Với $a, b \geq 0$:
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="250" viewBox="0 0 620 250" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <rect x="90" y="30" width="150" height="150" fill="#ecfdf5" stroke="#059669" stroke-width="3"/>
+  <g stroke="#10b981" stroke-width="1">
+    <line x1="115" y1="30" x2="115" y2="180"/>
+    <line x1="140" y1="30" x2="140" y2="180"/>
+    <line x1="165" y1="30" x2="165" y2="180"/>
+    <line x1="190" y1="30" x2="190" y2="180"/>
+    <line x1="215" y1="30" x2="215" y2="180"/>
+    <line x1="90" y1="55" x2="240" y2="55"/>
+    <line x1="90" y1="80" x2="240" y2="80"/>
+    <line x1="90" y1="105" x2="240" y2="105"/>
+    <line x1="90" y1="130" x2="240" y2="130"/>
+    <line x1="90" y1="155" x2="240" y2="155"/>
+  </g>
+  <rect x="90" y="30" width="50" height="75" fill="#fee2e2" opacity="0.5"/>
+  <text x="165" y="15" font-size="16" font-weight="bold" text-anchor="middle" fill="#1e293b">6 × 6 = 36 ô</text>
+  <text x="60" y="112" font-size="16" font-weight="bold" fill="#059669">√36 = 6</text>
+  <text x="310" y="70" font-size="16" font-weight="bold" fill="#334155">Phần tô đỏ: 2 cột × 3 hàng</text>
+  <text x="310" y="95" font-size="16" font-weight="bold" fill="#334155">= √4 × √9 = 2 × 3 = 6 ô</text>
+  <text x="310" y="125" font-size="15" fill="#64748b">Vậy √(4 × 9) = √4 × √9,</text>
+  <text x="310" y="147" font-size="15" fill="#64748b">và √36 = √(4 × 9) = 6.</text>
+  <text x="310" y="180" font-size="15" fill="#64748b">Tổng quát: √(a × b) = √a × √b</text>
+  <text x="310" y="202" font-size="15" fill="#64748b">với a, b ≥ 0.</text>
+</svg>
+</div>
+
+<h3 id="so-sanh" style="margin-top:2rem;">⚖️ 4. So sánh và ước lượng căn bậc hai</h3>
+
+<div class="box-dinh-ly">
+
+**Quy tắc so sánh:** Với $a, b \geq 0$:
 - Nếu $a < b$ thì $\sqrt{a} < \sqrt{b}$
 - Nếu $\sqrt{a} < \sqrt{b}$ thì $a < b$
 
-**Ví dụ 5:**
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-a) So sánh $\sqrt{5}$ và $\sqrt{7}$
-
-Vì $5 < 7$ nên $\sqrt{5} < \sqrt{7}$
-
-b) So sánh $\sqrt{10}$ và 3
-
-Ta có: $3 = \sqrt{9}$
-
-Vì $10 > 9$ nên $\sqrt{10} > \sqrt{9} = 3$
-
-c) So sánh $\sqrt{2}$ và $1,\!5$
-
-Ta có: $1,\!5 = \dfrac{3}{2}$, nên $1,\!5^2 = 2,\!25$
-
-Vì $2 < 2,\!25$ nên $\sqrt{2} < \sqrt{2,\!25} = 1,\!5$
-
 </div>
 
-<h3 id="bang-can" style="margin-top:2rem;">📊 6. Bảng căn bậc hai số học</h3>
+**Ví dụ 1:** So sánh $\sqrt{5}$ và $\sqrt{7}$.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:* Vì $5 < 7$ nên $\sqrt{5} < \sqrt{7}$.
+
+**Ví dụ 2:** So sánh $\sqrt{10}$ và 3.
+
+*Lời giải:* Ta có $3 = \sqrt{9}$. Vì $10 > 9$ nên $\sqrt{10} > \sqrt{9} = 3$, tức là $\sqrt{10} > 3$.
+
+**Ví dụ 3:** So sánh $\sqrt{2}$ và $1,\!5$.
+
+*Lời giải:* Ta có $(\sqrt{2})^2 = 2$ và $(1,\!5)^2 = 2,\!25$. Vì $2 < 2,\!25$ nên $\sqrt{2} < 1,\!5$.
+
+**Bảng căn bậc hai số học của các số chính phương:**
 
 | $n$ | $\sqrt{n}$ | $n$ | $\sqrt{n}$ |
 |-----|------------|-----|------------|
@@ -279,101 +371,251 @@ Vì $2 < 2,\!25$ nên $\sqrt{2} < \sqrt{2,\!25} = 1,\!5$
 | 16 | 4 | 81 | 9 |
 | 25 | 5 | 100 | 10 |
 
+**Ví dụ 4:** Ước lượng $\sqrt{50}$.
+
+*Lời giải:* Ta có $49 < 50 < 64$ nên $\sqrt{49} < \sqrt{50} < \sqrt{64}$, hay $7 < \sqrt{50} < 8$. Vậy $\sqrt{50} \approx 7,\!07$.
+
+**Hình vẽ minh họa:** Vị trí của $\sqrt{2}$ và $1,\!5$ trên trục số:
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="190" viewBox="0 0 620 190" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <line x1="60" y1="100" x2="560" y2="100" stroke="#1f2937" stroke-width="2"/>
+  <polygon points="560,100 550,95 550,105" fill="#1f2937"/>
+
+  <line x1="100" y1="92" x2="100" y2="108" stroke="#1f2937" stroke-width="2"/>
+  <text x="100" y="125" font-size="14" text-anchor="middle" fill="#1f2937">1</text>
+
+  <line x1="300" y1="92" x2="300" y2="108" stroke="#1f2937" stroke-width="2"/>
+  <text x="300" y="125" font-size="14" text-anchor="middle" fill="#1f2937">1,5</text>
+
+  <line x1="500" y1="92" x2="500" y2="108" stroke="#1f2937" stroke-width="2"/>
+  <text x="500" y="125" font-size="14" text-anchor="middle" fill="#1f2937">2</text>
+
+  <circle cx="283" cy="100" r="7" fill="#f59e0b"/>
+  <text x="283" y="55" font-size="16" font-weight="bold" text-anchor="middle" fill="#d97706">√2 ≈ 1,414</text>
+
+  <circle cx="300" cy="100" r="7" fill="#3b82f6"/>
+  <text x="300" y="165" font-size="15" font-weight="bold" text-anchor="middle" fill="#2563eb">1,5</text>
+
+  <text x="310" y="180" font-size="13" text-anchor="middle" fill="#475569">Vì (√2)² = 2 < 1,5² = 2,25 nên √2 < 1,5 (√2 nằm bên trái 1,5)</text>
+</svg>
 </div>
 
-**Ví dụ 6:** Ước lượng căn bậc hai
+<h3 id="ung-dung" style="margin-top:2rem;">🔬 5. Ứng dụng thực tế</h3>
 
-Ước lượng $\sqrt{50}$
+**Ví dụ 1:** Một hình vuông có diện tích $36 \text{ cm}^2$. Tính độ dài cạnh của hình vuông.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+*Lời giải:* Gọi cạnh hình vuông là $a$ (cm), $a > 0$. Diện tích: $a^2 = 36$ nên $a = \sqrt{36} = 6$ (cm).
 
-Ta có: $49 < 50 < 64$
+**Ví dụ 2:** Một tam giác vuông có hai cạnh góc vuông là 3 cm và 4 cm. Tính độ dài cạnh huyền.
 
-Nên: $\sqrt{49} < \sqrt{50} < \sqrt{64}$
+*Lời giải:* Theo định lý Pythagore: $c^2 = 3^2 + 4^2 = 9 + 16 = 25$. Suy ra $c = \sqrt{25} = 5$ (cm).
 
-Hay: $7 < \sqrt{50} < 8$
+**Ví dụ 3:** Một hình vuông có diện tích $2 \text{ cm}^2$. Tính độ dài cạnh và nêu dạng thập phân của kết quả.
 
-Vậy $\sqrt{50} \approx 7,\!07$
+*Lời giải:* Cạnh hình vuông: $a = \sqrt{2}$ (cm) vì $\sqrt{2} > 0$ và $(\sqrt{2})^2 = 2$. Viết dạng thập phân: $a \approx 1,\!41$ (cm). Vậy độ dài cạnh là **số vô tỉ**.
 
-</div>
+**Hình vẽ minh họa:** Định lý Pythagore với tam giác vuông 3–4–5:
 
-<h3 id="ung-dung" style="margin-top:2rem;">🔬 7. Ứng dụng thực tế</h3>
-
-**Ví dụ 7:** Tính cạnh hình vuông
-
-Một hình vuông có diện tích $36 \text{ cm}^2$. Tính độ dài cạnh.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Gọi cạnh hình vuông là $a$ (cm), $a > 0$
-
-Diện tích: $a^2 = 36$
-
-Suy ra: $a = \sqrt{36} = 6$ (cm)
-
-</div>
-
-**Ví dụ 8:** Định lý Pythagore
-
-Tam giác vuông có hai cạnh góc vuông là 3 cm và 4 cm. Tính cạnh huyền.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Theo định lý Pythagore:
-
-$c^2 = 3^2 + 4^2 = 9 + 16 = 25$
-
-$c = \sqrt{25} = 5$ (cm)
-
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="620" height="280" viewBox="0 0 620 280" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  <polygon points="110,230 380,230 110,60" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+  <polyline points="110,230 132,230 132,208" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="235" y="252" font-size="17" font-weight="bold" text-anchor="middle" fill="#1e40af">4 cm</text>
+  <text x="75" y="150" font-size="17" font-weight="bold" fill="#1e40af">3 cm</text>
+  <text x="185" y="135" font-size="18" font-weight="bold" fill="#dc2626">5 cm</text>
+  <text x="420" y="95" font-size="16" font-weight="bold" fill="#334155">c² = a² + b²</text>
+  <text x="420" y="122" font-size="16" font-weight="bold" fill="#334155">c² = 3² + 4² = 9 + 16 = 25</text>
+  <text x="420" y="149" font-size="16" font-weight="bold" fill="#334155">c = √25 = 5 (cm)</text>
+  <text x="420" y="180" font-size="15" fill="#64748b">Nhận thấy 3, 4, 5 là bộ ba</text>
+  <text x="420" y="200" font-size="15" fill="#64748b">Pythagore quen thuộc: cạnh</text>
+  <text x="420" y="220" font-size="15" fill="#64748b">huyền luôn lớn hơn mỗi cạnh</text>
+  <text x="420" y="240" font-size="15" fill="#64748b">góc vuông.</text>
+</svg>
 </div>
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
 
-<QuizSession client:load questions={quizData} />
+<CanBacHaiInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Nhận biết số hữu tỉ và số vô tỉ**
+**Phương pháp giải:** Viết số dưới dạng số thập phân. Nếu là số thập phân hữu hạn hoặc vô hạn tuần hoàn thì là số hữu tỉ; nếu là số thập phân vô hạn không tuần hoàn thì là số vô tỉ. Lưu ý: $\sqrt{n}$ là số vô tỉ khi $n$ không phải là số chính phương; $\sqrt{n}$ là số hữu tỉ khi $n$ là số chính phương.
+
+</div>
+
+**Ví dụ 1:** Trong các số $0,\!25$; $\sqrt{7}$; $\dfrac{1}{3}$; $\pi$, những số nào là số vô tỉ?
+
+*Lời giải:* $\sqrt{7}$ và $\pi$ là số vô tỉ. Còn $0,\!25 = \dfrac{1}{4}$ và $\dfrac{1}{3} = 0,\overline{3}$ là số hữu tỉ.
+
+**Ví dụ 2:** Trong các số $\sqrt{4}$; $\sqrt{5}$; $\sqrt{9}$; $\sqrt{10}$, số nào là số hữu tỉ?
+
+*Lời giải:* $\sqrt{4} = 2$ và $\sqrt{9} = 3$ là số hữu tỉ. Còn $\sqrt{5}$ và $\sqrt{10}$ là số vô tỉ.
+
+**Ví dụ 3:** Trong các khẳng định sau, khẳng định nào đúng: (1) Mọi số vô tỉ đều là số thập phân vô hạn không tuần hoàn; (2) Mọi số thập phân vô hạn không tuần hoàn đều là số vô tỉ; (3) Số vô tỉ là số hữu tỉ.
+
+*Lời giải:* Khẳng định (1) và (2) đúng (chúng là hai cách phát biểu của cùng một định nghĩa). Khẳng định (3) sai.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Tính căn bậc hai số học**
+**Phương pháp giải:** Tìm số không âm có bình phương bằng số đã cho. Dùng bảng căn bậc hai hoặc phân tích thừa số: $\sqrt{n^2} = n$ (với $n \geq 0$), $\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}$, $\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}$.
+
+</div>
+
+**Ví dụ 1:** Tính $\sqrt{16}$; $\sqrt{49}$; $\sqrt{100}$.
+
+*Lời giải:* $\sqrt{16} = 4$; $\sqrt{49} = 7$; $\sqrt{100} = 10$.
+
+**Ví dụ 2:** Tính $\sqrt{4 \times 9}$; $\sqrt{\dfrac{36}{49}}$.
+
+*Lời giải:* $\sqrt{4 \times 9} = \sqrt{4} \times \sqrt{9} = 2 \times 3 = 6$; $\sqrt{\dfrac{36}{49}} = \dfrac{\sqrt{36}}{\sqrt{49}} = \dfrac{6}{7}$.
+
+**Ví dụ 3:** Tính $\sqrt{3^2}$; $\sqrt{(-5)^2}$; $\sqrt{0,\!25}$.
+
+*Lời giải:* $\sqrt{3^2} = |3| = 3$; $\sqrt{(-5)^2} = |-5| = 5$; $\sqrt{0,\!25} = 0,\!5$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 3: So sánh các căn bậc hai**
+**Phương pháp giải:** Cách 1: đưa cả hai số về dạng căn bậc hai rồi so sánh hai số trong căn (nếu $a < b$ thì $\sqrt{a} < \sqrt{b}$). Cách 2: so sánh hai bình phương (nếu $a, b \geq 0$ và $a^2 < b^2$ thì $a < b$).
+
+</div>
+
+**Ví dụ 1:** So sánh $\sqrt{3}$ và $\sqrt{5}$.
+
+*Lời giải:* Vì $3 < 5$ nên $\sqrt{3} < \sqrt{5}$.
+
+**Ví dụ 2:** So sánh $\sqrt{10}$ và 3.
+
+*Lời giải:* Ta có $3 = \sqrt{9}$; vì $10 > 9$ nên $\sqrt{10} > \sqrt{9} = 3$.
+
+**Ví dụ 3:** So sánh $\sqrt{20}$ và $4,\!5$.
+
+*Lời giải:* Ta có $(\sqrt{20})^2 = 20$ và $(4,\!5)^2 = 20,\!25$. Vì $20 < 20,\!25$ nên $\sqrt{20} < 4,\!5$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 4: Tìm $x$ có chứa căn bậc hai**
+**Phương pháp giải:** Từ $\sqrt{x} = m$ ($m \geq 0$) suy ra $x = m^2$. Từ $x^2 = n$ với điều kiện $x > 0$ suy ra $x = \sqrt{n}$. Với $\sqrt{f(x)} = m$, bình phương hai vế: $f(x) = m^2$ rồi giải tiếp.
+
+</div>
+
+**Ví dụ 1:** Tìm $x$, biết $\sqrt{x} = 5$.
+
+*Lời giải:* $\sqrt{x} = 5$ nên $x = 5^2 = 25$.
+
+**Ví dụ 2:** Tìm số dương $x$, biết $x^2 = 64$.
+
+*Lời giải:* Vì $x > 0$ nên $x = \sqrt{64} = 8$.
+
+**Ví dụ 3:** Tìm $x$, biết $\sqrt{x + 1} = 4$.
+
+*Lời giải:* $\sqrt{x + 1} = 4$ nên $x + 1 = 4^2 = 16$, suy ra $x = 15$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 5: Ứng dụng hình vuông và định lý Pythagore**
+**Phương pháp giải:** Cạnh hình vuông có diện tích $S$ là $\sqrt{S}$ (cm). Tam giác vuông có hai cạnh góc vuông $a$, $b$ thì cạnh huyền $c = \sqrt{a^2 + b^2}$ (định lý Pythagore).
+
+</div>
+
+**Ví dụ 1:** Một hình vuông có diện tích $144 \text{ m}^2$. Tính cạnh hình vuông.
+
+*Lời giải:* Cạnh hình vuông: $a = \sqrt{144} = 12$ (m).
+
+**Ví dụ 2:** Tam giác vuông có hai cạnh góc vuông là 3 cm và 4 cm. Tính cạnh huyền.
+
+*Lời giải:* $c = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$ (cm).
+
+**Ví dụ 3:** Tam giác vuông có hai cạnh góc vuông là 5 cm và 12 cm. Tính cạnh huyền.
+
+*Lời giải:* $c = \sqrt{5^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13$ (cm).
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
 
 <h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-**📝 Bài toán:** Một mảnh vườn hình vuông có diện tích $144 \text{ m}^2$.
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Mảnh vườn):** Một mảnh vườn hình vuông có diện tích $144 \text{ m}^2$.
 
 a) Tính độ dài cạnh của mảnh vườn.
 
 b) Tính chu vi của mảnh vườn.
 
-c) Nếu muốn tăng diện tích lên $196 \text{ m}^2$, cạnh phải tăng thêm bao nhiêu mét?
+c) Nếu muốn tăng diện tích lên $196 \text{ m}^2$ thì cạnh phải tăng thêm bao nhiêu mét?
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Lời giải:**
 
-**Giải:**
+a) Cạnh mảnh vườn: $a = \sqrt{144} = 12$ (m).
 
-a) Độ dài cạnh: $a = \sqrt{144} = 12$ (m)
+b) Chu vi: $P = 4 \times 12 = 48$ (m).
 
-b) Chu vi: $P = 4 \times 12 = 48$ (m)
+c) Cạnh mới: $a' = \sqrt{196} = 14$ (m). Cạnh tăng thêm: $14 - 12 = 2$ (m).
 
-c) Cạnh mới: $a' = \sqrt{196} = 14$ (m)
+</div>
 
-Tăng thêm: $14 - 12 = 2$ (m)
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Chiếc thang):** Một chiếc thang dài được dựa vào tường. Chân thang cách chân tường 8 m, điểm tựa trên tường cách mặt đất 6 m. Hỏi chiếc thang dài bao nhiêu mét?
+
+**Lời giải:**
+
+Tường vuông góc với mặt đất nên khoảng cách từ chân tường đến điểm tựa (6 m) và khoảng cách từ chân thang đến chân tường (8 m) là hai cạnh góc vuông của tam giác vuông. Theo định lý Pythagore, chiều dài thang là:
+
+$c = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10$ (m).
+
+Vậy chiếc thang dài **10 m**.
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 3 (Màn hình tivi):** Màn hình một chiếc tivi có dạng hình chữ nhật với chiều rộng 12 dm và chiều dài 16 dm. Nhà sản xuất ghi "đường chéo màn hình" lên nhãn sản phẩm. Hỏi đường chéo dài bao nhiêu đề-xi-mét?
+
+**Lời giải:**
+
+Đường chéo của hình chữ nhật là cạnh huyền của tam giác vuông có hai cạnh góc vuông là 12 dm và 16 dm. Theo định lý Pythagore:
+
+$c = \sqrt{12^2 + 16^2} = \sqrt{144 + 256} = \sqrt{400} = 20$ (dm).
+
+Vậy đường chéo màn hình dài **20 dm**.
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Số vô tỉ**: Số thập phân vô hạn không tuần hoàn
-- **Căn bậc hai**: Số $x$ sao cho $x^2 = a$
-- **Căn bậc hai số học**: $\sqrt{a} \geq 0$ và $(\sqrt{a})^2 = a$
-- **Tính chất**: $\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}$
-- **So sánh**: $a < b \Leftrightarrow \sqrt{a} < \sqrt{b}$ (với $a, b \geq 0$)
-- Số âm không có căn bậc hai
-- $\sqrt{a^2} = |a|$
+- **Số vô tỉ**: số thập phân vô hạn không tuần hoàn, không viết được dưới dạng phân số.
+- **Căn bậc hai** của $a \geq 0$: hai số đối nhau $x$ và $-x$ sao cho $x^2 = a$.
+- **Căn bậc hai số học**: $\sqrt{a} \geq 0$ và $(\sqrt{a})^2 = a$.
+- Số âm không có căn bậc hai.
+- $\sqrt{a^2} = |a|$; $\sqrt{a \times b} = \sqrt{a} \times \sqrt{b}$; $\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}$.
+- **So sánh**: với $a, b \geq 0$ thì $a < b \Leftrightarrow \sqrt{a} < \sqrt{b}$.
+- $\sqrt{n}$ là số vô tỉ khi $n$ không phải số chính phương.
 
 </GhiNho>
 
@@ -381,33 +623,35 @@ Tăng thêm: $14 - 12 = 2$ (m)
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Tính:
+**Bài 1 (Dễ):** Nêu định nghĩa số vô tỉ và cho ba ví dụ về số vô tỉ.
+
+**Bài 2 (Dễ):** Tính:
 
 a) $\sqrt{1}$ &nbsp;&nbsp;&nbsp; b) $\sqrt{4}$ &nbsp;&nbsp;&nbsp; c) $\sqrt{9}$ &nbsp;&nbsp;&nbsp; d) $\sqrt{16}$
 
 e) $\sqrt{25}$ &nbsp;&nbsp;&nbsp; f) $\sqrt{36}$ &nbsp;&nbsp;&nbsp; g) $\sqrt{49}$ &nbsp;&nbsp;&nbsp; h) $\sqrt{100}$
 
-**Bài 2:** Tính:
+**Bài 3 (Dễ):** Tính:
 
 a) $\sqrt{0,\!25}$ &nbsp;&nbsp;&nbsp; b) $\sqrt{0,\!64}$ &nbsp;&nbsp;&nbsp; c) $\sqrt{\dfrac{1}{4}}$ &nbsp;&nbsp;&nbsp; d) $\sqrt{\dfrac{9}{16}}$
 
-**Bài 3:** Phân loại các số sau thành số hữu tỉ hoặc số vô tỉ:
+**Bài 4 (Trung bình):** Phân loại các số sau thành số hữu tỉ hoặc số vô tỉ:
 
 a) $\sqrt{4}$ &nbsp;&nbsp;&nbsp; b) $\sqrt{5}$ &nbsp;&nbsp;&nbsp; c) $\sqrt{9}$ &nbsp;&nbsp;&nbsp; d) $\sqrt{10}$
 
 e) $\pi$ &nbsp;&nbsp;&nbsp; f) $0,\overline{3}$ &nbsp;&nbsp;&nbsp; g) $\sqrt{16}$ &nbsp;&nbsp;&nbsp; h) $\sqrt{2}$
 
-**Bài 4:** So sánh:
+**Bài 5 (Trung bình):** So sánh:
 
 a) $\sqrt{3}$ và $\sqrt{5}$
 
 b) $\sqrt{10}$ và 3
 
-c) $\sqrt{7}$ và 2,\!5
+c) $\sqrt{7}$ và $2,\!5$
 
-d) $\sqrt{20}$ và 4,\!5
+d) $\sqrt{20}$ và $4,\!5$
 
-**Bài 5:** Tính:
+**Bài 6 (Trung bình):** Tính:
 
 a) $\sqrt{4 \times 9}$
 
@@ -417,7 +661,7 @@ c) $\sqrt{\dfrac{36}{49}}$
 
 d) $\sqrt{2^2 + 3^2}$
 
-**Bài 6:** Tìm $x$, biết:
+**Bài 7 (Trung bình):** Tìm $x$, biết:
 
 a) $\sqrt{x} = 5$
 
@@ -427,7 +671,17 @@ c) $x^2 = 64$ (với $x > 0$)
 
 d) $\sqrt{x + 1} = 4$
 
-**Bài 7 (Thực tế):** Một hình vuông có diện tích $81 \text{ cm}^2$.
+**Bài 8 (Khá):** Tìm $x$, biết:
+
+a) $\sqrt{x^2} = 9$
+
+b) $\sqrt{4x} = 6$
+
+c) $\sqrt{\dfrac{x}{9}} = 2$
+
+d) $(x + 1)^2 = 25$ (với $x + 1 > 0$)
+
+**Bài 9 (Khá — Thực tế):** Một hình vuông có diện tích $81 \text{ cm}^2$.
 
 a) Tính độ dài cạnh.
 
@@ -435,31 +689,59 @@ b) Tính chu vi.
 
 c) Nếu tăng cạnh thêm 3 cm, diện tích mới là bao nhiêu?
 
-**Bài 8 (Pythagore):** Tam giác vuông có hai cạnh góc vuông là 5 cm và 12 cm.
+**Bài 10 (Khó — Tổng hợp):**
 
-a) Tính cạnh huyền.
+a) Tam giác vuông có hai cạnh góc vuông là 5 cm và 12 cm. Tính cạnh huyền và chu vi tam giác.
 
-b) Tính chu vi tam giác.
+b) Không dùng máy tính, chứng minh $7 < \sqrt{50} < 8$.
+
+c) Sắp xếp các số $\sqrt{2}$; $\sqrt{3}$; $1,\!7$; $\sqrt{5}$ theo thứ tự tăng dần.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) 1; b) 2; c) 3; d) 4; e) 5; f) 6; g) 7; h) 10
+**Bài 1:** Số vô tỉ là số viết được dưới dạng số thập phân vô hạn không tuần hoàn. Ví dụ: $\sqrt{2}$; $\sqrt{3}$; $\pi$.
 
-**Bài 2:** a) 0,5; b) 0,8; c) $\dfrac{1}{2}$; d) $\dfrac{3}{4}$
+**Bài 2:** a) 1; b) 2; c) 3; d) 4; e) 5; f) 6; g) 7; h) 10.
 
-**Bài 3:** Hữu tỉ: a, c, f, g; Vô tỉ: b, d, e, h
+**Bài 3:** a) $0,\!5$; b) $0,\!8$; c) $\dfrac{1}{2}$; d) $\dfrac{3}{4}$.
 
-**Bài 4:** a) $\sqrt{3} < \sqrt{5}$; b) $\sqrt{10} > 3$; c) $\sqrt{7} > 2,\!5$; d) $\sqrt{20} < 4,\!5$
+**Bài 4:** Hữu tỉ: a, c, f, g (vì $\sqrt{4}=2$, $\sqrt{9}=3$, $0,\overline{3}$, $\sqrt{16}=4$). Vô tỉ: b, d, e, h.
 
-**Bài 5:** a) 6; b) 20; c) $\dfrac{6}{7}$; d) $\sqrt{13}$
+**Bài 5:**
 
-**Bài 6:** a) $x = 25$; b) $x = 49$; c) $x = 8$; d) $x = 15$
+a) $\sqrt{3} < \sqrt{5}$ (vì $3 < 5$).
 
-**Bài 7:** a) 9 cm; b) 36 cm; c) 144 cm²
+b) $\sqrt{10} > 3$ (vì $\sqrt{10} > \sqrt{9} = 3$).
 
-**Bài 8:** a) 13 cm; b) 30 cm
+c) $\sqrt{7} > 2,\!5$ (vì $(\sqrt{7})^2 = 7 > 2,\!5^2 = 6,\!25$).
+
+d) $\sqrt{20} < 4,\!5$ (vì $(\sqrt{20})^2 = 20 < 4,\!5^2 = 20,\!25$).
+
+**Bài 6:** a) 6; b) 20; c) $\dfrac{6}{7}$; d) $\sqrt{13}$.
+
+**Bài 7:** a) $x = 25$; b) $x = 49$; c) $x = 8$; d) $x = 15$.
+
+**Bài 8:**
+
+a) $\sqrt{x^2} = 9 \Leftrightarrow |x| = 9$ nên $x = 9$ hoặc $x = -9$.
+
+b) $\sqrt{4x} = 6 \Leftrightarrow 4x = 36 \Leftrightarrow x = 9$.
+
+c) $\sqrt{\dfrac{x}{9}} = 2 \Leftrightarrow \dfrac{x}{9} = 4 \Leftrightarrow x = 36$.
+
+d) Vì $x + 1 > 0$ nên $x + 1 = \sqrt{25} = 5$, suy ra $x = 4$.
+
+**Bài 9:** a) Cạnh $9$ cm; b) Chu vi $36$ cm; c) Cạnh mới $12$ cm, diện tích mới $12^2 = 144 \text{ cm}^2$.
+
+**Bài 10:**
+
+a) Cạnh huyền: $c = \sqrt{5^2 + 12^2} = \sqrt{169} = 13$ (cm). Chu vi: $5 + 12 + 13 = 30$ (cm).
+
+b) Vì $49 < 50 < 64$ nên $\sqrt{49} < \sqrt{50} < \sqrt{64}$, hay $7 < \sqrt{50} < 8$.
+
+c) Ta có $1,\!7^2 = 2,\!89 < 3$ nên $1,\!7 < \sqrt{3}$. Mà $\sqrt{2} < \sqrt{3} < \sqrt{5}$ và $\sqrt{2} < 1,\!7$ (vì $(\sqrt{2})^2 = 2 < 2,\!89$). Vậy thứ tự tăng dần là: $\sqrt{2} < 1,\!7 < \sqrt{3} < \sqrt{5}$.
 
 </div>
 </details>

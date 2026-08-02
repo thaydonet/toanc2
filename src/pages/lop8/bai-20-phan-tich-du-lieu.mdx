@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Bài 20: Phân tích dữ liệu thống kê dựa vào biểu đồ"
-description: "Phương pháp phân tích và rút ra kết luận từ biểu đồ - Toán 8 KNTT Chương 5"
+title: "Bài 20: Phân tích dữ liệu bằng bảng, biểu đồ"
+description: "Kĩ năng phân tích, đọc hiểu số liệu, phát hiện xu hướng và nhận xét kết luận từ bảng và biểu đồ - Toán 8 KNTT Chương 5"
 grade: "Lớp 8"
-chapter: "Chương 5: Dữ liệu và biểu đồ"
+chapter: "Chương 5: Dữ liệu và biểu diễn dữ liệu"
 currentSlug: "lop8/bai-20-phan-tich-du-lieu"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,340 +13,237 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import PhanTichDuLieuInteractive from '../../components/interactive/PhanTichDuLieuInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Khi phân tích biểu đồ, điều đầu tiên cần làm là:",
-    option_a: "Xác định loại biểu đồ và đọc tiêu đề",
-    option_b: "Vẽ lại biểu đồ",
-    option_c: "Tính toán ngay",
-    option_d: "Bỏ qua các nhãn",
+    question: "Phân tích dữ liệu thống kê nhằm mục đích gì?",
+    option_a: "Giải mã thông tin, phát hiện xu hướng và hỗ trợ đưa ra quyết định hợp lý",
+    option_b: "Làm cho biểu đồ nhìn phức tạp hơn",
+    option_c: "Thay thế các bài toán đại số",
+    option_d: "Tăng kích thước dữ liệu",
     correct_option: "A",
-    explanation: "Cần xác định loại biểu đồ và đọc tiêu đề để hiểu nội dung biểu đồ.",
+    explanation: "Phân tích dữ liệu giúp ta đọc hiểu ý nghĩa thực tế đằng sau số liệu.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Xu hướng tăng trong biểu đồ đoạn thẳng được thể hiện khi:",
-    option_a: "Đường đi lên từ trái sang phải",
-    option_b: "Đường đi xuống từ trái sang phải",
-    option_c: "Đường nằm ngang",
-    option_d: "Đường gấp khúc",
+    question: "Một biểu đồ cột cho biết doanh số bán hàng của 4 quý: Q1 (50 triệu), Q2 (80 triệu), Q3 (70 triệu), Q4 (100 triệu). Tổng doanh số cả năm là:",
+    option_a: "$300\\text{ triệu}$",
+    option_b: "$250\\text{ triệu}$",
+    option_c: "$200\\text{ triệu}$",
+    option_d: "$350\\text{ triệu}$",
     correct_option: "A",
-    explanation: "Xu hướng tăng được thể hiện bằng đường đi lên từ trái sang phải.",
+    explanation: "Tổng $= 50 + 80 + 70 + 100 = 300$ triệu đồng.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Giá trị trung bình của dữ liệu $5, 7, 8, 10, 10$ là:",
-    option_a: "$8$",
-    option_b: "$7$",
-    option_c: "$10$",
-    option_d: "$9$",
+    question: "Trong biểu đồ quạt tròn cơ cấu doanh thu: Mặt hàng A (40%), B (35%), C (25%). Nếu tổng doanh thu là 10 tỉ đồng, mặt hàng B đạt bao nhiêu tỉ?",
+    option_a: "$3.5\\text{ tỉ}$",
+    option_b: "$4.0\\text{ tỉ}$",
+    option_c: "$2.5\\text{ tỉ}$",
+    option_d: "$3.0\\text{ tỉ}$",
     correct_option: "A",
-    explanation: "Trung bình $= \\dfrac{5 + 7 + 8 + 10 + 10}{5} = \\dfrac{40}{5} = 8$.",
+    explanation: "Doanh thu B $= 35\\% \\cdot 10 = 3.5$ tỉ đồng.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Mốt của dữ liệu $3, 5, 5, 7, 8, 5, 9$ là:",
-    option_a: "$5$",
-    option_b: "$7$",
-    option_c: "$3$",
-    option_d: "$9$",
+    question: "Khi số liệu trên biểu đồ đoạn thẳng tăng đột biến tại một điểm bất thường, ta nên làm gì?",
+    option_a: "Kiểm tra lại nguồn thu thập và nguyên nhân thực tế gây ra bất thường",
+    option_b: "Bỏ qua không quan tâm",
+    option_c: "Xóa điểm đó đi",
+    option_d: "Cộng thêm điểm vào các mốc khác",
     correct_option: "A",
-    explanation: "Mốt là giá trị xuất hiện nhiều nhất, ở đây là $5$ (xuất hiện 3 lần).",
+    explanation: "Điểm bất thường cần được xác minh nguyên nhân (nhiễu kĩ thuật hay có sự kiện đặc biệt).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Để tính mức độ tăng trưởng phần trăm (%) từ giá trị ban đầu $A$ lên giá trị $B$, công thức nào ĐÚNG?",
+    option_a: "$\\dfrac{B - A}{A} \\cdot 100\\%$",
+    option_b: "$\\dfrac{A - B}{B} \\cdot 100\\%$",
+    option_c: "$\\dfrac{B}{A} \\cdot 100\\%$",
+    option_d: "$\\dfrac{A}{B} \\cdot 100\\%$",
+    correct_option: "A",
+    explanation: "Mức tăng trưởng $\% = \\dfrac{B - A}{A} \\cdot 100\\%$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Khi phân tích biểu đồ, ta cần:",
-    option_a: "Xác định giá trị lớn nhất, nhỏ nhất",
-    option_b: "Nhận xét xu hướng",
-    option_c: "So sánh các giá trị",
-    option_d: "Rút ra kết luận",
-    correct_option: "A,B,C,D",
-    explanation: "Tất cả đều là các bước quan trọng khi phân tích biểu đồ.",
+    question: "Những nhận xét nào sau đây là kết quả của việc phân tích bảng và biểu đồ?",
+    option_a: "Xác định giá trị lớn nhất, giá trị nhỏ nhất",
+    option_b: "So sánh tỉ lệ giữa các nhóm",
+    option_c: "Nhận diện xu hướng tăng/giảm qua thời gian",
+    option_d: "Thay đổi số liệu theo ý thích",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D vi phạm tính trung thực của thống kê.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Dữ liệu: $10, 12, 15, 18, 20$. Giá trị trung bình là bao nhiêu?",
-    correct_option: "15",
-    explanation: "Trung bình $= \\dfrac{10 + 12 + 15 + 18 + 20}{5} = \\dfrac{75}{5} = 15$.",
+    question: "Doanh thu năm 2022 là 50 tỷ đồng, năm 2023 tăng lên 60 tỷ đồng. Tỉ lệ tăng trưởng doanh thu năm 2023 so với 2022 là bao nhiêu phần trăm (%)?",
+    correct_option: "20",
+    explanation: "Tỉ lệ tăng $= \\dfrac{60 - 50}{50} \\cdot 100\\% = 20\\%$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Dữ liệu: $!a#8!, !b#10!, !c#12!, !d#14!, !e#16!$. Giá trị trung bình là:",
-    option_a: "$!tinh: (!a! + !b! + !c! + !d! + !e!) / 5!$",
-    option_b: "$!tinh: (!a! + !e!) / 2!$",
-    option_c: "$!c!$",
-    option_d: "$!tinh: !a! + !b! + !c! + !d! + !e!!$",
+    question: "Số trung bình cộng của dãy số liệu biểu diễn điều gì?",
+    option_a: "Giá trị đại diện cho độ lớn trung bình của dãy số liệu",
+    option_b: "Giá trị lớn nhất",
+    option_c: "Giá trị nhỏ nhất",
+    option_d: "Tỉ lệ phần trăm cao nhất",
     correct_option: "A",
-    explanation: "Trung bình $= \\dfrac{!a! + !b! + !c! + !d! + !e!}{5} = !tinh: (!a! + !b! + !c! + !d! + !e!) / 5!$.",
-    difficulty_level: "medium",
-    is_dynamic: true,
+    explanation: "Số trung bình cộng phản ánh mức độ trung bình của toàn bộ tập dữ liệu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Dữ liệu có $!a#5!$ giá trị với tổng $!b#100!$. Giá trị trung bình là:",
-    option_a: "$!tinh: !b! / !a!!$",
-    option_b: "$!tinh: !a! * !b!!$",
-    option_c: "$!tinh: !b! - !a!!$",
-    option_d: "$!tinh: !a! + !b!!$",
+    question: "Cho bảng số liệu chi tiêu của một hộ gia đình: Ăn uống (40%), Tiết kiệm (20%), Học hành (20%), Khác (20%). Khoản chi nào chiếm tỉ trọng cao nhất?",
+    option_a: "Ăn uống",
+    option_b: "Tiết kiệm",
+    option_c: "Học hành",
+    option_d: "Khác",
     correct_option: "A",
-    explanation: "Trung bình $= \\dfrac{!b!}{!a!} = !tinh: !b! / !a!!$.",
+    explanation: "Ăn uống chiếm $40\%$ (cao nhất).",
     difficulty_level: "easy",
-    is_dynamic: true,
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Khi nào việc sử dụng số trung bình cộng có thể gây hiểu lầm?",
+    option_a: "Khi dãy dữ liệu có giá trị ngoại lệ quá lớn hoặc quá nhỏ",
+    option_b: "Khi dãy số liệu đều nhau",
+    option_c: "Khi số lượng mẫu quá lớn",
+    option_d: "Không bao giờ gây hiểu lầm",
+    correct_option: "A",
+    explanation: "Giá trị ngoại lệ cực đoan sẽ kéo lệch số trung bình cộng.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🔍 Phân tích dữ liệu — Tìm ý nghĩa</h3>
+### 🎯 Khởi động bài học
 
-Phân tích biểu đồ giúp chúng ta hiểu sâu hơn về dữ liệu và đưa ra quyết định!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📈</div>
-    <strong>Xu hướng</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tăng, giảm hay ổn định</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎯</div>
-    <strong>So sánh</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Lớn nhất, nhỏ nhất</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">💡</div>
-    <strong>Kết luận</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Rút ra nhận xét</p>
-  </div>
-</div>
+Thu thập và biểu diễn chỉ là bước chuẩn bị. **Phân tích dữ liệu** mới chính là nơi thông tin biến thành tri thức! Kĩ năng này giúp bạn đọc hiểu biểu đồ, đưa ra nhận xét chính xác và đưa ra những quyết định sáng suốt trong học tập và cuộc sống.
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="cac-buoc">📖 1. Các bước phân tích biểu đồ</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-ly">
+#### 1. Đọc hiểu và Phân tích Bảng số liệu Thống kê
 
-**Quy trình phân tích biểu đồ:**
+- **Các bước phân tích:**
+  1. Đọc tiêu đề, các hàng, các cột để hiểu ý nghĩa đại lượng.
+  2. Tìm giá trị lớn nhất (GTLN), giá trị nhỏ nhất (GTNN).
+  3. So sánh mối tương quan giữa các con số.
+  4. Tính số trung bình cộng hoặc tỉ lệ phần trăm khi cần.
 
-1. **Đọc hiểu:** Xác định loại biểu đồ, đọc tiêu đề, nhãn trục
-2. **Quan sát:** Tìm giá trị lớn nhất, nhỏ nhất
-3. **So sánh:** So sánh các giá trị với nhau
-4. **Nhận xét:** Nhận xét xu hướng, quy luật
-5. **Kết luận:** Rút ra kết luận về dữ liệu
+**Ví dụ 1:** Bảng số liệu điểm thi Toán của 5 học sinh: An (8), Bình (9), Cường (6), Dung (10), Giang (7). Tìm điểm cao nhất, thấp nhất và tính điểm trung bình.  
+*Lời giải:*  
+- Điểm cao nhất: Dung (10 điểm). Điểm thấp nhất: Cường (6 điểm).  
+- Điểm trung bình $= \dfrac{8 + 9 + 6 + 10 + 7}{5} = \dfrac{40}{5} = 8.0$ điểm.
 
-</div>
+**Ví dụ 2:** Cho bảng số liệu doanh thu 2 năm: 2022 (40 tỉ), 2023 (50 tỉ). Tính mức tăng trưởng doanh thu %.  
+*Lời giải:* Mức tăng $= \dfrac{50 - 40}{40} \cdot 100\% = 25\%$.
 
-**Ví dụ 1:** Phân tích biểu đồ điểm kiểm tra:
+**Ví dụ 3:** Cho bảng nhiệt độ trong tuần: T2(25°C), T3(26°C), T4(28°C), T5(30°C), T6(29°C), T7(27°C), CN(26°C). Ngày nào nóng nhất?  
+*Lời giải:* Thứ 5 nóng nhất (30°C).
 
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="500" height="280" viewBox="0 0 500 280" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Trục */}
-  <line x1="60" y1="40" x2="60" y2="240" stroke="#374151" stroke-width="2"/>
-  <line x1="60" y1="240" x2="460" y2="240" stroke="#374151" stroke-width="2"/>
-  
-  {/* Các cột */}
-  <rect x="90" y="200" width="50" height="40" fill="#3b82f6" opacity="0.8"/>
-  <rect x="170" y="160" width="50" height="80" fill="#10b981" opacity="0.8"/>
-  <rect x="250" y="80" width="50" height="160" fill="#f59e0b" opacity="0.8"/>
-  <rect x="330" y="120" width="50" height="120" fill="#ef4444" opacity="0.8"/>
-  <rect x="410" y="180" width="50" height="60" fill="#8b5cf6" opacity="0.8"/>
-  
-  {/* Nhãn */}
-  <text x="115" y="260" font-size="14" text-anchor="middle">6</text>
-  <text x="195" y="260" font-size="14" text-anchor="middle">7</text>
-  <text x="275" y="260" font-size="14" text-anchor="middle">8</text>
-  <text x="355" y="260" font-size="14" text-anchor="middle">9</text>
-  <text x="435" y="260" font-size="14" text-anchor="middle">10</text>
-  
-  <text x="45" y="245" font-size="12" text-anchor="end">0</text>
-  <text x="45" y="205" font-size="12" text-anchor="end">2</text>
-  <text x="45" y="165" font-size="12" text-anchor="end">4</text>
-  <text x="45" y="125" font-size="12" text-anchor="end">6</text>
-  <text x="45" y="85" font-size="12" text-anchor="end">8</text>
-  
-  <text x="250" y="25" font-size="16" font-weight="bold" text-anchor="middle">Điểm kiểm tra lớp 8A</text>
-</svg>
-</div>
+---
 
-**Phân tích:**
+#### 2. Nhận diện Xu hướng & Phát hiện Dữ liệu bất thường
 
-1. **Đọc hiểu:** Biểu đồ cột thể hiện điểm kiểm tra của học sinh lớp 8A
-2. **Quan sát:** 
-   - Điểm cao nhất: 10 (ít học sinh)
-   - Điểm thấp nhất: 6 (2 học sinh)
-   - Điểm 8 có nhiều học sinh nhất (8 học sinh)
-3. **So sánh:** Số học sinh đạt điểm 8 gấp đôi số học sinh đạt điểm 9
-4. **Nhận xét:** Phần lớn học sinh đạt điểm từ 7-9, tập trung ở điểm 8
-5. **Kết luận:** Lớp có kết quả học tập khá tốt, đa số đạt điểm trung bình khá
+- **Xu hướng:** Tăng đều, giảm dần hay dao động.
+- **Giá trị bất thường (ngoại lệ):** Điểm số liệu lệch hẳn so với xu hướng chung của tập dữ liệu.
 
-<h3 id="cac-chi-so" style="margin-top:2rem;">📊 2. Các chỉ số thống kê cơ bản</h3>
+**Ví dụ 1:** Quan sát biểu đồ đoạn thẳng lượng mưa các tháng: Th1–Th4 (thấp), Th5–Th9 (cao vọt), Th10–Th12 (giảm dần). Nhận xét xu hướng.  
+*Lời giải:* Mùa mưa tập trung từ tháng 5 đến tháng 9.
 
-<div class="box-dinh-nghia">
+**Ví dụ 2:** Dãy số liệu thời gian chạy 100m của 5 bạn (giây): `14.2; 14.5; 14.0; 45.0; 14.3`. Tìm giá trị bất thường.  
+*Lời giải:* Giá trị `45.0` giây bất thường (có thể bạn bị ngã hoặc bấm nhầm đồng hồ).
 
-**Giá trị trung bình (Mean):** Tổng các giá trị chia cho số lượng
-
-$\bar{x} = \dfrac{x_1 + x_2 + ... + x_n}{n}$
-
-**Mốt (Mode):** Giá trị xuất hiện nhiều nhất
-
-**Trung vị (Median):** Giá trị ở giữa khi sắp xếp theo thứ tự
-
-</div>
-
-**Ví dụ 2:** Tính các chỉ số cho dữ liệu: $5, 7, 8, 8, 10, 12, 8$
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-**Giá trị trung bình:**
-$\bar{x} = \dfrac{5 + 7 + 8 + 8 + 10 + 12 + 8}{7} = \dfrac{58}{7} \approx 8{,}29$
-
-**Mốt:** $8$ (xuất hiện 3 lần, nhiều nhất)
-
-**Trung vị:** Sắp xếp: $5, 7, 8, 8, 8, 10, 12$
-Giá trị ở giữa (vị trí thứ 4): $8$
-
-</div>
-
-<h3 id="xu-huong" style="margin-top:2rem;">📈 3. Nhận xét xu hướng</h3>
-
-**Các loại xu hướng:**
-
-<div style="overflow-x:auto;margin:2rem 0;">
-<table style="width:100%;border-collapse:collapse;">
-<thead>
-<tr style="background:#f3f4f6;">
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Xu hướng</th>
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Đặc điểm</th>
-<th style="border:1px solid #d1d5db;padding:0.75rem;">Ví dụ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Tăng</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Giá trị tăng dần theo thời gian</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Doanh thu tăng qua các tháng</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Giảm</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Giá trị giảm dần theo thời gian</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Nhiệt độ giảm vào mùa đông</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Ổn định</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Giá trị không đổi hoặc thay đổi ít</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Giá xăng ổn định</td>
-</tr>
-<tr>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Dao động</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Giá trị tăng giảm không đều</td>
-<td style="border:1px solid #d1d5db;padding:0.75rem;">Giá cổ phiếu</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-**Ví dụ 3:** Phân tích xu hướng doanh thu:
-
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="500" height="280" viewBox="0 0 500 280" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Trục */}
-  <line x1="60" y1="40" x2="60" y2="240" stroke="#374151" stroke-width="2"/>
-  <line x1="60" y1="240" x2="460" y2="240" stroke="#374151" stroke-width="2"/>
-  
-  {/* Đường xu hướng tăng */}
-  <polyline points="90,200 150,180 210,150 270,120 330,90 390,60" fill="none" stroke="#10b981" stroke-width="3"/>
-  
-  {/* Các điểm */}
-  <circle cx="90" cy="200" r="5" fill="#10b981"/>
-  <circle cx="150" cy="180" r="5" fill="#10b981"/>
-  <circle cx="210" cy="150" r="5" fill="#10b981"/>
-  <circle cx="270" cy="120" r="5" fill="#10b981"/>
-  <circle cx="330" cy="90" r="5" fill="#10b981"/>
-  <circle cx="390" cy="60" r="5" fill="#10b981"/>
-  
-  {/* Nhãn */}
-  <text x="90" y="260" font-size="14" text-anchor="middle">T1</text>
-  <text x="150" y="260" font-size="14" text-anchor="middle">T2</text>
-  <text x="210" y="260" font-size="14" text-anchor="middle">T3</text>
-  <text x="270" y="260" font-size="14" text-anchor="middle">T4</text>
-  <text x="330" y="260" font-size="14" text-anchor="middle">T5</text>
-  <text x="390" y="260" font-size="14" text-anchor="middle">T6</text>
-  
-  <text x="250" y="25" font-size="16" font-weight="bold" text-anchor="middle" fill="#10b981">Xu hướng TĂNG</text>
-</svg>
-</div>
-
-**Nhận xét:** Doanh thu có xu hướng tăng đều qua các tháng, cho thấy kinh doanh phát triển tốt.
+**Ví dụ 3:** Biểu đồ cột kép so sánh lực lượng lao động Nam và Nữ qua các năm cho thấy tỉ lệ lao động Nữ tăng từ 40% lên 48%. Nhận xét.  
+*Lời giải:* Tỉ lệ lao động Nữ có xu hướng tăng dần, thu hẹp khoảng cách với Nam.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Phân tích dữ liệu</h3>
 
-<QuizSession client:load questions={quizData} />
+<PhanTichDuLieuInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Các dạng toán & Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
 
-**📝 Bài toán:** Điểm trung bình môn Toán của lớp 8A qua 6 kỳ kiểm tra:
+<div class="box-dinh-ly">
 
-| Kỳ | 1 | 2 | 3 | 4 | 5 | 6 |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Điểm TB | 6.5 | 7.0 | 7.2 | 7.5 | 7.8 | 8.0 |
+**Dạng 1: Đọc hiểu và trích xuất thông tin từ biểu đồ**
+**Phương pháp:** Nhìn trục tọa độ / chú thích để đọc chính xác giá trị tương ứng.
 
-a) Vẽ biểu đồ đoạn thẳng.
+</div>
 
-b) Nhận xét xu hướng điểm số.
+<div class="box-dinh-ly" style="margin-top:2rem;">
 
-c) Tính điểm trung bình cả 6 kỳ.
-
-d) Dự đoán điểm kỳ 7.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) Vẽ biểu đồ (tự vẽ)
-
-b) Điểm số có xu hướng tăng đều qua các kỳ, cho thấy học sinh tiến bộ rõ rệt.
-
-c) Điểm trung bình: $\dfrac{6{,}5 + 7{,}0 + 7{,}2 + 7{,}5 + 7{,}8 + 8{,}0}{6} = \dfrac{44}{6} \approx 7{,}33$
-
-d) Dự đoán kỳ 7 có thể đạt khoảng 8.2-8.3 điểm (tiếp tục xu hướng tăng).
+**Dạng 2: Tính toán chỉ số thống kê & Rút ra nhận xét kết luận**
+**Phương pháp:** Tính tổng, trung bình cộng, tỉ lệ % và so sánh phát hiện xu hướng.
 
 </div>
 
 </VanDung>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Phân tích kết quả kinh doanh cửa hàng trà sữa):** Một cửa hàng trà sữa theo dõi doanh số bán hàng trong tuần (triệu đồng): T2 (4), T3 (4.5), T4 (5), T5 (4.8), T6 (7), T7 (9.5), CN (9).
+
+a) Tính tổng doanh số cả tuần và doanh số trung bình mỗi ngày.  
+b) Nhận xét xu hướng mua sắm của khách hàng và đưa ra lời khuyên cho chủ cửa hàng.
+
+**Lời giải:**  
+a) Tổng $= 4 + 4.5 + 5 + 4.8 + 7 + 9.5 + 9 = 43.8$ triệu đồng.  
+Trung bình $= 43.8 : 7 \approx 6.26$ triệu đồng/ngày.  
+b) Xu hướng: Doanh số tăng vọt vào ngày cuối tuần (T6, T7, CN).  
+Lời khuyên: Chủ cửa hàng nên tăng cường nhân viên và chuẩn bị thêm nguyên liệu vào các ngày T6, T7, CN.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Quy trình phân tích**: đọc hiểu → quan sát → so sánh → nhận xét → kết luận
-- **Giá trị trung bình**: $\bar{x} = \dfrac{\text{Tổng}}{\text{Số lượng}}$
-- **Mốt**: giá trị xuất hiện nhiều nhất
-- **Trung vị**: giá trị ở giữa khi sắp xếp
-- **Xu hướng**: tăng, giảm, ổn định, dao động
-- Luôn kiểm tra nguồn và độ tin cậy của dữ liệu
+- **Phân tích dữ liệu**: Đọc số liệu $\rightarrow$ So sánh $\rightarrow$ Phát hiện xu hướng $\rightarrow$ Rút ra bài học/kết luận.
+- **Tính toán**: Tổng, trung bình cộng, mức tăng trưởng $\% = \dfrac{B - A}{A} \cdot 100\%$.
 
 </GhiNho>
 
@@ -355,189 +251,130 @@ d) Dự đoán kỳ 7 có thể đạt khoảng 8.2-8.3 điểm (tiếp tục xu
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho dữ liệu điểm kiểm tra: $6, 7, 8, 7, 9, 7, 8, 10, 7, 8$
+**Bài 1 (Dễ — Đọc số liệu từ bảng):** Cho bảng số liệu diện tích rừng trồng ở Việt Nam giai đoạn 2018–2022 (nghìn ha): 2018 (275), 2019 (280), 2020 (260), 2021 (290), 2022 (300).
 
-a) Tính giá trị trung bình.
+a) Năm nào diện tích rừng trồng cao nhất? Năm nào thấp nhất?  
+b) Tính tổng diện tích rừng trồng trong 5 năm.  
+c) Tính diện tích rừng trồng trung bình mỗi năm.  
+d) So sánh diện tích rừng năm 2022 với năm 2018.  
+e) Tính mức tăng diện tích rừng từ 2021 đến 2022.  
+f) Nhận xét chung về xu hướng trồng rừng.
 
-b) Tìm mốt.
+**Bài 2 (Dễ — Phân tích biểu đồ cột):** Cho biểu đồ cột số điểm 10 môn Toán của 4 tổ lớp 8A: Tổ 1 (12), Tổ 2 (15), Tổ 3 (10), Tổ 4 (18).
 
-c) Tìm trung vị.
+a) Tổ nào có số điểm 10 nhiều nhất?  
+b) Tổ nào có số điểm 10 ít nhất?  
+c) Tính tổng số điểm 10 của cả lớp 8A.  
+d) Tính tỉ lệ phần trăm số điểm 10 của Tổ 4 so với cả lớp.  
+e) Số điểm 10 Tổ 4 gấp mấy lần Tổ 3?  
+f) Tính số điểm 10 trung bình của mỗi tổ.
 
-d) Nhận xét về phân bố điểm.
+**Bài 3 (Trung bình — Phân tích biểu đồ quạt tròn):** Biểu đồ quạt tròn biểu diễn các loại phương tiện học sinh lớp 8C đến trường: Xe đạp (40%), Đi bộ (30%), Xe máy điện (20%), Xe bus (10%). Cho biết sĩ số lớp là 40 học sinh.
 
-**Bài 2:** Doanh thu bán hàng 6 tháng (triệu đồng): $50, 55, 60, 58, 65, 70$
+a) Tính số học sinh đi xe đạp.  
+b) Tính số học sinh đi bộ.  
+c) Tính số học sinh đi xe máy điện và xe bus.  
+d) Phương tiện nào được nhiều bạn sử dụng nhất?  
+e) Tính góc ở tâm biểu diễn phần đi xe đạp.  
+f) Tính góc ở tâm biểu diễn phần xe bus.
 
-a) Vẽ biểu đồ đoạn thẳng.
+**Bài 4 (Trung bình — Phân tích biểu đồ đoạn thẳng):** Biểu đồ đoạn thẳng thể hiện giá vàng (triệu đồng/lượng) trong 5 ngày: T2 (74), T3 (74.5), T4 (75), T5 (76.2), T6 (76).
 
-b) Nhận xét xu hướng.
+a) Ngày nào giá vàng cao nhất?  
+b) Giá vàng tăng mạnh nhất trong khoảng từ ngày nào đến ngày nào?  
+c) Tính mức chênh lệch giá vàng giữa T6 và T2.  
+d) Tính tỉ lệ % tăng giá vàng từ T2 đến T5.
 
-c) Tính doanh thu trung bình.
+**Bài 5 (Trung bình — So sánh từ biểu đồ cột kép):** Biểu đồ cột kép thể hiện số lượng Nam và Nữ tham gia 3 CLB: CLB Toán (Nam 20, Nữ 15), CLB Tiếng Anh (Nam 15, Nữ 25), CLB Âm nhạc (Nam 10, Nữ 30).
 
-d) Dự đoán doanh thu tháng 7.
+a) CLB nào có tổng số thành viên đông nhất?  
+b) CLB nào có sự chênh lệch lớn nhất giữa Nam và Nữ?  
+c) Tính tổng số học sinh Nam và tổng số học sinh Nữ tham gia cả 3 CLB.
 
-**Bài 3:** Số lượng sách bán ra mỗi ngày trong tuần:
+**Bài 6 (Khá — Phát hiện giá trị bất thường):** Cho bảng theo dõi thời gian giải một bài toán của 8 học sinh (phút): `5; 6; 4.5; 5.5; 25; 6; 5; 4.8`.
 
-| Thứ | 2 | 3 | 4 | 5 | 6 | 7 | CN |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Số sách | 20 | 25 | 30 | 28 | 35 | 40 | 50 |
+a) Phát hiện giá trị bất thường trong dãy số liệu.  
+b) Giải thích nguyên nhân có thể dẫn đến giá trị bất thường đó.  
+c) Tính thời gian giải bài toán trung bình khi giữ nguyên và khi loại bỏ giá trị bất thường.
 
-a) Ngày nào bán nhiều nhất?
+**Bài 7 (Khá — Tính tốc độ tăng trưởng):** Doanh thu của một công ty sản xuất thiết bị học tập qua 3 năm: 2021 (80 tỉ), 2022 (100 tỉ), 2023 (125 tỉ).
 
-b) Ngày nào bán ít nhất?
+a) Tính tốc độ tăng trưởng doanh thu (%) từ năm 2021 đến 2022.  
+b) Tính tốc độ tăng trưởng doanh thu (%) từ năm 2022 đến 2023.  
+c) So sánh tốc độ tăng trưởng của 2 giai đoạn trên.
 
-c) Tính trung bình số sách bán mỗi ngày.
+**Bài 8 (Khá - Nâng cao — Đưa ra quyết định kinh doanh từ dữ liệu):** Một cửa hàng quần áo thống kê số áo phông bán được theo các size: Size S (50 áo), Size M (200 áo), Size L (180 áo), Size XL (30 áo). Đề xuất kế hoạch nhập hàng cho đợt tới.
 
-d) So sánh số sách bán ngày thường và cuối tuần.
+**Bài 9 (Ứng dụng thực tế 1 — Đánh giá tỉ lệ cận thị học đường):** Khảo sát tỉ lệ học sinh cận thị qua các khối lớp: Khối 6 (15%), Khối 7 (22%), Khối 8 (35%), Khối 9 (42%).
 
-**Bài 4:** Phân tích biểu đồ nhiệt độ:
+a) Vẽ sơ lược xu hướng tỉ lệ cận thị từ khối 6 đến khối 9.  
+b) Đề xuất giải pháp cho nhà trường và phụ huynh.
 
-Nhiệt độ trung bình các tháng: $18, 20, 24, 28, 30, 32, 32, 31, 29, 26, 22, 19$ (°C)
+**Bài 10 (Ứng dụng thực tế 2 — Phân tích tiêu thụ điện sinh hoạt):** Bảng lượng điện tiêu thụ (kWh) của một gia đình 6 tháng đầu năm: Th1 (180), Th2 (190), Th3 (210), Th4 (280), Th5 (380), Th6 (420).
 
-a) Tháng nào nóng nhất?
-
-b) Tháng nào lạnh nhất?
-
-c) Tính nhiệt độ trung bình cả năm.
-
-d) Nhận xét sự thay đổi nhiệt độ.
-
-**Bài 5:** So sánh hai lớp:
-
-Điểm trung bình môn Toán:
-- Lớp 8A: $7.0, 7.2, 7.5, 7.8, 8.0$
-- Lớp 8B: $6.5, 7.0, 7.0, 7.5, 7.5$
-
-a) Tính điểm trung bình mỗi lớp.
-
-b) Lớp nào có kết quả tốt hơn?
-
-c) Lớp nào có sự tiến bộ rõ rệt hơn?
-
-d) Đề xuất biện pháp cải thiện cho lớp yếu hơn.
-
-**Bài 6 (Thực tế):** Khảo sát thời gian sử dụng điện thoại của 20 học sinh (giờ/ngày):
-
-```
-2, 3, 4, 3, 5, 2, 3, 4, 3, 2,
-3, 4, 5, 3, 2, 4, 3, 5, 4, 3
-```
-
-a) Lập bảng tần số.
-
-b) Tính thời gian trung bình.
-
-c) Tìm mốt.
-
-d) Nhận xét và đưa ra khuyến nghị.
-
-**Bài 7 (Dễ):** Điểm kiểm tra của 8 học sinh: $5, 6, 7, 8, 7, 9, 7, 8$
-
-a) Tính điểm trung bình của nhóm.
-
-b) Tìm mốt của dữ liệu.
-
-c) Có bao nhiêu học sinh đạt điểm từ 7 trở lên?
-
-**Bài 8 (Trung bình):** Số lượng khách hàng đến cửa hàng trong 5 ngày:
-
-| Ngày | Thứ 2 | Thứ 3 | Thứ 4 | Thứ 5 | Thứ 6 |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| Số khách | 45 | 52 | 48 | 60 | 75 |
-
-a) Vẽ biểu đồ cột thể hiện dữ liệu.
-
-b) Ngày nào có nhiều khách nhất? Ít nhất?
-
-c) Tính số khách trung bình mỗi ngày.
-
-d) Nhận xét xu hướng số lượng khách qua các ngày.
-
-e) Giải thích tại sao thứ 6 có nhiều khách nhất.
-
-**Bài 9 (Khá):** Một công ty ghi nhận doanh thu 8 tháng đầu năm (đơn vị: trăm triệu đồng):
-
-$120, 135, 128, 145, 150, 142, 160, 155$
-
-a) Tính doanh thu trung bình mỗi tháng.
-
-b) Tìm trung vị của dữ liệu.
-
-c) Tháng nào có doanh thu cao nhất? Thấp nhất?
-
-d) So sánh doanh thu tháng 1 và tháng 8, nhận xét sự tăng trưởng.
-
-e) Nếu xu hướng này tiếp tục, dự đoán doanh thu tháng 9.
-
-f) Tính tổng doanh thu 8 tháng và so sánh với mục tiêu 1.200 trăm triệu.
-
-**Bài 10 (Khó - Ứng dụng thực tế):** Một trường THCS khảo sát chiều cao (cm) của 30 học sinh lớp 8:
-
-```
-152, 155, 158, 160, 162, 155, 158, 160, 165, 158,
-160, 162, 155, 158, 160, 162, 165, 168, 160, 162,
-155, 158, 160, 162, 165, 158, 160, 162, 165, 170
-```
-
-a) Lập bảng tần số nhóm với các khoảng: 150-154, 155-159, 160-164, 165-169, 170-174.
-
-b) Vẽ biểu đồ cột (histogram) thể hiện phân bố chiều cao.
-
-c) Tính chiều cao trung bình của nhóm học sinh.
-
-d) Tìm mốt và trung vị của dữ liệu.
-
-e) Nhóm chiều cao nào có nhiều học sinh nhất?
-
-f) Tính tỉ lệ phần trăm học sinh có chiều cao từ 160 cm trở lên.
-
-g) So sánh với chiều cao trung bình chuẩn của học sinh 14 tuổi (nam: 160 cm, nữ: 155 cm) và đưa ra nhận xét.
-
-**Bài 11 (Khó - Tổng hợp):** Hai cửa hàng A và B cùng kinh doanh trong 6 tháng với doanh thu (triệu đồng):
-
-| Tháng | 1 | 2 | 3 | 4 | 5 | 6 |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Cửa hàng A | 80 | 85 | 90 | 95 | 100 | 105 |
-| Cửa hàng B | 100 | 95 | 105 | 100 | 110 | 115 |
-
-a) Vẽ biểu đồ đoạn thẳng so sánh doanh thu hai cửa hàng.
-
-b) Tính doanh thu trung bình của mỗi cửa hàng.
-
-c) Cửa hàng nào có doanh thu cao hơn?
-
-d) Phân tích xu hướng doanh thu của mỗi cửa hàng.
-
-e) Tính tốc độ tăng trưởng trung bình mỗi tháng của mỗi cửa hàng.
-
-f) Dự đoán doanh thu tháng 7 của mỗi cửa hàng.
-
-g) Nếu bạn là nhà đầu tư, bạn sẽ chọn cửa hàng nào? Giải thích.
+a) Tính tổng số điện và số tiền điện phải trả nếu giá trung bình là 2.500 đồng/kWh.  
+b) Giải thích vì sao số điện tăng mạnh vào các tháng 5 và 6 và đưa ra lời khuyên tiết kiệm điện.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $7{,}7$; b) $7$ (xuất hiện 4 lần); c) $7{,}5$; d) Tập trung ở điểm 7-8
+**Bài 1:**
+a) Cao nhất: 2022 (300 nghìn ha). Thấp nhất: 2020 (260 nghìn ha).
+b) Tổng $= 275 + 280 + 260 + 290 + 300 = 1405$ nghìn ha.
+c) Trung bình $= 1405 : 5 = 281$ nghìn ha/năm.
+d) Năm 2022 tăng $25$ nghìn ha so với 2018.
+e) Tăng $= 300 - 290 = 10$ nghìn ha.
+f) Xu hướng chung là gia tăng diện tích rừng trồng.
 
-**Bài 2:** a) Vẽ biểu đồ; b) Xu hướng tăng; c) $59{,}67$ triệu; d) Khoảng $72-75$ triệu
+**Bài 2:**
+a) Tổ 4 (18 điểm 10).
+b) Tổ 3 (10 điểm 10).
+c) Tổng $= 12 + 15 + 10 + 18 = 55$ điểm 10.
+d) Tỉ lệ Tổ 4 $= \dfrac{18}{55} \cdot 100\% \approx 32.7\%$.
+e) Gấp $\dfrac{18}{10} = 1.8$ lần.
+f) Trung bình $= \dfrac{55}{4} = 13.75$ điểm 10/tổ.
 
-**Bài 3:** a) Chủ nhật (50 sách); b) Thứ 2 (20 sách); c) $32{,}57$ sách/ngày; d) Cuối tuần bán nhiều hơn
+**Bài 3:**
+a) $40\% \cdot 40 = 16$ học sinh.
+b) $30\% \cdot 40 = 12$ học sinh.
+c) Xe máy điện: $8$ học sinh. Xe bus: $4$ học sinh.
+d) Xe đạp nhiều nhất.
+e) Góc xe đạp $= 40\% \cdot 360^\circ = 144^\circ$.
+f) Góc xe bus $= 10\% \cdot 360^\circ = 36^\circ$.
 
-**Bài 4:** a) Tháng 6, 7 (32°C); b) Tháng 1 (18°C); c) $25{,}92°C$; d) Tăng T1-T6, giảm T7-T12
+**Bài 4:**
+a) Thứ 5 cao nhất (76.2 triệu đồng).
+b) Từ T4 đến T5 (tăng 1.2 triệu).
+c) Chênh lệch $= 76 - 74 = 2$ triệu đồng/lượng.
+d) $\% = \dfrac{76.2 - 74}{74} \cdot 100\% \approx 2.97\%$.
 
-**Bài 5:** a) 8A: $7{,}5$, 8B: $7{,}1$; b) Lớp 8A; c) Lớp 8A tiến bộ đều; d) Tăng cường ôn tập, học nhóm
+**Bài 5:**
+a) CLB Âm nhạc ($10 + 30 = 40$ bạn) và CLB Tiếng Anh ($15 + 25 = 40$ bạn) đông nhất.
+b) CLB Âm nhạc chênh lệch $30 - 10 = 20$ bạn.
+c) Tổng Nam $= 20 + 15 + 10 = 45$. Tổng Nữ $= 15 + 25 + 30 = 70$.
 
-**Bài 6:** a) 2h: 4, 3h: 8, 4h: 5, 5h: 3; b) $3{,}35$ giờ/ngày; c) $3$ giờ; d) Nên giảm xuống dưới 3 giờ/ngày
+**Bài 6:**
+a) Giá trị `25` phút bất thường.
+b) Học sinh bỏ cuộc, chép sai đề hoặc ngủ quên.
+c) Tính gồm 25: Trung bình $= 7.725$ phút. Loại bỏ 25: Trung bình $= 5.26$ phút (phản ánh đúng thực tế hơn).
 
-**Bài 7:** a) $7{,}125$; b) $7$ (xuất hiện 3 lần); c) 6 học sinh
+**Bài 7:**
+a) $\%_{2021-2022} = \dfrac{100 - 80}{80} \cdot 100\% = 25\%$.
+b) $\%_{2022-2023} = \dfrac{125 - 100}{100} \cdot 100\% = 25\%$.
+c) Tốc độ tăng trưởng ổn định $25\%$/năm.
 
-**Bài 8:** a) Vẽ biểu đồ; b) Nhiều nhất: Thứ 6 (75), ít nhất: Thứ 2 (45); c) $56$ khách/ngày; d) Xu hướng tăng; e) Cuối tuần, khách có thời gian rảnh hơn
+**Bài 8:**
+Tập trung nhập hai size M ($43.5\%$) và L ($39.1\%$). Nhập ít hơn đối với size S và XL.
 
-**Bài 9:** a) $141{,}875$ trăm triệu; b) $143{,}5$ trăm triệu; c) Cao nhất: tháng 7 (160), thấp nhất: tháng 1 (120); d) Tăng 35 trăm triệu (29,17%); e) Khoảng 165-170 trăm triệu; f) Tổng: 1.135 trăm triệu, còn thiếu 65 trăm triệu
+**Bài 9:**
+a) Tỉ lệ cận thị tăng nhanh theo cấp độ lớp.
+b) Tăng cường ánh sáng phòng học, giảm thời gian sử dụng thiết bị điện tử.
 
-**Bài 10:** a) 150-154: 1, 155-159: 10, 160-164: 13, 165-169: 5, 170-174: 1; b) Vẽ biểu đồ; c) $160{,}67$ cm; d) Mốt: 160 cm, Trung vị: 160 cm; e) Nhóm 160-164 (13 học sinh); f) 63,33%; g) Cao hơn chuẩn, dinh dưỡng tốt
-
-**Bài 11:** a) Vẽ biểu đồ; b) A: $92{,}5$ triệu, B: $104{,}17$ triệu; c) Cửa hàng B; d) A: tăng đều, B: dao động nhưng xu hướng tăng; e) A: 5 triệu/tháng, B: 3 triệu/tháng; f) A: 110 triệu, B: 120 triệu; g) Chọn A vì tăng trưởng ổn định hơn
+**Bài 10:**
+a) Tổng điện $= 180 + 190 + 210 + 280 + 380 + 420 = 1660$ kWh.  
+Số tiền $= 1660 \cdot 2.500 = 4.150.000$ đồng.  
+b) Tháng 5 và 6 là mùa hè nắng nóng, sử dụng điều hòa nhiều. Lời khuyên: Cài đặt điều hòa 26–28°C, tắt thiết bị khi không sử dụng.
 
 </div>
 </details>

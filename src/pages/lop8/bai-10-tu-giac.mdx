@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 10: Tứ giác"
-description: "Khái niệm và tính chất tứ giác - Toán 8 KNTT Chương 3"
+description: "Khái niệm tứ giác, tứ giác lồi và định lý tổng các góc trong một tứ giác - Toán 8 KNTT Chương 3"
 grade: "Lớp 8"
 chapter: "Chương 3: Tứ giác"
 currentSlug: "lop8/bai-10-tu-giac"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,6 +13,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import TuGiacInteractive from '../../components/interactive/TuGiacInteractive';
 
 export const quizData = [
   {
@@ -54,249 +54,235 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Trong tứ giác $ABCD$, hai góc đối là:",
-    option_a: "$\\hat{A}$ và $\\hat{C}$",
-    option_b: "$\\hat{A}$ và $\\hat{B}$",
-    option_c: "$\\hat{B}$ và $\\hat{D}$",
-    option_d: "Cả A và C",
-    correct_option: "D",
-    explanation: "Hai góc đối trong tứ giác $ABCD$ là $\\hat{A}$ và $\\hat{C}$, hoặc $\\hat{B}$ và $\\hat{D}$.",
+    question: "Trong tứ giác $ABCD$, hai góc $\\hat{A}$ và $\\hat{C}$ được gọi là:",
+    option_a: "Hai góc đối",
+    option_b: "Hai góc kề",
+    option_c: "Hai góc kề bù",
+    option_d: "Hai góc so le trong",
+    correct_option: "A",
+    explanation: "$\\hat{A}$ và $\\hat{C}$ là hai góc đối nhau của tứ giác $ABCD$.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Các góc của một tứ giác có thể là:",
+    option_a: "4 góc nhọn",
+    option_b: "4 góc vuông",
+    option_c: "4 góc tù",
+    option_d: "3 góc tù và 1 góc vuông",
+    correct_option: "B",
+    explanation: "Nếu 4 góc đều nhọn ($<90°$) thì tổng $<360°$ (vô lý). Nếu 4 góc đều vuông ($=90°$) thì tổng $=360°$ (đúng).",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Tứ giác $ABCD$ có những yếu tố nào?",
-    option_a: "4 đỉnh: $A, B, C, D$",
-    option_b: "4 cạnh: $AB, BC, CD, DA$",
-    option_c: "2 đường chéo: $AC, BD$",
-    option_d: "4 góc: $\\hat{A}, \\hat{B}, \\hat{C}, \\hat{D}$",
-    correct_option: "A,B,C,D",
-    explanation: "Tất cả đều đúng. Tứ giác có 4 đỉnh, 4 cạnh, 2 đường chéo và 4 góc.",
-    difficulty_level: "easy",
+    question: "Những khẳng định nào sau đây về tứ giác lồi $ABCD$ là đúng?",
+    option_a: "Tổng 4 góc trong luôn bằng $360°$",
+    option_b: "Hai đường chéo cắt nhau tại một điểm nằm bên trong tứ giác",
+    option_c: "Tổng hai góc kề bất kỳ luôn bằng $180°$",
+    option_d: "Các cạnh đối không bao giờ cắt nhau",
+    correct_option: "A,B",
+    explanation: "A, B đúng. C và D không bắt buộc cho tứ giác lồi tổng quát.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tứ giác có ba góc lần lượt là $70°$, $110°$, $95°$. Góc còn lại bằng bao nhiêu độ?",
-    correct_option: "85",
-    explanation: "Góc còn lại $= 360° - (70° + 110° + 95°) = 85°$.",
+    question: "Tứ giác $ABCD$ có $\\hat{A} = 70°$, $\\hat{B} = 80°$, $\\hat{C} = 110°$. Góc ngoài tại đỉnh D bằng bao nhiêu độ?",
+    correct_option: "80",
+    explanation: "Góc trong $\\hat{D} = 360° - (70° + 80° + 110°) = 100°$. Góc ngoài tại đỉnh D bằng $180° - 100° = 80°$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tứ giác có ba góc bằng $!a#90!°$, $!b#80!°$, $!c#100!°$. Góc thứ tư bằng:",
-    option_a: "$!tinh: 360 - !a! - !b! - !c!!°$",
-    option_b: "$!tinh: !a! + !b! + !c!!°$",
-    option_c: "$!tinh: 180 - !a!!°$",
-    option_d: "$90°$",
+    question: "Tứ giác $ABCD$ có $\\hat{A} : \\hat{B} : \\hat{C} : \\hat{D} = 1 : 2 : 3 : 4$. Số đo góc lớn nhất là:",
+    option_a: "$144°$",
+    option_b: "$108°$",
+    option_c: "$120°$",
+    option_d: "$150°$",
     correct_option: "A",
-    explanation: "Góc thứ tư $= 360° - (!a!° + !b!° + !c!°) = !tinh: 360 - !a! - !b! - !c!!°$.",
+    explanation: "$x + 2x + 3x + 4x = 360° \\Rightarrow 10x = 360° \\Rightarrow x = 36°$. Góc lớn nhất $= 4 \\cdot 36° = 144°$.",
     difficulty_level: "medium",
-    is_dynamic: true,
+    is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tứ giác có hai góc đối bằng $!a#100!°$ và $!b#80!°$. Tổng hai góc còn lại bằng:",
-    option_a: "$!tinh: 360 - !a! - !b!!°$",
-    option_b: "$!tinh: !a! + !b!!°$",
-    option_c: "$180°$",
-    option_d: "$360°$",
+    question: "Tổng các góc ngoài (mỗi đỉnh lấy một góc ngoài) của một tứ giác lồi bằng:",
+    option_a: "$360°$",
+    option_b: "$180°$",
+    option_c: "$720°$",
+    option_d: "$540°$",
     correct_option: "A",
-    explanation: "Tổng hai góc còn lại $= 360° - !a!° - !b!° = !tinh: 360 - !a! - !b!!°$.",
+    explanation: "Tổng 4 góc ngoài bằng $4 \\cdot 180° - 360° = 360°$.",
     difficulty_level: "hard",
-    is_dynamic: true,
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Một tứ giác có nhiều nhất bao nhiêu góc nhọn?",
+    option_a: "3 góc nhọn",
+    option_b: "4 góc nhọn",
+    option_c: "2 góc nhọn",
+    option_d: "1 góc nhọn",
+    correct_option: "A",
+    explanation: "Nếu có 4 góc nhọn thì tổng 4 góc $< 4 \\cdot 90° = 360°$ (vô lý). Do đó tứ giác có nhiều nhất 3 góc nhọn.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🔷 Tứ giác — Hình cơ bản</h3>
+### 🎯 Khởi động bài học
 
-Tứ giác là hình có 4 cạnh, xuất hiện khắp nơi trong cuộc sống!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏠</div>
-    <strong>Mặt nhà</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình chữ nhật, hình vuông</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🪁</div>
-    <strong>Diều</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình thoi, hình tứ giác</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📱</div>
-    <strong>Màn hình</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hình chữ nhật</p>
-  </div>
-</div>
+Mặt bàn, khung cửa sổ, cánh diều hay màn hình máy tính đều là các hình ảnh thực tế của **Tứ giác**. Bài học này sẽ giúp bạn hiểu rõ khái niệm tứ giác lồi, các yếu tố của tứ giác và định lý quan trọng về tổng các góc trong một tứ giác!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="khai-niem">📖 1. Khái niệm tứ giác</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-nghia">
+#### 1. Khái niệm tứ giác và Tứ giác lồi
 
-**Định nghĩa:** Tứ giác $ABCD$ là hình gồm bốn đoạn thẳng $AB$, $BC$, $CD$, $DA$ trong đó bất kỳ hai đoạn thẳng nào cũng không cùng nằm trên một đường thẳng.
+- **Tứ giác $ABCD$** là hình gồm 4 đoạn thẳng $AB, BC, CD, DA$ trong đó bất kỳ hai đoạn thẳng nào cũng không cùng nằm trên một đường thẳng.
+- **Tứ giác lồi** là tứ giác luôn nằm trong một nửa mặt phẳng có bờ là đường thẳng chứa bất kỳ cạnh nào của tứ giác.
 
-</div>
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="360" height="200" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="40,40 150,20 170,160 30,140" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  <circle cx="40" cy="40" r="4" fill="#1d4ed8"/>
+  <circle cx="150" cy="20" r="4" fill="#1d4ed8"/>
+  <circle cx="170" cy="160" r="4" fill="#1d4ed8"/>
+  <circle cx="30" cy="140" r="4" fill="#1d4ed8"/>
+  <text x="25" y="35" font-size="14" font-weight="bold" fill="#1e40af">A</text>
+  <text x="155" y="25" font-size="14" font-weight="bold" fill="#1e40af">B</text>
+  <text x="175" y="175" font-size="14" font-weight="bold" fill="#1e40af">C</text>
+  <text x="15" y="155" font-size="14" font-weight="bold" fill="#1e40af">D</text>
 
-**Hình minh họa:**
-
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="350" height="280" viewBox="0 0 350 280" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Tứ giác ABCD */}
-  <polygon points="80,60 280,80 260,220 100,200" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5" opacity="0.3"/>
-  
-  {/* Các cạnh */}
-  <line x1="80" y1="60" x2="280" y2="80" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="280" y1="80" x2="260" y2="220" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="260" y1="220" x2="100" y2="200" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="100" y1="200" x2="80" y2="60" stroke="#3b82f6" stroke-width="2.5"/>
-  
-  {/* Đường chéo */}
-  <line x1="80" y1="60" x2="260" y2="220" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
-  <line x1="280" y1="80" x2="100" y2="200" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,5"/>
-  
-  {/* Các đỉnh */}
-  <circle cx="80" cy="60" r="4" fill="#3b82f6"/>
-  <text x="65" y="50" font-size="18" font-weight="bold" fill="#3b82f6">A</text>
-  
-  <circle cx="280" cy="80" r="4" fill="#3b82f6"/>
-  <text x="290" y="85" font-size="18" font-weight="bold" fill="#3b82f6">B</text>
-  
-  <circle cx="260" cy="220" r="4" fill="#3b82f6"/>
-  <text x="270" y="235" font-size="18" font-weight="bold" fill="#3b82f6">C</text>
-  
-  <circle cx="100" cy="200" r="4" fill="#3b82f6"/>
-  <text x="75" y="215" font-size="18" font-weight="bold" fill="#3b82f6">D</text>
-  
-  {/* Nhãn cạnh */}
-  <text x="170" y="55" font-size="14" fill="#059669" font-style="italic">AB</text>
-  <text x="285" y="150" font-size="14" fill="#059669" font-style="italic">BC</text>
-  <text x="170" y="230" font-size="14" fill="#059669" font-style="italic">CD</text>
-  <text x="70" y="130" font-size="14" fill="#059669" font-style="italic">DA</text>
-  
-  {/* Nhãn đường chéo */}
-  <text x="160" y="130" font-size="14" fill="#ef4444" font-style="italic">AC</text>
-  <text x="200" y="150" font-size="14" fill="#ef4444" font-style="italic">BD</text>
+  <polygon points="230,40 330,80 260,110 320,170" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+  <text x="280" y="190" font-size="13" font-weight="bold" fill="#854d0e">(a) Tứ giác lồi ABCD</text>
 </svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Hình 1: Hình ảnh tứ giác lồi (bên trái) và tứ giác không lồi (bên phải)</em></p>
 </div>
 
-**Các yếu tố của tứ giác $ABCD$:**
+**Ví dụ 1:** Chỉ ra hai góc đối nhau của tứ giác $ABCD$.  
+*Lời giải:* Góc $\widehat{A}$ và $\widehat{C}$ là hai góc đối; góc $\widehat{B}$ và $\widehat{D}$ là hai góc đối.
 
-- **4 đỉnh:** $A, B, C, D$
-- **4 cạnh:** $AB, BC, CD, DA$
-- **2 đường chéo:** $AC, BD$
-- **4 góc:** $\hat{A}, \hat{B}, \hat{C}, \hat{D}$
+**Ví dụ 2:** Chỉ ra hai đường chéo của tứ giác $ABCD$.  
+*Lời giải:* Đoạn thẳng $AC$ và $BD$ nối hai đỉnh đối diện là hai đường chéo.
 
-**Cạnh đối, góc đối:**
-- Cạnh đối: $AB$ và $CD$; $BC$ và $DA$
-- Góc đối: $\hat{A}$ và $\hat{C}$; $\hat{B}$ và $\hat{D}$
+**Ví dụ 3:** Chỉ ra các cạnh kề của cạnh $AB$.  
+*Lời giải:* Cạnh $AD$ và $BC$ là hai cạnh kề với cạnh $AB$.
 
-<h3 id="tu-giac-loi" style="margin-top:2rem;">🔍 2. Tứ giác lồi</h3>
+---
 
-<div class="box-dinh-nghia">
+#### 2. Định lý tổng các góc của một tứ giác
 
-**Định nghĩa:** Tứ giác lồi là tứ giác luôn nằm trong một nửa mặt phẳng có bờ là đường thẳng chứa bất kỳ cạnh nào của tứ giác đó.
+**Định lý:** Tổng các góc của một tứ giác bằng $360^\circ$.
+$$\widehat{A} + \widehat{B} + \widehat{C} + \widehat{D} = 360^\circ$$
 
-</div>
-
-**So sánh:**
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0;">
-<div style="text-align:center;">
-<svg width="200" height="180" viewBox="0 0 200 180" style="background:white;border-radius:8px;border:2px solid #10b981;">
-  <polygon points="40,40 160,50 150,140 50,130" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
-  <circle cx="40" cy="40" r="3" fill="#10b981"/>
-  <circle cx="160" cy="50" r="3" fill="#10b981"/>
-  <circle cx="150" cy="140" r="3" fill="#10b981"/>
-  <circle cx="50" cy="130" r="3" fill="#10b981"/>
-  <text x="70" y="20" font-size="16" font-weight="bold" fill="#10b981">Tứ giác lồi</text>
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="40,50 240,30 260,170 60,160" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
+  <line x1="40" y1="50" x2="260" y2="170" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/>
+  <text x="25" y="45" font-size="14" font-weight="bold" fill="#166534">A</text>
+  <text x="245" y="25" font-size="14" font-weight="bold" fill="#166534">B</text>
+  <text x="270" y="180" font-size="14" font-weight="bold" fill="#166534">C</text>
+  <text x="45" y="175" font-size="14" font-weight="bold" fill="#166534">D</text>
 </svg>
-</div>
-<div style="text-align:center;">
-<svg width="200" height="180" viewBox="0 0 200 180" style="background:white;border-radius:8px;border:2px solid #ef4444;">
-  <polygon points="40,40 160,50 100,90 50,140" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
-  <circle cx="40" cy="40" r="3" fill="#ef4444"/>
-  <circle cx="160" cy="50" r="3" fill="#ef4444"/>
-  <circle cx="100" cy="90" r="3" fill="#ef4444"/>
-  <circle cx="50" cy="140" r="3" fill="#ef4444"/>
-  <text x="60" y="20" font-size="16" font-weight="bold" fill="#ef4444">Tứ giác lõm</text>
-</svg>
-</div>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Hình 2: Đường chéo AC chia tứ giác ABCD thành 2 tam giác ABC và ADC có tổng số đo góc bằng $180^\circ + 180^\circ = 360^\circ$</em></p>
 </div>
 
-<h3 id="dinh-ly" style="margin-top:2rem;">📐 3. Định lý tổng các góc</h3>
+**Ví dụ 1:** Cho tứ giác $ABCD$ có $\widehat{A} = 70^\circ, \widehat{B} = 110^\circ, \widehat{C} = 80^\circ$. Tính góc $\widehat{D}$.  
+*Lời giải:* $\widehat{D} = 360^\circ - (70^\circ + 110^\circ + 80^\circ) = 100^\circ$.
 
-<div class="box-dinh-ly">
+**Ví dụ 2:** Tứ giác $ABCD$ có $\widehat{A} = 90^\circ, \widehat{B} = 90^\circ, \widehat{C} = 90^\circ$. Hỏi góc $\widehat{D}$ bằng bao nhiêu?  
+*Lời giải:* $\widehat{D} = 360^\circ - 3 \cdot 90^\circ = 90^\circ$.
 
-**Định lý:** Tổng các góc trong một tứ giác bằng $360°$.
-
-$\hat{A} + \hat{B} + \hat{C} + \hat{D} = 360°$
-
-</div>
-
-**Chứng minh:**
-
-Kẻ đường chéo $AC$ chia tứ giác thành hai tam giác $ABC$ và $ACD$.
-
-- Trong $\triangle ABC$: $\hat{A}_1 + \hat{B} + \hat{C}_1 = 180°$
-- Trong $\triangle ACD$: $\hat{A}_2 + \hat{C}_2 + \hat{D} = 180°$
-
-Cộng lại: $(\hat{A}_1 + \hat{A}_2) + \hat{B} + (\hat{C}_1 + \hat{C}_2) + \hat{D} = 360°$
-
-Hay: $\hat{A} + \hat{B} + \hat{C} + \hat{D} = 360°$
-
-**Ví dụ 1:** Tứ giác có ba góc là $80°$, $100°$, $90°$. Tính góc thứ tư.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-Góc thứ tư $= 360° - (80° + 100° + 90°) = 90°$
-
-</div>
-
-<h3 id="chu-vi-dien-tich" style="margin-top:2rem;">📏 4. Chu vi và diện tích</h3>
-
-**Chu vi:** $P = AB + BC + CD + DA$
-
-**Diện tích:** Phụ thuộc vào loại tứ giác (sẽ học ở các bài sau)
+**Ví dụ 3:** Cho tứ giác $ABCD$ có $\widehat{A} = x, \widehat{B} = 2x, \widehat{C} = 3x, \widehat{D} = 4x$. Tìm $x$.  
+*Lời giải:* $x + 2x + 3x + 4x = 360^\circ \Rightarrow 10x = 360^\circ \Rightarrow x = 36^\circ$.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Tứ giác & Tính góc</h3>
 
-<QuizSession client:load questions={quizData} />
+<TuGiacInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Các dạng toán & Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
 
-**📝 Bài toán:** Một mảnh đất hình tứ giác có ba góc là $85°$, $95°$, $100°$. Tính góc còn lại.
+<div class="box-dinh-ly">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Dạng 1: Tính số đo góc của tứ giác**
+**Phương pháp:** Dùng định lý tổng 4 góc trong tứ giác bằng $360^\circ$.
 
-Góc còn lại $= 360° - (85° + 95° + 100°) = 80°$
+</div>
+
+**Ví dụ 1:** Tính góc $\widehat{C}$ của tứ giác $ABCD$ biết $\widehat{A} = 65^\circ, \widehat{B} = 115^\circ, \widehat{D} = 85^\circ$.  
+*Lời giải:* $\widehat{C} = 360^\circ - (65^\circ + 115^\circ + 85^\circ) = 95^\circ$.
+
+**Ví dụ 2:** Cho tứ giác $ABCD$ có $\widehat{A} = \widehat{B} = \widehat{C} = 80^\circ$. Tính $\widehat{D}$.  
+*Lời giải:* $\widehat{D} = 360^\circ - 3(80^\circ) = 120^\circ$.
+
+**Ví dụ 3:** Tứ giác $ABCD$ có $\widehat{A} = \widehat{C} + 20^\circ$, $\widehat{B} = 100^\circ, \widehat{D} = 80^\circ$. Tính $\widehat{A}$ và $\widehat{C}$.  
+*Lời giải:* $\widehat{A} + \widehat{C} = 360^\circ - 180^\circ = 180^\circ \Rightarrow (\widehat{C} + 20^\circ) + \widehat{C} = 180^\circ \Rightarrow 2\widehat{C} = 160^\circ \Rightarrow \widehat{C} = 80^\circ, \widehat{A} = 100^\circ$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Bài toán tổng và hiệu số đo các góc**
+**Phương pháp:** Biểu diễn các góc theo một biến $x$ hoặc giải hệ phương trình hai ẩn đơn giản.
+
+</div>
+
+**Ví dụ 1:** Cho tứ giác $ABCD$ có $\widehat{A} + \widehat{B} = 200^\circ$. Tính $\widehat{C} + \widehat{D}$.  
+*Lời giải:* $\widehat{C} + \widehat{D} = 360^\circ - 200^\circ = 160^\circ$.
+
+**Ví dụ 2:** Tứ giác $ABCD$ có $\widehat{A} : \widehat{B} : \widehat{C} : \widehat{D} = 2 : 3 : 4 : 3$. Tính các góc.  
+*Lời giải:* Tổng số phần = $2 + 3 + 4 + 3 = 12$. Giá trị 1 phần = $360^\circ / 12 = 30^\circ$.  
+$\Rightarrow \widehat{A} = 60^\circ, \widehat{B} = 90^\circ, \widehat{C} = 120^\circ, \widehat{D} = 90^\circ$.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Thiết kế khung mái nhà tứ giác):** Khung mái nhà có dạng tứ giác $ABCD$ có các góc đo được là $\widehat{A} = 110^\circ, \widehat{B} = 110^\circ, \widehat{C} = 70^\circ$.
+
+a) Tính góc $\widehat{D}$ của khung mái nhà.  
+b) Khung mái nhà trên có hai cạnh $AB$ và $CD$ song song với nhau hay không? Giải thích.
+
+**Lời giải:**  
+a) $\widehat{D} = 360^\circ - (110^\circ + 110^\circ + 70^\circ) = 70^\circ$.  
+b) Ta có $\widehat{A} + \widehat{D} = 110^\circ + 70^\circ = 180^\circ$. Vì hai góc trong cùng phía bù nhau nên $AB // CD$.
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Tứ giác**: 4 đỉnh, 4 cạnh, 2 đường chéo, 4 góc
-- **Tổng các góc**: $360°$
-- **Tứ giác lồi**: nằm trong nửa mặt phẳng
-- **Cạnh đối, góc đối**: không kề nhau
+- **Tứ giác lồi**: Luôn nằm trong một nửa mặt phẳng có bờ là đường thẳng chứa bất kỳ cạnh nào.
+- **Định lý tổng 4 góc**: $\widehat{A} + \widehat{B} + \widehat{C} + \widehat{D} = 360^\circ$.
 
 </GhiNho>
 
@@ -304,81 +290,119 @@ Góc còn lại $= 360° - (85° + 95° + 100°) = 80°$
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho tứ giác $ABCD$.
+**Bài 1 (Dễ — Nhận biết thuộc tính tứ giác):** Cho tứ giác $ABCD$. Hãy chỉ ra:
 
-a) Kể tên các đỉnh, các cạnh, các đường chéo.
+a) Các cặp đỉnh đối nhau.  
+b) Các cặp cạnh đối nhau.  
+c) Các cặp góc đối nhau.  
+d) Hai đường chéo của tứ giác.  
+e) Các cạnh kề với cạnh $BC$.  
+f) Các góc kề với góc $\widehat{B}$.
 
-b) Kể tên các cặp cạnh đối, các cặp góc đối.
+**Bài 2 (Dễ — Tính góc còn thiếu trong tứ giác):** Tính góc chưa biết của các tứ giác $ABCD$ sau:
 
-c) Nếu $\hat{A} = 90°$, $\hat{B} = 80°$, $\hat{C} = 110°$, tính $\hat{D}$.
+a) $\widehat{A} = 80^\circ, \widehat{B} = 100^\circ, \widehat{C} = 120^\circ$. Tính $\widehat{D}$.  
+b) $\widehat{A} = 90^\circ, \widehat{B} = 90^\circ, \widehat{D} = 75^\circ$. Tính $\widehat{C}$.  
+c) $\widehat{B} = 70^\circ, \widehat{C} = 110^\circ, \widehat{D} = 80^\circ$. Tính $\widehat{A}$.  
+d) $\widehat{A} = 105^\circ, \widehat{B} = 75^\circ, \widehat{C} = 105^\circ$. Tính $\widehat{D}$.  
+e) Tứ giác có 3 góc vuông. Tính góc thứ tư.  
+f) Tứ giác có 3 góc bằng $70^\circ$. Tính góc còn lại.
 
-d) Nếu $\hat{A} = \hat{C} = 100°$, $\hat{B} = 70°$, tính $\hat{D}$.
+**Bài 3 (Trung bình — Góc theo tỷ lệ & Phương trình):**
 
-**Bài 2:** Tính số đo góc chưa biết:
+a) Cho tứ giác $ABCD$ có $\widehat{A} : \widehat{B} : \widehat{C} : \widehat{D} = 1 : 2 : 3 : 4$. Tính các góc.  
+b) Cho tứ giác $ABCD$ có $\widehat{A} = \widehat{B} = \widehat{C} = \dfrac{1}{2}\widehat{D}$. Tính các góc.  
+c) Cho tứ giác $ABCD$ có $\widehat{A} - \widehat{B} = 20^\circ, \widehat{C} = 90^\circ, \widehat{D} = 110^\circ$. Tính $\widehat{A}, \widehat{B}$.  
+d) Cho tứ giác $ABCD$ có $\widehat{A} + \widehat{C} = 180^\circ$. Biết $\widehat{B} = 100^\circ$. Tính $\widehat{D}$.  
+e) Tứ giác $ABCD$ có $\widehat{A} = 2\widehat{B}, \widehat{C} = 3\widehat{B}, \widehat{D} = 4\widehat{B}$. Tính các góc.  
+f) Tứ giác $ABCD$ có góc ngoài tại đỉnh A bằng $120^\circ$, $\widehat{B} = 80^\circ, \widehat{C} = 100^\circ$. Tính $\widehat{D}$.
 
-a) Tứ giác có ba góc: $75°$, $105°$, $90°$
+**Bài 4 (Trung bình — Chứng minh hai đường thẳng song song trong tứ giác):** Cho tứ giác $ABCD$ có $\widehat{A} = 100^\circ, \widehat{D} = 80^\circ, \widehat{C} = 110^\circ$.
 
-b) Tứ giác có ba góc: $120°$, $80°$, $70°$
+a) Tính góc $\widehat{B}$.  
+b) Chứng minh $AB // CD$.
 
-c) Tứ giác có hai góc đối bằng $110°$ và $80°$
+**Bài 5 (Trung bình — Bất đẳng thức tam giác ứng dụng cho hai đường chéo):** Cho tứ giác lồi $ABCD$ có hai đường chéo $AC$ và $BD$ cắt nhau tại $O$.
 
-d) Tứ giác có ba góc bằng nhau, mỗi góc $85°$
+a) Chứng minh $AC + BD > AB + CD$.  
+b) Chứng minh $AC + BD > AD + BC$.
 
-**Bài 3:** Cho tứ giác $ABCD$ có $\hat{A} = 2\hat{B}$, $\hat{C} = 3\hat{B}$, $\hat{D} = 4\hat{B}$.
+**Bài 6 (Khá — Tổng góc ngoài của tứ giác):**
 
-a) Tính số đo mỗi góc.
+a) Tính tổng 4 góc ngoài (mỗi đỉnh lấy một góc ngoài) của một tứ giác lồi $ABCD$.  
+b) Chứng minh một tứ giác lồi không thể có cả 4 góc đều là góc tù.
 
-b) Góc nào là góc lớn nhất?
+**Bài 7 (Khá — Tia phân giác hai góc kề):** Cho tứ giác $ABCD$. Các tia phân giác của góc $\widehat{A}$ và góc $\widehat{B}$ cắt nhau tại $I$.
 
-c) Góc nào là góc nhỏ nhất?
+a) Chứng minh $\widehat{AIB} = \dfrac{\widehat{C} + \widehat{D}}{2}$.  
+b) Áp dụng tính $\widehat{AIB}$ khi $\widehat{C} = 80^\circ, \widehat{D} = 100^\circ$.
 
-d) So sánh $\hat{A} + \hat{C}$ và $\hat{B} + \hat{D}$.
+**Bài 8 (Khá - Nâng cao — Tia phân giác hai góc đối):** Cho tứ giác $ABCD$. Các tia phân giác của góc $\widehat{A}$ và góc $\widehat{C}$ cắt nhau tại $K$. Chứng minh góc tạo bởi hai tia phân giác này liên hệ với hai góc $\widehat{B}$ và $\widehat{D}$.
 
-**Bài 4:** Chứng minh:
+**Bài 9 (Ứng dụng thực tế 1 — Khung cửa sổ bốn góc):** Một thợ cơ khí hàn một khung sắt tứ giác $ABCD$ có $\widehat{A} = 90^\circ, \widehat{B} = 90^\circ, \widehat{C} = 90^\circ$.
 
-a) Tổng hai góc đối trong tứ giác nhỏ hơn $360°$.
+a) Tính góc $\widehat{D}$ và xác định dạng hình học của khung sắt.  
+b) Kiểm tra xem hai đường chéo $AC$ và $BD$ có bằng nhau hay không.
 
-b) Trong tứ giác, nếu ba góc đều là góc nhọn thì góc thứ tư là góc tù.
+**Bài 10 (Ứng dụng thực tế 2 — Đo góc cánh diều):** Một chiếc diều có dạng tứ giác $ABCD$ với $AB = AD$ và $CB = CD$. Biết $\widehat{B} = 95^\circ, \widehat{D} = 95^\circ, \widehat{A} = 100^\circ$.
 
-c) Tứ giác không thể có ba góc vuông và một góc nhọn.
-
-d) Tứ giác có thể có bốn góc nhọn.
-
-**Bài 5:** Cho tứ giác $ABCD$ có $\hat{A} + \hat{C} = 180°$.
-
-a) Tính tổng $\hat{B} + \hat{D}$.
-
-b) Nếu $\hat{B} = 100°$, tính $\hat{D}$.
-
-c) Nếu $\hat{A} = 70°$, tính $\hat{C}$.
-
-d) Tứ giác có tính chất gì đặc biệt?
-
-**Bài 6 (Thực tế):** Một mảnh vườn hình tứ giác có các cạnh dài $10$ m, $15$ m, $12$ m, $18$ m.
-
-a) Tính chu vi mảnh vườn.
-
-b) Nếu ba góc của mảnh vườn là $80°$, $100°$, $95°$, tính góc còn lại.
-
-c) Người ta muốn rào xung quanh mảnh vườn, mỗi mét rào giá $50000$ đồng. Tính chi phí.
-
-d) Nếu tăng mỗi cạnh thêm $2$ m, chu vi tăng thêm bao nhiêu?
+a) Tính góc $\widehat{C}$ của chiếc diều.  
+b) Chứng minh đường chéo $AC$ là đường trung trực của đoạn thẳng $BD$.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) Đỉnh: $A, B, C, D$; Cạnh: $AB, BC, CD, DA$; Đường chéo: $AC, BD$; b) Cạnh đối: $(AB, CD)$, $(BC, DA)$; Góc đối: $(\hat{A}, \hat{C})$, $(\hat{B}, \hat{D})$; c) $\hat{D} = 80°$; d) $\hat{D} = 90°$
+**Bài 1:**
+a) $A$ và $C$; $B$ và $D$.
+b) $AB$ và $CD$; $AD$ và $BC$.
+c) $\widehat{A}$ và $\widehat{C}$; $\widehat{B}$ và $\widehat{D}$.
+d) $AC$ và $BD$.
+e) $AB$ và $CD$.
+f) $\widehat{A}$ và $\widehat{C}$.
 
-**Bài 2:** a) $90°$; b) $90°$; c) Tổng hai góc còn lại $= 170°$; d) $105°$
+**Bài 2:**
+a) $\widehat{D} = 360^\circ - (80^\circ + 100^\circ + 120^\circ) = 60^\circ$.
+b) $\widehat{C} = 360^\circ - (90^\circ + 90^\circ + 75^\circ) = 105^\circ$.
+c) $\widehat{A} = 360^\circ - (70^\circ + 110^\circ + 80^\circ) = 100^\circ$.
+d) $\widehat{D} = 360^\circ - (105^\circ + 75^\circ + 105^\circ) = 75^\circ$.
+e) Góc thứ tư $= 360^\circ - 3(90^\circ) = 90^\circ$.
+f) Góc còn lại $= 360^\circ - 3(70^\circ) = 150^\circ$.
 
-**Bài 3:** a) $\hat{B} = 36°$, $\hat{A} = 72°$, $\hat{C} = 108°$, $\hat{D} = 144°$; b) $\hat{D}$; c) $\hat{B}$; d) Bằng nhau ($180°$)
+**Bài 3:**
+a) $10x = 360^\circ \Rightarrow x = 36^\circ \Rightarrow \widehat{A} = 36^\circ, \widehat{B} = 72^\circ, \widehat{C} = 108^\circ, \widehat{D} = 144^\circ$.
+b) $\dfrac{1}{2}\widehat{D} + \dfrac{1}{2}\widehat{D} + \dfrac{1}{2}\widehat{D} + \widehat{D} = 360^\circ \Rightarrow 2,5\widehat{D} = 360^\circ \Rightarrow \widehat{D} = 144^\circ \Rightarrow \widehat{A} = \widehat{B} = \widehat{C} = 72^\circ$.
+c) $\widehat{A} + \widehat{B} = 360^\circ - (90^\circ + 110^\circ) = 160^\circ$. Mà $\widehat{A} - \widehat{B} = 20^\circ \Rightarrow \widehat{A} = 90^\circ, \widehat{B} = 70^\circ$.
+d) $\widehat{B} + \widehat{D} = 360^\circ - 180^\circ = 180^\circ \Rightarrow \widehat{D} = 180^\circ - 100^\circ = 80^\circ$.
+e) $b + 2b + 3b + 4b = 360^\circ \Rightarrow 10b = 360^\circ \Rightarrow b = 36^\circ \Rightarrow \widehat{A} = 72^\circ, \widehat{B} = 36^\circ, \widehat{C} = 108^\circ, \widehat{D} = 144^\circ$.
+f) Góc trong $\widehat{A} = 180^\circ - 120^\circ = 60^\circ \Rightarrow \widehat{D} = 360^\circ - (60^\circ + 80^\circ + 100^\circ) = 120^\circ$.
 
-**Bài 4:** Chứng minh bằng định lý tổng các góc
+**Bài 4:**
+a) $\widehat{B} = 360^\circ - (100^\circ + 80^\circ + 110^\circ) = 70^\circ$.
+b) Ta có $\widehat{A} + \widehat{D} = 100^\circ + 80^\circ = 180^\circ$. Hai góc trong cùng phía bù nhau $\Rightarrow AB // CD$.
 
-**Bài 5:** a) $180°$; b) $80°$; c) $110°$; d) Hai góc đối bù nhau
+**Bài 5:**
+a) Trong $\triangle OAB$ có $OA + OB > AB$. Trong $\triangle OCD$ có $OC + OD > CD$. Cộng lại: $(OA + OC) + (OB + OD) > AB + CD \Rightarrow AC + BD > AB + CD$.
+b) Tương tự trong $\triangle OAD$ và $\triangle OBC \Rightarrow AC + BD > AD + BC$.
 
-**Bài 6:** a) $55$ m; b) $85°$; c) $2.750.000$ đồng; d) Tăng $8$ m
+**Bài 6:**
+a) Tổng 4 góc ngoài $= (180^\circ - \widehat{A}) + (180^\circ - \widehat{B}) + (180^\circ - \widehat{C}) + (180^\circ - \widehat{D}) = 720^\circ - 360^\circ = 360^\circ$.
+b) Nếu 4 góc đều tù ($>90^\circ$) thì tổng 4 góc $> 4 \cdot 90^\circ = 360^\circ$ (mâu thuẫn với định lý).
+
+**Bài 7:**
+a) Trong $\triangle IAB$: $\widehat{AIB} = 180^\circ - \left(\dfrac{\widehat{A}}{2} + \dfrac{\widehat{B}}{2}\right) = 180^\circ - \dfrac{360^\circ - (\widehat{C} + \widehat{D})}{2} = \dfrac{\widehat{C} + \widehat{D}}{2}$.
+b) $\widehat{AIB} = \dfrac{80^\circ + 100^\circ}{2} = 90^\circ$.
+
+**Bài 8:**
+Sử dụng tổng các góc trong tam giác và góc ngoài $\Rightarrow$ Góc tại K bằng $\dfrac{|\widehat{B} - \widehat{D}|}{2}$.
+
+**Bài 9:**
+a) $\widehat{D} = 360^\circ - 3(90^\circ) = 90^\circ$. Tứ giác có 4 góc vuông nên khung sắt là hình chữ nhật.
+b) Trong hình chữ nhật, hai đường chéo bằng nhau $\Rightarrow AC = BD$.
+
+**Bài 10:**
+a) $\widehat{C} = 360^\circ - (95^\circ + 95^\circ + 100^\circ) = 70^\circ$.
+b) Xét $\triangle ABD$ cân tại A ($AB = AD$) và $\triangle CBD$ cân tại C ($CB = CD$) $\Rightarrow A$ và $C$ thuộc đường trung trực của $BD \Rightarrow AC$ là đường trung trực của $BD$.
 
 </div>
 </details>

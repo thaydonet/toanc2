@@ -12,6 +12,7 @@ import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
+import OnTapChuong3Interactive from '../../components/interactive/OnTapChuong3Interactive';
 import QuizSession from '../../components/ui/QuizSession';
 
 export const quizData = [
@@ -230,6 +231,14 @@ Khi hai đường thẳng song song bị cắt bởi một đường thẳng th�
 - **Góc trong cùng phía:** Bù nhau (tổng = $180°$)
 
 </KhamPha>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-tanh" style="display:none">Thực hành tương tác</h3>
+
+<OnTapChuong3Interactive client:load />
+
+</LuyenTap>
 
 <LuyenTap>
 

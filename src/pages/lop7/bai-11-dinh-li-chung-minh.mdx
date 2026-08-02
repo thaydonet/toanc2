@@ -13,6 +13,7 @@ import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
+import DinhLyChungMinhInteractive from '../../components/interactive/DinhLyChungMinhInteractive';
 import QuizSession from '../../components/ui/QuizSession';
 
 export const quizData = [
@@ -271,9 +272,17 @@ Hai góc so le trong bằng nhau nên $a \parallel c$
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="thuc-tanh" style="display:none">Thực hành tương tác</h3>
+
+<DinhLyChungMinhInteractive client:load />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="trac-nghiem" style="display:none">Trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 

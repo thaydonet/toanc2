@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 6: Hiệu hai bình phương. Bình phương của một tổng hay một hiệu"
-description: "Hằng đẳng thức đáng nhớ cơ bản - Toán 8 KNTT Chương 2"
+description: "Hằng đẳng thức đáng nhớ cơ bản: Bình phương của một tổng, bình phương của một hiệu, hiệu hai bình phương - Toán 8 KNTT Chương 2"
 grade: "Lớp 8"
 chapter: "Chương 2: Hằng đẳng thức đáng nhớ và ứng dụng"
 currentSlug: "lop8/bai-6-hang-dang-thuc-1"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,6 +13,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import HangDangThuc1Interactive from '../../components/interactive/HangDangThuc1Interactive';
 
 export const quizData = [
   {
@@ -98,226 +98,265 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Khai triển $(x + !a#4!)^2$ được:",
-    option_a: "$x^2 + !tinh: 2 * !a!!x + !tinh: !a! * !a!!$",
-    option_b: "$x^2 + !a!x + !tinh: !a! * !a!!$",
-    option_c: "$x^2 + !tinh: !a! * !a!!$",
-    option_d: "$x^2 + !a!$",
+    question: "Biểu thức $x^2 + 6x + 9$ được viết thành:",
+    option_a: "$(x + 3)^2$",
+    option_b: "$(x - 3)^2$",
+    option_c: "$(x + 9)^2$",
+    option_d: "$(3x + 1)^2$",
     correct_option: "A",
-    explanation: "$(x + !a!)^2 = x^2 + 2 \\cdot !a! \\cdot x + !a!^2 = x^2 + !tinh: 2 * !a!!x + !tinh: !a! * !a!!$.",
-    difficulty_level: "medium",
-    is_dynamic: true,
+    explanation: "$x^2 + 6x + 9 = x^2 + 2 \\cdot x \\cdot 3 + 3^2 = (x + 3)^2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Phân tích $x^2 - !a(4,9,16,25,36)!$ thành nhân tử:",
-    option_a: "$(x - !tinh: Math.sqrt(!a!)!)(x + !tinh: Math.sqrt(!a!)!)$",
-    option_b: "$(x - !a!)(x + !a!)$",
-    option_c: "$(x - !tinh: Math.sqrt(!a!)!)^2$",
-    option_d: "$x^2 - !a!$",
+    question: "Cho $x - y = 5$ và $xy = 6$. Giá trị của $x^2 + y^2$ là:",
+    option_a: "$37$",
+    option_b: "$13$",
+    option_c: "$25$",
+    option_d: "$31$",
     correct_option: "A",
-    explanation: "$x^2 - !a! = x^2 - (!tinh: Math.sqrt(!a!)!)^2 = (x - !tinh: Math.sqrt(!a!)!)(x + !tinh: Math.sqrt(!a!)!)$.",
+    explanation: "$x^2 + y^2 = (x - y)^2 + 2xy = 5^2 + 2(6) = 25 + 12 = 37$.",
     difficulty_level: "hard",
-    is_dynamic: true,
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Giá trị nhỏ nhất của $P = x^2 - 4x + 10$ là:",
+    option_a: "$6$",
+    option_b: "$10$",
+    option_c: "$4$",
+    option_d: "$2$",
+    correct_option: "A",
+    explanation: "$P = (x^2 - 4x + 4) + 6 = (x - 2)^2 + 6 \\ge 6$. Dấu '=' xảy ra khi $x = 2$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Hằng đẳng thức — Công cụ mạnh mẽ</h3>
+### 🎯 Khởi động bài học
 
-Hằng đẳng thức giúp ta tính toán nhanh và phân tích đa thức một cách hiệu quả!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
-    <strong>Tính nhanh</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$101^2 = (100 + 1)^2 = 10201$</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔧</div>
-    <strong>Phân tích</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$x^2 - 9 = (x - 3)(x + 3)$</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
-    <strong>Rút gọn</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">$(a + b)^2 - (a - b)^2 = 4ab$</p>
-  </div>
-</div>
+Nhiều tính toán số học hoặc đại số phức tạp có thể biến đổi và tính nhẩm siêu nhanh nhờ sử dụng các **hằng đẳng thức đáng nhớ**. Trong bài này, chúng ta sẽ khám phá 3 hằng đẳng thức cơ bản bậc 2 đầu tiên: **Bình phương của một tổng**, **Bình phương của một hiệu**, và **Hiệu hai bình phương**.
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="hdt-1">📖 1. Bình phương của một tổng</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-ly">
+#### 1. Bình phương của một tổng
 
-**Hằng đẳng thức 1:**
+Với hai biểu thức tùy ý $A$ và $B$, ta có:
+$$(A + B)^2 = A^2 + 2AB + B^2$$
 
-$(a + b)^2 = a^2 + 2ab + b^2$
-
-**Phát biểu:** Bình phương của một tổng bằng bình phương số hạng thứ nhất cộng hai lần tích hai số hạng cộng bình phương số hạng thứ hai.
-
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="340" height="260" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="40" y="30" width="160" height="160" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2" />
+  <rect x="200" y="30" width="80" height="160" fill="#fef08a" stroke="#ca8a04" stroke-width="2" />
+  <rect x="40" y="190" width="160" height="50" fill="#fef08a" stroke="#ca8a04" stroke-width="2" />
+  <rect x="200" y="190" width="80" height="50" fill="#bbf7d0" stroke="#15803d" stroke-width="2" />
+  <text x="120" y="115" font-size="16" font-weight="bold" fill="#1e40af">A²</text>
+  <text x="240" y="115" font-size="16" font-weight="bold" fill="#854d0e">A·B</text>
+  <text x="120" y="220" font-size="16" font-weight="bold" fill="#854d0e">A·B</text>
+  <text x="240" y="220" font-size="16" font-weight="bold" fill="#166534">B²</text>
+  <text x="120" y="20" font-size="14" font-weight="bold" fill="#334155">A</text>
+  <text x="240" y="20" font-size="14" font-weight="bold" fill="#334155">B</text>
+  <text x="20" y="115" font-size="14" font-weight="bold" fill="#334155">A</text>
+  <text x="20" y="220" font-size="14" font-weight="bold" fill="#334155">B</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Hình 1: Minh họa địa hình diện tích $(A+B)^2 = A^2 + 2AB + B^2$</em></p>
 </div>
 
-**Chứng minh:**
+**Ví dụ 1:** Khai triển $(x + 4)^2$.  
+*Lời giải:* $(x + 4)^2 = x^2 + 2 \cdot x \cdot 4 + 4^2 = x^2 + 8x + 16$.
 
-$(a + b)^2 = (a + b)(a + b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2$
+**Ví dụ 2:** Tính $(2a + 3b)^2$.  
+*Lời giải:* $(2a + 3b)^2 = (2a)^2 + 2 \cdot (2a) \cdot (3b) + (3b)^2 = 4a^2 + 12ab + 9b^2$.
 
-**Ví dụ 1:**
+**Ví dụ 3:** Tính nhẩm $52^2$.  
+*Lời giải:* $52^2 = (50 + 2)^2 = 50^2 + 2 \cdot 50 \cdot 2 + 2^2 = 2500 + 200 + 4 = 2704$.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+---
 
-$(x + 3)^2 = x^2 + 2 \\cdot x \\cdot 3 + 3^2 = x^2 + 6x + 9$
+#### 2. Bình phương của một hiệu
 
-$(2x + 5)^2 = (2x)^2 + 2 \\cdot 2x \\cdot 5 + 5^2 = 4x^2 + 20x + 25$
+Với hai biểu thức tùy ý $A$ và $B$, ta có:
+$$(A - B)^2 = A^2 - 2AB + B^2$$
 
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="320" height="240" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+  <rect x="40" y="30" width="220" height="180" fill="#fee2e2" stroke="#dc2626" stroke-width="2" />
+  <rect x="40" y="30" width="140" height="120" fill="#bbf7d0" stroke="#166534" stroke-width="2" />
+  <text x="110" y="95" font-size="16" font-weight="bold" fill="#15803d">(A - B)²</text>
+  <text x="150" y="20" font-size="14" font-weight="bold" fill="#334155">A</text>
+  <text x="20" y="120" font-size="14" font-weight="bold" fill="#334155">A</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Hình 2: Minh họa hình học diện tích $(A-B)^2 = A^2 - 2AB + B^2$</em></p>
 </div>
 
-**Ứng dụng tính nhanh:**
+**Ví dụ 1:** Khai triển $(x - 5)^2$.  
+*Lời giải:* $(x - 5)^2 = x^2 - 2 \cdot x \cdot 5 + 5^2 = x^2 - 10x + 25$.
 
-$101^2 = (100 + 1)^2 = 100^2 + 2 \\cdot 100 \\cdot 1 + 1^2 = 10000 + 200 + 1 = 10201$
+**Ví dụ 2:** Khai triển $(3x - 2y)^2$.  
+*Lời giải:* $(3x - 2y)^2 = (3x)^2 - 2 \cdot (3x) \cdot (2y) + (2y)^2 = 9x^2 - 12xy + 4y^2$.
 
-<h3 id="hdt-2" style="margin-top:2rem;">📖 2. Bình phương của một hiệu</h3>
+**Ví dụ 3:** Tính nhẩm $99^2$.  
+*Lời giải:* $99^2 = (100 - 1)^2 = 100^2 - 2 \cdot 100 \cdot 1 + 1^2 = 10000 - 200 + 1 = 9801$.
 
-<div class="box-dinh-ly">
+---
 
-**Hằng đẳng thức 2:**
+#### 3. Hiệu hai bình phương
 
-$(a - b)^2 = a^2 - 2ab + b^2$
+Với hai biểu thức tùy ý $A$ và $B$, ta có:
+$$A^2 - B^2 = (A - B)(A + B)$$
 
-**Phát biểu:** Bình phương của một hiệu bằng bình phương số hạng thứ nhất trừ hai lần tích hai số hạng cộng bình phương số hạng thứ hai.
-
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="320" height="240" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+  <rect x="40" y="30" width="200" height="180" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2" />
+  <rect x="180" y="150" width="60" height="60" fill="#fca5a5" stroke="#b91c1c" stroke-width="2" />
+  <text x="110" y="115" font-size="16" font-weight="bold" fill="#1e40af">A² - B²</text>
+  <text x="210" y="185" font-size="14" font-weight="bold" fill="#991b1b">B²</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Hình 3: Minh họa hiệu hai bình phương $A^2 - B^2 = (A-B)(A+B)$</em></p>
 </div>
 
-**Ví dụ 2:**
+**Ví dụ 1:** Tính $x^2 - 9$.  
+*Lời giải:* $x^2 - 9 = x^2 - 3^2 = (x - 3)(x + 3)$.
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 2:** Tính $4a^2 - 25b^2$.  
+*Lời giải:* $4a^2 - 25b^2 = (2a)^2 - (5b)^2 = (2a - 5b)(2a + 5b)$.
 
-$(x - 4)^2 = x^2 - 2 \\cdot x \\cdot 4 + 4^2 = x^2 - 8x + 16$
-
-$(3x - 2)^2 = (3x)^2 - 2 \\cdot 3x \\cdot 2 + 2^2 = 9x^2 - 12x + 4$
-
-</div>
-
-**Ứng dụng tính nhanh:**
-
-$99^2 = (100 - 1)^2 = 100^2 - 2 \\cdot 100 \\cdot 1 + 1^2 = 10000 - 200 + 1 = 9801$
-
-<h3 id="hdt-3" style="margin-top:2rem;">📖 3. Hiệu hai bình phương</h3>
-
-<div class="box-dinh-ly">
-
-**Hằng đẳng thức 3:**
-
-$a^2 - b^2 = (a - b)(a + b)$
-
-**Phát biểu:** Hiệu hai bình phương bằng tích của hiệu và tổng hai số hạng.
-
-</div>
-
-**Chứng minh:**
-
-$(a - b)(a + b) = a^2 + ab - ba - b^2 = a^2 - b^2$
-
-**Ví dụ 3:**
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$x^2 - 9 = x^2 - 3^2 = (x - 3)(x + 3)$
-
-$4x^2 - 25 = (2x)^2 - 5^2 = (2x - 5)(2x + 5)$
-
-</div>
-
-**Ứng dụng tính nhanh:**
-
-$103 \\times 97 = (100 + 3)(100 - 3) = 100^2 - 3^2 = 10000 - 9 = 9991$
-
-<h3 id="ung-dung" style="margin-top:2rem;">🔧 4. Ứng dụng</h3>
-
-**a) Rút gọn biểu thức:**
-
-**Ví dụ 4:** Rút gọn $(x + 5)^2 - (x - 5)^2$
-
-<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$= (x^2 + 10x + 25) - (x^2 - 10x + 25)$
-
-$= x^2 + 10x + 25 - x^2 + 10x - 25$
-
-$= 20x$
-
-**Cách khác:** Dùng $a^2 - b^2 = (a - b)(a + b)$
-
-$= [(x + 5) - (x - 5)][(x + 5) + (x - 5)]$
-
-$= [10][2x] = 20x$
-
-</div>
-
-**b) Chứng minh đẳng thức:**
-
-**Ví dụ 5:** Chứng minh $(a + b)^2 = (a - b)^2 + 4ab$
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-VT $= a^2 + 2ab + b^2$
-
-VP $= (a^2 - 2ab + b^2) + 4ab = a^2 + 2ab + b^2$
-
-Vậy VT = VP (đpcm)
-
-</div>
+**Ví dụ 3:** Tính nhanh $101 \cdot 99$.  
+*Lời giải:* $101 \cdot 99 = (100 + 1)(100 - 1) = 100^2 - 1^2 = 10000 - 1 = 9999$.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Hằng đẳng thức 1, 2, 3</h3>
 
-<QuizSession client:load questions={quizData} />
+<HangDangThuc1Interactive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Các dạng toán & Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
 
-**📝 Bài toán 1:** Một mảnh vườn hình vuông có cạnh $(x + 5)$ m. Tính diện tích.
+<div class="box-dinh-ly">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$S = (x + 5)^2 = x^2 + 10x + 25$ (m²)
-
-</div>
-
-**📝 Bài toán 2:** Tính nhanh diện tích hình vuông cạnh 101 cm.
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-$S = 101^2 = (100 + 1)^2 = 10201$ cm²
+**Dạng 1: Khai triển biểu thức theo hằng đẳng thức**
+**Phương pháp:** Nhận diện đúng $A$ và $B$, áp dụng công thức $(A \pm B)^2 = A^2 \pm 2AB + B^2$ hoặc $A^2 - B^2 = (A-B)(A+B)$.
 
 </div>
 
-**📝 Bài toán 3:** Tính nhanh $51 \\times 49$.
+**Ví dụ 1:** Khai triển $(x + 2y)^2$.  
+*Lời giải:* $x^2 + 4xy + 4y^2$.
 
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 2:** Khai triển $(3x - 1)^2$.  
+*Lời giải:* $9x^2 - 6x + 1$.
 
-$51 \\times 49 = (50 + 1)(50 - 1) = 50^2 - 1^2 = 2500 - 1 = 2499$
+**Ví dụ 3:** Khai triển $(x - 4)(x + 4)$.  
+*Lời giải:* $x^2 - 16$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Viết đa thức dưới dạng bình phương hoặc tích**
+**Phương pháp:** Biến đổi các hạng tử về đúng dạng $A^2 \pm 2AB + B^2$ để thu gọn thành $(A \pm B)^2$.
+
+</div>
+
+**Ví dụ 1:** Viết $x^2 + 6x + 9$ dưới dạng bình phương.  
+*Lời giải:* $x^2 + 2 \cdot x \cdot 3 + 3^2 = (x + 3)^2$.
+
+**Ví dụ 2:** Viết $4x^2 - 4x + 1$ dưới dạng bình phương.  
+*Lời giải:* $(2x)^2 - 2 \cdot (2x) \cdot 1 + 1^2 = (2x - 1)^2$.
+
+**Ví dụ 3:** Viết $9x^2 - 16y^2$ dưới dạng tích.  
+*Lời giải:* $(3x)^2 - (4y)^2 = (3x - 4y)(3x + 4y)$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 3: Rút gọn biểu thức và tính giá trị**
+**Phương pháp:** Áp dụng hằng đẳng thức để thu gọn biểu thức trước, sau đó thay giá trị biến vào tính toán.
+
+</div>
+
+**Ví dụ 1:** Rút gọn $P = (x + 3)^2 - (x - 3)^2$.  
+*Lời giải:* $P = (x^2 + 6x + 9) - (x^2 - 6x + 9) = 12x$.
+
+**Ví dụ 2:** Tính giá trị $A = x^2 - 4x + 4$ tại $x = 102$.  
+*Lời giải:* $A = (x - 2)^2 = (102 - 2)^2 = 100^2 = 10000$.
+
+**Ví dụ 3:** Tính nhanh $202^2 - 202 \cdot 4 + 4$.  
+*Lời giải:* $202^2 - 2 \cdot 202 \cdot 2 + 2^2 = (202 - 2)^2 = 200^2 = 40000$.
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 4: Tìm giá trị lớn nhất (GTLN) và giá trị nhỏ nhất (GTNN)**
+**Phương pháp:** Đưa biểu thức về dạng $A(x) = (x \pm k)^2 + m \ge m \Rightarrow \text{GTNN } = m$ hoặc $B(x) = m - (x \pm k)^2 \le m \Rightarrow \text{GTLN } = m$.
+
+</div>
+
+**Ví dụ 1:** Tìm GTNN của $P = x^2 - 6x + 10$.  
+*Lời giải:* $P = (x^2 - 6x + 9) + 1 = (x - 3)^2 + 1 \ge 1$. GTNN của $P$ bằng $1$ khi $x = 3$.
+
+**Ví dụ 2:** Tìm GTLN của $Q = -x^2 + 4x + 5$.  
+*Lời giải:* $Q = -(x^2 - 4x + 4) + 9 = -(x - 2)^2 + 9 \le 9$. GTLN của $Q$ bằng $9$ khi $x = 2$.
+
+**Ví dụ 3:** Tìm GTNN của $M = 4x^2 + 4x + 7$.  
+*Lời giải:* $M = (2x + 1)^2 + 6 \ge 6$. GTNN của $M$ bằng $6$ khi $x = -\dfrac{1}{2}$.
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Mở rộng sân trường):** Một mảnh sân hình vuông ban đầu có cạnh $x$ (m). Sau khi quy hoạch, mỗi cạnh được mở rộng thêm $3$ (m).
+
+a) Viết biểu thức tính diện tích sân trường mới.  
+b) Tính diện tích tăng thêm khi $x = 20$ m.
+
+**Lời giải:**  
+a) Cạnh sân mới là $x + 3$ (m). Diện tích mới là $S = (x + 3)^2 = x^2 + 6x + 9$ (m²).  
+b) Diện tích tăng thêm $\Delta S = S - x^2 = 6x + 9$ (m²). Thay $x = 20 \Rightarrow \Delta S = 6(20) + 9 = 129$ (m²).
+
+</div>
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 2 (Làm khung ảnh trang trí):** Khung ảnh hình vuông cạnh $x$ (cm) được đặt lồng bên trong một bức tranh hình vuông cạnh $(x + 5)$ (cm).
+
+a) Viết biểu thức tính diện tích phần bức tranh không bị khung ảnh che phủ.  
+b) Tính phần diện tích này khi $x = 15$ cm.
+
+**Lời giải:**  
+a) Diện tích bức tranh là $(x + 5)^2$, diện tích khung ảnh là $x^2$. Phần diện tích còn lại:  
+$$S = (x + 5)^2 - x^2 = (x + 5 - x)(x + 5 + x) = 5(2x + 5) = 10x + 25\text{ (cm²)}$$  
+b) Thay $x = 15 \Rightarrow S = 10(15) + 25 = 175$ (cm²).
 
 </div>
 
 </VanDung>
 
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- $(a + b)^2 = a^2 + 2ab + b^2$
-- $(a - b)^2 = a^2 - 2ab + b^2$
-- $a^2 - b^2 = (a - b)(a + b)$
-- **Ứng dụng**: tính nhanh, rút gọn, phân tích
+- **(A + B)² = A² + 2AB + B²**
+- **(A - B)² = A² - 2AB + B²**
+- **A² - B² = (A - B)(A + B)**
 
 </GhiNho>
 
@@ -325,81 +364,143 @@ $51 \\times 49 = (50 + 1)(50 - 1) = 50^2 - 1^2 = 2500 - 1 = 2499$
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Khai triển các biểu thức sau:
+**Bài 1 (Dễ — Khai triển hằng đẳng thức):** Khai triển các biểu thức sau:
 
-a) $(x + 7)^2$
+a) $(x + 4)^2$ &nbsp;&nbsp;&nbsp; b) $(2x - 3)^2$ &nbsp;&nbsp;&nbsp; c) $(x - 5y)(x + 5y)$
 
-b) $(3x - 4)^2$
+d) $(3x + 2y)^2$ &nbsp;&nbsp;&nbsp; e) $(4x - 1)^2$ &nbsp;&nbsp;&nbsp; f) $(9x^2 - 1)$
 
-c) $(2x + 5y)^2$
+**Bài 2 (Dễ — Viết dưới dạng bình phương hoặc tích):**
 
-d) $(5a - 3b)^2$
+a) Viết $x^2 + 8x + 16$ dưới dạng bình phương một tổng.
 
-**Bài 2:** Phân tích thành nhân tử:
+b) Viết $9x^2 - 12x + 4$ dưới dạng bình phương một hiệu.
 
-a) $x^2 - 49$
+c) Viết $25x^2 - 4y^2$ dưới dạng tích.
 
-b) $9x^2 - 16$
+d) Viết $x^2y^2 - 4$ dưới dạng tích.
 
-c) $25a^2 - 4b^2$
+e) Viết $4x^2 + 4x + 1$ dưới dạng bình phương một tổng.
 
-d) $x^2y^2 - 1$
+f) Viết $x^2 - x + \dfrac{1}{4}$ dưới dạng bình phương một hiệu.
 
-**Bài 3:** Tính nhanh:
+**Bài 3 (Trung bình — Tính nhanh & Tính giá trị biểu thức):**
 
-a) $102^2$
+a) Tính nhanh $102^2$ bằng hằng đẳng thức.
 
-b) $98^2$
+b) Tính nhanh $98^2$ bằng hằng đẳng thức.
 
-c) $201^2$
+c) Tính nhanh $105 \cdot 95$ bằng hiệu hai bình phương.
 
-d) $49 \\times 51$
+d) Tính giá trị $A = x^2 - 6x + 9$ tại $x = 103$.
 
-**Bài 4:** Rút gọn các biểu thức:
+e) Tính giá trị $B = 4x^2 + 12x + 9$ tại $x = 48.5$.
 
-a) $(x + 3)^2 + (x - 3)^2$
+f) Tính giá trị $C = x^2 - y^2$ tại $x = 55, y = 45$.
 
-b) $(2x + 1)^2 - (2x - 1)^2$
+**Bài 4 (Trung bình — Rút gọn biểu thức tổng hợp):**
 
-c) $(a + b)^2 - (a - b)^2$
+a) Rút gọn $P = (x + 3)^2 - (x - 3)^2$.
 
-d) $(x + 2)^2 - (x - 1)^2 - 6x$
+b) Rút gọn $Q = (2x + 1)^2 + (2x - 1)^2 - 8x^2$.
 
-**Bài 5:** Chứng minh các đẳng thức:
+c) Rút gọn $M = (x - 2)(x + 2) - (x - 1)^2$.
 
-a) $(a + b)^2 + (a - b)^2 = 2(a^2 + b^2)$
+**Bài 5 (Trung bình — Tìm $x$):**
 
-b) $(a + b)^2 - (a - b)^2 = 4ab$
+a) Tìm $x$ biết $(x + 2)^2 - x^2 = 12$.
 
-c) $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca$
+b) Tìm $x$ biết $(x - 3)^2 - (x + 1)(x - 1) = 4$.
 
-d) $a^2 + b^2 = \\dfrac{1}{2}[(a + b)^2 + (a - b)^2]$
+c) Tìm $x$ biết $x^2 - 16 = 0$.
 
-**Bài 6 (Thực tế):** Một mảnh đất hình vuông có cạnh $50$ m. Người ta mở rộng mỗi cạnh thêm $x$ m.
+**Bài 6 (Khá — Chứng minh đẳng thức & Biểu thức không phụ thuộc biến):**
 
-a) Viết biểu thức tính diện tích mảnh đất sau khi mở rộng.
+a) Chứng minh $(a + b)^2 - (a - b)^2 = 4ab$.
 
-b) Tính diện tích tăng thêm theo $x$.
+b) Chứng minh $P = (x - 2)^2 + (x + 2)^2 - 2(x - 1)(x + 1) = 10$ có giá trị không phụ thuộc vào $x$.
 
-c) Nếu $x = 5$ m, diện tích tăng thêm bao nhiêu?
+**Bài 7 (Khá — Tìm GTLN và GTNN):**
 
-d) Tìm $x$ để diện tích tăng thêm $600$ m².
+a) Tìm giá trị nhỏ nhất của $A = x^2 - 8x + 20$.
+
+b) Tìm giá trị lớn nhất của $B = -x^2 + 6x - 2$.
+
+**Bài 8 (Khá - Nâng cao — Chứng minh biểu thức không âm/không dương):**
+
+a) Chứng minh $M = x^2 - 4x + 5 > 0$ với mọi $x \in \mathbb{R}$.
+
+b) Chứng minh $N = -x^2 + 2x - 3 < 0$ với mọi $x \in \mathbb{R}$.
+
+**Bài 9 (Ứng dụng thực tế 1 — Mở rộng mảnh đất hình vuông):** Một mảnh đất hình vuông có cạnh $x$ (m). Người ta mở rộng mảnh đất bằng cách tăng mỗi cạnh thêm $4$ (m).
+
+a) Viết biểu thức đa thức tính diện tích mảnh đất sau khi mở rộng.
+
+b) Viết biểu thức tính phần diện tích tăng thêm và tính diện tích tăng thêm khi $x = 15$ m.
+
+**Bài 10 (Ứng dụng thực tế 2 — Cắt góc mảnh bìa hình vuông):** Người ta cắt bỏ 4 góc hình vuông cạnh $y$ (cm) từ một tấm bìa hình vuông lớn cạnh $x$ (cm) với $x > 2y$.
+
+a) Viết biểu thức biểu thị diện tích phần tấm bìa còn lại dưới dạng tích.
+
+b) Tính phần diện tích còn lại khi $x = 20$ cm và $y = 3$ cm.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $x^2 + 14x + 49$; b) $9x^2 - 24x + 16$; c) $4x^2 + 20xy + 25y^2$; d) $25a^2 - 30ab + 9b^2$
+**Bài 1:**
+a) $x^2 + 8x + 16$.
+b) $4x^2 - 12x + 9$.
+c) $x^2 - 25y^2$.
+d) $9x^2 + 12xy + 4y^2$.
+e) $16x^2 - 8x + 1$.
+f) $(3x - 1)(3x + 1)$.
 
-**Bài 2:** a) $(x - 7)(x + 7)$; b) $(3x - 4)(3x + 4)$; c) $(5a - 2b)(5a + 2b)$; d) $(xy - 1)(xy + 1)$
+**Bài 2:**
+a) $(x + 4)^2$.
+b) $(3x - 2)^2$.
+c) $(5x - 2y)(5x + 2y)$.
+d) $(xy - 2)(xy + 2)$.
+e) $(2x + 1)^2$.
+f) $\left(x - \dfrac{1}{2}\right)^2$.
 
-**Bài 3:** a) $10404$; b) $9604$; c) $40401$; d) $2499$
+**Bài 3:**
+a) $102^2 = (100 + 2)^2 = 10000 + 400 + 4 = 10404$.
+b) $98^2 = (100 - 2)^2 = 10000 - 400 + 4 = 9604$.
+c) $105 \cdot 95 = (100 + 5)(100 - 5) = 10000 - 25 = 9975$.
+d) $A = (x - 3)^2 = (103 - 3)^2 = 100^2 = 10000$.
+e) $B = (2x + 3)^2 = [2(48.5) + 3]^2 = (97 + 3)^2 = 100^2 = 10000$.
+f) $C = (x - y)(x + y) = (55 - 45)(55 + 45) = 10 \cdot 100 = 1000$.
 
-**Bài 4:** a) $2x^2 + 18$; b) $8x$; c) $4ab$; d) $3$
+**Bài 4:**
+a) $P = (x^2 + 6x + 9) - (x^2 - 6x + 9) = 12x$.
+b) $Q = (4x^2 + 4x + 1) + (4x^2 - 4x + 1) - 8x^2 = 2$.
+c) $M = (x^2 - 4) - (x^2 - 2x + 1) = 2x - 5$.
 
-**Bài 5:** Chứng minh bằng khai triển và rút gọn
+**Bài 5:**
+a) $x^2 + 4x + 4 - x^2 = 12 \Rightarrow 4x = 8 \Rightarrow x = 2$.
+b) $(x^2 - 6x + 9) - (x^2 - 1) = 4 \Rightarrow -6x + 10 = 4 \Rightarrow -6x = -6 \Rightarrow x = 1$.
+c) $(x - 4)(x + 4) = 0 \Rightarrow x = 4$ hoặc $x = -4$.
 
-**Bài 6:** a) $(50 + x)^2 = 2500 + 100x + x^2$ (m²); b) $100x + x^2$ (m²); c) $525$ m²; d) $x = 10$ m (loại $x = -110$)
+**Bài 6:**
+a) Biến đổi VT $= (a^2 + 2ab + b^2) - (a^2 - 2ab + b^2) = 4ab =$ VP (đpcm).
+b) $P = (x^2 - 4x + 4) + (x^2 + 4x + 4) - 2(x^2 - 1) = 2x^2 + 8 - 2x^2 + 2 = 10$ (không phụ thuộc vào $x$).
+
+**Bài 7:**
+a) $A = (x^2 - 8x + 16) + 4 = (x - 4)^2 + 4 \ge 4$. GTNN bằng $4$ khi $x = 4$.
+b) $B = -(x^2 - 6x + 9) + 7 = -(x - 3)^2 + 7 \le 7$. GTLN bằng $7$ khi $x = 3$.
+
+**Bài 8:**
+a) $M = (x^2 - 4x + 4) + 1 = (x - 2)^2 + 1 \ge 1 > 0$ với mọi $x$.
+b) $N = -(x^2 - 2x + 1) - 2 = -(x - 1)^2 - 2 \le -2 < 0$ với mọi $x$.
+
+**Bài 9:**
+a) Diện tích sau khi mở rộng: $S = (x + 4)^2 = x^2 + 8x + 16$ (m²).
+b) Diện tích tăng thêm: $\Delta S = 8x + 16$ (m²). Thay $x = 15 \Rightarrow \Delta S = 8(15) + 16 = 136$ (m²).
+
+**Bài 10:**
+a) $S = x^2 - 4y^2 = (x - 2y)(x + 2y)$ (cm²).
+b) Thay $x = 20, y = 3 \Rightarrow S = (20 - 6)(20 + 6) = 14 \cdot 26 = 364$ (cm²).
 
 </div>
 </details>
