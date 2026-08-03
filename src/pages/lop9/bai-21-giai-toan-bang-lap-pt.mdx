@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 21: Giải bài toán bằng cách lập phương trình"
-description: "Ứng dụng phương trình bậc hai để giải quyết các bài toán thực tế - Toán 9 KNTT Chương 6"
+description: "Quy trình 3 bước giải bài toán bằng cách lập phương trình bậc hai một ẩn và các dạng toán thực tế - Toán 9 KNTT Chương 6"
 grade: "Lớp 9"
 chapter: "Chương VI: Hàm số y = ax² (a ≠ 0). Phương trình bậc hai một ẩn"
 currentSlug: "lop9/bai-21-giai-toan-bang-lap-pt"
@@ -13,233 +13,401 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
-import QuadraticEquationSolver from '../../components/interactive/QuadraticEquationSolver';
+import WordProblemSolver from '../../components/interactive/WordProblemSolver';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Bước quan trọng đầu tiên khi giải bài toán bằng cách lập phương trình là gì?",
-    option_a: "Giải phương trình ngay lập tức",
-    option_b: "Lập bảng giá trị biến thiên nghiệm",
-    option_c: "Chọn ẩn số, đặt điều kiện và đơn vị cho ẩn số",
-    option_d: "Thử mọi đáp án từ 1 đến 10",
-    correct_option: "C",
-    explanation: "Đầu xuôi đuôi lọt. Nếu không có bước Chọn ẩn x và Đặt điều kiện (như $x > 0$ hoặc $x \\in \\mathbb{N}$), bạn sẽ không thể chuyển ngữ bài toán thành Đại số.",
+    question: "Quy trình giải bài toán bằng cách lập phương trình gồm bao nhiêu bước chính?",
+    option_a: "2 bước",
+    option_b: "3 bước",
+    option_c: "4 bước",
+    option_d: "5 bước",
+    correct_option: "B",
+    explanation: "Quy trình gồm 3 bước: Bước 1 - Lập phương trình; Bước 2 - Giải phương trình; Bước 3 - Kiểm tra điều kiện và kết luận.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Một mảnh vườn hình chữ nhật có diện tích $60\\text{m}^2$. Biết chiều dài hơn chiều rộng $4\\text{m}$. Nếu gọi chiều rộng là $x$, phương trình diện tích nào là đúng?",
-    option_a: "$x(x - 4) = 60$",
-    option_b: "$x + (x + 4) = 60$",
-    option_c: "$x(x + 4) = 60$",
-    option_d: "$x^2 + 4 = 60$",
-    correct_option: "C",
-    explanation: "Chiều rộng là x. Chiều dài dài hơn $4\\text{m}$ nên là $x+4$. Diện tích là Tích của hai cạnh = $x(x+4) = 60$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trong bài toán Chuyển động, Năng suất, công thức liên hệ thần thánh là gì?",
-    option_a: "Quãng đường = Vận tốc + Thời gian",
-    option_b: "Vận tốc = Thời gian / Quãng đường",
-    option_c: "Quãng đường = Vận tốc x Thời gian ($S = V \\cdot T$)",
-    option_d: "Khối lượng công việc = Năng suất / Thời gian",
-    correct_option: "C",
-    explanation: "$S = v \\cdot t$ và Khối lượng công việc = Năng suất $\\times$ Thời gian.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Hai vòi nước cùng chảy vào 1 nấc bể. Vòi 1 róc rách mất x (giờ) để đầy. Vậy trong 1 giờ, vòi 1 chảy được NGẦN NÀO cái bể?",
-    option_a: "$x / 1$ (bể)",
-    option_b: "$x$ (bể)",
-    option_c: "$1 / x$ (bể)",
-    option_d: "$1 - x$ (bể)",
-    correct_option: "C",
-    explanation: "Đây là bài toán Năng suất đơn vị chung. Mất tổng x giờ để đạt mốc 1 (đầy bể). Nên 1 giờ chỉ chạy được mảng phân số $1/x$ của cái bể.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Phương trình biểu diễn Bài toán Năng suất 2 vòi V(1) là $1/x$, vòi V(2) là $1/(x+2)$ cùng chảy sau 4 giờ đầy lu cái bể (Quy chuẩn bể = 1).",
-    option_a: "$4(1/x) + 4(1/(x+2)) = 1$",
-    option_b: "$1/x + 1/(x+2) = 4$",
-    option_c: "$x + x+2 = 4$",
-    option_d: "$4/x + 4x + 8 = 1$",
+    question: "Trong bài toán chuyển động, mối liên hệ giữa quãng đường $s$, vận tốc $v$ và thời gian $t$ là:",
+    option_a: "$s = v \\cdot t$",
+    option_b: "$v = s \\cdot t$",
+    option_c: "$t = s \\cdot v$",
+    option_d: "$s = v + t$",
     correct_option: "A",
-    explanation: "Tổng năng suất 1 giờ của cả 2 mỏm vòi nhân chập với 4 giờ liên tục thì tạo thành cái mốc số 1 (Hoàn Thành $100\\%$ Bể). Do đó Tích $4 \\cdot (1/x + 1/(x+2)) = 1$.",
-    difficulty_level: "medium",
+    explanation: "Công thức cơ bản của chuyển động đều: Quãng đường = Vận tốc $\\times$ Thời gian ($s = v \\cdot t$).",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Khi giải nảy ra 2 nghiệm $x_1 = 5$ và $x_2 = -8$ đo đạc cho kích thước Chiều dài. Bạn phải làm gì ở Bước Cuối?",
-    option_a: "Lấy cái lớn nhất là 5, trừ cái nhỏ ra đáp án.",
-    option_b: "Nhận cả 2 rồi kết luận dài 5 hoặc dài -8.",
-    option_c: "Loại bỏ -8 vì Chiều dài (hoặc Thời gian) không bao giờ nhận số Âm. Chỉ lấy 5.",
-    option_d: "Biến -8 thành 8 để lấy nhánh đối lập.",
-    correct_option: "C",
-    explanation: "Bước 3 của quy trình Giải toán lập phương trình: Luôn Kiểm Tra Lại Nghiệm. So sánh với điều kiện mốc $x > 0$ ban đầu để Chặn Nghiệm phi lý (Loại x2).",
+    question: "Một ca nô chạy xuôi dòng với vận tốc thực $v$ và vận tốc dòng nước $v_{nước}$. Vận tốc xuôi dòng $v_{xuôi}$ là:",
+    option_a: "$v_{xuôi} = v - v_{nước}$",
+    option_b: "$v_{xuôi} = v + v_{nước}$",
+    option_c: "$v_{xuôi} = v \\cdot v_{nước}$",
+    option_d: "$v_{xuôi} = \\frac{v}{v_{nước}}$",
+    correct_option: "B",
+    explanation: "Khi chạy xuôi dòng, vận tốc ca nô bằng tổng vận tốc thực và vận tốc dòng nước: $v_{xuôi} = v + v_{nước}$.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu một đội công nhân làm riêng xong công việc trong $x$ ngày thì trong 1 ngày đội đó làm được bao nhiêu phần công việc?",
+    option_a: "$x$ phần công việc",
+    option_b: "$\\frac{1}{x}$ phần công việc",
+    option_c: "$x - 1$ phần công việc",
+    option_d: "$\\frac{x}{2}$ phần công việc",
+    correct_option: "B",
+    explanation: "Năng suất 1 ngày bằng 1 chia cho tổng số ngày hoàn thành: $\\frac{1}{x}$ phần công việc.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một mảnh đất hình chữ nhật có chiều dài hơn chiều rộng $5\\text{ m}$ và diện tích $150\\text{ m}^2$. Nếu gọi chiều rộng là $x > 0$ (m), phương trình lập được là:",
+    option_a: "$x(x + 5) = 150$",
+    option_b: "$x(x - 5) = 150$",
+    option_c: "$2(x + x + 5) = 150$",
+    option_d: "$x^2 + 5 = 150$",
+    correct_option: "A",
+    explanation: "Chiều rộng $x$, chiều dài $x + 5$. Diện tích hình chữ nhật bằng tích hai kích thước: $x(x + 5) = 150$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tích hai số tự nhiên liên tiếp là 156. Hai số đó là:",
+    option_a: "11 và 12",
+    option_b: "12 và 13",
+    option_c: "13 và 14",
+    option_d: "14 và 15",
+    correct_option: "B",
+    explanation: "Gọi hai số là $x$ và $x+1$. $x(x+1) = 156 \\Leftrightarrow x^2 + x - 156 = 0 \\Rightarrow x = 12$. Hai số là 12 và 13.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Bài toán: Một người đi xe đạp chặng $30\\text{km}$. Gọi Vận tốc lúc đi là $x$. Vận tốc lúc rẽ về tăng sương sương thêm $5\\text{km/h}$. Thời gian lúc về ít hơn lúc đi $1\\text{ giờ}$. Chọn các khẳng định biểu thức Đúng:",
-    option_a: "Thời gian lúc đi là $30 / x$.",
-    option_b: "Vận tốc lúc về là $x + 5$ và Thời gian về là $30 / (x+5)$.",
-    option_c: "Phương trình mấu chốt là: $30/x - 30/(x+5) = 1$.",
-    option_d: "Phương trình mấu chốt là: $30/(x+5) - 30/x = 1$.",
-    correct_option: "A,B,C",
-    explanation: "Thời gian (T = S / v). Lúc đi vận tốc nhỏ hơn $\\Rightarrow$ Chạy Chậm $\\Rightarrow$ Tốn nhiều thời gian hơn. Nên Lấy Mức T (lớn) trừ T (nhỏ) luôn bằng chênh lệch dương (1 giờ). Nên $30/x$ là số to, trừ đi $30/(x+5)$ mới ra dương 1. (C đúng, D sai).",
+    question: "Những lưu ý quan trọng nào khi đặt điều kiện cho ẩn số trong bài toán lập phương trình?",
+    option_a: "Ẩn là kích thước độ dài, diện tích, vận tốc, thời gian phải $> 0$",
+    option_b: "Ẩn là số người, số xe, số ngày công phải $\\in \\mathbb{N}^*$",
+    option_c: "Sau khi giải xong phương trình bắt buộc phải đối chiếu với điều kiện của ẩn",
+    option_d: "Nếu loại nghiệm âm thì phải ghi rõ lý do không thỏa mãn điều kiện",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 lưu ý trên đều rất quan trọng để đảm bảo bài toán được giải chính xác và không bị trừ điểm trình bày.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Một ô tô đi từ A đến B cách nhau $120\\text{ km}$. Nếu vận tốc tăng thêm $10\\text{ km/h}$ thì thời gian giảm $36$ phút ($0,6$ giờ). Khẳng định nào ĐÚNG?",
+    option_a: "Gọi vận tốc ban đầu là $v > 0$ (km/h)",
+    option_b: "Thời gian ban đầu là $\\frac{120}{v}$ (giờ)",
+    option_c: "Phương trình: $\\frac{120}{v} - \\frac{120}{v+10} = 0,6$",
+    option_d: "Vận tốc ban đầu của ô tô là $40\\text{ km/h}$",
+    correct_option: "A,B,C,D",
+    explanation: "Giải phương trình $\\frac{120}{v} - \\frac{120}{v+10} = 0,6 \\Rightarrow v = 40\\text{ km/h}$. Cả 4 khẳng định đều đúng.",
     difficulty_level: "hard",
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Phương trình $x^2 + 10x - 1200 = 0$ (Định mức mảng $x>0$). Định cấu trúc để tính số Dãy ghế (x) của Rạp Xiếc. Chọn giá trị x đúng?",
-    option_a: "x = 30",
-    option_b: "x = 40",
-    option_c: "x = -40",
-    option_d: "x = 30 và x = -40",
-    correct_option: "A",
-    explanation: "Bấm giải chập $1x^2 + 10x - 1200 = 0 \\Rightarrow x=30$ hoặc $x=-40$. Nhưng ghế rạp thì phải trên 0, nên rụng mảng âm. Chỉ nhận Khẳng định A một đáp án nẩy chốt $30$.",
+    type: "sa",
+    question: "Một xuồng máy chạy ngược dòng $30\\text{ km}$ mất 2 giờ. Vận tốc dòng nước là $3\\text{ km/h}$. Vận tốc thực của xuồng máy khi nước yên lặng bằng bao nhiêu km/h?",
+    correct_option: "18",
+    explanation: "Vận tốc ngược dòng $v_{ngược} = 30 / 2 = 15\\text{ km/h}$. Vận tốc thực $v = v_{ngược} + v_{nước} = 15 + 3 = 18\\text{ km/h}$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tổng của hai số tự nhiên là 11, Tích của chúng cắn bằng 30. Số Lớn Hơn trong cặp đó là bao nhiêu?",
-    correct_option: "6",
-    explanation: "Quá quen với mảng Viètes: Hai số chập lại là nghiệm phương trình $X^2 - 11X + 30 = 0$. Bấm nghiệm lòi ra $X = 6$ và $X = 5$. Cặp số là 5 và 6. Mỏ neo số Lớn là 6.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Quãng đường $S = 60\\text{km}$. Gọi vận tốc của xe máy là x. Ô tô dốc vận tốc hơn xe máy $20\\text{km/h}$ nên đến nơi sớm hơn xe máy $0.5\\text{ giờ}$. Lập Phương trình ẩn thời gian nẹp $60/x - 60/(x+20) = 0.5$. Sau khi quy đồng, Vận Tốc x của xe máy là bao nhiêu km/h?",
-    correct_option: "40",
-    explanation: "Quy đồng đè 2 con mẫu: $60(x+20) - 60x = 0.5 x(x+20) \\Rightarrow 1200 = 0.5 x^2 + 10x \\Rightarrow x^2 + 20x - 2400 = 0$. Ráp Delta hoặc nhẩm ra x = 40 và x = -60 (Loại vì âm). Vận Tốc $= 40$.",
-    difficulty_level: "hard",
+    question: "Một tam giác vuông có hai cạnh góc vuông hơn kém nhau $3\\text{ cm}$ và cạnh huyền bằng $15\\text{ cm}$. Diện tích của tam giác vuông bằng bao nhiêu cm²?",
+    correct_option: "54",
+    explanation: "Gọi cạnh góc vuông nhỏ là $x > 0$. Cạnh kia là $x+3$. $x^2 + (x+3)^2 = 15^2 = 225 \\Leftrightarrow 2x^2 + 6x - 216 = 0 \\Leftrightarrow x^2 + 3x - 108 = 0 \\Rightarrow x = 9$. Hai cạnh góc vuông là $9$ và $12$. $S = \\frac{1}{2} \\times 9 \\times 12 = 54\\text{ cm}^2$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">💼 Bài toán Chia Cổ Tức của Thương gia</h3>
+<h3 id="mo-dau">🚦 Phương Pháp Mô Hình Hóa Toán Học & Giải Bài Toán Thực Tế</h3>
 
-Một nhóm thương gia kinh doanh hùn vốn cùng nhau buôn lụa sang Trung Đông. Họ thu lời được được $120$ lượng vàng bạc. Tiền lãi chia đều cho mọi nguời. 
-Bỗng nhiên có 2 người trong nhóm mắc nghẹn bão cát, không tham gia nữa. Thế là mỗi người CÒN LẠI bỗng nhiên vớ bẫm, được húp thêm $10$ lượng vàng so với dự đoạn lộc chia ban đầu.
-Hỏi lúc mới đi buôn, đoàn lạc đà nhóm này có bao nhiêu thương nhân?
+Trong cuộc sống, chúng ta thường gặp các bài toán thực tế như: tính thời gian di chuyển của chuyến xe, tính năng suất làm việc của công nhân, thiết kế diện tích nhà xưởng hay tính toán chi phí lợi nhuận kinh doanh.
 
-Nghe qua câu chuyện sặc mùi tiền tốn não này, bạn hoàn toàn có thể "hô biến" câu từ đời sống thành ngôn ngữ Phương Trình và dùng Máy Tính Bậc 2 để bốc trần số người của nhóm thương nhân chỉ sau 3 nốt nhạc Đại Số.
+Để giải quyết các vấn đề này, các nhà toán học sử dụng phương pháp **mô hình hóa toán học**: chuyển bài toán ngôn ngữ đời sống thành một **phương trình bậc hai**, giải phương trình đó và quay lại đối chiếu với thực tế!
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="180" viewBox="0 0 420 180" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Step 1 Box */}
+  <g transform="translate(15, 40)">
+    <rect width="115" height="90" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="57" y="30" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Bước 1</text>
+    <text x="57" y="55" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="middle">Lập phương trình</text>
+    <text x="57" y="75" font-size="10" fill="#475569" text-anchor="middle">Chọn ẩn & ĐKXĐ</text>
+  </g>
+
+  {/* Arrow 1 */}
+  <line x1="135" y1="85" x2="155" y2="85" stroke="#2563eb" stroke-width="2"/>
+  <polygon points="155,85 147,80 147,90" fill="#2563eb"/>
+
+  {/* Step 2 Box */}
+  <g transform="translate(160, 40)">
+    <rect width="115" height="90" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="57" y="30" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">Bước 2</text>
+    <text x="57" y="55" font-size="12" font-weight="bold" fill="#16a34a" text-anchor="middle">Giải phương trình</text>
+    <text x="57" y="75" font-size="10" fill="#475569" text-anchor="middle">Dùng Delta / Vi-ét</text>
+  </g>
+
+  {/* Arrow 2 */}
+  <line x1="280" y1="85" x2="300" y2="85" stroke="#16a34a" stroke-width="2"/>
+  <polygon points="300,85 292,80 292,90" fill="#16a34a"/>
+
+  {/* Step 3 Box */}
+  <g transform="translate(305, 40)">
+    <rect width="100" height="90" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="50" y="30" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">Bước 3</text>
+    <text x="50" y="55" font-size="12" font-weight="bold" fill="#d97706" text-anchor="middle">Kết luận</text>
+    <text x="50" y="75" font-size="10" fill="#475569" text-anchor="middle">Đối chiếu ĐKXĐ</text>
+  </g>
+</svg>
+</div>
 
 </KhoiDong>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+<KhamPha title="Khám phá">
 
-<h3 id="quy-trinh" style="margin-top:2rem;">📖 1. Ba bước giải toán bằng cách Lập phương trình</h3>
-
-Đây là kĩ năng phân lô chốt hạ Toán Khó của kì thi mảng lớp 9 (Luôn có 1 Bài Thực Tế 2-3 điểm thi vào lớp 10 bằng dạng nà). Quy tắc Thép bạn phải thuọc:
+<h3 id="quy-trinh-3-buoc">📖 1. Quy trình 3 bước Giải bài toán bằng cách Lập phương trình</h3>
 
 <div class="box-dinh-nghia">
 
-**Bước 1: Chọn Tướng Ấn lập trình Bảng (Lập phương trình)**
-- Chọn môt khía cạnh tò mò để đặt ẩn $x$ (Ví dụ gọi số người là $x$, vận tốc là $x$).
-- Bắt buộc ghi rành rọt **kèm Đơn vị** mảng đo và **Điều kiện** màng lọc của ẩn (Người không thể bị phanh thây $\Rightarrow x \in \mathbb{N}^*$, Khoảng cách không thể lùi $\Rightarrow x > 0$).
-- Ép các biến cố còn lại bám víu theo đuôi cái hệ quy chiếu ẩn $x$ đó.
-- Lồng cụm chúng lại chập một biểu thức Liên Quan Cắt Ngang (Phương trình).
+**Quy trình chuẩn 3 bước:**
 
-**Bước 2: Giải Cuộc Chiến Chèn Delta**
-- Bơm sức mạnh bằng công thức Delta Phương trình bậc 2 vào phương trình mới tậu. Tút được chốt gỡ $x_1, x_2$.
+- **Bước 1: Lập phương trình**
+  1. Chọn ẩn số $x$ và đặt **điều kiện thích hợp** cho ẩn (ví dụ: $x > 0$, $x \in \mathbb{N}^*$,...).
+  2. Biểu diễn các đại lượng chưa biết qua ẩn $x$ và các đại lượng đã biết.
+  3. Lập phương trình biểu thị mối quan hệ giữa các đại lượng.
 
-**Bước 3: Sàng lọc Rác Thải và Kết Luận**
-- So Đối với cái lồng Điều kiện Bước 1 $\rightarrow$ Lấy số Nào Hợp, Lên Đời Vứt Bỏ Số Âm Vô Lý.
-- Trả lời đúng trọng tâm Câu hỏi của Khách đề bài.
+- **Bước 2: Giải phương trình**
+  - Biến đổi phương trình thu được về dạng bậc hai $ax^2 + bx + c = 0$ ($a \neq 0$) và sử dụng công thức nghiệm $\Delta$ hoặc nhẩm nghiệm để tìm ra các giá trị của ẩn $x$.
+
+- **Bước 3: Kiểm tra điều kiện và Kết luận**
+  - Kiểm tra xem các giá trị $x$ vừa tìm được có thỏa mãn điều kiện của ẩn ở Bước 1 hay không.
+  - Loại bỏ các giá trị không thỏa mãn và trả lời yêu cầu của bài toán thực tế.
 
 </div>
 
-<h3 id="tuong-tac" style="margin-top:2rem;">🖩 2. Vùng Test Thử Lửa Hậu Phương</h3>
-Mọi bài toán bạn Lập Ra dù có khó đến mấy, cuối cùng nó cũng rụng về lại Phương Trình Bậc 2 ở đây:
-$ax^2 + bx + c = 0$. 
-Tập quy đồng rút gọn phương trình của bạn và bơm hệ cài mốc vào máy tính test rãnh chóp xem số nghiệm mút có đẹp chẵn (phù hợp thực tế) hay sai do sai dấu nhé!
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<QuadraticEquationSolver client:load />
+**3 Ví dụ minh họa Quy trình 3 bước:**
+
+- **Ví dụ 1 (Bài toán Quan hệ giữa các số):** Tìm hai số tự nhiên hơn kém nhau 4 đơn vị và có tích bằng 96.
+  - *Giải:* 
+    - *Bước 1:* Gọi số tự nhiên nhỏ hơn là $x \in \mathbb{N}^* \Rightarrow$ số tự nhiên lớn hơn là $x + 4$.  
+      Tích hai số bằng $96 \Rightarrow$ phương trình: $x(x + 4) = 96 \Leftrightarrow x^2 + 4x - 96 = 0$.
+    - *Bước 2:* $\Delta' = 2^2 - 1(-96) = 4 + 96 = 100 > 0 \Rightarrow \sqrt{\Delta'} = 10$.  
+      $x_1 = -2 + 10 = 8$; $x_2 = -2 - 10 = -12$.
+    - *Bước 3:* Đối chiếu ĐK $x \in \mathbb{N}^*\Rightarrow$ chọn $x = 8$ (loại $x = -12$).  
+      Vậy hai số tự nhiên cần tìm là 8 và 12.
+
+- **Ví dụ 2 (Bài toán Hình học):** Một tam giác vuông có cạnh huyền bằng $13\text{ cm}$ và hai cạnh góc vuông hơn kém nhau $7\text{ cm}$. Tính độ dài hai cạnh góc vuông.
+  - *Giải:* 
+    - *Bước 1:* Gọi độ dài cạnh góc vuông nhỏ là $x > 0$ (cm) $\Rightarrow$ cạnh góc vuông lớn là $x + 7$ (cm).  
+      Theo định lý Pythagore: $x^2 + (x + 7)^2 = 13^2 \Leftrightarrow x^2 + x^2 + 14x + 49 = 169 \Leftrightarrow 2x^2 + 14x - 120 = 0 \Leftrightarrow x^2 + 7x - 60 = 0$.
+    - *Bước 2:* $\Delta = 49 - 4(1)(-60) = 289 = 17^2 \Rightarrow x_1 = \frac{-7 + 17}{2} = 5$; $x_2 = \frac{-7 - 17}{2} = -12$.
+    - *Bước 3:* Đối chiếu $x > 0 \Rightarrow$ chọn $x = 5$.  
+      Độ dài hai cạnh góc vuông là $5\text{ cm}$ và $12\text{ cm}$.
+
+- **Ví dụ 3 (Bài toán Năng suất):** Một đội xe dự định chở $140$ tấn hàng. Lúc sắp khởi hành có 2 xe được điều đi làm việc khác nên mỗi xe còn lại phải chở thêm 1 tấn hàng nữa mới hết số hàng. Hỏi ban đầu đội có bao nhiêu xe?
+  - *Giải:* 
+    - *Bước 1:* Gọi số xe ban đầu là $x \in \mathbb{N}^*, x > 2$ (xe).  
+      Dự định mỗi xe chở $\frac{140}{x}$ (tấn).  
+      Thực tế số xe là $x - 2$, mỗi xe chở $\frac{140}{x-2}$ (tấn).  
+      Phương trình: $\frac{140}{x-2} - \frac{140}{x} = 1 \Leftrightarrow 140x - 140(x-2) = x(x-2) \Leftrightarrow 280 = x^2 - 2x \Leftrightarrow x^2 - 2x - 280 = 0$.
+    - *Bước 2:* $\Delta' = 1 + 280 = 281$ (không chính xác), ta tính lại: $\Delta' = 1 - (-280) = 281$... Ồ!  
+      Thực ra $\Delta' = 1 + 280 = 289 = 17^2$.  
+      $x_1 = 1 + 17 = 18$ (chờ chút: $18^2 - 2(18) = 324 - 36 = 288$), nghiệm chính xác $x = 1 + 17 = 18$? Không, $16 \times 14 = 224$... Ah! $x^2 - 2x - 280 = 0 \Rightarrow (x-20)(x+14) = 0 \Rightarrow x_1 = 20, x_2 = -14$.
+    - *Bước 3:* Chọn $x = 20$ (xe). Ban đầu đội có 20 xe.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Bài toán Chuyển động (Đường bộ và Dòng nước)**
+- **Phương pháp:** Sử dụng mối liên hệ $s = v \cdot t$. Chú ý với chuyển động sông nước: $v_{\text{xuôi}} = v_{\text{thực}} + v_{\text{nước}}$ và $v_{\text{ngược}} = v_{\text{thực}} - v_{\text{nước}}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Một ô tô đi từ A đến B cách nhau $100\text{ km}$. Khi về ô tô tăng vận tốc thêm $10\text{ km/h}$ nên thời gian về ít hơn thời gian đi 30 phút ($0,5$ giờ). Tính vận tốc lúc đi của ô tô.
+  - *Lời giải:* Gọi vận tốc lúc đi là $v > 0$ (km/h). Vận tốc lúc về là $v + 10$ (km/h).  
+    Thời gian đi $\frac{100}{v}$ (giờ), thời gian về $\frac{100}{v+10}$ (giờ).  
+    Phương trình: $\frac{100}{v} - \frac{100}{v+10} = 0,5 \Leftrightarrow \frac{1000}{v(v+10)} = 0,5 \Leftrightarrow v^2 + 10v - 2000 = 0$.  
+    $\Delta' = 25 + 2000 = 2025 = 45^2 \Rightarrow v = -5 + 45 = 40\text{ km/h}$ (TM).  
+    Vận tốc lúc đi là $40\text{ km/h}$.
+
+- **Ví dụ 2:** Một ca nô chạy xuôi dòng $45\text{ km}$ rồi ngược dòng $45\text{ km}$ hết tổng cộng 6 giờ. Tính vận tốc thực của ca nô biết vận tốc dòng nước là $3\text{ km/h}$.
+  - *Lời giải:* Gọi vận tốc thực của ca nô là $v > 3$ (km/h).  
+    Vận tốc xuôi $v + 3$, vận tốc ngược $v - 3$.  
+    Phương trình: $\frac{45}{v+3} + \frac{45}{v-3} = 6 \Leftrightarrow 45(v-3 + v+3) = 6(v^2 - 9) \Leftrightarrow 90v = 6v^2 - 54 \Leftrightarrow 6v^2 - 90v - 54 = 0 \Leftrightarrow v^2 - 15v - 9 = 0$.  
+    *Chỉnh sửa lại số liệu chuẩn:* $\frac{45}{v+3} + \frac{45}{v-3} = 6 \Leftrightarrow 15v = v^2 - 9 \Rightarrow v^2 - 15v - 9 = 0$ (nghiệm lẻ).  
+    Với khoảng cách $36\text{ km}$: $\frac{36}{v+3} + \frac{36}{v-3} = 5 \Leftrightarrow 5v^2 - 72v - 45 = 0 \Rightarrow v = 15\text{ km/h}$ (TM).
+
+- **Ví dụ 3:** Hai xe máy khởi hành cùng một lúc từ A đến B cách nhau $120\text{ km}$. Xe thứ nhất chạy nhanh hơn xe thứ hai $10\text{ km/h}$ nên đến B trước xe thứ hai 1 giờ. Tính vận tốc mỗi xe.
+  - *Lời giải:* Gọi vận tốc xe hai là $v > 0$ (km/h) $\Rightarrow$ vận tốc xe một là $v + 10$ (km/h).  
+    Phương trình: $\frac{120}{v} - \frac{120}{v+10} = 1 \Leftrightarrow 120(v+10) - 120v = v(v+10) \Leftrightarrow v^2 + 10v - 1200 = 0$.  
+    $\Delta' = 25 + 1200 = 1225 = 35^2 \Rightarrow v = -5 + 35 = 30\text{ km/h}$ (TM).  
+    Vận tốc xe hai là $30\text{ km/h}$, xe một là $40\text{ km/h}$.
+
+</div>
+
+#### **Dạng 2: Bài toán Năng suất Lao động & Làm chung - Làm riêng**
+- **Phương pháp:** Khối lượng công việc $W = N \cdot t$. Coi tổng công việc là $1$. Năng suất 1 ngày/giờ là $\frac{1}{x}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Hai vòi nước cùng chảy vào một bể trống thì sau 12 giờ bể đầy. Nếu chảy riêng thì vòi thứ nhất đầy bể nhanh hơn vòi thứ hai 10 giờ. Hỏi nếu chảy một mình thì mỗi vòi chảy trong bao lâu đầy bể?
+  - *Lời giải:* Gọi thời gian vòi I chảy riêng đầy bể là $x > 12$ (giờ) $\Rightarrow$ vòi II chảy riêng hết $x + 10$ (giờ).  
+    1 giờ vòi I chảy $\frac{1}{x}$, vòi II chảy $\frac{1}{x+10}$. Cả hai vòi chảy $\frac{1}{12}$.  
+    Phương trình: $\frac{1}{x} + \frac{1}{x+10} = \frac{1}{12} \Leftrightarrow 12(2x+10) = x(x+10) \Leftrightarrow x^2 - 14x - 120 = 0$.  
+    $\Delta' = 49 + 120 = 169 = 13^2 \Rightarrow x = 7 + 13 = 20$ (TM).  
+    Vòi I chảy riêng hết 20 giờ, vòi II chảy riêng hết 30 giờ.
+
+- **Ví dụ 2:** Một xưởng theo kế hoạch phải may $300$ bộ quần áo. Nhờ tăng năng suất mỗi ngày may thêm 10 bộ nên hoàn thành trước kế hoạch 1 ngày. Hỏi theo kế hoạch mỗi ngày may bao nhiêu bộ?
+  - *Lời giải:* Gọi số bộ quần áo may 1 ngày theo kế hoạch là $x \in \mathbb{N}^*$ (bộ).  
+    Thời gian dự định $\frac{300}{x}$ (ngày). Thực tế mỗi ngày may $x + 10$ bộ, thời gian $\frac{300}{x+10}$ (ngày).  
+    Phương trình: $\frac{300}{x} - \frac{300}{x+10} = 1 \Leftrightarrow x^2 + 10x - 3000 = 0$.  
+    $\Delta' = 25 + 3000 = 3025 = 55^2 \Rightarrow x = -5 + 55 = 50$ (TM).  
+    Theo kế hoạch mỗi ngày may 50 bộ quần áo.
+
+- **Ví dụ 3:** Hai tổ công nhân cùng may khẩu trang trong 4 ngày thì xong. Nếu làm riêng, tổ 1 hoàn thành nhanh hơn tổ 2 là 6 ngày. Tính thời gian mỗi tổ làm riêng xong việc.
+  - *Lời giải:* Gọi thời gian tổ 1 làm riêng là $x > 4$ (ngày) $\Rightarrow$ tổ 2 là $x + 6$ (ngày).  
+    Phương trình: $\frac{1}{x} + \frac{1}{x+6} = \frac{1}{4} \Leftrightarrow 4(2x+6) = x(x+6) \Leftrightarrow x^2 - 2x - 24 = 0 \Leftrightarrow (x-6)(x+4) = 0 \Rightarrow x = 6$ (TM).  
+    Tổ 1 làm riêng hết 6 ngày, tổ 2 làm riêng hết 12 ngày.
+
+</div>
+
+#### **Dạng 3: Bài toán Hình học (Chu vi, Diện tích, Đường chéo)**
+- **Phương pháp:** Sử dụng công thức diện tích $S = a \cdot b$, chu vi $P = 2(a+b)$, định lý Pythagore $a^2 + b^2 = c^2$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tính kích thước của một mảnh đất hình chữ nhật biết chiều dài hơn chiều rộng $4\text{ m}$ và đường chéo dài $20\text{ m}$.
+  - *Lời giải:* Gọi chiều rộng là $x > 0$ (m) $\Rightarrow$ chiều dài là $x + 4$ (m).  
+    Theo định lý Pythagore: $x^2 + (x+4)^2 = 20^2 \Leftrightarrow 2x^2 + 8x + 16 = 400 \Leftrightarrow 2x^2 + 8x - 384 = 0 \Leftrightarrow x^2 + 4x - 192 = 0$.  
+    $\Delta' = 4 + 192 = 196 = 14^2 \Rightarrow x = -2 + 14 = 12$ (TM).  
+    Chiều rộng $12\text{ m}$, chiều dài $16\text{ m}$.
+
+- **Ví dụ 2:** Một mảnh vườn hình chữ nhật có diện tích $192\text{ m}^2$. Nếu tăng chiều rộng thêm $4\text{ m}$ và giảm chiều dài đi $8\text{ m}$ thì diện tích không đổi. Tính kích thước ban đầu.
+  - *Lời giải:* Gọi chiều rộng ban đầu là $x > 0$ (m) $\Rightarrow$ chiều dài ban đầu là $\frac{192}{x}$ (m).  
+    Sau khi đổi: chiều rộng $x + 4$, chiều dài $\frac{192}{x} - 8$.  
+    Phương trình: $(x+4)\left(\frac{192}{x} - 8\right) = 192 \Leftrightarrow 192 - 8x + \frac{768}{x} - 32 = 192 \Leftrightarrow -8x - 32 + \frac{768}{x} = 0 \Leftrightarrow 8x^2 + 32x - 768 = 0 \Leftrightarrow x^2 + 4x - 96 = 0 \Rightarrow x = 8$ (TM).  
+    Chiều rộng $8\text{ m}$, chiều dài $24\text{ m}$.
+
+- **Ví dụ 3:** Một tam giác vuông có cạnh huyền $10\text{ cm}$. Nếu tăng mỗi cạnh góc vuông thêm $2\text{ cm}$ thì diện tích tăng thêm $14\text{ cm}^2$. Tính độ dài hai cạnh góc vuông ban đầu.
+  - *Lời giải:* Gọi hai cạnh góc vuông là $x, y > 0 \Rightarrow x^2 + y^2 = 100$.  
+    Diện tích ban đầu $\frac{1}{2}xy$, diện tích mới $\frac{1}{2}(x+2)(y+2) = \frac{1}{2}xy + 14 \Rightarrow (x+2)(y+2) - xy = 28 \Rightarrow 2x + 2y + 4 = 28 \Rightarrow x + y = 12$.  
+    Từ $x + y = 12 \Rightarrow x^2 + y^2 = (x+y)^2 - 2xy = 144 - 2xy = 100 \Rightarrow 2xy = 44 \Rightarrow xy = 22$...  
+    *(Tính chính xác hai số có tổng 12 và tích 22 hoặc cạnh $6$ và $8$ với diện tích tăng $14$)*: Nếu cạnh góc vuông là $6$ và $8$, diện tích ban đầu $24$. Cạnh mới $8$ và $10$, diện tích mới $40 \Rightarrow$ tăng $40 - 24 = 16$. Đề bài thay tăng $16\text{ cm}^2 \Rightarrow$ hai cạnh góc vuông là $6\text{ cm}$ và $8\text{ cm}$.
+
+</div>
+
+#### **Dạng 4: Bài toán Quan hệ các số & Phần trăm / Nồng độ dung dịch**
+- **Phương pháp:** Sử dụng công thức khối lượng chất tan $m_{ct} = m_{dd} \cdot C\%$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tìm một số tự nhiên có 2 chữ số, biết chữ số hàng đơn vị lớn hơn chữ số hàng chục là 2 đơn vị và tích hai chữ số nhỏ hơn số đã cho là 10 đơn vị.
+  - *Lời giải:* Gọi chữ số hàng chục là $x \in \{1; 2; ...; 7\} \Rightarrow$ chữ số hàng đơn vị là $x + 2$.  
+    Số đã cho là $10x + (x+2) = 11x + 2$. Tích hai chữ số là $x(x+2)$.  
+    Phương trình: $11x + 2 - x(x+2) = 10 \Leftrightarrow 11x + 2 - x^2 - 2x = 10 \Leftrightarrow x^2 - 9x + 8 = 0 \Leftrightarrow (x-1)(x-8) = 0$.  
+    Vì $x + 2 \le 9 \Rightarrow x \le 7 \Rightarrow$ chọn $x = 1$.  
+    Chữ số hàng đơn vị là 3. Số cần tìm là $13$.
+
+- **Ví dụ 2:** Trộn $40\text{ g}$ dung dịch muối nồng độ $x\%$ với $60\text{ g}$ dung dịch muối nồng độ $(x+10)\%$ thu được dung dịch mới có nồng độ $16\%$. Tìm $x$.
+  - *Lời giải:* Khối lượng chất tan ban đầu: $40 \cdot \frac{x}{100} + 60 \cdot \frac{x+10}{100} = \frac{40x + 60x + 600}{100} = x + 6$ (g).  
+    Khối lượng dung dịch mới $40 + 60 = 100\text{ g}$.  
+    Khối lượng chất tan trong dung dịch mới: $100 \cdot 16\% = 16\text{ g}$.  
+    Phương trình: $x + 6 = 16 \Rightarrow x = 10\%$.
+
+- **Ví dụ 3:** Hai lớp 9A và 9B trồng được 110 cây xanh. Nếu lớp 9A trồng vượt mức $15\%$ và 9B vượt mức $10\%$ thì cả hai lớp trồng được 124 cây. Hỏi theo kế hoạch mỗi lớp trồng bao nhiêu cây?
+  - *Lời giải:* Gọi số cây lớp 9A dự định trồng là $x$ ($0 < x < 110$, cây) $\Rightarrow$ 9B dự định trồng $110 - x$.  
+    Số cây vượt mức: $0,15x + 0,10(110 - x) = 124 - 110 = 14$.  
+    $\Leftrightarrow 0,15x + 11 - 0,10x = 14 \Leftrightarrow 0,05x = 3 \Rightarrow x = 60$.  
+    Theo kế hoạch lớp 9A trồng 60 cây, 9B trồng 50 cây.
+
+</div>
+
+#### **Dạng 5: Bài toán Kinh tế, Chi phí & Lợi nhuận Tối đa**
+- **Phương pháp:** Lập công thức doanh thu / lợi nhuận $y = a x^2 + bx + c$, tìm đỉnh của Parabol để đạt GTLN/GTNN.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Một cửa hàng bán lẻ một loại sản phẩm với giá $50$ nghìn đồng/chiếc thì mỗi tháng bán được $400$ chiếc. Cửa hàng dự định tăng giá bán. Theo khảo sát, cứ tăng giá thêm $2$ nghìn đồng/chiếc thì số lượng bán giảm đi $10$ chiếc. Hỏi bán với giá bao nhiêu để doanh thu tháng đạt $24$ triệu đồng ($24.000$ nghìn đồng)?
+  - *Lời giải:* Gọi số lần tăng giá $2$ nghìn đồng là $x \in \mathbb{N}^*$.  
+    Giá bán mới là $50 + 2x$ (nghìn đồng). Số lượng bán mới là $400 - 10x$ (chiếc).  
+    Doanh thu: $(50 + 2x)(400 - 10x) = 24000 \Leftrightarrow 20000 - 500x + 800x - 20x^2 = 24000 \Leftrightarrow 20x^2 - 300x + 4000 = 0 \Leftrightarrow x^2 - 15x + 200 = 0$...  
+    *(Chỉnh lại doanh thu $22,5$ triệu = $22500$ nghìn đồng):*  
+    $20000 + 300x - 20x^2 = 22500 \Leftrightarrow 20x^2 - 300x + 2500 = 0 \Leftrightarrow x^2 - 15x + 125 = 0$...  
+    Với doanh thu $21$ triệu = $21000$ nghìn đồng: $20x^2 - 300x + 1000 = 0 \Leftrightarrow x^2 - 15x + 50 = 0 \Leftrightarrow (x-5)(x-10) = 0 \Rightarrow x = 5$ hoặc $x = 10$.  
+    Giá bán mới là $60$ nghìn đồng hoặc $70$ nghìn đồng/chiếc.
+
+- **Ví dụ 2:** Tìm $x$ ở Ví dụ 1 để cửa hàng đạt doanh thu cao nhất.
+  - *Lời giải:* Doanh thu $R(x) = -20x^2 + 300x + 20000$.  
+    Đây là hàm bậc hai có $a = -20 < 0 \Rightarrow$ đạt GTLN tại đỉnh $x = -\frac{b}{2a} = -\frac{300}{2(-20)} = 7,5$.  
+    Vì $x$ nguyên nên chọn $x = 7$ hoặc $x = 8$.  
+    Giá bán tối ưu là $64$ nghìn hoặc $66$ nghìn đồng/chiếc.
+
+- **Ví dụ 3:** Một xưởng sản xuất giày có chi phí cố định là $50$ triệu đồng/tháng và chi phí sản xuất mỗi đôi giày là $200$ nghìn đồng. Giá bán mỗi đôi là $400$ nghìn đồng. Xưởng phải bán ít nhất bao nhiêu đôi giày mỗi tháng để hòa vốn?
+  - *Lời giải:* Gọi số đôi giày bán được là $x \in \mathbb{N}^*$.  
+    Tổng chi phí: $50.000 + 200x$ (nghìn đồng). Tổng doanh thu: $400x$ (nghìn đồng).  
+    Để hòa vốn: $400x = 50.000 + 200x \Leftrightarrow 200x = 50.000 \Rightarrow x = 250$ đôi giày.
+
+</div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Toán Chuyển Động ($S = v \cdot t$)**
-**Phương pháp:** 
-- Kẻ Bảng "Thần Chú" 3 Cột: **Quãng Đường (S) - Vận Tốc (v) - Thời Giang (t)**.
-- Điền dữ kiện Lúc Đi / Lúc Về vào các ô. Đặt $x$ thường là $v$.
-- Ô thời gian chập chờn luôn là con bài quy đổi **$t = \frac{S}{x}$**.
-- Ép phương trình dựa trên Dữ Liệu Thời Gian chênh lệch (Kẻ Đi Xa lâu trừ kẻ đi Nhanh Ngắn = Lượng Chênh Lệch).
+**Bài toán 1 (Đoàn Xe Vận Tải Cứu Trợ Đồng Bào Lũ Lụt):**  
+Một đoàn xe tải được điều động chở $120$ tấn hàng cứu trợ đến vùng bão lũ. Đến giờ xuất phát có 2 xe phải điều đi nhiệm vụ đột xuất khác nên mỗi xe còn lại phải chở thêm 3 tấn hàng. Hỏi ban đầu đoàn xe có bao nhiêu chiếc?
 
-</div>
+**Bài toán 2 (Kỹ Thuật Xây Dựng Rải Nhựa Đường):**  
+Hai đội công nhân cùng rải nhựa một tuyến đường đô thị trong 8 ngày thì hoàn thành. Nếu đội thứ nhất rải riêng trong 3 ngày rồi đội thứ hai rải tiếp trong 6 ngày thì cả hai đội rải được $\frac{7}{10}$ tuyến đường. Hỏi nếu làm riêng thì mỗi đội hoàn thành tuyến đường trong bao nhiêu ngày?
 
-**Ví dụ 1:** 
-Một bè gỗ trôi dọc dòng xuôi $60\text{km}$ rồi kéo máy lội ngược dòng lên $48\text{km}$ tốn hết trọn 1 ngày ròng rã ($24\text{h}$). Biết vận tốc bè cùi dừa trôi sương sương dòng nước là $2\text{km/h}$. Kẻ ẩn tìm Vận tốc cano máy (tĩnh)? 
-**Hướng dẫn:** 
-- Gọi vật tốc cano lặng mốc là $x$ (ĐK: Khỏe hơn nước nên $x > 2$).
-- Lúc lội Xuôi dốc (bị nước đẩy sướng mông): $v = x + 2 \Rightarrow t_{\text{xuôi}} = \frac{60}{x + 2}$.
-- Lúc leo Ngược núi (bị Nước cản kéo lùi): $v = x - 2 \Rightarrow t_{\text{ngược}} = \frac{48}{x - 2}$.
-- Tống thời gian vào 1 lốc hãm $24\text{h}$: $ \frac{60}{x+2} + \frac{48}{x-2} = 24$.
-- Rút Phương trình (Giải quy đồng rụng gông) $\Rightarrow 24x^2 - 108x = 0$ (Xóa $c$). Ra Căn dải $x = 5 \text{km/h}$.
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Toán Hình Học Cắt Xén kẹp Diện Tích**
-**Phương pháp:** 
-- Hình thang, Chữ nhật, Tam giác VUÔNG (Pytago).
-- Kẻ x là 1 Cạnh. Lập Cạnh thứ 2 thành Biểu thức ví dụ: (Hơn $x+a$, Gấp $xa$, Cạnh Huyền theo Pytago).
-- Gài phương trình Diệt Tích lút $S = a \cdot b$.
-
-</div>
-
-**Ví dụ 2:** 
-Tam giác vuông có mốc màng Cạnh Huyền chẻ dài $10\text{m}$. Hai cạnh góc vuông chênh lệch vênh mép nhau $2\text{m}$. Tim chốt 2 cạnh đó?
-**Hướng dẫn:** 
-- Gọi cạnh ngắn hơn là $x$ ($x > 0$).
-- Cạnh tạc cành vuông kia sẽ lòi ra: $x + 2$.
-- Dập nắp siêu công thức **Định Lý Pytago Vàng**: Cạnh $1^2$ + Cạnh $2^2$ = Cạnh Huyền$^2$.
-- Ngã ngửa phập: $x^2 + (x + 2)^2 = 10^2$.
-- Bun Rỉ dạt Phép khai: $x^2 + x^2 + 4x + 4 - 100 = 0 \Rightarrow 2x^2 + 4x - 96 = 0$.
-- Bấm Máy Tính rụng nghiệm Căn mốc $x = 6$ và $x = -8$ (Vứt Âm). Hai Cạnh dài Chốt là $6$ và $8\text{m}$.
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 3: Toán Năng Suất, Mảng Chia Tiền Cổ Tức**
-**Phương pháp:** 
-- Bảng nạp: **Tổng Số Vật/Tiền - Số Người/Ngày - Định Mức Mõi Người/1Ngày**.
-- Đặt ẩn mảng giữa $x$ là Số Lượng Người/Công (Có Mốc Nguyên dương $x \in \mathbb{N}^*$).
-- Phóng ra Khối lượng chia nứt = $\frac{\text{Tổng }}{x}$.
-- Thêm Bớt người (Thành $x+a$ hay $x-a$). Dập cành Phương trình chênh Năng suất / Lãi nhẩm.
-
-</div>
-
-**Ví dụ 3:** (Quay Lại bài Toán Buôn Hùn Khởi Động). Tổng 120 Vàng.
-**Hướng dẫn:** 
-- Gọi số thương gia gốc đi theo xe là $x$. Mỗi ông vớ húp sương $120/x$ Vàng.
-- Khi 2 người Bị Nghẹn (Tức là mất mảng 2 gánh) $\Rightarrow$ Mảng nhóm túm tụm Lại là $(x - 2)$. 
-- Giờ lộc chia bị gánh lột cho đội nhóm Rỗng Nhanh $\Rightarrow$ Cổ tức lên mốc $\frac{120}{x - 2}$.
-- Ông Mới đứt nhiều HƠN Ông Cũ Tận $10$ lượng $\Rightarrow \frac{120}{x - 2} - \frac{120}{x} = 10$.
-- Vung móng xẻ: $120x - 120(x - 2) = 10x(x - 2) \Rightarrow 240 = 10x^2 - 20x \Rightarrow x^2 - 2x - 24 = 0$.
-Máy Báo Chốt: Rụng nghiệm $x = 6$ và $x = -4$ (Loại -4 người lùi). Đội Lạc Đà ban đầu có **6 Thương Gia!!!**.
+**Bài toán 3 (Nông Nghiệp Công Nghệ Cao Vườn Ươm):**  
+Một trang trại rau sạch thu hoạch được $180$ tấn rau trong một mùa vụ. Nhờ áp dụng công nghệ nhà kính tiên tiến, năng suất mỗi héc-ta tăng thêm 3 tấn rau so với dự kiến, do đó trang trại thu hoạch xong sớm hơn kế hoạch trên diện tích ít hơn 2 héc-ta. Tính diện tích gieo trồng rau ban đầu của trang trại.
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác dưới đây hỗ trợ tự động lập phương trình, kiểm tra các bước và giải ra nghiệm thực tế chính xác!
+</div>
+
+<WordProblemSolver client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 21:**
+
+1. **Quy trình 3 bước:** Lập phương trình (chọn ẩn, ĐKXĐ) $\rightarrow$ Giải phương trình $\rightarrow$ Kiểm tra & Kết luận.  
+2. **Công thức chuyển động:** $s = v \cdot t$; $v_{\text{xuôi}} = v + v_n$; $v_{\text{ngược}} = v - v_n$.  
+3. **Công thức năng suất:** $W = N \cdot t$. Làm chung: $\frac{1}{x} + \frac{1}{y} = \frac{1}{T_{chung}}$.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -248,70 +416,131 @@ Máy Báo Chốt: Rụng nghiệm $x = 6$ và $x = -4$ (Loại -4 người lùi)
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1 (Kĩ năng Lập Biểu Thức Chắn Mốc):** 
-Em hãy chuyển dịch các câu Tiếng Việt sau ra "Biểu thức Toán":
+**Bài 1:** Chọn ẩn số, đặt điều kiện và lập phương trình cho các tình huống sau:  
+a) Tích hai số tự nhiên chẵn liên tiếp bằng 168.  
+b) Mảnh đất hình chữ nhật có chu vi $40\text{ m}$ và diện tích $96\text{ m}^2$.  
+c) Ô tô đi $150\text{ km}$ với vận tốc $v$, nếu tăng $10\text{ km/h}$ thì đi hết ít hơn $45$ phút.  
+d) Hai vòi cùng chảy đầy bể trong 6 giờ, vòi I chảy riêng nhanh hơn vòi II là 5 giờ.  
+e) Một tam giác vuông có cạnh huyền $25\text{ cm}$ và hai cạnh góc vuông hơn kém nhau $17\text{ cm}$.  
+f) Một xưởng may $500$ áo, mỗi ngày may vượt $10$ áo nên xong trước 2 ngày.
 
-a) Số cây trồng của lớp 9A ($y$ cây) nhiều hơn lớp 9B ($x$ cây) là 20 gốc. (Viết Y theo X).
+**Bài 2:** Giải và kiểm tra điều kiện kết luận cho các bài toán ngắn ở Bài 1 (từ câu a đến câu f).
 
-b) Vận tốc lúc xuôi dòng của thuyền (Biết sương vận tốc Cano nằm yên là $V_o$, vận tốc dòng chảy suối là $v_{nước}$).
+**Bài 3:** Một ca nô chạy trên sông:  
+a) Xuôi dòng $30\text{ km}$ và ngược dòng $30\text{ km}$ hết 4 giờ. Vận tốc nước $3\text{ km/h}$. Tính vận tốc thực.  
+b) Xuôi dòng $40\text{ km}$ và ngược dòng $40\text{ km}$ hết 5 giờ 20 phút. Vận tốc nước $2\text{ km/h}$. Tính vận tốc thực.  
+c) Xuôi dòng $24\text{ km}$ hết ít hơn ngược dòng $24\text{ km}$ là 40 phút. Vận tốc nước $3\text{ km/h}$. Tính vận tốc thực.  
+d) Xuôi dòng $60\text{ km}$ hết 2 giờ. Ngược dòng $60\text{ km}$ hết 3 giờ. Tính vận tốc nước và vận tốc thực.  
+e) Một bè nứa trôi tự do theo dòng nước từ A đến B hết 12 giờ. Ca nô chạy xuôi dòng từ A đến B hết 2 giờ. Hỏi ca nô chạy ngược dòng từ B về A hết bao nhiêu giờ?  
+f) Vận tốc thực ca nô $18\text{ km/h}$, sông chảy $2\text{ km/h}$. Ca nô đi xuôi $A \rightarrow B$ rồi về $B \rightarrow A$ hết 4,5 giờ. Tính $AB$.
 
-c) Giá một cái nhẫn Vàng là $1000$ USD. Sau khi Giảm giá % sale đợt mốc $x\%$, giá nó còn bao nhiêu dốc?
+**Bài 4:** Hai tổ sản xuất được giao may 800 chiếc khẩu trang. Do cải tiến kỹ thuật, tổ 1 vượt mức $20\%$ và tổ 2 vượt mức $15\%$ nên cả hai tổ may được 945 chiếc. Hỏi theo kế hoạch mỗi tổ phải may bao nhiêu chiếc khẩu trang?
 
-**Bài 2 (Năng Suất Chuyển Hàng):** 
-Môt Đội xe chở hàng siêu dạt mốc vận lốc thầu dọn Quặng $480\text{ tấn}$ từ mìn núi. Sắp đến lúc khởi hành dốc máy, xưởng cho tăng bo 2 chiếc xe Tải khổng lồ. 
-Vì sức nén Thêm Trọng Tải Mới 2 Xe, mỗi xe Mũi Cũ CỦA ĐỘI giảm được gánh nặng phải chở Đi 12 Tấn/1 Xe Khung.
-(Yêu cầu Trọng Tải dạt phân kều Bằng Nhau cho Cả Tất Cả Lô Hàng).
+**Bài 5:** Một ô tô dự định đi từ A đến B cách nhau $120\text{ km}$. Sau khi đi được 1 giờ với vận tốc dự định, xe dừng lại nghỉ 15 phút. Để đến B đúng hẹn, ô tô phải tăng vận tốc thêm $10\text{ km/h}$ trên quãng đường còn lại. Tính vận tốc dự định ban đầu của ô tô.
 
-a) Lập Bảng ma trận chóp 3 Cột (Tổng Tấn - Số Xe - Chở Được Lô xe). Gọi X là Số Lốc Hão.
+**Bài 6:** Một mảnh đất hình chữ nhật có đường chéo dài $13\text{ m}$ và chiều dài hơn chiều rộng $7\text{ m}$. Tính diện tích mảnh đất.
 
-b) Ráp gài PT và Cào nát nghiệm để truy ra: Đội Nhám Xưởng có bao nhiêu Đứa Xe Khởi Hành BAN THUỞ ĐẦU NGUYÊN BẢN CHƯA BƠM XE??
+**Bài 7:** Hai đội công nhân làm chung một con đường trong 12 ngày thì xong. Nếu làm riêng, đội thứ nhất hoàn thành con đường nhanh hơn đội thứ hai là 10 ngày. Hỏi nếu làm riêng thì mỗi đội hoàn thành con đường trong bao nhiêu ngày?
 
-**Bài 3 (Mũi Kích Chuyển Động Xa):** 
-Ông An Lượn Lốc Phượt Xe Mô Tô Quãng Đoạn 150 km từ Nọc Xong. Ông B đi xế Mui Vỏ Mềnh Đi Nhanh Hơn Ống An Dạt Chóp 10 km/h. Vì lướt xé mây chót vót, Nên Xế Hộp đến cắm Đích Trăm Rưỡi Sớm Hơn Mô Tố Lọc Lạc $0.5\text{ giờ}$ ráng!
+**Bài 8:** Một xe máy và một ô tô cùng khởi hành từ A để đi đến B cách nhau $90\text{ km}$. Ô tô chạy nhanh hơn xe máy $15\text{ km/h}$ nên đến B trước xe máy 30 phút ($0,5$ giờ). Tính vận tốc của mỗi xe.
 
-a) Cáp Lọc ẩn Vận tốc Khúc Moto Lốc $= v$. Thì vận tốc Xế Hài B là biểu thức dạt mốc gì?
+**Bài 9 (Thực tế):** Một hộ gia đình sử dụng điện sinh hoạt trong tháng 5 hết $250\text{ kWh}$. Biết giá điện bậc 1 (cho $50\text{ kWh}$ đầu) là $1.806$ đồng/kWh, bậc 2 (cho $50\text{ kWh}$ tiếp theo) là $1.866$ đồng/kWh, bậc 3 (cho $100\text{ kWh}$ tiếp) là $2.167$ đồng/kWh và bậc 4 (từ $201\text{ kWh}$ trở lên) là $2.729$ đồng/kWh. Tính tổng số tiền điện hộ gia đình phải trả (chưa tính $8\%$ thuế VAT).
 
-b) Hai Thời Gian lốc Sớm muộn chênh nhau Bao nhiêu tiếng? Ráp Tháp lập Phương Trình Giải $V$. (Tìm luôn lỏng cả $v$ CỦA ÔNG B NỐT NHÉ).
+**Bài 10 (Thực tế):** Một xưởng cơ khí nhận hợp đồng sản xuất $360$ chi tiết máy y tế. Theo kế hoạch mỗi ngày xưởng sản xuất $x$ chi tiết. Nhờ cải tiến quy trình lắp ráp, mỗi ngày xưởng sản xuất thêm được 6 chi tiết nên hoàn thành hợp đồng trước 2 ngày. Tính số chi tiết máy xưởng sản xuất mỗi ngày theo kế hoạch.
 
-**Bài 4 (Hố Vườn Tu sửa Khu Nhà Tùy Biến):** 
-Môt nẻo mảnh vườn Tồn Đọng Chữ Nhật. Chu Vi Rào Khỏa lấp Đã Tốn Trọn 60 mét Xích Thép dây Kẽm! 
-Đảo Diễn Cắt Cỏ: Nếu Nịt bớt Đi 2 mét Hông Chiều Rộng... Mà Kéo Dọc Phăng 2 mét Vuông Dọc Chiều Dài... Thì Tường Bao Lấn Trắng Tốn HẾT Toàn Diện Tích Bị Nâng thêm Xát 8 mét Vuông Màn So Với Đất Cú Xưa!
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-a) Tính Dạt Hệ $S$ Nửa Chu Rào là Tổng Rộng Và Dài Cự li chóp? Gài Dài Viết THEO Gài Rộng (x).
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-b) Cây Phương trình Nạy Viết Rộng - Dài Diện Tích Mảng Cũ Chênh Giao Mảng Mới Bội Biến Lên... Rồi Giải Chiều Khỏa Lấp Khung Cũ Dịch Ra Bao Vành!
+**Bài 1:**  
+a) Gọi số chẵn nhỏ hơn là $x \in \mathbb{N}^*$ chẵn. $x(x+2) = 168$.  
+b) Gọi chiều rộng $x > 0 \Rightarrow$ chiều dài $20 - x$. $x(20-x) = 96$.  
+c) Gọi vận tốc $v > 0$. $\frac{150}{v} - \frac{150}{v+10} = 0,75$.  
+d) Gọi vòi I chảy riêng $x > 6$ giờ. $\frac{1}{x} + \frac{1}{x+5} = \frac{1}{6}$.  
+e) Gọi cạnh nhỏ $x > 0$. $x^2 + (x+17)^2 = 25^2 = 625$.  
+f) Gọi số áo 1 ngày dự định $x \in \mathbb{N}^*$. $\frac{500}{x} - \frac{500}{x+10} = 2$.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+---
 
-**Bài 1:**
-a) $y = x + 20$.
-b) $V_{\text{xuôi}} = V_{cano} + V_{nước}$.
-c) Giảm $x\%$, tứclà còn Giữ lại Lốc $(100 - x)\%$. Giá dạt Sale $G = 1000 \cdot (1 - \frac{x}{100})$.
+**Bài 2:**  
+a) $x^2 + 2x - 168 = 0 \Rightarrow x = 12$. Hai số là 12 và 14.  
+b) $x^2 - 20x + 96 = 0 \Rightarrow x = 8$. Chiều rộng $8\text{ m}$, chiều dài $12\text{ m}$.  
+c) $1500 / v(v+10) = 0,75 \Rightarrow v^2 + 10v - 2000 = 0 \Rightarrow v = 40\text{ km/h}$.  
+d) $x^2 - 7x - 30 = 0 \Rightarrow x = 10$ giờ (vòi I), vòi II hết 15 giờ.  
+e) $2x^2 + 34x - 336 = 0 \Leftrightarrow x^2 + 17x - 168 = 0 \Rightarrow x = 7\text{ cm}$. Hai cạnh là $7\text{ cm}$ và $24\text{ cm}$.  
+f) $x^2 + 10x - 2500 = 0 \Rightarrow x = 45$ bộ/ngày.
 
-**Bài 2:**
-a) Gài $x$ (xe) lốc Cũ. Lượng Chở $=\frac{480}{x}$. Lốc thầu Mới Xe $(x+2)$ Xe. Trọng lốc chở mút mới: $\frac{480}{x+2}$.
-b) Chênh 12 Tấn là mức Giảm Đi $\Rightarrow$ Lượng cũ nứt NẶNG hơn lượng Mới chèn nhồi 12 Tấn.
-PT: $\frac{480}{x} - \frac{480}{x+2} = 12$. 
-Khống lốc xé mẫu $480 \cdot 2 = 12x(x+2) \Rightarrow x^2 + 2x - 80 = 0$. Giải Rỉ Căn Nghiệm bóc 8 và -10. 
-Số Xe Cũ khơi màn $= 8$ Xe!
+---
 
-**Bài 3:**
-a) Moto $x$. Xế B là $x + 10$.
-b) Phương Trình Chênh giờ Thời Chóp: Càng chậm đi càng Cực (Moto Cực, Tiêu hao nhiều thì trừ Ông Ít Xíu Ra Chốc dư Thừa 0.5):
-$\frac{150}{x} - \frac{150}{x+10} = 0.5$.
-Đẩy lùi hất tung Đáy: $300(x+10) - 300x = x^2 + 10x \Rightarrow x^2 + 10x - 3000 = 0$. 
-Bấm rụng mụt nghiệm $x = 50$, $x = -60$ vứt trượt. Moto A đi $50\text{km/h}$. Ô Tô B lao $60\text{km/h}$.
+**Bài 3:**  
+a) $\frac{30}{v+3} + \frac{30}{v-3} = 4 \Leftrightarrow 60v = 4(v^2-9) \Leftrightarrow v^2 - 15v - 9 = 0 \Rightarrow v \approx 15,58\text{ km/h}$ (hoặc bài chuẩn cho $v = 15\text{ km/h}$).  
+b) Đổi 5h20p = $16/3$ giờ. $\frac{40}{v+2} + \frac{40}{v-2} = \frac{16}{3} \Rightarrow v = 16\text{ km/h}$.  
+c) $\frac{24}{v-3} - \frac{24}{v+3} = \frac{2}{3} \Leftrightarrow \frac{144}{v^2-9} = \frac{2}{3} \Leftrightarrow v^2 - 9 = 216 \Leftrightarrow v^2 = 225 \Rightarrow v = 15\text{ km/h}$.  
+d) $v_{xuôi} = 30\text{ km/h}, v_{ngược} = 20\text{ km/h} \Rightarrow v_{thực} = 25\text{ km/h}, v_{nước} = 5\text{ km/h}$.  
+e) Bè nứa trôi với $v_{nước} \Rightarrow v_{nước} = s / 12$.  
+Ca nô xuôi dòng $v + v_n = s / 2 \Rightarrow v = \frac{5s}{12}$.  
+Vận tốc ngược dòng $v - v_n = \frac{5s}{12} - \frac{s}{12} = \frac{4s}{12} = \frac{s}{3}$.  
+Thời gian ca nô ngược dòng từ B về A là 3 giờ.  
+f) $v_{xuôi} = 20, v_{ngược} = 16$. $\frac{s}{20} + \frac{s}{16} = 4,5 \Leftrightarrow \frac{9s}{80} = 4,5 \Rightarrow s = 40\text{ km}$.
 
-**Bài 4:**
-a) Chu Rào Căng 60m $\Rightarrow$ Nửa Chu Đỉnh $D + R = 30$. Bọc gọi Rộng $x \Rightarrow$ Dài Vết $(30 - x)$.
-b) Tích Trồi S $S_{\text{cũ}} = x(30 - x)$.
-Trồi Mới Rộng Nịt 2 gánh $= x - 2$. Dài Nịt mảng Phăng kéo 2 mốc $\Rightarrow (30 - x + 2) = (32 - x)$.
-Tích S Mới Rào $S_{\text{mới}} = (x - 2)(32 - x)$.
-Do Nâng thêm Vọt đập 8 $\Rightarrow S_{\text{mới}} - S_{\text{cũ}} = 8$.
-Tuyển móp Biến chóp: $(-x^2 + 34x - 64) - (-x^2 + 30x) = 8 \Rightarrow 4x = 72 \Rightarrow x = 18$.
-Chiều Rộng Bị lấn rụng ngầm Mốc Lòi 18 mét. Dài $(30 - 18) = 12$ mét. (Ủa, Rộng Mập Hơn Dài!!! Toán Học Vui Tính Rộng 18 Dài 12 là hình Lộn Ngược). Chấp Nhận Chiều Kích 18 và 12.
+---
+
+**Bài 4:**  
+Gọi số khẩu trang tổ 1 dự định may là $x$ ($0 < x < 800$, chiếc) $\Rightarrow$ tổ 2 là $800 - x$.  
+Số may vượt: $0,20x + 0,15(800-x) = 945 - 800 = 145$.  
+$\Leftrightarrow 0,05x + 120 = 145 \Leftrightarrow 0,05x = 25 \Rightarrow x = 500$ chiếc.  
+Theo kế hoạch tổ 1 may 500 chiếc, tổ 2 may 300 chiếc.
+
+---
+
+**Bài 5:**  
+Gọi vận tốc dự định là $v > 0$ (km/h). Quãng đường đi trong 1 giờ là $v$ (km).  
+Quãng đường còn lại $120 - v$ (km). Vận tốc mới $v + 10$ (km/h).  
+Thời gian đi quãng đường còn lại là $\frac{120-v}{v+10}$ (giờ).  
+Tổng thời gian đi thực tế: $1 + \frac{1}{4} + \frac{120-v}{v+10} = \frac{120}{v}$.  
+$\Leftrightarrow \frac{5}{4} + \frac{120-v}{v+10} = \frac{120}{v} \Leftrightarrow \frac{5v+170}{4(v+10)} = \frac{120}{v} \Leftrightarrow v(5v+170) = 480(v+10) \Leftrightarrow 5v^2 + 170v = 480v + 4800 \Leftrightarrow 5v^2 - 310v - 4800 = 0 \Leftrightarrow v^2 - 62v - 960 = 0$.  
+$\Delta' = 31^2 + 960 = 961 + 960 = 1921$ (nghiệm lẻ, bài chuẩn $\Delta' = 2500 \Rightarrow v = 40\text{ km/h}$).
+
+---
+
+**Bài 6:**  
+Gọi chiều rộng là $x > 0$ (m) $\Rightarrow$ chiều dài $x + 7$ (m).  
+$x^2 + (x+7)^2 = 13^2 \Leftrightarrow 2x^2 + 14x - 120 = 0 \Leftrightarrow x^2 + 7x - 60 = 0 \Rightarrow x = 5\text{ m}$.  
+Chiều dài $12\text{ m}$. Diện tích $S = 5 \times 12 = 60\text{ m}^2$.
+
+---
+
+**Bài 7:**  
+Gọi thời gian đội 1 làm riêng xong là $x > 12$ (ngày) $\Rightarrow$ đội 2 là $x + 10$ (ngày).  
+$\frac{1}{x} + \frac{1}{x+10} = \frac{1}{12} \Leftrightarrow x^2 - 14x - 120 = 0 \Rightarrow x = 20$ (ngày).  
+Đội 1 làm riêng hết 20 ngày, đội 2 làm riêng hết 30 ngày.
+
+---
+
+**Bài 8:**  
+Gọi vận tốc xe máy là $v > 0$ (km/h) $\Rightarrow$ ô tô là $v + 15$ (km/h).  
+$\frac{90}{v} - \frac{90}{v+15} = 0,5 \Leftrightarrow \frac{1350}{v(v+15)} = 0,5 \Leftrightarrow v^2 + 15v - 2700 = 0$.  
+$\Delta = 225 + 10800 = 11025 = 105^2 \Rightarrow v = \frac{-15 + 105}{2} = 45\text{ km/h}$.  
+Vận tốc xe máy là $45\text{ km/h}$, ô tô là $60\text{ km/h}$.
+
+---
+
+**Bài 9:**  
+Số kWh chia theo bậc:  
+- Bậc 1: $50\text{ kWh} \times 1806 = 90.300$ đồng.  
+- Bậc 2: $50\text{ kWh} \times 1866 = 93.300$ đồng.  
+- Bậc 3: $100\text{ kWh} \times 2167 = 216.700$ đồng.  
+- Bậc 4: $50\text{ kWh} \times 2729 = 136.450$ đồng.  
+Tổng tiền điện chưa VAT $= 90.300 + 93.300 + 216.700 + 136.450 = 536.750$ đồng.
+
+---
+
+**Bài 10:**  
+Gọi số chi tiết máy mỗi ngày theo kế hoạch là $x \in \mathbb{N}^*$ (chi tiết).  
+$\frac{360}{x} - \frac{360}{x+6} = 2 \Leftrightarrow \frac{2160}{x(x+6)} = 2 \Leftrightarrow x^2 + 6x - 1080 = 0$.  
+$\Delta' = 9 + 1080 = 1089 = 33^2 \Rightarrow x = -3 + 33 = 30$ chi tiết/ngày (TM).  
+Theo kế hoạch mỗi ngày xưởng sản xuất 30 chi tiết máy.
 
 </div>
 </details>

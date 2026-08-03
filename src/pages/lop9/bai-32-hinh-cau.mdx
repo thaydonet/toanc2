@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 32: Hình cầu"
-description: "Khái niệm, công thức tính diện tích mặt cầu và thể tích của hình cầu - Toán 9 Kết nối tri thức"
+description: "Khái niệm mặt cầu, khối cầu, công thức diện tích mặt cầu S = 4πR² và thể tích khối cầu V = (4/3)πR³ - Toán 9 KNTT Chương 10"
 grade: "Lớp 9"
 chapter: "Chương X: Một số hình khối trong thực tiễn"
 currentSlug: "lop9/bai-32-hinh-cau"
@@ -18,200 +18,369 @@ import Geometry3DCalculator from '../../components/interactive/Geometry3DCalcula
 export const quizData = [
   {
     type: "mcq",
-    question: "Hình cầu được tạo thành khi ta cho phép quay một hình học phẳng nào sau đây xung quanh trục cố định?",
-    option_a: "Quay một tam giác cân.",
-    option_b: "Quay một nửa hình tròn quanh đường kính cố định của nó.",
-    option_c: "Quay vòng một hình chữ nhật.",
-    option_d: "Quay một hình Elip.",
+    question: "Công thức tính diện tích mặt cầu $S$ bán kính $R$ là:",
+    option_a: "$S = 4 \\pi R^2$",
+    option_b: "$S = 2 \\pi R^2$",
+    option_c: "$S = \\frac{4}{3} \\pi R^2$",
+    option_d: "$S = \\pi R^2$",
+    correct_option: "A",
+    explanation: "Diện tích mặt cầu bán kính $R$ được tính bằng công thức: $S = 4\pi R^2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính thể tích khối cầu $V$ bán kính $R$ là:",
+    option_a: "$V = \\frac{4}{3} \\pi R^3$",
+    option_b: "$V = 4 \\pi R^3$",
+    option_c: "$V = \\frac{1}{3} \\pi R^3$",
+    option_d: "$V = 2 \\pi R^3$",
+    correct_option: "A",
+    explanation: "Thể tích khối cầu bán kính $R$ là: $V = \\frac{4}{3} \\pi R^3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một mặt cầu có bán kính $R = 3\\text{ cm}$. Diện tích mặt cầu đó bằng bao nhiêu $\\text{cm}^2$?",
+    option_a: "$36\\pi$",
+    option_b: "$12\\pi$",
+    option_c: "$18\\pi$",
+    option_d: "$72\\pi$",
+    correct_option: "A",
+    explanation: "$S = 4\pi R^2 = 4\pi (3)^2 = 36\pi\\text{ cm}^2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một khối cầu có bán kính $R = 3\\text{ cm}$. Thể tích khối cầu bằng bao nhiêu $\\text{cm}^3$?",
+    option_a: "$36\\pi$",
+    option_b: "$108\\pi$",
+    option_c: "$27\\pi$",
+    option_d: "$12\\pi$",
+    correct_option: "A",
+    explanation: "$V = \\frac{4}{3} \\pi (3)^3 = \\frac{4}{3} \\pi (27) = 36\pi\\text{ cm}^3$. (Với $R=3$, số đo diện tích và thể tích có cùng giá trị $36\pi$).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu bán kính mặt cầu tăng lên 2 lần thì diện tích mặt cầu tăng lên mấy lần?",
+    option_a: "2 lần",
+    option_b: "4 lần",
+    option_c: "8 lần",
+    option_d: "16 lần",
     correct_option: "B",
-    explanation: "Theo định nghĩa về mặt tiếp xúc khối, khối cầu hình thành dựa trên việc dịch chuyển mô hình một nửa mặt hình tròn quay kín $360^\\circ$ xung quanh hệ trục tọa độ chính là đường kính của mảnh bán nguyệt đó.",
-    difficulty_level: "easy",
+    explanation: "$S = 4\pi R^2$. Khi $R' = 2R \Rightarrow S' = 4\pi (2R)^2 = 4 (4\pi R^2) = 4S$. Diện tích tăng lên 4 lần.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Trên một hình cầu bao gồm một tâm $O$ và có độ dài bán kính $R$. Khoảng cách từ một điểm bất kì nằm trên mặt cầu đến tâm $O$ luôn bằng:",
-    option_a: "$1/2 R$",
-    option_b: "$R^2$",
-    option_c: "$R$",
-    option_d: "$2R$ (đường kính)",
+    question: "Nếu bán kính khối cầu tăng lên 2 lần thì thể tích khối cầu tăng lên mấy lần?",
+    option_a: "2 lần",
+    option_b: "4 lần",
+    option_c: "8 lần",
+    option_d: "6 lần",
     correct_option: "C",
-    explanation: "Đặc tính hoàn mỹ của một mặt cầu là mọi điểm tập hợp nằm trên vỏ mặt biên cầu đều cách mạng tâm điểm không gian cốt lõi $O$ một khoảng cố định bằng chính xác độ dài bán kính $R$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Công thức toán học dùng để tính Diện tích bề mặt của hình cầu (mặt cầu) có bán kính $R$ là gì?",
-    option_a: "$S = \\pi R^2$",
-    option_b: "$S = 2\\pi R^2$",
-    option_c: "$S = 4\\pi R^2$",
-    option_d: "$S = \\frac{4}{3}\\pi R^3$",
-    correct_option: "C",
-    explanation: "Diện tích che phủ trọn vẹn toàn bộ lớp vỏ bề mặt biên cầu (không tính không gian ở trong lòng) được tính bằng $S = 4\\pi R^2$, tương đương 4 lần diện tích hình tròn mặt cắt tại tâm cầu.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Một quả bóng da hình cầu có bán kính 10 cm. Khỏi cần bấm máy, công thức để tính tổng thể tích dung khí nhét đầy trong quả bóng là:",
-    option_a: "$V = 4\\pi \\cdot 10^2$",
-    option_b: "$V = \\frac{4}{3}\\pi \\cdot 10^3$",
-    option_c: "$V = \\frac{1}{3}\\pi \\cdot 10^3$",
-    option_d: "$V = 20\\pi$",
-    correct_option: "B",
-    explanation: "Sử dụng công thức tính mốc thể tích hình cầu kinh điển của Archimedes: $V = \\frac{4}{3}\\pi R^3$. Ta thay trực tiếp bán kính hình học $R=10$ thu được biểu thức B.",
-    difficulty_level: "easy",
+    explanation: "$V = \\frac{4}{3} \pi R^3$. Khi $R' = 2R \Rightarrow V' = \\frac{4}{3} \pi (2R)^3 = 8 (\\frac{4}{3} \pi R^3) = 8V$. Thể tích tăng lên 8 lần.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Điểm giao kết giữa Toán học và Địa lý. Khi cắt một hình cầu cắt ngang bởi một mặt phẳng (giống như việc dùng dao bổ một quả cam). Đặc điểm của mặt cắt thiết diện lúc này sẽ LUÔN LUÔN là một:",
-    option_a: "Hình parabol lõm.",
-    option_b: "Hình Elip nhọn.",
-    option_c: "Hình tròn.",
-    option_d: "Mặt tiếp xúc phẳng không bị chóp vát.",
-    correct_option: "C",
-    explanation: "Sự tiếp xúc của mặt cắt thẳng (dù cắt nghiêng đi theo mọi góc độ nào chăng nữa) tịnh tiến cắt sâu vào hình cầu luôn luôn tạo ra một mặt thiết diện biên là một đường lót hình tròn hoàn hảo.",
+    question: "Những khẳng định nào sau đây ĐÚNG về Hình cầu?",
+    option_a: "Mặt cắt của một hình cầu bởi bất kỳ mặt phẳng nào cũng là một hình tròn",
+    option_b: "Mặt cắt đi qua tâm của hình cầu là hình tròn lớn có bán kính đúng bằng $R$",
+    option_c: "Diện tích mặt cầu bằng 4 lần diện tích hình tròn lớn ($S = 4 \pi R^2$)",
+    option_d: "Thể tích khối cầu gấp 2 lần thể tích khối nón có cùng bán kính $R$ và chiều cao $h = 2R$",
+    correct_option: "A,B,C,D",
+    explanation: "A, B, C đúng. D: $V_{\\text{nón}} = \\frac{1}{3} \\pi R^2 (2R) = \\frac{2}{3} \\pi R^3 \\Rightarrow V_{\\text{cầu}} = \\frac{4}{3} \\pi R^3 = 2 V_{\\text{nón}}$. Cả 4 khẳng định đều đúng.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Nếu biết trước thông số diện tích một mặt cầu bằng $100\\pi\\text{ cm}^2$. Hãy tính độ dài bán kính $R$ quy chiếu của mặt cầu đó (không nhập đơn vị).",
-    correct_option: "5",
-    explanation: "Áp dụng định hướng giải phương trình: $S = 4\\pi R^2 = 100\\pi \\Rightarrow 4R^2 = 100 \\Rightarrow R^2 = 25$. Khai căn bậc 2 ra độ lớn dương, $R = 5\\text{ cm}$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Tính thể tích ước tính (khối lượng đơn vị $\\pi$) của một khối phôi kim loại hình cầu có chu vi dải vòng tròn Xích Đạo ở vị trí mặt cắt trung tâm là $12\\pi\\text{ cm}$? (Gợi ý: Dùng vòng xích đạo để tìm $R$ trước). Trả lời chỉ cần nhập phần phân số / hệ số đằng trước số $\\pi$.",
-    correct_option: "288",
-    explanation: "Chu vi mặt cắt tâm $C = 2\\pi R = 12\\pi \\Rightarrow R = 6\\text{ cm}$. Áp dụng hệ số công thức nạp khối: $V = \\frac{4}{3}\\pi R^3 = \\frac{4}{3} \\cdot \\pi \\cdot 6^3 = \\frac{4}{3} \\cdot \\pi \\cdot 216 = 288\\pi$.",
+    type: "msq",
+    question: "Cho một khối cầu nội tiếp một khối trụ (đáy trụ tiếp xúc hình cầu, chiều cao trụ $h = 2R$). Những tỉ số nào ĐÚNG?",
+    option_a: "Diện tích mặt cầu bằng diện tích xung quanh của hình trụ ($S_{\\text{cầu}} = S_{xq, \\text{trụ}} = 4\\pi R^2$)",
+    option_b: "Thể tích khối cầu bằng $\\frac{2}{3}$ thể tích khối trụ ($V_{\\text{cầu}} = \\frac{2}{3} V_{\\text{trụ}}$)",
+    option_c: "Tỉ số thể tích $V_{\\text{nón}} : V_{\\text{cầu}} : V_{\\text{trụ}} = 1 : 2 : 3$",
+    option_d: "Diện tích toàn phần của hình trụ bằng $\\frac{3}{2}$ diện tích mặt cầu",
+    correct_option: "A,B,C,D",
+    explanation: "Đây là định lý nổi tiếng của nhà bác học Archimedes. Cả 4 phát biểu đều hoàn toàn chính xác.",
     difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một mặt cầu có diện tích S = 100π cm². Bán kính R của mặt cầu bằng bao nhiêu cm?",
+    correct_option: "5",
+    explanation: "$S = 4\pi R^2 = 100\pi \Rightarrow R^2 = 25 \Rightarrow R = 5\text{ cm}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính thể tích của một quả bóng tròn bán kính R = 6 cm theo π cm³.",
+    correct_option: "288",
+    explanation: "$V = \\frac{4}{3} \\pi (6)^3 = \\frac{4}{3} \\pi (216) = 288\\pi\\text{ cm}^3$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🌍 Quả bóng trên sân và Mô hình thu nhỏ Trái Đất</h3>
+<h3 id="mo-dau">🌍 Quả Địa Cầu & Hình Khối Tròn Hoàn Hảo</h3>
 
-Trong mọi thiết kế môn thể thao liên quan đến bóng (bóng đá, bóng chuyền, bóng bàn, bóng rổ...), quả bóng luôn lựu chọn một cấu trúc mang tính đối xứng triệt để nhất trong toàn bộ không gian 3 chiều - đó là **Hình cầu**. Thậm chí, chính hành tinh mà chúng ta đang sinh sống cũng là một quả địa cầu với kích thước vĩ đại và độ nhẵn khổng lồ.
+Trái Đất thân yêu, các hành tinh trong vũ trụ, quả bóng đá FIFA, viên bi thuỷ tinh, hay bong bóng xà phòng trong không khí đều tự nhiên thu về một hình khối hình học hoàn hảo nhất trong tự nhiên: **Hình cầu**.
 
-Những thuộc tính vật lí gì khiến cho hình dạng này vừa lăn tròn, lại vừa phân tán chịu ngoại lực tốt khi rơi đập đụng? Bậc thầy toán học cổ đại Archimedes là người đầu tiên bóc tách và tính toán bằng nguyên lý công năng hai thứ quan trọng là **Diện tích Vỏ Mặt cầu bao quanh** và lượng **Thể tích không gian** rỗng nhồi bên trong cái vỏ đó. Bài toán hình cầu cũng chính thức khép lại chương trình Toán khối THCS của bậc nhà trường cơ sở!
+Về mặt hình học 3D:
+- Quay một nửa hình tròn bán kính $R$ một vòng quanh đường kính cố định $AB$, ta được một **Mặt cầu**.
+- Tập hợp tất cả các điểm thuộc mặt cầu và nằm bên trong mặt cầu tạo thành một **Khối cầu**!
 
-</KhoiDong>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="200" viewBox="0 0 420 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Sphere 3D */}
+  <circle cx="210" cy="100" r="75" fill="#f0f9ff" stroke="#0284c7" stroke-width="2.5"/>
+  <ellipse cx="210" cy="100" rx="75" ry="25" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="4"/>
+  <ellipse cx="210" cy="100" rx="25" ry="75" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="4"/>
+  <circle cx="210" cy="100" r="5" fill="#ef4444"/>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+  {/* Radius R */}
+  <line x1="210" y1="100" x2="285" y2="100" stroke="#ef4444" stroke-width="2"/>
+  <line x1="210" y1="100" x2="210" y2="25" stroke="#16a34a" stroke-width="2"/>
 
-<h3 id="hinh-cau" style="margin-top:2rem;">📖 1. Mặt cầu và Hình cầu</h3>
+  {/* Labels */}
+  <text x="210" y="115" font-size="12" font-weight="bold" fill="#ef4444" text-anchor="middle">O (Tâm)</text>
+  <text x="245" y="92" font-size="12" font-weight="bold" fill="#ef4444">R</text>
+  <text x="215" y="60" font-size="12" font-weight="bold" fill="#16a34a">R</text>
 
-<div class="box-dinh-nghia">
-
-- Khi quy tập mô hình một **nửa hình tròn** có hệ tâm $O$, bán kính đường viền là $R$, quay tròn khép một vòng mốc $360^\circ$ quanh trục đối xứng xuyên tâm mốc đường kính dải $AB$ của nó, đường cong vòng cung sẽ quét ra một vòm lề mặt cong khép kín gọi là **Mặt cầu**.
-- Quỹ tích mặt phẳng bao bọc (lớp vỏ ngoài da) kết hợp với toàn thể phần điểm không gian dày đặc lót bên trong bụng mặt cầu tạo thành khối kiến trúc cấu trúc rắn, gọi chung là **Hình cầu**.
-
-</div>
-
-**Đặc điểm hình chiếu của Hình cầu:**
-1. Tâm $O$ luôn đại diện là trung tâm không gian lõi của cả khối. Mọi điểm lọt trên lề lớp da vỏ bề mặt luôn luôn cách đều tâm $O$ một khoảng đúng bằng chiều dài **Bán kính khối cầu $R$**. Khoảng cách đường xiên nối đỉnh xuyên tâm là Đường kính $D = 2R$.
-2. Khi dùng một mặt dao cắt (mặt phẳng) chặt cắt đôi hoặc cắt đi một mỏn qua hình cầu, phần bề mặt lộ diện giao thoa **thiết diện luôn tự động là một hình tròn**. Nếu nhát cắt xuyên qua thẳng tâm $O$, ta có thiết diện vòng xích đạo lớn nhất (đường tròn to nhất có bán kính bằng $R$).
- 
-<h3 id="cong-thuc" style="margin-top:2rem;">📖 2. Diện tích của mặt cầu và Thể tích lưu giữ</h3>
-
-Không giống như việc bóc giấy bồi trải dọc của hình trụ để ép ra mặt diện kích thước hình chữ nhật phẳng phiu, mặt cầu không thể trải dẹp thành một nếp giấy do đường lượn lồi lõm đa hướng. Tuy nhiên dựa vào công trình giải tích, ta có khả năng chốt áp dụng hai bộ công thức cố định quan trọng bậc nhất:
-
-<div class="box-dinh-ly">
-
-1. **Công thức tính Diện tích bề bao bọc lớp Mặt Cầu** 
-Diện tích cấu tạo thành một đường cầu phủ lớp bao bọc khép viền mốc mặt khối: 
-$$S = 4 \pi R^2$$ 
-*(Hoặc nếu biểu thị bằng đường kính dải $D$: $S = \pi D^2$)*.
-
-2. **Công thức tính Thể tích Hình Cầu nằm trong**
-Không gian dung lượng vật chất chứa nhồi tích định dạng nhét ruột mặt khối:
-$$V = \frac{4}{3} \pi R^3$$
-
-*(Ở bậc mức cơ sở, kí hiệu tỉ lệ hằng số thường sử dụng trị mức lấy xấp xỉ $\pi \approx 3.14$ dọn cho dễ tính)*.
-
-</div>
-
-<h3 id="hinh-ve" style="margin-top:2rem;">💡 Hình ảnh Cấu trúc không gian Hình Cầu</h3>
-
-<div style={{display: "flex", justifyContent: "center", margin: "2rem 0"}}>
-<svg width="250" height="250" viewBox="0 0 250 250">
-  {/* Circle outline of sphere */}
-  <circle cx="125" cy="125" r="100" fill="none" stroke="#2563eb" strokeWidth="2" />
-  
-  {/* Front half of equator (ellipsis) */}
-  <path d="M 25 125 A 100 30 0 0 0 225 125" fill="none" stroke="#10b981" strokeWidth="2" />
-  
-  {/* Back half of equator (dashed ellipsis) */}
-  <path d="M 25 125 A 100 30 0 0 1 225 125" fill="none" stroke="#9ca3af" strokeWidth="2" strokeDasharray="5,5" />
-  
-  {/* Tâm O và Bán kính R */}
-  <circle cx="125" cy="125" r="4" fill="#ef4444" />
-  <line x1="125" y1="125" x2="225" y2="125" stroke="#ef4444" strokeWidth="2" />
-  <text x="110" y="115" fill="#ef4444" fontWeight="bold">O</text>
-  <text x="180" y="115" fill="#ef4444" fontWeight="bold">R</text>
-  
-  <text x="125" y="240" textAnchor="middle" fill="#475569" fontWeight="bold">Mô hình khối cầu 3D</text>
+  <text x="70" y="80" font-size="13" font-weight="bold" fill="#0369a1">Diện tích S = 4πR²</text>
+  <text x="70" y="115" font-size="13" font-weight="bold" fill="#0369a1">Thể tích V = ⁴⁄₃πR³</text>
 </svg>
 </div>
 
-<h3 id="tuong-tac-3d" style="margin-top:2rem;">🖩 3. Công cụ kiểm soát Thể tích Khối Lượng không gian 3D</h3>
+</KhoiDong>
 
-Chỉ nhờ một dữ kiện duy nhất là Bán kính $R$, ta có thể đánh giả toàn bộ không gian hình tròn. Nhập kích cỡ $R$ vào mô tơ hệ thống, kiểm duyệt đo lường sự chênh lệch to lên về thể tích rất nhanh chóng (hệ số lũy thừa $R^3$) !
+<KhamPha title="Khám phá">
 
-<Geometry3DCalculator client:load />
+<h3 id="khai-niem-va-cong-thuc-hinh-cau">📖 1. Khái niệm và Các công thức cơ bản của Hình Cầu</h3>
+
+<div class="box-dinh-nghia">
+
+**1. Định nghĩa:**
+- Quay nửa hình tròn tâm $O$ bán kính $R$ một vòng quanh đường kính $AB$ cố định:
+  - Nửa đường tròn quét nên **mặt cầu** $(O; R)$.
+  - Nửa hình tròn quét nên **khối cầu** $(O; R)$.
+
+**2. Công thức tính Diện tích Mặt cầu ($S$):**
+$$S = 4 \pi R^2 = \pi d^2$$
+
+**3. Công thức tính Thể tích Khối cầu ($V$):**
+$$V = \frac{4}{3} \pi R^3 = \frac{1}{6} \pi d^3$$
+(với $d = 2R$ là đường kính của hình cầu).
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Công thức Hình Cầu:**
+
+- **Ví dụ 1:** Tính diện tích mặt cầu $S$ và thể tích khối cầu $V$ có bán kính $R = 6\text{ cm}$.
+  - *Giải:* $S = 4\pi R^2 = 4\pi (6)^2 = 144\pi\text{ cm}^2 \approx 452,4\text{ cm}^2$.  
+    $V = \frac{4}{3} \pi R^3 = \frac{4}{3} \pi (6)^3 = \frac{4}{3} \pi (216) = 288\pi\text{ cm}^3 \approx 904,8\text{ cm}^3$.
+
+- **Ví dụ 2:** Quả bóng đá FIFA tiêu chuẩn có đường kính $d = 22\text{ cm}$ ($R = 11\text{ cm}$). Tính diện tích vỏ da bóng và thể tích không khí chứa trong bóng.
+  - *Giải:* Diện tích vỏ da $S = \pi d^2 = \pi (22)^2 = 484\pi \approx 1520,5\text{ cm}^2 = 0,152\text{ m}^2$.  
+    Thể tích không khí $V = \frac{1}{6} \pi d^3 = \frac{1}{6} \pi (22)^3 = \frac{10648}{6} \pi = \frac{5324}{3} \pi \approx 5575,3\text{ cm}^3 \approx 5,58\text{ lít}$.
+
+- **Ví dụ 3:** Cho mặt cầu có diện tích $S = 36\pi\text{ cm}^2$. Tính bán kính $R$ và thể tích khối cầu $V$.
+  - *Giải:* $S = 4\pi R^2 \Rightarrow 4\pi R^2 = 36\pi \Rightarrow R^2 = 9 \Rightarrow R = 3\text{ cm}$.  
+    $V = \frac{4}{3} \pi (3)^3 = 36\pi\text{ cm}^3$.
+
+</div>
+
+<h3 id="mat-cat-hinh-cau" style="margin-top:2rem;">📖 2. Mặt Cắt của Hình Cầu bởi Mặt Phẳng</h3>
+
+<div class="box-dinh-nghia">
+
+**Định lý Mặt cắt:**
+Cắt một hình cầu tâm $O$ bán kính $R$ bởi một mặt phẳng $(P)$ cách tâm $O$ một khoảng $h = d(O, P)$:
+1. Mặt cắt thu được **luôn là một hình tròn**.
+2. Gọi $r$ là bán kính của hình tròn mặt cắt, ta có mối liên hệ Pythagore:
+   $$r = \sqrt{R^2 - h^2} \qquad \Leftrightarrow \qquad R^2 = r^2 + h^2$$
+3. Các trường hợp đặc biệt:
+   - Nếu $h = 0$ (mặt phẳng đi qua tâm $O$): Mặt cắt là **Hình tròn lớn** có bán kính $r = R$.
+   - Nếu $h = R$: Mặt phẳng tiếp xúc với mặt cầu tại 1 điểm (tiếp tuyến mặt cầu).
+   - Nếu $h > R$: Mặt phẳng không cắt mặt cầu.
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Mặt Cắt Hình Cầu:**
+
+- **Ví dụ 1:** Cắt mặt cầu $(O; R = 10\text{ cm})$ bởi mặt phẳng $(P)$ cách tâm $O$ một khoảng $h = 6\text{ cm}$. Tính bán kính $r$ và diện tích $S_{\text{cắt}}$ của đường tròn mặt cắt.
+  - *Giải:* Bán kính mặt cắt $r = \sqrt{R^2 - h^2} = \sqrt{10^2 - 6^2} = 8\text{ cm}$.  
+    Diện tích mặt cắt $S_{\text{cắt}} = \pi r^2 = \pi (8)^2 = 64\pi\text{ cm}^2 \approx 201,1\text{ cm}^2$.
+
+- **Ví dụ 2:** Mặt cắt của một hình cầu bởi mặt phẳng cách tâm $h = 4\text{ cm}$ là một hình tròn có chu vi $C = 6\pi\text{ cm}$. Tính bán kính $R$ và thể tích khối cầu.
+  - *Giải:* $C = 2\pi r = 6\pi \Rightarrow r = 3\text{ cm}$.  
+    Bán kính hình cầu $R = \sqrt{r^2 + h^2} = \sqrt{3^2 + 4^2} = 5\text{ cm}$.  
+    Thể tích khối cầu $V = \frac{4}{3} \pi (5)^3 = \frac{500}{3} \pi\text{ cm}^3 \approx 523,6\text{ cm}^3$.
+
+- **Ví dụ 3:** Một bát nước thuỷ tinh hình bán cầu bán kính $R = 12\text{ cm}$ chứa nước có chiều cao mực nước $h_{\text{nước}} = 9\text{ cm}$. Tính diện tích mặt nước lộ ra trên bát.
+  - *Giải:* Khoảng cách từ tâm bát đến mặt nước $h = R - h_{\text{nước}} = 12 - 9 = 3\text{ cm}$.  
+    Bán kính mặt nước $r = \sqrt{12^2 - 3^2} = \sqrt{135} = 3\sqrt{15}\text{ cm}$.  
+    Diện tích mặt nước $S = \pi r^2 = 135\pi\text{ cm}^2$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính Diện tích và Thể tích khi biết $R$ hoặc $d$**
+- **Phương pháp:** Thay trực tiếp vào $S = 4\pi R^2$ và $V = \frac{4}{3}\pi R^3$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tính $S$ và $V$ của trái búp bê hình cầu bán kính $R = 1,5\text{ dm}$.
+  - *Lời giải:* $S = 4\pi (1,5)^2 = 9\pi\text{ dm}^2 \approx 28,27\text{ dm}^2$.  
+    $V = \frac{4}{3} \pi (1,5)^3 = 4,5\pi\text{ dm}^3 \approx 14,14\text{ lít}$.
+
+- **Ví dụ 2:** Tính diện tích mặt cầu có đường kính $d = 10\text{ cm}$.
+  - *Lời giải:* $S = \pi d^2 = \pi (10)^2 = 100\pi\text{ cm}^2 \approx 314,16\text{ cm}^2$.
+
+- **Ví dụ 3:** Tính thể tích khối cầu có đường kính $d = 12\text{ cm}$ ($R = 6\text{ cm}$).
+  - *Lời giải:* $V = \frac{4}{3} \pi (6)^3 = 288\pi\text{ cm}^3 \approx 904,78\text{ cm}^3$.
+
+</div>
+
+#### **Dạng 2: Tìm $R, d$ khi biết Diện tích $S$ hoặc Thể tích $V$**
+- **Phương pháp:** Biến đổi $R = \sqrt{\frac{S}{4\pi}}$ hoặc $R = \sqrt[3]{\frac{3V}{4\pi}}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Một khối cầu có thể tích $V = 288\pi\text{ cm}^3$. Tính diện tích mặt cầu $S$.
+  - *Lời giải:* $\frac{4}{3} \pi R^3 = 288\pi \Rightarrow R^3 = 216 \Rightarrow R = 6\text{ cm}$.  
+    $S = 4\pi (6)^2 = 144\pi\text{ cm}^2$.
+
+- **Ví dụ 2:** Một mặt cầu có diện tích $S = 64\pi\text{ cm}^2$. Tính thể tích khối cầu $V$.
+  - *Lời giải:* $4\pi R^2 = 64\pi \Rightarrow R^2 = 16 \Rightarrow R = 4\text{ cm}$.  
+    $V = \frac{4}{3} \pi (4)^3 = \frac{256}{3} \pi\text{ cm}^3$.
+
+- **Ví dụ 3:** Cho thể tích khối cầu $V = \frac{32}{3} \pi\text{ cm}^3$. Tính đường kính $d$.
+  - *Lời giải:* $\frac{4}{3} \pi R^3 = \frac{32}{3} \pi \Rightarrow 4 R^3 = 32 \Rightarrow R^3 = 8 \Rightarrow R = 2\text{ cm} \Rightarrow d = 4\text{ cm}$.
+
+</div>
+
+#### **Dạng 3: Bài toán Mặt cắt và Bán kính Lát cắt $r = \sqrt{R^2 - h^2}$**
+- **Phương pháp:** Sử dụng hệ thức tam giác vuông giữa bán kính cầu $R$, bán kính cắt $r$ và khoảng cách $h$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cắt mặt cầu $(O; R = 13\text{ cm})$ bằng mặt phẳng $(P)$ tạo đường tròn mặt cắt có bán kính $r = 5\text{ cm}$. Tính khoảng cách $h$ từ $O$ đến $(P)$.
+  - *Lời giải:* $h = \sqrt{R^2 - r^2} = \sqrt{13^2 - 5^2} = \sqrt{144} = 12\text{ cm}$.
+
+- **Ví dụ 2:** Một mặt phẳng cắt khối cầu thành hai phần. Biết khoảng cách từ tâm đến mặt phẳng là $h = 8\text{ cm}$ và diện tích hình tròn mặt cắt là $S = 225\pi\text{ cm}^2$. Tính thể tích khối cầu.
+  - *Lời giải:* $S = \pi r^2 = 225\pi \Rightarrow r = 15\text{ cm}$.  
+    Bán kính cầu $R = \sqrt{15^2 + 8^2} = \sqrt{289} = 17\text{ cm}$.  
+    $V = \frac{4}{3} \pi (17)^3 = \frac{4}{3} \pi (4913) = \frac{19652}{3} \pi\text{ cm}^3$.
+
+- **Ví dụ 3:** Cho mặt cầu $(O; R = 25\text{ cm})$. Hai mặt phẳng $(P)$ và $(Q)$ song song cắt mặt cầu tạo 2 hình tròn mặt cắt có bán kính lần lượt là $r_1 = 20\text{ cm}$ và $r_2 = 15\text{ cm}$. Tính khoảng cách giữa 2 mặt phẳng $(P)$ và $(Q)$.
+  - *Lời giải:* $h_1 = \sqrt{25^2 - 20^2} = 15\text{ cm}$. $h_2 = \sqrt{25^2 - 15^2} = 20\text{ cm}$.  
+    - Nếu $(P), (Q)$ nằm 2 phía tâm $O$: $d = h_1 + h_2 = 15 + 20 = 35\text{ cm}$.  
+    - Nếu $(P), (Q)$ nằm cùng phía tâm $O$: $d = h_2 - h_1 = 20 - 15 = 5\text{ cm}$.
+
+</div>
+
+#### **Dạng 4: Bài toán Tiếp xúc & Tỉ số Thể tích (Định lý Archimedes)**
+- **Phương pháp:** So sánh $V_{\text{nón}} = \frac{2}{3} \pi R^3$, $V_{\text{cầu}} = \frac{4}{3} \pi R^3$, $V_{\text{trụ}} = 2 \pi R^3$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho hình cầu bán kính $R$ nội tiếp hình trụ (2 đáy trụ tiếp xúc hình cầu, chiều cao $h = 2R$). Tính tỉ số thể tích $V_{\text{cầu}} / V_{\text{trụ}}$.
+  - *Lời giải:* $V_{\text{cầu}} = \frac{4}{3} \pi R^3$. $V_{\text{trụ}} = \pi R^2 (2R) = 2 \pi R^3$.  
+    Tỉ số $\frac{V_{\text{cầu}}}{V_{\text{trụ}}} = \frac{\frac{4}{3} \pi R^3}{2 \pi R^3} = \frac{2}{3}$.
+
+- **Ví dụ 2:** Thả 3 viên bi thép hình cầu đường kính $d = 4\text{ cm}$ ($R = 2\text{ cm}$) vào một cốc nước hình trụ bán kính đáy $r = 4\text{ cm}$. Hỏi mực nước dâng lên bao nhiêu cm?
+  - *Lời giải:* Tổng thể tích 3 viên bi $V_{\text{bi}} = 3 \times \frac{4}{3} \pi (2)^3 = 32\pi\text{ cm}^3$.  
+    Thể tích nước dâng lên $V = \pi r^2 \cdot h_{\text{dâng}} \Rightarrow 32\pi = \pi (4)^2 \cdot h_{\text{dâng}} \Rightarrow 16 h_{\text{dâng}} = 32 \Rightarrow h_{\text{dâng}} = 2\text{ cm}$.
+
+- **Ví dụ 3:** Tính diện tích mặt cầu ngoại tiếp hình lập phương cạnh $a = 6\text{ cm}$.
+  - *Lời giải:* Đường chéo hình lập phương $d = a\sqrt{3} = 6\sqrt{3}\text{ cm} \Rightarrow$ Bán kính cầu $R = 3\sqrt{3}\text{ cm}$.  
+    $S = 4\pi R^2 = 4\pi (3\sqrt{3})^2 = 4\pi (27) = 108\pi\text{ cm}^2$.
+
+</div>
+
+#### **Dạng 5: Bài toán Vận dụng Thực tế Đời sống & Khoa học**
+- **Phương pháp:** Mô hình hóa các vật thể tròn xoay thực tế thành khối cầu.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1 (Diện tích Bề mặt Trái Đất):** Coi Trái Đất là một hình cầu có bán kính $R = 6371\text{ km}$. Tính diện tích bề mặt Trái Đất ($million\text{ km}^2$).
+  - *Lời giải:* $S = 4\pi R^2 = 4 \times 3,1416 \times (6371)^2 \approx 510.064.472\text{ km}^2 \approx 510\text{ triệu km}^2$.
+
+- **Ví dụ 2 (Bồn Chứa Khí Hoá Lỏng Hình Cầu):** Một bồn chứa khí hoá lỏng LPG hình cầu có đường kính $d = 12\text{ m}$. Tính thể tích khí LPG chứa đầy bồn ($m^3$) và diện tích sơn phủ ngoài vỏ bồn.
+  - *Lời giải:* $R = 6\text{ m}$. Thể tích $V = \frac{4}{3} \pi (6)^3 = 288\pi \approx 904,78\text{ m}^3$.  
+    Diện tích sơn bọc $S = 4\pi (6)^2 = 144\pi \approx 452,39\text{ m}^2$.
+
+- **Ví dụ 3 (Bể Cá Thuỷ Tinh Hình Cầu):** Một bể cá cảnh hình cầu bán kính $R = 20\text{ cm}$ chứa nước đến $80\%$ thể tích bể. Tính số lít nước trong bể cá.
+  - *Lời giải:* $V_{\text{bể}} = \frac{4}{3} \pi (20)^3 = \frac{32000}{3} \pi \approx 33.510\text{ cm}^3 = 33,51\text{ lít}$.  
+    Số lít nước $= 33,51 \times 80\% \approx 26,8\text{ lít}$.
+
+</div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Các bài toán thực tiễn phủ vật liệu, lớp da bao quanh và bọc Mặt Cầu**
-**Phương pháp:** 
-- Nắm phân định rõ câu từ "Mặt cầu" (Dùng làm các bài toán cần mua sơn phủ vỏ bảo vệ quả banh cầu, may vỏ khung da bọc quả bóng, sơn mạ điện bề mặt cầu lồi...). 
-- Có bán kính $R$, lập số nhân liền tính: $S_{xq} = 4\pi R^2$. 
-- Điển hình là loại bài: So sánh gấp rưỡi, khi độ dài bán kính được nhà sản xuất nhân thêm gấp đôi (thành $2R$), do diện tích bọc tuân theo tỉ lệ bình phương mũ $2$, lượng da nguyên vật liệu bọc ngoài tiêu tốn sẽ phình lồi lên gấp 4 lần ($2^2=4$).
+**Bài toán 1 (Địa Lý & Bề Mặt Trái Đất):**  
+Trái Đất được xem như một hình cầu bán kính $R = 6371\text{ km}$. Biết đại dương chiếm $71\%$ diện tích bề mặt Trái Đất.  
+a) Tính tổng diện tích bề mặt Trái Đất ($km^2$).  
+b) Tính diện tích phần phần đất liền trên Trái Đất ($km^2$).
 
-</div>
+**Bài toán 2 (Kỹ Thuật Bồn Khí LPG Hình Cầu):**  
+Kỹ sư thiết kế một bồn chứa khí hoá lỏng LPG hình cầu dung tích $V = 500\text{ m}^3$.  
+a) Tính bán kính $R$ của bồn chứa khí hoá lỏng.  
+b) Tính diện tích thép tấm phủ bọc xung quanh vỏ bồn.
 
-**Ví dụ 1:** 
-Phân xưởng thợ da nhận bọc lại một lô những quả bóng chuyên dụng cho giải ngoại hạng, mỗi quả có bán kính đường kính xích đạo là mốc $R = 11\text{ cm}$. Công ty đo lường mỗi cm vuông $1\text{ cm}^2$ miếng đắp da bọc giá thành tốn hao khoảng $2$ VNĐ. Bạn hãy tổng tính lượng chi phí gia công vật liệu dán da khâu phủ kín một quả bóng. 
-(Gợi ý: Phủ kín một hình mặt cầu, định $\pi = 3.14$).
-**Hướng dẫn:** 
-- Yêu cầu mua da bọc "phủ kín bề mặt" bao quát bên ngoài tương đương với Diện tích mặt bao bộ nệm của cầu:
-  $S_{\text{vỏ bọc}} = 4 \cdot \pi \cdot R^2 = 4 \cdot 3.14 \cdot 11^2 = 12.56 \cdot 121 = 1519.76\text{ cm}^2$.
-- Rút giá thành hao lượng chiết liệu trên mỗi thành phẩm bóng:
-  $\text{Chi phí} = 1519.76 \cdot 2\text{ VNĐ} \approx 3039.52\text{ VNĐ}$ / Quả (hơn 3 ngàn đồng một vỏ bóng rỗng).
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Quy hệ Thể tích không gian, Trọng tải ngậm và Dung lượng Lõi cầu**
-**Phương pháp:** 
-- Bài toán thể tích ngụ ý chứa nước, nấu chì đúc nóng nguyên khối, múc kem trổ bóng kem tròn viền chóp... Ứng dụng thẳng biểu đồ khối lượng mốc lượng lưu $V = \frac{4}{3} \pi R^3$. 
-- Đáng chú ý ở loại bài toán này, khi các thông số kích thước hình cầu lồi to gấp 2 lần, thể tích bụng chứa vọt lên với biên gấp bội cực lớn theo hàm lập phương (tăng lượng nhân lên 8 lần).
-- Giải toán quy đổi: Lấy Thể tích nhân với Khối khối lượng tỷ trọng đơn vị (như nước $1\text{kg/lít}$) ra tải trọng khối cầu thép nặng tổng bì. Lượng nước bơm ngập bình cũng đo mức đong bằng khối hở tương đồng...
-
-</div>
-
-**Ví dụ 2:**  Một cái hồ cá thuỷ tinh sang trọng trưng bày phong thủy được điêu khắc thổi nhiệt mang hình dạng là một khối hình cầu kín. Có rốn một miệng ở cực Bắc để rót cá (Bỏ qua vi thể do miệng quá nhỏ so với thân cầu). Số đo cấu hình chu vi vòng bụng rộng nhất thân bể xích đạo là vòng dải vòng là $C = 62.8\text{ cm}$. Nhà thủy vi sinh hỏi chứa sấp sấp được cỡ tối đa thể lượng được róc nổi nước bao nhiêu Lít mới ngập mép tràn. (Lấy $\pi \approx 3.14$).
-**Hướng dẫn:** 
-- Đường vòng xích đạo cong bụng chính là chu vi viền mặt cắt thẳng chẻ giữa đường tròn bao tâm: 
-$C = 2\pi R \Rightarrow R = \frac{C}{2\pi} = \frac{62.8}{2 \cdot 3.14} = \frac{62.8}{6.28} = 10\text{ cm}$.
-- Khảo sát dung lượng thể tích nước $lượng$ móp theo mốc bán kính đã ấn:
-$V_{hồ} = \frac{4}{3} \pi R^3 = \frac{4}{3} \cdot 3.14 \cdot 10^3 = \frac{4}{3} \cdot 3.14 \cdot 1000 = \frac{12560}{3} \approx 4186.67\text{ cm}^3$.
-- Biên dịch khối không gian sang hệ trữ dung nước: $1\text{ lít (lit)} = 1\text{ dm}^3 = 1000\text{ cm}^3$. Do đó, bình này mang theo giới hạn tích là tầm chứa vào khoảng $4.186$ Lít nước trong.
+**Bài toán 3 (Y Tế & Viên Thuốc Nang Cầu):**  
+Một công ty dược phẩm sản xuất viên thuốc bổ sung Vitamin E hình cầu có bán kính $r = 3\text{ mm}$.  
+a) Tính thể tích một viên thuốc ($mm^3$).  
+b) Để sản xuất 1 triệu viên thuốc cần bao nhiêu lít dung dịch dược chất?
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ máy tính hình học 3D dưới đây giúp bạn tính toán diện tích mặt cầu, thể tích khối cầu và bán kính lát cắt một cách trực quan!
+</div>
+
+<Geometry3DCalculator client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 32:**
+
+1. **Diện tích mặt cầu:** $S = 4\pi R^2 = \pi d^2$.  
+2. **Thể tích khối cầu:** $V = \frac{4}{3} \pi R^3 = \frac{1}{6} \pi d^3$.  
+3. **Mặt cắt:** Lát cắt bởi mặt phẳng luôn là hình tròn có bán kính $r = \sqrt{R^2 - h^2}$.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -220,30 +389,130 @@ $V_{hồ} = \frac{4}{3} \pi R^3 = \frac{4}{3} \cdot 3.14 \cdot 10^3 = \frac{4}{3
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Người chủ xưởng kim hoàn làm phôi chuẩn gia công. Ông lấy nung đúc chảy một viên bi chì dạng khối đặc (mô phôi viên đạn hình cầu đặc sệt) cấu trúc có độ bán kính ban đầu neo tại mức $R_{1} = 2\text{ cm}$. Sau đó ông đổ phôi chì tái chế thành một lố những viên bi súng bi sắt siêu nhỏ con để bắn mồi, biên viền mỗi viên bi nhỏ bé tẹo chênh là cấu thành độ lớn có phân độ đường kính là gộp chóp đới mốc $d = 1\text{ cm}$. Hỏi theo phép màu khối đúc (không thất thoát), nhà đúc kim loại đó làm ra được tròn trĩnh ra một bầy gồm tổng cộng là số lượng được chia ra của bao nhiêu bi nhỏ nòng viền bắn? 
+**Bài 1:** Cho hình cầu bán kính $R$ hoặc đường kính $d$. Tính diện tích mặt cầu $S$ và thể tích khối cầu $V$ khi:  
+a) $R = 3\text{ cm}$  
+b) $R = 6\text{ cm}$  
+c) $R = 9\text{ cm}$  
+d) Đường kính $d = 8\text{ cm}$  
+e) Đường kính $d = 10\text{ cm}$  
+f) Bán kính $R = 1,2\text{ m}$
 
-**Bài 2:** (Tư duy toán học không gian Archimedes tương phùng)
-Thử hình dung bạn có một cốc nước dạng lập lên là khối Hình Trụ trơn nhẵn có chỉ số bán kính của mặt đáy ở dưới vòng bằng đúng nhúng bằng bán kính $R$ và chiều đứng dải lên của thành cốc nước hụt đúng vạch chóp cao bằng đúng trần của một khối trục đường kính là $h = 2R$. Bạn rinh mua về một quả Tạ hình câm sắt thỏi đặc sệt có dạng đúc một hình của khối đa cầu đặc mang đường kính giới ranh tương tự $2R$. 
-Bạn thả rơi khối cầu đặc ngập khít và làm tràn chìm tịt vào mặt trong của khối vỏ hộp Cốc.  Sử dụng mô hình thức khối thể tích của vỏ hộp rỗng với cầu phôi chèn chiếm nhồi bít vị trí. Giải trình tìm và chốt kết luận phần không gian bị sót chứa nước còn chừa trống ở các mép có thể tích hệ bằng khối chiết bao nhiêu của phần nạp vào (Mối tỷ lệ phần thừa)? 
+**Bài 2:** Tính bán kính $R$ và đại lượng còn lại của hình cầu khi biết:  
+a) Diện tích mặt cầu $S = 64\pi\text{ cm}^2$  
+b) Diện tích mặt cầu $S = 144\pi\text{ cm}^2$  
+c) Thể tích khối cầu $V = 36\pi\text{ cm}^3$  
+d) Thể tích khối cầu $V = 288\pi\text{ cm}^3$  
+e) Thể tích khối cầu $V = \frac{500}{3}\pi\text{ cm}^3$  
+f) Diện tích mặt cầu $S = 100\pi\text{ dm}^2$
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 3:** Bài toán mặt cắt hình cầu $(O; R)$:  
+a) $R = 10\text{ cm}$, mặt phẳng $(P)$ cách $O$ khoảng $h = 6\text{ cm}$. Tính bán kính $r$ và diện tích mặt cắt.  
+b) $R = 15\text{ cm}$, bán kính mặt cắt $r = 12\text{ cm}$. Tính khoảng cách $h$ từ $O$ đến mặt phẳng cắt.  
+c) $h = 8\text{ cm}$, diện tích mặt cắt $S_{\text{cắt}} = 225\pi\text{ cm}^2$. Tính bán kính $R$ và thể tích khối cầu.  
+d) $R = 20\text{ cm}$, diện tích mặt cắt bằng một nửa diện tích đường tròn lớn ($S_{\text{cắt}} = \frac{1}{2} \pi R^2$). Tính khoảng cách $h$.  
+e) $R = 13\text{ cm}$, hai mặt phẳng song song cách tâm $O$ lần lượt $h_1 = 5\text{ cm}$ và $h_2 = 12\text{ cm}$. Tính tổng diện tích 2 hình tròn mặt cắt.  
+f) Mặt cầu tiếp xúc với hai mặt phẳng song song $(P)$ và $(Q)$. Khoảng cách giữa $(P)$ và $(Q)$ là $16\text{ cm}$. Tính diện tích mặt cầu.
 
-**Bài 1:**
-- Phôi đục khối của nguyên một cục chì chóp đĩa tổng: Hình dạng nó là quả bóng lựu một khối Cầu khổng lồ: $V_{\text{lớn}} = \frac{4}{3} \cdot \pi \cdot R_{1}^3 = \frac{4}{3} \cdot \pi \cdot (2)^3 = \frac{32}{3}\pi \text{ cm}^3$.
-- Hình dạng kích cỡ xẻ mảnh đục rẽ tạo khuôn bi con bi nhỏ có độ chéo đường kính qua rốn là tâm tẹo $d = 1\text{ cm}$. Vì cần theo chuẩn nên rút ra quy số bán kính siêu nhỏ có chóp là $R_2 = \frac{d}{2} = 0.5\text{ cm}$.
-- Số đo định lượng khuôn bi cầu khối đơn vị mảnh nhỏ đếm khối: $V_{\text{nhỏ}} = \frac{4}{3} \cdot \pi \cdot R_{2}^3 = \frac{4}{3} \cdot \pi \cdot (0.5)^3 = \frac{4}{3} \pi \cdot 0.125 = \frac{0.5}{3}\pi \text{ cm}^3$.
-- Khảo sát việc đem chia khối chì to nhất $V_{\text{lớn}}$ cho khuôn vi $V_{\text{nhỏ}}$ lấy trúng phép số: Lượng bi chia nhỏ bằng với $=\frac{\frac{32}{3}\pi}{\frac{0.5}{3}\pi} = \frac{32}{0.5} = 64$ viên. 
+**Bài 4:** Quả bóng đá tiêu chuẩn có đường kính $d = 22\text{ cm}$.  
+a) Tính diện tích vỏ da khâu bóng ($S$).  
+b) Tính thể tích không khí chứa đầy bóng ($V$).
 
-**Bài 2:**
-Tư duy tương tự bài toán cổ đại về chiếc vương miện và bồn tắm:
-- Tổng không gian màng bọc khối chứa Hình trụ bao quát khối nước $V_{\text{trụ}} = \pi \cdot R^2 \cdot h = \pi \cdot R^2 \cdot (2R) = 2\pi \cdot R^3$.
-- Đem hình dạng kết vây của mô hình khối Cầu bằng khối sắt dập nước bị ngập chìm đọng dưới chiếm nhồi $V_{\text{cầu}} = \frac{4}{3}\pi \cdot R^3$.
-- Xét về tổng số lượng nước trong khoảng không còn lọt chênh ở mép sườn còn bị bỏ sót chưa đậy: 
-  $\Delta V_{\text{hở hụt sót lại}} = V_{\text{trụ}} - V_{\text{cầu}}$.
-  $= 2\pi R^3 - \frac{4}{3}\pi R^3 = \pi R^3 \left(2 - \frac{4}{3}\right) = \frac{2}{3}\pi R^3$.
-Như ta thấy phần thể tích của Cầu gặm nhồi khối chóp chiếm cứ phân khối là $\frac{4}{3}\pi R^3$, bằng dường như chính xác lượng bằng $2/3$ khoang thể tích bọc trụ không gian rỗng $2\pi R^3$. Tương tự thì lượng mép kẽ bỏ trống $\Delta V$ còn hụt mang mức chia phần diện tích đúng $1/3$ tổng khối vỏ bao bọc, cũng tức là chứa bằng một nửa phần Thể tích khối cối bi cầu ($1/2 V_{\text{cầu}}$). 
+**Bài 5:** Thả 5 viên bi thuỷ tinh hình cầu đường kính $d = 2\text{ cm}$ vào một bình thuỷ tinh hình trụ có bán kính đáy $R = 5\text{ cm}$ đang chứa nước. Tính độ dâng lên của mực nước trong bình.
+
+**Bài 6:** Một khối cầu có cùng bán kính $R$ với một hình trụ và chiều cao hình trụ $h = 2R$.  
+a) Chứng minh diện tích mặt cầu bằng diện tích xung quanh hình trụ.  
+b) Chứng minh thể tích khối cầu bằng $\frac{2}{3}$ thể tích khối trụ.
+
+**Bài 7:** Tính diện tích mặt cầu và thể tích khối cầu ngoại tiếp hình lập phương cạnh $a = 4\text{ cm}$.
+
+**Bài 8:** Chiếc bể cá thuỷ tinh hình cầu bán kính $R = 18\text{ cm}$ chứa đầy nước. Người ta gạn bớt nước ra ngoài sao cho mực nước giảm đi $9\text{ cm}$. Tính diện tích mặt nước lộ ra.
+
+**Bài 9 (Thực tế):** Bồn chứa khí hoá lỏng LPG hình cầu có đường kính $d = 14\text{ m}$.  
+a) Tính thể tích khí LPG chứa đầy bồn ($m^3$).  
+b) Tính diện tích vỏ bồn cần sơn bọc chống gỉ.
+
+**Bài 10 (Thực tế):** Một chao đèn thuỷ tinh trang trí hình cầu có đường kính $30\text{ cm}$. Người ta cắt bỏ hai chỏm cầu đối diện qua hai mặt phẳng song song cách tâm $9\text{ cm}$ để làm lỗ lắp bóng đèn và dây treo. Tính bán kính của hai lỗ cắt tròn đó.
+
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
+
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
+
+**Bài 1:**  
+a) $S = 4\pi (3)^2 = 36\pi\text{ cm}^2; V = \frac{4}{3}\pi (27) = 36\pi\text{ cm}^3$.  
+b) $S = 4\pi (36) = 144\pi\text{ cm}^2; V = \frac{4}{3}\pi (216) = 288\pi\text{ cm}^3$.  
+c) $S = 4\pi (81) = 324\pi\text{ cm}^2; V = \frac{4}{3}\pi (729) = 972\pi\text{ cm}^3$.  
+d) $R = 4 \Rightarrow S = 4\pi (16) = 64\pi\text{ cm}^2; V = \frac{4}{3}\pi (64) = \frac{256}{3}\pi\text{ cm}^3$.  
+e) $R = 5 \Rightarrow S = 100\pi\text{ cm}^2; V = \frac{500}{3}\pi\text{ cm}^3$.  
+f) $R = 1,2\text{ m} \Rightarrow S = 4\pi (1,44) = 5,76\pi\text{ m}^2; V = \frac{4}{3}\pi (1,728) = 2,304\pi\text{ m}^3$.
+
+---
+
+**Bài 2:**  
+a) $4\pi R^2 = 64\pi \Rightarrow R = 4\text{ cm} \Rightarrow V = \frac{256}{3}\pi\text{ cm}^3$.  
+b) $4\pi R^2 = 144\pi \Rightarrow R = 6\text{ cm} \Rightarrow V = 288\pi\text{ cm}^3$.  
+c) $\frac{4}{3}\pi R^3 = 36\pi \Rightarrow R^3 = 27 \Rightarrow R = 3\text{ cm} \Rightarrow S = 36\pi\text{ cm}^2$.  
+d) $\frac{4}{3}\pi R^3 = 288\pi \Rightarrow R^3 = 216 \Rightarrow R = 6\text{ cm} \Rightarrow S = 144\pi\text{ cm}^2$.  
+e) $\frac{4}{3}\pi R^3 = \frac{500}{3}\pi \Rightarrow R^3 = 125 \Rightarrow R = 5\text{ cm} \Rightarrow S = 100\pi\text{ cm}^2$.  
+f) $4\pi R^2 = 100\pi \Rightarrow R = 5\text{ dm} \Rightarrow V = \frac{500}{3}\pi\text{ dm}^3$.
+
+---
+
+**Bài 3:**  
+a) $r = \sqrt{10^2 - 6^2} = 8\text{ cm} \Rightarrow S_{\text{cắt}} = \pi (8)^2 = 64\pi\text{ cm}^2$.  
+b) $h = \sqrt{15^2 - 12^2} = \sqrt{81} = 9\text{ cm}$.  
+c) $\pi r^2 = 225\pi \Rightarrow r = 15 \Rightarrow R = \sqrt{15^2 + 8^2} = 17\text{ cm} \Rightarrow V = \frac{19652}{3}\pi\text{ cm}^3$.  
+d) $\pi r^2 = \frac{1}{2}\pi R^2 \Rightarrow r^2 = R^2 / 2 = 200 \Rightarrow h = \sqrt{R^2 - r^2} = \sqrt{400 - 200} = 10\sqrt{2}\text{ cm}$.  
+e) $r_1 = \sqrt{13^2 - 5^2} = 12\text{ cm}; r_2 = \sqrt{13^2 - 12^2} = 5\text{ cm}$. Tổng $S = 144\pi + 25\pi = 169\pi\text{ cm}^2$.  
+f) Đường kính $d = 16\text{ cm} \Rightarrow R = 8\text{ cm} \Rightarrow S = 4\pi (8)^2 = 256\pi\text{ cm}^2$.
+
+---
+
+**Bài 4:**  
+$d = 22\text{ cm} \Rightarrow R = 11\text{ cm}$.  
+a) $S = \pi (22)^2 = 484\pi \approx 1520,53\text{ cm}^2$.  
+b) $V = \frac{4}{3} \pi (11)^3 = \frac{5324}{3} \pi \approx 5575,28\text{ cm}^3 \approx 5,58\text{ lít}$.
+
+---
+
+**Bài 5:**  
+$d = 2\text{ cm} \Rightarrow R_{\text{bi}} = 1\text{ cm}$.  
+Thể tích 5 viên bi $V = 5 \times \frac{4}{3} \pi (1)^3 = \frac{20}{3}\pi\text{ cm}^3$.  
+$V_{\text{nước\_dâng}} = \pi R_{\text{bình}}^2 \cdot h_{\text{dâng}} \Rightarrow \frac{20}{3}\pi = \pi (25) \cdot h_{\text{dâng}} \Rightarrow h_{\text{dâng}} = \frac{20}{75} = \frac{4}{15} \approx 0,267\text{ cm}$.
+
+---
+
+**Bài 6:**  
+Hình cầu $(R)$, hình trụ $(R, h = 2R)$.  
+a) $S_{\text{cầu}} = 4\pi R^2$. $S_{xq, \text{trụ}} = 2\pi R h = 2\pi R (2R) = 4\pi R^2 \Rightarrow S_{\text{cầu}} = S_{xq, \text{trụ}}$ (ĐPCM).  
+b) $V_{\text{cầu}} = \frac{4}{3} \pi R^3$. $V_{\text{trụ}} = \pi R^2 h = \pi R^2 (2R) = 2\pi R^3 \Rightarrow \frac{V_{\text{cầu}}}{V_{\text{trụ}}} = \frac{\frac{4}{3}}{2} = \frac{2}{3}$ (ĐPCM).
+
+---
+
+**Bài 7:**  
+Hình lập phương cạnh $a = 4\text{ cm} \Rightarrow$ Đường chéo $d = 4\sqrt{3}\text{ cm} \Rightarrow R = 2\sqrt{3}\text{ cm}$.  
+$S = 4\pi (2\sqrt{3})^2 = 48\pi\text{ cm}^2$.  
+$V = \frac{4}{3} \pi (2\sqrt{3})^3 = \frac{4}{3} \pi (24\sqrt{3}) = 32\sqrt{3}\pi\text{ cm}^3$.
+
+---
+
+**Bài 8:**  
+$R = 18\text{ cm}$. Mực nước giảm $9\text{ cm} \Rightarrow$ khoảng cách từ tâm đến mặt nước $h = 18 - 9 = 9\text{ cm}$.  
+Bán kính mặt nước $r = \sqrt{18^2 - 9^2} = \sqrt{243} = 9\sqrt{3}\text{ cm}$.  
+Diện tích mặt nước $S = \pi r^2 = 243\pi\text{ cm}^2 \approx 763,4\text{ cm}^2$.
+
+---
+
+**Bài 9:**  
+$d = 14\text{ m} \Rightarrow R = 7\text{ m}$.  
+a) $V = \frac{4}{3} \pi (7)^3 = \frac{1372}{3} \pi \approx 1436,76\text{ m}^3$.  
+b) $S = 4\pi (7)^2 = 196\pi \approx 615,75\text{ m}^2$.
+
+---
+
+**Bài 10:**  
+$R = 15\text{ cm}, h = 9\text{ cm}$.  
+Bán kính của hai lỗ cắt tròn $r = \sqrt{15^2 - 9^2} = 12\text{ cm}$.
 
 </div>
 </details>

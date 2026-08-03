@@ -1,9 +1,9 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Ôn tập chương 8 - Toán 8"
-description: "Ôn tập toàn bộ kiến thức chương 8 Toán 8 KNTT: Xác suất của biến cố, kết quả có thể, kết quả thuận lợi"
+title: "Bài Ôn tập Chương 8: Mở đầu về tính xác suất của biến cố"
+description: "Tổng hợp toàn bộ kiến thức Phép thử ngẫu nhiên, Kết quả có thể, Kết quả thuận lợi, Cách tính xác suất lý thuyết và Mối liên hệ với xác suất thực nghiệm - Toán 8 KNTT Chương 8"
 grade: "Lớp 8"
-chapter: "Chương VIII: Mở đầu về tính xác suất của biến cố"
+chapter: "Chương 8: Mở đầu về tính xác suất của biến cố"
 currentSlug: "lop8/bai-on-tap-chuong-8"
 ---
 
@@ -13,449 +13,365 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong8Interactive from '../../components/interactive/OnTapChuong8Interactive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Kết quả có thể của một phép thử là:",
-    option_a: "Kết quả chắc chắn xảy ra",
-    option_b: "Bất kỳ kết quả nào có thể xảy ra",
-    option_c: "Kết quả không thể xảy ra",
-    option_d: "Kết quả xảy ra nhiều lần",
-    correct_option: "B",
-    explanation: "Kết quả có thể là bất kỳ kết quả nào có thể xảy ra trong phép thử",
+    question: "Phép thử gieo 1 con xúc xắc 6 mặt cân đối có bao nhiêu kết quả có thể xảy ra?",
+    option_a: "6 kết quả",
+    option_b: "12 kết quả",
+    option_c: "1 kết quả",
+    option_d: "36 kết quả",
+    correct_option: "A",
+    explanation: "Các mặt từ 1 đến 6 chấm.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biến cố là:",
-    option_a: "Một kết quả có thể của phép thử",
-    option_b: "Tập hợp một hoặc nhiều kết quả có thể",
-    option_c: "Kết quả chắc chắn xảy ra",
-    option_d: "Kết quả không thể xảy ra",
-    correct_option: "B",
-    explanation: "Biến cố là tập hợp một hoặc nhiều kết quả có thể của phép thử",
+    question: "Xác suất của biến cố A được tính bằng công thức tỉ số nào?",
+    option_a: "$P(A) = \\dfrac{n(A)}{N}$",
+    option_b: "$P(A) = \\dfrac{N}{n(A)}$",
+    option_c: "$P(A) = n(A) \\cdot N$",
+    option_d: "$P(A) = N - n(A)$",
+    correct_option: "A",
+    explanation: "Tỉ số giữa số kết quả thuận lợi $n(A)$ và tổng số kết quả có thể $N$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Khi tung một đồng xu, số kết quả có thể là:",
-    option_a: "1",
-    option_b: "2",
-    option_c: "3",
-    option_d: "4",
-    correct_option: "B",
-    explanation: "Khi tung đồng xu, có 2 kết quả có thể: mặt sấp hoặc mặt ngửa",
+    question: "Gieo 1 con xúc xắc 6 mặt cân đối. Xác suất xuất hiện mặt có số chấm là số lẻ là:",
+    option_a: "$\\dfrac{1}{2}$",
+    option_b: "$\\dfrac{1}{3}$",
+    option_c: "$\\dfrac{1}{6}$",
+    option_d: "$\\dfrac{2}{3}$",
+    correct_option: "A",
+    explanation: "Các mặt lẻ $\{1, 3, 5\} \Rightarrow P = \dfrac{3}{6} = \dfrac{1}{2}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Khi tung một con xúc xắc, xác suất xuất hiện mặt 6 là:",
-    option_a: "$\\frac{1}{6}$",
-    option_b: "$\\frac{1}{3}$",
-    option_c: "$\\frac{1}{2}$",
-    option_d: "$\\frac{2}{3}$",
+    question: "Khảo sát 200 lượt gieo xúc xắc thấy mặt 6 chấm xuất hiện 36 lần. Xác suất thực nghiệm mặt 6 chấm là:",
+    option_a: "$0.18$",
+    option_b: "$0.36$",
+    option_c: "$0.167$",
+    option_d: "$0.50$",
     correct_option: "A",
-    explanation: "Xác suất = $\\frac{\\text{Số kết quả thuận lợi}}{\\text{Tổng số kết quả có thể}} = \\frac{1}{6}$",
+    explanation: "$P_{tn} = \\dfrac{36}{200} = 0.18$ ($18\\%$).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Xác suất của một biến cố nằm trong khoảng:",
-    option_a: "$[0, 1]$",
-    option_b: "$[0, 100]$",
-    option_c: "$[-1, 1]$",
-    option_d: "$[1, \\infty)$",
+    question: "Khi số lần thực hiện phép thử $n$ rất lớn thì xác suất thực nghiệm sẽ:",
+    option_a: "Càng xấp xỉ sát với xác suất lý thuyết",
+    option_b: "Tiến dần về 0",
+    option_c: "Tiến dần về 100",
+    option_d: "Không có quy luật",
     correct_option: "A",
-    explanation: "Xác suất luôn nằm trong khoảng từ 0 đến 1 (hoặc 0% đến 100%)",
-    difficulty_level: "medium",
+    explanation: "Định lý Luật số lớn.",
+    difficulty_level: "easy",
     is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Biến cố chắc chắn có xác suất bằng:",
-    option_a: "$0$",
-    option_b: "$0.5$",
-    option_c: "$1$",
-    option_d: "$-1$",
-    correct_option: "C",
-    explanation: "Biến cố chắc chắn xảy ra có xác suất bằng 1",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Biến cố không thể xảy ra có xác suất bằng:",
-    option_a: "$0$",
-    option_b: "$0.5$",
-    option_c: "$1$",
-    option_d: "$2$",
-    correct_option: "A",
-    explanation: "Biến cố không thể xảy ra có xác suất bằng 0",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Khi tung hai đồng xu, số kết quả có thể là:",
-    option_a: "2",
-    option_b: "3",
-    option_c: "4",
-    option_d: "8",
-    correct_option: "C",
-    explanation: "Khi tung hai đồng xu: SS, SN, NS, NN → 4 kết quả có thể",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Khi tung hai đồng xu, xác suất cả hai mặt ngửa là:",
-    option_a: "$\\frac{1}{4}$",
-    option_b: "$\\frac{1}{2}$",
-    option_c: "$\\frac{1}{3}$",
-    option_d: "$\\frac{3}{4}$",
-    correct_option: "A",
-    explanation: "Chỉ có 1 kết quả thuận lợi (NN) trong 4 kết quả có thể, nên xác suất = $\\frac{1}{4}$",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Khi rút một lá bài từ bộ 52 lá, xác suất rút được lá Át là:",
-    option_a: "$\\frac{1}{52}$",
-    option_b: "$\\frac{4}{52} = \\frac{1}{13}$",
-    option_c: "$\\frac{13}{52} = \\frac{1}{4}$",
-    option_d: "$\\frac{1}{26}$",
-    correct_option: "B",
-    explanation: "Có 4 lá Át trong 52 lá, nên xác suất = $\\frac{4}{52} = \\frac{1}{13}$",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },  
-  {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về xác suất:",
-   option_a: "Xác suất của một biến cố luôn nằm trong [0, 1]",
-   option_b: "Biến cố chắc chắn có xác suất bằng 1",
-   option_c: "Biến cố không thể xảy ra có xác suất bằng 0",
-   option_d: "Xác suất có thể lớn hơn 1",
-   correct_option: "A,B,C",
-    explanation: "A, B, C đúng. D sai: xác suất không thể lớn hơn 1.",
-    difficulty_level: "medium",
-    is_dynamic: false
-  },
-  {
-    type: "msq", 
-    question: "Xét tính đúng sai của các khẳng định sau về phép thử:",
-    option_a: "Khi tung đồng xu, có 2 kết quả có thể",
-    option_b: "Khi tung xúc xắc, có 6 kết quả có thể",
-    option_c: "Khi tung hai xúc xắc, có 12 kết quả có thể",
-    option_d: "Khi rút một lá bài từ bộ 52 lá, có 52 kết quả có thể",
-    correct_option: "A,B,D",
-    explanation: "A, B, D đúng. C sai: khi tung hai xúc xắc, có $6 \\times 6 = 36$ kết quả có thể.",
-    difficulty_level: "medium",
-    is_dynamic: false
   },
   {
     type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về tính xác suất:",
-    option_a: "Xác suất = $\\frac{\\text{Số kết quả thuận lợi}}{\\text{Tổng số kết quả có thể}}$",
-    option_b: "Xác suất xuất hiện mặt 6 khi tung xúc xắc là $\\frac{1}{6}$",
-    option_c: "Xác suất cả hai mặt ngửa khi tung hai đồng xu là $\\frac{1}{2}$",
-    option_d: "Xác suất rút được lá Át từ bộ 52 lá là $\\frac{4}{52}$",
-    correct_option: "A,B,D",
-    explanation: "A, B, D đúng. C sai: xác suất cả hai mặt ngửa là $\\frac{1}{4}$, không phải $\\frac{1}{2}$.",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },
-  {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về biến cố:",
-    option_a: "Biến cố là tập hợp một hoặc nhiều kết quả có thể",
-    option_b: "Biến cố chắc chắn là biến cố luôn xảy ra",
-    option_c: "Biến cố không thể là biến cố không bao giờ xảy ra",
-    option_d: "Mỗi phép thử chỉ có một biến cố",
+    question: "Những khẳng định nào sau đây ĐÚNG về biến cố và xác suất?",
+    option_a: "Xác suất luôn nằm trong khoảng $[0; 1]$",
+    option_b: "Biến cố không thể có xác suất bằng 0",
+    option_c: "Biến cố chắc chắn có xác suất bằng 1",
+    option_d: "Xác suất thực nghiệm luôn luôn bằng xác suất lý thuyết",
     correct_option: "A,B,C",
-    explanation: "A, B, C đúng. D sai: mỗi phép thử có thể có nhiều biến cố khác nhau.",
-    difficulty_level: "hard",
-    is_dynamic: false
+    explanation: "A, B, C đúng. D sai vì xác suất thực nghiệm chỉ xấp xỉ xác suất lý thuyết khi $n$ lớn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Một hộp có 5 viên bi đỏ, 3 viên bi xanh, 2 viên bi vàng. Tính xác suất rút được viên bi đỏ.",
-    correct_answer: "0.5",
-    explanation: "Tổng số viên bi = $5 + 3 + 2 = 10$. Xác suất rút được bi đỏ = $\\frac{5}{10} = 0.5$",
-    difficulty_level: "hard",
-    is_dynamic: false
+    question: "Một hộp chứa 6 bi xanh và 4 bi đỏ. Rút ngẫu nhiên 1 bi. Xác suất rút được bi xanh bằng bao nhiêu (viết dưới dạng số thập phân)?",
+    correct_option: "0.6",
+    explanation: "Tổng $N = 10$. $P(\\text{Xanh}) = \dfrac{6}{10} = 0.6$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Một lớp có 25 học sinh, trong đó 15 em thích toán. Chọn ngẫu nhiên một em, tính xác suất em đó thích toán.",
-    correct_answer: "0.6",
-    explanation: "Xác suất = $\\frac{15}{25} = \\frac{3}{5} = 0.6$",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },{
-    type: "sa",
-    question: "Trong một hộp có 4 quả bóng xanh và 6 quả bóng đỏ. Rút ngẫu nhiên một quả bóng. Tính xác suất rút được quả bóng màu xanh.",
-    correct_answer: "0.4",
-    explanation: "Tổng số quả bóng là $4 + 6 = 10$. Số quả bóng xanh là 4. Xác suất = $\\frac{4}{10} = 0.4$",
-    difficulty_level: "hard",
-    is_dynamic: false
-  } 
+    type: "mcq",
+    question: "Rút 1 thẻ từ 50 thẻ đánh số $1 \\rightarrow 50$. Xác suất chọn được số tròn chục là:",
+    option_a: "$\\dfrac{1}{10}$",
+    option_b: "$\\dfrac{1}{5}$",
+    option_c: "$\\dfrac{1}{50}$",
+    option_d: "$\\dfrac{2}{5}$",
+    correct_option: "A",
+    explanation: "Các số tròn chục $\{10, 20, 30, 40, 50\} \Rightarrow 5$ thẻ $\Rightarrow P = \dfrac{5}{50} = \dfrac{1}{10}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung 2 đồng xu cân đối đồng thời. Xác suất cả 2 đồng xu đều sấp là:",
+    option_a: "$\\dfrac{1}{4}$",
+    option_b: "$\\dfrac{1}{2}$",
+    option_c: "$\\dfrac{3}{4}$",
+    option_d: "$\\dfrac{1}{3}$",
+    correct_option: "A",
+    explanation: "Có 4 kết quả đồng khả năng, biến cố (S,S) có 1 kết quả $\Rightarrow P = 1/4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tỉ lệ nảy mầm thực nghiệm của hạt giống là $90\%$. Nếu gieo $5.000$ hạt giống thì dự đoán số hạt nảy mầm là:",
+    option_a: "$4.500$ hạt",
+    option_b: "$500$ hạt",
+    option_c: "$4.000$ hạt",
+    option_d: "$4.800$ hạt",
+    correct_option: "A",
+    explanation: "Số hạt nảy mầm $= 5.000 \times 90\% = 4.500$ hạt.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Ôn tập chương 8 — Xác suất của biến cố</h3>
+### 🎯 Ôn tập hệ thống kiến thức Chương 8
 
-Chương 8 giới thiệu khái niệm xác suất, công cụ để đo lường khả năng xảy ra của các sự kiện!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
-    <strong>Phép thử</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Kết quả có thể</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📌</div>
-    <strong>Biến cố</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tập hợp kết quả</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📊</div>
-    <strong>Xác suất</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính khả năng</p>
-  </div>
-</div>
+Chương 8 mở ra cánh cửa tiến vào thế giới Thống kê & Xác suất hiện đại: Từ việc nhận biết **phép thử ngẫu nhiên**, đếm **kết quả có thể** & **kết quả thuận lợi**, tính **xác suất lý thuyết bằng tỉ số** cho đến ứng dụng **xác suất thực nghiệm** và **Luật số lớn**. Cùng ôn tập lại toàn bộ kiến thức nhé!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+### 📐 Sơ đồ tư duy & Các dạng toán trọng tâm
 
-<h4 id="phep-thu">1. Phép thử và kết quả có thể</h4>
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="600" height="320" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+  <rect x="200" y="10" width="200" height="40" rx="8" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="300" y="35" text-anchor="middle" font-size="15" font-weight="bold" fill="white">CHƯƠNG 8: XÁC SUẤT BIẾN CỐ</text>
 
-<div class="box-dinh-nghia">
+  <line x1="300" y1="50" x2="100" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="235" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="365" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="500" y2="100" stroke="#475569" stroke-width="2"/>
 
-**Phép thử:** Một hành động hoặc thí nghiệm mà kết quả không thể dự đoán trước.
+  <rect x="20" y="100" width="140" height="180" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">1. PHÉP THỬ & KẾT QUẢ</text>
+  <text x="30" y="155" font-size="12" fill="#1e3a8a">• Phép thử ngẫu nhiên</text>
+  <text x="30" y="180" font-size="12" fill="#1e3a8a">• Tổng kết quả N</text>
+  <text x="30" y="205" font-size="12" fill="#1e3a8a">• Kết quả đồng khả năng</text>
+  <text x="30" y="230" font-size="12" fill="#1e3a8a">• Thuận lợi n(A)</text>
 
-**Kết quả có thể:** Bất kỳ kết quả nào có thể xảy ra trong phép thử.
+  <rect x="170" y="100" width="130" height="180" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="235" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">2. XÁC SUẤT LÝ THUYẾT</text>
+  <text x="180" y="155" font-size="12" fill="#14532d">• P(A) = n(A) / N</text>
+  <text x="180" y="180" font-size="12" fill="#14532d">• 0 ≤ P(A) ≤ 1</text>
+  <text x="180" y="205" font-size="12" fill="#14532d">• P(chắc chắn) = 1</text>
+  <text x="180" y="230" font-size="12" fill="#14532d">• P(không thể) = 0</text>
 
-**Không gian mẫu:** Tập hợp tất cả các kết quả có thể của phép thử.
+  <rect x="310" y="100" width="125" height="180" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="372" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">3. XS THỰC NGHIỆM</text>
+  <text x="320" y="155" font-size="12" fill="#78350f">• P_tn = k / n</text>
+  <text x="320" y="180" font-size="12" fill="#78350f">• k: số lần xuất hiện</text>
+  <text x="320" y="205" font-size="12" fill="#78350f">• n: số lần thử nghiệm</text>
+  <text x="320" y="230" font-size="12" fill="#78350f">• Đo đạc thực tế</text>
 
-**Ví dụ:** Tung đồng xu → không gian mẫu = &#123;Sấp, Ngửa}
-
+  <rect x="445" y="100" width="135" height="180" rx="8" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+  <text x="512" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#9d174d">4. LUẬT SỐ LỚN</text>
+  <text x="455" y="155" font-size="12" fill="#831843">• Khi n đủ lớn ➔</text>
+  <text x="455" y="180" font-size="12" fill="#831843">P_tn ≈ P_lý thuyết</text>
+  <text x="455" y="205" font-size="12" fill="#831843">• Ước lượng thực tế</text>
+  <text x="455" y="230" font-size="12" fill="#831843">Số lượng = N · P_tn</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Sơ đồ tư duy toàn bộ Kiến thức Chương 8: Xác suất biến cố</em></p>
 </div>
 
-<h4 id="bien-co">2. Biến cố</h4>
+---
 
-<div class="box-dinh-nghia">
+#### 1. Bảng so sánh Xác suất Lý thuyết và Xác suất Thực nghiệm
 
-**Biến cố:** Tập hợp một hoặc nhiều kết quả có thể của phép thử.
-
-**Phân loại:**
-- **Biến cố chắc chắn:** Luôn xảy ra (xác suất = 1)
-- **Biến cố không thể:** Không bao giờ xảy ra (xác suất = 0)
-- **Biến cố ngẫu nhiên:** Có thể xảy ra hoặc không (0 < xác suất < 1)
-
-</div>
-
-<h4 id="xac-suat">3. Xác suất của biến cố</h4>
-
-<div class="box-dinh-nghia">
-
-**Định nghĩa:** Xác suất của biến cố A là:
-$$P(A) = \frac{\text{Số kết quả thuận lợi cho A}}{\text{Tổng số kết quả có thể}}$$
-
-**Tính chất:**
-- $0 \leq P(A) \leq 1$
-- $P(\text{biến cố chắc chắn}) = 1$
-- $P(\text{biến cố không thể}) = 0$
-
-</div>
-
-**Ứng dụng:** Dùng để dự đoán khả năng xảy ra của các sự kiện trong thực tế.
+| Tiêu chí so sánh | Xác suất Lý thuyết $P(A)$ | Xác suất Thực nghiệm $P_{tn}(A)$ |
+| :--- | :--- | :--- |
+| **Công thức** | $P(A) = \dfrac{n(A)}{N}$ | $P_{tn}(A) = \dfrac{k}{n}$ |
+| **Điều kiện** | Đòi hỏi các kết quả **đồng khả năng** | Thu được từ **kết quả thực tế của $n$ lần thử** |
+| **Giá trị** | Là số cố định duy nhất tính từ lý thuyết | Thay đổi tùy theo mỗi đợt thử nghiệm |
+| **Mối liên hệ** | Khi số lần thử $n \rightarrow \infty$, thì $P_{tn}(A) \rightarrow P(A)$ (Luật số lớn) |
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Thử thách tổng hợp Ôn tập Chương 8</h3>
+
+<OnTapChuong8Interactive client:load />
+
+</LuyenTap>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Đánh giá hiệu quả chương trình tiêm chủng vắc-xin):** Trong đợt tiêm vắc-xin phòng bệnh cho $10.000$ trẻ em, các bác sĩ kiểm tra ngẫu nhiên mẫu $1.000$ trẻ em đã tiêm thì thấy có $960$ em sinh kháng thể bảo vệ cao.
+
+a) Tính xác suất thực nghiệm trẻ em sinh kháng thể bảo vệ cao.  
+b) Dự đoán trong tổng số $10.000$ trẻ em tiêm vắc-xin có khoảng bao nhiêu em sẽ có kháng thể bảo vệ cao.
+
+**Lời giải:**  
+a) Xác suất thực nghiệm $P_{tn} = \dfrac{960}{1.000} = 0.96$ ($96\%$).  
+b) Dự đoán số trẻ em có kháng thể bảo vệ cao $= 10.000 \times 96\% = 9.600$ trẻ em.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
-
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
-
-<h4 id="bai-1">Bài 1: Phép thử và kết quả có thể</h4>
-
-a) Liệt kê tất cả kết quả có thể khi tung một đồng xu
-
-b) Liệt kê tất cả kết quả có thể khi tung một xúc xắc
-
-c) Liệt kê tất cả kết quả có thể khi tung hai đồng xu
-
-d) Liệt kê tất cả kết quả có thể khi tung hai xúc xắc
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) &#123;Sấp, Ngửa&#125;
-
-b) &#123;1, 2, 3, 4, 5, 6&#125;
-
-c) &#123;SS, SN, NS, NN&#125;
-
-d) &#123;(1,1), (1,2), ..., (6,6)&#125; - 36 kết quả
-
-</div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Tính xác suất</h4>
-
-a) Tính xác suất xuất hiện mặt 6 khi tung xúc xắc
-
-b) Tính xác suất cả hai mặt ngửa khi tung hai đồng xu
-
-c) Tính xác suất rút được lá Át từ bộ 52 lá bài
-
-d) Tính xác suất rút được lá đỏ từ bộ 52 lá bài
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\frac{1}{6}$
-
-b) $\frac{1}{4}$
-
-c) $\frac{4}{52} = \frac{1}{13}$
-
-d) $\frac{26}{52} = \frac{1}{2}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Biến cố</h4>
-
-a) Xác định biến cố "xuất hiện mặt chẵn" khi tung xúc xắc
-
-b) Xác định biến cố "tổng hai mặt bằng 7" khi tung hai xúc xắc
-
-c) Tính xác suất của biến cố "xuất hiện mặt chẵn"
-
-d) Tính xác suất của biến cố "tổng hai mặt bằng 7"
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) &#123;2, 4, 6&#125;
-
-b) &#123;(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)&#125;
-
-c) $\frac{3}{6} = \frac{1}{2}$
-
-d) $\frac{6}{36} = \frac{1}{6}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Bài toán tổng hợp</h4>
-
-a) Một hộp có 5 viên bi đỏ, 3 viên bi xanh, 2 viên bi vàng. Tính xác suất rút được bi đỏ
-
-b) Tính xác suất rút được bi xanh
-
-c) Tính xác suất rút được bi vàng
-
-d) Tính xác suất rút được bi không phải đỏ
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\frac{5}{10} = 0.5$
-
-b) $\frac{3}{10} = 0.3$
-
-c) $\frac{2}{10} = 0.2$
-
-d) $\frac{5}{10} = 0.5$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Bài toán nâng cao (Câu lớn)</h4>
-
-Một lớp có 25 học sinh, trong đó 15 em thích toán, 10 em thích văn, 5 em thích cả hai.
-
-a) Tính xác suất chọn được em thích toán
-
-b) Tính xác suất chọn được em thích văn
-
-c) Tính xác suất chọn được em thích cả hai
-
-d) Tính xác suất chọn được em thích ít nhất một trong hai
-
-e) Tính xác suất chọn được em không thích cả hai
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\frac{15}{25} = 0.6$
-
-b) $\frac{10}{25} = 0.4$
-
-c) $\frac{5}{25} = 0.2$
-
-d) $\frac{15 + 10 - 5}{25} = \frac{20}{25} = 0.8$
-
-e) $\frac{25 - 20}{25} = \frac{5}{25} = 0.2$
-
-</div>
-</details>
-
-</VanDung>
-
 <GhiNho>
 
-<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
-
-- **Phép thử:** Hành động mà kết quả không thể dự đoán trước
-- **Kết quả có thể:** Bất kỳ kết quả nào có thể xảy ra
-- **Biến cố:** Tập hợp một hoặc nhiều kết quả có thể
-- **Xác suất:** $P(A) = \frac{\text{Số kết quả thuận lợi}}{\text{Tổng số kết quả có thể}}$
-- **Xác suất chắc chắn:** 1
-- **Xác suất không thể:** 0
-- **Xác suất luôn:** $0 \leq P(A) \leq 1$
+- **Lý thuyết**: $P(A) = \dfrac{n(A)}{N}$.
+- **Thực nghiệm**: $P_{tn} = \dfrac{k}{n}$.
+- **Luật số lớn**: $n$ càng lớn thì xác suất thực nghiệm càng tiến sát xác suất lý thuyết.
 
 </GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ — Ôn tập Tính xác suất gieo xúc xắc):** Gieo 1 con xúc xắc 6 mặt cân đối. Tính xác suất của các biến cố sau:
+
+a) "Số chấm là số chẵn".  
+b) "Số chấm là số nhỏ hơn 5".  
+c) "Số chấm là số nguyên tố".  
+d) "Số chấm chia hết cho 5".  
+e) "Số chấm lớn hơn 0".  
+f) "Số chấm lớn hơn 6".
+
+**Bài 2 (Dễ — Ôn tập Rút bi ngẫu nhiên):** Một hộp chứa 6 bi xanh, 4 bi đỏ và 5 bi vàng. Rút ngẫu nhiên 1 bi. Tính xác suất:
+
+a) Rút được bi xanh.  
+b) Rút được bi đỏ.  
+c) Rút được bi vàng.  
+d) Rút được bi không phải màu đỏ.  
+e) Rút được bi xanh hoặc đỏ.  
+f) Rút được bi màu tím.
+
+**Bài 3 (Trung bình — Bài toán gieo 2 con xúc xắc / 2 đồng xu):**
+
+a) Tung 2 đồng xu cân đối đồng thời. Tính xác suất biến cố "Có ít nhất 1 đồng xu sấp".  
+b) Tung 2 đồng xu cân đối đồng thời. Tính xác suất biến cố "Hai đồng xu xuất hiện 2 mặt khác nhau".  
+c) Gieo 2 con xúc xắc 6 mặt cân đối. Tính xác suất biến cố "Tổng số chấm xuất hiện bằng 9".  
+d) Gieo 2 con xúc xắc 6 mặt cân đối. Tính xác suất biến cố "Tổng số chấm xuất hiện là số lẻ".
+
+**Bài 4 (Trung bình — Bài toán chọn ngẫu nhiên học sinh):** Một nhóm học sinh gồm 12 học sinh nam và 18 học sinh nữ. Chọn ngẫu nhiên 1 học sinh làm nhóm trưởng.
+
+a) Tính xác suất chọn được học sinh nam.  
+b) Tính xác suất chọn được học sinh nữ.  
+c) Biết trong nhóm có 8 bạn học sinh giỏi Toán. Tính xác suất chọn được 1 học sinh giỏi Toán.
+
+**Bài 5 (Trung bình — Bài toán xác suất thực nghiệm):** Thống kê số lần xuất hiện các mặt của 1 con xúc xắc sau 300 lần gieo:
+
+| Số chấm | 1 | 2 | 3 | 4 | 5 | 6 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Số lần | 48 | 52 | 50 | 49 | 51 | 50 |
+
+a) Tính xác suất thực nghiệm xuất hiện mặt 6 chấm.  
+b) Tính xác suất thực nghiệm xuất hiện mặt chẵn chấm.  
+c) Nhận xét về độ cân đối của con xúc xắc qua các xác suất thực nghiệm trên so với $\dfrac{1}{6} \approx 0.167$.
+
+**Bài 6 (Khá — Bài toán chọn chữ số lập số ngẫu nhiên):** Chọn ngẫu nhiên 1 số tự nhiên có 2 chữ số từ 10 đến 99.
+
+a) Có tất cả bao nhiêu kết quả có thể xảy ra?  
+b) Tính xác suất chọn được số là số chính phương.  
+c) Tính xác suất chọn được số chia hết cho cả 2 và 5.
+
+**Bài 7 (Khá — Bài toán bốc thăm chọn cặp đại diện):** Một lớp chọn ngẫu nhiên 2 học sinh từ nhóm 4 bạn A, B, C, D đi dự đại hội.
+
+a) Liệt kê tất cả các kết quả có thể của cặp 2 học sinh.  
+b) Tính xác suất để bạn A được chọn vào cặp đại diện.
+
+**Bài 8 (Khá - Nâng cao — Ứng dụng Luật số lớn ước lượng quần thể):** Để ước lượng số lượng chim một loài trong khu bảo tồn thiên nhiên, các nhà sinh học bắt 150 con chim, đeo vòng chân đánh dấu rồi thả về rừng. Tháng sau họ bắt ngẫu nhiên 200 con chim thì phát hiện có 12 con có đeo vòng chân.
+
+a) Tính xác suất thực nghiệm bắt được chim có đeo vòng chân.  
+b) Ước lượng tổng số lượng chim của loài đó trong khu bảo tồn thiên nhiên.
+
+**Bài 9 (Ứng dụng thực tế 1 — Kiểm tra tỉ lệ nảy mầm hạt giống):** Một công ty hạt giống kiểm tra $1.000$ hạt giống ngêu lai thấy có $940$ hạt nảy mầm.
+
+a) Tính xác suất thực nghiệm hạt nảy mầm.  
+b) Nếu một trang trại mua $50.000$ hạt giống này về gieo thì dự đoán sẽ thu được khoảng bao nhiêu cây lúa giống nảy mầm?
+
+**Bài 10 (Ứng dụng thực tế 2 — Dự báo rủi ro bảo hiểm y tế):** Thống kê sức khỏe của $10.000$ người cùng lứa tuổi 40–50 trong 1 năm cho thấy có 150 người phải nhập viện điều trị bệnh hiểm nghèo.
+
+a) Tính xác suất thực nghiệm một người lứa tuổi 40–50 phải nhập viện vì bệnh hiểm nghèo trong năm.  
+b) Nếu công ty bảo hiểm bán $100.000$ hợp đồng bảo hiểm cho lứa tuổi này thì dự kiến phải chi trả cho khoảng bao nhiêu ca nhập viện?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) $\{2; 4; 6\} \Rightarrow P = \dfrac{3}{6} = \dfrac{1}{2}$.
+b) $\{1; 2; 3; 4\} \Rightarrow P = \dfrac{4}{6} = \dfrac{2}{3}$.
+c) $\{2; 3; 5\} \Rightarrow P = \dfrac{3}{6} = \dfrac{1}{2}$.
+d) $\{5\} \Rightarrow P = \dfrac{1}{6}$.
+e) $\{1; 2; 3; 4; 5; 6\} \Rightarrow P = 1$.
+f) $P = 0$.
+
+**Bài 2:**
+Tổng số bi $N = 6 + 4 + 5 = 15$.
+a) $P(\text{Xanh}) = \dfrac{6}{15} = \dfrac{2}{5}$.
+b) $P(\text{Đỏ}) = \dfrac{4}{15}$.
+c) $P(\text{Vàng}) = \dfrac{5}{15} = \dfrac{1}{3}$.
+d) $P(\text{Không đỏ}) = \dfrac{15 - 4}{15} = \dfrac{11}{15}$.
+e) $P(\text{Xanh/Đỏ}) = \dfrac{6 + 4}{15} = \dfrac{10}{15} = \dfrac{2}{3}$.
+f) $P(\text{Tím}) = 0$.
+
+**Bài 3:**
+a) Các kết quả: $(S,S), (S,N), (N,S), (N,N) \Rightarrow N = 4$. Có ít nhất 1 sấp: $(S,S), (S,N), (N,S) \Rightarrow P = \dfrac{3}{4}$.
+b) Khác nhau: $(S,N), (N,S) \Rightarrow P = \dfrac{2}{4} = \dfrac{1}{2}$.
+c) Tổng bằng 9: $(3,6), (4,5), (5,4), (6,3) \Rightarrow 4$ kết quả trên $36 \Rightarrow P = \dfrac{4}{36} = \dfrac{1}{9}$.
+d) Tổng lẻ khi 1 chẵn 1 lẻ $\Rightarrow 18$ kết quả trên $36 \Rightarrow P = \dfrac{18}{36} = \dfrac{1}{2}$.
+
+**Bài 4:**
+Tổng sĩ số $N = 12 + 18 = 30$.
+a) $P(\text{Nam}) = \dfrac{12}{30} = \dfrac{2}{5} = 0.4$.
+b) $P(\text{Nữ}) = \dfrac{18}{30} = \dfrac{3}{5} = 0.6$.
+c) $P(\text{Giỏi Toán}) = \dfrac{8}{30} = \dfrac{4}{15}$.
+
+**Bài 5:**
+a) $P_{tn}(6) = \dfrac{50}{300} = \dfrac{1}{6} \approx 0.167$.
+b) Số lần chẵn $= 52 + 49 + 50 = 151 \Rightarrow P_{tn}(\text{chẵn}) = \dfrac{151}{300} \approx 0.503$.
+c) Các xác suất thực nghiệm gần như trùng khít với xác suất lý thuyết $\dfrac{1}{6} \approx 0.167 \Rightarrow$ Con xúc xắc rất cân đối.
+
+**Bài 6:**
+a) Từ 10 đến 99 có $99 - 10 + 1 = 90$ số $\Rightarrow N = 90$.
+b) Các số chính phương: $\{16; 25; 36; 49; 64; 81\} \Rightarrow 6$ số $\Rightarrow P = \dfrac{6}{90} = \dfrac{1}{15}$.
+c) Số chia hết cho 10 (cả 2 và 5): $\{10; 20; 30; 40; 50; 60; 70; 80; 90\} \Rightarrow 9$ số $\Rightarrow P = \dfrac{9}{90} = \dfrac{1}{10} = 0.1$.
+
+**Bài 7:**
+a) Các cặp: (A,B), (A,C), (A,D), (B,C), (B,D), (C,D) $\Rightarrow N = 6$.
+b) Cặp có A: (A,B), (A,C), (A,D) $\Rightarrow 3$ kết quả $\Rightarrow P = \dfrac{3}{6} = \dfrac{1}{2}$.
+
+**Bài 8:**
+a) $P_{tn} = \dfrac{12}{200} = \dfrac{3}{50} = 0.06$.
+b) Theo nguyên lý ước lượng: $\dfrac{150}{N} \approx 0.06 \Rightarrow N \approx \dfrac{150}{0.06} = 2.500$ con chim.
+
+**Bài 9:**
+a) $P_{tn} = \dfrac{940}{1.000} = 0.94$ ($94\%$).
+b) Số hạt nảy mầm $= 50.000 \times 94\% = 47.000$ cây giống.
+
+**Bài 10:**
+a) $P_{tn} = \dfrac{150}{10.000} = 0.015$ ($1.5\%$).
+b) Số ca nhập viện dự kiến $= 100.000 \times 1.5\% = 1.500$ ca.
+
+</div>
+</details>

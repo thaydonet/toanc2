@@ -15,6 +15,7 @@ import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 
 import QuizSession from '../../components/ui/QuizSession';
+import TiSoPhanTramInteractive from '../../components/interactive/TiSoPhanTramInteractive';
 
 export const quizData = [
   {
@@ -114,26 +115,42 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Một sản phẩm có giá 200 000 đồng, được tăng giá 10%. Giá mới là:",
-    option_a: "220 000 đồng",
-    option_b: "210 000 đồng",
-    option_c: "180 000 đồng",
-    option_d: "190 000 đồng",
-    correct_option: "A",
-    explanation: "Giá mới = 200000 + 10% × 200000 = 200000 + 20000 = 220000 đồng",
+    type: "msq",
+    question: "Những phát biểu nào đúng về tỉ số phần trăm?",
+    option_a: "Tỉ số phần trăm luôn có dạng a/100",
+    option_b: "50% bằng 0,5",
+    option_c: "100% bằng 1",
+    option_d: "Tỉ số phần trăm không thể lớn hơn 100%",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì tỉ số phần trăm có thể lớn hơn 100% (ví dụ: 125%).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Trong 50 kg nước biển có 1,5 kg muối. Tỉ số phần trăm của muối trong nước biển là:",
-    option_a: "3%",
-    option_b: "1,5%",
-    option_c: "0,3%",
-    option_d: "30%",
-    correct_option: "A",
-    explanation: "1,5/50 × 100% = 3%",
+    type: "msq",
+    question: "Cách nào sau đây để tìm 20% của 150 là đúng?",
+    option_a: "$150 \\times \\frac{20}{100}$",
+    option_b: "$150 \\times 0,2$",
+    option_c: "$150 : 5$",
+    option_d: "$150 \\times 20$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đều đúng và cho kết quả 30. D sai vì 150 × 20 = 3000.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm 35% của 240. Viết rõ cách tính.",
+    correct_option: "84",
+    explanation: "35% × 240 = 35/100 × 240 = 84",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một cửa hàng giảm giá 15% cho một chiếc áo giá 350.000 đồng. Tính giá mới của chiếc áo.",
+    correct_option: "297500",
+    explanation: "Giá giảm: 15% × 350.000 = 52.500 đồng. Giá mới: 350.000 - 52.500 = 297.500 đồng.",
     difficulty_level: "medium",
     is_dynamic: false,
   }
@@ -283,6 +300,8 @@ Giá mới = 8 000 000 × (1 - 12%) = 8 000 000 × 88% = 7 040 000 đồng
 
 </div>
 
+<TiSoPhanTramInteractive client:load />
+
 </LuyenTap>
 
 <VanDung title="Vận dụng">
@@ -319,43 +338,6 @@ Phần trăm lãi = 150 000 / 600 000 × 100% = 25%
 
 </VanDung>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
-
-**Bài 1:** Tính tỉ số phần trăm của:
-
-a) 4 và 5 b) 12 và 25 c) 18 và 40
-
-**Bài 2:** Tìm:
-
-a) 35% của 200 b) 8% của 1500 c) 125% của 80
-
-**Bài 3:** Tìm số, biết:
-
-a) 15% là 45 b) 24% là 72 c) 75% là 150
-
-**Bài 4:** Một cửa hàng điện tử nhập 50 chiếc máy tính, mỗi chiếc giá 12 000 000 đồng. Cửa hàng đã bán hết với giá mỗi chiếc 15 000 000 đồng. Hỏi cửa hàng lãi bao nhiêu phần trăm?
-
-**Bài 5:** Một người đi bộ quãng đường AB trong 3 giờ. Giờ thứ nhất đi được 35% quãng đường, giờ thứ hai đi được 40% quãng đường. Hỏi giờ thứ ba người đó còn phải đi bao nhiêu phần trăm quãng đường?
-
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Bài 1:** a) 80%; b) 48%; c) 45%
-
-**Bài 2:** a) 70; b) 120; c) 100
-
-**Bài 3:** a) 300; b) 300; c) 200
-
-**Bài 4:** 25%
-
-**Bài 5:** 25%
-
-</div>
-</details>
-
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
@@ -387,9 +369,7 @@ a) 15% là 45 b) 24% là 72 c) 75% là 150
 
 </GhiNho>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+📝 Bài tập tự luận
 
 **Bài 1:** Tính tỉ số phần trăm của:
 
@@ -407,8 +387,18 @@ a) 15% là 45 b) 24% là 72 c) 75% là 150
 
 **Bài 5:** Một người đi bộ quãng đường AB trong 3 giờ. Giờ thứ nhất đi được 35% quãng đường, giờ thứ hai đi được 40% quãng đường. Hỏi giờ thứ ba người đó còn phải đi bao nhiêu phần trăm quãng đường?
 
+**Bài 6:** Tỉ số của hai số là 3/5. Nếu số thứ nhất là 36, tìm số thứ hai.
+
+**Bài 7:** Một cửa hàng có 120 chiếc xe đạp, trong đó 75% là xe đạp thể thao. Hỏi cửa hàng có bao nhiêu xe đạp thường?
+
+**Bài 8:** Giá một chiếc tivi là 8 000 000 đồng. Giảm giá 12%. Tính số tiền giảm và giá mới.
+
+**Bài 9:** Tìm a nếu a% của 200 bằng 15% của 300.
+
+**Bài 10:** Một người gửi tiết kiệm 50 000 000 đồng với lãi suất 7% một năm. Sau 2 năm, người đó nhận được bao nhiêu tiền cả gốc và lãi?
+
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
 **Bài 1:** a) 80%; b) 48%; c) 45%
@@ -417,12 +407,22 @@ a) 15% là 45 b) 24% là 72 c) 75% là 150
 
 **Bài 3:** a) 300; b) 300; c) 200
 
-**Bài 4:** 25%
+**Bài 4:** Tiền lãi mỗi chiếc: 15 000 000 - 12 000 000 = 3 000 000 đồng. Tổng lãi: 50 × 3 000 000 = 150 000 000 đồng. Phần trăm lãi: 150 000 000 / (50 × 12 000 000) × 100% = 25%.
 
-**Bài 5:** 25%
+**Bài 5:** Còn lại: 100% - 35% - 40% = 25%.
+
+**Bài 6:** Số thứ hai = 36 ÷ (3/5) = 36 × 5/3 = 60.
+
+**Bài 7:** Số xe đạp thường = 120 × (100% - 75%) = 120 × 25% = 30 xe.
+
+**Bài 8:** Số tiền giảm: 12% × 8 000 000 = 960 000 đồng. Giá mới: 8 000 000 - 960 000 = 7 040 000 đồng.
+
+**Bài 9:** a% × 200 = 15% × 300 = 45. a = 45/200 × 100 = 22,5.
+
+**Bài 10:** Lãi 1 năm: 50 000 000 × 7% = 3 500 000 đồng. Lãi 2 năm: 3 500 000 × 2 = 7 000 000 đồng. Tổng: 50 000 000 + 7 000 000 = 57 000 000 đồng.
 
 </div>
 </details>
 
-<QuizSession client:load questions={quizData} />
+<QuizSession client:load questions={quizData} groupedShuffle />
 

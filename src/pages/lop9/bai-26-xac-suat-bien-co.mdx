@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 26: Xác suất của biến cố liên quan tới phép thử"
-description: "Cách tính xác suất của biến cố liên quan tới phép thử ngẫu nhiên, tỉ số và các tính chất cơ bản - Toán 9 Kết nối tri thức"
+description: "Công thức tính xác suất cổ điển P(A) = n(A)/n(Ω), tính chất xác suất, biến cố đối và xác suất thực nghiệm - Toán 9 KNTT Chương 8"
 grade: "Lớp 9"
 chapter: "Chương VIII: Xác suất của biến cố trong một số mô hình xác suất đơn giản"
 currentSlug: "lop9/bai-26-xac-suat-bien-co"
@@ -18,89 +18,113 @@ import ProbabilitySimulator from '../../components/interactive/ProbabilitySimula
 export const quizData = [
   {
     type: "mcq",
-    question: "Xác suất của một biến cố E, kí hiệu là $P(E)$, được định nghĩa bằng tỉ số nào dưới đây?",
-    option_a: "Số kết quả thuận lợi cho E chia cho tần số tương đối.",
-    option_b: "Số phần tử của không gian mẫu $\\Omega$ chia cho số kết quả thuận lợi cho E.",
-    option_c: "Số kết quả thuận lợi cho biến cố E chia cho tổng số phần tử (kết quả có thể xảy ra) của không gian mẫu.",
-    option_d: "Số biến cố ngẫu nhiên nhân với cỡ mẫu $N$.",
-    correct_option: "C",
-    explanation: "Định nghĩa xác suất cổ điển: Xác suất của một biến cố $E$ bằng tỉ số giữa số lượng kết quả làm cho biến cố đó xảy ra (kết quả thuận lợi $n(E)$) và tổng số kết quả đồng khả năng có thể xảy ra trong không gian mẫu ($n(\\Omega)$). Công thức: $P(E) = \\frac{n(E)}{n(\\Omega)}$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trong một hộp kín có 4 quả bóng xanh, 5 quả bóng đỏ và 1 quả bóng vàng cùng kích thước. Lấy ngẫu nhiên ra 1 quả bóng. Xác suất để quả bóng được chọn có màu xanh là:",
-    option_a: "$\\frac{1}{4}$",
-    option_b: "$\\frac{4}{5}$",
-    option_c: "$\\frac{4}{10}$",
-    option_d: "$\\frac{5}{10}$",
-    correct_option: "C",
-    explanation: "Không gian mẫu là tổng số khối cầu: $4 + 5 + 1 = 10$. Biến cố 'Lấy được bóng màu xanh' có 4 kết quả thuận lợi. Do đó tỉ lệ xác suất là $P = \\frac{4}{10} = 0.4$ (hay $40\\%$).",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Khẳng định nào dưới đây là ĐÚNG về giá trị xác suất của một biến cố bất kỳ?",
-    option_a: "Luôn lớn hơn 1.",
-    option_b: "Nằm trong đoạn từ 0 đến 1, hay $0 \\le P \\le 1$.",
-    option_c: "Có thể mang giá trị âm.",
-    option_d: "Chỉ nhận hai giá trị đúng 0 hoặc đúng 1.",
-    correct_option: "B",
-    explanation: "Xác suất là một tỉ lệ phân số có tử luôn luôn không thể vượt qua mẫu (do tập kết quả thuận lợi là tập con của không gian mẫu). Nên ta luôn có tính chất cơ bản: $0 \\le P(E) \\le 1$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Một biến cố có tính chất 'chắc chắn xảy ra' sẽ nhận lại được giá trị xác suất bằng bao nhiêu?",
-    option_a: "1",
-    option_b: "0",
-    option_c: "0.5",
-    option_d: "100",
+    question: "Công thức tính xác suất cổ điển của biến cố $A$ là:",
+    option_a: "$P(A) = \\frac{n(A)}{n(\\Omega)}$",
+    option_b: "$P(A) = \\frac{n(\\Omega)}{n(A)}$",
+    option_c: "$P(A) = n(A) \\cdot n(\\Omega)$",
+    option_d: "$P(A) = n(\\Omega) - n(A)$",
     correct_option: "A",
-    explanation: "Khi biến cố chắc chắn xảy ra 100%, mọi kết quả của không gian mẫu đều thuận lợi cho nó. Do đó $n(E) = n(\\Omega)$, suy ra tỉ lệ $P(E) = 1$.",
-    difficulty_level: "medium",
+    explanation: "Xác suất cổ điển $P(A)$ bằng số kết quả thuận lợi cho $A$ chia cho tổng số kết quả có thể xảy ra của không gian mẫu $\\Omega$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Dựa vào phép gieo đồng xu chuẩn xác, gọi $\\Omega$ là không gian mẫu của phép tung một đồng xu hai lần $\\Omega = \\{(S,S), (S,N), (N,S), (N,N)\\}$. Hỏi xác suất của biến cố A: 'Hai lần tung ra cùng một mặt' bằng bao nhiêu phần?",
+    question: "Xác suất của bất kỳ biến cố $A$ nào luôn thỏa mãn điều kiện:",
+    option_a: "$0 \\le P(A) \\le 1$",
+    option_b: "$P(A) > 1$",
+    option_c: "$P(A) < 0$",
+    option_d: "$-1 \\le P(A) \\le 1$",
+    correct_option: "A",
+    explanation: "Vì $0 \\le n(A) \\le n(\\Omega)$ nên xác suất của một biến cố luôn nằm trong đoạn $[0; 1]$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố chắc chắn $P(\\Omega)$ và biến cố không thể $P(\\emptyset)$ lần lượt là:",
+    option_a: "$1$ và $0$",
+    option_b: "$0$ và $1$",
+    option_c: "$0,5$ và $0,5$",
+    option_d: "$1$ và $1$",
+    correct_option: "A",
+    explanation: "Biến cố chắc chắn có $P(\\Omega) = 1$, biến cố không thể có $P(\\emptyset) = 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức liên hệ giữa xác suất của biến cố $A$ và biến cố đối $\\bar{A}$ là:",
+    option_a: "$P(\\bar{A}) = 1 - P(A)$",
+    option_b: "$P(\\bar{A}) = P(A) - 1$",
+    option_c: "$P(\\bar{A}) = 1 + P(A)$",
+    option_d: "$P(\\bar{A}) = \\frac{1}{P(A)}$",
+    correct_option: "A",
+    explanation: "Tổng xác suất của biến cố $A$ và biến cố đối $\\bar{A}$ bằng $1 \\Rightarrow P(\\bar{A}) = 1 - P(A)$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc cân đối 6 mặt. Xác suất để xuất hiện mặt chẵn là:",
+    option_a: "$\\frac{1}{6}$",
+    option_b: "$\\frac{1}{2}$",
+    option_c: "$\\frac{1}{3}$",
+    option_d: "$\\frac{2}{3}$",
+    correct_option: "B",
+    explanation: "Không gian mẫu $n(\\Omega) = 6$. Số kết quả thuận lợi cho mặt chẵn $\\{2; 4; 6\\}$ là $n(A) = 3$. $P(A) = \\frac{3}{6} = \\frac{1}{2}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung hai đồng xu cân đối đồng thời. Xác suất để cả hai đồng xu đều xuất hiện mặt sấp là:",
     option_a: "$\\frac{1}{4}$",
     option_b: "$\\frac{1}{2}$",
     option_c: "$\\frac{3}{4}$",
-    option_d: "$1$",
-    correct_option: "B",
-    explanation: "Tính chất biến cố A: Rơi vào $(S,S)$ hoặc $(N,N)$. Số kết quả thuận lợi là 2. Tuyệt đối của mẫu là 4. Ta có số liệu quy đổi xác suất: $P(A) = \\frac{2}{4} = \\frac{1}{2}$.",
+    option_d: "$\\frac{1}{3}$",
+    correct_option: "A",
+    explanation: "$n(\\Omega) = 4$. Chỉ có 1 kết quả (S, S) thuận lợi. Xác suất $P = \\frac{1}{4} = 0,25$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Một hộp chứa 5 quả bóng xanh và 5 quả bóng đỏ có cùng kích thước. Rút ngẫu nhiên 1 quả. Những khẳng định nào ĐÚNG?",
+    option_a: "Xác suất rút được bóng xanh là $\\frac{1}{2}$",
+    option_b: "Xác suất rút được bóng đỏ là $50\\%$",
+    option_c: "Khả năng rút được bóng xanh và bóng đỏ là đồng khả năng (bằng nhau)",
+    option_d: "Xác suất rút được bóng vàng bằng 0",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 khẳng định đều đúng chính xác theo định nghĩa xác suất.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Những giả định ban đầu nào là quan trọng và cần thiết để có thể áp dụng công thức tính toán xác suất tiên nghiệm (Cổ điển): $P(E) = \\frac{n(E)}{n(\\Omega)}$?",
-    option_a: "Chỉ được vận dụng cho quy trình có giới hạn không gian mẫu là hữu hạn các phần tử.",
-    option_b: "Tất cả các kết quả trong không gian mẫu phải có khả năng xảy ra là như nhau (đồng khả năng).",
-    option_c: "Phép thử phải tung đến hàng ngàn lần trước khi đo đạc tính toán.",
-    option_d: "Biến cố E không được phép chứa các tính chất là số nguyên tố.",
-    correct_option: "A,B",
-    explanation: "Công thức cổ điển chỉ hợp lệ khi ta có thể liệt kê được bộ đếm hữu hạn (A) và giả định mọi kết quả trong $\\Omega$ đều bình đẳng, ngẫu nhiên khách quan với rủi ro như nhau (B) (ví dụ không gian mẫu xúc xắc cân đối, không được dùng xu gian lận).",
+    question: "Gieo hai con xúc xắc cân đối. Những kết luận nào ĐÚNG?",
+    option_a: "Xác suất để tổng số chấm bằng 7 là $\\frac{1}{6}$",
+    option_b: "Xác suất để hai con xúc xắc xuất hiện số chấm giống nhau là $\\frac{1}{6}$",
+    option_c: "Xác suất để tổng số chấm bằng 2 là $\\frac{1}{36}$",
+    option_d: "Xác suất để tổng số chấm nhỏ hơn 13 là 1",
+    correct_option: "A,B,C,D",
+    explanation: "A: $6/36 = 1/6$. B: $6/36 = 1/6$. C: $1/36$. D: Tổng tối đa là 12 nên tổng $< 13$ là biến cố chắc chắn $P = 1$.",
     difficulty_level: "hard",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Gieo đồng thời 2 viên xúc xắc tiêu chuẩn $6$ mặt. Một viên chấm đỏ, một viên chấm xanh rành mạch. Lập không gian mẫu và tính tổng số các kết quả $n(\\Omega)$ có khả năng xảy ra.",
-    correct_option: "36",
-    explanation: "Theo định luật đếm ngẫu nhiên quy tắc nhân trong tổ hợp: Viên xanh có $6$ khả năng, viên đỏ có $6$ khả năng. Ghép cặp đôi ta thu được tổng số phần tử là $6 \\times 6 = 36$ kết quả cho toàn bộ số liệu không gian $\\Omega$.",
+    question: "Một lớp học có 24 học sinh nam và 16 học sinh nữ. Chọn ngẫu nhiên 1 học sinh. Xác suất chọn được học sinh nữ bằng bao nhiêu? (Viết dưới dạng số thập phân)",
+    correct_option: "0.4",
+    explanation: "Tổng số HS $N = 24 + 16 = 40$. Xác suất chọn HS nữ $P = \\frac{16}{40} = 0,4$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Bắt ngẫu nhiên $1$ lá bài từ bộ đồ cơ bản $52$ lá. Tính tỉ lệ xác suất (dưới dạng hệ thập phân, ví dụ 0.25) cho biến cố P: 'Rút được một lá Át'?",
-    correct_option: "0.0769",
-    explanation: "Tập hợp bộ bài $52$ lá là không gian mẫu chung. Các kết quả thuận lợi có $4$ lá Át thuộc bộ biến cố. Tỉ lệ tính xác suất: $\\frac{4}{52} = \\frac{1}{13} \\approx 0.076923$. Viết đúng là $0.0769$.",
+    question: "Gieo 3 đồng xu cân đối đồng thời. Xác suất của biến cố A: 'Có ít nhất một mặt sấp' bằng bao nhiêu? (Viết dưới dạng phân số tối giản a/b)",
+    correct_option: "7/8",
+    explanation: "Dùng biến cố đối $\\bar{A}$: 'Không có mặt sấp nào' (tức cả 3 ngửa N,N,N) $\\Rightarrow P(\\bar{A}) = 1/8$. Do đó $P(A) = 1 - 1/8 = 7/8$.",
     difficulty_level: "medium",
     is_dynamic: false,
   }
@@ -108,97 +132,265 @@ export const quizData = [
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🎯 Lượng hóa khả năng bằng những con số tỉ lệ</h3>
+<h3 id="mo-dau">🎯 Thống Kê & Dự Đoán Xác Suất Trong Cuộc Sống</h3>
 
-Trong cuộc sống, chúng ta thường sử dụng những định lượng ngôn từ như "Dễ lắm", "Hiếm lắm", "Không thể nào" để mô tả khả năng xảy ra của một sự việc. Các thuật ngữ này mang đầy tính cảm tính của người phát ngôn.
+Khi một dự báo thời tiết thông báo "Xác suất có mưa ngày mai tại Hà Nội là $80\%$", hay khi một công ty bảo hiểm định giá rủi ro cho một hợp đồng, họ đang áp dụng **Lý thuyết Xác suất**.
 
-Ví dụ, khi dự báo chỉ số mưa rơi, những chuyên gia chương trình Thời tiết luôn luôn thông báo: *"Dự báo xác suất có mưa rào ở thủ đô vào chiều mai là ${80\%}$"*. Con số lượng hóa $80\%$ là hệ đo tiêu chuẩn có được sau khi máy tính đã tính toán xác suất phân luồng thống kê về số liệu lượng nước mây.
+Xác suất là một con số từ $0$ đến $1$ (hoặc từ $0\%$ đến $100\%$) đo lường **mức độ khả năng xảy ra** của một biến cố ngẫu nhiên. Số càng gần $1$, biến cố đó càng dễ xảy ra!
 
-Trong toán xác suất thống kê ở bậc Trung học cơ sở, chúng ta sẽ làm quen với việc làm sao để thay bằng việc nói *"Tui bốc được lá Át là hên xui khó lắm"*, sinh viên hoàn toàn có khả năng nhẩm một con số cụ thể trên giấy để nói: *"Khả năng tôi trúng con bài Át trong bộ môn tổ hợp chính là  $\\frac{1}{13}$"*. Vậy phân số đó từ đâu tạo ra?
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="160" viewBox="0 0 420 160" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Probability Scale Line */}
+  <line x1="40" y1="90" x2="380" y2="90" stroke="#64748b" stroke-width="4"/>
+
+  {/* Points on scale */}
+  <circle cx="40" cy="90" r="8" fill="#ef4444"/>
+  <text x="40" y="65" font-size="12" font-weight="bold" fill="#dc2626" text-anchor="middle">0 (Không thể)</text>
+  <text x="40" y="120" font-size="11" fill="#475569" text-anchor="middle">P = 0%</text>
+
+  <circle cx="210" cy="90" r="8" fill="#f59e0b"/>
+  <text x="210" y="65" font-size="12" font-weight="bold" fill="#d97706" text-anchor="middle">0,5 (Đồng khả năng)</text>
+  <text x="210" y="120" font-size="11" fill="#475569" text-anchor="middle">P = 50%</text>
+
+  <circle cx="380" cy="90" r="8" fill="#16a34a"/>
+  <text x="380" y="65" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">1 (Chắc chắn)</text>
+  <text x="380" y="120" font-size="11" fill="#475569" text-anchor="middle">P = 100%</text>
+</svg>
+</div>
 
 </KhoiDong>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+<KhamPha title="Khám phá">
 
-<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Khái niệm Xác suất của biến cố</h3>
+<h3 id="cong-thuc-xac-suat-co-dien">📖 1. Định nghĩa Cổ điển về Xác suất</h3>
 
 <div class="box-dinh-nghia">
 
-Trong một phép thử ngẫu nhiên với một không gian mẫu $\Omega$ gồm hữu hạn các kết quả có tính chất đồng khả năng xuất hiện như nhau:
-**Xác suất của một biến cố $E$**, kí hiệu bằng toán học là $P(E)$, được xác định thông qua tỉ số giữa **số kết quả thuận lợi** cho sự hình thành biến cố $E$ (tức là $n(E)$) và **số phần tử của toàn bộ không gian mẫu** (tức là $n(\Omega)$).
+**1. Công thức Xác suất Cổ điển:**
+Giả sử một phép thử ngẫu nhiên có không gian mẫu $\Omega$ gồm các kết quả đồng khả năng xuất hiện.  
+Xác suất của biến cố $A$, ký hiệu là $P(A)$, được tính bằng:
+$$P(A) = \frac{n(A)}{n(\Omega)}$$
+trong đó:
+- $n(A)$ là số kết quả thuận lợi cho biến cố $A$.
+- $n(\Omega)$ là tổng số kết quả có thể xảy ra của không gian mẫu.
 
-Công thức cổ điển:
-$$P(E) = \frac{n(E)}{n(\Omega)}$$
+**2. Tính chất cơ bản của Xác suất:**
+1. $0 \le P(A) \le 1$ với mọi biến cố $A$.
+2. Xác suất của biến cố chắc chắn: $P(\Omega) = 1$.
+3. Xác suất của biến cố không thể: $P(\emptyset) = 0$.
 
 </div>
 
-- Đại lượng $n(E)$ trả lời cho câu hỏi: *"Trong hằng hà sa số các kịch bản, có bao nhiêu nhánh giúp cho cái sự kiện tôi mong đợi trở thành sự thật?"*
-- Đại lượng $n(\Omega)$ trả lời cho câu hỏi: *"Tổng số mọi kịch bản trên đời có thể xảy đến trong hành động phép thử là bao nhiêu?"*
-Thép thử gieo hạt xúc xắc 6 mặt, khi kiểm tra hiện tượng $A$: "Gieo đồng thời ra số mặt chẵn" ta có:
-Không gian mẫu $n(\Omega) = 6$. Thuận lợi mặt chẵn $n(A) = 3$ (mặt 2, 4, 6).
-Vậy xác suất xuất hiện là: $P(A) = \frac{3}{6} = \frac{1}{2}$ (hay 50%).
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<h3 id="tinh-chat" style="margin-top:2rem;">📖 2. Ba Tính chất quan trọng hàng đầu của Xác suất</h3>
+**3 Ví dụ minh họa Công thức Xác suất Cổ điển:**
 
-Phép toán lượng hóa xác suất phân phối một số thuộc tính chuẩn mực của tỉ lệ như sau:
-1. Xác suất của bất kỳ biến cố $E$ nào cũng bao giờ lấy giới hạn nằm trong khoảng giá trị hẹp từ $0$ cho đến $1$:
-$$0 \le P(E) \le 1$$
-*(Khi thể hiện dưới dạng phần trăm, tính chất này được dịch thành từ $0\%$ đến $100\%$)*.
-2. Với một **biến cố không thể xảy ra** (giao của tập hợp là tập Rỗng $\emptyset$), xác suất của nó luôn lấy giá trị tuyệt đối bằng $0$.
-3. Với một **biến cố chắc chắn** (trùm bao phủ toàn thể mọi tình huống trên không gian mẫu), điểm lượng khả năng xác suất này mang ý nghĩa bằng đúng $1$.
+- **Ví dụ 1:** Rút ngẫu nhiên 1 lá bài từ bộ bài tây 52 lá. Tính xác suất rút được lá bài Ách (A).
+  - *Giải:* Không gian mẫu $n(\Omega) = 52$.  
+    Bộ bài có 4 lá Ách $\Rightarrow$ số kết quả thuận lợi $n(A) = 4$.  
+    Xác suất $P(A) = \frac{4}{52} = \frac{1}{13} \approx 0,0769$ ($7,69\%$).
 
-<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Bộ máy mô phỏng luật Số Lớn trong Xác Suất</h3>
+- **Ví dụ 2:** Một hộp chứa 6 viên bi xanh, 4 viên bi đỏ và 5 viên bi vàng có cùng kích thước. Lấy ngẫu nhiên 1 viên bi. Tính xác suất lấy được viên bi màu xanh.
+  - *Giải:* Tổng số viên bi trong hộp $n(\Omega) = 6 + 4 + 5 = 15$.  
+    Số kết quả thuận lợi cho bi xanh $n(X) = 6$.  
+    Xác suất $P(X) = \frac{6}{15} = \frac{2}{5} = 0,4$ ($40\%$).
 
-Việc một biến cố được gắn nhãn $P(E) = \frac{1}{6}$ không đồng nghĩa là cứ gieo $6$ lần nó chắc chắn phải ra $1$ lần. Sự thực là nếu bạn thực hiện một phép thử lặp đi lặp lại đủ hàng nghìn vòng (luật số lượng lớn), tần số xuất hiện của một biến cố phân bổ tỉ lệ với công thức lý thuyết trên giấy. Hệ thống mô phỏng xúc xắc và xu điện tử tự động dưỡi đay sẽ chứng minh nguyên lý đó bằng đồ thị tự nhiên!
+- **Ví dụ 3:** Chọn ngẫu nhiên một số tự nhiên có 2 chữ số. Tính xác suất để số được chọn là số chính phương.
+  - *Giải:* Các số tự nhiên có 2 chữ số từ 10 đến 99 có $n(\Omega) = 90$ số.  
+    Các số chính phương có 2 chữ số là: $16, 25, 36, 49, 64, 81$ (gồm 6 số).  
+    Số kết quả thuận lợi $n(C) = 6$.  
+    Xác suất $P(C) = \frac{6}{90} = \frac{1}{15} \approx 0,0667$.
 
-<ProbabilitySimulator client:load />
+</div>
+
+<h3 id="bien-co-doi" style="margin-top:2rem;">📖 2. Biến cố Đối và Nguyên lý Biến cố Đối</h3>
+
+<div class="box-dinh-nghia">
+
+**1. Biến cố đối ($\bar{A}$):**
+- Cho biến cố $A$. Biến cố "Không xảy ra $A$" được gọi là **biến cố đối** của $A$, ký hiệu là $\bar{A}$ (đọc là A ngang).
+- Tập các kết quả thuận lợi cho $\bar{A}$ là phần bù của $A$ trong $\Omega$: $\bar{A} = \Omega \setminus A$.
+
+**2. Công thức Biến cố đối:**
+$$P(\bar{A}) = 1 - P(A) \qquad \Leftrightarrow \qquad P(A) = 1 - P(\bar{A})$$
+
+*Mẹo ứng dụng:* Khi bài toán yêu cầu tính xác suất của các biến cố chứa cụm từ **"có ít nhất một..."**, ta nên sử dụng biến cố đối "không có cái nào..." để tính toán nhanh hơn rất nhiều!
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Biến cố đối:**
+
+- **Ví dụ 1:** Tung 3 đồng xu cân đối đồng thời. Tính xác suất của biến cố $E$: "Có ít nhất một mặt sấp".
+  - *Giải:* Không gian mẫu $n(\Omega) = 2^3 = 8$.  
+    Xét biến cố đối $\bar{E}$: "Không có mặt sấp nào" (tức cả 3 đồng đều ngửa $N, N, N$).  
+    Chỉ có 1 kết quả thuận lợi cho $\bar{E} \Rightarrow n(\bar{E}) = 1 \Rightarrow P(\bar{E}) = \frac{1}{8}$.  
+    Xác suất biến cố $E$ là: $P(E) = 1 - P(\bar{E}) = 1 - \frac{1}{8} = \frac{7}{8} = 0,875$ ($87,5\%$).
+
+- **Ví dụ 2:** Cho xác suất bắn trúng mục tiêu của một xạ thủ là $P = 0,85$. Tính xác suất xạ thủ đó bắn bắn không trúng mục tiêu.
+  - *Giải:* Gọi $A$ là biến cố bắn trúng mục tiêu $\Rightarrow P(A) = 0,85$.  
+    Biến cố đối $\bar{A}$ là bắn không trúng $\Rightarrow P(\bar{A}) = 1 - P(A) = 1 - 0,85 = 0,15$ ($15\%$).
+
+- **Ví dụ 3:** Gieo hai con xúc xắc. Tính xác suất để tổng số chấm xuất hiện trên hai con xúc xắc lớn hơn 3.
+  - *Giải:* Không gian mẫu $n(\Omega) = 36$.  
+    Gọi $F$ là biến cố "Tổng số chấm $> 3$".  
+    Biến cố đối $\bar{F}$: "Tổng số chấm $\le 3$".  
+    Các kết quả thuận lợi cho $\bar{F}$ là: $(1,1), (1,2), (2,1)$ (gồm 3 kết quả) $\Rightarrow P(\bar{F}) = \frac{3}{36} = \frac{1}{12}$.  
+    Vậy xác suất $P(F) = 1 - P(\bar{F}) = 1 - \frac{1}{12} = \frac{11}{12}$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính Xác suất trong Phép thử đơn (1 giai đoạn)**
+- **Phương pháp:** Liệt kê trực tiếp $n(\Omega)$ và $n(A)$, tính $P(A) = \frac{n(A)}{n(\Omega)}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Chọn ngẫu nhiên 1 số từ các số từ 1 đến 20. Tính xác suất chọn được số chia hết cho 3.
+  - *Lời giải:* $n(\Omega) = 20$.  
+    Các số chia hết cho 3: $3, 6, 9, 12, 15, 18$ (gồm 6 số) $\Rightarrow n(A) = 6$.  
+    Xác suất $P(A) = \frac{6}{20} = \frac{3}{10} = 0,3$.
+
+- **Ví dụ 2:** Trong một túi có 10 tấm thẻ đánh số $1, 2, ..., 10$. Rút 1 thẻ. Tính xác suất rút được số nguyên tố.
+  - *Lời giải:* $n(\Omega) = 10$. Các số nguyên tố: $2, 3, 5, 7$ (gồm 4 số) $\Rightarrow n(B) = 4$.  
+    Xác suất $P(B) = \frac{4}{10} = \frac{2}{5} = 0,4$.
+
+- **Ví dụ 3:** Chọn ngẫu nhiên 1 học sinh từ lớp 9C gồm 18 nam và 22 nữ. Tính xác suất chọn được học sinh nam.
+  - *Lời giải:* Tổng số học sinh $n(\Omega) = 18 + 22 = 40$.  
+    Số HS nam $n(C) = 18 \Rightarrow P(C) = \frac{18}{40} = \frac{9}{20} = 0,45$.
+
+</div>
+
+#### **Dạng 2: Tính Xác suất trong Phép thử kép (2-3 giai đoạn)**
+- **Phương pháp:** Xác định $n(\Omega)$ bằng quy tắc nhân. Liệt kê hoặc tính số kết quả thuận lợi $n(A)$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Gieo hai con xúc xắc 6 mặt. Tính xác suất để tổng số chấm bằng 9.
+  - *Lời giải:* $n(\Omega) = 6 \times 6 = 36$.  
+    Các cặp có tổng bằng 9: $(3,6); (4,5); (5,4); (6,3)$ (gồm 4 kết quả).  
+    Xác suất $P = \frac{4}{36} = \frac{1}{9}$.
+
+- **Ví dụ 2:** Gieo hai con xúc xắc. Tính xác suất để hai con xúc xắc xuất hiện số chấm giống nhau.
+  - *Lời giải:* $n(\Omega) = 36$. Các cặp số chấm giống nhau: $(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)$ (gồm 6 kết quả).  
+    Xác suất $P = \frac{6}{36} = \frac{1}{6}$.
+
+- **Ví dụ 3:** Tung hai đồng xu. Tính xác suất để một sấp và một ngửa.
+  - *Lời giải:* $n(\Omega) = 4$. Kết quả thuận lợi: $(S,N), (N,S)$ (2 kết quả).  
+    Xác suất $P = \frac{2}{4} = \frac{1}{2} = 0,5$.
+
+</div>
+
+#### **Dạng 3: Ứng dụng Biến cố đối tính xác suất**
+- **Phương pháp:** Tính $P(A) = 1 - P(\bar{A})$ khi việc đếm số kết quả thuận lợi cho $\bar{A}$ đơn giản hơn $A$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Gieo 3 con xúc xắc. Tính xác suất để có ít nhất 1 con xuất hiện mặt 6 chấm.
+  - *Lời giải:* $n(\Omega) = 6^3 = 216$.  
+    Xét biến cố đối $\bar{A}$: "Không có con xúc xắc nào xuất hiện mặt 6 chấm".  
+    Số cách chọn cho mỗi con xúc xắc là 5 (từ 1 đến 5) $\Rightarrow n(\bar{A}) = 5^3 = 125$.  
+    $P(\bar{A}) = \frac{125}{216} \Rightarrow P(A) = 1 - \frac{125}{216} = \frac{91}{216} \approx 0,4213$.
+
+- **Ví dụ 2:** Một hộp có 4 bóng đỏ và 6 bóng xanh. Lấy ngẫu nhiên 2 bóng. Tính xác suất lấy được ít nhất 1 bóng xanh.
+  - *Lời giải:* Tổng số cách lấy 2 bóng: $n(\Omega) = \frac{10 \times 9}{2} = 45$.  
+    Biến cố đối $\bar{B}$: "Lấy 2 bóng đều màu đỏ".  
+    Số cách lấy 2 bóng đỏ: $n(\bar{B}) = \frac{4 \times 3}{2} = 6$.  
+    $P(\bar{B}) = \frac{6}{45} = \frac{2}{15} \Rightarrow P(B) = 1 - \frac{2}{15} = \frac{13}{15}$.
+
+- **Ví dụ 3:** Rút 2 lá bài từ bộ bài 52 lá. Tính xác suất để có ít nhất 1 lá Ách.
+  - *Lời giải:* $n(\Omega) = \frac{52 \times 51}{2} = 1326$.  
+    Biến cố đối $\bar{C}$: "Không rút được lá Ách nào" (rút 2 lá trong 48 lá còn lại).  
+    $n(\bar{C}) = \frac{48 \times 47}{2} = 1128 \Rightarrow P(\bar{C}) = \frac{1128}{1326} = \frac{188}{221}$.  
+    $P(C) = 1 - \frac{188}{221} = \frac{33}{221} \approx 0,1493$.
+
+</div>
+
+#### **Dạng 4: Tính Xác suất Thực nghiệm**
+- **Phương pháp:** Xác suất thực nghiệm $\approx \frac{\text{Số lần biến cố xảy ra}}{\text{Tổng số lần thực hiện phép thử } N}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tung một đồng xu 200 lần thu được 104 lần mặt sấp. Tính xác suất thực nghiệm xuất hiện mặt sấp.
+  - *Lời giải:* $P_{tn} = \frac{104}{200} = 0,52$ ($52\%$).
+
+- **Ví dụ 2:** Kiểm định 500 sản phẩm bóng đèn LED thu được 15 bóng bị lỗi. Tính xác suất thực nghiệm chọn phải bóng đèn lỗi.
+  - *Lời giải:* $P_{tn} = \frac{15}{500} = 0,03$ ($3\%$).
+
+- **Ví dụ 3:** Dự đoán số sản phẩm lỗi trong lô hàng 10.000 bóng đèn dựa vào tỉ lệ kiểm định ở Ví dụ 2.
+  - *Lời giải:* Số bóng lỗi ước tính $= 10000 \times 3\% = 300$ bóng đèn.
+
+</div>
+
+#### **Dạng 5: Bài toán Xác suất Thực tế trong Kiểm định & Bảo hiểm**
+- **Phương pháp:** Chuyển bài toán thực tế thành mô hình xác suất và tính giá trị kì vọng hoặc rủi ro.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1 (Y tế - Nhóm máu Rare O-):** Tỉ lệ người có nhóm máu $O^-$ tại một quốc gia là $0,5\%$. Tính xác suất để trong 200 người được chọn ngẫu nhiên có ít nhất 1 người có nhóm máu $O^-$.
+  - *Lời giải:* Xác suất người không có nhóm máu $O^-$ là $1 - 0,005 = 0,995$.  
+    Biến cố đối "Cả 200 người không ai có nhóm máu $O^-$": $P(\bar{A}) = (0,995)^{200} \approx 0,367$.  
+    Xác suất có ít nhất 1 người có nhóm máu $O^-$ là: $P(A) = 1 - 0,367 = 0,633$ ($63,3\%$).
+
+- **Ví dụ 2 (Bảo hiểm - Định giá rủi ro):** Tỉ lệ xảy ra va chạm xe cơ giới của lái xe mới trong năm đầu tiên là $4\%$. Nếu công ty bán 5000 hợp đồng bảo hiểm thì ước tính có bao nhiêu vụ bồi thường trong năm?
+  - *Lời giải:* Số vụ bồi thường ước tính $= 5000 \times 4\% = 200$ vụ.
+
+- **Ví dụ 3 (Trò chơi Xổ số Điện toán):** Chọn 6 số từ 1 đến 45 (Vietlott 6/45). Số phần tử không gian mẫu để trúng Jackpot là $C_{45}^6 = 8.145.060$. Tính xác suất trúng giải Jackpot.
+  - *Lời giải:* $P = \frac{1}{8.145.060} \approx 0,0000001227$ (khoảng 1 trên 8,14 triệu).
+
+</div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Chẻ Động Xác Suất qua Phép Thử Cổ Điển Rút / Chọn / Gieo Đơn Phân**
-**Phương pháp:** 
-- Xác đáng bước đầu liệt kê không gian mẫu $n(\Omega)$ là ưu tiên hạt nhân và nền tảng bằng tất cả hiện vật đối tượng.
-- Quét theo tiêu chuẩn biến cố trong đề, liệt kê kĩ rồi đếm hệ số thuật lợi cho thuộc tính đề ra (điểm thành phần $n(E)$).
-- Lập sơ đồ tỉ số và tối giản phân số $P(E) = \frac{n(E)}{n(\Omega)}$ đến mức gọn nhất làm phép so sánh.
+**Bài toán 1 (Kiểm Định Sản Phẩm Khỏi Dây Chuyền Sản Xuất):**  
+Một dây chuyền đóng gói sữa hộp tự động có tỉ lệ sản phẩm bị thiếu khối lượng là $2\%$. Một nhân viên kiểm định lấy ngẫu nhiên 3 hộp sữa để kiểm tra độc lập.  
+a) Tính xác suất để cả 3 hộp sữa đều đạt chuẩn khối lượng.  
+b) Tính xác suất để có ít nhất 1 hộp sữa bị thiếu khối lượng.
 
-</div>
+**Bài toán 2 (Y Tế & Xét Nghiệm Chẩn Đoán Tự Động):**  
+Tại một viện huyết học, tỉ lệ người có nhóm máu O là $45\%$, nhóm máu A là $30\%$, nhóm máu B là $20\%$ và nhóm máu AB là $5\%$. Chọn ngẫu nhiên một người hiến máu.  
+a) Tính xác suất chọn được người có nhóm máu A hoặc nhóm máu B.  
+b) Chọn ngẫu nhiên 2 người hiến máu độc lập. Tính xác suất để cả hai người đều có nhóm máu O.
 
-**Ví dụ 1:** 
-Phòng rút thăm trúng thưởng ở công ty phát hành một hòm gồm $100$ lá phiếu kín đều nhau. Trong số đó được cài đặt cơ cấu như sau: 5 phiếu có Quà Đặc Biệt, 15 phiếu ghi Giải Nhì, còn lại 80 phiếu ghi dòng chữ "Chúc bạn may mắn". Chọn ngẫu nhiên một lá phiếu. 
-Xác định xác suất của một cơ hội bốc trúng lá được giải thưởng vật phẩm (Bao gồm Nhì và Đặc Biệt)?
-
-**Hướng dẫn:** 
-- Số lượng lá phiếu bốc ra được chọn ngẫu nhiên đồng khả năng $\Rightarrow n(\Omega) = 100$.
-- Kí hiệu biến cố $K$: "Bốc trúng thưởng có quà". Những lá có quà bao gồm Quà Đặc Biệt và Giải Nhì.
-- Số lượng phiếu chứa mệnh giá giải là: $n(K) = 5 + 15 = 20$ tấm vé.
-- Cập nhật số liệu để tính xác suất là: $P(K) = \frac{n(K)}{n(\Omega)} = \frac{20}{100} = \frac{1}{5}$ (Tương đương 20%).
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Khai thác không gian mẫu qua việc cấu trúc nhánh (Tung hai đối tượng hoặc lấy lại phần tử)**
-**Phương pháp:** 
-- Phải hết sức cẩn trọng trong phép nhân sơ cấp cho không gian mẫu tổ hợp (2 xúc xắc có không gian $6 \times 6 = 36$, 2 đồng xu có $2 \times 2 = 4$).
-- Biến cố mang tham số đôi. (ví dụ "Tổng hai số chấm bằng 8") cần được duyệt danh sách thành phần theo cấu tạo cặp toạ độ (2, 6), (3, 5), (4, 4)... rồi đếm số lượng tập hợp kết quả.
-- Việc đồng thời xuất hiện của 2 hệ sẽ kéo theo phép toán hệ thức lớn hơn cho lượng $n(\Omega)$.
-
-</div>
-
-**Ví dụ 2:**  Một người chơi cờ chẵn tung đồng thời hai hạt xúc xắc 6 mặt đồng chất. 
-Hãy tính toán và công bố xem xác suất để hai con xúc xắc thể hiện ra số chấm giống y hệt nhau?
-**Hướng dẫn:** 
-- Tổng kết quả không gian mẫu gộp ở không gian đa chiều hệ 2 viên: $n(\Omega) = 6 \cdot 6 = 36$.
-- Gọi sự kiện diễn biến là $H$ đối chiếu 2 mặt giống nhau khi gieo. Vậy những kết quả đôi tạo nên $H$ bao gồm sáu cặp: ${(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)}$.
-- Đếm tổng thành phần thuận lợi của biến cố $H$ bằng: $n(H) = 6$.
-- Số đo định lượng xác suất sự kiện xảy ra sẽ áp vào là: $P(H) = \frac{6}{36} = \frac{1}{6}$.
+**Bài toán 3 (Tài Chính & Bảo Hiểm Xe Ô Tô):**  
+Thống kê từ một công ty bảo hiểm cho thấy xác suất một chiếc xe ô tô gặp sự cố va chạm trong một năm là $0,05$. Công ty bán bảo hiểm cho 1000 xe ô tô với mức phí $5$ triệu đồng/xe và mức bồi thường trung bình khi xảy ra sự cố là $40$ triệu đồng/xe.  
+a) Tính số tiền bồi thường ước tính mà công ty phải chi trả cho 1000 xe trong năm.  
+b) Tính lợi nhuận ước tính của công ty bảo hiểm từ 1000 xe đó.
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ mô phỏng dưới đây hỗ trợ bạn tự động thực nghiệm phép thử xác suất với hàng nghìn lần lặp và quan sát sự hội tụ về xác suất lý thuyết!
+</div>
+
+<ProbabilitySimulator client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 26:**
+
+1. **Xác suất cổ điển:** $P(A) = \frac{n(A)}{n(\Omega)}$.  
+2. **Tính chất:** $0 \le P(A) \le 1$; $P(\Omega) = 1$; $P(\emptyset) = 0$.  
+3. **Biến cố đối:** $P(\bar{A}) = 1 - P(A)$. Đặc biệt hữu ích khi tính bài toán "có ít nhất một...".
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -207,34 +399,144 @@ Hãy tính toán và công bố xem xác suất để hai con xúc xắc thể h
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Một nhóm học sinh có 6 nam và 4 nữ tập chung ghi tên vào 10 mẩu giấy để chọn ngẫu nhiên bốc thăm thủ lĩnh câu lạc bộ. Lấy hú họa một mảnh giấy:
-a) Có đúng 10 học sinh. Hãy cho biết tổ hợp đếm tính không gian mẫu $\Omega$ cho phép chọn người này?
-b) Tính cụ thể giá trị xác suất để tên bốc được trên lá thăm là một học sinh Nữ.
-c) Biến cố "Chọn được một học sinh là thành viên trong trường" là biến cố loại gì? Cho biết thông số phân bố tỉ lệ của xác suất này là bao nhiêu?
+**Bài 1:** Gieo một con xúc xắc cân đối 6 mặt. Tính xác suất của các biến cố sau:  
+a) $A$: "Xuất hiện mặt 5 chấm"  
+b) $B$: "Xuất hiện mặt có số chấm chia hết cho 2"  
+c) $C$: "Xuất hiện mặt có số chấm nhỏ hơn 3"  
+d) $D$: "Xuất hiện mặt có số chấm là số chính phương"  
+e) $E$: "Xuất hiện mặt có số chấm lớn hơn 0"  
+f) $F$: "Xuất hiện mặt có số chấm bằng 8"
 
-**Bài 2:** Hai chiếc hộp đen và đỏ. Hộp hộp màu đen có 3 quả bóng: số 1, số 2, số 3. Nhánh bên hộp màu đỏ chứa 2 quả bóng: kí tự A và kí tự B. Một hành động bốc ngẫu nhiên gồm: một tay vào hộp đen rút một quả và tay còn lại qua hộp đỏ nhặt thêm một quả. 
+**Bài 2:** Cho các tấm thẻ được đánh số từ $1$ đến $20$. Rút ngẫu nhiên 1 tấm thẻ. Tính xác suất:  
+a) Rút được số chia hết cho 5  
+b) Rút được số lẻ  
+c) Rút được số nguyên tố  
+d) Rút được bội của 4  
+e) Rút được số có 2 chữ số  
+f) Rút được số chia cho 3 dư 1
 
-a) Sử dụng quy tắc thiết lập danh sách (hoặc nhánh cây), hãy liệt kê cụ thể tất cả các hiện tượng kết hợp cấu thành nên tập hợp của không gian mẫu $\Omega$?
-b) Kiểm duyệt tính xác suất cho sự kiện: "Rút được quả có kí tự số 2 kẹp cùng khối kí tự B". 
+**Bài 3:** Tung hai con xúc xắc cân đối đồng thời. Tính xác suất:  
+a) Tổng số chấm bằng 6  
+b) Tổng số chấm bằng 10  
+c) Tích số chấm bằng 12  
+d) Tổng số chấm lớn hơn 9  
+e) Hai con xúc xắc xuất hiện hai số chẵn  
+f) Số chấm trên con xúc xắc thứ nhất lớn hơn số chấm con thứ hai
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 4:** Một hộp đựng 4 quả bóng màu đỏ và 6 quả bóng màu xanh có kích thước giống nhau. Lấy ngẫu nhiên 2 quả bóng cùng lúc. Tính xác suất:  
+a) Lấy được 2 quả bóng màu xanh  
+b) Lấy được 2 quả bóng màu đỏ  
+c) Lấy được 2 quả bóng cùng màu  
+d) Lấy được 2 quả bóng khác màu
 
-**Bài 1:**
-a) Tổng số giấy lá thăm đại diện cho các cá nhân là: $6 + 4 = 10$. Chọn 1 lá bất kì thì không gian mẫu đo được tương ứng với số học sinh, tức $n(\Omega) = 10$.
-b) Nhóm nữ sinh chiếm 4 slot. Việc bốc trúng là giấy của bạn nữ có 4 kết quả thuận lợi. Tính toán tỉ lệ định hình: Số đo phần xác suất $P = \frac{4}{10} = \frac{2}{5}$ là $0.4$.
-c) Tất cả 10 tên đăng ký đều mặc nhiên là học sinh đại diện trong trường học đó. Do đó, việc chọn bốc thăm luôn thu lại 1 cá nhân thuộc về trường. Nó được xếp vào phân loại "Biến cố chắc chắn xảy ra". 
-Xác suất của biến cố này mặc định bằng 1 (hoặc 100%).
+**Bài 5:** Tung 3 đồng xu cân đối đồng thời. Sử dụng biến cố đối để tính xác suất:  
+a) Có ít nhất một mặt sấp xuất hiện.  
+b) Có ít nhất một mặt ngửa xuất hiện.
 
-**Bài 2:**
-a) Tiến hành rút qua hộp đen (có 3 khả năng) và đồng bộ trích xuất kèm của hộp đỏ (có 2 khả năng). Bố cục mọi kịch bản của không gian mẫu gồm:
-$\Omega = \{(1, A); (1, B); (2, A); (2, B); (3, A); (3, B)\}$.
-Tổng cộng toàn bộ các trường hợp chéo có thể xảy ra: $n(\Omega) = 6$.
-b) Giả định gọi biến cố F: "Thể hiện số lượng quả bóng mang bộ mặt là cặp giá trị (2, B)".
-Tập hợp thuận lợi cho biến cố trên hệ chỉ có đúng duy nhất $1$ bộ là $(2, B)$ thục tế nằm trong chuỗi liệt kê ở trên.
-Số kết quả thuận lợi là $n(F) = 1$.
-Số biểu thức mang tính xác suất chốt hạ sẽ bằng: $P = \frac{1}{6}$.
+**Bài 6:** Rút ngẫu nhiên 2 lá bài từ bộ bài tây 52 lá.  
+a) Tính số phần tử của không gian mẫu $n(\Omega)$.  
+b) Tính xác suất để rút được 2 lá bài Ách (A).  
+c) Tính xác suất để rút được 2 lá bài cùng chất Cơ.
+
+**Bài 7:** Lớp 9A có 20 học sinh nam và 15 học sinh nữ. Giáo viên chọn ngẫu nhiên 2 học sinh đi tham gia phong trào của trường.  
+a) Tính xác suất chọn được 2 học sinh nữ.  
+b) Tính xác suất chọn được 1 nam và 1 nữ.
+
+**Bài 8:** Một vận động viên bắn súng bắn 2 phát độc lập vào mục tiêu. Xác suất bắn trúng phát thứ nhất là $0,8$, phát thứ hai là $0,7$. Tính xác suất để vận động viên bắn trúng cả 2 phát.
+
+**Bài 9 (Thực tế):** Trong một cuộc thi bốc thăm trúng thưởng có 100 vé, trong đó có 1 giải Nhất, 2 giải Nhì và 5 giải Ba. Người chơi rút ngẫu nhiên 1 vé.  
+a) Tính xác suất trúng giải Nhất.  
+b) Tính xác suất trúng một giải bất kỳ (Nhất, Nhì hoặc Ba).  
+c) Tính xác suất không trúng thưởng.
+
+**Bài 10 (Thực tế):** Một nhà máy kiểm định chất lượng 1000 sản phẩm điện tử vừa xuất xưởng thu được 980 sản phẩm đạt chuẩn và 20 sản phẩm bị lỗi.  
+a) Tính xác suất thực nghiệm chọn phải sản phẩm bị lỗi.  
+b) Nếu nhà máy sản xuất 50.000 sản phẩm trong một tháng thì ước tính có bao nhiêu sản phẩm bị lỗi?
+
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
+
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
+
+**Bài 1:**  
+$n(\Omega) = 6$.  
+a) $P(A) = 1/6$.  
+b) Chẵn $\{2; 4; 6\} \Rightarrow P(B) = 3/6 = 1/2$.  
+c) Nho hơn 3 $\{1; 2\} \Rightarrow P(C) = 2/6 = 1/3$.  
+d) Chính phương $\{1; 4\} \Rightarrow P(D) = 2/6 = 1/3$.  
+e) Biến cố chắc chắn $\Rightarrow P(E) = 1$.  
+f) Biến cố không thể $\Rightarrow P(F) = 0$.
+
+---
+
+**Bài 2:**  
+$n(\Omega) = 20$.  
+a) Chia hết cho 5: $\{5, 10, 15, 20\} \Rightarrow P = 4/20 = 1/5 = 0,2$.  
+b) Số lẻ có 10 số $\Rightarrow P = 10/20 = 1/2 = 0,5$.  
+c) Nguyên tố: $\{2, 3, 5, 7, 11, 13, 17, 19\}$ (8 số) $\Rightarrow P = 8/20 = 2/5 = 0,4$.  
+d) Bội của 4: $\{4, 8, 12, 16, 20\}$ (5 số) $\Rightarrow P = 5/20 = 1/4 = 0,25$.  
+e) Có 2 chữ số: từ 10 đến 20 (11 số) $\Rightarrow P = 11/20 = 0,55$.  
+f) Dư 1: $\{1, 4, 7, 10, 13, 16, 19\}$ (7 số) $\Rightarrow P = 7/20 = 0,35$.
+
+---
+
+**Bài 3:**  
+$n(\Omega) = 36$.  
+a) Tổng 6: $(1,5), (2,4), (3,3), (4,2), (5,1)$ (5 cặp) $\Rightarrow P = 5/36$.  
+b) Tổng 10: $(4,6), (5,5), (6,4)$ (3 cặp) $\Rightarrow P = 3/36 = 1/12$.  
+c) Tích 12: $(2,6), (3,4), (4,3), (6,2)$ (4 cặp) $\Rightarrow P = 4/36 = 1/9$.  
+d) Tổng $> 9$: có 6 cặp $\Rightarrow P = 6/36 = 1/6$.  
+e) Cùng chẵn: $3 \times 3 = 9$ cặp $\Rightarrow P = 9/36 = 1/4$.  
+f) Con thứ nhất $>$ con thứ hai: có 15 cặp $\Rightarrow P = 15/36 = 5/12$.
+
+---
+
+**Bài 4:**  
+Tổng 10 bóng. Lấy 2 bóng: $n(\Omega) = \frac{10 \times 9}{2} = 45$.  
+a) 2 bóng xanh: $\frac{6 \times 5}{2} = 15 \Rightarrow P = 15/45 = 1/3$.  
+b) 2 bóng đỏ: $\frac{4 \times 3}{2} = 6 \Rightarrow P = 6/45 = 2/15$.  
+c) Cùng màu: $15 + 6 = 21 \Rightarrow P = 21/45 = 7/15$.  
+d) Khác màu: $1 - 7/15 = 8/15$ (hoặc $4 \times 6 = 24 \Rightarrow 24/45 = 8/15$).
+
+---
+
+**Bài 5:**  
+$n(\Omega) = 2^3 = 8$.  
+a) Biến cố đối $\bar{A}$: "Cả 3 ngửa (N,N,N)" $\Rightarrow P(\bar{A}) = 1/8 \Rightarrow P(A) = 1 - 1/8 = 7/8$.  
+b) Biến cố đối $\bar{B}$: "Cả 3 sấp (S,S,S)" $\Rightarrow P(\bar{B}) = 1/8 \Rightarrow P(B) = 1 - 1/8 = 7/8$.
+
+---
+
+**Bài 6:**  
+a) $n(\Omega) = C_{52}^2 = \frac{52 \times 51}{2} = 1326$.  
+b) Rút 2 Ách từ 4 lá Ách: $C_4^2 = 6 \Rightarrow P = 6/1326 = 1/221$.  
+c) Rút 2 lá Cơ từ 13 lá Cơ: $C_{13}^2 = 78 \Rightarrow P = 78/1326 = 1/17$.
+
+---
+
+**Bài 7:**  
+Tổng số HS $= 20 + 15 = 35$. Lấy 2 HS: $n(\Omega) = \frac{35 \times 34}{2} = 595$.  
+a) 2 HS nữ: $\frac{15 \times 14}{2} = 105 \Rightarrow P = 105/595 = 3/17$.  
+b) 1 nam và 1 nữ: $20 \times 15 = 300 \Rightarrow P = 300/595 = 60/119$.
+
+---
+
+**Bài 8:**  
+Vì 2 phát bắn độc lập nên $P(\text{cả 2 trúng}) = P_1 \times P_2 = 0,8 \times 0,7 = 0,56$ ($56\%$).
+
+---
+
+**Bài 9:**  
+$n(\Omega) = 100$.  
+a) Trúng giải Nhất: $P = 1/100 = 0,01$.  
+b) Trúng giải bất kỳ: $1 + 2 + 5 = 8$ vé $\Rightarrow P = 8/100 = 0,08$.  
+c) Không trúng thưởng: $1 - 0,08 = 0,92$ ($92\%$).
+
+---
+
+**Bài 10:**  
+a) Xác suất sản phẩm lỗi $P_{tn} = \frac{20}{1000} = 0,02$ ($2\%$).  
+b) Số sản phẩm lỗi ước tính $= 50000 \times 2\% = 1000$ sản phẩm.
 
 </div>
 </details>

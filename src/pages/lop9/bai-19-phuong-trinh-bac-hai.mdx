@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 19: Phương trình bậc hai một ẩn"
-description: "Cách giải phương trình ax^2+bx+c=0 và công thức nghiệm Delta - Toán 9 KNTT Chương 6"
+description: "Định nghĩa phương trình bậc hai một ẩn, công thức nghiệm tổng quát Delta, công thức nghiệm thu gọn Delta' - Toán 9 KNTT Chương 6"
 grade: "Lớp 9"
 chapter: "Chương VI: Hàm số y = ax² (a ≠ 0). Phương trình bậc hai một ẩn"
 currentSlug: "lop9/bai-19-phuong-trinh-bac-hai"
@@ -19,227 +19,394 @@ export const quizData = [
   {
     type: "mcq",
     question: "Phương trình nào sau đây là phương trình bậc hai một ẩn?",
-    option_a: "3x - 5 = 0",
-    option_b: "-x^2 + 4x - 7 = 0",
-    option_c: "x^3 - 2x^2 + 1 = 0",
-    option_d: "0x^2 + 2x - 3 = 0",
-    correct_option: "B",
-    explanation: "Định dạng cốt lõi $ax^2 + bx + c = 0$ với quy tắc Thép là $a \\neq 0$. Đáp án D có $a = 0$ nên rớt hạng về bậc 1. B là chuẩn xác.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Xác định hệ số a, b, c của phương trình: $2x^2 - 5 = 0$",
-    option_a: "a = 2, b = -5, c = 0",
-    option_b: "a = 2, b = 0, c = -5",
-    option_c: "a = 2, b = 1, c = -5",
-    option_d: "a = 2, b = -5, c = 1",
-    correct_option: "B",
-    explanation: "Đây là dạng Khuyết b (mất cụm $bx$). Tức là $b = 0$, $a = 2, c = -5$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Công thức tính biệt thức $\\Delta$ (Delta) của phương trình $ax^2 + bx + c = 0$ là:",
-    option_a: "$b^2 + 4ac$",
-    option_b: "$a^2 - 4bc$",
-    option_c: "$b^2 - 4ac$",
-    option_d: "$b - 4ac$",
-    correct_option: "C",
-    explanation: "Công thức gốc $\\Delta = b^2 - 4ac$. Nếu dùng Delta phẩy $\\Delta' = (b')^2 - ac$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Phương trình bậc hai có 2 nghiệm phân biệt khi nào?",
-    option_a: "$\\Delta < 0$",
-    option_b: "$\\Delta = 0$",
-    option_c: "$\\Delta > 0$",
-    option_d: "$\\Delta \\le 0$",
-    correct_option: "C",
-    explanation: "Căn bậc 2 của số Dương thì sinh ra 2 kết quả (+ và -). Nên $\\Delta > 0$ đẻ ra 2 nghiệm nhánh.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Cho phương trình $x^2 - 4x + 4 = 0$. Khẳng định nào ĐÚNG về số nghiệm?",
-    option_a: "Vô nghiệm",
-    option_b: "Có nghiệm kép $x_1 = x_2 = 2$",
-    option_c: "Có 2 nghiệm phân biệt x = 2 và x = -2",
-    option_d: "Có nghiệm kép $x_1 = x_2 = -2$",
-    correct_option: "B",
-    explanation: "Có dạng Hằng Đẳng Thức $(x - 2)^2 = 0$. $\\Delta = 16 - 16 = 0$. Nghiệm kép rút ngắn là $x = -b / 2a = 4 / 2 = 2$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tính biệt thức $\\Delta$ của PT: $3x^2 - x + 5 = 0$. Nó có nghiệm không?",
-    option_a: "$\\Delta = -59 < 0 \\Rightarrow$ Vô nghiệm",
-    option_b: "$\\Delta = 61 > 0 \\Rightarrow$ 2 nghiệm",
-    option_c: "$\\Delta = -59 < 0 \\Rightarrow$ 1 nghiệm kép",
-    option_d: "$\\Delta = -31 < 0 \\Rightarrow$ Vô nghiệm",
+    option_a: "$x^2 - 3x + 2 = 0$",
+    option_b: "$2x - 5 = 0$",
+    option_c: "$x^3 - 2x^2 + 1 = 0$",
+    option_d: "$x + \frac{1}{x} = 3$",
     correct_option: "A",
-    explanation: "$(-1)^2 - 4 \\cdot 3 \\cdot 5 = 1 - 60 = -59 < 0$. Do Delta âm (Máy tính bấm Căn lỗi Math Error), vô nghiệm.",
+    explanation: "Phương trình bậc hai một ẩn $x$ có dạng $ax^2 + bx + c = 0$ ($a \\neq 0$). Do đó $x^2 - 3x + 2 = 0$ là phương trình bậc hai.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biệt thức $\\Delta$ của phương trình $ax^2 + bx + c = 0$ ($a \\neq 0$) được tính bằng công thức nào?",
+    option_a: "$\\Delta = b^2 - 4ac$",
+    option_b: "$\\Delta = b^2 - ac$",
+    option_c: "$\\Delta = b^2 + 4ac$",
+    option_d: "$\\Delta = a^2 - 4bc$",
+    correct_option: "A",
+    explanation: "Biệt thức của phương trình bậc hai: $\\Delta = b^2 - 4ac$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi $\\Delta < 0$, số nghiệm của phương trình bậc hai $ax^2 + bx + c = 0$ ($a \\neq 0$) là:",
+    option_a: "Có 2 nghiệm phân biệt",
+    option_b: "Có nghiệm kép",
+    option_c: "Vô nghiệm",
+    option_d: "Có vô số nghiệm",
+    correct_option: "C",
+    explanation: "Khi $\\Delta < 0$, phương trình bậc hai vô nghiệm trong tập số thực $\\mathbb{R}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nghiệm kép của phương trình bậc hai khi $\\Delta = 0$ được tính bằng công thức nào?",
+    option_a: "$x_1 = x_2 = -\\frac{b}{a}$",
+    option_b: "$x_1 = x_2 = -\\frac{b}{2a}$",
+    option_c: "$x_1 = x_2 = \\frac{b}{2a}$",
+    option_d: "$x_1 = x_2 = -\\frac{c}{a}$",
+    correct_option: "B",
+    explanation: "Khi $\\Delta = 0$, phương trình có nghiệm kép: $x_1 = x_2 = -\\frac{b}{2a}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho phương trình $x^2 - 6x + 5 = 0$. Biệt thức thu gọn $\\Delta'$ bằng bao nhiêu?",
+    option_a: "4",
+    option_b: "16",
+    option_c: "9",
+    option_d: "2",
+    correct_option: "A",
+    explanation: "Với $b = -6 \\Rightarrow b' = -3$. $\\Delta' = b'^2 - ac = (-3)^2 - 1(5) = 9 - 5 = 4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tập nghiệm của phương trình $2x^2 - 8 = 0$ là:",
+    option_a: "$S = \\{2\\}$",
+    option_b: "$S = \\{-2\\}$",
+    option_c: "$S = \\{-2; 2\\}$",
+    option_d: "$S = \\{4\\}$",
+    correct_option: "C",
+    explanation: "$2x^2 = 8 \\Leftrightarrow x^2 = 4 \\Leftrightarrow x = \\pm 2$. Tập nghiệm $S = \\{-2; 2\\}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phương trình nào sau đây có hai nghiệm phân biệt?",
+    option_a: "$x^2 - 5x + 6 = 0$",
+    option_b: "$x^2 - 4x + 4 = 0$",
+    option_c: "$x^2 + 3x - 4 = 0$",
+    option_d: "$x^2 + x + 1 = 0$",
+    correct_option: "A,C",
+    explanation: "A: $\\Delta = 25 - 24 = 1 > 0$. B: $\\Delta = 16 - 16 = 0$ (nghiệm kép). C: $\\Delta = 9 + 16 = 25 > 0$. D: $\\Delta = 1 - 4 = -3 < 0$ (vô nghiệm).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Những kiểu phương trình vô sinh (Vô nghiệm thực) nào dưới đây lộ mặt rõ ràng NGAY TỪ ÁNH NHÌN ĐẦU TIÊN?",
-    option_a: "$3x^2 + x - 1 = 0$",
-    option_b: "$x^2 + 5 = 0$",
-    option_c: "$2x^2 + 5x + 7 = 0$",
-    option_d: "$-x^2 - 1 = 0$",
-    correct_option: "B,D",
-    explanation: "B: $x^2 = -5$ vô lý. D: Nén $-x^2 = 1 \Rightarrow x^2 = -1$ vô lý. Các dạng $ax^2 + c = 0$ mà $a$ và $c$ cùng dấu (+ + hoặc - -) thì nhắm mắt điền Vô Nghiệm. (A) có a và c TRÁI DẤU chắc chắn có 2 nghiệm.",
-    difficulty_level: "hard",
+    question: "Những khẳng định nào đúng khi giải phương trình khuyết?",
+    option_a: "Phương trình khuyết $c$ ($ax^2 + bx = 0$) luôn có 1 nghiệm $x = 0$",
+    option_b: "Phương trình khuyết $b$ ($ax^2 + c = 0$) có nghiệm khi $a$ và $c$ trái dấu",
+    option_c: "Phương trình khuyết $b$ ($ax^2 + c = 0$) vô nghiệm khi $a$ và $c$ cùng dấu",
+    option_d: "Phương trình $ax^2 = 0$ có nghiệm duy nhất $x = 0$",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 khẳng định đều đúng chính xác theo tính chất của phương trình bậc hai khuyết.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Bạn Mèo Giải bằng Delta và ra $\\Delta = 25$. Công thức Nghiệm của Mèo sẽ là gì?",
-    option_a: "$x_1 = \\frac{-b + 5}{2a}$",
-    option_b: "$x_1 = \\frac{b + 5}{2a}$",
-    option_c: "$x_2 = \\frac{-b - 5}{2a}$",
-    option_d: "$x_2 = \\frac{-b - 25}{2a}$",
-    correct_option: "A,C",
-    explanation: "Mèo áp Căn của 25 ra $\\sqrt{25} = 5$. Công thức chập $\\frac{-b \\pm \\sqrt{\\Delta}}{2a}$. Nên A và C khớp xác.",
+    type: "sa",
+    question: "Tính nghiệm lớn nhất của phương trình $x^2 - 7x + 12 = 0$.",
+    correct_option: "4",
+    explanation: "$\\Delta = (-7)^2 - 4(12) = 49 - 48 = 1$. Nghiệm $x_1 = \\frac{7+1}{2} = 4, x_2 = \\frac{7-1}{2} = 3$. Nghiệm lớn hơn là 4.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Giải phương trình khuyết dạng: $5x^2 - 20x = 0$. Tìm nghiệm KHÁC KHÔNG của phương trình.",
+    question: "Tìm giá trị của $m$ để phương trình $x^2 - 4x + m = 0$ có nghiệm kép.",
     correct_option: "4",
-    explanation: "Dạng D khuyết C $(c=0)$. Rút $5x$ làm lõi chung $\\Rightarrow 5x(x - 4) = 0$. Có 2 cành rẽ $x = 0$ hoặc $x - 4 = 0 \\Rightarrow x = 4$.",
+    explanation: "Phương trình có nghiệm kép $\\Leftrightarrow \\Delta' = (-2)^2 - 1(m) = 0 \\Leftrightarrow 4 - m = 0 \\Leftrightarrow m = 4$.",
     difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Tìm m để PT $x^2 - 6x + m = 0$ có nghiệm hoàn hảo kép (1 nghiệm duy nhất).",
-    correct_option: "9",
-    explanation: "Muốn nghiệm Kép, $\\Delta$ bắt buộc bị triệt tiêu bằng 0. $\\Delta = (-6)^2 - 4 \\cdot 1 \\cdot m = 36 - 4m = 0 \Rightarrow 4m = 36 \Rightarrow m = 9$.",
-    difficulty_level: "hard",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🕵️ Truy tìm Kích thước Rạp phim</h3>
+<h3 id="mo-dau">📐 Bài toán Diện tích Mãnh đất & Phương trình Bạc hai</h3>
 
-Một rạp chiếu phim muốn xây một màn hình hình chữ nhật siêu rộng. Yêu cầu diện tích màn phẳng là $48\text{m}^2$. Và chiều dài bắt buộc phải dài hơn chiều rộng mặn mà $2\text{m}$.
-Hỏi chiều rộng của màn chiếu đó bằng bao nhiêu?
+Một bác nông dân muốn rào một khu vườn hình chữ nhật có chiều dài hơn chiều rộng $6\text{ m}$. Biết diện tích khu vườn là $S = 216\text{ m}^2$.
 
-Nếu gọi chiều rộng là $x$, thì chiều dài ăn theo là $(x + 2)$.
-Ta lập được biểu thức Diện Tích: $x \cdot (x + 2) = 48$.
-Nhân ngầm tung lốc vào sẽ ra: $x^2 + 2x - 48 = 0$.
-Làm cách nào để truy tìm lại số $x$ bị nhốt trong cái xích Bậc 2 kia? Người Ả Rập (Khwarizmi) đã tìm ra lời giải cho cái xích này từ 1000 năm trước: Khai sinh ra **Phương trình bậc hai**.
+Nếu gọi chiều rộng khu vườn là $x > 0$ (mét), thì chiều dài là $x + 6$ (mét).  
+Theo công thức diện tích:
+$$x(x + 6) = 216 \quad \Leftrightarrow \quad x^2 + 6x - 216 = 0$$
+
+Đây chính là một **phương trình bậc hai một ẩn**! Làm thế nào để giải phương trình này và tìm ra kích thước thực tế của khu vườn?
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="160" viewBox="0 0 420 160" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Garden Rectangle */}
+  <rect x="60" y="30" width="180" height="100" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="150" y="85" font-size="14" font-weight="bold" fill="#15803d" text-anchor="middle">Diện tích S = 216 m²</text>
+
+  {/* Dimensions */}
+  <text x="150" y="20" font-size="12" font-weight="bold" fill="#16a34a" text-anchor="middle">Chiều dài: x + 6</text>
+  <text x="35" y="85" font-size="12" font-weight="bold" fill="#16a34a" text-anchor="middle">x</text>
+
+  {/* Arrow to equation */}
+  <line x1="260" y1="80" x2="295" y2="80" stroke="#2563eb" stroke-width="3"/>
+  <polygon points="295,80 285,74 285,86" fill="#2563eb"/>
+
+  {/* Equation Box */}
+  <g transform="translate(305, 45)">
+    <rect width="105" height="70" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="52" y="35" font-size="12" font-weight="bold" fill="#1d4ed8" text-anchor="middle">x² + 6x - 216 = 0</text>
+    <text x="52" y="55" font-size="11" fill="#2563eb" text-anchor="middle">PT Bậc Hai</text>
+  </g>
+</svg>
+</div>
 
 </KhoiDong>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+<KhamPha title="Khám phá">
 
-<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Định nghĩa và hệ số</h3>
+<h3 id="dinh-nghia-pt-bac-hai">📖 1. Định nghĩa và Phương pháp giải Phương trình khuyết</h3>
 
 <div class="box-dinh-nghia">
 
-Phương trình bậc hai một ẩn (gọi tắt là phương trình bậc hai) là phương trình có dạng:
-$$a x^2 + b x + c = 0$$
-Trong đó hệ số gánh mũ hai **$a \neq 0$** (Tùy b và c bằng 0 cũng được nhưng gã cầm quyền khuyết a thì sụp nguồn).
+**1. Định nghĩa:**
+- **Phương trình bậc hai một ẩn** (nói gọn là phương trình bậc hai) là phương trình có dạng:
+  $$ax^2 + bx + c = 0 \qquad (a \neq 0)$$
+  trong đó $x$ là ẩn; $a, b, c$ là những số cho trước gọi là các **hệ số** ($a$ là hệ số bậc hai, $b$ là hệ số bậc nhất, $c$ là tự do).
+
+**2. Giải các phương trình khuyết đặc biệt:**
+- **Phương trình khuyết $c$ ($ax^2 + bx = 0$):**  
+  Đặt nhân tử chung $x(ax + b) = 0 \Leftrightarrow \left[ \begin{array}{l} x = 0 \\ x = -\frac{b}{a} \end{array} \right.$.
+- **Phương trình khuyết $b$ ($ax^2 + c = 0$):**  
+  $ax^2 = -c \Leftrightarrow x^2 = -\frac{c}{a}$.  
+  - Nếu $-\frac{c}{a} > 0 \Rightarrow x = \pm \sqrt{-\frac{c}{a}}$.  
+  - Nếu $-\frac{c}{a} < 0 \Rightarrow$ Phương trình vô nghiệm.
 
 </div>
 
-Ví dụ: $2x^2 + 5x - 3 = 0$ có các tướng cầm đầu: $a = 2, b = 5, c = -3$.
-Phương trình khuyết: $-3x^2 + 12 = 0$ (Khuyết b=0).
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<h3 id="cong-thuc-nghiem" style="margin-top:2rem;">📖 2. \"Thần chú\" Công thức Nghiệm Tổng quát</h3>
+**3 Ví dụ minh họa Giải phương trình khuyết:**
 
-Để giải mã TẤT CẢ mọi kiểu phương trình chẵn lẻ khuyết đủ, toán học phát minh ra hòn đá vi diệu **Delta ($\\Delta$)**:
+- **Ví dụ 1:** Giải phương trình $3x^2 - 12x = 0$.
+  - *Giải:* $3x(x - 4) = 0 \Leftrightarrow \left[ \begin{array}{l} 3x = 0 \\ x - 4 = 0 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} x = 0 \\ x = 4 \end{array} \right.$. Tập nghiệm $S = \{0; 4\}$.
 
-<div class="box-dinh-ly">
+- **Ví dụ 2:** Giải phương trình $2x^2 - 18 = 0$.
+  - *Giải:* $2x^2 = 18 \Leftrightarrow x^2 = 9 \Leftrightarrow x = \pm 3$. Tập nghiệm $S = \{-3; 3\}$.
 
-**Chìa khoá 1 (Tính Delta):**
-$$\Delta = b^2 - 4ac$$
-
-**Chìa khoá 2 (Bắt Cửa Tuỳ Mệnh Delta):**
-- **Sốc rủi ro ($\\Delta < 0$):** Phương trình Tắt Ngóm (VÔ NGHIỆM). Viết kết luận luôn và đi ngủ.
-- **Tình duyên chập 1 ($\\Delta = 0$):** Phương trình Đậu **Nghiệm Kép**: 
-$$x_1 = x_2 = \frac{-b}{2a}$$
-- **Vinh quang Bùng Nổ ($\\Delta > 0$):** Phương trình Chẻ 2 Nhánh **Nghiệm Phân Biệt**:
-$$x_{1} = \frac{-b + \sqrt{\Delta}}{2a}; \quad x_{2} = \frac{-b - \sqrt{\Delta}}{2a}$$
+- **Ví dụ 3:** Giải phương trình $5x^2 + 20 = 0$.
+  - *Giải:* $5x^2 = -20 \Leftrightarrow x^2 = -4 < 0$. Phương trình vô nghiệm.
 
 </div>
 
-<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Cỗ Máy Giải Phương Trình Ảo Diệu</h3>
-Hãy thử điền hệ số bài toán màn chiếu rạp phim ở Khoảng Khởi Động ($1x^2 + 2x - 48 = 0$) vào máy này xem màn chiếu chốt bao nhiêu mét?
+<h3 id="cong-thuc-nghiem-tong-quat" style="margin-top:2rem;">📖 2. Công thức nghiệm Tổng quát ($\Delta$) và Thu gọn ($\Delta'$)</h3>
 
-<QuadraticEquationSolver client:load />
+<div class="box-dinh-nghia">
+
+**1. Công thức nghiệm tổng quát ($\Delta = b^2 - 4ac$):**
+Đối với phương trình $ax^2 + bx + c = 0$ ($a \neq 0$), xét biệt thức $\Delta = b^2 - 4ac$:
+- **Nếu $\Delta > 0$:** Phương trình có **2 nghiệm phân biệt**:
+  $$x_1 = \frac{-b + \sqrt{\Delta}}{2a} \qquad x_2 = \frac{-b - \sqrt{\Delta}}{2a}$$
+- **Nếu $\Delta = 0$:** Phương trình có **nghiệm kép**:
+  $$x_1 = x_2 = -\frac{b}{2a}$$
+- **Nếu $\Delta < 0$:** Phương trình **vô nghiệm**.
+
+**2. Công thức nghiệm thu gọn ($\Delta' = b'^2 - ac$ với $b = 2b'$):**
+Khi hệ số $b$ chẵn ($b = 2b'$), ta tính $\Delta' = b'^2 - ac$:
+- **Nếu $\Delta' > 0$:** Có 2 nghiệm phân biệt: $x_1 = \frac{-b' + \sqrt{\Delta'}}{a}$, $x_2 = \frac{-b' - \sqrt{\Delta'}}{a}$.
+- **Nếu $\Delta' = 0$:** Có nghiệm kép: $x_1 = x_2 = -\frac{b'}{a}$.
+- **Nếu $\Delta' < 0$:** Phương trình vô nghiệm.
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Công thức nghiệm:**
+
+- **Ví dụ 1:** Giải phương trình $x^2 - 7x + 12 = 0$.
+  - *Giải:* $a = 1, b = -7, c = 12$.  
+    $\Delta = (-7)^2 - 4(1)(12) = 49 - 48 = 1 > 0 \Rightarrow \sqrt{\Delta} = 1$.  
+    Phương trình có 2 nghiệm phân biệt:  
+    $x_1 = \frac{7 + 1}{2} = 4$; $x_2 = \frac{7 - 1}{2} = 3$. Tập nghiệm $S = \{3; 4\}$.
+
+- **Ví dụ 2:** Giải phương trình $3x^2 - 6x + 3 = 0$.
+  - *Giải:* $a = 3, b = -6 \Rightarrow b' = -3, c = 3$.  
+    $\Delta' = (-3)^2 - 3(3) = 9 - 9 = 0$.  
+    Phương trình có nghiệm kép: $x_1 = x_2 = -\frac{-3}{3} = 1$. Tập nghiệm $S = \{1\}$.
+
+- **Ví dụ 3:** Giải phương trình $2x^2 - 3x + 5 = 0$.
+  - *Giải:* $a = 2, b = -3, c = 5$.  
+    $\Delta = (-3)^2 - 4(2)(5) = 9 - 40 = -31 < 0$.  
+    Phương trình vô nghiệm.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Giải phương trình bậc hai không chứa tham số**
+- **Phương pháp:** Xác định các hệ số $a, b, c$ (hoặc $b'$), tính biệt thức $\Delta$ (hoặc $\Delta'$), rồi tính nghiệm.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Giải phương trình $x^2 - 8x + 15 = 0$.
+  - *Lời giải:* $b' = -4 \Rightarrow \Delta' = (-4)^2 - 1(15) = 16 - 15 = 1 > 0$.  
+    $x_1 = 4 + 1 = 5$; $x_2 = 4 - 1 = 3$. Tập nghiệm $S = \{3; 5\}$.
+
+- **Ví dụ 2:** Giải phương trình $2x^2 + 5x - 3 = 0$.
+  - *Lời giải:* $\Delta = 5^2 - 4(2)(-3) = 25 + 24 = 49 > 0 \Rightarrow \sqrt{\Delta} = 7$.  
+    $x_1 = \frac{-5 + 7}{4} = \frac{1}{2}$; $x_2 = \frac{-5 - 7}{4} = -3$. Tập nghiệm $S = \{-3; 1/2\}$.
+
+- **Ví dụ 3:** Giải phương trình $x^2 - 2\sqrt{3}x + 3 = 0$.
+  - *Lời giải:* $b' = -\sqrt{3} \Rightarrow \Delta' = (-\sqrt{3})^2 - 1(3) = 3 - 3 = 0$.  
+    Nghiệm kép $x_1 = x_2 = \sqrt{3}$. Tập nghiệm $S = \{\sqrt{3}\}$.
+
+</div>
+
+#### **Dạng 2: Biện luận số nghiệm của phương trình bậc hai theo tham số $m$**
+- **Phương pháp:** Tính $\Delta$ (hoặc $\Delta'$) theo $m$:
+  - Có 2 nghiệm phân biệt $\Leftrightarrow \Delta > 0$.
+  - Có nghiệm kép $\Leftrightarrow \Delta = 0$.
+  - Vô nghiệm $\Leftrightarrow \Delta < 0$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tìm $m$ để phương trình $x^2 - 2(m-1)x + m^2 = 0$ có 2 nghiệm phân biệt.
+  - *Lời giải:* $b' = -(m-1) \Rightarrow \Delta' = (m-1)^2 - 1(m^2) = m^2 - 2m + 1 - m^2 = 1 - 2m$.  
+    Phương trình có 2 nghiệm phân biệt $\Leftrightarrow \Delta' > 0 \Leftrightarrow 1 - 2m > 0 \Leftrightarrow m < 0,5$.
+
+- **Ví dụ 2:** Tìm $m$ để phương trình $x^2 - 6x + m + 1 = 0$ có nghiệm kép.
+  - *Lời giải:* $b' = -3 \Rightarrow \Delta' = (-3)^2 - 1(m+1) = 9 - m - 1 = 8 - m$.  
+    Phương trình có nghiệm kép $\Leftrightarrow \Delta' = 0 \Leftrightarrow 8 - m = 0 \Leftrightarrow m = 8$.  
+    Nghiệm kép khi đó $x_1 = x_2 = 3$.
+
+- **Ví dụ 3:** Tìm $m$ để phương trình $x^2 + 4x + 2m - 1 = 0$ vô nghiệm.
+  - *Lời giải:* $\Delta' = 2^2 - 1(2m-1) = 4 - 2m + 1 = 5 - 2m$.  
+    Phương trình vô nghiệm $\Leftrightarrow \Delta' < 0 \Leftrightarrow 5 - 2m < 0 \Leftrightarrow m > 2,5$.
+
+</div>
+
+#### **Dạng 3: Tìm $m$ khi biết một nghiệm $x = x_0$**
+- **Phương pháp:** Thay $x = x_0$ vào phương trình để giải ra $m$. Sau đó thay $m$ lại phương trình để tìm nghiệm còn lại (hoặc dùng $x_1 + x_2 = -b/a$).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho phương trình $x^2 - mx + 6 = 0$. Biết $x_1 = 2$ là một nghiệm. Tìm $m$ và nghiệm $x_2$ còn lại.
+  - *Lời giải:* Thay $x = 2$: $2^2 - 2m + 6 = 0 \Leftrightarrow 10 - 2m = 0 \Rightarrow m = 5$.  
+    Phương trình trở thành $x^2 - 5x + 6 = 0 \Leftrightarrow (x-2)(x-3) = 0 \Rightarrow x_2 = 3$.
+
+- **Ví dụ 2:** Cho phương trình $x^2 - 2(m+1)x + 4 = 0$. Tìm $m$ để phương trình có một nghiệm $x_1 = 1$.
+  - *Lời giải:* Thay $x = 1$: $1^2 - 2(m+1)(1) + 4 = 0 \Leftrightarrow 1 - 2m - 2 + 4 = 0 \Leftrightarrow 3 - 2m = 0 \Rightarrow m = 1,5$.
+
+- **Ví dụ 3:** Cho phương trình $mx^2 - 3x + 1 = 0$. Tìm $m$ để phương trình có nghiệm $x = 1$.
+  - *Lời giải:* Điều kiện $m \neq 0$. Thay $x = 1$: $m(1)^2 - 3(1) + 1 = 0 \Leftrightarrow m - 2 = 0 \Rightarrow m = 2$ (TMĐK).
+
+</div>
+
+#### **Dạng 4: Giải phương trình Quy về Phương trình bậc hai**
+- **Phương pháp:** 
+  - **Phương trình trùng phương ($ax^4 + bx^2 + c = 0$):** Đặt $t = x^2 \ge 0 \Rightarrow a t^2 + b t + c = 0$.
+  - **Phương trình chứa ẩn ở mẫu:** ĐKXĐ, quy đồng khử mẫu, đưa về phương trình bậc hai.
+  - **Phương trình tích:** Đặt ẩn phụ $t = f(x)$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Giải phương trình trùng phương $x^4 - 5x^2 + 4 = 0$.
+  - *Lời giải:* Đặt $t = x^2 \ge 0$. Phương trình trở thành $t^2 - 5t + 4 = 0$.  
+    $\Delta = 25 - 16 = 9 \Rightarrow t_1 = 4$ (TM), $t_2 = 1$ (TM).  
+    - Với $t = 4 \Rightarrow x^2 = 4 \Rightarrow x = \pm 2$.  
+    - Với $t = 1 \Rightarrow x^2 = 1 \Rightarrow x = \pm 1$.  
+    Tập nghiệm $S = \{-2; -1; 1; 2\}$.
+
+- **Ví dụ 2:** Giải phương trình $\frac{x+2}{x-1} + \frac{x}{x+1} = \frac{4}{x^2-1}$.
+  - *Lời giải:* ĐKXĐ: $x \neq \pm 1$. Quy đồng khử mẫu:  
+    $(x+2)(x+1) + x(x-1) = 4 \Leftrightarrow x^2 + 3x + 2 + x^2 - x = 4 \Leftrightarrow 2x^2 + 2x - 2 = 0 \Leftrightarrow x^2 + x - 1 = 0$.  
+    $\Delta = 1^2 - 4(1)(-1) = 5 > 0 \Rightarrow x = \frac{-1 \pm \sqrt{5}}{2}$ (TM ĐKXĐ).
+
+- **Ví dụ 3:** Giải phương trình $(x^2 - x)^2 - 8(x^2 - x) + 12 = 0$.
+  - *Lời giải:* Đặt $t = x^2 - x$. Phương trình trở thành $t^2 - 8t + 12 = 0 \Leftrightarrow (t-2)(t-6) = 0 \Rightarrow t = 2$ hoặc $t = 6$.  
+    - Với $t = 2 \Rightarrow x^2 - x - 2 = 0 \Rightarrow x = -1$ hoặc $x = 2$.  
+    - Với $t = 6 \Rightarrow x^2 - x - 6 = 0 \Rightarrow x = -2$ hoặc $x = 3$.  
+    Tập nghiệm $S = \{-2; -1; 2; 3\}$.
+
+</div>
+
+#### **Dạng 5: Bài toán Thực tế lập Phương trình bậc hai một ẩn**
+- **Phương pháp:** Chọn ẩn $x$ (kèm ĐKXĐ), lập phương trình $ax^2 + bx + c = 0$, giải ra $x$ và đối chiếu ĐKXĐ.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tích của hai số tự nhiên liên tiếp lớn hơn tổng của chúng là 19. Tìm hai số đó.
+  - *Lời giải:* Gọi số thứ nhất là $x \in \mathbb{N}^*$. Số thứ hai là $x + 1$.  
+    Tích hai số $x(x+1)$, tổng hai số $x + (x+1) = 2x + 1$.  
+    Theo bài ra: $x(x+1) - (2x+1) = 19 \Leftrightarrow x^2 + x - 2x - 1 - 19 = 0 \Leftrightarrow x^2 - x - 20 = 0$.  
+    $\Delta = 1 + 80 = 81 \Rightarrow x_1 = \frac{1+9}{2} = 5$ (TM), $x_2 = -4$ (loại).  
+    Vậy hai số tự nhiên liên tiếp là 5 và 6.
+
+- **Ví dụ 2:** Một hình chữ nhật có chu vi $52\text{ m}$ và diện tích $160\text{ m}^2$. Tính các kích thước của hình chữ nhật.
+  - *Lời giải:* Nửa chu vi là $52 / 2 = 26\text{ m}$. Gọi chiều rộng là $x$ ($0 < x < 13$, mét) $\Rightarrow$ chiều dài là $26 - x$.  
+    Phương trình diện tích: $x(26 - x) = 160 \Leftrightarrow 26x - x^2 = 160 \Leftrightarrow x^2 - 26x + 160 = 0$.  
+    $\Delta' = 169 - 160 = 9 \Rightarrow x_1 = 13 - 3 = 10$ (TM), $x_2 = 13 + 3 = 16$ (loại vì $x < 13$).  
+    Chiều rộng là $10\text{ m}$, chiều dài là $16\text{ m}$.
+
+- **Ví dụ 3:** Một ca nô chạy trên sông từ bến A đến bến B cách nhau $40\text{ km}$ rồi quay về bến A hết tổng thời gian 4 giờ 30 phút ($4,5$ giờ). Biết vận tốc dòng nước là $2\text{ km/h}$. Tính vận tốc thực của ca nô khi nước yên lặng.
+  - *Lời giải:* Gọi vận tốc thực của ca nô là $v > 2$ (km/h).  
+    Vận tốc xuôi dòng $v + 2$, thời gian xuôi $\frac{40}{v+2}$.  
+    Vận tốc ngược dòng $v - 2$, thời gian ngược $\frac{40}{v-2}$.  
+    Phương trình: $\frac{40}{v+2} + \frac{40}{v-2} = 4,5 \Leftrightarrow 40(v-2 + v+2) = 4,5(v^2 - 4) \Leftrightarrow 80v = 4,5v^2 - 18 \Leftrightarrow 4,5v^2 - 80v - 18 = 0 \Leftrightarrow 9v^2 - 160v - 36 = 0$.  
+    $\Delta' = 6400 + 324 = 6724 = 82^2 \Rightarrow v = \frac{80 + 82}{9} = 18\text{ km/h}$ (TM).  
+    Vận tốc thực của ca nô là $18\text{ km/h}$.
+
+</div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Phương trình Khuyết ($b = 0$ hoặc $c = 0$)**
-**Phương pháp giải Cấp tốc (Không cần xài thần chú $\Delta$ chậm):** 
-- **Khuyết $c$:** Dạng $ax^2 + bx = 0$. Rút $x$ ra ngoài sân! $\Rightarrow x(ax + b) = 0$. $\Rightarrow x=0$ hoặc $x = -b/a$.
-- **Khuyết $b$:** Dạng $ax^2 + c = 0$. Kéo c qua Vế Phải! $\Rightarrow ax^2 = -c \Rightarrow x^2 = -c/a$. (Giá trị Âm thì vứt rác, giá trị Dương thì lấy Căn Cộng Trừ).
+**Bài toán 1 (Vật lý & Độ cao Quả bóng):**  
+Một quả bóng được sút thẳng đứng lên không trung từ mặt đất với vận tốc ban đầu $v_0 = 20\text{ m/s}$. Độ cao $h$ (mét) của quả bóng sau $t$ (giây) được tính theo công thức $h = 20t - 5t^2$. Hỏi sau bao lâu kể từ khi sút, quả bóng đạt độ cao $15\text{ m}$?
 
-</div>
+**Bài toán 2 (Kiến trúc & Đường đi Sân vườn):**  
+Một khu vườn hình chữ nhật có kích thước $15\text{ m} \times 20\text{ m}$. KTS thiết kế một đường đi xung quanh bên trong khu vườn có bề rộng $x$ (mét) như nhau. Diện tích phần đất còn lại làm thảm cỏ là $204\text{ m}^2$. Tính bề rộng $x$ của đường đi.
 
-**Ví dụ 1:** Giải phương trình $-2x^2 + 18 = 0$.
-**Hướng dẫn:** 
-Đây là khuyết $b$. Ném số đi: $-2x^2 = -18$.
-Chặt $\Rightarrow x^2 = 9$. Lấy Căn hai chiều $\Rightarrow x = 3$ hoặc $x = -3$. 
-*(Giải thế này nhanh như Gió, tội gì phải bấm nẹp Delta cho $b=0$, mệt người đúng không!)*
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Phương trình Đủ (Giải bằng Delta Phương Cương)**
-**Phương pháp:** 
-- Đem xác định ĐÚNG DẤU $(-, +)$ các hệ số a, b, c đè lên dốc.
-- Lắp công thức Delta (cẩn thận dấu âm chập âm nảy lửa ra Dương trong chỗ $-4ac$).
-- Tra bảng Mệnh 3 Cửa Delta $\rightarrow$ Bung Căn Thức $\rightarrow$ Ráp Công Thức Chẻ $2a$ (lưu ý CHIA CHO 2A CHỨ KHÔNG PHẢI CHIA MỖI A).
-
-</div>
-
-**Ví dụ 2:** Giải phương trình $2x^2 - 7x + 3 = 0$.
-**Hướng dẫn:** 
-1. Hệ số $a = 2; b = -7; c = 3$.
-2. Xay sinh tố $\Delta = (-7)^2 - 4 \cdot 2 \cdot 3 = 49 - 24 = 25$. 
-3. Vì $25 > 0$, mở khoá nghiệm múc $\sqrt{25} = 5$.
-$x_1 = \frac{-(-7) + 5}{2 \cdot 2} = \frac{7 + 5}{4} = \frac{12}{4} = 3$.
-$x_2 = \frac{-(-7) - 5}{4} = \frac{7 - 5}{4} = \frac{2}{4} = \frac{1}{2}$.
-Nghiệm siêu đẹp!
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 3: Phương trình có Tham Số $m$**
-**Phương pháp:** 
-- Đề túm tóc hỏi $m$ để Phương trình... (Có Nghiệm, Có Nghiệm Kép, Vô Nghiệm).
-- Tí tính $\Delta$ dựa vào biến m (Biểu thức m vướng chữ).
-- Ép biểu thức Delta đấy về Mốc So Sánh $=0$, $<0$ hoặc $\ge 0$ tùy miệng đề bắt chẹt.
-
-</div>
-
-**Ví dụ 3:** Cấm nghiệm! Tìm $m$ để phương trình $x^2 - 4x - m = 0$ VÔ NGHIỆM.
-**Hướng dẫn:** 
-- $a=1, b=-4, c=-m$.
-- Lọc $\Delta = (-4)^2 - 4(1)(-m) = 16 + 4m$.
-- Để cỗ máy Vô NGhiệm $\Rightarrow$ Yêu cầu $\Delta < 0 \Rightarrow 16 + 4m < 0 \Rightarrow 4m < -16 \Rightarrow m < -4$. 
+**Bài toán 3 (Tài chính & Lãi suất Kép):**  
+Một người gửi $100$ triệu đồng vào ngân hàng theo thể thức lãi suất kép kỳ hạn 1 năm. Sau 2 năm, tổng số tiền cả gốc lẫn lãi người đó nhận được là $116,64$ triệu đồng. Tính lãi suất năm $r\%$ của ngân hàng.
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác dưới đây hỗ trợ tính biệt thức $\Delta$, giải tự động các dạng phương trình bậc hai và tìm nghiệm chính xác!
+</div>
+
+<QuadraticEquationSolver client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 19:**
+
+1. **PT Bậc hai $ax^2 + bx + c = 0$ ($a \neq 0$):** Biệt thức $\Delta = b^2 - 4ac$.  
+   - $\Delta > 0$: 2 nghiệm $x_{1,2} = \frac{-b \pm \sqrt{\Delta}}{2a}$.  
+   - $\Delta = 0$: Nghiệm kép $x_1 = x_2 = -\frac{b}{2a}$.  
+   - $\Delta < 0$: Vô nghiệm.  
+2. **Công thức $\Delta'$ ($b = 2b'$):** $\Delta' = b'^2 - ac$. Nghiệm $x_{1,2} = \frac{-b' \pm \sqrt{\Delta'}}{a}$.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -248,61 +415,138 @@ Nghiệm siêu đẹp!
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1 (Cửu chương sấy Delta):** Giải các phương trình sau cẩn thận theo bảng Delta:
+**Bài 1:** Giải các phương trình bậc hai khuyết:  
+a) $2x^2 - 8x = 0$  
+b) $5x^2 + 15x = 0$  
+c) $3x^2 - 27 = 0$  
+d) $4x^2 - 25 = 0$  
+e) $x^2 + 9 = 0$  
+f) $\sqrt{2} x^2 - \sqrt{8} = 0$
 
-a) $x^2 - 5x + 6 = 0$
+**Bài 2:** Giải các phương trình bậc hai sử dụng công thức nghiệm $\Delta$ hoặc $\Delta'$:  
+a) $x^2 - 5x + 4 = 0$  
+b) $x^2 - 6x + 9 = 0$  
+c) $3x^2 - 4x + 2 = 0$  
+d) $2x^2 - 7x + 3 = 0$  
+e) $x^2 - 2\sqrt{2}x + 2 = 0$  
+f) $5x^2 - 2x - 3 = 0$
 
-b) $2x^2 + 2x + 1 = 0$
+**Bài 3:** Giải các phương trình trùng phương $ax^4 + bx^2 + c = 0$:  
+a) $x^4 - 10x^2 + 9 = 0$  
+b) $x^4 - 3x^2 - 4 = 0$  
+c) $2x^4 - 7x^2 + 3 = 0$  
+d) $x^4 + 5x^2 + 6 = 0$  
+e) $x^4 - 16 = 0$  
+f) $3x^4 - 12x^2 = 0$
 
-c) $9x^2 - 12x + 4 = 0$
+**Bài 4:** Giải phương trình $(x^2 - 2x)^2 - 3(x^2 - 2x) - 4 = 0$ bằng phương pháp đặt ẩn phụ.
 
-d) $-3x^2 + 7x - 2 = 0$
+**Bài 5:** Cho phương trình $x^2 - 2(m+1)x + m^2 + 2m = 0$.  
+a) Chứng minh phương trình luôn có hai nghiệm phân biệt với mọi $m$.  
+b) Tính hai nghiệm $x_1, x_2$ theo $m$.
 
-**Bài 2 (Đập hộp Khuyết m):** Giải khôn khéo bắng phương pháp tút x thẳng tay:
+**Bài 6:** Cho phương trình $x^2 - 2mx + m^2 - 4 = 0$.  
+a) Tìm $m$ để phương trình có một nghiệm $x = 3$.  
+b) Với $m$ vừa tìm được, tính nghiệm còn lại của phương trình.
 
-a) $3x^2 - 15x = 0$
+**Bài 7:** Cho phương trình $(m-1)x^2 - 2mx + m + 1 = 0$. Tìm các giá trị của $m$ để:  
+a) Phương trình là phương trình bậc hai.  
+b) Phương trình có nghiệm kép.  
+c) Phương trình có hai nghiệm phân biệt.
 
-b) $-4x^2 + 64 = 0$
+**Bài 8:** Giải phương trình chứa ẩn ở mẫu $\frac{x+1}{x-1} - \frac{x-1}{x+1} = \frac{4}{x^2-1}$.
 
-c) $(x - 5)^2 - 16 = 0$
+**Bài 9 (Thực tế):** Một thửa đất hình chữ nhật có chiều dài hơn chiều rộng $8\text{ m}$ và diện tích bằng $240\text{ m}^2$. Tính chu vi thửa đất.
 
-**Bài 3 (Mối nhân duyên Đặc Tính A-C Trái Dấu):** 
-Không cần giải con vít Delta nào ra giấy, em hãy giải thích tại sao hai phương trình sau lại "Luôn chắc nịch có 2 nghiệm phân biệt"? Ngầm quy luật gì ẩn chứa ở dấu hiệu $a$ và $c$?
+**Bài 10 (Thực tế):** Một công ty dự định chia quỹ thưởng $120$ triệu đồng cho các nhân viên xuất sắc. Đến ngày khen thưởng có 2 nhân viên xin rút tên nên mỗi nhân viên còn lại nhận thêm $3$ triệu đồng. Hỏi ban đầu có bao nhiêu nhân viên dự định khen thưởng?
 
-a) $5x^2 - 76x - 12 = 0$
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-b) $-x^2 + 99x + 5 = 0$
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-**Bài 4 (Truy quét biến M):** Cho phương trình $mx^2 + 2x - 1 = 0$ (ẩn $x$, tham số $m$).
+**Bài 1:**  
+a) $2x(x-4) = 0 \Rightarrow S = \{0; 4\}$.  
+b) $5x(x+3) = 0 \Rightarrow S = \{-3; 0\}$.  
+c) $3x^2 = 27 \Leftrightarrow x^2 = 9 \Rightarrow S = \{-3; 3\}$.  
+d) $4x^2 = 25 \Leftrightarrow x^2 = 25/4 \Rightarrow S = \{-2,5; 2,5\}$.  
+e) $x^2 = -9 < 0 \Rightarrow S = \emptyset$.  
+f) $\sqrt{2}x^2 = 2\sqrt{2} \Leftrightarrow x^2 = 2 \Rightarrow S = \{-\sqrt{2}; \sqrt{2}\}$.
 
-a) Tìm điều kiện ban thuở m để dính tem "Bậc Hai"? (Đừng quên móc khoá lớn nhất).
+---
 
-b) Tìm m để phương trình trên có Nghiệm kép duy nhất? Đoạt mốc M, tìm xem Nghiệm M kép này là bằng mấy?
+**Bài 2:**  
+a) $\Delta = 25 - 16 = 9 \Rightarrow x_1 = 4, x_2 = 1$.  
+b) $\Delta' = 9 - 9 = 0 \Rightarrow x_1 = x_2 = 3$.  
+c) $\Delta' = 4 - 6 = -2 < 0 \Rightarrow Vô nghiệm$.  
+d) $\Delta = 49 - 24 = 25 \Rightarrow x_1 = 3, x_2 = 1/2$.  
+e) $\Delta' = 2 - 2 = 0 \Rightarrow x_1 = x_2 = \sqrt{2}$.  
+f) $\Delta' = 1 - 5(-3) = 16 \Rightarrow x_1 = 1, x_2 = -3/5$.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+---
 
-**Bài 1:**
-a) $\Delta = 25 - 24 = 1 > 0 \Rightarrow x_1 = 3, x_2 = 2$.
-b) $\Delta = 4 - 8 = -4 < 0 \Rightarrow$ Vô nghiệm. 
-c) (Chia $2$ hằng đẳng thức): $\Delta = 144 - 144 = 0 \Rightarrow$ Kép $x_1=x_2 = 12/18 = 2/3$.
-d) Lọc $4ac = 4 \cdot (-3) \cdot (-2) = 24$. $\Delta = 49 - 24 = 25 \Rightarrow x_1 = \frac{-7+5}{-6} = 1/3, x_2 = \frac{-7-5}{-6} = 2$.
+**Bài 3:**  
+a) $t = x^2 \ge 0 \Rightarrow t^2 - 10t + 9 = 0 \Rightarrow t = 9, t = 1 \Rightarrow x = \pm 3, x = \pm 1$.  
+b) $t^2 - 3t - 4 = 0 \Rightarrow t = 4$ (TM), $t = -1$ (loại) $\Rightarrow x = \pm 2$.  
+c) $2t^2 - 7t + 3 = 0 \Rightarrow t = 3, t = 1/2 \Rightarrow x = \pm \sqrt{3}, x = \pm \frac{\sqrt{2}}{2}$.  
+d) $t^2 + 5t + 6 = 0 \Rightarrow t = -2, t = -3$ (loại cả 2) $\Rightarrow Vô nghiệm$.  
+e) $x^2 = 4 \Rightarrow x = \pm 2$.  
+f) $3x^2(x^2 - 4) = 0 \Rightarrow x = 0, x = \pm 2$.
 
-**Bài 2:**
-a) Rút $3x(x - 5) = 0 \Rightarrow x=0$ hoặc $x=5$.
-b) Rút $4x^2 = 64 \Rightarrow x^2 = 16 \Rightarrow x = 4, x = -4$.
-c) $(x-5)^2 = 16$. Tung 2 cánh Căn $\Rightarrow x-5 = 4 \rightarrow x=9$, nhánh nớ $x-5 = -4 \rightarrow x=1$.
+---
 
-**Bài 3:**
-a) $a = 5 > 0$ và $c = -12 < 0$. $a, c$ Trái dấu dẫn đến mảng trừ $-4ac = -4(+) \cdot (-) = +$. Tức là Số trừ luôn thành số Cộng Dương Mốc khổng lồ! 
-Với $\Delta = b^2 - 4ac$. Mã Bình phương $b^2 \ge 0$ cộng thêm 1 đống $4ac$ Dương nữa $\Rightarrow$ Delta Luôn Tuyệt Đối LỚN HƠN 0! (Hai nghiệm phân biệt muôn đời).
+**Bài 4:**  
+Đặt $t = x^2 - 2x$. Phương trình trở thành $t^2 - 3t - 4 = 0 \Leftrightarrow (t+1)(t-4) = 0 \Rightarrow t = -1$ hoặc $t = 4$.  
+- Với $t = -1 \Rightarrow x^2 - 2x + 1 = 0 \Leftrightarrow (x-1)^2 = 0 \Rightarrow x = 1$.  
+- Với $t = 4 \Rightarrow x^2 - 2x - 4 = 0 \Rightarrow \Delta' = 1 + 4 = 5 \Rightarrow x = 1 \pm \sqrt{5}$.  
+Tập nghiệm $S = \{1; 1 - \sqrt{5}; 1 + \sqrt{5}\}$.
 
-**Bài 4:**
-a) Điều kiện Bậc hai cứng nhắc: Hệ số $m \neq 0$.
-b) Delta tính bằng $\Delta = 4 - 4 \cdot m \cdot (-1) = 4 + 4m$.
-Nghiệm khép nẹp $\Delta = 0 \Rightarrow 4 + 4m = 0 \Rightarrow m = -1$.
-Thay $m=-1$ vào Nghiệm Kép $= -b/2a = -2 / -2 = 1$. (Nghiệm gỡ điểm $x=1$).
+---
+
+**Bài 5:**  
+a) $\Delta' = (m+1)^2 - (m^2 + 2m) = m^2 + 2m + 1 - m^2 - 2m = 1 > 0$ với mọi $m$.  
+Do đó phương trình luôn có 2 nghiệm phân biệt với mọi $m$.  
+b) $x_1 = (m+1) + 1 = m + 2$; $x_2 = (m+1) - 1 = m$.
+
+---
+
+**Bài 6:**  
+a) Thay $x = 3: 3^2 - 2m(3) + m^2 - 4 = 0 \Leftrightarrow m^2 - 6m + 5 = 0 \Leftrightarrow (m-1)(m-5) = 0 \Rightarrow m = 1$ hoặc $m = 5$.  
+b) With $m = 1 \Rightarrow x^2 - 2x - 3 = 0 \Rightarrow$ nghiệm còn lại $x_2 = -1$.  
+With $m = 5 \Rightarrow x^2 - 10x + 21 = 0 \Rightarrow$ nghiệm còn lại $x_2 = 7$.
+
+---
+
+**Bài 7:**  
+a) Phương trình bậc hai $\Leftrightarrow a \neq 0 \Leftrightarrow m - 1 \neq 0 \Leftrightarrow m \neq 1$.  
+b) $\Delta' = (-m)^2 - (m-1)(m+1) = m^2 - (m^2 - 1) = 1 > 0$ với mọi $m \neq 1$.  
+Do $\Delta' = 1 > 0$ cố định nên phương trình KHÔNG THỂ có nghiệm kép với bất kỳ $m$ nào.  
+c) Với mọi $m \neq 1$, phương trình luôn có 2 nghiệm phân biệt.
+
+---
+
+**Bài 8:**  
+ĐKXĐ: $x \neq \pm 1$.  
+Quy đồng khử mẫu: $(x+1)^2 - (x-1)^2 = 4 \Leftrightarrow (x^2 + 2x + 1) - (x^2 - 2x + 1) = 4 \Leftrightarrow 4x = 4 \Rightarrow x = 1$.  
+Đối chiếu ĐKXĐ: $x = 1$ bị loại. Phương trình vô nghiệm.
+
+---
+
+**Bài 9:**  
+Gọi chiều rộng là $x > 0$ (m) $\Rightarrow$ chiều dài là $x + 8$ (m).  
+Phương trình diện tích: $x(x+8) = 240 \Leftrightarrow x^2 + 8x - 240 = 0$.  
+$\Delta' = 16 + 240 = 256 \Rightarrow x = -4 + 16 = 12\text{ m}$ (TM).  
+Chiều dài $12 + 8 = 20\text{ m}$. Chu vi $P = 2(12 + 20) = 64\text{ m}$.
+
+---
+
+**Bài 10:**  
+Gọi số nhân viên ban đầu là $x > 2, x \in \mathbb{N}^*$.  
+Số tiền mỗi người dự định nhận là $\frac{120}{x}$ (triệu đồng).  
+Số nhân viên thực tế nhận thưởng là $x - 2$, mỗi người nhận $\frac{120}{x-2}$ (triệu đồng).  
+Phương trình: $\frac{120}{x-2} - \frac{120}{x} = 3 \Leftrightarrow \frac{120x - 120(x-2)}{x(x-2)} = 3 \Leftrightarrow \frac{240}{x^2 - 2x} = 3 \Leftrightarrow x^2 - 2x - 80 = 0$.  
+$\Delta' = 1 + 80 = 81 \Rightarrow x = 1 + 9 = 10$ (TM), $x = 1 - 9 = -8$ (loại).  
+Ban đầu có 10 nhân viên dự định khen thưởng.
 
 </div>
 </details>

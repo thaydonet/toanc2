@@ -11,9 +11,10 @@ import KhoiDong from '../../components/sections/KhoiDong.astro';
 import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
-import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import XacSuatThucNghiemInteractive from '../../components/interactive/XacSuatThucNghiemInteractive';
 
 export const quizData = [
   {
@@ -50,6 +51,106 @@ export const quizData = [
     correct_option: "C",
     explanation: "P(được 6) = 10/60 = 1/6 ≈ 0,167",
     difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất thực nghiệm P(A) = 0 nghĩa là gì?",
+    option_a: "Sự kiện A không bao giờ xảy ra trong thí nghiệm",
+    option_b: "Sự kiện A luôn xảy ra",
+    option_c: "Sự kiện A xảy ra một nửa",
+    option_d: "Thiếu dữ liệu",
+    correct_option: "A",
+    explanation: "P(A) = 0 nghĩa là sự kiện A không xảy ra lần nào trong thí nghiệm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung đồng xu 100 lần, mặt sấp 55 lần. P(Sấp) = ?",
+    option_a: "0,55",
+    option_b: "0,45",
+    option_c: "55",
+    option_d: "100",
+    correct_option: "A",
+    explanation: "P(Sấp) = 55/100 = 0,55.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi nào xác suất thực nghiệm tiến gần xác suất lý thuyết?",
+    option_a: "Khi số lần thí nghiệm tăng lên",
+    option_b: "Khi số lần thí nghiệm giảm",
+    option_c: "Luôn bằng nhau",
+    option_d: "Không liên quan",
+    correct_option: "A",
+    explanation: "Khi số lần thí nghiệm tăng, xác suất thực nghiệm tiến gần xác suất lý thuyết (định luật số lớn).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung xúc xắc 120 lần, được số chẵn 58 lần. P(số chẵn) ≈ ?",
+    option_a: "0,483",
+    option_b: "0,517",
+    option_c: "0,5",
+    option_d: "58",
+    correct_option: "A",
+    explanation: "P(số chẵn) = 58/120 ≈ 0,483.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một túi có 3 đỏ, 2 xanh. Rút 50 lần, đỏ 30 lần. P(Đỏ) = ?",
+    option_a: "0,6",
+    option_b: "0,4",
+    option_c: "3/5",
+    option_d: "30",
+    correct_option: "A",
+    explanation: "P(Đỏ) = 30/50 = 0,6.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khi tính xác suất thực nghiệm, cần những thông tin gì?",
+    option_a: "Tổng số lần thí nghiệm",
+    option_b: "Số lần sự kiện xảy ra",
+    option_c: "Kết quả của từng thí nghiệm",
+    option_d: "Màu sắc vật dụng",
+    correct_options: ["A", "B", "C"],
+    explanation: "Cần tổng số lần thí nghiệm, số lần sự kiện xảy ra và biết kết quả từng thí nghiệm để thống kê.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Đặc điểm của xác suất thực nghiệm là gì?",
+    option_a: "Có giá trị từ 0 đến 1",
+    option_b: "Phụ thuộc vào số lần thí nghiệm",
+    option_c: "Luôn bằng xác suất lý thuyết",
+    option_d: "Có thể dùng để dự đoán",
+    correct_options: ["A", "B", "D"],
+    explanation: "Xác suất thực nghiệm từ 0-1, phụ thuộc số lần thí nghiệm, và có thể dùng dự đoán. Nó không luôn bằng xác suất lý thuyết.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tung đồng xu 200 lần, mặt sấp 108 lần, mặt ngửa 92 lần. a) Tính P(Sấp) và P(Ngửa). b) So sánh. c) Dự đoán trong 500 lần tiếp, mặt sấp khoảng bao nhiêu lần?",
+    answer: "a) P(Sấp) = 108/200 = 0,54; P(Ngửa) = 92/200 = 0,46. b) P(Sấp) > P(Ngửa). c) Dự đoán: 500 × 0,54 = 270 lần.",
+    explanation: "Tính xác suất thực nghiệm từ dữ liệu, so sánh và dùng để dự đoán.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Kiểm tra 300 bóng đèn, có 12 bị lỗi. a) Tính P(lỗi). b) Nếu sản xuất 5000 bóng, dự đoán số bóng lỗi. c) Tính tỉ lệ phần trăm.",
+    answer: "a) P(lỗi) = 12/300 = 0,04. b) Dự đoán: 5000 × 0,04 = 200 bóng lỗi. c) Tỉ lệ: 4%.",
+    explanation: "Tính P = m/n, dùng để dự đoán, quy đổi phần trăm.",
+    difficulty_level: "hard",
     is_dynamic: false,
   },
 ];
@@ -154,7 +255,8 @@ P(Vàng) = 12/50 = 0,24
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<XacSuatThucNghiemInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -186,9 +288,24 @@ a) P(bị lỗi) = 15/500 = 0,03
 
 b) Dự đoán: 10.000 × 0,03 = 300 bóng
 
+**📝 Bài toán 3:** Một trung tâm điện thoại thống kê 200 khách hàng gọi đến trong ngày:
+
+- Gọi trong giờ hành chính: 140 người
+- Gọi ngoài giờ hành chính: 60 người
+
+a) Tính xác suất thực nghiệm khách hàng gọi trong giờ hành chính
+
+b) Dự đoán trong 800 cuộc gọi, bao nhiêu cuộc gọi trong giờ hành chính?
+
+**Giải:**
+
+a) P(gọi trong HC) = 140/200 = 0,7
+
+b) Dự đoán: 800 × 0,7 = 560 cuộc
+
 </VanDung>
 
-<BaiTapTuLuan>
+### Bài tập tự luận
 
 **Bài 1:** Tung một đồng xu 50 lần, kết quả:
 - Sấp: 28 lần
@@ -303,7 +420,7 @@ c) Giải thích sự khác biệt (nếu có)
 d) Dự đoán nếu tung thêm 70 lần nữa
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
 **Bài 1: Tung đồng xu 50 lần**
@@ -469,8 +586,6 @@ d) **Dự đoán nếu tung thêm 70 lần:**
 
 </div>
 </details>
-
-</BaiTapTuLuan>
 
 <GhiNho>
 

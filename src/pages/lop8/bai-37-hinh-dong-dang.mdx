@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 37: Hình đồng dạng"
-description: "Khái niệm hình đồng dạng và ứng dụng - Toán 8 KNTT Chương 9"
+description: "Khái niệm hình đồng dạng, hình đồng dạng phối cảnh (hình vị tự), tỉ số đồng dạng và các hình đồng dạng trong thực tế - Toán 8 KNTT Chương 9"
 grade: "Lớp 8"
 chapter: "Chương 9: Tam giác đồng dạng"
 currentSlug: "lop8/bai-37-hinh-dong-dang"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,447 +13,377 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import HinhDongDangInteractive from '../../components/interactive/HinhDongDangInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Hai hình đồng dạng có:",
-    option_a: "Cùng hình dạng nhưng khác kích thước",
-    option_b: "Cùng kích thước nhưng khác hình dạng",
-    option_c: "Cùng hình dạng và kích thước",
-    option_d: "Không liên quan gì đến nhau",
+    question: "Hai hình được gọi là đồng dạng với nhau nếu:",
+    option_a: "Chúng có cùng hình dạng nhưng kích thước có thể khác nhau",
+    option_b: "Chúng có cùng diện tích",
+    option_c: "Chúng có cùng chu vi",
+    option_d: "Chúng hoàn toàn trùng khít lên nhau",
     correct_option: "A",
-    explanation: "Hai hình đồng dạng có cùng hình dạng (các góc tương ứng bằng nhau) nhưng có thể khác kích thước (các cạnh tỉ lệ).",
+    explanation: "Định nghĩa hình đồng dạng trong hình học.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hình chữ nhật $ABCD$ có $AB = 4$ cm, $BC = 6$ cm. Hình chữ nhật nào sau đây đồng dạng với $ABCD$?",
-    option_a: "$6$ cm và $9$ cm",
-    option_b: "$8$ cm và $10$ cm",
-    option_c: "$5$ cm và $7$ cm",
-    option_d: "$3$ cm và $6$ cm",
+    question: "Tất cả các hình nào sau đây BẤT KỲ đều đồng dạng với nhau?",
+    option_a: "Các hình tròn",
+    option_b: "Các hình chữ nhật",
+    option_c: "Các hình hình bình hành",
+    option_d: "Các hình thang",
     correct_option: "A",
-    explanation: "Tỉ số: $\\frac{4}{6} = \\frac{2}{3}$. Chỉ có đáp án A thỏa mãn: $\\frac{6}{9} = \\frac{2}{3}$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Hai hình vuông bất kì:",
-    option_a: "Luôn đồng dạng",
-    option_b: "Không bao giờ đồng dạng",
-    option_c: "Đồng dạng khi có cạnh bằng nhau",
-    option_d: "Đồng dạng khi có chu vi bằng nhau",
-    correct_option: "A",
-    explanation: "Hai hình vuông luôn có bốn góc vuông bằng nhau và các cạnh tỉ lệ, nên luôn đồng dạng.",
+    explanation: "Mọi hình tròn bất kỳ luôn đồng dạng với nhau.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hai hình tròn có bán kính $3$ cm và $5$ cm:",
-    option_a: "Đồng dạng với tỉ số $\\frac{3}{5}$",
-    option_b: "Không đồng dạng",
-    option_c: "Bằng nhau",
-    option_d: "Đồng dạng với tỉ số $\\frac{5}{3}$",
+    question: "Tất cả các đa giác nào sau đây luôn đồng dạng với nhau?",
+    option_a: "Các đa giác đều có cùng số cạnh (ví dụ: các tam giác đều, các hình vuông)",
+    option_b: "Các hình thoi bất kỳ",
+    option_c: "Các tam giác cân bất kỳ",
+    option_d: "Các hình thang cân bất kỳ",
     correct_option: "A",
-    explanation: "Hai hình tròn luôn đồng dạng với tỉ số bằng tỉ số bán kính: $k = \\frac{3}{5}$.",
-    difficulty_level: "medium",
+    explanation: "Hai đa giác đều có cùng số cạnh luôn đồng dạng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình đồng dạng phối cảnh (hình vị tự) tâm O tỉ số $k$ có tính chất gì?",
+    option_a: "Các đường thẳng nối các cặp điểm tương ứng cùng đi qua điểm O",
+    option_b: "Có diện tích bằng 0",
+    option_c: "Không có tâm phối cảnh",
+    option_d: "Tất cả các cạnh bằng nhau",
+    correct_option: "A",
+    explanation: "Khái niệm hình đồng dạng phối cảnh.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho hai hình vuông $ABCD$ và $A'B'C'D'$ có cạnh lần lượt là $3$ cm và $9$ cm. Tỉ số đồng dạng của hình vuông $A'B'C'D'$ và $ABCD$ là:",
+    option_a: "$3$",
+    option_b: "$\\dfrac{1}{3}$",
+    option_c: "$9$",
+    option_d: "$27$",
+    correct_option: "A",
+    explanation: "$k = \\dfrac{9}{3} = 3$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Những hình nào sau đây luôn đồng dạng với nhau?",
-    option_a: "Hai hình vuông",
-    option_b: "Hai hình tròn",
-    option_c: "Hai tam giác đều",
-    option_d: "Hai hình chữ nhật",
+    question: "Những cặp hình nào sau đây LUÔN ĐỒNG DẠNG với nhau?",
+    option_a: "Hai tam giác đều bất kỳ",
+    option_b: "Hai hình vuông bất kỳ",
+    option_c: "Hai hình tròn bất kỳ",
+    option_d: "Hai hình chữ nhật bất kỳ",
     correct_option: "A,B,C",
-    explanation: "A, B, C đúng vì các hình này có cùng hình dạng. D sai vì hai hình chữ nhật có thể có tỉ lệ cạnh khác nhau.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Một bản đồ tỉ lệ $1:50000$ nghĩa là:",
-    option_a: "$1$ cm trên bản đồ tương ứng $50000$ cm thực tế",
-    option_b: "$1$ cm trên bản đồ tương ứng $50000$ m thực tế",
-    option_c: "$1$ m trên bản đồ tương ứng $50000$ m thực tế",
-    option_d: "$50000$ cm trên bản đồ tương ứng $1$ cm thực tế",
-    correct_option: "A",
-    explanation: "Tỉ lệ $1:50000$ có nghĩa $1$ cm trên bản đồ = $50000$ cm = $500$ m thực tế.",
+    explanation: "A, B, C đúng. D sai vì hình chữ nhật cần tỉ số chiều dài/chiều rộng bằng nhau mới đồng dạng.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Hình chữ nhật có chiều dài $8$ cm, chiều rộng $6$ cm đồng dạng với hình chữ nhật có chiều dài $12$ cm. Chiều rộng của hình thứ hai bằng bao nhiêu cm?",
-    correct_option: "9",
-    explanation: "Tỉ số: $k = \\frac{12}{8} = \\frac{3}{2}$. Chiều rộng: $6 \\times \\frac{3}{2} = 9$ cm.",
+    question: "Cho hai hình chữ nhật đồng dạng có diện tích lần lượt là $16\\text{ cm}^2$ và $64\\text{ cm}^2$. Tính tỉ số đồng dạng $k$ (lớn hơn 1).",
+    correct_option: "2",
+    explanation: "Tỉ số diện tích $= k^2 = \\dfrac{64}{16} = 4 \\Rightarrow k = 2$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hai hình đồng dạng có tỉ số đồng dạng $k = 3$. Tỉ số diện tích của chúng là:",
-    option_a: "$9$",
-    option_b: "$3$",
-    option_c: "$6$",
-    option_d: "$27$",
+    question: "Nếu hình H' đồng dạng phối cảnh với hình H theo tỉ số $k = 0.5$ thì kích thước của H' so với H sẽ:",
+    option_a: "Thu nhỏ bằng một nửa",
+    option_b: "Phóng to gấp 2 lần",
+    option_c: "Giữ nguyên",
+    option_d: "Thu nhỏ 4 lần",
     correct_option: "A",
-    explanation: "Tỉ số diện tích bằng bình phương tỉ số đồng dạng: $k^2 = 3^2 = 9$.",
-    difficulty_level: "hard",
+    explanation: "$k = 0.5 < 1 \\Rightarrow$ Hình H' thu nhỏ bằng $1/2$ kích thước hình H.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hình chữ nhật có chiều dài $!a#4!$ cm và chiều rộng $!b#3!$ cm đồng dạng với hình chữ nhật có chiều dài $!tinh: !a! * 2!$ cm. Chiều rộng của hình thứ hai là:",
-    option_a: "$!tinh: !b! * 2!$ cm",
-    option_b: "$!tinh: !b! + 2!$ cm",
-    option_c: "$!b!$ cm",
-    option_d: "$!tinh: !a! * 2!$ cm",
+    question: "Ảnh thu nhỏ trên điện thoại hay ảnh in trên bản đồ là ứng dụng của:",
+    option_a: "Hình đồng dạng",
+    option_b: "Hình bằng nhau",
+    option_c: "Phép đối xứng trục",
+    option_d: "Phép quay",
     correct_option: "A",
-    explanation: "Tỉ số đồng dạng $k = 2$. Chiều rộng: $!b! \\times 2 = !tinh: !b! * 2!$ cm.",
-    difficulty_level: "medium",
-    is_dynamic: true,
+    explanation: "Bản đồ và màn hình hiển thị ứng dụng trực tiếp phép đồng dạng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Tỉ số chu vi của hai đa giác đồng dạng bằng:",
+    option_a: "Chính tỉ số đồng dạng $k$",
+    option_b: "Bình phương tỉ số đồng dạng $k^2$",
+    option_c: "Căn bậc hai tỉ số đồng dạng $\\sqrt{k}$",
+    option_d: "Gấp 2 lần tỉ số đồng dạng $2k$",
+    correct_option: "A",
+    explanation: "Tỉ số chu vi của hai đa giác đồng dạng bằng tỉ số đồng dạng k.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🌍 Hình đồng dạng trong cuộc sống</h3>
+### 🎯 Khởi động bài học
 
-Khái niệm đồng dạng không chỉ áp dụng cho tam giác mà còn cho mọi hình trong thực tế!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🗺️</div>
-    <strong>Bản đồ</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thu nhỏ theo tỉ lệ</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📸</div>
-    <strong>Ảnh phóng to</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Giữ nguyên hình dạng</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🏗️</div>
-    <strong>Mô hình kiến trúc</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Thu nhỏ công trình</p>
-  </div>
-</div>
+**Hình đồng dạng** mở rộng khái niệm đồng dạng từ tam giác ra tất cả các hình hình học trong thực tế: từ những bông tuyết, những bức ảnh thu nhỏ, mô hình kiến trúc đến bản đồ địa lý thế giới. Cùng tìm hiểu cấu trúc toán học của sự đồng dạng hình học nhé!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="khai-niem">📖 1. Khái niệm hình đồng dạng</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-nghia">
+#### 1. Khái niệm Hình đồng dạng & Tỉ số đồng dạng
 
-**Định nghĩa:** Hai hình được gọi là đồng dạng nếu chúng có cùng hình dạng nhưng có thể khác kích thước.
+- **Định nghĩa:** Hai hình được gọi là **đồng dạng** với nhau nếu chúng có cùng hình dạng (có thể khác nhau về kích thước).
+- **Phép đồng dạng tỉ số $k$:** Biến mọi khoảng cách $AB$ giữa hai điểm bất kỳ thành khoảng cách $A'B' = k \cdot AB$ ($k > 0$).
+- **Đặc điểm:**
+  - Hai hình bằng nhau là hai hình đồng dạng với tỉ số $k = 1$.
+  - Mọi hình tròn đều đồng dạng với nhau.
+  - Mọi đa giác đều có cùng số cạnh (như tam giác đều, hình vuông, ngũ giác đều) luôn đồng dạng với nhau.
 
-Cụ thể:
-- Các góc tương ứng bằng nhau
-- Các cạnh tương ứng tỉ lệ với nhau
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="30" y="30" width="80" height="80" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="70" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">Hình H</text>
 
+  <text x="160" y="75" font-size="18" font-weight="bold" fill="#059669">➔ × k</text>
+
+  <rect x="220" y="15" width="130" height="130" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="285" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#166534">Hình H'</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Hình H' đồng dạng với hình H theo tỉ số phóng to/thu nhỏ k</em></p>
 </div>
 
-**Tỉ số đồng dạng:** Tỉ số giữa các cạnh tương ứng của hai hình đồng dạng gọi là tỉ số đồng dạng, kí hiệu $k$.
+**Ví dụ 1:** Cho hai hình vuông $ABCD$ cạnh $5$ cm và $A'B'C'D'$ cạnh $15$ cm. Tìm tỉ số đồng dạng của hai hình vuông.  
+*Lời giải:* $k = \dfrac{A'B'}{AB} = \dfrac{15}{5} = 3$.
 
-**Ví dụ 1:** Hai hình chữ nhật $ABCD$ và $A'B'C'D'$ có:
-- $AB = 4$ cm, $BC = 6$ cm
-- $A'B' = 6$ cm, $B'C' = 9$ cm
+**Ví dụ 2:** Cho hai hình tròn $O_1$ bán kính $R_1 = 4$ cm và $O_2$ bán kính $R_2 = 12$ cm. Tìm tỉ số diện tích của hai hình tròn.  
+*Lời giải:* Tỉ số đồng dạng $k = \dfrac{12}{4} = 3 \Rightarrow$ Tỉ số diện tích $= k^2 = 3^2 = 9$.
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 3:** Hai hình chữ nhật có đồng dạng không nếu hình 1 có kích thước $4 \times 6$ cm và hình 2 có kích thước $8 \times 12$ cm?  
+*Lời giải:* Tỉ số chiều rộng $\dfrac{8}{4} = 2$, tỉ số chiều dài $\dfrac{12}{6} = 2$. Vì hai tỉ số bằng nhau nên hai hình chữ nhật đồng dạng với $k = 2$.
 
-Kiểm tra: $\\frac{A'B'}{AB} = \\frac{6}{4} = \\frac{3}{2}$ và $\\frac{B'C'}{BC} = \\frac{9}{6} = \\frac{3}{2}$
+---
 
-Các cạnh tỉ lệ và các góc đều vuông $\\Rightarrow$ Hai hình chữ nhật đồng dạng với $k = \\frac{3}{2}$
+#### 2. Hình đồng dạng phối cảnh (Hình vị tự)
 
-</div>
+- **Định nghĩa:** Hình $H'$ được gọi là **đồng dạng phối cảnh** (tâm $O$, tỉ số $k$) với hình $H$ nếu với mỗi điểm $M$ thuộc $H$, ta lấy điểm $M'$ thuộc $H'$ sao cho các đường thẳng $MM'$ đều đi qua điểm $O$ và $\dfrac{OM'}{OM} = k$.
+- Point $O$ gọi là **tâm phối cảnh**.
 
-<h3 id="cac-hinh-dac-biet" style="margin-top:2rem;">🔍 2. Các hình luôn đồng dạng</h3>
+**Ví dụ 1:** Cho tam giác $ABC$. Lấy điểm $O$ nằm ngoài tam giác. Trên các tia $OA, OB, OC$ lấy các điểm $A', B', C'$ sao cho $OA' = 2OA, OB' = 2OB, OC' = 2OC$.  
+a) Chứng minh $\Delta A'B'C'$ đồng dạng phối cảnh với $\Delta ABC$.  
+b) Tìm tỉ số đồng dạng.  
+*Lời giải:*  
+a) Các đường thẳng $AA', BB', CC'$ đều đi qua điểm $O$ nên $\Delta A'B'C'$ đồng dạng phối cảnh với $\Delta ABC$ tâm $O$.  
+b) Tỉ số đồng dạng $k = \dfrac{OA'}{OA} = 2$.
 
-Một số hình đặc biệt luôn đồng dạng với nhau:
+**Ví dụ 2:** Cho hình chữ nhật $ABCD$. Gọi $O$ là giao điểm hai đường chéo. Lấy các trung điểm $M, N, P, Q$ của $OA, OB, OC, OD$. Chứng minh tứ giác $MNPQ$ đồng dạng phối cảnh với $ABCD$ tâm $O$.  
+*Lời giải:* Các đường thẳng $MA, NB, PC, QD$ đều đi qua $O$ và $\dfrac{OM}{OA} = \dfrac{ON}{OB} = \dfrac{OP}{OC} = \dfrac{OQ}{OD} = \dfrac{1}{2}$. Vậy $MNPQ$ đồng dạng phối cảnh với $ABCD$ tâm $O$ tỉ số $k = \dfrac{1}{2}$.
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**1. Hai hình vuông bất kì** luôn đồng dạng
-- Lý do: Bốn góc vuông bằng nhau, bốn cạnh tỉ lệ
-
-**2. Hai hình tròn bất kì** luôn đồng dạng
-- Lý do: Cùng hình dạng, tỉ số bán kính
-
-**3. Hai tam giác đều bất kì** luôn đồng dạng
-- Lý do: Ba góc $60°$ bằng nhau, ba cạnh tỉ lệ
-
-</div>
-
-<div class="box-nhan-xet">
-
-**Lưu ý:**
-- Hai hình chữ nhật không phải lúc nào cũng đồng dạng (tỉ lệ cạnh có thể khác nhau)
-- Hai hình thoi không phải lúc nào cũng đồng dạng (góc có thể khác nhau)
-
-</div>
-
-<h3 id="tinh-chat" style="margin-top:2rem;">🔑 3. Tính chất của hình đồng dạng</h3>
-
-<div class="box-dinh-ly">
-
-**Tính chất 1:** Nếu hai hình đồng dạng với tỉ số $k$ thì:
-- Tỉ số chu vi = $k$
-- Tỉ số diện tích = $k^2$
-- Tỉ số thể tích = $k^3$ (với hình khối)
-
-</div>
-
-**Ví dụ 2:** Hai tam giác đồng dạng với tỉ số $k = 2$.
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-- Nếu tam giác nhỏ có chu vi $12$ cm thì tam giác lớn có chu vi $12 \\times 2 = 24$ cm
-- Nếu tam giác nhỏ có diện tích $10$ cm² thì tam giác lớn có diện tích $10 \\times 2^2 = 40$ cm²
-
-</div>
-
-<h3 id="ung-dung" style="margin-top:2rem;">📐 4. Ứng dụng: Tỉ lệ bản đồ</h3>
-
-**Tỉ lệ bản đồ** là tỉ số giữa khoảng cách trên bản đồ và khoảng cách thực tế.
-
-**Ví dụ 3:** Bản đồ tỉ lệ $1:100000$ nghĩa là:
-- $1$ cm trên bản đồ = $100000$ cm = $1000$ m = $1$ km thực tế
-
-<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Bài toán:** Trên bản đồ tỉ lệ $1:50000$, khoảng cách giữa hai điểm là $6$ cm. Khoảng cách thực tế là:
-
-$6 \\times 50000 = 300000$ cm = $3000$ m = $3$ km
-
-</div>
+**Ví dụ 3:** Ứng dụng chiếu phim: Ánh sáng từ đèn máy chiếu qua máy tạo ra hình ảnh trên màn chiếu là hình đồng dạng phối cảnh tâm là ống kính máy chiếu.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Hình đồng dạng & Phối cảnh</h3>
 
-<QuizSession client:load questions={quizData} />
+<HinhDongDangInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Các dạng toán & Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
 
-**📝 Bài toán 1:** Một mô hình tháp Eiffel cao $50$ cm được làm theo tỉ lệ $1:600$. Tính chiều cao thực của tháp.
+<div class="box-dinh-ly">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Chiều cao thực: $50 \\times 600 = 30000$ cm = $300$ m
+**Dạng 1: Nhận biết hai hình đồng dạng và tính tỉ số đồng dạng**
+**Phương pháp:** So sánh tỉ số các kích thước tương ứng $\rightarrow$ Kiểm tra sự bằng nhau của các góc.
 
 </div>
 
-**📝 Bài toán 2:** Một bức ảnh kích thước $10$ cm × $15$ cm được phóng to thành ảnh $20$ cm × $30$ cm. Tỉ số đồng dạng và tỉ số diện tích là bao nhiêu?
+<div class="box-dinh-ly" style="margin-top:2rem;">
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Tỉ số đồng dạng: $k = \\frac{20}{10} = 2$
-
-Tỉ số diện tích: $k^2 = 2^2 = 4$
-
-Kiểm tra: $\\frac{20 \\times 30}{10 \\times 15} = \\frac{600}{150} = 4$ ✓
-
-</div>
-
-**📝 Bài toán 3:** Một mảnh vườn hình chữ nhật có chiều dài $40$ m, chiều rộng $30$ m. Vẽ sơ đồ tỉ lệ $1:500$, kích thước trên giấy là bao nhiêu?
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Chiều dài trên giấy: $\\frac{4000}{500} = 8$ cm
-
-Chiều rộng trên giấy: $\\frac{3000}{500} = 6$ cm
-
-</div>
-
-**📝 Bài toán 4:** Hai hình vuông đồng dạng có tỉ số cạnh $3:5$. Nếu hình vuông nhỏ có diện tích $18$ cm², hình vuông lớn có diện tích bao nhiêu?
-
-<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Tỉ số diện tích: $\\left(\\frac{5}{3}\\right)^2 = \\frac{25}{9}$
-
-Diện tích hình lớn: $18 \\times \\frac{25}{9} = 50$ cm²
+**Dạng 2: Vẽ và xác định tâm phối cảnh, tỉ số phối cảnh của hai hình**
+**Phương pháp:** Nối các cặp điểm tương ứng $\rightarrow$ Giao điểm là tâm phối cảnh $O \rightarrow k = \dfrac{OM'}{OM}$.
 
 </div>
 
 </VanDung>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Rửa ảnh thẻ cỡ $3 \times 4$ sang cỡ $6 \times 8$):** Một bức ảnh thẻ có kích thước $3$ cm $\times 4$ cm được tiệm ảnh phóng to thành bức ảnh treo tường cỡ $60$ cm $\times 80$ cm.
+
+a) Tính tỉ số đồng dạng $k$ của bức ảnh phóng to so với bức ảnh thẻ ban đầu.  
+b) Diện tích bức ảnh phóng to gấp bao nhiêu lần diện tích bức ảnh gốc?
+
+**Lời giải:**  
+a) Tỉ số đồng dạng $k = \dfrac{60}{3} = \dfrac{80}{4} = 20$.  
+b) Tỉ số diện tích $= k^2 = 20^2 = 400$ lần.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Hình đồng dạng**: cùng hình dạng, khác kích thước
-- **Luôn đồng dạng**: hình vuông, hình tròn, tam giác đều
-- **Tỉ số chu vi** = $k$
-- **Tỉ số diện tích** = $k^2$
-- **Tỉ lệ bản đồ**: $1:n$ nghĩa là $1$ cm = $n$ cm thực tế
+- **Hình đồng dạng**: Cùng hình dạng, kích thước nhân với $k$.
+- **Phối cảnh (Vị tự)**: Các đường thẳng nối các cặp điểm tương ứng đồng quy tại tâm $O$.
+- **Tỉ số diện tích**: Bằng $k^2$.
 
 </GhiNho>
 
+---
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho hình chữ nhật $ABCD$ có $AB = 8$ cm, $BC = 6$ cm và hình chữ nhật $MNPQ$ có $MN = 12$ cm, $NP = 9$ cm.
+**Bài 1 (Dễ — Nhận biết hình đồng dạng):**
 
-a) Chứng minh hai hình chữ nhật đồng dạng
+a) Trong các hình sau, những cặp hình nào luôn đồng dạng với nhau: Hai tam giác đều, hai hình vuông, hai hình tròn, hai hình chữ nhật, hai hình thoi?  
+b) Cho hình vuông $ABCD$ cạnh $4$ cm và hình vuông $A'B'C'D'$ cạnh $10$ cm. Tìm tỉ số đồng dạng $k$ của $A'B'C'D'$ và $ABCD$.  
+c) Cho hai hình tròn có bán kính $R_1 = 3$ cm và $R_2 = 9$ cm. Tính tỉ số chu vi và tỉ số diện tích của hai hình tròn.  
+d) Cho hai hình chữ nhật $H_1$ ($3 \times 5$ cm) và $H_2$ ($6 \times 10$ cm). Chứng minh $H_1 \sim H_2$ và tìm $k$.  
+e) Hai hình chữ nhật $H_1$ ($4 \times 6$ cm) và $H_2$ ($6 \times 9$ cm) có đồng dạng không? Vì sao?  
+f) Cho hai ngũ giác đều có cạnh lần lượt là $5$ cm và $15$ cm. Tính tỉ số chu vi của hai ngũ giác.
 
-b) Tính tỉ số đồng dạng
+**Bài 2 (Dễ — Xác định hình phối cảnh tâm O):**
 
-c) Tính tỉ số chu vi và tỉ số diện tích
+a) Cho tam giác $ABC$ và điểm $O$. Trên các tia $OA, OB, OC$ lấy các điểm $A', B', C'$ sao cho $OA' = 3OA, OB' = 3OB, OC' = 3OC$. Chứng minh $\Delta A'B'C' \sim \Delta ABC$ phối cảnh tâm $O$.  
+b) Tìm tỉ số đồng dạng của $\Delta A'B'C'$ và $\Delta ABC$.  
+c) Cho đoạn thẳng $AB = 6$ cm và điểm $O$. Vẽ đoạn thẳng $A'B'$ đồng dạng phối cảnh tâm $O$ tỉ số $k = 0.5$. Tính $A'B'$.  
+d) Cho hình vuông $ABCD$. Gọi $O$ là giao điểm hai đường chéo. Lấy $M, N, P, Q$ lần lượt là trung điểm của $OA, OB, OC, OD$. Chứng minh $MNPQ$ đồng dạng phối cảnh với $ABCD$.  
+e) Tính tỉ số diện tích của $MNPQ$ và $ABCD$.  
+f) Nêu 2 ví dụ thực tế về hình đồng dạng phối cảnh (máy chiếu, bóng nắng, kính phóng đại...).
 
-d) Nếu diện tích $ABCD$ là 48 cm², tính diện tích $MNPQ$
+**Bài 3 (Trung bình — Đa giác đồng dạng và tỉ số chu vi, diện tích):**
 
----
+a) Cho hai đa giác đồng dạng $H$ và $H'$ theo tỉ số $k = 2.5$. Biết chu vi đa giác $H$ là $20$ cm. Tính chu vi đa giác $H'$.  
+b) Cho hai đa giác đồng dạng $H$ và $H'$ có diện tích lần lượt là $25$ cm² và $225$ cm². Tính tỉ số đồng dạng $k$ ($k > 1$).  
+c) Cho tam giác $ABC$. Gọi $A', B', C'$ lần lượt là trung điểm của các cạnh $BC, CA, AB$. Chứng minh $\Delta A'B'C'$ đồng dạng phối cảnh với $\Delta ABC$. Tìm tâm phối cảnh (trọng tâm G) và tỉ số phối cảnh.  
+d) Cho tứ giác $ABCD$. Lấy điểm $O$ bất kỳ. Lấy các điểm $A', B', C', D'$ sao cho $OA' = 2OA, OB' = 2OB, OC' = 2OC, OD' = 2OD$. Chứng minh $A'B'C'D' \sim ABCD$.  
+e) Chứng minh $A'B' // AB, B'C' // BC, C'D' // CD, D'A' // DA$.  
+f) Cho diện tích $ABCD = 30$ cm². Tính diện tích $A'B'C'D'$.
 
-**Bài 2:** Cho hai hình vuông có cạnh lần lượt là 5 cm và 8 cm.
+**Bài 4 (Trung bình — Hình học tọa độ và thu phóng đồng dạng):** Trên mặt phẳng tọa độ Oxy, cho các điểm $A(1; 2), B(3; 1), C(2; 4)$.
 
-a) Hai hình vuông có đồng dạng không? Tại sao?
+a) Vẽ tam giác $ABC$.  
+b) Nhân tọa độ các đỉnh với $2$ để được các điểm $A'(2; 4), B'(6; 2), C'(4; 8)$. Vẽ tam giác $A'B'C'$.  
+c) Chứng minh $\Delta A'B'C' \sim \Delta ABC$ phối cảnh tâm gốc tọa độ $O(0; 0)$ tỉ số $k = 2$.
 
-b) Tính tỉ số đồng dạng
+**Bài 5 (Trung bình — Phép đồng dạng thu nhỏ):** Cho hình chữ nhật $ABCD$ có $AB = 12$ cm, $BC = 8$ cm.
 
-c) Tính tỉ số chu vi
+a) Vẽ hình chữ nhật $A'B'C'D'$ đồng dạng thu nhỏ với $ABCD$ theo tỉ số $k = \dfrac{1}{4}$.  
+b) Tính chu vi và diện tích của $A'B'C'D'$.
 
-d) Tính tỉ số diện tích
+**Bài 6 (Khá — Chứng minh hai đa giác đồng dạng):** Cho hai tứ giác $ABCD$ và $A'B'C'D'$ có các góc tương ứng bằng nhau: $\widehat{A} = \widehat{A'}, \widehat{B} = \widehat{B'}, \widehat{C} = \widehat{C'}, \widehat{D} = \widehat{D'}$ và các cạnh tương ứng tỉ lệ $\dfrac{A'B'}{AB} = \dfrac{B'C'}{BC} = \dfrac{C'D'}{CD} = \dfrac{D'A'}{DA} = k$.
 
+a) Kẻ các đường chéo $AC$ và $A'C'$. Chứng minh $\Delta ABC \sim \Delta A'B'C'$ và $\Delta ADC \sim \Delta A'D'C'$.  
+b) Chứng minh hai tứ giác $ABCD$ và $A'B'C'D'$ đồng dạng.
 
----
+**Bài 7 (Khá — Phép vị tự biến đường tròn thành đường tròn):** Cho đường tròn $(O; R)$ và điểm $I$ cố định ngoài đường tròn.
 
-**Bài 3:** Trên bản đồ tỉ lệ 1:25000.
+a) Qua $I$ vẽ các tia cắt đường tròn $(O; R)$ tạo thành hình đồng dạng phối cảnh.  
+b) Chứng minh hình đồng dạng phối cảnh tâm $I$ tỉ số $k$ của đường tròn $(O; R)$ là một đường tròn $(O'; R')$ với $R' = k \cdot R$.
 
-a) Khoảng cách giữa hai điểm $A$ và $B$ trên bản đồ là 8 cm. Tính khoảng cách thực tế (đơn vị: km)
+**Bài 8 (Khá - Nâng cao — Bài toán vẽ kĩ thuật tỉ lệ):** Một bản vẽ kĩ thuật ngôi nhà vẽ theo tỉ lệ $1 : 100$.
 
-b) Một khu rừng hình chữ nhật trên bản đồ có kích thước 4 cm × 3 cm. Tính diện tích thực tế của khu rừng (đơn vị: ha)
+a) Một phòng khách có dạng hình chữ nhật kích thước trên bản vẽ là $5$ cm $\times 8$ cm. Tính kích thước thực tế của phòng khách (m).  
+b) Diện tích thực tế của phòng khách là bao nhiêu m²?
 
-c) Một con đường thẳng dài 5 km trên thực tế. Tính độ dài của nó trên bản đồ (đơn vị: cm)
+**Bài 9 (Ứng dụng thực tế 1 — Phóng to ảnh chụp kĩ thuật số):** Một bức ảnh chụp màn hình điện thoại có độ phân giải $1.080 \times 1.920$ pixel được in ra khổ giấy lớn tỉ số phóng to $k = 2.5$.
 
----
+a) Tính kích thước pixel của bức ảnh sau khi phóng to.  
+b) Tỉ số diện tích bức ảnh in và bức ảnh điện thoại là bao nhiêu?
 
-**Bài 4 (Ứng dụng thực tế):** Một nhiếp ảnh gia có bức ảnh gốc kích thước 20 cm × 30 cm.
+**Bài 10 (Ứng dụng thực tế 2 — Đo tỉ lệ mô hình xe ô tô):** Một mô hình xe ô tô đồ chơi sản xuất theo tỉ lệ đồng dạng $1 : 18$ so với xe thật.
 
-a) Phóng to ảnh với tỉ lệ 1,5 lần. Tính kích thước ảnh mới
-
-b) Thu nhỏ ảnh gốc xuống còn chiều dài 15 cm. Tính chiều rộng ảnh mới
-
-c) Nếu diện tích ảnh gốc là 600 cm², tính diện tích ảnh sau khi phóng to 2 lần
-
-d) Một bức ảnh khác đồng dạng với ảnh gốc có chiều dài 40 cm. Tính chiều rộng và diện tích bức ảnh này
-
-
----
-
-**Bài 5 (Nâng cao):** Một kiến trúc sư thiết kế mô hình tòa nhà theo tỉ lệ 1:100.
-
-a) Chiều cao thực tế của tòa nhà là 45 m. Tính chiều cao mô hình (đơn vị: cm)
-
-b) Diện tích mặt bằng mô hình là 400 cm². Tính diện tích mặt bằng thực tế (đơn vị: m²)
-
-c) Thể tích mô hình là 1800 cm³. Tính thể tích thực tế (đơn vị: m³)
-
-d) Nếu làm mô hình theo tỉ lệ 1:50 thì chiều cao mô hình sẽ là bao nhiêu? So sánh với mô hình tỉ lệ 1:100
-
-e) Giải thích tại sao tỉ lệ diện tích là bình phương tỉ lệ độ dài và tỉ lệ thể tích là lập phương tỉ lệ độ dài
-
+a) Biết chiều dài xe thật là $4.5$m ($450$ cm). Tính chiều dài mô hình xe đồ chơi.  
+b) Thể tích bình xăng xe thật là $54$ lít. Nếu mô hình làm rỗng theo đúng tỉ lệ thì thể tích mô hình bằng bao nhiêu cm³ (biết $1 \text{ lít} = 1.000 \text{ cm}^3$)?
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
 **Bài 1:**
-
-a) $\dfrac{MN}{AB} = \dfrac{12}{8} = \dfrac{3}{2}$; $\dfrac{NP}{BC} = \dfrac{9}{6} = \dfrac{3}{2}$
-
-Các cạnh tỉ lệ và các góc đều vuông nên hai hình chữ nhật đồng dạng
-
-b) $k = \dfrac{3}{2}$
-
-c) Tỉ số chu vi: $\dfrac{P_{MNPQ}}{P_{ABCD}} = k = \dfrac{3}{2}$
-
-Tỉ số diện tích: $\dfrac{S_{MNPQ}}{S_{ABCD}} = k^2 = \dfrac{9}{4}$
-
-d) $S_{MNPQ} = 48 \times \dfrac{9}{4} = 108$ cm²
-
----
+a) Luôn đồng dạng: Hai tam giác đều, hai hình vuông, hai hình tròn. (Hình chữ nhật và hình thoi cần thêm điều kiện tỉ lệ cạnh/góc).
+b) $k = \dfrac{10}{4} = 2.5$.
+c) Tỉ số chu vi $= k = \dfrac{9}{3} = 3$. Tỉ số diện tích $= k^2 = 9$.
+d) $\dfrac{6}{3} = \dfrac{10}{5} = 2 \Rightarrow H_1 \sim H_2$ với $k = 2$.
+e) $\dfrac{6}{4} = 1.5$, $\dfrac{9}{6} = 1.5 \Rightarrow$ Hai hình chữ nhật đồng dạng ($k = 1.5$).
+f) Tỉ số chu vi $= k = \dfrac{15}{5} = 3$.
 
 **Bài 2:**
-
-a) Có, vì hai hình vuông luôn đồng dạng (bốn góc vuông bằng nhau, bốn cạnh tỉ lệ)
-
-b) $k = \dfrac{8}{5}$
-
-c) Tỉ số chu vi: $\dfrac{P_2}{P_1} = \dfrac{8}{5}$
-
-d) Tỉ số diện tích: $\dfrac{S_2}{S_1} = \left(\dfrac{8}{5}\right)^2 = \dfrac{64}{25}$
-
-
----
+a) $AA', BB', CC'$ đồng quy tại $O$ và $\dfrac{OA'}{OA} = \dfrac{OB'}{OB} = \dfrac{OC'}{OC} = 3 \Rightarrow \Delta A'B'C' \sim \Delta ABC$ phối cảnh tâm O.
+b) $k = 3$.
+c) $A'B' = k \cdot AB = 0.5 \times 6 = 3$ cm.
+d) Các đường thẳng $MA, NB, PC, QD$ đồng quy tại $O$ và tỉ số bằng $0.5 \Rightarrow MNPQ \sim ABCD$.
+e) Tỉ số diện tích $= k^2 = 0.5^2 = 0.25 = \dfrac{1}{4}$.
+f) Máy chiếu hình ảnh lên màn chiếu, bóng của vật dưới ánh đèn pin, ống kính máy ảnh.
 
 **Bài 3:**
-
-a) Khoảng cách thực tế: $8 \times 25000 = 200000$ cm = 2 km
-
-b) Kích thước thực tế: $4 \times 25000 = 100000$ cm = 1000 m và $3 \times 25000 = 75000$ cm = 750 m
-
-Diện tích: $1000 \times 750 = 750000$ m² = 75 ha
-
-c) Độ dài trên bản đồ: $\dfrac{500000}{25000} = 20$ cm
-
----
+a) Chu vi $H' = k \cdot \text{Chu vi } H = 2.5 \times 20 = 50$ cm.
+b) $k^2 = \dfrac{225}{25} = 9 \Rightarrow k = 3$.
+c) Tâm phối cảnh là trọng tâm G của $\Delta ABC$, tỉ số phối cảnh $k = -\dfrac{1}{2}$ (hoặc $|k| = \dfrac{1}{2}$).
+d) Các tia nối điểm tương ứng đồng quy tại $O$ và tỉ số bằng $2 \Rightarrow A'B'C'D' \sim ABCD$.
+e) Theo định lí Ta-lét đảo trong các tam giác $OAB, OBC, OCD, ODA$.
+f) $S_{A'B'C'D'} = k^2 \cdot S_{ABCD} = 2^2 \times 30 = 120$ cm².
 
 **Bài 4:**
-
-a) Kích thước mới: $20 \times 1{,}5 = 30$ cm và $30 \times 1{,}5 = 45$ cm
-
-b) Tỉ số: $k = \dfrac{15}{20} = \dfrac{3}{4}$
-
-Chiều rộng: $30 \times \dfrac{3}{4} = 22{,}5$ cm
-
-c) Diện tích mới: $600 \times 2^2 = 600 \times 4 = 2400$ cm²
-
-d) Tỉ số: $k = \dfrac{40}{20} = 2$
-
-Chiều rộng: $30 \times 2 = 60$ cm
-
-Diện tích: $600 \times 2^2 = 2400$ cm²
-
-
----
+a), b) Vẽ hệ trục Oxy và tọa độ các điểm.
+c) Các đường thẳng $AA', BB', CC'$ đều đi qua $O(0;0)$ và $OA' = 2OA, OB' = 2OB, OC' = 2OC \Rightarrow$ Đồng dạng phối cảnh tâm $O$ tỉ số $k = 2$.
 
 **Bài 5:**
+a) Kích thước $A'B'C'D'$ là $12 \times \dfrac{1}{4} = 3$ cm và $8 \times \dfrac{1}{4} = 2$ cm.
+b) Chu vi $= 2(3 + 2) = 10$ cm. Diện tích $= 3 \times 2 = 6$ cm².
 
-a) Chiều cao mô hình: $\dfrac{4500}{100} = 45$ cm
+**Bài 6:**
+a) $\Delta ABC \sim \Delta A'B'C'$ (c.g.c) và $\Delta ADC \sim \Delta A'D'C'$ (c.g.c).
+b) Ghép hai tam giác suy ra các tỉ số cạnh và góc tương ứng bằng nhau $\Rightarrow ABCD \sim A'B'C'D'$.
 
-b) Diện tích thực tế: $400 \times 100^2 = 400 \times 10000 = 4000000$ cm² = 400 m²
+**Bài 7:**
+a) Phép vị tự tâm I biến tâm O thành O' ($IO' = k \cdot IO$) và bán kính $R$ thành $R' = k \cdot R$.
+b) Mọi điểm $M$ trên $(O; R)$ có $M'$ thỏa mãn $IM' = k \cdot IM \Rightarrow M'$ nằm trên đường tròn $(O'; kR)$.
 
-c) Thể tích thực tế: $1800 \times 100^3 = 1800 \times 1000000 = 1800000000$ cm³ = 1800 m³
+**Bài 8:**
+a) Kích thước thực tế: Chiều rộng $= 5 \times 100 = 500$ cm $= 5$m; Chiều dài $= 8 \times 100 = 800$ cm $= 8$m.
+b) Diện tích $= 5 \times 8 = 40$ m².
 
-d) Chiều cao mô hình tỉ lệ 1:50: $\dfrac{4500}{50} = 90$ cm
+**Bài 9:**
+a) Kích thước pixel $= (1.080 \times 2.5) \times (1.920 \times 2.5) = 2.700 \times 4.800$ pixel.
+b) Tỉ số diện tích $= 2.5^2 = 6.25$ lần.
 
-So sánh: Mô hình 1:50 cao gấp đôi mô hình 1:100 (vì $\dfrac{90}{45} = 2$)
-
-e) - Diện tích có đơn vị là đơn vị bình phương (cm², m²), nên khi tỉ lệ độ dài là $k$ thì tỉ lệ diện tích là $k^2$
-
-- Thể tích có đơn vị là đơn vị lập phương (cm³, m³), nên khi tỉ lệ độ dài là $k$ thì tỉ lệ thể tích là $k^3$
-
-Ví dụ: Hình vuông cạnh $a$ có diện tích $a^2$. Nếu phóng to $k$ lần thì cạnh mới là $ka$, diện tích mới là $(ka)^2 = k^2a^2$
+**Bài 10:**
+a) Chiều dài mô hình $= 450 \div 18 = 25$ cm.
+b) Tỉ số thể tích $= k^3 = \left(\dfrac{1}{18}\right)^3 = \dfrac{1}{5.832}$.  
+Thể tích mô hình $= 54.000 \text{ cm}^3 \div 5.832 \approx 9.26 \text{ cm}^3$.
 
 </div>
 </details>

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 6: Bất phương trình bậc nhất một ẩn"
-description: "Cách giải bất phương trình bậc nhất một ẩn ax + b > 0 - Toán 9 KNTT Chương 2"
+description: "Khái niệm bất phương trình bậc nhất một ẩn, hai quy tắc biến đổi và biểu diễn tập nghiệm trên trục số - Toán 9 KNTT Chương 2"
 grade: "Lớp 9"
 chapter: "Chương II: Phương trình và bất phương trình bậc nhất một ẩn"
 currentSlug: "lop9/bai-6-bat-phuong-trinh"
@@ -18,113 +18,113 @@ import LinearInequalitySolver from '../../components/interactive/LinearInequalit
 export const quizData = [
   {
     type: "mcq",
-    question: "Dạng tổng quát của bất phương trình bậc nhất một ẩn là gì?",
-    option_a: "$ax + b = 0$",
-    option_b: "$ax^2 + bx + c > 0$",
-    option_c: "$ax + b > 0$ (hoặc <, <=, >=) với $a \\neq 0$",
-    option_d: "$x^2 > 0$",
-    correct_option: "C",
-    explanation: "Bất phương trình bậc nhất một ẩn có dạng $ax + b > 0, ax + b < 0, ax + b \\ge 0,$ hoặc $ax + b \\le 0$ với $a \\neq 0$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tập nghiệm của bất phương trình $x > 3$ được biểu diễn trên trục số như thế nào?",
-    option_a: "Gạch bỏ phần bên trái điểm 3, dùng ngoặc vuông tại 3",
-    option_b: "Gạch bỏ phần bên trái điểm 3, dùng ngoặc tròn tại 3 quay sang phải",
-    option_c: "Gạch bỏ phần bên phải điểm 3, dùng ngoặc tròn tại 3 quay sang trái",
-    option_d: "Gạch bỏ cả trục số",
-    correct_option: "B",
-    explanation: "Vì $x > 3$, ta nhận phần lớn hơn 3 (bên phải) và loại phần nhỏ hơn hoặc bằng 3 (bên trái). Ngoặc tròn thể hiện không lấy điểm 3.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Hai bất phương trình được gọi là tương đương khi nào?",
-    option_a: "Chúng có cùng bậc",
-    option_b: "Chúng có cùng tập nghiệm",
-    option_c: "Chúng chứa cùng một ẩn",
-    option_d: "Chúng có cùng hình dạng",
-    correct_option: "B",
-    explanation: "Hai bpt tương đương khi và chỉ khi chúng có cùng tập nghiệm.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Nghiệm của bất phương trình $-2x > 4$ là:",
-    option_a: "$x > -2$",
-    option_b: "$x < -2$",
-    option_c: "$x < 2$",
-    option_d: "$x > 2$",
-    correct_option: "B",
-    explanation: "Chia cả hai vế cho $-2$ (số âm) nên phải đổi chiều bđt: $x < 4 / (-2) \\Rightarrow x < -2$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Giải bất phương trình: $2x - 5 \\ge 1$",
-    option_a: "$x \\ge 3$",
-    option_b: "$x \\le 3$",
-    option_c: "$x \\ge 1$",
-    option_d: "$x \\le -3$",
+    question: "Bất phương trình nào sau đây là bất phương trình bậc nhất một ẩn $x$?",
+    option_a: "$2x - 5 > 0$",
+    option_b: "$x^2 + 3 < 0$",
+    option_c: "$0x + 4 \\ge 0$",
+    option_d: "$\\frac{1}{x} + 2 \\le 0$",
     correct_option: "A",
-    explanation: "Chuyển vế: $2x \\ge 1 + 5 \\Rightarrow 2x \\ge 6 \\Rightarrow x \\ge 3$.",
+    explanation: "Bất phương trình bậc nhất một ẩn có dạng $ax + b < 0$ (hoặc $>, \\le, \\ge$) với $a \\neq 0$. $2x - 5 > 0$ có $a = 2 \\neq 0$ nên đúng.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Theo quy tắc chuyển vế, khi chuyển một hạng tử từ vế này sang vế kia của bpt, ta phải làm gì?",
-    option_a: "Đổi chiều bpt",
-    option_b: "Đổi dấu bpt",
-    option_c: "Đổi dấu hạng tử đó",
-    option_d: "Nhân hạng tử đó với -1",
-    correct_option: "C",
-    explanation: "Theo quy tắc chuyển vế, hạng tử chuyển sang vế kia phải đổi dấu (+ thành -, - thành +).",
+    question: "Tập nghiệm của bất phương trình $2x - 6 > 0$ là:",
+    option_a: "$x > 3$",
+    option_b: "$x < 3$",
+    option_c: "$x > -3$",
+    option_d: "$x < -3$",
+    correct_option: "A",
+    explanation: "$2x - 6 > 0 \\Leftrightarrow 2x > 6 \\Leftrightarrow x > 3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi nhân hai vế của bất phương trình $-3x \\le 12$ với số âm $-\\frac{1}{3}$, ta thu được bất phương trình nào?",
+    option_a: "$x \\le -4$",
+    option_b: "$x \\ge -4$",
+    option_c: "$x \\ge 4$",
+    option_d: "$x \\le 4$",
+    correct_option: "B",
+    explanation: "Khi nhân hai vế với số âm ta phải ĐỔI CHIỀU bất phương trình: $-3x \\le 12 \\Leftrightarrow x \\ge \\frac{12}{-3} \\Leftrightarrow x \\ge -4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nghiệm nguyên lớn nhất của bất phương trình $x + 4 < 9$ là:",
+    option_a: "5",
+    option_b: "4",
+    option_c: "6",
+    option_d: "0",
+    correct_option: "B",
+    explanation: "$x + 4 < 9 \\Leftrightarrow x < 5$. Vì $x \\in \\mathbb{Z}$ nên các nghiệm nguyên là $..., 2, 3, 4$. Nghiệm nguyên lớn nhất là 4.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình vẽ nào dưới đây biểu diễn tập nghiệm của bất phương trình $x \\ge 2$ trên trục số?",
+    option_a: "Gạch phần bên trái số 2 và dùng ngoặc vuông '[' tại 2",
+    option_b: "Gạch phần bên phải số 2 và dùng ngoặc vuông ']' tại 2",
+    option_c: "Gạch phần bên trái số 2 và dùng ngoặc tròn '(' tại 2",
+    option_d: "Gạch toàn bộ trục số",
+    correct_option: "A",
+    explanation: "Vì có dấu '$\\ge$' (lấy cả giá trị 2) nên dùng ngoặc vuông '[' hướng về bên phải (phần nghiệm) và gạch bỏ phần bên trái $x < 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bất phương trình $4 - 2x \\ge 0$ có tập nghiệm là:",
+    option_a: "$x \\le 2$",
+    option_b: "$x \\ge 2$",
+    option_c: "$x \\le -2$",
+    option_d: "$x \\ge -2$",
+    correct_option: "A",
+    explanation: "$4 - 2x \\ge 0 \\Leftrightarrow -2x \\ge -4 \\Leftrightarrow x \\le \\frac{-4}{-2} \\Leftrightarrow x \\le 2$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Các phép biến đổi tương đương của bất phương trình bao gồm:",
-    option_a: "Cộng hai vế với cùng một biểu thức",
-    option_b: "Nhân hai vế với cùng một số dương, giữ nguyên chiều",
-    option_c: "Nhân hai vế với cùng một số âm, đổi chiều",
-    option_d: "Bình phương hai vế bất kỳ",
-    correct_option: "A,B,C",
-    explanation: "Bình phương hai vế nói chung không phải lúc nào cũng là phép biến đổi tương đương (chỉ tương đương khi 2 vế cùng dương).",
+    question: "Giá trị $x = 3$ là nghiệm của những bất phương trình nào sau đây?",
+    option_a: "$2x - 1 > 3$",
+    option_b: "$5 - x \\ge 2$",
+    option_c: "$-3x + 10 < 0$",
+    option_d: "$x + 4 \\le 7$",
+    correct_option: "A,B,D",
+    explanation: "Thay $x = 3$: A: $2(3)-1=5>3$ (Đúng). B: $5-3=2\\ge 2$ (Đúng). C: $-3(3)+10=1 > 0$ (Sai). D: $3+4=7\\le 7$ (Đúng).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Những giá trị nào của x là nghiệm của bất phương trình $3x - 1 < 8$ ?",
-    option_a: "$0$",
-    option_b: "$2$",
-    option_c: "$3$",
-    option_d: "$5$",
-    correct_option: "A,B",
-    explanation: "Giải: $3x < 9 \\Rightarrow x < 3$. Các số nhỏ hơn 3 là 0 và 2.",
+    question: "Những phép biến đổi nào sau đây là ĐÚNG khi giải bất phương trình?",
+    option_a: "Chuyển hạng tử từ vế này sang vế kia và đổi dấu hạng tử đó",
+    option_b: "Nhân hai vế với một số dương và giữ nguyên chiều BĐT",
+    option_c: "Nhân hai vế với một số âm và giữ nguyên chiều BĐT",
+    option_d: "Nhân hai vế với một số âm và đổi chiều BĐT",
+    correct_option: "A,B,D",
+    explanation: "A, B, D là hai quy tắc biến đổi bất phương trình chuẩn. C sai vì nhân số âm bắt buộc phải đổi chiều BĐT.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Nghiệm của bất phương trình $x + 2 < 0$ là $x < a$. Tìm a.",
-    correct_option: "-2",
-    explanation: "$x + 2 < 0 \\Rightarrow x < -2$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Để giá trị của biểu thức $5x - 1$ không lớn hơn giá trị của $x + 11$, ta có bpt $5x - 1 \\le x + 11$. Hãy tìm nghiệm lớn nhất là số nguyên của x.",
+    question: "Tìm nghiệm nguyên dương nhỏ nhất của bất phương trình $3x - 7 > 0$.",
     correct_option: "3",
-    explanation: "$4x \\le 12 \\Rightarrow x \\le 3$. Nghiệm nguyên lớn nhất là 3.",
+    explanation: "$3x > 7 \\Leftrightarrow x > 7/3 \\approx 2,33$. Vì $x \\in \\mathbb{N}^*$ nên nghiệm nguyên dương nhỏ nhất là $x = 3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Số nghiệm nguyên không âm của bất phương trình $2x - 5 \\le 1$ là bao nhiêu?",
+    correct_option: "4",
+    explanation: "$2x \\le 6 \\Leftrightarrow x \\le 3$. Nghiệm nguyên không âm ($x \\in \\mathbb{N}$) là $x \\in \\{0; 1; 2; 3\\}$. Có đúng 4 nghiệm.",
     difficulty_level: "hard",
     is_dynamic: false,
   }
@@ -132,93 +132,266 @@ export const quizData = [
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🚥 Cảnh báo tốc độ</h3>
+<h3 id="mo-dau">🚦 Giới hạn an toàn và Bất phương trình một ẩn</h3>
 
-Trên một tuyến đường sắt nội đô, người ta gắn biển báo tốc độ xe tối đa cho phép là $40\text{ km/h}$. 
-Nếu gọi $v$ là vận tốc thực tế của một chiếc xe máy đi qua đoạn đường này, xe máy sẽ không vi phạm luật giao thông nếu thỏa mãn điều kiện:
-$$v \le 40$$
+Trong cuộc sống, chúng ta thường xuyên gặp các bài toán giới hạn:
+- **Tốc độ lái xe trong đô thị:** $v \le 50$ km/h.
+- **Số điểm cần đạt để vượt qua bài thi:** $D \ge 5,0$.
+- **Trọng lượng hàng hóa xếp lên thang máy:** $P \le 600$ kg.
 
-Hệ thức $v \le 40$ chính là một **bất phương trình**. Vậy bất phương trình bậc nhất một ẩn được định nghĩa và có cách giải như thế nào?
+Để giải quyết các bài toán giới hạn có chứa 1 ẩn số, toán học xây dựng khái niệm **Bất phương trình bậc nhất một ẩn**.
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="400" height="110" viewBox="0 0 400 110" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Axis */}
+  <line x1="30" y1="60" x2="370" y2="60" stroke="#475569" stroke-width="3"/>
+  <polygon points="370,60 360,54 360,66" fill="#475569"/>
+
+  {/* Hash mark for 3 */}
+  <line x1="160" y1="45" x2="160" y2="75" stroke="#2563eb" stroke-width="3"/>
+  <text x="160" y="95" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">3</text>
+
+  {/* Bracket '[' */}
+  <path d="M 152 48 L 160 48 L 160 72 L 152 72" fill="none" stroke="#2563eb" stroke-width="3"/>
+
+  {/* Hatching for left side < 3 */}
+  <line x1="40" y1="70" x2="50" y2="50" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="60" y1="70" x2="70" y2="50" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="80" y1="70" x2="90" y2="50" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="100" y1="70" x2="110" y2="50" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="120" y1="70" x2="130" y2="50" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="140" y1="70" x2="150" y2="50" stroke="#cbd5e1" stroke-width="2"/>
+
+  <text x="260" y="40" font-size="13" font-weight="bold" fill="#16a34a" text-anchor="middle">Tập nghiệm: x ≥ 3</text>
+</svg>
+</div>
 
 </KhoiDong>
 
 <KhamPha title="Khám phá">
 
-<h3 id="kn-bpt" style="margin-top:2rem;">📖 1. Bất phương trình một ẩn</h3>
+<h3 id="dinh-nghia-bpt">📖 1. Khái niệm Bất phương trình bậc nhất một ẩn</h3>
 
 <div class="box-dinh-nghia">
 
-Bất phương trình một ẩn $x$ có dạng: 
-$A(x) > B(x)$ (hoặc $A(x) < B(x)$, $A(x) \ge B(x)$, $A(x) \le B(x)$)
-Trong đó, $A(x)$ và $B(x)$ là hai biểu thức của cùng một biến $x$.
+**Định nghĩa:** Bất phương trình bậc nhất một ẩn $x$ là bất phương trình có dạng:
+$$ax + b < 0 \quad (\text{hoặc } ax + b > 0, \quad ax + b \le 0, \quad ax + b \ge 0)$$
+Trong đó $a$ và $b$ là hai số đã cho và $a \neq 0$.
 
-**Nghiệm của bất phương trình:** Số $x_0$ gọi là nghiệm nếu khi thay $x = x_0$ vào bpt ta được một bất đẳng thức đúng.
-
-**Giải bất phương trình:** là đi tìm *tập nghiệm* của bất phương trình đó.
-Hai bpt có cùng tập nghiệm thì gọi là 2 bpt **tương đương** (ký hiệu $\Leftrightarrow$).
+- **Nghiệm:** Mỗi giá trị của $x$ làm cho bất phương trình trở thành một đẳng thức/bất đẳng thức đúng được gọi là một **nghiệm** của bất phương trình.
+- **Tập nghiệm:** Tập hợp tất cả các nghiệm của bất phương trình được gọi là **tập nghiệm** của bất phương trình đó. Giải bất phương trình là tìm tập nghiệm của nó.
 
 </div>
 
-<h3 id="bpt-bac-nhat" style="margin-top:2rem;">📖 2. Bất phương trình bậc nhất một ẩn</h3>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Lý thuyết 1:**
+
+- **Ví dụ 1:** Trong các bất phương trình sau, bất phương trình nào là BPT bậc nhất một ẩn $x$:
+  - a) $3x - 5 > 0$ $\Rightarrow$ Là BPT bậc nhất một ẩn ($a = 3, b = -5$).
+  - b) $0x + 2 \le 0$ $\Rightarrow$ Không phải vì $a = 0$.
+  - c) $x^2 - 4 < 0$ $\Rightarrow$ Không phải vì chứa $x^2$ (bậc 2).
+
+- **Ví dụ 2:** Kiểm tra xem $x = 2$ có là nghiệm của BPT $4x - 3 > 3$ không.
+  - *Giải:* Thay $x = 2$ vào vế trái: $4(2) - 3 = 8 - 3 = 5$.  
+    Vì $5 > 3$ (đúng) nên $x = 2$ là một nghiệm của BPT.
+
+- **Ví dụ 3:** Viết tập nghiệm và biểu diễn trên trục số của BPT $x < 4$.
+  - Tập nghiệm là $\{x \mid x < 4\}$. Trên trục số, dùng ngoặc tròn ')' tại điểm 4 hướng về vế trái và gạch bỏ phần bên phải $x \ge 4$.
+
+</div>
+
+<h3 id="quy-tac-bien-doi" style="margin-top:2rem;">📖 2. Hai quy tắc biến đổi bất phương trình</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Bất phương trình dạng $ax + b > 0$ (hoặc $< 0, \ge 0, \le 0$), trong đó $a, b$ là hai số đã cho và $a \neq 0$, được gọi là **bất phương trình bậc nhất một ẩn**.
+**1. Quy tắc chuyển vế:**
+Khi chuyển một hạng tử của bất phương trình từ vế này sang vế kia, ta phải **đổi dấu** hạng tử đó:
+$$ax + b < c \quad \Leftrightarrow \quad ax < c - b$$
+
+**2. Quy tắc nhân với một số:**
+- Khi nhân (hoặc chia) hai vế của bất phương trình với cùng một **số dương**, ta **giữ nguyên chiều** bất phương trình.
+- Khi nhân (hoặc chia) hai vế của bất phương trình với cùng một **số âm**, ta phải **đổi chiều** bất phương trình.
 
 </div>
 
-<h3 id="cach-giai" style="margin-top:2rem;">📖 3. Hai quy tắc biến đổi bất phương trình</h3>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-Để giải bpt, ta dùng hai quy tắc biến đổi tương đương sau:
+**3 Ví dụ minh họa Quy tắc biến đổi:**
 
-**a) Quy tắc chuyển vế:**
-Khi chuyển một hạng tử của bpt từ vế này sang vế kia, ta phải **đổi dấu** hạng tử đó.
+- **Ví dụ 1:** Giải BPT $3x + 6 > 0$.
+  - *Giải:* Chuyển $6$ sang vế phải: $3x > -6$.  
+    Chia hai vế cho $3 > 0$ (giữ nguyên chiều): $x > \frac{-6}{3} \Leftrightarrow x > -2$.  
+    Tập nghiệm: $\{x \mid x > -2\}$.
 
-*Ví dụ:* Giải bpt $x - 5 < 0$
-$\Leftrightarrow x < 5$. (Chuyển $-5$ sang vế phải thành $+5$).
+- **Ví dụ 2:** Giải BPT $-2x + 8 \le 0$.
+  - *Giải:* Chuyển $8$ sang vế phải: $-2x \le -8$.  
+    Chia hai vế cho $-2 < 0$ (**đổi chiều** từ $\le$ thành $\ge$): $x \ge \frac{-8}{-2} \Leftrightarrow x \ge 4$.  
+    Tập nghiệm: $\{x \mid x \ge 4\}$.
 
-**b) Quy tắc nhân với một số:**
-Khi nhân (hoặc chia) cả hai vế của bpt với cùng một số khác 0, ta phải:
-- **Giữ nguyên chiều** bpt nếu số đó **dương**.
-- **Đổi chiều** bpt nếu số đó **âm**.
+- **Ví dụ 3:** Giải BPT $5 - 3x < 2x - 5$.
+  - *Giải:* Chuyển các hạng tử chứa $x$ sang vế trái, hằng số sang vế phải:  
+    $-3x - 2x < -5 - 5 \Leftrightarrow -5x < -10$.  
+    Chia hai vế cho $-5 < 0$ (**đổi chiều**): $x > 2$.  
+    Tập nghiệm: $\{x \mid x > 2\}$.
 
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+</div>
 
-**Ví dụ 1:** Giải bất phương trình $2x > 6$.
-**Giải:** Chia cả 2 vế cho 2 (số dương $\Rightarrow$ giữ nguyên chiều). 
-$\Rightarrow x > 3$.
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
 
-**Ví dụ 2:** Giải bất phương trình $-3x \ge 12$.
-**Giải:** Chia cả 2 vế cho $-3$ (số âm $\Rightarrow$ ĐẢO CHIỀU từ $\ge$ thành $\le$).
-$\Rightarrow x \le -4$.
+#### **Dạng 1: Giải BPT bậc nhất một ẩn và biểu diễn tập nghiệm trên trục số**
+- **Phương pháp:** Đưa về dạng $ax > c$ hoặc $ax < c$. Nếu $a < 0$ nhớ đổi chiều BĐT.
 
-**Ví dụ 3:** Giải bất phương trình $3x - 5 \le x + 1$
-**Giải:** 
-- Chuyển vế để gom $x$ về 1 bên: $3x - x \le 1 + 5$
-- Thu gọn: $2x \le 6$
-- Chia cho 2: $x \le 3$.
-**Kết luận:** Tập nghiệm là $\{ x \mid x \le 3 \}$.
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
 
+- **Ví dụ 1:** Giải BPT $4x - 12 \ge 0$ và vẽ biểu diễn tập nghiệm.
+  - *Lời giải:* $4x \ge 12 \Leftrightarrow x \ge 3$. Tập nghiệm $S = \{x \mid x \ge 3\}$. Trên trục số, dùng ngoặc '[' tại 3 hướng sang phải, gạch bỏ phần bên trái.
+
+- **Ví dụ 2:** Giải BPT $7 - 2x > 1$.
+  - *Lời giải:* $-2x > 1 - 7 \Leftrightarrow -2x > -6 \Leftrightarrow x < 3$. Tập nghiệm $S = \{x \mid x < 3\}$.
+
+- **Ví dụ 3:** Giải BPT $\frac{1}{2}x + 3 \le 5$.
+  - *Lời giải:* $\frac{1}{2}x \le 2 \Leftrightarrow x \le 4$. Tập nghiệm $S = \{x \mid x \le 4\}$.
+
+</div>
+
+#### **Dạng 2: Giải BPT quy về bậc nhất một ẩn (chứa ngoặc / quy đồng)**
+- **Phương pháp:** 
+  1. Nút ngoặc: dùng tính chất phân phối $a(b+c) = ab + ac$.
+  2. Quy đồng khử mẫu số dương.
+  3. Thu gọn về dạng $ax + b < 0$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Giải BPT $3(x - 2) - 2(x + 1) \le 4$.
+  - *Lời giải:* $3x - 6 - 2x - 2 \le 4 \Leftrightarrow x - 8 \le 4 \Leftrightarrow x \le 12$.
+
+- **Ví dụ 2:** Giải BPT $\frac{x-1}{2} - \frac{x+2}{3} > \frac{x}{6}$.
+  - *Lời giải:* Mẫu chung là 6 (số dương). Quy đồng hai vế:  
+    $3(x - 1) - 2(x + 2) > x \Leftrightarrow 3x - 3 - 2x - 4 > x \Leftrightarrow x - 7 > x \Leftrightarrow 0x > 7$ (vô lý).  
+    Vậy BPT vô nghiệm $S = \varnothing$.
+
+- **Ví dụ 3:** Giải BPT $\frac{2x+1}{3} - \frac{x-4}{2} \le 1$.
+  - *Lời giải:* Quy đồng mẫu 6: $2(2x + 1) - 3(x - 4) \le 6 \Leftrightarrow 4x + 2 - 3x + 12 \le 6 \Leftrightarrow x + 14 \le 6 \Leftrightarrow x \le -8$.
+
+</div>
+
+#### **Dạng 3: Tìm nghiệm nguyên của bất phương trình**
+- **Phương pháp:** Giải BPT tìm tập nghiệm dạng $x < k, x > k, ...$, sau đó liệt kê hoặc tìm các số nguyên $x \in \mathbb{Z}$ thỏa mãn.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tìm các nghiệm nguyên dương của BPT $5 - 2x > -3$.
+  - *Lời giải:* $-2x > -8 \Leftrightarrow x < 4$.  
+    Vì $x$ là số nguyên dương ($x \in \mathbb{N}^*$) nên $x \in \{1; 2; 3\}$.
+
+- **Ví dụ 2:** Tìm nghiệm nguyên lớn nhất của BPT $\frac{3x - 2}{4} < 2$.
+  - *Lời giải:* $3x - 2 < 8 \Leftrightarrow 3x < 10 \Leftrightarrow x < \frac{10}{3} \approx 3,33$.  
+    Nghiệm nguyên lớn nhất thỏa mãn $x < 3,33$ là $x = 3$.
+
+- **Ví dụ 3:** Tìm tất cả các số nguyên $x$ thỏa mãn đồng thời hai BPT: $2x - 1 > 1$ và $x + 3 \le 7$.
+  - *Lời giải:*  
+    - $2x - 1 > 1 \Leftrightarrow 2x > 2 \Leftrightarrow x > 1$.  
+    - $x + 3 \le 7 \Leftrightarrow x \le 4$.  
+    Kết hợp: $1 < x \le 4$. Vì $x \in \mathbb{Z}$ nên $x \in \{2; 3; 4\}$.
+
+</div>
+
+#### **Dạng 4: Bất phương trình chứa tham số $m$**
+- **Phương pháp:** Biến đổi về dạng $A(m) \cdot x > B(m)$. Thảo luận theo hệ số $A(m)$:
+  - $A(m) > 0 \Rightarrow x > \frac{B(m)}{A(m)}$.
+  - $A(m) < 0 \Rightarrow x < \frac{B(m)}{A(m)}$.
+  - $A(m) = 0 \Rightarrow$ Xét $0x > B(m)$ (vô số nghiệm hay vô nghiệm).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tìm $m$ để BPT $(m - 1)x > 2$ có nghiệm là $x < \frac{2}{m-1}$.
+  - *Lời giải:* BPT bị đổi chiều từ $>$ sang $<$ khi chia hai vế cho $(m - 1)$.  
+    Do đó $m - 1 < 0 \Leftrightarrow m < 1$.
+
+- **Ví dụ 2:** Tìm $m$ để BPT $(m^2 + 1)x - 3 > 0$ có nghiệm $x > 1$.
+  - *Lời giải:* Vì $m^2 + 1 \ge 1 > 0$ với mọi $m$ nên BPT tương đương $x > \frac{3}{m^2+1}$.  
+    Để tập nghiệm là $x > 1$ thì $\frac{3}{m^2+1} = 1 \Leftrightarrow m^2 + 1 = 3 \Leftrightarrow m^2 = 2 \Leftrightarrow m = \pm\sqrt{2}$.
+
+- **Ví dụ 3:** Tìm $m$ để BPT $(m - 2)x + 1 \le 0$ nghiệm đúng với mọi $x$.
+  - *Lời giải:* $(m-2)x \le -1$. Để đúng với mọi $x$ thì hệ số của $x$ phải bằng 0 và vế phải thỏa mãn $0 \le -1$ (vô lý). Vậy không có giá trị $m$ nào để BPT nghiệm đúng với mọi $x$.
+
+</div>
+
+#### **Dạng 5: Giải hệ bất phương trình bậc nhất một ẩn**
+- **Phương pháp:** 
+  1. Giải riêng từng BPT trong hệ.
+  2. Lấy **giao** của các tập nghiệm (tìm phần chung).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Giải hệ BPT $\begin{cases} 2x - 3 > 1 \\ 3x + 1 \le 13 \end{cases}$.
+  - *Lời giải:*  
+    - $2x - 3 > 1 \Leftrightarrow 2x > 4 \Leftrightarrow x > 2$.  
+    - $3x + 1 \le 13 \Leftrightarrow 3x \le 12 \Leftrightarrow x \le 4$.  
+    Giao hai tập nghiệm: $2 < x \le 4$. Tập nghiệm hệ là $\{x \mid 2 < x \le 4\}$.
+
+- **Ví dụ 2:** Giải hệ BPT $\begin{cases} 4x + 1 < 9 \\ 2 - 3x \le -4 \end{cases}$.
+  - *Lời giải:*  
+    - $4x < 8 \Leftrightarrow x < 2$.  
+    - $-3x \le -6 \Leftrightarrow x \ge 2$.  
+    Không có số thực $x$ nào vừa $x < 2$ vừa $x \ge 2$. Vậy hệ BPT vô nghiệm $S = \varnothing$.
+
+- **Ví dụ 3:** Giải hệ BPT $\begin{cases} x - 1 \ge 0 \\ 2x + 4 > 0 \end{cases}$.
+  - *Lời giải:* $x \ge 1$ và $x > -2$. Giao hai tập nghiệm thu được $x \ge 1$.
+
+</div>
+
+</KhamPha>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Tài chính & Gói cước viễn thông):**  
+Một công ty cung cấp 2 gói cước internet:
+- Gói A: Cước cố định 100 000 đồng/tháng và 500 đồng cho mỗi GB dung lượng sử dụng.
+- Gói B: Không có cước cố định nhưng tính 1 500 đồng cho mỗi GB sử dụng.  
+Hỏi khách hàng cần sử dụng tối thiểu bao nhiêu GB dung lượng trong tháng để việc đăng ký Gói A tiết kiệm chi phí hơn Gói B?
+
+**Bài toán 2 (Kinh doanh & Điểm hòa vốn sản xuất):**  
+Một xưởng may áo sơ mi có chi phí cố định duy trì xưởng là 20 000 000 đồng/tháng. Chi phí nguyên liệu và công làm mỗi chiếc áo là 150 000 đồng. Giá bán mỗi chiếc áo ra thị trường là 250 000 đồng.  
+a) Lập bất phương trình biểu thị số chiếc áo $x$ xưởng cần bán trong tháng để bắt đầu có lãi ($Lãi > 0$).  
+b) Xưởng cần bán tối thiểu bao nhiêu chiếc áo trong tháng để có lãi?
+
+**Bài toán 3 (Giáo dục & Đánh giá năng lực):**  
+Điểm trung bình môn Toán học kỳ của bạn Bình được tính bằng công thức:  
+$$ĐTB = \frac{Đ_{quá\_trình} \times 4 + Đ_{cuối\_kỳ} \times 6}{10}$$  
+Biết điểm quá trình của Bình là 7,5. Hỏi Bình cần đạt điểm bài thi cuối kỳ tối thiểu là bao nhiêu (thang điểm 10, làm tròn 1 chữ số thập phân) để điểm trung bình môn học kỳ đạt từ 8,0 trở lên (đạt danh hiệu Học sinh Giỏi)?
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác giải Bất phương trình bậc nhất một ẩn dưới đây giúp bạn luyện tập từng bước biến đổi, chuyển vế và nhân chia hai vế với số âm chuẩn xác!
 </div>
 
 <LinearInequalitySolver client:load />
 
-</KhamPha>
+</LuyenTap>
 
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Cẩn thận Cạm Bẫy Đảo Chiều:**
-Lỗi sai phổ biến nhất của học sinh là quên ĐẢO CHIỀU bất phương trình khi chia hai vế cho hệ số âm.
-Luôn chú ý: **Nếu hệ số trước ẩn $x$ là số âm, MẮT phải ngay lập tức cảnh giác và TAY phải ĐẢO CHIỀU DẤU ở bước cuối cùng!**
+**Trọng tâm kiến thức Bài 6:**
+
+1. **BPT bậc nhất một ẩn:** $ax + b < 0$ (hoặc $>, \le, \ge$) với $a \neq 0$.  
+2. **Quy tắc chuyển vế:** Chuyển hạng tử sang vế kia phải **đổi dấu**.  
+3. **Quy tắc nhân:** Nhân/chia với số âm phải **ĐỔI CHIỀU** BPT.
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -227,111 +400,148 @@ Luôn chú ý: **Nếu hệ số trước ẩn $x$ là số âm, MẮT phải ng
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Giải các bất phương trình sau và biểu diễn tập nghiệm trên trục số (tự vẽ):
+**Bài 1:** Giải các bất phương trình sau và biểu diễn tập nghiệm trên trục số:  
+a) $3x - 9 > 0$  
+b) $5 - 2x \le 1$  
+c) $-4x + 8 \ge 0$  
+d) $15 - 3x < 0$  
+e) $\frac{1}{3}x - 2 \le 0$  
+f) $0,4x + 1,2 > 0$
 
-a) $x - 3 > 2$
+**Bài 2:** Giải các bất phương trình sau bằng cách bỏ ngoặc hoặc quy đồng mẫu:  
+a) $2(x - 3) - 3(x + 1) > 5$  
+b) $4(2x - 1) \le 3(x + 2) + 5$  
+c) $\frac{x-2}{3} - \frac{x+1}{4} < \frac{x}{12}$  
+d) $\frac{2x+1}{5} - \frac{x-2}{3} \ge \frac{1}{15}$  
+e) $\frac{x-1}{2} + \frac{x-2}{3} + \frac{x-3}{4} > 3$  
+f) $(x - 2)^2 - x(x + 3) \le 6$
 
-b) $x + 5 \le 1$
+**Bài 3:** Tìm các nghiệm nguyên của bất phương trình:  
+a) Tìm các nghiệm nguyên dương của BPT $4x - 15 < 0$.  
+b) Tìm nghiệm nguyên nhỏ nhất của BPT $2x + 7 > 0$.  
+c) Tìm nghiệm nguyên lớn nhất của BPT $5 - 3x \ge -4$.  
+d) Tìm số nghiệm nguyên không âm của BPT $3x - 8 \le 1$.  
+e) Tìm các số nguyên $x$ thỏa mãn $-2 < \frac{2x-1}{3} \le 3$.  
+f) Tìm các số nguyên $x$ thỏa mãn đồng thời: $3x - 2 > 4$ và $2x + 1 \le 13$.
 
-c) $4x < 12$
+**Bài 4:** Giải các hệ bất phương trình bậc nhất một ẩn:  
+a) $\begin{cases} 3x - 2 > 4 \\ 2x + 1 \le 9 \end{cases}$  
+b) $\begin{cases} 5x + 2 \ge 12 \\ 3x - 1 < 14 \end{cases}$  
+c) $\begin{cases} 2x - 5 < 1 \\ 4 - x \le 2 \end{cases}$  
+d) $\begin{cases} \frac{x-1}{2} > 1 \\ 3 - x \ge 5 \end{cases}$
 
-d) $-2x \ge 8$
+**Bài 5:** Cho bất phương trình chứa tham số $m$: $(m - 2)x + 3 < m$.  
+a) Giải bất phương trình khi $m = 5$.  
+b) Tìm $m$ để bất phương trình nhận $x = 1$ là một nghiệm.
 
-**Bài 2:** Giải các bất phương trình bậc nhất một ẩn (Cơ bản):
+**Bài 6:** Cho bất phương trình $(m^2 + 2)x - 4 > 0$.  
+a) Chứng minh bất phương trình luôn có nghiệm $x > \frac{4}{m^2+2}$ với mọi $m$.  
+b) Tìm $m$ để tập nghiệm của bất phương trình là $x > 1$.
 
-a) $3x + 4 < 13$
+**Bài 7:** Giải các bất phương trình chứa dấu giá trị tuyệt đối:  
+a) $|2x - 3| < 5$  
+b) $|3x + 1| \ge 7$  
+c) $|x - 2| \le 0$  
+d) $|2x + 4| > -1$
 
-b) $5 - 2x \ge 11$
+**Bài 8:** Tìm các giá trị của $x$ để biểu thức phân thức $A = \frac{x-3}{x+2}$:  
+a) Nhận giá trị dương ($A > 0$).  
+b) Nhận giá trị âm ($A < 0$).
 
-c) $4x - 1 \le 3x + 5$
+**Bài 9 (Thực tế):** Một taxi có giá cước mở cửa là 12 000 đồng cho 1 km đầu tiên; từ km thứ 2 trở đi giá cước là 14 000 đồng/km. Bạn An có tối đa 100 000 đồng. Hỏi An có thể đi taxi được quãng đường tối đa là bao nhiêu km?
 
-d) $-3x + 7 > 2x - 8$
+**Bài 10 (Thực tế):** Một xe tải chở hàng có khối lượng bản thân xe là 3,5 tấn, chở các thùng hàng cùng loại khối lượng 50 kg/thùng. Xe phải đi qua một cây cầu có biển báo trọng tải tối đa là 8 tấn (tổng khối lượng xe và hàng không vượt quá 8 tấn). Tính số thùng hàng tối đa xe tải được phép chở qua cầu.
 
-**Bài 3:** Giải các bất phương trình có chứa ngoặc và phân thức số:
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-a) $2(x - 1) < 3(x + 2)$
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-b) $4(2x - 1) - x \ge 3(x - 2)$
+**Bài 1:**  
+a) $3x > 9 \Leftrightarrow x > 3$. Tập nghiệm $S = \{x \mid x > 3\}$.  
+b) $-2x \le -4 \Leftrightarrow x \ge 2$. Tập nghiệm $S = \{x \mid x \ge 2\}$.  
+c) $-4x \ge -8 \Leftrightarrow x \le 2$. Tập nghiệm $S = \{x \mid x \le 2\}$.  
+d) $-3x < -15 \Leftrightarrow x > 5$. Tập nghiệm $S = \{x \mid x > 5\}$.  
+e) $\frac{1}{3}x \le 2 \Leftrightarrow x \le 6$. Tập nghiệm $S = \{x \mid x \le 6\}$.  
+f) $0,4x > -1,2 \Leftrightarrow x > -3$. Tập nghiệm $S = \{x \mid x > -3\}$.
 
-c) $\frac{x - 1}{2} > \frac{x + 2}{3}$
+---
 
-d) $\frac{2x + 1}{4} - \frac{x - 3}{3} \le 1$
+**Bài 2:**  
+a) $2x - 6 - 3x - 3 > 5 \Leftrightarrow -x - 9 > 5 \Leftrightarrow -x > 14 \Leftrightarrow x < -14$.  
+b) $8x - 4 \le 3x + 6 + 5 \Leftrightarrow 5x \le 15 \Leftrightarrow x \le 3$.  
+c) Quy đồng mẫu 12: $4(x-2) - 3(x+1) < x \Leftrightarrow 4x - 8 - 3x - 3 < x \Leftrightarrow x - 11 < x \Leftrightarrow 0x < 11$ (luôn đúng với mọi $x$). $S = \mathbb{R}$.  
+d) Quy đồng mẫu 15: $3(2x+1) - 5(x-2) \ge 1 \Leftrightarrow 6x + 3 - 5x + 10 \ge 1 \Leftrightarrow x + 13 \ge 1 \Leftrightarrow x \ge -12$.  
+e) Mẫu chung 12: $6(x-1) + 4(x-2) + 3(x-3) > 36 \Leftrightarrow 6x-6 + 4x-8 + 3x-9 > 36 \Leftrightarrow 13x - 23 > 36 \Leftrightarrow 13x > 59 \Leftrightarrow x > \frac{59}{13}$.  
+f) $x^2 - 4x + 4 - x^2 - 3x \le 6 \Leftrightarrow -7x + 4 \le 6 \Leftrightarrow -7x \le 2 \Leftrightarrow x \ge -\frac{2}{7}$.
 
-**Bài 4:** Tìm các giá trị của $x$ thỏa mãn điều kiện đề bài:
+---
 
-a) Giá trị biểu thức $2x - 5$ lớn hơn 3.
+**Bài 3:**  
+a) $4x < 15 \Leftrightarrow x < 3,75$. Nghiệm nguyên dương ($x \in \mathbb{N}^*$) là $x \in \{1; 2; 3\}$.  
+b) $2x > -7 \Leftrightarrow x > -3,5$. Nghiệm nguyên nhỏ nhất là $x = -3$.  
+c) $-3x \ge -9 \Leftrightarrow x \le 3$. Nghiệm nguyên lớn nhất là $x = 3$.  
+d) $3x \le 9 \Leftrightarrow x \le 3$. Nghiệm nguyên không âm ($x \in \mathbb{N}$) là $x \in \{0; 1; 2; 3\}$ (có 4 nghiệm).  
+e) $-6 < 2x - 1 \le 9 \Leftrightarrow -5 < 2x \le 10 \Leftrightarrow -2,5 < x \le 5$.  
+Các nghiệm nguyên $x \in \{-2; -1; 0; 1; 2; 3; 4; 5\}$.  
+f) $3x > 6 \Rightarrow x > 2$; $2x \le 12 \Rightarrow x \le 6$. Tập hợp nguyên $x \in \{3; 4; 5; 6\}$.
 
-b) Giá trị biểu thức $3 - 4x$ không nhỏ hơn $2x + 9$.
+---
 
-c) Giá trị của biểu thức $x^2 + 2x + 1$ luôn dương với $x$ như thế nào?
+**Bài 4:**  
+a) $3x > 6 \Rightarrow x > 2$; $2x \le 8 \Rightarrow x \le 4$. Nghiệm $2 < x \le 4$.  
+b) $5x \ge 10 \Rightarrow x \ge 2$; $3x < 15 \Rightarrow x < 5$. Nghiệm $2 \le x < 5$.  
+c) $2x < 6 \Rightarrow x < 3$; $-x \le -2 \Rightarrow x \ge 2$. Nghiệm $2 \le x < 3$.  
+d) $x - 1 > 2 \Rightarrow x > 3$; $-x \ge 2 \Rightarrow x \le -3$. Không có $x$ thỏa mãn $\Rightarrow S = \varnothing$.
 
-d) Biểu thị $x$ thỏa mãn để chu vi một hình vuông cạnh $2x - 1$ không vượt quá $20\text{cm}$.
+---
 
-**Bài 5 (Thực tế): Lợi nhuận kinh doanh**
-Một công ty viễn thông cung cấp 2 gói cước Internet:
-- **Gói A:** Phí cố định 100 ngàn, cộng thêm 20 ngàn mỗi GB sử dụng.
-- **Gói B:** Không phí cố định, nhưng tính 35 ngàn mỗi GB sử dụng.
-a) Viết biểu thức tính chi phí khi dùng $x$ GB của gói A và gói B.
+**Bài 5:**  
+a) With $m = 5$: $(5-2)x + 3 < 5 \Leftrightarrow 3x + 3 < 5 \Leftrightarrow 3x < 2 \Leftrightarrow x < \frac{2}{3}$.  
+b) Thay $x = 1$ vào BPT: $(m-2)(1) + 3 < m \Leftrightarrow m - 2 + 3 < m \Leftrightarrow 1 < 0$ (vô lý). Vậy không có $m$ nào để $x = 1$ là nghiệm.
 
-b) Lập bất phương trình để tìm xem dùng bao nhiêu GB thì Gói A rẻ hơn Gói B.
+---
 
-c) Giải bất phương trình vừa lập và đưa ra kết luận thực tế. (Người dùng nên chọn thế nào?)
+**Bài 6:**  
+a) Vì $m^2 + 2 \ge 2 > 0$ với mọi $m$ nên ta chia hai vế cho $(m^2 + 2)$ mà không đổi chiều BPT:  
+$(m^2+2)x > 4 \Leftrightarrow x > \frac{4}{m^2+2}$.  
+b) Để tập nghiệm là $x > 1 \Leftrightarrow \frac{4}{m^2+2} = 1 \Leftrightarrow m^2 + 2 = 4 \Leftrightarrow m^2 = 2 \Leftrightarrow m = \pm\sqrt{2}$.
 
-d) Nếu ngân sách hàng tháng tối đa là 200 ngàn, dùng Gói B thì tối đa được bao nhiêu GB?
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 7:**  
+a) $|2x - 3| < 5 \Leftrightarrow -5 < 2x - 3 < 5 \Leftrightarrow -2 < 2x < 8 \Leftrightarrow -1 < x < 4$.  
+b) $|3x + 1| \ge 7 \Leftrightarrow \left[ \begin{array}{l} 3x + 1 \ge 7 \\ 3x + 1 \le -7 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} 3x \ge 6 \\ 3x \le -8 \end{array} \right. \Leftrightarrow \left[ \begin{array}{l} x \ge 2 \\ x \le -\frac{8}{3} \end{array} \right.$.  
+c) Căn cứ $|x - 2| \ge 0$, do đó $|x - 2| \le 0 \Leftrightarrow x - 2 = 0 \Leftrightarrow x = 2$.  
+d) Vì $|2x + 4| \ge 0 > -1$ nên BPT đúng với mọi $x \in \mathbb{R}$.
 
-**Bài 1:**
+---
 
-a) $x > 5$
+**Bài 8:**  
+a) $A = \frac{x-3}{x+2} > 0 \Leftrightarrow x - 3$ và $x + 2$ cùng dấu.  
+- TH1: $\begin{cases} x - 3 > 0 \\ x + 2 > 0 \end{cases} \Rightarrow x > 3$.  
+- TH2: $\begin{cases} x - 3 < 0 \\ x + 2 < 0 \end{cases} \Rightarrow x < -2$.  
+Vậy $x > 3$ hoặc $x < -2$.  
+b) $A < 0 \Leftrightarrow x - 3$ và $x + 2$ trái dấu.  
+Vì $x - 3 < x + 2$ nên $\begin{cases} x - 3 < 0 \\ x + 2 > 0 \end{cases} \Rightarrow -2 < x < 3$.
 
-b) $x \le -4$
+---
 
-c) $x < 3$
+**Bài 9:**  
+Gọi $x$ là số km An đi taxi ($x > 0$).  
+Nếu $x \le 1$: Tiền là 12 000 đồng $\le 100 000$ (thỏa mãn).  
+Nếu $x > 1$: Số km sau km đầu là $x - 1$.  
+Tổng tiền: $12\,000 + 14\,000(x - 1) \le 100\,000$.  
+$\Leftrightarrow 14\,000(x - 1) \le 88\,000 \Leftrightarrow x - 1 \le 6,28 \Leftrightarrow x \le 7,28$ km.  
+Vậy An có thể đi tối đa 7,28 km.
 
-d) Chia $-2$ đổi chiều: $x \le -4$.
+---
 
-**Bài 2:**
-
-a) $3x < 9 \Rightarrow x < 3$
-
-b) $-2x \ge 6 \Rightarrow x \le -3$
-
-c) $4x - 3x \le 5 + 1 \Rightarrow x \le 6$
-
-d) $-3x - 2x > -8 - 7 \Rightarrow -5x > -15 \Rightarrow x < 3$
-
-**Bài 3:**
-
-a) $2x - 2 < 3x + 6 \Rightarrow -x < 8 \Rightarrow x > -8$
-
-b) $8x - 4 - x \ge 3x - 6 \Rightarrow 7x - 4 \ge 3x - 6 \Rightarrow 4x \ge -2 \Rightarrow x \ge -0.5$
-
-c) Quy đồng 6: $3(x - 1) > 2(x + 2) \Rightarrow 3x - 3 > 2x + 4 \Rightarrow x > 7$
-
-d) Quy đồng 12: $3(2x + 1) - 4(x - 3) \le 12 \Rightarrow 6x + 3 - 4x + 12 \le 12 \Rightarrow 2x + 15 \le 12 \Rightarrow 2x \le -3 \Rightarrow x \le -1.5$
-
-**Bài 4:**
-
-a) $2x - 5 > 3 \Rightarrow x > 4$
-
-b) $3 - 4x \ge 2x + 9 \Rightarrow -6x \ge 6 \Rightarrow x \le -1$
-
-c) $x^2 + 2x + 1 = (x+1)^2$. $(x+1)^2 > 0$ khi $(x+1) \neq 0 \Rightarrow x \neq -1$.
-
-d) Lập bpt: Chu vi là $4(2x - 1) \le 20$. Giải: $2x - 1 \le 5 \Rightarrow 2x \le 6 \Rightarrow x \le 3$. (Tuy nhiên cạnh $2x-1 > 0 \Rightarrow x > 0.5$. Vậy $0.5 < x \le 3$).
-
-**Bài 5:**
-
-a) Chi phí A: $C_A = 100 + 20x$. Chi phí B: $C_B = 35x$.
-
-b) Gói A rẻ hơn B: $C_A < C_B \Leftrightarrow 100 + 20x < 35x$.
-
-c) $100 < 15x \Rightarrow x > 100/15 = 6.67$. Kết luận: Nếu dùng nhiều hơn 6.67 GB/tháng thì mua Gói A sẽ tiết kiệm hơn. 
-
-d) Gói B ngân sách 200k: $35x \le 200 \Rightarrow x \le 200/35 \approx 5.71$. Tối đa mua được khoảng 5.7 GB.
+**Bài 10:**  
+Đổi 3,5 tấn = 3500 kg; 8 tấn = 8000 kg.  
+Gọi số thùng hàng xe chở là $n$ ($n \in \mathbb{N}^*$).  
+Tổng khối lượng: $3500 + 50n \le 8000 \Leftrightarrow 50n \le 4500 \Leftrightarrow n \le 90$.  
+Vậy xe tải được chở tối đa 90 thùng hàng qua cầu.
 
 </div>
 </details>

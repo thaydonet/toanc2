@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import DiemDuongThangInteractive from '../../components/interactive/DiemDuongThangInteractive';
 
 export const quizData = [
   {
@@ -53,18 +54,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những phát biểu nào đúng về điểm và đường thẳng?",
-    option_a: "Qua hai điểm phân biệt, chỉ có một đường thẳng",
-    option_b: "Một đường thẳng chứa vô số điểm",
-    option_c: "Điểm không có kích thước",
-    option_d: "Đường thẳng có độ dài hữu hạn",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đều đúng. D sai vì đường thẳng kéo dài vô tận, không có độ dài hữu hạn.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Hai đường thẳng phân biệt có thể có bao nhiêu điểm chung?",
     option_a: "0 hoặc 1 điểm",
@@ -74,14 +63,6 @@ export const quizData = [
     correct_option: "A",
     explanation: "Hai đường thẳng phân biệt có thể không cắt nhau (0 điểm chung) hoặc cắt nhau tại 1 điểm.",
     difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Qua bao nhiêu điểm phân biệt có thể vẽ được một đường thẳng duy nhất?",
-    correct_option: "2",
-    explanation: "Qua hai điểm phân biệt, chỉ có thể vẽ được một đường thẳng duy nhất.",
-    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
@@ -108,6 +89,70 @@ export const quizData = [
     difficulty_level: "easy",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Cho 4 điểm A, B, C, D không thẳng hàng. Có bao nhiêu đường thẳng đi qua hai điểm?",
+    option_a: "6 đường thẳng",
+    option_b: "4 đường thẳng",
+    option_c: "3 đường thẳng",
+    option_d: "8 đường thẳng",
+    correct_option: "A",
+    explanation: "C(4,2) = 6 đường thẳng: AB, AC, AD, BC, BD, CD.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ký hiệu B ∉ d có nghĩa là:",
+    option_a: "Điểm B không thuộc đường thẳng d",
+    option_b: "Điểm B thuộc đường thẳng d",
+    option_c: "Đường thẳng d đi qua B",
+    option_d: "Điểm B nằm trên d",
+    correct_option: "A",
+    explanation: "Ký hiệu B ∉ d có nghĩa là điểm B không thuộc đường thẳng d, tức là B không nằm trên d.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho ba điểm A, B, C. Những trường hợp nào có thể xảy ra?",
+    option_a: "Ba điểm thẳng hàng",
+    option_b: "Ba điểm không thẳng hàng",
+    option_c: "Ba điểm trùng nhau",
+    option_d: "Ba điểm tạo thành tam giác",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai vì ba điểm phân biệt không thể trùng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào đúng về điểm và đường thẳng?",
+    option_a: "Qua hai điểm phân biệt, chỉ có một đường thẳng",
+    option_b: "Một đường thẳng chứa vô số điểm",
+    option_c: "Điểm không có kích thước",
+    option_d: "Đường thẳng có độ dài hữu hạn",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đều đúng. D sai vì đường thẳng kéo dài vô tận, không có độ dài hữu hạn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho 5 điểm phân biệt, trong đó 3 điểm thẳng hàng và 2 điểm còn lại không nằm trên đường thẳng đó. Hỏi có bao nhiêu đường thẳng được xác định bởi 5 điểm này?",
+    correct_option: "8",
+    explanation: "3 điểm thẳng hàng xác định 1 đường thẳng. Mỗi điểm còn lại tạo thêm 3 đường thẳng với 3 điểm trên. Tổng: 1 + 3 + 3 + 1 = 8 đường thẳng.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Qua bao nhiêu điểm phân biệt có thể vẽ được một đường thẳng duy nhất?",
+    correct_option: "2",
+    explanation: "Qua hai điểm phân biệt, chỉ có thể vẽ được một đường thẳng duy nhất.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
@@ -281,7 +326,8 @@ Khi điểm B không nằm trên đường thẳng d, ta nói:
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<DiemDuongThangInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -325,6 +371,26 @@ b) Anh ta đi trên **1 đường thẳng** (đường thẳng AB).
 
 </div>
 
+**📝 Bài toán 3:** Cho 4 điểm A, B, C, D không có ba điểm nào thẳng hàng.
+
+a) Vẽ tất cả các đường thẳng đi qua hai điểm.
+
+b) Đếm số đường thẳng đã vẽ.
+
+c) Nếu thêm điểm E nằm trên đường thẳng AB, có bao nhiêu đường thẳng mới được tạo?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Các đường thẳng: AB, AC, AD, BC, BD, CD.
+
+b) Có **6 đường thẳng**.
+
+c) Điểm E nằm trên AB nên không tạo đường thẳng mới với A và B. Các đường thẳng mới: EC, ED. Tổng: 6 + 2 = 8 đường thẳng.
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -339,9 +405,7 @@ b) Anh ta đi trên **1 đường thẳng** (đường thẳng AB).
 
 </GhiNho>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+📝 Bài tập tự luận
 
 **Bài 1:** Cho ba điểm A, B, C. Hãy xác định:
 
@@ -387,19 +451,18 @@ b) Có bao nhiêu đoạn thẳng nối hai điểm?
 
 c) Có bao nhiêu tia có gốc tại một trong bốn điểm?
 
-**Bài 6 (Thực tế):** Trong một sân chơi, có sáu cây cột A, B, C, D, E, F. Biết rằng:
-- A, B, C thẳng hàng
-- D, E, F thẳng hàng
-- Không có ba cây cột khác nào thẳng hàng
+**Bài 6:** Trên đường thẳng d, lấy 3 điểm phân biệt A, B, C. Hỏi có bao nhiêu đường thẳng đi qua ít nhất hai trong ba điểm?
 
-Hãy xác định:
+**Bài 7:** Cho 6 điểm, trong đó có 3 điểm thẳng hàng. Số đường thẳng tối đa có thể vẽ được là bao nhiêu?
 
-a) Có bao nhiêu đường thẳng được xác định bởi các cây cột?
+**Bài 8:** Một học sinh vẽ 5 đường thẳng trên giấy. Đường nào cũng cắt ít nhất một đường khác. Số điểm cắt ít nhất là bao nhiêu?
 
-b) Nếu thêm một cây cột G không nằm trên hai đường thẳng trên, có bao nhiêu đường thẳng?
+**Bài 9:** Cho hai đường thẳng a và b cắt nhau tại O. Trên a lấy A (A ≠ O), trên b lấy B (B ≠ O). Có bao nhiêu đường thẳng đi qua hai điểm trong số O, A, B?
+
+**Bài 10:** Cho 4 điểm thẳng hàng A, B, C, D theo thứ tự. Liệt kê tất cả các đường thẳng đi qua hai điểm trong số này.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
 **Bài 1:** a) 1; b) 3; c) 1; d) 6
@@ -412,7 +475,15 @@ b) Nếu thêm một cây cột G không nằm trên hai đường thẳng trên
 
 **Bài 5:** a) 6; b) 6; c) 12
 
-**Bài 6:** a) 4; b) 10
+**Bài 6:** 3 đường thẳng: AB, BC, AC. Nhưng vì A, B, C thẳng hàng nên chỉ có 1 đường thẳng đi qua cả ba. Các đường thẳng riêng biệt: chỉ 1 đường thẳng.
+
+**Bài 7:** 3 điểm thẳng hàng xác định 1 đường thẳng. 3 điểm còn lại xác định C(3,2) = 3 đường thẳng. Mỗi điểm trong 3 điểm thẳng hàng tạo thêm đường thẳng với mỗi điểm ngoài: 3 × 3 = 9. Tổng: 1 + 3 + 9 = 13 đường thẳng.
+
+**Bài 8:** 5 đường thẳng đôi một cắt nhau tại C(5,2) = 10 điểm. Ít nhất 10 điểm cắt.
+
+**Bài 9:** 3 đường thẳng: OA (chính là a), OB (chính là b), AB.
+
+**Bài 10:** Chỉ có 1 đường thẳng đi qua cả bốn điểm (vì bốn điểm thẳng hàng).
 
 </div>
 </details>

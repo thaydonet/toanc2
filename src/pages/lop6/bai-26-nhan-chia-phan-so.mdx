@@ -15,6 +15,7 @@ import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import FractionCalc from '../../components/interactive/FractionCalc';
 import QuizSession from '../../components/ui/QuizSession';
+import NhanChiaPhanSoInteractive from '../../components/interactive/NhanChiaPhanSoInteractive';
 
 export const quizData = [
   {
@@ -136,7 +137,49 @@ export const quizData = [
     explanation: "Phép nhân phân số có: giao hoán, kết hợp, nhân với 1, phân phối cho cộng/trừ.",
     difficulty_level: "medium",
     is_dynamic: false,
-  }
+  },
+  // ─── Phần 2: MSQ (2 câu) ──────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Chọn các phân số nghịch đảo đúng:",
+    option_a: "Nghịch đảo của $\\frac{3}{7}$ là $\\frac{7}{3}$",
+    option_b: "Nghịch đảo của $5$ là $\\frac{1}{5}$",
+    option_c: "Nghịch đảo của $\\frac{-2}{9}$ là $\\frac{9}{2}$",
+    option_d: "Nghịch đảo của $\\frac{4}{5}$ là $\\frac{5}{4}$",
+    correct_options: ["A", "B", "D"],
+    explanation: "Nghịch đảo: đảo tử và mẫu. $\\frac{-2}{9}$ nghịch đảo là $\\frac{-9}{2}$ (giữ dấu âm).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Tính nhanh: $\\frac{3}{5} \\times \\frac{7}{9} \\times \\frac{5}{3}$",
+    option_a: "$\\frac{7}{9}$",
+    option_b: "$\\frac{105}{135}$",
+    option_c: "$1$",
+    option_d: "$\\frac{35}{27}$",
+    correct_options: ["A", "B"],
+    explanation: "$\\frac{3}{5}\\times\\frac{7}{9}\\times\\frac{5}{3}=\\frac{3\\times7\\times5}{5\\times9\\times3}=\\frac{7}{9}=\\frac{105}{135}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tính: $\\frac{3}{4} \\div \\frac{2}{5}$",
+    answer: "15/8",
+    explanation: "$\\frac{3}{4}\\div\\frac{2}{5}=\\frac{3}{4}\\times\\frac{5}{2}=\\frac{15}{8}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một mảnh vườn chiều dài $\\frac{7}{5}$ m, chiều rộng $\\frac{3}{4}$ m. Tính diện tích.",
+    answer: "21/20",
+    explanation: "Diện tích = $\\frac{7}{5}\\times\\frac{3}{4}=\\frac{21}{20}=1\\frac{1}{20}$ m².",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong title="Khởi động">
@@ -321,6 +364,8 @@ b) $\left(\dfrac{8}{7} \times \dfrac{7}{8}\right) \times \left(\dfrac{5}{6} \tim
 
 </div>
 
+<NhanChiaPhanSoInteractive client:load />
+
 </LuyenTap>
 
 <VanDung title="Vận dụng">
@@ -380,42 +425,54 @@ $$\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c}$$
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu)</h3>
 
-**Bài 1:** Tính:
+**Câu 1:** Tính: $\dfrac{3}{7} \times \dfrac{5}{11}$
 
-a) $\dfrac{3}{7} \times \dfrac{5}{11}$ b) $\dfrac{8}{9} \times \dfrac{3}{4}$ c) $\dfrac{5}{6} \times 7$
+**Câu 2:** Tính: $\dfrac{8}{9} \times \dfrac{3}{4}$
 
-**Bài 2:** Tính:
+**Câu 3:** Tính: $\dfrac{5}{6} \div \dfrac{2}{3}$
 
-a) $\dfrac{5}{8} \div \dfrac{3}{4}$ b) $\dfrac{7}{10} \div 5$ c) $6 \div \dfrac{3}{8}$
+**Câu 4:** Tính: $2 \div \dfrac{4}{7}$
 
-**Bài 3:** Tìm phân số nghịch đảo của:
+**Câu 5:** Tìm phân số nghịch đảo của $\dfrac{7}{9}$.
 
-a) $\dfrac{7}{9}$ b) $8$ c) $-\dfrac{5}{12}$ d) $\dfrac{-3}{7}$
+**Câu 6:** Tính: $\dfrac{3}{5} \times \dfrac{7}{9} \times \dfrac{5}{3}$
 
-**Bài 4:** Tính nhanh:
+**Câu 7:** Tính: $\dfrac{-4}{9} \div \dfrac{-2}{3}$
 
-a) $\dfrac{3}{5} \times \dfrac{7}{9} \times \dfrac{5}{3} \times \dfrac{9}{7}$ b) $\left(\dfrac{2}{3} + \dfrac{1}{4}\right) \times 12$
+**Câu 8:** Tính: $\dfrac{7}{8} \times \dfrac{4}{5} \times \dfrac{2}{7}$
 
-**Bài 5:** Một mảnh vườn hình chữ nhật có chiều dài $\dfrac{9}{4}$ m và chiều rộng $\dfrac{8}{5}$ m. Tính diện tích mảnh vườn.
+**Câu 9:** Một mảnh vườn chiều dài $\dfrac{9}{4}$ m, chiều rộng $\dfrac{8}{5}$ m. Tính diện tích.
+
+**Câu 10:** Tính nhanh: $\left(\dfrac{2}{3} + \dfrac{1}{4}\right) \times 12$
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $\dfrac{15}{77}$; b) $\dfrac{2}{3}$; c) $5\dfrac{5}{6}$
+**Câu 1:** $\dfrac{3 \times 5}{7 \times 11} = \dfrac{15}{77}$.
 
-**Bài 2:** a) $\dfrac{5}{6}$; b) $\dfrac{7}{50}$; c) $16$
+**Câu 2:** $\dfrac{8 \times 3}{9 \times 4} = \dfrac{24}{36} = \dfrac{2}{3}$.
 
-**Bài 3:** a) $\dfrac{9}{7}$; b) $\dfrac{1}{8}$; c) $-\dfrac{12}{5}$; d) $-\dfrac{7}{3}$
+**Câu 3:** $\dfrac{5}{6} \times \dfrac{3}{2} = \dfrac{15}{12} = \dfrac{5}{4} = 1\dfrac{1}{4}$.
 
-**Bài 4:** a) $1$; b) $11$
+**Câu 4:** $2 \times \dfrac{7}{4} = \dfrac{14}{4} = \dfrac{7}{2} = 3\dfrac{1}{2}$.
 
-**Bài 5:** $3\dfrac{3}{5}$ m²
+**Câu 5:** Nghịch đảo của $\dfrac{7}{9}$ là $\dfrac{9}{7}$.
+
+**Câu 6:** $\dfrac{3 \times 7 \times 5}{5 \times 9 \times 3} = \dfrac{7}{9}$.
+
+**Câu 7:** $\dfrac{-4}{9} \times \dfrac{3}{-2} = \dfrac{-12}{-18} = \dfrac{2}{3}$.
+
+**Câu 8:** $\dfrac{7 \times 4 \times 2}{8 \times 5 \times 7} = \dfrac{8}{40} = \dfrac{1}{10}$.
+
+**Câu 9:** $\dfrac{9}{4} \times \dfrac{8}{5} = \dfrac{72}{20} = \dfrac{18}{5} = 3\dfrac{3}{5}$ m².
+
+**Câu 10:** $\dfrac{2}{3} \times 12 + \dfrac{1}{4} \times 12 = 8 + 3 = 11$.
 
 </div>
 </details>
 
-<QuizSession client:load questions={quizData} />
+<QuizSession client:load questions={quizData} groupedShuffle />
 

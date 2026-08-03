@@ -13,6 +13,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong9Interactive from '../../components/interactive/OnTapChuong9Interactive';
 
 export const quizData = [
   {
@@ -54,7 +55,7 @@ export const quizData = [
   {
     type: "mcq",
     question: "Xác suất của một sự kiện chắc chắn xảy ra là",
-    option_a: "$1$ hoặc $100\\%$",
+    option_a: "$1$ hoặc $100\%$",
     option_b: "$0$",
     option_c: "$0,5$",
     option_d: "$-1$",
@@ -69,7 +70,7 @@ export const quizData = [
     option_a: "$0$",
     option_b: "$1$",
     option_c: "$0,5$",
-    option_d: "$100\\%$",
+    option_d: "$100\%$",
     correct_option: "A",
     explanation: "Xác suất của sự kiện không thể xảy ra là 0",
     difficulty_level: "medium",
@@ -78,21 +79,21 @@ export const quizData = [
   {
     type: "mcq",
     question: "Khi tung một đồng xu, xác suất mặt sấp xuất hiện là",
-    option_a: "$\\frac{1}{2}$ hoặc $50\\%$",
-    option_b: "$\\frac{1}{3}$",
+    option_a: "$\frac{1}{2}$ hoặc $50\%$",
+    option_b: "$\frac{1}{3}$",
     option_c: "$1$",
     option_d: "$0$",
     correct_option: "A",
-    explanation: "Đồng xu có 2 mặt, nên xác suất mặt sấp là $\\frac{1}{2}$",
+    explanation: "Đồng xu có 2 mặt, nên xác suất mặt sấp là $\frac{1}{2}$",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
     question: "Khi tung một con xúc xắc, xác suất mặt 6 xuất hiện là",
-    option_a: "$\\frac{1}{6}$",
-    option_b: "$\\frac{1}{2}$",
-    option_c: "$\\frac{1}{3}$",
+    option_a: "$\frac{1}{6}$",
+    option_b: "$\frac{1}{2}$",
+    option_c: "$\frac{1}{3}$",
     option_d: "$1$",
     correct_option: "A",
     explanation: "Xúc xắc có 6 mặt, nên xác suất mặt 6 là $\\frac{1}{6}$",
@@ -112,26 +113,42 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Sự kiện nào là sự kiện ngẫu nhiên?",
-    option_a: "Tung đồng xu",
-    option_b: "Mặt trời mọc hàng ngày",
-    option_c: "Nước sôi ở $100°C$",
-    option_d: "Trái đất quay quanh mặt trời",
-    correct_option: "A",
-    explanation: "Tung đồng xu là sự kiện ngẫu nhiên vì kết quả không chắc chắn",
+    type: "msq",
+    question: "Những phát biểu nào đúng về dữ liệu và biểu đồ?",
+    option_a: "Biểu đồ tranh dùng hình vẽ để biểu diễn dữ liệu",
+    option_b: "Biểu đồ cột dùng chiều cao của cột để so sánh dữ liệu",
+    option_c: "Dữ liệu chỉ có thể là số",
+    option_d: "Biểu đồ cột kép dùng để so sánh hai bộ dữ liệu",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai vì dữ liệu có thể là chữ, hình ảnh, không chỉ là số.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Khi rút một lá bài từ bộ 52 lá, xác suất rút được lá Át là",
-    option_a: "$\\frac{4}{52} = \\frac{1}{13}$",
-    option_b: "$\\frac{1}{52}$",
-    option_c: "$\\frac{1}{2}$",
-    option_d: "$\\frac{13}{52}$",
-    correct_option: "A",
-    explanation: "Bộ bài có 4 lá Át, nên xác suất là $\\frac{4}{52} = \\frac{1}{13}$",
+    type: "msq",
+    question: "Những sự kiện nào là sự kiện ngẫu nhiên?",
+    option_a: "Gieo một con xúc xắc ra mặt 6",
+    option_b: "Mặt trời mọc ở hướng Đông",
+    option_c: "Tung đồng xu ra mặt ngửa",
+    option_d: "Rút một lá bài từ bộ bài 52 lá",
+    correct_option: "A,C,D",
+    explanation: "A, C, D là sự kiện ngẫu nhiên vì kết quả không chắc chắn. B là sự kiện chắc chắn xảy ra.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một hộp có 3 quả bóng đỏ và 5 quả bóng xanh. Lấy ngẫu nhiên một quả. Tính xác suất lấy được bóng đỏ.",
+    correct_option: "3/8",
+    explanation: "P(bóng đỏ) = số bóng đỏ : tổng số bóng = $\\frac{3}{3+5} = \\frac{3}{8}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Gieo một con xúc xắc 50 lần, mặt 4 xuất hiện 9 lần. Tính xác suất thực nghiệm của sự kiện gieo được mặt 4.",
+    correct_option: "9/50",
+    explanation: "Xác suất thực nghiệm = số lần xuất hiện : tổng số lần gieo = $\\frac{9}{50}$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -258,165 +275,16 @@ $$\text{Xác suất thực nghiệm} = \frac{\text{Số lần sự kiện xảy 
 
 <h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
 
-<QuizSession client:load questions={quizData} />
+<OnTapChuong9Interactive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
 <VanDung>
 
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+<h3 id="van-dung">🌍 III. BÀI TẬP VẬN DỤNG</h3>
 
-<h4 id="bai-1">Bài 1: Tính trung bình cộng</h4>
-
-Tính trung bình cộng của các số:
-
-a) $2, 4, 6$
-
-b) $10, 20, 30, 40$
-
-c) $5, 10, 15, 20, 25$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\frac{2+4+6}{3} = \frac{12}{3} = 4$
-
-b) $\frac{10+20+30+40}{4} = \frac{100}{4} = 25$
-
-c) $\frac{5+10+15+20+25}{5} = \frac{75}{5} = 15$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Bài toán thực tế về trung bình cộng</h4>
-
-Điểm kiểm tra toán của một học sinh trong 4 lần là: $8, 9, 7, 10$. Tính điểm trung bình.
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-Điểm trung bình = $\frac{8+9+7+10}{4} = \frac{34}{4} = 8,5$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Xác suất cơ bản</h4>
-
-Tính xác suất:
-
-a) Tung một đồng xu, xác suất mặt ngửa
-
-b) Tung một xúc xắc, xác suất mặt lẻ
-
-c) Rút một lá bài từ bộ 52 lá, xác suất rút được lá cơ
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Xác suất mặt ngửa = $\frac{1}{2}$
-
-b) Xúc xắc có 3 mặt lẻ (1, 3, 5), nên xác suất = $\frac{3}{6} = \frac{1}{2}$
-
-c) Bộ bài có 13 lá cơ, nên xác suất = $\frac{13}{52} = \frac{1}{4}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Phân loại sự kiện</h4>
-
-Phân loại các sự kiện sau:
-
-a) Mặt trời mọc hàng ngày
-
-b) Tung đồng xu được mặt sấp
-
-c) Nước đá ở $50°C$
-
-d) Rút được lá Át từ bộ bài
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Sự kiện chắc chắn
-
-b) Sự kiện ngẫu nhiên
-
-c) Sự kiện không thể
-
-d) Sự kiện ngẫu nhiên
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Xác suất thực nghiệm</h4>
-
-Tung một đồng xu 200 lần, mặt sấp xuất hiện 95 lần. Tính xác suất thực nghiệm của mặt sấp.
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-Xác suất thực nghiệm = $\frac{95}{200} = \frac{19}{40} = 0,475$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Bài toán về biểu đồ</h4>
-
-Một lớp học có 40 học sinh. Kết quả yêu thích môn học:
-- Toán: 12 học sinh
-- Tiếng Anh: 10 học sinh
-- Lịch Sử: 8 học sinh
-- Khoa học: 10 học sinh
-
-a) Tính tỉ lệ phần trăm học sinh yêu thích mỗi môn
-
-b) Vẽ biểu đồ cột biểu diễn dữ liệu trên
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) 
-- Toán: $\frac{12}{40} \times 100\% = 30\%$
-- Tiếng Anh: $\frac{10}{40} \times 100\% = 25\%$
-- Lịch Sử: $\frac{8}{40} \times 100\% = 20\%$
-- Khoa học: $\frac{10}{40} \times 100\% = 25\%$
-
-b) Biểu đồ cột sẽ có 4 cột với chiều cao tương ứng: 12, 10, 8, 10
-
-</div>
-</details>
-
----
-
-<h4 id="bai-7">Bài 7: Bài toán kết hợp (Câu lớn)</h4>
+<h4 id="bai-7">Bài 1: Bài toán kết hợp — Doanh thu cửa hàng</h4>
 
 Một cửa hàng bán quần áo trong 5 ngày với doanh thu (triệu đồng):
 - Thứ 2: 5
@@ -452,7 +320,7 @@ d) Tỉ lệ phần trăm = $\frac{9}{35} \times 100\% \approx 25,7\%$
 
 ---
 
-<h4 id="bai-8">Bài 8: Tính xác suất phức tạp</h4>
+<h4 id="bai-8">Bài 2: Tính xác suất phức tạp</h4>
 
 Trong một hộp có 5 viên bi đỏ, 3 viên bi xanh, 2 viên bi vàng. Rút ngẫu nhiên một viên bi.
 
@@ -485,34 +353,7 @@ d) Xác suất rút được bi không phải đỏ = $\frac{3+2}{10} = \frac{5}
 
 ---
 
-<h4 id="bai-9">Bài 9: Bài toán về dữ liệu</h4>
-
-Chiều cao (cm) của 10 học sinh: $150, 152, 155, 148, 160, 158, 152, 155, 160, 162$
-
-a) Tính chiều cao trung bình
-
-b) Tìm chiều cao cao nhất và thấp nhất
-
-c) Tính số học sinh có chiều cao từ 155 cm trở lên
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Chiều cao trung bình = $\frac{150+152+155+148+160+158+152+155+160+162}{10} = \frac{1552}{10} = 155,2$ cm
-
-b) Chiều cao cao nhất: 162 cm; Chiều cao thấp nhất: 148 cm
-
-c) Học sinh có chiều cao từ 155 cm trở lên: 155, 158, 160, 160, 162 = 5 học sinh
-
-</div>
-</details>
-
----
-
-<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+<h4 id="bai-10">Bài 3: Bài toán nâng cao</h4>
 
 Một trường học có 3 lớp 6 với số học sinh như sau:
 - Lớp 6A: 40 học sinh
@@ -553,6 +394,55 @@ d) Tỉ lệ phần trăm toàn khối = $\frac{93}{120} \times 100\% = 77,5\%$
 </details>
 
 </VanDung>
+
+### Bài tập tự luận (Ôn tập Chương 9)
+
+**Bài 1:** Tính trung bình cộng: a) 2, 4, 6 b) 10, 20, 30, 40 c) 5, 10, 15, 20, 25
+
+**Bài 2:** Điểm kiểm tra Toán 4 lần: 8, 9, 7, 10. Tính điểm trung bình.
+
+**Bài 3:** Tính xác suất: a) Tung đồng xu, mặt ngửa b) Tung xúc xắc, mặt lẻ c) Rút lá bài từ 52 lá, được lá cơ
+
+**Bài 4:** Phân loại: a) Mặt trời mọc hàng ngày b) Tung đồng xu được sấp c) Nước đá ở 50°C d) Rút được lá Át
+
+**Bài 5:** Tung đồng xu 200 lần, mặt sấp 95 lần. Tính P(Sấp).
+
+**Bài 6:** 40 HS yêu thích: Toán 12, Anh 10, Lịch Sử 8, Khoa Học 10. Tính tỉ lệ % mỗi môn.
+
+**Bài 7:** Chiều cao 10 HS: 150, 152, 155, 148, 160, 158, 152, 155, 160, 162. a) Chiều cao TB b) Cao nhất, thấp nhất c) Số HS ≥ 155cm
+
+**Bài 8:** Hộp 4 bi: 1 đỏ, 2 xanh, 1 vàng. Rút 1 viên. a) Không gian mẫu b) P(đỏ) c) P(không phải vàng)
+
+**Bài 9:** Tung xúc xắc 60 lần, kết quả: 1(8), 2(10), 3(12), 4(9), 5(11), 6(10). a) P(được 3) b) P(số chẵn) c) Dự đoán trong 120 lần, số lần được 6
+
+**Bài 10:** Lớp 40 HS: Giỏi 15, Khá 15, TB 8, Yếu 2. a) Bảng thống kê b) Vẽ biểu đồ cột c) Tỉ lệ % mỗi loại d) Loại nào nhiều nhất?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** a) $\frac{2+4+6}{3} = 4$ b) $\frac{10+20+30+40}{4} = 25$ c) $\frac{5+10+15+20+25}{5} = 15$
+
+**Bài 2:** $\frac{8+9+7+10}{4} = \frac{34}{4} = 8,5$
+
+**Bài 3:** a) $\frac{1}{2}$ b) $\frac{3}{6} = \frac{1}{2}$ c) $\frac{13}{52} = \frac{1}{4}$
+
+**Bài 4:** a) Chắc chắn b) Ngẫu nhiên c) Không thể d) Ngẫu nhiên
+
+**Bài 5:** $P = \frac{95}{200} = \frac{19}{40} = 0,475$
+
+**Bài 6:** Toán: 30%, Anh: 25%, Lịch Sử: 20%, Khoa Học: 25%. Tổng = 100%.
+
+**Bài 7:** a) $\frac{1552}{10} = 155,2$ cm b) Cao nhất: 162cm, Thấp nhất: 148cm c) 5 HS (155, 158, 160, 160, 162)
+
+**Bài 8:** a) Ω = &#123;Đỏ, Xanh₁, Xanh₂, Vàng&#125; b) $P = \frac{1}{4}$ c) $P = \frac{3}{4}$
+
+**Bài 9:** a) $P = \frac{12}{60} = \frac{1}{5}$ b) $P = \frac{29}{60}$ c) Dự đoán: $120 \times \frac{10}{60} = 20$ lần
+
+**Bài 10:** a) Giỏi 15, Khá 15, TB 8, Yếu 2, Tổng 40 b) Vẽ 4 cột: 15, 15, 8, 2 c) Giỏi 37,5%, Khá 37,5%, TB 20%, Yếu 5% d) Giỏi và Khá đều nhiều nhất (mỗi loại 37,5%)
+
+</div>
+</details>
 
 <GhiNho>
 

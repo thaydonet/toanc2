@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import NhanSoNguyenInteractive from '../../components/interactive/NhanSoNguyenInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Tính: $(-5) \\times 3$",
@@ -53,18 +55,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những phép tính nào có kết quả dương?",
-    option_a: "$(-6) \\times (-5)$",
-    option_b: "$7 \\times 4$",
-    option_c: "$(-8) \\times 3$",
-    option_d: "$(-10) \\times (-2)$",
-    correct_option: "A,B,D",
-    explanation: "Cùng dấu cho kết quả dương: $(-6) \\times (-5) = 30$; $7 \\times 4 = 28$; $(-10) \\times (-2) = 20$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Tính: $(-3) \\times 5 \\times (-2)$",
     option_a: "$30$",
@@ -77,11 +67,15 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Tính: $(-12) \\times 0$",
-    correct_option: "0",
-    explanation: "Nhân với $0$ luôn bằng $0$: $(-12) \\times 0 = 0$.",
-    difficulty_level: "easy",
+    type: "mcq",
+    question: "Tính: $(-5) \\times (20 + 4)$",
+    option_a: "$-120$",
+    option_b: "$120$",
+    option_c: "$-100$",
+    option_d: "$104$",
+    correct_option: "A",
+    explanation: "Phân phối: $(-5) \\times 20 + (-5) \\times 4 = -100 + (-20) = -120$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
@@ -107,6 +101,48 @@ export const quizData = [
     explanation: "Cùng dấu âm nên kết quả dương: $!a! \\times !b! = !tinh: !a! * !b!!$.",
     difficulty_level: "easy",
     is_dynamic: true,
+  },
+  // ─── Phần 2: MSQ (2 câu) ───────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những phép tính nào có kết quả dương?",
+    option_a: "$(-6) \\times (-5)$",
+    option_b: "$7 \\times 4$",
+    option_c: "$(-8) \\times 3$",
+    option_d: "$(-10) \\times (-2)$",
+    correct_option: "A,B,D",
+    explanation: "Cùng dấu cho kết quả dương: $(-6) \\times (-5) = 30$; $7 \\times 4 = 28$; $(-10) \\times (-2) = 20$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Kết quả nào bằng $0$?",
+    option_a: "$(-5) \\times 0$",
+    option_b: "$0 \\times 100$",
+    option_c: "$(-3) \\times (-2)$",
+    option_d: "$(-1) \\times 0 \\times 7$",
+    correct_option: "A,B,D",
+    explanation: "Nhân với $0$ luôn bằng $0$. $(-3) \\times (-2) = 6 \neq 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tính: $(-12) \\times 0$",
+    correct_option: "0",
+    explanation: "Nhân với $0$ luôn bằng $0$: $(-12) \\times 0 = 0$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính nhanh: $(-25) \\times 13 \\times 4$",
+    correct_option: "-1300",
+    explanation: "$(-25) \\times 4 = -100$; $(-100) \\times 13 = -1300$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   },
 ];
 
@@ -394,7 +430,9 @@ $(-5) \times 2 \times (-1) \times (-3) = -30$
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<NhanSoNguyenInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -448,6 +486,28 @@ Còn nợ $7000000$ đồng
 
 </div>
 
+**📝 Bài toán 3:** Một cửa hàng lãi $50000$ đồng mỗi tháng trong 6 tháng đầu, nhưng lỗ $30000$ đồng mỗi tháng trong 3 tháng sau.
+
+a) Tổng lãi/lỗ trong 6 tháng đầu?
+
+b) Tổng lãi/lỗ trong 3 tháng sau?
+
+c) Tổng lãi/lỗ của cả 9 tháng?
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) 6 tháng đầu lãi: $50000 \\times 6 = 300000$ (đồng)
+
+b) 3 tháng sau lỗ: $(-30000) \\times 3 = -90000$ (đồng)
+
+c) Tổng: $300000 + (-90000) = 210000$ (đồng)
+
+**Cửa hàng lãi $210000$ đồng trong 9 tháng.**
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -467,83 +527,100 @@ Còn nợ $7000000$ đồng
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Thực hiện phép nhân:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) $7 \times (-5)$
+**Bài 1 (Dễ):** Tính: a) $7 \\times (-5)$　　b) $(-8) \\times 6$　　c) $(-9) \\times (-4)$　　d) $12 \\times (-3)$
 
-b) $(-8) \times 6$
+**Bài 2 (Dễ):** Tính: a) $(-15) \\times 0$　　b) $(-20) \\times 1$　　c) $25 \\times (-1)$　　d) $(-30) \\times (-1)$
 
-c) $(-9) \times (-4)$
+**Bài 3 (Dễ):** Tính: a) $(-3) \\times 5 \\times (-2)$　　b) $(-4) \\times (-2) \\times (-5)$
 
-d) $12 \times (-3)$
+**Bài 4 (Thông hiểu):** Áp dụng tính chất phân phối: a) $(-5) \\times (20 + 4)$　　b) $7 \\times (10 - 3)$
 
-**Bài 2:** Thực hiện phép nhân:
+**Bài 5 (Thông hiểu):** Tính nhanh: a) $(-25) \\times 13 \\times 4$　　b) $(-5) \\times 17 \\times (-2)$
 
-a) $(-15) \times 0$
+**Bài 6 (Vận dụng):** Thang máy xuống 5 tầng mỗi lần trong 4 lần. Xuất phát từ tầng 20. Thang máy ở tầng nào?
 
-b) $(-20) \times 1$
+**Bài 7 (Vận dụng):** Một người nợ $2000000$ đồng/tháng trong 6 tháng. Trả được $5000000$ đồng. Còn nợ bao nhiêu?
 
-c) $25 \times (-1)$
+**Bài 8 (Vận dụng):** Cho $a = -3, b = 4$. Tính: a) $a \\times b$　　b) $(-a) \\times b$　　c) $a \\times (-b)$　　d) $(-a) \\times (-b)$
 
-d) $(-30) \times (-1)$
+**Bài 9 (Vận dụng):** Tính nhanh: $125 \\times (-7) \\times 8$
 
-**Bài 3:** Tính:
+**Bài 10 (Vận dụng cao):** Cho $a \\times b = -36$ và $a \\times c = 24$. Tính $a \\times (b + c)$.
 
-a) $(-3) \times 5 \times (-2)$
+</div>
 
-b) $(-4) \times (-2) \times (-5)$
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-c) $2 \times (-3) \times 4 \times (-1)$
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-d) $(-1) \times (-1) \times (-1) \times (-1)$
+**Bài 1:**
+a) $7 \\times (-5) = -35$
+b) $(-8) \\times 6 = -48$
+c) $(-9) \\times (-4) = 36$
+d) $12 \\times (-3) = -36$
 
-**Bài 4:** Áp dụng tính chất phân phối:
+---
 
-a) $(-5) \times (20 + 4)$
+**Bài 2:**
+a) $(-15) \\times 0 = 0$
+b) $(-20) \\times 1 = -20$
+c) $25 \\times (-1) = -25$
+d) $(-30) \\times (-1) = 30$
 
-b) $7 \times (10 - 3)$
+---
 
-c) $(-8) \times (15 - 5)$
+**Bài 3:**
+a) $(-3) \\times 5 \\times (-2) = (-15) \\times (-2) = 30$
+b) $(-4) \\times (-2) \\times (-5) = 8 \\times (-5) = -40$
 
-d) $(-6) \times (12 + 8)$
+---
 
-**Bài 5:** Tính nhanh:
+**Bài 4:**
+a) $(-5) \\times 24 = -120$ (hoặc phân phối: $(-5) \\times 20 + (-5) \\times 4 = -100 - 20 = -120$)
+b) $7 \\times 7 = 49$ (hoặc phân phối: $7 \\times 10 + 7 \\times (-3) = 70 - 21 = 49$)
 
-a) $(-25) \times 13 \times 4$
+---
 
-b) $(-5) \times 17 \times (-2)$
+**Bài 5:**
+a) $(-25) \\times 4 = -100$; $(-100) \\times 13 = -1300$
+b) $(-5) \\times (-2) = 10$; $10 \\times 17 = 170$
 
-c) $125 \times (-7) \times 8$
+---
 
-d) $(-50) \times 19 \times (-2)$
+**Bài 6:**
+$(-5) \\times 4 = -20$. Thang máy ở tầng: $20 + (-20) = 0$ (tầng trệt).
 
-**Bài 6 (Thực tế):** Một thang máy xuống $5$ tầng mỗi lần trong $4$ lần.
+---
 
-a) Viết biểu thức tính tổng số tầng đã xuống.
+**Bài 7:**
+Tổng nợ: $(-2000000) \\times 6 = -12000000$ đồng.
+Sau khi trả: $(-12000000) + 5000000 = -7000000$ đồng.
+Còn nợ $7000000$ đồng.
 
-b) Tính tổng số tầng đã xuống.
+---
 
-c) Nếu xuất phát từ tầng $20$, thang máy ở tầng nào?
+**Bài 8:**
+a) $a \\times b = (-3) \\times 4 = -12$
+b) $(-a) \\times b = 3 \\times 4 = 12$
+c) $a \\times (-b) = (-3) \\times (-4) = 12$
+d) $(-a) \\times (-b) = 3 \\times (-4) = -12$
 
-d) Nếu tiếp tục xuống thêm $3$ lần nữa, thang máy ở tầng nào?
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 9:**
+$125 \\times 8 = 1000$; $1000 \\times (-7) = -7000$.
 
-**Bài 1:** a) $-35$; b) $-48$; c) $36$; d) $-36$
+---
 
-**Bài 2:** a) $0$; b) $-20$; c) $-25$; d) $30$
-
-**Bài 3:** a) $30$; b) $-40$; c) $24$; d) $1$
-
-**Bài 4:** a) $-120$; b) $49$; c) $-80$; d) $-120$
-
-**Bài 5:** a) $-1300$; b) $170$; c) $-7000$; d) $1900$
-
-**Bài 6:** a) $(-5) \times 4$; b) $-20$ tầng; c) Tầng $0$ (trệt); d) Tầng $-15$ (hầm 15)
+**Bài 10:**
+Phân phối: $a \\times (b + c) = a \\times b + a \\times c = -36 + 24 = -12$.
 
 </div>
 </details>

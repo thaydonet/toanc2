@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import DoanThangInteractive from '../../components/interactive/DoanThangInteractive';
 
 export const quizData = [
   {
@@ -53,18 +54,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những phát biểu nào đúng về đoạn thẳng?",
-    option_a: "Đoạn thẳng có hai đầu mút",
-    option_b: "Đoạn thẳng chứa vô số điểm",
-    option_c: "Độ dài đoạn thẳng luôn dương",
-    option_d: "Đoạn thẳng AB khác đoạn thẳng BA",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đúng. D sai vì đoạn thẳng AB và BA là cùng một đoạn thẳng.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Nếu M nằm giữa A và B, thì:",
     option_a: "AM + MB = AB",
@@ -74,14 +63,6 @@ export const quizData = [
     correct_option: "A",
     explanation: "Nếu M nằm giữa A và B, thì AM + MB = AB (tính chất cộng độ dài).",
     difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Cho AB = 8 cm, M nằm giữa A và B, AM = 3 cm. Tính MB.",
-    correct_option: "5",
-    explanation: "MB = AB - AM = 8 - 3 = 5 cm.",
-    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
@@ -105,6 +86,70 @@ export const quizData = [
     option_d: "Không thể so sánh",
     correct_option: "A",
     explanation: "Nếu AB < CD, ta nói đoạn AB ngắn hơn đoạn CD (hoặc CD dài hơn AB).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Đoạn thẳng có đặc điểm gì?",
+    option_a: "Có hai đầu mút và có độ dài xác định",
+    option_b: "Không có điểm đầu và điểm cuối",
+    option_c: "Chỉ có một điểm đầu",
+    option_d: "Không có độ dài",
+    correct_option: "A",
+    explanation: "Đoạn thẳng có hai đầu mút và có độ dài xác định, khác với đường thẳng vô hạn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu AB = 10 cm và M nằm giữa A và B sao cho AM = 3 cm, thì MB bằng:",
+    option_a: "7 cm",
+    option_b: "13 cm",
+    option_c: "3 cm",
+    option_d: "10 cm",
+    correct_option: "A",
+    explanation: "MB = AB - AM = 10 - 3 = 7 cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào đúng về đoạn thẳng?",
+    option_a: "Đoạn thẳng có hai đầu mút",
+    option_b: "Đoạn thẳng chứa vô số điểm",
+    option_c: "Độ dài đoạn thẳng luôn dương",
+    option_d: "Đoạn thẳng AB khác đoạn thẳng BA",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì đoạn thẳng AB và BA là cùng một đoạn thẳng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những cách nào dùng để xác định một điểm trên đoạn thẳng?",
+    option_a: "Dùng thước đo từ một đầu mút",
+    option_b: "Dùng compa",
+    option_c: "Đo khoảng cách từ cả hai đầu mút",
+    option_d: "Chỉ cần nhìn bằng mắt",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì mắt nhìn không chính xác.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho AB = 8 cm, M nằm giữa A và B, AM = 3 cm. Tính MB.",
+    correct_option: "5",
+    explanation: "MB = AB - AM = 8 - 3 = 5 cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho đoạn thẳng CD = 15 cm. Lấy điểm N nằm giữa C và D sao cho CN = 6 cm. Tính ND.",
+    correct_option: "9",
+    explanation: "ND = CD - CN = 15 - 6 = 9 cm.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
@@ -306,7 +351,8 @@ AD = AB + BC + CD = 2 + 3 + 4 = 9 cm
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<DoanThangInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -354,6 +400,22 @@ c) Xe buýt đi 10 + 10 = 20 km
 
 </div>
 
+**📝 Bài toán 3:** Một học sinh đo đoạn thẳng AB bằng thước kẻ và nhận thấy AB = 7 cm. Học sinh đó lấy thước khác đo lại và thấy AB = 7,2 cm.
+
+a) Kết quả nào chính xác hơn? Tại sao?
+
+b) Làm thế nào để đo chính xác nhất?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Kết quả 7,2 cm chính xác hơn vì thước có chia vạch nhỏ hơn (mm) cho phép đo chính xác hơn.
+
+b) Để đo chính xác nhất, nên dùng thước có chia vạch nhỏ (mm), đặt thước thẳng hàng với đoạn thẳng, đọc số đo từ vạch 0.
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -370,81 +432,49 @@ c) Xe buýt đi 10 + 10 = 20 km
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho đoạn AB = 10 cm. Lấy điểm M trên AB sao cho AM = 4 cm. Tính MB.
+**Câu 1 (Easy):** Cho đoạn thẳng AB = 6 cm. Lấy điểm M là trung điểm của AB. Tính AM.
 
-a) MB = ?
+**Câu 2 (Easy):** Cho đoạn thẳng CD = 14 cm. Điểm N nằm giữa C và D sao cho CN = 5 cm. Tính ND.
 
-b) So sánh AM và MB.
+**Câu 3 (Easy):** Cho ba điểm A, B, C thẳng hàng theo thứ tự A, B, C. Biết AB = 4 cm, BC = 6 cm. Tính AC.
 
-c) Kiểm tra: AM + MB = AB?
+**Câu 4 (Easy):** Cho đoạn thẳng EF = 20 cm. Lấy điểm P sao cho EP = 7 cm. Tính PF.
 
-d) Nếu lấy điểm N sao cho AN = 6 cm, so sánh AN và AM.
+**Câu 5 (Medium):** Cho đoạn thẳng AB = 18 cm. Điểm M là trung điểm của AB. Điểm N nằm giữa M và B sao cho MN = 3 cm. Tính AN.
 
-**Bài 2:** Cho ba điểm A, B, C thẳng hàng, theo thứ tự A, B, C. Biết AB = 5 cm, BC = 7 cm. Tính:
+**Câu 6 (Medium):** Cho bốn điểm A, B, C, D thẳng hàng theo thứ tự A, B, C, D. Biết AB = 2 cm, BC = 5 cm, CD = 3 cm. Tính AD.
 
-a) AC
+**Câu 7 (Medium):** Cho đoạn thẳng XY = 24 cm. Lấy điểm M sao cho XM = 9 cm. Lấy điểm N sao cho YN = 6 cm. Tính MN.
 
-b) Nếu lấy M là trung điểm của AB, tính AM.
+**Câu 8 (Hard):** Cho đoạn thẳng AB = 30 cm. Điểm M là trung điểm của AB. Điểm N là trung điểm của AM. Tính MN và NB.
 
-c) Nếu lấy N là trung điểm của BC, tính BN.
+**Câu 9 (Hard):** Trên đường thẳng có ba điểm A, B, C theo thứ tự. Biết AC = 20 cm, AB = 12 cm. Lấy M là trung điểm của BC. Tính AM.
 
-d) Tính MN.
-
-**Bài 3:** Cho bốn điểm A, B, C, D thẳng hàng, theo thứ tự A, B, C, D. Biết AB = 3 cm, BC = 4 cm, CD = 5 cm. Tính:
-
-a) AC
-
-b) BD
-
-c) AD
-
-d) Nếu M là trung điểm của AD, tính AM.
-
-**Bài 4:** Cho đoạn AB = 12 cm. Lấy hai điểm M, N trên AB sao cho AM = 3 cm, AN = 9 cm. Tính:
-
-a) MB
-
-b) NB
-
-c) MN
-
-d) So sánh AM, MN, NB.
-
-**Bài 5:** Cho đoạn AB = 20 cm. Lấy điểm M trên AB sao cho AM = 8 cm. Lấy điểm N trên AB sao cho BN = 6 cm. Tính:
-
-a) MB
-
-b) AN
-
-c) MN
-
-d) Nếu M nằm giữa A và N, kiểm tra: AM + MN = AN?
-
-**Bài 6 (Thực tế):** Một sợi dây dài 30 cm. Người ta cắt dây tại ba điểm M, N, P sao cho AM = 5 cm, MN = 8 cm, NP = 7 cm (A là một đầu dây, B là đầu kia).
-
-a) Tính AP.
-
-b) Tính PB.
-
-c) Kiểm tra: AP + PB = AB?
-
-d) Nếu cắt dây thành bốn phần bằng nhau, mỗi phần dài bao nhiêu?
+**Câu 10 (Hard):** Cho đoạn thẳng PQ = 40 cm. Lấy điểm R sao cho PR = 12 cm. Lấy điểm S là trung điểm của RQ. Tính PS.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) 6 cm; b) AM < MB; c) 4 + 6 = 10 ✓; d) AN > AM
+**Câu 1:** AM = AB/2 = 6/2 = **3 cm**
 
-**Bài 2:** a) 12 cm; b) 2,5 cm; c) 3,5 cm; d) 6 cm
+**Câu 2:** ND = CD - CN = 14 - 5 = **9 cm**
 
-**Bài 3:** a) 7 cm; b) 9 cm; c) 12 cm; d) 6 cm
+**Câu 3:** AC = AB + BC = 4 + 6 = **10 cm**
 
-**Bài 4:** a) 9 cm; b) 3 cm; c) 6 cm; d) AM < MN > NB
+**Câu 4:** PF = EF - EP = 20 - 7 = **13 cm**
 
-**Bài 5:** a) 12 cm; b) 14 cm; c) 6 cm; d) 8 + 6 = 14 ✓
+**Câu 5:** M là trung điểm AB nên AM = 18/2 = 9 cm. AN = AM + MN = 9 + 3 = **12 cm**
 
-**Bài 6:** a) 20 cm; b) 10 cm; c) 20 + 10 = 30 ✓; d) 7,5 cm
+**Câu 6:** AD = AB + BC + CD = 2 + 5 + 3 = **10 cm**
+
+**Câu 7:** XY = 24 cm, XM = 9 cm nên MY = 24 - 9 = 15 cm. YN = 6 cm nên MN = MY - YN = 15 - 6 = **9 cm**
+
+**Câu 8:** AM = 30/2 = 15 cm, AN = 15/2 = 7,5 cm. MN = AM - AN = 15 - 7,5 = 7,5 cm. NB = AB - AN = 30 - 7,5 = **22,5 cm**
+
+**Câu 9:** BC = AC - AB = 20 - 12 = 8 cm. M là trung điểm BC nên BM = 8/2 = 4 cm. AM = AB + BM = 12 + 4 = **16 cm**
+
+**Câu 10:** RQ = PQ - PR = 40 - 12 = 28 cm. S là trung điểm RQ nên RS = 28/2 = 14 cm. PS = PR + RS = 12 + 14 = **26 cm**
 
 </div>
 </details>

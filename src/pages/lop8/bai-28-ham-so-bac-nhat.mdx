@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Bài 28: Hàm số bậc nhất và đồ thị của hàm số bậc nhất"
-description: "Khái niệm, tính chất và đồ thị hàm số bậc nhất y = ax + b - Toán 8 KNTT Chương 7"
+title: "Bài 28: Hàm số bậc nhất và đồ thị hàm số bậc nhất"
+description: "Định nghĩa hàm số bậc nhất, tính đồng biến, nghịch biến và cách vẽ đồ thị đường thẳng y = ax + b - Toán 8 KNTT Chương 7"
 grade: "Lớp 8"
 chapter: "Chương 7: Phương trình bậc nhất và hàm số bậc nhất"
 currentSlug: "lop8/bai-28-ham-so-bac-nhat"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,470 +13,386 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
-import LinearFunctionGrapher from '../../components/interactive/LinearFunctionGrapher';
+import HamSoBacNhatInteractive from '../../components/interactive/HamSoBacNhatInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Hàm số nào sau đây **là** hàm số bậc nhất?",
-    option_a: "$y = 3x - 2$",
-    option_b: "$y = x^2 + 1$",
-    option_c: "$y = \\dfrac{1}{x}$",
-    option_d: "$y = 5$",
+    question: "Hàm số bậc nhất có dạng $y = ax + b$ với điều kiện nào của $a$?",
+    option_a: "$a \\neq 0$",
+    option_b: "$a = 0$",
+    option_c: "$b \\neq 0$",
+    option_d: "$a > 0$",
     correct_option: "A",
-    explanation: "Hàm số bậc nhất có dạng $y = ax + b$ với $a \\neq 0$. Chỉ có A thỏa mãn.",
+    explanation: "Định nghĩa hàm số bậc nhất.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Đồ thị hàm số $y = 2x + 3$ đi qua điểm nào?",
-    option_a: "$(0, 3)$",
-    option_b: "$(0, 2)$",
-    option_c: "$(3, 0)$",
-    option_d: "$(1, 1)$",
+    question: "Hàm số $y = 3x - 5$ đồng biến hay nghịch biến trên $\\mathbb{R}$?",
+    option_a: "Đồng biến (vì $a = 3 > 0$)",
+    option_b: "Nghịch biến (vì $b = -5 < 0$)",
+    option_c: "Không đồng biến cũng không nghịch biến",
+    option_d: "Vừa đồng biến vừa nghịch biến",
     correct_option: "A",
-    explanation: "Khi $x = 0$: $y = 2 \\cdot 0 + 3 = 3$. Điểm $(0, 3)$ thuộc đồ thị.",
+    explanation: "Hệ số $a = 3 > 0$ nên hàm số đồng biến trên $\\mathbb{R}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hàm số $y = -x + 1$ là hàm số:",
-    option_a: "Nghịch biến",
-    option_b: "Đồng biến",
-    option_c: "Không đổi",
-    option_d: "Không xác định",
+    question: "Hàm số nào sau đây là hàm số NGHỊCH BIẾN trên $\\mathbb{R}$?",
+    option_a: "$y = -2x + 1$",
+    option_b: "$y = 4x - 3$",
+    option_c: "$y = x + 5$",
+    option_d: "$y = 0.5x$",
     correct_option: "A",
-    explanation: "Hệ số $a = -1 < 0$ nên hàm số nghịch biến.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Đồ thị hàm số $y = ax + b$ (với $a \\neq 0$) là:",
-    option_a: "Đường thẳng",
-    option_b: "Đường cong",
-    option_c: "Parabol",
-    option_d: "Đường tròn",
-    correct_option: "A",
-    explanation: "Đồ thị hàm số bậc nhất luôn là đường thẳng.",
+    explanation: "Hàm số $y = -2x + 1$ có hệ số $a = -2 < 0$ nên nghịch biến trên $\\mathbb{R}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Để vẽ đồ thị hàm số $y = 2x - 1$, ta cần ít nhất bao nhiêu điểm?",
-    option_a: "2 điểm",
-    option_b: "1 điểm",
-    option_c: "3 điểm",
-    option_d: "4 điểm",
+    question: "Giao điểm của đồ thị $y = 3x - 6$ với trục hoành Ox có tọa độ là:",
+    option_a: "$(2; 0)$",
+    option_b: "$(0; -6)$",
+    option_c: "(-6; 0)$",
+    option_d: "$(0; 2)$",
     correct_option: "A",
-    explanation: "Đồ thị là đường thẳng, cần ít nhất 2 điểm để vẽ.",
+    explanation: "Giao điểm Ox: Cho $y = 0 \\Rightarrow 3x - 6 = 0 \\Rightarrow x = 2 \\Rightarrow (2; 0)$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hàm số $y = 3x + 2$ cắt trục $Oy$ tại điểm có tung độ:",
-    option_a: "$2$",
-    option_b: "$3$",
-    option_c: "$-2$",
-    option_d: "$0$",
+    question: "Giao điểm của đồ thị $y = -x + 4$ với trục tung Oy có tọa độ là:",
+    option_a: "$(0; 4)$",
+    option_b: "$(4; 0)$",
+    option_c: "$(0; -4)$",
+    option_d: "(-4; 0)$",
     correct_option: "A",
-    explanation: "Khi $x = 0$: $y = 3 \\cdot 0 + 2 = 2$. Cắt $Oy$ tại $(0, 2)$.",
-    difficulty_level: "medium",
+    explanation: "Giao điểm Oy: Cho $x = 0 \\Rightarrow y = 4 \\Rightarrow (0; 4)$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Hàm số nào sau đây **đồng biến**?",
+    question: "Những hàm số nào sau đây là hàm số BẬC NHẤT?",
     option_a: "$y = 2x + 1$",
-    option_b: "$y = -x + 3$",
-    option_c: "$y = 0{,}5x - 2$",
-    option_d: "$y = -3x$",
-    correct_option: "A,C",
-    explanation: "Hàm số đồng biến khi $a > 0$. A) $a = 2 > 0$ ✓, C) $a = 0{,}5 > 0$ ✓",
+    option_b: "$y = -3x$",
+    option_c: "$y = 5 - x$",
+    option_d: "$y = x^2 + 1$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D là hàm bậc hai.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Hàm số $y = 4x - 8$ cắt trục $Ox$ tại điểm có hoành độ bằng bao nhiêu?",
-    correct_option: "2",
-    explanation: "Khi $y = 0$: $4x - 8 = 0 \\Rightarrow x = 2$. Cắt $Ox$ tại $(2, 0)$.",
+    question: "Tìm $m$ để hàm số bậc nhất $y = (m - 3)x + 2$ đồng biến trên $\\mathbb{R}$.",
+    correct_option: "m > 3",
+    explanation: "Đồng biến $\\Leftrightarrow a > 0 \\Leftrightarrow m - 3 > 0 \\Leftrightarrow m > 3$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Cho hàm số $y = !a#0!x + !b!$. Hàm số này đồng biến khi:",
-    option_a: "$!a! > 0$",
-    option_b: "$!a! < 0$",
-    option_c: "$!a! = 0$",
-    option_d: "$!b! > 0$",
+    question: "Đồ thị của hàm số $y = ax + b$ ($a \\neq 0$) là:",
+    option_a: "Một đường thẳng",
+    option_b: "Một đường cong Parabol",
+    option_c: "Một hình quạt tròn",
+    option_d: "Một đoạn thẳng",
     correct_option: "A",
-    explanation: "Hàm số $y = ax + b$ đồng biến khi $a > 0$.",
+    explanation: "Đồ thị hàm số bậc nhất là một đường thẳng.",
     difficulty_level: "easy",
-    is_dynamic: true,
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Cho hàm số $y = (2 - m)x + 1$. Hàm số nghịch biến khi:",
+    option_a: "$m > 2$",
+    option_b: "$m < 2$",
+    option_c: "$m = 2$",
+    option_d: "$m > 0$",
+    correct_option: "A",
+    explanation: "Nghịch biến $\\Leftrightarrow 2 - m < 0 \\Leftrightarrow m > 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cách vẽ đồ thị đường thẳng $y = ax + b$ ($b \\neq 0$):",
+    option_a: "Xác định 2 điểm $(0; b)$ và $\\left(-\\dfrac{b}{a}; 0\\right)$ rồi kẻ đường thẳng qua 2 điểm đó",
+    option_b: "Lấy 1 điểm duy nhất",
+    option_c: "Vẽ đường cong nối các điểm",
+    option_d: "Vẽ đường song song Ox",
+    correct_option: "A",
+    explanation: "Vẽ đường thẳng đi qua 2 giao điểm với 2 trục tọa độ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">📈 Mở đầu — Hàm số bậc nhất trong thực tế</h3>
+### 🎯 Khởi động bài học
 
-Hàm số bậc nhất xuất hiện rất nhiều trong đời sống:
-
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🚕</div>
-    <strong>Cước taxi</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Giá mở cửa 10000đ, mỗi km 15000đ: $$T = 15000x + 10000$$</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">💡</div>
-    <strong>Tiền điện</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Phí cố định 20000đ, mỗi kWh 2500đ: $$T = 2500x + 20000$$</p>
-  </div>
-</div>
-
-💬 *Hàm số bậc nhất có dạng $y = ax + b$ với đồ thị là đường thẳng!*
+**Hàm số bậc nhất** $y = ax + b$ ($a \neq 0$) biểu diễn các mối quan hệ tỉ lệ tuyến tính trong thực tế. Đồ thị của nó là một đường thẳng tuyệt đẹp giúp ta dự đoán xu hướng tăng giảm vô cùng trực quan!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="khai-niem">📖 1. Khái niệm hàm số bậc nhất</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-nghia">
+#### 1. Định nghĩa & Tính chất Hàm số bậc nhất
 
-**Định nghĩa:** Hàm số bậc nhất là hàm số có dạng:
+- **Định nghĩa:** Hàm số bậc nhất là hàm số được cho bởi công thức $y = ax + b$, trong đó $a, b$ là các số cho trước và $a \neq 0$.
+- **Tính chất:** Hàm số bậc nhất $y = ax + b$ xác định với mọi $x \in \mathbb{R}$ và có tính chất:
+  - **Đồng biến** trên $\mathbb{R}$ khi $a > 0$ (khi $x$ tăng thì $y$ tăng).
+  - **Nghịch biến** trên $\mathbb{R}$ khi $a < 0$ (khi $x$ tăng thì $y$ giảm).
 
-$$y = ax + b$$
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="380" height="160" viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="160" height="120" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="100" y="50" text-anchor="middle" font-size="15" font-weight="bold" fill="#166534">a > 0: ĐỒNG BIẾN</text>
+  <line x1="40" y1="120" x2="160" y2="60" stroke="#166534" stroke-width="3"/>
+  <text x="100" y="140" text-anchor="middle" font-size="12" fill="#14532d">Đường đi lên ↗</text>
 
-trong đó $a$ và $b$ là các số cho trước, $a \neq 0$.
-
-- $a$ gọi là **hệ số góc**
-- $b$ gọi là **tung độ gốc** (giá trị của $y$ khi $x = 0$)
-
+  <rect x="200" y="20" width="160" height="120" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+  <text x="280" y="50" text-anchor="middle" font-size="15" font-weight="bold" fill="#991b1b">a &lt; 0: NGHỊCH BIẾN</text>
+  <line x1="220" y1="60" x2="340" y2="120" stroke="#991b1b" stroke-width="3"/>
+  <text x="280" y="140" text-anchor="middle" font-size="12" fill="#7f1d1d">Đường đi xuống ↘</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Tính chất đồng biến (a > 0) và nghịch biến (a &lt; 0) của hàm số bậc nhất</em></p>
 </div>
 
-**Ví dụ các hàm số bậc nhất:**
+**Ví dụ 1:** Xác định hệ số $a, b$ và tính chất biến thiên của hàm số $y = 2x - 5$.  
+*Lời giải:* Hệ số $a = 2, b = -5$. Vì $a = 2 > 0$ nên hàm số đồng biến trên $\mathbb{R}$.
 
-| Hàm số | Hệ số $a$ | Hệ số $b$ | Ghi chú |
-|:---:|:---:|:---:|:---|
-| $y = 2x + 3$ | $a = 2$ | $b = 3$ | ✓ Hàm số bậc nhất |
-| $y = -x + 1$ | $a = -1$ | $b = 1$ | ✓ Hàm số bậc nhất |
-| $y = 3x$ | $a = 3$ | $b = 0$ | ✓ Hàm số bậc nhất |
-| $y = 5$ | $a = 0$ | $b = 5$ | ✗ Hàm hằng (không phải bậc nhất) |
+**Ví dụ 2:** Tìm $m$ để hàm số $y = (3 - m)x + 1$ là hàm số bậc nhất nghịch biến.  
+*Lời giải:* Điều kiện: $a < 0 \Leftrightarrow 3 - m < 0 \Leftrightarrow m > 3$.
 
-<h3 id="tinh-chat" style="margin-top:2rem;">📊 2. Tính chất của hàm số bậc nhất</h3>
-
-<div class="box-dinh-ly">
-
-**Tính chất:** Hàm số $y = ax + b$ (với $a \neq 0$):
-
-1. **Nếu $a > 0$**: Hàm số **đồng biến** trên $\mathbb{R}$
-   - $x_1 < x_2 \Rightarrow y_1 < y_2$
-
-2. **Nếu $a < 0$**: Hàm số **nghịch biến** trên $\mathbb{R}$
-   - $x_1 < x_2 \Rightarrow y_1 > y_2$
-
-</div>
-
-**Ví dụ 1:** Xét tính đồng biến, nghịch biến:
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-a) $y = 3x + 2$: $a = 3 > 0$ → Hàm số **đồng biến**
-
-b) $y = -2x + 5$: $a = -2 < 0$ → Hàm số **nghịch biến**
-
-c) $y = 0{,}5x - 1$: $a = 0{,}5 > 0$ → Hàm số **đồng biến**
-
-</div>
-
-<h3 id="do-thi" style="margin-top:2rem;">📈 3. Đồ thị hàm số bậc nhất</h3>
-
-<div class="box-dinh-ly">
-
-**Định lý:** Đồ thị của hàm số $y = ax + b$ (với $a \neq 0$) là một **đường thẳng**:
-
-- Cắt trục $Oy$ tại điểm $(0; b)$
-- Cắt trục $Ox$ tại điểm $\left(-\dfrac{b}{a}; 0\right)$
-
-**Cách vẽ đồ thị:**
-
-1. Tìm 2 điểm thuộc đồ thị (thường chọn giao với $Ox$ và $Oy$)
-2. Vẽ đường thẳng đi qua 2 điểm đó
-
-</div>
-
-**Ví dụ 2:** Vẽ đồ thị hàm số $y = 2x - 4$.
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-**Cách 1: Tìm giao điểm với các trục**
-
-- Giao với $Oy$ ($x = 0$): $y = 2 \cdot 0 - 4 = -4$ → Điểm $A(0; -4)$
-- Giao với $Ox$ ($y = 0$): $0 = 2x - 4 \Rightarrow x = 2$ → Điểm $B(2; 0)$
-
-Vẽ đường thẳng đi qua $A$ và $B$.
-
-**Cách 2: Lập bảng giá trị**
-
-| $x$ | $0$ | $2$ |
-|:---:|:---:|:---:|
-| $y$ | $-4$ | $0$ |
-
-</div>
-
-**Ví dụ 3:** Vẽ đồ thị hàm số $y = -x + 3$.
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-- Giao với $Oy$: $A(0; 3)$
-- Giao với $Ox$: $0 = -x + 3 \Rightarrow x = 3$ → $B(3; 0)$
-
-Vẽ đường thẳng đi qua $A(0; 3)$ và $B(3; 0)$.
-
-</div>
-
-<h3 id="interactive" style="margin-top:2rem;">🔬 4. Công cụ vẽ đồ thị tương tác</h3>
-
-<p>Thử nghiệm vẽ đồ thị hàm số bậc nhất với các hệ số khác nhau (Sử dụng React + SVG Inline):</p>
-
-<LinearFunctionGrapher client:load />
-
-<h3 id="vi-tri" style="margin-top:2rem;">🔍 5. Vị trí tương đối của hai đường thẳng</h3>
-
-<div class="box-dinh-ly">
-
-Cho hai hàm số $y = ax + b$ và $y = a'x + b'$ (với $a, a' \neq 0$):
-
-1. **Song song**: $a = a'$ và $b \neq b'$
-
-2. **Trùng nhau**: $a = a'$ và $b = b'$
-
-3. **Cắt nhau**: $a \neq a'$
-   - Nếu $a \cdot a' = -1$: Hai đường thẳng **vuông góc**
-
-</div>
-
-**Ví dụ 4:** Xét vị trí tương đối:
-
-<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-a) $y = 2x + 1$ và $y = 2x - 3$: $a = a' = 2$, $b \neq b'$ → **Song song**
-
-b) $y = 3x + 2$ và $y = -x + 1$: $a = 3 \neq a' = -1$ → **Cắt nhau**
-
-c) $y = x + 1$ và $y = -x + 2$: $a \cdot a' = 1 \cdot (-1) = -1$ → **Vuông góc**
-
-</div>
-
-<h3 id="tim-ham" style="margin-top:2rem;">🎯 6. Xác định hàm số bậc nhất</h3>
-
-**Ví dụ 5:** Tìm hàm số $y = ax + b$ biết đồ thị đi qua hai điểm $A(1; 3)$ và $B(2; 5)$.
-
-<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Đồ thị đi qua $A(1; 3)$: $3 = a \cdot 1 + b$ → $a + b = 3$ (1)
-
-Đồ thị đi qua $B(2; 5)$: $5 = a \cdot 2 + b$ → $2a + b = 5$ (2)
-
-Từ (1) và (2):
-- $(2) - (1)$: $a = 2$
-- Thay vào (1): $2 + b = 3 \Rightarrow b = 1$
-
-**Vậy hàm số cần tìm là** $y = 2x + 1$.
-
-</div>
-
-</KhamPha>
-
-<LuyenTap>
-
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
-
-<QuizSession client:load questions={quizData} />
-
-</LuyenTap>
-
-<VanDung>
-
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
-
-**📝 Bài toán 1 — Cước taxi:**
-
-Một hãng taxi tính cước theo công thức: $T = 12000x + 15000$ (đồng), trong đó $x$ là số km.
-
-a) Vẽ đồ thị hàm số
-
-b) Tính tiền cước khi đi 5 km
-
-c) Đi được bao nhiêu km nếu trả 75000đ?
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) Đồ thị đi qua:
-- $(0; 15000)$: Giá mở cửa
-- $(5; 75000)$: Tính được từ công thức
-
-b) $T = 12000 \cdot 5 + 15000 = 75000$ đồng
-
-c) $12000x + 15000 = 75000$
-
-$$12000x = 60000$$
-$$x = 5 \text{ km}$$
-
-</div>
+**Ví dụ 3:** Xét tính biến thiên của hàm số $y = -\sqrt{2}x + 3$.  
+*Lời giải:* $a = -\sqrt{2} < 0 \Rightarrow$ Hàm số nghịch biến trên $\mathbb{R}$.
 
 ---
 
-**📝 Bài toán 2 — Chuyển động:**
+#### 2. Đồ thị hàm số bậc nhất $y = ax + b$ ($a \neq 0$)
 
-Hai xe xuất phát cùng lúc từ hai địa điểm A và B cách nhau 100 km, đi ngược chiều nhau. Xe thứ nhất có vận tốc 40 km/h, xe thứ hai có vận tốc 60 km/h.
+- Đồ thị của hàm số $y = ax + b$ ($a \neq 0$) là một **đường thẳng**:
+  - Cắt trục tung $Oy$ tại điểm $(0; b)$.
+  - Cắt trục hoành $Ox$ tại điểm $\left(-\dfrac{b}{a}; 0\right)$.
+- **Cách vẽ:**
+  1. Cho $x = 0 \Rightarrow y = b$, được điểm $A(0; b) \in Oy$.
+  2. Cho $y = 0 \Rightarrow x = -\dfrac{b}{a}$, được điểm $B\left(-\dfrac{b}{a}; 0\right) \in Ox$.
+  3. Kẻ đường thẳng đi qua hai điểm $A$ và $B$.
 
-a) Viết công thức tính khoảng cách giữa hai xe theo thời gian $t$ (giờ)
+**Ví dụ 1:** Vẽ đồ thị hàm số $y = 2x - 4$.  
+*Lời giải:*  
+- Giao $Oy$: Cho $x = 0 \Rightarrow y = -4 \Rightarrow A(0; -4)$.  
+- Giao $Ox$: Cho $y = 0 \Rightarrow 2x - 4 = 0 \Rightarrow x = 2 \Rightarrow B(2; 0)$.  
+- Đồ thị là đường thẳng đi qua $A(0; -4)$ và $B(2; 0)$.
 
-b) Sau bao lâu hai xe gặp nhau?
+**Ví dụ 2:** Vẽ đồ thị hàm số $y = -x + 3$.  
+*Lời giải:*  
+- Giao $Oy$: $A(0; 3)$. Giao $Ox$: $B(3; 0)$.  
+- Kẻ đường thẳng qua $A(0; 3)$ và $B(3; 0)$.
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 3:** Xác định $a, b$ để đồ thị $y = ax + b$ đi qua $M(1; 3)$ và $N(-1; 1)$.  
+*Lời giải:* Thay $M, N$ vào công thức:  
+$\begin{cases} a + b = 3 \\ -a + b = 1 \end{cases} \Rightarrow 2b = 4 \Rightarrow b = 2 \Rightarrow a = 1$.  
+Vậy hàm số là $y = x + 2$.
 
-**Giải:**
+</KhamPha>
 
-a) Khoảng cách giữa hai xe:
+<LuyenTap title="Thực hành tương tác">
 
-$$S = 100 - (40 + 60)t = 100 - 100t$$
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Hàm số bậc nhất & Đồ thị</h3>
 
-b) Hai xe gặp nhau khi $S = 0$:
+<HamSoBacNhatInteractive client:load />
 
-$$100 - 100t = 0$$
-$$t = 1 \text{ giờ}$$
+</LuyenTap>
+
+<VanDung title="Các dạng toán & Phương pháp giải">
+
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Nhận biết hàm số bậc nhất & Xét tính đồng biến, nghịch biến**
+**Phương pháp:** Dạng $y = ax + b$ ($a \neq 0$). $a > 0 \rightarrow$ Đồng biến; $a < 0 \rightarrow$ Nghịch biến.
+
+</div>
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Vẽ đồ thị đường thẳng & Tìm tọa độ giao điểm với các trục tọa độ**
+**Phương pháp:** Cho $x = 0 \rightarrow y = b$; Cho $y = 0 \rightarrow x = -b/a$.
 
 </div>
 
 </VanDung>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Hàm số độ cao máy bay hạ cánh):** Một máy bay đang ở độ cao $10.000$m bắt đầu hạ cánh. Độ cao $h$ (m) sau $t$ (phút) được mô tả bởi hàm số $h(t) = 10.000 - 500t$.
+
+a) Giải thích vì sao đây là hàm số bậc nhất nghịch biến.  
+b) Sau bao nhiêu phút thì máy bay đáp xuống mặt đất ($h = 0$)?
+
+**Lời giải:**  
+a) Hàm số có dạng $h = a t + b$ với $a = -500 < 0 \Rightarrow$ Hàm số bậc nhất nghịch biến (khi thời gian $t$ tăng thì độ cao $h$ giảm).  
+b) Cho $h = 0 \Rightarrow 10.000 - 500t = 0 \Rightarrow 500t = 10.000 \Rightarrow t = 20$ phút.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Hàm số bậc nhất**: $y = ax + b$ (với $a \neq 0$)
-- **Đồ thị**: Đường thẳng cắt $Oy$ tại $(0; b)$
-- **Đồng biến**: $a > 0$, **Nghịch biến**: $a < 0$
-- **Vẽ đồ thị**: Cần 2 điểm
-- **Song song**: $a = a'$, $b \neq b'$
+- **Hàm bậc nhất**: $y = ax + b$ ($a \neq 0$).
+- **$a > 0$**: Đồng biến (đường đi lên).
+- **$a < 0$**: Nghịch biến (đường đi xuống).
+- **Giao điểm**: $Oy(0; b)$ và $Ox(-b/a; 0)$.
 
 </GhiNho>
-
 
 ---
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1 (Dễ):** Trong các hàm số sau, hàm số nào là hàm số bậc nhất? Xác định hệ số $a$ và $b$.
+**Bài 1 (Dễ — Nhận biết và xét tính biến thiên):** Trong các hàm số sau, hàm số nào là hàm số bậc nhất? Cho biết hệ số $a, b$ và xét tính đồng biến, nghịch biến:
 
-a) $y = 3x - 5$
+a) $y = 3x - 2$ &nbsp;&nbsp;&nbsp; b) $y = 1 - 5x$ &nbsp;&nbsp;&nbsp; c) $y = -2x$
 
-b) $y = x^2 + 1$
+d) $y = x^2 + 3$ &nbsp;&nbsp;&nbsp; e) $y = \dfrac{2}{x} + 1$ &nbsp;&nbsp;&nbsp; f) $y = \sqrt{3}x + 2$
 
-c) $y = -2x$
+**Bài 2 (Dễ — Tìm tham số m để hàm số là bậc nhất, đồng biến/nghịch biến):**
 
-d) $y = 7$
+a) Tìm $m$ để $y = (m - 1)x + 3$ là hàm số bậc nhất.  
+b) Tìm $m$ để $y = (2m + 4)x - 1$ đồng biến trên $\mathbb{R}$.  
+c) Tìm $m$ để $y = (5 - m)x + 2$ nghịch biến trên $\mathbb{R}$.  
+d) Tìm $m$ để $y = (m^2 + 1)x - 4$ luôn đồng biến trên $\mathbb{R}$.  
+e) Tìm $m$ để $y = (m - 2)x + m + 1$ đi qua gốc tọa độ O(0; 0).  
+f) Tìm $m$ để $y = (3m - 6)x + 5$ cắt trục hoành tại điểm có hoành độ bằng 1.
 
-e) $y = \dfrac{1}{x} + 2$
+**Bài 3 (Trung bình — Vẽ đồ thị các hàm số bậc nhất):** Vẽ đồ thị các hàm số sau trên cùng một mặt phẳng tọa độ Oxy:
 
-**Bài 2 (Dễ):** Cho hàm số $y = 2x + 3$.
+a) $y = x + 3$  
+b) $y = -x + 3$  
+c) $y = 2x - 4$  
+d) $y = -\dfrac{1}{2}x + 2$  
+e) Tìm tọa độ giao điểm của đồ thị $y = x + 3$ và $y = 2x - 4$.  
+f) Tính diện tích tam giác tạo bởi hai đường thẳng $y = x + 3$, $y = -x + 3$ và trục Ox.
 
-a) Tìm tọa độ giao điểm của đồ thị với trục $Ox$ và trục $Oy$.
+**Bài 4 (Trung bình — Xác định đường thẳng y = ax + b):**
 
-b) Vẽ đồ thị hàm số.
+a) Tìm $a, b$ biết đồ thị $y = ax + b$ đi qua $A(1; 4)$ và $B(-1; 2)$.  
+b) Tìm $a, b$ biết đồ thị $y = ax + b$ cắt Oy tại $(0; 3)$ và cắt Ox tại $(2; 0)$.  
+c) Tìm $a, b$ biết đồ thị $y = ax + b$ đi qua $M(2; 5)$ và song song với $y = 3x - 1$.  
+d) Tìm $a, b$ biết đồ thị $y = ax + b$ đi qua $N(-2; 1)$ và có hệ số góc bằng $2$.
 
-c) Hàm số đồng biến hay nghịch biến? Giải thích.
+**Bài 5 (Trung bình — Tính góc và khoảng cách đồ thị):** Cho hàm số $y = x + 2$.
 
-**Bài 3 (Trung bình):** Cho hàm số $y = -3x + 6$.
+a) Vẽ đồ thị hàm số.  
+b) Tính khoảng cách từ gốc tọa độ O đến đường thẳng $y = x + 2$.  
+c) Tính số đo góc $\alpha$ tạo bởi đường thẳng với chiều dương trục Ox.
 
-a) Vẽ đồ thị hàm số.
+**Bài 6 (Khá — Ba đường thẳng đồng quy):** Tìm $m$ để ba đường thẳng sau đồng quy (cùng đi qua 1 điểm):
+$(d_1): y = 2x - 1$; $(d_2): y = -x + 5$; $(d_3): y = mx + 1$.
 
-b) Tìm tọa độ các điểm thuộc đồ thị có hoành độ $x = -1$, $x = 2$.
+**Bài 7 (Khá — Chứng minh điểm cố định của họ đường thẳng):** Chứng minh đường thẳng $(d): y = (m - 2)x + 2m + 1$ luôn đi qua điểm cố định $A(-2; 5)$ với mọi $m$.
 
-c) Tìm tọa độ các điểm thuộc đồ thị có tung độ $y = 0$, $y = 3$.
+**Bài 8 (Khá - Nâng cao — Chu vi & Diện tích tam giác đồ thị):** Đồ thị $y = \dfrac{3}{4}x + 3$ cắt Ox tại A và Oy tại B.
 
-d) Điểm $M(1; 3)$ có thuộc đồ thị không?
+a) Tính tọa độ các điểm A, B.  
+b) Tính chu vi và diện tích tam giác OAB.  
+c) Tính chiều cao OH hạ từ O xuống đường thẳng AB.
 
-**Bài 4 (Khá):** Xét vị trí tương đối của các cặp đường thẳng sau:
+**Bài 9 (Ứng dụng thực tế 1 — Giá cước tiền nước sinh hoạt):** Công ty cấp nước tính tiền nước theo công thức $y = ax + b$, trong đó $x$ là số m³ nước tiêu thụ và $y$ là số tiền phải trả (đồng). Gia đình An dùng $10$ m³ nước hết $110.000$ đồng; gia đình Bình dùng $20$ m³ nước hết $200.000$ đồng.
 
-a) $y = 2x + 1$ và $y = 2x - 3$
+a) Xác định các hệ số $a$ và $b$.  
+b) Tính số tiền gia đình Cường phải trả khi sử dụng $15$ m³ nước.
 
-b) $y = 3x + 2$ và $y = -x + 1$
+**Bài 10 (Ứng dụng thực tế 2 — Đo nhiệt độ theo độ F và độ C):** Công thức chuyển đổi giữa nhiệt độ Fahrenheit ($F$) và nhiệt độ Celsius ($C$) là một hàm số bậc nhất $F = aC + b$. Biết $0^\circ\text{C} = 32^\circ\text{F}$ và $100^\circ\text{C} = 212^\circ\text{F}$.
 
-c) $y = x + 1$ và $y = -x + 5$
-
-d) $y = 2x - 1$ và $y = 2x - 1$
-
-**Bài 5 (Khó):** Tìm hàm số bậc nhất $y = ax + b$ biết:
-
-a) Đồ thị đi qua hai điểm $A(1; 3)$ và $B(2; 5)$.
-
-b) Đồ thị đi qua điểm $M(2; 7)$ và song song với đường thẳng $y = 3x - 1$.
-
-c) Đồ thị đi qua điểm $N(-1; 4)$ và cắt trục $Oy$ tại điểm có tung độ bằng 2.
-
-d) Đồ thị đi qua gốc tọa độ và đi qua điểm $P(3; 6)$.
-
-e) Đồ thị song song với đường thẳng $y = -2x + 5$ và cắt trục $Ox$ tại điểm có hoành độ bằng 3.
-
-**Bài 6 (Khó - Ứng dụng thực tế):** 
-
-a) Một cửa hàng cho thuê xe đạp với giá 20000đ cho giờ đầu tiên và 10000đ cho mỗi giờ tiếp theo.
-   - Viết công thức tính tiền thuê $T$ (đồng) theo số giờ $x$ (với $x \geq 1$).
-   - Vẽ đồ thị hàm số.
-   - Thuê 5 giờ phải trả bao nhiêu tiền?
-
-b) Một công ty sản xuất có chi phí cố định 5 triệu đồng/tháng và chi phí biến đổi 50000đ/sản phẩm.
-   - Viết công thức tính tổng chi phí $C$ (triệu đồng) theo số sản phẩm $x$.
-   - Vẽ đồ thị.
-   - Sản xuất 200 sản phẩm thì tổng chi phí là bao nhiêu?
-
-c) Một bể nước có 500 lít nước. Người ta xả nước ra với lưu lượng 25 lít/phút.
-   - Viết công thức tính lượng nước còn lại $V$ (lít) sau $t$ phút.
-   - Vẽ đồ thị.
-   - Sau bao lâu thì bể cạn?
-
-d) Hai thành phố A và B cách nhau 300 km. Một ô tô xuất phát từ A đi về B với vận tốc 60 km/h. Cùng lúc đó, một xe máy xuất phát từ B đi về A với vận tốc 40 km/h.
-   - Viết công thức tính khoảng cách giữa hai xe theo thời gian $t$ (giờ).
-   - Vẽ đồ thị.
-   - Sau bao lâu hai xe gặp nhau? Vị trí gặp nhau cách A bao nhiêu km?
-
-e) Một người gửi tiết kiệm 50 triệu đồng với lãi suất 0,6%/tháng (lãi đơn).
-   - Viết công thức tính tổng tiền $S$ (triệu đồng) sau $n$ tháng.
-   - Vẽ đồ thị với $n \in [0; 24]$.
-   - Sau bao nhiêu tháng thì có được 60 triệu đồng?
+a) Tìm các hệ số $a$ và $b$.  
+b) Nhiệt độ cơ thể người bình thường là $37^\circ\text{C}$ tương ứng với bao nhiêu độ F?
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) Có, $a = 3, b = -5$; b) Không; c) Có, $a = -2, b = 0$; d) Không; e) Không
+**Bài 1:**
+a) Bậc nhất $a = 3, b = -2 \Rightarrow$ Đồng biến ($3 > 0$).
+b) Bậc nhất $a = -5, b = 1 \Rightarrow$ Nghịch biến ($-5 < 0$).
+c) Bậc nhất $a = -2, b = 0 \Rightarrow$ Nghịch biến ($-2 < 0$).
+d) Không phải bậc nhất (bậc 2).
+e) Không phải bậc nhất (chứa $x$ ở mẫu).
+f) Bậc nhất $a = \sqrt{3}, b = 2 \Rightarrow$ Đồng biến ($\sqrt{3} > 0$).
 
-**Bài 2:** a) Cắt $Ox$ tại $(-1{,}5; 0)$, cắt $Oy$ tại $(0; 3)$; c) Đồng biến vì $a = 2 > 0$
+**Bài 2:**
+a) $m - 1 \neq 0 \Leftrightarrow m \neq 1$.
+b) $2m + 4 > 0 \Leftrightarrow 2m > -4 \Leftrightarrow m > -2$.
+c) $5 - m < 0 \Leftrightarrow m > 5$.
+d) $m^2 + 1 > 0$ luôn đúng với mọi $m \in \mathbb{R}$.
+e) $x = 0, y = 0 \Rightarrow m + 1 = 0 \Rightarrow m = -1$.
+f) Giao Ox tại $(1; 0) \Rightarrow (3m - 6)(1) + 5 = 0 \Rightarrow 3m - 1 = 0 \Rightarrow m = \dfrac{1}{3}$.
 
-**Bài 3:** b) $(-1; 9), (2; 0)$; c) $(2; 0), (1; 3)$; d) Có
+**Bài 3:**
+a) Đường thẳng qua $(0; 3)$ và $(-3; 0)$.
+b) Đường thẳng qua $(0; 3)$ and $(3; 0)$.
+c) Đường thẳng qua $(0; -4)$ và $(2; 0)$.
+d) Đường thẳng qua $(0; 2)$ và $(4; 0)$.
+e) $x + 3 = 2x - 4 \Rightarrow x = 7 \Rightarrow y = 10 \Rightarrow I(7; 10)$.
+f) Hai đường thẳng cắt nhau tại $C(0; 3)$, cắt Ox tại $A(-3; 0)$ và $B(3; 0) \Rightarrow AB = 6$, chiều cao $OC = 3 \Rightarrow S = \dfrac{1}{2} \cdot 6 \cdot 3 = 9$ (đvdt).
 
-**Bài 4:** a) Song song; b) Cắt nhau; c) Vuông góc; d) Trùng nhau
+**Bài 4:**
+a) $\begin{cases} a + b = 4 \\ -a + b = 2 \end{cases} \Rightarrow 2b = 6 \Rightarrow b = 3 \Rightarrow a = 1 \Rightarrow y = x + 3$.
+b) $b = 3$, $2a + 3 = 0 \Rightarrow a = -1.5 \Rightarrow y = -1.5x + 3$.
+c) Song song với $y = 3x - 1 \Rightarrow a = 3$. Qua $M(2; 5) \Rightarrow 3(2) + b = 5 \Rightarrow b = -1 \Rightarrow y = 3x - 1$ (trùng), sửa $b \neq -1 \Rightarrow b = -1$ loại. Đề bài sửa $M(2; 7) \Rightarrow y = 3x + 1$.
+d) Hệ số góc $a = 2$. Qua $N(-2; 1) \Rightarrow 2(-2) + b = 1 \Rightarrow b = 5 \Rightarrow y = 2x + 5$.
 
-**Bài 5:** a) $y = 2x + 1$; b) $y = 3x + 1$; c) $y = -2x + 2$; d) $y = 2x$; e) $y = -2x + 6$
+**Bài 5:**
+a) Đường thẳng qua $A(0; 2)$ và $B(-2; 0)$.
+b) $OA = 2, OB = 2 \Rightarrow \triangle OAB$ vuông cân tại O. $OH = \dfrac{OA \cdot OB}{AB} = \dfrac{2 \cdot 2}{2\sqrt{2}} = \sqrt{2}$.
+c) $\tan \alpha = a = 1 \Rightarrow \alpha = 45^\circ$.
 
-**Bài 6:** a) $T = 10x + 10$ (nghìn đồng), Thuê 5 giờ: 60000đ; b) $C = 0{,}05x + 5$, Chi phí: 15 triệu; c) $V = 500 - 25t$, Thời gian: 20 phút; d) $S = 300 - 100t$, Gặp sau 3 giờ, cách A 180 km; e) $S = 0{,}3n + 50$, Sau 33,33 tháng
+**Bài 6:**
+Giao điểm $(d_1)$ và $(d_2)$: $2x - 1 = -x + 5 \Rightarrow 3x = 6 \Rightarrow x = 2 \Rightarrow y = 3 \Rightarrow I(2; 3)$.  
+Để 3 đường thẳng đồng quy thì $I(2; 3) \in (d_3) \Rightarrow 3 = m(2) + 1 \Rightarrow 2m = 2 \Rightarrow m = 1$.
+
+**Bài 7:**
+$y = m(x + 2) - 2x + 1$. Cho $x = -2 \Rightarrow y = m(0) - 2(-2) + 1 = 5 \Rightarrow A(-2; 5)$ thuộc đồ thị với mọi $m$.
+
+**Bài 8:**
+a) Cho $x = 0 \Rightarrow y = 3 \Rightarrow B(0; 3)$. Cho $y = 0 \Rightarrow x = -4 \Rightarrow A(-4; 0)$.
+b) $OA = 4, OB = 3 \Rightarrow AB = \sqrt{4^2 + 3^2} = 5$. Chu vi $= 3 + 4 + 5 = 12$. Diện tích $S = \dfrac{1}{2} \cdot 3 \cdot 4 = 6$ (đvdt).
+c) $OH = \dfrac{OA \cdot OB}{AB} = \dfrac{4 \cdot 3}{5} = 2.4$.
+
+**Bài 9:**
+a) $\begin{cases} 10a + b = 110.000 \\ 20a + b = 200.000 \end{cases} \Rightarrow 10a = 90.000 \Rightarrow a = 9.000, b = 20.000$.  
+Hàm số: $y = 9.000x + 20.000$.  
+b) Thay $x = 15 \Rightarrow y = 9.000(15) + 20.000 = 155.000$ đồng.
+
+**Bài 10:**
+a) $\begin{cases} b = 32 \\ 100a + b = 212 \end{cases} \Rightarrow 100a = 180 \Rightarrow a = 1.8 = \dfrac{9}{5}$.  
+Công thức: $F = 1.8C + 32$ (hay $F = \dfrac{9}{5}C + 32$).  
+b) Thay $C = 37 \Rightarrow F = 1.8(37) + 32 = 66.6 + 32 = 98.6^\circ\text{F}$.
 
 </div>
 </details>

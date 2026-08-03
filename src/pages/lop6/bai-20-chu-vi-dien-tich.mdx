@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import ChuViDienTichInteractive from '../../components/interactive/ChuViDienTichInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Công thức chu vi hình chữ nhật là:",
@@ -24,7 +26,7 @@ export const quizData = [
     option_c: "$P = a + b$",
     option_d: "$P = a \\times b$",
     correct_option: "A",
-    explanation: "Chu vi hình chữ nhật = 2 × (chiều dài + chiều rộng).",
+    explanation: "Chu vi hình chữ nhật = $2 \times$ (chiều dài + chiều rộng).",
     difficulty_level: "easy",
     is_dynamic: false,
   },
@@ -36,22 +38,83 @@ export const quizData = [
     option_c: "$S = a + b$",
     option_d: "$S = 4a$",
     correct_option: "A",
-    explanation: "Diện tích hình chữ nhật = chiều dài × chiều rộng.",
+    explanation: "Diện tích hình chữ nhật = chiều dài $\times$ chiều rộng.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Chu vi hình vuông cạnh 8 cm là:",
+    question: "Chu vi hình vuông cạnh $8$ cm là:",
     option_a: "$32$ cm",
     option_b: "$64$ cm",
     option_c: "$16$ cm",
     option_d: "$24$ cm",
     correct_option: "A",
-    explanation: "Chu vi = 4 × 8 = 32 cm.",
+    explanation: "Chu vi = $4 \times 8 = 32$ cm.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Diện tích hình vuông cạnh $6$ cm là:",
+    option_a: "$36$ cm²",
+    option_b: "$24$ cm²",
+    option_c: "$12$ cm²",
+    option_d: "$18$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích = $6 \times 6 = 36$ cm².",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chu vi hình chữ nhật chiều dài $12$ cm, chiều rộng $8$ cm là:",
+    option_a: "$40$ cm",
+    option_b: "$96$ cm",
+    option_c: "$20$ cm",
+    option_d: "$60$ cm",
+    correct_option: "A",
+    explanation: "Chu vi = $2 \times (12 + 8) = 40$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình chữ nhật chiều dài $15$ cm, chiều rộng $9$ cm là:",
+    option_a: "$135$ cm²",
+    option_b: "$48$ cm²",
+    option_c: "$24$ cm²",
+    option_d: "$90$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích = $15 \times 9 = 135$ cm².",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức diện tích hình thoi là:",
+    option_a: "$S = \\frac{d_1 \\times d_2}{2}$",
+    option_b: "$S = a^2$",
+    option_c: "$S = a \\times b$",
+    option_d: "$S = 4a$",
+    correct_option: "A",
+    explanation: "Diện tích hình thoi = $(d_1 \times d_2) : 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích hình bình hành đáy $10$ cm, chiều cao $6$ cm là:",
+    option_a: "$60$ cm²",
+    option_b: "$32$ cm²",
+    option_c: "$16$ cm²",
+    option_d: "$40$ cm²",
+    correct_option: "A",
+    explanation: "Diện tích = $10 \times 6 = 60$ cm².",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  // ─── Phần 2: MSQ (2 câu) ───────────────────────────────────────────────────
   {
     type: "msq",
     question: "Những công thức nào đúng?",
@@ -60,52 +123,37 @@ export const quizData = [
     option_c: "Chu vi hình bình hành = $2(a + b)$",
     option_d: "Diện tích hình thoi = $a^2$",
     correct_option: "A,B,C",
-    explanation: "A, B, C đều đúng. D sai vì diện tích hình thoi = (d₁ × d₂)/2.",
+    explanation: "A, B, C đều đúng. D sai vì diện tích hình thoi = $(d_1 \times d_2)/2$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Diện tích hình vuông cạnh 6 cm là:",
-    option_a: "$36$ cm²",
-    option_b: "$24$ cm²",
-    option_c: "$12$ cm²",
-    option_d: "$18$ cm²",
-    correct_option: "A",
-    explanation: "Diện tích = 6 × 6 = 36 cm².",
+    type: "msq",
+    question: "Những hình nào có chu vi bằng $4a$ (với $a$ là cạnh)?",
+    option_a: "Hình vuông",
+    option_b: "Hình thoi",
+    option_c: "Hình chữ nhật",
+    option_d: "Tam giác đều",
+    correct_option: "A,B",
+    explanation: "Hình vuông và hình thoi đều có chu vi $= 4a$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Hình chữ nhật chiều dài $10$ cm, chiều rộng $5$ cm. Diện tích là bao nhiêu cm²?",
+    correct_option: "50",
+    explanation: "Diện tích = $10 \times 5 = 50$ cm².",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Hình chữ nhật chiều dài 10 cm, chiều rộng 5 cm. Diện tích là bao nhiêu cm²?",
-    correct_option: "50",
-    explanation: "Diện tích = 10 × 5 = 50 cm².",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Chu vi hình chữ nhật chiều dài 12 cm, chiều rộng 8 cm là:",
-    option_a: "$40$ cm",
-    option_b: "$96$ cm",
-    option_c: "$20$ cm",
-    option_d: "$60$ cm",
-    correct_option: "A",
-    explanation: "Chu vi = $2 \\times (12 + 8) = 40$ cm.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Diện tích hình chữ nhật chiều dài 15 cm, chiều rộng 9 cm là:",
-    option_a: "$135$ cm²",
-    option_b: "$48$ cm²",
-    option_c: "$24$ cm²",
-    option_d: "$90$ cm²",
-    correct_option: "A",
-    explanation: "Diện tích = $15 \\times 9 = 135$ cm².",
-    difficulty_level: "easy",
+    question: "Diện tích hình thoi có hai đường chéo $12$ cm và $8$ cm là bao nhiêu cm²?",
+    correct_option: "48",
+    explanation: "Diện tích = $(12 \times 8) : 2 = 48$ cm².",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
 ];
@@ -362,7 +410,9 @@ Một bức tường hình chữ nhật dài 10 m, cao 3 m. Nếu sơn bức tư
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<ChuViDienTichInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -405,6 +455,30 @@ d) Số viên gạch: $1500 : 1 = 1500$ viên
 
 </div>
 
+**📝 Bài toán 3:** Một phòng học hình chữ nhật dài $8$ m, rộng $6$ m.
+
+a) Tính chu vi phòng học.
+
+b) Tính diện tích phòng học.
+
+c) Nếu lát sàn bằng gạch hình vuông cạnh $0,5$ m, mỗi viên giá $30.000$ đồng, tổng chi phí là bao nhiêu?
+
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi: $P = 2 \times (8 + 6) = 28$ m
+
+b) Diện tích: $S = 8 \times 6 = 48$ m²
+
+c) Diện tích mỗi viên gạch: $0,5 \times 0,5 = 0,25$ m²
+
+Số viên gạch: $48 : 0,25 = 192$ viên
+
+Tổng chi phí: $192 \times 30.000 = 5.760.000$ đồng
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -419,83 +493,84 @@ d) Số viên gạch: $1500 : 1 = 1500$ viên
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Tính chu vi và diện tích hình chữ nhật:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) Chiều dài 16 cm, chiều rộng 10 cm
+**Bài 1 (Dễ - Nhận biết):** Viết công thức chu vi và diện tích hình chữ nhật.
 
-b) Chiều dài 24 cm, chiều rộng 18 cm
+**Bài 2 (Dễ - Nhận biết):** Viết công thức chu vi và diện tích hình vuông.
 
-c) Chiều dài 30 cm, chiều rộng 20 cm
+**Bài 3 (Dễ - Tính toán):** Tính chu vi hình chữ nhật dài $16$ cm, rộng $10$ cm.
 
-d) Chiều dài 40 cm, chiều rộng 25 cm
+**Bài 4 (Dễ - Tính toán):** Tính diện tích hình vuông cạnh $9$ cm.
 
-**Bài 2:** Tính chu vi và diện tích hình vuông:
+**Bài 5 (Thông hiểu):** Tính diện tích hình thoi có hai đường chéo $10$ cm và $8$ cm.
 
-a) Cạnh 9 cm
+**Bài 6 (Thông hiểu):** Tính diện tích hình bình hành đáy $12$ cm, chiều cao $8$ cm.
 
-b) Cạnh 12 cm
+**Bài 7 (Thông hiểu):** Tính diện tích hình thang đáy lớn $14$ cm, đáy nhỏ $10$ cm, chiều cao $6$ cm.
 
-c) Cạnh 15 cm
+**Bài 8 (Vận dụng):** Một mảnh đất hình chữ nhật dài $60$ m, rộng $40$ m. Tính chu vi và diện tích.
 
-d) Cạnh 20 cm
+**Bài 9 (Vận dụng):** Tính chi phí lát gạch hình vuông cạnh $0,5$ m cho phòng $8$ m $\times$ $6$ m, mỗi viên giá $30.000$ đồng.
 
-**Bài 3:** Tính diện tích hình thoi:
+**Bài 10 (Vận dụng cao):** Cho hình thoi có chu vi $40$ cm và một đường chéo $12$ cm. Tính diện tích hình thoi.
 
-a) Đường chéo 10 cm, đường chéo 8 cm
+</div>
 
-b) Đường chéo 14 cm, đường chéo 10 cm
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-c) Đường chéo 16 cm, đường chéo 12 cm
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-d) Đường chéo 20 cm, đường chéo 15 cm
+**Bài 1:** Chu vi: $P = 2(a + b)$. Diện tích: $S = a \times b$.
 
-**Bài 4:** Tính diện tích hình bình hành:
+---
 
-a) Cạnh đáy 12 cm, chiều cao 8 cm
+**Bài 2:** Chu vi: $P = 4a$. Diện tích: $S = a^2$.
 
-b) Cạnh đáy 15 cm, chiều cao 10 cm
+---
 
-c) Cạnh đáy 18 cm, chiều cao 12 cm
+**Bài 3:** Chu vi $= 2 \times (16 + 10) = 52$ cm.
 
-d) Cạnh đáy 20 cm, chiều cao 15 cm
+---
 
-**Bài 5:** Tính diện tích hình thang:
+**Bài 4:** Diện tích $= 9^2 = 81$ cm².
 
-a) Đáy lớn 14 cm, đáy nhỏ 10 cm, chiều cao 6 cm
+---
 
-b) Đáy lớn 18 cm, đáy nhỏ 12 cm, chiều cao 8 cm
+**Bài 5:** Diện tích $= (10 \times 8) : 2 = 40$ cm².
 
-c) Đáy lớn 20 cm, đáy nhỏ 14 cm, chiều cao 10 cm
+---
 
-d) Đáy lớn 24 cm, đáy nhỏ 16 cm, chiều cao 12 cm
+**Bài 6:** Diện tích $= 12 \times 8 = 96$ cm².
 
-**Bài 6 (Thực tế):** Một mảnh đất hình chữ nhật dài 60 m, rộng 40 m.
+---
 
-a) Tính chu vi mảnh đất.
+**Bài 7:** Diện tích $= (14 + 10) \times 6 : 2 = 72$ cm².
 
-b) Tính diện tích mảnh đất.
+---
 
-c) Nếu trồng cây cách nhau 4 m dọc theo chu vi, cần bao nhiêu cây?
+**Bài 8:** Chu vi $= 2 \times (60 + 40) = 200$ m. Diện tích $= 60 \times 40 = 2400$ m².
 
-d) Nếu lát gạch hình vuông cạnh 2 m, cần bao nhiêu viên gạch?
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 9:**
+- Diện tích phòng $= 8 \times 6 = 48$ m²
+- Diện tích mỗi viên gạch $= 0,5 \times 0,5 = 0,25$ m²
+- Số viên gạch $= 48 : 0,25 = 192$ viên
+- Tổng chi phí $= 192 \times 30.000 = 5.760.000$ đồng
 
-**Bài 1:** a) $P = 52$ cm, $S = 160$ cm²; b) $P = 84$ cm, $S = 432$ cm²; c) $P = 100$ cm, $S = 600$ cm²; d) $P = 130$ cm, $S = 1000$ cm²
+---
 
-**Bài 2:** a) $P = 36$ cm, $S = 81$ cm²; b) $P = 48$ cm, $S = 144$ cm²; c) $P = 60$ cm, $S = 225$ cm²; d) $P = 80$ cm, $S = 400$ cm²
-
-**Bài 3:** a) $40$ cm²; b) $70$ cm²; c) $96$ cm²; d) $150$ cm²
-
-**Bài 4:** a) $96$ cm²; b) $150$ cm²; c) $216$ cm²; d) $300$ cm²
-
-**Bài 5:** a) $72$ cm²; b) $120$ cm²; c) $170$ cm²; d) $240$ cm²
-
-**Bài 6:** a) $200$ m; b) $2400$ m²; c) $50$ cây; d) $600$ viên
+**Bài 10:**
+- Cạnh hình thoi $= 40 : 4 = 10$ cm
+- Gọi đường chéo còn lại là $d_2$. Ta có: $10^2 = (\frac{12}{2})^2 + (\frac{d_2}{2})^2$
+- $100 = 36 + \frac{d_2^2}{4} \Rightarrow \frac{d_2^2}{4} = 64 \Rightarrow d_2^2 = 256 \Rightarrow d_2 = 16$ cm
+- Diện tích $= (12 \times 16) : 2 = 96$ cm²
 
 </div>
 </details>

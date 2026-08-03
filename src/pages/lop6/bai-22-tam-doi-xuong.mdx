@@ -15,8 +15,10 @@ import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 
 import QuizSession from '../../components/ui/QuizSession';
+import TamDoiXungInteractive from '../../components/interactive/TamDoiXungInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Hình nào dưới đây có tâm đối xứng?",
@@ -66,18 +68,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những hình nào sau đây có tâm đối xứng?",
-    option_a: "Hình thoi",
-    option_b: "Hình vuông",
-    option_c: "Hình tam giác đều",
-    option_d: "Hình tròn",
-    correct_option: "A,B,D",
-    explanation: "Hình thoi, hình vuông, hình tròn đều có tâm đối xứng. Tam giác đều không có tâm đối xứng.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Hình thoi có tâm đối xứng là:",
     option_a: "Trung điểm một cạnh",
@@ -97,19 +87,7 @@ export const quizData = [
     option_c: "Hình vuông",
     option_d: "Hình tam giác đều",
     correct_option: "C",
-    explanation: "Hình vuông vừa có tâm đối xứng (giao điểm hai đường chéo), vừa có 4 trục đối xứng.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Chữ cái nào sau đây có tâm đối xứng?",
-    option_a: "Chữ A",
-    option_b: "Chữ N",
-    option_c: "Chữ S",
-    option_d: "Chữ V",
-    correct_option: "C",
-    explanation: "Chữ S có tâm đối xứng là điểm giữa của chữ.",
+    explanation: "Hình vuông vừa có tâm đối xứng, vừa có 4 trục đối xứng.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -136,7 +114,49 @@ export const quizData = [
     explanation: "Hình ngũ giác đều không có tâm đối xứng.",
     difficulty_level: "medium",
     is_dynamic: false,
-  }
+  },
+  // ─── Phần 2: MSQ (2 câu) ───────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những hình nào sau đây có tâm đối xứng?",
+    option_a: "Hình thoi",
+    option_b: "Hình vuông",
+    option_c: "Hình tam giác đều",
+    option_d: "Hình tròn",
+    correct_option: "A,B,D",
+    explanation: "Hình thoi, hình vuông, hình tròn đều có tâm đối xứng. Tam giác đều không có.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những chữ cái nào sau đây có tâm đối xứng?",
+    option_a: "S",
+    option_b: "N",
+    option_c: "O",
+    option_d: "Z",
+    correct_option: "A,B,C,D",
+    explanation: "Chữ S, N, O, Z đều có tâm đối xứng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Hình tròn có tâm đối xứng không? Nếu có, tâm đối xứng là gì?",
+    correct_option: "Có, là tâm đường tròn",
+    explanation: "Hình tròn có tâm đối xứng là tâm của đường tròn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho hình bình hành ABCD có tâm đối xứng O. O nằm ở đâu?",
+    correct_option: "Giao điểm hai đường chéo AC và BD",
+    explanation: "Tâm đối xứng của hình bình hành là giao điểm hai đường chéo.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong title="Khởi động">
@@ -324,6 +344,12 @@ Hình chữ nhật $ABCD$ có tâm đối xứng là giao điểm $O$ của hai 
 
 <LuyenTap title="Luyện tập">
 
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<TamDoiXungInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
+
 **Bài 1:** Đoạn thẳng có tâm đối xứng không? Là điểm nào?
 
 <div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
@@ -439,7 +465,22 @@ Các hình vừa có trục đối xứng, vừa có tâm đối xứng:
 - **Hình vuông**: 4 trục đối xứng + tâm đối xứng  
 - **Hình chữ nhật**: 2 trục đối xứng + tâm đối xứng
 - **Hình thoi**: 2 trục đối xứng + tâm đối xứng
-- **Hình bình hành**: 0 trục đối xứng + tâm đối xứng
+
+</div>
+
+**📝 Bài toán 3:** Cho hình bình hành ABCD có $AB = 8$ cm, $BC = 5$ cm.
+
+a) Vẽ hình bình hành và xác định tâm đối xứng O.
+
+b) Tâm O nằm ở vị trí nào so với các đỉnh?
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Hình bình hành ABCD có tâm đối xứng O là giao điểm của hai đường chéo AC và BD.
+
+b) Tâm O nằm ở trung điểm mỗi đường chéo: $OA = OC$ và $OB = OD$.
 
 </div>
 
@@ -483,34 +524,83 @@ Các hình vừa có trục đối xứng, vừa có tâm đối xứng:
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Vẽ hình bình hành ABCD và xác định tâm đối xứng của nó.
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-**Bài 2:** Trong các hình sau, hình nào có tâm đối xứng: hình tròn, hình thoi, tam giác đều, hình chữ nhật, hình bình hành?
+**Bài 1 (Dễ - Nhận biết):** Đoạn thẳng có tâm đối xứng không? Nếu có, đó là điểm nào?
 
-**Bài 3:** Chứng minh rằng đoạn thẳng có tâm đối xứng là trung điểm của nó.
+**Bài 2 (Dễ - Nhận biết):** Hình tròn có tâm đối xứng không? Đó là điểm nào?
 
-**Bài 4:** Hình nào vừa có trục đối xứng, vừa có tâm đối xứng? Cho ví dụ.
+**Bài 3 (Dễ - Nhận biết):** Hình bình hành có tâm đối xứng không? Đó là điểm nào?
 
-**Bài 5:** Cho hình thoi ABCD có đường chéo AC = 8cm, BD = 6cm. Tìm tâm đối xứng và vẽ hình minh họa.
+**Bài 4 (Dễ - Nhận biết):** Chữ "S" có tâm đối xứng không? Chữ "A" có không?
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 5 (Thông hiểu):** Cho biết hình nào có tâm đối xứng: hình tam giác đều, hình thoi, hình thang cân, hình chữ nhật?
 
-**Bài 1:** Tâm đối xứng là giao điểm O của hai đường chéo AC và BD
+**Bài 6 (Thông hiểu):** Hình nào vừa có tâm đối xứng vừa có trục đối xứng? Cho 2 ví dụ.
 
-**Bài 2:** Có tâm: hình tròn, hình thoi, hình chữ nhật, hình bình hành; Không có: tam giác đều
+**Bài 7 (Thông hiểu):** So sánh trục đối xứng và tâm đối xứng.
 
-**Bài 3:** Khi quay đoạn thẳng AB 180° quanh trung điểm O, điểm A đến vị trí B và ngược lại
+**Bài 8 (Vận dụng):** Vẽ hình bình hành ABCD và xác định tâm đối xứng.
 
-**Bài 4:** Hình tròn, hình vuông, hình chữ nhật, hình thoi
+**Bài 9 (Vận dụng):** Tìm 3 hình ảnh trong thực tế có tâm đối xứng.
 
-**Bài 5:** Tâm O cách mỗi đỉnh 4cm theo AC và 3cm theo BD
+**Bài 10 (Vận dụng cao):** Chứng minh rằng hình thoi có tâm đối xứng là giao điểm hai đường chéo.
+
+</div>
+
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
+
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
+
+**Bài 1:** Có. Tâm đối xứng của đoạn thẳng là trung điểm của nó.
+
+---
+
+**Bài 2:** Có. Tâm đối xứng của hình tròn là tâm của đường tròn.
+
+---
+
+**Bài 3:** Có. Tâm đối xứng của hình bình hành là giao điểm hai đường chéo.
+
+---
+
+**Bài 4:** Chữ "S" có tâm đối xứng. Chữ "A" không có tâm đối xứng.
+
+---
+
+**Bài 5:** Có tâm đối xứng: hình thoi, hình chữ nhật. Không có: hình tam giác đều, hình thang cân.
+
+---
+
+**Bài 6:** Ví dụ: hình vuông (4 trục + tâm), hình chữ nhật (2 trục + tâm), hình thoi (2 trục + tâm), hình tròn (vô số trục + tâm).
+
+---
+
+**Bài 7:**
+
+| Trục đối xứng | Tâm đối xứng |
+|---|---|
+| Là đường thẳng | Là điểm |
+| Nhận biết bằng gập giấy | Nhận biết bằng quay 180° |
+| Có thể có nhiều trục | Chỉ có một tâm (nếu có) |
+
+---
+
+**Bài 8:** Vẽ hình bình hành ABCD. Vẽ hai đường chéo AC và BD. Giao điểm O của hai đường chéo chính là tâm đối xứng.
+
+---
+
+**Bài 9:** Ví dụ: hoa văn trang trí, biển báo giao thông, logo thương hiệu, cánh bướm, tòa nhà đối xứng.
+
+---
+
+**Bài 10:** Gọi O là giao điểm hai đường chéo AC và BD của hình thoi ABCD. Vì ABCD là hình thoi nên AC và BD vuông góc và cắt nhau tại trung điểm mỗi đường. Khi quay hình thoi 180° quanh O, A↔C và B↔D nên hình thoi trùng khít với chính nó. Vậy O là tâm đối xứng.
 
 </div>
 </details>
-
-<QuizSession client:load questions={quizData} />
 

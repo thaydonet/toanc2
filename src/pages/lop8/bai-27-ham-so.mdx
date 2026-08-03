@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Bài 27: Khái niệm hàm số và đồ thị của hàm số"
-description: "Khái niệm hàm số, đồ thị hàm số và cách vẽ đồ thị - Toán 8 KNTT Chương 7"
+title: "Bài 27: Khái niệm hàm số và đồ thị hàm số"
+description: "Khái niệm hàm số, biến số, giá trị của hàm số, các cách cho hàm số và đồ thị của hàm số trên mặt phẳng tọa độ Oxy - Toán 8 KNTT Chương 7"
 grade: "Lớp 8"
 chapter: "Chương 7: Phương trình bậc nhất và hàm số bậc nhất"
 currentSlug: "lop8/bai-27-ham-so"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,410 +13,384 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
-import FunctionPlotter from '../../components/interactive/FunctionPlotter';
+import HamSoDoThiInteractive from '../../components/interactive/HamSoDoThiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Cho hàm số $y = 2x + 1$. Khi $x = 3$, giá trị của $y$ là:",
-    option_a: "$y = 7$",
-    option_b: "$y = 5$",
-    option_c: "$y = 6$",
-    option_d: "$y = 8$",
+    question: "Nếu đại lượng $y$ phụ thuộc vào đại lượng thay đổi $x$ sao cho với mỗi giá trị của $x$ ta luôn xác định được duy nhất một giá trị tương ứng của $y$ thì $y$ được gọi là:",
+    option_a: "Hàm số của $x$",
+    option_b: "Biến số của $x$",
+    option_c: "Hằng số",
+    option_d: "Tỉ lệ thuận",
     correct_option: "A",
-    explanation: "$y = 2 \\cdot 3 + 1 = 6 + 1 = 7$.",
+    explanation: "Định nghĩa hàm số.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hàm số nào sau đây **không** phải là hàm số?",
-    option_a: "$y = x^2$",
-    option_b: "$y = 2x + 3$",
-    option_c: "$x = 5$",
-    option_d: "$y = \\dfrac{1}{x}$",
-    correct_option: "C",
-    explanation: "$x = 5$ không phải hàm số vì $x$ không phụ thuộc vào biến.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Đồ thị hàm số $y = 3$ là:",
-    option_a: "Đường thẳng song song với trục $Ox$",
-    option_b: "Đường thẳng song song với trục $Oy$",
-    option_c: "Đường thẳng đi qua gốc tọa độ",
-    option_d: "Đường cong",
+    question: "Cho hàm số $y = f(x) = 3x - 2$. Giá trị của $f(1)$ bằng:",
+    option_a: "$1$",
+    option_b: "$4$",
+    option_c: "$-1$",
+    option_d: "$3$",
     correct_option: "A",
-    explanation: "Hàm số $y = 3$ (hằng số) có đồ thị là đường thẳng song song với $Ox$, cắt $Oy$ tại $(0, 3)$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Cho hàm số $y = -x + 2$. Điểm nào sau đây thuộc đồ thị hàm số?",
-    option_a: "$(1, 1)$",
-    option_b: "$(2, 1)$",
-    option_c: "$(0, 0)$",
-    option_d: "$(1, 2)$",
-    correct_option: "A",
-    explanation: "Thay $x = 1$: $y = -1 + 2 = 1$. Điểm $(1, 1)$ thuộc đồ thị.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Hàm số $y = f(x)$ được gọi là hàm số khi:",
-    option_a: "Với mỗi giá trị của $x$ có duy nhất một giá trị của $y$",
-    option_b: "Với mỗi giá trị của $y$ có duy nhất một giá trị của $x$",
-    option_c: "Có nhiều giá trị $y$ ứng với một giá trị $x$",
-    option_d: "Không có quy luật",
-    correct_option: "A",
-    explanation: "Hàm số: mỗi $x$ cho duy nhất một $y$.",
+    explanation: "$f(1) = 3(1) - 2 = 1$.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tọa độ của gốc tọa độ $O$ trên mặt phẳng Oxy là:",
+    option_a: "$(0; 0)$",
+    option_b: "$(1; 1)$",
+    option_c: "$(0; 1)$",
+    option_d: "$(1; 0)$",
+    correct_option: "A",
+    explanation: "Gốc tọa độ $O(0; 0)$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điểm $M(2; 5)$ có thuộc đồ thị hàm số $y = 2x + 1$ không?",
+    option_a: "Có thuộc",
+    option_b: "Không thuộc",
+    option_c: "Chỉ thuộc khi $x < 0$",
+    option_d: "Chỉ thuộc khi $y < 0$",
+    correct_option: "A",
+    explanation: "Thay $x = 2 \Rightarrow y = 2(2) + 1 = 5$ (trùng với tung độ điểm M).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung độ của điểm $N$ nằm trên đồ thị $y = -2x + 3$ có hoành độ $x = -1$ là:",
+    option_a: "$5$",
+    option_b: "$1$",
+    option_c: "$-5$",
+    option_d: "$-1$",
+    correct_option: "A",
+    explanation: "Thay $x = -1 \Rightarrow y = -2(-1) + 3 = 2 + 3 = 5$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Những điểm nào sau đây thuộc đồ thị hàm số $y = 2x$?",
-    option_a: "$(0, 0)$",
-    option_b: "$(1, 2)$",
-    option_c: "$(2, 4)$",
-    option_d: "$(1, 1)$",
+    question: "Những cách nào sau đây thường được dùng để cho một hàm số?",
+    option_a: "Cho bằng công thức",
+    option_b: "Cho bằng bảng giá trị",
+    option_c: "Cho bằng biểu đồ / đồ thị",
+    option_d: "Cho ngẫu nhiên không có quy luật",
     correct_option: "A,B,C",
-    explanation: "A) $0 = 2 \\cdot 0$ ✓\nB) $2 = 2 \\cdot 1$ ✓\nC) $4 = 2 \\cdot 2$ ✓\nD) $1 \\neq 2 \\cdot 1$ ✗",
-    difficulty_level: "medium",
+    explanation: "Các cách mô tả hàm số chuẩn.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Cho hàm số $y = 5x - 3$. Khi $x = 2$, giá trị của $y$ là bao nhiêu?",
-    correct_option: "7",
-    explanation: "$y = 5 \\cdot 2 - 3 = 10 - 3 = 7$.",
+    question: "Cho hàm số $y = f(x) = x^2 - 1$. Tính giá trị $f(-3)$.",
+    correct_option: "8",
+    explanation: "$f(-3) = (-3)^2 - 1 = 9 - 1 = 8$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trên mặt phẳng tọa độ Oxy, trục nằm ngang Ox được gọi là:",
+    option_a: "Trục hoành",
+    option_b: "Trục tung",
+    option_c: "Gốc tọa độ",
+    option_d: "Đường phân giác",
+    correct_option: "A",
+    explanation: "Trục hoành Ox và Trục tung Oy.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Cho hàm số $y = !a#0!x + !b!$. Khi $x = 1$, giá trị của $y$ là:",
-    option_a: "$!tinh: !a! + !b!!$",
-    option_b: "$!a!$",
-    option_c: "$!b!$",
-    option_d: "$!tinh: !a! - !b!!$",
+    question: "Cho hàm số $y = f(x) = \dfrac{12}{x}$. Giá trị của $x$ để $f(x) = 4$ là:",
+    option_a: "$x = 3$",
+    option_b: "$x = 48$",
+    option_c: "$x = 4$",
+    option_d: "$x = 12$",
     correct_option: "A",
-    explanation: "$y = !a! \\cdot 1 + !b! = !tinh: !a! + !b!!$.",
-    difficulty_level: "easy",
-    is_dynamic: true,
+    explanation: "$\\dfrac{12}{x} = 4 \Rightarrow x = 3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Tập hợp tất cả các điểm biểu diễn cặp số $(x; f(x))$ trên mặt phẳng tọa độ Oxy được gọi là:",
+    option_a: "Đồ thị của hàm số $y = f(x)$",
+    option_b: "Mặt phẳng tọa độ",
+    option_c: "Tập xác định",
+    option_d: "Bảng giá trị",
+    correct_option: "A",
+    explanation: "Định nghĩa đồ thị hàm số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">📊 Mở đầu — Hàm số trong thực tế</h3>
+### 🎯 Khởi động bài học
 
-Hàm số mô tả mối quan hệ giữa các đại lượng trong thực tế:
-
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🚗</div>
-    <strong>Quãng đường</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Xe chạy với vận tốc 60 km/h: $$S = 60t$$</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">💰</div>
-    <strong>Tiền hàng</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Mua $x$ quyển vở, mỗi quyển 5000đ: $$T = 5000x$$</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🌡️</div>
-    <strong>Nhiệt độ</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chuyển đổi Celsius sang Fahrenheit: $$F = 1{,}8C + 32$$</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #e9d5ff;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
-    <strong>Chu vi hình vuông</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cạnh $a$: $$P = 4a$$</p>
-  </div>
-</div>
-
-💬 *Hàm số giúp ta biểu diễn và nghiên cứu mối quan hệ giữa các đại lượng!*
+**Khái niệm Hàm số và Đồ thị** là bước nhảy vọt quan trọng của Toán học: Biến đổi quan hệ giữa hai đại lượng thành hình ảnh trực quan trên mặt phẳng tọa độ Oxy. Hãy cùng tìm hiểu cách biểu diễn hàm số bằng bảng, công thức và đồ thị!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="khai-niem">📖 1. Khái niệm hàm số</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-nghia">
+#### 1. Khái niệm Hàm số & Biến số
 
-**Định nghĩa:** Nếu đại lượng $y$ phụ thuộc vào đại lượng thay đổi $x$ sao cho với mỗi giá trị của $x$ ta luôn xác định được **duy nhất** một giá trị tương ứng của $y$, thì $y$ được gọi là **hàm số** của $x$.
+- Nếu đại lượng $y$ phụ thuộc vào đại lượng thay đổi $x$ sao cho **với mỗi giá trị của $x$ ta luôn xác định được duy nhất một giá trị tương ứng của $y$** thì $y$ được gọi là **hàm số** của $x$, và $x$ được gọi là **biến số**.
+- Ký hiệu: $y = f(x)$, $y = g(x)$,...
+- **Các cách cho hàm số:**
+  1. Cho bằng công thức: $y = 2x + 1$, $y = x^2$,...
+  2. Cho bằng bảng giá trị.
+  3. Cho bằng đồ thị.
 
-Ký hiệu: $y = f(x)$, $y = g(x)$, ...
-
-- $x$ gọi là **biến số** (đối số)
-- $y$ gọi là **giá trị của hàm số** tại $x$
-
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="360" height="150" viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="320" height="110" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="180" y="55" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e40af">HÀM SỐ y = f(x)</text>
+  <text x="180" y="85" text-anchor="middle" font-size="14" fill="#334155">Mỗi x ➔ Xác định DUY NHẤT 1 giá trị y</text>
+  <text x="180" y="110" text-anchor="middle" font-size="14" fill="#059669">Các cách cho: Bảng, Công thức, Đồ thị</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Sơ đồ khái niệm hàm số</em></p>
 </div>
 
-**Ví dụ 1:** Cho hàm số $y = 2x + 1$.
+**Ví dụ 1:** Cho hàm số $y = f(x) = 3x - 1$. Tính $f(0), f(2), f(-1)$.  
+*Lời giải:*  
+- $f(0) = 3(0) - 1 = -1$.  
+- $f(2) = 3(2) - 1 = 5$.  
+- $f(-1) = 3(-1) - 1 = -4$.
 
-| $x$ | $-2$ | $-1$ | $0$ | $1$ | $2$ | $3$ |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| $y = 2x + 1$ | $-3$ | $-1$ | $1$ | $3$ | $5$ | $7$ |
-
-Với mỗi giá trị của $x$, ta có duy nhất một giá trị của $y$.
-
-<div class="box-nhan-xet">
-
-**Lưu ý:**
-- Hàm số có thể cho bởi công thức, bảng, đồ thị, hoặc lời văn.
-- Tập hợp các giá trị của $x$ gọi là **tập xác định** của hàm số.
-
-</div>
-
-<h3 id="do-thi" style="margin-top:2rem;">📈 2. Đồ thị của hàm số</h3>
-
-<div class="box-dinh-nghia">
-
-**Định nghĩa:** Đồ thị của hàm số $y = f(x)$ là tập hợp tất cả các điểm $M(x; y)$ trên mặt phẳng tọa độ $Oxy$ với $x$ thuộc tập xác định và $y = f(x)$.
-
-</div>
-
-**Cách vẽ đồ thị hàm số:**
-
-1. Lập bảng giá trị: Chọn một số giá trị của $x$, tính giá trị tương ứng của $y$
-2. Vẽ các điểm $(x; y)$ trên mặt phẳng tọa độ
-3. Nối các điểm lại (nếu hàm số liên tục)
-
-**Ví dụ 2:** Vẽ đồ thị hàm số $y = x + 1$.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-**Bước 1:** Lập bảng giá trị:
+**Ví dụ 2:** Cho hàm số cho bằng bảng:
 
 | $x$ | $-2$ | $-1$ | $0$ | $1$ | $2$ |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| $y = x + 1$ | $-1$ | $0$ | $1$ | $2$ | $3$ |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| $y$ | $4$ | $1$ | $0$ | $1$ | $4$ |
 
-**Bước 2:** Vẽ các điểm: $(-2; -1)$, $(-1; 0)$, $(0; 1)$, $(1; 2)$, $(2; 3)$
+Hỏi $y$ có phải là hàm số của $x$ không?  
+*Lời giải:* Phải, vì mỗi giá trị của $x$ đều ứng với duy nhất một giá trị của $y$. (Công thức $y = x^2$).
 
-**Bước 3:** Nối các điểm → Đường thẳng
-
-</div>
-
-<h3 id="interactive" style="margin-top:2rem;">🔬 3. Công cụ vẽ đồ thị tương tác</h3>
-
-<p>Thử nghiệm vẽ đồ thị các hàm số khác nhau:</p>
-
-<FunctionPlotter client:load />
-
-<h3 id="ham-hang" style="margin-top:2rem;">📏 4. Hàm số hằng</h3>
-
-<div class="box-dinh-nghia">
-
-**Định nghĩa:** Hàm số hằng là hàm số có dạng $y = c$ (với $c$ là hằng số).
-
-Đồ thị của hàm số hằng $y = c$ là đường thẳng song song với trục $Ox$, cắt trục $Oy$ tại điểm $(0; c)$.
-
-</div>
-
-**Ví dụ 3:** Vẽ đồ thị hàm số $y = 2$.
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Với mọi giá trị của $x$, ta luôn có $y = 2$.
-
-Đồ thị là đường thẳng song song với $Ox$, đi qua điểm $(0; 2)$.
-
-</div>
-
-<h3 id="tinh-chat" style="margin-top:2rem;">📊 5. Tính chất của hàm số</h3>
-
-<div class="box-dinh-ly">
-
-**Hàm số đồng biến:** Hàm số $y = f(x)$ đồng biến trên một khoảng nếu với mọi $x_1 < x_2$ trong khoảng đó thì $f(x_1) < f(x_2)$.
-
-**Hàm số nghịch biến:** Hàm số $y = f(x)$ nghịch biến trên một khoảng nếu với mọi $x_1 < x_2$ trong khoảng đó thì $f(x_1) > f(x_2)$.
-
-</div>
-
-**Ví dụ 4:** Xét tính đồng biến, nghịch biến của hàm số $y = 2x + 1$.
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Chọn $x_1 = 0$, $x_2 = 1$ (với $x_1 < x_2$):
-
-- $f(0) = 2 \cdot 0 + 1 = 1$
-- $f(1) = 2 \cdot 1 + 1 = 3$
-
-Ta có $f(0) < f(1)$ → Hàm số **đồng biến**.
-
-</div>
-
-</KhamPha>
-
-<LuyenTap>
-
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
-
-<QuizSession client:load questions={quizData} />
-
-</LuyenTap>
-
-<VanDung>
-
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
-
-**📝 Bài toán 1 — Chuyển đổi nhiệt độ:**
-
-Công thức chuyển đổi từ độ Celsius ($C$) sang độ Fahrenheit ($F$) là: $F = 1{,}8C + 32$.
-
-a) Tính $F$ khi $C = 0°$, $C = 100°$
-
-b) Vẽ đồ thị hàm số $F = 1{,}8C + 32$
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) 
-- Khi $C = 0°$: $F = 1{,}8 \cdot 0 + 32 = 32°F$
-- Khi $C = 100°$: $F = 1{,}8 \cdot 100 + 32 = 212°F$
-
-b) Lập bảng:
-
-| $C$ | $0$ | $50$ | $100$ |
-|:---:|:---:|:---:|:---:|
-| $F$ | $32$ | $122$ | $212$ |
-
-Vẽ các điểm và nối lại → Đường thẳng
-
-</div>
+**Ví dụ 3:** Cho hàm số $y = f(x) = \dfrac{10}{x}$. Tìm $x$ khi $y = 5$.  
+*Lời giải:* $\dfrac{10}{x} = 5 \Rightarrow x = 2$.
 
 ---
 
-**📝 Bài toán 2 — Cước điện thoại:**
+#### 2. Mặt phẳng tọa độ Oxy & Đồ thị hàm số
 
-Một công ty viễn thông tính cước theo công thức: $T = 1000 + 500n$ (đồng), trong đó $n$ là số phút gọi.
+- **Mặt phẳng tọa độ Oxy** gồm hai trục tọa độ vuông góc: Trục nằm ngang $Ox$ (trục hoành), Trục thẳng đứng $Oy$ (trục tung). Giao điểm $O(0; 0)$ là gốc tọa độ.
+- Mỗi điểm $M$ ứng với cặp số $(x_0; y_0)$: $x_0$ là hoành độ, $y_0$ là tung độ.
+- **Đồ thị của hàm số $y = f(x)$** là tập hợp tất cả các điểm biểu diễn các cặp giá trị tương ứng $(x; f(x))$ trên mặt phẳng tọa độ Oxy.
 
-a) Tính tiền cước khi gọi 10 phút, 20 phút
+**Ví dụ 1:** Biểu diễn các điểm $A(1; 2), B(-2; 3), C(0; -1)$ trên mặt phẳng Oxy.  
+*Lời giải:*  
+- $A(1; 2)$: Từ hoành độ $1$ giống lên tung độ $2$.  
+- $B(-2; 3)$: Từ hoành độ $-2$ giống lên tung độ $3$.  
+- $C(0; -1)$: Nằm trên trục tung Oy tại vị trí $-1$.
 
-b) Nếu trả 6000đ, gọi được bao nhiêu phút?
+**Ví dụ 2:** Điểm $P(3; 8)$ có thuộc đồ thị hàm số $y = 2x + 2$ không?  
+*Lời giải:* Thay $x = 3 \Rightarrow y = 2(3) + 2 = 8$ (trùng với tung độ điểm P) $\Rightarrow$ Điểm P thuộc đồ thị.
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 3:** Cho hàm số $y = 2x$. Vẽ đồ thị hàm số.  
+*Lời giải:* Cho $x = 0 \Rightarrow y = 0 \Rightarrow O(0; 0)$. Cho $x = 1 \Rightarrow y = 2 \Rightarrow A(1; 2)$. Đồ thị là đường thẳng đi qua $O(0; 0)$ và $A(1; 2)$.
 
-**Giải:**
+</KhamPha>
 
-a)
-- Gọi 10 phút: $T = 1000 + 500 \cdot 10 = 6000$ đồng
-- Gọi 20 phút: $T = 1000 + 500 \cdot 20 = 11000$ đồng
+<LuyenTap title="Thực hành tương tác">
 
-b) $1000 + 500n = 6000$
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Khái niệm Hàm số & Đồ thị</h3>
 
-$$500n = 5000$$
-$$n = 10 \text{ phút}$$
+<HamSoDoThiInteractive client:load />
+
+</LuyenTap>
+
+<VanDung title="Các dạng toán & Phương pháp giải">
+
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Tính giá trị của hàm số $f(x_0)$ & Tìm $x$ khi biết $y$**
+**Phương pháp:** Thay $x = x_0$ vào công thức để tính $y$, hoặc cho công thức bằng $y$ để tìm $x$.
+
+</div>
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Kiểm tra một điểm $M(x_0; y_0)$ có thuộc đồ thị hay không**
+**Phương pháp:** Thay $x = x_0$ vào công thức hàm số. Nếu kết quả $y = y_0$ thì điểm $M$ thuộc đồ thị; ngược lại thì không thuộc.
 
 </div>
 
 </VanDung>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Hàm số nhiệt độ theo thời gian):** Nhiệt độ $T$ (°C) tại một trạm khí tượng phụ thuộc vào thời gian $t$ (giờ trong ngày) theo công thức $T(t) = -0.5(t - 14)^2 + 30$.
+
+a) Tính nhiệt độ lúc $14$ giờ và lúc $18$ giờ.  
+b) Nhiệt độ cao nhất trong ngày là bao nhiêu °C và đạt được vào lúc mấy giờ?
+
+**Lời giải:**  
+a) Lúc $14$h: $T(14) = -0.5(0)^2 + 30 = 30$°C.  
+Lúc $18$h: $T(18) = -0.5(18 - 14)^2 + 30 = -0.5(16) + 30 = 22$°C.  
+b) Vì $-0.5(t - 14)^2 \le 0 \Rightarrow T(t) \le 30$. Nhiệt độ cao nhất là $30$°C vào lúc $14$ giờ.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Hàm số**: Mỗi $x$ cho duy nhất một $y$
-- **Ký hiệu**: $y = f(x)$
-- **Đồ thị**: Tập hợp các điểm $(x; y)$ thỏa mãn $y = f(x)$
-- **Hàm hằng**: $y = c$ → Đường thẳng song song $Ox$
-- **Đồng biến**: $x_1 < x_2 \Rightarrow f(x_1) < f(x_2)$
+- **Hàm số**: Mỗi $x$ xác định **duy nhất** một $y$.
+- **Tọa độ**: $M(x_0; y_0)$ với $x_0$ là hoành độ (Ox), $y_0$ là tung độ (Oy).
+- **Thuộc đồ thị**: Thay $x_0$ vào công thức phải ra đúng $y_0$.
 
 </GhiNho>
-
 
 ---
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1 (Dễ):** Cho hàm số $y = 3x - 2$.
+**Bài 1 (Dễ — Tính giá trị của hàm số):**
 
-a) Tính giá trị của $y$ khi $x = 0$, $x = 1$, $x = 2$.
+a) Cho hàm số $y = f(x) = 2x + 5$. Tính $f(0), f(1), f(-2)$.  
+b) Cho hàm số $y = g(x) = x^2 - 3$. Tính $g(0), g(3), g(-3)$.  
+c) Cho hàm số $y = h(x) = \dfrac{6}{x}$. Tính $h(1), h(2), h(-3)$.  
+d) Cho hàm số $y = f(x) = -3x + 1$. Tìm $x$ khi $y = 7$.  
+e) Cho hàm số $y = f(x) = x^2 + 1$. Tìm $x$ khi $y = 10$.  
+f) Cho hàm số $y = f(x) = 4 - x$. Lập bảng giá trị của $y$ khi $x \in \{-2, -1, 0, 1, 2\}$.
 
-b) Tính giá trị của $x$ khi $y = 4$, $y = 7$.
+**Bài 2 (Dễ — Kiểm tra điểm thuộc đồ thị):**
 
-c) Điểm nào sau đây thuộc đồ thị hàm số: $A(1; 1)$, $B(2; 4)$, $C(0; -2)$?
+a) Cho hàm số $y = 3x - 1$. Kiểm tra các điểm $A(1; 2), B(0; 1), C(-1; -4)$ có thuộc đồ thị không.  
+b) Cho hàm số $y = -2x$. Điểm nào sau đây thuộc đồ thị: $M(1; -2), N(-2; 4), P(3; 6)$?  
+c) Cho hàm số $y = x^2 - 2$. Kiểm tra điểm $D(2; 2)$ có thuộc đồ thị không.  
+d) Tìm tung độ của điểm $A$ thuộc đồ thị $y = 4x - 3$ biết hoành độ $x_A = 2$.  
+e) Tìm hoành độ của điểm $B$ thuộc đồ thị $y = -x + 5$ biết tung độ $y_B = 3$.  
+f) Cho điểm $K(m; 5)$ thuộc đồ thị $y = 2x + 1$. Tìm $m$.
 
-**Bài 2 (Dễ):** Cho hàm số $y = -2x + 5$.
+**Bài 3 (Trung bình — Đồ thị hàm số đơn giản):**
 
-a) Lập bảng giá trị của hàm số với $x \in \{-1, 0, 1, 2, 3\}$.
+a) Vẽ đồ thị hàm số $y = 2x$.  
+b) Vẽ đồ thị hàm số $y = -x$.  
+c) Vẽ đồ thị hàm số $y = x + 2$.  
+d) Vẽ đồ thị hàm số $y = -2x + 4$.  
+e) Xác định điểm giao của đồ thị $y = 2x - 4$ với hai trục tọa độ Ox và Oy.  
+f) Cho hai điểm $A(1; 3)$ và $B(2; 5)$. Tìm công thức hàm số dạng $y = ax + b$ có đồ thị đi qua A và B.
 
-b) Vẽ đồ thị hàm số trên mặt phẳng tọa độ.
+**Bài 4 (Trung bình — Lập bảng và vẽ đồ thị hàm số):** Cho hàm số $y = f(x) = -x + 3$.
 
-c) Hàm số đồng biến hay nghịch biến? Giải thích.
+a) Tính $f(-1), f(0), f(2)$.  
+b) Lập bảng giá trị tương ứng của $y$ với $x = -1, 0, 1, 2, 3$.  
+c) Vẽ đồ thị hàm số trên mặt phẳng tọa độ Oxy.
 
-**Bài 3 (Trung bình):** Cho hàm số $y = f(x) = x^2 - 1$.
+**Bài 5 (Trung bình — Tìm điều kiện để điểm thuộc đồ thị):** Cho hàm số $y = (2m - 1)x + 3$.
 
-a) Tính $f(0)$, $f(1)$, $f(-1)$, $f(2)$.
+a) Tìm $m$ để đồ thị đi qua điểm $A(1; 5)$.  
+b) Tìm $m$ để đồ thị đi qua điểm $B(-2; 1)$.  
+c) Chứng minh đồ thị luôn đi qua điểm $C(0; 3)$ với mọi $m$.
 
-b) Tìm $x$ biết $f(x) = 3$, $f(x) = 8$.
+**Bài 6 (Khá — Diện tích tam giác tạo bởi đồ thị và hai trục tọa độ):** Đồ thị hàm số $y = -2x + 4$ cắt trục Ox tại A và cắt trục Oy tại B.
 
-c) Vẽ đồ thị hàm số với $x \in \{-3, -2, -1, 0, 1, 2, 3\}$.
+a) Tìm tọa độ các điểm A và B.  
+b) Tính diện tích tam giác OAB (với O là gốc tọa độ).
 
-d) Hàm số này có phải là hàm số bậc nhất không? Giải thích.
+**Bài 7 (Khá — Giao điểm của hai đồ thị hàm số):** Cho hai hàm số $y = 2x - 1$ và $y = -x + 5$.
 
-**Bài 4 (Khá):** Cho hai hàm số $y = 2x + 1$ và $y = -x + 4$.
+a) Vẽ đồ thị hai hàm số trên cùng một mặt phẳng tọa độ Oxy.  
+b) Tìm tọa độ giao điểm I của hai đồ thị bằng phương pháp đại số.
 
-a) Vẽ đồ thị của hai hàm số trên cùng một mặt phẳng tọa độ.
+**Bài 8 (Khá - Nâng cao — Điểm cố định của đồ thị):** Chứng minh rằng đồ thị của hàm số $y = (m + 1)x - 2m + 3$ luôn đi qua điểm cố định $K(2; 5)$ với mọi giá trị của tham số $m$.
 
-b) Tìm tọa độ giao điểm của hai đồ thị bằng phương pháp đại số.
+**Bài 9 (Ứng dụng thực tế 1 — Hàm số tiền taxi theo quãng đường):** Giá cước dịch vụ taxi được tính theo công thức $y = 12.000 + 14.000(x - 1)$ cho quãng đường $x \ge 1$ (km), trong đó $y$ là tổng số tiền (đồng).
 
-c) Tìm giá trị của $x$ để hai hàm số có cùng giá trị.
+a) Tính số tiền khách phải trả khi đi quãng đường $x = 5$ km và $x = 10$ km.  
+b) Nếu khách trả $152.000$ đồng thì quãng đường di chuyển là bao nhiêu km?
 
-d) Với giá trị nào của $x$ thì hàm số thứ nhất lớn hơn hàm số thứ hai?
+**Bài 10 (Ứng dụng thực tế 2 — Tốc độ hạ nhiệt đồ uống):** Nhiệt độ cốc trà sữa $y$ (°C) hạ dần theo thời gian $x$ (phút) theo công thức $y = 80 - 2x$ (với $0 \le x \le 30$).
 
-**Bài 5 (Khó - Ứng dụng thực tế):** 
-
-a) Một hãng taxi tính cước theo công thức $T = 10000 + 15000x$ (đồng), trong đó $x$ là số km.
-   - Vẽ đồ thị hàm số với $x \in [0; 10]$.
-   - Tính tiền cước khi đi 7 km.
-   - Đi được bao nhiêu km nếu trả 100000đ?
-
-b) Nhiệt độ nước trong ấm tăng đều theo thời gian đun. Ban đầu nhiệt độ là 25°C, sau 5 phút là 75°C.
-   - Viết công thức tính nhiệt độ $T$ (°C) theo thời gian $t$ (phút).
-   - Vẽ đồ thị hàm số.
-   - Sau bao lâu nước sôi (100°C)?
-
-c) Một cửa hàng bán áo với giá gốc 200000đ. Cửa hàng giảm giá $x$% cho khách hàng.
-   - Viết công thức tính giá bán $P$ (đồng) theo $x$.
-   - Vẽ đồ thị với $x \in [0; 50]$.
-   - Giảm bao nhiêu % để giá bán còn 150000đ?
-
-d) Một bể nước có dung tích 1000 lít. Ban đầu bể có 200 lít nước. Người ta bơm thêm nước vào bể với lưu lượng 30 lít/phút.
-   - Viết công thức tính lượng nước $V$ (lít) trong bể sau $t$ phút.
-   - Vẽ đồ thị hàm số.
-   - Sau bao lâu thì bể đầy?
-
-e) Một người đi bộ từ A về B với vận tốc 5 km/h. Cùng lúc đó, một người khác đi xe đạp từ B về A với vận tốc 15 km/h. Biết AB = 40 km.
-   - Viết công thức tính khoảng cách giữa hai người theo thời gian $t$ (giờ).
-   - Vẽ đồ thị.
-   - Sau bao lâu hai người gặp nhau?
+a) Lập bảng giá trị nhiệt độ cốc trà sữa sau $0, 5, 10, 15, 20, 30$ phút.  
+b) Sau bao nhiêu phút thì nhiệt độ cốc trà sữa hạ xuống còn $40$°C?
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $y = -2, 1, 4$; b) $x = 2, 3$; c) $A$ và $C$ thuộc đồ thị
+**Bài 1:**
+a) $f(0) = 5, f(1) = 7, f(-2) = 1$.
+b) $g(0) = -3, g(3) = 6, g(-3) = 6$.
+c) $h(1) = 6, h(2) = 3, h(-3) = -2$.
+d) $-3x + 1 = 7 \Rightarrow -3x = 6 \Rightarrow x = -2$.
+e) $x^2 + 1 = 10 \Rightarrow x^2 = 9 \Rightarrow x = \pm 3$.
+f) $x \in \{-2, -1, 0, 1, 2\} \Rightarrow y \in \{6, 5, 4, 3, 2\}$.
 
-**Bài 2:** a) Bảng: $(-1, 7), (0, 5), (1, 3), (2, 1), (3, -1)$; c) Nghịch biến vì $a = -2 < 0$
+**Bài 2:**
+a) $A(1; 2)$ thuộc ($2 = 3(1)-1$); $B(0; 1)$ không thuộc ($1 \neq -1$); $C(-1; -4)$ thuộc ($-4 = 3(-1)-1$).
+b) $M(1; -2)$ thuộc; $N(-2; 4)$ thuộc; $P(3; 6)$ không thuộc.
+c) Thay $x = 2 \Rightarrow y = 2^2 - 2 = 2 \Rightarrow D(2; 2)$ thuộc đồ thị.
+d) $y_A = 4(2) - 3 = 5$.
+e) $3 = -x_B + 5 \Rightarrow x_B = 2$.
+f) $5 = 2m + 1 \Rightarrow 2m = 4 \Rightarrow m = 2$.
 
-**Bài 3:** a) $f(0) = -1, f(1) = 0, f(-1) = 0, f(2) = 3$; b) $x = \pm 2, x = \pm 3$; d) Không, vì có $x^2$
+**Bài 3:**
+a) Đường thẳng qua $O(0; 0)$ và $(1; 2)$.
+b) Đường thẳng qua $O(0; 0)$ và $(1; -1)$.
+c) Đường thẳng qua $(0; 2)$ và $(-2; 0)$.
+d) Đường thẳng qua $(0; 4)$ và $(2; 0)$.
+e) Trục Oy tại $(0; -4)$, Trục Ox tại $(2; 0)$.
+f) $a(1) + b = 3$ và $a(2) + b = 5 \Rightarrow a = 2, b = 1 \Rightarrow y = 2x + 1$.
 
-**Bài 4:** b) Giao điểm $(1; 3)$; c) $x = 1$; d) $x < 1$
+**Bài 4:**
+a) $f(-1) = 4, f(0) = 3, f(2) = 1$.
+b) Bảng giá trị: $x \in \{-1, 0, 1, 2, 3\} \Rightarrow y \in \{4, 3, 2, 1, 0\}$.
+c) Vẽ đường thẳng qua $(0; 3)$ và $(3; 0)$.
 
-**Bài 5:** a) Tiền cước: 115000đ, Quãng đường: 6 km; b) $T = 10t + 25$, Thời gian: 7,5 phút; c) $P = 200000(1 - \frac{x}{100})$, Giảm 25%; d) $V = 30t + 200$, Thời gian: 26,67 phút; e) $S = 40 - 20t$, Thời gian: 2 giờ
+**Bài 5:**
+a) $5 = (2m - 1)1 + 3 \Rightarrow 2m - 1 = 2 \Rightarrow 2m = 3 \Rightarrow m = 1.5$.
+b) $1 = (2m - 1)(-2) + 3 \Rightarrow -4m + 2 + 3 = 1 \Rightarrow -4m = -4 \Rightarrow m = 1$.
+c) Thay $x = 0 \Rightarrow y = (2m - 1)0 + 3 = 3 \Rightarrow$ Đồ thị luôn qua $C(0; 3)$ với mọi $m$.
+
+**Bài 6:**
+a) Giao Ox: $y = 0 \Rightarrow -2x + 4 = 0 \Rightarrow x = 2 \Rightarrow A(2; 0)$. Giao Oy: $x = 0 \Rightarrow y = 4 \Rightarrow B(0; 4)$.
+b) Tam giác OAB vuông tại O có $OA = 2, OB = 4 \Rightarrow S_{\triangle OAB} = \dfrac{1}{2} \cdot 2 \cdot 4 = 4$ (đvdt).
+
+**Bài 7:**
+a) Vẽ 2 đường thẳng trên cùng hệ trục.
+b) Phương trình hoành độ giao điểm: $2x - 1 = -x + 5 \Rightarrow 3x = 6 \Rightarrow x = 2 \Rightarrow y = 2(2) - 1 = 3 \Rightarrow I(2; 3)$.
+
+**Bài 8:**
+Biến đổi $y = m(x - 2) + x + 3$. Khi $x = 2 \Rightarrow y = m(0) + 2 + 3 = 5 \Rightarrow$ Điểm cố định $K(2; 5)$ luôn thỏa mãn với mọi $m$.
+
+**Bài 9:**
+a) $x = 5 \Rightarrow y = 12.000 + 14.000(4) = 68.000$ đồng.  
+$x = 10 \Rightarrow y = 12.000 + 14.000(9) = 138.000$ đồng.  
+b) $12.000 + 14.000(x - 1) = 152.000 \Rightarrow 14.000(x - 1) = 140.000 \Rightarrow x - 1 = 10 \Rightarrow x = 11$ km.
+
+**Bài 10:**
+a) Bảng nhiệt độ: $x \in \{0, 5, 10, 15, 20, 30\} \Rightarrow y \in \{80, 70, 60, 50, 40, 20\}$ (°C).  
+b) $40 = 80 - 2x \Rightarrow 2x = 40 \Rightarrow x = 20$ phút.
 
 </div>
 </details>

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 14: Cung và dây của một đường tròn"
-description: "Khái niệm và định lý liên hệ giữa cung, dây và đường kính trong đường tròn - Toán 9 KNTT Chương 5"
+description: "Định lý đường kính vuông góc với dây, liên hệ giữa dây và khoảng cách từ tâm đến dây - Toán 9 KNTT Chương 5"
 grade: "Lớp 9"
 chapter: "Chương V: Đường tròn"
 currentSlug: "lop9/bai-14-cung-va-day"
@@ -13,117 +13,118 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Dây lớn nhất của đường tròn là dây nào?",
-    option_a: "Dây đi qua môt điểm bất kì",
-    option_b: "Đường kính",
-    option_c: "Dây vuông góc với bán kính",
-    option_d: "Dây song song với trục hoành",
-    correct_option: "B",
-    explanation: "Đường kính là dây đi qua tâm. So với mọi dây cung không đi qua tâm, nó luôn luôn có độ dài lớn nhất (Bằng 2 lần Bán kính).",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Số đo cung tròn của toàn bộ MỘT đường tròn bằng bao nhiêu độ?",
-    option_a: "$90^\\circ$",
-    option_b: "$180^\\circ$",
-    option_c: "$270^\\circ$",
-    option_d: "$360^\\circ$",
-    correct_option: "D",
-    explanation: "Một vòng xoay cạn kiệt đường tròn tương đương môt góc quét đầy là 360 độ.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trong một đường tròn (hoặc hai đường tròn bằng nhau), hai cung ĐƯỢC GỌI LÀ BẰNG NHAU khi nào?",
-    option_a: "Chúng có số đo bằng nhau",
-    option_b: "Chúng nằm trên cùng một nửa mặt phẳng",
-    option_c: "Chúng đối xứng qua tâm",
-    option_d: "Chúng có số đo tỉ lệ thuận với bán kính",
+    question: "Trong một đường tròn, đường kính vuông góc với một dây thì:",
+    option_a: "Đi qua trung điểm của dây đó",
+    option_b: "Song song với dây đó",
+    option_c: "Bằng một nửa dây đó",
+    option_d: "Cắt dây đó tại một điểm bất kỳ",
     correct_option: "A",
-    explanation: "Nhận định A đúng. Hai cung bằng nhau nếu số đo cung của chúng (góc ở tâm) hoàn toàn bằng nhau.",
+    explanation: "Định lý: Trong một đường tròn, đường kính vuông góc với một dây thì đi qua trung điểm của dây ấy.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Định lý quan hệ giữa đường kính và dây: Theo đó, đường kính vuông góc với một dây (không là đường kính) thì...",
-    option_a: "Sẽ cắt dây đó tại hai điểm phân biệt.",
-    option_b: "Sẽ đi qua trung điểm của dây đó.",
-    option_c: "Sẽ song song với tiếp tuyến tại trung điểm.",
-    option_d: "Sẽ chia đường tròn làm bốn phần.",
+    question: "Trong một đường tròn, đường kính đi qua trung điểm của một dây không đi qua tâm thì:",
+    option_a: "Song song với dây đó",
+    option_b: "Vuông góc với dây đó",
+    option_c: "Bằng dây đó",
+    option_d: "Tạo với dây đó góc 45 độ",
     correct_option: "B",
-    explanation: "Định lý: Đường kính vuông góc với môt dây cung thì nó là đường trung trực của dây cung ấy, tức là ĐI QUA TRUNG ĐIỂM của dây.",
+    explanation: "Định lý đảo: Trong một đường tròn, đường kính đi qua trung điểm của một dây không đi qua tâm thì vuông góc với dây ấy.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong một đường tròn, hai dây bằng nhau thì:",
+    option_a: "Cách đều tâm",
+    option_b: "Cùng đi qua tâm",
+    option_c: "Vuông góc với nhau",
+    option_d: "Song song với nhau",
+    correct_option: "A",
+    explanation: "Định lý liên hệ dây và khoảng cách đến tâm: Trong một đường tròn, hai dây bằng nhau thì cách đều tâm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong hai dây của một đường tròn, dây nào gần tâm hơn thì dây đó:",
+    option_a: "Nhỏ hơn",
+    option_b: "Lớn hơn",
+    option_c: "Bằng dây kia",
+    option_d: "Bằng bán kính",
+    correct_option: "B",
+    explanation: "Định lý: Trong hai dây của một đường tròn, dây nào gần tâm hơn (khoảng cách nhỏ hơn) thì dây đó lớn hơn.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho đường tròn $(O; 10\\text{ cm})$ và dây $AB = 12\\text{ cm}$. Khoảng cách $OH$ từ tâm O đến dây AB bằng:",
+    option_a: "8 cm",
+    option_b: "6 cm",
+    option_c: "4 cm",
+    option_d: "5 cm",
+    correct_option: "A",
+    explanation: "Kẻ $OH \\perp AB \\Rightarrow H$ là trung điểm $AB \\Rightarrow AH = 6\\text{ cm}$. Xét tam giác $OHA$ vuông tại $H$: $OH = \\sqrt{OA^2 - AH^2} = \\sqrt{10^2 - 6^2} = 8\\text{ cm}$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tính chất ĐẢO: Khi đường kính đi qua TRUNG ĐIỂM của một dây cung (dây này KHÔNG đi qua tâm), kết luận gì xảy ra?",
-    option_a: "Đường kính đó chia tâm.",
-    option_b: "Nó sẽ song song với dây.",
-    option_c: "Nó sẽ vuông góc với dây.",
-    option_d: "Dây đó là dây lớn nhất.",
-    correct_option: "C",
-    explanation: "Đây là chiều ngược lại: Đi qua trung điểm (của cung không phải đường kính) $\\Rightarrow$ Vuông góc với cung. Tránh bẫy nếu dây cung cũng là một đường kính chéo khác, thì chúng cắt nhau ở tâm (trung điểm) nhưng CHƯA CHẮC vuông góc.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Cho 2 dây AB và CD của một đường tròn. Biết $AB < CD$. Hỏi nhận định về cung NHỎ căng các dây này như thế nào?",
-    option_a: "Cung AB = Cung CD",
-    option_b: "Cung AB < Cung CD",
-    option_c: "Cung AB > Cung CD",
-    option_d: "Không so sánh được",
+    question: "Dây cung lớn nhất của đường tròn $(O; R)$ có độ dài bằng bao nhiêu?",
+    option_a: "$R$",
+    option_b: "$2R$",
+    option_c: "$R\\sqrt{2}$",
+    option_d: "$R\\sqrt{3}$",
     correct_option: "B",
-    explanation: "Dây lớn hơn căng cung lớn hơn. Do $AB < CD$ nên số đo Cung Nhỏ AB < số đo Cung Nhỏ CD.",
+    explanation: "Dây lớn nhất của đường tròn chính là đường kính, có độ dài bằng $2R$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Chọn các phát biểu ĐÚNG về Cung và Dây cung của hình tròn:",
-    option_a: "Có 2 khái niệm là Cung Nhỏ và Cung Lớn được chia bởi 1 dây cung.",
-    option_b: "Dây cung là đoạn cong giới hạn hai điểm.",
-    option_c: "Bán kính luôn vuông góc với mọi dây cung.",
-    option_d: "Dây căng một cung góc $180^\\circ$ chính là đường kính.",
-    correct_option: "A,D",
-    explanation: "B sai vì Dây là đoạn thẳng đi thẳng (như cung nỏ), còn Cung mới là đoạn cong trên biên hình tròn. C sai vì bán kính chỉ vuông góc khi đi qua trung điểm dây.",
+    question: "Cho đường tròn (O) và hai dây AB, CD có khoảng cách từ tâm đến hai dây lần lượt là OH và OK. Những khẳng định nào ĐÚNG?",
+    option_a: "Nếu $AB = CD$ thì $OH = OK$",
+    option_b: "Nếu $OH = OK$ thì $AB = CD$",
+    option_c: "Nếu $AB > CD$ thì $OH < OK$",
+    option_d: "Nếu $OH > OK$ thì $AB > CD$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng theo định lý liên hệ dây và khoảng cách. D sai vì nếu khoảng cách $OH > OK$ (xa tâm hơn) thì dây $AB < CD$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Một đường tròn (O; 5cm). Dây AB dài 8cm. Khoảng cách từ tâm O đến dây AB là $d$. Giá trị $d$ và các tính chất có liên quan là:",
-    option_a: "$d = 3\\text{cm}$",
-    option_b: "Đường hạ vuông góc từ O chia đoạn AB thành 2 phần 4cm.",
-    option_c: "$d = 4\\text{cm}$",
-    option_d: "Trung điểm của dây cung luôn xa tâm hơn các mút A, B.",
-    correct_option: "A,B",
-    explanation: "Kẻ OH $\\perp$ AB $\\Rightarrow$ H là trung điểm AB $\\Rightarrow$ AH = 4. Tam giác OHA vuông tại H có cạnh $OA = 5$ (bán kính), $AH = 4 \Rightarrow d = OH = \\sqrt{5^2 - 4^2} = 3$. D sai vì Mút nằm trên đường biên (xa R=5), còn trung điểm nằm gần tâm (D=3).",
-    difficulty_level: "hard",
+    question: "Cho đường tròn (O; 5 cm) và dây AB. Những giá trị nào sau đây CÓ THỂ là độ dài của dây AB?",
+    option_a: "6 cm",
+    option_b: "8 cm",
+    option_c: "10 cm",
+    option_d: "12 cm",
+    correct_option: "A,B,C",
+    explanation: "Độ dài dây $AB \\le 2R = 10\\text{ cm}$. Do đó $6, 8, 10$ đều thỏa mãn. $12\text{ cm} > 10\text{ cm}$ nên không thể là dây cung.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Đường kính của môt đường tròn là 16cm. Dây cung lớn nhất của nó dài bao nhiêu cm?",
-    correct_option: "16",
-    explanation: "Dây cung lớn nhất của đường tròn BẰNG luôn đường kính. Vậy nó dài 16cm.",
-    difficulty_level: "easy",
+    question: "Cho đường tròn $(O; 13\\text{ cm})$. Một dây AB có khoảng cách đến tâm $OH = 5\\text{ cm}$. Độ dài dây AB bằng bao nhiêu cm?",
+    correct_option: "24",
+    explanation: "$AH = \\sqrt{13^2 - 5^2} = 12\\text{ cm} \\Rightarrow AB = 2 AH = 24\\text{ cm}$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Đường tròn tâm O bán kính 10cm. Khoảng cách từ O đến môt dây là 6cm. Hỏi dây cung đó dài bao nhiêu cm?",
-    correct_option: "16",
-    explanation: "Pytago $\\Rightarrow$ nửa dây = $\\sqrt{10^2 - 6^2} = \\sqrt{64} = 8$. Vậy nguyên dây sẽ gấp đôi: $8 \\cdot 2 = 16\\text{cm}$.",
+    question: "Cho đường tròn $(O)$ có hai dây $AB = 16\\text{ cm}$ và $CD = 12\\text{ cm}$. Gọi $OH, OK$ lần lượt là khoảng cách từ $O$ đến $AB, CD$. So sánh $OH$ và $OK$, kết quả $OH - OK$ mang dấu gì (dương hay âm)? Ghi 'am' hoặc 'duong'.",
+    correct_option: "am",
+    explanation: "Vì $AB = 16 > CD = 12$ nên dây $AB$ gần tâm hơn dây $CD \\Rightarrow OH < OK \\Rightarrow OH - OK < 0$ (mang dấu âm).",
     difficulty_level: "medium",
     is_dynamic: false,
   }
@@ -131,28 +132,41 @@ export const quizData = [
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🏹 Cây cung và môn Bắn Cung</h3>
+<h3 id="mo-dau">🌉 Tính Bán kính Mái Cầu Vòm Đá</h3>
 
-Trò chơi môn bắn cung của thế vận hội chia sẻ một từ mượn trong Toán Học: "Cung" và "Dây".
-Phần cong hình bán nguyệt làm bằng gỗ hoặc sợi carbon đàn hồi được gọi là một **"Cung"**, vì nó là một nhánh cong trích ra từ hình Tròn. 
-Sợi dây bện dẻo dai bị buộc nối thẳng tắp từ 2 đầu mũi của cây cung để làm vật liệu kéo bật mũi tên đi, người ta gọi đó là **"Dây cung"**.
+Một cây cầu vòm bằng đá có mặt cắt là một phần của đường tròn tâm $O$. Nhịp cầu (độ rộng chân vòm) đo được là $AB = 24\text{ m}$. Chiều cao đỉnh vòm so with chân vòm là $CD = 8\text{ m}$ ($D$ là trung điểm $AB$).
 
-Trong toán học, chúng cũng có mối gắn kết kì lạ: Nếu bạn kéo căng vòng Cung ra to hơn, bạn bắt buộc phải dùng một sợi Dây cung dài hơn. Nếu hai người thợ làm 2 cây Cung y hệt nhau, thì 2 sợi dây họ đính vào cũng sẽ bằng nhau. 
-Đó là quy luật **"Liên hệ giữa Cung và Dây Cung"**.
+Làm thế nào định lý đường kính và dây cung giúp các kỹ sư xây dựng tính chính xác bán kính $R$ của vòm cầu?
 
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="250" height="200" viewBox="0 0 250 200" style="background:#fefce8;border-radius:12px;box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
-  {/* The Wood Bow (Cung) */}
-  <path d="M 40,30 Q 180,100 40,170" fill="none" stroke="#b45309" stroke-width="8" stroke-linecap="round"/>
-  {/* The String (Dây cung) */}
-  <line x1="40" y1="30" x2="40" y2="170" stroke="#475569" stroke-width="3" />
-  
-  <text x="50" y="105" font-weight="bold" fill="#334155" font-size="14">Dây cung (Thẳng)</text>
-  <text x="135" y="110" font-weight="bold" fill="#78350f" font-size="14">Cung (Cong)</text>
-  
-  {/* Arrow */}
-  <line x1="120" y1="100" x2="10" y2="100" stroke="#1f2937" stroke-width="4"/>
-  <polygon points="10,100 25,92 25,108" fill="#ef4444"/>
+Ta có $CD$ nằm trên đường kính vuông góc với dây $AB$ tại trung điểm $D$ $\Rightarrow AD = 12\text{ m}$.  
+Áp dụng định lý Pythagore trong $\Delta ODA$:
+$$R^2 = OD^2 + AD^2 = (R - 8)^2 + 12^2 \Rightarrow 16R = 208 \Rightarrow R = 13\text{ m}$$
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="200" viewBox="0 0 420 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Arc */}
+  <path d="M 50 150 A 130 130 0 0 1 370 150" fill="none" stroke="#2563eb" stroke-width="3"/>
+  <line x1="50" y1="150" x2="370" y2="150" stroke="#475569" stroke-width="2"/>
+
+  {/* Center & Lines */}
+  <circle cx="210" cy="150" r="4" fill="#ef4444"/>
+  <text x="210" y="165" font-size="12" font-weight="bold" fill="#dc2626" text-anchor="middle">D (Trung điểm)</text>
+
+  <line x1="210" y1="150" x2="210" y2="40" stroke="#dc2626" stroke-width="2" stroke-dasharray="3"/>
+  <circle cx="210" cy="40" r="4" fill="#dc2626"/>
+  <text x="210" y="30" font-size="12" font-weight="bold" fill="#dc2626" text-anchor="middle">C (Đỉnh vòm)</text>
+
+  {/* Points A & B */}
+  <circle cx="50" cy="150" r="4" fill="#2563eb"/>
+  <text x="35" y="155" font-size="12" font-weight="bold" fill="#1e293b">A</text>
+
+  <circle cx="370" cy="150" r="4" fill="#2563eb"/>
+  <text x="380" y="155" font-size="12" font-weight="bold" fill="#1e293b">B</text>
+
+  {/* Labels */}
+  <text x="130" y="140" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">AD = 12 m</text>
+  <text x="290" y="140" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">DB = 12 m</text>
+  <text x="235" y="95" font-size="11" font-weight="bold" fill="#dc2626">CD = 8 m</text>
 </svg>
 </div>
 
@@ -160,77 +174,226 @@ Trong toán học, chúng cũng có mối gắn kết kì lạ: Nếu bạn kéo
 
 <KhamPha title="Khám phá">
 
-<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Định nghĩa Cung và Dây</h3>
+<h3 id="duong-kinh-va-day">📖 1. Định lý về Đường kính và Dây cung</h3>
 
-Cho đường tròn $(O)$. Hai điểm phân biệt $A, B$ tuỳ ý nằm trên đường tròn (nằm trên vòng viền cong):
 <div class="box-dinh-nghia">
 
-- **Dây cung (gọi tắt là Dây):** Là đoạn thẳng nối 2 mút $A$ và $B$. Đường kính là một loại Dây đặc biệt đi ngang qua Tâm đường tròn.
-- **Cung:** Là phần viền cong của đường tròn nằm giữa $A$ và $B$.
-  - Hai điểm A,B chia nguyên một vòng tròn thành 2 phần không đều nhau: phần nẹp nhỏ hơn gọi là **Cung nhỏ**, phần vòng bọc lớn hơn gọi là **Cung lớn**.
-  - Nếu A, B là đường kính, đường tròn bị chẻ đôi thành 2 Cung bằng nhau. Các cung này gọi là **Nửa đường tròn** (Số đo 180 độ).
+**1. Định lý 1 (Đường kính $\perp$ dây cung):**
+Trong một đường tròn, đường kính vuông góc với một dây thì **đi qua trung điểm** của dây ấy.
+
+$$\text{Trong } (O): \quad CD \text{ là đường kính, } AB \text{ là dây}. \quad CD \perp AB \text{ tại } H \Rightarrow HA = HB$$
+
+**2. Định lý 2 (Đường kính đi qua trung điểm dây):**
+Trong một đường tròn, đường kính đi qua trung điểm của một dây **không đi qua tâm** thì **vuông góc** với dây ấy.
+
+$$\text{Trong } (O): \quad CD \text{ là đường kính, } HA = HB \quad \Rightarrow CD \perp AB \text{ tại } H$$
 
 </div>
 
-**🔥 Ghi nhớ cực quan trọng:** 
-Trong tất cả các Dây cung được nẹp vào vòng tròn thì **Đường Kính là dây cung dài nhất** (Có độ lớn bằng 2 Bán kính).
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<h3 id="lien-he-cung-day" style="margin-top:2rem;">📖 2. Liên hệ kích thước giữa Cung và Dây</h3>
+**3 Ví dụ minh họa Định lý Đường kính & Dây cung:**
 
-Trong **Cùng một đường tròn** hoặc **Hai đường tròn bằng nhau** (Có cùng bán kính):
+- **Ví dụ 1:** Cho đường tròn $(O; 13\text{ cm})$ và dây $AB = 24\text{ cm}$. Kẻ $OH \perp AB$ tại $H$. Tính độ dài đoạn $OH$.
+  - *Giải:* Vì $OH \perp AB \Rightarrow H$ là trung điểm $AB \Rightarrow AH = \frac{AB}{2} = 12\text{ cm}$.  
+    Xét tam giác $OHA$ vuông tại $H$: $OH = \sqrt{OA^2 - AH^2} = \sqrt{13^2 - 12^2} = \sqrt{169 - 144} = 5\text{ cm}$.
 
-<div class="box-dinh-ly">
+- **Ví dụ 2:** Cho đường tròn $(O; R)$ và dây $AB = R\sqrt{3}$. Tính khoảng cách từ tâm $O$ đến dây $AB$.
+  - *Giải:* Kẻ $OH \perp AB \Rightarrow AH = \frac{R\sqrt{3}}{2}$.  
+    $OH = \sqrt{OA^2 - AH^2} = \sqrt{R^2 - \left(\frac{R\sqrt{3}}{2}\right)^2} = \sqrt{R^2 - \frac{3R^2}{4}} = \sqrt{\frac{R^2}{4}} = \frac{R}{2}$.
 
-**Định lý 1 (Cung $\Leftrightarrow$ Dây):**
-- Hai cung bằng nhau luôn căng hai dây bằng nhau.
-- Hai dây bằng nhau luôn căng hai cung nhỏ bằng nhau.
-
-**Định lý 2 (So sánh Dây - Cung):**
-Cung nhỏ nào lớn hơn thì chắc chắn sẽ nối môt dây lớn hơn. Và ngược lại, nếu căng dây lớn hơn thì mảng cung nhỏ bị ngoạm ấy sẽ lớn hơn.
-
-*Nôm na:* Dây càng dài (dần tiến về đường kính) thì Cung nhỏ của nó sẽ phình càng lớn (tiến về một nửa đường tròn).
-
-</div>
-
-<h3 id="duong-kinh-day" style="margin-top:2rem;">📖 3. Đường kính và Dây Cung</h3>
-
-Có bao giờ bạn cắt một chiếc bánh Pizza dây tròn không đi ngang làm đôi, nhát dao vuông góc đi thẳng qua tâm? Điều kì diệu xảy ra.
-
-<div class="box-dinh-ly">
-
-**Định lý 3 (Vuông góc $\Rightarrow$ Đi qua Trung điểm):**
-Trong một đường tròn, môt đường kính VÀ vuông góc với một dây (bất kỳ), THÌ nó luôn ĐI QUA TRUNG ĐIỂM của dây ấy.
-
-**Định lý Đảo (Trung điểm $\Rightarrow$ Vuông góc):**
-Nếu một đường kính đi qua trung điểm của một dây (VỚI ĐIỀU KIỆN dây đấy không chạy qua tâm), thì nó sẽ VUÔNG GÓC với dây đấy.
+- **Ví dụ 3:** Cho đường tròn $(O)$, dây $AB$. Gọi $M$ là trung điểm $AB$. Biết $OM = 3\text{ cm}$ và bán kính $R = 5\text{ cm}$. Tính độ dài dây $AB$.
+  - *Giải:* Vì $M$ là trung điểm $AB$ (dây $AB \neq$ đường kính) $\Rightarrow OM \perp AB$ tại $M$.  
+    Xét $\Delta OMA$ vuông tại $M$: $AM = \sqrt{OA^2 - OM^2} = \sqrt{5^2 - 3^2} = 4\text{ cm}$.  
+    Do đó $AB = 2 AM = 8\text{ cm}$.
 
 </div>
 
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+<h3 id="day-va-khoang-cach" style="margin-top:2rem;">📖 2. Liên hệ giữa Dây và Khoảng cách từ tâm đến dây</h3>
 
-**Cảnh giác với Định lý Đảo! Tại sao phải ép điều kiện dây không đi qua tâm?**
-Hãy tưởng tượng nếu vẽ 2 cái đường kính cắt ngang nhau tại trung tâm (Chữ X). Rõ ràng Đường kính 1 đang "đi qua trung điểm" của Dây Đường kính 2. Nhưng chúng đâu có bắt buộc phải Vuông góc đâu? Chúng có thể tạo thành hình tam giác 30-60 độ, không bao giờ là hình Chữ Thập. Vậy nên Định lý Đảo chỉ xài đúng với Dây song song đi trệch khỏi hồng tâm!
+<div class="box-dinh-nghia">
+
+Trong một đường tròn (hoặc hai đường tròn bằng nhau):
+
+1. **Hai dây bằng nhau** thì **cách đều tâm**:
+   $$AB = CD \quad \Leftrightarrow \quad OH = OK$$
+
+2. **Hai dây cách đều tâm** thì **bằng nhau**:
+   $$OH = OK \quad \Leftrightarrow \quad AB = CD$$
+
+3. **Dây nào lớn hơn** thì **gần tâm hơn** (khoảng cách nhỏ hơn):
+   $$AB > CD \quad \Leftrightarrow \quad OH < OK$$
+
+*(Trong đó $OH \perp AB, OK \perp CD$ lần lượt là khoảng cách từ tâm $O$ đến dây $AB, CD$).*
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Liên hệ giữa Dây và Khoảng cách:**
+
+- **Ví dụ 1:** Cho đường tròn $(O; 10\text{ cm})$ và hai dây $AB = 16\text{ cm}, CD = 12\text{ cm}$. So sánh khoảng cách $OH$ và $OK$ từ tâm $O$ đến hai dây đó.
+  - *Giải:* Vì $AB = 16\text{ cm} > CD = 12\text{ cm}$ nên dây $AB$ lớn hơn dây $CD$.  
+    Theo định lý liên hệ dây và khoảng cách $\Rightarrow OH < OK$ (dây lớn hơn thì gần tâm hơn).
+
+- **Ví dụ 2:** Cho đường tròn $(O)$ có hai dây $AB$ và $CD$ thỏa mãn khoảng cách $OH = OK = 4\text{ cm}$. Biết $AB = 6\text{ cm}$. Tính độ dài dây $CD$.
+  - *Giải:* Vì $OH = OK = 4\text{ cm}$ (hai dây cách đều tâm) $\Rightarrow CD = AB = 6\text{ cm}$.
+
+- **Ví dụ 3:** Cho đường tròn $(O; R)$ có hai dây $AB$ và $CD$ cắt nhau tại $I$ nằm bên trong đường tròn. Biết $OH \perp AB, OK \perp CD$ và $OH = OK$. Chứng minh $IA = IC$ hoặc $IB = ID$.
+  - *Giải:* Vì $OH = OK \Rightarrow AB = CD \Rightarrow AH = CK = \frac{AB}{2}$.  
+    Xét hai tam giác vuông $\Delta OHI$ và $\Delta OKI$ có cạnh huyền $OI$ chung, $OH = OK \Rightarrow \Delta OHI = \Delta OKI$ (cạnh huyền - cạnh góc vuông) $\Rightarrow IH = IK$.  
+    Mà $AH = CK \Rightarrow AH - IH = CK - IK \Rightarrow IA = IC$ (ĐPCM).
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính độ dài dây cung và khoảng cách từ tâm đến dây**
+- **Phương pháp:** Sử dụng tam giác vuông $OHA$ với $OA = R, AH = \frac{AB}{2}$ và $OH \perp AB$. Áp dụng định lý Pythagore: $R^2 = OH^2 + \left(\frac{AB}{2}\right)^2$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho đường tròn $(O; 25\text{ cm})$ và dây $AB = 40\text{ cm}$. Tính khoảng cách $OH$ từ tâm $O$ đến dây $AB$.
+  - *Lời giải:* $H$ là trung điểm $AB \Rightarrow AH = 20\text{ cm}$.  
+    $OH = \sqrt{OA^2 - AH^2} = \sqrt{25^2 - 20^2} = \sqrt{625 - 400} = \sqrt{225} = 15\text{ cm}$.
+
+- **Ví dụ 2:** Cho đường tròn $(O)$ có khoảng cách từ tâm $O$ đến dây $AB = 16\text{ cm}$ là $OH = 6\text{ cm}$. Tính bán kính $R$ của $(O)$.
+  - *Lời giải:* $AH = 8\text{ cm}$. Bán kính $R = OA = \sqrt{OH^2 + AH^2} = \sqrt{6^2 + 8^2} = 10\text{ cm}$.
+
+- **Ví dụ 3:** Cho đường tròn $(O; 10\text{ cm})$. Tính độ dài dây $AB$ biết khoảng cách từ $O$ đến $AB$ bằng $6\text{ cm}$.
+  - *Lời giải:* $AH = \sqrt{10^2 - 6^2} = 8\text{ cm} \Rightarrow AB = 2 AH = 16\text{ cm}$.
+
+</div>
+
+#### **Dạng 2: Chứng minh tính chất vuông góc và trung điểm**
+- **Phương pháp:** Áp dụng định lý đường kính vuông góc với dây đi qua trung điểm của dây.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho đường tròn $(O)$ và dây $AB$. Gọi $I$ là trung điểm $AB$. Qua $I$ vẽ dây $CD \perp AB$. Chứng minh $I$ là trung điểm $CD$.
+  - *Lời giải:* Vì $I$ là trung điểm $AB \Rightarrow OI \perp AB$.  
+    Mà $CD \perp AB$ tại $I \Rightarrow O, I, C, D$ thẳng hàng, tức là $CD$ chứa đường kính qua $O$.  
+    Đường kính $CD \perp AB \Rightarrow I$ là trung điểm $CD$.
+
+- **Ví dụ 2:** Cho tam giác $ABC$ cân tại $A$ nội tiếp đường tròn $(O)$. Chứng minh đường kính $AD$ của $(O)$ vuông góc với $BC$ tại trung điểm của $BC$.
+  - *Lời giải:* Vì $\Delta ABC$ cân tại $A \Rightarrow$ đường phân giác $AD$ đồng thời là đường trung trực của $BC$.  
+    Do đó $AD \perp BC$ tại trung điểm $H$ của $BC$.
+
+- **Ví dụ 3:** Cho đường tròn $(O)$ và hai dây $AB // CD$. Gọi $H, K$ lần lượt là trung điểm của $AB, CD$. Chứng minh 3 điểm $O, H, K$ thẳng hàng.
+  - *Lời giải:* Vì $H$ là trung điểm $AB \Rightarrow OH \perp AB$. Vì $K$ là trung điểm $CD \Rightarrow OK \perp CD$.  
+    Mà $AB // CD \Rightarrow OH \perp CD$. Qua điểm $O$ chỉ có một đường thẳng vuông góc với $CD$, do đó $OH$ trùng $OK \Rightarrow O, H, K$ thẳng hàng.
+
+</div>
+
+#### **Dạng 3: So sánh độ dài hai dây cung dựa vào khoảng cách đến tâm**
+- **Phương pháp:** Kẻ đường vuông góc từ tâm đến hai dây, so sánh $OH$ và $OK$ để suy ra quan hệ giữa hai dây $AB$ và $CD$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho đường tròn $(O; R)$ và điểm $M$ nằm bên trong $(O)$ ($M \neq O$). Qua $M$ vẽ hai dây $AB \perp OM$ và $CD$ không vuông góc với $OM$. So sánh $AB$ và $CD$.
+  - *Lời giải:* Kẻ $OK \perp CD$ ($K \in CD$).  
+    Trong tam giác vuông $OKM$, cạnh huyền $OM > OK$.  
+    Khoảng cách từ $O$ đến $AB$ là $OM$, khoảng cách đến $CD$ là $OK < OM$.  
+    Vì $OK < OM \Rightarrow CD > AB$ (dây gần tâm hơn thì lớn hơn).
+
+- **Ví dụ 2:** Cho tam giác $ABC$ có $AB < AC$ nội tiếp đường tròn $(O)$. So sánh khoảng cách từ $O$ đến $AB$ và $AC$.
+  - *Lời giải:* Vì $AB < AC$ nên dây $AB$ nhỏ hơn dây $AC$.  
+    Do đó khoảng cách từ tâm $O$ đến $AB$ lớn hơn khoảng cách từ $O$ đến $AC$.
+
+- **Ví dụ 3:** Cho đường tròn $(O; 10)$ và hai dây $AB = 12, CD = 16$. Tính $OH, OK$ và tính $OK - OH$.
+  - *Lời giải:* $AH = 6 \Rightarrow OH = \sqrt{10^2 - 6^2} = 8$.  
+    $CK = 8 \Rightarrow OK = \sqrt{10^2 - 8^2} = 6$.  
+    $OK - OH = 6 - 8 = -2$.
+
+</div>
+
+#### **Dạng 4: Chứng minh hai đoạn thẳng hoặc hai góc bằng nhau**
+- **Phương pháp:** Sử dụng các tam giác bằng nhau chứa bán kính và khoảng cách từ tâm đến dây.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho đường tròn $(O)$ và hai dây $AB = CD$ cắt nhau tại $E$ nằm bên ngoài đường tròn. Chứng minh $EA = EC$.
+  - *Lời giải:* Kẻ $OH \perp AB, OK \perp CD$. Vì $AB = CD \Rightarrow OH = OK$.  
+    $\Delta OHE = \Delta OKE$ (ch-cgv) $\Rightarrow EH = EK$.  
+    Vì $AB = CD \Rightarrow HA = KC$.  
+    Suy ra $EH + HA = EK + KC \Rightarrow EA = EC$ (ĐPCM).
+
+- **Ví dụ 2:** Cho đường tròn $(O)$ và hai dây $AB // CD$. Chứng minh $AC = BD$.
+  - *Lời giải:* Kẻ đường kính $MN \perp AB \Rightarrow MN \perp CD$.  
+    $MN$ là đường trung trực chung của hai đoạn $AB$ và $CD$.  
+    Do đó hình thang $ABDC$ có trục đối xứng $MN \Rightarrow ABDC$ là hình thang cân $\Rightarrow AC = BD$ (ĐPCM).
+
+- **Ví dụ 3:** Cho đường tròn $(O; R)$ và hai dây $AB = CD$. Kẻ $OH \perp AB, OK \perp CD$. Chứng minh $\widehat{OHK} = \widehat{OKH}$.
+  - *Lời giải:* Vì $AB = CD \Rightarrow OH = OK$ (hai dây bằng nhau cách đều tâm).  
+    Tam giác $OHK$ có $OH = OK$ nên là tam giác cân tại $O \Rightarrow \widehat{OHK} = \widehat{OKH}$ (ĐPCM).
+
+</div>
+
+#### **Dạng 5: Bài toán Cực trị Hình học (Dây lớn nhất, dây nhỏ nhất)**
+- **Phương pháp:** Qua điểm $M$ trong $(O)$, dây ngắn nhất là dây vuông góc với $OM$, dây dài nhất là đường kính qua $M$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho đường tròn $(O; 10\text{ cm})$ và điểm $M$ cách $O$ một khoảng $OM = 6\text{ cm}$. Tính độ dài dây ngắn nhất đi qua $M$.
+  - *Lời giải:* Dây qua $M$ ngắn nhất khi dây đó vuông góc với $OM$ tại $M$.  
+    Khi đó $HM = 0 \Rightarrow AM = \sqrt{R^2 - OM^2} = \sqrt{10^2 - 6^2} = 8\text{ cm}$.  
+    Độ dài dây ngắn nhất $AB = 2 AM = 16\text{ cm}$.
+
+- **Ví dụ 2:** Cho đường tròn $(O; R)$ và điểm $M$ nằm bên trong $(O)$. Gọi $AB$ là dây bất kỳ đi qua $M$. Tìm độ dài lớn nhất của dây $AB$.
+  - *Lời giải:* Dây $AB \le 2R$. Độ dài lớn nhất của dây $AB$ bằng đường kính $2R$ khi dây $AB$ đi qua tâm $O$.
+
+- **Ví dụ 3:** Cho đường tròn $(O; 5\text{ cm})$ và điểm $I$ cách $O$ một khoảng $OI = 3\text{ cm}$. Tìm độ dài các dây đi qua $I$ có số đo là số nguyên.
+  - *Lời giải:* Dây ngắn nhất qua $I$ vuông góc với $OI$ có độ dài $d_{\min} = 2\sqrt{5^2 - 3^2} = 8\text{ cm}$.  
+    Dây dài nhất qua $I$ là đường kính $d_{\max} = 2 \times 5 = 10\text{ cm}$.  
+    Các độ dài dây nguyên qua $I$ có thể nhận giá trị $8\text{ cm}, 9\text{ cm}, 10\text{ cm}$.
 
 </div>
 
 </KhamPha>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Thiết kế Cống thoát nước Đô thị):**  
+Một cống thoát nước ngầm hình tròn có bán kính $R = 50\text{ cm}$. Khi trời mưa lớn, mực nước dâng cao làm mặt nước đạt độ rộng bề mặt $AB = 80\text{ cm}$. Tính chiều cao mực nước trong cống thoát nước.
+
+**Bài toán 2 (Kỹ thuật Cắt Gỗ Công nghiệp):**  
+Một khúc gỗ tròn hình trụ có đường kính $d = 60\text{ cm}$. Thợ mộc dùng lưỡi cưa máy cắt một lát thẳng qua thân gỗ tạo thành mặt xẻ có độ rộng $AB = 48\text{ cm}$. Tính khoảng cách từ tâm khúc gỗ đến lưỡi cưa.
+
+**Bài toán 3 (Đo Bán kính Nắp Cống Vòng):**  
+KTS đo đạc một cổng vòm gạch cổ có chân vòm rộng $AB = 16\text{ m}$ và chiều cao đỉnh vòm $CD = 4\text{ m}$ ($D$ là trung điểm $AB$). Tính bán kính đường tròn của vòm gạch cổ này.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác dưới đây hỗ trợ tính toán mối liên hệ giữa bán kính $R$, độ dài dây $AB$ và khoảng cách từ tâm đến dây $OH$!
+</div>
+
+<CanBacHaiInteractive client:load />
+
+</LuyenTap>
+
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Tuyệt Kỹ Cứu Cánh Pytago:** 
-Mỗi khi có bài toán bắt tính Khoảng Cách (kéo đường vuông góc $d$) từ tâm từ Tâm $O$ tới môt dây cung có độ dài $L$. Hãy NGAY LẬP TỨC Áp dụng chêm **Định lý 3** bên trên.
-$\Rightarrow$ Hạ đường vuông góc chia đôi sây cung ra thành $L/2$.
-Tạo thành môt Tam giác vuông lý tưởng giữa: Độ dài Khoảng Cách, Một nửa dây cung dài ($L/2$), và Bán Kính vòng xiếc Huyền ($R$).
-**Kết hợp Định lý Py-ta-go:** $R^2 = d^2 + (L/2)^2$ để moi lời giải!
+**Trọng tâm kiến thức Bài 14:**
+
+1. **Đường kính $\perp$ dây:** Đi qua trung điểm của dây.  
+2. **Đường kính qua trung điểm dây:** Vuông góc với dây (dây không qua tâm).  
+3. **Liên hệ dây & khoảng cách:**  
+   - $AB = CD \Leftrightarrow OH = OK$.  
+   - $AB > CD \Leftrightarrow OH < OK$ (gần tâm hơn thì lớn hơn).
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -239,63 +402,141 @@ Tạo thành môt Tam giác vuông lý tưởng giữa: Độ dài Khoảng Các
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cửa hàng kính thước có mảnh gương hình tròn bán kính 20cm bị vỡ đi một góc. Chỗ đường vỡ là môt đường thẳng tắp tạo thành một dây cung AB đo được bằng 24cm trên cạnh vỡ tàn tích đường tròn.
-Tính khoảng cách ngắn nhất từ tâm O của mảnh gương (tính từ vị trí la bàn chưa vỡ) đến phần vết cắt thẳng là dây cung AB?
+**Bài 1:** Cho đường tròn $(O; 10\text{ cm})$. Tính khoảng cách từ tâm $O$ đến dây $AB$ trong các trường hợp:  
+a) $AB = 12\text{ cm}$  
+b) $AB = 16\text{ cm}$  
+c) $AB = 10\sqrt{3}\text{ cm}$  
+d) $AB = 10\sqrt{2}\text{ cm}$  
+e) $AB = 10\text{ cm}$  
+f) $AB = 20\text{ cm}$ (đường kính)
 
-**Bài 2:** Cho đường tròn (O) đường kính AD = 10cm. Vẽ dây AB = 8cm vuông góc với môt mốc.
+**Bài 2:** Cho đường tròn $(O; R)$. Tính độ dài dây $AB$ khi biết khoảng cách $OH$ từ $O$ đến $AB$:  
+a) $R = 13\text{ cm}, OH = 5\text{ cm}$  
+b) $R = 25\text{ cm}, OH = 15\text{ cm}$  
+c) $R = 17\text{ cm}, OH = 8\text{ cm}$  
+d) $R = 10\text{ cm}, OH = 5\text{ cm}$  
+e) $R = 8\text{ cm}, OH = 4\sqrt{3}\text{ cm}$  
+f) $R = 6\text{ cm}, OH = 0\text{ cm}$
 
-a) Cho thấy rằng Tam giác ABD bắt buộc phải là tam giác Vuông. Tại sao?
+**Bài 3:** Cho đường tròn $(O)$ có hai dây $AB$ và $CD$. So sánh độ dài hai dây $AB$ và $CD$ biết khoảng cách $OH, OK$ từ tâm đến $AB, CD$:  
+a) $OH = 4\text{ cm}, OK = 6\text{ cm}$  
+b) $OH = 8\text{ cm}, OK = 5\text{ cm}$  
+c) $OH = 3\sqrt{2}\text{ cm}, OK = 4\text{ cm}$  
+d) $OH = OK = 7\text{ cm}$  
+e) $OH = \frac{R}{2}, OK = \frac{R\sqrt{2}}{2}$  
+f) $OH = 0, OK = 3\text{ cm}$
 
-b) Tính độ dài mảng cầu dây BD.
+**Bài 4:** Cho đường tròn $(O; 15\text{ cm})$ và dây $AB = 24\text{ cm}$.  
+a) Tính khoảng cách từ tâm $O$ đến dây $AB$.  
+b) Gọi $I$ là trung điểm $AB$. Vẽ dây $CD$ đi qua $I$ và vuông góc với $OI$. Tính độ dài dây $CD$.
 
-**Bài 3:** So sánh Dây cung. Cho hai dây cung $AB = 12\text{cm}$ và dây cung ngầm $CD = 10\text{cm}$ nằm trên hình tròn đường kính O có bán kính $R = 8\text{cm}$.
+**Bài 5:** Cho đường tròn $(O; R)$ và hai dây $AB // CD$. Biết $AB = 12\text{ cm}, CD = 16\text{ cm}$ và bán kính $R = 10\text{ cm}$. Tính khoảng cách giữa hai dây $AB$ và $CD$ trong hai trường hợp:  
+a) Hai dây nằm cùng phía đối với tâm $O$.  
+b) Hai dây nằm khác phía đối với tâm $O$.
 
-a) Dây nào tạo cung nhỏ lớn hơn?
+**Bài 6:** Cho tam giác $ABC$ nhọn nội tiếp đường tròn $(O; R)$. Gọi $H, K$ lần lượt là trung điểm của $AB, AC$. Biết $OH > OK$.  
+a) So sánh độ dài hai cạnh $AB$ và $AC$.  
+b) So sánh hai góc $\widehat{B}$ và $\widehat{C}$ của tam giác $ABC$.
 
-b) Khoảng cách nào ngắn hơn khoảng cách từ O đến cung nhỏ dây C hay khoảng cách từ O đến cung nhỏ dây A? *(Trực giác).*
+**Bài 7:** Cho đường tròn $(O; R)$ và hai dây $AB, CD$ bằng nhau cắt nhau tại $M$ bên trong đường tròn.  
+a) Chứng minh $OM$ là đường phân giác của góc tạo bởi hai dây $AB$ và $CD$.  
+b) Chứng minh $MA = MC$ và $MB = MD$.
 
-**Bài 4:** Đặt môt đường tròn (O) và một dây cung MN. Môt bán kính OA cắt đoạn thẳng Dây MN tại giao điểm I. Được biết khoảng cách $MI = 3\text{cm}$, Khoảng cách góc $IN = 3\text{cm}$. 
-Chứng minh rằng Tam giác OMN là tam giác Cân và OA là đường phân giác.
+**Bài 8:** Cho đường tròn $(O; R)$ và điểm $A$ nằm ngoài $(O)$. Từ $A$ kẻ cát tuyến $ABC$ cắt $(O)$ tại $B$ và $C$. Gọi $H$ là trung điểm $BC$. Chứng minh $OA^2 - AH^2 = R^2 - BH^2$.
 
-**Bài 5 (Thực tế - Kho kẹo M&M Vết Tích):**
-Các nhà khảo cổ học đào được môt hiện vật chiếc đĩa cổ quí hiếm bị vỡ. Họ chỉ có trong tay môt phần cung của cái đĩa và muốn phục chế bằng cách bồi đắp vật liệu tròn cho nó.
-Làm sao để với chiếc compa và thước thẳng chưa phân vạch, họ có thể Dựng Lại vẽ được nguyên vẹn chiếc đĩa và xác định được Tâm O của chiếc đồ cổ chỉ từ 1 đoạn mảnh vỡ cong hình lưỡi liềm? Giải thích rõ bằng nguyên lý Định lý Dây Cung và Cung Vòng.
+**Bài 9 (Thực tế):** Một hầm đường bộ qua núi có mặt cắt ngang là một phần hình tròn bán kính $R = 6\text{ m}$. Chiều rộng mặt đường xe chạy là $AB = 8\text{ m}$. Tính chiều cao khoảng không lớn nhất từ mặt đường lên đỉnh hầm.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 10 (Thực tế):** Một chiếc đĩa sứ cổ bị vỡ thành một mảnh chứa cung tròn $AB$. Người ta đo được dây $AB = 16\text{ cm}$ và khoảng cách từ trung điểm $H$ của $AB$ đến đỉnh cung $C$ là $CH = 4\text{ cm}$. Tính bán kính của chiếc đĩa sứ ban đầu.
 
-**Bài 1:**
-Gọi đường hạ góc từ tâm O xuống rãnh vỡ AB là điểm cắt H ($OH \perp AB$).
-Theo Định Lý trung trực Vuông góc: H sẽ cắt ngang giữa mảng Dây vỡ AB $\Rightarrow AH = HB = 24 / 2 = 12\text{cm}$.
-Xét tam giác vuông nhỏ (OAH) gồm: $OA$ (Huyền) $= R = 20\text{cm}$. $AH$ (Kề cạnh thẳng) $= 12\text{cm}$.
-Dùng Pytago khoảng cách d: $OH^2 = OA^2 - AH^2 = 20^2 - 12^2 = 400 - 144 = 256$.
-$\Rightarrow d = OH = \sqrt{256} = 16\text{cm}$.
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-**Bài 2:**
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-a) Định lý Bài đường tròn mốc: Tâm O nằm giữa đường vạch AD. Giao đường thẳng 3 trục nội tiếp đường chéo chập đường kính 3 góc đều tạo thành 1 Tam Giác Vuông nội tiếp góc B. Nghĩa là Tam giác nội tiếp có đường kính là cạnh huyền phải là tam giác VUÔNG. Tam giác ABD là tam giác Vuông tại B.
+**Bài 1:**  
+a) $AH = 6 \Rightarrow OH = \sqrt{10^2-6^2} = 8\text{ cm}$.  
+b) $AH = 8 \Rightarrow OH = \sqrt{10^2-8^2} = 6\text{ cm}$.  
+c) $AH = 5\sqrt{3} \Rightarrow OH = \sqrt{100-75} = 5\text{ cm}$.  
+d) $AH = 5\sqrt{2} \Rightarrow OH = \sqrt{100-50} = 5\sqrt{2}\text{ cm}$.  
+e) $AH = 5 \Rightarrow OH = \sqrt{100-25} = 5\sqrt{3}\text{ cm}$.  
+f) Dây $AB = 2R = 20\text{ cm}$ là đường kính $\Rightarrow OH = 0\text{ cm}$.
 
-b) Trong tam giác vuông ABD: $BD^2 = AD^2 - AB^2 = 10^2 - 8^2 = 100 - 64 = 36$.
-Vậy độ dài mảng cầu cầu dây ngang $BD = 6\text{cm}$.
+---
 
-**Bài 3:**
+**Bài 2:**  
+a) $AH = \sqrt{13^2-5^2} = 12 \Rightarrow AB = 24\text{ cm}$.  
+b) $AH = \sqrt{25^2-15^2} = 20 \Rightarrow AB = 40\text{ cm}$.  
+c) $AH = \sqrt{17^2-8^2} = 15 \Rightarrow AB = 30\text{ cm}$.  
+d) $AH = \sqrt{10^2-5^2} = 5\sqrt{3} \Rightarrow AB = 10\sqrt{3}\text{ cm}$.  
+e) $AH = \sqrt{64-48} = 4 \Rightarrow AB = 8\text{ cm}$.  
+f) $OH = 0 \Rightarrow AB = 2R = 12\text{ cm}$.
 
-a) Do $AB (12) > CD (10) \Rightarrow$ Cung AB phình kéo căng rãnh góc Nhỏ LỚN HƠN Cung CD.
+---
 
-b) Trực giác dây cung CÀNG LỚN (càng gần Đường Kính), thì Khoảng Cách tính bằng từ Tâm chĩa đến nó CÀNG BÉ (càng xáp gần tâm lại). Vậy đáp án là Khoảng Cách từ O đến AB ngấn hơn.
+**Bài 3:**  
+a) $OH = 4 < OK = 6 \Rightarrow AB > CD$.  
+b) $OH = 8 > OK = 5 \Rightarrow AB < CD$.  
+c) $OH = \sqrt{18} \approx 4,24 > OK = 4 \Rightarrow AB < CD$.  
+d) $OH = OK = 7 \Rightarrow AB = CD$.  
+e) $OH = 0,5R < OK \approx 0,707R \Rightarrow AB > CD$.  
+f) $OH = 0 < OK = 3 \Rightarrow AB > CD$ (AB là đường kính).
 
-**Bài 4:**
-Do $MI = 3$ và $IN = 3 \Rightarrow MI = IN \Rightarrow I$ là trung điểm của MN.
-Bán Kính đoạn gạch OA giao ngang (Đi thẳng vào điểm Mút của Dây cung nhỏ), chia 2 đoạn bằng nhau với DƯ kiện Dây MN không đi xuyên Tâm (tạo hình Trục đối xứng) $\Rightarrow$ Tam giác OMN có Trung trực trùng với đường hạ Vuông ($OA \perp MN$) $\Rightarrow$ Nó là Tam giác Cân. Do đó nó kiêm luôn đường phân giới góc MON.
+---
 
-**Bài 5:**
-Giải pháp Thực tế Cực Hay Của Khảo Cổ Học:
-- Bước 1 (Dựng 2 sợi dây bất kì): Chắp mảnh sứ ra, bắt bất kì 3 điểm ngẫu nhiên A, B, C viền vòng tròn nằm trên rìa miệng đĩa. Kẻ cái Dây Cung AB và 1 cái Dây cung BC.
-- Bước 2 (Lý thuyết Cứu Tinh): Theo Định Lý Dây chập Đường Kính Vuông Góc $\Rightarrow$ Đường bao trọn toàn bộ Trung Trực của điểm AB sẽ cắt thẳng lên hướng đi Tìm O (Tâm). Và Đường bao Trung Trực của chóp BC cũng sẽ đi về O (Tâm).
-- Bước 3 (Vẽ): Thợ bóc thước để xoay Trung điểm của Dây AB rồi hạ 1 nét bút vuông góc thẳng đè ra ngoài. Làm lại y chang với Dây BC kẻ một đường nét Vuông Góc.
-Hai Vết Bút Chì đó cắt ngang xẹt chéo nhau vào ĐIỂM NÀO, là "Mắt Thần" TÂM O lộ diện.
-Có Tâm bằng O có Bán kính tới móp, xoay 1 vòng Com-Pa là Hồi Sinh Lại Cái Cổ Vật liền!
+**Bài 4:**  
+a) $H$ là trung điểm $AB \Rightarrow AH = 12\text{ cm}$.  
+$OH = \sqrt{15^2 - 12^2} = 9\text{ cm}$.  
+b) $CD \perp OI$ tại $I \equiv H \Rightarrow I$ là trung điểm $CD$ và khoảng cách từ $O$ đến $CD$ chính là $OI = OH = 9\text{ cm}$.  
+Do đó $CD = AB = 24\text{ cm}$.
+
+---
+
+**Bài 5:**  
+Khoảng cách từ $O$ đến $AB$ là $OH = \sqrt{10^2 - 6^2} = 8\text{ cm}$.  
+Khoảng cách từ $O$ đến $CD$ là $OK = \sqrt{10^2 - 8^2} = 6\text{ cm}$.  
+a) Cùng phía: Khoảng cách giữa 2 dây $HK = OH - OK = 8 - 6 = 2\text{ cm}$.  
+b) Khác phía: Khoảng cách giữa 2 dây $HK = OH + OK = 8 + 6 = 14\text{ cm}$.
+
+---
+
+**Bài 6:**  
+a) Vì $OH > OK$ (khoảng cách đến $AB$ lớn hơn đến $AC$) nên dây $AB < AC$.  
+b) Trong tam giác $ABC$, đối diện với cạnh $AC$ lớn hơn là góc $\widehat{B}$, đối diện với cạnh $AB$ nhỏ hơn là góc $\widehat{C}$.  
+Vì $AC > AB \Rightarrow \widehat{B} > \widehat{C}$.
+
+---
+
+**Bài 7:**  
+a) Kẻ $OH \perp AB, OK \perp CD$. Vì $AB = CD \Rightarrow OH = OK$.  
+Xét $\Delta OHM$ và $\Delta OKM$ vuông tại $H, K$: $OM$ chung, $OH = OK \Rightarrow \Delta OHM = \Delta OKM$ (ch-cgv).  
+$\Rightarrow \widehat{HOM} = \widehat{KOM} \Rightarrow OM$ là tia phân giác của góc tạo bởi hai dây $AB, CD$.  
+b) Từ câu a suy ra $HM = KM$.  
+Vì $AB = CD \Rightarrow HA = KC$.  
+Do đó $HM - HA = KM - KC \Rightarrow MA = MC$.  
+Mặt khác $MB = AB - MA = CD - MC = MD \Rightarrow MB = MD$ (ĐPCM).
+
+---
+
+**Bài 8:**  
+Trong tam giác $AHB$ vuông tại $H$: $AH^2 = AB \cdot AC$ ...  
+Áp dụng Pythagore: $OA^2 = OH^2 + AH^2$ và $OB^2 = OH^2 + BH^2 = R^2$.  
+Suy ra $OA^2 - R^2 = AH^2 - BH^2 \Rightarrow OA^2 - AH^2 = R^2 - BH^2$ (ĐPCM).
+
+---
+
+**Bài 9:**  
+Trung điểm mặt đường $AH = 4\text{ m}$.  
+Khoảng cách từ tâm $O$ đến mặt đường: $OH = \sqrt{6^2 - 4^2} = \sqrt{20} = 2\sqrt{5} \approx 4,47\text{ m}$.  
+Chiều cao khoảng không lớn nhất $h = R - OH = 6 - 4,47 = 1,53\text{ m}$.
+
+---
+
+**Bài 10:**  
+Gọi bán kính đĩa sứ là $R$. Trung điểm $AH = 8\text{ cm}$.  
+Đoạn $OH = R - CH = R - 4$.  
+Trong tam giác $OHA$ vuông tại $H$: $OA^2 = OH^2 + AH^2 \Rightarrow R^2 = (R - 4)^2 + 8^2$.  
+$R^2 = R^2 - 8R + 16 + 64 \Rightarrow 8R = 80 \Rightarrow R = 10\text{ cm}$.  
+Bán kính đĩa sứ cổ là 10 cm.
 
 </div>
 </details>

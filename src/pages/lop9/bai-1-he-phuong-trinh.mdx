@@ -16,7 +16,6 @@ import QuizSession from '../../components/ui/QuizSession';
 import LinearEquationQuiz from '../../components/interactive/LinearEquationQuiz';
 import SystemOfEquationsQuiz from '../../components/interactive/SystemOfEquationsQuiz';
 
-
 export const quizData = [
   {
     type: "mcq",
@@ -26,7 +25,7 @@ export const quizData = [
     option_c: "$2x - 3y + z = 1$",
     option_d: "$x + y^2 = 0$",
     correct_option: "A",
-    explanation: "Phương trình dạng $ax + by = c$ với $a, b$ không đồng thời bằng 0 là phương trình bậc nhất hai ẩn.",
+    explanation: "Phương trình bậc nhất hai ẩn $x, y$ có dạng $ax + by = c$ với $a, b$ không đồng thời bằng 0. Do đó $2x - 3y = 5$ là phương trình bậc nhất hai ẩn.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
@@ -34,146 +33,151 @@ export const quizData = [
     type: "mcq",
     question: "Cặp số $(x; y) = (1; 2)$ là nghiệm của phương trình nào sau đây?",
     option_a: "$x + y = 2$",
-    option_b: "$x - y = -1$",
+    option_b: "$2x - y = 0$",
     option_c: "$2x + y = 5$",
     option_d: "$x - 2y = 0$",
     correct_option: "B",
-    explanation: "Thay $x = 1, y = 2$ vào các phương trình, ta có $1 - 2 = -1$. Do đó (1; 2) là nghiệm của $x - y = -1$.",
+    explanation: "Thay $x = 1, y = 2$ vào vế trái phương trình $2x - y = 0$: $2(1) - 2 = 0$ (bằng vế phải). Do đó $(1; 2)$ là nghiệm của $2x - y = 0$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Phương trình bậc nhất hai ẩn $ax + by = c$ có bao nhiêu nghiệm?",
+    question: "Phương trình bậc nhất hai ẩn $ax + by = c$ ($a \\neq 0$ hoặc $b \\neq 0$) có bao nhiêu nghiệm?",
     option_a: "Vô số nghiệm",
     option_b: "Có duy nhất một nghiệm",
     option_c: "Vô nghiệm",
-    option_d: "Có hai nghiệm",
+    option_d: "Có đúng hai nghiệm",
     correct_option: "A",
-    explanation: "Phương trình bậc nhất hai ẩn luôn có vô số nghiệm. Tập nghiệm được biểu diễn bởi một đường thẳng trên mặt phẳng tọa độ.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Nghiệm của hệ hai phương trình bậc nhất hai ẩn là gì?",
-    option_a: "Một số thực $x$",
-    option_b: "Một số thực $y$",
-    option_c: "Một cặp số $(x; y)$ thỏa mãn cả hai phương trình",
-    option_d: "Tất cả các cặp số",
-    correct_option: "C",
-    explanation: "Nghiệm của hệ phương trình là một cặp số $(x; y)$ sao cho khi thay vào, nó thỏa mãn đồng thời cả hai phương trình của hệ.",
+    explanation: "Một phương trình bậc nhất hai ẩn luôn có vô số nghiệm. Tập nghiệm của nó được biểu diễn bởi một đường thẳng trên mặt phẳng tọa độ Oxy.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Đường thẳng biểu diễn tập nghiệm của phương trình $2x - y = 3$ đi qua điểm nào?",
-    option_a: "$(0; 3)$",
-    option_b: "$(2; 1)$",
-    option_c: "$(1; 2)$",
-    option_d: "$(-1; 1)$",
+    question: "Tập nghiệm của phương trình $0x + 2y = 4$ được biểu diễn bởi đường thẳng nào trên mặt phẳng tọa độ Oxy?",
+    option_a: "Đường thẳng $x = 2$ song song với trục Oy",
+    option_b: "Đường thẳng $y = 2$ song song với trục Ox",
+    option_c: "Đường thẳng $y = 4$ song song với trục Ox",
+    option_d: "Đường thẳng đi qua gốc tọa độ O(0; 0)",
     correct_option: "B",
-    explanation: "Thay $x = 2, y = 1$ vào phương trình rút ra $2(2) - 1 = 3$ (đúng).",
+    explanation: "Phương trình $0x + 2y = 4 \\Leftrightarrow y = 2$. Tập nghiệm là tất cả các điểm $(x; 2)$ với $x \\in \\mathbb{R}$, biểu diễn bởi đường thẳng $y = 2$ song song với trục Ox.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hai đường thẳng cắt nhau sẽ có bao nhiêu điểm chung tương ứng với nghiệm của hệ phương trình?",
-    option_a: "1",
-    option_b: "0",
-    option_c: "Vô số",
-    option_d: "2",
+    question: "Cặp số $(x; y) = (2; -1)$ là nghiệm của hệ phương trình nào sau đây?",
+    option_a: "$\\begin{cases} x + y = 1 \\\\ 2x - y = 5 \\end{cases}$",
+    option_b: "$\\begin{cases} x - y = 1 \\\\ x + 2y = 0 \\end{cases}$",
+    option_c: "$\\begin{cases} 2x + y = 4 \\\\ x - y = 1 \\end{cases}$",
+    option_d: "$\\begin{cases} x + y = 3 \\\\ 3x - y = 5 \\end{cases}$",
     correct_option: "A",
-    explanation: "Mỗi giao điểm của 2 đường thẳng là một nghiệm. Cắt nhau thì có duy nhất 1 giao điểm.",
+    explanation: "Thay $x = 2, y = -1$ vào hệ A: $2 + (-1) = 1$ (đúng) và $2(2) - (-1) = 5$ (đúng). Vậy $(2; -1)$ là nghiệm của hệ A.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu hai đường thẳng biểu diễn tập nghiệm của hai phương trình trong hệ cắt nhau tại một điểm duy nhất thì hệ phương trình đó có bao nhiêu nghiệm?",
+    option_a: "Vô số nghiệm",
+    option_b: "1 nghiệm duy nhất",
+    option_c: "Vô nghiệm",
+    option_d: "2 nghiệm",
+    correct_option: "B",
+    explanation: "Mỗi giao điểm của hai đường thẳng tương ứng với một nghiệm chung của hai phương trình. Do cắt nhau tại 1 điểm nên hệ có duy nhất 1 nghiệm.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Chọn tất cả các phương trình bậc nhất hai ẩn:",
-    option_a: "$3x + 4y = 5$",
-    option_b: "$0x + 0y = -2$",
-    option_c: "$x - 2y = 0$",
-    option_d: "$2x^2 + y = 1$",
-    correct_option: "A,C",
-    explanation: "Phải có dạng $ax+by=c$ với $a,b$ không đồng thời bằng 0.",
+    question: "Các phương trình nào sau đây là phương trình bậc nhất hai ẩn?",
+    option_a: "$3x - 4y = 7$",
+    option_b: "$0x + 5y = -10$",
+    option_c: "$0x + 0y = 3$",
+    option_d: "$-2x + 0y = 8$",
+    correct_option: "A,B,D",
+    explanation: "Phương trình bậc nhất hai ẩn có dạng $ax + by = c$ với $a, b$ không đồng thời bằng 0. Cả A, B, D đều thỏa mãn. Câu C có $a = b = 0$ nên không phải.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Cặp số $(x;y) = (3; 1)$ là nghiệm của hệ phương trình nào?",
-    option_a: "$\\begin{cases} x - y = 2 \\\\ x + 2y = 5 \\end{cases}$",
-    option_b: "$\\begin{cases} 2x - y = 5 \\\\ x - 3y = 0 \\end{cases}$",
-    option_c: "$\\begin{cases} x - 3y = 0 \\\\ -x + 3y = 0 \\end{cases}$",
-    option_d: "$\\begin{cases} x + y = 3 \\\\ 2x - y = 1 \\end{cases}$",
+    question: "Những cặp số nào sau đây là nghiệm của phương trình $2x + y = 4$?",
+    option_a: "$(0; 4)$",
+    option_b: "$(2; 0)$",
+    option_c: "$(1; 2)$",
+    option_d: "$(-1; 5)$",
     correct_option: "A,B,C",
-    explanation: "Thử $(3; 1)$ vào từng hệ.",
+    explanation: "Thay từng cặp số vào $2x + y$: với $(0; 4) \\rightarrow 2(0)+4=4$; $(2; 0) \\rightarrow 2(2)+0=4$; $(1; 2) \\rightarrow 2(1)+2=4$. Riêng $(-1; 5) \\rightarrow 2(-1)+5=3 \\neq 4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm giá trị của $m$ để cặp số $(x; y) = (1; 3)$ là nghiệm của phương trình $mx + 2y = 8$.",
+    correct_option: "2",
+    explanation: "Thay $x = 1, y = 3$ vào phương trình: $m(1) + 2(3) = 8 \\Leftrightarrow m + 6 = 8 \\Leftrightarrow m = 2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho hệ phương trình $\\begin{cases} x - y = 3 \\\\ 2x + y = 9 \\end{cases}$. Tìm hoành độ $x_0$ của nghiệm $(x_0; y_0)$ của hệ.",
+    correct_option: "4",
+    explanation: "Cộng hai phương trình vế với vế: $3x = 12 \\Rightarrow x = 4$. Thay vào phương trình đầu: $4 - y = 3 \\Rightarrow y = 1$. Hoành độ $x_0 = 4$.",
     difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Nghiệm $(x_0; y_0)$ của hệ $\\begin{cases} x = 2 \\\\ y = x + 1 \\end{cases}$. Tìm tổng $x_0 + y_0$.",
-    correct_option: "5",
-    explanation: "$x=2$, suy ra $y=3$. Tổng $2+3=5$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Tập nghiệm của phương trình $0x + y = 4$ được biểu diễn bởi một đường thẳng song song với trục nào? (Nhập Ox hoặc Oy)",
-    correct_option: "Ox",
-    explanation: "Đường thẳng $y = 4$ song song với trục hoành Ox.",
-    difficulty_level: "medium",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🐕 Vừa gà vừa chó</h3>
+<h3 id="mo-dau">🐕 Vừa gà vừa chó — Bài toán dân gian và ngôn ngữ Đại số</h3>
 
-Bài toán cổ Việt Nam có câu:
-> "Vừa gà vừa chó
-> Bó lại cho tròn
-> Ba mươi sáu con
-> Một trăm chân chẵn.
-> Hỏi có bao nhiêu gà, bao nhiêu chó?"
+Bài toán cổ Việt Nam nổi tiếng:
+> *"Vừa gà vừa chó*  
+> *Bó lại cho tròn*  
+> *Ba mươi sáu con*  
+> *Một trăm chân chẵn.*  
+> *Hỏi có bao nhiêu gà, bao nhiêu chó?"*
 
-Nếu gọi số con gà là $x$ và số con chó là $y$, em hãy viết hai hệ thức liên hệ giữa $x$ và $y$ dựa vào dữ kiện bài toán.
+Nếu gọi số con gà là $x$ ($x \in \mathbb{N}^*$) và số con chó là $y$ ($y \in \mathbb{N}^*$), ta thu được hai mối liên hệ:
+1. Tổng số con là 36: $x + y = 36$
+2. Tổng số chân là 100 (gà có 2 chân, chó có 4 chân): $2x + 4y = 100$
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+Hai hệ thức trên chính là ví dụ điển hình về **phương trình bậc nhất hai ẩn**. Khi kết hợp chúng lại, ta có một **hệ hai phương trình bậc nhất hai ẩn**.
 
-- Tổng số con là 36: $x + y = 36$
-- Tổng số chân là 100 (gà có 2 chân, chó có 4 chân): $2x + 4y = 100$
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="340" height="180" viewBox="0 0 340 180" style="background:white;border-radius:12px;border:2px solid #e5e7eb;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
+  {/* Left Circle: Chicken */}
+  <g transform="translate(40, 20)">
+    <rect width="110" height="130" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+    <text x="55" y="30" font-size="14" font-weight="bold" fill="#b45309" text-anchor="middle">Số gà (x)</text>
+    <circle cx="55" cy="70" r="22" fill="#fbbf24"/>
+    <circle cx="50" cy="65" r="3" fill="#1e293b"/>
+    <polygon points="33,70 23,75 33,80" fill="#ea580c"/>
+    <line x1="48" y1="92" x2="48" y2="112" stroke="#d97706" stroke-width="3"/>
+    <line x1="62" y1="92" x2="62" y2="112" stroke="#d97706" stroke-width="3"/>
+    <text x="55" y="125" font-size="12" fill="#92400e" text-anchor="middle">2 chân / con</text>
+  </g>
 
-Hai hệ thức trên là những ví dụ về phương trình bậc nhất hai ẩn. Kết hợp chúng lại, ta được một **hệ hai phương trình bậc nhất hai ẩn**.
+  {/* Plus Sign */}
+  <text x="170" y="95" font-size="28" font-weight="bold" fill="#2563eb" text-anchor="middle">+</text>
 
-</div>
-
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="250" height="200" viewBox="0 0 250 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Chicken */}
-  <circle cx="80" cy="100" r="30" fill="#fef08a"/>
-  <circle cx="80" cy="80" r="5" fill="#1f2937"/>
-  <path d="M 60 100 L 50 110 L 60 120 Z" fill="#f97316"/>
-  <rect x="75" y="130" width="4" height="20" fill="#f97316"/>
-  <rect x="85" y="130" width="4" height="20" fill="#f97316"/>
-
-  {/* Dog */}
-  <circle cx="170" cy="110" r="35" fill="#d1d5db"/>
-  <circle cx="155" cy="100" r="5" fill="#1f2937"/>
-  <path d="M 190 110 L 210 100 L 210 120 Z" fill="#d1d5db"/>
-  <rect x="150" y="145" width="6" height="25" fill="#9ca3af"/>
-  <rect x="165" y="145" width="6" height="25" fill="#9ca3af"/>
-  <rect x="180" y="145" width="6" height="25" fill="#9ca3af"/>
-  <rect x="195" y="145" width="6" height="25" fill="#9ca3af"/>
-
-  {/* Plus sign */}
-  <text x="125" y="120" font-size="24" font-weight="bold" fill="#3b82f6" text-anchor="middle">+</text>
+  {/* Right Circle: Dog */}
+  <g transform="translate(190, 20)">
+    <rect width="110" height="130" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="55" y="30" font-size="14" font-weight="bold" fill="#0369a1" text-anchor="middle">Số chó (y)</text>
+    <circle cx="55" cy="70" r="24" fill="#38bdf8"/>
+    <circle cx="45" cy="65" r="3" fill="#1e293b"/>
+    <polygon points="75,65 90,60 85,75" fill="#0284c7"/>
+    <line x1="42" y1="94" x2="42" y2="114" stroke="#0369a1" stroke-width="3"/>
+    <line x1="50" y1="94" x2="50" y2="114" stroke="#0369a1" stroke-width="3"/>
+    <line x1="60" y1="94" x2="60" y2="114" stroke="#0369a1" stroke-width="3"/>
+    <line x1="68" y1="94" x2="68" y2="114" stroke="#0369a1" stroke-width="3"/>
+    <text x="55" y="125" font-size="12" fill="#075985" text-anchor="middle">4 chân / con</text>
+  </g>
 </svg>
 </div>
 
@@ -181,106 +185,289 @@ Hai hệ thức trên là những ví dụ về phương trình bậc nhất hai
 
 <KhamPha title="Khám phá">
 
-<h3 id="pt-bac-nhat-hai-an" style="margin-top:2rem;">📖 1. Khái niệm phương trình bậc nhất hai ẩn</h3>
+<h3 id="pt-bac-nhat-hai-an">📖 1. Phương trình bậc nhất hai ẩn</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Phương trình bậc nhất hai ẩn $x, y$ là hệ thức dạng:
-
+**Định nghĩa:** Phương trình bậc nhất hai ẩn $x$ và $y$ là hệ thức có dạng:
 $$ax + by = c$$
+Trong đó $a, b, c$ là các số thực cho trước ($a$ và $b$ không đồng thời bằng 0).
 
-Trong đó $a, b, c$ là các số đã biết, $a$ và $b$ không đồng thời bằng 0.
+- $x, y$ gọi là các **ẩn số**.
+- $a, b$ gọi là các **hệ số** của ẩn; $c$ là **hằng số tự do**.
 
 </div>
 
-<h3 id="he-pt-bac-nhat-hai-an" style="margin-top:2rem;">📖 2. Khái niệm hệ hai phương trình bậc nhất hai ẩn</h3>
+**Khái niệm nghiệm:**
+- Mỗi cặp số $(x_0; y_0)$ sao cho $a x_0 + b y_0 = c$ là một đẳng thức đúng được gọi là một **nghiệm** của phương trình $ax + by = c$.
+- Phương trình bậc nhất hai ẩn luôn có **vô số nghiệm**. Trên mặt phẳng tọa độ Oxy, tập nghiệm của nó được biểu diễn bởi một đường thẳng $(d): ax + by = c$.
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="360" height="220" viewBox="0 0 360 220" style="background:white;border-radius:10px;border:1px solid #cbd5e1;">
+  {/* Grid Lines */}
+  <defs>
+    <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="360" height="220" fill="url(#grid1)" />
+
+  {/* Coordinate Axes */}
+  <line x1="30" y1="180" x2="330" y2="180" stroke="#475569" stroke-width="2"/>
+  <line x1="180" y1="210" x2="180" y2="20" stroke="#475569" stroke-width="2"/>
+  <polygon points="330,180 322,175 322,185" fill="#475569"/>
+  <polygon points="180,20 175,28 185,28" fill="#475569"/>
+  <text x="340" y="185" font-size="13" font-weight="bold" fill="#334155">x</text>
+  <text x="180" y="12" font-size="13" font-weight="bold" fill="#334155" text-anchor="middle">y</text>
+  <text x="168" y="195" font-size="12" fill="#64748b">O</text>
+
+  {/* Line d: 2x + y = 4 => y = -2x + 4 */}
+  <line x1="130" y1="0" x2="240" y2="220" stroke="#2563eb" stroke-width="3"/>
+  <circle cx="180" cy="100" r="5" fill="#dc2626"/>
+  <circle cx="220" cy="180" r="5" fill="#dc2626"/>
+
+  <text x="190" y="98" font-size="11" font-weight="bold" fill="#dc2626">A(0; 4)</text>
+  <text x="228" y="175" font-size="11" font-weight="bold" fill="#dc2626">B(2; 0)</text>
+  <text x="245" y="210" font-size="13" font-weight="bold" fill="#2563eb">(d): 2x + y = 4</text>
+</svg>
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Lý thuyết 1:**
+
+- **Ví dụ 1:** Xét phương trình $3x - 2y = 6$.
+  - Xác định các hệ số: $a = 3, b = -2, c = 6$.
+  - Cặp số $(2; 0)$ có là nghiệm không? Thay $x=2, y=0$: $3(2) - 2(0) = 6$ (đúng). Vậy $(2; 0)$ là một nghiệm.
+
+- **Ví dụ 2:** Biểu diễn nghiệm tổng quát của phương trình $x - 3y = 2$.
+  - Rút $x$ theo $y$: $x = 3y + 2$.
+  - Tập nghiệm tổng quát là $\begin{cases} x = 3y + 2 \\ y \in \mathbb{R} \end{cases}$ hoặc cặp số $(3y + 2; y)$ với mọi $y \in \mathbb{R}$.
+
+- **Ví dụ 3:** Xét phương trình $0x + 3y = 9$.
+  - Thu gọn: $3y = 9 \Leftrightarrow y = 3$.
+  - Tất cả các cặp số có dạng $(x; 3)$ với $x \in \mathbb{R}$ tùy ý đều là nghiệm. Đường thẳng biểu diễn là đường thẳng $y = 3$ song song với trục hoành Ox.
+
+</div>
+
+<h3 id="he-pt-bac-nhat-hai-an" style="margin-top:2rem;">📖 2. Hệ hai phương trình bậc nhất hai ẩn</h3>
 
 <div class="box-dinh-nghia">
 
-**Định nghĩa:** Hệ hai phương trình bậc nhất hai ẩn có dạng:
+**Định nghĩa:** Hệ hai phương trình bậc nhất hai ẩn có dạng tổng quát:
+$$\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}$$
+Trong đó $ax + by = c$ và $a'x + b'y = c'$ là hai phương trình bậc nhất hai ẩn.
 
-$$
-\begin{cases} 
-ax + by = c \\
-a'x + b'y = c'
-\end{cases}
-$$
+- Cặp số $(x_0; y_0)$ thỏa mãn **đồng thời** cả hai phương trình được gọi là **một nghiệm** của hệ.
+- **Biểu diễn hình học nghiệm của hệ:** Gọi $(d_1)$ và $(d_2)$ lần lượt là hai đường thẳng biểu diễn tập nghiệm của hai phương trình trong hệ.
+  1. $(d_1)$ cắt $(d_2)$ tại $M(x_0; y_0) \Rightarrow$ Hệ có **nghiệm duy nhất** $(x_0; y_0)$.
+  2. $(d_1) // (d_2) \Rightarrow$ Hệ **vô nghiệm**.
+  3. $(d_1) \equiv (d_2) \Rightarrow$ Hệ có **vô số nghiệm**.
 
-Trong đó, mỗi phương trình là một phương trình bậc nhất hai ẩn.
+</div>
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="160" viewBox="0 0 420 160" style="background:white;border-radius:10px;border:1px solid #cbd5e1;">
+  {/* Box 1: Cắt nhau */}
+  <g transform="translate(10, 10)">
+    <rect width="125" height="140" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="62" y="25" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">1 Nghiệm duy nhất</text>
+    <line x1="15" y1="120" x2="110" y2="40" stroke="#2563eb" stroke-width="2"/>
+    <line x1="15" y1="40" x2="110" y2="120" stroke="#dc2626" stroke-width="2"/>
+    <circle cx="62.5" cy="80" r="4" fill="#000"/>
+    <text x="62" y="135" font-size="11" fill="#16a34a" text-anchor="middle">(d1) cắt (d2)</text>
+  </g>
+
+  {/* Box 2: Song song */}
+  <g transform="translate(147, 10)">
+    <rect width="125" height="140" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="62" y="25" font-size="12" font-weight="bold" fill="#b91c1c" text-anchor="middle">Vô nghiệm</text>
+    <line x1="15" y1="60" x2="110" y2="60" stroke="#2563eb" stroke-width="2"/>
+    <line x1="15" y1="95" x2="110" y2="95" stroke="#dc2626" stroke-width="2"/>
+    <text x="62" y="135" font-size="11" fill="#dc2626" text-anchor="middle">(d1) // (d2)</text>
+  </g>
+
+  {/* Box 3: Trùng nhau */}
+  <g transform="translate(284, 10)">
+    <rect width="125" height="140" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="62" y="25" font-size="12" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Vô số nghiệm</text>
+    <line x1="15" y1="80" x2="110" y2="80" stroke="#2563eb" stroke-width="4"/>
+    <line x1="15" y1="80" x2="110" y2="80" stroke="#9333ea" stroke-width="2" stroke-dasharray="6,4"/>
+    <text x="62" y="135" font-size="11" fill="#2563eb" text-anchor="middle">(d1) ≡ (d2)</text>
+  </g>
+</svg>
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Lý thuyết 2:**
+
+- **Ví dụ 1:** Cho hệ phương trình $\begin{cases} x + y = 3 \\ 2x - y = 3 \end{cases}$. Cặp số $(2; 1)$ có phải là nghiệm của hệ không?
+  - Thay $x = 2, y = 1$ vào phương trình (1): $2 + 1 = 3$ (đúng).
+  - Thay $x = 2, y = 1$ vào phương trình (2): $2(2) - 1 = 3$ (đúng).
+  - Đẳng thức đúng ở cả 2 phương trình $\Rightarrow (2; 1)$ là nghiệm của hệ.
+
+- **Ví dụ 2:** Cho hệ phương trình $\begin{cases} 2x - y = 4 \\ 2x - y = 1 \end{cases}$. Giải thích vì sao hệ vô nghiệm.
+  - Vế trái hai phương trình giống nhau ($2x - y$), nhưng vế phải một bên bằng 4, một bên bằng 1. Không tồn tại cặp số $(x; y)$ nào vừa có $2x - y = 4$ vừa có $2x - y = 1$. Đường thẳng $(d_1): 2x - y = 4$ song song với $(d_2): 2x - y = 1$. Vậy hệ vô nghiệm.
+
+- **Ví dụ 3:** Cho hệ phương trình $\begin{cases} x - 2y = 1 \\ 2x - 4y = 2 \end{cases}$.
+  - Nhân hai vế của phương trình thứ nhất với 2, ta thu được phương trình thứ hai: $2(x - 2y) = 2(1) \Leftrightarrow 2x - 4y = 2$.
+  - Hai phương trình biểu diễn cùng một đường thẳng $(d) \Rightarrow$ Hệ có vô số nghiệm có dạng $(2y + 1; y)$ với $y \in \mathbb{R}$.
 
 </div>
 
-**Nghiệm của hệ:**
-- Cặp số $(x_0; y_0)$ được gọi là một nghiệm của hệ nếu nó là nghiệm chung của cả hai phương trình.
-- Tùy vào vị trí tương đối của hai đường thẳng mà hệ có thể: có một nghiệm duy nhất, vô nghiệm, hoặc vô số nghiệm.
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
 
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+#### **Dạng 1: Nhận biết phương trình, hệ phương trình và xác định các hệ số**
+- **Phương pháp:** 
+  1. Phương trình bậc nhất hai ẩn có dạng $ax + by = c$ với $a^2 + b^2 \neq 0$.
+  2. Bậc của $x$ và $y$ phải là 1, không chứa tích $xy$ hay ẩn ở mẫu số.
+  3. Hệ hai phương trình gồm 2 phương trình bậc nhất 2 ẩn ghép lại.
 
-**Ví dụ minh họa:**
-- **Ví dụ 1:** Cho phương trình $2x + y = 5$. Cặp số $(1; 3)$ có là nghiệm không?
-  
-  **Giải:** Thay $x=1, y=3$ vào vế trái: $2(1) + 3 = 5$ (bằng vế phải). Vậy $(1; 3)$ là một nghiệm.
-- 
-**Ví dụ 2:** Cho hệ $\begin{cases} x - y = 1 \\ 2x + 3y = 7 \end{cases}$. Cặp số $(2; 1)$ có là nghiệm không?
-  
-  **Giải:** Thay $x=2, y=1$ vào hệ:
-  - Pt 1: $2 - 1 = 1$ (đúng)
-  - Pt 2: $2(2) + 3(1) = 7$ (đúng).
-  Vậy $(2; 1)$ là nghiệm của hệ phương trình.
-- 
-**Ví dụ 3:** Cặp số $(0; 5)$ có phải là nghiệm của phương trình trên không?
-  
-  **Giải:** Thay $(0; 5)$ vào Pt 1: $0 - 5 = -5 \neq 1$. Vậy cặp số không là nghiệm của hệ do nó không thỏa mãn phương trình đầu tiên.
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Phương trình nào sau đây là phương trình bậc nhất 2 ẩn: $a) 2x - 5y = 1$; $b) x^2 + y = 3$; $c) 0x + 0y = 4$; $d) 0x - 3y = 9$?
+  - *Lời giải:* $a)$ và $d)$ là các phương trình bậc nhất hai ẩn. $b)$ chứa $x^2$ (bậc 2). $c)$ có $a=b=0$.
+
+- **Ví dụ 2:** Xác định hệ số $a, b, c$ của phương trình bậc nhất 2 ẩn: $3x + \frac{1}{2}y = -4$.
+  - *Lời giải:* Hệ số $a = 3$, $b = \frac{1}{2}$, $c = -4$.
+
+- **Ví dụ 3:** Trong các hệ sau, hệ nào là hệ hai phương trình bậc nhất 2 ẩn?
+  $H_1: \begin{cases} 2x - y = 3 \\ x + 4y = 0 \end{cases}$; $H_2: \begin{cases} x - y = 1 \\ x y = 2 \end{cases}$.
+  - *Lời giải:* $H_1$ là hệ phương trình bậc nhất 2 ẩn. $H_2$ không phải vì chứa tích $xy$ ở phương trình 2.
 
 </div>
-<h3 id="cac-dang-toan" style="margin-top:2rem;">🎯 3. Các Dạng toán cơ bản</h3>
 
-**Dạng 1: Phương trình bậc nhất hai ẩn**
-- **Nhận biết:** Phương trình có dạng $ax + by = c$ với $a, b$ không đồng thời bằng 0.
-- **Nghiệm:** Một cặp số $(x_0; y_0)$ là nghiệm nếu $ax_0 + by_0 = c$. Phương trình luôn có vô số nghiệm.
-- **Biểu diễn hình học:** Tập nghiệm được biểu diễn bởi một đường thẳng trên mặt phẳng tọa độ $Oxy$. Để vẽ, ta thường xác định hai điểm (cặp nghiệm) thuộc đường thẳng rồi nối chúng lại.
-<LuyenTap title="Luyện tập — Phương trình bậc nhất hai ẩn">
-<div style="margin-bottom: 1rem; padding: 0.75rem 1rem; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; font-size: 0.9rem;">
-  <strong>📌 Hướng dẫn:</strong> Khung bên trái kiểm tra <strong>Nhận biết</strong> PT bậc nhất hai ẩn. Khung bên phải kiểm tra <strong>nghiệm</strong> của PT. Nhấn nút <span style="color:#059669;font-weight:bold;">Đúng</span> hoặc <span style="color:#dc2626;font-weight:bold;">Sai</span> để trả lời.
+#### **Dạng 2: Kiểm tra một cặp số $(x_0; y_0)$ có là nghiệm của PT hay hệ PT**
+- **Phương pháp:** 
+  1. Thay $x = x_0$ và $y = y_0$ vào vế trái và vế phải của phương trình/hệ.
+  2. Nếu thu được đẳng thức đúng ở cả 2 phương trình thì cặp số là nghiệm. Nếu sai ở ít nhất 1 phương trình thì không là nghiệm.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cặp số $(3; -1)$ có là nghiệm của phương trình $2x + 3y = 3$ không?
+  - *Lời giải:* Thay $x = 3, y = -1$: $2(3) + 3(-1) = 6 - 3 = 3$ (đúng). Vậy $(3; -1)$ là một nghiệm.
+
+- **Ví dụ 2:** Kiểm tra xem $(1; 2)$ có phải là nghiệm của hệ $\begin{cases} 3x - y = 1 \\ x + y = 4 \end{cases}$ hay không.
+  - *Lời giải:* Thay $x=1, y=2$: $3(1)-2=1$ (đúng); $1+2=3 \neq 4$ (sai). Vậy $(1; 2)$ không là nghiệm của hệ.
+
+- **Ví dụ 3:** Tìm $a$ để cặp số $(-2; 1)$ là nghiệm của phương trình $ax - 3y = 5$.
+  - *Lời giải:* Thay $x=-2, y=1$: $a(-2) - 3(1) = 5 \Leftrightarrow -2a - 3 = 5 \Leftrightarrow -2a = 8 \Leftrightarrow a = -4$.
+
 </div>
-<LinearEquationQuiz client:load />
-</LuyenTap>
 
-**Dạng 2: Hệ hai phương trình bậc nhất hai ẩn**
-- **Nhận biết:** Gồm hai phương trình bậc nhất hai ẩn kết hợp lại.
-- **Nghiệm:** Cặp số $(x_0; y_0)$ là nghiệm của hệ nếu nó là nghiệm chung của cả hai phương trình trong hệ.
-- **Biểu diễn hình học:** Nghiệm của hệ là giao điểm của hai đường thẳng biểu diễn hai phương trình đó.
-  + Hai đường thẳng cắt nhau $\rightarrow$ Hệ có 1 nghiệm duy nhất.
-  + Hai đường thẳng song song $\rightarrow$ Hệ vô nghiệm.
-  + Hai đường thẳng trùng nhau $\rightarrow$ Hệ có vô số nghiệm.
+#### **Dạng 3: Viết nghiệm tổng quát và biểu diễn tập nghiệm trên Oxy**
+- **Phương pháp:**
+  1. Để viết nghiệm tổng quát của $ax + by = c$:
+     - Nếu $b \neq 0$, rút $y = \frac{c - ax}{b} \Rightarrow$ Nghiệm tổng quát: $\begin{cases} x \in \mathbb{R} \\ y = -\frac{a}{b}x + \frac{c}{b} \end{cases}$.
+     - Nếu $a \neq 0, b = 0$, rút $x = \frac{c}{a} \Rightarrow$ Nghiệm tổng quát: $\begin{cases} x = \frac{c}{a} \\ y \in \mathbb{R} \end{cases}$.
+  2. Xác định hai điểm phân biệt thuộc đường thẳng $ax + by = c$ rồi nối lại để vẽ đường thẳng.
 
-<LuyenTap title="Luyện tập — Hệ hai phương trình bậc nhất hai ẩn">
-<div style="margin-bottom: 1rem; padding: 0.75rem 1rem; background: #f5f3ff; border-left: 4px solid #8b5cf6; border-radius: 0 8px 8px 0; font-size: 0.9rem;">
-  <strong>📌 Hướng dẫn:</strong> Khung bên trái kiểm tra <strong>Nhận biết</strong> hệ PT bậc nhất hai ẩn. Khung bên phải kiểm tra <strong>nghiệm</strong> của hệ. Nhấn nút <span style="color:#059669;font-weight:bold;">Đúng</span> hoặc <span style="color:#dc2626;font-weight:bold;">Sai</span> để trả lời.
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Viết nghiệm tổng quát của phương trình $3x - y = 2$.
+  - *Lời giải:* Rút $y = 3x - 2$. Tập nghiệm tổng quát: $\begin{cases} x \in \mathbb{R} \\ y = 3x - 2 \end{cases}$.
+
+- **Ví dụ 2:** Viết nghiệm tổng quát của phương trình $2x + 0y = 6$.
+  - *Lời giải:* $2x = 6 \Leftrightarrow x = 3$. Tập nghiệm tổng quát: $\begin{cases} x = 3 \\ y \in \mathbb{R} \end{cases}$.
+
+- **Ví dụ 3:** Xác định hai điểm thuộc đường thẳng $d: x + 2y = 4$ để vẽ đồ thị.
+  - *Lời giải:* Cho $x = 0 \Rightarrow y = 2 \Rightarrow A(0; 2)$. Cho $y = 0 \Rightarrow x = 4 \Rightarrow B(4; 0)$. Đường thẳng đi qua $A(0; 2)$ và $B(4; 0)$.
+
 </div>
-<SystemOfEquationsQuiz client:load />
-</LuyenTap>
 
+#### **Dạng 4: Tìm điều kiện của tham số $m$ liên quan đến nghiệm**
+- **Phương pháp:** Thay tọa độ nghiệm cho trước vào hệ/phương trình để lập phương trình chứa tham số $m$, sau đó giải tìm $m$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tìm $m$ để hệ $\begin{cases} mx + y = 5 \\ 2x - y = 1 \end{cases}$ nhận $(x; y) = (2; 3)$ làm nghiệm.
+  - *Lời giải:* Thay $x=2, y=3$ vào phương trình thứ nhất: $m(2) + 3 = 5 \Leftrightarrow 2m = 2 \Leftrightarrow m = 1$. Thử lại phương trình hai: $2(2)-3=1$ (đúng). Vậy $m=1$.
+
+- **Ví dụ 2:** Tìm $m$ để đường thẳng $(d): (m-1)x + 2y = 4$ đi qua điểm $A(1; 3)$.
+  - *Lời giải:* Thay $x=1, y=3$: $(m-1)(1) + 2(3) = 4 \Leftrightarrow m - 1 + 6 = 4 \Leftrightarrow m = -1$.
+
+- **Ví dụ 3:** Xác định $m$ để hai đường thẳng $(d_1): x - y = 1$ và $(d_2): mx + y = 3$ cắt nhau tại điểm có hoành độ $x = 2$.
+  - *Lời giải:* Thay $x=2$ vào $(d_1) \Rightarrow 2 - y = 1 \Rightarrow y = 1$. Thay $(2; 1)$ vào $(d_2) \Rightarrow m(2) + 1 = 3 \Rightarrow 2m = 2 \Rightarrow m = 1$.
+
+</div>
+
+#### **Dạng 5: Lập hệ phương trình bậc nhất hai ẩn từ bài toán thực tế**
+- **Phương pháp:**
+  1. Chọn hai đại lượng chưa biết làm ẩn $x$ và $y$ (kèm đơn vị và điều kiện).
+  2. Biểu diễn các đại lượng chưa biết khác theo $x$ và $y$.
+  3. Lập hai phương trình liên hệ các dữ kiện đề bài để được hệ phương trình.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Mua 3 cuốn vở và 2 cái bút hết 45 nghìn đồng. Mua 2 cuốn vở và 4 cái bút hết 50 nghìn đồng. Lập hệ phương trình.
+  - *Lời giải:* Gọi giá 1 cuốn vở là $x$ (nghìn đồng), giá 1 cái bút là $y$ (nghìn đồng) ($x, y > 0$). Hệ phương trình: $\begin{cases} 3x + 2y = 45 \\ 2x + 4y = 50 \end{cases}$.
+
+- **Ví dụ 2:** Hai chiếc xe khởi hành cùng lúc từ A và B cách nhau 120 km đi ngược chiều gặp nhau sau 2 giờ. Lập phương trình biểu thị tổng quãng đường.
+  - *Lời giải:* Gọi vận tốc xe đi từ A là $x$ (km/h), từ B là $y$ (km/h) ($x, y > 0$). Quãng đường 2 xe đi được sau 2h lần lượt là $2x$ và $2y$. Phương trình: $2x + 2y = 120 \Leftrightarrow x + y = 60$.
+
+- **Ví dụ 3:** Một mảnh đất hình chữ nhật có chu vi 100 m, chiều dài hơn chiều rộng 10 m. Lập hệ phương trình.
+  - *Lời giải:* Gọi chiều dài là $x$ (m), chiều rộng là $y$ (m) ($x > y > 0$). Nửa chu vi $x + y = 50$. Hiệu hai kích thước $x - y = 10$. Hệ phương trình: $\begin{cases} x + y = 50 \\ x - y = 10 \end{cases}$.
+
+</div>
 
 </KhamPha>
 
+<VanDung title="Vận dụng thực tế">
 
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Tài chính & Tiêu dùng):**  
+Bạn Nam đến siêu thị mua 2 kg táo và 3 kg cam hết tổng cộng 210 nghìn đồng. Lần sau, giá táo giảm 10% và giá cam giảm 5%, Nam mua 3 kg táo và 2 kg cam hết 213 nghìn đồng.  
+a) Lập hệ phương trình bậc nhất hai ẩn biểu thị số tiền Nam mua ở hai lần.  
+b) Kiểm tra xem giá ban đầu 1 kg táo là 60 nghìn đồng và 1 kg cam là 30 nghìn đồng có thỏa mãn hệ phương trình không.
+
+**Bài toán 2 (Kỹ thuật & Xây dựng):**  
+Một xưởng cơ khí đúc hai loại chi tiết máy A và B. Chi tiết A dùng 3 kg sắt và 1 kg đồng; chi tiết B dùng 2 kg sắt và 2 kg đồng. Tổng khối lượng sắt xưởng đã dùng là 120 kg, tổng khối lượng đồng là 60 kg.  
+a) Gọi $x, y$ lần lượt là số chi tiết máy loại A và B đúc được. Lập hệ phương trình bậc nhất hai ẩn liên hệ $x$ và $y$.  
+b) Giải thích ý nghĩa nghiệm của hệ phương trình đối với kế hoạch sản xuất của xưởng.
+
+**Bài toán 3 (Đo đạc & Địa lý):**  
+Để đo khoảng cách giữa hai vị trí A và B ở hai bên bờ sông, cán bộ đo đạc lập hệ phương trình vị trí dựa trên 2 đường thẳng quan sát $d_1: 2x - y = 4$ và $d_2: x + 2y = 7$ trên bản đồ tọa độ vệ tinh (đơn vị km). Tìm tọa độ vị trí giao điểm của hai đường quan sát để xác định vị trí đặt cầu.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Thực hành tương tác dưới đây giúp bạn rèn luyện phản xạ nhận biết phương trình bậc nhất hai ẩn và kiểm tra nghiệm của hệ. Nhấn nút trả lời và theo dõi điểm số cùng chuỗi trả lời đúng (Streak)!
+</div>
+
+<LinearEquationQuiz client:load />
+
+<div style="margin-top: 2rem;"></div>
+
+<SystemOfEquationsQuiz client:load />
+
+</LuyenTap>
 
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Tổng kết bài học:**
+**Trọng tâm kiến thức Bài 1:**
 
-- **Phương trình bậc nhất hai ẩn:** Luôn có vô số nghiệm. Tập nghiệm trên đồ thị là một đường thẳng.
-- **Hệ phương trình bậc nhất hai ẩn:** Tập các nghiệm chung của 2 đường thẳng, thường giao nhau sinh ra 1 nghiệm duy nhất. Có thể vô nghiệm (song song) hoặc vô số nghiệm (trùng nhau).
+1. **Phương trình bậc nhất 2 ẩn $ax + by = c$ ($a^2 + b^2 \neq 0$):**
+   - Luôn có **vô số nghiệm**.
+   - Biểu diễn tập nghiệm trên Oxy là một đường thẳng $(d)$.
+
+2. **Hệ 2 phương trình bậc nhất 2 ẩn $\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}$:**
+   - Nghiệm của hệ là tọa độ giao điểm của 2 đường thẳng biểu diễn 2 phương trình.
+   - Có **1 nghiệm duy nhất** khi 2 đường thẳng cắt nhau.
+   - **Vô nghiệm** khi 2 đường thẳng song song.
+   - **Vô số nghiệm** khi 2 đường thẳng trùng nhau.
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -289,111 +476,160 @@ Trong đó, mỗi phương trình là một phương trình bậc nhất hai ẩ
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Trong các phương trình sau, phương trình nào là phương trình bậc nhất hai ẩn? Xác định các hệ số $a, b, c$.
+**Bài 1:** Cho các phương trình sau. Hãy cho biết phương trình nào là phương trình bậc nhất hai ẩn $x, y$. Chỉ rõ các hệ số $a, b, c$ tương ứng:  
+a) $4x - 3y = 7$  
+b) $0x + 2y = -6$  
+c) $3x^2 - y = 1$  
+d) $x - 0y = 5$  
+e) $0x + 0y = 0$  
+f) $\frac{2}{x} + y = 3$
 
-a) $3x + y = -2$
+**Bài 2:** Kiểm tra xem cặp số $(x; y) = (2; -1)$ có phải là nghiệm của các phương trình/hệ phương trình sau đây hay không:  
+a) $3x + 2y = 4$  
+b) $x - 4y = 5$  
+c) $0x + 5y = -5$  
+d) $\begin{cases} x + y = 1 \\ 2x - 3y = 7 \end{cases}$  
+e) $\begin{cases} 3x - 2y = 8 \\ x + 4y = -2 \end{cases}$  
+f) $\begin{cases} 2x + y = 4 \\ x - y = 2 \end{cases}$
 
-b) $x^2 + 2y = 1$
+**Bài 3:** Viết nghiệm tổng quát và chỉ ra 2 nghiệm cụ thể cho mỗi phương trình sau:  
+a) $2x - y = 3$  
+b) $x + 3y = 6$  
+c) $3x + 0y = 9$  
+d) $0x - 2y = 4$  
+e) $x - y = 0$  
+f) $4x + 2y = 1$
 
-c) $0x + 0y = 5$
+**Bài 4:** Cho phương trình $2x + y = 4$.  
+a) Viết nghiệm tổng quát của phương trình và vẽ đường thẳng biểu diễn tập nghiệm trên mặt phẳng tọa độ Oxy.  
+b) Xác định giao điểm của đường thẳng này với hai trục tọa độ Ox và Oy. Tính diện tích tam giác tạo bởi đường thẳng và hai trục tọa độ.
 
-d) $x - 0y = 4$
+**Bài 5:** Cho hệ phương trình $\begin{cases} (m-1)x + y = 3 \\ 3x - y = m \end{cases}$.  
+a) Tìm $m$ để hệ phương trình nhận cặp số $(1; 2)$ làm nghiệm.  
+b) Với $m = 4$, tìm nghiệm duy nhất của hệ phương trình.
 
-**Bài 2:** Kiểm tra xem cặp số $(2; -1)$ có phải là nghiệm của các hệ phương trình sau không?
+**Bài 6:** Tìm tất cả các cặp số nguyên dương $(x; y)$ thỏa mãn phương trình $3x + 2y = 19$.
 
-a) $\begin{cases} x + y = 1 \\ 2x - y = 5 \end{cases}$
+**Bài 7:** Cho ba đường thẳng $(d_1): 2x - y = 1$, $(d_2): x + y = 5$, và $(d_3): mx + 2y = 7$.  
+a) Tìm tọa độ giao điểm $I$ của $(d_1)$ và $(d_2)$.  
+b) Tìm $m$ để ba đường thẳng $(d_1), (d_2), (d_3)$ đồng quy tại $I$.
 
-b) $\begin{cases} 2x + 3y = 1 \\ -x + y = 4 \end{cases}$
+**Bài 8:** Cho hai đường thẳng $(d_1): (m+1)x - y = 2$ và $(d_2): 2x - y = n$. Tìm các giá trị của $m$ và $n$ để:  
+a) $(d_1)$ và $(d_2)$ cắt nhau tại điểm $A(1; 1)$.  
+b) $(d_1)$ và $(d_2)$ song song với nhau.  
+c) $(d_1)$ và $(d_2)$ trùng nhau.
 
-c) $\begin{cases} 3x - y = 7 \\ x + 4y = -2 \end{cases}$
+**Bài 9 (Thực tế):** Một xưởng sản xuất bàn ghế gỗ nhận hợp đồng làm 100 sản phẩm gồm bàn (x) và ghế (y). Mỗi chiếc bàn cần 4 giờ công chế tác, mỗi chiếc ghế cần 2 giờ công chế tác. Tổng số giờ công xưởng có là 280 giờ.  
+a) Lập hệ phương trình bậc nhất hai ẩn liên hệ giữa số bàn và số ghế cần làm.  
+b) Giải hệ phương trình để tính số bàn và số ghế xưởng sản xuất đúng theo hợp đồng và số giờ công.
 
-d) $\begin{cases} \frac{1}{2}x + y = 0 \\ 4x - 2y = 10 \end{cases}$
+**Bài 10 (Thực tế):** Hai xe ô tô cùng khởi hành một lúc từ hai tỉnh A và B cách nhau 180 km đi ngược chiều nhau và gặp nhau sau 2 giờ. Nếu xe đi từ A khởi hành trước xe đi từ B 45 phút thì hai xe gặp nhau sau 1 giờ 48 phút kể từ khi xe B xuất phát.  
+a) Lập hệ phương trình bậc nhất hai ẩn liên hệ vận tốc hai xe.  
+b) Tính vận tốc của mỗi xe ô tô.
 
-**Bài 3:** Cho phương trình $x - 2y = 4$.
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-a) Cặp số $(4; 0)$ có phải là nghiệm của phương trình không?
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-b) Tìm một nghiệm khác của phương trình có giá trị tung độ (y) bằng 1.
+**Bài 1:**  
+a) Là PT bậc nhất 2 ẩn, hệ số $a=4, b=-3, c=7$.  
+b) Là PT bậc nhất 2 ẩn, hệ số $a=0, b=2, c=-6$.  
+c) Không phải (vì $x^2$ có bậc 2).  
+d) Là PT bậc nhất 2 ẩn, hệ số $a=1, b=0, c=5$.  
+e) Không phải (vì $a=b=0$).  
+f) Không phải (chứa ẩn $x$ ở mẫu số).
 
-c) Tìm một nghiệm có giá trị hoành độ (x) bằng 0.
+---
 
-d) Viết dạng đồ thị để biểu diễn nó trên hàm số $y=f(x)$.
+**Bài 2:** Thay $x=2, y=-1$:  
+a) $3(2) + 2(-1) = 4$ (Đúng) $\Rightarrow$ Là nghiệm.  
+b) $2 - 4(-1) = 6 \neq 5$ $\Rightarrow$ Không là nghiệm.  
+c) $0(2) + 5(-1) = -5$ (Đúng) $\Rightarrow$ Là nghiệm.  
+d) $2 + (-1) = 1$ và $2(2) - 3(-1) = 7$ (Đúng cả 2) $\Rightarrow$ Là nghiệm của hệ.  
+e) $3(2) - 2(-1) = 8$ và $2 + 4(-1) = -2$ (Đúng cả 2) $\Rightarrow$ Là nghiệm của hệ.  
+f) $2(2) + (-1) = 3 \neq 4$ $\Rightarrow$ Không là nghiệm của hệ.
 
-**Bài 4:** Cho hệ phương trình:
-$\begin{cases} mx + y = 3 \\ 4x + y = 5 \end{cases}$
+---
 
-a) Kiểm tra xem khi $m=1$, cặp số $(2;-1)$ có phải là nghiệm của hệ hay không?
+**Bài 3:**  
+a) Nghiệm TQ: $\begin{cases} x \in \mathbb{R} \\ y = 2x - 3 \end{cases}$. Hai nghiệm: $(0; -3), (2; 1)$.  
+b) Nghiệm TQ: $\begin{cases} x = 6 - 3y \\ y \in \mathbb{R} \end{cases}$. Hai nghiệm: $(6; 0), (0; 2)$.  
+c) $3x = 9 \Leftrightarrow x = 3$. Nghiệm TQ: $\begin{cases} x = 3 \\ y \in \mathbb{R} \end{cases}$. Hai nghiệm: $(3; 0), (3; 5)$.  
+d) $-2y = 4 \Leftrightarrow y = -2$. Nghiệm TQ: $\begin{cases} x \in \mathbb{R} \\ y = -2 \end{cases}$. Hai nghiệm: $(0; -2), (4; -2)$.  
+e) Nghiệm TQ: $\begin{cases} x \in \mathbb{R} \\ y = x \end{cases}$. Hai nghiệm: $(0; 0), (3; 3)$.  
+f) Nghiệm TQ: $\begin{cases} x \in \mathbb{R} \\ y = \frac{1 - 4x}{2} \end{cases}$. Hai nghiệm: $(0; 0,5), (1; -1,5)$.
 
-b) Khi cặp số $(1; 1)$ là nghiệm của phương trình thứ hai, hãy tìm $m$ để nó cũng là nghiệm của hệ.
+---
 
-c) Thay vế vào xem $m$ nào khiến 2 đường thẳng song song?
+**Bài 4:**  
+a) Nghiệm TQ: $\begin{cases} x \in \mathbb{R} \\ y = 4 - 2x \end{cases}$.  
+Giao Oy tại $A(0; 4)$, giao Ox tại $B(2; 0)$. Đồ thị là đường thẳng đi qua $A(0; 4)$ và $B(2; 0)$.  
+b) Độ dài $OA = |4| = 4$, $OB = |2| = 2$. Tam giác OAB vuông tại O có diện tích $S = \frac{1}{2} OA \cdot OB = \frac{1}{2} \cdot 4 \cdot 2 = 4$ (đvdt).
 
-d) Tại sao $m=4$ lại khiến hệ vô nghiệm? (Giải thích qua đường thẳng)
+---
 
-**Bài 5 (Thực tế):** Trong một xưởng mộc, nhân công phải làm hai loại sản phẩm: Bàn $(x)$ và ghế $(y)$.
+**Bài 5:**  
+a) Thay $(x; y) = (1; 2)$ vào hệ:  
+$\begin{cases} (m-1)(1) + 2 = 3 \\ 3(1) - 2 = m \end{cases} \Rightarrow \begin{cases} m - 1 + 2 = 3 \\ m = 1 \end{cases} \Rightarrow m = 1$.  
+b) Với $m = 4$, hệ là $\begin{cases} 3x + y = 3 \\ 3x - y = 4 \end{cases}$.  
+Cộng hai PT vế theo vế: $6x = 7 \Rightarrow x = \frac{7}{6}$.  
+Thay vào $y = 3 - 3x = 3 - 3\left(\frac{7}{6}\right) = -\frac{1}{2}$. Vậy hệ có nghiệm duy nhất $\left(\frac{7}{6}; -\frac{1}{2}\right)$.
 
-a) Lập phương trình biểu thị: Một cái bàn cần 4 chân, một cái ghế cần 4 chân, tổng số chân gỗ cần dùng là 100 chân.
+---
 
-b) Lập phương trình biểu thị: Giá một cái bàn là 500 nghìn, một cái ghế là 150 nghìn, tổng doanh thu là 4 triệu.
+**Bài 6:**  
+Ta có $3x + 2y = 19 \Rightarrow 2y = 19 - 3x \Rightarrow y = \frac{19 - 3x}{2}$.  
+Vì $y \in \mathbb{N}^* \Rightarrow 19 - 3x > 0 \Rightarrow 3x < 19 \Rightarrow x \le 6$.  
+Đồng thời $19 - 3x$ phải chia hết cho 2 $\Rightarrow 3x$ là số lẻ $\Rightarrow x$ là số lẻ.  
+Do đó $x \in \{1; 3; 5\}$:  
+- Với $x = 1 \Rightarrow y = \frac{19 - 3(1)}{2} = 8 \Rightarrow (1; 8)$.  
+- Với $x = 3 \Rightarrow y = \frac{19 - 3(3)}{2} = 5 \Rightarrow (3; 5)$.  
+- Với $x = 5 \Rightarrow y = \frac{19 - 3(5)}{2} = 2 \Rightarrow (5; 2)$.  
+Các cặp số nguyên dương cần tìm là $(1; 8), (3; 5), (5; 2)$.
 
-c) Lập hệ phương trình từ (a) và (b).
+---
 
-d) Cặp số $(x; y) = (5; 10)$ có thoả mãn đề bài không?
+**Bài 7:**  
+a) Giải hệ tạo bởi $(d_1)$ và $(d_2)$:  
+$\begin{cases} 2x - y = 1 \\ x + y = 5 \end{cases} \Rightarrow 3x = 6 \Rightarrow x = 2 \Rightarrow y = 3$. Giao điểm $I(2; 3)$.  
+b) Để $(d_3)$ đi qua $I(2; 3)$, thay $x=2, y=3$ vào $(d_3)$:  
+$m(2) + 2(3) = 7 \Leftrightarrow 2m + 6 = 7 \Leftrightarrow 2m = 1 \Leftrightarrow m = \frac{1}{2}$.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+---
 
-**Bài 1:** 
+**Bài 8:**  
+a) Thay $(1; 1)$ vào cả hai đường thẳng:  
+$(d_1): (m+1)(1) - 1 = 2 \Rightarrow m + 1 = 3 \Rightarrow m = 2$.  
+$(d_2): 2(1) - 1 = n \Rightarrow n = 1$.  
+b) $(d_1) // (d_2) \Leftrightarrow \begin{cases} m + 1 = 2 \\ -1 = -1 \\ 2 \neq n \end{cases} \Rightarrow \begin{cases} m = 1 \\ n \neq 2 \end{cases}$.  
+c) $(d_1) \equiv (d_2) \Leftrightarrow \begin{cases} m + 1 = 2 \\ n = 2 \end{cases} \Rightarrow \begin{cases} m = 1 \\ n = 2 \end{cases}$.
 
-a) Là pt bậc nhất ($a=3, b=1, c=-2$)
+---
 
-b) Không (vì có $x^2$)
+**Bài 9:**  
+a) Gọi số bàn là $x$, số ghế là $y$ ($x, y \in \mathbb{N}^*$).  
+Tổng số sản phẩm: $x + y = 100$.  
+Tổng số giờ công: $4x + 2y = 280$.  
+Hệ phương trình: $\begin{cases} x + y = 100 \\ 4x + 2y = 280 \end{cases}$.  
+b) Rút $y = 100 - x$, thay vào PT 2: $4x + 2(100 - x) = 280 \Leftrightarrow 2x + 200 = 280 \Leftrightarrow 2x = 80 \Leftrightarrow x = 40$.  
+Suy ra $y = 100 - 40 = 60$.  
+Vậy xưởng sản xuất 40 cái bàn và 60 cái ghế.
 
-c) Không (vì $a=b=0$)
+---
 
-d) Là pt bậc nhất ($a=1, b=0, c=4$)
-
-**Bài 2:** 
-
-a) Có (thỏa mãn cả 2 pt)
-
-b) Không (chỉ thỏa mãn pt 1, không thỏa mãn pt 2)
-
-c) Có
-
-d) Có
-
-**Bài 3:** 
-
-a) Có ($4 - 2(0) = 4$)
-
-b) Thay $y=1 \Rightarrow x - 2 = 4 \Rightarrow x=6 \Rightarrow (6; 1)$
-
-c) Thay $x=0 \Rightarrow -2y=4 \Rightarrow y=-2 \Rightarrow (0; -2)$
-
-d) $y = \frac{1}{2}x - 2$
-
-**Bài 4:**
-
-a) Với $m=1$, hệ là $x+y=3$ và $4x+y=5$. Kiểm tra $(2;-1)$: $2-1 \neq 3$. Vậy không.
-
-b) Để $(1; 1)$ là nghiệm thì $m(1) + 1 = 3 \Rightarrow m = 2$.
-
-c) Nếu $m=4$, hệ số góc bằng nhau.
-
-d) Vì $m=4$, hai phương trình là $4x+y=3$ và $4x+y=5$. Cùng một vế trái nhưng bằng 2 giá trị khác nhau, vô lý $\rightarrow$ Hai đường thẳng song song $\rightarrow$ Vô nghiệm.
-
-**Bài 5:**
-
-a) $4x + 4y = 100$
-
-b) $500x + 150y = 4000$
-
-c) Hệ: $\begin{cases} 4x + 4y = 100 \\ 500x + 150y = 4000 \end{cases}$
-
-d) Thay $(5; 10)$: $4(5) + 4(10) = 60 \neq 100$. Vậy không phải nghiệm. (Nghiệm thực tế là $x=1, y=24$).
+**Bài 10:**  
+a) Gọi vận tốc xe A là $x$ (km/h), xe B là $y$ (km/h) ($x, y > 0$).  
+Hai xe gặp nhau sau 2h $\Rightarrow 2x + 2y = 180 \Leftrightarrow x + y = 90$.  
+Đổi 45 phút = 0,75 giờ; 1 giờ 48 phút = 1,8 giờ.  
+Thời gian xe A đi đến khi gặp nhau: $1,8 + 0,75 = 2,55$ giờ.  
+Thời gian xe B đi: 1,8 giờ.  
+Tổng quãng đường: $2,55x + 1,8y = 180$.  
+Hệ PT: $\begin{cases} x + y = 90 \\ 2,55x + 1,8y = 180 \end{cases}$.  
+b) Từ $y = 90 - x$, thay vào PT 2:  
+$2,55x + 1,8(90 - x) = 180 \Leftrightarrow 0,75x + 162 = 180 \Leftrightarrow 0,75x = 18 \Leftrightarrow x = 24$ km/h.  
+Suy ra $y = 90 - 24 = 66$ km/h.  
+Vận tốc xe đi từ A là 24 km/h, xe đi từ B là 66 km/h.
 
 </div>
 </details>
-

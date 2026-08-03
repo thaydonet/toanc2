@@ -15,6 +15,7 @@ import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 
 import QuizSession from '../../components/ui/QuizSession';
+import TinhToanSoThapPhanInteractive from '../../components/interactive/TinhToanSoThapPhanInteractive';
 
 export const quizData = [
   {
@@ -114,26 +115,42 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Thực hiện phép tính: 2,5 × 1,2 × 4",
-    option_a: "12",
-    option_b: "10",
-    option_c: "15",
-    option_d: "8",
-    correct_option: "A",
-    explanation: "2,5 × 1,2 × 4 = (2,5 × 4) × 1,2 = 10 × 1,2 = 12",
+    type: "msq",
+    question: "Phép tính nào có kết quả bằng 12?",
+    option_a: "2,5 × 1,2 × 4",
+    option_b: "3 × 4",
+    option_c: "2,5 × 4 × 1,2",
+    option_d: "15,6 ÷ 1,3",
+    correct_option: "A,B,C",
+    explanation: "A: 2,5 × 1,2 × 4 = 12. B: 3 × 4 = 12. C: 2,5 × 4 × 1,2 = 12. D: 15,6 ÷ 1,3 = 12.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Tính 15,6 ÷ (2,4 × 0,5):",
-    option_a: "13",
-    option_b: "1,3",
-    option_c: "130",
-    option_d: "0,13",
-    correct_option: "A",
-    explanation: "2,4 × 0,5 = 1,2; 15,6 ÷ 1,2 = 13",
+    type: "msq",
+    question: "Những phát biểu nào đúng về tính chất phép tính số thập phân?",
+    option_a: "Cộng số thập phân có tính chất giao hoán",
+    option_b: "Nhân số thập phân có tính chất kết hợp",
+    option_c: "Phép chia có tính chất giao hoán",
+    option_d: "Phân phối của nhân đối với cộng đúng với số thập phân",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai vì phép chia không có tính chất giao hoán (a ÷ b ≠ b ÷ a).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính giá trị của biểu thức: (2,5 + 3,5) × 1,2",
+    correct_option: "7,2",
+    explanation: "(2,5 + 3,5) × 1,2 = 6 × 1,2 = 7,2",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một người mua 3kg gạo, mỗi kg 15.500 đồng. Một người khác mua 2kg gạo cùng loại. Hỏi tổng số tiền cả hai người phải trả là bao nhiêu?",
+    correct_option: "77500",
+    explanation: "Tổng số kg: 3 + 2 = 5 kg. Tổng tiền: 5 × 15.500 = 77.500 đồng.",
     difficulty_level: "hard",
     is_dynamic: false,
   }
@@ -314,6 +331,8 @@ b) 2,5 × 8 = 20
 
 </div>
 
+<TinhToanSoThapPhanInteractive client:load />
+
 </LuyenTap>
 
 <VanDung title="Vận dụng">
@@ -348,45 +367,6 @@ Diện tích = 12,5 × 8,4 = 105 cm²
 
 </VanDung>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
-
-**Bài 1:** Tính:
-
-a) 34,7 + 12,5 b) 56,3 - 28,9 c) 8,75 + 1,25 d) 100 - 45,8
-
-**Bài 2:** Tính:
-
-a) 3,5 × 6 b) 2,8 × 1,5 c) 7,2 ÷ 0,8 d) 15,6 ÷ 3
-
-**Bài 3:** Tính:
-
-a) (12,5 + 8,7) × 2 b) 25,8 - 3,5 × 4
-
-**Bài 4:** Tính nhanh:
-
-a) 2,5 × 3,7 + 2,5 × 6,3 b) 1,25 × 7 × 8
-
-**Bài 5:** Một cửa hàng ngày thứ nhất bán được 125,5 kg gạo, ngày thứ hai bán được nhiều hơn ngày thứ nhất 23,8 kg. Ngày thứ ba bán được bằng trung bình cộng của hai ngày đầu. Hỏi cả ba ngày cửa hàng bán được bao nhiêu kg gạo?
-
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Bài 1:** a) 47,2; b) 27,4; c) 10; d) 54,2
-
-**Bài 2:** a) 21; b) 4,2; c) 9; d) 5,2
-
-**Bài 3:** a) 42,4; b) 11,8
-
-**Bài 4:** a) 25; b) 70
-
-**Bài 5:** 412,2 kg
-
-</div>
-</details>
-
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
@@ -414,9 +394,7 @@ a) 2,5 × 3,7 + 2,5 × 6,3 b) 1,25 × 7 × 8
 
 </GhiNho>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+📝 Bài tập tự luận
 
 **Bài 1:** Tính:
 
@@ -436,8 +414,18 @@ a) 2,5 × 3,7 + 2,5 × 6,3 b) 1,25 × 7 × 8
 
 **Bài 5:** Một cửa hàng ngày thứ nhất bán được 125,5 kg gạo, ngày thứ hai bán được nhiều hơn ngày thứ nhất 23,8 kg. Ngày thứ ba bán được bằng trung bình cộng của hai ngày đầu. Hỏi cả ba ngày cửa hàng bán được bao nhiêu kg gạo?
 
+**Bài 6:** Tính: 5,6 × 2,5 + 4,4 × 2,5
+
+**Bài 7:** Một người đi ô tô quãng đường 125,5 km với vận tốc 50 km/giờ. Tính thời gian đi (làm tròn đến phần mười).
+
+**Bài 8:** Tính: (15,6 - 8,4) ÷ 1,2
+
+**Bài 9:** Một cửa hàng có 250,5 kg gạo. Bán trong 3 ngày lần lượt được 85,5 kg, 92,3 kg và 72,7 kg. Hỏi còn lại bao nhiêu kg?
+
+**Bài 10:** Tính nhanh: 2,5 × 3,8 × 4
+
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
 **Bài 1:** a) 47,2; b) 27,4; c) 10; d) 54,2
@@ -448,10 +436,20 @@ a) 2,5 × 3,7 + 2,5 × 6,3 b) 1,25 × 7 × 8
 
 **Bài 4:** a) 25; b) 70
 
-**Bài 5:** 412,2 kg
+**Bài 5:** Ngày 2: 125,5 + 23,8 = 149,3 kg. Ngày 3: (125,5 + 149,3) ÷ 2 = 137,4 kg. Tổng: 125,5 + 149,3 + 137,4 = 412,2 kg
+
+**Bài 6:** 5,6 × 2,5 + 4,4 × 2,5 = (5,6 + 4,4) × 2,5 = 10 × 2,5 = 25
+
+**Bài 7:** 125,5 ÷ 50 = 2,5 giờ (làm tròn đến phần mười)
+
+**Bài 8:** (15,6 - 8,4) ÷ 1,2 = 7,2 ÷ 1,2 = 6
+
+**Bài 9:** Còn lại: 250,5 - 85,5 - 92,3 - 72,7 = 0 kg
+
+**Bài 10:** 2,5 × 3,8 × 4 = 2,5 × 4 × 3,8 = 10 × 3,8 = 38
 
 </div>
 </details>
 
-<QuizSession client:load questions={quizData} />
+<QuizSession client:load questions={quizData} groupedShuffle />
 

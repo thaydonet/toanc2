@@ -13,12 +13,14 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong2ChiaHetInteractive from '../../components/interactive/OnTapChuong2ChiaHetInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Số 48 chia hết cho những số nào?",
-    option_a: "$2, 3, 4, 6, 8, 12, 16, 24, 48$",
+    option_a: "$1, 2, 3, 4, 6, 8, 12, 16, 24, 48$",
     option_b: "$2, 3, 5, 6$",
     option_c: "$1, 2, 3, 4$",
     option_d: "$2, 4, 8$",
@@ -82,8 +84,8 @@ export const quizData = [
     option_b: "Không",
     option_c: "Không xác định",
     option_d: "Tùy trường hợp",
-    correct_option: "B",
-    explanation: "2024 ÷ 8 = 253, dư 0. Vậy 2024 chia hết cho 8.",
+    correct_option: "A",
+    explanation: "2024 ÷ 8 = 253, dư 0. Vậy 2024 chia hết cho 8 (ba chữ số tận cùng 024 = 24 chia hết cho 8).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -101,38 +103,58 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Ước chung lớn nhất của 60 và 90 là:",
-    option_a: "$30$",
-    option_b: "$15$",
-    option_c: "$45$",
-    option_d: "$60$",
+    question: "Hai số $!a(2,3,5,7)!$ và $!b(11,13,17,19)!$ có phải nguyên tố cùng nhau không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Không xác định",
+    option_d: "Tùy trường hợp",
     correct_option: "A",
-    explanation: "60 = 2² × 3 × 5, 90 = 2 × 3² × 5. ƯCLN = 2 × 3 × 5 = 30",
+    explanation: "ƯCLN$(!a!, !b!) = 1$ nên hai số nguyên tố cùng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 2: MSQ (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những số nào chia hết cho $3$?",
+    option_a: "$123$",
+    option_b: "$235$",
+    option_c: "$348$",
+    option_d: "$456$",
+    correct_option: "A,C,D",
+    explanation: "$123$: $1+2+3=6 \\vdots 3$ ✓; $235$: $2+3+5=10$ không chia hết cho $3$ ✗; $348$: $3+4+8=15 \\vdots 3$ ✓; $456$: $4+5+6=15 \\vdots 3$ ✓.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Bội chung nhỏ nhất của 15 và 20 là:",
-    option_a: "$60$",
-    option_b: "$30$",
-    option_c: "$40$",
-    option_d: "$300$",
-    correct_option: "A",
-    explanation: "15 = 3 × 5, 20 = 2² × 5. BCNN = 2² × 3 × 5 = 60",
+    type: "msq",
+    question: "Những cặp số nào nguyên tố cùng nhau?",
+    option_a: "$(8, 15)$",
+    option_b: "$(12, 18)$",
+    option_c: "$(7, 11)$",
+    option_d: "$(9, 16)$",
+    correct_option: "A,C,D",
+    explanation: "ƯCLN$(8,15)=1$, ƯCLN$(12,18)=6$, ƯCLN$(7,11)=1$, ƯCLN$(9,16)=1$. Nguyên tố cùng nhau: A, C, D.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+
+  // ─── Phần 3: SA (2 câu) ─────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tìm ƯCLN(48, 72).",
+    correct_option: "24",
+    explanation: "$48 = 2^4 \\times 3$, $72 = 2^3 \\times 3^2$. ƯCLN = $2^3 \\times 3 = 24$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Số 2, 3, 5, 7 là những số gì?",
-    option_a: "Số nguyên tố",
-    option_b: "Hợp số",
-    option_c: "Số chẵn",
-    option_d: "Số lẻ",
-    correct_option: "A",
-    explanation: "2, 3, 5, 7 đều chỉ có 2 ước là 1 và chính nó, nên là số nguyên tố.",
-    difficulty_level: "easy",
+    type: "sa",
+    question: "Tìm BCNN(10, 15, 20).",
+    correct_option: "60",
+    explanation: "$10 = 2 \\times 5$, $15 = 3 \\times 5$, $20 = 2^2 \\times 5$. BCNN = $2^2 \\times 3 \\times 5 = 60$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
 ];
@@ -250,261 +272,94 @@ Chương 2 giúp chúng ta hiểu sâu hơn về quan hệ chia hết, số nguy
 
 <LuyenTap>
 
-<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<OnTapChuong2ChiaHetInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
 <VanDung>
 
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-<h4 id="bai-1">Bài 1: Dấu hiệu chia hết</h4>
+**📝 Bài toán 1:** Một cửa hàng có $48$ cái bàn và $36$ cái ghế. Người bán muốn chia đều thành các bộ (mỗi bộ gồm một bàn và một ghế) sao cho không thừa.
 
-Trong các số 120, 135, 246, 350, 405, hãy tìm:
-
-a) Các số chia hết cho 2
-
-b) Các số chia hết cho 5
-
-c) Các số chia hết cho 3
-
-d) Các số chia hết cho cả 2 và 5
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Chia hết cho 2: $120, 246, 350$
-
-b) Chia hết cho 5: $120, 135, 350, 405$
-
-c) Chia hết cho 3: $120, 135, 246, 405$
-
-d) Chia hết cho cả 2 và 5: $120, 350$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Phân tích thành thừa số nguyên tố</h4>
-
-Phân tích các số sau thành thừa số nguyên tố:
-
-a) $60$
-
-b) $84$
-
-c) $100$
-
-d) $180$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $60 = 2^2 \times 3 \times 5$
-
-b) $84 = 2^2 \times 3 \times 7$
-
-c) $100 = 2^2 \times 5^2$
-
-d) $180 = 2^2 \times 3^2 \times 5$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Tìm ƯCLN</h4>
-
-Tìm ƯCLN của:
-
-a) ƯCLN(24, 36)
-
-b) ƯCLN(60, 90)
-
-c) ƯCLN(48, 72, 96)
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $24 = 2^3 \times 3$, $36 = 2^2 \times 3^2$
-
-   ƯCLN(24, 36) = $2^2 \times 3 = 12$
-
-b) $60 = 2^2 \times 3 \times 5$, $90 = 2 \times 3^2 \times 5$
-
-   ƯCLN(60, 90) = $2 \times 3 \times 5 = 30$
-
-c) $48 = 2^4 \times 3$, $72 = 2^3 \times 3^2$, $96 = 2^5 \times 3$
-
-   ƯCLN(48, 72, 96) = $2^3 \times 3 = 24$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Tìm BCNN</h4>
-
-Tìm BCNN của:
-
-a) BCNN(12, 18)
-
-b) BCNN(15, 20)
-
-c) BCNN(10, 15, 20)
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $12 = 2^2 \times 3$, $18 = 2 \times 3^2$
-
-   BCNN(12, 18) = $2^2 \times 3^2 = 36$
-
-b) $15 = 3 \times 5$, $20 = 2^2 \times 5$
-
-   BCNN(15, 20) = $2^2 \times 3 \times 5 = 60$
-
-c) $10 = 2 \times 5$, $15 = 3 \times 5$, $20 = 2^2 \times 5$
-
-   BCNN(10, 15, 20) = $2^2 \times 3 \times 5 = 60$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Số nguyên tố và hợp số</h4>
-
-a) Liệt kê các số nguyên tố nhỏ hơn 20
-
-b) Trong các số 21, 22, 23, 24, 25, số nào là số nguyên tố?
-
-c) Phân tích 210 thành thừa số nguyên tố
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Các số nguyên tố nhỏ hơn 20: $2, 3, 5, 7, 11, 13, 17, 19$
-
-b) Số nguyên tố: $23$
-
-c) $210 = 2 \times 3 \times 5 \times 7$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Bài toán thực tế</h4>
-
-Một cửa hàng có 48 cái bàn và 36 cái ghế. Muốn chia đều thành các bộ (mỗi bộ gồm một bàn và một ghế) sao cho không thừa. Hỏi:
-
-a) Có thể chia được bao nhiêu bộ?
+a) Có thể chia được nhiều nhất bao nhiêu bộ?
 
 b) Mỗi bộ có bao nhiêu cái bàn và bao nhiêu cái ghế?
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
 
-**Lời giải:**
+**Giải:**
 
-a) Số bộ = ƯCLN(48, 36) = 12 bộ
+a) Số bộ nhiều nhất = ƯCLN$(48, 36)$
 
-b) Mỗi bộ có: $48 \div 12 = 4$ cái bàn và $36 \div 12 = 3$ cái ghế
+Phân tích:
+- $48 = 2^4 \times 3$
+- $36 = 2^2 \times 3^2$
 
-</div>
-</details>
+ƯCLN$(48, 36) = 2^2 \times 3 = 12$
 
----
+**Có thể chia được nhiều nhất 12 bộ.**
 
-<h4 id="bai-7">Bài 7: Bài toán kết hợp (Câu lớn)</h4>
-
-Một trường học muốn tổ chức một buổi giao lưu. Có 60 học sinh lớp 6A, 72 học sinh lớp 6B, 84 học sinh lớp 6C.
-
-a) Muốn chia đều các học sinh thành các nhóm sao cho mỗi nhóm có số học sinh bằng nhau và không thừa, số học sinh tối đa của mỗi nhóm là bao nhiêu?
-
-b) Khi đó, mỗi lớp được chia thành bao nhiêu nhóm?
-
-c) Tổng cộng có bao nhiêu nhóm?
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Số học sinh tối đa mỗi nhóm = ƯCLN(60, 72, 84)
-
-   $60 = 2^2 \times 3 \times 5$, $72 = 2^3 \times 3^2$, $84 = 2^2 \times 3 \times 7$
-
-   ƯCLN = $2^2 \times 3 = 12$ học sinh/nhóm
-
-b) Lớp 6A: $60 \div 12 = 5$ nhóm
-
-   Lớp 6B: $72 \div 12 = 6$ nhóm
-
-   Lớp 6C: $84 \div 12 = 7$ nhóm
-
-c) Tổng cộng: $5 + 6 + 7 = 18$ nhóm
+b) Mỗi bộ có:
+- Số bàn: $48 : 12 = 4$ (cái)
+- Số ghế: $36 : 12 = 3$ (cái)
 
 </div>
-</details>
 
----
+**📝 Bài toán 2:** Hai chiếc xe buýt xuất phát cùng lúc từ một bến. Xe thứ nhất chạy vòng quanh thành phố mất $30$ phút, xe thứ hai mất $45$ phút.
 
-<h4 id="bai-8">Bài 8: Bài toán nâng cao (Câu lớn)</h4>
+a) Sau bao lâu thì hai xe lại gặp nhau tại bến?
 
-Hai chiếc xe buýt xuất phát cùng lúc từ một bến. Xe thứ nhất chạy vòng quanh thành phố mất 30 phút, xe thứ hai mất 45 phút.
+b) Lúc đó, mỗi xe đã chạy được bao nhiêu vòng?
 
-a) Sau bao lâu thì hai xe gặp nhau lại tại bến?
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
 
-b) Lúc đó, mỗi xe đã chạy bao nhiêu vòng?
+**Giải:**
 
-c) Nếu xe thứ nhất chạy 20 phút/vòng, xe thứ hai chạy 30 phút/vòng, sau bao lâu gặp lại?
+a) Thời gian gặp lại = BCNN$(30, 45)$
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+Phân tích:
+- $30 = 2 \times 3 \times 5$
+- $45 = 3^2 \times 5$
 
-**Lời giải:**
+BCNN$(30, 45) = 2 \times 3^2 \times 5 = 90$
 
-a) Thời gian gặp lại = BCNN(30, 45)
+**Sau 90 phút (1 giờ 30 phút) hai xe lại gặp nhau tại bến.**
 
-   $30 = 2 \times 3 \times 5$, $45 = 3^2 \times 5$
-
-   BCNN = $2 \times 3^2 \times 5 = 90$ phút
-
-b) Xe thứ nhất: $90 \div 30 = 3$ vòng
-
-   Xe thứ hai: $90 \div 45 = 2$ vòng
-
-c) Thời gian gặp lại = BCNN(20, 30)
-
-   $20 = 2^2 \times 5$, $30 = 2 \times 3 \times 5$
-
-   BCNN = $2^2 \times 3 \times 5 = 60$ phút
+b) Lúc đó:
+- Xe thứ nhất: $90 : 30 = 3$ (vòng)
+- Xe thứ hai: $90 : 45 = 2$ (vòng)
 
 </div>
-</details>
+
+**📝 Bài toán 3:** Một thư viện có một số quyển sách trong khoảng từ $200$ đến $300$ quyển. Khi xếp số sách đó thành các chồng, mỗi chồng $8$ quyển, $12$ quyển hoặc $15$ quyển thì đều vừa đủ chồng.
+
+a) Tìm BCNN$(8, 12, 15)$.
+
+b) Hỏi thư viện có bao nhiêu quyển sách?
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Phân tích:
+- $8 = 2^3$
+- $12 = 2^2 \times 3$
+- $15 = 3 \times 5$
+
+BCNN$(8, 12, 15) = 2^3 \times 3 \times 5 = 120$
+
+b) Số sách phải là bội chung của $8, 12, 15$, tức là bội của $120$: $120, 240, 360, ...$
+
+Số trong khoảng từ $200$ đến $300$ chỉ có $240$.
+
+**Thư viện có 240 quyển sách.**
+
+</div>
 
 </VanDung>
 
@@ -521,3 +376,185 @@ c) Thời gian gặp lại = BCNN(20, 30)
 - **Ứng dụng:** ƯCLN dùng để chia đều, BCNN dùng để tìm thời gian gặp lại
 
 </GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
+
+**Bài 1 (Dễ - Nhận biết):** Trong các số $120, 135, 246, 350, 405$, hãy tìm:
+
+a) Các số chia hết cho $2$
+
+b) Các số chia hết cho $5$
+
+c) Các số chia hết cho $3$
+
+d) Các số chia hết cho cả $2$ và $5$
+
+**Bài 2 (Dễ - Nhận biết):** Số nguyên tố và hợp số:
+
+a) Liệt kê các số nguyên tố nhỏ hơn $30$
+
+b) Trong các số $31, 33, 35, 37, 39$, số nào là số nguyên tố?
+
+c) Trong các số $43, 45, 47, 49, 51$, số nào là hợp số?
+
+**Bài 3 (Dễ - Nhận biết):** Phân tích các số sau thành thừa số nguyên tố:
+
+a) $60$
+
+b) $84$
+
+c) $100$
+
+d) $180$
+
+**Bài 4 (Thông hiểu):** Tìm ƯCLN của:
+
+a) ƯCLN$(24, 36)$
+
+b) ƯCLN$(60, 90)$
+
+c) ƯCLN$(48, 72, 96)$
+
+**Bài 5 (Thông hiểu):** Tìm BCNN của:
+
+a) BCNN$(12, 18)$
+
+b) BCNN$(15, 20)$
+
+c) BCNN$(10, 15, 20)$
+
+**Bài 6 (Thông hiểu):** Áp dụng mối liên hệ ƯCLN$(a, b) \times$ BCNN$(a, b) = a \times b$:
+
+a) Biết ƯCLN$(15, 20) = 5$. Tìm BCNN$(15, 20)$.
+
+b) Biết BCNN$(24, 36) = 72$. Tìm ƯCLN$(24, 36)$.
+
+**Bài 7 (Thông hiểu - dấu hiệu chia hết):** Tìm chữ số thích hợp để điền vào $*$:
+
+a) $\overline{3*4}$ chia hết cho $3$
+
+b) $\overline{5*2}$ chia hết cho $9$
+
+c) $\overline{48*}$ chia hết cho cả $2$ và $5$
+
+**Bài 8 (Vận dụng):** Một lớp có $30$ học sinh nam và $24$ học sinh nữ. Cô giáo muốn chia đều thành các nhóm, mỗi nhóm có số nam và số nữ như nhau.
+
+a) Có thể chia được nhiều nhất bao nhiêu nhóm?
+
+b) Mỗi nhóm có bao nhiêu học sinh nam và bao nhiêu học sinh nữ?
+
+**Bài 9 (Vận dụng):** Tìm số tự nhiên $x$ nhỏ nhất khác $0$ sao cho $x \vdots 8$, $x \vdots 12$ và $x \vdots 15$.
+
+**Bài 10 (Vận dụng cao):** Tìm hai số tự nhiên $a$ và $b$ biết $a \times b = 180$ và ƯCLN$(a, b) = 6$.
+
+</div>
+
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
+
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
+
+**Bài 1:**
+a) Chia hết cho $2$: $120, 246, 350$ (tận cùng là chữ số chẵn hoặc $0$).
+
+b) Chia hết cho $5$: $120, 135, 350, 405$ (tận cùng là $0$ hoặc $5$).
+
+c) Chia hết cho $3$: $120, 135, 246, 405$ (tổng chữ số chia hết cho $3$).
+
+d) Chia hết cho cả $2$ và $5$: $120, 350$ (tận cùng là $0$).
+
+---
+
+**Bài 2:**
+a) Các số nguyên tố nhỏ hơn $30$: $2, 3, 5, 7, 11, 13, 17, 19, 23, 29$.
+
+b) Số nguyên tố: $31$ và $37$ (vì $33 = 3 \times 11$, $35 = 5 \times 7$, $39 = 3 \times 13$ là hợp số).
+
+c) Hợp số: $45 = 3^2 \times 5$, $49 = 7^2$, $51 = 3 \times 17$ (còn $43$, $47$ là số nguyên tố).
+
+---
+
+**Bài 3:**
+a) $60 = 2^2 \times 3 \times 5$
+
+b) $84 = 2^2 \times 3 \times 7$
+
+c) $100 = 2^2 \times 5^2$
+
+d) $180 = 2^2 \times 3^2 \times 5$
+
+---
+
+**Bài 4:**
+a) $24 = 2^3 \times 3$; $36 = 2^2 \times 3^2$. ƯCLN = $2^2 \times 3 = 12$.
+
+b) $60 = 2^2 \times 3 \times 5$; $90 = 2 \times 3^2 \times 5$. ƯCLN = $2 \times 3 \times 5 = 30$.
+
+c) $48 = 2^4 \times 3$; $72 = 2^3 \times 3^2$; $96 = 2^5 \times 3$. ƯCLN = $2^3 \times 3 = 24$.
+
+---
+
+**Bài 5:**
+a) $12 = 2^2 \times 3$; $18 = 2 \times 3^2$. BCNN = $2^2 \times 3^2 = 36$.
+
+b) $15 = 3 \times 5$; $20 = 2^2 \times 5$. BCNN = $2^2 \times 3 \times 5 = 60$.
+
+c) $10 = 2 \times 5$; $15 = 3 \times 5$; $20 = 2^2 \times 5$. BCNN = $2^2 \times 3 \times 5 = 60$.
+
+---
+
+**Bài 6:**
+a) BCNN$(15, 20) = \frac{15 \times 20}{5} = \frac{300}{5} = 60$.
+
+b) ƯCLN$(24, 36) = \frac{24 \times 36}{72} = \frac{864}{72} = 12$.
+
+---
+
+**Bài 7:**
+a) $\overline{3*4}$ chia hết cho $3$ khi $3 + * + 4 = 7 + * \vdots 3$, suy ra $* \in \{2, 5, 8\}$.
+
+b) $\overline{5*2}$ chia hết cho $9$ khi $5 + * + 2 = 7 + * \vdots 9$, suy ra $* = 2$.
+
+c) $\overline{48*}$ chia hết cho cả $2$ và $5$ khi tận cùng là $0$, suy ra $* = 0$.
+
+---
+
+**Bài 8:**
+a) Số nhóm nhiều nhất = ƯCLN$(30, 24)$.
+
+$30 = 2 \times 3 \times 5$; $24 = 2^3 \times 3$. ƯCLN = $2 \times 3 = 6$.
+
+**Có thể chia được nhiều nhất 6 nhóm.**
+
+b) Mỗi nhóm có: $30 : 6 = 5$ học sinh nam và $24 : 6 = 4$ học sinh nữ.
+
+---
+
+**Bài 9:**
+Số cần tìm là BCNN$(8, 12, 15)$.
+
+$8 = 2^3$; $12 = 2^2 \times 3$; $15 = 3 \times 5$.
+
+BCNN$(8, 12, 15) = 2^3 \times 3 \times 5 = 120$.
+
+**Số tự nhiên $x$ cần tìm là 120.**
+
+---
+
+**Bài 10:**
+Đặt $a = 6m$, $b = 6n$ với ƯCLN$(m, n) = 1$.
+
+$a \times b = 180 \Rightarrow 6m \times 6n = 180 \Rightarrow 36mn = 180 \Rightarrow mn = 5$.
+
+Các cặp $(m, n)$ với ƯCLN$(m, n) = 1$ và $mn = 5$: $(1, 5), (5, 1)$.
+
+Vậy các cặp $(a, b)$: $(6, 30)$ hoặc $(30, 6)$.
+
+</div>
+</details>

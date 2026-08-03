@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 8: Khai căn bậc hai với phép nhân và phép chia"
-description: "Các quy tắc khai phương một tích, một thương và nhân, chia các căn thức - Toán 9 KNTT Chương 3"
+description: "Quy tắc khai phương một tích, khai phương một thương, nhân và chia các căn bậc hai - Toán 9 KNTT Chương 3"
 grade: "Lớp 9"
 chapter: "Chương III: Căn bậc hai và căn bậc ba"
 currentSlug: "lop9/bai-8-khai-can-nhan-chia"
@@ -13,204 +13,364 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Áp dụng quy tắc nhân, $\\sqrt{A} \\cdot \\sqrt{B}$ bằng biểu thức nào (với $A \\ge 0, B \\ge 0$)?",
-    option_a: "$\\sqrt{A + B}$",
-    option_b: "$\\sqrt{A \\cdot B}$",
-    option_c: "$\\sqrt{A - B}$",
-    option_d: "$\\sqrt{\\frac{A}{B}}$",
-    correct_option: "B",
-    explanation: "Định lý: $\\sqrt{A} \\cdot \\sqrt{B} = \\sqrt{A \\cdot B}$ với các biểu thức không âm.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tính nhanh $\\sqrt{25 \\cdot 16}$.",
-    option_a: "41",
-    option_b: "625",
-    option_c: "20",
-    option_d: "100",
-    correct_option: "C",
-    explanation: "$\\sqrt{25 \\cdot 16} = \\sqrt{25} \\cdot \\sqrt{16} = 5 \\cdot 4 = 20$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Điều kiện để quy tắc khai phương một thương $\\sqrt{\\frac{A}{B}} = \\frac{\\sqrt{A}}{\\sqrt{B}}$ hình thành là:",
-    option_a: "$A \\ge 0$ và $B \\ge 0$",
-    option_b: "$A > 0$ và $B > 0$",
-    option_c: "$A \\ge 0$ và $B > 0$",
-    option_d: "$A \\neq 0$ và $B \\neq 0$",
-    correct_option: "C",
-    explanation: "A được phép bằng không nên $A \\ge 0$. Tuy nhiên B nằm dưới mẫu nên phải KHÁC KHÔNG $\\Rightarrow B > 0$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Rút gọn biểu thức $\\sqrt{\\frac{49}{81}}$.",
-    option_a: "$7/9$",
-    option_b: "$9/7$",
-    option_c: "$49/9$",
-    option_d: "$7/81$",
+    question: "Với $a \\ge 0, b \\ge 0$, đẳng thức nào sau đây đúng?",
+    option_a: "$\\sqrt{a \\cdot b} = \\sqrt{a} \\cdot \\sqrt{b}$",
+    option_b: "$\\sqrt{a + b} = \\sqrt{a} + \\sqrt{b}$",
+    option_c: "$\\sqrt{a - b} = \\sqrt{a} - \\sqrt{b}$",
+    option_d: "$\\sqrt{a \\cdot b} = a \\sqrt{b}$",
     correct_option: "A",
-    explanation: "$\\sqrt{49/81} = \\sqrt{49} / \\sqrt{81} = 7/9$.",
+    explanation: "Quy tắc khai phương một tích: Muốn khai phương một tích của các số không âm, ta có thể khai phương từng thừa số rồi nhân các kết quả lại với nhau.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tính giá trị của biểu thức $\\sqrt{2} \\cdot \\sqrt{18}$.",
-    option_a: "20",
-    option_b: "36",
-    option_c: "6",
-    option_d: "8",
-    correct_option: "C",
-    explanation: "Nhân lại thành 1 căn: $\\sqrt{2 \\cdot 18} = \\sqrt{36} = 6$.",
-    difficulty_level: "medium",
+    question: "Giá trị của biểu thức $\\sqrt{49 \\cdot 64}$ bằng bao nhiêu?",
+    option_a: "56",
+    option_b: "42",
+    option_c: "64",
+    option_d: "3136",
+    correct_option: "A",
+    explanation: "$\\sqrt{49 \\cdot 64} = \\sqrt{49} \\cdot \\sqrt{64} = 7 \\cdot 8 = 56$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Phát biểu SAl khi nói về sự liên hệ toán học?",
-    option_a: "$\\sqrt{x \\cdot y} = \\sqrt{x} \\cdot \\sqrt{y}$ (với $x,y >0$)",
-    option_b: "$\\sqrt{x+y} = \\sqrt{x} + \\sqrt{y}$ (với $x,y > 0$)",
-    option_c: "$\\sqrt{x^3} = x\\sqrt{x}$ (với $x > 0$)",
-    option_d: "$\\sqrt{x^4} = x^2$",
+    question: "Tính tích $\\sqrt{5} \\cdot \\sqrt{20}$:",
+    option_a: "100",
+    option_b: "10",
+    option_c: "25",
+    option_d: "5",
     correct_option: "B",
-    explanation: "Không có quy tắc tách tổng căn! VD: $\\sqrt{9+16} = 5 \\neq \\sqrt{9}+\\sqrt{16}=7$.",
+    explanation: "$\\sqrt{5} \\cdot \\sqrt{20} = \\sqrt{5 \\cdot 20} = \\sqrt{100} = 10$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Với $a \\ge 0, b > 0$, quy tắc khai phương một thương cho ta đẳng thức nào?",
+    option_a: "$\\sqrt{\\frac{a}{b}} = \\frac{\\sqrt{a}}{b}$",
+    option_b: "$\\sqrt{\\frac{a}{b}} = \\frac{\\sqrt{a}}{\\sqrt{b}}$",
+    option_c: "$\\sqrt{\\frac{a}{b}} = \\frac{a}{\\sqrt{b}}$",
+    option_d: "$\\sqrt{\\frac{a}{b}} = \\sqrt{a} - \\sqrt{b}$",
+    correct_option: "B",
+    explanation: "Quy tắc khai phương một thương: Muốn khai phương một thương $\\frac{a}{b}$ ($a \\ge 0, b > 0$), ta có thể khai phương tử số $a$ và mẫu số $b$ rồi lấy kết quả thứ nhất chia cho kết quả thứ hai.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Rút gọn biểu thức $\\frac{\\sqrt{80}}{\\sqrt{5}}$ thu được kết quả là:",
+    option_a: "16",
+    option_b: "4",
+    option_c: "8",
+    option_d: "2",
+    correct_option: "B",
+    explanation: "$\\frac{\\sqrt{80}}{\\sqrt{5}} = \\sqrt{\\frac{80}{5}} = \\sqrt{16} = 4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biến đổi biểu thức $\\sqrt{12}$ bằng cách đưa thừa số ra ngoài dấu căn ta được:",
+    option_a: "$4\\sqrt{3}$",
+    option_b: "$2\\sqrt{3}$",
+    option_c: "$3\\sqrt{2}$",
+    option_d: "$6\\sqrt{2}$",
+    correct_option: "B",
+    explanation: "$\\sqrt{12} = \\sqrt{4 \\cdot 3} = \\sqrt{4} \\cdot \\sqrt{3} = 2\\sqrt{3}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phép tính nào sau đây có kết quả bằng 6?",
+    option_a: "$\\sqrt{36}$",
+    option_b: "$\\sqrt{2} \\cdot \\sqrt{18}$",
+    option_c: "$\\frac{\\sqrt{72}}{\\sqrt{2}}$",
+    option_d: "$\\sqrt{12} \\cdot \\sqrt{3}$",
+    correct_option: "A,B,C,D",
+    explanation: "A: $\\sqrt{36} = 6$. B: $\\sqrt{36} = 6$. C: $\\sqrt{36} = 6$. D: $\\sqrt{36} = 6$. Tất cả đều bằng 6.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Chọn các biểu thức bằng với $5$:",
-    option_a: "$\\sqrt{25}$",
-    option_b: "$\\sqrt{50} / \\sqrt{2}$",
-    option_c: "$\\sqrt{100/4}$",
-    option_d: "$\\sqrt{125} / 5$",
-    correct_option: "A,B,C",
-    explanation: "B: $\\sqrt{50/2} = \\sqrt{25} = 5$. C: $\\sqrt{25} = 5$. D: là $\\sqrt{5}$ (Sai).",
-    difficulty_level: "hard",
+    question: "Với $x \\ge 0, y \\ge 0$, những khẳng định nào đúng?",
+    option_a: "$\\sqrt{9x^2 y} = 3x\\sqrt{y}$",
+    option_b: "$\\sqrt{16x y^2} = 4y\\sqrt{x}$",
+    option_c: "$\\sqrt{25x^4} = 5x^2$",
+    option_d: "$\\sqrt{x} \\cdot \\sqrt{x} = x$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều là các phép biến đổi căn thức chính xác đối với các biến không âm.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Tính $\\sqrt{0.36 \\cdot 144}$?",
-    option_a: "$0.6 \\cdot 12$",
-    option_b: "$7.2$",
-    option_c: "$\\sqrt{51.84}$",
-    option_d: "Tất cả đều đúng",
-    correct_option: "D",
-    explanation: "Tách căn thành $0.6 \\cdot 12 = 7.2$. Khi nhân ở dạng trong căn cũng là $\\sqrt{51.84} = 7.2$.",
+    type: "sa",
+    question: "Tính giá trị của biểu thức $P = \\sqrt{2} \\cdot \\sqrt{8} + \\frac{\\sqrt{27}}{\\sqrt{3}}$.",
+    correct_option: "7",
+    explanation: "$P = \\sqrt{16} + \\sqrt{9} = 4 + 3 = 7$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tính kết quả: $\\sqrt{3} \\cdot \\sqrt{12}$.",
-    correct_option: "6",
-    explanation: "$\\sqrt{36} = 6$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Rút gọn biểu thức với $x>0$: $\\frac{\\sqrt{18x^3}}{\\sqrt{2x}}$.",
-    correct_option: "3x",
-    explanation: "Gộp căn: $\\sqrt{\\frac{18x^3}{2x}} = \\sqrt{9x^2} = 3x$ (do $x>0$).",
-    difficulty_level: "hard",
+    question: "Tìm nghiệm dương $x$ của phương trình $\\sqrt{3x} - \\sqrt{12} = 0$.",
+    correct_option: "4",
+    explanation: "$\\sqrt{3x} = \\sqrt{12} \\Leftrightarrow 3x = 12 \\Leftrightarrow x = 4$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🧐 Hai con đường đi đến La Mã</h3>
+<h3 id="mo-dau">⚡ Phép tách và nhập Căn bậc hai đối với Phép nhân & Phép chia</h3>
 
-Một bài tập tính toán xuất hiện: Tính giá trị của $S = \sqrt{16 \times 25}$.
-- Học sinh A làm như sau: Toán trong căn trước $\Rightarrow S = \sqrt{400} = 20$.
-- Học sinh B làm như sau: Chia rẽ căn ra $\Rightarrow S = \sqrt{16} \times \sqrt{25} = 4 \times 5 = 20$.
-Cả hai học sinh đều ra kết quả đúng! Liệu đây là sự trùng hợp ngẫu nhiên? Không, đó là bài toán có sự hậu thuẫn bởi **"Quy tắc khai phương một tích"**. Vây với phép cộng thì sao? Phép chia thì sao? 
+Hai quy tắc quan trọng bậc nhất giúp đơn giản hóa các phép toán căn thức:
+1. **Khai phương một tích = Tích các khai phương:** $\sqrt{a \cdot b} = \sqrt{a} \cdot \sqrt{b}$
+2. **Khai phương một thương = Thương các khai phương:** $\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}$
+
+Nhờ hai quy tắc này, ta có thể tính nhẩm dễ dàng các tích như $\sqrt{2} \cdot \sqrt{18} = \sqrt{36} = 6$ mà không cần tính căn của từng số lẻ.
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="140" viewBox="0 0 420 140" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Box 1 */}
+  <g transform="translate(15, 20)">
+    <rect width="130" height="90" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="65" y="40" font-size="13" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Tích riêng lẻ</text>
+    <text x="65" y="65" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">√2 × √18</text>
+  </g>
+
+  <path d="M 155 65 L 235 65" stroke="#f59e0b" stroke-width="3"/>
+  <text x="195" y="55" font-size="11" font-weight="bold" fill="#d97706" text-anchor="middle">Gộp chung căn</text>
+
+  {/* Box 2 */}
+  <g transform="translate(245, 20)">
+    <rect width="160" height="90" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="80" y="40" font-size="13" font-weight="bold" fill="#15803d" text-anchor="middle">Tích gộp dưới căn</text>
+    <text x="80" y="65" font-size="14" font-weight="bold" fill="#16a34a" text-anchor="middle">√(2×18) = √36 = 6</text>
+  </g>
+</svg>
+</div>
 
 </KhoiDong>
 
 <KhamPha title="Khám phá">
 
-<h3 id="tich" style="margin-top:2rem;">📖 1. Liên hệ giữa phép nhân và phép khai phương</h3>
+<h3 id="khai-can-tich">📖 1. Phép nhân các căn bậc hai & Khai phương một tích</h3>
 
-<div class="box-dinh-ly">
+<div class="box-dinh-nghia">
 
-**Định lí:** Với hai biểu thức không âm $A \ge 0$ và $B \ge 0$, ta có:
-$$\sqrt{A \cdot B} = \sqrt{A} \cdot \sqrt{B}$$
+**1. Quy tắc khai phương một tích:**
+Với hai số không âm $a \ge 0$ và $b \ge 0$, ta có:
+$$\sqrt{a \cdot b} = \sqrt{a} \cdot \sqrt{b}$$
+*Phát biểu:* Muốn khai phương một tích của các số không âm, ta có thể khai phương từng thừa số rồi nhân các kết quả lại với nhau.
 
-</div>
-
-**Từ định lí trên, chúng ta sử dụng linh hoạt dưới 2 trạng thái:**
-
-- **Trạng thái Khai Phương (Tách từ trái qua phải):** Để khai phương môt tích, ta khai phương từng nhân tử rồi nhân chúng lại.
-*Dấu hiệu Dùng:* Khi các nhân tử bên trong là một số viết được thành một số chính phương.
-Ví dụ: $\sqrt{49 \cdot 100} = \sqrt{49} \cdot \sqrt{100} = 7 \cdot 10 = 70$.
-
-- **Trạng thái Nhân Hai Căn Thức (Gộp từ phải qua trái):** Muốn nhân các căn bậc hai, ta có thể nhân các số dưới dấu căn với nhau rồi khai phương tổng thể.
-*Dấu hiệu Dùng:* Khi từng căn thức bên ngoài lẻ, không thể khai phương, nhưng khi nhân gộp vào lại ra số đẹp.
-Ví dụ: $\sqrt{3} \cdot \sqrt{27} = \sqrt{3 \cdot 27} = \sqrt{81} = 9$.
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ ứng dụng Rút Gọn Đại Số:**
-Rút gọn $\sqrt{9a^2}$ với $a \ge 0$.
-**Giải:**
-$\sqrt{9a^2} = \sqrt{9} \cdot \sqrt{a^2} = 3 \cdot |a|$. Vì $a \ge 0 \Rightarrow 3a$. 
+**2. Quy tắc nhân các căn bậc hai:**
+Với hai số không âm $a \ge 0$ và $b \ge 0$, ta có:
+$$\sqrt{a} \cdot \sqrt{b} = \sqrt{a \cdot b}$$
+*Phát biểu:* Muốn nhân các căn bậc hai của các số không âm, ta có thể nhân các số dưới dấu căn với nhau rồi khai phương kết quả đó.
 
 </div>
 
-<h3 id="thuong" style="margin-top:2rem;">📖 2. Liên hệ giữa phép chia và phép khai phương</h3>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<div class="box-dinh-ly">
+**3 Ví dụ minh họa Khai căn một tích:**
 
-**Định lí:** Với số $A \ge 0$ và số $B > 0$ (Mẫu phải khác 0), ta có:
-$$\sqrt{\frac{A}{B}} = \frac{\sqrt{A}}{\sqrt{B}}$$
+- **Ví dụ 1:** Tính $A = \sqrt{16 \cdot 25 \cdot 81}$.
+  - *Giải:* $A = \sqrt{16} \cdot \sqrt{25} \cdot \sqrt{81} = 4 \cdot 5 \cdot 9 = 180$.
+
+- **Ví dụ 2:** Tính $B = \sqrt{12} \cdot \sqrt{27}$.
+  - *Giải:* $B = \sqrt{12 \cdot 27} = \sqrt{324} = 18$ (hoặc $\sqrt{4 \cdot 3} \cdot \sqrt{9 \cdot 3} = 2\sqrt{3} \cdot 3\sqrt{3} = 6 \cdot 3 = 18$).
+
+- **Ví dụ 3:** Rút gọn biểu thức $C = \sqrt{4a^2 b^4}$ với $a < 0$.
+  - *Giải:* $C = \sqrt{4} \cdot \sqrt{a^2} \cdot \sqrt{(b^2)^2} = 2 \cdot |a| \cdot b^2$.  
+    Vì $a < 0 \Rightarrow |a| = -a$. Vậy $C = -2ab^2$.
 
 </div>
 
-**Hai luật ngược xuôi tương tự phép nhân:**
-- **Khai phương một thương:** $\sqrt{\frac{16}{25}} = \frac{\sqrt{16}}{\sqrt{25}} = \frac{4}{5}$.
-- **Chia hai căn:** $\frac{\sqrt{50}}{\sqrt{2}} = \sqrt{\frac{50}{2}} = \sqrt{25} = 5$. (Từng cái độc lập thì lẻ, gộp lại thì chẵn).
+<h3 id="khai-can-thuong" style="margin-top:2rem;">📖 2. Phép chia các căn bậc hai & Khai phương một thương</h3>
 
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+<div class="box-dinh-nghia">
 
-**Ví dụ ứng dụng:** (Gộp mạnh với hằng đẳng thức)
-Tính $\sqrt{\frac{165^2 - 124^2}{164}}$.
-**Giải:** Dùng HĐT $(A^2 - B^2)$ ở tử:
-Mẫu số trong căn: $165^2 - 124^2 = (165 - 124)(165 + 124) = 41 \cdot 289$.
-Phân thức: $\sqrt{\frac{41 \cdot 289}{164}} = \sqrt{\frac{41 \cdot 289}{41 \cdot 4}} = \sqrt{\frac{289}{4}}$.
-Tiến hành chia căn: $\frac{\sqrt{289}}{\sqrt{4}} = \frac{17}{2} = 8.5$.
-Quá ảo ma nếu phải bình phương 165 từ đầu phải không!
+**1. Quy tắc khai phương một thương:**
+Với số không âm $a \ge 0$ và số dương $b > 0$, ta có:
+$$\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}$$
+*Phát biểu:* Muốn khai phương một thương $\frac{a}{b}$ ($a \ge 0, b > 0$), ta có thể khai phương tử số $a$ và mẫu số $b$ rồi lấy kết quả thứ nhất chia cho kết quả thứ hai.
+
+**2. Quy tắc chia hai căn bậc hai:**
+Với số không âm $a \ge 0$ và số dương $b > 0$, ta có:
+$$\frac{\sqrt{a}}{\sqrt{b}} = \sqrt{\frac{a}{b}}$$
+*Phát biểu:* Muốn chia căn bậc hai của số không âm $a$ cho căn bậc hai của số dương $b$, ta có thể chia $a$ cho $b$ rồi khai phương kết quả đó.
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Khai căn một thương:**
+
+- **Ví dụ 1:** Tính $A = \sqrt{\frac{25}{144}}$.
+  - *Giải:* $A = \frac{\sqrt{25}}{\sqrt{144}} = \frac{5}{12}$.
+
+- **Ví dụ 2:** Tính $B = \frac{\sqrt{150}}{\sqrt{6}}$.
+  - *Giải:* $B = \sqrt{\frac{150}{6}} = \sqrt{25} = 5$.
+
+- **Ví dụ 3:** Rút gọn biểu thức $C = \sqrt{\frac{9x^2}{y^4}}$ với $x \ge 0, y \neq 0$.
+  - *Giải:* $C = \frac{\sqrt{9x^2}}{\sqrt{y^4}} = \frac{3|x|}{y^2}$. Vì $x \ge 0 \Rightarrow |x| = x \Rightarrow C = \frac{3x}{y^2}$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính giá trị biểu thức số sử dụng nhân, chia căn bậc hai**
+- **Phương pháp:** Nhóm các số dưới dấu căn thích hợp để tạo thành các số chính phương ($4, 9, 16, 25, 36, ...$).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tính $A = \sqrt{3,6 \cdot 40}$.
+  - *Lời giải:* $A = \sqrt{36 \cdot 4} = \sqrt{36} \cdot \sqrt{4} = 6 \cdot 2 = 12$.
+
+- **Ví dụ 2:** Tính $B = \sqrt{5} \cdot \sqrt{45}$.
+  - *Lời giải:* $B = \sqrt{5 \cdot 45} = \sqrt{225} = 15$.
+
+- **Ví dụ 3:** Tính $C = \frac{\sqrt{2}}{\sqrt{18}} + \frac{\sqrt{48}}{\sqrt{3}}$.
+  - *Lời giải:* $C = \sqrt{\frac{2}{18}} + \sqrt{\frac{48}{3}} = \sqrt{\frac{1}{9}} + \sqrt{16} = \frac{1}{3} + 4 = \frac{13}{3}$.
+
+</div>
+
+#### **Dạng 2: Rút gọn biểu thức chứa biến dùng nhân, chia căn thức**
+- **Phương pháp:** Áp dụng $\sqrt{a \cdot b} = \sqrt{a} \cdot \sqrt{b}$ và $\sqrt{a^2} = |A|$, chú ý điều kiện của biến để phá dấu giá trị tuyệt đối.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Rút gọn $A = \sqrt{16a^4 b^2}$ với $b \ge 0$.
+  - *Lời giải:* $A = \sqrt{16} \cdot \sqrt{(a^2)^2} \cdot \sqrt{b^2} = 4 a^2 |b| = 4a^2 b$ (vì $b \ge 0$).
+
+- **Ví dụ 2:** Rút gọn $B = \frac{\sqrt{45x^3}}{\sqrt{5x}}$ với $x > 0$.
+  - *Lời giải:* $B = \sqrt{\frac{45x^3}{5x}} = \sqrt{9x^2} = 3|x| = 3x$ (vì $x > 0$).
+
+- **Ví dụ 3:** Rút gọn $C = \sqrt{2a} \cdot \sqrt{18a^3}$ với $a \ge 0$.
+  - *Lời giải:* $C = \sqrt{2a \cdot 18a^3} = \sqrt{36a^4} = 6a^2$.
+
+</div>
+
+#### **Dạng 3: Đưa thừa số ra ngoài / vào trong dấu căn**
+- **Phương pháp:** 
+  - **Ra ngoài:** $\sqrt{A^2 B} = |A|\sqrt{B} = \begin{cases} A\sqrt{B} & \text{nếu } A \ge 0 \\ -A\sqrt{B} & \text{nếu } A < 0 \end{cases}$ (với $B \ge 0$).
+  - **Vào trong:** $A\sqrt{B} = \sqrt{A^2 B}$ (nếu $A \ge 0$); $A\sqrt{B} = -\sqrt{A^2 B}$ (nếu $A < 0$).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Đưa thừa số ra ngoài dấu căn: $\sqrt{50}, \sqrt{72}, \sqrt{108}$.
+  - *Lời giải:* 
+    - $\sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt{2}$.
+    - $\sqrt{72} = \sqrt{36 \cdot 2} = 6\sqrt{2}$.
+    - $\sqrt{108} = \sqrt{36 \cdot 3} = 6\sqrt{3}$.
+
+- **Ví dụ 2:** Đưa thừa số vào trong dấu căn: $3\sqrt{5}, -2\sqrt{7}$.
+  - *Lời giải:* 
+    - $3\sqrt{5} = \sqrt{3^2 \cdot 5} = \sqrt{9 \cdot 5} = \sqrt{45}$.
+    - $-2\sqrt{7} = -\sqrt{2^2 \cdot 7} = -\sqrt{4 \cdot 7} = -\sqrt{28}$.
+
+- **Ví dụ 3:** Rút gọn biểu thức $P = 3\sqrt{8} - 2\sqrt{18} + \sqrt{50}$.
+  - *Lời giải:* $P = 3(2\sqrt{2}) - 2(3\sqrt{2}) + 5\sqrt{2} = 6\sqrt{2} - 6\sqrt{2} + 5\sqrt{2} = 5\sqrt{2}$.
+
+</div>
+
+#### **Dạng 4: Giải phương trình chứa căn thức**
+- **Phương pháp:** Đưa về dạng $\sqrt{a} \cdot \sqrt{x} = b \Rightarrow \sqrt{ax} = b \Rightarrow ax = b^2$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Giải phương trình $\sqrt{4x - 8} = 6$.
+  - *Lời giải:* ĐKXĐ: $x \ge 2$. Biến đổi $\sqrt{4(x-2)} = 6 \Leftrightarrow 2\sqrt{x-2} = 6 \Leftrightarrow \sqrt{x-2} = 3$.  
+    Bình phương: $x - 2 = 9 \Leftrightarrow x = 11$ (TM).
+
+- **Ví dụ 2:** Giải phương trình $\sqrt{5x} - \sqrt{20} = 0$.
+  - *Lời giải:* $\sqrt{5x} = \sqrt{20} \Leftrightarrow 5x = 20 \Leftrightarrow x = 4$ (TM).
+
+- **Ví dụ 3:** Giải phương trình $\sqrt{9x - 9} - \sqrt{x - 1} = 4$.
+  - *Lời giải:* ĐKXĐ: $x \ge 1$. Phương trình tương đương:  
+    $\sqrt{9(x-1)} - \sqrt{x-1} = 4 \Leftrightarrow 3\sqrt{x-1} - \sqrt{x-1} = 4 \Leftrightarrow 2\sqrt{x-1} = 4 \Leftrightarrow \sqrt{x-1} = 2$.  
+    Bình phương: $x - 1 = 4 \Leftrightarrow x = 5$ (TM).
+
+</div>
+
+#### **Dạng 5: So sánh hai biểu thức căn thức phức tạp**
+- **Phương pháp:** Đưa thừa số vào trong dấu căn rồi so sánh số dưới dấu căn.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** So sánh $3\sqrt{5}$ và $4\sqrt{3}$.
+  - *Lời giải:* $3\sqrt{5} = \sqrt{3^2 \cdot 5} = \sqrt{45}$. $4\sqrt{3} = \sqrt{4^2 \cdot 3} = \sqrt{48}$.  
+    Vì $45 < 48 \Rightarrow \sqrt{45} < \sqrt{48} \Rightarrow 3\sqrt{5} < 4\sqrt{3}$.
+
+- **Ví dụ 2:** So sánh $2\sqrt{7}$ và 5.
+  - *Lời giải:* $2\sqrt{7} = \sqrt{28}$. $5 = \sqrt{25}$.  
+    Vì $28 > 25 \Rightarrow \sqrt{28} > \sqrt{25} \Rightarrow 2\sqrt{7} > 5$.
+
+- **Ví dụ 3:** Cho $a, b > 0$. So sánh $\sqrt{a+b}$ và $\sqrt{a} + \sqrt{b}$.
+  - *Lời giải:* $(\sqrt{a+b})^2 = a + b$. $(\sqrt{a} + \sqrt{b})^2 = a + b + 2\sqrt{ab} > a + b$.  
+    Do đó $\sqrt{a+b} < \sqrt{a} + \sqrt{b}$.
 
 </div>
 
 </KhamPha>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Địa chất & Khí tượng thủy văn):**  
+Trong khí tượng học, bán kính chịu ảnh hưởng gió mạnh $R$ (km) của tâm bão được tính theo công thức $R = \sqrt{100 \cdot P}$, trong đó $P$ là năng lượng bão (đơn vị chuẩn).  
+a) Sử dụng quy tắc khai phương một tích để thu gọn biểu thức tính $R$.  
+b) Tính bán kính $R$ khi năng lượng bão đo được là $P = 16$ đơn vị.
+
+**Bài toán 2 (Thiết kế Màn hình & Công nghệ):**  
+Màn hình tivi tỉ lệ 16:9 có đường chéo $d$ (inch), chiều rộng $w$ và chiều cao $h$ thỏa mãn $w = \frac{16}{\sqrt{337}} \cdot d$ và $h = \frac{9}{\sqrt{337}} \cdot d$.  
+a) Tính chiều rộng $w$ và chiều cao $h$ (cm) của tivi 55 inch ($1\text{ inch} = 2,54\text{ cm}$).  
+b) Sử dụng quy tắc khai căn để kiểm tra xem $w^2 + h^2 = d^2$ có đúng không.
+
+**Bài toán 3 (Công nghiệp & Quạt thông gió sân vận động):**  
+Một xưởng cơ khí chế tạo cánh quạt thông gió hình tròn cho sân vận động. Diện tích quét của cánh quạt là $S = 2,25\pi\text{ m}^2$. Công thức bán kính cánh quạt là $R = \sqrt{\frac{S}{\pi}}$.  
+Sử dụng quy tắc khai phương một thương để tính bán kính $R$ (mét) của cánh quạt.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác dưới đây hỗ trợ tính toán các phép nhân, chia căn thức và đưa thừa số ra ngoài/vào trong dấu căn một cách chính xác!
+</div>
+
+<CanBacHaiInteractive client:load />
+
+</LuyenTap>
+
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Luật cấm chỉ:** KHÔNG có quy tắc khai phương cho PHÉP CỘNG và PHÉP TRỪ.
-$\sqrt{a + b} \neq \sqrt{a} + \sqrt{b}$
-Đừng vì quá "sung" mà bạn tách tung cả dấu cộng ra bạn nhé!
+**Trọng tâm kiến thức Bài 8:**
+
+1. **Nhân căn bậc hai:** $\sqrt{a} \cdot \sqrt{b} = \sqrt{a \cdot b}$ ($a, b \ge 0$).  
+2. **Chia căn bậc hai:** $\frac{\sqrt{a}}{\sqrt{b}} = \sqrt{\frac{a}{b}}$ ($a \ge 0, b > 0$).  
+3. **Đưa thừa số ra ngoài dấu căn:** $\sqrt{A^2 B} = |A|\sqrt{B}$.
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -219,110 +379,120 @@ $\sqrt{a + b} \neq \sqrt{a} + \sqrt{b}$
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Tính (Bằng cách phân tách căn, không dùng máy tính):
+**Bài 1:** Khai phương một tích và nhân các căn bậc hai:  
+a) $\sqrt{0,09 \cdot 64}$  
+b) $\sqrt{25 \cdot 36 \cdot 100}$  
+c) $\sqrt{2} \cdot \sqrt{32}$  
+d) $\sqrt{5} \cdot \sqrt{45}$  
+e) $\sqrt{12,1 \cdot 360}$  
+f) $\sqrt{2,5 \cdot 14,4}$
 
-a) $\sqrt{1.44 \cdot 100}$
+**Bài 2:** Khai phương một thương và chia các căn bậc hai:  
+a) $\sqrt{\frac{16}{25}}$  
+b) $\sqrt{\frac{0,04}{0,81}}$  
+c) $\frac{\sqrt{72}}{\sqrt{2}}$  
+d) $\frac{\sqrt{128}}{\sqrt{2}}$  
+e) $\frac{\sqrt{3}}{\sqrt{75}}$  
+f) $\sqrt{2 \frac{7}{9}}$ (hỗn số)
 
-b) $\sqrt{2.25 \cdot 4}$
+**Bài 3:** Đưa thừa số ra ngoài hoặc vào trong dấu căn:  
+a) Đưa ra ngoài: $\sqrt{20}, \sqrt{45}, \sqrt{63}, \sqrt{200}$  
+b) Đưa vào trong: $2\sqrt{5}, 3\sqrt{3}, 5\sqrt{2}, -4\sqrt{3}$  
+c) Đưa ra ngoài với biến: $\sqrt{4x^2 y}$ với $x < 0, y \ge 0$  
+d) Đưa ra ngoài với biến: $\sqrt{25a^4 b^3}$ với $a \neq 0, b \ge 0$  
+e) Đưa vào trong với biến: $x\sqrt{\frac{2}{x}}$ với $x > 0$  
+f) Đưa vào trong với biến: $x\sqrt{\frac{3}{-x}}$ với $x < 0$
 
-c) $\sqrt{250 \cdot 0.1}$
+**Bài 4:** Rút gọn biểu thức $A = \sqrt{12} + \sqrt{27} - \sqrt{48}$.
 
-d) $\sqrt{0.36 \cdot 0.09}$
+**Bài 5:** Rút gọn biểu thức chứa biến $B = \sqrt{9x^2 y} - 2x\sqrt{y}$ với $x \ge 0, y \ge 0$.
 
-**Bài 2:** Tính (Bằng cách gộp căn):
+**Bài 6:** Giải phương trình $\sqrt{3x} - \sqrt{12} = 0$.
 
-a) $\sqrt{8} \cdot \sqrt{2}$
+**Bài 7:** Giải phương trình $\sqrt{4x-8} + \sqrt{x-2} = 6$.
 
-b) $\sqrt{5} \cdot \sqrt{20}$
+**Bài 8:** So sánh $2\sqrt{3}$ và $3\sqrt{2}$.
 
-c) $\frac{\sqrt{162}}{\sqrt{2}}$
+**Bài 9 (Thực tế):** Thiết kế mái che nắng hình tròn cho sân vận động có diện tích $S = 314\text{ m}^2$. Sử dụng công thức $R = \sqrt{\frac{S}{\pi}}$ (với $\pi \approx 3,14$) và quy tắc chia căn thức để tính bán kính $R$ (mét) của mái che.
 
-d) $\frac{\sqrt{2700}}{\sqrt{3}}$
+**Bài 10 (Thực tế):** Một chiếc cánh quạt gió công nghiệp có diện tích quét $S = 12,56\text{ m}^2$. Tính độ dài sải cánh (bán kính $R$) của quạt gió.
 
-**Bài 3:** Rút gọn biểu thức dạng tích phân đại số:
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-a) $\sqrt{2x} \cdot \sqrt{8x}$ (với $x \ge 0$)
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-b) $\frac{\sqrt{12x^5}}{\sqrt{3x}}$ (với $x > 0$)
+**Bài 1:**  
+a) $\sqrt{0,09} \cdot \sqrt{64} = 0,3 \cdot 8 = 2,4$.  
+b) $5 \cdot 6 \cdot 10 = 300$.  
+c) $\sqrt{2 \cdot 32} = \sqrt{64} = 8$.  
+d) $\sqrt{5 \cdot 45} = \sqrt{225} = 15$.  
+e) $\sqrt{121 \cdot 36} = 11 \cdot 6 = 66$.  
+f) $\sqrt{25 \cdot 1,44} = 5 \cdot 1,2 = 6$.
 
-c) $\sqrt{\frac{2a^2b^4}{50}}$ 
+---
 
-d) Rút gọn biểu thức kết hợp HĐT $\sqrt{(x-2)^2 \cdot 16} \dots$ (với $x<2$).
+**Bài 2:**  
+a) $\frac{\sqrt{16}}{\sqrt{25}} = \frac{4}{5}$.  
+b) $\frac{0,2}{0,9} = \frac{2}{9}$.  
+c) $\sqrt{\frac{72}{2}} = \sqrt{36} = 6$.  
+d) $\sqrt{\frac{128}{2}} = \sqrt{64} = 8$.  
+e) $\sqrt{\frac{3}{75}} = \sqrt{\frac{1}{25}} = \frac{1}{5}$.  
+f) $\sqrt{\frac{25}{9}} = \frac{5}{3}$.
 
-**Bài 4:** Tính nhanh biểu thức với Hằng đẳng thức:
+---
 
-a) $\sqrt{13^2 - 12^2}$
+**Bài 3:**  
+a) $\sqrt{20} = 2\sqrt{5}$; $\sqrt{45} = 3\sqrt{5}$; $\sqrt{63} = 3\sqrt{7}$; $\sqrt{200} = 10\sqrt{2}$.  
+b) $2\sqrt{5} = \sqrt{20}$; $3\sqrt{3} = \sqrt{27}$; $5\sqrt{2} = \sqrt{50}$; $-4\sqrt{3} = -\sqrt{48}$.  
+c) $\sqrt{4x^2 y} = 2|x|\sqrt{y} = -2x\sqrt{y}$ (do $x < 0$).  
+d) $\sqrt{25a^4 b^3} = 5a^2 b\sqrt{b}$.  
+e) $x\sqrt{\frac{2}{x}} = \sqrt{x^2 \cdot \frac{2}{x}} = \sqrt{2x}$ (do $x > 0$).  
+f) $x\sqrt{\frac{3}{-x}} = -\sqrt{x^2 \cdot \frac{3}{-x}} = -\sqrt{-3x}$ (do $x < 0$).
 
-b) $\sqrt{17^2 - 8^2}$
+---
 
-c) $\sqrt{\frac{117^2 - 108^2}{49}}$
+**Bài 4:**  
+$A = \sqrt{4 \cdot 3} + \sqrt{9 \cdot 3} - \sqrt{16 \cdot 3} = 2\sqrt{3} + 3\sqrt{3} - 4\sqrt{3} = \sqrt{3}$.
 
-d) So sánh 2 số: $\sqrt{26} + \sqrt{6}$ và $\sqrt{26 + 6}$.
+---
 
-**Bài 5 (Học sinh Khá Giỏi):** Đóng gói sản phẩm.
-Một nhà máy sản xuất thùng giấy hình lập phương. Biết thể tích thùng là $V = a^3$, nhưng để tiết kiệm bìa carton, người ta nghiên cứu độ dài đường chéo của mặt thùng $d = \sqrt{2a^2}$. 
+**Bài 5:**  
+$B = \sqrt{9x^2} \cdot \sqrt{y} - 2x\sqrt{y} = 3|x|\sqrt{y} - 2x\sqrt{y} = 3x\sqrt{y} - 2x\sqrt{y} = x\sqrt{y}$ (vì $x \ge 0$).
 
-a) Hãy rút gọn $d$ với $a>0$.
+---
 
-b) Biết diện tích toàn phần thùng là $S_{tp} = 6a^2$. Biểu diễn $d$ theo $S_{tp}$. 
+**Bài 6:**  
+ĐKXĐ: $x \ge 0$.  
+$\sqrt{3x} = \sqrt{12} \Leftrightarrow 3x = 12 \Leftrightarrow x = 4$ (TM).
 
-c) Nếu $S_{tp} = 150 \text{ cm}^2$, tính $d$. Giới hạn sai số dùng khai căn $\sqrt{2} \approx 1.4$. Lấy nguyên.
+---
 
-d) Có thể làm một thùng chữ nhật $a \times a \times 2a$ tốn $S_{tp}$ là $150$ không? $d$ mặt đáy lớn nhất lúc đó là?
+**Bài 7:**  
+ĐKXĐ: $x \ge 2$.  
+$\sqrt{4(x-2)} + \sqrt{x-2} = 6 \Leftrightarrow 2\sqrt{x-2} + \sqrt{x-2} = 6 \Leftrightarrow 3\sqrt{x-2} = 6 \Leftrightarrow \sqrt{x-2} = 2$.  
+Bình phương: $x - 2 = 4 \Leftrightarrow x = 6$ (TM).
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+---
 
-**Bài 1:**
+**Bài 8:**  
+$2\sqrt{3} = \sqrt{2^2 \cdot 3} = \sqrt{12}$.  
+$3\sqrt{2} = \sqrt{3^2 \cdot 2} = \sqrt{18}$.  
+Vì $12 < 18 \Rightarrow \sqrt{12} < \sqrt{18} \Rightarrow 2\sqrt{3} < 3\sqrt{2}$.
 
-a) $1.2 \cdot 10 = 12$
+---
 
-b) $1.5 \cdot 2 = 3$
+**Bài 9:**  
+Thay $S = 314\text{ m}^2$ và $\pi \approx 3,14$:  
+$R = \sqrt{\frac{314}{3,14}} = \sqrt{100} = 10\text{ m}$.  
+Bán kính mái che nắng là 10 mét.
 
-c) $\sqrt{25} = 5$
+---
 
-d) $0.6 \cdot 0.3 = 0.18$
-
-**Bài 2:**
-
-a) $\sqrt{16} = 4$
-
-b) $\sqrt{100} = 10$
-
-c) $\sqrt{81} = 9$
-
-d) $\sqrt{900} = 30$
-
-**Bài 3:**
-
-a) $\sqrt{16x^2} = 4|x| = 4x$
-
-b) $\sqrt{4x^4} = 2x^2$
-
-c) $\sqrt{\frac{1}{25}a^2b^4} = 1/5 \cdot |a|b^2$.  (Lưu ý b^4 luôn dương nhưng a phải để TTĐ).
-
-d) $4 \cdot |x-2| = 4(2-x) = 8-4x$.
-
-**Bài 4:**
-
-a) $\sqrt{(13-12)(13+12)} = \sqrt{25} = 5$.
-
-b) $\sqrt{9 \cdot 25} = 3 \cdot 5 = 15$.
-
-c) $\sqrt{\frac{9 \cdot 225}{49}} = \frac{3 \cdot 15}{7} = \frac{45}{7}$.
-
-d) $\sqrt{26+6} = \sqrt{32}$. Mà $\sqrt{26} > \sqrt{25} = 5$ rồi. Nên $\sqrt{26} + \sqrt{6} > \sqrt{32}$.
-
-**Bài 5:**
-
-a) $d = a\sqrt{2}$.
-
-b) $a^2 = S_{tp}/6 \Rightarrow a = \sqrt{S_{tp}/6}$. Thay vào $\Rightarrow d = \sqrt{\frac{S_{tp}}{6}} \cdot \sqrt{2} = \sqrt{\frac{S_{tp}}{3}}$.
-
-c) $\sqrt{150/3} = \sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt{2} \approx 5 \times 1.41 = 7.05 \text{ cm}$. Lấy 7cm.
-
-d) Diện tích thùng HCN: $2 \cdot a^2 + 4 \cdot a \cdot 2a = 10a^2$. Vậy $10a^2 = 150 \Rightarrow a^2 = 15 \Rightarrow a = \sqrt{15}$. Mặt đáy dài $2a$, rộng $a$. Đường chéo đáy $D = \sqrt{(2a)^2 + a^2} = \sqrt{5a^2} = \sqrt{75} = 5\sqrt{3}$.
+**Bài 10:**  
+Thay $S = 12,56\text{ m}^2$ và $\pi \approx 3,14$:  
+$R = \sqrt{\frac{12,56}{3,14}} = \sqrt{4} = 2\text{ m}$.  
+Độ dài sải cánh quạt gió là 2 mét.
 
 </div>
 </details>

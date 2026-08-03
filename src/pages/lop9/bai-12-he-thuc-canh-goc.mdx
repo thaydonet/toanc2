@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Bài 12: Một số hệ thức giữa cạnh, góc trong tam giác vuông"
-description: "Giải tam giác vuông, tính toán hệ thức giữa cạnh và góc - Toán 9 KNTT Chương 4"
+title: "Bài 12: Một số hệ thức giữa cạnh và góc trong tam giác vuông"
+description: "Các hệ thức cạnh - góc trong tam giác vuông, giải tam giác vuông và ứng dụng đo đạc thực tế - Toán 9 KNTT Chương 4"
 grade: "Lớp 9"
 chapter: "Chương IV: Hệ thức lượng trong tam giác vuông"
 currentSlug: "lop9/bai-12-he-thuc-canh-goc"
@@ -19,194 +19,396 @@ export const quizData = [
   {
     type: "mcq",
     question: "Trong tam giác vuông, mỗi cạnh góc vuông bằng cạnh huyền nhân với:",
-    option_a: "sin góc đối hoặc cos góc kề",
-    option_b: "cos góc đối hoặc sin góc kề",
-    option_c: "tan góc đối hoặc cot góc kề",
-    option_d: "cot góc đối hoặc tan góc kề",
+    option_a: "Sin góc đối hoặc Cos góc kề",
+    option_b: "Cos góc đối hoặc Sin góc kề",
+    option_c: "Tan góc đối hoặc Cot góc kề",
+    option_d: "Cot góc đối hoặc Tan góc kề",
     correct_option: "A",
-    explanation: "Định lý: Cạnh góc vuông = Cạnh huyền × sin(มุมđối) = Cạnh huyền × cos(góc kề).",
+    explanation: "Định lý: $b = a \\cdot \\sin B = a \\cdot \\cos C$ và $c = a \\cdot \\sin C = a \\cdot \\cos B$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
     question: "Trong tam giác vuông, mỗi cạnh góc vuông bằng cạnh góc vuông kia nhân với:",
-    option_a: "sin góc đối hoặc cos góc kề",
-    option_b: "cos góc đối hoặc sin góc kề",
-    option_c: "tan góc đối hoặc cot góc kề",
-    option_d: "cot góc đối hoặc cot góc kề",
-    correct_option: "C",
-    explanation: "Định lý: Cạnh góc vuông = Cạnh góc vuông còn lại × tan(góc đối) = Cạnh góc vuông còn lại × cot(góc kề).",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Cụm từ 'Giải tam giác vuông' dùng để chỉ công việc gì?",
-    option_a: "Tính chu vi tam giác vuông",
-    option_b: "Tính diện tích tam giác vuông",
-    option_c: "Vẽ một tam giác vuông",
-    option_d: "Tìm tất cả các cạnh và các góc nhọn của tam giác vuông đó",
-    correct_option: "D",
-    explanation: "Giải tam giác vuông là tìm ra tất cả các độ dài 3 cạnh và số đo lượng giác các góc khi biết trước 2 điểm quy chiếu.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tam giác ABC vuông tại A, có $BC = 10$, $B = 30^\\circ$. Cạnh $AC$ bằng bao nhiêu?",
-    option_a: "5",
-    option_b: "$5\\sqrt{3}$",
-    option_c: "10",
-    option_d: "$10\\sqrt{3}$",
-    correct_option: "A",
-    explanation: "$AC$ là cạnh đối của góc $B$. $AC = BC \\cdot \\sin B = 10 \\cdot \\sin 30^\\circ = 10 \\cdot 0.5 = 5$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tam giác ABC vuông tại A, $AB = 6$, góc $C = 45^\\circ$. Tính cạnh $AC$.",
-    option_a: "3",
-    option_b: "6",
-    option_c: "12",
-    option_d: "$6\\sqrt{2}$",
+    option_a: "Sin góc đối hoặc Cos góc kề",
+    option_b: "Tan góc đối hoặc Cot góc kề",
+    option_c: "Cot góc đối hoặc Tan góc kề",
+    option_d: "Cos góc đối hoặc Sin góc kề",
     correct_option: "B",
-    explanation: "Đây là tam giác vuông cân vì 1 góc bằng $45^\\circ$. Do đó $AC = AB = 6$. (Hoặc $AC = AB \\cdot \\cot 45^\\circ = 6 \\cdot 1 = 6$).",
+    explanation: "Định lý: $b = c \\cdot \\tan B = c \\cdot \\cot C$ và $c = b \\cdot \\tan C = b \\cdot \\cot B$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác ABC vuông tại A có cạnh huyền $a = 10\\text{ cm}$ và góc $B = 30^\\circ$. Độ dài cạnh $AC$ bằng:",
+    option_a: "5 cm",
+    option_b: "$5\\sqrt{3}$ cm",
+    option_c: "10 cm",
+    option_d: "2,5 cm",
+    correct_option: "A",
+    explanation: "$AC = b = a \\cdot \\sin B = 10 \\cdot \\sin 30^\\circ = 10 \\cdot 0,5 = 5\\text{ cm}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thuật ngữ 'Giải tam giác vuông' có nghĩa là:",
+    option_a: "Tính diện tích của tam giác vuông",
+    option_b: "Tìm tất cả các cạnh và các góc chưa biết của tam giác vuông đó",
+    option_c: "Chứng minh tam giác đó là tam giác vuông",
+    option_d: "Vẽ đường cao của tam giác vuông",
+    correct_option: "B",
+    explanation: "Giải tam giác vuông là tìm tất cả các yếu tố độ dài cạnh và số đo góc còn lại khi đã biết đủ yếu tố ban đầu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Để giải một tam giác vuông, ta cần biết ít nhất bao nhiêu yếu tố (trong đó phải có ít nhất 1 cạnh)?",
+    option_a: "1 yếu tố",
+    option_b: "2 yếu tố",
+    option_c: "3 yếu tố",
+    option_d: "4 yếu tố",
+    correct_option: "B",
+    explanation: "Vì đã biết sẵn 1 góc vuông $90^\\circ$, ta chỉ cần biết thêm 2 yếu tố (2 cạnh, hoặc 1 cạnh và 1 góc nhọn) là giải được toàn bộ tam giác.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Dữ kiện tối thiểu cần biết để CÓ THỂ giải trọn vẹn một tam giác vuông là:",
-    option_a: "Biết 2 góc nhọn",
-    option_b: "Biết 1 góc nhọn",
-    option_c: "Biết 2 cạnh, HOẶC 1 cạnh và 1 góc nhọn",
-    option_d: "Biết chu vi và diện tích",
-    correct_option: "C",
-    explanation: "Cần 2 thông số độc lập, trong đó ít nhất phải có chiều dài của 1 CẠNH để cố định kích thước tam giác. Nếu chỉ biết 2 góc nhọn thì có vô số tam giác đồng dạng.",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "msq",
-    question: "Tam giác vuông MNP vuông tại M, góc N bằng $\\alpha$. Các công thức ĐÚNG là:",
-    option_a: "$MN = NP \\cdot \\cos \\alpha$",
-    option_b: "$MP = NP \\cdot \\sin \\alpha$",
-    option_c: "$MP = MN \\cdot \\tan \\alpha$",
-    option_d: "$MN = MP \\cdot \\cot \\alpha$",
-    correct_option: "A,B,C,",
-    explanation: "Định lý chuẩn: $MN$ kề góc $N \\Rightarrow MN = NP \\cdot \\cos N$. $MP$ đối góc $N \\Rightarrow MP = NP \\cdot \\sin N$. $MP = MN \\cdot \\tan N$. Tất cả đều đúng trừ D phải là $\\cot P$. Khoan, D nói MN (kề N) = MP (đối N) * cot(đối/kề??). Không, MN(kề) = MP(đối) * cot(góc N). Nên D cũng đúng. A,B,C,D luôn.",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "msq",
-    question: "Khi giải tam giác vuông với 2 cạnh góc vuông $b=3, c=4$, các kết quả nào sau đây là phép tính đúng?",
-    option_a: "Cạnh huyền $a = 5$",
-    option_b: "$\\tan B = 0.75$",
-    option_c: "$\\cos C = 0.8$",
-    option_d: "Góc $B = 37^\\circ$",
-    correct_option: "A,B,C",
-    explanation: "A: Pytago $3^2+4^2=5^2$. B: $\\tan B = b/c = 3/4 = 0.75$. C: $\\cos C = c/a = 4/5 = 0.8$.",
+    question: "Cho tam giác ABC vuông tại A có $AB = 6\\text{ cm}, AC = 8\\text{ cm}$. Số đo góc $B$ (làm tròn đến độ) là:",
+    option_a: "$37^\\circ$",
+    option_b: "$53^\\circ$",
+    option_c: "$45^\\circ$",
+    option_d: "$60^\\circ$",
+    correct_option: "B",
+    explanation: "$\\tan B = \\frac{AC}{AB} = \\frac{8}{6} = \\frac{4}{3} \\Rightarrow \\widehat{B} = \\arctan(4/3) \\approx 53^\\circ$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Tam giác ABC vuông tại A. Cạnh huyền $a=12$, góc $C=60^\\circ$. Tính cạnh $c$ đối diện góc C. Làm tròn đến số nguyên.",
-    correct_option: "10",
-    explanation: "$c = a \\cdot \\sin 60^\\circ = 12 \\cdot \\sqrt{3}/2 = 6\\sqrt{3} \\approx 10.39$. Làm tròn số nguyên là 10.",
+    type: "msq",
+    question: "Cho tam giác ABC vuông tại A với cạnh huyền $a$ và hai cạnh góc vuông $b, c$. Những hệ thức nào ĐÚNG?",
+    option_a: "$b = a \\cdot \\sin B$",
+    option_b: "$c = a \\cdot \\cos B$",
+    option_c: "$b = c \\cdot \\tan B$",
+    option_d: "$c = b \\cdot \\cot B$",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 hệ thức trên đều là nội dung định lý quan trọng về cạnh và góc trong tam giác vuông.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
+    type: "msq",
+    question: "Trong tam giác ABC vuông tại A có $a = 12\\text{ cm}$ và $\\widehat{B} = 60^\\circ$. Những khẳng định nào ĐÚNG?",
+    option_a: "$\\widehat{C} = 30^\\circ$",
+    option_b: "$c = AB = 6\\text{ cm}$",
+    option_c: "$b = AC = 6\\sqrt{3}\\text{ cm}$",
+    option_d: "Diện tích $S_{ABC} = 18\\sqrt{3}\\text{ cm}^2$",
+    correct_option: "A,B,C,D",
+    explanation: "A: $C = 90 - 60 = 30^\circ$. B: $AB = 12 \cos 60^\circ = 6$. C: $AC = 12 \sin 60^\circ = 6\sqrt{3}$. D: $S = 1/2 \cdot 6 \cdot 6\sqrt{3} = 18\sqrt{3}$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
     type: "sa",
-    question: "Một chiếc thang dài 3m bắc vào tường. Góc tạo bởi thang và mặt đất là $60^\\circ$. Khoảng cách từ chân thang tới chân tường là bao nhiêu mét? (Làm tròn đến 1 chữ số thập phân).",
-    correct_option: "1.5",
-    explanation: "Khoảng cách là cạnh kề. $\\text{Kề} = \\text{Huyền} \\cdot \\cos 60^\\circ = 3 \\cdot 0.5 = 1.5\\text{m}$.",
+    question: "Cho tam giác ABC vuông tại A có $AC = 12\\text{ cm}$ và $\\widehat{B} = 45^\\circ$. Độ dài cạnh góc vuông $AB$ bằng bao nhiêu cm?",
+    correct_option: "12",
+    explanation: "Vì góc $B = 45^\circ$ nên tam giác ABC là tam giác vuông cân tại A $\\Rightarrow AB = AC = 12\\text{ cm}$.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho tam giác ABC vuông tại A có $AB = 5\\text{ cm}, AC = 12\\text{ cm}$. Độ dài đường cao $AH$ ứng với cạnh huyền bằng bao nhiêu cm? (Làm tròn 2 chữ số thập phân)",
+    correct_option: "4.62",
+    explanation: "Cạnh huyền $BC = \\sqrt{5^2+12^2} = 13\\text{ cm}$. $AH = \\frac{AB \\cdot AC}{BC} = \\frac{60}{13} \\approx 4,62\\text{ cm}$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🗼 Khoảng cách qua khúc sông</h3>
+<h3 id="mo-dau">🌉 Đo Chiều Rộng Con Sông mà Không Cần Băng Qua Sông</h3>
 
-Có một con sông rộng, người ta muốn thiết kế một cây cầu thẳng qua sông nhưng không thể trực tiếp băng qua dòng nước xiết để đo khoảng cách vuông góc. Người thợ trắc địa chỉ cần đứng trên 1 bờ, đi bộ vuông góc một đoạn $50\text{m}$ ($AC$), sau đó dùng máy ngắm (Theodolite) để đo góc nhìn sang điểm mốc phía bên kia bờ ($AB$).
-Giả sử góc ngắm được tính là $40^\circ$. Bằng cách nào chỉ với $50\text{m}$ và $40^\circ$ mà người ta tính được chính xác chiều rộng của khúc sông, vốn là cạnh góc vuông $AB$? Cùng giải mã ở bài học này nhé.
+Một đội khảo sát cầu đường cần đo chiều rộng $w = AB$ của một con sông chảy xiết. Họ đứng ở bờ sông bên này tại điểm $A$, chọn một cái cây cố định tại điểm $B$ ở bờ bên kia sao cho $AB \perp$ bờ sông.
+
+Họ đi dọc bờ sông một khoảng $AC = 50\text{ m}$ và dùng máy kinh vĩ đo được góc $\widehat{ACB} = 38^^\circ$.
+
+Bằng cách áp dụng **Hệ thức giữa cạnh và góc trong tam giác vuông**, họ tính ngay được chiều rộng $w$ của con sông:
+$$w = AB = AC \cdot \tan 38^^\circ = 50 \cdot 0,7813 = 39,06\text{ m}$$
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="180" viewBox="0 0 420 180" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* River background */}
+  <rect x="20" y="50" width="380" height="70" fill="#e0f2fe" opacity="0.7"/>
+  <path d="M 20 50 Q 200 60 400 50" stroke="#0284c7" stroke-width="2" fill="none"/>
+  <path d="M 20 120 Q 200 130 400 120" stroke="#0284c7" stroke-width="2" fill="none"/>
+  <text x="200" y="90" font-size="13" font-style="italic" fill="#0369a1" text-anchor="middle">Dòng sông chảy xiết</text>
+
+  {/* Triangle ABC */}
+  <line x1="60" y1="140" x2="60" y2="40" stroke="#dc2626" stroke-width="3"/>
+  <line x1="60" y1="140" x2="260" y2="140" stroke="#2563eb" stroke-width="2"/>
+  <line x1="260" y1="140" x2="60" y2="40" stroke="#d97706" stroke-width="2" stroke-dasharray="4"/>
+
+  {/* Points */}
+  <circle cx="60" cy="140" r="4" fill="#2563eb"/>
+  <text x="45" y="155" font-size="12" font-weight="bold" fill="#1e293b">A</text>
+
+  <circle cx="60" cy="40" r="5" fill="#dc2626"/>
+  <text x="45" y="30" font-size="12" font-weight="bold" fill="#dc2626">B (Cây bờ kia)</text>
+
+  <circle cx="260" cy="140" r="4" fill="#2563eb"/>
+  <text x="270" y="155" font-size="12" font-weight="bold" fill="#1e293b">C</text>
+
+  {/* Angle C */}
+  <path d="M 230 140 A 30 30 0 0 1 238 129" fill="none" stroke="#d97706" stroke-width="2"/>
+  <text x="210" y="130" font-size="11" font-weight="bold" fill="#b45309">38°</text>
+
+  {/* Labels */}
+  <text x="160" y="160" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">AC = 50 m</text>
+  <text x="30" y="90" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">AB = ?</text>
+</svg>
+</div>
 
 </KhoiDong>
 
 <KhamPha title="Khám phá">
 
-<h3 id="dinh-ly" style="margin-top:2rem;">📖 1. Định lý về cạnh và góc trong tam giác vuông</h3>
-
-Ở bài trước, ta đã biết $\sin = \text{Đối/Huyền}$, $\cos = \text{Kề/Huyền}$, v.v. Bằng cách nhân chéo mẫu số lên, chúng ta sẽ có ngay công cụ tính toán tiện lợi gọi là **Hệ thức giữa cạnh và góc**.
-
-<div class="box-dinh-ly">
-
-Trong một tam giác vuông, mỗi cạnh góc vuông bằng:
-- Cạnh huyền nhân với $\boldsymbol{\sin}$ **góc đối** hoặc nhân với $\boldsymbol{\cos}$ **góc kề**.
-- Cạnh góc vuông kia nhân với $\boldsymbol{\tan}$ **góc đối** hoặc nhân với $\boldsymbol{\cot}$ **góc kề**.
-
-Nếu viết dưới dạng công thức cho tam giác vuông tại $A$ (có cạnh huyền $a$, cạnh góc vuông $b, c$ đối diện với góc $B, C$):
-$b = a \cdot \sin B = a \cdot \cos C$
-$c = a \cdot \sin C = a \cdot \cos B$
-$b = c \cdot \tan B = c \cdot \cot C$
-$c = b \cdot \tan C = b \cdot \cot B$
-
-</div>
-
-Nhờ định lý này, tam giác vuông giờ đây được kết nối một cách hoàn hảo: Chỉ cần biết độ dài một cạnh (bất kì) và số đo một góc (bất kì), bạn có thể suy ra tất cả những phần còn lại.
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ:** Trở lại bài cầu sông lúc nãy.
-Tam giác vuông tại $A$. $AC$ (Kề góc ngắm) $= 50\text{m}$. Góc $C$ (Góc ngắm) $= 40^\circ$. Cần tính chiều rộng sông $AB$ (Cạnh Đối góc ngắm).
-Sử dụng liên hệ Giữa 2 Cạnh góc vuông $\rightarrow$ Dùng Tan (Thôi Đừng Khóc - Tan=Đối/Kề).
-$\Rightarrow AB = AC \cdot \tan C = 50 \cdot \tan 40^\circ \approx 50 \cdot 0.839 = 41.95 \text{m}$.
-Thật dễ dàng! Ngồi bên này bờ mà đo được con sông rộng $42\text{m}$ mà không cần bơi qua thử!
-
-</div>
-
-<h3 id="giai-tam-giac" style="margin-top:2rem;">📖 2. Giải tam giác vuông</h3>
+<h3 id="dinh-ly-canh-goc">📖 1. Các hệ thức giữa Cạnh và Góc trong tam giác vuông</h3>
 
 <div class="box-dinh-nghia">
 
-**Thế nào là "Giải tam giác vuông"?**
-Giải tam giác vuông là bài toán tìm *tất cả* các số đo của các cạnh và các góc nhọn của một tam giác vuông, khi biết trước 2 thông số trong đó phải có ít nhất môt độ dài cạnh.
+**Định lý:**
+Trong tam giác $ABC$ vuông tại $A$, với cạnh huyền $a = BC$ và hai cạnh góc vuông $b = AC, c = AB$:
 
-Có hai trường hợp cốt lõi:
-1. Biết 2 cạnh (có thể 2 góc vuông, hoặc 1 huyền 1 vuông).
-2. Biết 1 cạnh và 1 góc nhọn.
+**1. Định lý với Cạnh huyền:**
+Mỗi cạnh góc vuông bằng **cạnh huyền** nhân với **sin góc đối** hoặc nhân với **cos góc kề**:
+$$b = a \cdot \sin B = a \cdot \cos C$$
+$$c = a \cdot \sin C = a \cdot \cos B$$
+
+**2. Định lý với Cạnh góc vuông kia:**
+Mỗi cạnh góc vuông bằng **cạnh góc vuông kia** nhân với **tan góc đối** hoặc nhân với **cot góc kề**:
+$$b = c \cdot \tan B = c \cdot \cot C$$
+$$c = b \cdot \tan C = b \cdot \cot B$$
 
 </div>
 
-<h3 id="thu-nghiem" style="margin-top:2rem;">📐 3. Máy Tính Giải Tam Giác Vuông</h3>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-Để thành thục kĩ năng này, mời bạn thử tương tác với công cụ giải tam giác dưới đây. Dùng máy tính nhập giả định bất kỳ 2 thông số (ví dụ: b=3, c=4 hoặc b=5, góc B=30) để xem thuật toán giải ra các cạnh còn lại và góc ra sao nhé!
+**3 Ví dụ minh họa Định lý Cạnh - Góc:**
+
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$ có $BC = 12\text{ cm}$ và $\widehat{B} = 42^^\circ$. Tính $AC$ và $AB$.
+  - *Giải:* 
+    - $AC = b = a \cdot \sin B = 12 \cdot \sin 42^^\circ \approx 12 \cdot 0,6691 \approx 8,03\text{ cm}$.
+    - $AB = c = a \cdot \cos B = 12 \cdot \cos 42^^\circ \approx 12 \cdot 0,7431 \approx 8,92\text{ cm}$.
+
+- **Ví dụ 2:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 7\text{ cm}$ và $\widehat{B} = 55^^\circ$. Tính $AC$ và $BC$.
+  - *Giải:* 
+    - $AC = b = c \cdot \tan B = 7 \cdot \tan 55^^\circ \approx 7 \cdot 1,4281 \approx 10,00\text{ cm}$.
+    - $BC = a = \frac{c}{\cos B} = \frac{7}{\cos 55^^\circ} \approx \frac{7}{0,5736} \approx 12,20\text{ cm}$.
+
+- **Ví dụ 3:** Cho tam giác $ABC$ vuông tại $A$ có $AC = 15\text{ cm}, \widehat{C} = 30^^\circ$. Tính $AB$.
+  - *Giải:* $AB = c = b \cdot \tan C = 15 \cdot \tan 30^^\circ = 15 \cdot \frac{\sqrt{3}}{3} = 5\sqrt{3} \approx 8,66\text{ cm}$.
+
+</div>
+
+<h3 id="giai-tam-giac-vuong" style="margin-top:2rem;">📖 2. Ứng dụng: Giải tam giác vuông</h3>
+
+<div class="box-dinh-nghia">
+
+**Giải tam giác vuông** là tìm tất cả các yếu tố độ dài cạnh và số đo góc còn lại của tam giác vuông khi biết trước 2 yếu tố (trong đó có ít nhất 1 cạnh).
+
+**3 Trường hợp giải tam giác vuông thường gặp:**
+1. **Biết 2 cạnh góc vuông $b$ và $c$:**
+   - Tính cạnh huyền $a = \sqrt{b^2 + c^2}$.
+   - Tính góc $\tan B = \frac{b}{c} \Rightarrow \widehat{B}$, rồi suy ra $\widehat{C} = 90^^\circ - \widehat{B}$.
+
+2. **Biết cạnh huyền $a$ và 1 cạnh góc vuông $b$:**
+   - Tính cạnh góc vuông còn lại $c = \sqrt{a^2 - b^2}$.
+   - Tính góc $\sin B = \frac{b}{a} \Rightarrow \widehat{B}$, rồi suy ra $\widehat{C} = 90^^\circ - \widehat{B}$.
+
+3. **Biết 1 cạnh và 1 góc nhọn (ví dụ biết $a$ và $\widehat{B}$):**
+   - Tính góc nhọn còn lại $\widehat{C} = 90^^\circ - \widehat{B}$.
+   - Tính các cạnh $b = a \cdot \sin B$ và $c = a \cdot \cos B$.
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Giải tam giác vuông:**
+
+- **Ví dụ 1 (Trường hợp biết 2 cạnh GV):** Giải tam giác $ABC$ vuông tại $A$ có $AB = 6\text{ cm}, AC = 8\text{ cm}$.
+  - *Giải:* 
+    - Cạnh huyền $BC = \sqrt{6^2 + 8^2} = 10\text{ cm}$.
+    - $\tan B = \frac{AC}{AB} = \frac{8}{6} = \frac{4}{3} \Rightarrow \widehat{B} \approx 53^^\circ 8'$.
+    - Góc $\widehat{C} = 90^^\circ - 53^^\circ 8' = 36^^\circ 52'$.
+
+- **Ví dụ 2 (Trường hợp biết cạnh huyền & 1 cạnh GV):** Giải tam giác $ABC$ vuông tại $A$ có $BC = 13\text{ cm}, AB = 5\text{ cm}$.
+  - *Giải:* 
+    - Cạnh góc vuông $AC = \sqrt{13^2 - 5^2} = 12\text{ cm}$.
+    - $\cos B = \frac{AB}{BC} = \frac{5}{13} \Rightarrow \widehat{B} \approx 67^^\circ 23'$.
+    - Góc $\widehat{C} = 90^^\circ - 67^^\circ 23' = 22^^\circ 37'$.
+
+- **Ví dụ 3 (Trường hợp biết 1 cạnh & 1 góc nhọn):** Giải tam giác $ABC$ vuông tại $A$ có $BC = 10\text{ cm}, \widehat{C} = 35^^\circ$.
+  - *Giải:* 
+    - Góc $\widehat{B} = 90^^\circ - 35^^\circ = 55^^\circ$.
+    - $AB = c = a \cdot \sin C = 10 \cdot \sin 35^^\circ \approx 5,74\text{ cm}$.
+    - $AC = b = a \cdot \cos C = 10 \cdot \cos 35^^\circ \approx 8,19\text{ cm}$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính độ dài cạnh và góc bằng hệ thức cạnh - góc**
+- **Phương pháp:** Chọn đúng hệ thức $b = a \sin B, b = c \tan B...$ phụ thuộc vào các yếu tố đã biết và cần tìm.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$ có $BC = 16\text{ cm}, \widehat{B} = 60^^\circ$. Tính $AC$ và $AB$.
+  - *Lời giải:* $AC = 16 \cdot \sin 60^^\circ = 16 \cdot \frac{\sqrt{3}}{2} = 8\sqrt{3}\text{ cm}$.  
+    $AB = 16 \cdot \cos 60^^\circ = 16 \cdot \frac{1}{2} = 8\text{ cm}$.
+
+- **Ví dụ 2:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 10\text{ cm}, \tan C = 0,75$. Tính $AC$ và $BC$.
+  - *Lời giải:* $\tan C = \frac{AB}{AC} \Rightarrow AC = \frac{AB}{\tan C} = \frac{10}{0,75} = \frac{40}{3}\text{ cm}$.  
+    $BC = \sqrt{10^2 + (40/3)^2} = \sqrt{100 + 1600/9} = \sqrt{2500/9} = \frac{50}{3}\text{ cm}$.
+
+- **Ví dụ 3:** Cho tam giác $ABC$ vuông tại $A$, đường cao $AH = 6\text{ cm}$ và $\widehat{B} = 40^^\circ$. Tính $AB, BC$.
+  - *Lời giải:* Trong $\Delta AHB$ vuông tại $H$: $AB = \frac{AH}{\sin B} = \frac{6}{\sin 40^^\circ} \approx 9,33\text{ cm}$.  
+    Trong $\Delta ABC$ vuông tại $A$: $BC = \frac{AB}{\cos B} = \frac{9,33}{\cos 40^^\circ} \approx 12,18\text{ cm}$.
+
+</div>
+
+#### **Dạng 2: Giải tam giác vuông tổng hợp**
+- **Phương pháp:** Tìm lần lượt số đo các góc còn lại (dùng tổng $90^^\circ$), sau đó dùng định lý sin/cos/tan để tính các cạnh.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Giải tam giác $ABC$ vuông tại $A$ có $AB = 7, AC = 24$.
+  - *Lời giải:* $BC = \sqrt{7^2 + 24^2} = \sqrt{625} = 25$.  
+    $\tan B = \frac{24}{7} \Rightarrow \widehat{B} \approx 73^^\circ 44' \Rightarrow \widehat{C} \approx 16^^\circ 16'$.
+
+- **Ví dụ 2:** Giải tam giác $ABC$ vuông tại $A$ có $BC = 15\text{ cm}, \widehat{B} = 50^^\circ$.
+  - *Lời giải:* $\widehat{C} = 90^^\circ - 50^^\circ = 40^^\circ$.  
+    $AC = 15 \cdot \sin 50^^\circ \approx 11,49\text{ cm}$.  
+    $AB = 15 \cdot \cos 50^^\circ \approx 9,64\text{ cm}$.
+
+- **Ví dụ 3:** Giải tam giác $ABC$ vuông tại $A$ có $AC = 14\text{ cm}, \widehat{C} = 25^^\circ$.
+  - *Lời giải:* $\widehat{B} = 90^^\circ - 25^^\circ = 65^^\circ$.  
+    $AB = 14 \cdot \tan 25^^\circ \approx 6,53\text{ cm}$.  
+    $BC = \frac{14}{\cos 25^^\circ} \approx 15,45\text{ cm}$.
+
+</div>
+
+#### **Dạng 3: Tính các yếu tố phụ (Đường cao, Trung tuyến, Phân giác, Diện tích)**
+- **Phương pháp:** Tách tam giác vuông lớn thành các tam giác vuông nhỏ chứa đường cao $AH$ hoặc phân giác $AD$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$ có $BC = 20\text{ cm}, \widehat{B} = 30^^\circ$. Tính đường cao $AH$ và diện tích $S_{ABC}$.
+  - *Lời giải:* $AC = 20 \cdot \sin 30^^\circ = 10\text{ cm}$; $AB = 20 \cdot \cos 30^^\circ = 10\sqrt{3}\text{ cm}$.  
+    $AH = \frac{AB \cdot AC}{BC} = \frac{10 \cdot 10\sqrt{3}}{20} = 5\sqrt{3}\text{ cm}$.  
+    $S_{ABC} = \frac{1}{2} AB \cdot AC = \frac{1}{2} \cdot 10\sqrt{3} \cdot 10 = 50\sqrt{3}\text{ cm}^2$.
+
+- **Ví dụ 2:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 6\text{ cm}, AC = 8\text{ cm}$. Tính độ dài đường phân giác trong $AD$ của góc $A$.
+  - *Lời giải:* Sử dụng công thức phân giác góc $A = 90^^\circ$: $AD = \frac{\sqrt{2} b c}{b + c} = \frac{\sqrt{2} \cdot 8 \cdot 6}{8 + 6} = \frac{48\sqrt{2}}{14} = \frac{24\sqrt{2}}{7} \approx 4,85\text{ cm}$.
+
+- **Ví dụ 3:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 9\text{ cm}, \widehat{B} = 40^^\circ$. Tính độ dài đường trung tuyến $AM$ ứng với cạnh huyền.
+  - *Lời giải:* $BC = \frac{AB}{\cos 40^^\circ} = \frac{9}{\cos 40^^\circ} \approx 11,75\text{ cm}$.  
+    Trong tam giác vuông, đường trung tuyến ứng với cạnh huyền bằng nửa cạnh huyền: $AM = \frac{BC}{2} \approx 5,87\text{ cm}$.
+
+</div>
+
+#### **Dạng 4: Bài toán Tam giác Thường (Kẻ thêm đường cao)**
+- **Phương pháp:** Với tam giác thường $ABC$, kẻ đường cao $AH \perp BC$ để tạo thành hai tam giác vuông $AHB$ và $AHC$, từ đó áp dụng các hệ thức cạnh - góc.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ có $AB = 10\text{ cm}, AC = 12\text{ cm}$ và $\widehat{A} = 45^^\circ$. Tính diện tích tam giác $ABC$.
+  - *Lời giải:* Kẻ đường cao $BH \perp AC$ ($H \in AC$).  
+    Trong $\Delta AHB$ vuông tại $H$: $BH = AB \cdot \sin A = 10 \cdot \sin 45^^\circ = 5\sqrt{2}\text{ cm}$.  
+    Diện tích $S_{ABC} = \frac{1}{2} AC \cdot BH = \frac{1}{2} \cdot 12 \cdot 5\sqrt{2} = 30\sqrt{2} \approx 42,43\text{ cm}^2$.
+
+- **Ví dụ 2:** Cho tam giác $ABC$ có $BC = 14\text{ cm}, \widehat{B} = 60^^\circ, \widehat{C} = 40^^\circ$. Tính chiều cao $AH$ hạ từ $A$ xuống $BC$.
+  - *Lời giải:* $BH = AH \cdot \cot B = AH \cdot \cot 60^^\circ$; $CH = AH \cdot \cot C = AH \cdot \cot 40^^\circ$.  
+    $BC = BH + CH = AH(\cot 60^^\circ + \cot 40^^\circ) = 14$.  
+    $\Rightarrow AH = \frac{14}{\frac{\sqrt{3}}{3} + 1,1918} \approx \frac{14}{0,5774 + 1,1918} = \frac{14}{1,7692} \approx 7,91\text{ cm}$.
+
+- **Ví dụ 3:** Chứng minh rằng trong tam giác $ABC$ nhọn ta có $a = b \cdot \cos C + c \cdot \cos B$.
+  - *Lời giải:* Kẻ $AH \perp BC$. Ta có $BC = BH + HC$.  
+    Trong $\Delta AHB$ vuông tại $H$: $BH = c \cdot \cos B$.  
+    Trong $\Delta AHC$ vuông tại $H$: $HC = b \cdot \cos C$.  
+    Do đó $a = BC = c \cdot \cos B + b \cdot \cos C$ (ĐPCM).
+
+</div>
+
+#### **Dạng 5: Chứng minh các Hệ thức Hình học chứa TSLG**
+- **Phương pháp:** Sử dụng các định lý $b = a \sin B, c = b \tan C$ thế vào vế của hệ thức để biến đổi tương đương.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$, đường cao $AH$. Chứng minh $AH = BC \cdot \sin B \cdot \cos B$.
+  - *Lời giải:* Trong $\Delta ABC$: $AB = BC \cdot \cos B$.  
+    Trong $\Delta AHB$ vuông tại $H$: $AH = AB \cdot \sin B = (BC \cdot \cos B) \cdot \sin B = BC \cdot \sin B \cdot \cos B$ (ĐPCM).
+
+- **Ví dụ 2:** Cho tam giác $ABC$ vuông tại $A$, đường cao $AH$. Chứng minh $BH = BC \cdot \cos^2 B$.
+  - *Lời giải:* Trong $\Delta AHB$ vuông tại $H$: $BH = AB \cdot \cos B$.  
+    Mà $AB = BC \cdot \cos B \Rightarrow BH = (BC \cdot \cos B) \cdot \cos B = BC \cdot \cos^2 B$ (ĐPCM).
+
+- **Ví dụ 3:** Cho tam giác $ABC$ vuông tại $A$. Chứng minh $S_{ABC} = \frac{1}{2} a^2 \cdot \sin B \cdot \cos B$.
+  - *Lời giải:* $b = a \sin B$ và $c = a \cos B$.  
+    $S_{ABC} = \frac{1}{2} b c = \frac{1}{2} (a \sin B)(a \cos B) = \frac{1}{2} a^2 \sin B \cos B$ (ĐPCM).
+
+</div>
+
+</KhamPha>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Xác định Khoảng cách Tàu biển):**  
+Một ngọn hải đăng cao $h = 60\text{ m}$ đứng trên đỉnh vách đá bờ biển. Một thủy thủ từ tàu nhìn thấy đỉnh hải đăng dưới góc nâng $\alpha = 15^^\circ$. Tính khoảng cách $d$ từ tàu đến chân vách đá (làm tròn đến mét).
+
+**Bài toán 2 (Thiết kế Mái Tôn Nhà xưởng):**  
+KTS thiết kế mái nhà xưởng dạng tam giác cân $ABC$ với $AB = AC$. Chiều rộng mặt ngang xưởng $BC = 12\text{ m}$, góc dốc mái nhà $\widehat{B} = \widehat{C} = 25^^\circ$.  
+a) Tính chiều cao đỉnh mái $AH$ (với $H$ là trung điểm $BC$).  
+b) Tính độ dài thanh xà gồ mái tôn $AB$ cần đặt mua.
+
+**Bài toán 3 (Đo Chiều cao Tượng đài):**  
+Để đo chiều cao $h = CD$ của một bức tượng đài, người ta chọn hai điểm $A$ và $B$ trên mặt đất thẳng hàng với chân tượng $D$. Đo được khoảng cách $AB = 20\text{ m}$, góc nâng từ $A$ đến đỉnh tượng $C$ là $32^^\circ$, góc nâng từ $B$ đến đỉnh tượng $C$ là $45^^\circ$. Tính chiều cao $h$ của tượng đài.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ dưới đây giúp bạn luyện tập giải tam giác vuông tự động và kiểm tra kết quả tính toán góc, cạnh chính xác!
+</div>
 
 <RightTriangleCalculator client:load />
 
-</KhamPha>
+</LuyenTap>
 
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Quy tắc vàng:** 
-- Muốn tính Cạnh Huyền thì dùng Sin, Cos của các cạnh góc vuông.
-- Liên quan Giữa 2 Cạnh Góc Vuông thì luôn luôn nghĩ tới **Tan** và **Cot**.
-- Nếu máy tính góc ra số thập phân nhiều vô tận (VD $36.86987^\circ$), bạn có thể ấn phím nút Độ/Phút/Giây (đổi ${}^\circ \ \ ' \ \ ''$) trên Casio để biểu diễn Toán học đẹp hơn (như $36^\circ 52'$).
+**Trọng tâm kiến thức Bài 12:**
+
+1. **Với Cạnh huyền:** $b = a \cdot \sin B = a \cdot \cos C$; $c = a \cdot \sin C = a \cdot \cos B$.  
+2. **Với Cạnh góc vuông kia:** $b = c \cdot \tan B = c \cdot \cot C$; $c = b \cdot \tan C = b \cdot \cot B$.  
+3. **Giải tam giác vuông:** Tìm tất cả 3 yếu tố còn thiếu khi biết 2 yếu tố ban đầu (có ít nhất 1 cạnh).
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -215,73 +417,134 @@ Có hai trường hợp cốt lõi:
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Giải tam giác vuông $ABC$ vuông tại $A$, biết các trường hợp sau (Góc làm tròn đến $1'$, Cạnh làm tròn đến chữ số thập phân thứ 2):
+**Bài 1:** Giải tam giác $ABC$ vuông tại $A$ trong các trường hợp biết 1 cạnh và 1 góc nhọn:  
+a) $a = BC = 10, \widehat{B} = 35^^\circ$  
+b) $a = BC = 18, \widehat{C} = 50^^\circ$  
+c) $b = AC = 8, \widehat{B} = 42^^\circ$  
+d) $c = AB = 12, \widehat{C} = 28^^\circ$  
+e) $b = AC = 15, \widehat{C} = 60^^\circ$  
+f) $c = AB = 5, \widehat{B} = 45^^\circ$
 
-a) $b = 10\text{cm}, \angle C = 30^\circ$
+**Bài 2:** Giải tam giác $ABC$ vuông tại $A$ trong các trường hợp biết 2 cạnh (làm tròn góc đến phút, cạnh đến 0,01):  
+a) $b = AC = 6, c = AB = 8$  
+b) $a = BC = 13, b = AC = 12$  
+c) $a = BC = 20, c = AB = 10$  
+d) $b = AC = 7, c = AB = 10$  
+e) $a = BC = 15, b = AC = 9$  
+f) $b = AC = 5\sqrt{3}, c = AB = 5$
 
-b) $c = 10\text{cm}, \angle C = 45^\circ$
+**Bài 3:** Tính chu vi và diện tích của tam giác $ABC$ vuông tại $A$:  
+a) $BC = 10\text{ cm}, \widehat{B} = 30^^\circ$  
+b) $AC = 12\text{ cm}, \widehat{B} = 40^^\circ$  
+c) $AB = 9\text{ cm}, \widehat{C} = 55^^\circ$  
+d) $BC = 16\text{ cm}, \widehat{C} = 45^^\circ$  
+e) $AB = 6\text{ cm}, AC = 8\text{ cm}$  
+f) $BC = 25\text{ cm}, AB = 15\text{ cm}$
 
-c) $a = 20\text{cm}, \angle B = 35^\circ$
+**Bài 4:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 12\text{ cm}, \widehat{B} = 30^^\circ$.  
+a) Tính $AC, BC$.  
+b) Kẻ đường cao $AH$. Tính $AH, BH, CH$.  
+c) Tính độ dài đường phân giác $AD$ của góc $A$.
 
-d) $c = 21\text{cm}, b = 18\text{cm}$
+**Bài 5:** Cho tam giác $ABC$ cân tại $A$ có $AB = AC = 10\text{ cm}$ và $\widehat{A} = 40^^\circ$.  
+a) Kẻ $BH \perp AC$ ($H \in AC$). Tính độ dài $BH, AH, CH$.  
+b) Tính độ dài cạnh đáy $BC$.
 
-**Bài 2:** Bóng của một tháp hải đăng trên mặt biển nằm ngang dài $40\text{m}$. Tia sáng mặt trời lúc đó chiếu tạo với mặt phẳng nằm ngang một góc $42^\circ$.
-Tính chiều cao của tháp.
+**Bài 6:** Cho tam giác $ABC$ có $AB = 6\text{ cm}, AC = 8\text{ cm}$ và góc $\widehat{A} = 60^^\circ$.  
+a) Kẻ đường cao $BH \perp AC$. Tính $BH, AH, CH$.  
+b) Tính độ dài cạnh $BC$ và diện tích $S_{ABC}$.
 
-**Bài 3:** Một máy bay cất cánh bay lên theo một đường thẳng tạo với mặt đất một góc nghiêng $28^\circ$.
-Sau 2 phút ở vận tốc $250\text{km/h}$, máy bay đạt được độ cao bao nhiêu mét so với mặt đất?
+**Bài 7:** Cho tam giác $ABC$ vuông tại $A$ với hai cạnh góc vuông $b, c$. Chứng minh độ dài đường phân giác trong $AD$ của góc $A$ được tính bởi công thức $AD = \frac{\sqrt{2} b c}{b + c}$.
 
-**Bài 4:** Khúc côn cầu trên băng. Cầu thủ A đứng xa gôn một đoạn $15\text{m}$ (đường vuông góc lên đường ngang mép gôn). Từ vị trí điểm ngắm đó đến lưới phải cách $5\text{m}$. Hỏi góc sút (từ quả bóng nhắm vào lưới, tạo với đường biên) tạo ra độ mở góc bao nhiêu độ?
+**Bài 8:** Cho tam giác $ABC$ nhọn. Chứng minh diện tích tam giác $ABC$ được tính bởi $S = \frac{1}{2} b c \sin A = \frac{1}{2} a c \sin B = \frac{1}{2} a b \sin C$.
 
-**Bài 5 (Nâng cao):** Tính tỉ số lượng giác không dùng thiết bị qua tam giác kép.
-Cho tam giác $ABC$ có cạnh $BC=14, AB=13$ và đường cao $AH=12$ (kẻ xuống $BC$, $H$ nằm trong đoạn $BC$). 
+**Bài 9 (Thực tế):** Một người đứng cách chân cột cờ $15\text{ m}$ nhìn thấy đỉnh cột cờ dưới góc nâng $42^^\circ$. Mắt người quan sát ở độ cao $1,6\text{ m}$ so với mặt đất. Tính chiều cao cột cờ.
 
-a) Xét tam giác $ABH$ vuông tại $H$, tính $\sin B, \cos B$ và cạnh $BH$.
+**Bài 10 (Thực tế):** Đường hầm gầm sông được thiết kế dốc nghiêng $4^^\circ$ so với phương nằm ngang. Chiều dài phần đường hầm dốc dẫn xuống đáy sông là $L = 450\text{ m}$. Tính độ sâu của đáy sông so với mặt đất.
 
-b) Tính cạnh $HC$ của tam giác $ACH$.
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-c) Tính cạnh $AC$ và các góc $C, A$.
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-d) Không phải tam giác vuông thì cạnh huyền nhân có được không? Trong Tam giác thường có một định lý được mở rộng từ đây là Định lý Sin: $\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$. Thử đối chiếu hệ số $13/\sin C$ xem có bằng $AC/\sin B$ hay không?
+**Bài 1:**  
+a) $\widehat{C} = 55^^\circ$; $b = 10 \cdot \sin 35^^\circ \approx 5,74$; $c = 10 \cdot \cos 35^^\circ \approx 8,19$.  
+b) $\widehat{B} = 40^^\circ$; $c = 18 \cdot \sin 40^^\circ \approx 11,57$; $b = 18 \cdot \cos 40^^\circ \approx 13,79$.  
+c) $\widehat{C} = 48^^\circ$; $c = 8 / \tan 42^^\circ \approx 8,88$; $a = 8 / \sin 42^^\circ \approx 11,96$.  
+d) $\widehat{B} = 62^^\circ$; $b = 12 \cdot \tan 28^^\circ \approx 6,38$; $a = 12 / \cos 28^^\circ \approx 13,59$.  
+e) $\widehat{B} = 30^^\circ$; $c = 15 \cdot \tan 30^^\circ = 5\sqrt{3} \approx 8,66$; $a = 15 / \sin 60^^\circ = 10\sqrt{3} \approx 17,32$.  
+f) $\widehat{C} = 45^^\circ \Rightarrow$ $\Delta ABC$ vuông cân $\Rightarrow b = c = 5$; $a = 5\sqrt{2} \approx 7,07$.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+---
 
-**Bài 1:**
+**Bài 2:**  
+a) $a = \sqrt{6^2+8^2} = 10$; $\tan B = 6/8 = 0,75 \Rightarrow \widehat{B} \approx 36^^\circ 52'; \widehat{C} \approx 53^^\circ 08'$.  
+b) $c = \sqrt{13^2-12^2} = 5$; $\sin B = 12/13 \Rightarrow \widehat{B} \approx 67^^\circ 23'; \widehat{C} \approx 22^^\circ 37'$.  
+c) $b = \sqrt{20^2-10^2} = 10\sqrt{3} \approx 17,32$; $\cos B = 10/20 = 0,5 \Rightarrow \widehat{B} = 60^^\circ; \widehat{C} = 30^^\circ$.  
+d) $a = \sqrt{7^2+10^2} = \sqrt{149} \approx 12,21$; $\tan B = 7/10 = 0,7 \Rightarrow \widehat{B} \approx 34^^\circ 59'; \widehat{C} \approx 55^^\circ 01'$.  
+e) $c = \sqrt{15^2-9^2} = 12$; $\sin B = 9/15 = 0,6 \Rightarrow \widehat{B} \approx 36^^\circ 52'; \widehat{C} \approx 53^^\circ 08'$.  
+f) $a = \sqrt{(5\sqrt{3})^2+5^2} = \sqrt{75+25} = 10$; $\tan B = \frac{5\sqrt{3}}{5} = \sqrt{3} \Rightarrow \widehat{B} = 60^^\circ; \widehat{C} = 30^^\circ$.
 
-a) Góc $B = 60^\circ$. $c = b \cdot \tan C = 10 \cdot \tan 30^\circ = \frac{10\sqrt{3}}{3} \approx 5.77\text{cm}$. $a = b / \cos C = 10 / (\sqrt{3}/2) = \frac{20\sqrt{3}}{3} \approx 11.55\text{cm}$.
+---
 
-b) Tam giác vuông cân. $b = c = 10\text{cm}$. Góc $B = 45^\circ$. $a = 10\sqrt{2} \approx 14.14\text{cm}$.
+**Bài 3:**  
+a) $b = 10 \cdot \sin 30^^\circ = 5$; $c = 10 \cdot \cos 30^^\circ = 5\sqrt{3}$. Chu vi $P = 15 + 5\sqrt{3} \approx 23,66\text{ cm}$; $S = \frac{1}{2} \cdot 5 \cdot 5\sqrt{3} = \frac{25\sqrt{3}}{2} \approx 21,65\text{ cm}^2$.  
+b) $c = 12 / \tan 40^^\circ \approx 14,30$; $a = 12 / \sin 40^^\circ \approx 18,67$. $P \approx 44,97\text{ cm}$; $S = \frac{1}{2} \cdot 12 \cdot 14,30 = 85,8\text{ cm}^2$.  
+c) $b = 9 \cdot \tan 55^^\circ \approx 12,85$; $a = 9 / \cos 55^^\circ \approx 15,69$. $P \approx 37,54\text{ cm}$; $S = \frac{1}{2} \cdot 9 \cdot 12,85 = 57,83\text{ cm}^2$.  
+d) $b = c = 16 \cdot \sin 45^^\circ = 8\sqrt{2} \approx 11,31$. $P = 16 + 16\sqrt{2} \approx 38,63\text{ cm}$; $S = \frac{1}{2} \cdot (8\sqrt{2})^2 = 64\text{ cm}^2$.  
+e) $a = 10$. $P = 6 + 8 + 10 = 24\text{ cm}$; $S = \frac{1}{2} \cdot 6 \cdot 8 = 24\text{ cm}^2$.  
+f) $b = \sqrt{25^2-15^2} = 20$. $P = 15 + 20 + 25 = 60\text{ cm}$; $S = \frac{1}{2} \cdot 15 \cdot 20 = 150\text{ cm}^2$.
 
-c) Góc $C = 55^\circ$. $b = a \cdot \sin B = 20 \cdot \sin 35^\circ \approx 11.47\text{cm}$. $c = a \cdot \cos B \approx 16.38\text{cm}$.
+---
 
-d) Huyền $a = \sqrt{21^2 + 18^2} = \sqrt{765} \approx 27.66\text{cm}$. $\tan B = b/c = 18/21 \approx 0.857 \Rightarrow B \approx 40^\circ 36'$. $C \approx 49^\circ 24'$.
+**Bài 4:**  
+a) $AC = AB \cdot \tan B = 12 \cdot \tan 30^^\circ = 4\sqrt{3} \approx 6,93\text{ cm}$. $BC = \frac{AB}{\cos 30^^\circ} = 8\sqrt{3} \approx 13,86\text{ cm}$.  
+b) $AH = AB \cdot \sin 30^^\circ = 12 \cdot 0,5 = 6\text{ cm}$.  
+$BH = AB \cdot \cos 30^^\circ = 6\sqrt{3} \approx 10,39\text{ cm}$; $CH = BC - BH = 8\sqrt{3} - 6\sqrt{3} = 2\sqrt{3} \approx 3,46\text{ cm}$.  
+c) $AD = \frac{\sqrt{2} b c}{b + c} = \frac{\sqrt{2} \cdot 4\sqrt{3} \cdot 12}{4\sqrt{3} + 12} = \frac{48\sqrt{6}}{4(\sqrt{3}+3)} = \frac{12\sqrt{6}}{\sqrt{3}+3} \approx 6,21\text{ cm}$.
 
-**Bài 2:**
-Chiều cao $h$ là cạnh đối của khúc bóng. Kề = $40\text{m}$. Tính kề cho đối $\Rightarrow$ Dùng Tan.
-$h = 40 \cdot \tan 42^\circ \approx 40 \cdot 0.9 = 36.02\text{m}$.
+---
 
-**Bài 3:**
-Quãng đường bay chéo (Cạnh huyền): $s = v \cdot t = 250\text{km/h} \cdot (2/60)\text{h} = 250 / 30 = 25/3\text{km} \approx 8.33\text{km} = 8333\text{m}$.
-Độ cao $h$ là góc đối $28^\circ$. $h = \text{Huyền} \cdot \sin 28^\circ = 8333 \cdot \sin 28^\circ \approx 8333 \cdot 0.4695 \approx 3912\text{m}$.
+**Bài 5:**  
+a) Trong $\Delta AHB$ vuông tại $H$: $BH = AB \cdot \sin A = 10 \cdot \sin 40^^\circ \approx 6,43\text{ cm}$.  
+$AH = AB \cdot \cos A = 10 \cdot \cos 40^^\circ \approx 7,66\text{ cm}$.  
+$CH = AC - AH = 10 - 7,66 = 2,34\text{ cm}$.  
+b) Trong $\Delta BHC$ vuông tại $H$: $BC = \sqrt{BH^2 + CH^2} = \sqrt{6,43^2 + 2,34^2} \approx \sqrt{41,34 + 5,48} = \sqrt{46,82} \approx 6,84\text{ cm}$.
 
-**Bài 4:**
-Kề = $15$. Đối = $5$. $\tan \alpha = 5/15 = 1/3 \approx 0.333$. Góc mở sút là $\arcsin$ (Shift Tan) $(1/3) \approx 18^\circ 26'$.
+---
 
-**Bài 5:**
+**Bài 6:**  
+a) Trong $\Delta AHB$ vuông tại $H$: $BH = AB \cdot \sin 60^^\circ = 6 \cdot \frac{\sqrt{3}}{2} = 3\sqrt{3} \approx 5,20\text{ cm}$.  
+$AH = AB \cdot \cos 60^^\circ = 6 \cdot \frac{1}{2} = 3\text{ cm} \Rightarrow CH = AC - AH = 8 - 3 = 5\text{ cm}$.  
+b) Trong $\Delta BHC$ vuông tại $H$: $BC = \sqrt{(3\sqrt{3})^2 + 5^2} = \sqrt{27 + 25} = \sqrt{52} = 2\sqrt{13} \approx 7,21\text{ cm}$.  
+$S_{ABC} = \frac{1}{2} AC \cdot BH = \frac{1}{2} \cdot 8 \cdot 3\sqrt{3} = 12\sqrt{3} \approx 20,78\text{ cm}^2$.
 
-a) $ABH$ vuông tại $H$: Dùng Pytago $BH = \sqrt{13^2 - 12^2} = \sqrt{25} = 5$.
-$\sin B = AH/AB = 12/13$; $\cos B = 5/13$.
+---
 
-b) $H$ nằm trong đoạn $BC \Rightarrow HC = BC - BH = 14 - 5 = 9$.
+**Bài 7:**  
+Diện tích $S_{ABC} = S_{ABD} + S_{ACD}$.  
+$S_{ABC} = \frac{1}{2} b c$.  
+$S_{ABD} = \frac{1}{2} c \cdot AD \cdot \sin 45^^\circ = \frac{1}{2} c \cdot AD \cdot \frac{\sqrt{2}}{2}$.  
+$S_{ACD} = \frac{1}{2} b \cdot AD \cdot \sin 45^^\circ = \frac{1}{2} b \cdot AD \cdot \frac{\sqrt{2}}{2}$.  
+Do đó $\frac{1}{2} b c = \frac{\sqrt{2}}{4} AD (b + c) \Rightarrow AD = \frac{2 b c}{\sqrt{2}(b+c)} = \frac{\sqrt{2} b c}{b + c}$ (ĐPCM).
 
-c) $AC = \sqrt{AH^2 + HC^2} = \sqrt{12^2 + 9^2} = \sqrt{225} = 15$.
-$\sin C = AH/AC = 12/15 = 0.8 \Rightarrow C \approx 53^\circ 8'$.
-Do $B \approx 67^\circ 23'$. Góc $A = 180^\circ - (B+C)$ hoặc tách ra làm 2 góc nhỏ.
+---
 
-d) $AB / \sin C = 13 / 0.8 = 16.25$.  
-$AC / \sin B = 15 / (12/13) = 15 \cdot 13 / 12 = 5 \cdot 13 / 4 = 65 / 4 = 16.25$. Hai vế bằng nhau chính xác tuyệt đối!
+**Bài 8:**  
+Kẻ đường cao $BH \perp AC$. Ta có $BH = c \cdot \sin A$.  
+Diện tích $S = \frac{1}{2} AC \cdot BH = \frac{1}{2} b (c \sin A) = \frac{1}{2} b c \sin A$.  
+Tương tự kẻ các đường cao từ $A, C$ thu được $S = \frac{1}{2} a c \sin B = \frac{1}{2} a b \sin C$ (ĐPCM).
+
+---
+
+**Bài 9:**  
+Chiều cao phần cột cờ trên mắt người: $h_1 = 15 \cdot \tan 42^^\circ \approx 15 \times 0,9004 = 13,51\text{ m}$.  
+Chiều cao tổng cộng của cột cờ: $h = h_1 + 1,6 = 13,51 + 1,6 = 15,11\text{ m} \approx 15,1\text{ m}$.
+
+---
+
+**Bài 10:**  
+Độ sâu $d = L \cdot \sin 4^^\circ = 450 \cdot \sin 4^^\circ \approx 450 \times 0,0698 = 31,39\text{ m} \approx 31,4\text{ m}$.
 
 </div>
 </details>

@@ -15,6 +15,7 @@ import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 
 import QuizSession from '../../components/ui/QuizSession';
+import LamTronUocLuongInteractive from '../../components/interactive/LamTronUocLuongInteractive';
 
 export const quizData = [
   {
@@ -114,26 +115,42 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Làm tròn 8,75 đến hàng phần mười được:",
-    option_a: "8,8",
-    option_b: "8,7",
-    option_c: "9,0",
-    option_d: "8,0",
-    correct_option: "A",
-    explanation: "Chữ số hàng phần trăm là 5 nên làm tròn lên: 8,75 ≈ 8,8",
+    type: "msq",
+    question: "Những phát biểu nào đúng về làm tròn số?",
+    option_a: "Nếu chữ số bỏ đi < 5 thì giữ nguyên chữ số trước",
+    option_b: "Nếu chữ số bỏ đi ≥ 5 thì cộng 1 vào chữ số trước",
+    option_c: "Làm tròn đến hàng nào thì xét chữ số ở hàng liền sau",
+    option_d: "Làm tròn luôn cho kết quả chính xác bằng số gốc",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì làm tròn cho kết quả gần đúng, không phải chính xác.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Ước lượng phép tính nào sau đây là đúng?",
+    option_a: "18,5 + 21,3 ≈ 19 + 21 = 40",
+    option_b: "9,8 × 4,2 ≈ 10 × 4 = 40",
+    option_c: "45,6 - 22,3 ≈ 46 - 22 = 24",
+    option_d: "27,5 + 12,8 ≈ 27 + 12 = 39",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì 12,8 ≈ 13, không phải 12.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Làm tròn số 45,678 đến hàng phần mười. Viết kết quả và giải thích.",
+    correct_option: "45,7",
+    explanation: "Chữ số hàng phần trăm là 7 ≥ 5 nên làm tròn lên: 45,678 ≈ 45,7",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Ước lượng 4,8 × 2,1 bằng cách làm tròn:",
-    option_a: "5 × 2 = 10",
-    option_b: "4 × 2 = 8",
-    option_c: "5 × 3 = 15",
-    option_d: "4 × 3 = 12",
-    correct_option: "A",
-    explanation: "4,8 ≈ 5, 2,1 ≈ 2. Tích ước lượng: 5 × 2 = 10",
+    type: "sa",
+    question: "Ước lượng tổng: 156,5 + 89,3 bằng cách làm tròn đến hàng chục. So sánh với kết quả chính xác.",
+    correct_option: "246",
+    explanation: "156,5 ≈ 160, 89,3 ≈ 90. Tổng ước lượng: 160 + 90 = 250. Kết quả chính xác: 156,5 + 89,3 = 245,8. Chênh lệch: 250 - 245,8 = 4,2.",
     difficulty_level: "medium",
     is_dynamic: false,
   }
@@ -287,6 +304,8 @@ a) 19 + 21 = 40 b) 10 × 4 = 40 c) 46 - 22 = 24
 
 </div>
 
+<LamTronUocLuongInteractive client:load />
+
 </LuyenTap>
 
 <VanDung title="Vận dụng">
@@ -321,43 +340,6 @@ Làm tròn: **26°C**
 
 </VanDung>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
-
-**Bài 1:** Làm tròn các số sau đến phần trăm:
-
-a) 3,147 b) 9,865 c) 12,999 d) 0,045
-
-**Bài 2:** Làm tròn các số sau đến hàng trăm:
-
-a) 2457 b) 3821 c) 1950 d) 450
-
-**Bài 3:** Ước lượng kết quả các phép tính:
-
-a) 23,7 × 4,8 b) 156,5 + 89,3 c) 245,8 - 98,4
-
-**Bài 4:** Một ô tô đi 156,7 km hết 12,3 lít xăng. Tính mức tiêu thụ xăng trung bình (làm tròn đến 1 chữ số thập phân).
-
-**Bài 5:** Một cửa hàng có 245,5 kg đường, bán trong 3 ngày được 178,25 kg. Ước lượng còn lại bao nhiêu kg?
-
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Bài 1:** a) 3,15; b) 9,87; c) 13,00; d) 0,05
-
-**Bài 2:** a) 2500; b) 3800; c) 2000; d) 500
-
-**Bài 3:** a) 120; b) 246; c) 148
-
-**Bài 4:** 12,7 lít/100km
-
-**Bài 5:** 68 kg
-
-</div>
-</details>
-
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
@@ -386,9 +368,7 @@ a) 23,7 × 4,8 b) 156,5 + 89,3 c) 245,8 - 98,4
 
 </GhiNho>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+📝 Bài tập tự luận
 
 **Bài 1:** Làm tròn các số sau đến phần trăm:
 
@@ -406,8 +386,18 @@ a) 23,7 × 4,8 b) 156,5 + 89,3 c) 245,8 - 98,4
 
 **Bài 5:** Một cửa hàng có 245,5 kg đường, bán trong 3 ngày được 178,25 kg. Ước lượng còn lại bao nhiêu kg?
 
+**Bài 6:** Làm tròn số 78,456 đến hàng đơn vị. Kết quả là số chẵn hay số lẻ?
+
+**Bài 7:** Ưőc lượng phép tính: 34,8 × 2,7 bằng cách làm tròn đến hàng đơn vị.
+
+**Bài 8:** Làm tròn số 1234,567 đến hàng trăm. Viết kết quả.
+
+**Bài 9:** Một cái bàn dài 1,57 m. Làm tròn đến phần mười mét. Chiều dài gần đúng là bao nhiêu mét?
+
+**Bài 10:** Ước lượng tổng: 45,6 + 78,9 + 23,4 bằng cách làm tròn đến hàng chục.
+
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
 **Bài 1:** a) 3,15; b) 9,87; c) 13,00; d) 0,05
@@ -416,12 +406,22 @@ a) 23,7 × 4,8 b) 156,5 + 89,3 c) 245,8 - 98,4
 
 **Bài 3:** a) 120; b) 246; c) 148
 
-**Bài 4:** 12,7 lít/100km
+**Bài 4:** 156,7 ÷ 12,3 ≈ 12,7 lít/100km
 
-**Bài 5:** 68 kg
+**Bài 5:** Ước lượng: 246 - 178 = 68 kg
+
+**Bài 6:** 78,456 ≈ 78 (chữ số phần thập phân là 4 < 5). 78 là số chẵn.
+
+**Bài 7:** 34,8 ≈ 35, 2,7 ≈ 3. Tích ước lượng: 35 × 3 = 105.
+
+**Bài 8:** 1234,567 ≈ 1200 (làm tròn đến hàng trăm).
+
+**Bài 9:** 1,57 m ≈ 1,6 m (làm tròn đến phần mười).
+
+**Bài 10:** 45,6 ≈ 50, 78,9 ≈ 80, 23,4 ≈ 20. Tổng ước lượng: 50 + 80 + 20 = 150.
 
 </div>
 </details>
 
-<QuizSession client:load questions={quizData} />
+<QuizSession client:load questions={quizData} groupedShuffle />
 

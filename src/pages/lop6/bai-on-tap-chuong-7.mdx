@@ -13,6 +13,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong7SoThapPhanInteractive from '../../components/interactive/OnTapChuong7SoThapPhanInteractive';
 
 export const quizData = [
   {
@@ -112,29 +113,45 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "$50\\%$ của $200$ là",
-    option_a: "$100$",
-    option_b: "$50$",
-    option_c: "$150$",
-    option_d: "$200$",
-    correct_option: "A",
-    explanation: "$50\\% \\times 200 = 0,5 \\times 200 = 100$",
+    type: "msq",
+    question: "Kết quả nào bằng $10$?",
+    option_a: "$2,5 \\times 4$",
+    option_b: "$50\\%$ của $20$",
+    option_c: "$7,5 \\div 0,75$",
+    option_d: "$3,5 + 6,5$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều bằng 10: A: 2,5 × 4 = 10. B: 50% × 20 = 10. C: 7,5 ÷ 0,75 = 10. D: 3,5 + 6,5 = 10.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Số thập phân $0,5$ bằng bao nhiêu phần trăm?",
-    option_a: "$50\\%$",
-    option_b: "$5\\%$",
-    option_c: "$0,5\\%$",
-    option_d: "$500\\%$",
-    correct_option: "A",
-    explanation: "$0,5 = \\frac{50}{100} = 50\\%$",
-    difficulty_level: "easy",
+    type: "msq",
+    question: "Những phát biểu nào đúng về số thập phân?",
+    option_a: "$0,5 = 50\\%$",
+    option_b: "$25\\% = \\frac{1}{4} = 0,25$",
+    option_c: "$75\\% = \\frac{3}{4} = 0,75$",
+    option_d: "$125\\% = 1,25$",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả đều đúng.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "sa",
+    question: "Tính: $(2,5 + 1,5) \\times 2,4 - 5,6$",
+    correct_option: "3,2",
+    explanation: "$(2,5 + 1,5) × 2,4 - 5,6 = 4 × 2,4 - 5,6 = 9,6 - 5,6 = 4,0$",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một cửa hàng bán áo giá 200.000 đồng. Giảm giá 20%, sau đó tăng giá 10%. Giá cuối cùng là bao nhiêu?",
+    correct_option: "176000",
+    explanation: "Sau giảm 20%: 200.000 × 0,8 = 160.000 đồng. Sau tăng 10%: 160.000 × 1,1 = 176.000 đồng.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
 ];
 
 
@@ -246,13 +263,14 @@ $$\text{Tỉ số phần trăm} = \frac{\text{Số thứ nhất}}{\text{Số th�
 
 <h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
 
-<QuizSession client:load questions={quizData} />
+<OnTapChuong7SoThapPhanInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
 <VanDung>
 
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+<h3 id="van-dung">🌍 III. VẬN DỤNG</h3>
 
 <h4 id="bai-1">Bài 1: Cộng và trừ số thập phân</h4>
 
@@ -333,194 +351,6 @@ c) $3,6 \div 1,2 = 36 \div 12 = 3$
 </div>
 </details>
 
----
-
-<h4 id="bai-4">Bài 4: Làm tròn số thập phân</h4>
-
-Làm tròn các số sau:
-
-a) Làm tròn $3,456$ đến chữ số thập phân thứ nhất
-
-b) Làm tròn $2,342$ đến chữ số thập phân thứ nhất
-
-c) Làm tròn $5,678$ đến chữ số thập phân thứ hai
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $3,456 \approx 3,5$ (chữ số thứ hai là 5, làm tròn lên)
-
-b) $2,342 \approx 2,3$ (chữ số thứ hai là 4, giữ nguyên)
-
-c) $5,678 \approx 5,68$ (chữ số thứ ba là 8, làm tròn lên)
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Tỉ số phần trăm</h4>
-
-Tính:
-
-a) $25\%$ của $80$
-
-b) $50\%$ của $200$
-
-c) $75\%$ của $120$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $25\%$ của $80 = 0,25 \times 80 = 20$
-
-b) $50\%$ của $200 = 0,5 \times 200 = 100$
-
-c) $75\%$ của $120 = 0,75 \times 120 = 90$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Chuyển đổi giữa phân số, số thập phân và phần trăm</h4>
-
-Điền vào bảng:
-
-| Phân số | Số thập phân | Phần trăm |
-|---------|--------------|----------|
-| $\frac{1}{4}$ | ? | ? |
-| ? | $0,5$ | ? |
-| ? | ? | $75\%$ |
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-| Phân số | Số thập phân | Phần trăm |
-|---------|--------------|----------|
-| $\frac{1}{4}$ | $0,25$ | $25\%$ |
-| $\frac{1}{2}$ | $0,5$ | $50\%$ |
-| $\frac{3}{4}$ | $0,75$ | $75\%$ |
-
-</div>
-</details>
-
----
-
-<h4 id="bai-7">Bài 7: Bài toán thực tế</h4>
-
-Một cửa hàng bán một chiếc áo với giá $200.000$ đồng. Nếu giảm giá $20\%$, giá áo là bao nhiêu?
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-Số tiền giảm: $20\% \times 200.000 = 0,2 \times 200.000 = 40.000$ đồng
-
-Giá áo sau khi giảm: $200.000 - 40.000 = 160.000$ đồng
-
-</div>
-</details>
-
----
-
-<h4 id="bai-8">Bài 8: Bài toán kết hợp (Câu lớn)</h4>
-
-Một học sinh mua 3 quyển sách, mỗi quyển giá $25.500$ đồng. Cửa hàng giảm giá $10\%$ cho mỗi quyển.
-
-a) Giá mỗi quyển sau khi giảm là bao nhiêu?
-
-b) Tổng tiền phải trả là bao nhiêu?
-
-c) So với giá gốc, học sinh tiết kiệm được bao nhiêu tiền?
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Giá mỗi quyển sau khi giảm: $25.500 \times (1 - 0,1) = 25.500 \times 0,9 = 22.950$ đồng
-
-b) Tổng tiền phải trả: $22.950 \times 3 = 68.850$ đồng
-
-c) Tiết kiệm được: $25.500 \times 3 - 68.850 = 76.500 - 68.850 = 7.650$ đồng
-
-</div>
-</details>
-
----
-
-<h4 id="bai-9">Bài 9: Tính toán phức tạp</h4>
-
-Tính:
-
-a) $(2,5 + 1,5) \times 2,4$
-
-b) $10 - 2,5 \times 2$
-
-c) $(3,6 + 1,4) \div 2,5$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $(2,5 + 1,5) \times 2,4 = 4 \times 2,4 = 9,6$
-
-b) $10 - 2,5 \times 2 = 10 - 5 = 5$
-
-c) $(3,6 + 1,4) \div 2,5 = 5 \div 2,5 = 2$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
-
-Một lớp học có 40 học sinh. Kết quả kiểm tra toán:
-- $25\%$ học sinh đạt điểm 10
-- $50\%$ học sinh đạt điểm 9
-- Còn lại đạt điểm 8
-
-a) Bao nhiêu học sinh đạt điểm 10?
-
-b) Bao nhiêu học sinh đạt điểm 9?
-
-c) Bao nhiêu học sinh đạt điểm 8?
-
-d) Tính điểm trung bình của lớp
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Học sinh đạt điểm 10: $25\% \times 40 = 0,25 \times 40 = 10$ học sinh
-
-b) Học sinh đạt điểm 9: $50\% \times 40 = 0,5 \times 40 = 20$ học sinh
-
-c) Học sinh đạt điểm 8: $40 - 10 - 20 = 10$ học sinh
-
-d) Điểm trung bình: $\frac{10 \times 10 + 20 \times 9 + 10 \times 8}{40} = \frac{100 + 180 + 80}{40} = \frac{360}{40} = 9$
-
-</div>
-</details>
-
 </VanDung>
 
 <GhiNho>
@@ -536,3 +366,64 @@ d) Điểm trung bình: $\frac{10 \times 10 + 20 \times 9 + 10 \times 8}{40} = \
 - **Chuyển đổi:** $25\% = 0,25 = \frac{1}{4}$; $50\% = 0,5 = \frac{1}{2}$; $75\% = 0,75 = \frac{3}{4}$
 
 </GhiNho>
+
+📝 Bài tập tự luận
+
+**Bài 1:** Làm tròn số $3,456$ đến chữ số thập phân thứ nhất. Viết kết quả và giải thích.
+
+**Bài 2:** Tính: $25\%$ của $80$
+
+**Bài 3:** Điền vào bảng:
+
+| Phân số | Số thập phân | Phần trăm |
+|---------|--------------|----------|
+| $\frac{1}{4}$ | ? | ? |
+| ? | $0,5$ | ? |
+| ? | ? | $75\%$ |
+
+**Bài 4:** Một cửa hàng bán một chiếc áo với giá $200.000$ đồng. Nếu giảm giá $20\%$, giá áo là bao nhiêu?
+
+**Bài 5:** Một học sinh mua 3 quyển sách, mỗi quyển giá $25.500$ đồng. Cửa hàng giảm giá $10\%$ cho mỗi quyển. a) Giá mỗi quyển sau khi giảm? b) Tổng tiền phải trả? c) Tiết kiệm được bao nhiêu?
+
+**Bài 6:** Tính nhanh: a) $(2,5 + 1,5) \times 2,4$ b) $10 - 2,5 \times 2$ c) $(3,6 + 1,4) \div 2,5$
+
+**Bài 7:** Một lớp học có 40 học sinh. $25\%$ đạt điểm 10, $50\%$ đạt điểm 9, còn lại đạt điểm 8. a) Bao nhiêu HS đạt điểm 10? b) Bao nhiêu HS đạt điểm 9? c) Bao nhiêu HS đạt điểm 8? d) Điểm TB của lớp?
+
+**Bài 8:** Tính: $2,5 \times 3,7 + 2,5 \times 6,3$. Uses tính chất phân phối.
+
+**Bài 9:** Làm tròn các số sau: a) $2,342$ đến phần mười b) $5,678$ đến phần trăm c) $12,345$ đến hàng đơn vị
+
+**Bài 10:** Một người gửi tiết kiệm 50 000 000 đồng với lãi suất 7% một năm. Sau 1 năm, người đó nhận được bao nhiêu tiền cả gốc và lãi?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:** $3,456 \approx 3,5$ (chữ số thứ hai là 5, làm tròn lên)
+
+**Bài 2:** $25\%$ của $80 = 0,25 \times 80 = 20$
+
+**Bài 3:**
+
+| Phân số | Số thập phân | Phần trăm |
+|---------|--------------|----------|
+| $\frac{1}{4}$ | $0,25$ | $25\%$ |
+| $\frac{1}{2}$ | $0,5$ | $50\%$ |
+| $\frac{3}{4}$ | $0,75$ | $75\%$ |
+
+**Bài 4:** Số tiền giảm: $20\% \times 200.000 = 40.000$ đồng. Giá áo sau khi giảm: $160.000$ đồng.
+
+**Bài 5:** a) $25.500 \times 0,9 = 22.950$ đồng. b) $22.950 \times 3 = 68.850$ đồng. c) $76.500 - 68.850 = 7.650$ đồng.
+
+**Bài 6:** a) $4 \times 2,4 = 9,6$ b) $10 - 5 = 5$ c) $5 \div 2,5 = 2$
+
+**Bài 7:** a) 10 HS b) 20 HS c) 10 HS d) $\frac{10 \times 10 + 20 \times 9 + 10 \times 8}{40} = \frac{360}{40} = 9$
+
+**Bài 8:** $2,5 \times (3,7 + 6,3) = 2,5 \times 10 = 25$
+
+**Bài 9:** a) $2,342 \approx 2,3$ b) $5,678 \approx 5,68$ c) $12,345 \approx 12$
+
+**Bài 10:** Lãi: $50.000.000 \times 7\% = 3.500.000$ đồng. Tổng: $50.000.000 + 3.500.000 = 53.500.000$ đồng.
+
+</div>
+</details>

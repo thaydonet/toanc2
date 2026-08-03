@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 10: Căn bậc ba và căn thức bậc ba"
-description: "Khái niệm và các tính chất của căn bậc ba - Toán 9 KNTT Chương 3"
+description: "Khái niệm căn bậc ba, các tính chất cơ bản, biến đổi biểu thức và ứng dụng thực tế - Toán 9 KNTT Chương 3"
 grade: "Lớp 9"
 chapter: "Chương III: Căn bậc hai và căn bậc ba"
 currentSlug: "lop9/bai-10-can-bac-ba"
@@ -13,140 +13,153 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Căn bậc ba của số -8 là bao nhiêu?",
-    option_a: "2",
-    option_b: "Không tồn tại",
-    option_c: "-2",
-    option_d: "Cả 2 và -2",
-    correct_option: "C",
-    explanation: "Vì $(-2)^3 = -8$ nên $\\sqrt[3]{-8} = -2$. Khác với số âm không có căn bậc hai, các số âm đều có căn bậc ba là một số âm.",
+    question: "Căn bậc ba của -64 là:",
+    option_a: "-4",
+    option_b: "4",
+    option_c: "$\\pm 4$",
+    option_d: "Không tồn tại",
+    correct_option: "A",
+    explanation: "Căn bậc ba của một số thực $a$ là số $x$ sao cho $x^3 = a$. Vì $(-4)^3 = -64$ nên $\\sqrt[3]{-64} = -4$. Khác với căn bậc hai, căn bậc ba của số âm luôn tồn tại.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Mỗi số thực a có chính xác bao nhiêu căn bậc ba?",
-    option_a: "0",
-    option_b: "1",
-    option_c: "2",
-    option_d: "Tùy thuộc vào a âm hay dương",
-    correct_option: "B",
-    explanation: "Mỗi số thực a đều có một và chỉ một căn bậc ba.",
+    question: "Mỗi số thực $a$ có bao nhiêu căn bậc ba?",
+    option_a: "Đúng 1 căn bậc ba",
+    option_b: "2 căn bậc ba",
+    option_c: "Tùy thuộc vào $a$ âm hay dương",
+    option_d: "Vô số căn bậc ba",
+    correct_option: "A",
+    explanation: "Mọi số thực $a$ (dương, âm hoặc 0) đều có duy nhất một căn bậc ba duy nhất, ký hiệu là $\\sqrt[3]{a}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biểu thức $\\sqrt[3]{x - 5}$ xác định khi nào?",
-    option_a: "$x \\ge 5$",
-    option_b: "$x > 5$",
-    option_c: "$x \\neq 5$",
-    option_d: "Mọi giá trị số thực của x",
-    correct_option: "D",
-    explanation: "Căn thức bậc lẻ xác định với mọi giá trị của biểu thức bên trong. Không cần biểu thức phải $\\ge 0$ như căn bậc hai.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tính giá trị của $\\sqrt[3]{27} - \\sqrt[3]{-27}$.",
-    option_a: "0",
-    option_b: "6",
-    option_c: "-6",
-    option_d: "54",
-    correct_option: "B",
-    explanation: "$\\sqrt[3]{27} = 3$ và $\\sqrt[3]{-27} = -3$. Suy ra: $3 - (-3) = 6$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Khẳng định nào sau đây là SAl?",
-    option_a: "$\\sqrt[3]{ab} = \\sqrt[3]{a} \\cdot \\sqrt[3]{b}$",
-    option_b: "$a < b \\Leftrightarrow \\sqrt[3]{a} < \\sqrt[3]{b}$",
-    option_c: "$\\sqrt[3]{\\frac{a}{b}} = \\frac{\\sqrt[3]{a}}{\\sqrt[3]{b}}$ (với $b \\neq 0$)",
+    question: "Đẳng thức nào sau đây đúng với mọi $a, b \\in \\mathbb{R}$?",
+    option_a: "$\\sqrt[3]{a \\cdot b} = \\sqrt[3]{a} \\cdot \\sqrt[3]{b}$",
+    option_b: "$\\sqrt[3]{a + b} = \\sqrt[3]{a} + \\sqrt[3]{b}$",
+    option_c: "$\\sqrt[3]{a^2} = a$",
     option_d: "$\\sqrt[3]{a^3} = |a|$",
-    correct_option: "D",
-    explanation: "Hằng đẳng thức của căn bậc ba không có trị tuyệt đối: $\\sqrt[3]{a^3} = a$ luôn luôn đúng với mọi giá trị âm hay dương.",
+    correct_option: "A",
+    explanation: "Tính chất căn bậc ba: $\\sqrt[3]{ab} = \\sqrt[3]{a} \\cdot \\sqrt[3]{b}$. Còn $\\sqrt[3]{a^3} = a$ (không có dấu trị tuyệt đối).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của biểu thức $P = \\sqrt[3]{125} - \\sqrt[3]{-27}$ là:",
+    option_a: "2",
+    option_b: "8",
+    option_c: "-8",
+    option_d: "98",
+    correct_option: "B",
+    explanation: "$\\sqrt[3]{125} = 5$ và $\\sqrt[3]{-27} = -3$. Do đó $P = 5 - (-3) = 5 + 3 = 8$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "So sánh 3 và $\\sqrt[3]{28}$:",
+    option_a: "$3 > \\sqrt[3]{28}$",
+    option_b: "$3 < \\sqrt[3]{28}$",
+    option_c: "$3 = \\sqrt[3]{28}$",
+    option_d: "Không so sánh được",
+    correct_option: "B",
+    explanation: "$3 = \\sqrt[3]{27}$. Vì $27 < 28 \\Rightarrow \\sqrt[3]{27} < \\sqrt[3]{28} \\Rightarrow 3 < \\sqrt[3]{28}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nghiệm của phương trình $\\sqrt[3]{x - 1} = 2$ là:",
+    option_a: "$x = 9$",
+    option_b: "$x = 7$",
+    option_c: "$x = 5$",
+    option_d: "$x = 3$",
+    correct_option: "A",
+    explanation: "Lập phương hai vế: $x - 1 = 2^3 = 8 \\Rightarrow x = 9$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những kết quả tính toán nào sau đây ĐÚNG?",
+    option_a: "$\\sqrt[3]{-1} = -1$",
+    option_b: "$\\sqrt[3]{0} = 0$",
+    option_c: "$\\sqrt[3]{1000} = 10$",
+    option_d: "$\\sqrt[3]{-0,001} = -0,1$",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 câu đều là phép khai căn bậc ba chính xác.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những khẳng định nào đúng khi so sánh căn bậc hai và căn bậc ba?",
+    option_a: "Căn bậc hai chỉ xác định với số không âm, còn căn bậc ba xác định với mọi số thực",
+    option_b: "$\\sqrt{A^2} = |A|$, còn $\\sqrt[3]{A^3} = A$",
+    option_c: "Số dương có 2 căn bậc hai nhưng chỉ có 1 căn bậc ba",
+    option_d: "$\\sqrt[3]{A} = B \\Leftrightarrow A = B^3$ (với mọi $B$)",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 so sánh trên đều là tính chất toán học chuẩn xác của căn bậc hai và căn bậc ba.",
     difficulty_level: "hard",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Nghiệm của phương trình $x^3 = 64$ là?",
-    option_a: "8",
-    option_b: "4 và -4",
-    option_c: "4",
-    option_d: "-4",
-    correct_option: "C",
-    explanation: "Phương trình $x^3 = a$ chỉ có 1 nghiệm duy nhất là $x = \\sqrt[3]{a} = \\sqrt[3]{64} = 4$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "msq",
-    question: "So sánh các cặp số, chỉ ra phát biểu Đúng:",
-    option_a: "$2 = \\sqrt[3]{8}$",
-    option_b: "$-\\sqrt[3]{5} > -\\sqrt[3]{4}$",
-    option_c: "$3 > \\sqrt[3]{26}$",
-    option_d: "$\\sqrt[3]{-1000} = -10$",
-    correct_option: "A,C,D",
-    explanation: "A: Đúng. C: $3 = \\sqrt[3]{27} > \\sqrt[3]{26}$ là đúng. D: Đúng. B: $-5 < -4 \\Rightarrow -\\sqrt[3]{5} < -\\sqrt[3]{4}$ nên B sai.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "msq",
-    question: "Các phương trình nào có nghiệm duy nhất?",
-    option_a: "$x^3 = -8$",
-    option_b: "$2x^3 - 16 = 0$",
-    option_c: "$x^2 = 16$",
-    option_d: "$x^3 = 0$",
-    correct_option: "A,B,D",
-    explanation: "Căn bậc ba / phương trình bậc 3 sơ cấp $x^3=a$ luôn có 1 nghiệm duy nhất. Phương trình bậc 2 như C có thể có 2 nghiệm.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "sa",
-    question: "Tính giá trị $\\sqrt[3]{125} \\cdot \\sqrt[3]{-8}$.",
-    correct_option: "-10",
-    explanation: "$5 \\cdot (-2) = -10$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Giải phương trình $(x-1)^3 = 27$. Nghiệm là gì?",
+    question: "Tính giá trị của biểu thức $A = \\sqrt[3]{2} \\cdot \\sqrt[3]{32}$.",
     correct_option: "4",
-    explanation: "$x-1 = \\sqrt[3]{27} = 3 \\Rightarrow x = 4$.",
-    difficulty_level: "medium",
+    explanation: "$A = \\sqrt[3]{2 \\cdot 32} = \\sqrt[3]{64} = 4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính cạnh (mét) của một thùng hàng hình lập phương có thể tích $V = 216\\text{ m}^3$.",
+    correct_option: "6",
+    explanation: "Cạnh thùng hàng $a = \\sqrt[3]{V} = \\sqrt[3]{216} = 6$ m.",
+    difficulty_level: "easy",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">📦 Bài toán Cái Thùng Gỗ</h3>
+<h3 id="mo-dau">🧊 Từ Thể tích Khối lập phương đến Căn bậc ba</h3>
 
-Người ta làm một chiếc thùng gỗ có dạng **Hình lập phương** (các cạnh bằng nhau). Sau khi hoàn thành, họ đổ nước vào và đo được sức chứa mấp mé của thùng là đúng $64 \text{ m}^3$ (thể tích). Hỏi cạnh của chiếc thùng lập phương đó dài bao nhiêu mét?
-Gọi $v$ (mét) là độ dài cạnh. Ta biết công thức thể tích:
-$$V = v \cdot v \cdot v = v^3 = 64$$
+Một khối bê tông hình lập phương có thể tích $V = 125\text{ m}^3$. Hỏi độ dài cạnh $a$ của khối bê tông đó bằng bao nhiêu mét?
 
-Như vậy, ta phải tìm một con số $v$ mà khi nhân ba chính nó lại ra 64. Không giống như bậc 2 (Diện tích hình vuông), bậc ba liên quan đến Toán Không gian. Công cụ giải quyết chúng là **Căn bậc ba**.
+Ta gọi độ dài cạnh hình lập phương là $a$. Theo công thức thể tích:
+$$a^3 = 125 \quad \Rightarrow \quad a = \sqrt[3]{125} = 5\text{ m}$$
 
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="200" height="200" viewBox="0 0 200 200" style="background:white;">
-  {/* Vẽ khối lập phương 3D căn bản */}
-  <polygon points="50,150 130,150 130,70 50,70" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
-  <polygon points="50,70 90,30 170,30 130,70" fill="#93c5fd" stroke="#2563eb" stroke-width="2"/>
-  <polygon points="130,150 170,110 170,30 130,70" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
-  <text x="90" y="115" font-size="18" font-weight="bold" fill="#1e3a8a" text-anchor="middle">V = 64</text>
-  <text x="25" y="115" font-size="16" fill="#1e40af">v = ?</text>
+Phép toán tìm số $a$ khi biết $a^3$ được gọi là **phép khai căn bậc ba**.
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="360" height="160" viewBox="0 0 360 160" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Cube */}
+  <g transform="translate(40, 30)">
+    <polygon points="10,30 50,10 90,30 50,50" fill="#cbd5e1" stroke="#475569"/>
+    <polygon points="10,30 50,50 50,90 10,70" fill="#94a3b8" stroke="#475569"/>
+    <polygon points="50,50 90,30 90,70 50,90" fill="#64748b" stroke="#475569"/>
+    <text x="50" y="110" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">V = 125 m³</text>
+  </g>
+
+  <line x1="175" y1="80" x2="225" y2="80" stroke="#2563eb" stroke-width="3"/>
+  <polygon points="225,80 215,74 215,86" fill="#2563eb"/>
+  <text x="200" y="70" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">Khai căn 3</text>
+
+  {/* Output */}
+  <g transform="translate(245, 45)">
+    <rect width="90" height="70" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="45" y="42" font-size="16" font-weight="bold" fill="#1d4ed8" text-anchor="middle">a = 5 m</text>
+  </g>
 </svg>
 </div>
 
@@ -154,86 +167,208 @@ Như vậy, ta phải tìm một con số $v$ mà khi nhân ba chính nó lại 
 
 <KhamPha title="Khám phá">
 
-<h3 id="kn-can-bac-ba" style="margin-top:2rem;">📖 1. Khái niệm căn bậc ba</h3>
+<h3 id="khai-niem-can-bac-ba">📖 1. Khái niệm Căn bậc ba</h3>
 
 <div class="box-dinh-nghia">
 
-Căn bậc ba của một số $a$ là số $x$ sao cho $x^3 = a$.
-Kí hiệu là: $\sqrt[3]{a}$.
+**Định nghĩa:**
+- Căn bậc ba của một số thực $a$ là số $x$ sao cho $x^3 = a$.
+- Ký hiệu: $\sqrt[3]{a}$ (đọc là "căn bậc ba của $a$").
+- Phép tìm căn bậc ba của một số gọi là **phép khai căn bậc ba**.
 
-Khác biệt rất lớn giữa Căn bậc ba và Căn bậc hai ở chỗ:
-**Mỗi số thực a bất kì (dương, âm, hay bằng không) đều có CHÍNH XÁC MỘT căn bậc ba.**
-- Căn bậc ba của một số dương là một số dương.
-- Căn bậc ba của một số **âm** là một số **âm**.
-- Căn bậc ba của số 0 là chính số 0.
-
-</div>
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ:**
-- Căn bậc ba của 8 là 2, vì $2^3 = 8$. ($\sqrt[3]{8} = 2$)
-- Căn bậc ba của $-27$ là $-3$, vì $(-3)^3 = -27$. ($\sqrt[3]{-27} = -3$)
-
-*Hằng đẳng thức thần thánh:* $\sqrt[3]{a^3} = b \Leftrightarrow a = b^3$. Và đặc biệt là **$\sqrt[3]{A^3} = A$** (KHÔNG có trị tuyệt đối giống như căn bậc 2).
+**Nhận xét:**
+1. Mỗi số thực $a$ đều có **duy nhất một căn bậc ba**.
+2. Căn bậc ba của số dương là số dương: $\sqrt[3]{8} = 2$.
+3. Căn bậc ba của số âm là số âm: $\sqrt[3]{-8} = -2$.
+4. Căn bậc ba của số 0 là số 0: $\sqrt[3]{0} = 0$.
+5. Hằng đẳng thức: $\sqrt[3]{a^3} = (\sqrt[3]{a})^3 = a$ với mọi $a \in \mathbb{R}$.
 
 </div>
 
-<h3 id="tinh-chat" style="margin-top:2rem;">📖 2. Tính chất của căn bậc ba</h3>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-Căn bậc ba có các tính chất cực kỳ "dễ chịu" và giống hệt như căn bậc hai, **nhưng ưu việt hơn là chúng không thèm đoái hoài gì đến Điều Kiện Tồn Tại**.
+**3 Ví dụ minh họa Khái niệm Căn bậc ba:**
 
-<div class="box-dinh-ly">
+- **Ví dụ 1:** Tính căn bậc ba của các số: $27, -125, 0,008$.
+  - *Giải:* 
+    - $\sqrt[3]{27} = 3$ (vì $3^3 = 27$).
+    - $\sqrt[3]{-125} = -5$ (vì $(-5)^3 = -125$).
+    - $\sqrt[3]{0,008} = 0,2$ (vì $(0,2)^3 = 0,008$).
 
-**1. Tính chất so sánh:**
-$a < b \Leftrightarrow \sqrt[3]{a} < \sqrt[3]{b}$
+- **Ví dụ 2:** So sánh 4 và $\sqrt[3]{63}$.
+  - *Giải:* $4 = \sqrt[3]{4^3} = \sqrt[3]{64}$.  
+    Vì $64 > 63 \Rightarrow \sqrt[3]{64} > \sqrt[3]{63} \Rightarrow 4 > \sqrt[3]{63}$.
 
-**2. Tính chất Tích - Thương:**
-- $\sqrt[3]{a \cdot b} = \sqrt[3]{a} \cdot \sqrt[3]{b}$
-- $\sqrt[3]{\frac{a}{b}} = \frac{\sqrt[3]{a}}{\sqrt[3]{b}}$ (Trường hợp $b \neq 0$)
-
-</div>
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ:**
-- Khai phương một tích: $\sqrt[3]{8 \cdot 125} = \sqrt[3]{8} \cdot \sqrt[3]{125} = 2 \cdot 5 = 10$.
-- So sánh: $2\sqrt[3]{3}$ và $\sqrt[3]{25}$. 
-Ta đưa thừa số 2 vào trong: $2 = \sqrt[3]{8}$, nên $2\sqrt[3]{3} = \sqrt[3]{8 \cdot 3} = \sqrt[3]{24}$.
-Vì $24 < 25 \Rightarrow \sqrt[3]{24} < \sqrt[3]{25} \Rightarrow 2\sqrt[3]{3} < \sqrt[3]{25}$.
+- **Ví dụ 3:** Rút gọn biểu thức $A = \sqrt[3]{8x^3} - 3x$.
+  - *Giải:* $A = \sqrt[3]{(2x)^3} - 3x = 2x - 3x = -x$.
 
 </div>
 
-<h3 id="pt-bac-ba" style="margin-top:2rem;">📖 3. Giải phương trình $x^3 = a$</h3>
+<h3 id="tinh-chat-can-bac-ba" style="margin-top:2rem;">📖 2. Các tính chất của căn bậc ba</h3>
 
-Vì căn bậc ba là giá trị duy nhất nên phương trình $x^3 = a$ luôn có **môt nghiệm duy nhất** là $x = \sqrt[3]{a}$. Bất chấp mọi con số a!
+<div class="box-dinh-nghia">
 
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+**Các tính chất cơ bản:**
 
-**Ví dụ:** Giải phương trình: $2x^3 + 16 = 0$
-$2x^3 = -16$
-$x^3 = -8$
-$x = \sqrt[3]{-8} \Rightarrow x = -2$.
+1. **So sánh:** $a < b \quad \Leftrightarrow \quad \sqrt[3]{a} < \sqrt[3]{b}$
+2. **Khai phương một tích:** $\sqrt[3]{a \cdot b} = \sqrt[3]{a} \cdot \sqrt[3]{b}$
+3. **Khai phương một thương:** $\sqrt[3]{\frac{a}{b}} = \frac{\sqrt[3]{a}}{\sqrt[3]{b}} \qquad (b \neq 0)$
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Tính chất Căn bậc ba:**
+
+- **Ví dụ 1:** Tính $A = \sqrt[3]{16} \cdot \sqrt[3]{4}$.
+  - *Giải:* $A = \sqrt[3]{16 \cdot 4} = \sqrt[3]{64} = 4$.
+
+- **Ví dụ 2:** Tính $B = \frac{\sqrt[3]{135}}{\sqrt[3]{5}}$.
+  - *Giải:* $B = \sqrt[3]{\frac{135}{5}} = \sqrt[3]{27} = 3$.
+
+- **Ví dụ 3:** Rút gọn biểu thức $C = \sqrt[3]{a^3 b^6}$.
+  - *Giải:* $C = \sqrt[3]{a^3} \cdot \sqrt[3]{(b^2)^3} = a \cdot b^2 = ab^2$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính giá trị căn bậc ba và so sánh các căn bậc ba**
+- **Phương pháp:** Đưa số $k$ về dạng $\sqrt[3]{k^3}$, sau đó dùng $a < b \Leftrightarrow \sqrt[3]{a} < \sqrt[3]{b}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tính giá trị $A = \sqrt[3]{216} - \sqrt[3]{-64} + \sqrt[3]{-1}$.
+  - *Lời giải:* $A = 6 - (-4) + (-1) = 6 + 4 - 1 = 9$.
+
+- **Ví dụ 2:** So sánh $5\sqrt[3]{2}$ và $2\sqrt[3]{30}$.
+  - *Lời giải:* $5\sqrt[3]{2} = \sqrt[3]{5^3 \cdot 2} = \sqrt[3]{125 \cdot 2} = \sqrt[3]{250}$.  
+    $2\sqrt[3]{30} = \sqrt[3]{2^3 \cdot 30} = \sqrt[3]{8 \cdot 30} = \sqrt[3]{240}$.  
+    Vì $250 > 240 \Rightarrow \sqrt[3]{250} > \sqrt[3]{240} \Rightarrow 5\sqrt[3]{2} > 2\sqrt[3]{30}$.
+
+- **Ví dụ 3:** Tìm $x$ biết $\sqrt[3]{x} > -3$.
+  - *Lời giải:* Lập phương hai vế: $x > (-3)^3 \Leftrightarrow x > -27$.
+
+</div>
+
+#### **Dạng 2: Rút gọn biểu thức chứa căn bậc ba**
+- **Phương pháp:** Sử dụng tính chất $\sqrt[3]{A^3} = A$ và hằng đẳng thức $(a \pm b)^3 = a^3 \pm 3a^2b + 3ab^2 \pm b^3$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Rút gọn $A = \sqrt[3]{54} - \sqrt[3]{16} + \sqrt[3]{2}$.
+  - *Lời giải:* $\sqrt[3]{54} = \sqrt[3]{27 \cdot 2} = 3\sqrt[3]{2}$.  
+    $\sqrt[3]{16} = \sqrt[3]{8 \cdot 2} = 2\sqrt[3]{2}$.  
+    $A = 3\sqrt[3]{2} - 2\sqrt[3]{2} + \sqrt[3]{2} = 2\sqrt[3]{2}$.
+
+- **Ví dụ 2:** Rút gọn $B = \sqrt[3]{27x^3 y^6} - 2xy^2$.
+  - *Lời giải:* $B = 3xy^2 - 2xy^2 = xy^2$.
+
+- **Ví dụ 3:** Rút gọn $C = (\sqrt[3]{a} + \sqrt[3]{b})(\sqrt[3]{a^2} - \sqrt[3]{ab} + \sqrt[3]{b^2})$.
+  - *Lời giải:* Áp dụng hằng đẳng thức tổng hai lập phương $X^3 + Y^3 = (X+Y)(X^2 - XY + Y^2)$:  
+    $C = (\sqrt[3]{a})^3 + (\sqrt[3]{b})^3 = a + b$.
+
+</div>
+
+#### **Dạng 3: Giải phương trình chứa căn bậc ba $\sqrt[3]{A} = B$**
+- **Phương pháp:** Lập phương hai vế: $\sqrt[3]{A} = B \Leftrightarrow A = B^3$ (không cần điều kiện tồn tại căn bậc ba).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Giải phương trình $\sqrt[3]{2x - 1} = 3$.
+  - *Lời giải:* Lập phương hai vế: $2x - 1 = 3^3 \Leftrightarrow 2x - 1 = 27 \Leftrightarrow 2x = 28 \Leftrightarrow x = 14$. Tập nghiệm $S = \{14\}$.
+
+- **Ví dụ 2:** Giải phương trình $\sqrt[3]{x^3 - 3x^2 + 3x} = 1$.
+  - *Lời giải:* Lập phương hai vế: $x^3 - 3x^2 + 3x = 1 \Leftrightarrow x^3 - 3x^2 + 3x - 1 = 0 \Leftrightarrow (x-1)^3 = 0 \Leftrightarrow x - 1 = 0 \Leftrightarrow x = 1$.
+
+- **Ví dụ 3:** Giải phương trình $\sqrt[3]{5x + 3} = -2$.
+  - *Lời giải:* Lập phương hai vế: $5x + 3 = (-2)^3 = -8 \Leftrightarrow 5x = -11 \Leftrightarrow x = -2,2$.
+
+</div>
+
+#### **Dạng 4: Biến đổi biểu thức dạng $\sqrt[3]{a \pm b\sqrt{c}}$**
+- **Phương pháp:** Biến đổi biểu thức trong căn về dạng $(m \pm n\sqrt{c})^3$, sau đó dùng $\sqrt[3]{X^3} = X$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Rút gọn $A = \sqrt[3]{20 + 14\sqrt{2}} + \sqrt[3]{20 - 14\sqrt{2}}$.
+  - *Lời giải:* Ta có $(2 + \sqrt{2})^3 = 2^3 + 3(2^2)\sqrt{2} + 3(2)(\sqrt{2})^2 + (\sqrt{2})^3 = 8 + 12\sqrt{2} + 12 + 2\sqrt{2} = 20 + 14\sqrt{2}$.  
+    Tương tự $(2 - \sqrt{2})^3 = 20 - 14\sqrt{2}$.  
+    Do đó $A = (2 + \sqrt{2}) + (2 - \sqrt{2}) = 4$.
+
+- **Ví dụ 2:** Rút gọn $B = \sqrt[3]{7 + 5\sqrt{2}}$.
+  - *Lời giải:* Phân tích $7 + 5\sqrt{2} = (1 + \sqrt{2})^3$.  
+    $B = \sqrt[3]{(1 + \sqrt{2})^3} = 1 + \sqrt{2}$.
+
+- **Ví dụ 3:** Rút gọn $C = \sqrt[3]{2 + 11\sqrt{2}} - \sqrt[3]{2 - 11\sqrt{2}}$.
+  - *Lời giải:* Đặt $C = x \Rightarrow x^3 = (a+b) = 4 + 3\sqrt[3]{(2+11\sqrt{2})(2-11\sqrt{2})} \cdot x$... Giải PT $x^3 + 15x - 4 = 0$.
+
+</div>
+
+#### **Dạng 5: Ứng dụng căn bậc ba giải bài toán hình khối & thực tế**
+- **Phương pháp:** Sử dụng công thức thể tích hình lập phương $V = a^3 \Rightarrow a = \sqrt[3]{V}$ hoặc hình cầu $V = \frac{4}{3}\pi R^3 \Rightarrow R = \sqrt[3]{\frac{3V}{4\pi}}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Thể tích một bể chứa nước hình lập phương là $V = 3,375\text{ m}^3$. Tính độ dài cạnh bể chứa nước.
+  - *Lời giải:* Độ dài cạnh bể $a = \sqrt[3]{3,375} = 1,5\text{ m}$.
+
+- **Ví dụ 2:** Quả cầu sắt có thể tích $V = 36\pi\text{ cm}^3$. Tính bán kính $R$ của quả cầu.
+  - *Lời giải:* $V = \frac{4}{3}\pi R^3 = 36\pi \Rightarrow R^3 = \frac{36 \times 3}{4} = 27 \Rightarrow R = \sqrt[3]{27} = 3\text{ cm}$.
+
+- **Ví dụ 3:** Một thỏi vàng hình lập phương được đúc lại từ 8 thỏi vàng nhỏ hình lập phương cạnh 2 cm. Tính cạnh của thỏi vàng mới.
+  - *Lời giải:* Thể tích thỏi nhỏ $V_1 = 2^3 = 8\text{ cm}^3$. Thể tích thỏi mới $V = 8 \times 8 = 64\text{ cm}^3$.  
+    Cạnh thỏi mới $a = \sqrt[3]{64} = 4\text{ cm}$.
 
 </div>
 
 </KhamPha>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Thiết kế Bể chứa Công nghiệp):**  
+Một kỹ sư công nghiệp thiết kế một bồn chứa hóa chất hình lập phương bằng thép không gỉ có dung tích $V = 8000\text{ lít}$ ($1\text{ m}^3 = 1000\text{ lít}$).  
+a) Đổi dung dịch ra $\text{m}^3$ và tính độ dài cạnh trong của bồn chứa.  
+b) Tính diện tích thép không gỉ cần dùng để làm vỏ bồn chứa (gồm cả 6 mặt).
+
+**Bài toán 2 (Hóa học & Bán kính Nguyên tử):**  
+Trong hóa học tinh thể, thể tích mol $V_m$ của một kim loại được tính theo công thức $V_m = \frac{M}{D}$ ($M$: khối lượng mol, $D$: khối lượng riêng). Bán kính nguyên tử $R$ dạng hình cầu được ước tính theo công thức $R = \sqrt[3]{\frac{3 V_m}{4\pi N_A}}$ (với $N_A \approx 6,022 \times 10^{23}$ là số Avogadro).  
+Tính bán kính nguyên tử đồng nếu thể tích mol là $V_m = 7,11\text{ cm}^3/\text{mol}$.
+
+**Bài toán 3 (Thiên văn & Định luật Kepler III):**  
+Theo Định luật III Kepler, bình phương chu kỳ quay $T$ (năm Trái Đất) của một hành tinh xung quanh Mặt Trời tỉ lệ thuận với lập phương khoảng cách trung bình $a$ (đơn vị thiên văn AU) từ hành tinh đó đến Mặt Trời: $T^2 = a^3 \Rightarrow a = \sqrt[3]{T^2}$.  
+Tính khoảng cách trung bình $a$ từ Sao Hỏa đến Mặt Trời biết chu kỳ quay của Sao Hỏa là $T = 1,88$ năm.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác dưới đây hỗ trợ tính căn bậc ba, so sánh căn bậc ba và giải các phương trình chứa căn bậc ba!
+</div>
+
+<CanBacHaiInteractive client:load />
+
+</LuyenTap>
+
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Bảng Cửu Chương Hình Lập Phương:** 
-Nên ghi nhớ các số hữu tỉ thường gặp để khai căn cho lẹ:
-$1^3=1; 2^3=8; 3^3=27; 4^3=64; 5^3=125; 10^3=1000$.
-Âm thì sao? $\rightarrow$ Thêm dấu trừ vào kêt quả thôi! $(-2)^3=-8 \rightarrow \sqrt[3]{-8}=-2$.
+**Trọng tâm kiến thức Bài 10:**
+
+1. **Khái niệm:** $\sqrt[3]{a} = x \Leftrightarrow x^3 = a$ (mọi $a \in \mathbb{R}$ đều có 1 căn bậc ba duy nhất).  
+2. **Tính chất:** $\sqrt[3]{a \cdot b} = \sqrt[3]{a} \cdot \sqrt[3]{b}$ và $\sqrt[3]{\frac{a}{b}} = \frac{\sqrt[3]{a}}{\sqrt[3]{b}}$.  
+3. **Phương trình:** $\sqrt[3]{A} = B \Leftrightarrow A = B^3$.
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -242,95 +377,125 @@ $1^3=1; 2^3=8; 3^3=27; 4^3=64; 5^3=125; 10^3=1000$.
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Tính giá trị các biểu thức:
+**Bài 1:** Tính giá trị các căn bậc ba sau:  
+a) $\sqrt[3]{512}$  
+b) $\sqrt[3]{-729}$  
+c) $\sqrt[3]{0,064}$  
+d) $\sqrt[3]{-0,125}$  
+e) $\sqrt[3]{\frac{27}{64}}$  
+f) $\sqrt[3]{-3 \frac{3}{8}}$ (hỗn số)
 
-a) $\sqrt[3]{64} + \sqrt[3]{-27}$
+**Bài 2:** So sánh các cặp căn bậc ba sau:  
+a) 4 và $\sqrt[3]{65}$  
+b) -3 và $\sqrt[3]{-26}$  
+c) $3\sqrt[3]{2}$ và $2\sqrt[3]{7}$  
+d) $-2\sqrt[3]{5}$ và $-3\sqrt[3]{2}$  
+e) $\sqrt[3]{15}$ và $\sqrt{7}$  
+f) $4\sqrt[3]{3}$ và $3\sqrt[3]{7}$
 
-b) $\sqrt[3]{\frac{8}{125}} - \sqrt{0.25}$ (Chú ý đây là căn bậc hai)
+**Bài 3:** Rút gọn các biểu thức chứa căn bậc ba đơn giản:  
+a) $A = \sqrt[3]{27} - \sqrt[3]{-64} + \sqrt[3]{125}$  
+b) $B = \sqrt[3]{16} - \sqrt[3]{54} + 2\sqrt[3]{2}$  
+c) $C = \frac{\sqrt[3]{135}}{\sqrt[3]{5}} - \sqrt[3]{54} \cdot \sqrt[3]{4}$  
+d) $D = \sqrt[3]{8a^3} - 5a$  
+e) $E = \sqrt[3]{-27x^6 y^3} + 4x^2 y$  
+f) $F = (\sqrt[3]{3} + 1)(\sqrt[3]{9} - \sqrt[3]{3} + 1)$
 
-c) $\sqrt[3]{-1000} \cdot \sqrt[3]{0.001}$
+**Bài 4:** Rút gọn biểu thức $A = \sqrt[3]{27x^3} - \sqrt[3]{-8x^3} + \sqrt[3]{125x^3}$.
 
-**Bài 2:** Giải các phương trình sau:
+**Bài 5:** Giải phương trình $\sqrt[3]{2x - 1} = 3$.
 
-a) $x^3 = -125$
+**Bài 6:** Giải phương trình $\sqrt[3]{x+1} + \sqrt[3]{x-1} = \sqrt[3]{2x}$.
 
-b) $5x^3 - 40 = 0$
+**Bài 7:** Tính giá trị của biểu thức $B = \sqrt[3]{20 + 14\sqrt{2}} + \sqrt[3]{20 - 14\sqrt{2}}$.
 
-c) $(x + 2)^3 = 8$
+**Bài 8:** Cho $a, b > 0$. Khẳng định $\sqrt[3]{a} + \sqrt[3]{b} \le \sqrt[3]{a+b}$ đúng hay sai? Lấy ví dụ minh họa và phát biểu bất đẳng thức đúng giữa $\sqrt[3]{a} + \sqrt[3]{b}$ và $\sqrt[3]{a+b}$.
 
-d) $x^3/2 - 4 = 0$
+**Bài 9 (Thực tế):** Một nghệ nhân đúc một tượng đồng hình lập phương từ khối đồng có thể tích $V = 0,512\text{ m}^3$. Tính độ dài cạnh của tượng đồng hình lập phương đó.
 
-**Bài 3:** Rút gọn biểu thức chứa biến:
+**Bài 10 (Thực tế):** Thể tích hình cầu được tính theo công thức $V = \frac{4}{3}\pi R^3$. Một quả bóng bãi biển bơm căng có thể tích $V = 113,04\text{ lít}$ ($1\text{ lít} = 1000\text{ cm}^3$). Tính bán kính $R$ (cm) của quả bóng bãi biển (lấy $\pi \approx 3,14$).
 
-a) $\sqrt[3]{8a^3}$
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-b) $\sqrt[3]{-27x^3y^6}$
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-c) Khi $x<0$, hãy rút gọn $\sqrt[3]{x^3}$ và cho nhận xét với $\sqrt{x^2}$.
+**Bài 1:**  
+a) $\sqrt[3]{512} = 8$ (vì $8^3 = 512$).  
+b) $\sqrt[3]{-729} = -9$ (vì $(-9)^3 = -729$).  
+c) $\sqrt[3]{0,064} = 0,4$.  
+d) $\sqrt[3]{-0,125} = -0,5$.  
+e) $\sqrt[3]{27/64} = 3/4$.  
+f) $\sqrt[3]{-27/8} = -3/2$.
 
-**Bài 4:** So sánh sự khác nhau (Vận dụng định lí đưa thừa số vào trong dấu căn bậc ba):
+---
 
-a) $3$ và $\sqrt[3]{26}$
+**Bài 2:**  
+a) $4 = \sqrt[3]{64} < \sqrt[3]{65} \Rightarrow 4 < \sqrt[3]{65}$.  
+b) $-3 = \sqrt[3]{-27} < \sqrt[3]{-26} \Rightarrow -3 < \sqrt[3]{-26}$.  
+c) $3\sqrt[3]{2} = \sqrt[3]{27 \cdot 2} = \sqrt[3]{54}$. $2\sqrt[3]{7} = \sqrt[3]{8 \cdot 7} = \sqrt[3]{56} \Rightarrow 3\sqrt[3]{2} < 2\sqrt[3]{7}$.  
+d) $-2\sqrt[3]{5} = -\sqrt[3]{40}$; $-3\sqrt[3]{2} = -\sqrt[3]{54}$. Vì $40 < 54 \Rightarrow \sqrt[3]{40} < \sqrt[3]{54} \Rightarrow -\sqrt[3]{40} > -\sqrt[3]{54}$.  
+e) $\sqrt[3]{15} \approx 2,466$. $\sqrt{7} \approx 2,645 \Rightarrow \sqrt[3]{15} < \sqrt{7}$.  
+f) $4\sqrt[3]{3} = \sqrt[3]{64 \cdot 3} = \sqrt[3]{192}$. $3\sqrt[3]{7} = \sqrt[3]{27 \cdot 7} = \sqrt[3]{189} \Rightarrow 4\sqrt[3]{3} > 3\sqrt[3]{7}$.
 
-b) $2\sqrt[3]{5}$ và $\sqrt[3]{38}$
+---
 
-c) $-2\sqrt[3]{4}$ và $-\sqrt[3]{35}$
+**Bài 3:**  
+a) $A = 3 - (-4) + 5 = 3 + 4 + 5 = 12$.  
+b) $B = 2\sqrt[3]{2} - 3\sqrt[3]{2} + 2\sqrt[3]{2} = \sqrt[3]{2}$.  
+c) $C = \sqrt[3]{27} - \sqrt[3]{216} = 3 - 6 = -3$.  
+d) $D = 2a - 5a = -3a$.  
+e) $E = -3x^2 y + 4x^2 y = x^2 y$.  
+f) $F = (\sqrt[3]{3})^3 + 1^3 = 3 + 1 = 4$.
 
-**Bài 5 (Thực tế): Bể chứa nước mắm**
-Một xưởng sản xuất thiết kế 2 loại bể chứa mắm: 
-- Bể A: Dạng hình lập phương thể tích $1000 \text{ lít} = 1 \text{ m}^3$.
-- Bể B: Dạng hình lập phương thể tích $8000 \text{ lít} = 8 \text{ m}^3$.
-a) Tìm cạnh của Bể A và Bể B. 
+---
 
-b) Tuy thể tích của bể B gấp 8 lần thể tích bể A, nhưng người kĩ sư dùng gạch xây bể cho rằng: Chi phí vật liệu xây gạch (Diện tích toàn phần 6 mặt xung quanh) không hề tốn gấp 8 lần. Hãy tính Diện tích toàn phần 2 bể và tính xem vật liệu của bể lớn gấp bao nhiêu bể nhỏ?
+**Bài 4:**  
+$A = 3x - (-2x) + 5x = 3x + 2x + 5x = 10x$.
 
-c) Kết luận gì về ứng dụng toán học khi thiết kế các bình chứa trong công nghiệp để tiết kiệm chi phí?
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 5:**  
+Lập phương hai vế: $2x - 1 = 3^3 = 27 \Leftrightarrow 2x = 28 \Leftrightarrow x = 14$.
 
-**Bài 1:**
+---
 
-a) $4 + (-3) = 1$.
+**Bài 6:**  
+Lập phương hai vế của $\sqrt[3]{x+1} + \sqrt[3]{x-1} = \sqrt[3]{2x}$:  
+Sử dụng hằng đẳng thức $(a+b)^3 = a^3 + b^3 + 3ab(a+b)$:  
+$(x+1) + (x-1) + 3\sqrt[3]{(x+1)(x-1)}(\sqrt[3]{x+1} + \sqrt[3]{x-1}) = 2x$.  
+$\Leftrightarrow 2x + 3\sqrt[3]{x^2-1} \cdot \sqrt[3]{2x} = 2x \Leftrightarrow 3\sqrt[3]{2x(x^2-1)} = 0 \Leftrightarrow 2x(x^2-1) = 0$.  
+$\Leftrightarrow x = 0$ hoặc $x = 1$ hoặc $x = -1$. Tập nghiệm $S = \{-1; 0; 1\}$.
 
-b) $2/5 - 0.5 = 0.4 - 0.5 = -0.1$.
+---
 
-c) $(-10) \cdot 0.1 = -1$.
+**Bài 7:**  
+Đặt $u = \sqrt[3]{20 + 14\sqrt{2}}$, $v = \sqrt[3]{20 - 14\sqrt{2}}$.  
+$u^3 + v^3 = 40$.  
+$u \cdot v = \sqrt[3]{(20+14\sqrt{2})(20-14\sqrt{2})} = \sqrt[3]{400 - 392} = \sqrt[3]{8} = 2$.  
+Ta có $B = u + v \Rightarrow B^3 = u^3 + v^3 + 3uv(u+v) = 40 + 3(2)B = 40 + 6B$.  
+$B^3 - 6B - 40 = 0 \Leftrightarrow (B - 4)(B^2 + 4B + 10) = 0 \Rightarrow B = 4$ (vì $B^2 + 4B + 10 > 0$). Vậy $B = 4$.
 
-**Bài 2:**
+---
 
-a) $x = \sqrt[3]{-125} = -5$.
+**Bài 8:**  
+Khẳng định $\sqrt[3]{a} + \sqrt[3]{b} \le \sqrt[3]{a+b}$ là SAI đối với mọi $a, b > 0$.  
+Ví dụ: $a = 1, b = 1 \Rightarrow \sqrt[3]{1} + \sqrt[3]{1} = 2$, trong khi $\sqrt[3]{1+1} = \sqrt[3]{2} \approx 1,26$. Rõ ràng $2 > 1,26$.  
+Bất đẳng thức ĐÚNG là: Với mọi $a, b > 0$ ta luôn có $\sqrt[3]{a+b} < \sqrt[3]{a} + \sqrt[3]{b}$ (hay $(\sqrt[3]{a}+\sqrt[3]{b})^3 = a + b + 3\sqrt[3]{ab}(\sqrt[3]{a}+\sqrt[3]{b}) > a + b$).
 
-b) $5x^3 = 40 \Rightarrow x^3 = 8 \Rightarrow x = 2$.
+---
 
-c) $x+2 = \sqrt[3]{8} = 2 \Rightarrow x = 0$.
+**Bài 9:**  
+Độ dài cạnh tượng đồng hình lập phương: $a = \sqrt[3]{0,512} = 0,8\text{ m} = 80\text{ cm}$.
 
-d) $x^3/2 = 4 \Rightarrow x^3 = 8 \Rightarrow x = 2$.
+---
 
-**Bài 3:**
-
-a) $\sqrt[3]{(2a)^3} = 2a$.
-
-b) $\sqrt[3]{(-3xy^2)^3} = -3xy^2$.
-
-c) Khi $x<0$, $\sqrt[3]{x^3} = x$ (giữ nguyên dấu, không thay đổi). Còn căn bậc hai $\sqrt{x^2} = |x| = -x$ (đảo dấu đi).
-
-**Bài 4:**
-
-a) $3 = \sqrt[3]{27}$. Vì $27 > 26 \Rightarrow 3 > \sqrt[3]{26}$.
-
-b) $2 = \sqrt[3]{8} \Rightarrow 2\sqrt[3]{5} = \sqrt[3]{8 \cdot 5} = \sqrt[3]{40}$. Vì $40 > 38 \Rightarrow 2\sqrt[3]{5} > \sqrt[3]{38}$.
-
-c) $-2\sqrt[3]{4} = -\sqrt[3]{8 \cdot 4} = -\sqrt[3]{32}$. Vì $32 < 35 \Rightarrow -32 > -35 \Rightarrow -\sqrt[3]{32} > -\sqrt[3]{35}$.
-
-**Bài 5:**
-
-a) Cạnh bể A: $a = \sqrt[3]{1} = 1\text{m}$. Cạnh bể B: $b = \sqrt[3]{8} = 2\text{m}$.
-
-b) Diện tích TP bể A = $6 \cdot 1^2 = 6 \text{ m}^2$. Diện tích TP bể B = $6 \cdot 2^2 = 24 \text{ m}^2$. Tỉ lệ: $24 / 6 = 4$. Vậy Tuy thể tích rộng gấp 8, nhưng gạch xây dựng xung quanh chỉ tốn bằng 4 lần mức ban đầu.
-
-c) Xây các bể chứa CÀNG LỚN thì chi phí bao bì, mặt ngoài / trên mỗi lít (đơn vị thể tích) sẽ càng THẤP. Đó là lý do trong công nghiệp có những bồn dầu/gas khổng lồ thay vì chia ra nhiều bồn nhỏ.
+**Bài 10:**  
+Đổi thể tích $V = 113,04\text{ lít} = 113040\text{ cm}^3$.  
+$V = \frac{4}{3}\pi R^3 \Rightarrow 113040 = \frac{4}{3} \times 3,14 \times R^3 = 4,18667 R^3$.  
+$R^3 = \frac{113040 \times 3}{4 \times 3,14} = \frac{339120}{12,56} = 27000$.  
+$R = \sqrt[3]{27000} = 30\text{ cm}$.  
+Bán kính quả bóng bãi biển là 30 cm.
 
 </div>
 </details>

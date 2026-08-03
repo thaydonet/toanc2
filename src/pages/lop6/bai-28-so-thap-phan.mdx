@@ -15,6 +15,7 @@ import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 
 import QuizSession from '../../components/ui/QuizSession';
+import SoThapPhan6Interactive from '../../components/interactive/SoThapPhanInteractive';
 
 export const quizData = [
   {
@@ -114,27 +115,43 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Viết số thập phân 0,75 dưới dạng phân số tối giản:",
+    type: "msq",
+    question: "Những phát biểu nào đúng về số thập phân?",
+    option_a: "Số thập phân gồm phần nguyên và phần thập phân",
+    option_b: "Phần thập phân luôn nhỏ hơn 1",
+    option_c: "Số thập phân âm luôn nhỏ hơn số thập phân dương",
+    option_d: "Số thập phân không bao giờ bằng số nguyên",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì số thập phân có thể bằng số nguyên (ví dụ 5,0 = 5).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những cách viết nào đúng của số 0,75?",
     option_a: "$\\frac{3}{4}$",
     option_b: "$\\frac{75}{100}$",
-    option_c: "$\\frac{75}{10}$",
-    option_d: "$\\frac{7}{10}$",
-    correct_option: "A",
-    explanation: "0,75 = $\\frac{75}{100} = \\frac{3}{4}$ (rút gọn với ƯCLN = 25).",
+    option_c: "$\\frac{7}{10}$",
+    option_d: "$75\\%$",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai vì $\\frac{7}{10} = 0,7 \\neq 0,75$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Viết phân số $\\frac{53}{100}$ dưới dạng số thập phân.",
+    correct_option: "0,53",
+    explanation: "$\\frac{53}{100} = 0,53$ vì mẫu 100 nên có 2 chữ số sau dấu phẩy.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Nhiệt độ nào thấp hơn: -2,3°C hay -5,7°C?",
-    option_a: "-5,7°C",
-    option_b: "-2,3°C",
-    option_c: "Bằng nhau",
-    option_d: "Không xác định",
-    correct_option: "A",
-    explanation: "Vì -5,7 < -2,3 nên -5,7°C thấp hơn.",
-    difficulty_level: "easy",
+    type: "sa",
+    question: "Sắp xếp các số sau theo thứ tự giảm dần: -1,5; 2,3; -3,1; 0,8",
+    correct_option: "2,3 > 0,8 > -1,5 > -3,1",
+    explanation: "Sắp xếp giảm dần: 2,3 > 0,8 > -1,5 > -3,1.",
+    difficulty_level: "medium",
     is_dynamic: false,
   }
 ];
@@ -295,6 +312,8 @@ a) $\frac{7}{10}$ b) $\frac{-23}{10}$ c) $\frac{25}{100} = \frac{1}{4}$ d) $\fra
 
 </div>
 
+<SoThapPhan6Interactive client:load />
+
 </LuyenTap>
 
 <VanDung title="Vận dụng">
@@ -325,47 +344,6 @@ Lan mua vở nhiều tiền hơn: 15 000 - 12 500 = 2 500 đồng
 
 </VanDung>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
-
-**Bài 1:** Viết các phân số thập phân sau dưới dạng số thập phân:
-
-a) $\frac{47}{10}$ b) $\frac{253}{100}$ c) $\frac{-89}{1000}$ d) $\frac{7}{100000}$
-
-**Bài 2:** Tìm số đối của:
-
-a) 12,5 b) -0,34 c) 100,01 d) -25,7
-
-**Bài 3:** So sánh:
-
-a) 7,25 và 7,3 b) -4,56 và -4,6 c) 0,99 và 1
-
-**Bài 4:** Sắp xếp các số sau theo thứ tự giảm dần:
-
-$3,5$; $-1,2$; $0,8$; $-3,1$; $2,1$
-
-**Bài 5:** Viết các số thập phân sau dưới dạng phân số tối giản:
-
-a) 0,8 b) 0,75 c) 2,5 d) 1,25
-
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Bài 1:** a) 4,7; b) 2,53; c) -0,089; d) 0,00007
-
-**Bài 2:** a) -12,5; b) 0,34; c) -100,01; d) 25,7
-
-**Bài 3:** a) 7,25 < 7,3; b) -4,56 > -4,6; c) 0,99 < 1
-
-**Bài 4:** $3,5 > 2,1 > 0,8 > -1,2 > -3,1$
-
-**Bài 5:** a) $\frac{4}{5}$; b) $\frac{3}{4}$; c) $\frac{5}{2}$; d) $\frac{5}{4}$
-
-</div>
-</details>
-
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
@@ -393,9 +371,7 @@ a) 0,8 b) 0,75 c) 2,5 d) 1,25
 
 </GhiNho>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+📝 Bài tập tự luận
 
 **Bài 1:** Viết các phân số thập phân sau dưới dạng số thập phân:
 
@@ -417,8 +393,18 @@ $3,5$; $-1,2$; $0,8$; $-3,1$; $2,1$
 
 a) 0,8 b) 0,75 c) 2,5 d) 1,25
 
+**Bài 6:** So sánh 5,17 và 5,170. Hai số này có bằng nhau không? Vì sao?
+
+**Bài 7:** Tìm số thập phân có phần nguyên là 3, phần thập phân gồm hai chữ số 4 và 7.
+
+**Bài 8:** Sắp xếp các số sau theo thứ tự tăng dần: -2,56; 2,5; -2,5; 2,56
+
+**Bài 9:** Làm tròn số 12,345 đến phần mười và phần trăm. Kết quả có khác nhau không?
+
+**Bài 10:** Viết số thập phân 3,07 dưới dạng phân số. Phần trăm tương ứng là bao nhiêu?
+
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
 **Bài 1:** a) 4,7; b) 2,53; c) -0,089; d) 0,00007
@@ -431,8 +417,18 @@ a) 0,8 b) 0,75 c) 2,5 d) 1,25
 
 **Bài 5:** a) $\frac{4}{5}$; b) $\frac{3}{4}$; c) $\frac{5}{2}$; d) $\frac{5}{4}$
 
+**Bài 6:** 5,17 = 5,170 vì thêm số 0 cuối phần thập phân không thay đổi giá trị.
+
+**Bài 7:** Số thập phân là 3,47 hoặc 3,74 (tùy thứ tự chữ số 4 và 7).
+
+**Bài 8:** $-2,56 < -2,5 < 2,5 < 2,56$
+
+**Bài 9:** Làm tròn đến phần mười: 12,3. Làm tròn đến phần trăm: 12,35. Kết quả khác nhau.
+
+**Bài 10:** $3,07 = \frac{307}{100} = 307\%$
+
 </div>
 </details>
 
-<QuizSession client:load questions={quizData} />
+<QuizSession client:load questions={quizData} groupedShuffle />
 

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Bài 24: Bảng tần số, tần số tương đối ghép nhóm và biểu đồ"
-description: "Mẫu số liệu ghép nhóm, bảng tần số ghép nhóm và biểu đồ histogram - Toán 9 Kết nối tri thức"
+title: "Bài 24: Bảng tần số, tần số tương đối ghép nhóm và biểu đồ ghép nhóm"
+description: "Mẫu số liệu ghép nhóm, giá trị đại diện nhóm, lập bảng tần số ghép nhóm và vẽ biểu đồ cột ghép nhóm kề nhau (Histogram) - Toán 9 KNTT Chương 7"
 grade: "Lớp 9"
 chapter: "Chương VII: Tần số và tần số tương đối"
 currentSlug: "lop9/bai-24-ghep-nhom"
@@ -18,89 +18,113 @@ import StatisticsCalculator from '../../components/interactive/StatisticsCalcula
 export const quizData = [
   {
     type: "mcq",
-    question: "Mục đích chính của việc lập bảng tần số ghép nhóm là gì?",
-    option_a: "Để loại bỏ các giá trị dị biệt trong dải băng số liệu.",
-    option_b: "Nhằm giúp dễ bề phân tích và thu gọn tổng quan khi mẫu số liệu có quá nhiều giá trị khác nhau hoặc phân bố trên một khoảng giá trị rộng lớn.",
-    option_c: "Đảm bảo tần số của các nhóm luôn luôn bằng 1.",
-    option_d: "Dễ dàng tính toán giá trị trung bình chính xác tuyệt đối.",
+    question: "Mẫu số liệu ghép nhóm là mẫu số liệu được cho dưới dạng:",
+    option_a: "Các số riêng lẻ tách biệt",
+    option_b: "Các nhóm số liệu là các nửa khoảng $[a; b)$ kề nhau",
+    option_c: "Một dãy số thực tùy ý",
+    option_d: "Các hình vẽ biểu tượng",
     correct_option: "B",
-    explanation: "Khi phổ số liệu phong phú (chiều cao, cân nặng biến thiên liên tục qua mọi số thập phân), ta không lập bảng thông thường vì rất dài. Ghép nhóm giúp tóm tắt dữ liệu quy nạp trong các khoảng cho trước để tối ưu góc nhìn của người quan sát.",
+    explanation: "Mẫu số liệu ghép nhóm được chia thành các nhóm (các nửa khoảng $[a; b)$ kề nhau) để thu gọn và quản lý các mẫu số liệu liên tục hoặc mẫu có quy mô lớn.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Một nhóm được kí hiệu trên bảng số liệu là $[40; 50)$. Giá trị $x = 50$ có thuộc nhóm này không?",
-    option_a: "Có, vì đó là giới hạn của nhóm.",
-    option_b: "Không, vì dấu ')' chỉ nửa khoảng, không bao gồm giá trị mút bên phải.",
-    option_c: "Có thể phụ thuộc vào người đo lường số lượng.",
-    option_d: "Phải xem xét nhóm tiếp theo $[50; 60)$.",
-    correct_option: "B",
-    explanation: "Quy ước tiêu chuẩn đối với nửa khoảng $[a; b)$ là lấy phần tử $a \le x < b$. Phân giá trị biên phải sẽ không được tính (không gồm 50) vào khoảng này, mà thuộc về khoảng ngay liền kề $[50; 60)$.",
+    question: "Giá trị đại diện $x_i$ của nhóm $[a; b)$ được tính bằng công thức nào?",
+    option_a: "$x_i = a + b$",
+    option_b: "$x_i = b - a$",
+    option_c: "$x_i = \\frac{a + b}{2}$",
+    option_d: "$x_i = a \\cdot b$",
+    correct_option: "C",
+    explanation: "Giá trị đại diện của nhóm $[a; b)$ là điểm chính giữa của khoảng đó: $x_i = \\frac{a + b}{2}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Độ dài của một nhóm dữ liệu có kích thước dạng nửa khoảng $[a; b)$ được tính bằng cách nào?",
-    option_a: "$a + b$",
-    option_b: "$b - a$",
-    option_c: "$(a + b) / 2$",
-    option_d: "$a \\cdot b$",
+    question: "Giá trị đại diện của nhóm $[160; 165)$ là:",
+    option_a: "160",
+    option_b: "162,5",
+    option_c: "165",
+    option_d: "162",
     correct_option: "B",
-    explanation: "Độ dài (phạm vi, độ rộng) của nhóm, đôi khi gọi là $L$, chính bằng hiệu số mút trên và mút dưới là $b - a$.",
+    explanation: "$x_i = \\frac{160 + 165}{2} = \\frac{325}{2} = 162,5$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biểu đồ cột biểu diễn tần số ghép nhóm (Histogram) có điểm gì đặc trưng so với biểu đồ cột thông thường?",
-    option_a: "Các cột rời rạc nhau bằng một khoảng trắng nhất định.",
-    option_b: "Chiều rộng bề ngang của tất cả các cột bằng độ không độ dài nhóm, các cột đứng liền kề sát nách, không có khe hở, thể hiện tính nối tiếp của dòng giá trị miền liên tục.",
-    option_c: "Mọi biểu đồ cột histogram phải có chiều cao giới hạn như nhau.",
-    option_d: "Mẫu biểu diễn tần số trên trục hoành thay vì trục tung.",
-    correct_option: "B",
-    explanation: "Đặc điểm nhận diện lớn nhất của một Histogram thống kê là các cột kề sát nhau, che khuất dải phổ giá trị kéo liền một dải để không ngắt quãng (biểu diễn nửa khoảng $[a; b)$ kết hợp ngay lập tức với $[b; c)$).",
+    question: "Biểu đồ cột ghép nhóm kề nhau (Histogram) biểu diễn mẫu số liệu ghép nhóm có đặc điểm gì?",
+    option_a: "Các cột hình chữ nhật đứng sát liền kề nhau",
+    option_b: "Các cột cách xa nhau một khoảng rộng",
+    option_c: "Là các đường tròn có bán kính khác nhau",
+    option_d: "Các điểm rời rạc không nối với nhau",
+    correct_option: "A",
+    explanation: "Trong biểu đồ tần số ghép nhóm (Histogram), các cột tương ứng với các nhóm kề nhau $[a_i; b_i)$ đứng sát liền kề nhau trên trục hoành.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số trung bình cộng $\\bar{X}$ của mẫu số liệu ghép nhóm được tính theo công thức xấp xỉ nào?",
+    option_a: "$\\bar{X} \\approx \\frac{x_1 n_1 + x_2 n_2 + ... + x_k n_k}{N}$ với $x_i$ là giá trị đại diện của nhóm $i$",
+    option_b: "$\\bar{X} = \\frac{n_1 + n_2 + ... + n_k}{k}$",
+    option_c: "$\\bar{X} = \\frac{x_1 + x_2 + ... + x_k}{N}$",
+    option_d: "$\\bar{X} = \\frac{\\sum (b_i - a_i)}{k}$",
+    correct_option: "A",
+    explanation: "Số trung bình cộng ghép nhóm bằng tổng các tích của giá trị đại diện $x_i$ với tần số nhóm $n_i$, chia cho tổng kích thước mẫu $N$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Đường gấp khúc tần số trong biểu đồ tổ chức nhận dạng được vẽ bằng cách nối:",
-    option_a: "Khu vực đỉnh thấp nhất của các cột biểu đồ ghép nhóm đan xen với nhau.",
-    option_b: "Tâm điểm đáy của các cột trong trục.",
-    option_c: "Trung điểm ở mép trên (chỉnh đỉnh trên cùng) của các hình chữ nhật liền kề.",
-    option_d: "Điểm có giá trị lớn nhất trong số liệu.",
-    correct_option: "C",
-    explanation: "Để tạo đường gấp khúc thể hiện đà tăng giảm tần số, ta sử dụng điểm trung tâm tại nóc các cột chữ nhật để nối điểm đầu đến cuối lại bằng đường thẳng liền.",
+    question: "Cho mẫu số liệu ghép nhóm về chiều cao học sinh (cm): $[150; 155)$ có 8 HS; $[155; 160)$ có 15 HS; $[160; 165)$ có 12 HS; $[165; 170)$ me 5 HS. Nhóm chứa mốt là nhóm nào?",
+    option_a: "$[150; 155)$",
+    option_b: "$[155; 160)$",
+    option_c: "$[160; 165)$",
+    option_d: "$[165; 170)$",
+    correct_option: "B",
+    explanation: "Nhóm $[155; 160)$ có tần số lớn nhất $n = 15$ nên là nhóm chứa mốt của mẫu số liệu ghép nhóm.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Yêu cầu nào sau đây đúng khi phân nhóm mẫu số liệu về mặt chuẩn mực?",
-    option_a: "Các nhóm phải bao phủ đầy đủ toàn bộ giá trị có trong số liệu từ nhỏ nhất đến lớn nhất.",
-    option_b: "Mọi nhóm trong bảng nhất định phải có cùng độ dài như bằng nhau.",
-    option_c: "Các nhóm được biểu diễn không thể chứa phần giao thoa chung (các nửa khoảng rời rạc).",
-    option_d: "Số lượng nhóm nên nằm trong dải 5–15 cho hợp lý, tránh phân tích quá ít hoặc quá nhiều nhóm.",
-    correct_option: "A,C,D",
-    explanation: "Quy tắc cốt yếu: Bao trùm đủ phổ dải dữ liệu ($[x_{min}, x_{max}]$), không chồng lấn lọt khe số liệu chung đụng hai nhóm, và số lượng nhóm chia vừa phải mới tối ưu quá trình theo dõi. Chiều dài nhóm hoàn toàn có thể chênh lệch không đồng đều dựa trên mục đích phân tích (dù khuyến cáo nên để bằng nhau).",
+    question: "Những khẳng định nào sau đây ĐÚNG về mẫu số liệu ghép nhóm?",
+    option_a: "Áp dụng hiệu quả khi dữ liệu là số đo liên tục (chiều cao, khối lượng, thời gian, tốc độ,...)",
+    option_b: "Độ rộng của mỗi nhóm thường bằng nhau: $h = b_i - a_i$",
+    option_c: "Khi tính số trung bình cộng ghép nhóm, ta thay thế tất cả dữ liệu trong nhóm bằng giá trị đại diện $x_i$",
+    option_d: "Tần số tương đối nhóm $f_i = \\frac{n_i}{N} \\cdot 100\\%$",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 khẳng định đều mô tả chính xác các nguyên lý cơ bản của thống kê ghép nhóm.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
+    type: "msq",
+    question: "Cho bảng tần số ghép nhóm có 3 nhóm: $[0; 10)$ tần số 4; $[10; 20)$ tần số 10; $[20; 30)$ tần số 6. Khẳng định nào ĐÚNG?",
+    option_a: "Kích thước mẫu $N = 20$",
+    option_b: "Giá trị đại diện các nhóm lần lượt là $5; 15; 25$",
+    option_c: "Số trung bình cộng ghép nhóm $\\bar{X} = 16$",
+    option_d: "Tần số tương đối nhóm $[10; 20)$ là $50\\%$",
+    correct_option: "A,B,C,D",
+    explanation: "$N = 4+10+6 = 20$. $x_i = 5, 15, 25$. $\\bar{X} = \\frac{5(4) + 15(10) + 25(6)}{20} = \\frac{20 + 150 + 150}{20} = \\frac{320}{20} = 16$. $f_2 = \\frac{10}{20} = 50\\%$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
     type: "sa",
-    question: "Một khảo sát chia chiều cao nam thanh niên vào các nhóm từ $[150; 160), [160; 170), [170; 180)$. Một thanh niên được cân đo ở mức chuẩn xác đúng $170\text{ cm}$. Anh sinh viên này sẽ được xếp vào nhóm chiều cao nào (nếu đại diện là số chẵn trục đầu mốc 170)?",
-    correct_option: "170",
-    explanation: "Anh A thu nhận $170\text{cm}$ sẽ không nằm ở khoảng $[160; 170)$ vì nó nhận nửa mút biên ($< 170$). Rơi thẳng vào nửa khoảng $[170; 180)$, tương ứng mốc tính từ số 170.",
+    question: "Giá trị đại diện x_i của nhóm [40; 60) bằng bao nhiêu?",
+    correct_option: "50",
+    explanation: "$x_i = \\frac{40 + 60}{2} = 50$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Dữ kiện tần số trong nhóm thời lượng là: $[0; 2)$ với $n_1=4$, $[2; 4)$ với $n_2=12$, $[4; 6)$ với $n_3=8$, $[6; 8]$ với $n_4=6$. Tính kích cỡ tổng quát $N$ của quần thể khảo sát (Số quan sát)?",
-    correct_option: "30",
-    explanation: "Tiến hành lấy tổng tần số của mọi nhóm được liệt kê: $N = 4 + 12 + 8 + 6 = 30$.",
+    question: "Cho mẫu số liệu ghép nhóm N = 100 người. Nhóm [20; 30) có tần số tương đối f = 35%. Tần số n của nhóm đó bằng bao nhiêu người?",
+    correct_option: "35",
+    explanation: "$n = N \\cdot f = 100 \\times 35\\% = 35$ người.",
     difficulty_level: "easy",
     is_dynamic: false,
   }
@@ -108,147 +132,294 @@ export const quizData = [
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">📏 Khi dải dữ liệu vượt ngoài tầm kiểm soát</h3>
+<h3 id="mo-dau">📏 Dữ Liệu Liên Tục & Tại Sao Cần Ghép Nhóm?</h3>
 
-Trong bài nghiên cứu về "Chiều cao của thanh thiếu niên" cho hồ sơ tuyển sinh vận động viên cấp tỉnh, liên đoàn điền kinh thu thập chiều cao (đơn vị: cm) của 100 em học sinh. Phổ phân phối của mẫu số liệu sẽ được chia nhỏ không ngừng tuỳ thuộc vào các giá trị: $155.1$, $167.3$, $158.4$, v...v.
+Khi đo chiều cao của 100 học sinh, các số đo thường lẻ đến milimét: $155,4\text{ cm}; 162,1\text{ cm}; 158,7\text{ cm},...$ Nếu lập bảng tần số thông thường, hầu như mỗi giá trị chỉ xuất hiện đúng 1 lần ($n_i = 1$), bảng sẽ kéo dài hàng trăm dòng và hoàn toàn mất tác dụng tổng hợp!
 
-Vì đây là dữ liệu hình thái liên tục nên có hàng trăm chỉ số phân độ chiều cao, rất hiếm các số liệu trong phổ có sự trùng lặp hoàn toàn 100%. Nếu chúng ta sử dụng **Bảng tần số chuẩn** từ bài 22, ta sẽ phải lập một dải liệt kê hàng ngang dài đến hàng trăm cột đại diện, điều này khiến cho số lượng đếm ở tần số từng chỉ số luôn rơi vào vùng vi phân nhỏ (1 hoặc 2 giá trị) và làm cho công cụ bảng thất bại thảm hại trong phân tích xu thế.
- 
-Để tóm lược mẫu số liệu liên tục hiệu quả, giới toán học thống kê chia phổ quan sát thành các khung mốc như: "Nhóm những người cao từ $150–160\text{ cm}$", "Nhóm cao $160–170\text{ cm}$"... gọi là quá trình **Ghép nhóm dữ liệu**. Cụ thể chúng ta nghiên cứu các đặc tính trong Bài 24 dưới đây!
+Để giải quyết các **dữ liệu liên tục** hoặc dữ liệu có quá nhiều giá trị khác nhau, người ta gom các số liệu thành các **Khoảng / Nhóm** kề nhau $[a; b)$ — hình thành **Bảng tần số ghép nhóm** và **Biểu đồ cột ghép nhóm kề nhau (Histogram)**!
 
-</KhoiDong>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="180" viewBox="0 0 420 180" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Histogram Layout */}
+  <line x1="40" y1="150" x2="380" y2="150" stroke="#64748b" stroke-width="2"/>
+  <line x1="40" y1="150" x2="40" y2="20" stroke="#64748b" stroke-width="2"/>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+  {/* Adjacent Bars (Histogram) */}
+  <rect x="50" y="100" width="60" height="50" fill="#60a5fa" stroke="#1d4ed8" stroke-width="1.5"/>
+  <rect x="110" y="40" width="60" height="110" fill="#4ade80" stroke="#15803d" stroke-width="1.5"/>
+  <rect x="170" y="60" width="60" height="90" fill="#facc15" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="230" y="110" width="60" height="40" fill="#f87171" stroke="#b91c1c" stroke-width="1.5"/>
 
-<h3 id="tan-so-ghep-nhom" style="margin-top:2rem;">📖 1. Bảng tần số, tần số tương đối ghép nhóm</h3>
+  {/* X-axis boundaries */}
+  <text x="50" y="165" font-size="10" font-weight="bold" fill="#475569" text-anchor="middle">150</text>
+  <text x="110" y="165" font-size="10" font-weight="bold" fill="#475569" text-anchor="middle">155</text>
+  <text x="170" y="165" font-size="10" font-weight="bold" fill="#475569" text-anchor="middle">160</text>
+  <text x="230" y="165" font-size="10" font-weight="bold" fill="#475569" text-anchor="middle">165</text>
+  <text x="290" y="165" font-size="10" font-weight="bold" fill="#475569" text-anchor="middle">170</text>
 
-<div class="box-dinh-nghia">
-
-Khi mẫu số liệu lưu trữ trong kho tham khảo là liên tục (như đo đạc chiều dài, cân nặng, hoặc độ lớn thời gian) và có nhiều nhóm phân bố rất đa dạng trải dài, ta thường phân mẫu thành các nhóm số liệu dưới dạng nửa khoảng $[a; b)$ để phục vụ cho lập bảng phân phối.
-- Giá trị biên bên phải (mút $b$) không được tính cho nhóm hiện tại và được gộp vào nhóm liền kề sau đó. Ngoại trừ giới hạn nhóm cuối cùng, có thể sử dụng đoạn $[a; b]$ để giữ mút giới hạn.
-- Chiều dài của một khoảng $[a; b)$ được đánh giá qua sự chênh lệch $L = b - a$.
-
-</div>
-
-Khi đó ta nói tần số $n$ của một nhóm là số lượng các giá trị được quy tụ trong khoảng chênh lệch số liệu thực tế thuộc nhóm đó. Tương tự, ta xác định đại lượng tần số tương đối ghép nhóm là tỉ số phần trăm giữa tần số $n$ và cỡ số liệu khảo khát $N$ ($f_i = \frac{n_i}{N} \cdot 100\%$). 
-
-**Ví dụ Lập biểu:** Bảng tần số học kỳ thể hiện giờ tự tập gym (phút) của sinh viên:
-
-| Khoảng giờ tự học | $[0; 30)$ | $[30; 60)$ | $[60; 90)$ | $[90; 120]$ | Tổng |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| Tần số ($n$) | 5 | 18 | 12 | 5 | $N=40$ |
-| Tần số t/đối ($f\%$) | 12.5% | 45.0% | 30.0% | 12.5% | 100% |
-
-<h3 id="bieu-do-ghep-nhom" style="margin-top:2rem;">📖 2. Biểu đồ hình cột Tổ chức (Histogram)</h3>
-
-Nhằm minh họa trực quan sự lên xuống của tần số trong mẫu dữ liệu nhóm này, ta vẽ bảng khảo sát biểu diễn thông qua một khối liên cột gọi là Biểu đồ tổ chức (Histogram).
-
-- **Trục hoành:** Các mốc số liệu tạo lập nửa khoảng ghép nhóm.
-- **Trục tung:** Đại diện cho số lượng phần tử lọt nhóm hoặc tần số đo đếm (Tần số $n$ hoặc Tần số $f\%$).
-- **Đặc tính cơ bản:** Vì biến thiên thông số trên đoạn hoành là dải thực liên tục, nên mép của mỗi hộp chữ nhật phải dựa sát thẳng vào hộp bên cạnh (Khoảng $[0; 30)$ liền khối với $[30; 60)$).
-
-**Mở rộng về Đường Gấp khúc tần số (Frequency Polygon)**
-Thay đổi dạng thể hiện thành nối ghép các điểm tọa độ nằm lộn xộn, người ta bổ sung đường gấp khúc vào biểu đồ để kiểm chứng mô hình biểu thức biến thiên dữ kiện bằng cách tìm phần giữa của mái trên mỗi thỏi chữ nhật đồ thị rồi xâu liên tiếp bằng đường gấp khúc dài.
-
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="450" height="250" viewBox="0 0 450 250">
-  {/* Axes */}
-  <path d="M 50,20 L 50,200 L 420,200" fill="none" stroke="#334155" strokeWidth="2" markerEnd="url(#arrowhead)"/>
-  
-  {/* Y-axis Ticks & Labels */}
-  {['0', '5', '10', '15', '20'].map((val, index) => (
-    <g key={index}>
-      <line x1="45" y1={200 - index*40} x2="55" y2={200 - index*40} stroke="#475569" strokeWidth="2"/>
-      <text x="35" y={200 - index*40 + 5} textAnchor="end" fontSize="12" fill="#475569">{val}</text>
-    </g>
-  ))}
-  
-  {/* X-axis Ticks & Labels */}
-  {['0', '30', '60', '90', '120'].map((val, index) => (
-    <g key={index}>
-      <line x1={80 + index*80} y1="200" x2={80 + index*80} y2="205" stroke="#475569" strokeWidth="2"/>
-      <text x={80 + index*80} y="220" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#334155">{val}</text>
-    </g>
-  ))}
-  
-  {/* Histogram Bars (kề sát nhau) */}
-  {/* $[0;30) -> freq 5 -> height 40 */}
-  <rect x="80" y={200 - 40} width="80" height="40" fill="#3b82f6" opacity="0.6" stroke="#1e40af" strokeWidth="1"/> 
-  {/* $[30;60) -> freq 18 -> height 144 */}
-  <rect x="160" y={200 - 144} width="80" height="144" fill="#3b82f6" opacity="0.6" stroke="#1e40af" strokeWidth="1"/> 
-  {/* $[60;90) -> freq 12 -> height 96 */}
-  <rect x="240" y={200 - 96} width="80" height="96" fill="#3b82f6" opacity="0.6" stroke="#1e40af" strokeWidth="1"/> 
-  {/* $[90;120] -> freq 5 -> height 40 */}
-  <rect x="320" y={200 - 40} width="80" height="40" fill="#3b82f6" opacity="0.6" stroke="#1e40af" strokeWidth="1"/> 
-  
-  {/* Frequency Polygon (Đường gấp khúc) */}
-  {/* Centroids: 120, 200, 280, 360 */}
-  <path d="M 120,160 L 200,56 L 280,104 L 360,160" fill="none" stroke="#ef4444" strokeWidth="3" strokeLinejoin="round"/>
-  
-  <circle cx="120" cy="160" r="4" fill="#ef4444" />
-  <circle cx="200" cy="56" r="4" fill="#ef4444" />
-  <circle cx="280" cy="104" r="4" fill="#ef4444" />
-  <circle cx="360" cy="160" r="4" fill="#ef4444" />
-  
-  {/* Labels */}
-  <text x="40" y="15" fontWeight="bold" fill="#475569">Tần số</text>
-  <text x="400" y="190" fontWeight="bold" fill="#475569">Phút</text>
+  {/* Group Representative values */}
+  <text x="80" y="92" font-size="10" font-weight="bold" fill="#1d4ed8" text-anchor="middle">10</text>
+  <text x="140" y="32" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">25</text>
+  <text x="200" y="52" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">18</text>
+  <text x="260" y="102" font-size="10" font-weight="bold" fill="#b91c1c" text-anchor="middle">7</text>
 </svg>
 </div>
 
-<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Hệ thống xử lí mốc số liệu thống kê máy tính</h3>
+</KhoiDong>
 
-<StatisticsCalculator client:load />
+<KhamPha title="Khám phá">
+
+<h3 id="bang-tan-so-ghep-nhom">📖 1. Bảng Tần số và Tần số tương đối Ghép nhóm</h3>
+
+<div class="box-dinh-nghia">
+
+**1. Cấu trúc Mẫu số liệu ghép nhóm:**
+- Mẫu số liệu được phân chia thành $k$ nhóm dạng nửa khoảng $[a_1; a_2), [a_2; a_3), ..., [a_k; a_{k+1})$.
+- Mỗi giá trị $x$ thuộc nhóm $[a_i; a_{i+1}) \Leftrightarrow a_i \le x < a_{i+1}$ (nhóm cuối cùng có thể bao gồm cả mút phải $[a_k; a_{k+1}]$).
+
+**2. Giá trị đại diện của nhóm ($x_i$):**
+- Mỗi nhóm $[a_i; a_{i+1})$ được đại diện bởi điểm chính giữa của nhóm:
+  $$x_i = \frac{a_i + a_{i+1}}{2}$$
+
+**3. Tần số tương đối của nhóm ($f_i$):**
+$$f_i = \frac{n_i}{N} \cdot 100\%$$
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Bảng ghép nhóm:**
+
+- **Ví dụ 1:** Kết quả đo khối lượng (kg) của 40 học sinh được ghép thành 4 nhóm. Tìm giá trị đại diện $x_i$ của mỗi nhóm:  
+  $[40; 45), [45; 50), [50; 55), [55; 60)$.
+  - *Giải:* 
+    - Nhóm 1 $[40; 45) \Rightarrow x_1 = \frac{40+45}{2} = 42,5\text{ kg}$.
+    - Nhóm 2 $[45; 50) \Rightarrow x_2 = \frac{45+50}{2} = 47,5\text{ kg}$.
+    - Nhóm 3 $[50; 55) \Rightarrow x_3 = \frac{50+55}{2} = 52,5\text{ kg}$.
+    - Nhóm 4 $[55; 60) \Rightarrow x_4 = \frac{55+60}{2} = 57,5\text{ kg}$.
+
+- **Ví dụ 2:** Cho bảng tần số ghép nhóm có 40 học sinh trên:
+
+| Nhóm khối lượng (kg) | $[40; 45)$ | $[45; 50)$ | $[50; 55)$ | $[55; 60)$ | Tổng |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| Tần số ($n_i$) | 6 | 16 | 12 | 6 | $N = 40$ |
+
+    Tính tần số tương đối $f_i$ của từng nhóm.
+  - *Giải:* 
+    - $f_1 = \frac{6}{40} \cdot 100\% = 15\%$.
+    - $f_2 = \frac{16}{40} \cdot 100\% = 40\%$.
+    - $f_3 = \frac{12}{40} \cdot 100\% = 30\%$.
+    - $f_4 = \frac{6}{40} \cdot 100\% = 15\%$.
+
+- **Ví dụ 3:** Tính số trung bình cộng khối lượng $\bar{X}$ của 40 học sinh ở Ví dụ 2.
+  - *Giải:* Thay thế các giá trị trong mỗi nhóm bằng giá trị đại diện $x_i$:
+    $$\bar{X} \approx \frac{42,5(6) + 47,5(16) + 52,5(12) + 57,5(6)}{40} = \frac{255 + 760 + 630 + 345}{40} = \frac{1990}{40} = 49,75\text{ kg}$$
+
+</div>
+
+<h3 id="bieu-do-histogram" style="margin-top:2rem;">📖 2. Biểu đồ Cột ghép nhóm kề nhau (Histogram)</h3>
+
+<div class="box-dinh-nghia">
+
+**Biểu đồ tần số ghép nhóm kề nhau (Histogram):**
+- Trục hoành $Ox$: Ghi các mút khoảng $a_1, a_2, ..., a_{k+1}$ của các nhóm.
+- Trục tung $Oy$: Ghi tần số $n$ (hoặc tần số tương đối $\%$).
+- Với mỗi nhóm $[a_i; a_{i+1})$, ta dựng một hình chữ nhật có đáy là đoạn $[a_i; a_{i+1}]$ trên trục hoành và chiều cao bằng tần số $n_i$ (hoặc $f_i$).
+- **Đặc điểm:** Các cột hình chữ nhật **đứng sát liền kề nhau**, không có khoảng trống ngăn cách giữa các nhóm kề nhau.
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Biểu đồ Histogram:**
+
+- **Ví dụ 1:** Quan sát biểu đồ cột kề nhau biểu diễn tốc độ (km/h) của 100 ô tô trên đường cao tốc. Nhóm tốc độ nào có số xe chạy nhiều nhất?
+  - *Giải:* Tìm cột cao nhất trên biểu đồ Histogram. Nếu cột cao nhất nằm trên khoảng $[80; 90)$ với chiều cao $n = 45$, vậy nhóm tốc độ $[80; 90)\text{ km/h}$ có số xe chạy nhiều nhất.
+
+- **Ví dụ 2:** Từ biểu đồ trên, cho biết có bao nhiêu xe ô tô vi phạm tốc độ vượt quá $90\text{ km/h}$?
+  - *Giải:* Cộng tần số các cột ứng với các khoảng từ $90\text{ km/h}$ trở lên: $[90; 100)$ và $[100; 110)$.  
+    $N_{vi\_phạm} = n_{[90;100)} + n_{[100;110)}$.
+
+- **Ví dụ 3:** Phân biệt sự khác nhau giữa Biểu đồ cột thông thường (Bài 22) và Biểu đồ cột ghép nhóm kề nhau (Histogram).
+  - *Giải:* 
+    - Biểu đồ cột thông thường: Biểu diễn các giá trị rời rạc, giữa các cột có khoảng cách trống.
+    - Biểu đồ Histogram: Biểu diễn các nhóm số liệu liên tục kề nhau $[a_i; a_{i+1})$, các cột **đứng sát dính liền nhau**.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Ghép nhóm số liệu thô và Lập Bảng tần số ghép nhóm**
+- **Phương pháp:** Xác định $min, max$, chia dải giá trị thành $k$ nhóm có độ rộng $h = \frac{max - min}{k}$ bằng nhau. Đếm số lượng thuộc từng khoảng $[a_i; a_{i+1})$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Ghép dãy số liệu 20 thời gian tự học (phút): $45, 52, 60, 48, 65, 70, 55, 58, 62, 75, 50, 68, 54, 63, 59, 72, 49, 56, 61, 67$ thành 3 nhóm: $[40; 55), [55; 70), [70; 85)$.
+  - *Lời giải:* 
+    - Nhóm $[40; 55)$: có 6 giá trị ($45, 52, 48, 50, 54, 49$) $\Rightarrow n_1 = 6$.
+    - Nhóm $[55; 70)$: có 11 giá trị ($60, 65, 55, 58, 62, 68, 63, 59, 61, 67, 56$) $\Rightarrow n_2 = 11$.
+    - Nhóm $[70; 85)$: có 3 giá trị ($70, 75, 72$) $\Rightarrow n_3 = 3$.  
+    Bảng tần số ghép nhóm:
+
+| Khoảng thời gian (phút) | $[40; 55)$ | $[55; 70)$ | $[70; 85)$ | Tổng |
+| :---: | :---: | :---: | :---: | :---: |
+| Tần số ($n_i$) | 6 | 11 | 3 | $N = 20$ |
+
+- **Ví dụ 2:** Tính tần số tương đối $(\%)$ của 3 nhóm ở Ví dụ 1.
+  - *Lời giải:* $f_1 = \frac{6}{20} \cdot 100\% = 30\%$; $f_2 = \frac{11}{20} \cdot 100\% = 55\%$; $f_3 = \frac{3}{20} \cdot 100\% = 15\%$.
+
+- **Ví dụ 3:** Xác định nhóm chứa mốt trong Ví dụ 1.
+  - *Lời giải:* Nhóm $[55; 70)$ có tần số lớn nhất $n = 11 \Rightarrow$ nhóm chứa mốt là $[55; 70)$.
+
+</div>
+
+#### **Dạng 2: Tính Số Trung bình cộng ghép nhóm $\bar{X}$**
+- **Phương pháp:** Tính giá trị đại diện $x_i = \frac{a_i + a_{i+1}}{2}$, áp dụng công thức $\bar{X} \approx \frac{\sum x_i n_i}{N}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tính số trung bình cộng thời gian tự học $\bar{X}$ ở Ví dụ 1 trên.
+  - *Lời giải:* Giá trị đại diện các nhóm:  
+    $x_1 = \frac{40+55}{2} = 47,5$; $x_2 = \frac{55+70}{2} = 62,5$; $x_3 = \frac{70+85}{2} = 77,5$.  
+    $\bar{X} \approx \frac{47,5(6) + 62,5(11) + 77,5(3)}{20} = \frac{285 + 687,5 + 232,5}{20} = \frac{1205}{20} = 60,25$ phút.
+
+- **Ví dụ 2:** Cho bảng tần số ghép nhóm nhiệt độ ngày ($^\circ\text{C}$): $[20; 25)$ có 5 ngày; $[25; 30)$ có 15 ngày; $[30; 35)$ có 10 ngày. Tính nhiệt độ trung bình.
+  - *Lời giải:* $N = 30$ ngày.  
+    Giá trị đại diện: $x_1 = 22,5; x_2 = 27,5; x_3 = 32,5$.  
+    $\bar{X} = \frac{22,5(5) + 27,5(15) + 32,5(10)}{30} = \frac{112,5 + 412,5 + 325}{30} = \frac{850}{30} \approx 28,33^\circ\text{C}$.
+
+- **Ví dụ 3:** Tính nhiệt độ trung bình nếu dùng đơn vị $f_i\%$: $\bar{X} = \sum x_i f_i\%$. Thử lại với Ví dụ 2.
+  - *Lời giải:* $f_1 = 16,67\%, f_2 = 50\%, f_3 = 33,33\%$.  
+    $\bar{X} = 22,5(0,1667) + 27,5(0,50) + 32,5(0,3333) = 3,75 + 13,75 + 10,83 = 28,33^\circ\text{C}$.
+
+</div>
+
+#### **Dạng 3: Xác định Nhóm chứa Mốt $M_0$ và Nhóm chứa Trung vị**
+- **Phương pháp:** Nhóm chứa mốt là nhóm có tần số $n_i$ lớn nhất. Nhóm chứa trung vị là nhóm đầu tiên có tần số tích lũy $\ge \frac{N}{2}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho bảng ghép nhóm tuổi thọ pin (giờ): $[100; 150)$ có 12 pin; $[150; 200)$ có 38 pin; $[200; 250)$ me 30 pin; $[250; 300)$ có 20 pin. Xác định nhóm chứa mốt và nhóm chứa trung vị.
+  - *Lời giải:*  
+    - Tần số lớn nhất $n = 38 \Rightarrow$ Nhóm chứa mốt là $[150; 200)$.  
+    - Tổng $N = 100 \Rightarrow N/2 = 50$.  
+      Tích lũy nhóm 1: 12. Tích lũy nhóm 2: $12 + 38 = 50 \ge 50 \Rightarrow$ Nhóm chứa trung vị là $[150; 200)$.
+
+- **Ví dụ 2:** Cho bảng ghép nhóm điểm thi của 60 học sinh: $[4; 6)$ có 10 HS; $[6; 8)$ có 35 HS; $[8; 10]$ có 15 HS. Tìm nhóm chứa mốt.
+  - *Lời giải:* Tần số lớn nhất $n = 35 \Rightarrow$ nhóm chứa mốt là $[6; 8)$.
+
+- **Ví dụ 3:** Tìm nhóm chứa trung vị ở Ví dụ 2.
+  - *Lời giải:* $N = 60 \Rightarrow N/2 = 30$.  
+    Tích lũy nhóm 1: 10. Tích lũy nhóm 2: $10 + 35 = 45 \ge 30 \Rightarrow$ Nhóm chứa trung vị là $[6; 8)$.
+
+</div>
+
+#### **Dạng 4: Vẽ và Đọc Biểu đồ Histogram**
+- **Phương pháp:** Xác định các mút đoạn $[a_i; a_{i+1}]$ trên $Ox$, chiều cao $n_i$ trên $Oy$. Vẽ các cột đứng dính liền nhau.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho biểu đồ Histogram có 4 cột kề nhau $[0; 5), [5; 10), [10; 15), [15; 20]$ có chiều cao $4, 12, 18, 6$. Lập bảng tần số ghép nhóm.
+  - *Lời giải:* Bảng tần số ghép nhóm:
+
+| Nhóm | $[0; 5)$ | $[5; 10)$ | $[10; 15)$ | $[15; 20]$ | Tổng |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| Tần số ($n$) | 4 | 12 | 18 | 6 | $N = 40$ |
+
+- **Ví dụ 2:** Tính số trung bình cộng ghép nhóm từ biểu đồ ở Ví dụ 1.
+  - *Lời giải:* Giá trị đại diện $x_i = 2,5; 7,5; 12,5; 17,5$.  
+    $\bar{X} = \frac{2,5(4) + 7,5(12) + 12,5(18) + 17,5(6)}{40} = \frac{10 + 90 + 225 + 105}{40} = \frac{430}{40} = 10,75$.
+
+- **Ví dụ 3:** Tính tỉ lệ phần trăm số liệu thuộc nhóm $[10; 15)$.
+  - *Lời giải:* $f = \frac{18}{40} \cdot 100\% = 45\%$.
+
+</div>
+
+#### **Dạng 5: Bài toán Thống kê Thực tế Ghép nhóm trong Y tế và Kinh tế**
+- **Phương pháp:** Nhóm dữ liệu đo lường thực tế thành các khoảng hợp lý và phân tích kết luận theo chỉ số y tế/kinh tế.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1 (Y tế - Chỉ số Đường huyết):** Thống kê nồng độ đường huyết lúc đói (mg/dL) của 100 người cao tuổi thu được: $[70; 100)$ có 45 người (Bình thường); $[100; 126)$ có 35 người (Tiền tiểu đường); $[126; 160)$ có 20 người (Tiểu đường). Tính tỉ lệ phần trăm người bị tiền tiểu đường và tiểu đường.
+  - *Lời giải:*  
+    - Tiền tiểu đường: $35\%$. Tiểu đường: $20\%$.  
+    - Tổng tỉ lệ người có nguy cơ và bị tiểu đường là $35\% + 20\% = 55\%$.
+
+- **Ví dụ 2:** Tính chỉ số đường huyết trung bình của 100 người trên.
+  - *Lời giải:* Giá trị đại diện: $x_1 = 85; x_2 = 113; x_3 = 143$.  
+    $\bar{X} = \frac{85(45) + 113(35) + 143(20)}{100} = \frac{3825 + 3955 + 2860}{100} = \frac{10640}{100} = 106,4\text{ mg/dL}$.
+
+- **Ví dụ 3 (Tài chính - Thu nhập Hộ gia đình):** Khảo sát thu nhập (triệu đồng/tháng) của 50 hộ gia đình: $[5; 10)$ có 10 hộ; $[10; 15)$ có 25 hộ; $[15; 20)$ có 15 hộ. Tìm thu nhập trung bình của mỗi hộ gia đình.
+  - *Lời giải:* Giá trị đại diện $x_i = 7,5; 12,5; 17,5$.  
+    $\bar{X} = \frac{7,5(10) + 12,5(25) + 17,5(15)}{50} = \frac{75 + 312,5 + 262,5}{50} = \frac{650}{50} = 13\text{ triệu đồng/tháng}$.
+
+</div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Chuyển dữ liệu sang Bảng Tần số Ghép nhóm**
-**Phương pháp:** 
-- Xét toàn bộ mẫu số liệu gốc gồm nhiều phần tử.
-- Đặt các khoảng cho trước ở cấu trúc nửa đoạn $[a; b)$ (thường là để độ chia bằng nhau giữa các nửa khoảng).
-- Thẩm định lại từng con số đo xem nó thuộc về giới hạn nào, cẩn thận số lượng trùng khớp vào số liệu mút đầu mút cuối theo quy tắc bao gồm/loại trừ (giao và hợp).
-- Sau khi tổng kết đếm nhặt, ta lập tần số $n$ hoặc tỉ lệ phần trăm $f_i\%$ cho mỗi nhóm.
-*(Phải chắc chắn tổng tần số vẫn duy trì bằng chuẩn Cỡ mẫu $N$)*.
+**Bài toán 1 (Y tế & Chỉ số Đường huyết Bệnh nhân):**  
+Khảo sát nồng độ đường huyết lúc đói (mg/dL) của 100 bệnh nhân tại một phòng khám thu được bảng tần số ghép nhóm:
 
-</div>
+| Nồng độ đường huyết | $[70; 100)$ | $[100; 126)$ | $[126; 160)$ | $[160; 200)$ | Tổng |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| Số bệnh nhân ($n_i$) | 40 | 35 | 18 | 7 | $N = 100$ |
 
-**Ví dụ 1:** 
-Phòng y tế của trường tiểu học kiểm tra chiều cao (cm) của 20 học sinh theo dải số liệu:
-`110, 112, 115, 120, 121, 119, 122, 125, 128, 129, 131, 135, 137, 138, 140, ...` (Để thuận tiện, coi như ta đã tổng hợp nhanh tần số thu thập như bên dưới).
-Với kích cỡ phân bố chiều cao $L = 10\text{ cm}$. Hãy xây dựng bảng nhóm và rút ra nhóm đạt nhiều quan sát nhất (Mốt nhóm).
+a) Vẽ biểu đồ cột ghép nhóm kề nhau (Histogram).  
+b) Tính nồng độ đường huyết trung bình $\bar{X}$ của 100 bệnh nhân.
 
-**Hướng dẫn:** 
-- Quá trình phân chia cỡ nửa khoảng $10\text{ cm}$:
-$ $[110; 120), [120; 130), [130; 140), [140; 150] $ $
-- Tính tần số và ta kết luận được mảng tần số tương tự như sau:
-  + Khoảng $[110; 120)$ ghi nhận 6 học sinh.
-  + Khoảng $[120; 130)$ ghi nhận 5 học sinh.
-  + Khoảng $[130; 140)$ ghi nhận 7 học sinh.
-  + Khoảng $[140; 150]$ ghi nhận 2 học sinh.
-- Nhóm chiều cao thu thập nhiều phần tử học sinh nhất là khoảng $[130; 140)$ với tần số đạt n=7. Do đó trong mô hình này, đây được coi là **"Nhóm chứa mốt"**.
+**Bài toán 2 (Giao thông & Kiểm soát Tốc độ Xe chạy):**  
+Thống kê tốc độ (km/h) của 120 phương tiện ô tô lưu thông qua trạm bắn tốc độ trên đường cao tốc (tốc độ tối đa cho phép là $90\text{ km/h}$):
 
-<div class="box-dinh-ly" style="margin-top:2rem">
+| Tốc độ (km/h) | $[60; 70)$ | $[70; 80)$ | $[80; 90)$ | $[90; 100)$ | $[100; 110]$ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| Số ô tô ($n_i$) | 15 | 35 | 50 | 15 | 5 |
 
-**Dạng 2: Phân tích số liệu từ biểu đồ ghép nhóm Histogram**
-**Phương pháp:** 
-- Khởi điểm ở đáy Hoành trên biểu đồ, ta xét độ dài dải $L = b - a$ để biết chi tiết mức độ lớn bé.
-- Phóng đối chiếu độ tịnh tiến thẳng lên mốc cột để tiếp nhận độ dày / tần số $n_i$ bằng cột độ dài tung ứng chiếu sang vạch trục $Oy$.
-- Từ những kết xuất quan sát đó, có thể thiết lập ngay lập tức Bảng chỉ số đối chiếu chuẩn bị số liệu.
+a) Tính tỉ lệ phần trăm số xe vi phạm chạy quá tốc độ cho phép ($> 90\text{ km/h}$).  
+b) Tính tốc độ trung bình của 120 phương tiện ô tô.
 
-</div>
+**Bài toán 3 (Năng lượng & Tiêu thụ Điện Sinh hoạt Chung cư):**  
+Khảo sát điện năng tiêu thụ (kWh) trong tháng của 200 hộ gia đình tại một khu chung cư:
 
-**Ví dụ 2:** Dựa theo cột đầu tiên của biểu đồ Histogram phía trên (nửa khoảng $[0; 30)$). Hỏi khoảng thời lượng giờ tập này gồm mấy bạn sinh viên được ghi nhận?
-**Hướng dẫn:** 
-- Hình chữ nhật tại tọa độ $[0; 30)$ trên trục hoành có độ cao tương ứng chạm vào màng vạch kẻ ngang của số $5$ trên trục tung. Tần số bằng 5. Có $5$ người.
+| Sản lượng điện (kWh) | $[0; 100)$ | $[100; 200)$ | $[200; 300)$ | $[300; 400)$ |
+| :---: | :---: | :---: | :---: | :---: |
+| Số hộ gia đình ($n_i$) | 30 | 80 | 60 | 30 |
+
+a) Lập bảng tần số tương đối ghép nhóm (%).  
+b) Tính số điện trung bình mỗi hộ gia đình tiêu thụ trong tháng.
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác dưới đây hỗ trợ tự động tính giá trị đại diện nhóm $x_i$, tính số trung bình cộng ghép nhóm $\bar{X}$ và vẽ biểu đồ Histogram chuẩn xác!
+</div>
+
+<StatisticsCalculator client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 24:**
+
+1. **Mẫu ghép nhóm:** Chia dữ liệu thành các khoảng kề nhau $[a_i; a_{i+1})$.  
+2. **Giá trị đại diện nhóm:** $x_i = \frac{a_i + a_{i+1}}{2}$.  
+3. **Số trung bình cộng ghép nhóm:** $\bar{X} \approx \frac{\sum x_i n_i}{N}$.  
+4. **Biểu đồ Histogram:** Các cột hình chữ nhật đứng sát dính liền kề nhau trên trục hoành.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -257,45 +428,155 @@ $ $[110; 120), [120; 130), [130; 140), [140; 150] $ $
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cửa hàng điện máy kiểm tra tuổi thọ của bóng đèn (đơn vị: nghìn giờ) từ bộ xét nghiệm 50 bóng trong nhà máy. Thống kê kết xuất trong bộ bảng nửa khoảng phân độ như sau:
+**Bài 1:** Xác định giá trị đại diện $x_i$ của các nhóm nửa khoảng sau:  
+a) $[10; 20)$  
+b) $[25; 35)$  
+c) $[150; 160)$  
+d) $[0; 50)$  
+e) $[4,5; 5,5)$  
+f) $[100; 150)$
 
-| Tuổi thọ bóng ($x$) | $[2; 3)$ | $[3; 4)$ | $[4; 5)$ | $[5; 6]$ |
-| :--- | :---: | :---: | :---: | :---: |
-| Tần số phát hiện ($n$) | $5$ | $15$ | $20$ | $10$ |
+**Bài 2:** Cho dãy số liệu khối lượng (kg) của 15 học sinh: $42, 46, 51, 55, 48, 44, 53, 58, 49, 45, 52, 57, 43, 50, 47$. Hãy ghép nhóm dãy số liệu trên thành 3 nhóm có độ rộng bằng nhau: $[40; 47), [47; 54), [54; 61)$.
 
-a) Độ lớn quy mô nhóm chiều dài ở các phân khúc đánh giá mẫu vật kiểm tra là bao nhiêu? Giá trị tuổi thọ $4\text{ nghìn giờ}$ sẽ bị quy kết ở ô tần số nào?
-b) Hãy tính tần số tương đối ứng với từng vùng thời gian hoạt động tuổi thọ. 
-c) Nhận xét khung khoảng không gian tuổi thọ hoạt động điển hình có độ phủ sóng cao nhất.
+**Bài 3:** Tính số trung bình cộng ghép nhóm $\bar{X}$ cho các bảng tần số ghép nhóm sau:  
+a) $[0; 10)$ ($n=4$), $[10; 20)$ ($n=6$).  
+b) $[10; 20)$ ($n=5$), $[20; 30)$ ($n=10$), $[30; 40)$ ($n=5$).  
+c) $[100; 200)$ ($n=12$), $[200; 300)$ ($n=28$).  
+d) $[1; 3)$ ($n=10$), $[3; 5)$ ($n=20$), $[5; 7)$ ($n=10$).  
+e) $[50; 70)$ ($n=8$), $[70; 90)$ ($n=12$).  
+f) $[0; 100)$ ($n=15$), $[100; 200)$ ($n=25$), $[200; 300)$ ($n=10$).
 
-**Bài 2:** Theo dữ liệu khí tượng về lượng mưa trung bình một tháng (đơn vị: mm) của các địa bàn thị xã gồm 30 trạm đo thu nhận được mảng tần số tương đối như sau:
+**Bài 4:** Khảo sát khối lượng (kg) của 40 kiện hàng ký gửi chuyến bay:  
+$[10; 15)$ ($n=8$), $[15; 20)$ ($n=18$), $[20; 25)$ ($n=10$), $[25; 30]$ ($n=4$).  
+a) Lập bảng tần số tương đối ghép nhóm (%).  
+b) Tính khối lượng trung bình của 40 kiện hàng.  
+c) Vẽ biểu đồ cột ghép nhóm kề nhau (Histogram).
 
-| Lượng mưa ($x$) | $[50; 100)$ | $[100; 150)$ | $[150; 200)$ | $[200; 250]$ |
-| :--- | :---: | :---: | :---: | :---: |
-| Tần số tương đối (\%)| $10\%$ | $40\%$ | $m\%$ | $20\%$ |
+**Bài 5:** Thống kê thời gian (giây) chạy $100\text{ m}$ của 50 học sinh lớp 9:  
+$[12; 13)$ ($n=5$), $[13; 14)$ ($n=15$), $[14; 15)$ ($n=20$), $[15; 16]$ ($n=10$).  
+a) Tìm nhóm chứa mốt của mẫu số liệu ghép nhóm.  
+b) Tính thời gian chạy trung bình $\bar{X}$ của 50 học sinh.
 
-a) Dựa trên định luật toàn phần trong tổng chuẩn tương đối, xác định tham số chênh lệch về tỉ lệ $m\%$?
-b) Tính cụ thể có bao nhiêu xã tương ứng của đại diện khu vực vượt lượng mưa chuẩn $[100; 150)$?
+**Bài 6:** Thống kê thu nhập tháng (triệu đồng) của 60 hộ gia đình trong một khu phố:  
+$[6; 10)$ ($n=12$), $[10; 14)$ ($n=28$), $[14; 18)$ ($n=15$), $[18; 22]$ ($n=5$).  
+a) Tìm nhóm chứa mốt và nhóm chứa trung vị.  
+b) Tính thu nhập trung bình của mỗi hộ gia đình.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 7:** Khảo sát tuổi thọ (tháng) của 80 linh kiện điện tử trong phòng thí nghiệm:  
+$[20; 30)$ ($n=10$), $[30; 40)$ ($n=30$), $[40; 50)$ ($n=25$), $[50; 60]$ ($n=15$).  
+a) Lập bảng tần số tương đối ghép nhóm.  
+b) Tính tuổi thọ trung bình của linh kiện điện tử.
 
-**Bài 1:**
-a) Chiều rộng các mảng thời gian: $L = 3 - 2 = 1\text{ (nghìn giờ)}$. Tuổi thọ định mức $= 4.0\text{ nghìn giờ}$ sẽ trượt khỏi vòng giới hạn của nhóm thứ 2 là $[3; 4)$, do nửa khoảng không ôm góc mút 4, nó sẽ thụt về vào mảng quy kết số đếm ở nhóm thứ 3 là $[4; 5)$.
-b) Tính quy mô Tần số tương đối do $N = 50$:
-- Nhóm 1: $\frac{5}{50} \cdot 100\% = 10\%$.
-- Nhóm 2: $\frac{15}{50} \cdot 100\% = 30\%$.
-- Nhóm 3: $\frac{20}{50} \cdot 100\% = 40\%$.
-- Nhóm 4: $\frac{10}{50} \cdot 100\% = 20\%$.
-*(Tổng trọn vẹn $100\%$).*
-c) Độ phủ sóng của lô hàng chiếm mạnh mẽ nhất tại phân định tuổi thọ $[4; 5)$ với số bóng đại diện lọt tỷ trọng dẫn đầu $40\%$.
+**Bài 8:** Khảo sát lượng mưa (mm) của 30 ngày trong mùa mưa tại một trạm khí tượng:  
+$[0; 20)$ ($n=6$), $[20; 40)$ ($n=12$), $[40; 60)$ ($n=9$), $[60; 80]$ ($n=3$).  
+a) Vẽ biểu đồ Histogram biểu diễn lượng mưa.  
+b) Tính lượng mưa trung bình mỗi ngày trong tháng.
 
-**Bài 2:**
-a) Dựa trên tiêu chuẩn 100% trong số tần số: 
-$10\% + 40\% + m\% + 20\% = 100\% \Rightarrow 70\% + m\% = 100\% \Rightarrow m = 30\%$.
-Do đó giá trị lượng mưa nhóm $[150; 200)$ có tần số tương đối $30\%$.
-b) Ghi chú cho số liệu của lượng mưa phân độ $[100; 150)$ chiếm tương ứng $40\%$. 
-Áp dụng công thức quy xuất số hạng số lượng quan sát là: $n = \frac{40 \cdot 30}{100} = 12$ trạm đo thời tiết.
+**Bài 9 (Thực tế):** Khảo sát thời gian sử dụng smartphone mỗi ngày (giờ) của 100 học sinh THCS:  
+$[0; 1)$ ($n=20$), $[1; 2)$ ($n=45$), $[2; 3)$ ($n=25$), $[3; 4]$ ($n=10$).  
+a) Tính tỉ lệ học sinh sử dụng smartphone từ 2 giờ trở lên mỗi ngày.  
+b) Tính thời gian sử dụng smartphone trung bình của học sinh.
+
+**Bài 10 (Thực tế):** Khảo sát chỉ số khối cơ thể BMI ($kg/m^2$) của 150 người trưởng thành:  
+$[16; 18,5)$ gầy ($n=15$), $[18,5; 23)$ bình thường ($n=90$), $[23; 25)$ nguy cơ béo phì ($n=30$), $[25; 30]$ béo phì ($n=15$).  
+a) Lập bảng tần số tương đối ghép nhóm (%).  
+b) Nhóm chỉ số BMI nào có tỉ lệ cao nhất? Tính chỉ số BMI trung bình của 150 người.
+
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
+
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
+
+**Bài 1:**  
+a) $x_1 = \frac{10+20}{2} = 15$.  
+b) $x_2 = \frac{25+35}{2} = 30$.  
+c) $x_3 = \frac{150+160}{2} = 155$.  
+d) $x_4 = \frac{0+50}{2} = 25$.  
+e) $x_5 = \frac{4,5+5,5}{2} = 5,0$.  
+f) $x_6 = \frac{100+150}{2} = 125$.
+
+---
+
+**Bài 2:**  
+- Nhóm $[40; 47)$: có các số $42, 46, 44, 45, 43 \Rightarrow n_1 = 5$.  
+- Nhóm $[47; 54)$: có các số $51, 48, 53, 49, 52, 50, 47 \Rightarrow n_2 = 7$.  
+- Nhóm $[54; 61)$: có các số $55, 58, 57 \Rightarrow n_3 = 3$.  
+Tổng $N = 5 + 7 + 3 = 15$.
+
+---
+
+**Bài 3:**  
+a) $x_i = 5, 15$. $\bar{X} = \frac{5(4) + 15(6)}{10} = \frac{20 + 90}{10} = 11$.  
+b) $x_i = 15, 25, 35$. $\bar{X} = \frac{15(5) + 25(10) + 35(5)}{20} = \frac{75 + 250 + 175}{20} = \frac{500}{20} = 25$.  
+c) $x_i = 150, 250$. $\bar{X} = \frac{150(12) + 250(28)}{40} = \frac{1800 + 7000}{40} = \frac{8800}{40} = 220$.  
+d) $x_i = 2, 4, 6$. $\bar{X} = \frac{2(10) + 4(20) + 6(10)}{40} = \frac{20 + 80 + 60}{40} = 4$.  
+e) $x_i = 60, 80$. $\bar{X} = \frac{60(8) + 80(12)}{20} = \frac{480 + 960}{20} = 72$.  
+f) $x_i = 50, 150, 250$. $\bar{X} = \frac{50(15) + 150(25) + 250(10)}{50} = \frac{750 + 3750 + 2500}{50} = \frac{7000}{50} = 140$.
+
+---
+
+**Bài 4:**  
+a) $N = 40$.  
+- $[10; 15): f_1 = \frac{8}{40} = 20\%$.  
+- $[15; 20): f_2 = \frac{18}{40} = 45\%$.  
+- $[20; 25): f_3 = \frac{10}{40} = 25\%$.  
+- $[25; 30]: f_4 = \frac{4}{40} = 10\%$.  
+b) $x_i = 12,5; 17,5; 22,5; 27,5$.  
+$\bar{X} = \frac{12,5(8) + 17,5(18) + 22,5(10) + 27,5(4)}{40} = \frac{100 + 315 + 225 + 110}{40} = \frac{750}{40} = 18,75\text{ kg}$.  
+c) Vẽ biểu đồ Histogram với các cột kề nhau chiều cao $8, 18, 10, 4$.
+
+---
+
+**Bài 5:**  
+a) Tần số lớn nhất $n = 20 \Rightarrow$ Nhóm chứa mốt là $[14; 15)$.  
+b) $x_i = 12,5; 13,5; 14,5; 15,5$.  
+$\bar{X} = \frac{12,5(5) + 13,5(15) + 14,5(20) + 15,5(10)}{50} = \frac{62,5 + 202,5 + 290 + 155}{50} = \frac{710}{50} = 14,2\text{ giây}$.
+
+---
+
+**Bài 6:**  
+a) $N = 60$.  
+- Tần số lớn nhất $n = 28 \Rightarrow$ Nhóm chứa mốt là $[10; 14)$.  
+- $N/2 = 30$. Tích lũy nhóm 1: 12. Tích lũy nhóm 2: $12 + 28 = 40 \ge 30 \Rightarrow$ Nhóm chứa trung vị là $[10; 14)$.  
+b) $x_i = 8; 12; 16; 20$.  
+$\bar{X} = \frac{8(12) + 12(28) + 16(15) + 20(5)}{60} = \frac{96 + 336 + 240 + 100}{60} = \frac{772}{60} \approx 12,87\text{ triệu đồng}$.
+
+---
+
+**Bài 7:**  
+a) $N = 80$.  
+- $[20; 30): f_1 = \frac{10}{80} = 12,5\%$.  
+- $[30; 40): f_2 = \frac{30}{80} = 37,5\%$.  
+- $[40; 50): f_3 = \frac{25}{80} = 31,25\%$.  
+- $[50; 60]: f_4 = \frac{15}{80} = 18,75\%$.  
+b) $x_i = 25, 35, 45, 55$.  
+$\bar{X} = \frac{25(10) + 35(30) + 45(25) + 55(15)}{80} = \frac{250 + 1050 + 1125 + 825}{80} = \frac{3250}{80} = 40,625\text{ tháng}$.
+
+---
+
+**Bài 8:**  
+a) Dựng biểu đồ Histogram có 4 cột kề nhau chiều cao $6, 12, 9, 3$.  
+b) $x_i = 10, 30, 50, 70$.  
+$\bar{X} = \frac{10(6) + 30(12) + 50(9) + 70(3)}{30} = \frac{60 + 360 + 450 + 210}{30} = \frac{1080}{30} = 36\text{ mm}$.
+
+---
+
+**Bài 9:**  
+a) Tỉ lệ từ 2 giờ trở lên ứng với $[2; 3)$ và $[3; 4] \Rightarrow n = 25 + 10 = 35 \Rightarrow f = \frac{35}{100} \cdot 100\% = 35\%$.  
+b) $x_i = 0,5; 1,5; 2,5; 3,5$.  
+$\bar{X} = \frac{0,5(20) + 1,5(45) + 2,5(25) + 3,5(10)}{100} = \frac{10 + 67,5 + 62,5 + 35}{100} = \frac{175}{100} = 1,75\text{ giờ}$.
+
+---
+
+**Bài 10:**  
+a) $N = 150$.  
+- Gầy $[16; 18,5): \frac{15}{150} = 10\%$.  
+- Bình thường $[18,5; 23): \frac{90}{150} = 60\%$.  
+- Nguy cơ béo phì $[23; 25): \frac{30}{150} = 20\%$.  
+- Béo phì $[25; 30]: \frac{15}{150} = 10\%$.  
+b) Nhóm "Bình thường" $[18,5; 23)$ có tỉ lệ cao nhất ($60\%$).  
+$x_i = 17,25; 20,75; 24,0; 27,5$.  
+$\bar{X} = \frac{17,25(15) + 20,75(90) + 24(30) + 27,5(15)}{150} = \frac{258,75 + 1867,5 + 720 + 412,5}{150} = \frac{3258,75}{150} = 21,725\text{ kg/m}^2$.
 
 </div>
 </details>

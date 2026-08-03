@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import UocChungBCNNInteractive from '../../components/interactive/UocChungBCNNInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Bội chung của $4$ và $6$ là:",
@@ -53,18 +55,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những số nào là bội chung của $3$ và $5$?",
-    option_a: "$15$",
-    option_b: "$30$",
-    option_c: "$45$",
-    option_d: "$50$",
-    correct_option: "A,B,C",
-    explanation: "Bội chung của $3$ và $5$ là các bội của $15$: $15, 30, 45, 60, ...$. Số $50$ không chia hết cho $3$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "BCNN$(a, 1)$ bằng:",
     option_a: "$a$",
@@ -77,10 +67,14 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Tìm BCNN$(8, 12)$.",
-    correct_option: "24",
-    explanation: "$8 = 2^3$, $12 = 2^2 \\times 3$. BCNN = $2^3 \\times 3 = 24$.",
+    type: "mcq",
+    question: "Nếu $a \\vdots b$ thì BCNN$(a, b)$ bằng:",
+    option_a: "$a$",
+    option_b: "$b$",
+    option_c: "$1$",
+    option_d: "$a \\times b$",
+    correct_option: "A",
+    explanation: "Nếu $a \\vdots b$ thì mọi bội của $a$ đều là bội của $b$, và bội chung nhỏ nhất là chính $a$. Vậy BCNN$(a, b) = a$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -105,6 +99,62 @@ export const quizData = [
     option_d: "$30$",
     correct_option: "A",
     explanation: "BCNN = $\\frac{12 \\times 18}{6} = \\frac{216}{6} = 36$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong các số sau, số nào là bội chung của $!a#4!$ và $!b#6!$?",
+    option_a: "$!tinh: lcm(!a!, !b!)!$",
+    option_b: "$!tinh: !a! * 3!!$",
+    option_c: "$!tinh: !b! * 3!!$",
+    option_d: "$!tinh: !a! + !b!!$",
+    correct_option: "A",
+    explanation: "BCNN$(!a!, !b!) = !tinh: lcm(!a!, !b!)!$ nên $!tinh: lcm(!a!, !b!)!$ chia hết cho cả $!a!$ và $!b!$. Các số còn lại không chia hết cho cả hai số.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 2: MSQ (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những số nào là bội chung của $3$ và $5$?",
+    option_a: "$15$",
+    option_b: "$30$",
+    option_c: "$45$",
+    option_d: "$50$",
+    correct_option: "A,B,C",
+    explanation: "Bội chung của $3$ và $5$ là các bội của $15$: $15, 30, 45, 60, ...$. Số $50$ không chia hết cho $3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào là bội chung của $4$ và $6$?",
+    option_a: "$12$",
+    option_b: "$18$",
+    option_c: "$24$",
+    option_d: "$36$",
+    correct_option: "A,C,D",
+    explanation: "$12 = 4 \\times 3 = 6 \\times 2$ ✓; $18$ không chia hết cho $4$ ✗; $24 = 4 \\times 6 = 6 \\times 4$ ✓; $36 = 4 \\times 9 = 6 \\times 6$ ✓.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+
+  // ─── Phần 3: SA (2 câu) ─────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tìm BCNN$(8, 12)$.",
+    correct_option: "24",
+    explanation: "$8 = 2^3$, $12 = 2^2 \\times 3$. BCNN = $2^3 \\times 3 = 24$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm BCNN$(8, 9)$.",
+    correct_option: "72",
+    explanation: "$8$ và $9$ nguyên tố cùng nhau ($8 = 2^3$, $9 = 3^2$ không có thừa số chung) nên BCNN = $8 \\times 9 = 72$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -396,7 +446,9 @@ Theo tính chất 5: BCNN$(7, 11) = 7 \times 11 = 77$
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<UocChungBCNNInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -465,6 +517,35 @@ BCNN$(48, 72) = 2^4 \times 3^2 = 144$
 
 </div>
 
+**📝 Bài toán 3:** Cô giáo có một số quyển sách. Khi xếp số sách đó thành các chồng, mỗi chồng $10$ quyển, $12$ quyển hoặc $15$ quyển thì đều vừa đủ chồng.
+
+a) Tìm số sách nhỏ nhất có thể.
+
+b) Biết số sách trong khoảng từ $100$ đến $150$ quyển. Hỏi cô giáo có bao nhiêu quyển sách?
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Số sách phải là bội chung của $10, 12$ và $15$. Số sách nhỏ nhất = BCNN$(10, 12, 15)$.
+
+Phân tích:
+- $10 = 2 \times 5$
+- $12 = 2^2 \times 3$
+- $15 = 3 \times 5$
+
+BCNN$(10, 12, 15) = 2^2 \times 3 \times 5 = 60$
+
+**Số sách nhỏ nhất có thể là 60 quyển.**
+
+b) Bội chung của $10, 12, 15$ là các bội của $60$: $60, 120, 180, ...$
+
+Số trong khoảng từ $100$ đến $150$ chỉ có $120$.
+
+**Cô giáo có 120 quyển sách.**
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -481,49 +562,49 @@ BCNN$(48, 72) = 2^4 \times 3^2 = 144$
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Tìm bội chung của các cặp số sau:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) $BC(4, 6)$ (5 số đầu tiên khác $0$)
+**Bài 1 (Dễ - Nhận biết):** Tìm bội chung của các cặp số sau (5 số đầu tiên khác $0$):
 
-b) $BC(5, 10)$ (5 số đầu tiên khác $0$)
+a) $BC(3, 4)$
 
-c) $BC(6, 9)$ (5 số đầu tiên khác $0$)
+b) $BC(5, 10)$
 
-d) $BC(8, 12)$ (5 số đầu tiên khác $0$)
+c) $BC(4, 6)$
 
-**Bài 2:** Tìm BCNN bằng cách liệt kê bội:
+d) $BC(6, 9)$
+
+**Bài 2 (Dễ - Nhận biết):** Tìm BCNN bằng cách liệt kê bội:
 
 a) BCNN$(6, 8)$
 
-b) BCNN$(10, 15)$
+b) BCNN$(8, 12)$
 
-c) BCNN$(12, 16)$
+c) BCNN$(10, 15)$
 
 d) BCNN$(9, 12)$
 
-**Bài 3:** Tìm BCNN bằng phân tích ra thừa số nguyên tố:
+**Bài 3 (Dễ - Nhận biết):** Áp dụng tính chất để tìm nhanh:
+
+a) BCNN$(9, 1)$
+
+b) BCNN$(12, 24)$
+
+c) BCNN$(7, 11)$
+
+**Bài 4 (Thông hiểu):** Tìm BCNN bằng phân tích ra thừa số nguyên tố:
 
 a) BCNN$(12, 18)$
 
 b) BCNN$(20, 30)$
 
-c) BCNN$(24, 36)$
+c) BCNN$(15, 25)$
 
-d) BCNN$(15, 25)$
+d) BCNN$(24, 36)$
 
-**Bài 4:** Áp dụng mối liên hệ giữa ƯCLN và BCNN:
-
-a) Biết ƯCLN$(12, 18) = 6$. Tìm BCNN$(12, 18)$
-
-b) Biết BCNN$(15, 20) = 60$. Tìm ƯCLN$(15, 20)$
-
-c) Biết ƯCLN$(24, 36) = 12$. Tìm BCNN$(24, 36)$
-
-d) Biết BCNN$(10, 15) = 30$. Tìm ƯCLN$(10, 15)$
-
-**Bài 5:** Tìm BCNN của ba số:
+**Bài 5 (Thông hiểu):** Tìm BCNN của ba số:
 
 a) BCNN$(4, 6, 8)$
 
@@ -531,33 +612,146 @@ b) BCNN$(6, 9, 12)$
 
 c) BCNN$(10, 15, 20)$
 
-d) BCNN$(12, 18, 24)$
+**Bài 6 (Thông hiểu):** Áp dụng mối liên hệ ƯCLN$(a, b) \times$ BCNN$(a, b) = a \times b$:
 
-**Bài 6 (Thực tế):** Ba đèn giao thông nhấp nháy cùng lúc lúc $6$ giờ sáng. Đèn thứ nhất nhấp nháy cứ $30$ giây một lần, đèn thứ hai cứ $45$ giây một lần, đèn thứ ba cứ $60$ giây một lần.
+a) Biết ƯCLN$(12, 18) = 6$. Tìm BCNN$(12, 18)$.
 
-a) Sau bao lâu ba đèn lại cùng nhấp nháy?
+b) Biết BCNN$(15, 20) = 60$. Tìm ƯCLN$(15, 20)$.
 
-b) Đến mấy giờ ba đèn lại cùng nhấp nháy lần thứ hai?
+c) Biết ƯCLN$(24, 36) = 12$. Tìm BCNN$(24, 36)$.
 
-c) Trong $1$ giờ, ba đèn cùng nhấp nháy bao nhiêu lần?
+**Bài 7 (Vận dụng):** Tìm số tự nhiên nhỏ nhất chia hết cho cả $6$, $8$ và $9$.
 
-d) Nếu chỉ xét hai đèn thứ nhất và thứ hai, sau bao lâu chúng cùng nhấp nháy?
+**Bài 8 (Vận dụng thực tế):** Ba bạn Mai, Lan, Hoa trực nhật cùng một ngày. Bạn Mai cứ $4$ ngày trực một lần, bạn Lan cứ $6$ ngày trực một lần, bạn Hoa cứ $9$ ngày trực một lần.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+a) Sau ít nhất bao nhiêu ngày cả ba bạn lại cùng trực nhật?
 
-**Bài 1:** a) $12, 24, 36, 48, 60$; b) $10, 20, 30, 40, 50$; c) $18, 36, 54, 72, 90$; d) $24, 48, 72, 96, 120$
+b) Sau bao lâu (tính bằng ngày) thì ba bạn cùng trực nhật lần thứ hai?
 
-**Bài 2:** a) $24$; b) $30$; c) $48$; d) $36$
+**Bài 9 (Vận dụng):** Tìm hai số tự nhiên $a$ và $b$ biết $a \times b = 216$ và BCNN$(a, b) = 36$.
 
-**Bài 3:** a) $36$; b) $60$; c) $72$; d) $75$
+**Bài 10 (Vận dụng cao):** Tìm số tự nhiên nhỏ nhất có ba chữ số chia hết cho cả $8$, $9$ và $12$.
 
-**Bài 4:** a) $36$; b) $5$; c) $72$; d) $5$
+</div>
 
-**Bài 5:** a) $24$; b) $36$; c) $60$; d) $72$
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-**Bài 6:** a) $180$ giây = $3$ phút; b) $6$ giờ $3$ phút; c) $20$ lần; d) $90$ giây = $1$ phút $30$ giây
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
+
+**Bài 1:**
+a) Bội của $3$: $\{0, 3, 6, 9, 12, 15, 18, 21, 24, ...\}$; bội của $4$: $\{0, 4, 8, 12, 16, 20, 24, ...\}$. $BC(3, 4) = \{12, 24, 36, 48, 60\}$.
+
+b) Bội của $5$: $\{0, 5, 10, 15, 20, 25, 30, ...\}$; bội của $10$: $\{0, 10, 20, 30, 40, 50, ...\}$. $BC(5, 10) = \{10, 20, 30, 40, 50\}$.
+
+c) $BC(4, 6) = \{12, 24, 36, 48, 60\}$.
+
+d) $BC(6, 9) = \{18, 36, 54, 72, 90\}$.
+
+---
+
+**Bài 2:**
+a) Bội của $6$: $\{0, 6, 12, 18, 24, ...\}$; bội của $8$: $\{0, 8, 16, 24, 32, ...\}$. BCNN = $24$.
+
+b) Bội của $8$: $\{0, 8, 16, 24, 36, ...\}$; bội của $12$: $\{0, 12, 24, 36, ...\}$. BCNN = $24$.
+
+c) Bội của $10$: $\{0, 10, 20, 30, ...\}$; bội của $15$: $\{0, 15, 30, 45, ...\}$. BCNN = $30$.
+
+d) Bội của $9$: $\{0, 9, 18, 27, 36, ...\}$; bội của $12$: $\{0, 12, 24, 36, ...\}$. BCNN = $36$.
+
+---
+
+**Bài 3:**
+a) BCNN$(9, 1) = 9$ (tính chất 1).
+
+b) Vì $24 \vdots 12$ nên BCNN$(12, 24) = 24$.
+
+c) $7$ và $11$ nguyên tố cùng nhau nên BCNN$(7, 11) = 7 \times 11 = 77$.
+
+---
+
+**Bài 4:**
+a) $12 = 2^2 \times 3$; $18 = 2 \times 3^2$. BCNN = $2^2 \times 3^2 = 36$.
+
+b) $20 = 2^2 \times 5$; $30 = 2 \times 3 \times 5$. BCNN = $2^2 \times 3 \times 5 = 60$.
+
+c) $15 = 3 \times 5$; $25 = 5^2$. BCNN = $3 \times 5^2 = 75$.
+
+d) $24 = 2^3 \times 3$; $36 = 2^2 \times 3^2$. BCNN = $2^3 \times 3^2 = 72$.
+
+---
+
+**Bài 5:**
+a) $4 = 2^2$; $6 = 2 \times 3$; $8 = 2^3$. BCNN = $2^3 \times 3 = 24$.
+
+b) $6 = 2 \times 3$; $9 = 3^2$; $12 = 2^2 \times 3$. BCNN = $2^2 \times 3^2 = 36$.
+
+c) $10 = 2 \times 5$; $15 = 3 \times 5$; $20 = 2^2 \times 5$. BCNN = $2^2 \times 3 \times 5 = 60$.
+
+---
+
+**Bài 6:**
+a) BCNN$(12, 18) = \frac{12 \times 18}{6} = \frac{216}{6} = 36$.
+
+b) ƯCLN$(15, 20) = \frac{15 \times 20}{60} = \frac{300}{60} = 5$.
+
+c) BCNN$(24, 36) = \frac{24 \times 36}{12} = \frac{864}{12} = 72$.
+
+---
+
+**Bài 7:**
+Số cần tìm là BCNN$(6, 8, 9)$.
+
+$6 = 2 \times 3$; $8 = 2^3$; $9 = 3^2$.
+
+BCNN$(6, 8, 9) = 2^3 \times 3^2 = 8 \times 9 = 72$.
+
+**Số tự nhiên nhỏ nhất cần tìm là 72.**
+
+---
+
+**Bài 8:**
+a) Số ngày cả ba cùng trực = BCNN$(4, 6, 9)$.
+
+$4 = 2^2$; $6 = 2 \times 3$; $9 = 3^2$.
+
+BCNN$(4, 6, 9) = 2^2 \times 3^2 = 36$.
+
+**Sau ít nhất 36 ngày cả ba bạn lại cùng trực nhật.**
+
+b) Lần thứ hai cùng trực nhật sau lần đầu là $36$ ngày.
+
+**Ba bạn cùng trực nhật lần thứ hai sau 36 ngày.**
+
+---
+
+**Bài 9:**
+Ta có: ƯCLN$(a, b) = \frac{a \times b}{\text{BCNN}(a, b)} = \frac{216}{36} = 6$.
+
+Đặt $a = 6m$, $b = 6n$ với ƯCLN$(m, n) = 1$.
+
+$a \times b = 216 \Rightarrow 36mn = 216 \Rightarrow mn = 6$.
+
+Các cặp $(m, n)$ với ƯCLN$(m, n) = 1$ và $mn = 6$: $(1, 6), (6, 1), (2, 3), (3, 2)$.
+
+Vậy các cặp $(a, b)$: $(6, 36), (36, 6), (12, 18), (18, 12)$.
+
+---
+
+**Bài 10:**
+Số cần tìm là bội chung của $8$, $9$ và $12$.
+
+$8 = 2^3$; $9 = 3^2$; $12 = 2^2 \times 3$.
+
+BCNN$(8, 9, 12) = 2^3 \times 3^2 = 72$.
+
+Các bội chung của $8, 9, 12$ là các bội của $72$: $72, 144, 216, ...$
+
+Số nhỏ nhất có ba chữ số là $144$.
+
+**Số cần tìm là 144.**
 
 </div>
 </details>

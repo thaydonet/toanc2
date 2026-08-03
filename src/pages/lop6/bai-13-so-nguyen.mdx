@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import SoNguyenInteractive from '../../components/interactive/SoNguyenInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Số nào là số nguyên âm?",
@@ -53,18 +55,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những số nào thuộc tập hợp số nguyên $\\mathbb{Z}$?",
-    option_a: "$-5$",
-    option_b: "$0$",
-    option_c: "$3$",
-    option_d: "$\\frac{1}{2}$",
-    correct_option: "A,B,C",
-    explanation: "$-5, 0, 3$ đều là số nguyên. $\\frac{1}{2}$ không phải số nguyên.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "So sánh: $-5$ và $-3$",
     option_a: "$-5 < -3$",
@@ -77,11 +67,15 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Tìm $|{-12}|$.",
-    correct_option: "12",
-    explanation: "$|-12| = 12$.",
-    difficulty_level: "easy",
+    type: "mcq",
+    question: "Số nguyên nào nằm giữa $-4$ và $2$?",
+    option_a: "$-3, -2, -1, 0, 1$",
+    option_b: "$-4, -3, -2, -1, 0, 1, 2$",
+    option_c: "$-2, -1, 0, 1$",
+    option_d: "$-1, 0, 1$",
+    correct_option: "A",
+    explanation: "Các số nguyên nằm giữa $-4$ và $2$ là: $-3, -2, -1, 0, 1$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
@@ -107,6 +101,48 @@ export const quizData = [
     explanation: "$|!a!| = !tinh: abs(!a!)!$.",
     difficulty_level: "easy",
     is_dynamic: true,
+  },
+  // ─── Phần 2: MSQ (2 câu) ───────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những số nào thuộc tập hợp số nguyên $\\mathbb{Z}$?",
+    option_a: "$-5$",
+    option_b: "$0$",
+    option_c: "$3$",
+    option_d: "$\\frac{1}{2}$",
+    correct_option: "A,B,C",
+    explanation: "$-5, 0, 3$ đều là số nguyên. $\\frac{1}{2}$ không phải số nguyên.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những cặp số sau có cùng số đối nhau không?",
+    option_a: "$5$ và $-5$",
+    option_b: "$-3$ và $3$",
+    option_c: "$7$ và $7$",
+    option_d: "$0$ và $0$",
+    correct_option: "A,B,D",
+    explanation: "$5$ và $-5$ là số đối; $-3$ và $3$ là số đối; $0$ là số đối của chính nó.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tính $|{-12}|$.",
+    correct_option: "12",
+    explanation: "$|-12| = 12$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Sắp xếp theo thứ tự tăng dần: $-5, 3, 0, -2, 7$",
+    correct_option: "-5, -2, 0, 3, 7",
+    explanation: "Trên trục số: $-5 < -2 < 0 < 3 < 7$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   },
 ];
 
@@ -361,7 +397,9 @@ $-5 < -2 < 0 < 3 < 7$
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<SoNguyenInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -419,6 +457,41 @@ c) Thứ tự: Bình ($-500000$), Dũng ($-300000$), Chi ($+1000000$), An ($+200
 
 </div>
 
+**📝 Bài toán 3:** Độ cao của 5 thành phố so với mực nước biển:
+- Hà Nội: $+15$ m
+- Đà Lạt: $+1500$ m
+- Cần Thơ: $+2$ m
+- Biển Chết: $-430$ m
+- TP. Hồ Chí Minh: $+5$ m
+
+a) Sắp xếp các thành phố theo độ cao từ thấp đến cao.
+
+b) Thành phố nào có độ cao lớn nhất so với Biển Chết?
+
+c) Tính hiệu độ cao giữa Đà Lạt và Hà Nội.
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) So sánh: $-430 < 2 < 5 < 15 < 1500$
+
+Thứ tự thấp đến cao: Biển Chết ($-430$ m), Cần Thơ ($+2$ m), TP. HCM ($+5$ m), Hà Nội ($+15$ m), Đà Lạt ($+1500$ m)
+
+b) Hiệu độ cao so với Biển Chết:
+- Hà Nội: $15 - (-430) = 445$ m
+- Đà Lạt: $1500 - (-430) = 1930$ m
+- Cần Thơ: $2 - (-430) = 432$ m
+- TP. HCM: $5 - (-430) = 435$ m
+
+**Đà Lạt** có hiệu lớn nhất ($1930$ m)
+
+c) Hiệu: $1500 - 15 = 1485$ m
+
+Đà Lạt cao hơn Hà Nội $1485$ m
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -433,87 +506,104 @@ c) Thứ tự: Bình ($-500000$), Dũng ($-300000$), Chi ($+1000000$), An ($+200
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Viết các số sau bằng số nguyên:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) Nhiệt độ $5$ độ dưới $0°C$
+**Bài 1 (Dễ - Nhận biết):** Viết các số sau bằng số nguyên:
+a) Nhiệt độ $5$ độ dưới $0°C$　　b) Mực nước biển cao hơn $10$ m　　c) Nợ $500000$ đồng
 
-b) Mực nước biển cao hơn $10$ m
+**Bài 2 (Dễ - Nhận biết):** Tìm số đối của: a) $15$　　b) $-20$　　c) $0$　　d) $-100$
 
-c) Nợ $500000$ đồng
+**Bài 3 (Dễ - Nhận biết):** Tính giá trị tuyệt đối: a) $|8|$　　b) $|-15|$　　c) $|0|$　　d) $|-50|$
 
-d) Trước đây $3$ giờ
+**Bài 4 (Dễ - Nhận biết):** So sánh: a) $-5$ và $3$　　b) $-7$ và $-10$　　c) $0$ và $-4$　　d) $-2$ và $-1$
 
-**Bài 2:** Tìm số đối của các số sau:
+**Bài 5 (Thông hiểu):** Sắp xếp theo thứ tự tăng dần:
+a) $-3, 5, 0, -7, 2$　　b) $-10, -5, -15, 0, 8$　　c) $4, -4, 8, -8, 0$
 
-a) $15$
+**Bài 6 (Thông hiểu):** Cho $a = -5, b = 3, c = -2$. Tính:
+a) $|a| + |b|$　　b) $|a + b|$　　c) $|a| - |c|$
 
-b) $-20$
+**Bài 7 (Vận dụng):** Sắp xếp theo thứ tự giảm dần: $-3, -1, 0, 2, -5$
 
-c) $0$
+**Bài 8 (Vận dụng):** Nhiệt độ Hà Nội là $15°C$, Đà Lạt là $10°C$, Sa Pa là $-2°C$. Sắp xếp theo nhiệt độ tăng dần.
 
-d) $-100$
+**Bài 9 (Vận dụng):** Cho $|a| = 5$ và $|b| = 3$. Liệt kê các cặp $(a, b)$ thỏa mãn $a < b$.
 
-**Bài 3:** Tính giá trị tuyệt đối:
+**Bài 10 (Vận dụng cao):** Cho $a < 0 < b$ và $|a| < |b|$. So sánh: a) $a$ và $-b$　　b) $-a$ và $b$
 
-a) $|8|$
+</div>
 
-b) $|-15|$
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-c) $|0|$
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-d) $|-50|$
+**Bài 1:**
+a) $-5°C$　　b) $+10$ m　　c) $-500000$ đồng
 
-**Bài 4:** So sánh các cặp số:
+---
 
-a) $-5$ và $3$
+**Bài 2:**
+a) Số đối của $15$ là $-15$
+b) Số đối của $-20$ là $20$
+c) Số đối của $0$ là $0$
+d) Số đối của $-100$ là $100$
 
-b) $-7$ và $-10$
+---
 
-c) $0$ và $-4$
+**Bài 3:**
+a) $|8| = 8$　　b) $|-15| = 15$　　c) $|0| = 0$　　d) $|-50| = 50$
 
-d) $-2$ và $-1$
+---
 
-**Bài 5:** Sắp xếp các số theo thứ tự tăng dần:
+**Bài 4:**
+a) $-5 < 3$ (âm < dương)
+b) $-7 > -10$ (vì $|-7| = 7 < 10 = |-10|$)
+c) $0 > -4$ (dương/0 > âm)
+d) $-2 < -1$ (vì $|-2| = 2 > 1 = |-1|$)
 
-a) $-3, 5, 0, -7, 2$
+---
 
-b) $-10, -5, -15, 0, 8$
+**Bài 5:**
+a) $-7, -3, 0, 2, 5$
+b) $-15, -10, -5, 0, 8$
+c) $-8, -4, 0, 4, 8$
 
-c) $4, -4, 8, -8, 0$
+---
 
-d) $-1, -2, -3, 1, 2, 3$
+**Bài 6:**
+a) $|a| + |b| = |-5| + |3| = 5 + 3 = 8$
+b) $|a + b| = |-5 + 3| = |-2| = 2$
+c) $|a| - |c| = |-5| - |-2| = 5 - 2 = 3$
 
-**Bài 6 (Thực tế):** Độ cao so với mực nước biển:
-- Núi Phú Sĩ (Nhật Bản): $+3776$ m
-- Biển Chết (Trung Đông): $-430$ m
-- Đỉnh Everest: $+8848$ m
-- Hồ Baikal (Nga): $-1642$ m
+---
 
-a) Địa điểm nào cao nhất?
+**Bài 7:**
+Giảm dần: $2 > 0 > -1 > -3 > -5$
 
-b) Địa điểm nào thấp nhất?
+---
 
-c) Sắp xếp theo độ cao tăng dần.
+**Bài 8:**
+Sa Pa ($-2°C$) < Hà Nội ($15°C$) < Đà Lạt ($10°C$)
+→ Theo tăng dần: Sa Pa ($-2°C$), Hà Nội ($15°C$), Đà Lạt ($10°C$)
 
-d) Tính khoảng cách độ cao giữa Everest và Biển Chết.
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 9:**
+$a \in \{-5, 5\}$, $b \in \{-3, 3\}$
+Cặp $(a, b)$ thỏa mãn $a < b$: $(-5, -3), (-5, 3), (-5, 5), (5, ?)$ — cần $5 < b$ nhưng $b \leq 3$ nên không có.
+Đáp án: $(-5, -3), (-5, 3), (-5, 5)$
 
-**Bài 1:** a) $-5°C$; b) $+10$ m; c) $-500000$ đồng; d) $-3$ giờ
+---
 
-**Bài 2:** a) $-15$; b) $20$; c) $0$; d) $100$
-
-**Bài 3:** a) $8$; b) $15$; c) $0$; d) $50$
-
-**Bài 4:** a) $-5 < 3$; b) $-7 > -10$; c) $0 > -4$; d) $-2 < -1$
-
-**Bài 5:** a) $-7, -3, 0, 2, 5$; b) $-15, -10, -5, 0, 8$; c) $-8, -4, 0, 4, 8$; d) $-3, -2, -1, 1, 2, 3$
-
-**Bài 6:** a) Everest ($+8848$ m); b) Hồ Baikal ($-1642$ m); c) Hồ Baikal, Biển Chết, Phú Sĩ, Everest; d) $8848 - (-430) = 9278$ m
+**Bài 10:**
+$a < 0 < b$ và $|a| < |b|$, tức $|a| < |b|$.
+a) $a$ và $-b$: Vì $b > 0$ nên $-b < 0$. So $a$ với $-b$: $|a| < |b| = |-b|$ và cả hai đều âm, nên $a > -b$ (số nào có $|a|$ nhỏ hơn thì lớn hơn).
+b) $-a$ và $b$: $-a > 0$, $b > 0$. $|-a| = |a| < |b| = b$, nên $-a < b$.
 
 </div>
 </details>

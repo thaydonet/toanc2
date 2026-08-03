@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 30: Đa giác đều"
-description: "Khái niệm đa giác đều, công thức tính góc và tâm đường tròn ngoại tiếp, nội tiếp - Toán 9 Kết nối tri thức"
+description: "Khái niệm đa giác đều, công thức tính góc, số đường chéo, bán kính đường tròn ngoại tiếp R, nội tiếp r và diện tích đa giác đều - Toán 9 KNTT Chương 9"
 grade: "Lớp 9"
 chapter: "Chương IX: Đường tròn ngoại tiếp và đường tròn nội tiếp"
 currentSlug: "lop9/bai-30-da-giac-deu"
@@ -13,207 +13,388 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Thế nào là một đa giác đều?",
-    option_a: "Là đa giác có tất cả các góc bằng nhau.",
-    option_b: "Là đa giác có tất cả các cạnh bằng nhau và tất cả các góc bằng nhau.",
-    option_c: "Là đa giác có số lượng đỉnh bằng số lượng cạnh.",
-    option_d: "Là đa giác có thể chia thành nhiều tam giác bằng nhau.",
+    question: "Đa giác đều là đa giác có đặc điểm gì?",
+    option_a: "Có tất cả các cạnh bằng nhau và tất cả các góc bằng nhau",
+    option_b: "Chỉ cần tất cả các cạnh bằng nhau",
+    option_c: "Chỉ cần tất cả các góc bằng nhau",
+    option_d: "Có hai đường chéo vuông góc",
+    correct_option: "A",
+    explanation: "Định nghĩa: Đa giác đều là đa giác có tất cả các cạnh bằng nhau và tất cả các góc bằng nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Công thức tính số đo mỗi góc trong của đa giác đều $n$ cạnh là:",
+    option_a: "$\\alpha = \\frac{(n-2) \\cdot 180^\\circ}{n}$",
+    option_b: "$\\alpha = \\frac{n \\cdot 180^\\circ}{n-2}$",
+    option_c: "$\\alpha = (n-2) \\cdot 180^\\circ$",
+    option_d: "$\\alpha = \\frac{360^\\circ}{n}$",
+    correct_option: "A",
+    explanation: "Tổng các góc trong của đa giác $n$ cạnh là $(n-2) \\cdot 180^\\circ$. Vì các góc bằng nhau nên mỗi góc $\\alpha = \\frac{(n-2) \\cdot 180^\\circ}{n}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Mỗi góc trong của lục giác đều ($n = 6$) có số đo bằng bao nhiêu?",
+    option_a: "$108^\\circ$",
+    option_b: "$120^\\circ$",
+    option_c: "$135^\\circ$",
+    option_d: "$90^\\circ$",
     correct_option: "B",
-    explanation: "Định nghĩa về đa giác đều phải bao gồm đồng thời hai điều kiện khắt khe: (1) Mọi cạnh có độ dài bằng nhau và (2) Mọi góc ở các đỉnh có số đo bằng nhau. Thiếu một trong hai thì không được gọi là đa giác đều.",
+    explanation: "$\\alpha = \\frac{(6-2) \\cdot 180^\\circ}{6} = \\frac{4 \\cdot 180^\\circ}{6} = 120^\\circ$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Hình nào sau đây KHÔNG PHẢI là một đa giác đều?",
-    option_a: "Tam giác đều",
-    option_b: "Hình vuông",
-    option_c: "Hình chữ nhật có độ dài cạnh khác nhau",
-    option_d: "Lục giác đều",
-    correct_option: "C",
-    explanation: "Hình chữ nhật có 4 góc bằng nhau (đều là góc vuông 90 độ), nhưng 4 cạnh của nó không bằng nhau (có chiều dài và chiều rộng khác nhau). Do đó, hình chữ nhật không phải là đa giác đều. (Trừ khi nó là hình vuông).",
+    question: "Số đường chéo của đa giác $n$ cạnh được tính theo công thức nào?",
+    option_a: "$N_{chéo} = \\frac{n(n-3)}{2}$",
+    option_b: "$N_{chéo} = n(n-3)$",
+    option_c: "$N_{chéo} = \\frac{n(n-1)}{2}$",
+    option_d: "$N_{chéo} = n - 3$",
+    correct_option: "A",
+    explanation: "Công thức tính số đường chéo của đa giác $n$ cạnh: $N_{chéo} = \\frac{n(n-3)}{2}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Công thức tính tổng số đo các góc trong của một đa giác lồi có $n$ cạnh ($n \\ge 3$) là gì?",
-    option_a: "$(n - 1) \\cdot 180^\\circ$",
-    option_b: "$n \\cdot 180^\\circ$",
-    option_c: "$(n - 2) \\cdot 180^\\circ$",
-    option_d: "$(n - 2) \\cdot 360^\\circ$",
-    correct_option: "C",
-    explanation: "Một đa giác lồi $n$ cạnh có thể được chia nhỏ thành $(n - 2)$ tam giác bằng cách kẻ đường chéo từ một đỉnh bất kì. Tổng 3 góc của một tam giác là $180^\\circ$. Do đó, tổng các góc của đa giác là $(n - 2) \\cdot 180^\\circ$.",
-    difficulty_level: "medium",
+    question: "Lục giác đều nội tiếp đường tròn bán kính $R$. Độ dài cạnh $a$ của lục giác đều bằng:",
+    option_a: "$a = R$",
+    option_b: "$a = R\\sqrt{3}$",
+    option_c: "$a = R\\sqrt{2}$",
+    option_d: "$a = 2R$",
+    correct_option: "A",
+    explanation: "Lục giác đều gồm 6 tam giác đều ghép lại có cạnh đúng bằng bán kính đường tròn ngoại tiếp: $a = R$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Số đo mỗi góc của một ngũ giác đều ($n = 5$ cạnh) là bao nhiêu độ?",
-    option_a: "60 độ",
-    option_b: "90 độ",
-    option_c: "108 độ",
-    option_d: "120 độ",
-    correct_option: "C",
-    explanation: "Tổng số đo 5 góc của ngũ giác: $(5 - 2) \\cdot 180^\\circ = 540^\\circ$. Vì ngũ giác đều có 5 góc bằng nhau, số đo một góc là $540^\\circ : 5 = 108^\\circ$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Tâm của một đa giác đều được xác định như thế nào?",
-    option_a: "Là một trong các đỉnh của đa giác.",
-    option_b: "Là tâm đường tròn ngoại tiếp đa giác đều đó (đồng thời cũng là tâm đường tròn nội tiếp).",
-    option_c: "Là giao điểm của hai cạnh đối diện kéo dài.",
-    option_d: "Là điểm ngẫu nhiên nằm giữa đa giác.",
+    question: "Công thức tính diện tích đa giác đều chu vi $P$ và bán kính nội tiếp $r$ là:",
+    option_a: "$S = P \\cdot r$",
+    option_b: "$S = \\frac{1}{2} P \\cdot r$",
+    option_c: "$S = 2 P \\cdot r$",
+    option_d: "$S = P^2 \\cdot r$",
     correct_option: "B",
-    explanation: "Mọi đa giác đều luôn luôn có một đường tròn ngoại tiếp và một đường tròn nội tiếp. Hai đường tròn này có chung một tâm. Điểm tâm chung đó được gọi là tâm của đa giác đều.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Cho một lục giác đều ($n = 6$). Lục giác này có thể nội tiếp trong một đường tròn. Số đo góc ở tâm chắn một cạnh của lục giác đều đó là bao nhiêu độ?",
-    correct_option: "60",
-    explanation: "Lục giác đều có 6 cạnh bằng nhau, do đó 6 cạnh này chắn 6 cung bằng nhau trên đường tròn ngoại tiếp. Số đo một cung bị chắn bởi 1 cạnh là $360^\\circ / 6 = 60^\\circ$. Góc ở tâm chắn cạnh đó cũng bằng $60^\\circ$.",
+    explanation: "Đa giác đều gồm $n$ tam giác cân có đáy $a$ và chiều cao $r$. Tổng diện tích $S = n \\cdot (\\frac{1}{2} a r) = \\frac{1}{2} (n a) r = \\frac{1}{2} P r$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Một đa giác đều có mỗi góc trong bằng $144^\\circ$. Hỏi đa giác này có bao nhiêu cạnh?",
-    correct_option: "10",
-    explanation: "Sử dụng công thức tính một góc của đa giác đều $n$ cạnh: $\\frac{(n-2) \\cdot 180}{n} = 144$. Suy ra $180n - 360 = 144n$. Giải phương trình ta được $36n = 360 \\Rightarrow n = 10$. Đây là một thập giác đều (10 cạnh).",
+    type: "msq",
+    question: "Những khẳng định nào sau đây ĐÚNG về Đa giác đều?",
+    option_a: "Mọi đa giác đều luôn có duy nhất một đường tròn ngoại tiếp và một đường tròn nội tiếp",
+    option_b: "Tâm của đường tròn ngoại tiếp và nội tiếp đa giác đều trùng nhau (gọi là tâm đa giác đều)",
+    option_c: "Ngũ giác đều có mỗi góc trong bằng $108^\\circ$",
+    option_d: "Bát giác đều ($n=8$) có 20 đường chéo",
+    correct_option: "A,B,C,D",
+    explanation: "A, B, C đúng. D: $N_{chéo} = \\frac{8(8-3)}{2} = \\frac{40}{2} = 20$. Cả 4 khẳng định đều đúng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho lục giác đều ABCDEF cạnh $a = 6\\text{ cm}$ nội tiếp $(O; R)$. Khẳng định nào ĐÚNG?",
+    option_a: "Bán kính ngoại tiếp $R = 6\\text{ cm}$",
+    option_b: "Bán kính nội tiếp $r = 3\\sqrt{3}\\text{ cm}$",
+    option_c: "Chu vi lục giác đều $P = 36\\text{ cm}$",
+    option_d: "Diện tích lục giác đều $S = 54\\sqrt{3}\\text{ cm}^2$",
+    correct_option: "A,B,C,D",
+    explanation: "$R = a = 6$. $r = \frac{6\sqrt{3}}{2} = 3\sqrt{3}$. $P = 6 \times 6 = 36$. $S = \frac{1}{2} P r = \frac{1}{2} \times 36 \times 3\sqrt{3} = 54\sqrt{3}\\text{ cm}^2$. Cả 4 khẳng định đều đúng.",
     difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính số đường chéo của một ngũ giác (n = 5).",
+    correct_option: "5",
+    explanation: "$N_{chéo} = \\frac{5(5-3)}{2} = \\frac{10}{2} = 5$ đường chéo.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một đa giác đều có mỗi góc trong bằng 144°. Đa giác đều đó có bao nhiêu cạnh?",
+    correct_option: "10",
+    explanation: "$\\frac{(n-2) \\cdot 180^\\circ}{n} = 144^\\circ \\Leftrightarrow 180n - 360 = 144n \\Leftrightarrow 36n = 360 \\Rightarrow n = 10$ cạnh (Thập giác đều).",
+    difficulty_level: "medium",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🏵️ Hình mẫu cân xứng tuyệt đối trong tự nhiên</h3>
+<h3 id="mo-dau">🧱 Gạch Nghệ Thuật Lát Nền & Vẻ Đẹp Của Đa Giác Đều</h3>
 
-Trong tự nhiên và trong thực tiễn kiến trúc, con người luôn bị thu hút bởi sự bắt mắt bề mặt của cấu trúc mang tính đối xứng vạn toàn. Tổ ong mật là một bằng chứng vĩ đại của sinh học: chúng được đúc từ hàng nghìn ô sáp dạng hình lục giác có các cạnh và các góc bằng chằn chặn giống hệt nhau. Trên nền gạch sàn nhà, nghệ nhân dùng hình vuông khảm vào nhau, không khe hở. Nhìn vào phù điêu Lầu Năm Góc ở Mỹ, chúng có hình ngũ giác cực kì hoàn hảo.
+Khi quan sát các hoa văn lát gạch nền nhà, mặt tổ ong thiên nhiên hay thiết kế kim cương lấp lánh, chúng ta luôn bắt gặp các hình tam giác đều, hình vuông, ngũ giác đều và lục giác đều.
 
-Những dạng hình vừa nêu như: tam giác đều, hình vuông, ngũ giác hoàn chỉnh, lục giác đối xứng... được Toán học gom chung vào một tên gọi đại diện, đó là khái niệm **Đa giác đều**. Cùng bước vào thế giới hình học để chứng minh những tính chất cân bằng kì diệu của chúng.
+Đó là những **Đa giác đều** — các hình hình học phẳng có tất cả các cạnh bằng nhau và tất cả các góc bằng nhau. Sự cân đối hoàn hảo này đem lại ứng dụng vô cùng rộng rãi trong kiến trúc, cơ khí chế tạo và mỹ thuật thiết kế!
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="180" viewBox="0 0 420 180" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Regular Hexagon */}
+  <g transform="translate(130, 90)">
+    <polygon points="50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3"/>
+    <circle cx="0" cy="0" r="43.3" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3"/>
+    <circle cx="0" cy="0" r="4" fill="#15803d"/>
+    <text x="0" y="-55" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">R (Ngoại tiếp)</text>
+    <text x="0" y="20" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">r (Nội tiếp)</text>
+  </g>
+
+  {/* Labels */}
+  <g transform="translate(260, 45)">
+    <text x="0" y="20" font-size="13" font-weight="bold" fill="#15803d">Lục giác đều (n = 6)</text>
+    <text x="0" y="45" font-size="12" fill="#1e293b">• 6 cạnh bằng nhau</text>
+    <text x="0" y="65" font-size="12" fill="#1e293b">• 6 góc = 120°</text>
+    <text x="0" y="85" font-size="12" fill="#1e293b">• Cạnh a = R</text>
+    <text x="0" y="105" font-size="12" fill="#1e293b">• r = R√3 / 2</text>
+  </g>
+</svg>
+</div>
 
 </KhoiDong>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+<KhamPha title="Khám phá">
 
-<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Khái niệm đa giác đều</h3>
+<h3 id="khai-niem-va-goc-da-giac-deu">📖 1. Khái niệm và Các công thức cơ bản của Đa giác đều</h3>
 
 <div class="box-dinh-nghia">
 
-**Đa giác đều** lồi là một hình đa giác có bao gồm tất cả các mặt đối xứng thỏa mãn đồng thời hai yêu cầu: 
-1. Tất cả các cạnh cấu thành đều bằng nhau. 
-2. Tất cả các góc ở các đỉnh nối đều bằng nhau.
+**1. Định nghĩa:**
+- **Đa giác đều** là đa giác có tất cả các cạnh bằng nhau và tất cả các góc bằng nhau.
+
+**2. Công thức góc và số đường chéo:**
+Cho đa giác đều $n$ cạnh ($n \ge 3$):
+- **Tổng các góc trong:** $S_n = (n - 2) \cdot 180^^\circ$
+- **Số đo mỗi góc trong ($\alpha$):**
+  $$\alpha = \frac{(n - 2) \cdot 180^^\circ}{n}$$
+- **Số đo mỗi góc ở tâm ($\beta$):** $\beta = \frac{360^^\circ}{n}$
+- **Số đường chéo ($N_{\text{chéo}}$):**
+  $$N_{\text{chéo}} = \frac{n(n - 3)}{2}$$
 
 </div>
 
-**Các loại đa giác đều thường gặp:**
-- Đa giác đều 3 cạnh: **Tam giác đều**.
-- Đa giác đều 4 cạnh: **Hình vuông**. 
-- Đa giác đều 5, 6, 8 cạnh lần lượt là: **Ngũ giác đều, Lục giác đều, Bát giác đều**...
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-*Lưu ý: Hình thoi có 4 cạnh bằng nhau nhưng các góc không hẳn bằng nhau (không phải hình đa giác đều). Ngược lại, hình chữ nhật có 4 góc bằng nhau nhưng 4 cạnh không bằng nhau (không phải hình đa giác đều).*
+**3 Ví dụ minh họa Công thức Đa giác đều:**
 
-<h3 id="goc-da-giac" style="margin-top:2rem;">📖 2. Tính số đo góc của Đa giác đều</h3>
+- **Ví dụ 1:** Tính số đo mỗi góc trong của ngũ giác đều ($n = 5$) và bát giác đều ($n = 8$).
+  - *Giải:* 
+    - Ngũ giác đều ($n = 5$): $\alpha = \frac{(5-2) \cdot 180^^\circ}{5} = \frac{540^^\circ}{5} = 108^^\circ$.
+    - Bát giác đều ($n = 8$): $\alpha = \frac{(8-2) \cdot 180^^\circ}{8} = \frac{1080^^\circ}{8} = 135^^\circ$.
 
-Nhờ tính đối xứng và các góc bằng nhau, ta có thể xây dựng công thức toán học lập tính số đo:
+- **Ví dụ 2:** Tính số đường chéo của lục giác ($n = 6$) và thập giác ($n = 10$).
+  - *Giải:* 
+    - Lục giác ($n = 6$): $N_{\text{chéo}} = \frac{6(6-3)}{2} = \frac{18}{2} = 9$ đường chéo.
+    - Thập giác ($n = 10$): $N_{\text{chéo}} = \frac{10(10-3)}{2} = \frac{70}{2} = 35$ đường chéo.
 
-<div class="box-dinh-ly">
-
-- Tổng số đo các góc của một đa giác lồi có $n$ cạnh là bằng: $(n - 2) \cdot 180^\circ$.
-- Vì khối đa giác có tên cấu tạo là đều nên tất cả $n$ góc đều sở hữu thông số độ mở như nhau. Suy ra, số đo mỗi góc giới hạn trong của một đa giác đều $n$ cạnh là:
-$$\text{Số đo 1 góc} = \frac{(n - 2) \cdot 180^\circ}{n}$$
-
-</div>
-
-*(Ví dụ: Lục giác đều có $n = 6$. Tổng góc là $(6-2)180 = 720^\circ$. Một góc giới hạn sẽ bằng $\frac{720}{6} = 120^\circ$)*.
-
-<h3 id="tam-da-giac" style="margin-top:2rem;">📖 3. Đường tròn và Tâm của đa giác đều</h3>
-
-Khác với tứ giác hay đa giác thường (có loại nội tiếp được, có loại không thể nội tiếp), đa giác đều mang một đặc quyền bất biến:
-
-<div class="box-dinh-ly">
-
-1. Mọi đa giác đều luôn luôn **nội tiếp trong một đường tròn** (có một đường tròn đi qua tất cả $n$ đỉnh).
-2. Mọi đa giác đều cũng luôn luôn **ngoại tiếp một đường tròn** (có một đường tròn tiếp xúc khít với tất cả $n$ cạnh của đa giác).
-3. Điểm kì diệu là hai đường tròn kể trên luôn có **cùng chung một tâm phân bổ**. Điểm trung tâm đó được gọi là **Tâm của đa giác đều**. Khoảng cách từ Tâm đến đỉnh gọi là Bán kính đường tròn ngoại tiếp, khoảng cách từ Tâm đến cạnh gọi là tung độ Bán kính đường tròn nội tiếp (đường trung đoạn).
+- **Ví dụ 3:** Tìm số cạnh $n$ của đa giác đều có mỗi góc trong bằng $150^^\circ$.
+  - *Giải:* Phương trình: $\frac{(n-2) \cdot 180^^\circ}{n} = 150^^\circ \Leftrightarrow 180n - 360 = 150n \Leftrightarrow 30n = 360 \Rightarrow n = 12$.  
+    Đó là một **thập nhị giác đều** (12 cạnh).
 
 </div>
 
-<div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap", margin: "2rem 0"}}>
+<h3 id="duong-tron-ngoai-noi-tiep-da-giac-deu" style="margin-top:2rem;">📖 2. Đường tròn Ngoại tiếp, Nội tiếp & Diện tích Đa giác đều</h3>
 
-{/* Lục giác đều */}
-<div style={{textAlign: "center"}}>
-<svg width="250" height="250" viewBox="0 0 250 250">
-  {/* Đường tròn ngoại tiếp */}
-  <circle cx="125" cy="125" r="100" fill="none" stroke="#9ca3af" strokeWidth="1" strokeDasharray="4,4"/>
-  {/* Đường tròn nội tiếp */}
-  <circle cx="125" cy="125" r="86.6" fill="none" stroke="#9ca3af" strokeWidth="1" strokeDasharray="4,4"/>
-  
-  {/* Hexagon (r=100) */}
-  {/* Angles: 30, 90, 150, 210, 270, 330 */}
-  <path d="M 211.6,75 L 211.6,175 L 125,225 L 38.4,175 L 38.4,75 L 125,25 Z" fill="none" stroke="#2563eb" strokeWidth="2"/>
-  
-  {/* Tâm */}
-  <circle cx="125" cy="125" r="4" fill="#ef4444"/>
-  <text x="135" y="130" fill="#ef4444" fontWeight="bold">O</text>
-  
-  {/* Bán kính (Ngoại, Nội) */}
-  <path d="M 125,125 L 211.6,75" fill="none" stroke="#10b981" strokeWidth="2"/>
-  <path d="M 125,125 L 168.3,200" fill="none" stroke="#f59e0b" strokeWidth="2"/>
-</svg>
-<p style={{fontStyle: "italic", fontSize:"0.9rem"}}>Lục giác đều (6 cạnh) <br/> Tâm O đồng quy hai đường tròn</p>
+<div class="box-dinh-nghia">
+
+**1. Tâm và Bán kính:**
+Mọi đa giác đều luôn có duy nhất một **tâm $O$**, đồng thời là tâm đường tròn ngoại tiếp (bán kính $R$) và tâm đường tròn nội tiếp (bán kính $r$).
+- Bán kính nội tiếp $r$ (gọi là **trung đoạn** của đa giác đều):
+  $$r = R \cdot \cos \frac{180^^\circ}{n}$$
+- Độ dài cạnh $a$:
+  $$a = 2 R \cdot \sin \frac{180^^\circ}{n}$$
+
+**2. Công thức tính Diện tích Đa giác đều:**
+$$S = \frac{1}{2} P \cdot r = n \cdot \left(\frac{1}{2} a r\right)$$
+trong đó $P = n \cdot a$ là chu vi của đa giác đều.
+
 </div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Bán kính & Diện tích:**
+
+- **Ví dụ 1:** Cho lục giác đều cạnh $a = 8\text{ cm}$. Tính $R, r$ và diện tích $S$.
+  - *Giải:* Đối với lục giác đều ($n = 6$):  
+    $R = a = 8\text{ cm}$.  
+    $r = R \cdot \cos 30^^\circ = 8 \cdot \frac{\sqrt{3}}{2} = 4\sqrt{3}\text{ cm}$.  
+    Chu vi $P = 6 \times 8 = 48\text{ cm}$.  
+    Diện tích $S = \frac{1}{2} P \cdot r = \frac{1}{2} \cdot 48 \cdot 4\sqrt{3} = 96\sqrt{3}\text{ cm}^2 \approx 166,28\text{ cm}^2$.
+
+- **Ví dụ 2:** Cho hình vuông ($n = 4$) nội tiếp đường tròn $(O; R = 6\text{ cm})$. Tính cạnh $a$ và bán kính nội tiếp $r$.
+  - *Giải:* $a = 2 R \sin 45^^\circ = 2(6) \cdot \frac{\sqrt{2}}{2} = 6\sqrt{2}\text{ cm}$.  
+    $r = R \cos 45^^\circ = 6 \cdot \frac{\sqrt{2}}{2} = 3\sqrt{2}\text{ cm}$.
+
+- **Ví dụ 3:** Tính diện tích tam giác đều ($n = 3$) nội tiếp đường tròn $(O; R = 4\text{ cm})$.
+  - *Giải:* Cạnh $a = R\sqrt{3} = 4\sqrt{3}\text{ cm}$.  
+    $r = \frac{R}{2} = 2\text{ cm}$. Chu vi $P = 3 \times 4\sqrt{3} = 12\sqrt{3}\text{ cm}$.  
+    Diện tích $S = \frac{1}{2} P r = \frac{1}{2} (12\sqrt{3})(2) = 12\sqrt{3}\text{ cm}^2$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính Góc và Số đường chéo của Đa giác đều**
+- **Phương pháp:** Áp dụng $\alpha = \frac{(n-2) \cdot 180^^\circ}{n}$ và $N_{\text{chéo}} = \frac{n(n-3)}{2}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tính góc $\alpha$ và số đường chéo của đa giác đều 12 cạnh.
+  - *Lời giải:* $\alpha = \frac{(12-2) \cdot 180^^\circ}{12} = \frac{1800^^\circ}{12} = 150^^\circ$.  
+    $N_{\text{chéo}} = \frac{12(12-3)}{2} = \frac{108}{2} = 54$ đường chéo.
+
+- **Ví dụ 2:** Tìm số cạnh $n$ của đa giác có tổng các góc trong bằng $1080^^\circ$.
+  - *Lời giải:* $(n-2) \cdot 180^^\circ = 1080^^\circ \Leftrightarrow n - 2 = 6 \Rightarrow n = 8$ (bát giác).
+
+- **Ví dụ 3:** Đa giác nào có số đường chéo bằng số cạnh?
+  - *Lời giải:* $N_{\text{chéo}} = n \Leftrightarrow \frac{n(n-3)}{2} = n \Leftrightarrow n - 3 = 2 \Rightarrow n = 5$ (ngũ giác).
+
+</div>
+
+#### **Dạng 2: Bộ ba Đa giác đều Đặc biệt ($n = 3, 4, 6$)**
+- **Phương pháp:** Sử dụng các công thức nhanh cho 3 đa giác đều thường gặp nhất:
+  - **Tam giác đều ($n=3$):** $a = R\sqrt{3}, r = \frac{R}{2}$.
+  - **Hình vuông ($n=4$):** $a = R\sqrt{2}, r = \frac{R\sqrt{2}}{2}$.
+  - **Lục giác đều ($n=6$):** $a = R, r = \frac{R\sqrt{3}}{2}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho $(O; 10\text{ cm})$. Tính cạnh $a$ của tam giác đều, hình vuông, lục giác đều nội tiếp $(O)$.
+  - *Lời giải:*  
+    - Tam giác đều: $a_3 = 10\sqrt{3} \approx 17,32\text{ cm}$.  
+    - Hình vuông: $a_4 = 10\sqrt{2} \approx 14,14\text{ cm}$.  
+    - Lục giác đều: $a_6 = 10\text{ cm}$.
+
+- **Ví dụ 2:** Tính bán kính nội tiếp $r$ tương ứng cho 3 hình ở Ví dụ 1.
+  - *Lời giải:* $r_3 = 5\text{ cm}$; $r_4 = 5\sqrt{2} \approx 7,07\text{ cm}$; $r_6 = 5\sqrt{3} \approx 8,66\text{ cm}$.
+
+- **Ví dụ 3:** So sánh diện tích của hình vuông và lục giác đều cùng nội tiếp đường tròn $(O; R)$.
+  - *Lời giải:* $S_4 = a_4^2 = (R\sqrt{2})^2 = 2R^2$.  
+    $S_6 = \frac{1}{2} P r = \frac{1}{2} (6R)\left(\frac{R\sqrt{3}}{2}\right) = \frac{3\sqrt{3}}{2} R^2 \approx 2,598 R^2$.  
+    Diện tích lục giác đều lớn hơn diện tích hình vuông cùng nội tiếp $(O)$.
+
+</div>
+
+#### **Dạng 3: Tính Diện tích phần hình phẳng giới hạn bởi Đa giác và Đường tròn**
+- **Phương pháp:** Tính $S_{\text{tròn}} = \pi R^2$ và $S_{\text{đa\_giác}}$, lấy hiệu $S_{\text{phần\_còn\_lại}} = S_{\text{tròn}} - S_{\text{đa\_giác}}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho đường tròn $(O; R = 6\text{ cm})$. Tính diện tích phần hình tròn nằm bên ngoài hình vuông nội tiếp $(O)$.
+  - *Lời giải:* $S_{\text{tròn}} = \pi (6)^2 = 36\pi\text{ cm}^2$.  
+    Cạnh hình vuông $a = 6\sqrt{2} \Rightarrow S_{\text{vuông}} = a^2 = 72\text{ cm}^2$.  
+    Diện tích phần nằm ngoài hình vuông là $S = 36\pi - 72 \approx 113,1 - 72 = 41,1\text{ cm}^2$.
+
+- **Ví dụ 2:** Cho đường tròn $(O; R = 4\text{ cm})$. Tính diện tích nằm ngoài lục giác đều nội tiếp $(O)$.
+  - *Lời giải:* $S_{\text{tròn}} = 16\pi\text{ cm}^2$.  
+    $S_{\text{lục\_giác}} = \frac{3\sqrt{3}}{2} R^2 = \frac{3\sqrt{3}}{2} (16) = 24\sqrt{3}\text{ cm}^2$.  
+    Diện tích phần nằm ngoài $S = 16\pi - 24\sqrt{3} \approx 50,27 - 41,57 = 8,7\text{ cm}^2$.
+
+- **Ví dụ 3:** Tính diện tích phần hình tròn nội tiếp nằm bên trong hình vuông ngoại tiếp cạnh $a = 10\text{ cm}$.
+  - *Lời giải:* Bán kính nội tiếp $r = a/2 = 5\text{ cm}$. $S_{\text{vuông}} = 100\text{ cm}^2$.  
+    $S_{\text{nội}} = \pi (5)^2 = 25\pi\text{ cm}^2$.  
+    Diện tích 4 góc thừa $S = 100 - 25\pi \approx 21,46\text{ cm}^2$.
+
+</div>
+
+#### **Dạng 4: Chứng minh Tính chất Đối xứng và Đồng quy của Đa giác đều**
+- **Phương pháp:** Sử dụng các đường chéo chính qua tâm và góc ở tâm bằng nhau.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho lục giác đều $ABCDEF$ tâm $O$. Chứng minh $AD, BE, CF$ là 3 đường kính của đường tròn ngoại tiếp $(O)$ và chúng đồng quy tại $O$.
+  - *Lời giải:* Các tam giác $OAB, OBC, OCD, ODE, OEF, OFA$ là 6 tam giác đều bằng nhau.  
+    $\widehat{AOD} = \widehat{AOB} + \widehat{BOC} + \widehat{COD} = 60^^\circ + 60^^\circ + 60^^\circ = 180^^\circ \Rightarrow A, O, D$ thẳng hàng.  
+    Do đó $AD$ là đường kính qua $O$. Tương tự $BE, CF$ là đường kính qua $O \Rightarrow$ chúng đồng quy tại $O$ (ĐPCM).
+
+- **Ví dụ 2:** Chứng minh tứ giác $ABDE$ là hình chữ nhật trong lục giác đều $ABCDEF$.
+  - *Lời giải:* $AD, BE$ là hai đường kính của $(O) \Rightarrow$ tứ giác $ABDE$ có 2 đường chéo $AD = BE$ cắt nhau tại trung điểm $O$ mỗi đường $\Rightarrow ABDE$ là hình chữ nhật (ĐPCM).
+
+- **Ví dụ 3:** Chứng minh tam giác $ACE$ là tam giác đều trong lục giác đều $ABCDEF$.
+  - *Lời giải:* $AB = BC = CD = DE = EF = FA \Rightarrow$ các dây $AC = CE = EA \Rightarrow \Delta ACE$ có 3 cạnh bằng nhau nên là tam giác đều (ĐPCM).
+
+</div>
+
+#### **Dạng 5: Bài toán Thực tế Lát Gạch và Cơ Khí Chế Tạo**
+- **Phương pháp:** 
+  - Đa giác đều lát kín mặt phẳng xung quanh 1 đỉnh khi tổng các góc bằng $360^^\circ$: $k \cdot \alpha = 360^^\circ$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Giải thích vì sao gạch lục giác đều ($\alpha = 120^^\circ$) có thể lát kín nền nhà mà không bị hở.
+  - *Lời giải:* Tại mỗi đỉnh chung của các viên gạch, 3 góc của 3 viên lục giác đều ghép lại: $3 \times 120^^\circ = 360^^\circ$ đúng bằng một vòng tròn khép kín, nên lát kín hoàn toàn không hở hố (ĐPCM).
+
+- **Ví dụ 2:** Giải thích vì sao gạch ngũ giác đều ($\alpha = 108^^\circ$) KHÔNG THỂ lát kín nền nhà.
+  - *Lời giải:* Vì $360^^\circ / 108^^\circ = 3,33$ không phải là số nguyên (3 viên ghép lại được $324^^\circ < 360^^\circ$, 4 viên ghép được $432^^\circ > 360^^\circ$) nên luôn bị hở hoặc đè lên nhau!
+
+- **Ví dụ 3 (Cơ khí - Đai ốc Lục giác):** Thợ cơ khí dùng cờ-lê để vặn một bu-lông đai ốc lục giác đều cạnh $a = 10\text{ mm}$. Bề rộng dẹt $d$ của cờ-lê (khoảng cách giữa 2 cạnh đối song song) phải bằng bao nhiêu mm?
+  - *Lời giải:* Bề rộng dẹt $d = 2r = 2 \cdot \frac{a\sqrt{3}}{2} = a\sqrt{3} = 10\sqrt{3} \approx 17,32\text{ mm}$.  
+    (Người ta dùng cờ-lê size 17mm hoặc 18mm để vặn bu-lông này).
 
 </div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Tính số khối góc tương quan và số đỉnh của Đa giác đều**
-**Phương pháp:** 
-- Ghi nhớ sử dụng công thức tính số đo góc $\frac{(n-2)180}{n}$. Nếu biết $n$, thay hệ số vào bấm máy để giải góc gốc. Nếu đề mượn cho trước số đo độ dài góc, lập phương trình ẩn $n$ để tìm ra loại định dạng số lượng cạnh/đỉnh.
+**Bài toán 1 (Thiết Kế Nền Nhà Lát Gạch Lục Giác Đều):**  
+Một phòng khách diện tích $S = 24\text{ m}^2$ được lát bằng các viên gạch hoa hình lục giác đều cạnh $a = 20\text{ cm} = 0,2\text{ m}$.  
+a) Tính diện tích của một viên gạch lục giác đều.  
+b) Tính số lượng viên gạch tối thiểu cần dùng để lát kín phòng khách.
 
-</div>
+**Bài toán 2 (Kỹ Thuật Chế Tạo Đai Ốc Lục Giác Cờ-lê):**  
+Một bulông có đầu mũ đai ốc hình lục giác đều nội tiếp đường tròn bán kính $R = 12\text{ mm}$.  
+a) Tính độ dài cạnh $a$ của đai ốc lục giác đều.  
+b) Tính khoảng cách giữa hai mặt phẳng song song đối diện của đai ốc (kích thước cờ-lê vặn).
 
-**Ví dụ 1:** 
-Trang sức hình bát giác lồi đều (một loại hình có 8 cạnh tương ứng và 8 mốc góc bẻ). Hãy tính số đo của duy nhất một góc bên trong của chiếc khay mặt bát giác đó?
-**Hướng dẫn:** 
-- Sử dụng bảng công thức tính góc đối với đa giác đều có $n = 8$ cạnh:
-- Mức độ của góc bát giác đều $= \frac{(8 - 2) \cdot 180^\circ}{8} = \frac{6 \cdot 180^\circ}{8} = \frac{1080^\circ}{8} = 135^\circ$.
-Vậy mỗi góc ở mọi phương nằm của bát giác đồ mang một cấu trúc bằng $135$ độ.
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Khai thác thông tin về chu vi, vòng tròn đường ngoại tiếp đa giác đều (Góc mở tâm)**
-**Phương pháp:** 
-- Nối các đỉnh của đa giác đều vào tâm $O$. Đa giác đều $n$ cạnh sẽ được chia xé thành đúng $n$ tam giác cân hoàn toàn bằng nhau ghép đỉnh tại $O$.
-- Góc ở tâm được nối chắn bởi một cạnh đo (ví dụ góc $\widehat{AOB}$ của cạnh $AB$) sẽ luôn luôn bằng tổng vòng quay đường chia lớp chóp $\frac{360^\circ}{n}$.
-
-</div>
-
-**Ví dụ 2:**  Một bàn gỗ hoa văn hình nón vuông, mặt bàn có hình dạng một đa giác đều đặc biệt nội tiếp vừa khít trong đường viền tròn. Góc đối tâm được chắn chẻ lách bởi hai cạnh kề đo được một giới hạn là góc $72^\circ$. Yêu cầu hãy tính đa giác mặt diện đó thuộc kiểu phân khúc đa giác gồm bao nhiêu cạnh? 
-**Hướng dẫn:** 
-- Dữ kiện bài toán nhắc đến một góc ở tâm tương phản một cạnh, áp dụng công thức góc đo cắt của đa giác đều:
-Góc lồng tại tâm $O = \frac{360^\circ}{n} = 72^\circ$.
-- Từ hệ quả giải cho $n$: $n = \frac{360}{72} = 5$.
-Do mang mã số $n = 5$, bàn hoa văn hình ngũ diện đều đục lỗ (hay còn gọi tắt là ngũ giác đều chóp).
+**Bài toán 3 (Trang Sức Mặt Dây Chuyền Bát Giác Đều):**  
+Một thợ kim hoàn chế tác mặt dây chuyền hình bát giác đều ($n = 8$) nội tiếp vòng tròn vàng bán kính $R = 15\text{ mm}$.  
+a) Tính số đo mỗi góc trong của mặt dây chuyền bát giác đều.  
+b) Tính độ dài cạnh $a$ của bát giác đều ($a = 2 R \sin 22,5^^\circ$).
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ dưới đây hỗ trợ tính số đo góc, số đường chéo, bán kính ngoại/nội tiếp và diện tích các đa giác đều!
+</div>
+
+<CanBacHaiInteractive client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 30:**
+
+1. **Góc trong:** $\alpha = \frac{(n-2) \cdot 180^^\circ}{n}$. Số đường chéo: $N = \frac{n(n-3)}{2}$.  
+2. **Bộ ba đa giác đều đặc biệt:**  
+   - $n=3$ (Tam giác đều): $a = R\sqrt{3}, r = R/2$.  
+   - $n=4$ (Hình vuông): $a = R\sqrt{2}, r = R\sqrt{2}/2$.  
+   - $n=6$ (Lục giác đều): $a = R, r = R\sqrt{3}/2$.  
+3. **Diện tích:** $S = \frac{1}{2} P \cdot r$.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -222,36 +403,143 @@ Do mang mã số $n = 5$, bàn hoa văn hình ngũ diện đều đục lỗ (ha
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Thiết kế lát nền hình học lục giác xếp liền khối đều tạo hiệu ứng thị giác tổ ong cho sân đình. Một mảng sân được lát dải những tấm gạch nung hình lục giác đều. Khái quát một viên gạch nung dạng lăng trụ hình lục giác đều phân nhóm mang hệ trục $ABCDEF$. Trung tâm của chi tiết gạch là một giao điểm tâm $O$. 
+**Bài 1:** Tính số đo mỗi góc trong $\alpha$ của các đa giác đều $n$ cạnh sau:  
+a) Tam giác đều ($n = 3$)  
+b) Hình vuông ($n = 4$)  
+c) Ngũ giác đều ($n = 5$)  
+d) Lục giác đều ($n = 6$)  
+e) Bát giác đều ($n = 8$)  
+f) Thập nhị giác đều ($n = 12$)
 
-a) Mỗi góc viền mốc của viên mặt lục giác $\widehat{A}$ có số đo chi số bằng bao nhiêu? 
-b) Giải đồ chiếu để tính góc mở lót nối ở tâm $\widehat{AOB}$ (góc đối diện chắn đúng cạnh chóp $AB$ của lục giác).
-c) Nêu nhận xét về tam giác tam phân đặc dụng $\triangle AOB$, chứng minh tam giác hợp mốc $\triangle AOB$ là một hình dạng tam giác có ba cạnh đều nhau.
+**Bài 2:** Tính số đường chéo của các đa giác sau:  
+a) Tứ giác ($n = 4$)  
+b) Ngũ giác ($n = 5$)  
+c) Lục giác ($n = 6$)  
+d) Bát giác ($n = 8$)  
+e) Thập giác ($n = 10$)  
+f) Đa giác 15 cạnh ($n = 15$)
 
-**Bài 2:** Trên mặt đồng hồ, các vạch kẽ chỉ giờ (12 mốc từ vị trí số 1 đến 12) chính là 12 vị trí đỉnh của một đa giác cấu tạo thành mẫu 12 mặt đều (Mẫu **Thập nhị giác đều** ngoại vi mặt nội tiếp viền đồng hồ).
-a) Cấu trúc mỗi mốc góc ở đỉnh giới hạn bởi viền thập nhị giác mặt sẽ chứa độ lớn bằng bao nhiêu độ thực?
-b) Khoảng độ phân vòng tâm do kim xoay chắn cách giữa một khắc số (từ mốc số 1 chạy đến số 2) bằng bao nhiêu biên biên độ trong vòng đường chuẩn cung tròn đó?
+**Bài 3:** Cho đường tròn ngoại tiếp $(O; R = 12\text{ cm})$. Tính cạnh $a$ và bán kính nội tiếp $r$ của:  
+a) Tam giác đều nội tiếp $(O)$  
+b) Hình vuông nội tiếp $(O)$  
+c) Lục giác đều nội tiếp $(O)$  
+d) Ngũ giác đều nội tiếp $(O)$ (dùng $\sin 36^^\circ \approx 0,5878$)  
+e) Bát giác đều nội tiếp $(O)$ (dùng $\sin 22,5^^\circ \approx 0,3827$)  
+f) Thập giác đều nội tiếp $(O)$ (dùng $\sin 18^^\circ \approx 0,3090$)
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 4:** Cho lục giác đều $ABCDEF$ cạnh $a = 10\text{ cm}$.  
+a) Tính bán kính ngoại tiếp $R$ và bán kính nội tiếp $r$.  
+b) Tính chu vi $P$ và diện tích $S$ của lục giác đều.
 
-**Bài 1:**
-a) Với chuẩn lề của lục giới lục giác đều (tức là $n = 6$). 
-Số đo góc biên vòng ngoài (chóp tại các đỉnh tứ giác mặt $\widehat{A}, \widehat{B}$...) là:
-$\frac{(6 - 2) \cdot 180^\circ}{6} = \frac{4 \cdot 180^\circ}{6} = \frac{720^\circ}{6} = 120^\circ$.
-b) Đối viền lấy góc giao ở trung tâm (chia 6 mặt tam giác phân đều rẽ quạt ra thành): 
-$\widehat{AOB} = \frac{360^\circ}{n} = \frac{360^\circ}{6} = 60^\circ$.
-c) Đặc tính tam giác $\triangle AOB$ nối tâm là tam giác luôn nằm thế cân tại chóp ($OA = OB$ bởi vì chúng đều nằm rải rác đại diện cho bán kính đường tròn tâm $O$). Song song với biểu đồ góc quy tụ ở tâm mốc $\widehat{AOB} = 60^\circ$ như ở (b). 
-Một tam giác cân kẹp giữ một góc chốt độ trúng phóc $60^\circ \Rightarrow$ Tam giác $\triangle AOB$ bẻ gãy lột vào dạng tam giác hoàn toàn đều tắp. (Cạnh ngoài của lục giác đều luôn đúng bằng dài chính bằng kích bán kính ngoại tiếp).
+**Bài 5:** Cho hình vuông $ABCD$ nội tiếp đường tròn $(O; R = 8\text{ cm})$.  
+a) Tính diện tích hình vuông $ABCD$.  
+b) Tính diện tích hình tròn $(O)$.  
+c) Tính diện tích phần hình tròn nằm bên ngoài hình vuông.
 
-**Bài 2:**
-Cấu thành mặt đồng hồ với vách gờ nối các số mốc tương đương với việc nó ôm một hình đa giác lồi đa diện $n = 12$. 
-a) Số đo giới hạn mép ở vòng góc mặt thập nhị diện đều đục chóp tại mỗi đỉnh sẽ nhận giá trị:
-$\frac{(12 - 2) \cdot 180^\circ}{12} = \frac{10 \cdot 180^\circ}{12} = \frac{1800^\circ}{12} = 150^\circ$.
-Mỗi góc đỉnh tạo nếp phẳng ở ranh giới 12 mốc bằng $150^\circ$.
-b) Kim thiết bị mốc quay lách qua vị trí giữa hai điểm neo phân li (ví dụ số 1 và số 2) đoạt chính xác góc đối góc giữa đường nối bán kính tại tâm:
-$\widehat{\text{tâm}} = \frac{360^\circ}{12} = 30^\circ$. Tương tức góc trích ra cung là $30^\circ$.
+**Bài 6:** Tìm số cạnh $n$ của đa giác đều biết mỗi góc trong có số đo bằng:  
+a) $108^^\circ$  
+b) $120^^\circ$  
+c) $135^^\circ$  
+d) $144^^\circ$  
+e) $150^^\circ$  
+f) $160^^\circ$
+
+**Bài 7:** Cho lục giác đều $ABCDEF$ tâm $O$. Chứng minh rằng:  
+a) $AD, BE, CF$ là 3 đường kính đồng quy tại $O$.  
+b) Tứ giác $ABDE$ là hình chữ nhật.  
+c) Tam giác $ACE$ là tam giác đều.
+
+**Bài 8:** Chứng minh rằng tổng khoảng cách từ một điểm $M$ bất kỳ bên trong tam giác đều $ABC$ đến 3 cạnh của tam giác đúng bằng chiều cao $h$ của tam giác đó.
+
+**Bài 9 (Thực tế):** Một lều hội trại hình bát giác đều ($n = 8$) có bán kính đường tròn bao ngoài $R = 4\text{ m}$.  
+a) Tính số đo mỗi góc ở đỉnh lều.  
+b) Tính diện tích mặt sàn lều bát giác đều ($S = 2\sqrt{2} R^2$).
+
+**Bài 10 (Thực tế):** Thiết kế tấm huy chương hình ngũ giác đều nội tiếp vòng tròn $R = 5\text{ cm}$. Tính độ dài cạnh của tấm huy chương ($a = 2R \sin 36^^\circ$).
+
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
+
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
+
+**Bài 1:**  
+a) $n=3 \Rightarrow \alpha = \frac{180^^\circ}{3} = 60^^\circ$.  
+b) $n=4 \Rightarrow \alpha = \frac{360^^\circ}{4} = 90^^\circ$.  
+c) $n=5 \Rightarrow \alpha = \frac{540^^\circ}{5} = 108^^\circ$.  
+d) $n=6 \Rightarrow \alpha = \frac{720^^\circ}{6} = 120^^\circ$.  
+e) $n=8 \Rightarrow \alpha = \frac{1080^^\circ}{8} = 135^^\circ$.  
+f) $n=12 \Rightarrow \alpha = \frac{1800^^\circ}{12} = 150^^\circ$.
+
+---
+
+**Bài 2:**  
+a) $N = \frac{4(1)}{2} = 2$.  
+b) $N = \frac{5(2)}{2} = 5$.  
+c) $N = \frac{6(3)}{2} = 9$.  
+d) $N = \frac{8(5)}{2} = 20$.  
+e) $N = \frac{10(7)}{2} = 35$.  
+f) $N = \frac{15(12)}{2} = 90$.
+
+---
+
+**Bài 3:**  
+$R = 12\text{ cm}$.  
+a) Tam giác đều: $a = 12\sqrt{3} \approx 20,78\text{ cm}, r = 6\text{ cm}$.  
+b) Hình vuông: $a = 12\sqrt{2} \approx 16,97\text{ cm}, r = 6\sqrt{2} \approx 8,49\text{ cm}$.  
+c) Lục giác đều: $a = 12\text{ cm}, r = 6\sqrt{3} \approx 10,39\text{ cm}$.  
+d) Ngũ giác đều: $a = 24 \sin 36^^\circ \approx 14,11\text{ cm}, r = 12 \cos 36^^\circ \approx 9,71\text{ cm}$.  
+e) Bát giác đều: $a = 24 \sin 22,5^^\circ \approx 9,18\text{ cm}, r = 12 \cos 22,5^^\circ \approx 11,09\text{ cm}$.  
+f) Thập giác đều: $a = 24 \sin 18^^\circ \approx 7,42\text{ cm}, r = 12 \cos 18^^\circ \approx 11,41\text{ cm}$.
+
+---
+
+**Bài 4:**  
+a) $R = a = 10\text{ cm}$; $r = \frac{10\sqrt{3}}{2} = 5\sqrt{3}\text{ cm}$.  
+b) Chu vi $P = 6 \times 10 = 60\text{ cm}$.  
+Diện tích $S = \frac{1}{2} P r = \frac{1}{2} \cdot 60 \cdot 5\sqrt{3} = 150\sqrt{3} \approx 259,81\text{ cm}^2$.
+
+---
+
+**Bài 5:**  
+a) Cạnh hình vuông $a = 8\sqrt{2}\text{ cm} \Rightarrow S_{\text{vuông}} = a^2 = (8\sqrt{2})^2 = 128\text{ cm}^2$.  
+b) $S_{\text{tròn}} = \pi R^2 = \pi (8)^2 = 64\pi \approx 201,06\text{ cm}^2$.  
+c) $S_{\text{ngoài}} = 64\pi - 128 \approx 201,06 - 128 = 73,06\text{ cm}^2$.
+
+---
+
+**Bài 6:**  
+$\frac{(n-2) \cdot 180^^\circ}{n} = \alpha \Rightarrow 180(n-2) = \alpha n \Rightarrow (180 - \alpha)n = 360 \Rightarrow n = \frac{360}{180 - \alpha}$.  
+a) $n = \frac{360}{180-108} = \frac{360}{72} = 5$ (Ngũ giác).  
+b) $n = \frac{360}{180-120} = \frac{360}{60} = 6$ (Lục giác).  
+c) $n = \frac{360}{180-135} = \frac{360}{45} = 8$ (Bát giác).  
+d) $n = \frac{360}{180-144} = \frac{360}{36} = 10$ (Thập giác).  
+e) $n = \frac{360}{180-150} = \frac{360}{30} = 12$ (Thập nhị giác).  
+f) $n = \frac{360}{180-160} = \frac{360}{20} = 18$ (Đa giác 18 cạnh).
+
+---
+
+**Bài 7:**  
+a) 6 tam giác $OAB, OBC, OCD, ODE, OEF, OFA$ đều bằng nhau $\Rightarrow \widehat{AOD} = 180^^\circ \Rightarrow A, O, D$ thẳng hàng $\Rightarrow AD$ là đường kính. Tương tự $BE, CF$ là đường kính qua $O$.  
+b) Tứ giác $ABDE$ có 2 đường chéo $AD = BE$ cắt nhau tại trung điểm $O$ $\Rightarrow ABDE$ là hình chữ nhật.  
+c) $AB = BC = CD = DE = EF = FA \Rightarrow AC = CE = EA \Rightarrow \Delta ACE$ đều.
+
+---
+
+**Bài 8:**  
+Nối $M$ với các đỉnh $A, B, C$.  
+$S_{ABC} = S_{MAB} + S_{MBC} + S_{MCA} = \frac{1}{2} a \cdot h_1 + \frac{1}{2} a \cdot h_2 + \frac{1}{2} a \cdot h_3 = \frac{1}{2} a (h_1 + h_2 + h_3)$.  
+Mặt khác $S_{ABC} = \frac{1}{2} a \cdot h \Rightarrow h_1 + h_2 + h_3 = h$ (không đổi) (ĐPCM).
+
+---
+
+**Bài 9:**  
+a) Mỗi góc trong của bát giác đều $\alpha = 135^^\circ$.  
+b) Diện tích mặt sàn lều $S = 2\sqrt{2} R^2 = 2\sqrt{2} (4)^2 = 32\sqrt{2} \approx 45,25\text{ m}^2$.
+
+---
+
+**Bài 10:**  
+Cạnh huy chương ngũ giác đều $a = 2R \sin 36^^\circ = 2(5) \times 0,5878 = 10 \times 0,5878 = 5,88\text{ cm}$.
 
 </div>
 </details>

@@ -13,8 +13,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong3SoNguyenInteractive from '../../components/interactive/OnTapChuong3SoNguyenInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Số đối của $-5$ là:",
@@ -101,38 +103,56 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Kết quả của $(-2) + (-3) + 5$ là:",
-    option_a: "$0$",
-    option_b: "$-10$",
-    option_c: "$10$",
-    option_d: "$-5$",
+    question: "Bỏ dấu ngoặc: $20 - (12 - 5)$",
+    option_a: "$20 - 12 + 5$",
+    option_b: "$20 - 12 - 5$",
+    option_c: "$20 + 12 - 5$",
+    option_d: "$20 + 12 + 5$",
     correct_option: "A",
-    explanation: "$(-2) + (-3) + 5 = -5 + 5 = 0$",
+    explanation: "Trước ngoặc là $-$ nên đổi dấu: $20 - (12 - 5) = 20 - 12 + 5$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 2: MSQ (2 câu) ───────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Kết quả nào bằng $0$?",
+    option_a: "$(-2) + 2$",
+    option_b: "$5 \\times 0$",
+    option_c: "$(-3) \\times (-2)$",
+    option_d: "$0 \\div (-7)$",
+    correct_option: "A,B,D",
+    explanation: "$(-2)+2=0$; $5 \\times 0=0$; $0 \\div (-7)=0$. Còn $(-3) \\times (-2) = 6$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Kết quả của $3 \\times (-2) + 4$ là:",
-    option_a: "$-2$",
-    option_b: "$2$",
-    option_c: "$10$",
-    option_d: "$-10$",
-    correct_option: "A",
-    explanation: "$3 \\times (-2) + 4 = -6 + 4 = -2$",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
+    type: "msq",
     question: "Số nguyên nào nằm giữa $-3$ và $2$?",
-    option_a: "$-2, -1, 0, 1$",
-    option_b: "$-3, -2, -1, 0, 1, 2$",
-    option_c: "$-1, 0, 1$",
-    option_d: "$0, 1$",
-    correct_option: "A",
+    option_a: "$-2$",
+    option_b: "$-1$",
+    option_c: "$0$",
+    option_d: "$1$",
+    correct_option: "A,B,C,D",
     explanation: "Các số nguyên nằm giữa $-3$ và $2$ là: $-2, -1, 0, 1$",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tính: $(-2)^2 + 3 \\times (-1)$",
+    correct_option: "1",
+    explanation: "$(-2)^2 = 4$; $3 \\times (-1) = -3$; $4 + (-3) = 1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính: $|(-3) + 5| - |(-2) - 3|$",
+    correct_option: "-3",
+    explanation: "$|(-3)+5| = |2| = 2$; $|(-2)-3| = |-5| = 5$; $2 - 5 = -3$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
 ];
@@ -252,238 +272,17 @@ Chương 3 mở rộng khái niệm số từ số tự nhiên sang số nguyên
 
 <h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
 
-<QuizSession client:load questions={quizData} />
+<OnTapChuong3SoNguyenInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
 <VanDung>
 
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+<h3 id="van-dung">🌍 III. VẬN DỤNG THỰC TẾ</h3>
 
-<h4 id="bai-1">Bài 1: So sánh số nguyên</h4>
-
-So sánh các cặp số sau:
-
-a) $-5$ và $-3$
-
-b) $-2$ và $0$
-
-c) $3$ và $-7$
-
-d) $-10$ và $-15$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $-5 < -3$
-
-b) $-2 < 0$
-
-c) $3 > -7$
-
-d) $-10 > -15$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Phép cộng số nguyên</h4>
-
-Tính:
-
-a) $(-3) + 7$
-
-b) $(-5) + (-4)$
-
-c) $6 + (-9)$
-
-d) $(-2) + (-3) + 5$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $(-3) + 7 = 4$
-
-b) $(-5) + (-4) = -9$
-
-c) $6 + (-9) = -3$
-
-d) $(-2) + (-3) + 5 = -5 + 5 = 0$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Phép trừ số nguyên</h4>
-
-Tính:
-
-a) $5 - 8$
-
-b) $(-3) - 4$
-
-c) $(-5) - (-2)$
-
-d) $0 - (-7)$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $5 - 8 = -3$
-
-b) $(-3) - 4 = -7$
-
-c) $(-5) - (-2) = -5 + 2 = -3$
-
-d) $0 - (-7) = 7$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Phép nhân số nguyên</h4>
-
-Tính:
-
-a) $(-3) \times 4$
-
-b) $(-5) \times (-2)$
-
-c) $6 \times (-3)$
-
-d) $(-2) \times (-3) \times 4$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $(-3) \times 4 = -12$
-
-b) $(-5) \times (-2) = 10$
-
-c) $6 \times (-3) = -18$
-
-d) $(-2) \times (-3) \times 4 = 6 \times 4 = 24$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Phép chia số nguyên</h4>
-
-Tính:
-
-a) $12 \div (-3)$
-
-b) $(-20) \div (-4)$
-
-c) $(-15) \div 3$
-
-d) $0 \div (-5)$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $12 \div (-3) = -4$
-
-b) $(-20) \div (-4) = 5$
-
-c) $(-15) \div 3 = -5$
-
-d) $0 \div (-5) = 0$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Giá trị tuyệt đối</h4>
-
-Tính:
-
-a) $|-7|$
-
-b) $|5|$
-
-c) $|0|$
-
-d) $|-3| + |4|$
-
-e) $|-5| - |-2|$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $|-7| = 7$
-
-b) $|5| = 5$
-
-c) $|0| = 0$
-
-d) $|-3| + |4| = 3 + 4 = 7$
-
-e) $|-5| - |-2| = 5 - 2 = 3$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-7">Bài 7: Thứ tự thực hiện phép tính</h4>
-
-Tính:
-
-a) $3 \times (-2) + 4$
-
-b) $(-5) + 2 \times 3$
-
-c) $(-2)^2 + 3 \times (-1)$
-
-d) $10 - 2 \times (-3) + 4$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $3 \times (-2) + 4 = -6 + 4 = -2$
-
-b) $(-5) + 2 \times 3 = -5 + 6 = 1$
-
-c) $(-2)^2 + 3 \times (-1) = 4 - 3 = 1$
-
-d) $10 - 2 \times (-3) + 4 = 10 + 6 + 4 = 20$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-8">Bài 8: Bài toán thực tế</h4>
-
-Nhiệt độ buổi sáng là $-2°C$, buổi trưa tăng $8°C$, buổi chiều giảm $5°C$. Hỏi:
+**📝 Bài toán 1:** Nhiệt độ buổi sáng là $-2°C$, buổi trưa tăng $8°C$, buổi chiều giảm $5°C$.
 
 a) Nhiệt độ buổi trưa là bao nhiêu?
 
@@ -491,11 +290,9 @@ b) Nhiệt độ buổi chiều là bao nhiêu?
 
 c) Nhiệt độ buổi chiều so với buổi sáng thay đổi bao nhiêu?
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
 
-**Lời giải:**
+**Giải:**
 
 a) Nhiệt độ buổi trưa: $-2 + 8 = 6°C$
 
@@ -504,79 +301,52 @@ b) Nhiệt độ buổi chiều: $6 - 5 = 1°C$
 c) Thay đổi: $1 - (-2) = 3°C$ (tăng)
 
 </div>
-</details>
 
----
-
-<h4 id="bai-9">Bài 9: Bài toán kết hợp (Câu lớn)</h4>
-
-Một tài khoản ngân hàng có số dư ban đầu là $500.000$ đồng. Trong tuần:
-- Thứ hai: rút $200.000$ đồng
-- Thứ ba: gửi $150.000$ đồng
-- Thứ tư: rút $100.000$ đồng
-- Thứ năm: gửi $300.000$ đồng
+**📝 Bài toán 2:** Một tài khoản ngân hàng có số dư ban đầu là $500000$ đồng. Trong tuần:
+- Thứ hai: rút $200000$ đồng
+- Thứ ba: gửi $150000$ đồng
+- Thứ tư: rút $100000$ đồng
+- Thứ năm: gửi $300000$ đồng
 
 a) Tính số dư sau mỗi ngày
 
 b) Số dư cuối tuần là bao nhiêu?
 
-c) So với ban đầu, số dư thay đổi bao nhiêu?
+<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Giải:**
 
-**Lời giải:**
+a) Thứ hai: $500000 - 200000 = 300000$ đồng
 
-a) Thứ hai: $500.000 - 200.000 = 300.000$ đồng
+   Thứ ba: $300000 + 150000 = 450000$ đồng
 
-   Thứ ba: $300.000 + 150.000 = 450.000$ đồng
+   Thứ tư: $450000 - 100000 = 350000$ đồng
 
-   Thứ tư: $450.000 - 100.000 = 350.000$ đồng
+   Thứ năm: $350000 + 300000 = 650000$ đồng
 
-   Thứ năm: $350.000 + 300.000 = 650.000$ đồng
-
-b) Số dư cuối tuần: $650.000$ đồng
-
-c) Thay đổi: $650.000 - 500.000 = 150.000$ đồng (tăng)
+b) Số dư cuối tuần: $650000$ đồng
 
 </div>
-</details>
 
----
+**📝 Bài toán 3:** Tính giá trị của biểu thức:
 
-<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
+a) $(-3) \\times 4 + 5 \\times (-2) - 10$
 
-Tính giá trị của biểu thức:
+b) $|(-3) + 5| - |(-2) - 3|$
 
-a) $(-3) \times 4 + 5 \times (-2) - 10$
+c) $10 - 2 \\times (-3) + 4$
 
-b) $[(-2) + 3] \times (-4) + 6$
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
 
-c) $(-5) \times [3 + (-2)] - 4 \times (-3)$
+**Giải:**
 
-d) $|(-3) + 5| - |(-2) - 3|$
+a) $(-3) \\times 4 + 5 \\times (-2) - 10 = -12 + (-10) - 10 = -32$
 
-e) $(-2)^3 + 3^2 - (-1)^4$
+b) $|(-3) + 5| - |(-2) - 3| = |2| - |-5| = 2 - 5 = -3$
 
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $(-3) \times 4 + 5 \times (-2) - 10 = -12 - 10 - 10 = -32$
-
-b) $[(-2) + 3] \times (-4) + 6 = 1 \times (-4) + 6 = -4 + 6 = 2$
-
-c) $(-5) \times [3 + (-2)] - 4 \times (-3) = (-5) \times 1 + 12 = -5 + 12 = 7$
-
-d) $|(-3) + 5| - |(-2) - 3| = |2| - |-5| = 2 - 5 = -3$
-
-e) $(-2)^3 + 3^2 - (-1)^4 = -8 + 9 - 1 = 0$
+c) $10 - 2 \\times (-3) + 4 = 10 + 6 + 4 = 20$
 
 </div>
-</details>
 
 </VanDung>
 
@@ -593,3 +363,105 @@ e) $(-2)^3 + 3^2 - (-1)^4 = -8 + 9 - 1 = 0$
 - **Quy tắc dấu ngoặc:** Dấu $-$ trước ngoặc đổi dấu tất cả số bên trong
 
 </GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
+
+**Bài 1 (Dễ):** So sánh: a) $-5$ và $-3$　　b) $-2$ và $0$　　c) $3$ và $-7$
+
+**Bài 2 (Dễ):** Tính: a) $(-3) + 7$　　b) $(-5) + (-4)$　　c) $6 + (-9)$
+
+**Bài 3 (Dễ):** Tính: a) $5 - 8$　　b) $(-3) - 4$　　c) $(-5) - (-2)$
+
+**Bài 4 (Dễ):** Tính: a) $(-3) \\times 4$　　b) $(-5) \\times (-2)$　　c) $6 \\times (-3)$
+
+**Bài 5 (Thông hiểu):** Tính: a) $12 \\div (-3)$　　b) $(-20) \\div (-4)$　　c) $0 \\div (-5)$
+
+**Bài 6 (Thông hiểu):** Tính giá trị tuyệt đối: a) $|-7|$　　b) $|-3| + |4|$　　c) $|-5| - |-2|$
+
+**Bài 7 (Vận dụng):** Tính nhanh: a) $(-17) + 25 + 17$　　b) $(-25) \\times 13 \\times 4$
+
+**Bài 8 (Vận dụng):** Bỏ dấu ngoặc và tính: $100 - [50 - (20 - 10)]$
+
+**Bài 9 (Vận dụng):** Nhiệt độ buổi sáng $-2°C$, buổi trưa tăng $8°C$, buổi chiều giảm $5°C$. Nhiệt độ buổi chiều?
+
+**Bài 10 (Vận dụng cao):** Tính: $(-2)^3 + 3^2 - (-1)^4 + |(-3) + 5|$
+
+</div>
+
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
+
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
+
+**Bài 1:**
+a) $-5 < -3$
+b) $-2 < 0$
+c) $3 > -7$
+
+---
+
+**Bài 2:**
+a) $(-3) + 7 = 4$
+b) $(-5) + (-4) = -9$
+c) $6 + (-9) = -3$
+
+---
+
+**Bài 3:**
+a) $5 - 8 = -3$
+b) $(-3) - 4 = -7$
+c) $(-5) - (-2) = -5 + 2 = -3$
+
+---
+
+**Bài 4:**
+a) $(-3) \\times 4 = -12$
+b) $(-5) \\times (-2) = 10$
+c) $6 \\times (-3) = -18$
+
+---
+
+**Bài 5:**
+a) $12 \\div (-3) = -4$
+b) $(-20) \\div (-4) = 5$
+c) $0 \\div (-5) = 0$
+
+---
+
+**Bài 6:**
+a) $|-7| = 7$
+b) $|-3| + |4| = 3 + 4 = 7$
+c) $|-5| - |-2| = 5 - 2 = 3$
+
+---
+
+**Bài 7:**
+a) $(-17) + 25 + 17 = [(-17) + 17] + 25 = 25$
+b) $(-25) \\times 4 = -100$; $(-100) \\times 13 = -1300$
+
+---
+
+**Bài 8:**
+$100 - [50 - (20 - 10)] = 100 - [50 - 10] = 100 - 40 = 60$
+
+---
+
+**Bài 9:**
+Buổi trưa: $-2 + 8 = 6°C$.
+Buổi chiều: $6 - 5 = 1°C$.
+
+---
+
+**Bài 10:**
+$(-2)^3 = -8$; $3^2 = 9$; $(-1)^4 = 1$; $|(-3) + 5| = |2| = 2$.
+
+$-8 + 9 - 1 + 2 = 2$
+
+</div>
+</details>

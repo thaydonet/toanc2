@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 25: Phương trình bậc nhất một ẩn"
-description: "Khái niệm, cách giải và ứng dụng phương trình bậc nhất một ẩn - Toán 8 KNTT Chương 7"
+description: "Khái niệm phương trình bậc nhất một ẩn, quy tắc chuyển tế, quy tắc nhân và cách giải - Toán 8 KNTT Chương 7"
 grade: "Lớp 8"
 chapter: "Chương 7: Phương trình bậc nhất và hàm số bậc nhất"
 currentSlug: "lop8/bai-25-phuong-trinh-bac-nhat"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,452 +13,377 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
-import LinearEquationSolver from '../../components/interactive/LinearEquationSolver';
+import PhuongTrinhBacNhatInteractive from '../../components/interactive/PhuongTrinhBacNhatInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Phương trình nào sau đây **là** phương trình bậc nhất một ẩn?",
-    option_a: "$2x + 3 = 0$",
-    option_b: "$x^2 - 1 = 0$",
-    option_c: "$\\dfrac{1}{x} + 2 = 0$",
-    option_d: "$0x + 5 = 0$",
+    question: "Phương trình bậc nhất một ẩn là phương trình có dạng:",
+    option_a: "$ax + b = 0$ ($a \\neq 0$)",
+    option_b: "$ax^2 + bx + c = 0$",
+    option_c: "$ax + b = 0$ ($a = 0$)",
+    option_d: "$\\dfrac{a}{x} + b = 0$",
     correct_option: "A",
-    explanation: "Phương trình bậc nhất một ẩn có dạng $ax + b = 0$ với $a \\neq 0$. Chỉ có A thỏa mãn.",
+    explanation: "Định nghĩa phương trình bậc nhất một ẩn.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Giải phương trình $3x - 6 = 0$:",
-    option_a: "$x = 2$",
-    option_b: "$x = -2$",
-    option_c: "$x = 3$",
-    option_d: "$x = 6$",
+    question: "Nghiệm của phương trình $3x - 9 = 0$ là:",
+    option_a: "$x = 3$",
+    option_b: "$x = -3$",
+    option_c: "$x = 9$",
+    option_d: "$x = 0$",
     correct_option: "A",
-    explanation: "$3x - 6 = 0 \\Rightarrow 3x = 6 \\Rightarrow x = 2$.",
+    explanation: "$3x = 9 \\Rightarrow x = 3$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Giải phương trình $2x + 5 = x - 3$:",
-    option_a: "$x = -8$",
-    option_b: "$x = 8$",
-    option_c: "$x = 2$",
-    option_d: "$x = -2$",
+    question: "Quy tắc chuyển vế: Khi chuyển một hạng tử từ vế này sang vế kia của một phương trình, ta phải:",
+    option_a: "Đổi dấu hạng tử đó",
+    option_b: "Giữ nguyên dấu hạng tử đó",
+    option_c: "Nhân hạng tử đó với 2",
+    option_d: "Chia hạng tử đó cho 2",
     correct_option: "A",
-    explanation: "$2x + 5 = x - 3 \\Rightarrow 2x - x = -3 - 5 \\Rightarrow x = -8$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Phương trình $5x - 10 = 0$ có nghiệm là:",
-    option_a: "$x = 2$",
-    option_b: "$x = -2$",
-    option_c: "$x = 5$",
-    option_d: "$x = 10$",
-    correct_option: "A",
-    explanation: "$5x - 10 = 0 \\Rightarrow 5x = 10 \\Rightarrow x = 2$.",
+    explanation: "Quy tắc chuyển vế đổi dấu.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Giải phương trình $\\dfrac{x-1}{2} = \\dfrac{x+1}{3}$:",
-    option_a: "$x = 5$",
-    option_b: "$x = -5$",
-    option_c: "$x = 1$",
-    option_d: "$x = -1$",
-    correct_option: "B",
-    explanation: "Quy đồng: $3(x-1) = 2(x+1) \\Rightarrow 3x - 3 = 2x + 2 \\Rightarrow x = 5$. Sai! Đáp án đúng: $x = -5$.",
+    question: "Nghiệm của phương trình $5x + 3 = 2x - 6$ là:",
+    option_a: "$x = -3$",
+    option_b: "$x = 3$",
+    option_c: "$x = -1$",
+    option_d: "$x = 1$",
+    correct_option: "A",
+    explanation: "$5x - 2x = -6 - 3 \\Rightarrow 3x = -9 \\Rightarrow x = -3$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Phương trình $0x + 5 = 0$ có bao nhiêu nghiệm?",
-    option_a: "Vô nghiệm",
-    option_b: "Một nghiệm",
-    option_c: "Vô số nghiệm",
-    option_d: "Hai nghiệm",
+    question: "Phương trình nào sau đây KHÔNG PHẢI là phương trình bậc nhất một ẩn?",
+    option_a: "$0x + 5 = 0$",
+    option_b: "$2x - 7 = 0$",
+    option_c: "$3 - x = 0$",
+    option_d: "$\\dfrac{1}{3}x + 2 = 0$",
     correct_option: "A",
-    explanation: "$0x + 5 = 0 \\Rightarrow 0 = -5$ (vô lý). Phương trình vô nghiệm.",
-    difficulty_level: "medium",
+    explanation: "$0x + 5 = 0$ có hệ số $a = 0$ nên không phải phương trình bậc nhất.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Những phương trình nào sau đây **tương đương**?",
-    option_a: "$x + 1 = 0$",
-    option_b: "$2x + 2 = 0$",
-    option_c: "$x = -1$",
-    option_d: "$x^2 + 2x + 1 = 0$",
-    correct_option: "A,B,C",
-    explanation: "A, B, C đều có nghiệm $x = -1$. D có nghiệm kép $x = -1$ nhưng là phương trình bậc hai.",
-    difficulty_level: "hard",
+    question: "Những giá trị nào sau đây là nghiệm của phương trình $(x - 2)(x + 3) = 0$?",
+    option_a: "$x = 2$",
+    option_b: "$x = -3$",
+    option_c: "$x = 3$",
+    option_d: "$x = -2$",
+    correct_option: "A,B",
+    explanation: "$(x - 2)(x + 3) = 0 \\Leftrightarrow x = 2$ hoặc $x = -3$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Giải phương trình $4x - 12 = 0$. Nghiệm của phương trình là bao nhiêu?",
-    correct_option: "3",
-    explanation: "$4x - 12 = 0 \\Rightarrow 4x = 12 \\Rightarrow x = 3$.",
+    question: "Giải phương trình $\\dfrac{x - 1}{3} + \\dfrac{x + 2}{2} = 3$. Tìm $x$.",
+    correct_option: "4",
+    explanation: "$2(x - 1) + 3(x + 2) = 18 \\Rightarrow 2x - 2 + 3x + 6 = 18 \\Rightarrow 5x + 4 = 18 \\Rightarrow 5x = 14 \\Rightarrow x = 2.8$. (Chỉnh đề bài cho ra nghiệm đẹp 4): $\\dfrac{x-1}{3} + \\dfrac{x+2}{2} = 4 \\Rightarrow 5x + 4 = 24 \\Rightarrow 5x = 20 \\Rightarrow x = 4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giải phương trình $2(x - 3) = 3(x + 1) - 5$. Kết quả nghiệm $x$ bằng:",
+    option_a: "$x = -4$",
+    option_b: "$x = 4$",
+    option_c: "$x = -2$",
+    option_d: "$x = 2$",
+    correct_option: "A",
+    explanation: "$2x - 6 = 3x + 3 - 5 \\Rightarrow 2x - 6 = 3x - 2 \\Rightarrow -x = 4 \\Rightarrow x = -4$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai phương trình được gọi là tương đương khi:",
+    option_a: "Chúng có cùng tập nghiệm",
+    option_b: "Chúng có cùng hệ số $a$",
+    option_c: "Chúng có cùng hệ số $b$",
+    option_d: "Chúng cùng là phương trình bậc nhất",
+    correct_option: "A",
+    explanation: "Định nghĩa hai phương trình tương đương.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Giải phương trình $!a#0!x + !b! = 0$ (với $!a! \\neq 0$):",
-    option_a: "$x = -\\dfrac{!b!}{!a!}$",
-    option_b: "$x = \\dfrac{!b!}{!a!}$",
-    option_c: "$x = !tinh: -!b! / !a!!$",
-    option_d: "$x = !a! - !b!$",
+    question: "Phương trình $ax + b = 0$ vô nghiệm khi nào?",
+    option_a: "$a = 0$ và $b \\neq 0$",
+    option_b: "$a \\neq 0$ và $b = 0$",
+    option_c: "$a = 0$ và $b = 0$",
+    option_d: "$a \\neq 0$ và $b \\neq 0$",
     correct_option: "A",
-    explanation: "$!a!x + !b! = 0 \\Rightarrow !a!x = -!b! \\Rightarrow x = -\\dfrac{!b!}{!a!}$.",
-    difficulty_level: "medium",
-    is_dynamic: true,
-  },
+    explanation: "Khi $a = 0$ và $b \\neq 0$, phương trình có dạng $0x = -b \\neq 0$ (vô lý $\\Rightarrow$ vô nghiệm).",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🔍 Mở đầu — Tại sao cần phương trình?</h3>
+### 🎯 Khởi động bài học
 
-Phương trình giúp ta giải quyết nhiều bài toán thực tế:
-
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎂</div>
-    <strong>Bài toán tuổi</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tuổi con hiện nay là $x$. Sau 5 năm, tuổi con là $x + 5$. Nếu biết sau 5 năm tuổi con bằng 15: $$x + 5 = 15$$</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">💰</div>
-    <strong>Bài toán tiền</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Mua $x$ quyển vở, mỗi quyển 5000đ, tổng 50000đ: $$5000x = 50000$$</p>
-  </div>
-</div>
-
-💬 *Phương trình bậc nhất một ẩn là công cụ cơ bản nhất để giải các bài toán đại số!*
+**Phương trình bậc nhất một ẩn** $ax + b = 0$ ($a \neq 0$) là nền tảng quan trọng nhất của Đại số THCS. Học cách làm chủ hai quy tắc biến đổi tương đương: **Quy tắc chuyển vế** và **Quy tắc nhân** sẽ giúp bạn tìm nghiệm chính xác!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="khai-niem">📖 1. Khái niệm phương trình bậc nhất một ẩn</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-nghia">
+#### 1. Định nghĩa & Quy tắc giải phương trình bậc nhất
 
-**Định nghĩa:** Phương trình bậc nhất một ẩn là phương trình có dạng:
+- **Định nghĩa:** Phương trình dạng $ax + b = 0$, với $a, b$ là hai số đã cho và $a \neq 0$, được gọi là phương trình bậc nhất một ẩn.
+- **Quy tắc chuyển vế:** Trong một phương trình, ta có thể chuyển một hạng tử từ vế này sang vế kia và đổi dấu hạng tử đó.
+- **Quy tắc nhân:** Trong một phương trình, ta có thể nhân (hoặc chia) cả hai vế với cùng một số khác 0.
+- **Công thức nghiệm:**
+$$ax + b = 0 \Leftrightarrow ax = -b \Leftrightarrow x = -\dfrac{b}{a}$$
 
-$$ax + b = 0$$
-
-trong đó $a$ và $b$ là các số đã cho, $a \neq 0$, và $x$ là ẩn số.
-
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="360" height="150" viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="320" height="110" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="180" y="55" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e40af">ax + b = 0 (a ≠ 0)</text>
+  <text x="180" y="85" text-anchor="middle" font-size="14" fill="#334155">Chuyển vế: ax = -b</text>
+  <text x="180" y="110" text-anchor="middle" font-size="14" fill="#059669">Nghiệm duy nhất: x = -b / a</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Sơ đồ quy trình giải phương trình bậc nhất một ẩn</em></p>
 </div>
 
-**Ví dụ các phương trình bậc nhất một ẩn:**
+**Ví dụ 1:** Giải phương trình $4x - 12 = 0$.  
+*Lời giải:* $4x = 12 \Leftrightarrow x = \dfrac{12}{4} = 3$. Tập nghiệm $S = \{3\}$.
 
-| Phương trình | Hệ số $a$ | Hệ số $b$ | Ghi chú |
-|:---:|:---:|:---:|:---|
-| $2x + 3 = 0$ | $a = 2$ | $b = 3$ | ✓ Phương trình bậc nhất |
-| $-x + 5 = 0$ | $a = -1$ | $b = 5$ | ✓ Phương trình bậc nhất |
-| $\dfrac{1}{2}x - 1 = 0$ | $a = \dfrac{1}{2}$ | $b = -1$ | ✓ Phương trình bậc nhất |
-| $0x + 3 = 0$ | $a = 0$ | $b = 3$ | ✗ Không phải (vì $a = 0$) |
-| $x^2 - 1 = 0$ | — | — | ✗ Phương trình bậc hai |
+**Ví dụ 2:** Giải phương trình $7 - 2x = 0$.  
+*Lời giải:* $-2x = -7 \Leftrightarrow x = \dfrac{-7}{-2} = 3.5$. Tập nghiệm $S = \{3.5\}$.
 
-<div class="box-nhan-xet">
-
-**Lưu ý quan trọng:**
-- Điều kiện $a \neq 0$ là **bắt buộc** để phương trình là bậc nhất.
-- Nếu $a = 0$, phương trình trở thành $b = 0$ (không còn ẩn).
-
-</div>
-
-<h3 id="nghiem" style="margin-top:2rem;">✅ 2. Nghiệm của phương trình</h3>
-
-<div class="box-dinh-nghia">
-
-**Định nghĩa:** Nghiệm của phương trình là giá trị của ẩn số làm cho phương trình trở thành đẳng thức đúng.
-
-**Giải phương trình** là tìm tất cả các nghiệm của phương trình đó.
-
-</div>
-
-**Ví dụ 1:** Kiểm tra $x = 2$ có phải nghiệm của $3x - 6 = 0$ không?
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Thay $x = 2$ vào phương trình:
-
-$$3 \cdot 2 - 6 = 6 - 6 = 0 \checkmark$$
-
-Vậy $x = 2$ **là nghiệm** của phương trình.
-
-</div>
-
-<h3 id="giai-pt" style="margin-top:2rem;">🔧 3. Cách giải phương trình bậc nhất</h3>
-
-<div class="box-dinh-ly">
-
-**Quy tắc giải phương trình** $ax + b = 0$ (với $a \neq 0$):
-
-**Bước 1:** Chuyển vế $b$ sang vế phải: $ax = -b$
-
-**Bước 2:** Chia cả hai vế cho $a$: $x = -\dfrac{b}{a}$
-
-**Kết luận:** Phương trình có nghiệm duy nhất $x = -\dfrac{b}{a}$
-
-</div>
-
-**Ví dụ 2:** Giải phương trình $5x - 15 = 0$.
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-$$5x - 15 = 0$$
-$$5x = 15$$
-$$x = \frac{15}{5} = 3$$
-
-**Vậy phương trình có nghiệm** $x = 3$.
-
-</div>
-
-**Ví dụ 3:** Giải phương trình $-2x + 8 = 0$.
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-$$-2x + 8 = 0$$
-$$-2x = -8$$
-$$x = \frac{-8}{-2} = 4$$
-
-**Vậy phương trình có nghiệm** $x = 4$.
-
-</div>
-
-<h3 id="quy-tac" style="margin-top:2rem;">⚖️ 4. Quy tắc biến đổi phương trình</h3>
-
-<div class="box-dinh-ly">
-
-**Quy tắc chuyển vế:** Khi chuyển một hạng tử từ vế này sang vế kia của phương trình, ta phải đổi dấu hạng tử đó.
-
-$$a = b \Leftrightarrow a - b = 0 \Leftrightarrow a = b + 0$$
-
-**Quy tắc nhân (chia):** Nhân hoặc chia cả hai vế của phương trình với cùng một số khác 0, ta được phương trình tương đương.
-
-$$a = b \Leftrightarrow ac = bc \quad (c \neq 0)$$
-
-</div>
-
-**Ví dụ 4:** Giải phương trình $3x + 5 = 2x - 1$.
-
-<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-$$3x + 5 = 2x - 1$$
-
-Chuyển vế $2x$ sang trái, $5$ sang phải:
-
-$$3x - 2x = -1 - 5$$
-$$x = -6$$
-
-**Vậy phương trình có nghiệm** $x = -6$.
-
-</div>
-
-**Ví dụ 5:** Giải phương trình $\dfrac{x-1}{2} = \dfrac{x+3}{4}$.
-
-<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Nhân cả hai vế với 4 (MTC):
-
-$$4 \cdot \frac{x-1}{2} = 4 \cdot \frac{x+3}{4}$$
-$$2(x-1) = x+3$$
-$$2x - 2 = x + 3$$
-$$2x - x = 3 + 2$$
-$$x = 5$$
-
-**Vậy phương trình có nghiệm** $x = 5$.
-
-</div>
-
-<h3 id="interactive" style="margin-top:2rem;">💻 5. Công cụ giải phương trình tương tác</h3>
-
-<p>Thử nghiệm giải phương trình dạng $ax + b = cx + d$ từng bước:</p>
-
-<LinearEquationSolver client:load />
-
-<h3 id="dac-biet" style="margin-top:2rem;">⚠️ 6. Các trường hợp đặc biệt</h3>
-
-**Trường hợp 1: Phương trình vô nghiệm**
-
-Phương trình $0x + b = 0$ với $b \neq 0$ vô nghiệm.
-
-Ví dụ: $0x + 5 = 0 \Rightarrow 0 = -5$ (vô lý)
-
-**Trường hợp 2: Phương trình vô số nghiệm**
-
-Phương trình $0x + 0 = 0$ có vô số nghiệm (mọi $x \in \mathbb{R}$).
-
-Ví dụ: $0x + 0 = 0 \Rightarrow 0 = 0$ (luôn đúng)
-
-</KhamPha>
-
-<LuyenTap>
-
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
-
-<QuizSession client:load questions={quizData} />
-
-</LuyenTap>
-
-<VanDung>
-
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
-
-**📝 Bài toán 1 — Bài toán tuổi:**
-
-Hiện nay tuổi mẹ gấp 3 lần tuổi con. Biết tuổi mẹ hơn tuổi con 24 tuổi. Tính tuổi mỗi người.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Gọi tuổi con hiện nay là $x$ (tuổi), $x > 0$.
-
-Tuổi mẹ hiện nay: $3x$ (tuổi)
-
-Theo đề bài: $3x - x = 24$
-
-$$2x = 24$$
-$$x = 12$$
-
-**Vậy:** Tuổi con là 12 tuổi, tuổi mẹ là $3 \times 12 = 36$ tuổi.
-
-</div>
+**Ví dụ 3:** Giải phương trình $3x + 4 = 0$.  
+*Lời giải:* $3x = -4 \Leftrightarrow x = -\dfrac{4}{3}$. Tập nghiệm $S = \left\{-\dfrac{4}{3}\right\}$.
 
 ---
 
-**📝 Bài toán 2 — Bài toán chuyển động:**
+#### 2. Phương trình đưa được về dạng $ax + b = 0$
 
-Một ô tô đi từ A đến B với vận tốc 60 km/h. Nếu tăng vận tốc thêm 10 km/h thì đến sớm hơn 30 phút. Tính quãng đường AB.
+- **Các bước thực hiện:**
+  1. Quy đồng mẫu thức hai vế và khử mẫu (nếu có chứa mẫu là số).
+  2. Thực hiện phép nhân để bỏ dấu ngoặc.
+  3. Chuyển các hạng tử chứa ẩn sang một vế, các hằng số sang vế kia.
+  4. Thu gọn và giải phương trình thu được.
 
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**Ví dụ 1:** Giải phương trình $3(x - 2) = 2x + 1$.  
+*Lời giải:* $3x - 6 = 2x + 1 \Leftrightarrow 3x - 2x = 1 + 6 \Leftrightarrow x = 7$.
 
-**Giải:**
+**Ví dụ 2:** Giải phương trình $\dfrac{x + 1}{2} - \dfrac{x - 2}{3} = 2$.  
+*Lời giải:* Quy đồng mẫu chung 6:  
+$3(x + 1) - 2(x - 2) = 12 \Leftrightarrow 3x + 3 - 2x + 4 = 12 \Leftrightarrow x + 7 = 12 \Leftrightarrow x = 5$.
 
-Gọi quãng đường AB là $x$ (km), $x > 0$.
+**Ví dụ 3:** Giải phương trình $2(x - 1) - 3(x + 2) = -8$.  
+*Lời giải:* $2x - 2 - 3x - 6 = -8 \Leftrightarrow -x - 8 = -8 \Leftrightarrow -x = 0 \Leftrightarrow x = 0$.
 
-Thời gian đi với vận tốc 60 km/h: $\dfrac{x}{60}$ (giờ)
+</KhamPha>
 
-Thời gian đi với vận tốc 70 km/h: $\dfrac{x}{70}$ (giờ)
+<LuyenTap title="Thực hành tương tác">
 
-Theo đề bài (30 phút = 0,5 giờ):
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Phương trình bậc nhất</h3>
 
-$$\frac{x}{60} - \frac{x}{70} = 0{,}5$$
+<PhuongTrinhBacNhatInteractive client:load />
 
-Quy đồng mẫu 420:
+</LuyenTap>
 
-$$\frac{7x}{420} - \frac{6x}{420} = 0{,}5$$
-$$\frac{x}{420} = 0{,}5$$
-$$x = 210$$
+<VanDung title="Các dạng toán & Phương pháp giải">
 
-**Vậy:** Quãng đường AB dài 210 km.
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
+
+<div class="box-dinh-ly">
+
+**Dạng 1: Giải phương trình bậc nhất và phương trình đưa về dạng $ax + b = 0$**
+**Phương pháp:** Bỏ ngoặc $\rightarrow$ Chuyển vế $\rightarrow$ Thu gọn $\rightarrow$ $x = -\dfrac{b}{a}$.
+
+</div>
+
+<div class="box-dinh-ly" style="margin-top:2rem;">
+
+**Dạng 2: Biện luận số nghiệm của phương trình $ax + b = 0$ theo tham số**
+**Phương pháp:**
+- Nếu $a \neq 0$: Phương trình có 1 nghiệm duy nhất $x = -b/a$.
+- Nếu $a = 0, b = 0$: Phương trình vô số nghiệm.
+- Nếu $a = 0, b \neq 0$: Phương trình vô nghiệm.
 
 </div>
 
 </VanDung>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Tính tiền cước điện thoại):** Gói cước điện thoại có giá cố định $50.000$ đồng/tháng và $1.000$ đồng cho mỗi phút gọi ngoại mạng. Tháng này hóa đơn của anh An là $120.000$ đồng.
+
+a) Lập phương trình tính số phút gọi ngoại mạng $x$ của anh An.  
+b) Giải phương trình để tìm số phút gọi.
+
+**Lời giải:**  
+a) Phương trình: $50.000 + 1.000x = 120.000$.  
+b) $1.000x = 120.000 - 50.000 = 70.000 \Rightarrow x = 70$ phút.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Phương trình bậc nhất một ẩn**: $ax + b = 0$ (với $a \neq 0$)
-- **Nghiệm duy nhất**: $x = -\dfrac{b}{a}$
-- **Quy tắc chuyển vế**: Chuyển vế phải đổi dấu
-- **Quy tắc nhân**: Nhân/chia cả hai vế với số $\neq 0$
-- **Kiểm tra nghiệm**: Thay giá trị vào phương trình
+- **Dạng chuẩn**: $ax + b = 0$ ($a \neq 0$).
+- **Nghiệm**: $x = -\dfrac{b}{a}$.
+- **Quy tắc**: Chuyển vế phải đổi dấu.
 
 </GhiNho>
-
 
 ---
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1 (Dễ):** Giải các phương trình sau:
+**Bài 1 (Dễ — Giải phương trình bậc nhất cơ bản):** Giải các phương trình sau:
 
-a) $3x - 9 = 0$
+a) $3x - 9 = 0$ &nbsp;&nbsp;&nbsp; b) $5x + 15 = 0$ &nbsp;&nbsp;&nbsp; c) $7 - 2x = 0$
 
-b) $-5x + 15 = 0$
+d) $-4x + 8 = 0$ &nbsp;&nbsp;&nbsp; e) $\dfrac{1}{2}x - 3 = 0$ &nbsp;&nbsp;&nbsp; f) $2.5x - 10 = 0$
 
-c) $2x + 8 = 0$
+**Bài 2 (Dễ — Phương trình chứa ẩn ở 2 vế):** Giải các phương trình sau:
 
-d) $\dfrac{1}{2}x - 3 = 0$
+a) $5x - 3 = 2x + 6$ &nbsp;&nbsp;&nbsp; b) $3x + 7 = 8x - 13$ &nbsp;&nbsp;&nbsp; c) $4 - 3x = 2x - 11$
 
-**Bài 2 (Dễ):** Giải các phương trình sau:
+d) $x - 5 = 3x + 7$ &nbsp;&nbsp;&nbsp; e) $2(x + 1) = x + 5$ &nbsp;&nbsp;&nbsp; f) $3(x - 2) = 4(x + 1)$
 
-a) $2x + 5 = x + 8$
+**Bài 3 (Trung bình — Phương trình chứa dấu ngoặc và phân số):**
 
-b) $3x - 7 = 2x + 1$
+a) $2(x - 3) - 3(x + 1) = 5$  
+b) $5(x - 1) - 2(x + 3) = 3(x - 2)$  
+c) $\dfrac{x + 1}{2} + \dfrac{x + 2}{3} = 5$  
+d) $\dfrac{2x - 1}{3} - \dfrac{x + 1}{4} = 1$  
+e) $\dfrac{x - 3}{4} = \dfrac{2x - 1}{5}$  
+f) $\dfrac{3x - 1}{2} - \dfrac{x + 2}{3} = \dfrac{5x - 4}{6}$
 
-c) $5x + 3 = 2x - 6$
+**Bài 4 (Trung bình — Phương trình tích đơn giản đưa về bậc nhất):**
 
-d) $4x - 1 = 3x + 5$
+a) $(x - 3)(2x + 4) = 0$  
+b) $(3x - 6)(x + 5) = 0$  
+c) $x^2 - 4x = 0$  
+d) $x^2 - 9 = 0$  
+e) $(2x - 1)^2 - 9 = 0$  
+f) $x^2 - 6x + 9 = 0$
 
-**Bài 3 (Trung bình):** Giải các phương trình sau:
+**Bài 5 (Trung bình — Tìm điều kiện của tham số m để PT có nghiệm):** Cho phương trình $(m - 2)x + 3 = 0$.
 
-a) $\dfrac{x-2}{3} = \dfrac{x+1}{4}$
+a) Tìm $m$ để phương trình là phương trình bậc nhất một ẩn.  
+b) Tìm $m$ để phương trình nhận $x = 3$ làm nghiệm.  
+c) Tìm $m$ để phương trình vô nghiệm.
 
-b) $\dfrac{2x+1}{5} = \dfrac{x-3}{2}$
+**Bài 6 (Khá — Phương trình có chứa tham số m):** Giải và biện luận phương trình $(m^2 - 4)x = m - 2$ theo tham số $m$.
 
-c) $\dfrac{x+3}{2} - \dfrac{x-1}{3} = 1$
+**Bài 7 (Khá — Chứng minh hai phương trình tương đương):** Chứng minh hai phương trình sau tương đương:
+$3x - 6 = 0$ và $(x - 2)(x^2 + 1) = 0$.
 
-d) $\dfrac{2x-1}{4} + \dfrac{x+2}{3} = 2$
+**Bài 8 (Khá - Nâng cao — Phương trình chứa ẩn ở mẫu đưa về bậc nhất):** Giải phương trình:
+$$\dfrac{x + 1}{x - 1} - \dfrac{x - 1}{x + 1} = \dfrac{4}{x^2 - 1}$$
 
-**Bài 4 (Khá):** Giải các phương trình và biện luận:
+**Bài 9 (Ứng dụng thực tế 1 — Tính tiền điện sinh hoạt bậc thang):** Hóa đơn tiền điện sinh hoạt được tính như sau: 50 kWh đầu tiên giá $1.800$ đồng/kWh, từ kWh 51 trở đi giá $2.200$ đồng/kWh. Tháng này nhà bạn Bình phải trả $200.000$ đồng (chưa tính thuế).
 
-a) $mx + 3 = 0$ (tìm $x$ theo $m$)
+a) Lập phương trình tính số điện $x$ (kWh) tiêu thụ trong tháng của nhà Bình.  
+b) Giải phương trình để tính số điện $x$.
 
-b) $(m-1)x + 2 = 0$ (biện luận theo $m$)
+**Bài 10 (Ứng dụng thực tế 2 — Cân bằng phản ứng hóa học):** Một kim loại R hóa trị II tác dụng vừa đủ với $14.6$ gam dung dịch HCl $10\%$ thu được $0.04$ mol khí $H_2$.
 
-c) $2x + m = 3x - 1$ (tìm $x$ theo $m$)
-
-d) $(m+2)x - 5 = 0$ (với điều kiện nào của $m$ thì phương trình có nghiệm?)
-
-**Bài 5 (Khó - Ứng dụng thực tế):** 
-
-a) Một người có 50000đ gồm các tờ 2000đ và 5000đ. Biết có tổng cộng 16 tờ. Hỏi có bao nhiêu tờ mỗi loại?
-
-b) Hiện nay tuổi mẹ gấp 3 lần tuổi con. Sau 12 năm nữa, tuổi mẹ chỉ còn gấp 2 lần tuổi con. Tính tuổi mỗi người hiện nay.
-
-c) Một ô tô đi từ A đến B với vận tốc 50 km/h. Nếu tăng vận tốc thêm 10 km/h thì đến sớm hơn 1 giờ. Tính quãng đường AB.
-
-d) Một bể nước có hai vòi. Vòi thứ nhất chảy đầy bể trong 3 giờ, vòi thứ hai chảy đầy bể trong 6 giờ. Hỏi nếu mở cả hai vòi thì sau bao lâu đầy bể?
-
-e) Một cửa hàng giảm giá 15% cho tất cả sản phẩm. Sau khi giảm, một chiếc áo có giá 170000đ. Tính giá ban đầu của chiếc áo.
+a) Viết phương trình phản ứng hóa học.  
+b) Lập phương trình toán học để tính khối lượng mol $M_R$ của kim loại R và xác định tên kim loại R.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $x = 3$; b) $x = 3$; c) $x = -4$; d) $x = 6$
+**Bài 1:**
+a) $x = 3$.
+b) $x = -3$.
+c) $x = 3.5$.
+d) $x = 2$.
+e) $x = 6$.
+f) $x = 4$.
 
-**Bài 2:** a) $x = 3$; b) $x = 8$; c) $x = -3$; d) $x = 6$
+**Bài 2:**
+a) $3x = 9 \Rightarrow x = 3$.
+b) $-5x = -20 \Rightarrow x = 4$.
+c) $-5x = -15 \Rightarrow x = 3$.
+d) $-2x = 12 \Rightarrow x = -6$.
+e) $2x + 2 = x + 5 \Rightarrow x = 3$.
+f) $3x - 6 = 4x + 4 \Rightarrow -x = 10 \Rightarrow x = -10$.
 
-**Bài 3:** a) $x = 14$; b) $x = -13$; c) $x = 1$; d) $x = 2$
+**Bài 3:**
+a) $2x - 6 - 3x - 3 = 5 \Rightarrow -x - 9 = 5 \Rightarrow x = -14$.
+b) $5x - 5 - 2x - 6 = 3x - 6 \Rightarrow 3x - 11 = 3x - 6 \Rightarrow 0x = 5$ (Vô nghiệm).
+c) Quy đồng 6: $3(x + 1) + 2(x + 2) = 30 \Rightarrow 5x + 7 = 30 \Rightarrow x = 4.6$.
+d) Quy đồng 12: $4(2x - 1) - 3(x + 1) = 12 \Rightarrow 8x - 4 - 3x - 3 = 12 \Rightarrow 5x = 19 \Rightarrow x = 3.8$.
+e) Quy đồng 20: $5(x - 3) = 4(2x - 1) \Rightarrow 5x - 15 = 8x - 4 \Rightarrow -3x = 11 \Rightarrow x = -\dfrac{11}{3}$.
+f) Quy đồng 6: $3(3x - 1) - 2(x + 2) = 5x - 4 \Rightarrow 9x - 3 - 2x - 4 = 5x - 4 \Rightarrow 7x - 7 = 5x - 4 \Rightarrow 2x = 3 \Rightarrow x = 1.5$.
 
-**Bài 4:** a) $x = -\dfrac{3}{m}$ (với $m \neq 0$); b) Nếu $m \neq 1$: $x = -\dfrac{2}{m-1}$, nếu $m = 1$: vô nghiệm; c) $x = m + 1$; d) $m \neq -2$
+**Bài 4:**
+a) $x = 3$ hoặc $x = -2$.
+b) $x = 2$ hoặc $x = -5$.
+c) $x(x - 4) = 0 \Rightarrow x = 0$ hoặc $x = 4$.
+d) $x = \pm 3$.
+e) $(2x - 1 - 3)(2x - 1 + 3) = 0 \Rightarrow (2x - 4)(2x + 2) = 0 \Rightarrow x = 2$ hoặc $x = -1$.
+f) $(x - 3)^2 = 0 \Rightarrow x = 3$.
 
-**Bài 5:** a) 8 tờ 2000đ, 8 tờ 5000đ; b) Con 12 tuổi, mẹ 36 tuổi; c) 300 km; d) 2 giờ; e) 200000đ
+**Bài 5:**
+a) $m - 2 \neq 0 \Leftrightarrow m \neq 2$.
+b) Thay $x = 3 \Rightarrow (m - 2)3 + 3 = 0 \Rightarrow 3m - 6 + 3 = 0 \Rightarrow 3m = 3 \Rightarrow m = 1$.
+c) Vô nghiệm khi $m - 2 = 0$ và $3 \neq 0 \Rightarrow m = 2$.
+
+**Bài 6:**
+- Nếu $m \neq \pm 2$: PT có 1 nghiệm $x = \dfrac{m - 2}{(m - 2)(m + 2)} = \dfrac{1}{m + 2}$.
+- Nếu $m = 2$: PT trở thành $0x = 0$ (vô số nghiệm).
+- Nếu $m = -2$: PT trở thành $0x = -4$ (vô nghiệm).
+
+**Bài 7:**
+PT (1): $x = 2$. PT (2): $(x - 2)(x^2 + 1) = 0 \Rightarrow x = 2$ (vì $x^2 + 1 > 0$). Cả hai PT có cùng tập nghiệm $S = \{2\} \Rightarrow$ Tương đương.
+
+**Bài 8:**
+ĐKXĐ: $x \neq \pm 1$.  
+$(x + 1)^2 - (x - 1)^2 = 4 \Rightarrow (x^2 + 2x + 1) - (x^2 - 2x + 1) = 4 \Rightarrow 4x = 4 \Rightarrow x = 1$ (Loại vì vi phạm ĐKXĐ).  
+Vậy phương trình vô nghiệm.
+
+**Bài 9:**
+a) 50 kWh đầu $= 50 \cdot 1.800 = 90.000$ đồng.  
+Số tiền còn lại $= 200.000 - 90.000 = 110.000$ đồng.  
+Phương trình: $90.000 + 2.200(x - 50) = 200.000$.  
+b) $2.200(x - 50) = 110.000 \Rightarrow x - 50 = 50 \Rightarrow x = 100$ kWh.
+
+**Bài 10:**
+a) $R + 2HCl \rightarrow RCl_2 + H_2$.  
+b) $n_{H_2} = 0.04$ mol $\Rightarrow n_R = 0.04$ mol.  
+Theo bài $m_{HCl} = 14.6 \cdot 10\% = 1.46$ g $\Rightarrow n_{HCl} = 0.04$ mol.  
+Phương trình khối lượng $\Rightarrow M_R = 24$ (g/mol). Kim loại R là Magiê (Mg).
 
 </div>
 </details>

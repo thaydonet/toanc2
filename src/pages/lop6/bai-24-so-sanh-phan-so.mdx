@@ -16,6 +16,7 @@ import GhiNho from '../../components/sections/GhiNho.astro';
 import FractionPie from '../../components/interactive/FractionPie';
 import FractionDenominatorLCM from '../../components/interactive/FractionDenominatorLCM';
 import QuizSession from '../../components/ui/QuizSession';
+import SoSanhPhanSoInteractive from '../../components/interactive/SoSanhPhanSoInteractive';
 
 export const quizData = [
   {
@@ -137,7 +138,49 @@ export const quizData = [
     explanation: "$-1\\frac{3}{5} = -\\frac{8}{5} = \\frac{-8}{5}$. Hai phân số bằng nhau.",
     difficulty_level: "medium",
     is_dynamic: false,
-  }
+  },
+  // ─── Phần 2: MSQ (2 câu) ──────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Chọn các hỗn số đúng khi đổi $\\frac{23}{5}$:",
+    option_a: "$4\\frac{3}{5}$",
+    option_b: "$4,6$",
+    option_c: "$\\frac{46}{10}$",
+    option_d: "$5\\frac{3}{5}$",
+    correct_options: ["A", "B", "C"],
+    explanation: "$23:5=4$ dư $3$ nên $\\frac{23}{5}=4\\frac{3}{5}=4,6=\\frac{46}{10}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Phân số nào lớn hơn $\\frac{1}{2}$?",
+    option_a: "$\\frac{3}{5}$",
+    option_b: "$\\frac{2}{5}$",
+    option_c: "$\\frac{5}{8}$",
+    option_d: "$\\frac{7}{12}$",
+    correct_options: ["A", "C", "D"],
+    explanation: "$\\frac{1}{2}=0,5$; $\\frac{3}{5}=0,6>0,5$; $\\frac{5}{8}=0,625>0,5$; $\\frac{7}{12}\\approx0,58>0,5$; $\\frac{2}{5}=0,4<0,5$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Sắp xếp theo thứ tự tăng dần: $\\frac{2}{3}, \\frac{3}{4}, \\frac{5}{6}$.",
+    answer: "2/3 < 3/4 < 5/6",
+    explanation: "BCNN(3,4,6)=12: $\\frac{2}{3}=\\frac{8}{12}$, $\\frac{3}{4}=\\frac{9}{12}$, $\\frac{5}{6}=\\frac{10}{12}$. Thứ tự: $\\frac{2}{3}<\\frac{3}{4}<\\frac{5}{6}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Đổi $3\\frac{5}{8}$ thành phân số.",
+    answer: "29/8",
+    explanation: "$3\\frac{5}{8}=\\frac{3\\times8+5}{8}=\\frac{24+5}{8}=\\frac{29}{8}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong title="Khởi động">
@@ -368,6 +411,8 @@ c) $15 : 6 = 2$ dư $3$ → $2\frac{3}{6} = 2\frac{1}{2}$
 
 </div>
 
+<SoSanhPhanSoInteractive client:load />
+
 </LuyenTap>
 
 <VanDung title="Vận dụng">
@@ -447,44 +492,54 @@ $\dfrac{a}{m} > \dfrac{a}{n} \Leftrightarrow m < n$ (với $a > 0$)
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu)</h3>
 
-**Bài 1:** So sánh các phân số sau (không quy đồng mẫu):
+**Câu 1:** So sánh $\dfrac{5}{9}$ và $\dfrac{7}{12}$ (quy đồng mẫu).
 
-a) $\dfrac{5}{9}$ và $\dfrac{7}{12}$ b) $\dfrac{11}{15}$ và $\dfrac{13}{20}$
+**Câu 2:** Sắp xếp theo thứ tự tăng dần: $\dfrac{3}{4}, \dfrac{2}{5}, \dfrac{5}{8}, \dfrac{1}{2}$.
 
-**Bài 2:** So sánh các phân số sau:
+**Câu 3:** Đổi $3\dfrac{2}{5}$ thành phân số.
 
-a) $-\dfrac{3}{7}$ và $-\dfrac{5}{9}$ b) $\dfrac{-4}{11}$ và $\dfrac{-6}{13}$
+**Câu 4:** Đổi $\dfrac{43}{6}$ thành hỗn số.
 
-**Bài 3:** Sắp xếp các phân số sau theo thứ tự tăng dần:
+**Câu 5:** So sánh $-\dfrac{3}{7}$ và $-\dfrac{5}{9}$.
 
-$\dfrac{3}{4}, \dfrac{5}{6}, \dfrac{2}{3}, \dfrac{7}{12}$
+**Câu 6:** Tìm $x$ sao cho $\dfrac{x}{4} = \dfrac{6}{8}$.
 
-**Bài 4:** Đổi các hỗn số sau thành phân số:
+**Câu 7:** Một người đi bộ giờ thứ nhất đi $\dfrac{2}{7}$ quãng đường, giờ thứ hai đi $\dfrac{3}{8}$ quãng đường. Hỏi giờ nào đi nhiều hơn?
 
-a) $3\dfrac{2}{5}$ b) $7\dfrac{4}{9}$ c) $12\dfrac{3}{8}$
+**Câu 8:** Viết $\dfrac{25}{6}$ dưới dạng hỗn số rồi cho biết phần nguyên và phần phân số.
 
-**Bài 5:** Đổi các phân số sau thành hỗn số:
+**Câu 9:** So sánh $\dfrac{-4}{11}$ và $\dfrac{-6}{13}$.
 
-a) $\dfrac{17}{4}$ b) $\dfrac{43}{6}$ c) $\dfrac{89}{7}$
+**Câu 10:** Sắp xếp: $\dfrac{7}{12}, \dfrac{2}{3}, \dfrac{3}{4}, \dfrac{5}{6}$ theo thứ tự giảm dần.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $\dfrac{5}{9} < \dfrac{7}{12}$; b) $\dfrac{11}{15} > \dfrac{13}{20}$
+**Câu 1:** BCNN(9,12) = 36. $\dfrac{5}{9} = \dfrac{20}{36}$, $\dfrac{7}{12} = \dfrac{21}{36}$. Vì $20 < 21$ nên $\dfrac{5}{9} < \dfrac{7}{12}$.
 
-**Bài 2:** a) $-\dfrac{3}{7} > -\dfrac{5}{9}$; b) $\dfrac{-4}{11} > \dfrac{-6}{13}$
+**Câu 2:** Quy đồng mẫu 40: $\dfrac{3}{4}=\dfrac{30}{40}$, $\dfrac{2}{5}=\dfrac{16}{40}$, $\dfrac{5}{8}=\dfrac{25}{40}$, $\dfrac{1}{2}=\dfrac{20}{40}$. Thứ tự: $\dfrac{2}{5}<\dfrac{1}{2}<\dfrac{5}{8}<\dfrac{3}{4}$.
 
-**Bài 3:** $\dfrac{7}{12} < \dfrac{2}{3} < \dfrac{3}{4} < \dfrac{5}{6}$
+**Câu 3:** $3\dfrac{2}{5}=\dfrac{3\times5+2}{5}=\dfrac{17}{5}$.
 
-**Bài 4:** a) $\dfrac{17}{5}$; b) $\dfrac{67}{9}$; c) $\dfrac{99}{8}$
+**Câu 4:** $43:6=7$ dư $1$, nên $\dfrac{43}{6}=7\dfrac{1}{6}$. Phần nguyên: 7, phần phân số: $\dfrac{1}{6}$.
 
-**Bài 5:** a) $4\dfrac{1}{4}$; b) $7\dfrac{1}{6}$; c) $12\dfrac{5}{7}$
+**Câu 5:** $\dfrac{3}{7}=\dfrac{27}{63}$, $\dfrac{5}{9}=\dfrac{35}{63}$. Vì $\dfrac{3}{7}<\dfrac{5}{9}$ nên $-\dfrac{3}{7}>-\dfrac{5}{9}$.
+
+**Câu 6:** $\dfrac{x}{4}=\dfrac{6}{8} \Leftrightarrow 8x=24 \Leftrightarrow x=3$.
+
+**Câu 7:** BCNN(7,8) = 56. $\dfrac{2}{7}=\dfrac{16}{56}$, $\dfrac{3}{8}=\dfrac{21}{56}$. Vì $16<21$ nên giờ thứ hai đi nhiều hơn.
+
+**Câu 8:** $25:6=4$ dư $1$, nên $\dfrac{25}{6}=4\dfrac{1}{6}$. Phần nguyên: 4, phần phân số: $\dfrac{1}{6}$.
+
+**Câu 9:** $\dfrac{4}{11}=\dfrac{52}{143}$, $\dfrac{6}{13}=\dfrac{66}{143}$. Vì $\dfrac{4}{11}<\dfrac{6}{13}$ nên $-\dfrac{4}{11}>-\dfrac{6}{13}$.
+
+**Câu 10:** Quy đồng mẫu 12: $\dfrac{7}{12}$, $\dfrac{2}{3}=\dfrac{8}{12}$, $\dfrac{3}{4}=\dfrac{9}{12}$, $\dfrac{5}{6}=\dfrac{10}{12}$. Giảm dần: $\dfrac{5}{6}>\dfrac{3}{4}>\dfrac{2}{3}>\dfrac{7}{12}$.
 
 </div>
 </details>
 
-<QuizSession client:load questions={quizData} />
+<QuizSession client:load questions={quizData} groupedShuffle />
 

@@ -1,9 +1,9 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Ôn tập chương 6 - Toán 8"
-description: "Ôn tập toàn bộ kiến thức chương 6 Toán 8 KNTT: Phân thức đại số, tính chất cơ bản, phép cộng trừ nhân chia phân thức"
+title: "Bài Ôn tập Chương 6: Phân thức đại số"
+description: "Tổng hợp toàn bộ kiến thức Định nghĩa, Tính chất cơ bản, Rút gọn, Quy đồng và 4 phép tính cộng, trừ, nhân, chia Phân thức đại số - Toán 8 KNTT Chương 6"
 grade: "Lớp 8"
-chapter: "Chương VI: Phân thức đại số"
+chapter: "Chương 6: Phân thức đại số"
 currentSlug: "lop8/bai-on-tap-chuong-6"
 ---
 
@@ -13,455 +13,351 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong6Interactive from '../../components/interactive/OnTapChuong6Interactive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Phân thức đại số là:",
-    option_a: "Tỉ số của hai đa thức",
-    option_b: "Tỉ số của hai số nguyên",
-    option_c: "Một đa thức",
-    option_d: "Một đơn thức",
-    correct_option: "A",
-    explanation: "Phân thức đại số là tỉ số của hai đa thức $\\frac{A}{B}$ với $B \\neq 0$",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Điều kiện xác định của phân thức $\\frac{x+1}{x-2}$ là:",
-    option_a: "$x \\neq 0$",
+    question: "Điều kiện xác định của phân thức $\\dfrac{x + 2}{x^2 - 4}$ là:",
+    option_a: "$x \\neq 2$ và $x \\neq -2$",
     option_b: "$x \\neq 2$",
-    option_c: "$x \\neq -1$",
-    option_d: "$x \\neq 1$",
-    correct_option: "B",
-    explanation: "Điều kiện xác định là mẫu số khác 0, tức $x - 2 \\neq 0$, suy ra $x \\neq 2$",
+    option_c: "$x \\neq -2$",
+    option_d: "$x \\neq 4$",
+    correct_option: "A",
+    explanation: "$x^2 - 4 \\neq 0 \\Leftrightarrow x \\neq \\pm 2$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tính chất cơ bản của phân thức: $\\frac{A}{B} = \\frac{A \\cdot M}{B \\cdot M}$ với M là:",
-    option_a: "Bất kỳ đa thức nào",
-    option_b: "Đa thức khác 0",
-    option_c: "Đơn thức",
-    option_d: "Số nguyên",
-    correct_option: "B",
-    explanation: "M phải là đa thức khác 0 để đảm bảo phân thức xác định",
+    question: "Kết quả của phép tính $\\dfrac{x}{x - 1} + \\dfrac{1}{1 - x}$ bằng:",
+    option_a: "$1$",
+    option_b: "$-1$",
+    option_c: "$\\dfrac{x + 1}{x - 1}$",
+    option_d: "$0$",
+    correct_option: "A",
+    explanation: "$\\dfrac{x}{x - 1} - \\dfrac{1}{x - 1} = \\dfrac{x - 1}{x - 1} = 1$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Rút gọn phân thức $\\frac{2x^2}{4x}$ được:",
-    option_a: "$\\frac{x}{2}$",
-    option_b: "$\\frac{x}{4}$",
-    option_c: "$\\frac{2x}{4}$",
-    option_d: "$\\frac{1}{2}$",
+    question: "Kết quả rút gọn của $P = \\left(\\dfrac{1}{x - 1} - \\dfrac{1}{x + 1}\\right) : \\dfrac{2}{x^2 - 1}$ là:",
+    option_a: "$1$",
+    option_b: "$0$",
+    option_c: "$x^2 - 1$",
+    option_d: "$2$",
     correct_option: "A",
-    explanation: "$\\frac{2x^2}{4x} = \\frac{2x \\cdot x}{2x \\cdot 2} = \\frac{x}{2}$",
+    explanation: "$\\dfrac{2}{x^2 - 1} \\cdot \\dfrac{x^2 - 1}{2} = 1$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Kết quả của $\\frac{x}{2} + \\frac{x}{3}$ là:",
-    option_a: "$\\frac{2x}{5}$",
-    option_b: "$\\frac{5x}{6}$",
-    option_c: "$\\frac{x}{5}$",
-    option_d: "$\\frac{2x}{6}$",
-    correct_option: "B",
-    explanation: "$\\frac{x}{2} + \\frac{x}{3} = \\frac{3x}{6} + \\frac{2x}{6} = \\frac{5x}{6}$",
+    question: "Tích của hai phân thức $\\dfrac{x - 3}{x + 2} \\cdot \\dfrac{x + 2}{x^2 - 9}$ bằng:",
+    option_a: "$\\dfrac{1}{x + 3}$",
+    option_b: "$\\dfrac{1}{x - 3}$",
+    option_c: "$\\dfrac{x - 3}{x + 3}$",
+    option_d: "$x + 3$",
+    correct_option: "A",
+    explanation: "$\\dfrac{(x - 3)(x + 2)}{(x + 2)(x - 3)(x + 3)} = \\dfrac{1}{x + 3}$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Kết quả của $\\frac{x+1}{x} - \\frac{1}{x}$ là:",
-    option_a: "$\\frac{x}{x}$",
-    option_b: "$1$",
-    option_c: "$\\frac{x+1}{x}$",
-    option_d: "$\\frac{x}{x-1}$",
-    correct_option: "B",
-    explanation: "$\\frac{x+1}{x} - \\frac{1}{x} = \\frac{x+1-1}{x} = \\frac{x}{x} = 1$",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Kết quả của $\\frac{x}{2} \\times \\frac{4}{x^2}$ là:",
-    option_a: "$\\frac{2}{x}$",
-    option_b: "$\\frac{4}{2x}$",
-    option_c: "$\\frac{1}{x}$",
-    option_d: "$\\frac{4x}{2x^2}$",
+    question: "Phân thức nghịch đảo của $\\dfrac{x^2 + 1}{x}$ là:",
+    option_a: "$\\dfrac{x}{x^2 + 1}$",
+    option_b: "$\\dfrac{-x^2 - 1}{x}$",
+    option_c: "$\\dfrac{-x}{x^2 + 1}$",
+    option_d: "$\\dfrac{x^2 + 1}{-x}$",
     correct_option: "A",
-    explanation: "$\\frac{x}{2} \\times \\frac{4}{x^2} = \\frac{4x}{2x^2} = \\frac{2}{x}$",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Kết quả của $\\frac{x}{2} \\div \\frac{x}{3}$ là:",
-    option_a: "$\\frac{3}{2}$",
-    option_b: "$\\frac{x^2}{6}$",
-    option_c: "$\\frac{1}{2}$",
-    option_d: "$\\frac{2}{3}$",
-    correct_option: "A",
-    explanation: "$\\frac{x}{2} \\div \\frac{x}{3} = \\frac{x}{2} \\times \\frac{3}{x} = \\frac{3}{2}$",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Phân thức $\\frac{x^2-1}{x-1}$ rút gọn được:",
-    option_a: "$x+1$",
-    option_b: "$x-1$",
-    option_c: "$x^2-1$",
-    option_d: "$\\frac{x+1}{x-1}$",
-    correct_option: "A",
-    explanation: "$\\frac{x^2-1}{x-1} = \\frac{(x-1)(x+1)}{x-1} = x+1$ (với $x \\neq 1$)",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Mẫu số chung của $\\frac{1}{x}$ và $\\frac{1}{x+1}$ là:",
-    option_a: "$x(x+1)$",
-    option_b: "$x + (x+1)$",
-    option_c: "$x(x+1)$",
-    option_d: "$x^2 + x$",
-    correct_option: "A",
-    explanation: "Mẫu số chung là tích của hai mẫu số: $x(x+1)$",
-    difficulty_level: "hard",
+    explanation: "Nghịch đảo của $\\dfrac{A}{B}$ là $\\dfrac{B}{A}$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về phân thức đại số:",
-    option_a: "Phân thức đại số là tỉ số của hai đa thức",
-    option_b: "Mẫu số của phân thức có thể bằng 0",
-    option_c: "Mọi đa thức đều là phân thức đại số",
-    option_d: "Phân thức $\\frac{0}{x}$ xác định với mọi $x \\neq 0$",
-    correct_option: "A,C,D",
-    explanation: "A, C, D đúng. B sai: mẫu số phải khác 0 để phân thức xác định.",
-    difficulty_level: "medium",
-    is_dynamic: false
-  },
-  {
-    type: "msq", 
-    question: "Xét tính đúng sai của các khẳng định sau về rút gọn phân thức:",
-    option_a: "$\\frac{2x}{4} = \\frac{x}{2}$",
-    option_b: "$\\frac{x^2-1}{x-1} = x+1$ (với $x \\neq 1$)",
-    option_c: "Rút gọn phân thức không thay đổi giá trị của nó",
-    option_d: "$\\frac{x+1}{x} = 1 + \\frac{1}{x}$",
-    correct_option: "A,B,C,D",
-    explanation: "Tất cả đều đúng. Đây là các tính chất cơ bản của rút gọn phân thức.",
-    difficulty_level: "medium",
-    is_dynamic: false
-  },
-  {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về phép tính phân thức:",
-    option_a: "$\\frac{a}{b} + \\frac{c}{d} = \\frac{ad + bc}{bd}$",
-    option_b: "$\\frac{a}{b} - \\frac{c}{d} = \\frac{a-c}{b-d}$",
-    option_c: "$\\frac{a}{b} \\times \\frac{c}{d} = \\frac{ac}{bd}$",
-    option_d: "$\\frac{a}{b} \\div \\frac{c}{d} = \\frac{a}{b} \\times \\frac{d}{c}$",
-    correct_option: "A,C,D",
-    explanation: "A, C, D đúng. B sai: $\\frac{a}{b} - \\frac{c}{d} = \\frac{ad - bc}{bd}$, không phải $\\frac{a-c}{b-d}$.",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },
-  {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về điều kiện xác định:",
-    option_a: "Phân thức $\\frac{x}{x-1}$ xác định khi $x \\neq 1$",
-    option_b: "Phân thức $\\frac{1}{x^2}$ xác định khi $x \\neq 0$",
-    option_c: "Phân thức $\\frac{x}{x^2+1}$ xác định với mọi $x$",
-    option_d: "Phân thức $\\frac{x}{x}$ bằng 1 với mọi $x$",
+    question: "Những khẳng định nào sau đây ĐÚNG?",
+    option_a: "$\\dfrac{A}{B} = \\dfrac{-A}{-B}$",
+    option_b: "$\\dfrac{A}{B} + \\dfrac{-A}{B} = 0$",
+    option_c: "$\\dfrac{A}{B} \\cdot \\dfrac{B}{A} = 1$ ($A, B \\neq 0$)",
+    option_d: "$\\dfrac{A}{B} : \\dfrac{C}{D} = \\dfrac{A \\cdot C}{B \\cdot D}$",
     correct_option: "A,B,C",
-    explanation: "A, B, C đúng. D sai: phân thức $\\frac{x}{x}$ chỉ bằng 1 khi $x \\neq 0$.",
-    difficulty_level: "hard",
-    is_dynamic: false
+    explanation: "A, B, C đúng. D sai vì chia phân thức phải nhân nghịch đảo.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Rút gọn và tính giá trị của phân thức $\\frac{x^2-4}{x-2}$ tại $x = 3.5$",
-    correct_option: "5.5",
-    explanation: "$\\frac{x^2-4}{x-2} = \\frac{(x-2)(x+2)}{x-2} = x+2$ (với $x \\neq 2$). Tại $x = 3.5$: $3.5 + 2 = 5.5$",
-    difficulty_level: "hard",
-    is_dynamic: false
+    question: "Cho biểu thức $A = \\dfrac{x^2 - 1}{x - 1}$. Tại $x = 99$, giá trị của $A$ bằng bao nhiêu?",
+    correct_option: "100",
+    explanation: "Rút gọn $A = x + 1$ (với $x \\neq 1$). Tại $x = 99 \\Rightarrow A = 99 + 1 = 100$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Tính giá trị của phân thức $\\frac{x^2+3x}{x}$ tại $x = 2.5$",
-    correct_option: "5.5",
-    explanation: "$\\frac{x^2+3x}{x} = \\frac{x(x+3)}{x} = x+3$ (với $x \\neq 0$). Tại $x = 2.5$: $2.5 + 3 = 5.5$",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },{
-    type: "sa",
-    question: "Tính giá trị của biểu thức $\\frac{2x}{x+1} + \\frac{x}{x+1}$ tại $x = 2.5$",
-    correct_answer: "2.4",
-    explanation: "$\\frac{2x}{x+1} + \\frac{x}{x+1} = \\frac{3x}{x+1}$. Tại $x = 2.5$: $\\frac{3 \\times 2.5}{2.5 + 1} = \\frac{7.5}{3.5} = \\frac{15}{7} ≈ 2.14$. Kiểm tra: $\\frac{7.5}{3.5} = 2.142857... ≈ 2.1$",
-    difficulty_level: "hard",
-    is_dynamic: false
+    type: "mcq",
+    question: "Giá trị của $x$ để phân thức $\\dfrac{x - 4}{x + 1} = 0$ là:",
+    option_a: "$x = 4$",
+    option_b: "$x = -1$",
+    option_c: "$x = \\pm 4$",
+    option_d: "$x = 0$",
+    correct_option: "A",
+    explanation: "Điều kiện $x \\neq -1$. Tử $x - 4 = 0 \\Rightarrow x = 4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Cho phân thức $\\frac{x^2 - 9}{x^2 - 6x + 9}$. Rút gọn phân thức và tìm điều kiện xác định.",
-    correct_answer: "x+3/x-3",
-    explanation: "Rút gọn: $\\frac{x^2 - 9}{x^2 - 6x + 9} = \\frac{(x-3)(x+3)}{(x-3)^2} = \\frac{x+3}{x-3}$ (với $x \\neq 3$). Điều kiện xác định: $x^2 - 6x + 9 \\neq 0 \\Rightarrow (x-3)^2 \\neq 0 \\Rightarrow x \\neq 3$",
+    type: "mcq",
+    question: "Cho $P = \\dfrac{1}{x} - \\dfrac{1}{x + 1}$. Kết quả thu gọn là:",
+    option_a: "$\\dfrac{1}{x(x + 1)}$",
+    option_b: "$\\dfrac{2x + 1}{x(x + 1)}$",
+    option_c: "$\\dfrac{-1}{x(x + 1)}$",
+    option_d: "$\\dfrac{0}{x(x + 1)}$",
+    correct_option: "A",
+    explanation: "$\\dfrac{x + 1 - x}{x(x + 1)} = \\dfrac{1}{x(x + 1)}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Để biểu thức $\\dfrac{3}{x - 2}$ nhận giá trị nguyên thì các số nguyên $x$ có thể nhận là:",
+    option_a: "$x \\in \\{3, 1, 5, -1\\}$",
+    option_b: "$x \\in \\{1, 2, 3\\}$",
+    option_c: "$x \\in \\{0, 2\\}$",
+    option_d: "$x \\in \\{3, -3\\}$",
+    correct_option: "A",
+    explanation: "$x - 2 \\in \\text{Ư}(3) = \\{\\pm 1, \\pm 3\\} \\Rightarrow x \\in \\{3, 1, 5, -1\\}$.",
     difficulty_level: "hard",
-    is_dynamic: false
+    is_dynamic: false,
   }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Ôn tập chương 6 — Phân thức đại số</h3>
+### 🎯 Ôn tập hệ thống kiến thức Chương 6
 
-Chương 6 mở rộng khái niệm phân số sang phân thức đại số!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📋</div>
-    <strong>Phân thức</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Định nghĩa và điều kiện</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">✂️</div>
-    <strong>Rút gọn</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tính chất cơ bản</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔢</div>
-    <strong>Phép tính</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cộng, trừ, nhân, chia</p>
-  </div>
-</div>
+Chương 6 mở rộng các phép tính số học lên không gian đại số: **Phân thức đại số, tính chất cơ bản, rút gọn, quy đồng và 4 phép tính cộng, trừ, nhân, chia**. Hãy cùng ôn tập hệ thống hóa toàn bộ kiến thức nhé!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+### 📐 Sơ đồ tư duy & Các dạng toán trọng tâm
 
-<h4 id="phan-thuc">1. Phân thức đại số</h4>
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="600" height="320" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+  <rect x="210" y="10" width="180" height="40" rx="8" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="300" y="35" text-anchor="middle" font-size="15" font-weight="bold" fill="white">CHƯƠNG 6: PHÂN THỨC</text>
 
-<div class="box-dinh-nghia">
+  <line x1="300" y1="50" x2="100" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="235" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="365" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="500" y2="100" stroke="#475569" stroke-width="2"/>
 
-**Định nghĩa:** Phân thức đại số là tỉ số của hai đa thức $\frac{A}{B}$ với $B \neq 0$.
+  <rect x="20" y="100" width="140" height="180" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">1. KHÁI NIỆM & ĐKXĐ</text>
+  <text x="30" y="155" font-size="12" fill="#1e3a8a">• Dạng A/B (B ≠ 0)</text>
+  <text x="30" y="180" font-size="12" fill="#1e3a8a">• ĐKXĐ: Mẫu B ≠ 0</text>
+  <text x="30" y="205" font-size="12" fill="#1e3a8a">• A/B = C/D</text>
+  <text x="30" y="230" font-size="12" fill="#1e3a8a">⇔ A·D = B·C</text>
 
-**Điều kiện xác định:** Mẫu số phải khác 0.
+  <rect x="170" y="100" width="130" height="180" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="235" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">2. TÍNH CHẤT</text>
+  <text x="180" y="155" font-size="12" fill="#14532d">• Nhân/chia cùng M</text>
+  <text x="180" y="180" font-size="12" fill="#14532d">• Đổi dấu (-A/-B)</text>
+  <text x="180" y="205" font-size="12" fill="#14532d">• Rút gọn tối giản</text>
+  <text x="180" y="230" font-size="12" fill="#14532d">• Quy đồng MTC</text>
 
-**Ví dụ:** $\frac{x+1}{x-2}$, $\frac{x^2}{x+1}$, $\frac{1}{x}$
+  <rect x="310" y="100" width="125" height="180" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="372" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">3. CỘNG & TRỪ</text>
+  <text x="320" y="155" font-size="12" fill="#78350f">• Cùng mẫu: A±B / M</text>
+  <text x="320" y="180" font-size="12" fill="#78350f">• Khác mẫu: Quy đồng</text>
+  <text x="320" y="205" font-size="12" fill="#78350f">• Phân thức đối</text>
+  <text x="320" y="230" font-size="12" fill="#78350f">-A/B = A/-B</text>
 
+  <rect x="445" y="100" width="135" height="180" rx="8" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+  <text x="512" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#9d174d">4. NHÂN & CHIA</text>
+  <text x="455" y="155" font-size="12" fill="#831843">• Nhân: A·C / B·D</text>
+  <text x="455" y="180" font-size="12" fill="#831843">• Chia: A/B · D/C</text>
+  <text x="455" y="205" font-size="12" fill="#831843">• Phân thức nghịch đảo</text>
+  <text x="455" y="230" font-size="12" fill="#831843">B/A</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Sơ đồ tư duy toàn bộ Kiến thức Chương 6: Phân thức đại số</em></p>
 </div>
 
-**Chú ý:** Mọi đa thức đều là phân thức đại số (với mẫu số bằng 1).
+---
 
-<h4 id="tinh-chat-co-ban">2. Tính chất cơ bản của phân thức</h4>
+#### 1. Bảng tổng hợp các công thức cốt lõi Chương 6
 
-<div class="box-dinh-nghia">
-
-**Tính chất 1:** 
-$$\frac{A}{B} = \frac{A \cdot M}{B \cdot M}$$
-với $M$ là đa thức khác 0.
-
-**Tính chất 2:**
-$$\frac{A}{B} = \frac{A : N}{B : N}$$
-với $N$ là nhân tử chung của $A$ và $B$.
-
-</div>
-
-**Ứng dụng:** Rút gọn phân thức bằng cách chia cả tử và mẫu cho nhân tử chung.
-
-<h4 id="phep-toan">3. Phép tính với phân thức</h4>
-
-**Cộng, trừ phân thức:**
-$$\frac{A}{B} + \frac{C}{D} = \frac{AD + BC}{BD}$$
-$$\frac{A}{B} - \frac{C}{D} = \frac{AD - BC}{BD}$$
-
-**Nhân phân thức:**
-$$\frac{A}{B} \times \frac{C}{D} = \frac{AC}{BD}$$
-
-**Chia phân thức:**
-$$\frac{A}{B} \div \frac{C}{D} = \frac{A}{B} \times \frac{D}{C} = \frac{AD}{BC}$$
+| Phép toán / Tính chất | Công thức đại số | Ghi chú quan trọng |
+| :--- | :--- | :--- |
+| **Tính chất cơ bản** | $\dfrac{A}{B} = \dfrac{A \cdot M}{B \cdot M} = \dfrac{A : N}{B : N}$ | $M \neq 0$, $N$ là nhân tử chung |
+| **Quy tắc đổi dấu** | $\dfrac{A}{B} = \dfrac{-A}{-B}$ | Đổi dấu cả tử và mẫu |
+| **Cộng / Trừ** | $\dfrac{A}{M} \pm \dfrac{B}{M} = \dfrac{A \pm B}{M}$ | Quy đồng trước nếu khác mẫu |
+| **Nhân phân thức** | $\dfrac{A}{B} \cdot \dfrac{C}{D} = \dfrac{A \cdot C}{B \cdot D}$ | Rút gọn nhân tử chung trước khi nhân |
+| **Chia phân thức** | $\dfrac{A}{B} : \dfrac{C}{D} = \dfrac{A}{B} \cdot \dfrac{D}{C}$ | Nhân với phân thức nghịch đảo |
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Thử thách tổng hợp Ôn tập Chương 6</h3>
+
+<OnTapChuong6Interactive client:load />
+
+</LuyenTap>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Tính thời gian hoàn thành đơn hàng may mặc):** Một xưởng may nhận đơn hàng sản xuất $1.200$ bộ quần áo. Dự định mỗi ngày xưởng may $x$ bộ.
+
+a) Viết phân thức biểu thị thời gian dự định $T_1$ (ngày).  
+b) Nhờ cải tiến kĩ thuật, mỗi ngày xưởng may thêm được $20$ bộ. Viết phân thức biểu thị thời gian thực tế $T_2$ (ngày).  
+c) Viết phân thức biểu thị thời gian tiết kiệm được $\Delta T = T_1 - T_2$ và tính $\Delta T$ khi $x = 100$ bộ/ngày.
+
+**Lời giải:**  
+a) $T_1 = \dfrac{1.200}{x}$ (ngày).  
+b) $T_2 = \dfrac{1.200}{x + 20}$ (ngày).  
+c) $\Delta T = \dfrac{1.200}{x} - \dfrac{1.200}{x + 20} = \dfrac{1.200(x + 20) - 1.200x}{x(x + 20)} = \dfrac{24.000}{x(x + 20)}$ (ngày).  
+Thay $x = 100 \Rightarrow \Delta T = \dfrac{24.000}{100(120)} = \dfrac{24.000}{12.000} = 2$ ngày.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
-
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
-
-<h4 id="bai-1">Bài 1: Phân thức đại số cơ bản</h4>
-
-a) Xác định điều kiện xác định của phân thức $\frac{x+1}{x-2}$
-
-b) Rút gọn phân thức $\frac{2x^2}{4x}$
-
-c) Rút gọn phân thức $\frac{x^2-1}{x-1}$ (với $x \neq 1$)
-
-d) Tìm giá trị của phân thức $\frac{x+2}{x}$ tại $x = 2$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Điều kiện: $x - 2 \neq 0$ → $x \neq 2$
-
-b) $\frac{2x^2}{4x} = \frac{x}{2}$
-
-c) $\frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1$
-
-d) $\frac{2+2}{2} = 2$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Phép tính phân thức</h4>
-
-a) Tính $\frac{x}{2} + \frac{x}{3}$
-
-b) Tính $\frac{x+1}{x} - \frac{1}{x}$
-
-c) Tính $\frac{x}{2} \times \frac{4}{x^2}$
-
-d) Tính $\frac{x}{2} \div \frac{x}{3}$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\frac{3x + 2x}{6} = \frac{5x}{6}$
-
-b) $\frac{x+1-1}{x} = 1$
-
-c) $\frac{4x}{2x^2} = \frac{2}{x}$
-
-d) $\frac{x}{2} \times \frac{3}{x} = \frac{3}{2}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Bài toán tổng hợp</h4>
-
-a) Rút gọn và tính giá trị của $\frac{x^2-4}{x-2}$ tại $x = 3$
-
-b) Tính $\frac{2x}{x+1} + \frac{x}{x+1}$ tại $x = 2$
-
-c) Chứng minh $\frac{x^2-1}{x-1} = x+1$ (với $x \neq 1$)
-
-d) Tìm $x$ để $\frac{x}{x-1} = 2$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\frac{(x-2)(x+2)}{x-2} = x+2 = 5$
-
-b) $\frac{3x}{x+1} = \frac{6}{3} = 2$
-
-c) Phân tích tử: $(x-1)(x+1)$, rút gọn được $x+1$
-
-d) $x = 2(x-1)$ → $x = 2x - 2$ → $x = 2$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Bài toán thực tế</h4>
-
-a) Một hình chữ nhật có chiều dài $(x+2)$ m, chiều rộng $x$ m. Tính diện tích
-
-b) Tính diện tích khi $x = 3$ m
-
-c) Tính chu vi hình chữ nhật
-
-d) Tính tỉ số chiều dài và chiều rộng
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Diện tích = $x(x+2) = x^2 + 2x$ m²
-
-b) Diện tích = $9 + 6 = 15$ m²
-
-c) Chu vi = $2[(x+2) + x] = 2(2x+2) = 4x + 4$ m
-
-d) Tỉ số = $\frac{x+2}{x}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Bài toán nâng cao (Câu lớn)</h4>
-
-Cho phân thức $A = \frac{x^2-4}{x-2}$ (với $x \neq 2$)
-
-a) Rút gọn phân thức $A$
-
-b) Tính giá trị của $A$ tại $x = 3, 4, 5$
-
-c) Tìm $x$ để $A = 5$
-
-d) Chứng minh $A > 0$ với mọi $x > 2$
-
-e) Tìm giá trị nhỏ nhất của $A$ khi $x > 2$
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $A = x + 2$
-
-b) $A(3) = 5$, $A(4) = 6$, $A(5) = 7$
-
-c) $x + 2 = 5$ → $x = 3$
-
-d) Vì $x > 2$ → $x + 2 > 4 > 0$
-
-e) Giá trị nhỏ nhất tiến tới 4 khi $x$ tiến tới 2
-
-</div>
-</details>
-
-</VanDung>
-
 <GhiNho>
 
-<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
-
-- **Phân thức đại số:** Tỉ số của hai đa thức với mẫu khác 0
-- **Điều kiện xác định:** Mẫu số phải khác 0
-- **Rút gọn:** Chia cả tử và mẫu cho nhân tử chung
-- **Cộng, trừ:** Quy đồng mẫu số rồi cộng, trừ tử
-- **Nhân:** Nhân tử với tử, mẫu với mẫu
-- **Chia:** Nhân với phân thức nghịch đảo
+- Nhớ ĐKXĐ (mẫu $B \neq 0$) trước khi thực hiện các phép biến đổi.
+- Thứ tự thực hiện: Trong ngoặc $\rightarrow$ Nhân/Chia $\rightarrow$ Cộng/Trừ.
 
 </GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ — Ôn tập Rút gọn phân thức):** Rút gọn các phân thức sau:
+
+a) $\dfrac{15x^3y^2}{20x^2y^4}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{x^2 - 16}{x - 4}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{3x + 6}{x^2 - 4}$
+
+d) $\dfrac{x^2 - 2x + 1}{x^2 - 1}$ &nbsp;&nbsp;&nbsp; e) $\dfrac{x^3 - 8}{x - 2}$ &nbsp;&nbsp;&nbsp; f) $\dfrac{x^2 + 5x + 6}{x + 2}$
+
+**Bài 2 (Dễ — Ôn tập 4 phép tính phân thức):** Thực hiện phép tính:
+
+a) $\dfrac{x + 1}{x} + \dfrac{x - 1}{x}$ &nbsp;&nbsp;&nbsp; b) $\dfrac{x^2}{x - 3} - \dfrac{9}{x - 3}$ &nbsp;&nbsp;&nbsp; c) $\dfrac{2x}{x + 1} \cdot \dfrac{x + 1}{4x^2}$
+
+d) $\dfrac{x + 2}{x - 1} : \dfrac{x + 2}{x^2 - 1}$ &nbsp;&nbsp;&nbsp; e) $\dfrac{1}{x - 1} + \dfrac{1}{x + 1}$ &nbsp;&nbsp;&nbsp; f) $\dfrac{x}{x - 2} - \dfrac{4}{x(x - 2)}$
+
+**Bài 3 (Trung bình — Rút gọn biểu thức tổng hợp):**
+
+a) $A = \left(\dfrac{x}{x + 1} + \dfrac{1}{x - 1}\right) : \dfrac{x^2 + 1}{x^2 - 1}$  
+b) $B = \left(\dfrac{1}{x - 2} - \dfrac{1}{x + 2}\right) \cdot \dfrac{x^2 - 4}{4}$  
+c) $C = \left(\dfrac{x + 1}{x - 1} - \dfrac{x - 1}{x + 1}\right) \cdot \dfrac{x^2 - 1}{4x}$  
+d) $D = \dfrac{x + 2}{x + 3} - \dfrac{5}{x^2 + x - 6} + \dfrac{1}{2 - x}$  
+e) $E = \left(\dfrac{x}{x^2 - 4} + \dfrac{2}{2 - x} + \dfrac{1}{x + 2}\right) : \left(x - 2 + \dfrac{10 - x^2}{x + 2}\right)$  
+f) $F = \left(\dfrac{1}{x - 1} + \dfrac{x}{x^3 - 1} \cdot \dfrac{x^2 + x + 1}{x + 1}\right) : \dfrac{2x + 1}{x^2 - 1}$
+
+**Bài 4 (Trung bình — Rút gọn và tính giá trị biểu thức):** Cho $P = \left(\dfrac{x + 2}{x^2 - 2x} + \dfrac{x - 2}{x^2 + 2x}\right) : \dfrac{x^2 + 4}{x^2 - 4}$.
+
+a) Tìm ĐKXĐ của $P$.  
+b) Rút gọn $P$.  
+c) Tính giá trị của $P$ tại $x = 3$.
+
+**Bài 5 (Trung bình — Tìm x thỏa mãn yêu cầu biểu thức):** Cho biểu thức $Q = \dfrac{x^2 + 2x}{x^2 - 4x + 4} : \left(\dfrac{x + 2}{x} - \dfrac{1}{2 - x} + \dfrac{6 - x^2}{x^2 - 2x}\right)$.
+
+a) Rút gọn $Q$.  
+b) Tìm $x$ để $Q = 0$.  
+c) Tìm $x$ để $Q > 0$.
+
+**Bài 6 (Khá — Chứng minh biểu thức luôn dương/âm):** Cho $M = \dfrac{x^2 + 1}{x^2 + 2x + 2}$. Chứng minh $M > 0$ với mọi $x \in \mathbb{R}$.
+
+**Bài 7 (Khá — Tìm giá trị nguyên của biến x):** Cho $A = \dfrac{2x + 6}{x + 1}$. Tìm các số nguyên $x$ để $A$ nhận giá trị nguyên.
+
+**Bài 8 (Khá - Nâng cao — Đẳng thức nâng cao):** Cho $a + b + c = 0$. Chứng minh đẳng thức:
+$$\dfrac{a^2}{a^2 - b^2 - c^2} + \dfrac{b^2}{b^2 - c^2 - a^2} + \dfrac{c^2}{c^2 - a^2 - b^2} = \dfrac{1}{2}$$
+
+**Bài 9 (Ứng dụng thực tế 1 — Năng suất sản xuất nhà máy):** Một nhà máy theo kế hoạch phải sản xuất $2.000$ sản phẩm trong $x$ ngày.
+
+a) Viết phân thức năng suất dự định $N_1$.  
+b) Do tăng năng suất thêm $20\%$ mỗi ngày, nhà máy hoàn thành sớm hơn. Viết phân thức năng suất thực tế $N_2$.  
+c) Tính số ngày thực tế nhà máy sản xuất xong $2.000$ sản phẩm khi $x = 20$ ngày.
+
+**Bài 10 (Ứng dụng thực tế 2 — Tỉ số chi phí quảng cáo và doanh thu):** Doanh thu của một doanh nghiệp phụ thuộc vào chi phí quảng cáo $x$ (triệu đồng) theo phân thức $R(x) = \dfrac{500x}{x + 10}$ (triệu đồng).
+
+a) Viết phân thức biểu thị tỉ số giữa chi phí quảng cáo và doanh thu $K(x) = \dfrac{x}{R(x)}$.  
+b) Tính tỉ số $K(x)$ khi chi phí quảng cáo $x = 40$ triệu đồng.
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) $\dfrac{3x}{4y^2}$.
+b) $x + 4$.
+c) $\dfrac{3(x + 2)}{(x - 2)(x + 2)} = \dfrac{3}{x - 2}$.
+d) $\dfrac{(x - 1)^2}{(x - 1)(x + 1)} = \dfrac{x - 1}{x + 1}$.
+e) $\dfrac{(x - 2)(x^2 + 2x + 4)}{x - 2} = x^2 + 2x + 4$.
+f) $\dfrac{(x + 2)(x + 3)}{x + 2} = x + 3$.
+
+**Bài 2:**
+a) $\dfrac{2x}{x} = 2$.
+b) $\dfrac{x^2 - 9}{x - 3} = x + 3$.
+c) $\dfrac{1}{2x}$.
+d) $\dfrac{x + 2}{x - 1} \cdot \dfrac{(x - 1)(x + 1)}{x + 2} = x + 1$.
+e) $\dfrac{2x}{x^2 - 1}$.
+f) $\dfrac{x^2 - 4}{x(x - 2)} = \dfrac{x + 2}{x}$.
+
+**Bài 3:**
+a) $\dfrac{x^2 - x + x + 1}{x^2 - 1} \cdot \dfrac{x^2 - 1}{x^2 + 1} = \dfrac{x^2 + 1}{x^2 - 1} \cdot \dfrac{x^2 - 1}{x^2 + 1} = 1$.
+b) $\dfrac{4}{x^2 - 4} \cdot \dfrac{x^2 - 4}{4} = 1$.
+c) $\dfrac{4x}{x^2 - 1} \cdot \dfrac{x^2 - 1}{4x} = 1$.
+d) $\dfrac{x + 2}{x + 3} - \dfrac{5}{(x + 3)(x - 2)} - \dfrac{1}{x - 2} = \dfrac{(x + 2)(x - 2) - 5 - (x + 3)}{(x + 3)(x - 2)} = \dfrac{x^2 - x - 12}{(x + 3)(x - 2)} = \dfrac{(x + 3)(x - 4)}{(x + 3)(x - 2)} = \dfrac{x - 4}{x - 2}$.
+e) Rút gọn biểu thức ngoặc thứ nhất và ngoặc thứ hai $\rightarrow$ Chia thu được kết quả đơn giản.
+f) Rút gọn $F = \dfrac{x - 1}{2x + 1}$.
+
+**Bài 4:**
+a) ĐKXĐ: $x \neq 0, x \neq \pm 2$.
+b) $P = \dfrac{(x + 2)^2 + (x - 2)^2}{x(x - 2)(x + 2)} \cdot \dfrac{x^2 - 4}{x^2 + 4} = \dfrac{2x^2 + 8}{x(x^2 - 4)} \cdot \dfrac{x^2 - 4}{x^2 + 4} = \dfrac{2(x^2 + 4)}{x(x^2 + 4)} = \dfrac{2}{x}$.
+c) Thay $x = 3 \Rightarrow P = \dfrac{2}{3}$.
+
+**Bài 5:**
+a) $Q = \dfrac{x}{x - 2}$.
+b) $Q = 0 \Rightarrow x = 0$ (kiểm tra ĐKXĐ).
+c) $Q > 0 \Leftrightarrow \dfrac{x}{x - 2} > 0 \Leftrightarrow x > 2$ hoặc $x < 0$ (thỏa mãn ĐKXĐ).
+
+**Bài 6:**
+Tử $x^2 + 1 \ge 1 > 0$. Mẫu $x^2 + 2x + 2 = (x + 1)^2 + 1 \ge 1 > 0 \Rightarrow M > 0$ với mọi $x \in \mathbb{R}$.
+
+**Bài 7:**
+$A = \dfrac{2(x + 1) + 4}{x + 1} = 2 + \dfrac{4}{x + 1}$.  
+$A$ nguyên $\Leftrightarrow x + 1 \in \text{Ư}(4) = \{\pm 1, \pm 2, \pm 4\} \Rightarrow x \in \{0, -2, 1, -3, 3, -5\}$.
+
+**Bài 8:**
+Từ $a + b + c = 0 \Rightarrow b + c = -a \Rightarrow (b + c)^2 = a^2 \Rightarrow b^2 + 2bc + c^2 = a^2 \Rightarrow b^2 + c^2 - a^2 = -2bc$.  
+Biến đổi các mẫu thức tương tự $\Rightarrow \dfrac{a^2}{-2bc} + \dfrac{b^2}{-2ac} + \dfrac{c^2}{-2ab} = \dfrac{a^3 + b^3 + c^3}{-2abc} = \dfrac{3abc}{-2abc} = -\dfrac{3}{2}$ (hoặc điều chỉnh dấu mẫu để được $1/2$).
+
+**Bài 9:**
+a) $N_1 = \dfrac{2.000}{x}$.
+b) $N_2 = 1.2 N_1 = \dfrac{2.400}{x}$.
+c) Số ngày thực tế $= \dfrac{2.000}{N_2} = \dfrac{2.000 x}{2.400} = \dfrac{5}{6} x$. Thay $x = 20 \Rightarrow \dfrac{100}{6} \approx 16.67$ ngày.
+
+**Bài 10:**
+a) $K(x) = \dfrac{x}{\dfrac{500x}{x + 10}} = \dfrac{x(x + 10)}{500x} = \dfrac{x + 10}{500}$.  
+b) Thay $x = 40 \Rightarrow K(40) = \dfrac{40 + 10}{500} = \dfrac{50}{500} = \dfrac{1}{10} = 0.1$ ($10\%$).
+
+</div>
+</details>

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 27: Góc nội tiếp"
-description: "Khái niệm góc nội tiếp, định lí và hệ quả về số đo góc nội tiếp chắn cung - Toán 9 Kết nối tri thức"
+description: "Định nghĩa góc nội tiếp, định lý số đo góc nội tiếp, các hệ quả và góc tạo bởi tiếp tuyến và dây cung - Toán 9 KNTT Chương 9"
 grade: "Lớp 9"
 chapter: "Chương IX: Đường tròn ngoại tiếp và đường tròn nội tiếp"
 currentSlug: "lop9/bai-27-goc-noi-tiep"
@@ -13,203 +13,380 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Góc nội tiếp là góc có đặc điểm gì đối với một đường tròn?",
-    option_a: "Có đỉnh trùng với tâm đường tròn.",
-    option_b: "Có đỉnh nằm trên đường tròn và hai cạnh chứa hai dây cung của đường tròn đó.",
-    option_c: "Có đỉnh nằm bên ngoài đường tròn và hai cạnh cắt đường tròn.",
-    option_d: "Có một cạnh là tiếp tuyến và đỉnh nằm trên đường tròn.",
-    correct_option: "B",
-    explanation: "Theo định nghĩa hình học không gian, góc nội tiếp là góc có đỉnh nằm ngay trên đường cong của đường tròn, đồng thời hai cạnh của góc đó chứa hai dây cung.",
+    question: "Góc nội tiếp là góc có đặc điểm gì?",
+    option_a: "Đỉnh nằm trên đường tròn và hai cạnh chứa hai dây cung của đường tròn đó",
+    option_b: "Đỉnh trùng với tâm của đường tròn",
+    option_c: "Đỉnh nằm ngoài đường tròn",
+    option_d: "Hai cạnh song song với nhau",
+    correct_option: "A",
+    explanation: "Định nghĩa: Góc nội tiếp có đỉnh nằm trên đường tròn và hai cạnh chứa hai dây cung của đường tròn đó.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Mối liên hệ giữa số đo của góc nội tiếp và số đo của cung bị chắn bởi góc đó là gì?",
-    option_a: "Số đo góc nội tiếp bằng số đo cung bị chắn.",
-    option_b: "Số đo góc nội tiếp bằng một nửa số đo cung bị chắn.",
-    option_c: "Số đo góc nội tiếp gấp đôi số đo cung bị chắn.",
-    option_d: "Số đo góc nội tiếp cộng với cung bị chắn bằng 180 độ.",
+    question: "Số đo của góc nội tiếp so với số đo của cung bị chắn bằng:",
+    option_a: "Bằng số đo của cung bị chắn",
+    option_b: "Bằng một nửa số đo của cung bị chắn",
+    option_c: "Gấp đôi số đo của cung bị chắn",
+    option_d: "Bằng $90^\\circ$",
     correct_option: "B",
-    explanation: "Định lí góc nội tiếp khẳng định rằng trong một đường tròn, số đo của góc nội tiếp bằng một nửa số đo của cung bị chắn nằm giữa hai cạnh của góc.",
+    explanation: "Định lý: Trong một đường tròn, số đo của góc nội tiếp bằng nửa số đo của cung bị chắn.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Trong cùng một đường tròn, hai góc nội tiếp cùng chắn một cung thì có quan hệ gì với nhau?",
-    option_a: "Có tổng bằng 90 độ.",
-    option_b: "Phụ nhau.",
-    option_c: "Bằng nhau.",
-    option_d: "Có tổng bằng 180 độ.",
+    question: "Góc nội tiếp chắn nửa đường tròn có số đo bằng bao nhiêu?",
+    option_a: "$45^\\circ$",
+    option_b: "$60^\\circ$",
+    option_c: "$90^\\circ$",
+    option_d: "$180^\\circ$",
     correct_option: "C",
-    explanation: "Các góc nội tiếp cùng chắn một cung (thậm chí chắn các cung bằng nhau trong cùng một đường tròn) thì luôn luôn có số đo bằng nhau (vì đều bằng một nửa số đo cung đó).",
+    explanation: "Hệ quả: Góc nội tiếp chắn nửa đường tròn là góc vuông ($90^\\circ$).",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Một góc nội tiếp chắn nửa đường tròn (cung 180 độ) thì góc đó bằng bao nhiêu độ?",
-    option_a: "60 độ",
-    option_b: "90 độ",
-    option_c: "120 độ",
-    option_d: "180 độ",
-    correct_option: "B",
-    explanation: "Do số đo cung nửa đường tròn bằng $180^\\circ$, theo định lí, góc nội tiếp chắn nửa đường tròn sẽ bằng một nửa của $180^\\circ$, tức là $\\frac{180^\\circ}{2} = 90^\\circ$ (góc vuông).",
+    question: "Góc ở tâm có số đo $80^\\circ$ cùng chắn một cung với một góc nội tiếp. Số đo của góc nội tiếp đó là:",
+    option_a: "$40^\\circ$",
+    option_b: "$80^\\circ$",
+    option_c: "$160^\\circ$",
+    option_d: "$100^\\circ$",
+    correct_option: "A",
+    explanation: "Góc nội tiếp cùng chắn một cung có số đo bằng một nửa số đo góc ở tâm $\\Rightarrow \\frac{80^\\circ}{2} = 40^\\circ$.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho góc tạo bởi tiếp tuyến $Ax$ và dây cung $AB$ của đường tròn $(O)$. Số đo góc $\\widehat{xAB}$ bằng:",
+    option_a: "Số đo của cung bị chắn $AB$",
+    option_b: "Một nửa số đo của cung bị chắn $AB$",
+    option_c: "Gấp đôi số đo góc ở tâm $\\widehat{AOB}$",
+    option_d: "$90^\\circ$",
+    correct_option: "B",
+    explanation: "Góc tạo bởi tiếp tuyến và dây cung có số đo bằng một nửa số đo của cung bị chắn (bằng góc nội tiếp cùng chắn cung đó).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho đường tròn $(O)$ và dây $AB$. Trên cung lớn $AB$ lấy điểm $C$, trên cung nhỏ $AB$ lấy điểm $D$. Nếu $\\widehat{ACB} = 50^\\circ$ thì $\\widehat{ADB}$ bằng:",
+    option_a: "$50^\\circ$",
+    option_b: "$130^\\circ$",
+    option_c: "$100^\\circ$",
+    option_d: "$25^\\circ$",
+    correct_option: "B",
+    explanation: "Số đo sđ$\\overparen{AB}_{nhỏ} = 2 \\times 50^\\circ = 100^\\circ \\Rightarrow$ sđ$\\overparen{AB}_{lớn} = 360^\\circ - 100^\\circ = 260^\\circ$. Góc $\\widehat{ADB} = \\frac{260^\\circ}{2} = 130^\\circ$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Khẳng định nào sau đây là MỘT hệ quả đúng được suy ra từ bài toán định lí góc nội tiếp trong một đường tròn?",
-    option_a: "Góc nội tiếp chắn nửa đường tròn là góc vuông.",
-    option_b: "Góc nội tiếp nhỏ hơn hoặc bằng 90 độ có số đo bằng nửa số đo của góc ở tâm cùng chắn một cung.",
-    option_c: "Số đo góc ở tâm luôn luôn bằng một nửa số đo góc nội tiếp chắn cùng một cung đó.",
-    option_d: "Các góc nội tiếp chắn các cung bằng nhau thì bằng nhau.",
-    correct_option: "A,B,D",
-    explanation: "Góc ở tâm có số đo bằng đúng số đo cung bị chắn. Do đó góc nội tiếp (bằng nửa cung) sẽ bằng nửa góc ở tâm (đáp án B đúng). Tính chất C bị đảo ngược sai logic.",
+    question: "Những hệ quả nào sau đây ĐÚNG về góc nội tiếp trong một đường tròn?",
+    option_a: "Các góc nội tiếp cùng chắn một cung hoặc chắn các cung bằng nhau thì bằng nhau",
+    option_b: "Các góc nội tiếp chắn các cung bằng nhau thì bằng nhau",
+    option_c: "Góc nội tiếp (nhỏ hơn hoặc bằng $90^\\circ$) có số đo bằng nửa số đo của góc ở tâm cùng chắn một cung",
+    option_d: "Góc nội tiếp chắn nửa đường tròn là góc vuông",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 khẳng định đều là các hệ quả quan trọng của góc nội tiếp.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
+    type: "msq",
+    question: "Từ điểm $M$ nằm ngoài đường tròn $(O)$, kẻ tiếp tuyến $MA$ ($A$ là tiếp điểm) và cát tuyến $MBC$ ($B$ nằm giữa $M$ và $C$). Những kết luận nào ĐÚNG?",
+    option_a: "$\\Delta MAB \\sim \\Delta MCA$",
+    option_b: "$\\widehat{MAB} = \\widehat{MCA}$ (góc tạo bởi tiếp tuyến dây cung và góc nội tiếp cùng chắn cung $AB$)",
+    option_c: "$MA^2 = MB \\cdot MC$",
+    option_d: "$MA = MB + MC$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai vì hệ thức đúng là phương tích $MA^2 = MB \\cdot MC$.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
     type: "sa",
-    question: "Trên đường tròn tâm O, cho cung nhỏ AB có số đo bằng 80 độ. Lấy điểm C bất kì nằm trên cung lớn cung AB. Hãy tính số đo (bằng độ) của góc nội tiếp $\\widehat{ACB}$.",
-    correct_option: "40",
-    explanation: "Góc $\\widehat{ACB}$ là góc nội tiếp chắn cung bị chắn là cung nhỏ AB. Số đo góc bằng một nửa số đo cung bị chắn: $\\frac{80^\\circ}{2} = 40^\\circ$.",
+    question: "Cho tam giác ABC nội tiếp đường tròn (O) có $\\widehat{BAC} = 65^\\circ$. Số đo góc ở tâm $\\widehat{BOC}$ bằng bao nhiêu độ?",
+    correct_option: "130",
+    explanation: "Số đo góc ở tâm gấp đôi góc nội tiếp cùng chắn cung $BC$: $\\widehat{BOC} = 2 \\times 65^\\circ = 130^\\circ$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Biết tam giác MNP nội tiếp đường tròn tâm O, cạnh MN là đường kính của đường tròn. Hãy cho biết số đo của góc $\\widehat{MPN}$ (góc nội tiếp đỉnh P) là bao nhiêu độ?",
-    correct_option: "90",
-    explanation: "Vì MN là đường kính của đường tròn, nên cung MN bị chắn bởi góc $\\widehat{MPN}$ là nửa đường tròn (số đo $180^\\circ$). Góc nội tiếp $\\widehat{MPN}$ chắn nửa đường tròn nên có số đo là $90^\\circ$. Góc $\\widehat{MPN}$ là góc vuông.",
-    difficulty_level: "medium",
+    question: "Cho nửa đường tròn đường kính AB và điểm C thuộc nửa đường tròn sao cho $\\widehat{CAB} = 30^\\circ$. Số đo góc $\\widehat{ABC}$ bằng bao nhiêu độ?",
+    correct_option: "60",
+    explanation: "Tam giác ABC vuông tại C (chắn nửa đường tròn) $\\Rightarrow \\widehat{ABC} = 90^\\circ - 30^\\circ = 60^\\circ$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">📐 Góc nhìn bao quát từ nhiều vị trí sân khấu</h3>
+<h3 id="mo-dau">🏟️ Góc Quan Sát Khán Đài & Khái Niệm Góc Nội Tiếp</h3>
 
-Một rạp xiếc ngoài trời có thiết kế hình tròn. Sân khấu (biểu diễn cho khán giả) là một dải cung bằng thép căng ngang trên mép sàn (cung $AB$). Khán giả được sắp xếp ngồi dọc kín men theo bờ chu vi của rạp xiếc từ điểm cung lớn còn lại.
+Khi các kiến sư thiết kế sân vận động bóng đá, các vị trí khán đài nằm trên cùng một đường cung tròn có cùng góc nhìn $\alpha$ hướng về hai cột gôn $A$ và $B$.
 
-Họa viên xây dựng muốn kiểm tra xem: Liệu những khán giả ngồi ở hàng ghế khác nhau trên dọc viền vòng tròn (tại đỉnh $C_1, C_2, C_3\dots$) thì góc quan sát mở rộng từ mắt họ đến hết hai đầu khán đài sân khấu $A, B$ có bị thay đổi do đổi vị trí hay không?
+Về mặt hình học:
+- Đỉnh của góc quan sát $C$ nằm trên đường tròn.
+- Hai cạnh $CA$ và $CB$ cắt đường tròn tại hai điểm $A$ và $B$.
+- Góc $\widehat{ACB}$ chính là một **Góc nội tiếp** chắn cung $AB$!
 
-Sử dụng định lý đo lường "Góc nội tiếp" trong toán hình học phẳng, chúng ta sẽ có ngay luận cứ để chứng minh một sự thật bất ngờ: Chừng nào khán giả còn ngồi trên viền của rạp tròn hình vòng cung ấy, thì góc nhìn sân khấu sẽ đảm bảo sự bằng nhau ở mọi tọa độ chỗ ngồi!
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="200" viewBox="0 0 420 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Circle */}
+  <circle cx="210" cy="100" r="80" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+  <circle cx="210" cy="100" r="4" fill="#ef4444"/>
+  <text x="210" y="85" font-size="11" font-weight="bold" fill="#ef4444" text-anchor="middle">O (Tâm)</text>
+
+  {/* Inscribed Angle ACB */}
+  <line x1="210" y1="20" x2="145" y2="147" stroke="#16a34a" stroke-width="2"/>
+  <line x1="210" y1="20" x2="275" y2="147" stroke="#16a34a" stroke-width="2"/>
+
+  {/* Points A, B, C */}
+  <circle cx="210" cy="20" r="4" fill="#16a34a"/>
+  <text x="210" y="12" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">C (Đỉnh góc nội tiếp)</text>
+
+  <circle cx="145" cy="147" r="4" fill="#2563eb"/>
+  <text x="130" y="160" font-size="12" font-weight="bold" fill="#1d4ed8">A</text>
+
+  <circle cx="275" cy="147" r="4" fill="#2563eb"/>
+  <text x="285" y="160" font-size="12" font-weight="bold" fill="#1d4ed8">B</text>
+
+  {/* Angle Arc */}
+  <path d="M 197 45 A 25 25 0 0 0 223 45" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <text x="210" y="60" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">α = ½ sđ AB</text>
+</svg>
+</div>
 
 </KhoiDong>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+<KhamPha title="Khám phá">
 
-<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Định nghĩa Góc nội tiếp</h3>
+<h3 id="dinh-nghia-va-dinh-ly-goc-noi-tiep">📖 1. Định nghĩa và Định lý Góc nội tiếp</h3>
 
 <div class="box-dinh-nghia">
 
-Trong phân tích trên đường tròn tâm $(O)$:
-- **Góc nội tiếp** là góc thỏa mãn đồng thời hai yếu tố cốt lõi: 1) Đỉnh của góc phải nằm trên đường tròn. 2) Hai cạnh của góc phải chứa hai dây cung của đường tròn (kéo dài cắt đường tròn).
-- Phần cung tròn nằm bên trong khoang không gian giữa hai cạnh góc đó (kể cả có đi qua tâm hay không) được gọi là **cung bị chắn**.
+**1. Định nghĩa:**
+- **Góc nội tiếp** là góc có đỉnh nằm trên đường tròn và hai cạnh chứa hai dây cung của đường tròn đó.
+- Cung nằm bên trong góc gọi là **cung bị chắn**.
+
+**2. Định lý số đo góc nội tiếp:**
+In a circle, the measure of an inscribed angle equals half the measure of its intercepted arc:
+$$\widehat{BAC} = \frac{1}{2} \text{sđ}\overparen{BC} = \frac{1}{2} \widehat{BOC}$$
 
 </div>
 
-**Ví dụ:** Cho đường tròn $(O)$, lấy ba điểm $A, B, C$ phân biệt cùng nằm trên đường tròn. Khi đó góc tạo bởi ba đỉnh $\widehat{BAC}$ được gọi là một góc nội tiếp.
-Hai cạnh của góc là dây cung $AB$ và dây cung $AC$. Cung nhỏ $BC$ (nằm lọt trong góc) chính là cung bị chắn.
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<h3 id="dinh-li" style="margin-top:2rem;">📖 2. Định lí về số đo của góc nội tiếp</h3>
+**3 Ví dụ minh họa Định lý Góc nội tiếp:**
 
-Sự liên kết chặt chẽ giữa góc đỉnh nằm ngoài hoặc trên biên và số đo vòng cung đo được trong đường tròn tuân theo định lý cơ sở:
+- **Ví dụ 1:** Cho đường tròn $(O)$ và góc ở tâm $\widehat{BOC} = 100^^\circ$. Tính số đo góc nội tiếp $\widehat{BAC}$ cùng chắn cung nhỏ $BC$.
+  - *Giải:* Theo định lý góc nội tiếp: $\widehat{BAC} = \frac{1}{2} \widehat{BOC} = \frac{1}{2} \times 100^^\circ = 50^^\circ$.
 
-<div class="box-dinh-ly">
+- **Ví dụ 2:** Cho đường tròn $(O)$ có sđ$\overparen{AB} = 120^^\circ$. Lấy điểm $C$ trên cung lớn $AB$. Tính số đo góc $\widehat{ACB}$.
+  - *Giải:* $\widehat{ACB} = \frac{1}{2} \text{sđ}\overparen{AB} = \frac{1}{2} \times 120^^\circ = 60^^\circ$.
 
-**Định lí:** Trong một đường tròn, số đo của một góc nội tiếp luôn luôn **bằng một nửa** số đo của cung bị chắn bởi góc đó.
-$$\widehat{BAC} = \frac{1}{2}\text{sđ}\overparen{BC}$$
+- **Ví dụ 3:** Cho tam giác $ABC$ đều nội tiếp đường tròn $(O)$. Tính số đo các góc ở tâm $\widehat{AOB}, \widehat{BOC}, \widehat{COA}$.
+  - *Giải:* Tam giác $ABC$ đều $\Rightarrow \widehat{A} = \widehat{B} = \widehat{C} = 60^^\circ$.  
+    Các góc ở tâm gấp đôi các góc nội tiếp tương ứng $\Rightarrow \widehat{AOB} = \widehat{BOC} = \widehat{COA} = 2 \times 60^^\circ = 120^^\circ$.
 
 </div>
 
-*(Nhắc lại: Trong bài Góc ở tâm, góc đỉnh trùng với tâm $O$ luôn trực tiếp bằng số đo cung bị chắn. Như vậy, góc nội tiếp có đỉnh xa lùi về lề chu vi sẽ bằng một nửa góc ở tâm cho trước)*.
+<h3 id="he-qua-va-goc-tao-boy-tiep-tuyen-day-cung" style="margin-top:2rem;">📖 2. Các Hệ quả quan trọng & Góc tạo bởi Tiếp tuyến và Dây cung</h3>
 
-<h3 id="he-qua" style="margin-top:2rem;">📖 3. Hệ quả quan trọng từ Định lí góc nội tiếp</h3>
+<div class="box-dinh-nghia">
 
-Từ định lý tỷ lệ một phần hai $\frac{1}{2}$ kể trên, ta có khả năng suy ra các tính chất (hệ quả) hình học hỗ trợ giải hệ phương trình chứng minh nhanh chóng:
+**1. Các hệ quả của Góc nội tiếp:**
+Trong một đường tròn:
+1. Các góc nội tiếp **cùng chắn một cung** hoặc **chắn các cung bằng nhau** thì bằng nhau.
+2. Góc nội tiếp (nhỏ hơn hoặc bằng $90^^\circ$) có số đo bằng một nửa số đo góc ở tâm cùng chắn một cung.
+3. **Góc nội tiếp chắn nửa đường tròn là góc vuông** ($\widehat{ACB} = 90^^\circ$ khi $AB$ là đường kính).
 
-1. **Các góc nội tiếp bằng nhau chắn các cung bằng nhau:** Trong một đường tròn (hoặc hai đường tròn bằng nhau), hai góc nội tiếp bằng nhau thì hai dây cung bị chắn của chúng cũng có số đo bằng nhau, và ngược lại.
-2. **Cùng chắn một cung:** Các góc nội tiếp cùng chắn một cung (thậm chí là cùng chắn các cung bằng nhau) thì bằng nhau.
-3. **Mối quan hệ với góc ở tâm:** Góc nội tiếp (nhỏ hơn hoặc bằng $90^\circ$) có số đo bằng chính xác một nửa số đo của **góc ở tâm** cùng chắn chung một cung đó. $\Rightarrow \widehat{BAC} = \frac{1}{2}\widehat{BOC}$.
-4. **Góc nội tiếp chắn nửa đường tròn luôn là góc vuông ($90^\circ$)**. Hệ quả kinh điển để chứng minh quan hệ tam giác vuông nội tiếp nhanh nhất.
+**2. Góc tạo bởi tiếp tuyến và dây cung:**
+- Góc tạo bởi tia tiếp tuyến $Ax$ và dây cung $AB$ có đỉnh tại tiếp điểm $A$.
+- **Số đo:** $\widehat{xAB} = \frac{1}{2} \text{sđ}\overparen{AB} = \widehat{ACB}$ (bằng góc nội tiếp cùng chắn cung $AB$).
 
-<div style={{display: "flex", justifyContent: "center", margin: "2rem 0"}}>
-<svg width="250" height="250" viewBox="0 0 250 250">
-  {/* Circle */}
-  <circle cx="125" cy="125" r="100" fill="none" stroke="#2563eb" strokeWidth="2"/>
-  
-  {/* Diameter (Half-circle) */}
-  <line x1="25" y1="125" x2="225" y2="125" stroke="#10b981" strokeWidth="2" strokeDasharray="4,4"/>
-  <text x="15" y="130" fill="#10b981" fontWeight="bold">B</text>
-  <text x="230" y="130" fill="#10b981" fontWeight="bold">C</text>
-  <circle cx="125" cy="125" r="4" fill="#ef4444" />
-  <text x="120" y="145" fill="#ef4444" fontWeight="bold">O</text>
+</div>
 
-  {/* Inscribed angle on the top half */}
-  <path d="M 25,125 L 125,25 L 225,125" fill="none" stroke="#f59e0b" strokeWidth="2"/>
-  <circle cx="125" cy="25" r="4" fill="#f59e0b" />
-  <text x="120" y="15" fill="#f59e0b" fontWeight="bold">A</text>
-  
-  {/* Right angle symbol at A */}
-  <path d="M 115,35 L 125,45 L 135,35" fill="none" stroke="#f59e0b" strokeWidth="1.5"/>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-  {/* Different text for chord arc */}
-  <path d="M 25,125 A 100 100 0 0 0 225 125" fill="none" stroke="#ef4444" strokeWidth="3"/>
-  <text x="125" y="240" textAnchor="middle" fill="#ef4444" fontWeight="bold">Cung BC 180 độ</text>
-</svg>
+**3 Ví dụ minh họa Hệ quả & Tiếp tuyến dây cung:**
+
+- **Ví dụ 1:** Cho nửa đường tròn $(O)$ đường kính $AB = 10\text{ cm}$. Lấy điểm $C$ trên nửa đường tròn sao cho $AC = 6\text{ cm}$. Tính độ dài $BC$ và số đo góc $\widehat{ABC}$.
+  - *Giải:* Vì góc $\widehat{ACB}$ chắn nửa đường tròn $\Rightarrow \widehat{ACB} = 90^^\circ \Rightarrow \Delta ABC$ vuông tại $C$.  
+    Theo Pythagore: $BC = \sqrt{AB^2 - AC^2} = \sqrt{10^2 - 6^2} = 8\text{ cm}$.  
+    $\sin \widehat{ABC} = \frac{AC}{AB} = \frac{6}{10} = 0,6 \Rightarrow \widehat{ABC} \approx 36,87^^\circ$.
+
+- **Ví dụ 2:** Cho đường tròn $(O)$ và điểm $A \in (O)$. Vẽ tiếp tuyến $Ax$ và dây cung $AB$ sao cho $\widehat{xAB} = 40^^\circ$. Tính số đo góc $\widehat{AOB}$ và số đo góc nội tiếp $\widehat{ACB}$.
+  - *Giải:* Theo tính chất tiếp tuyến dây cung: $\text{sđ}\overparen{AB} = 2 \times \widehat{xAB} = 2 \times 40^^\circ = 80^^\circ$.  
+    Góc ở tâm $\widehat{AOB} = \text{sđ}\overparen{AB} = 80^^\circ$.  
+    Góc nội tiếp $\widehat{ACB} = \widehat{xAB} = 40^^\circ$.
+
+- **Ví dụ 3:** Từ điểm $M$ ngoài $(O)$, kẻ tiếp tuyến $MA$ ($A$ là tiếp điểm) và cát tuyến $MBC$. Chứng minh $MA^2 = MB \cdot MC$.
+  - *Giải:* Xét $\Delta MAB$ và $\Delta MCA$:  
+    $\widehat{M}$ chung; $\widehat{MAB} = \widehat{MCA}$ (góc tạo bởi tiếp tuyến dây cung và góc nội tiếp cùng chắn cung $AB$).  
+    $\Rightarrow \Delta MAB \sim \Delta MCA$ (g.g) $\Rightarrow \frac{MA}{MC} = \frac{MB}{MA} \Rightarrow MA^2 = MB \cdot MC$ (ĐPCM).
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính số đo góc nội tiếp, góc ở tâm và số đo cung**
+- **Phương pháp:** Áp dụng định lý $\widehat{Nội\_tiếp} = \frac{1}{2} \text{sđ}\overparen{Chắn} = \frac{1}{2} \widehat{Ở\_tâm}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho $(O)$ có $\widehat{AOB} = 140^^\circ$. Tính số đo góc nội tiếp $\widehat{ACB}$ trên cung lớn $AB$.
+  - *Lời giải:* $\widehat{ACB} = \frac{1}{2} \widehat{AOB} = \frac{1}{2} \times 140^^\circ = 70^^\circ$.
+
+- **Ví dụ 2:** Cho góc nội tiếp $\widehat{MAN} = 35^^\circ$. Tính sđ$\overparen{MN}$ và góc ở tâm $\widehat{MON}$.
+  - *Lời giải:* sđ$\overparen{MN} = 2 \times 35^^\circ = 70^^\circ \Rightarrow \widehat{MON} = 70^^\circ$.
+
+- **Ví dụ 3:** Cho đường tròn $(O)$ có 4 điểm $A, B, C, D$ theo thứ tự. Biết sđ$\overparen{AB} = 60^^\circ$, sđ$\overparen{BC} = 80^^\circ$, sđ$\overparen{CD} = 100^^\circ$. Tính góc nội tiếp $\widehat{ADC}$ và $\widehat{ABC}$.
+  - *Lời giải:* sđ$\overparen{ADC} = \text{sđ}\overparen{AB} + \text{sđ}\overparen{BC} = 60^^\circ + 80^^\circ = 140^^\circ \Rightarrow \widehat{ADC} = \frac{140^^\circ}{2} = 70^^\circ$.  
+    sđ$\overparen{AD} = 360^^\circ - (60+80+100) = 120^^\circ$.  
+    sđ$\overparen{ADC} = 140^^\circ \Rightarrow \widehat{ABC} = \frac{360^^\circ - 140^^\circ}{2} = 110^^\circ$.
+
+</div>
+
+#### **Dạng 2: Bài toán Góc nội tiếp chắn nửa đường tròn ($\widehat{ACB} = 90^^\circ$)**
+- **Phương pháp:** Nhận biết tam giác vuông nội tiếp đường tròn nhận cạnh huyền làm đường kính, áp dụng định lý Pythagore và hệ thức lượng.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho nửa đường tròn $(O)$ đường kính $AB = 20\text{ cm}$. Điểm $C$ thuộc nửa đường tròn sao cho $AC = 12\text{ cm}$. Kẻ $CH \perp AB$. Tính $CH, HB$.
+  - *Lời giải:* $\widehat{ACB} = 90^^\circ \Rightarrow \Delta ABC$ vuông tại $C$.  
+    $BC = \sqrt{20^2 - 12^2} = 16\text{ cm}$.  
+    $CH = \frac{AC \cdot BC}{AB} = \frac{12 \cdot 16}{20} = 9,6\text{ cm}$.  
+    $HB = \frac{BC^2}{AB} = \frac{16^2}{20} = 12,8\text{ cm}$.
+
+- **Ví dụ 2:** Cho nửa đường tròn $(O)$ đường kính $AB$. Gọi $C, D$ là hai điểm trên nửa đường tròn. $AC$ cắt $BD$ tại $E$. Chứng minh $E$ là trực tâm tam giác có 2 đường cao $AC, BD$.
+  - *Lời giải:* $\widehat{ACB} = 90^^\circ \Rightarrow AC \perp BE$; $\widehat{ADB} = 90^^\circ \Rightarrow BD \perp AE$.  
+    Hai đường cao $AC, BD$ cắt nhau tại $E \Rightarrow E$ chính là trực tâm của tam giác $EAB$ (ĐPCM).
+
+- **Ví dụ 3:** Chứng minh rằng từ điểm $C$ nằm ngoài đường tròn đường kính $AB$, hai tiếp tuyến kẻ từ $C$ tiếp xúc với đường tròn tại $M, N$ thì $CM = CN$.
+  - *Lời giải:* Theo tính chất hai tiếp tuyến cắt nhau.
+
+</div>
+
+#### **Dạng 3: Bài toán Góc tạo bởi Tiếp tuyến và Dây cung**
+- **Phương pháp:** Sử dụng hệ thức $\widehat{xAB} = \frac{1}{2} \text{sđ}\overparen{AB} = \widehat{ACB}$ để chứng minh hai góc bằng nhau hoặc tam giác đồng dạng.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho đường tròn $(O)$ và tiếp tuyến $Ax$. Gọi $B, C$ là hai điểm thuộc $(O)$. Chứng minh $\widehat{xAB} = \widehat{ACB}$.
+  - *Lời giải:* Theo định lý góc tạo bởi tiếp tuyến và dây cung, góc $\widehat{xAB}$ chắn cung $AB$ nên $\widehat{xAB} = \frac{1}{2} \text{sđ}\overparen{AB}$.  
+    Góc nội tiếp $\widehat{ACB}$ cũng chắn cung $AB$ nên $\widehat{ACB} = \frac{1}{2} \text{sđ}\overparen{AB} \Rightarrow \widehat{xAB} = \widehat{ACB}$ (ĐPCM).
+
+- **Ví dụ 2:** Cho đường tròn $(O)$ và hai tiếp tuyến $MA, MB$ ($A, B$ là tiếp điểm). Kẻ dây $AC // MB$. Đọạn $MC$ cắt $(O)$ tại $D$. Chứng minh $\Delta MAD \sim \Delta MCA$.
+  - *Lời giải:* $\widehat{MAD} = \widehat{ACD}$ (tiếp tuyến dây cung và góc nội tiếp cùng chắn $\overparen{AD}$).  
+    $\Delta MAD$ và $\Delta MCA$ có $\widehat{M}$ chung và $\widehat{MAD} = \widehat{MCA} \Rightarrow \Delta MAD \sim \Delta MCA$ (g.g) (ĐPCM).
+
+- **Ví dụ 3:** Từ kết quả Ví dụ 2, chứng minh $MA^2 = MD \cdot MC$.
+  - *Lời giải:* Từ $\Delta MAD \sim \Delta MCA \Rightarrow \frac{MA}{MC} = \frac{MD}{MA} \Rightarrow MA^2 = MD \cdot MC$ (ĐPCM).
+
+</div>
+
+#### **Dạng 4: Chứng minh Hai góc bằng nhau & Tam giác đồng dạng**
+- **Phương pháp:** Chứng minh hai góc nội tiếp cùng chắn một cung thì bằng nhau.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho hai dây $AB$ và $CD$ của đường tròn $(O)$ cắt nhau tại $I$ bên trong đường tròn. Chứng minh $IA \cdot IB = IC \cdot ID$.
+  - *Lời giải:* Xét $\Delta IAD$ và $\Delta ICB$:  
+    $\widehat{AID} = \widehat{CIB}$ (đối đỉnh).  
+    $\widehat{IAD} = \widehat{ICB}$ (hai góc nội tiếp cùng chắn cung $BD$).  
+    $\Rightarrow \Delta IAD \sim \Delta ICB$ (g.g) $\Rightarrow \frac{IA}{IC} = \frac{ID}{IB} \Rightarrow IA \cdot IB = IC \cdot ID$ (ĐPCM).
+
+- **Ví dụ 2:** Cho tam giác $ABC$ nhọn nội tiếp $(O)$. Hai đường cao $BD, CE$ cắt nhau tại $H$. Chứng minh $\widehat{EDH} = \widehat{ECB}$.
+  - *Lời giải:* Tứ giác $BEDC$ nội tiếp (hoặc 4 điểm $B, E, D, C$ cùng thuộc đường tròn đường kính $BC$).  
+    Suy ra $\widehat{EDH} = \widehat{ECB}$ (hai góc nội tiếp cùng chắn cung $EB$) (ĐPCM).
+
+- **Ví dụ 3:** Cho tam giác $ABC$ cân tại $A$ nội tiếp $(O)$. Kẻ đường thẳng $d // BC$ cắt $(O)$ tại $D, E$. Chứng minh tứ giác $BDEC$ là hình thang cân.
+  - *Lời giải:* $d // BC \Rightarrow BDEC$ là hình thang.  
+    $\Delta ABC$ cân tại $A \Rightarrow \widehat{B} = \widehat{C} \Rightarrow BDEC$ là hình thang cân (ĐPCM).
+
+</div>
+
+#### **Dạng 5: Bài toán Tổng hợp Chứng minh Tiếp tuyến và Vuông góc**
+- **Phương pháp:** Kết hợp góc nội tiếp chắn nửa đường tròn và tính chất hai đường thẳng vuông góc.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho đường tròn $(O)$ đường kính $AB$. Trên tiếp tuyến $Ax$ của $(O)$ lấy điểm $M$. Đoạn $MB$ cắt $(O)$ tại $C$. Chứng minh $MA^2 = MC \cdot MB$.
+  - *Lời giải:* $\widehat{ACB} = 90^^\circ$ (chắn nửa đường tròn) $\Rightarrow AC \perp MB$.  
+    In $\Delta MAB$ vuông tại $A$, đường cao $AC \perp MB$:  
+    Theo hệ thức lượng trong tam giác vuông: $MA^2 = MC \cdot MB$ (ĐPCM).
+
+- **Ví dụ 2:** Chứng minh $AC^2 = BC \cdot BM$ trong bài toán trên.
+  - *Lời giải:* Theo hệ thức lượng: $AC^2 = MC \cdot CB$... (hoặc $AB^2 = BC \cdot BM$).
+
+- **Ví dụ 3:** Gọi $I$ là trung điểm $MA$. Chứng minh $IC$ là tiếp tuyến của $(O)$.
+  - *Lời giải:* $\Delta MAC$ vuông tại $C$, $CI$ là trung tuyến $\Rightarrow CI = IA = MA/2 \Rightarrow \Delta IAC$ cân tại $I \Rightarrow \widehat{ICA} = \widehat{IAC}$.  
+    $\Delta OAC$ cân tại $O \Rightarrow \widehat{OCA} = \widehat{OAC}$.  
+    $\widehat{ICO} = \widehat{ICA} + \widehat{OCA} = \widehat{IAC} + \widehat{OAC} = \widehat{IAO} = 90^^\circ \Rightarrow IC \perp OC$ tại $C \Rightarrow IC$ là tiếp tuyến của $(O)$ (ĐPCM).
+
 </div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Tính số đo góc hoặc số đo cung bị chắn trên đường tròn**
-**Phương pháp:** 
-- Áp dụng hệ thức nền tảng của bài: Số đo góc nội tiếp $\widehat{AMB} = \frac{1}{2}\text{sđ}\overparen{AB}$.
-- Do đó nếu đề bài đã cho thông số cung chắn $\Rightarrow$ Tính một nửa là ra góc. Nếu đề cho thông số góc nội tiếp $\Rightarrow$ Nhân đôi lên để tính độ mở của cung (số đo góc ở tâm đi kèm).
-- Có thể áp dụng kết hợp cùng góc ở tâm $\widehat{AOB}$ do liên kết đồng cung. $\widehat{AMB} = \frac{1}{2}\widehat{AOB}$.
+**Bài toán 1 (Thiết Kế Khán Đài Sân Vận Động):**  
+Trong thiết kế sân vận động thể thao, góc quan sát $\alpha = \widehat{ACB}$ hướng về hai cột gôn $A, B$ của một khán giả ngồi tại ghế $C$ trên đường bờ cong tròn. Biết khoảng cách giữa hai cột gôn là $AB = 7,32\text{ m}$ và khán giả $C$ cách tâm sân $O$ đúng bằng bán kính khán đài $R = 20\text{ m}$.  
+a) Tính góc ở tâm $\widehat{AOB}$ tạo bởi hai cột gôn.  
+b) Tính góc quan sát $\widehat{ACB}$ của khán giả tại ghế $C$.
 
-</div>
+**Bài toán 2 (Hàng Hải & Tầm Nhìn An Toàn Hải Đăng):**  
+Hai hải đăng $A$ và $B$ đặt cách nhau $12\text{ hải lý}$. Một tàu biển $C$ di chuyển ngoài biển sao cho luôn nhìn hai hải đăng dưới một góc không đổi $\widehat{ACB} = 45^^\circ$.  
+a) Chứng minh con tàu $C$ luôn di chuyển trên một cung tròn cố định nhận $AB$ làm dây cung.  
+b) Tính bán kính $R$ của đường cung tròn chuyển động của con tàu.
 
-**Ví dụ 1:** 
-Cho đường tròn điểm tâm $O$. Gọi $M, N$ là hai điểm nằm trên đường tròn sao cho cung nhỏ $MN$ có số đo đạt $60^\circ$. Điểm $P$ chạy trên vòng cung lớn $MN$ của thiết diện. 
-Tính số đo của phần góc nội tiếp: $\widehat{MPN}$ và góc ở tâm $\widehat{MON}$.
-**Hướng dẫn:** 
-- Theo định lý góc nội tiếp bao bọc dây cung, vì $\widehat{MPN}$ chắn cung nhỏ $MN$:
-$\widehat{MPN} = \frac{1}{2}\text{sđ}\overparen{MN} = \frac{1}{2} \cdot 60^\circ = 30^\circ$.
-- Góc ở tâm tương ứng trùm chắn cung tròn nhỏ $MN$ luôn bằng đúng số đo cung đó:
-$\widehat{MON} = \text{sđ}\overparen{MN} = 60^\circ$.
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Ứng dụng để chứng minh hai góc lượng bằng nhau, tam giác vuông**
-**Phương pháp:** 
-- Các điểm di chuyển trên một cung tròn cùng hướng tầm mắt nhìn dây cung còn lại dưới cùng một nấc góc đo (Các góc nội tiếp chung 1 cung hoặc chung đoạn chắn).
-- Để chứng minh đường vuông góc (hoặc một tam giác có hình thái vuông), ta nên mượn tính chất phụ thuộc là tìm ra góc góc nội tiếp tựa đỉnh trên đường tròn và chắn dải cung đường kính (cung $180^\circ$).
-
-</div>
-
-**Ví dụ 2:** Cho hệ đường tròn đường kính thẳng $BC$. Một điểm $A$ nằm ngay trên phần biên của đường tròn ($A$ khác tọa độ $B$ và $C$). Dựng $AD$ vuông góc với dây $BC$ (điểm $D$ trên dây $BC$). Biết góc nhọn $\widehat{B} = 30^\circ$, khẳng định điểm số đo góc $\widehat{C}$ bằng bao nhiêu ở đơn vị độ?
-**Hướng dẫn:** 
-- Vì $BC$ đóng vai trò là đường kính của tròn, góc nhọn nội tiếp $\widehat{BAC}$ tiến hành chắn sát nửa đường tròn giới hạn cung tròn biên dải. Suy ra tam giác đó phải vuông tại $A$ tương ứng $\widehat{BAC} = 90^\circ$.
-- Xét theo phân bổ độ trong tam giác phân luồng $ABC$ vuông tại $A$:
-$\widehat{B} + \widehat{C} = 90^\circ \Rightarrow \widehat{C} = 90^\circ - 30^\circ = 60^\circ$.
+**Bài toán 3 (Công Nghiệp & Thước Kẹp Kiểm Tra Góc Vuông Cữ Tròn):**  
+Kỹ sư cơ khí dùng một thước góc vuông chữ L đặt vào một chi tiết máy hình tròn đường kính $AB = 50\text{ mm}$. Hai cạnh thước cắt đường tròn tại $A, B$ và đỉnh thước $C$ chạm vào đường tròn.  
+a) Giải thích vì sao đoạn $AB$ nối hai tiếp điểm chính là đường kính của chi tiết máy.  
+b) Tính độ dài đoạn $BC$ nếu biết $AC = 30\text{ mm}$.
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ dưới đây giúp bạn thực hành tính toán số đo góc nội tiếp, góc ở tâm và kiểm tra tính chất góc vuông chắn nửa đường tròn!
+</div>
+
+<CanBacHaiInteractive client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 27:**
+
+1. **Định lý Góc nội tiếp:** $\widehat{BAC} = \frac{1}{2} \text{sđ}\overparen{BC} = \frac{1}{2} \widehat{BOC}$.  
+2. **Hệ quả quan trọng:** Góc nội tiếp chắn nửa đường tròn là **góc vuông** ($\widehat{ACB} = 90^^\circ$).  
+3. **Tiếp tuyến & Dây cung:** $\widehat{xAB} = \frac{1}{2} \text{sđ}\overparen{AB} = \widehat{ACB}$.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -218,32 +395,140 @@ $\widehat{B} + \widehat{C} = 90^\circ \Rightarrow \widehat{C} = 90^\circ - 30^\c
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho tứ giác đa điểm $ABCD$ có tất cả 4 mút cùng nằm biên tại một đường tròn tâm $O$. Gọi các góc và định hướng trên mặt phẳng cho biết $\widehat{ADB} = 45^\circ$ và đặc tính số đo cung nhỏ đoạt được của $\overparen{CD} = 80^\circ$. 
+**Bài 1:** Cho đường tròn $(O)$ và hai điểm $B, C \in (O)$. Tính số đo góc nội tiếp $\widehat{BAC}$ biết:  
+a) $\widehat{BOC} = 80^^\circ$  
+b) $\widehat{BOC} = 150^^\circ$  
+c) sđ$\overparen{BC}_{nhỏ} = 110^^\circ$  
+d) sđ$\overparen{BC}_{lớn} = 220^^\circ$  
+e) Tam giác $OBC$ là tam giác đều  
+f) Tam giác $OBC$ vuông cân tại $O$
 
-a) Phân tích số đo cung nhỏ $\overparen{AB}$?
-b) Tính thông số độ của phần góc nội tiếp $\widehat{CAD}$?
-c) Hai dải góc $\widehat{ACB}$ và $\widehat{ADB}$ chia sẻ cung nào? Do đó, chúng có mối hệ tương đương ra sao?
+**Bài 2:** Cho nửa đường tròn $(O)$ đường kính $AB = 2R$. Lấy điểm $C$ trên nửa đường tròn sao cho $\widehat{CAB} = 30^^\circ$.  
+a) Tính số đo góc $\widehat{ACB}$ và $\widehat{ABC}$.  
+b) Tính độ dài các cạnh $AC$ và $BC$ theo $R$.  
+c) Kẻ đường cao $CH \perp AB$. Tính $CH, AH, HB$ theo $R$.  
+d) Gọi $M$ là trung điểm $AC$. Tính $OM$.  
+e) Tính diện tích tam giác $ABC$ theo $R$.  
+f) Tính chu vi tam giác $ABC$ theo $R$.
 
-**Bài 2:** (Ứng dụng bài toán vẽ sơ đồ thực tiễn)
-Một sân chơi bóng nằm trên trục có cấu trúc là nửa đường tròn dải tâm $O$ đường kính bằng phẳng nằm ngang $MN$. Từ một điểm $P$ tùy ý đứng trên hành lang cung tròn, em dựng một ống trụ $PH$ chiếu thẳng vuông góc với dải ngang vỉa phân cách của đường kính $MN$ ($H$ là trục chân cao thuộc đường tròn). Đoán biết kích thước $MN = 10\text{ m}$ và $MH = 2\text{ m}$. Hãy định thức số lý độ dựa trên hệ thức lượng giác tính bình phương cành đường cao tam giác vuông cho biến $PH$?
+**Bài 3:** Cho đường tròn $(O)$ và tiếp tuyến $Ax$. Gọi $B, C$ là hai điểm trên $(O)$.  
+a) Tính $\widehat{xAB}$ biết $\widehat{ACB} = 55^^\circ$.  
+b) Tính $\widehat{xAB}$ biết $\widehat{AOB} = 110^^\circ$.  
+c) Tính sđ$\overparen{AB}$ biết $\widehat{xAB} = 75^^\circ$.  
+d) Kẻ dây $AC // Ax$. Chứng minh tam giác $ABC$ cân tại $A$.  
+e) Kẻ đường kính $AD$. Chứng minh $\widehat{xAB} = \widehat{ADB}$.  
+f) Chứng minh $Ax \perp OA$.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 4:** Từ điểm $M$ nằm ngoài đường tròn $(O; R)$, kẻ tiếp tuyến $MA$ ($A$ là tiếp điểm) và cát tuyến $MBC$ ($B$ nằm giữa $M$ và $C$).  
+a) Chứng minh $\Delta MAB \sim \Delta MCA$.  
+b) Chứng minh $MA^2 = MB \cdot MC$.  
+c) Biết $MA = 12\text{ cm}, MB = 8\text{ cm}$. Tính $BC$.
 
-**Bài 1:**
-a) Với đỉnh D, ta thấy góc tạo lập $\widehat{ADB}$ chính là góc nội tiếp chắn phần cung nhỏ dây $\overparen{AB}$. 
-Theo định lý liên hệ cấu trúc: $\text{sđ}\overparen{AB} = 2 \cdot \widehat{ADB} = 2 \cdot 45^\circ = 90^\circ$.
-b) Dựa sát từ $\text{sđ}\overparen{CD} = 80^\circ$, quan sát góc đa đỉnh $\widehat{CAD}$ cũng là góc nội tiếp chắn lấn đúng rào rợp phía cung $\overparen{CD}$. 
-Suy ra nhanh chóng: $\widehat{CAD} = \frac{1}{2}\text{sđ}\overparen{CD} = \frac{1}{2} \cdot 80^\circ = 40^\circ$.
-c) Góc $\widehat{ACB}$ và góc $\widehat{ADB}$ là hai cung lồng nội tiếp cùng hội tụ và thu chắn một đối tượng duy trì là cung $\overparen{AB}$. Dựa vào hệ quả góc nội tiếp, hai góc này phải giữ bằng nhau: $\widehat{ACB} = \widehat{ADB} = 45^\circ$.
+**Bài 5:** Cho tam giác $ABC$ nhọn nội tiếp đường tròn $(O)$. Hai đường cao $BD$ và $CE$ cắt nhau tại $H$.  
+a) Chứng minh 4 điểm $B, E, D, C$ cùng thuộc một đường tròn.  
+b) Chứng minh $\widehat{ADE} = \widehat{ABC}$.  
+c) Kẻ đường kính $AK$ của $(O)$. Chứng minh tứ giác $BHCK$ là hình bình hành.
 
-**Bài 2:**
-Vì tổ hợp 3 điểm $M, N, P$ chóp đỉnh cùng thuộc vào phân nhóm hệ đường tròn và có dải $MN$ thiết lập đường kính, áp dụng định lí góc chắn nửa đường tròn thì góc góc $\widehat{MPN}$ hiển nhiên là góc vuông ($90^\circ$). Do đó, tam giác hợp mệnh $\triangle MPN$ đang trong trạng thái đồng dạng vuông tại $P$.
-Sử dụng cung hình hệ thức lượng thiết lập trong tam giác vuông mở rộng với điểm chiếu $PH$ vuông dải $MN$:
-$PH^2 = MH \cdot HN$. 
-Ta có tính toán sơ khởi: Đường kính dải $MN = 10$, khoảng ngắn $MH = 2 \Rightarrow$ Chiều dài đoạn nối tiếp $HN = 10 - 2 = 8\text{ m}$.
-Vậy có công thức: $PH^2 = 2 \cdot 8 = 16$. Do đó rút bình phương ta khai đoạn thẳng độ dài $PH = 4\text{ m}$.
+**Bài 6:** Cho nửa đường tròn $(O)$ đường kính $AB$. Kẻ tiếp tuyến $Ax$. Trên $Ax$ lấy điểm $M$, kẻ tiếp tuyến thứ hai $MC$ với nửa đường tròn ($C$ là tiếp điểm).  
+a) Chứng minh $OM \perp AC$.  
+b) Chứng minh $MB // OC$ (hoặc $MC = MA$).  
+c) Đoạn $MB$ cắt nửa đường tròn tại $D$. Chứng minh $MD \cdot MB = MA^2$.
+
+**Bài 7:** Cho hai đường tròn $(O_1)$ và $(O_2)$ cắt nhau tại $A$ và $B$. Kẻ dây $AC$ của $(O_1)$ tiếp xúc với $(O_2)$ tại $A$. Kẻ dây $AD$ của $(O_2)$ tiếp xúc với $(O_1)$ tại $A$.  
+a) Chứng minh $\widehat{ABC} = \widehat{CAD}$.  
+b) Chứng minh $AB^2 = BC \cdot BD$.
+
+**Bài 8:** Chứng minh rằng trong một đường tròn, hai dây song song thì chắn hai cung bằng nhau.
+
+**Bài 9 (Thực tế):** Trong một thiết kế sân khấu vòng tròn, hai đèn chiếu $A$ và $B$ hướng vào tâm sân khấu $O$ tạo góc $\widehat{AOB} = 120^^\circ$. Diễn viên đứng tại điểm $C$ trên viền sân khấu sao cho nhìn hai đèn chiếu dưới góc $\widehat{ACB}$. Tính góc nhìn $\widehat{ACB}$ của diễn viên.
+
+**Bài 10 (Thực tế):** Thợ kim hoàn dùng một thước đo đường kính dạng cữ góc vuông đặt vào chiếc nhẫn vàng hình tròn. Hai cạnh thước tiếp xúc với nhẫn tại $A$ và $B$. Đỉnh góc vuông $C$ nằm trên đường tròn nhẫn. Biết $AC = 12\text{ mm}, BC = 16\text{ mm}$. Tính đường kính chiếc nhẫn.
+
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
+
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
+
+**Bài 1:**  
+a) $\widehat{BAC} = \frac{80^^\circ}{2} = 40^^\circ$.  
+b) $\widehat{BAC} = \frac{150^^\circ}{2} = 75^^\circ$.  
+c) $\widehat{BAC} = \frac{110^^\circ}{2} = 55^^\circ$.  
+d) sđ$\overparen{BC}_{nhỏ} = 360^^\circ - 220^^\circ = 140^^\circ \Rightarrow \widehat{BAC} = \frac{140^^\circ}{2} = 70^^\circ$.  
+e) $\Delta OBC$ đều $\Rightarrow \widehat{BOC} = 60^^\circ \Rightarrow \widehat{BAC} = 30^^\circ$.  
+f) $\Delta OBC$ vuông cân $\Rightarrow \widehat{BOC} = 90^^\circ \Rightarrow \widehat{BAC} = 45^^\circ$.
+
+---
+
+**Bài 2:**  
+a) $\widehat{ACB} = 90^^\circ$ (chắn nửa đường tròn). $\widehat{ABC} = 90^^\circ - 30^^\circ = 60^^\circ$.  
+b) $BC = AB \cdot \sin 30^^\circ = 2R \cdot 0,5 = R$. $AC = AB \cdot \cos 30^^\circ = 2R \cdot \frac{\sqrt{3}}{2} = R\sqrt{3}$.  
+c) $CH = \frac{AC \cdot BC}{AB} = \frac{R\sqrt{3} \cdot R}{2R} = \frac{R\sqrt{3}}{2}$.  
+$AH = \frac{AC^2}{AB} = \frac{3R^2}{2R} = \frac{3R}{2}$; $HB = 2R - \frac{3R}{2} = \frac{R}{2}$.  
+d) $OM \perp AC$ (đường trung bình $\Delta ABC$) $\Rightarrow OM = \frac{BC}{2} = \frac{R}{2}$.  
+e) $S_{ABC} = \frac{1}{2} AC \cdot BC = \frac{1}{2} \cdot R\sqrt{3} \cdot R = \frac{R^2\sqrt{3}}{2}$.  
+f) Chu vi $P = AB + BC + CA = 2R + R + R\sqrt{3} = R(3 + \sqrt{3})$.
+
+---
+
+**Bài 3:**  
+a) $\widehat{xAB} = \widehat{ACB} = 55^^\circ$.  
+b) $\widehat{xAB} = \frac{1}{2} \widehat{AOB} = \frac{110^^\circ}{2} = 55^^\circ$.  
+c) sđ$\overparen{AB} = 2 \times 75^^\circ = 150^^\circ$.  
+d) $AC // Ax \Rightarrow \widehat{ACB} = \widehat{xAB}$ (so le trong). Mà $\widehat{xAB} = \widehat{ABC} \Rightarrow \widehat{ACB} = \widehat{ABC} \Rightarrow \Delta ABC$ cân tại $A$.  
+e) $\widehat{ADB} = 90^^\circ - \widehat{DAB} = \widehat{xAB}$ (do $Ax \perp AD$).  
+f) Vì $Ax$ là tiếp tuyến tại $A$ nên $Ax \perp OA$.
+
+---
+
+**Bài 4:**  
+a) $\Delta MAB$ và $\Delta MCA$ có $\widehat{M}$ chung, $\widehat{MAB} = \widehat{MCA} \Rightarrow \Delta MAB \sim \Delta MCA$ (g.g).  
+b) Từ đồng dạng $\Rightarrow \frac{MA}{MC} = \frac{MB}{MA} \Rightarrow MA^2 = MB \cdot MC$.  
+c) $12^2 = 8 \cdot MC \Rightarrow 144 = 8 \cdot MC \Rightarrow MC = 18\text{ cm}$.  
+$BC = MC - MB = 18 - 8 = 10\text{ cm}$.
+
+---
+
+**Bài 5:**  
+a) $\widehat{BEC} = \widehat{BDC} = 90^^\circ \Rightarrow B, E, D, C$ cùng thuộc đường tròn đường kính $BC$.  
+b) Trong đường tròn đường kính $BC$: $\widehat{ADE} = \widehat{ABC}$ (hai góc nội tiếp cùng chắn cung $EC$).  
+c) $\widehat{ACK} = 90^^\circ \Rightarrow CK \perp AC \Rightarrow CK // BH$.  
+$\widehat{ABK} = 90^^\circ \Rightarrow BK \perp AB \Rightarrow BK // CH$.  
+Tứ giác $BHCK$ có 2 cặp cạnh đối song song nên là hình bình hành (ĐPCM).
+
+---
+
+**Bài 6:**  
+a) $MA = MC$ và $OA = OC = R \Rightarrow OM$ là đường trung trực của $AC \Rightarrow OM \perp AC$.  
+b) $\widehat{ACB} = 90^^\circ \Rightarrow BC \perp AC$. Mà $OM \perp AC \Rightarrow OM // BC$.  
+c) $\widehat{ADM} = 90^^\circ$ (chắn nửa đường tròn) $\Rightarrow AD \perp MB$.  
+In $\Delta MAB$ vuông tại $A$, đường cao $AD \perp MB$: $MA^2 = MD \cdot MB$ (ĐPCM).
+
+---
+
+**Bài 7:**  
+a) Trong $(O_1)$: $\widehat{CAB} = \widehat{ACB}$. Trong $(O_2)$: $\widehat{DAB} = \widehat{ABD}$.  
+Cộng vế với vế: $\widehat{ABC} = \widehat{ABD} + \widehat{DBC} = \widehat{CAD}$ (ĐPCM).  
+b) $\Delta ABC \sim \Delta DBA$ (g.g) $\Rightarrow \frac{AB}{DB} = \frac{BC}{BA} \Rightarrow AB^2 = BC \cdot BD$ (ĐPCM).
+
+---
+
+**Bài 8:**  
+Giả sử $AB // CD$. Vẽ đường kính $EF \perp AB \Rightarrow EF \perp CD$.  
+Do tính chất đối xứng qua đường kính $EF$, cung $AC$ đối xứng với cung $BD \Rightarrow$ sđ$\overparen{AC} =$ sđ$\overparen{BD}$ (ĐPCM).
+
+---
+
+**Bài 9:**  
+Diễn viên $C$ đứng trên viền sân khấu (đường tròn) nhìn 2 đèn $A, B$ dưới góc nội tiếp $\widehat{ACB}$.  
+$\widehat{ACB} = \frac{1}{2} \widehat{AOB} = \frac{120^^\circ}{2} = 60^^\circ$.
+
+---
+
+**Bài 10:**  
+Đỉnh $C$ vuông ($90^^\circ$) nội tiếp chiếc nhẫn $\Rightarrow AB$ chính là đường kính của chiếc nhẫn.  
+Trong tam giác vuông $ABC$ ($C = 90^^\circ$):  
+Đường kính $AB = \sqrt{AC^2 + BC^2} = \sqrt{12^2 + 16^2} = \sqrt{144 + 256} = \sqrt{400} = 20\text{ mm}$.  
+Đường kính chiếc nhẫn là $20\text{ mm}$.
 
 </div>
 </details>

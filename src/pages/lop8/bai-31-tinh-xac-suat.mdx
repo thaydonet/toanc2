@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 31: Cách tính xác suất của biến cố bằng tỉ số"
-description: "Công thức tính xác suất cổ điển và ứng dụng - Toán 8 KNTT Chương 8"
+description: "Công thức xác suất cổ điển, tính xác suất của biến cố trong các phép thử đồng khả năng - Toán 8 KNTT Chương 8"
 grade: "Lớp 8"
 chapter: "Chương 8: Mở đầu về tính xác suất của biến cố"
 currentSlug: "lop8/bai-31-tinh-xac-suat"
-
 ---
 
 import KhoiDong from '../../components/sections/KhoiDong.astro';
@@ -14,519 +13,368 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import TinhXacSuatInteractive from '../../components/interactive/TinhXacSuatInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Xác suất của biến cố chắc chắn là:",
-    option_a: "$1$",
-    option_b: "$0$",
-    option_c: "$0{,}5$",
-    option_d: "$2$",
+    question: "Xác suất của biến cố A trong một phép thử gồm N kết quả đồng khả năng được tính bằng công thức:",
+    option_a: "$P(A) = \\dfrac{n(A)}{N}$",
+    option_b: "$P(A) = \\dfrac{N}{n(A)}$",
+    option_c: "$P(A) = n(A) \\cdot N$",
+    option_d: "$P(A) = N - n(A)$",
     correct_option: "A",
-    explanation: "Biến cố chắc chắn luôn xảy ra nên $P(A) = 1$.",
+    explanation: "Công thức tính xác suất bằng tỉ số giữa số kết quả thuận lợi và tổng số kết quả có thể.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tung một đồng xu, xác suất xuất hiện mặt ngửa là:",
+    question: "Gieo 1 con xúc xắc 6 mặt cân đối. Xác suất xuất hiện mặt có số chấm chia hết cho 2 là:",
     option_a: "$\\dfrac{1}{2}$",
     option_b: "$\\dfrac{1}{3}$",
-    option_c: "$\\dfrac{2}{3}$",
-    option_d: "$1$",
+    option_c: "$\\dfrac{1}{6}$",
+    option_d: "$\\dfrac{2}{3}$",
     correct_option: "A",
-    explanation: "$P(A) = \\dfrac{n(A)}{n(\\Omega)} = \\dfrac{1}{2}$.",
+    explanation: "Các mặt chẵn $\{2, 4, 6\} \Rightarrow P(A) = \dfrac{3}{6} = \dfrac{1}{2}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Gieo một con xúc xắc, xác suất xuất hiện mặt chẵn là:",
-    option_a: "$\\dfrac{1}{2}$",
-    option_b: "$\\dfrac{1}{3}$",
-    option_c: "$\\dfrac{2}{3}$",
-    option_d: "$\\dfrac{1}{6}$",
+    question: "Một túi chứa 4 quả bóng xanh và 6 quả bóng đỏ. Lấy ngẫu nhiên 1 quả bóng. Xác suất lấy được bóng đỏ là:",
+    option_a: "$\\dfrac{3}{5}$",
+    option_b: "$\\dfrac{2}{5}$",
+    option_c: "$\\dfrac{4}{6}$",
+    option_d: "$\\dfrac{1}{2}$",
     correct_option: "A",
-    explanation: "Có 3 mặt chẵn (2,4,6) trong 6 mặt: $P(A) = \\dfrac{3}{6} = \\dfrac{1}{2}$.",
-    difficulty_level: "medium",
+    explanation: "Tổng $N = 10$. Xác suất đỏ $= \dfrac{6}{10} = \dfrac{3}{5}$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Xác suất của biến cố không thể là:",
+    question: "Xác suất của biến cố KHÔNG THỂ bằng bao nhiêu?",
     option_a: "$0$",
     option_b: "$1$",
-    option_c: "$0{,}5$",
+    option_c: "$0.5$",
     option_d: "$-1$",
     correct_option: "A",
-    explanation: "Biến cố không thể không bao giờ xảy ra nên $P(A) = 0$.",
+    explanation: "Biến cố không thể có xác suất bằng 0.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Trong hộp có 3 bi đỏ và 7 bi xanh. Lấy ngẫu nhiên 1 bi, xác suất lấy được bi đỏ là:",
-    option_a: "$\\dfrac{3}{10}$",
-    option_b: "$\\dfrac{7}{10}$",
-    option_c: "$\\dfrac{3}{7}$",
-    option_d: "$\\dfrac{1}{3}$",
+    question: "Xác suất $P(A)$ của một biến cố bất kỳ luôn thỏa mãn khoảng giá trị nào?",
+    option_a: "$0 \\le P(A) \\le 1$",
+    option_b: "$P(A) > 1$",
+    option_c: "$P(A) < 0$",
+    option_d: "$0 < P(A) < 0.5$",
     correct_option: "A",
-    explanation: "$P(A) = \\dfrac{3}{3+7} = \\dfrac{3}{10}$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Gieo một con xúc xắc, xác suất xuất hiện mặt lớn hơn 4 là:",
-    option_a: "$\\dfrac{1}{3}$",
-    option_b: "$\\dfrac{1}{2}$",
-    option_c: "$\\dfrac{2}{3}$",
-    option_d: "$\\dfrac{1}{6}$",
-    correct_option: "A",
-    explanation: "Có 2 mặt lớn hơn 4 (5,6): $P(A) = \\dfrac{2}{6} = \\dfrac{1}{3}$.",
-    difficulty_level: "medium",
+    explanation: "Xác suất luôn nằm trong đoạn từ 0 đến 1.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Với mọi biến cố $A$, xác suất $P(A)$ thỏa mãn:",
-    option_a: "$0 \\leq P(A) \\leq 1$",
-    option_b: "$P(A) \\geq 0$",
-    option_c: "$P(A) \\leq 1$",
-    option_d: "$P(A) > 0$",
+    question: "Những khẳng định nào sau đây ĐÚNG về xác suất?",
+    option_a: "Xác suất của biến cố chắc chắn bằng 1",
+    option_b: "Xác suất của biến cố không thể bằng 0",
+    option_c: "Tổng xác suất của biến cố A và biến cố đối $\\overline{A}$ bằng 1",
+    option_d: "Xác suất có thể là số lớn hơn 1",
     correct_option: "A,B,C",
-    explanation: "Xác suất luôn nằm trong khoảng $[0, 1]$. D sai vì có thể $P(A) = 0$.",
+    explanation: "A, B, C đúng. D sai vì xác suất không vượt quá 1.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Gieo hai con xúc xắc, xác suất để tổng hai mặt bằng 7 là $\\dfrac{a}{b}$ (phân số tối giản). Tính $a + b$.",
-    correct_option: "7",
-    explanation: "Có 6 cách trong 36: $P = \\dfrac{6}{36} = \\dfrac{1}{6}$. Vậy $a = 1, b = 6$, $a + b = 7$.",
-    difficulty_level: "hard",
+    question: "Gieo 1 con xúc xắc 6 mặt. Xác suất xuất hiện mặt có số chấm là số nguyên tố bằng bao nhiêu (viết dưới dạng phân số $a/b$ tối giản)?",
+    correct_option: "1/2",
+    explanation: "Các số nguyên tố $\{2, 3, 5\} \Rightarrow P = \dfrac{3}{6} = \dfrac{1}{2}$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Trong hộp có $!a#2!$ bi đỏ và $!b#2!$ bi xanh. Xác suất lấy được bi đỏ là:",
-    option_a: "$\\dfrac{!a!}{!tinh: !a! + !b!!}$",
-    option_b: "$\\dfrac{!b!}{!tinh: !a! + !b!!}$",
-    option_c: "$\\dfrac{!a!}{!b!}$",
-    option_d: "$\\dfrac{!tinh: !a! + !b!!}{!a!}$",
+    question: "Rút 1 thẻ từ 20 thẻ đánh số $1 \\rightarrow 20$. Xác suất chọn được số chia hết cho 5 là:",
+    option_a: "$\\dfrac{1}{5}$",
+    option_b: "$\\dfrac{1}{4}$",
+    option_c: "$\\dfrac{1}{10}$",
+    option_d: "$\\dfrac{2}{5}$",
     correct_option: "A",
-    explanation: "Xác suất = $\\dfrac{\\text{Số bi đỏ}}{\\text{Tổng số bi}} = \\dfrac{!a!}{!tinh: !a! + !b!!}$.",
+    explanation: "Các số chia hết cho 5: $\{5, 10, 15, 20\} \Rightarrow P = \dfrac{4}{20} = \dfrac{1}{5}$.",
     difficulty_level: "medium",
-    is_dynamic: true,
+    is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Tung 2 đồng xu cân đối đồng thời. Xác suất để có ít nhất 1 đồng xu ngửa là:",
+    option_a: "$\\dfrac{3}{4}$",
+    option_b: "$\\dfrac{1}{4}$",
+    option_c: "$\\dfrac{1}{2}$",
+    option_d: "$\\dfrac{2}{3}$",
+    correct_option: "A",
+    explanation: "Các kết quả $(S,S), (S,N), (N,S), (N,N) \Rightarrow N = 4$. Có ít nhất 1 ngửa gồm 3 kết quả $\Rightarrow P = \dfrac{3}{4}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chọn ngẫu nhiên 1 chữ cái từ từ \"VIETNAM\". Xác suất chọn được một NGUYÊN ÂM là:",
+    option_a: "$\\dfrac{3}{7}$",
+    option_b: "$\\dfrac{4}{7}$",
+    option_c: "$\\dfrac{2}{7}$",
+    option_d: "$\\dfrac{5}{7}$",
+    correct_option: "A",
+    explanation: "Từ \"VIETNAM\" có 7 chữ cái. Các nguyên âm là I, E, A (3 chữ) $\Rightarrow P = \dfrac{3}{7}$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Mở đầu — Đo lường khả năng</h3>
+### 🎯 Khởi động bài học
 
-Xác suất giúp ta đo lường khả năng xảy ra của một sự kiện:
-
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🎲</div>
-    <strong>Xúc xắc</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Xác suất ra mặt 6: $\\dfrac{1}{6} \\approx 16{,}7\\%$</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🪙</div>
-    <strong>Đồng xu</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Xác suất ra mặt ngửa: $\\dfrac{1}{2} = 50\\%$</p>
-  </div>
-</div>
-
-💬 *Xác suất là tỉ số giữa số kết quả thuận lợi và số kết quả có thể!*
+Tính xác suất bằng tỉ số chính là cốt lõi của **Lý thuyết Xác suất cổ điển**. Khi tất cả các kết quả của phép thử có khả năng xảy ra như nhau, xác suất của một biến cố được tính đơn giản bằng tỉ số giữa số kết quả thuận lợi và tổng số kết quả có thể!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="cong-thuc">📖 1. Công thức tính xác suất</h3>
+### 📐 Lý thuyết & Kiến thức trọng tâm
 
-<div class="box-dinh-ly">
+#### 1. Công thức tính xác suất bằng tỉ số
 
-**Định nghĩa:** Xác suất của biến cố $A$ (ký hiệu $P(A)$) được tính bằng công thức:
+Giả sử một phép thử có $N$ kết quả **đồng khả năng** xảy ra và biến cố $A$ có $n(A)$ kết quả thuận lợi.  
+Xác suất của biến cố $A$, ký hiệu là $P(A)$, được tính theo công thức:
 
-$$P(A) = \frac{n(A)}{n(\Omega)} = \frac{\text{Số kết quả thuận lợi}}{\text{Số kết quả có thể}}$$
+$$P(A) = \dfrac{n(A)}{N} = \dfrac{\text{Số kết quả thuận lợi cho A}}{\text{Tổng số kết quả có thể}}$$
 
-trong đó:
-- $n(A)$: Số kết quả thuận lợi cho biến cố $A$
-- $n(\Omega)$: Tổng số kết quả có thể
-
-**Điều kiện:** Các kết quả có thể phải có khả năng xảy ra như nhau (đồng khả năng).
-
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="360" height="150" viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="320" height="110" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="180" y="55" text-anchor="middle" font-size="16" font-weight="bold" fill="#166534">P(A) = n(A) / N</text>
+  <text x="180" y="85" text-anchor="middle" font-size="14" fill="#334155">Biến cố chắc chắn: P = 1 (100%)</text>
+  <text x="180" y="110" text-anchor="middle" font-size="14" fill="#dc2626">Biến cố không thể: P = 0 (0%)</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Công thức xác suất cổ điển bằng tỉ số</em></p>
 </div>
 
-**Ví dụ 1:** Tung một đồng xu, tính xác suất xuất hiện mặt ngửa.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-- Số kết quả có thể: $n(\Omega) = 2$ (Ngửa, Sấp)
-- Biến cố $A$: "Xuất hiện mặt ngửa"
-- Số kết quả thuận lợi: $n(A) = 1$
-
-$$P(A) = \frac{1}{2} = 0{,}5 = 50\%$$
-
-</div>
-
-**Ví dụ 2:** Gieo một con xúc xắc, tính xác suất xuất hiện mặt chẵn.
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-- Số kết quả có thể: $n(\Omega) = 6$
-- Biến cố $A$: "Xuất hiện mặt chẵn" = $\{2, 4, 6\}$
-- Số kết quả thuận lợi: $n(A) = 3$
-
-$$P(A) = \frac{3}{6} = \frac{1}{2} = 50\%$$
-
-</div>
-
-<h3 id="tinh-chat" style="margin-top:2rem;">📊 2. Tính chất của xác suất</h3>
-
-<div class="box-dinh-ly">
-
-**Tính chất:**
-
-1. **Giới hạn:** $0 \leq P(A) \leq 1$ với mọi biến cố $A$
-
-2. **Biến cố chắc chắn:** $P(\Omega) = 1$
-
-3. **Biến cố không thể:** $P(\emptyset) = 0$
-
-4. **Biến cố đối:** $P(\overline{A}) = 1 - P(A)$
-
-</div>
-
-**Ví dụ 3:** Gieo một con xúc xắc:
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-a) Biến cố $A$: "Xuất hiện mặt nhỏ hơn 7" (chắc chắn)
-
-$$P(A) = \frac{6}{6} = 1$$
-
-b) Biến cố $B$: "Xuất hiện mặt 7" (không thể)
-
-$$P(B) = \frac{0}{6} = 0$$
-
-c) Biến cố $C$: "Xuất hiện mặt lẻ"
-
-$$P(C) = \frac{3}{6} = \frac{1}{2}$$
-
-Biến cố đối $\overline{C}$: "Xuất hiện mặt chẵn"
-
-$$P(\overline{C}) = 1 - P(C) = 1 - \frac{1}{2} = \frac{1}{2}$$
-
-</div>
-
-<h3 id="vi-du" style="margin-top:2rem;">✏️ 3. Các ví dụ tính xác suất</h3>
-
-**Ví dụ 4:** Trong hộp có 5 bi đỏ và 3 bi xanh. Lấy ngẫu nhiên 1 bi, tính xác suất:
-
-a) Lấy được bi đỏ
-
-b) Lấy được bi xanh
-
-<div style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Tổng số bi: $5 + 3 = 8$
-
-a) Biến cố $A$: "Lấy được bi đỏ"
-
-$$P(A) = \frac{5}{8} = 0{,}625 = 62{,}5\%$$
-
-b) Biến cố $B$: "Lấy được bi xanh"
-
-$$P(B) = \frac{3}{8} = 0{,}375 = 37{,}5\%$$
-
-**Kiểm tra:** $P(A) + P(B) = \dfrac{5}{8} + \dfrac{3}{8} = 1$ ✓
-
-</div>
-
-**Ví dụ 5:** Rút ngẫu nhiên một lá bài từ bộ 52 lá, tính xác suất:
-
-a) Rút được lá bài cơ
-
-b) Rút được lá Át
-
-<div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) Biến cố $A$: "Rút được lá bài cơ"
-
-Có 13 lá bài cơ trong 52 lá:
-
-$$P(A) = \frac{13}{52} = \frac{1}{4} = 25\%$$
-
-b) Biến cố $B$: "Rút được lá Át"
-
-Có 4 lá Át (Át cơ, rô, chuồn, bích):
-
-$$P(B) = \frac{4}{52} = \frac{1}{13} \approx 7{,}7\%$$
-
-</div>
-
-**Ví dụ 6:** Gieo hai con xúc xắc, tính xác suất để tổng hai mặt bằng 7.
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Số kết quả có thể: $n(\Omega) = 6 \times 6 = 36$
-
-Biến cố $A$: "Tổng hai mặt bằng 7"
-
-Các cặp: $(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)$
-
-Số kết quả thuận lợi: $n(A) = 6$
-
-$$P(A) = \frac{6}{36} = \frac{1}{6} \approx 16{,}7\%$$
-
-</div>
-
-<h3 id="bien-co-doi" style="margin-top:2rem;">🔄 4. Biến cố đối</h3>
-
-<div class="box-dinh-nghia">
-
-**Định nghĩa:** Biến cố đối của biến cố $A$ (ký hiệu $\overline{A}$) là biến cố xảy ra khi và chỉ khi $A$ không xảy ra.
-
-**Công thức:** $P(\overline{A}) = 1 - P(A)$
-
-</div>
-
-**Ví dụ 7:** Trong lớp có 30 học sinh, trong đó 18 nữ. Chọn ngẫu nhiên 1 học sinh.
-
-a) Tính xác suất chọn được học sinh nữ
-
-b) Tính xác suất chọn được học sinh nam
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) Biến cố $A$: "Chọn được học sinh nữ"
-
-$$P(A) = \frac{18}{30} = \frac{3}{5} = 60\%$$
-
-b) Biến cố $\overline{A}$: "Chọn được học sinh nam"
-
-**Cách 1:** Tính trực tiếp
-
-Số học sinh nam: $30 - 18 = 12$
-
-$$P(\overline{A}) = \frac{12}{30} = \frac{2}{5} = 40\%$$
-
-**Cách 2:** Dùng công thức biến cố đối
-
-$$P(\overline{A}) = 1 - P(A) = 1 - \frac{3}{5} = \frac{2}{5} = 40\%$$
-
-</div>
+- **Tính chất xác suất:**
+  - $0 \le P(A) \le 1$ đối với mọi biến cố $A$.
+  - Nếu $A$ là biến cố không thể thì $P(A) = 0$.
+  - Nếu $A$ là biến cố chắc chắn thì $P(A) = 1$.
+
+**Ví dụ 1:** Gieo 1 con xúc xắc 6 mặt. Tính xác suất biến cố $A$: "Xuất hiện mặt có số chấm chia hết cho 3".  
+*Lời giải:* Tổng số kết quả $N = 6$. Các kết quả thuận lợi là $\{3; 6\} \Rightarrow n(A) = 2$.  
+Xác suất $P(A) = \dfrac{2}{6} = \dfrac{1}{3}$.
+
+**Ví dụ 2:** Chọn ngẫu nhiên 1 học sinh từ lớp có 15 học sinh nam và 25 học sinh nữ. Tính xác suất chọn được học sinh nam.  
+*Lời giải:* Tổng số học sinh $N = 15 + 25 = 40$. Số nam $n(A) = 15$.  
+Xác suất $P(A) = \dfrac{15}{40} = \dfrac{3}{8} = 0.375$ ($37.5\%$).
+
+**Ví dụ 3:** Rút 1 lá bài ngẫu nhiên từ bộ bài 52 lá. Tính xác suất rút được lá bài màu Đỏ.  
+*Lời giải:* Bộ bài có 52 lá, trong đó có 26 lá màu đỏ (Cơ và Rô).  
+Xác suất $P = \dfrac{26}{52} = \dfrac{1}{2} = 0.5$.
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Luyện tập tương tác Tính xác suất bằng tỉ số</h3>
 
-<QuizSession client:load questions={quizData} />
+<TinhXacSuatInteractive client:load />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Các dạng toán & Phương pháp giải">
 
-<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+<h3 id="cac-dang-toan">💡 Các dạng toán thường gặp</h3>
 
-**📝 Bài toán 1 — Xổ số:**
+<div class="box-dinh-ly">
 
-Một vé số có 2 chữ số cuối từ 00 đến 99. Tính xác suất:
-
-a) Trúng giải đặc biệt (số 25)
-
-b) Trúng giải khuyến khích (2 chữ số cuối giống nhau)
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Tổng số kết quả: $n(\Omega) = 100$ (từ 00 đến 99)
-
-a) Chỉ có 1 số 25:
-
-$$P(A) = \frac{1}{100} = 1\% = 0{,}01$$
-
-b) Các số có 2 chữ số giống nhau: 00, 11, 22, ..., 99
-
-Có 10 số như vậy:
-
-$$P(B) = \frac{10}{100} = \frac{1}{10} = 10\%$$
+**Dạng 1: Tính xác suất của các trò chơi gieo xúc xắc, tung đồng xu, rút thẻ**
+**Phương pháp:** Đếm tổng số kết quả có thể $N \rightarrow$ Đếm số kết quả thuận lợi $n(A) \rightarrow P(A) = \dfrac{n(A)}{N}$.
 
 </div>
 
----
+<div class="box-dinh-ly" style="margin-top:2rem;">
 
-**📝 Bài toán 2 — Kiểm tra chất lượng:**
-
-Một lô hàng có 100 sản phẩm, trong đó 8 sản phẩm lỗi. Lấy ngẫu nhiên 1 sản phẩm để kiểm tra.
-
-a) Tính xác suất lấy được sản phẩm tốt
-
-b) Tính xác suất lấy được sản phẩm lỗi
-
-<div style="background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) Số sản phẩm tốt: $100 - 8 = 92$
-
-$$P(A) = \frac{92}{100} = 0{,}92 = 92\%$$
-
-b) Số sản phẩm lỗi: $8$
-
-$$P(B) = \frac{8}{100} = 0{,}08 = 8\%$$
-
-Hoặc: $P(B) = 1 - P(A) = 1 - 0{,}92 = 0{,}08 = 8\%$
-
-</div>
-
----
-
-**📝 Bài toán 3 — Sinh nhật:**
-
-Trong một nhóm 30 người, tính xác suất có ít nhất 2 người cùng sinh nhật (giả sử 1 năm có 365 ngày).
-
-<div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-Biến cố $A$: "Có ít nhất 2 người cùng sinh nhật"
-
-Biến cố đối $\overline{A}$: "Tất cả đều khác sinh nhật"
-
-Tính $P(\overline{A})$ dễ hơn:
-
-- Người 1: chọn 1 trong 365 ngày
-- Người 2: chọn 1 trong 364 ngày còn lại
-- ...
-- Người 30: chọn 1 trong 336 ngày còn lại
-
-$$P(\overline{A}) = \frac{365 \times 364 \times ... \times 336}{365^{30}} \approx 0{,}2937$$
-
-$$P(A) = 1 - P(\overline{A}) \approx 1 - 0{,}2937 = 0{,}7063 \approx 70{,}6\%$$
-
-**Kết luận:** Xác suất khá cao (hơn 70%)!
+**Dạng 2: Tính xác suất chọn phần tử từ tập hợp dữ liệu thực tế**
+**Phương pháp:** Tính tổng quy mô mẫu $N \rightarrow$ Đếm số phần tử thỏa mãn điều kiện $n(A) \rightarrow$ Lập tỉ số xác suất.
 
 </div>
 
 </VanDung>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Xác suất bốc thăm thi nói Tiếng Anh):** Trong đề thi nói Tiếng Anh gồm 20 chủ đề, trong đó có 5 chủ đề về Môi trường. Một học sinh bốc thăm ngẫu nhiên 1 chủ đề.
+
+a) Tính xác suất học sinh bốc phải chủ đề về Môi trường.  
+b) Tính xác suất học sinh bốc phải chủ đề không thuộc chủ đề Môi trường.
+
+**Lời giải:**  
+a) $P(\text{Môi trường}) = \dfrac{5}{20} = \dfrac{1}{4} = 0.25$ ($25\%$).  
+b) Số chủ đề không phải môi trường $= 20 - 5 = 15 \Rightarrow P = \dfrac{15}{20} = \dfrac{3}{4} = 0.75$ ($75\%$).
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
+
+<QuizSession client:load questions={quizData} />
+
+</LuyenTap>
+
 <GhiNho>
 
-- **Công thức xác suất**: $P(A) = \dfrac{n(A)}{n(\Omega)}$
-- **Giới hạn**: $0 \leq P(A) \leq 1$
-- **Biến cố chắc chắn**: $P(\Omega) = 1$
-- **Biến cố không thể**: $P(\emptyset) = 0$
-- **Biến cố đối**: $P(\overline{A}) = 1 - P(A)$
+- Công thức chuẩn: $P(A) = \dfrac{n(A)}{N}$.
+- Đảm bảo các kết quả có thể là **đồng khả năng**.
+- Miền giá trị xác suất: $0 \le P(A) \le 1$.
 
 </GhiNho>
-
 
 ---
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1 (Dễ):** Tính xác suất trong các trường hợp sau:
+**Bài 1 (Dễ — Tính xác suất gieo xúc xắc 1 lần):** Gieo 1 con xúc xắc 6 mặt cân đối. Tính xác suất của các biến cố sau:
 
-a) Tung một đồng xu, xác suất xuất hiện mặt sấp.
+a) $A$: "Xuất hiện mặt 5 chấm".  
+b) $B$: "Xuất hiện mặt có số chấm là số lẻ".  
+c) $C$: "Xuất hiện mặt có số chấm lớn hơn 2".  
+d) $D$: "Xuất hiện mặt có số chấm chia hết cho 3".  
+e) $E$: "Xuất hiện mặt có số chấm nhỏ hơn 7".  
+f) $F$: "Xuất hiện mặt 8 chấm".
 
-b) Gieo một con xúc xắc, xác suất xuất hiện mặt 5.
+**Bài 2 (Dễ — Tính xác suất rút quả bóng / thẻ):** Một túi chứa 4 quả bóng xanh, 5 quả bóng đỏ và 1 quả bóng vàng. Lấy ngẫu nhiên 1 quả bóng. Tính xác suất:
 
-c) Rút một lá bài từ bộ 52 lá, xác suất rút được lá Át.
+a) Lấy được bóng màu xanh.  
+b) Lấy được bóng màu đỏ.  
+c) Lấy được bóng màu vàng.  
+d) Lấy được bóng màu xanh hoặc màu đỏ.  
+e) Lấy được bóng không phải màu đỏ.  
+f) Lấy được bóng màu trắng.
 
-d) Chọn ngẫu nhiên một số từ 1 đến 10, xác suất chọn được số chẵn.
+**Bài 3 (Trung bình — Rút thẻ đánh số):** Một hộp chứa 30 tấm thẻ được đánh số từ 1 đến 30. Rút ngẫu nhiên 1 tấm thẻ. Tính xác suất của các biến cố:
 
-**Bài 2 (Dễ):** Gieo một con xúc xắc. Tính xác suất của các biến cố:
+a) $A$: "Số trên thẻ chia hết cho 5".  
+b) $B$: "Số trên thẻ là số chính phương".  
+c) $C$: "Số trên thẻ là số nguyên tố nhỏ hơn 15".  
+d) $D$: "Số trên thẻ có chữ số tận cùng là 0".  
+e) $E$: "Số trên thẻ là số có hai chữ số".  
+f) $F$: "Số trên thẻ là số chia cho 4 dư 1".
 
-a) Xuất hiện mặt chẵn.
+**Bài 4 (Trung bình — Tung hai đồng xu):** Tung 2 đồng xu cân đối đồng thời. Tính xác suất của các biến cố:
 
-b) Xuất hiện mặt lớn hơn 4.
+a) $A$: "Cả 2 đồng xu đều sấp".  
+b) $B$: "Có đúng 1 đồng xu ngửa".  
+c) $C$: "Có ít nhất 1 đồng xu ngửa".  
+d) $D$: "Không có đồng xu nào ngửa".
 
-c) Xuất hiện mặt nhỏ hơn 7.
+**Bài 5 (Trung bình — Chọn ngẫu nhiên học sinh trong lớp):** Một lớp học có 24 học sinh nam và 16 học sinh nữ. Chọn ngẫu nhiên 1 học sinh làm lớp trưởng.
 
-d) Xuất hiện mặt 7.
+a) Tính xác suất chọn được học sinh nam.  
+b) Tính xác suất chọn được học sinh nữ.  
+c) Biết trong lớp có 10 học sinh đeo kính. Tính xác suất chọn được 1 học sinh đeo kính.
 
+**Bài 6 (Khá — Phép thử gieo hai con xúc xắc):** Gieo 2 con xúc xắc 6 mặt cân đối đồng thời. Tính xác suất của các biến cố:
 
-**Bài 3 (Trung bình):** Trong hộp có 5 bi đỏ, 3 bi xanh và 2 bi vàng. Lấy ngẫu nhiên 1 bi.
+a) $A$: "Tổng số chấm xuất hiện trên 2 con xúc xắc bằng 8".  
+b) $B$: "Số chấm xuất hiện trên 2 con xúc xắc giống nhau".  
+c) $C$: "Tổng số chấm xuất hiện lớn hơn 10".
 
-a) Tính xác suất lấy được bi đỏ.
+**Bài 7 (Khá — Chọn chữ số ngẫu nhiên):** Cho tập hợp các chữ số $S = \{1; 2; 3; 4; 5; 6; 7; 8; 9\}$. Chọn ngẫu nhiên 1 số từ $S$.
 
-b) Tính xác suất lấy được bi xanh.
+a) Tính xác suất chọn được số chia hết cho 3.  
+b) Tính xác suất chọn được số nguyên tố.  
+c) Lập một số tự nhiên có 2 chữ số khác nhau từ $S$. Tính xác suất để số được lập là số lẻ.
 
-c) Tính xác suất lấy được bi không phải màu đỏ.
+**Bài 8 (Khá - Nâng cao — Xác suất trò chơi bốc thăm tổ hợp):** Một tổ gồm 4 bạn Nam (An, Bình, Cường, Dũng) và 2 bạn Nữ (Hoa, Mai). Chọn ngẫu nhiên 2 bạn đi làm nhiệm vụ. Tính xác suất để 2 bạn được chọn gồm 1 Nam và 1 Nữ.
 
-d) Tính xác suất lấy được bi đỏ hoặc vàng.
+**Bài 9 (Ứng dụng thực tế 1 — Kiểm tra chất lượng sản phẩm xuất xưởng):** Một lô hàng có 100 sản phẩm, trong đó có 95 sản phẩm đạt tiêu chuẩn chất lượng và 5 sản phẩm phế phẩm. Kiểm toán viên kiểm tra ngẫu nhiên 1 sản phẩm.
 
-**Bài 4 (Khá):** Tung hai đồng xu.
+a) Tính xác suất sản phẩm được kiểm tra là sản phẩm đạt tiêu chuẩn.  
+b) Tính xác suất sản phẩm được kiểm tra là phế phẩm.
 
-a) Tính xác suất cả hai đều ngửa.
+**Bài 10 (Ứng dụng thực tế 2 — Khảo sát nhóm máu y tế):** Thống kê nhóm máu của 200 người hiến máu thu được: Nhóm A (60 người), Nhóm B (50 người), Nhóm AB (20 người), Nhóm O (70 người). Chọn ngẫu nhiên 1 người.
 
-b) Tính xác suất có ít nhất một mặt ngửa.
-
-c) Tính xác suất hai mặt khác nhau.
-
-d) Kiểm tra tổng các xác suất ở câu a, b, c có bằng 1 không?
-
-
-**Bài 5 (Khó - Ứng dụng thực tế):** 
-
-a) Gieo hai con xúc xắc. Tính xác suất để:
-   - Tổng hai mặt bằng 7.
-   - Tổng hai mặt lớn hơn 10.
-   - Hai mặt bằng nhau.
-
-b) Một lớp có 30 học sinh, trong đó 18 nữ. Chọn ngẫu nhiên 1 học sinh.
-   - Tính xác suất chọn được học sinh nữ.
-   - Tính xác suất chọn được học sinh nam.
-
-c) Một hộp có 10 sản phẩm, trong đó 2 sản phẩm lỗi. Lấy ngẫu nhiên 1 sản phẩm.
-   - Tính xác suất lấy được sản phẩm tốt.
-   - Tính xác suất lấy được sản phẩm lỗi.
-
-d) Xổ số có 2 chữ số cuối từ 00 đến 99. Tính xác suất:
-   - Trúng số 25.
-   - Trúng số có 2 chữ số giống nhau.
-   - Trúng số chia hết cho 5.
-
-e) Rút ngẫu nhiên một lá bài từ bộ 52 lá. Tính xác suất:
-   - Rút được lá bài cơ.
-   - Rút được lá K.
-   - Rút được lá bài đỏ (cơ hoặc rô).
+a) Tính xác suất chọn được người có nhóm máu O.  
+b) Tính xác suất chọn được người có nhóm máu A hoặc B.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $\dfrac{1}{2}$; b) $\dfrac{1}{6}$; c) $\dfrac{1}{13}$; d) $\dfrac{1}{2}$
+**Bài 1:**
+a) $P(A) = \dfrac{1}{6}$.
+b) $P(B) = \dfrac{3}{6} = \dfrac{1}{2}$.
+c) $\{3; 4; 5; 6\} \Rightarrow P(C) = \dfrac{4}{6} = \dfrac{2}{3}$.
+d) $\{3; 6\} \Rightarrow P(D) = \dfrac{2}{6} = \dfrac{1}{3}$.
+e) $\{1; 2; 3; 4; 5; 6\} \Rightarrow P(E) = \dfrac{6}{6} = 1$ (chắc chắn).
+f) $P(F) = 0$ (không thể).
 
-**Bài 2:** a) $\dfrac{1}{2}$; b) $\dfrac{1}{3}$; c) $1$; d) $0$
+**Bài 2:**
+Tổng số bóng $N = 4 + 5 + 1 = 10$.
+a) $P(\text{Xanh}) = \dfrac{4}{10} = \dfrac{2}{5}$.
+b) $P(\text{Đỏ}) = \dfrac{5}{10} = \dfrac{1}{2}$.
+c) $P(\text{Vàng}) = \dfrac{1}{10}$.
+d) $P(\text{Xanh/Đỏ}) = \dfrac{4 + 5}{10} = \dfrac{9}{10}$.
+e) $P(\text{Không đỏ}) = \dfrac{10 - 5}{10} = \dfrac{1}{2}$.
+f) $P(\text{Trắng}) = 0$.
 
-**Bài 3:** a) $\dfrac{1}{2}$; b) $\dfrac{3}{10}$; c) $\dfrac{1}{2}$; d) $\dfrac{7}{10}$
+**Bài 3:**
+a) $\{5; 10; 15; 20; 25; 30\} \Rightarrow 6$ thẻ $\Rightarrow P(A) = \dfrac{6}{30} = \dfrac{1}{5}$.
+b) $\{1; 4; 9; 16; 25\} \Rightarrow 5$ thẻ $\Rightarrow P(B) = \dfrac{5}{30} = \dfrac{1}{6}$.
+c) $\{2; 3; 5; 7; 11; 13\} \Rightarrow 6$ thẻ $\Rightarrow P(C) = \dfrac{6}{30} = \dfrac{1}{5}$.
+d) $\{10; 20; 30\} \Rightarrow 3$ thẻ $\Rightarrow P(D) = \dfrac{3}{30} = \dfrac{1}{10}$.
+e) Số từ 10 đến 30 $\Rightarrow 21$ thẻ $\Rightarrow P(E) = \dfrac{21}{30} = \dfrac{7}{10}$.
+f) $\{1; 5; 9; 13; 17; 21; 25; 29\} \Rightarrow 8$ thẻ $\Rightarrow P(F) = \dfrac{8}{30} = \dfrac{4}{15}$.
 
-**Bài 4:** a) $\dfrac{1}{4}$; b) $\dfrac{3}{4}$; c) $\dfrac{1}{2}$; d) Không (vì các biến cố không rời nhau)
+**Bài 4:**
+a) $P(S,S) = \dfrac{1}{4}$.
+b) $P(S,N \text{ hoặc } N,S) = \dfrac{2}{4} = \dfrac{1}{2}$.
+c) $P = \dfrac{3}{4}$.
+d) $P(S,S) = \dfrac{1}{4}$.
 
-**Bài 5:** a) $\dfrac{1}{6}, \dfrac{1}{12}, \dfrac{1}{6}$; b) $\dfrac{3}{5}, \dfrac{2}{5}$; c) $\dfrac{4}{5}, \dfrac{1}{5}$; d) $\dfrac{1}{100}, \dfrac{1}{10}, \dfrac{1}{5}$; e) $\dfrac{1}{4}, \dfrac{1}{13}, \dfrac{1}{2}$
+**Bài 5:**
+Tổng sĩ số $N = 24 + 16 = 40$.
+a) $P(\text{Nam}) = \dfrac{24}{40} = \dfrac{3}{5} = 0.6$.
+b) $P(\text{Nữ}) = \dfrac{16}{40} = \dfrac{2}{5} = 0.4$.
+c) $P(\text{Đeo kính}) = \dfrac{10}{40} = \dfrac{1}{4} = 0.25$.
+
+**Bài 6:**
+Tổng số kết quả $N = 36$.
+a) Cặp tổng bằng 8: $(2,6), (3,5), (4,4), (5,3), (6,2) \Rightarrow 5$ kết quả $\Rightarrow P(A) = \dfrac{5}{36}$.
+b) Cặp giống nhau: $(1,1), \dots, (6,6) \Rightarrow 6$ kết quả $\Rightarrow P(B) = \dfrac{6}{36} = \dfrac{1}{6}$.
+c) Cặp tổng $> 10$: $(5,6), (6,5), (6,6) \Rightarrow 3$ kết quả $\Rightarrow P(C) = \dfrac{3}{36} = \dfrac{1}{12}$.
+
+**Bài 7:**
+a) Các số chia hết cho 3: $\{3; 6; 9\} \Rightarrow P = \dfrac{3}{9} = \dfrac{1}{3}$.
+b) Số nguyên tố: $\{2; 3; 5; 7\} \Rightarrow P = \dfrac{4}{9}$.
+c) Tổng số 2 chữ số khác nhau $= 9 \times 8 = 72$. Để là số lẻ, hàng đơn vị có 5 cách chọn (1,3,5,7,9), hàng chục có 8 cách chọn $\Rightarrow 5 \times 8 = 40 \Rightarrow P = \dfrac{40}{72} = \dfrac{5}{9}$.
+
+**Bài 8:**
+Số cặp chọn 2 bạn từ 6 bạn $= \dfrac{6 \times 5}{2} = 15$ cách. Số cặp gồm 1 Nam và 1 Nữ $= 4 \times 2 = 8$ cách. Xác suất $P = \dfrac{8}{15}$.
+
+**Bài 9:**
+a) $P(\text{Đạt tiêu chuẩn}) = \dfrac{95}{100} = 0.95$ ($95\%$).
+b) $P(\text{Phế phẩm}) = \dfrac{5}{100} = 0.05$ ($5\%$).
+
+**Bài 10:**
+a) $P(O) = \dfrac{70}{200} = \dfrac{7}{20} = 0.35$ ($35\%$).
+b) $P(A \text{ hoặc } B) = \dfrac{60 + 50}{200} = \dfrac{110}{200} = \dfrac{11}{20} = 0.55$ ($55\%$).
 
 </div>
 </details>

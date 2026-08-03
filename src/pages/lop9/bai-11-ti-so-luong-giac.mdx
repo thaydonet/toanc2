@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 11: Tỉ số lượng giác của góc nhọn"
-description: "Sin, Cos, Tan, Cot của góc nhọn và quan hệ lượng giác - Toán 9 KNTT Chương 4"
+description: "Sin, Cos, Tan, Cot của góc nhọn, quan hệ lượng giác phụ nhau và ứng dụng thực tế - Toán 9 KNTT Chương 4"
 grade: "Lớp 9"
 chapter: "Chương IV: Hệ thức lượng trong tam giác vuông"
 currentSlug: "lop9/bai-11-ti-so-luong-giac"
@@ -18,113 +18,113 @@ import RightTriangleCalculator from '../../components/interactive/RightTriangleC
 export const quizData = [
   {
     type: "mcq",
-    question: "Tỉ số giữa 'cạnh đối' và 'cạnh huyền' của một góc nhọn được gọi là gì?",
-    option_a: "sin",
-    option_b: "cos",
-    option_c: "tan",
-    option_d: "cot",
+    question: "Tỉ số giữa 'cạnh đối' và 'cạnh huyền' của một góc nhọn $\\alpha$ được gọi là gì?",
+    option_a: "$\\sin \\alpha$",
+    option_b: "$\\cos \\alpha$",
+    option_c: "$\\tan \\alpha$",
+    option_d: "$\\cot \\alpha$",
     correct_option: "A",
-    explanation: "Sin = Đối / Huyền. Nhớ câu châm ngôn: 'Sin đi học' (Đối / Huyền).",
+    explanation: "Định nghĩa: $\\sin \\alpha = \\frac{\\text{Cạnh đối}}{\\text{Cạnh huyền}}$. Nhớ câu thần chú: 'Sin đi học' (Đối / Huyền).",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
     question: "Cho tam giác ABC vuông tại A. Khi đó $\\tan B$ được tính bằng tỉ số của hai cạnh nào?",
-    option_a: "$AC / BC$",
-    option_b: "$AB / AC$",
-    option_c: "$AC / AB$",
-    option_d: "$AB / BC$",
+    option_a: "$\\frac{AC}{BC}$",
+    option_b: "$\\frac{AB}{AC}$",
+    option_c: "$\\frac{AC}{AB}$",
+    option_d: "$\\frac{AB}{BC}$",
     correct_option: "C",
-    explanation: "Tan = Đối / Kề. Góc B có cạnh đối là AC, kề là AB. Vậy $\\tan B = AC / AB$.",
+    explanation: "$\\tan B = \\frac{\\text{Cạnh đối}}{\\text{Cạnh kề}} = \\frac{AC}{AB}$. (Mẹo: 'Tan đoàn kết' = Đối / Kề).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tỉ số lượng giác nào luôn có giá trị trong khoảng $(0; 1)$ đối với góc nhọn $\\alpha$?",
+    option_a: "Chỉ $\\sin \\alpha$",
+    option_b: "Chỉ $\\cos \\alpha$",
+    option_c: "Cả $\\sin \\alpha$ và $\\cos \\cos \\alpha$",
+    option_d: "Cả $\\tan \\alpha$ và $\\cot \\alpha$",
+    correct_option: "C",
+    explanation: "Trong tam giác vuông, cạnh huyền là cạnh lớn nhất nên $\\text{Cạnh đối} < \\text{Cạnh huyền}$ và $\\text{Cạnh kề} < \\text{Cạnh huyền}$. Do đó $0 < \\sin \\alpha < 1$ và $0 < \\cos \\alpha < 1$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tỉ số lượng giác nào luôn có giá trị nhỏ hơn 1 (đối với góc nhọn)?",
-    option_a: "Chỉ sin",
-    option_b: "Chỉ cos",
-    option_c: "Cả sin và cos",
-    option_d: "Cả tan và cot",
-    correct_option: "C",
-    explanation: "Trong tam giác vuông, cạnh huyền là cạnh lớn nhất. Do đó Đối/Huyền và Kề/Huyền luôn nhỏ hơn 1.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Nếu góc nhọn $\\alpha$ và $\\beta$ phụ nhau (tổng bằng $90^\\circ$), bản sắc lượng giác nào sau đây ĐÚNG?",
+    question: "Nếu hai góc nhọn $\\alpha$ và $\\beta$ phụ nhau (tổng bằng $90^\\circ$), bản sắc lượng giác nào sau đây ĐÚNG?",
     option_a: "$\\sin \\alpha = \\sin \\beta$",
     option_b: "$\\sin \\alpha = \\cos \\beta$",
     option_c: "$\\tan \\alpha = \\tan \\beta$",
-    option_d: "$\\sin^2 \\alpha = \\cos^2 \\beta$",
+    option_d: "$\\cos \\alpha = \\cos \\beta$",
     correct_option: "B",
-    explanation: "Hai góc phụ nhau có sin góc này bằng cos góc kia, tan góc này bằng cot góc kia.",
-    difficulty_level: "easy",
+    explanation: "Nếu hai góc phụ nhau thì sin góc này bằng cos góc kia: $\\sin \\alpha = \\cos \\beta$ và $\\tan \\alpha = \\cot \\beta$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Cơ số cơ bản của lượng giác $\\sin^2 \\alpha + \\cos^2 \\alpha$ bằng bao nhiêu?",
-    option_a: "0",
-    option_b: "-1",
-    option_c: "1",
-    option_d: "$\\tan \\alpha$",
-    correct_option: "C",
-    explanation: "Đây là hệ thức lượng giác cơ bản quan trọng nhất, thiết lập từ định lý Py-ta-go.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Biết $\\sin \\alpha = 0.6$. Hỏi $\\cos \\alpha$ nhận giá trị bao nhiêu?",
-    option_a: "0.4",
-    option_b: "0.8",
-    option_c: "0.6",
+    question: "Giá trị của $\\sin 30^\\circ$ bằng bao nhiêu?",
+    option_a: "$\\frac{1}{2}$",
+    option_b: "$\\frac{\\sqrt{2}}{2}$",
+    option_c: "$\\frac{\\sqrt{3}}{2}$",
     option_d: "1",
+    correct_option: "A",
+    explanation: "Theo bảng tỉ số lượng giác các góc đặc biệt: $\\sin 30^\\circ = \\frac{1}{2}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giá trị của biểu thức $P = \\sin^2 25^\\circ + \\sin^2 65^\\circ$ bằng bao nhiêu?",
+    option_a: "0",
+    option_b: "1",
+    option_c: "2",
+    option_d: "$\\sqrt{2}$",
     correct_option: "B",
-    explanation: "$\\cos^2 \\alpha = 1 - \\sin^2 \\alpha = 1 - 0.36 = 0.64$. Căn bậc hai số học là $0.8$.",
-    difficulty_level: "hard",
+    explanation: "Vì $25^\\circ + 65^\\circ = 90^\\circ \\Rightarrow \\sin 65^\\circ = \\cos 25^\\circ$. Do đó $P = \\sin^2 25^\\circ + \\cos^2 25^\\circ = 1$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Trong tam giác vuông, những khẳng định nào đúng về Tỉ số lượng giác?",
-    option_a: "Tỉ số lượng giác luôn phụ thuộc vào kích thước của tam giác.",
+    question: "Những đẳng thức lượng giác nào sau đây đúng với mọi góc nhọn $\\alpha$?",
+    option_a: "$\\sin^2 \\alpha + \\cos^2 \\alpha = 1$",
     option_b: "$\\tan \\alpha = \\frac{\\sin \\alpha}{\\cos \\alpha}$",
-    option_c: "Hai góc phụ nhau $\\sin \\alpha = \\cos (90^\\circ - \\alpha)$",
-    option_d: "$\\cot \\alpha$ bằng nghịch đảo của $\\tan \\alpha$",
-    correct_option: "B,C,D",
-    explanation: "A sai vì Tỉ số lượng giác chỉ phụ thuộc vào ĐỘ MỞ của góc, không phụ thuộc cạnh to hay nhỏ.",
+    option_c: "$\\cot \\alpha = \\frac{\\cos \\alpha}{\\sin \\alpha}$",
+    option_d: "$\\tan \\alpha \\cdot \\cot \\alpha = 1$",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 đẳng thức trên là 4 hằng đẳng thức lượng giác cơ bản vô cùng quan trọng.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Góc nội tiếp và các tỉ số lượng giác đặc biệt của góc $30^\\circ$ là:",
-    option_a: "$\\sin 30^\\circ = 1/2$",
-    option_b: "$\\cos 30^\\circ = \\frac{\\sqrt{3}}{2}$",
-    option_c: "$\\tan 30^\\circ = \\sqrt{3}$",
-    option_d: "$\\cot 30^\\circ = \\sqrt{3}$",
-    correct_option: "A,B,D",
-    explanation: "C sai vì $\\tan 30^\\circ = 1/\\sqrt{3} = \\sqrt{3}/3$.",
-    difficulty_level: "hard",
+    question: "Cho tam giác ABC vuông tại A có $AB = 3\\text{ cm}, AC = 4\\text{ cm}, BC = 5\\text{ cm}$. Những khẳng định nào ĐÚNG?",
+    option_a: "$\\sin B = 0,8$",
+    option_b: "$\\cos B = 0,6$",
+    option_c: "$\\tan B = \\frac{4}{3}$",
+    option_d: "$\\cot B = \\frac{3}{4}$",
+    correct_option: "A,B,C,D",
+    explanation: "Đối của góc B là AC=4, kề là AB=3, huyền là BC=5. $\\sin B = 4/5 = 0,8$; $\\cos B = 3/5 = 0,6$; $\\tan B = 4/3$; $\\cot B = 3/4$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tính giá trị của biểu thức: $\\sin^2 15^\\circ + \\sin^2 75^\\circ$.",
-    correct_option: "1",
-    explanation: "$\\sin 75^\\circ = \\cos 15^\\circ$. Nên biểu thức là $\\sin^2 15^\\circ + \\cos^2 15^\\circ = 1$.",
+    question: "Cho tam giác ABC vuông tại A có góc $B = 60^\\circ$ và cạnh $AB = 4\\text{ cm}$. Độ dài cạnh $AC$ bằng bao nhiêu cm? (Làm tròn 2 chữ số thập phân nếu cần)",
+    correct_option: "6.93",
+    explanation: "$\\tan B = \\frac{AC}{AB} \\Rightarrow AC = AB \\cdot \\tan 60^\\circ = 4 \\cdot \\sqrt{3} \\approx 6,93\\text{ cm}$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Giá trị của $\\tan 45^\\circ$ là?",
-    correct_option: "1",
-    explanation: "Ở $45^\\circ$, tam giác là tam giác vuông cân, cạnh đối bằng cạnh kề nên tan = đối/kề = 1.",
+    question: "Tính giá trị của biểu thức $M = \\tan 45^\\circ - 2 \\sin 30^\\circ$.",
+    correct_option: "0",
+    explanation: "$\\tan 45^\\circ = 1$ và $\\sin 30^\\circ = 0,5$. Do đó $M = 1 - 2(0,5) = 1 - 1 = 0$.",
     difficulty_level: "easy",
     is_dynamic: false,
   }
@@ -132,32 +132,37 @@ export const quizData = [
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🗼 Kim tự tháp và bóng râm</h3>
+<h3 id="mo-dau">📐 Từ Đo Chiều Cao Tháp Cổ đến Tỉ số Lượng giác</h3>
 
-Người Ai Cập cổ đại đã biết dùng bóng râm mặt trời để tính chiều cao của tháp. Khi mặt trời chiếu tạt một góc $\alpha$ so với mặt đất, bóng của cây sẽ kéo dài.
-Chiều dài thân cây chiếu xuống mặt đất tạo thành cạnh góc vuông, còn ánh nắng là cạnh huyền, thân cây là cạnh góc vuông còn lại. 
+Một nhà đo đạc muốn tính chiều cao $h$ của một tòa tháp viễn thông mà không cần trèo lên đỉnh tháp. Ông đứng cách chân tháp $d = 40\text{ m}$ và dùng máy kinh vĩ đo được góc nâng đến đỉnh tháp là $\alpha = 35^^\circ$.
 
-Chìa khóa ở đây là: **Chỉ cần biết góc nắng chiếu ($\alpha$) và đo độ dài chiếc bóng là đủ để tính được chiều cao gốc cây, không cần trèo lên tận ngọn.** Mối liên hệ toán học kì diệu này chính là **Tỉ số lượng giác**.
+Bằng cách nào toán học có thể giúp tính chính xác chiều cao $h$? Câu trả lời chính là **Tỉ số Lượng giác của Góc nhọn** trong tam giác vuông!
 
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="250" height="200" viewBox="0 0 250 200" style="background:#f0fdf4;border-radius:8px;">
-  {/* Sun */}
-  <circle cx="200" cy="40" r="20" fill="#facc15" />
-  {/* Rays */}
-  <line x1="200" y1="40" x2="40" y2="160" stroke="#fef08a" stroke-width="2" stroke-dasharray="5 5" />
-  {/* Tree (Right side vertical) */}
-  <rect x="180" y="80" width="10" height="80" fill="#78350f" />
-  <polygon points="185,50 160,100 210,100" fill="#166534" />
-  <polygon points="185,70 150,120 220,120" fill="#15803d" />
-  <text x="200" y="110" font-weight="bold" fill="#064e3b">Cao?</text>
-  {/* Ground */}
-  <line x1="20" y1="160" x2="230" y2="160" stroke="#4b5563" stroke-width="4" />
-  {/* Shadow */}
-  <line x1="40" y1="160" x2="185" y2="160" stroke="#000" stroke-width="4" opacity="0.4"/>
-  <text x="100" y="180" font-size="14" fill="#1f2937">Bóng cây</text>
-  {/* Angle */}
-  <path d="M 60 160 A 20 20 0 0 0 55 149" fill="none" stroke="#dc2626" stroke-width="2" />
-  <text x="65" y="155" font-size="14" font-weight="bold" fill="#dc2626">Góc α</text>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="200" viewBox="0 0 420 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Ground Line */}
+  <line x1="30" y1="170" x2="390" y2="170" stroke="#64748b" stroke-width="2"/>
+  
+  {/* Tower */}
+  <rect x="330" y="30" width="20" height="140" fill="#cbd5e1" stroke="#334155" stroke-width="2"/>
+  <polygon points="340,10 330,30 350,30" fill="#ef4444"/>
+  <line x1="340" y1="10" x2="340" y2="30" stroke="#dc2626" stroke-width="2"/>
+
+  {/* Triangle ABC */}
+  <polygon points="50,170 330,170 330,30" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4"/>
+
+  {/* Points */}
+  <circle cx="50" cy="170" r="4" fill="#2563eb"/>
+  <circle cx="330" cy="170" r="4" fill="#2563eb"/>
+  <circle cx="330" cy="30" r="4" fill="#ef4444"/>
+
+  {/* Angle arc */}
+  <path d="M 80 170 A 30 30 0 0 0 74 153" fill="none" stroke="#d97706" stroke-width="2"/>
+  <text x="90" y="160" font-size="12" font-weight="bold" fill="#b45309">α = 35°</text>
+
+  {/* Labels */}
+  <text x="190" y="190" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">Khoảng cách d = 40 m (Cạnh kề)</text>
+  <text x="365" y="105" font-size="12" font-weight="bold" fill="#dc2626" text-anchor="start">Chiều cao h = ? (Cạnh đối)</text>
 </svg>
 </div>
 
@@ -165,120 +170,223 @@ Chìa khóa ở đây là: **Chỉ cần biết góc nắng chiếu ($\alpha$) v
 
 <KhamPha title="Khám phá">
 
-<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Định nghĩa tỉ số lượng giác</h3>
-
-Cho góc nhọn $\alpha$, hãy dựng một tam giác vuông có một góc nhọn là $\alpha$.
-Các cạnh liên quan đến góc $\alpha$ được gọi tên như sau:
-- **Cạnh huyền**: Cạnh đối diện góc $90^\circ$ (Dài nhất).
-- **Cạnh đối**: Cạnh đối diện trực tiếp với góc $\alpha$.
-- **Cạnh kề**: Cạnh gắn liền, tạo nên góc nhọn $\alpha$ (ngoài cạnh huyền).
+<h3 id="dinh-nghia-tslg">📖 1. Khái niệm Tỉ số lượng giác của góc nhọn</h3>
 
 <div class="box-dinh-nghia">
 
-Các Tỉ số lượng giác của góc $\alpha$ được định nghĩa bằng các tỉ số độ dài các cạnh:
-1. **$\sin \alpha$** = Cạnh `Đối` / Cạnh `Huyền`
-2. **$\cos \alpha$** = Cạnh `Kề` / Cạnh `Huyền`
-3. **$\tan \alpha$** = Cạnh `Đối` / Cạnh `Kề`
-4. **$\cot \alpha$** = Cạnh `Kề` / Cạnh `Đối`
+Trong tam giác $ABC$ vuông tại $A$, xét góc nhọn $B = \alpha$:
+- Cạnh $AC$ gọi là **cạnh đối** của góc $\alpha$.
+- Cạnh $AB$ gọi là **cạnh kề** của góc $\alpha$.
+- Cạnh $BC$ gọi là **cạnh huyền**.
+
+**Định nghĩa 4 tỉ số lượng giác:**
+1. **Sin:** $\sin \alpha = \frac{\text{Cạnh đối}}{\text{Cạnh huyền}} = \frac{AC}{BC}$
+2. **Cos:** $\cos \alpha = \frac{\text{Cạnh kề}}{\text{Cạnh huyền}} = \frac{AB}{BC}$
+3. **Tan (Tang):** $\tan \alpha = \frac{\text{Cạnh đối}}{\text{Cạnh kề}} = \frac{AC}{AB}$
+4. **Cot (Côtang):** $\cot \alpha = \frac{\text{Cạnh kề}}{\text{Cạnh đối}} = \frac{AB}{AC}$
+
+**Mẹo ghi nhớ dân gian:**  
+*Sin đi học (Đối/Huyền) — Cứ khóc hoài (Kề/Huyền) — Thôi đi học (Đối/Kề) — Cứ khóc hoài (Kề/Đối).*
 
 </div>
 
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-  <svg width="300" height="220" viewBox="0 0 300 220" style="background:transparent;border-radius:6px;">
-    <polygon points="60,180 240,180 60,40" fill="#fff7ed" stroke="#fb923c" stroke-width="3" />
-    <polyline points="60,160 80,160 80,180" fill="none" stroke="#fb923c" stroke-width="3" />
-    <text x="45" y="195" font-size="18" font-weight="700" fill="#0f172a">A</text>
-    <text x="250" y="195" font-size="18" font-weight="700" fill="#0f172a">C</text>
-    <text x="40" y="30" font-size="18" font-weight="700" fill="#0f172a">B</text>
-    <text x="120" y="100" font-size="16" fill="#d97706">a (BC)</text>
-    <text x="150" y="200" font-size="16" fill="#2563eb">b (AB)</text>
-    <text x="20" y="110" font-size="16" fill="#2563eb">c (AC)</text>
-    <path d="M 95 170 A 30 30 0 0 1 125 145" fill="none" stroke="#ef4444" stroke-width="2" />
-    <text x="115" y="165" font-size="16" font-weight="600" fill="#ef4444">α</text>
-  </svg>
-</div>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-*Mẹo dân gian ghi nhớ:* Chữ cái đầu mỗi từ.
-- \*\*S\*\*in \*\*Đ\*\*i \*\*H\*\*ọc (Sin = Đối/Huyền)
-- \*\*C\*\*ứ \*\*K\*\*hóc \*\*H\*\*oài (Cos = Kề/Huyền)
-- \*\*T\*\*hôi \*\*Đ\*\*ừng \*\*K\*\*hóc (Tan = Đối/Kề)
-- \*\*C\*\*ó \*\*K\*\*ẹo \*\*Đ\*\*ây! (Cot = Kề/Đối)
+**3 Ví dụ minh họa Khái niệm Tỉ số lượng giác:**
 
-*(Chú ý: $\cot \alpha$ là phép lộn ngược Nghịch đảo của $\tan \alpha$).*
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 6\text{ cm}, AC = 8\text{ cm}$. Tính các tỉ số lượng giác của góc $B$.
+  - *Giải:* Cạnh huyền $BC = \sqrt{AB^2 + AC^2} = \sqrt{6^2 + 8^2} = 10\text{ cm}$.  
+    - $\sin B = \frac{AC}{BC} = \frac{8}{10} = 0,8$.  
+    - $\cos B = \frac{AB}{BC} = \frac{6}{10} = 0,6$.  
+    - $\tan B = \frac{AC}{AB} = \frac{8}{6} = \frac{4}{3}$.  
+    - $\cot B = \frac{AB}{AC} = \frac{6}{8} = \frac{3}{4}$.
 
-<h3 id="tinh-chat" style="margin-top:2rem;">📖 2. Tính chất của tỉ số lượng giác</h3>
+- **Ví dụ 2:** Cho tam giác $MNP$ vuông tại $M$ có $\sin N = 0,6$. Tính $\cos N, \tan N, \cot N$.
+  - *Giải:* Đặt cạnh đối $MP = 3k$, cạnh huyền $NP = 5k$ ($k > 0$).  
+    Cạnh kề $MN = \sqrt{NP^2 - MP^2} = \sqrt{25k^2 - 9k^2} = 4k$.  
+    Suy ra $\cos N = \frac{4k}{5k} = 0,8$; $\tan N = \frac{3k}{4k} = 0,75$; $\cot N = \frac{4k}{3k} = \frac{4}{3}$.
 
-Định lý Py-ta-go giúp gắn kết các Tỉ số lượng giác bằng các hệ thức **đẹp như tranh vẽ** sau:
-
-<div class="box-dinh-ly">
-
-Với góc nhọn $\alpha$, luôn có các bản sắc sau:
-- $\boldsymbol{\sin^2 \alpha + \cos^2 \alpha = 1}$  *(Cực kì quan trọng)*
-- $\tan \alpha = \frac{\sin \alpha}{\cos \alpha}$
-- $\cot \alpha = \frac{\cos \alpha}{\sin \alpha}$
-- $\tan \alpha \cdot \cot \alpha = 1$
+- **Ví dụ 3:** Cho góc nhọn $\alpha$ thỏa mãn $\tan \alpha = 1$. Tính số đo góc $\alpha$.
+  - *Giải:* Vì $\tan \alpha = \frac{\text{Cạnh đối}}{\text{Cạnh kề}} = 1 \Rightarrow \text{Cạnh đối} = \text{Cạnh kề}$.  
+    Tam giác vuông có hai cạnh góc vuông bằng nhau là tam giác vuông cân $\Rightarrow \alpha = 45^^\circ$.
 
 </div>
 
-<h3 id="hai-goc-phu-nhau" style="margin-top:2rem;">📖 3. Tỉ số lượng giác hai góc phụ nhau</h3>
+<h3 id="tslg-hai-goc-phu-nhau" style="margin-top:2rem;">📖 2. Tỉ số lượng giác của hai góc phụ nhau & Bảng góc đặc biệt</h3>
 
-Hai góc nhọn trong một tam giác vuông cộng lại đúng bằng $90^\circ$ (Hai góc này gọi là 2 góc phụ nhau).
-Khi đó cạnh đối của góc bên này lại vô tình là cạnh kề của góc bên kia!
+<div class="box-dinh-nghia">
 
-<div class="box-dinh-ly">
+**1. Định lý góc phụ nhau:**
+Nếu hai góc nhọn $\alpha$ và $\beta$ phụ nhau ($\alpha + \beta = 90^^\circ$) thì:
+$$\sin \alpha = \cos \beta \qquad \cos \alpha = \sin \beta$$
+$$\tan \alpha = \cot \beta \qquad \cot \alpha = \tan \beta$$
 
-Nếu $\alpha + \beta = 90^\circ$ (phụ nhau), thì:
-- $\sin \alpha = \cos \beta$
-- $\cos \alpha = \sin \beta$
-- $\tan \alpha = \cot \beta$
-- $\cot \alpha = \tan \beta$
+**2. Bảng tỉ số lượng giác các góc đặc biệt ($30^^\circ, 45^^\circ, 60^^\circ$):**
+
+| TSLG | $30^^\circ$ | $45^^\circ$ | $60^^\circ$ |
+| :---: | :---: | :---: | :---: |
+| $\sin \alpha$ | $\frac{1}{2}$ | $\frac{\sqrt{2}}{2}$ | $\frac{\sqrt{3}}{2}$ |
+| $\cos \alpha$ | $\frac{\sqrt{3}}{2}$ | $\frac{\sqrt{2}}{2}$ | $\frac{1}{2}$ |
+| $\tan \alpha$ | $\frac{\sqrt{3}}{3}$ | $1$ | $\sqrt{3}$ |
+| $\cot \alpha$ | $\sqrt{3}$ | $1$ | $\frac{\sqrt{3}}{3}$ |
 
 </div>
 
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-**Ví dụ Áp dụng:**
-Ta thấy $30^\circ$ và $60^\circ$ cộng lại bằng $90^\circ$. Do đó:
-$\sin 30^\circ$ sẽ bằng đúng $\cos 60^\circ$. (Đều bằng 0.5)
-$\tan 40^\circ$ sẽ bằng $\cot 50^\circ$.
+**3 Ví dụ minh họa Góc phụ nhau và Góc đặc biệt:**
 
-- Nếu bắt gặp bài toán: Tính $\sin^2 25^\circ + \sin^2 65^\circ$.
-Vì $25 + 65 = 90$ $\Rightarrow$ $\sin 65^\circ = \cos 25^\circ$.
-Nên Biểu thức = $\sin^2 25^\circ + \cos^2 25^\circ = 1$. Lời giải chỉ mất 5 giây!
+- **Ví dụ 1:** Tính giá trị biểu thức $A = \sin 30^^\circ + \cos 60^^\circ - \tan 45^^\circ$.
+  - *Giải:* $A = \frac{1}{2} + \frac{1}{2} - 1 = 1 - 1 = 0$.
+
+- **Ví dụ 2:** Biến đổi các tỉ số lượng giác sau về TSLG của góc nhỏ hơn $45^^\circ$: $\sin 75^^\circ, \cos 80^^\circ, \tan 65^^\circ$.
+  - *Giải:* 
+    - $\sin 75^^\circ = \cos(90^^\circ - 75^^\circ) = \cos 15^^\circ$.
+    - $\cos 80^^\circ = \sin(90^^\circ - 80^^\circ) = \sin 10^^\circ$.
+    - $\tan 65^^\circ = \cot(90^^\circ - 65^^\circ) = \cot 25^^\circ$.
+
+- **Ví dụ 3:** Tính $B = \sin^2 10^^\circ + \sin^2 80^^\circ + \cos^2 20^^\circ + \cos^2 70^^\circ$.
+  - *Giải:* Vì $10^^\circ + 80^^\circ = 90^^\circ \Rightarrow \sin 80^^\circ = \cos 10^^\circ \Rightarrow \sin^2 10^^\circ + \sin^2 80^^\circ = \sin^2 10^^\circ + \cos^2 10^^\circ = 1$.  
+    Tương tự $\cos 70^^\circ = \sin 20^^\circ \Rightarrow \cos^2 20^^\circ + \cos^2 70^^\circ = \cos^2 20^^\circ + \sin^2 20^^\circ = 1$.  
+    Vậy $B = 1 + 1 = 2$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính tỉ số lượng giác của góc nhọn trong tam giác vuông**
+- **Phương pháp:** Tính độ dài cạnh còn thiếu bằng định lý Pythagore $c = \sqrt{a^2+b^2}$, sau đó áp dụng định nghĩa 4 TSLG.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 5, BC = 13$. Tính $\sin B, \cos B, \tan B$.
+  - *Lời giải:* $AC = \sqrt{BC^2 - AB^2} = \sqrt{13^2 - 5^2} = \sqrt{144} = 12$.  
+    $\sin B = \frac{12}{13}$; $\cos B = \frac{5}{13}$; $\tan B = \frac{12}{5}$.
+
+- **Ví dụ 2:** Cho tam giác $ABC$ vuông tại $A$, đường cao $AH$. Biết $BH = 4, CH = 9$. Tính $\tan B$ và $\tan C$.
+  - *Lời giải:* Theo hệ thức lượng $AH^2 = BH \cdot CH = 4 \cdot 9 = 36 \Rightarrow AH = 6$.  
+    Trong $\Delta AHB$ vuông tại $H$: $\tan B = \frac{AH}{BH} = \frac{6}{4} = 1,5$.  
+    Trong $\Delta AHC$ vuông tại $H$: $\tan C = \frac{AH}{CH} = \frac{6}{9} = \frac{2}{3}$.
+
+- **Ví dụ 3:** Cho tam giác $ABC$ vuông tại $A$ có $AC = b, AB = c$. Tính $\sin B$ theo $b, c$.
+  - *Lời giải:* $BC = \sqrt{b^2 + c^2}$. Do đó $\sin B = \frac{AC}{BC} = \frac{b}{\sqrt{b^2 + c^2}}$.
+
+</div>
+
+#### **Dạng 2: Tính độ dài cạnh và góc bằng tỉ số lượng giác**
+- **Phương pháp:** Sử dụng công thức: $\text{Cạnh đối} = \text{Cạnh huyền} \cdot \sin \alpha$, $\text{Cạnh kề} = \text{Cạnh huyền} \cdot \cos \alpha$, $\text{Cạnh đối} = \text{Cạnh kề} \cdot \tan \alpha$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$ có $BC = 10\text{ cm}$ và $\widehat{B} = 30^^\circ$. Tính $AC, AB$.
+  - *Lời giải:* $AC = BC \cdot \sin B = 10 \cdot \sin 30^^\circ = 10 \cdot \frac{1}{2} = 5\text{ cm}$.  
+    $AB = BC \cdot \cos B = 10 \cdot \cos 30^^\circ = 10 \cdot \frac{\sqrt{3}}{2} = 5\sqrt{3}\text{ cm}$.
+
+- **Ví dụ 2:** Thang dựa vào tường tạo với mặt đất góc $60^^\circ$. Chiều dài thang là $4\text{ m}$. Tính chiều cao mảng tường từ đất lên đầu thang.
+  - *Lời giải:* Chiều cao $h = 4 \cdot \sin 60^^\circ = 4 \cdot \frac{\sqrt{3}}{2} = 2\sqrt{3} \approx 3,46\text{ m}$.
+
+- **Ví dụ 3:** Một bóng cây dài $8\text{ m}$ trên mặt đất khi tia nắng tạo với mặt đất góc $40^^\circ$. Tính chiều cao cây.
+  - *Lời giải:* Chiều cao cây $h = 8 \cdot \tan 40^^\circ \approx 8 \cdot 0,8391 \approx 6,71\text{ m}$.
+
+</div>
+
+#### **Dạng 3: Sử dụng các Hằng đẳng thức Lượng giác cơ bản**
+- **Phương pháp:** Sử dụng $\sin^2 \alpha + \cos^2 \alpha = 1$, $\tan \alpha \cdot \cot \alpha = 1$, $\tan \alpha = \frac{\sin \alpha}{\cos \alpha}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho góc nhọn $\alpha$ có $\sin \alpha = 0,8$. Tính $\cos \alpha, \tan \alpha$.
+  - *Lời giải:* Vì $\sin^2 \alpha + \cos^2 \alpha = 1 \Rightarrow \cos^2 \alpha = 1 - 0,8^2 = 0,36 \Rightarrow \cos \alpha = 0,6$.  
+    $\tan \alpha = \frac{\sin \alpha}{\cos \alpha} = \frac{0,8}{0,6} = \frac{4}{3}$.
+
+- **Ví dụ 2:** Cho $\tan \alpha = 3$. Tính $\cot \alpha$ và $\sin^2 \alpha$.
+  - *Lời giải:* $\cot \alpha = \frac{1}{\tan \alpha} = \frac{1}{3}$.  
+    Ta có $1 + \tan^2 \alpha = \frac{1}{\cos^2 \alpha} \Rightarrow \cos^2 \alpha = \frac{1}{1 + 9} = \frac{1}{10} \Rightarrow \sin^2 \alpha = 1 - \frac{1}{10} = \frac{9}{10}$.
+
+- **Ví dụ 3:** Chứng minh $1 + \tan^2 \alpha = \frac{1}{\cos^2 \alpha}$.
+  - *Lời giải:* $1 + \tan^2 \alpha = 1 + \frac{\sin^2 \alpha}{\cos^2 \alpha} = \frac{\cos^2 \alpha + \sin^2 \alpha}{\cos^2 \alpha} = \frac{1}{\cos^2 \alpha}$ (ĐPCM).
+
+</div>
+
+#### **Dạng 4: So sánh các Tỉ số Lượng giác**
+- **Phương pháp:** Khi góc $\alpha$ tăng từ $0^^\circ$ đến $90^^\circ$ thì $\sin \alpha$ và $\tan \alpha$ tăng; $\cos \alpha$ và $\cot \alpha$ giảm.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** So sánh $\sin 20^^\circ$ và $\sin 70^^\circ$.
+  - *Lời giải:* Vì $20^^\circ < 70^^\circ$ nên $\sin 20^^\circ < \sin 70^^\circ$.
+
+- **Ví dụ 2:** So sánh $\cos 25^^\circ$ và $\cos 65^^\circ$.
+  - *Lời giải:* Vì hàm cos giảm trên $(0^^\circ; 90^^\circ)$ và $25^^\circ < 65^^\circ$ nên $\cos 25^^\circ > \cos 65^^\circ$.
+
+- **Ví dụ 3:** Sắp xếp theo thứ tự tăng dần: $\sin 25^^\circ, \cos 35^^\circ, \sin 50^^\circ, \cos 15^^\circ$.
+  - *Lời giải:* Đưa cos về sin: $\cos 35^^\circ = \sin 55^^\circ$; $\cos 15^^\circ = \sin 75^^\circ$.  
+    Vì $25^^\circ < 50^^\circ < 55^^\circ < 75^^\circ \Rightarrow \sin 25^^\circ < \sin 50^^\circ < \cos 35^^\circ < \cos 15^^\circ$.
+
+</div>
+
+#### **Dạng 5: Rút gọn và tính giá trị biểu thức Lượng giác**
+- **Phương pháp:** Ghép các cặp góc phụ nhau ($\alpha + \beta = 90^^\circ$) để biến đổi $\sin \beta = \cos \alpha, \tan \beta = \cot \alpha$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Rút gọn $A = \tan 10^^\circ \cdot \tan 80^^\circ + \cos^2 15^^\circ + \cos^2 75^^\circ$.
+  - *Lời giải:* $\tan 80^^\circ = \cot 10^^\circ \Rightarrow \tan 10^^\circ \cdot \cot 10^^\circ = 1$.  
+    $\cos 75^^\circ = \sin 15^^\circ \Rightarrow \cos^2 15^^\circ + \sin^2 15^^\circ = 1$.  
+    Vậy $A = 1 + 1 = 2$.
+
+- **Ví dụ 2:** Cho $\tan \alpha = 2$. Tính giá trị biểu thức $P = \frac{\sin \alpha + \cos \alpha}{\sin \alpha - \cos \alpha}$.
+  - *Lời giải:* Chia cả tử và mẫu cho $\cos \alpha \neq 0$:  
+    $P = \frac{\tan \alpha + 1}{\tan \alpha - 1} = \frac{2 + 1}{2 - 1} = 3$.
+
+- **Ví dụ 3:** Rút gọn $B = (1 - \sin^2 \alpha) \cdot \tan^2 \alpha + 1 - \tan^2 \alpha$.
+  - *Lời giải:* $B = \cos^2 \alpha \cdot \frac{\sin^2 \alpha}{\cos^2 \alpha} + 1 - \tan^2 \alpha = \sin^2 \alpha + 1 - \tan^2 \alpha$.
 
 </div>
 
 </KhamPha>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Đo chiều cao Ngọn Hải đăng):**  
+Một người quan sát đứng trên đỉnh ngọn hải đăng cao $h = 45\text{ m}$ so với mặt nước biển nhìn thấy một con tàu với góc hạ $\alpha = 22^^\circ$ (góc giữa phương nằm ngang từ mắt người nhìn và đường nhìn đến con tàu). Tính khoảng cách từ chân ngọn hải đăng đến con tàu.
+
+**Bài toán 2 (Giao thông & Độ dốc Cầu vượt):**  
+Trong tiêu chuẩn thiết kế cầu vượt giao thông, độ nghiêng an toàn tối đa của dốc cầu cho xe máy là $\alpha = 6^^\circ$. Hỏi để đạt chiều cao lòng đường $h = 5\text{ m}$, độ dài đường dốc cầu $L$ tối thiểu phải bằng bao nhiêu mét?
+
+**Bài toán 3 (An toàn Thang Cứu hỏa):**  
+Thang xe cứu hỏa có chiều dài tối đa $L = 30\text{ m}$. Theo tiêu chuẩn kỹ thuật cứu hộ, góc nghiêng an toàn nhất giữa thân thang và mặt đất là $75^^\circ$. Tính chiều cao tối đa mà thang có thể vươn tới để cứu nạn nhân ở các tầng cao.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác dưới đây hỗ trợ tính toán chính xác cạnh, góc và các tỉ số lượng giác trong tam giác vuông!
+</div>
+
+<RightTriangleCalculator client:load />
+
+</LuyenTap>
+
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Ghi chú khi bấm máy tính (Casio/Vinacal):**
-- Đảm bảo máy tính của bạn đang để chế độ **độ (D - Degree)**, không phải Radian (R).
-- Các góc thường gặp như $30^\circ, 45^\circ, 60^\circ$ cho giá trị đặc biệt đẹp rất nên nhớ lòng để tiện giải toán:
-  - $\sin 30^\circ = 1/2$; $\cos 30^\circ = \sqrt{3}/2$
-  - $\sin 45^\circ = \sqrt{2}/2$; $\cos 45^\circ = \sqrt{2}/2$
-  - $\tan 45^\circ = 1$
+**Trọng tâm kiến thức Bài 11:**
+
+1. **4 TSLG:** $\sin = \frac{\text{Đối}}{\text{Huyền}}$, $\cos = \frac{\text{Kề}}{\text{Huyền}}$, $\tan = \frac{\text{Đối}}{\text{Kề}}$, $\cot = \frac{\text{Kề}}{\text{Đối}}$.  
+2. **Góc phụ nhau:** $\sin \alpha = \cos \beta, \tan \alpha = \cot \beta$ ($\alpha + \beta = 90^^\circ$).  
+3. **HĐT lượng giác:** $\sin^2 \alpha + \cos^2 \alpha = 1$, $\tan \alpha \cdot \cot \alpha = 1$.
 
 </div>
 
 </GhiNho>
 
-<VanDung title="Phân dạng & Thực hành">
-
-<h3 id="phan-dang" style="margin-top:1rem;">🔎 Phân dạng toán</h3>
-<p>Phổ biến: <em>Cho tam giác vuông ABC vuông tại A</em>. Biết hai cạnh là số hoặc biết một cạnh và một góc nhọn (ví dụ góc B = <span style="font-weight:700;">α</span>), yêu cầu tính các tỉ số lượng giác của góc B: <code>sin B, cos B, tan B, cot B</code>.</p>
-
-<h3 id="thuc-hanh" style="margin-top:1rem;">🧮 Thực hành tính toán</h3>
-<p>Nhập dữ liệu số vào máy tính bên dưới (ít nhất 2 thông số, trong đó phải có ít nhất 1 cạnh). Máy sẽ tính các cạnh còn lại, các góc và đưa ra các tỉ số lượng giác chính xác.</p>
-
-<RightTriangleCalculator client:load />
-
-</VanDung>
-
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -287,90 +395,130 @@ Nên Biểu thức = $\sin^2 25^\circ + \cos^2 25^\circ = 1$. Lời giải chỉ
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho tam giác $ABC$ vuông tại $A$ có cạnh $AB = 3\text{cm}$, $AC = 4\text{cm}$.
+**Bài 1:** Tính tỉ số lượng giác của góc $B$ trong các trường hợp tam giác $ABC$ vuông tại $A$:  
+a) $AB = 9, AC = 12$  
+b) $AB = 5, BC = 13$  
+c) $AC = 15, BC = 25$  
+d) $AB = a, AC = a\sqrt{3}$  
+e) $AB = a\sqrt{2}, BC = 2a$  
+f) $AH = 4,8; BH = 3,6$ (với $AH \perp BC$)
 
-a) Tính độ dài cạnh huyền $BC$.
+**Bài 2:** Cho tam giác $ABC$ vuông tại $A$. Tính các cạnh còn lại (làm tròn 2 chữ số thập phân):  
+a) $BC = 12\text{ cm}, \widehat{B} = 40^^\circ$. Tính $AB, AC$  
+b) $AB = 8\text{ cm}, \widehat{C} = 35^^\circ$. Tính $AC, BC$  
+c) $AC = 10\text{ cm}, \widehat{B} = 50^^\circ$. Tính $AB, BC$  
+d) $BC = 20\text{ cm}, \widehat{C} = 60^^\circ$. Tính $AB, AC$  
+e) $AB = 6\text{ cm}, \tan B = 1,5$. Tính $AC, BC$  
+f) $AC = 9\text{ cm}, \sin B = 0,6$. Tính $AB, BC$
 
-b) Tính các tỉ số lượng giác $\sin B$, $\cos B$, $\tan B$.
+**Bài 3:** Biến đổi và rút gọn biểu thức lượng giác:  
+a) $A = \sin^2 20^^\circ + \sin^2 70^^\circ - \tan 35^^\circ \cdot \tan 55^^\circ$  
+b) $B = \cos^2 12^^\circ + \cos^2 78^^\circ + \sin^2 34^^\circ + \sin^2 56^^\circ$  
+c) $C = \tan 1^^\circ \cdot \tan 2^^\circ \cdot \tan 3^^\circ ... \tan 89^^\circ$  
+d) $D = \sin 15^^\circ + \sin 75^^\circ - \cos 15^^\circ - \cos 75^^\circ$  
+e) Cho $\sin \alpha = \frac{3}{5}$. Tính $E = 1 + \tan^2 \alpha$  
+f) Cho $\tan \alpha = 2$. Tính $F = \frac{2\sin \alpha - 3\cos \alpha}{4\sin \alpha + \cos \alpha}$
 
-c) Tính các tỉ số lượng giác của góc $C$.
+**Bài 4:** Cho tam giác $ABC$ vuông tại $A$, đường cao $AH$. Biết $AB = 6\text{ cm}, AC = 8\text{ cm}$.  
+a) Tính $BC, AH, BH, CH$.  
+b) Tính $\sin B, \cos B, \tan B$.  
+c) Gọi $E, F$ là hình chiếu của $H$ trên $AB, AC$. Chứng minh $EF = AH$ và $AE \cdot AB = AF \cdot AC$.
 
-**Bài 2:** (Thực hành với hệ thức cơ bản) 
-Cho một góc nhọn $\alpha$, biết $\sin \alpha = 0.8$. Không tính góc $\alpha$, hãy dùng hệ thức $\sin^2 + \cos^2 = 1$ để tính:
+**Bài 5:** Chứng minh các đẳng thức lượng giác sau với góc nhọn $\alpha$:  
+a) $\tan^2 \alpha - \sin^2 \alpha = \tan^2 \alpha \cdot \sin^2 \alpha$  
+b) $\frac{\sin \alpha}{1 + \cos \alpha} + \frac{1 + \cos \alpha}{\sin \alpha} = \frac{2}{\sin \alpha}$
 
-a) $\cos \alpha$
+**Bài 6:** Cho tam giác $ABC$ có $AB = 10\text{ cm}, AC = 14\text{ cm}$ và góc $\widehat{A} = 60^^\circ$. Tính độ dài cạnh $BC$ và diện tích tam giác $ABC$.
 
-b) $\tan \alpha$
+**Bài 7:** Cho $\tan \alpha + \cot \alpha = 3$. Tính giá trị của biểu thức $P = \tan^2 \alpha + \cot^2 \alpha$ và $Q = \sin \alpha \cdot \cos \alpha$.
 
-c) $\cot \alpha$
+**Bài 8:** Chứng minh rằng trong mọi tam giác $ABC$ có góc $\widehat{A}$ nhọn thì diện tích $S = \frac{1}{2} AB \cdot AC \cdot \sin A$.
 
-**Bài 3:** Không dùng bảng lượng giác hay máy tính, hãy sắp xếp các tỉ số sau từ nhỏ đến lớn:
-$\sin 20^\circ, \cos 20^\circ, \sin 40^\circ, \sin 80^\circ$ 
-*(Gợi ý: Cố gắng chuyển tất cả về hàm SIN, và nhớ rằng góc tăng thì Sin tăng).*
+**Bài 9 (Thực tế):** Một chiếc máy bay cất cánh bay lên theo một đường thẳng tạo với mặt đất góc $20^^\circ$. Sau 1 phút máy bay đạt độ cao $h = 3000\text{ m}$. Tính vận tốc trung bình của máy bay (km/h).
 
-**Bài 4:** Rút gọn các biểu thức chứa tỉ số lượng giác:
+**Bài 10 (Thực tế):** Tia nắng mặt trời tạo với mặt đất góc $38^^\circ$. Một cái cây đổ bóng trên mặt đất dài $12\text{ m}$. Tính chiều cao của cây (làm tròn đến hàng phần mười).
 
-a) $1 - \sin^2 \alpha$
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-b) $(1 - \cos \alpha)(1 + \cos \alpha)$
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-c) $\tan \alpha \cdot \cos \alpha$
+**Bài 1:**  
+a) $BC = \sqrt{9^2+12^2} = 15 \Rightarrow \sin B = 12/15 = 0,8; \cos B = 9/15 = 0,6; \tan B = 4/3; \cot B = 3/4$.  
+b) $AC = \sqrt{13^2-5^2} = 12 \Rightarrow \sin B = 12/13; \cos B = 5/13; \tan B = 12/5; \cot B = 5/12$.  
+c) $AB = \sqrt{25^2-15^2} = 20 \Rightarrow \sin B = 15/25 = 0,6; \cos B = 20/25 = 0,8; \tan B = 3/4; \cot B = 4/3$.  
+d) $BC = 2a \Rightarrow \sin B = \frac{a\sqrt{3}}{2a} = \frac{\sqrt{3}}{2}; \cos B = 1/2; \tan B = \sqrt{3}; \cot B = \frac{\sqrt{3}}{3}$.  
+e) $AC = \sqrt{4a^2 - 2a^2} = a\sqrt{2} \Rightarrow \sin B = \frac{\sqrt{2}}{2}; \cos B = \frac{\sqrt{2}}{2}; \tan B = 1; \cot B = 1$.  
+f) $\tan B = AH/BH = 4,8/3,6 = 4/3 \Rightarrow \sin B = 0,8; \cos B = 0,6; \cot B = 0,75$.
 
-d) $\cos^2 \alpha + \tan^2 \alpha \cdot \cos^2 \alpha$
+---
 
-**Bài 5 (Thực tế):** Cầu tuột cho trẻ.
-Một tiêu chuẩn làm cầu tuột cho mầm non là góc mốc nối từ đỉnh ván trượt xuống mặt đất (góc $\alpha$) không được vượt quá $35^\circ$ để an toàn. 
-Một kĩ sư thiết kế chiếc ván trượt dài 3.2m (cạnh huyền của ván). Chiều cao từ đỉnh ván thẳng xuống mặt đất là 2m.
+**Bài 2:**  
+a) $AB = 12 \cdot \cos 40^^\circ \approx 9,19\text{ cm}$; $AC = 12 \cdot \sin 40^^\circ \approx 7,71\text{ cm}$.  
+b) $\widehat{B} = 55^^\circ \Rightarrow AC = 8 \cdot \tan 55^^\circ \approx 11,43\text{ cm}$; $BC = 8 / \sin 35^^\circ \approx 13,95\text{ cm}$.  
+c) $AB = 10 / \tan 50^^\circ \approx 8,39\text{ cm}$; $BC = 10 / \sin 50^^\circ \approx 13,05\text{ cm}$.  
+d) $AC = 20 \cdot \sin 60^^\circ = 10\sqrt{3} \approx 17,32\text{ cm}$; $AB = 20 \cdot \cos 60^^\circ = 10\text{ cm}$.  
+e) $AC = AB \cdot \tan B = 6 \cdot 1,5 = 9\text{ cm}$; $BC = \sqrt{6^2+9^2} = \sqrt{117} \approx 10,82\text{ cm}$.  
+f) $BC = AC / \sin B = 9 / 0,6 = 15\text{ cm}$; $AB = \sqrt{15^2-9^2} = 12\text{ cm}$.
 
-a) Tính $\sin \alpha$ của góc trượt.
+---
 
-b) Dùng nút Shift-Sin (Kí hiệu $\arcsin$ hoặc $\sin^{-1}$) trên tivi máy tính thủ công bấm góc trượt.
+**Bài 3:**  
+a) $\sin 70^^\circ = \cos 20^^\circ \Rightarrow \sin^2 20^^\circ + \cos^2 20^^\circ = 1$. $\tan 55^^\circ = \cot 35^^\circ \Rightarrow \tan 35^^\circ \cdot \cot 35^^\circ = 1$. $A = 1 - 1 = 0$.  
+b) $(\cos^2 12^^\circ + \sin^2 12^^\circ) + (\sin^2 34^^\circ + \cos^2 34^^\circ) = 1 + 1 = 2$.  
+c) Ghép $(\tan 1^^\circ \cdot \tan 89^^\circ)(\tan 2^^\circ \cdot \tan 88^^\circ)... \tan 45^^\circ = 1 \cdot 1 ... 1 = 1$.  
+d) $(\sin 15^^\circ - \cos 75^^\circ) + (\sin 75^^\circ - \cos 15^^\circ) = 0 + 0 = 0$.  
+e) $\cos^2 \alpha = 1 - (3/5)^2 = 16/25 \Rightarrow E = 1 / \cos^2 \alpha = 25/16$.  
+f) Chia cả tử và mẫu cho $\cos \alpha$: $F = \frac{2(2) - 3}{4(2) + 1} = \frac{1}{9}$.
 
-c) Thiết kế này có an toàn theo tiêu chuẩn không? Tại sao?
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 4:**  
+a) $BC = 10\text{ cm}$. $AH = \frac{AB \cdot AC}{BC} = \frac{48}{10} = 4,8\text{ cm}$.  
+$BH = \frac{AB^2}{BC} = \frac{36}{10} = 3,6\text{ cm}$; $CH = 10 - 3,6 = 6,4\text{ cm}$.  
+b) $\sin B = 0,8; \cos B = 0,6; \tan B = 4/3$.  
+c) Tứ giác $AEHF$ có 3 góc vuông nên là hình chữ nhật $\Rightarrow EF = AH = 4,8\text{ cm}$.  
+Áp dụng HTL: $AH^2 = AE \cdot AB$ và $AH^2 = AF \cdot AC \Rightarrow AE \cdot AB = AF \cdot AC$.
 
-**Bài 1:**
+---
 
-a) $BC = \sqrt{3^2 + 4^2} = 5\text{cm}$.
+**Bài 5:**  
+a) VT $= \frac{\sin^2 \alpha}{\cos^2 \alpha} - \sin^2 \alpha = \sin^2 \alpha \left(\frac{1}{\cos^2 \alpha} - 1\right) = \sin^2 \alpha \left(\frac{1 - \cos^2 \alpha}{\cos^2 \alpha}\right) = \sin^2 \alpha \cdot \frac{\sin^2 \alpha}{\cos^2 \alpha} = \sin^2 \alpha \cdot \tan^2 \alpha = $ VP.  
+b) VT $= \frac{\sin^2 \alpha + (1+\cos \alpha)^2}{\sin \alpha(1+\cos \alpha)} = \frac{\sin^2 \alpha + 1 + 2\cos \alpha + \cos^2 \alpha}{\sin \alpha(1+\cos \alpha)} = \frac{2 + 2\cos \alpha}{\sin \alpha(1+\cos \alpha)} = \frac{2(1+\cos \alpha)}{\sin \alpha(1+\cos \alpha)} = \frac{2}{\sin \alpha} = $ VP.
 
-b) $\sin B = AC/BC = 4/5 = 0.8$; $\cos B = AB/BC = 3/5 = 0.6$; $\tan B = 4/3$.
+---
 
-c) $\sin C = \cos B = 0.6$; $\cos C = \sin B = 0.8$; $\tan C = 3/4$.
+**Bài 6:**  
+Kẻ đường cao $BH \perp AC$ ($H \in AC$).  
+Trong $\Delta AHB$ vuông tại $H$: $BH = AB \cdot \sin 60^^\circ = 10 \cdot \frac{\sqrt{3}}{2} = 5\sqrt{3}\text{ cm}$.  
+$AH = AB \cdot \cos 60^^\circ = 10 \cdot \frac{1}{2} = 5\text{ cm} \Rightarrow HC = AC - AH = 14 - 5 = 9\text{ cm}$.  
+Trong $\Delta BHC$ vuông tại $H$: $BC = \sqrt{BH^2 + HC^2} = \sqrt{(5\sqrt{3})^2 + 9^2} = \sqrt{75 + 81} = \sqrt{156} = 2\sqrt{39} \approx 12,49\text{ cm}$.  
+Diện tích $S_{ABC} = \frac{1}{2} AC \cdot BH = \frac{1}{2} \cdot 14 \cdot 5\sqrt{3} = 35\sqrt{3} \approx 60,62\text{ cm}^2$.
 
-**Bài 2:**
+---
 
-a) $\cos^2 \alpha = 1 - 0.8^2 = 1 - 0.64 = 0.36 \Rightarrow \cos \alpha = 0.6$.
+**Bài 7:**  
+$P = (\tan \alpha + \cot \alpha)^2 - 2\tan \alpha \cot \alpha = 3^2 - 2(1) = 7$.  
+$\tan \alpha + \cot \alpha = \frac{\sin \alpha}{\cos \alpha} + \frac{\cos \alpha}{\sin \alpha} = \frac{\sin^2 \alpha + \cos^2 \alpha}{\sin \alpha \cos \alpha} = \frac{1}{\sin \alpha \cos \alpha} = 3 \Rightarrow Q = \sin \alpha \cos \alpha = \frac{1}{3}$.
 
-b) $\tan \alpha = \sin \alpha / \cos \alpha = 0.8 / 0.6 = 4/3$.
+---
 
-c) $\cot \alpha = 1 / \tan \alpha = 3/4 = 0.75$.
+**Bài 8:**  
+Kẻ đường cao $BH \perp AC$ ($H \in AC$).  
+Trong tam giác vuông $ABH$, ta có $BH = AB \cdot \sin A$.  
+Diện tích tam giác $ABC$ là $S = \frac{1}{2} AC \cdot BH = \frac{1}{2} AC \cdot (AB \cdot \sin A) = \frac{1}{2} AB \cdot AC \cdot \sin A$ (ĐPCM).
 
-**Bài 3:**
-Đổi $\cos 20^\circ = \sin 70^\circ$. Dãy số sẽ là: $\sin 20^\circ, \sin 40^\circ, \sin 70^\circ, \sin 80^\circ$.
-Trong góc nhọn, hàm Sin là hàm đồng biến (góc càng lớn, Sin càng lớn).
-Nên kết quả sếp từ nhỏ đến lớn: $\sin 20^\circ < \sin 40^\circ < \cos 20^\circ < \sin 80^\circ$.
+---
 
-**Bài 4:**
+**Bài 9:**  
+Quãng đường máy bay dốc lên trong 1 phút: $L = \frac{h}{\sin 20^^\circ} = \frac{3000}{\sin 20^^\circ} \approx 8771,4\text{ m} \approx 8,7714\text{ km}$.  
+Đổi 1 phút $= \frac{1}{60}$ giờ.  
+Vận tốc máy bay $v = \frac{8,7714}{1/60} \approx 526,3\text{ km/h}$.
 
-a) $1 - \sin^2 \alpha = \cos^2 \alpha$.
+---
 
-b) $(1 - \cos \alpha)(1 + \cos \alpha) = 1 - \cos^2 \alpha = \sin^2 \alpha$.
-
-c) $\tan \alpha \cdot \cos \alpha = (\sin \alpha / \cos \alpha) \cdot \cos \alpha = \sin \alpha$.
-
-d) Lấy $\cos^2 \alpha$ nhân tử chung: $\cos^2 \alpha(1 + \tan^2 \alpha)$. Lại có $\tan = \sin/\cos \Rightarrow 1 + \tan^2 \alpha = 1/\cos^2 \alpha$.
-Vậy: $\cos^2 \alpha \cdot (1 / \cos^2 \alpha) = 1$. Hoặc có thể nhân tung vào: $\cos^2 + \sin^2 = 1$.
-
-**Bài 5:**
-
-a) $\sin \alpha = \text{Đối} / \text{Huyền} = \text{Cao} / \text{Ván} = 2 / 3.2 = 0.625$.
-
-b) Shift Sin (0.625) $\Rightarrow \alpha \approx 38.68^\circ$.
-
-c) Góc trượt $38.68^\circ$ lớn hơn mức tối đa an toàn $35^\circ$ nên dốc hơn mức bình thường. Kĩ sư cần giảm độ cao hoặc kéo dài ván trượt hơn nữa để nó an toàn cho bé mầm non.
+**Bài 10:**  
+Chiều cao của cây $h = 12 \cdot \tan 38^^\circ \approx 12 \times 0,7813 = 9,375\text{ m} \approx 9,4\text{ m}$.
 
 </div>
 </details>

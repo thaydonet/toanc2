@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Bài 28: Đường tròn ngoại tiếp và đường tròn nội tiếp của một tam giác"
-description: "Khái niệm, tính chất và cách xác định tâm đường tròn ngoại tiếp, nội tiếp tam giác - Toán 9 Kết nối tri thức"
+title: "Bài 28: Đường tròn ngoại tiếp và đường tròn nội tiếp của tam giác"
+description: "Khái niệm đường tròn ngoại tiếp, đường tròn nội tiếp tam giác, công thức tính bán kính R, r cho tam giác vuông, tam giác đều và tam giác bất kỳ - Toán 9 KNTT Chương 9"
 grade: "Lớp 9"
 chapter: "Chương IX: Đường tròn ngoại tiếp và đường tròn nội tiếp"
 currentSlug: "lop9/bai-28-dt-noi-ngoai-tiep-tam-giac"
@@ -13,230 +13,385 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Đường tròn đi qua ba đỉnh của một tam giác được gọi là gì?",
-    option_a: "Đường tròn nội tiếp tam giác.",
-    option_b: "Đường tròn ngoại tiếp tam giác.",
-    option_c: "Đường tròn bàng tiếp tam giác.",
-    option_d: "Đường tròn đường kính tam giác.",
+    question: "Tâm của đường tròn ngoại tiếp tam giác là giao điểm của ba đường nào?",
+    option_a: "Ba đường trung trực",
+    option_b: "Ba đường phân giác",
+    option_c: "Ba đường cao",
+    option_d: "Ba đường trung tuyến",
+    correct_option: "A",
+    explanation: "Tâm đường tròn ngoại tiếp tam giác là giao điểm của ba đường trung trực của ba cạnh.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tâm của đường tròn nội tiếp tam giác là giao điểm của ba đường nào?",
+    option_a: "Ba đường phân giác trong",
+    option_b: "Ba đường trung trực",
+    option_c: "Ba đường cao",
+    option_d: "Ba đường trung tuyến",
+    correct_option: "A",
+    explanation: "Tâm đường tròn nội tiếp tam giác là giao điểm của ba đường phân giác trong của tam giác.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bán kính đường tròn ngoại tiếp $R$ của tam giác vuông có cạnh huyền bằng $c$ là:",
+    option_a: "$R = c$",
+    option_b: "$R = \\frac{c}{2}$",
+    option_c: "$R = \\frac{c}{3}$",
+    option_d: "$R = c \\sqrt{2}$",
     correct_option: "B",
-    explanation: "Định nghĩa chuẩn: Đường tròn đi qua tất cả 3 đỉnh của một tam giác được gọi là đường tròn ngoại tiếp tam giác đó. Khi đó, tam giác được gọi là tam giác nội tiếp đường tròn.",
+    explanation: "Đối với tam giác vuông, tâm đường tròn ngoại tiếp là trung điểm của cạnh huyền $\\Rightarrow R = \\frac{c}{2}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tâm của đường tròn ngoại tiếp một tam giác là giao điểm của các đường nào trong tam giác?",
-    option_a: "Ba đường cao.",
-    option_b: "Ba đường trung tuyến.",
-    option_c: "Ba đường trung trực của ba cạnh.",
-    option_d: "Ba đường phân giác trong.",
-    correct_option: "C",
-    explanation: "Tâm đường tròn ngoại tiếp cách đều 3 đỉnh của tam giác. Giao điểm của ba đường trung trực của tam giác chính là điểm duy nhất thỏa mãn tính chất cách đều ba đỉnh này.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Đối với một tam giác vuông, tâm của đường tròn ngoại tiếp tam giác đó nằm ở vị trí nào?",
-    option_a: "Trùng với đỉnh góc vuông.",
-    option_b: "Nằm bên ngoài tam giác.",
-    option_c: "Là trọng tâm của tam giác.",
-    option_d: "Là trung điểm của cạnh huyền.",
-    correct_option: "D",
-    explanation: "Trong tam giác vuông, giao điểm của các đường trung trực trùng với trung điểm của cạnh huyền. Góc vuông chắn nửa đường tròn, do đó đường kính của đường tròn ngoại tiếp chính là cạnh huyền.",
+    question: "Bán kính đường tròn ngoại tiếp $R$ và nội tiếp $r$ của tam giác đều cạnh $a$ lần lượt là:",
+    option_a: "$R = \\frac{a\\sqrt{3}}{3}, r = \\frac{a\\sqrt{3}}{6}$",
+    option_b: "$R = \\frac{a\\sqrt{3}}{6}, r = \\frac{a\\sqrt{3}}{3}$",
+    option_c: "$R = \\frac{a}{2}, r = \\frac{a}{4}$",
+    option_d: "$R = a, r = \\frac{a}{2}$",
+    correct_option: "A",
+    explanation: "Trong tam giác đều: $R = \\frac{a\\sqrt{3}}{3}$ và $r = \\frac{a\\sqrt{3}}{6}$ (nhận thấy $R = 2r$).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Đường tròn tiếp xúc với cả ba cạnh của một tam giác được gọi là gì?",
-    option_a: "Đường tròn tâm O.",
-    option_b: "Đường tròn nội tiếp tam giác.",
-    option_c: "Đường tròn ngoại tiếp tam giác.",
-    option_d: "Đường tròn tiếp tuyến.",
-    correct_option: "B",
-    explanation: "Đường tròn nằm phía trong và tiếp xúc (chạm vào) cả 3 cạnh của tam giác được định nghĩa là đường tròn nội tiếp của tam giác đó.",
-    difficulty_level: "easy",
+    question: "Cho tam giác vuông có hai cạnh góc vuông $b = 6\\text{ cm}, c = 8\\text{ cm}$. Bán kính đường tròn nội tiếp $r$ bằng:",
+    option_a: "2 cm",
+    option_b: "3 cm",
+    option_c: "5 cm",
+    option_d: "1 cm",
+    correct_option: "A",
+    explanation: "Cạnh huyền $a = 10\\text{ cm}$. Công thức bán kính nội tiếp tam giác vuông $r = \\frac{b+c-a}{2} = \\frac{6+8-10}{2} = 2\\text{ cm}$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Tâm của đường tròn nội tiếp tam giác được xác định bởi giao điểm của:",
-    option_a: "Ba đường phân giác trong của tam giác.",
-    option_b: "Ba đường trung trực của tam giác.",
-    option_c: "Ba đường trung bình của tam giác.",
-    option_d: "Ba đường cao của tam giác.",
+    question: "Tâm đường tròn ngoại tiếp của tam giác tù nằm ở đâu?",
+    option_a: "Nằm bên ngoài tam giác",
+    option_b: "Nằm bên trong tam giác",
+    option_c: "Nằm trên cạnh dài nhất",
+    option_d: "Trùng với một đỉnh của tam giác",
     correct_option: "A",
-    explanation: "Tâm đường tròn nội tiếp cần cách đều 3 cạnh của tam giác (bán kính nội tiếp). Điểm cách đều hai cạnh của một góc là điểm nằm trên tia phân giác của góc đó. Do đó, giao điểm ba đường phân giác trong sẽ cách đều ba cạnh.",
+    explanation: "Đối với tam giác nhọn tâm nằm bên trong, tam giác vuông tâm nằm trên cạnh huyền, tam giác tù tâm nằm bên ngoài tam giác.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Khẳng định nào sau đây là MỘT TÍNH CHẤT ĐÚNG về tâm đường tròn ngoại tiếp và nội tiếp?",
-    option_a: "Mọi tam giác đều luôn luôn chỉ có một đường tròn ngoại tiếp và một đường tròn nội tiếp duy nhất.",
-    option_b: "Trong tam giác đều, tâm đường tròn ngoại tiếp và tâm đường tròn nội tiếp trùng nhau.",
-    option_c: "Tâm đường tròn nội tiếp của tam giác nhọn luôn nằm bên ngoài tam giác.",
-    option_d: "Đường tròn ngoại tiếp tam giác vuông có độ dài bán kính bằng một nửa cạnh huyền.",
-    correct_option: "A,B,D",
-    explanation: "Mỗi tam giác mang tính chất duy nhất đối với các đường tròn khép kín. Ở tam giác đều, tính đối xứng cao khiến các tâm (trọng tâm, trực tâm, tâm nội tiếp, ngoại tiếp) đều hội tụ về một điểm. Khẳng định C sai vì tâm nội tiếp luôn nằm bên trong khu vực không gian tam giác.",
+    question: "Những khẳng định nào sau đây ĐÚNG về đường tròn ngoại tiếp và nội tiếp tam giác?",
+    option_a: "Mọi tam giác luôn có duy nhất một đường tròn ngoại tiếp và một đường tròn nội tiếp",
+    option_b: "Đối với tam giác đều, tâm đường tròn ngoại tiếp và nội tiếp trùng nhau",
+    option_c: "Đối với tam giác đều, bán kính ngoại tiếp gấp đôi bán kính nội tiếp ($R = 2r$)",
+    option_d: "Bán kính đường tròn nội tiếp tính theo diện tích $S$ và nửa chu vi $p$ là $r = \\frac{S}{p}$",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 khẳng định đều hoàn toàn chính xác theo lý thuyết toán học SGK.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Cho tam giác đều ABC có cạnh bằng $a$, độ dài đường cao tương ứng là $h$. Bán kính $R$ của đường tròn ngoại tiếp tam giác đều này bằng bao nhiêu phần của $h$? (Trả lời bằng phân số dạng 2/3 nếu có).",
-    correct_option: "2/3",
-    explanation: "Trong tam giác đều, tâm đường tròn ngoại tiếp cũng chính là trọng tâm của tam giác. Tính chất trọng tâm chia đường trung tuyến (cũng là đường cao $h$) theo tỉ lệ $2:1$. Do đó khoảng cách từ tâm đến đỉnh là $R = \\frac{2}{3}h$.",
+    type: "msq",
+    question: "Cho tam giác ABC có 3 cạnh $a = 13, b = 14, c = 15$. Khẳng định nào ĐÚNG?",
+    option_a: "Nửa chu vi $p = 21$",
+    option_b: "Diện tích $S_{ABC} = 84$",
+    option_c: "Bán kính đường tròn nội tiếp $r = 4$",
+    option_d: "Bán kính đường tròn ngoại tiếp $R = 8,125 = \\frac{65}{8}$",
+    correct_option: "A,B,C,D",
+    explanation: "$p = 21$. $S = \\sqrt{21(8)(7)(6)} = 84$. $r = 84/21 = 4$. $R = \\frac{13 \\times 14 \\times 15}{4 \\times 84} = \\frac{2730}{336} = 8,125$. Cả 4 khẳng định đều đúng.",
     difficulty_level: "hard",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Một tam giác vuông có hai cạnh góc vuông lần lượt là $6\\text{ cm}$ và $8\\text{ cm}$. Tính độ dài bán kính $R$ của đường tròn ngoại tiếp tam giác đó.",
-    correct_option: "5",
-    explanation: "Đầu tiên áp dụng định lí Pythagore tìm cạnh huyền $c = \\sqrt{6^2 + 8^2} = \\sqrt{36+64} = 10\\text{ cm}$. Tâm đường tròn ngoại tiếp tam giác vuông nằm ở trung điểm cạnh huyền, nên bán kính $R$ bằng nửa cạnh huyền: $R = \\frac{10}{2} = 5\\text{ cm}$.",
-    difficulty_level: "medium",
+    question: "Cho tam giác đều ABC cạnh a = 6 cm. Bán kính đường tròn ngoại tiếp R của tam giác ABC bằng bao nhiêu cm? (Dưới dạng a√b, nhập hệ số a khi √3)",
+    correct_option: "2",
+    explanation: "$R = \\frac{a\\sqrt{3}}{3} = \\frac{6\\sqrt{3}}{3} = 2\\sqrt{3}\\text{ cm}$. Hệ số trước $\\sqrt{3}$ là 2.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho tam giác ABC vuông tại A có cạnh huyền BC = 12 cm. Bán kính R của đường tròn ngoại tiếp tam giác ABC bằng bao nhiêu cm?",
+    correct_option: "6",
+    explanation: "$R = \\frac{BC}{2} = \\frac{12}{2} = 6\\text{ cm}$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">📍 Việc cấp bách: Điểm đặt trạm cứu hỏa hợp lý</h3>
+<h3 id="mo-dau">🏛️ Quy Hoạch Đô Thị & Vị Trí Trạm Biến Áp Cách Đều 3 Làng</h3>
 
-Có ba khu dân cư nằm ở ba vị trí khác nhau tạo thành ba đỉnh của một tam giác trên bản đồ quy hoạch thành phố (kí hiệu là các điểm $A, B, C$). Chính quyền muốn xây dựng một trạm cứu hỏa trung tâm sao cho khoảng cách máy xịt nước từ trạm cứu hỏa di chuyển đến ba khu dân cư này là **hoàn toàn bằng nhau**, nhằm đảm bảo thời gian ứng cứu là công bằng cho mọi nhà.
+Trong quy hoạch hạ tầng nông thôn mới, một kỹ sư điện lực cần đặt một trạm biến áp tổng để cấp điện cho 3 ngôi làng $A, B, C$. Để tối ưu hóa độ dài dây dẫn và chi phí, trạm biến áp $O$ cần phải **cách đều 3 ngôi làng**: $OA = OB = OC$.
 
-Để giải quyết bài toán thực tế này, các kĩ sư quy hoạch sử dụng khái niệm **Tâm đường tròn ngoại tiếp tam giác**. Vị trí trạm cứu hỏa chính là tâm của đường tròn đi qua ba điểm $A, B, C$. Cách xác định tâm đường tròn đó như thế nào sẽ được làm sáng tỏ trong bài học sau.
+Về mặt hình học:
+- Trạm biến áp $O$ chính là **tâm của đường tròn ngoại tiếp** tam giác $ABC$ hình thành bởi 3 ngôi làng.
+- Khoảng cách từ trạm $O$ tới mỗi làng chính là **bán kính $R$** của đường tròn ngoại tiếp!
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="200" viewBox="0 0 420 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Circumcircle */}
+  <circle cx="210" cy="105" r="75" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+  <circle cx="210" cy="105" r="5" fill="#ef4444"/>
+  <text x="210" y="90" font-size="11" font-weight="bold" fill="#ef4444" text-anchor="middle">O (Tâm Ngoại Tiếp)</text>
+
+  {/* Triangle Vertices A, B, C */}
+  <line x1="210" y1="30" x2="140" y2="145" stroke="#475569" stroke-width="2"/>
+  <line x1="140" y1="145" x2="280" y2="145" stroke="#475569" stroke-width="2"/>
+  <line x1="280" y1="145" x2="210" y2="30" stroke="#475569" stroke-width="2"/>
+
+  {/* Radii OA, OB, OC */}
+  <line x1="210" y1="105" x2="210" y2="30" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3"/>
+  <line x1="210" y1="105" x2="140" y2="145" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3"/>
+  <line x1="210" y1="105" x2="280" y2="145" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3"/>
+
+  {/* Points */}
+  <circle cx="210" cy="30" r="5" fill="#16a34a"/>
+  <text x="210" y="20" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">Làng A</text>
+
+  <circle cx="140" cy="145" r="5" fill="#16a34a"/>
+  <text x="125" y="160" font-size="12" font-weight="bold" fill="#15803d">Làng B</text>
+
+  <circle cx="280" cy="145" r="5" fill="#16a34a"/>
+  <text x="290" y="160" font-size="12" font-weight="bold" fill="#15803d">Làng C</text>
+</svg>
+</div>
 
 </KhoiDong>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+<KhamPha title="Khám phá">
 
-<h3 id="ngoai-tiep" style="margin-top:2rem;">📖 1. Đường tròn ngoại tiếp tam giác</h3>
-
-<div class="box-dinh-nghia">
-
-- **Đường tròn đi qua cả ba đỉnh** của một tam giác được gọi là **đường tròn ngoại tiếp** tam giác đó.
-- Khi đó, tam giác được gọi là **tam giác nội tiếp** (nằm bên trong) đường tròn.
-- Định lí sự tồn tại: Mọi tam giác đều có **một và chỉ một** đường tròn ngoại tiếp.
-
-</div>
-
-**Cách xác định tâm:**
-- Tâm $O$ của đường tròn ngoại tiếp tam giác là **giao điểm của ba đường trung trực** của ba cạnh tam giác.
-- (Thực tế khi vẽ hình, ta chỉ cần kẻ hai đường trung trực của hai cạnh bất kì cắt nhau tại $O$, điểm đó đã đảm bảo là tâm đường tròn do tính chất đồng quy).
-
-**Các trường hợp đặc biệt:**
-1. **Tam giác nhọn:** Tâm đường tròn ngoại tiếp nằm *bên trong* tam giác.
-2. **Tam giác vuông:** Tâm đường tròn ngoại tiếp là *trung điểm của cạnh huyền*. (Bán kính $R = \frac{1}{2}\times\text{cạnh huyền}$).
-3. **Tam giác tù:** Tâm đường tròn ngoại tiếp nằm *bên ngoài* khu vực giới hạn của tam giác.
-
-<h3 id="noi-tiep" style="margin-top:2rem;">📖 2. Đường tròn nội tiếp tam giác</h3>
-
-Khác biệt với việc "bao bọc qua đỉnh", một đường tròn hoàn toàn có thể nép mình nằm lọt vừa vặn bên trong ba bức tường của tam giác.
+<h3 id="duong-tron-ngoai-tiep-tam-giac">📖 1. Đường tròn Ngoại tiếp Tam giác</h3>
 
 <div class="box-dinh-nghia">
 
-- **Đường tròn tiếp xúc với cả ba cạnh** của một tam giác (tức là ba cạnh đều tiếp tuyến ngoài của vòng tròn) được gọi là **đường tròn nội tiếp** tam giác đó.
-- Khi đó tam giác được gọi là **tam giác ngoại tiếp** (bao bọc bên ngoài) đường tròn.
-- Định lí sự tồn tại: Mọi tam giác đều có **một và chỉ một** đường tròn nội tiếp.
+**1. Định nghĩa:**
+- **Đường tròn ngoại tiếp tam giác** là đường tròn đi qua cả 3 đỉnh của tam giác đó.
+- Tam giác gọi là **nội tiếp** đường tròn.
+
+**2. Tâm và Bán kính ngoại tiếp ($R$):**
+- **Tâm $O$:** Là giao điểm của 3 đường **trung trực** của tam giác ($OA = OB = OC = R$).
+- **Tam giác vuông:** Tâm $O$ trùng với **trung điểm của cạnh huyền**, bán kính $R = \frac{c}{2}$.
+- **Tam giác đều cạnh $a$:** Bán kính $R = \frac{a\sqrt{3}}{3}$.
 
 </div>
 
-**Cách xác định tâm:**
-- Tâm $I$ của đường tròn nội tiếp tam giác là **giao điểm của ba đường phân giác trong** của các góc trong tam giác.
-- Tương tự, chỉ cần kẻ hai đường phân giác trong của hai góc cắt nhau tại $I$, điểm đó sẽ cách đều ba cạnh và là tâm. Tâm $I$ luôn luôn nằm bên trong tam giác.
-- Bán kính $r$ là khoảng cách kẻ vuông góc từ tâm $I$ đến bất kì cạnh nào của tam giác.
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<h3 id="hinh-ve" style="margin-top:2rem;">📖 3. Hình vẽ biểu diễn Hai đường tròn</h3>
+**3 Ví dụ minh họa Đường tròn Ngoại tiếp:**
 
-<div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap", margin: "2rem 0"}}>
+- **Ví dụ 1:** Tính bán kính đường tròn ngoại tiếp $R$ của tam giác vuông $ABC$ ($A = 90^^\circ$) có $AB = 6\text{ cm}, AC = 8\text{ cm}$.
+  - *Giải:* Cạnh huyền $BC = \sqrt{6^2 + 8^2} = 10\text{ cm}$.  
+    Tâm $O$ là trung điểm $BC \Rightarrow R = \frac{BC}{2} = \frac{10}{2} = 5\text{ cm}$.
 
-{/* Ngoại tiếp */}
-<div style={{textAlign: "center", marginBottom: "1rem"}}>
-<svg width="250" height="250" viewBox="0 0 250 250">
-  <circle cx="125" cy="125" r="90" fill="none" stroke="#2563eb" strokeWidth="2"/>
-  <path d="M 61.35,61.35 L 215,125 L 125,215 Z" fill="none" stroke="#374151" strokeWidth="2"/>
-  {/* Đỉnh */}
-  <circle cx="61.35" cy="61.35" r="3" fill="#ef4444"/>
-  <circle cx="215" cy="125" r="3" fill="#ef4444"/>
-  <circle cx="125" cy="215" r="3" fill="#ef4444"/>
-  
-  <text x="45" y="55" fontWeight="bold">A</text>
-  <text x="225" y="130" fontWeight="bold">B</text>
-  <text x="120" y="235" fontWeight="bold">C</text>
-  <circle cx="125" cy="125" r="3" fill="#10b981"/>
-  <text x="110" y="125" fontWeight="bold" fill="#10b981">O</text>
-</svg>
-<p style={{fontStyle: "italic", marginTop: "0.5rem"}}>Đường tròn (O) ngoại tiếp <br/>đi qua 3 đỉnh A, B, C</p>
+- **Ví dụ 2:** Tính bán kính đường tròn ngoại tiếp $R$ của tam giác $ABC$ đều cạnh $a = 9\text{ cm}$.
+  - *Giải:* Theo công thức bán kính ngoại tiếp tam giác đều:  
+    $R = \frac{a\sqrt{3}}{3} = \frac{9\sqrt{3}}{3} = 3\sqrt{3}\text{ cm} \approx 5,2\text{ cm}$.
+
+- **Ví dụ 3:** Cho tam giác $ABC$ vuông cân tại $A$ có $AB = AC = 4\text{ cm}$. Tính bán kính $R$.
+  - *Giải:* Cạnh huyền $BC = 4\sqrt{2}\text{ cm} \Rightarrow R = \frac{BC}{2} = 2\sqrt{2}\text{ cm}$.
+
 </div>
 
-{/* Nội tiếp */}
-<div style={{textAlign: "center", marginBottom: "1rem"}}>
-<svg width="250" height="250" viewBox="0 0 250 250">
-  <path d="M 125,30 L 220,200 L 30,200 Z" fill="none" stroke="#374151" strokeWidth="2"/>
-  <circle cx="125" cy="144" r="56" fill="none" stroke="#f59e0b" strokeWidth="2"/>
-  
-  {/* Đỉnh */}
-  <text x="120" y="20" fontWeight="bold">M</text>
-  <text x="15" y="210" fontWeight="bold">N</text>
-  <text x="230" y="210" fontWeight="bold">P</text>
-  <circle cx="125" cy="144" r="3" fill="#10b981"/>
-  <text x="115" y="140" fontWeight="bold" fill="#10b981">I</text>
-</svg>
-<p style={{fontStyle: "italic", marginTop: "0.5rem"}}>Đường tròn (I) nội tiếp <br/>tiếp xúc 3 cạnh MNP</p>
+<h3 id="duong-tron-noi-tiep-tam-giac" style="margin-top:2rem;">📖 2. Đường tròn Nội tiếp Tam giác</h3>
+
+<div class="box-dinh-nghia">
+
+**1. Định nghĩa:**
+- **Đường tròn nội tiếp tam giác** là đường tròn tiếp xúc với cả 3 cạnh của tam giác đó.
+- Tam giác gọi là **ngoại tiếp** đường tròn.
+
+**2. Tâm và Bán kính nội tiếp ($r$):**
+- **Tâm $I$:** Là giao điểm của 3 đường **phân giác trong** của tam giác.
+- **Tam giác vuông:** $r = \frac{b + c - a}{2}$ (với $b, c$ là cạnh góc vuông, $a$ là cạnh huyền).
+- **Tam giác đều cạnh $a$:** $r = \frac{a\sqrt{3}}{6}$.
+- **Tam giác bất kỳ:** $S = r \cdot p \Rightarrow r = \frac{S}{p}$ (với $p = \frac{a+b+c}{2}$ là nửa chu vi).
+
 </div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Đường tròn Nội tiếp:**
+
+- **Ví dụ 1:** Tính bán kính đường tròn nội tiếp $r$ của tam giác $ABC$ vuông tại $A$ có $AB = 5\text{ cm}, AC = 12\text{ cm}$.
+  - *Giải:* Cạnh huyền $BC = \sqrt{5^2 + 12^2} = 13\text{ cm}$.  
+    Bán kính nội tiếp $r = \frac{AB + AC - BC}{2} = \frac{5 + 12 - 13}{2} = \frac{4}{2} = 2\text{ cm}$.
+
+- **Ví dụ 2:** Tính bán kính đường tròn nội tiếp $r$ của tam giác $ABC$ đều cạnh $a = 12\text{ cm}$.
+  - *Giải:* $r = \frac{a\sqrt{3}}{6} = \frac{12\sqrt{3}}{6} = 2\sqrt{3}\text{ cm}$.
+
+- **Ví dụ 3:** Cho tam giác $ABC$ có diện tích $S = 54\text{ cm}^2$ và chu vi $P = 36\text{ cm}$. Tính bán kính nội tiếp $r$.
+  - *Giải:* Nửa chu vi $p = P / 2 = 36 / 2 = 18\text{ cm}$.  
+    Bán kính nội tiếp $r = \frac{S}{p} = \frac{54}{18} = 3\text{ cm}$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính bán kính $R, r$ của Tam giác Vuông**
+- **Phương pháp:** Sử dụng $R = \frac{a}{2}$ và $r = \frac{b + c - a}{2}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 9, AC = 12$. Tính $R$ và $r$.
+  - *Lời giải:* Cạnh huyền $BC = \sqrt{9^2 + 12^2} = 15$.  
+    $R = \frac{BC}{2} = \frac{15}{2} = 7,5$.  
+    $r = \frac{9 + 12 - 15}{2} = \frac{6}{2} = 3$.
+
+- **Ví dụ 2:** Cho tam giác $ABC$ vuông cân tại $A$ có cạnh huyền $BC = 10\sqrt{2}\text{ cm}$. Tính $R, r$.
+  - *Lời giải:* $R = \frac{10\sqrt{2}}{2} = 5\sqrt{2}\text{ cm}$.  
+    Hai cạnh góc vuông $AB = AC = 10\text{ cm}$.  
+    $r = \frac{10 + 10 - 10\sqrt{2}}{2} = 10 - 5\sqrt{2}\text{ cm}$.
+
+- **Ví dụ 3:** Khoảng cách giữa tâm $O$ (ngoại tiếp) và tâm $I$ (nội tiếp) của tam giác vuông tính theo công thức Euler: $OI = \sqrt{R(R - 2r)}$. Áp dụng cho Ví dụ 1.
+  - *Lời giải:* Thay $R = 7,5$ và $r = 3$:  
+    $OI = \sqrt{7,5(7,5 - 2 \times 3)} = \sqrt{7,5 \times 1,5} = \sqrt{11,25} \approx 3,35\text{ cm}$.
+
+</div>
+
+#### **Dạng 2: Bài toán Tam giác Đều ($R = 2r$)**
+- **Phương pháp:** $R = \frac{a\sqrt{3}}{3}$, $r = \frac{a\sqrt{3}}{6}$, $h = \frac{a\sqrt{3}}{2} = R + r$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ đều có bán kính nội tiếp $r = 4\text{ cm}$. Tính độ dài cạnh $a$ và bán kính ngoại tiếp $R$.
+  - *Lời giải:* $R = 2r = 2 \times 4 = 8\text{ cm}$.  
+    $r = \frac{a\sqrt{3}}{6} = 4 \Rightarrow a\sqrt{3} = 24 \Rightarrow a = \frac{24}{\sqrt{3}} = 8\sqrt{3}\text{ cm}$.
+
+- **Ví dụ 2:** Tính diện tích hình vành khăn nằm giữa đường tròn ngoại tiếp và đường tròn nội tiếp tam giác đều cạnh $a = 6\text{ cm}$.
+  - *Lời giải:* $R = \frac{6\sqrt{3}}{3} = 2\sqrt{3}\text{ cm} \Rightarrow S_{\text{ngoại}} = \pi R^2 = 12\pi$.  
+    $r = \frac{6\sqrt{3}}{6} = \sqrt{3}\text{ cm} \Rightarrow S_{\text{nội}} = \pi r^2 = 3\pi$.  
+    Diện tích hình vành khăn $S_{\text{vk}} = 12\pi - 3\pi = 9\pi\text{ cm}^2$.
+
+- **Ví dụ 3:** Tỉ số diện tích $S_{\text{ngoại}} / S_{\text{nội}}$ của tam giác đều bằng bao nhiêu?
+  - *Lời giải:* $\frac{S_{\text{ngoại}}}{S_{\text{nội}}} = \frac{\pi R^2}{\pi r^2} = \left(\frac{R}{r}\right)^2 = 2^2 = 4$. Tỉ số luôn luôn bằng 4.
+
+</div>
+
+#### **Dạng 3: Bài toán Tam giác Cân**
+- **Phương pháp:** Đường cao ứng với đáy vừa là đường trung trực vừa là phân giác $\Rightarrow$ chứa cả tâm $O$ và $I$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ cân tại $A$ có $AB = AC = 10\text{ cm}, BC = 12\text{ cm}$. Tính $R$.
+  - *Lời giải:* Kẻ đường cao $AH \perp BC \Rightarrow H$ là trung điểm $BC \Rightarrow BH = 6\text{ cm}$.  
+    $AH = \sqrt{10^2 - 6^2} = 8\text{ cm}$.  
+    Gọi $O$ là tâm ngoại tiếp $\in AH$. $OB = R, OH = 8 - R$.  
+    In $\Delta OBH$ vuông tại $H$: $OB^2 = BH^2 + OH^2 \Leftrightarrow R^2 = 6^2 + (8 - R)^2 \Leftrightarrow R^2 = 36 + 64 - 16R + R^2 \Leftrightarrow 16R = 100 \Rightarrow R = 6,25\text{ cm}$.
+
+- **Ví dụ 2:** Tính bán kính nội tiếp $r$ của tam giác $ABC$ ở Ví dụ 1.
+  - *Lời giải:* $S_{ABC} = \frac{1}{2} BC \cdot AH = \frac{1}{2} \cdot 12 \cdot 8 = 48\text{ cm}^2$.  
+    Nửa chu vi $p = \frac{10 + 10 + 12}{2} = 16\text{ cm}$.  
+    Bán kính nội tiếp $r = \frac{S}{p} = \frac{48}{16} = 3\text{ cm}$.
+
+- **Ví dụ 3:** Tính khoảng cách $AH$ và tỉ số $r / AH$ trong Ví dụ 2.
+  - *Lời giải:* $r / AH = 3 / 8 = 0,375$.
+
+</div>
+
+#### **Dạng 4: Bài toán Tam giác Bất kỳ (Công thức Heron)**
+- **Phương pháp:** Tính $S = \sqrt{p(p-a)(p-b)(p-c)}$, sau đó $R = \frac{abc}{4S}$ và $r = \frac{S}{p}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ có 3 cạnh $a = 7, b = 8, c = 9$. Tính diện tích $S$, $R$ và $r$.
+  - *Lời giải:* $p = \frac{7+8+9}{2} = 12$.  
+    $S = \sqrt{12(12-7)(12-8)(12-9)} = \sqrt{12 \times 5 \times 4 \times 3} = \sqrt{720} = 12\sqrt{5} \approx 26,83$.  
+    $R = \frac{7 \times 8 \times 9}{4 \times 12\sqrt{5}} = \frac{504}{48\sqrt{5}} = \frac{10,5}{\sqrt{5}} = \frac{21\sqrt{5}}{10} \approx 4,69$.  
+    $r = \frac{S}{p} = \frac{12\sqrt{5}}{12} = \sqrt{5} \approx 2,24$.
+
+- **Ví dụ 2:** Cho tam giác $ABC$ có $a = 4, b = 13, c = 15$. Tính $R, r$.
+  - *Lời giải:* $p = \frac{4+13+15}{2} = 16$.  
+    $S = \sqrt{16(12)(3)(1)} = \sqrt{576} = 24$.  
+    $R = \frac{4 \times 13 \times 15}{4 \times 24} = \frac{780}{96} = 8,125$.  
+    $r = \frac{24}{16} = 1,5$.
+
+- **Ví dụ 3:** Cho tam giác $ABC$ có $a = 5, b = 5, c = 6$. Tính $R, r$.
+  - *Lời giải:* $p = 8$. $S = \sqrt{8(3)(3)(2)} = 12$.  
+    $R = \frac{5 \times 5 \times 6}{4 \times 12} = \frac{150}{48} = 3,125$.  
+    $r = \frac{12}{8} = 1,5$.
+
+</div>
+
+#### **Dạng 5: Bài toán Thực tế về Đường tròn Ngoại tiếp và Nội tiếp**
+- **Phương pháp:** Mô hình hóa các điểm cần cách đều thành tâm ngoại tiếp $O$ hoặc tâm nội tiếp $I$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Một mảnh vườn hình tam giác vuông có hai cạnh góc vuông $6\text{ m}$ và $8\text{ m}$. Người ta muốn trồng một bồn hoa hình tròn nội tiếp mảnh vườn. Tính diện tích lớn nhất của bồn hoa.
+  - *Lời giải:* Bán kính bồn hoa tròn nội tiếp $r = \frac{6+8-10}{2} = 2\text{ m}$.  
+    Diện tích bồn hoa $S = \pi r^2 = \pi (2)^2 = 4\pi \approx 12,57\text{ m}^2$.
+
+- **Ví dụ 2:** Một tấm sắt hình tam giác đều cạnh $a = 60\text{ cm}$. Người ta cắt ra một phôi tròn ngoại tiếp tam giác đó. Tính bán kính tấm phôi tròn.
+  - *Lời giải:* Bán kính phôi tròn ngoại tiếp $R = \frac{a\sqrt{3}}{3} = \frac{60\sqrt{3}}{3} = 20\sqrt{3} \approx 34,64\text{ cm}$.
+
+- **Ví dụ 3:** Một công viên hình tam giác có 3 cạnh $30\text{ m}, 40\text{ m}, 50\text{ m}$. Đặt một vòi phun nước tròn nội tiếp công viên. Tính bán kính vòi phun phủ sóng tối đa.
+  - *Lời giải:* $30^2 + 40^2 = 50^2 \Rightarrow$ công viên tam giác vuông.  
+    Bán kính vòi phun $r = \frac{30+40-50}{2} = 10\text{ m}$.
 
 </div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Xác định tọa độ tâm, tính bán kính đường tròn ngoại tiếp**
-**Phương pháp:** 
-- Trong **tam giác nhọn/tù**: Dựng đường trung trực của 2 cạnh cắt nhau tại giao điểm $O$. Bán kính $R = OA = OB = OC$. 
-- Trong **tam giác vuông**: Trường hợp thường gặp nhất. Tâm $O$ trung điểm cạnh huyền. Bán kính $R = \frac{1}{2} \text{cạnh huyền}$. Áp dụng định lí Pytago để tính cạnh.
-- Trong **tam giác đều** cạnh $a$: Chiều cao $h = \frac{a\sqrt{3}}{2}$. Tâm ngoại tiếp là trọng tâm, $R = \frac{2}{3}h = \frac{a\sqrt{3}}{3}$.
+**Bài toán 1 (Quy Hoạch Vị Trí Trạm Phát Wi-Fi):**  
+Trong một văn phòng hình tam giác vuông có hai bức tường vuông góc dài $12\text{ m}$ và $16\text{ m}$. Kỹ sư IT muốn đặt trạm phát sóng Wi-Fi tại tâm đường tròn ngoại tiếp văn phòng để sóng phủ đều đến 3 góc phòng.  
+a) Xác định vị trí đặt trạm Wi-Fi trên bản mặt bằng.  
+b) Tính bán kính phủ sóng tối thiểu $R$ của trạm Wi-Fi.
 
-</div>
+**Bài toán 2 (Thiết Kế Bồn Hoa Công Viên Tam Giác Đều):**  
+Một công viên tiểu cảnh hình tam giác đều có cạnh $a = 18\text{ m}$. KTS thiết kế một thảm hoa hình tròn nội tiếp công viên.  
+a) Tính bán kính $r$ của thảm hoa tròn nội tiếp.  
+b) Tính diện tích phần đất công viên còn lại ngoài thảm hoa để lát gạch.
 
-**Ví dụ 1:** 
-Cho tam giác $ABC$ vuông tại $A$, có chiểu dài cạnh góc vuông $AB = 5\text{ cm}$ và $AC = 12\text{ cm}$. Hỏi tâm đường tròn ngoại tiếp tam giác nằm ở đâu và có bán kính vòng tròn $R$ là bao nhiêu?
-**Hướng dẫn:** 
-- Tam giác $ABC$ vuông tại $A$ là góc nội tiếp chắn đoạn $BC$. Do đó đường chuẩn $BC$ đóng vai trò là một đường kính của đường tròn đi qua bộ ba cạnh. Tâm đường tròn ngoại tiếp $O$ là trung điểm của $BC$.
-- Áp dụng định lí Pythagore trong $\triangle ABC$ vuông:
-$BC = \sqrt{AB^2 + AC^2} = \sqrt{5^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13\text{ cm}$.
-- Bán kính đường tròn $R = \frac{BC}{2} = \frac{13}{2} = 6.5\text{ cm}$.
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Khai thác tính chất đường tròn nội tiếp để tính các thông số**
-**Phương pháp:** 
-- Dựng giao điểm phân giác trong lấy tâm điểm $I$.
-- Từ tâm điểm $I$ hạ đường vuông góc xuống tiếp điểm của 3 cạnh tam giác (đóng vai trò là bán kính nội tiếp $r$).
-- Ứng dụng quan hệ tiếp tuyến cắt nhau: Nhớ rằng đoạn thẳng từ một đỉnh bất kì của tam giác đến hai tiếp điểm của nội tiếp là luôn bằng nhau.
-
-</div>
-
-**Ví dụ 2:** Cho $\triangle DEF$ đều cạnh có độ dài $a = 6\text{ cm}$. Định mức độ dài bán kính nhỏ $r$ của đường tròn nội tiếp tam giác này?
-**Hướng dẫn:** 
-- Đối với tam giác đều, tâm đường tròn nội tiếp $I$ và ngoại tiếp $O$ trùng nhau và nằm trùng tại trọng tâm giao tuyến đường cao.
-- Độ dài đường cao (đồng thời trung tuyến) của $\triangle DEF$ là $h = \frac{a\sqrt{3}}{2} = \frac{6\sqrt{3}}{2} = 3\sqrt{3}\text{ cm}$.
-- Tâm nội tiếp cũng chia đường cao theo tỉ lệ $2:1$. Do đó khoảng viền tính từ tâm nội tiếp ra đến tiếp điểm bằng đáy (Bán kính nội tiếp $r$) bằng $\frac{1}{3}h$:
-$r = \frac{1}{3} \cdot 3\sqrt{3} = \sqrt{3}\text{ cm}$.
+**Bài toán 3 (Công Nghiệp Cắt Gọt Phôi Kim Loại):**  
+Từ một đĩa kim loại hình tròn bán kính $R = 10\text{ cm}$, công nhân dập định hình cắt ra một chi tiết máy hình tam giác đều nội tiếp đĩa tròn đó. Tính độ dài cạnh của chi tiết máy hình tam giác đều.
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ dưới đây giúp bạn tính toán bán kính đường tròn ngoại tiếp $R$, nội tiếp $r$ và quan sát hình minh họa trực quan!
+</div>
+
+<CanBacHaiInteractive client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 28:**
+
+1. **Ngoại tiếp (Tâm $O$ là giao 3 đường trung trực):**  
+   - Tam giác vuông: $R = \frac{c}{2}$. Tam giác đều: $R = \frac{a\sqrt{3}}{3}$.  
+2. **Nội tiếp (Tâm $I$ là giao 3 đường phân giác):**  
+   - Tam giác vuông: $r = \frac{b+c-a}{2}$. Tam giác đều: $r = \frac{a\sqrt{3}}{6}$.  
+3. **Tam giác bất kỳ:** $S = r \cdot p \Rightarrow r = \frac{S}{p}$ và $R = \frac{abc}{4S}$.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -245,35 +400,132 @@ $r = \frac{1}{3} \cdot 3\sqrt{3} = \sqrt{3}\text{ cm}$.
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho cấu trúc tam giác $\triangle MNP$ vuông tại định mốc $N$, có thông số $MP = 10\text{ cm}$, $MN = 8\text{ cm}$.
-a) Tìm toạ độ tâm đường tròn ngoại tiếp bao quanh $\triangle MNP$. 
-b) Giải thông số bán kính đường tròn ngoại tiếp tam giác và diện tích phần mặt phẳng bị giới hạn bởi đường tròn đó (Sử dụng tỷ lệ $\pi \approx 3.14$).
-c) Từ kết quả tính các cạnh góc vuông, chứng minh rằng diện tích $\triangle MNP$ luôn nhỏ hơn diện tích không gian của đường tròn ngoại tiếp. 
+**Bài 1:** Tính bán kính $R$ (ngoại tiếp) và $r$ (nội tiếp) của các tam giác vuông sau:  
+a) Cạnh góc vuông $3\text{ cm}, 4\text{ cm}$  
+b) Cạnh góc vuông $5\text{ cm}, 12\text{ cm}$  
+c) Cạnh góc vuông $8\text{ cm}, 15\text{ cm}$  
+d) Cạnh góc vuông $7\text{ cm}, 24\text{ cm}$  
+e) Cạnh huyền $10\text{ cm}$, một cạnh góc vuông $6\text{ cm}$  
+f) Tam giác vuông cân cạnh góc vuông $a = 6\text{ cm}$
 
-**Bài 2:** Vẽ một tam giác đều $\triangle ABC$ cạnh mở $A = 12\text{ cm}$ nội tiếp vừa khít trong một đường tròn $(O)$.
-a) Đường cao $AH$ có độ dài bao nhiêu? Dựa vào đó hãy đi tìm thông lượng bán kính lớn $R$ của đường tròn $(O)$.
-b) Đồng thời dựng biểu diễn vòng đường tròn $(I)$ nội tiếp chìm ngầm bên trong chính $\triangle ABC$. Nhận xét xem điểm $I$ có nằm đè lên vị trí của $O$ hay không? Tính bán kính $r$ của vòng $(I)$ đó.
+**Bài 2:** Cho tam giác đều cạnh $a$. Tính $R$ và $r$ khi:  
+a) $a = 6\text{ cm}$  
+b) $a = 12\text{ cm}$  
+c) $a = 3\sqrt{3}\text{ cm}$  
+d) $R = 10\text{ cm}$ (tính $a$ và $r$)  
+e) $r = 4\text{ cm}$ (tính $a$ và $R$)  
+f) Đường cao $h = 9\text{ cm}$ (tính $R$ và $r$)
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 3:** Cho tam giác $ABC$ cân tại $A$ có $AB = AC = 15\text{ cm}, BC = 18\text{ cm}$.  
+a) Tính chiều cao $AH$.  
+b) Tính diện tích tam giác $ABC$.  
+c) Tính bán kính nội tiếp $r$.  
+d) Tính bán kính ngoại tiếp $R$.  
+e) Tính khoảng cách giữa hai tâm $OI$.  
+f) Tính diện tích hình tròn nội tiếp $(r)$.
 
-**Bài 1:**
-a) Ở cấu trúc tam giác vuông tại $N$ của $\triangle MNP$, cạnh huyền luôn luôn là $MP$.
-Tâm đường tròn ngoại tiếp trùng vào trung điểm của cạnh huyền $MP$.
-b) Bán kính đường tròn $R$ dài nửa cạnh huyền: $R = \frac{MP}{2} = \frac{10}{2} = 5\text{ cm}$.
-Diện tích đường tròn ngoại tiếp: $S_{\text{tròn}} = \pi \cdot R^2 = 3.14 \cdot 5^2 = 3.14 \cdot 25 = 78.5\text{ cm}^2$.
-c) Theo định lí Pytago tính cạnh còn lại: $NP = \sqrt{MP^2 - MN^2} = \sqrt{10^2 - 8^2} = \sqrt{100 - 64} = 6\text{ cm}$.
-Diện tích tam giác vuông: $S_{\triangle} = \frac{1}{2}MN \cdot NP = \frac{1}{2} \cdot 8 \cdot 6 = 24\text{ cm}^2$.
-Dễ thấy diện tích tam giác lọt thỏm ($24$) nhỏ hơn nhiều so với hình đường tròn ngoại tiếp bao phủ toàn bộ nó ($78.5$).
+**Bài 4:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 6\text{ cm}, AC = 8\text{ cm}$.  
+a) Tính $R$ và $r$.  
+b) Tính khoảng cách $OI$ giữa tâm ngoại tiếp và nội tiếp.
 
-**Bài 2:**
-a) Trong $\triangle ABC$ đều cạnh là $12\text{ cm}$, đường cao $AH$ được tính bằng công thức lượng giác (hoặc Pytago) $AH = 12 \cdot \frac{\sqrt{3}}{2} = 6\sqrt{3}\text{ cm}$.
-Tâm $O$ của đường tròn trùng tại trọng tâm chéo của tam giác đều. Đoạn $OA$ vừa là phân giác vừa chiếm tỉ lệ hai phần ba đường cao $AH$. 
-Bán kính đường tròn ngoại tiếp $R = OA = \frac{2}{3} \cdot 6\sqrt{3} = 4\sqrt{3}\text{ cm}$.
-b) Tâm $I$ nội tiếp cũng bị định lý đồng nhất bắt nằm trùng lên điểm $O$ đối với một tam giác đều tuyệt đối. ($I \equiv O$).
-Khoảng cách từ trọng tâm chia xuống mút đáy cạnh tương đương một phần ba đường cao.
-Bán kính nội tiếp $r = \frac{1}{3}AH = \frac{1}{3} \cdot 6\sqrt{3} = 2\sqrt{3}\text{ cm}$.
+**Bài 5:** Cho tam giác $ABC$ đều cạnh $a = 12\text{ cm}$. Tính diện tích hình vành khăn nằm giữa hai đường tròn ngoại tiếp và nội tiếp tam giác $ABC$.
+
+**Bài 6:** Cho tam giác $ABC$ có 3 cạnh $a = 13, b = 14, c = 15$.  
+a) Tính nửa chu vi $p$.  
+b) Tính diện tích $S$ theo công thức Heron.  
+c) Tính bán kính ngoại tiếp $R$ và bán kính nội tiếp $r$.
+
+**Bài 7:** Chứng minh rằng tâm đường tròn ngoại tiếp tam giác vuông trùng với trung điểm của cạnh huyền.
+
+**Bài 8:** Chứng minh rằng đối với tam giác đều, tâm đường tròn ngoại tiếp và nội tiếp trùng nhau.
+
+**Bài 9 (Thực tế):** Ba hộ gia đình $A, B, C$ nằm ở 3 đỉnh của một tam giác vuông có hai cạnh góc vuông cách nhau $300\text{ m}$ và $400\text{ m}$. Họ muốn đào chung một giếng nước cách đều cả 3 nhà.  
+a) Xác định vị trí đào giếng trên bản đồ.  
+b) Tính khoảng cách từ giếng đến mỗi nhà.
+
+**Bài 10 (Thực tế):** Thiết kế bồn hoa tròn nội tiếp một khu đất tam giác cân có cạnh bên $10\text{ m}$ và cạnh đáy $12\text{ m}$. Tính bán kính và diện tích bồn hoa.
+
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
+
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
+
+**Bài 1:**  
+a) $c = 5 \Rightarrow R = 2,5\text{ cm}, r = \frac{3+4-5}{2} = 1\text{ cm}$.  
+b) $c = 13 \Rightarrow R = 6,5\text{ cm}, r = \frac{5+12-13}{2} = 2\text{ cm}$.  
+c) $c = 17 \Rightarrow R = 8,5\text{ cm}, r = \frac{8+15-17}{2} = 3\text{ cm}$.  
+d) $c = 25 \Rightarrow R = 12,5\text{ cm}, r = \frac{7+24-25}{2} = 3\text{ cm}$.  
+e) $c = 10 \Rightarrow R = 5\text{ cm}, b = 8 \Rightarrow r = \frac{6+8-10}{2} = 2\text{ cm}$.  
+f) $c = 6\sqrt{2} \Rightarrow R = 3\sqrt{2}\text{ cm}, r = \frac{6+6-6\sqrt{2}}{2} = 6 - 3\sqrt{2}\text{ cm}$.
+
+---
+
+**Bài 2:**  
+a) $R = \frac{6\sqrt{3}}{3} = 2\sqrt{3}\text{ cm}, r = \frac{6\sqrt{3}}{6} = \sqrt{3}\text{ cm}$.  
+b) $R = 4\sqrt{3}\text{ cm}, r = 2\sqrt{3}\text{ cm}$.  
+c) $R = \frac{3\sqrt{3} \cdot \sqrt{3}}{3} = 3\text{ cm}, r = 1,5\text{ cm}$.  
+d) $R = 10 \Rightarrow r = 5\text{ cm}, a = R\sqrt{3} = 10\sqrt{3}\text{ cm}$.  
+e) $r = 4 \Rightarrow R = 8\text{ cm}, a = 2r\sqrt{3} = 8\sqrt{3}\text{ cm}$.  
+f) $h = 9 \Rightarrow R = \frac{2}{3}h = 6\text{ cm}, r = \frac{1}{3}h = 3\text{ cm}$.
+
+---
+
+**Bài 3:**  
+a) $AH = \sqrt{15^2 - 9^2} = 12\text{ cm}$.  
+b) $S = \frac{1}{2} \cdot 18 \cdot 12 = 108\text{ cm}^2$.  
+c) $p = \frac{15+15+18}{2} = 24\text{ cm} \Rightarrow r = \frac{108}{24} = 4,5\text{ cm}$.  
+d) $R = \frac{a b c}{4S} = \frac{15 \times 15 \times 18}{4 \times 108} = \frac{4050}{432} = 9,375\text{ cm}$.  
+e) $OH = 12 - R = 12 - 9,375 = 2,625\text{ cm}$. $IH = r = 4,5\text{ cm} \Rightarrow OI = 4,5 - 2,625 = 1,875\text{ cm}$.  
+f) $S_{\text{tròn}} = \pi r^2 = \pi (4,5)^2 = 20,25\pi\text{ cm}^2$.
+
+---
+
+**Bài 4:**  
+a) $c = 10 \Rightarrow R = 5\text{ cm}, r = \frac{6+8-10}{2} = 2\text{ cm}$.  
+b) Công thức Euler: $OI = \sqrt{R(R - 2r)} = \sqrt{5(5 - 4)} = \sqrt{5} \approx 2,24\text{ cm}$.
+
+---
+
+**Bài 5:**  
+$R = \frac{12\sqrt{3}}{3} = 4\sqrt{3}\text{ cm} \Rightarrow S_{\text{ngoại}} = \pi R^2 = 48\pi$.  
+$r = \frac{12\sqrt{3}}{6} = 2\sqrt{3}\text{ cm} \Rightarrow S_{\text{nội}} = \pi r^2 = 12\pi$.  
+Diện tích vành khăn $S = 48\pi - 12\pi = 36\pi \approx 113,1\text{ cm}^2$.
+
+---
+
+**Bài 6:**  
+a) $p = \frac{13+14+15}{2} = 21$.  
+b) $S = \sqrt{21(8)(7)(6)} = 84$.  
+c) $r = \frac{84}{21} = 4$. $R = \frac{13 \times 14 \times 15}{4 \times 84} = \frac{2730}{336} = 8,125$.
+
+---
+
+**Bài 7:**  
+Gọi $O$ là trung điểm cạnh huyền $BC$ của tam giác vuông $ABC$.  
+Trong tam giác vuông $ABC$, đường trung tuyến $AO = \frac{1}{2} BC = OB = OC$.  
+Suy ra $OA = OB = OC = \frac{BC}{2} \Rightarrow O$ là tâm đường tròn ngoại tiếp $\Delta ABC$ (ĐPCM).
+
+---
+
+**Bài 8:**  
+Trong tam giác đều $ABC$, 3 đường trung trực cũng đồng thời là 3 đường phân giác.  
+Do đó giao điểm 3 đường trung trực (tâm ngoại tiếp $O$) trùng với giao điểm 3 đường phân giác (tâm nội tiếp $I$) (ĐPCM).
+
+---
+
+**Bài 9:**  
+a) Vị trí giếng nước $O$ là trung điểm cạnh huyền của tam giác vuông formed by 3 nhà.  
+b) Cạnh huyền $c = \sqrt{300^2 + 400^2} = 500\text{ m}$.  
+Khoảng cách từ giếng đến mỗi nhà $R = 500 / 2 = 250\text{ m}$.
+
+---
+
+**Bài 10:**  
+Chiều cao $AH = \sqrt{10^2 - 6^2} = 8\text{ m}$.  
+$S = \frac{1}{2} \times 12 \times 8 = 48\text{ m}^2$.  
+Nửa chu vi $p = \frac{10+10+12}{2} = 16\text{ m}$.  
+Bán kính bồn hoa $r = 48 / 16 = 3\text{ m}$.  
+Diện tích bồn hoa $S = \pi (3)^2 = 9\pi \approx 28,27\text{ m}^2$.
 
 </div>
 </details>

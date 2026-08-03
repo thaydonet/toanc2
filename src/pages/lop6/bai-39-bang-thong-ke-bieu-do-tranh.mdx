@@ -11,9 +11,10 @@ import KhoiDong from '../../components/sections/KhoiDong.astro';
 import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
-import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import BieuDoTranhInteractive from '../../components/interactive/BieuDoTranhInteractive';
 
 export const quizData = [
   {
@@ -38,6 +39,118 @@ export const quizData = [
     correct_option: "A",
     explanation: "Biểu đồ tranh dùng hình vẽ hoặc ký hiệu để biểu diễn dữ liệu.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong bảng thống kê, cột đầu tiên thường ghi gì?",
+    option_a: "Tiêu chí hoặc loại dữ liệu",
+    option_b: "Số thứ tự",
+    option_c: "Tên người lập bảng",
+    option_d: "Ngày tháng",
+    correct_option: "A",
+    explanation: "Cột đầu tiên trong bảng thống kê thường ghi tiêu chí hoặc loại dữ liệu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ tranh có ưu điểm gì?",
+    option_a: "Trực quan, sinh động, dễ hiểu",
+    option_b: "Khó vẽ",
+    option_c: "Không chính xác",
+    option_d: "Chỉ dùng cho số lớn",
+    correct_option: "A",
+    explanation: "Biểu đồ tranh rất trực quan, sinh động và dễ hiểu vì dùng hình vẽ.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Mỗi ký hiệu trong biểu đồ tranh đại diện cho bao nhiêu đơn vị?",
+    option_a: "Tùy chọn, do người vẽ quy ước",
+    option_b: "Luôn là 1",
+    option_c: "Luôn là 10",
+    option_d: "Không có quy tắc",
+    correct_option: "A",
+    explanation: "Mỗi ký hiệu trong biểu đồ tranh đại diện cho một số lượng nhất định do người vẽ quy ước.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi lập bảng thống kê, cần đảm bảo điều gì?",
+    option_a: "Tổng số lượng phải đúng và đầy đủ",
+    option_b: "Chỉ ghi số đẹp",
+    option_c: "Không cần cộng tổng",
+    option_d: "Bỏ qua dữ liệu nhỏ",
+    correct_option: "A",
+    explanation: "Khi lập bảng thống kê, tổng số lượng phải đúng và đầy đủ để dữ liệu chính xác.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ tranh khác bảng thống kê ở điểm nào?",
+    option_a: "Biểu đồ tranh dùng hình vẽ, bảng thống kê dùng số liệu",
+    option_b: "Hai loại giống hệt nhau",
+    option_c: "Bảng thống kê đẹp hơn",
+    option_d: "Biểu đồ tranh không thể hiện dữ liệu",
+    correct_option: "A",
+    explanation: "Biểu đồ tranh dùng hình vẽ/ký hiệu trực quan, còn bảng thống kê dùng số liệu trình bày dưới dạng bảng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điều tra 30 học sinh lớp 6A về loại trái cây yêu thích, kết quả: Cam 10, Xoài 8, Chuối 7, Dâu 5. Học sinh nào thích Cam chiếm tỉ lệ bao nhiêu phần trăm?",
+    option_a: "$\frac{10}{30} \times 100\% \approx 33,3\%$",
+    option_b: "$10\%$",
+    option_c: "$50\%$",
+    option_d: "$25\%$",
+    correct_option: "A",
+    explanation: "Tỉ lệ = $\frac{10}{30} \times 100\% \approx 33,3\%$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khi nào ta nên dùng biểu đồ tranh thay vì bảng thống kê?",
+    option_a: "Khi muốn trình bày dữ liệu trực quan cho nhiều người cùng xem",
+    option_b: "Khi cần tính toán chính xác từng con số",
+    option_c: "Khi muốn trẻ em dễ hiểu dữ liệu",
+    option_d: "Khi trình bày trước lớp",
+    correct_options: ["A", "C", "D"],
+    explanation: "Biểu đồ tranh phù hợp khi cần trực quan, dễ hiểu, trình bày trước đám đông. Bảng thống kê phù hợp khi cần tính toán chính xác.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Dấu hiệu nhận biết một bảng thống kê tốt là gì?",
+    option_a: "Có tiêu đề rõ ràng",
+    option_b: "Có đầy đủ các cột tiêu chí và cột số lượng",
+    option_c: "Dữ liệu sắp xếp乱七八糟",
+    option_d: "Tổng số phải đúng",
+    correct_options: ["A", "B", "D"],
+    explanation: "Bảng thống kê tốt cần có tiêu đề rõ ràng, đầy đủ cột, dữ liệu chính xác và tổng đúng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một lớp 40 học sinh, kết quả yêu thích màu sắc: Xanh 15, Đỏ 10, Vàng 8, Hồng 7. a) Lập bảng thống kê. b) Vẽ biểu đồ tranh (mỗi ⭐ = 2 học sinh). c) Nhận xét.",
+    answer: "a) Bảng: Xanh 15, Đỏ 10, Vàng 8, Hồng 7, Tổng 40. b) Xanh: 7,5 ⭐; Đỏ: 5 ⭐; Vàng: 4 ⭐; Hồng: 3,5 ⭐. c) Xanh được yêu thích nhất, Hồng ít nhất.",
+    explanation: "Cần lập bảng đầy đủ, vẽ biểu đồ tranh với quy ước rõ ràng và đưa ra nhận xét so sánh.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Điều tra số sách mượn tại thư viện trong 5 ngày: Thứ 2: 25, Thứ 3: 30, Thứ 4: 20, Thứ 5: 35, Thứ 6: 40. a) Lập bảng thống kê. b) Ngày nào nhiều sách nhất? Ngày nào ít nhất? c) Tính tổng số sách mượn trong tuần.",
+    answer: "a) Bảng: Thứ 2: 25, Thứ 3: 30, Thứ 4: 20, Thứ 5: 35, Thứ 6: 40, Tổng: 150. b) Nhiều nhất: Thứ 6 (40). Ít nhất: Thứ 4 (20). c) Tổng: 150 quyển.",
+    explanation: "Lập bảng đầy đủ, so sánh để tìm ngày max/min, cộng tổng.",
+    difficulty_level: "hard",
     is_dynamic: false,
   },
 ];
@@ -113,7 +226,8 @@ Dâu tây: ★ ★ ★ ★ ★ (10 học sinh)
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<BieuDoTranhInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -129,206 +243,118 @@ a) Lập bảng thống kê
 
 b) Vẽ biểu đồ tranh (mỗi ⚽ = 5 học sinh)
 
+**📝 Bài toán 2:** Điều tra số giờ học bài mỗi ngày của 30 học sinh:
+
+1 giờ: 5 học sinh, 2 giờ: 10 học sinh, 3 giờ: 10 học sinh, 4 giờ: 5 học sinh
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ tranh (mỗi 📖 = 2 học sinh)
+
+c) Số giờ nào có nhiều học sinh nhất?
+
+**📝 Bài toán 3:** Thống kê số lượng hoa trong vườn trường:
+
+Hoa hồng: 45 bông, Hoa cúc: 30 bông, Hoa lan: 20 bông, Hoa ly: 25 bông, Hoa violet: 15 bông
+
+a) Lập bảng thống kê
+
+b) Vẽ biểu đồ tranh (mỗi 🌸 = 5 bông)
+
+c) Hoa nào nhiều nhất? Hoa nào ít nhất?
+
 </VanDung>
 
-<BaiTapTuLuan>
+### Bài tập tự luận
 
-**Bài 1:** Điều tra sở thích môn học của 40 học sinh lớp 6B, kết quả như sau:
+**Bài 1:** Đếm số học sinh trong lớp theo nhóm máu (A, B, O, AB) và lập bảng thống kê.
 
-Toán: 12 học sinh, Văn: 10 học sinh, Anh: 8 học sinh, Khoa học: 6 học sinh, Thể dục: 4 học sinh
+**Bài 2:** Thu thập dữ liệu về số lượng sách vở mang đến trường của 20 bạn trong lớp. Lập bảng thống kê và nhận xét.
 
-a) Lập bảng thống kê
+**Bài 3:** Điều tra thức uống yêu thích của 25 bạn: Nước lọc 12, Trà sữa 5, Nước trái cây 4, Sữa 4. Lập bảng và vẽ biểu đồ tranh.
 
-b) Vẽ biểu đồ tranh (mỗi ký hiệu 📚 = 2 học sinh)
+**Bài 4:** Thống kê số con giáp trong lớp (Tý, Sửu, Dần, Mão, Thìn, Tỵ, Ngọ, Mùi, Thân, Dậu, Tuất, Hợi). Vẽ biểu đồ tranh.
 
-c) Môn học nào được yêu thích nhất?
+**Bài 5:** Điều tra số bạn có宠物 tại nhà (Chó, Mèo, Cá, Khác, Không có). Lập bảng và nhận xét.
 
-d) Môn học nào được yêu thích ít nhất?
+**Bài 6:** Thống kê温度 trung bình các ngày trong tuần (đơn vị °C): T2: 28, T3: 30, T4: 29, T5: 31, T6: 32, T7: 33, CN: 30. Lập bảng và vẽ biểu đồ.
 
-**Bài 2:** Số lượng cây được trồng ở các lớp trong tuần lễ xanh:
+**Bài 7:** Một lớp 45 học sinh, results: Giỏi 15, Khá 20, TB 8, Yếu 2. Lập bảng, tính tỉ lệ phần trăm mỗi loại.
 
-Lớp 6A: 15 cây, Lớp 6B: 20 cây, Lớp 6C: 18 cây, Lớp 6D: 12 cây
+**Bài 8:** Điều tra số lần đi xe buýt mỗi tuần của 30 bạn: 0 lần: 5, 1-2 lần: 10, 3-4 lần: 10, 5+ lần: 5. Vẽ biểu đồ tranh.
 
-a) Lập bảng thống kê
+**Bài 9:** Thống kê số người trong gia đình các bạn lớp 6A (2-6 người). Lập bảng và tìm模式.
 
-b) Vẽ biểu đồ tranh (mỗi ký hiệu 🌳 = 5 cây)
-
-c) Lớp nào trồng nhiều cây nhất?
-
-d) Tính tổng số cây đã trồng
-
-**Bài 3:** Một cửa hàng bán trái cây trong một ngày:
-
-Cam: 25 kg, Táo: 30 kg, Chuối: 20 kg, Xoài: 15 kg, Nho: 10 kg
-
-a) Lập bảng thống kê
-
-b) Vẽ biểu đồ tranh (mỗi ký hiệu 🍎 = 5 kg)
-
-c) Loại trái cây nào bán chạy nhất?
-
-d) Tính tổng khối lượng trái cây đã bán
-
-**Bài 4:** Số lượng xe qua ngã tư trong 5 giờ:
-
-Xe máy: 120, Ô tô: 80, Xe đạp: 40, Xe tải: 20
-
-a) Lập bảng thống kê
-
-b) Vẽ biểu đồ tranh (tự chọn ký hiệu và giá trị phù hợp)
-
-c) Loại xe nào đi qua nhiều nhất?
-
-d) Tính tổng số xe đã qua ngã tư
-
-**Bài 5:** Em hãy tự thu thập dữ liệu về màu sắc yêu thích của 20 bạn trong lớp, sau đó:
-
-a) Lập bảng thống kê
-
-b) Vẽ biểu đồ tranh
-
-c) Nhận xét về kết quả
+**Bài 10:** Điều tra kênh giải trí yêu thích của 40 học sinh: YouTube 15, TikTok 10, Đọc sách 8, Chơi game 7. Lập bảng, vẽ biểu đồ tranh và phân tích tỉ lệ phần trăm.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1: Sở thích môn học**
+**Bài 1:** Lập bảng với 4 cột: Nhóm máu (A, B, O, AB) và cột Số học sinh. Đếm và ghi số lượng từng nhóm.
 
-a) **Bảng thống kê:**
+**Bài 2:** Lập bảng với cột Số lượng sách và cột Số học sinh. Ví dụ: 0 cuốn: 2 bạn, 1-2 cuốn: 8 bạn, 3-4 cuốn: 7 bạn, 5+ cuốn: 3 bạn.
 
-| Môn học | Số học sinh |
-|---------|-------------|
-| Toán | 12 |
-| Văn | 10 |
-| Anh | 8 |
-| Khoa học | 6 |
-| Thể dục | 4 |
-| **Tổng** | **40** |
+**Bài 3:**
+| Thức uống | Số học sinh |
+|-----------|-------------|
+| Nước lọc | 12 |
+| Trà sữa | 5 |
+| Nước trái cây | 4 |
+| Sữa | 4 |
+| **Tổng** | **25** |
 
-b) **Biểu đồ tranh** (mỗi 📚 = 2 học sinh):
+Biểu đồ tranh (mỗi 🥤 = 2 bạn): Nước lọc: 6 🥤; Trà sữa: 2,5 🥤; Nước trái cây: 2 🥤; Sữa: 2 🥤.
 
-- Toán: 📚 📚 📚 📚 📚 📚 (12 học sinh)
-- Văn: 📚 📚 📚 📚 📚 (10 học sinh)
-- Anh: 📚 📚 📚 📚 (8 học sinh)
-- Khoa học: 📚 📚 📚 (6 học sinh)
-- Thể dục: 📚 📚 (4 học sinh)
+**Bài 4:** Với 12 con giáp, mỗi bạn thuộc một tuổi. Đếm số bạn từng tuổi và vẽ biểu đồ tranh với ký hiệu phù hợp.
 
-c) Môn học được yêu thích nhất: **Toán** (12 học sinh)
+**Bài 5:** Lập bảng: Chó, Mèo, Cá, Khác, Không có宠物. Ghi số lượng và tính tỉ lệ.
 
-d) Môn học được yêu thích ít nhất: **Thể dục** (4 học sinh)
+**Bài 6:**
+| Ngày | Nhiệt độ (°C) |
+|------|----------------|
+| Thứ 2 | 28 |
+| Thứ 3 | 30 |
+| Thứ 4 | 29 |
+| Thứ 5 | 31 |
+| Thứ 6 | 32 |
+| Thứ 7 | 33 |
+| Chủ nhật | 30 |
 
----
+Biểu đồ tranh (mỗi ☀️ = 2°C): T2: 14 ☀️; T3: 15 ☀️; T4: 14,5 ☀️; T5: 15,5 ☀️; T6: 16 ☀️; T7: 16,5 ☀️; CN: 15 ☀️.
 
-**Bài 2: Số cây trồng trong tuần lễ xanh**
+**Bài 7:**
+| Loại | Số HS | Tỉ lệ |
+|------|-------|--------|
+| Giỏi | 15 | 33,3% |
+| Khá | 20 | 44,4% |
+| TB | 8 | 17,8% |
+| Yếu | 2 | 4,4% |
+| **Tổng** | **45** | **100%** |
 
-a) **Bảng thống kê:**
+**Bài 8:**
+| Số lần | Số HS |
+|--------|-------|
+| 0 lần | 5 |
+| 1-2 lần | 10 |
+| 3-4 lần | 10 |
+| 5+ lần | 5 |
 
-| Lớp | Số cây |
-|-----|--------|
-| 6A | 15 |
-| 6B | 20 |
-| 6C | 18 |
-| 6D | 12 |
-| **Tổng** | **65** |
+**Bài 9:** Đếm số bạn có gia đình 2, 3, 4, 5, 6 người. MODE thường là gia đình 4-5 người.
 
-b) **Biểu đồ tranh** (mỗi 🌳 = 5 cây):
+**Bài 10:**
+| Kênh | Số HS | Tỉ lệ |
+|------|-------|--------|
+| YouTube | 15 | 37,5% |
+| TikTok | 10 | 25% |
+| Đọc sách | 8 | 20% |
+| Chơi game | 7 | 17,5% |
+| **Tổng** | **40** | **100%** |
 
-- Lớp 6A: 🌳 🌳 🌳 (15 cây)
-- Lớp 6B: 🌳 🌳 🌳 🌳 (20 cây)
-- Lớp 6C: 🌳 🌳 🌳 🌲 (18 cây, 🌲 = 3 cây)
-- Lớp 6D: 🌳 🌳 🌲 (12 cây, 🌲 = 2 cây)
-
-c) Lớp trồng nhiều cây nhất: **Lớp 6B** (20 cây)
-
-d) Tổng số cây đã trồng: 15 + 20 + 18 + 12 = **65 cây**
-
----
-
-**Bài 3: Trái cây bán được**
-
-a) **Bảng thống kê:**
-
-| Loại trái cây | Khối lượng (kg) |
-|---------------|-----------------|
-| Cam | 25 |
-| Táo | 30 |
-| Chuối | 20 |
-| Xoài | 15 |
-| Nho | 10 |
-| **Tổng** | **100** |
-
-b) **Biểu đồ tranh** (mỗi 🍎 = 5 kg):
-
-- Cam: 🍎 🍎 🍎 🍎 🍎 (25 kg)
-- Táo: 🍎 🍎 🍎 🍎 🍎 🍎 (30 kg)
-- Chuối: 🍎 🍎 🍎 🍎 (20 kg)
-- Xoài: 🍎 🍎 🍎 (15 kg)
-- Nho: 🍎 🍎 (10 kg)
-
-c) Loại trái cây bán chạy nhất: **Táo** (30 kg)
-
-d) Tổng khối lượng: 25 + 30 + 20 + 15 + 10 = **100 kg**
-
----
-
-**Bài 4: Xe qua ngã tư**
-
-a) **Bảng thống kê:**
-
-| Loại xe | Số lượng |
-|---------|----------|
-| Xe máy | 120 |
-| Ô tô | 80 |
-| Xe đạp | 40 |
-| Xe tải | 20 |
-| **Tổng** | **260** |
-
-b) **Biểu đồ tranh** (mỗi 🚗 = 20 xe):
-
-- Xe máy: 🚗 🚗 🚗 🚗 🚗 🚗 (120 xe)
-- Ô tô: 🚗 🚗 🚗 🚗 (80 xe)
-- Xe đạp: 🚗 🚗 (40 xe)
-- Xe tải: 🚗 (20 xe)
-
-c) Loại xe đi qua nhiều nhất: **Xe máy** (120 xe)
-
-d) Tổng số xe: 120 + 80 + 40 + 20 = **260 xe**
-
----
-
-**Bài 5: Màu sắc yêu thích (Ví dụ)**
-
-a) **Bảng thống kê:**
-
-| Màu sắc | Số học sinh |
-|---------|-------------|
-| Xanh | 7 |
-| Đỏ | 5 |
-| Vàng | 4 |
-| Hồng | 3 |
-| Tím | 1 |
-| **Tổng** | **20** |
-
-b) **Biểu đồ tranh** (mỗi ⭐ = 1 học sinh):
-
-- Xanh: ⭐⭐⭐⭐⭐⭐⭐
-- Đỏ: ⭐⭐⭐⭐⭐
-- Vàng: ⭐⭐⭐⭐
-- Hồng: ⭐⭐⭐
-- Tím: ⭐
-
-c) **Nhận xét:**
-   - Màu xanh được yêu thích nhất (7 học sinh = 35%)
-   - Màu tím được yêu thích ít nhất (1 học sinh = 5%)
-   - Màu xanh và đỏ chiếm 60% tổng số học sinh
-   - Các màu sáng (xanh, đỏ, vàng) được ưa chuộng hơn màu tối
-   - Có sự chênh lệch rõ rệt giữa màu được yêu thích nhất và ít nhất
+YouTube là kênh phổ biến nhất (37,5%).
 
 </div>
 </details>
-
-</BaiTapTuLuan>
 
 <GhiNho>
 

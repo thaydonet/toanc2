@@ -1,9 +1,9 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
-title: "Ôn tập chương 9 - Toán 8"
-description: "Ôn tập toàn bộ kiến thức chương 9 Toán 8 KNTT: Tam giác đồng dạng, các trường hợp đồng dạng, định lí Pythagore"
+title: "Bài Ôn tập Chương 9: Tam giác đồng dạng và Hình đồng dạng"
+description: "Tổng hợp toàn bộ kiến thức Khái niệm hai tam giác đồng dạng, Các trường hợp đồng dạng (c.c.c, c.g.c, g.g), Định lí Pythagore, Tam giác vuông đồng dạng và Khái niệm hình đồng dạng - Toán 8 KNTT Chương 9"
 grade: "Lớp 8"
-chapter: "Chương IX: Tam giác đồng dạng"
+chapter: "Chương 9: Tam giác đồng dạng"
 currentSlug: "lop8/bai-on-tap-chuong-9"
 ---
 
@@ -13,602 +13,365 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong9Interactive from '../../components/interactive/OnTapChuong9Interactive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Hai tam giác đồng dạng là:",
-    option_a: "Hai tam giác bằng nhau",
-    option_b: "Hai tam giác có các góc tương ứng bằng nhau",
-    option_c: "Hai tam giác có các cạnh tương ứng bằng nhau",
-    option_d: "Hai tam giác có cùng diện tích",
-    correct_option: "B",
-    explanation: "Hai tam giác đồng dạng là hai tam giác có các góc tương ứng bằng nhau và các cạnh tương ứng tỉ lệ",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Ký hiệu $\\triangle ABC \\sim \\triangle DEF$ có nghĩa là:",
-    option_a: "Hai tam giác bằng nhau",
-    option_b: "Hai tam giác đồng dạng",
-    option_c: "Hai tam giác có cùng chu vi",
-    option_d: "Hai tam giác có cùng diện tích",
-    correct_option: "B",
-    explanation: "Ký hiệu $\\sim$ biểu thị hai tam giác đồng dạng",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trường hợp đồng dạng thứ nhất (AA) là:",
-    option_a: "Hai góc tương ứng bằng nhau",
-    option_b: "Hai cạnh tương ứng tỉ lệ",
-    option_c: "Cả ba cạnh tương ứng tỉ lệ",
-    option_d: "Một góc bằng nhau",
-    correct_option: "A",
-    explanation: "Trường hợp AA: Nếu hai góc của tam giác này bằng hai góc của tam giác kia thì hai tam giác đó đồng dạng",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trường hợp đồng dạng thứ hai (SAS) là:",
-    option_a: "Hai cạnh tương ứng tỉ lệ và góc xen giữa bằng nhau",
-    option_b: "Cả ba cạnh tương ứng tỉ lệ",
-    option_c: "Hai góc tương ứng bằng nhau",
-    option_d: "Một cạnh bằng nhau",
-    correct_option: "A",
-    explanation: "Trường hợp SAS: Nếu hai cạnh của tam giác này tỉ lệ với hai cạnh của tam giác kia và góc xen giữa bằng nhau thì hai tam giác đó đồng dạng",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trường hợp đồng dạng thứ ba (SSS) là:",
-    option_a: "Hai góc tương ứng bằng nhau",
-    option_b: "Cả ba cạnh tương ứng tỉ lệ",
-    option_c: "Hai cạnh tương ứng tỉ lệ",
-    option_d: "Một cạnh bằng nhau",
-    correct_option: "B",
-    explanation: "Trường hợp SSS: Nếu ba cạnh của tam giác này tỉ lệ với ba cạnh của tam giác kia thì hai tam giác đó đồng dạng",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Định lí Pythagore phát biểu rằng:",
-    option_a: "Trong tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông",
-    option_b: "Trong tam giác, tổng hai cạnh lớn hơn cạnh thứ ba",
-    option_c: "Trong tam giác vuông, cạnh huyền là cạnh dài nhất",
-    option_d: "Trong tam giác, tổng các góc bằng 180°",
-    correct_option: "A",
-    explanation: "Định lí Pythagore: $c^2 = a^2 + b^2$ với $c$ là cạnh huyền, $a$, $b$ là hai cạnh góc vuông",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Trong tam giác vuông với hai cạnh góc vuông là 3 và 4, cạnh huyền là:",
-    option_a: "5",
-    option_b: "7",
+    question: "Cho $\\Delta ABC \\sim \\Delta A'B'C'$ theo tỉ số $k = 3$. Tỉ số diện tích $\\dfrac{S_{ABC}}{S_{A'B'C'}}$ bằng bao nhiêu?",
+    option_a: "9",
+    option_b: "3",
     option_c: "6",
-    option_d: "8",
+    option_d: "27",
     correct_option: "A",
-    explanation: "$c^2 = 3^2 + 4^2 = 9 + 16 = 25$, suy ra $c = 5$",
-    difficulty_level: "hard",
+    explanation: "Tỉ số diện tích bằng bình phương tỉ số đồng dạng $k^2 = 3^2 = 9$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Nếu $\\triangle ABC \\sim \\triangle DEF$ với tỉ số đồng dạng $k = 2$, thì:",
-    option_a: "Diện tích $\\triangle ABC$ gấp 2 lần diện tích $\\triangle DEF$",
-    option_b: "Diện tích $\\triangle ABC$ gấp 4 lần diện tích $\\triangle DEF$",
-    option_c: "Chu vi $\\triangle ABC$ gấp 4 lần chu vi $\\triangle DEF$",
-    option_d: "Các góc của $\\triangle ABC$ gấp 2 lần các góc của $\\triangle DEF$",
-    correct_option: "B",
-    explanation: "Nếu tỉ số đồng dạng là $k$, thì tỉ số diện tích là $k^2 = 2^2 = 4$",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Hai tam giác vuông đồng dạng khi:",
-    option_a: "Có một góc nhọn bằng nhau",
-    option_b: "Có hai cạnh tương ứng tỉ lệ",
-    option_c: "Cả A và B",
-    option_d: "Có cạnh huyền bằng nhau",
-    correct_option: "C",
-    explanation: "Hai tam giác vuông đồng dạng khi có một góc nhọn bằng nhau (AA) hoặc hai cạnh tương ứng tỉ lệ (SAS)",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Nếu $\\triangle ABC \\sim \\triangle DEF$ với $\\frac{AB}{DE} = \\frac{2}{3}$, thì $\\frac{\\text{Chu vi } ABC}{\\text{Chu vi } DEF}$ bằng:",
-    option_a: "$\\frac{2}{3}$",
-    option_b: "$\\frac{4}{9}$",
-    option_c: "$\\frac{3}{2}$",
-    option_d: "$\\frac{9}{4}$",
+    question: "Cho $\\Delta ABC$ vuông tại $A$ đường cao $AH$. Khẳng định nào sau đây SAI?",
+    option_a: "$AH^2 = HB + HC$",
+    option_b: "$AH^2 = HB \\cdot HC$",
+    option_c: "$AB^2 = BH \\cdot BC$",
+    option_d: "$AC^2 = CH \\cdot BC$",
     correct_option: "A",
-    explanation: "Tỉ số chu vi bằng tỉ số đồng dạng, tức $\\frac{2}{3}$",
-    difficulty_level: "hard",
+    explanation: "$AH^2 = HB \\cdot HC$ (tích chứ không phải tổng).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bộ ba số nào sau đây tạo thành độ dài ba cạnh của một tam giác vuông?",
+    option_a: "(5, 12, 13)",
+    option_b: "(4, 5, 6)",
+    option_c: "(6, 7, 8)",
+    option_d: "(3, 5, 7)",
+    correct_option: "A",
+    explanation: "$5^2 + 12^2 = 25 + 144 = 169 = 13^2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác $ABC$ có $MN // BC$ ($M \\in AB, N \\in AC$). Khẳng định nào ĐÚNG?",
+    option_a: "$\\Delta AMN \\sim \\Delta ABC$",
+    option_b: "$\\Delta AMN = \\Delta ABC$",
+    option_c: "$\\Delta AMN \\sim \\Delta ACB$",
+    option_d: "$\\Delta AMN \\sim \\Delta BCA$",
+    correct_option: "A",
+    explanation: "Định lí về đường thẳng song song với một cạnh của tam giác.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tỉ số chu vi của hai tam giác đồng dạng bằng:",
+    option_a: "Chính tỉ số đồng dạng $k$",
+    option_b: "Bình phương tỉ số đồng dạng $k^2$",
+    option_c: "Căn bậc hai tỉ số đồng dạng $\\sqrt{k}$",
+    option_d: "Gấp đôi tỉ số đồng dạng $2k$",
+    correct_option: "A",
+    explanation: "Tỉ số chu vi luôn bằng tỉ số đồng dạng k.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về tam giác đồng dạng:",
-    option_a: "Hai tam giác đồng dạng có các góc tương ứng bằng nhau",
-    option_b: "Hai tam giác đồng dạng có các cạnh tương ứng bằng nhau",
-    option_c: "Hai tam giác bằng nhau thì đồng dạng",
-    option_d: "Hai tam giác đồng dạng thì bằng nhau",
-    correct_option: "A,C",
-    explanation: "A, C đúng. B sai: các cạnh tương ứng tỉ lệ, không bằng nhau. D sai: đồng dạng không nhất thiết bằng nhau.",
+    question: "Những tam giác vuông nào sau đây ĐỒNG DẠNG với nhau?",
+    option_a: "Hai tam giác vuông có một góc nhọn $40^\\circ$",
+    option_b: "Hai tam giác vuông cân bất kỳ",
+    option_c: "Hai tam giác vuông có 2 cạnh góc vuông lần lượt là (3, 4) và (6, 8)",
+    option_d: "Hai tam giác vuông bất kỳ",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng dựa trên các trường hợp đồng dạng tam giác vuông.",
     difficulty_level: "medium",
-    is_dynamic: false
+    is_dynamic: false,
   },
   {
-    type: "msq", 
-    question: "Xét tính đúng sai của các khẳng định sau về các trường hợp đồng dạng:",
-    option_a: "Trường hợp AA: Hai góc tương ứng bằng nhau",
-    option_b: "Trường hợp SAS: Hai cạnh tỉ lệ và góc xen giữa bằng nhau",
-    option_c: "Trường hợp SSS: Ba cạnh tương ứng tỉ lệ",
-    option_d: "Trường hợp HL: Cạnh huyền và một cạnh góc vuông tỉ lệ",
-    correct_option: "A,B,C,D",
-    explanation: "Tất cả đều đúng. Đây là các trường hợp đồng dạng của tam giác.",
+    type: "sa",
+    question: "Cho $\\Delta ABC$ vuông tại $A$ đường cao $AH$ có $HB = 9$ cm, $HC = 16$ cm. Tính độ dài đường cao $AH$ (cm).",
+    correct_option: "12",
+    explanation: "$AH = \\sqrt{HB \\cdot HC} = \\sqrt{9 \\cdot 16} = \\sqrt{144} = 12$ cm.",
     difficulty_level: "medium",
-    is_dynamic: false
+    is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về Định lí Pythagore:",
-    option_a: "$c^2 = a^2 + b^2$ trong tam giác vuông",
-    option_b: "Tam giác với cạnh 3, 4, 5 là tam giác vuông",
-    option_c: "Định lí Pythagore chỉ áp dụng cho tam giác vuông",
-    option_d: "Trong tam giác vuông, cạnh huyền là cạnh dài nhất",
-    correct_option: "A,B,C,D",
-    explanation: "Tất cả đều đúng. Đây là các tính chất của Định lí Pythagore.",
-    difficulty_level: "hard",
-    is_dynamic: false
+    type: "mcq",
+    question: "Mọi hình tròn trong mặt phẳng đều có tính chất gì?",
+    option_a: "Luôn luôn đồng dạng với nhau",
+    option_b: "Chỉ đồng dạng khi cùng bán kính",
+    option_c: "Không bao giờ đồng dạng",
+    option_d: "Đồng dạng với hình vuông",
+    correct_option: "A",
+    explanation: "Tất cả các hình tròn luôn đồng dạng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Xét tính đúng sai của các khẳng định sau về tỉ số đồng dạng:",
-    option_a: "Nếu tỉ số đồng dạng là $k$, thì tỉ số chu vi là $k$",
-    option_b: "Nếu tỉ số đồng dạng là $k$, thì tỉ số diện tích là $k^2$",
-    option_c: "Nếu tỉ số đồng dạng là 2, thì diện tích gấp 2 lần",
-    option_d: "Nếu tỉ số đồng dạng là $\\frac{1}{2}$, thì chu vi gấp $\\frac{1}{2}$ lần",
-    correct_option: "A,B,D",
-    explanation: "A, B, D đúng. C sai: nếu tỉ số đồng dạng là 2, thì diện tích gấp $2^2 = 4$ lần.",
-    difficulty_level: "hard",
-    is_dynamic: false
+    type: "mcq",
+    question: "Cho $\\Delta ABC \\sim \\Delta MNP$ (g.g). Biết $\\widehat{A} = 50^\\circ, \\widehat{B} = 60^\\circ$. Số đo $\\widehat{P}$ bằng:",
+    option_a: "$70^\\circ$",
+    option_b: "$50^\\circ$",
+    option_c: "$60^\\circ$",
+    option_d: "$110^\\circ$",
+    correct_option: "A",
+    explanation: "$\\widehat{C} = 180^\\circ - (50^\\circ + 60^\\circ) = 70^\\circ \\Rightarrow \\widehat{P} = \\widehat{C} = 70^\\circ$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Một tam giác vuông có hai cạnh góc vuông là 5.6cm và 4.2cm. Tính độ dài cạnh huyền.",
-    correct_option: "7.0",
-    explanation: "$c^2 = 5.6^2 + 4.2^2 = 31.36 + 17.64 = 49$, suy ra $c = 7$ cm",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },
-  {
-    type: "sa",
-    question: "Hai tam giác đồng dạng với tỉ số đồng dạng 2.5. Nếu tam giác nhỏ có diện tích 16cm², tính diện tích tam giác lớn.",
-    correct_option: "100.0",
-    explanation: "Tỉ số diện tích = $(2.5)^2 = 6.25$. Diện tích tam giác lớn = $16 \\times 6.25 = 100$ cm²",
-    difficulty_level: "hard",
-    is_dynamic: false
-  },{
-    type: "sa",
-    question: "Hai tam giác đồng dạng với tỉ số đồng dạng 2.5. Nếu tam giác nhỏ có diện tích 16cm², tính diện tích tam giác lớn.",
-    correct_option: "100.0",
-    explanation: "Tỉ số diện tích = $(2.5)^2 = 6.25$. Diện tích tam giác lớn = $16 \\times 6.25 = 100$ cm²",
-    difficulty_level: "hard",
-    is_dynamic: false
+    type: "mcq",
+    question: "Cho hai hình vuông có cạnh lần lượt là $4$ cm và $12$ cm. Tỉ số diện tích của hai hình vuông bằng:",
+    option_a: "9",
+    option_b: "3",
+    option_c: "6",
+    option_d: "12",
+    correct_option: "A",
+    explanation: "$k = \\dfrac{12}{4} = 3 \\Rightarrow$ Tỉ số diện tích $= 3^2 = 9$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   }
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau">🎯 Ôn tập chương 9 — Tam giác đồng dạng</h3>
+### 🎯 Ôn tập hệ thống kiến thức Chương 9
 
-Chương 9 khám phá mối quan hệ giữa các tam giác có hình dạng giống nhau!
-
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔺</div>
-    <strong>Đồng dạng</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Định nghĩa và tính chất</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">✓</div>
-    <strong>Trường hợp</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">AA, SAS, SSS</p>
-  </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;">📐</div>
-    <strong>Pythagore</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Tam giác vuông</p>
-  </div>
-</div>
+Chương 9 mở ra toàn bộ chân trời về **Hình học Đồng dạng**: Từ khái niệm hai tam giác đồng dạng, 3 trường hợp đồng dạng (c.c.c, c.g.c, g.g), Định lí Pythagore huyền thoại, các trường hợp đồng dạng của tam giác vuông và Hệ thức lượng, cho đến khái niệm rộng mở về Hình đồng dạng thực tế. Cùng hệ thống lại toàn bộ nhé!
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="ly-thuyet">📖 I. LÝ THUYẾT</h3>
+### 📐 Sơ đồ tư duy & Bảng tổng hợp công thức
 
-<h4 id="tam-giac-dong-dang">1. Tam giác đồng dạng</h4>
+<div style="text-align:center;margin:1.5rem 0;">
+<svg width="600" height="320" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+  <rect x="190" y="10" width="220" height="40" rx="8" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="300" y="35" text-anchor="middle" font-size="15" font-weight="bold" fill="white">CHƯƠNG 9: TAM GIÁC ĐỒNG DẠNG</text>
 
-<div class="box-dinh-nghia">
+  <line x1="300" y1="50" x2="100" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="235" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="365" y2="100" stroke="#475569" stroke-width="2"/>
+  <line x1="300" y1="50" x2="500" y2="100" stroke="#475569" stroke-width="2"/>
 
-**Định nghĩa:** Hai tam giác được gọi là đồng dạng nếu:
-- Các góc tương ứng bằng nhau
-- Các cạnh tương ứng tỉ lệ
+  <rect x="20" y="100" width="140" height="180" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">1. KHÁI NIỆM & TÍNH CHẤT</text>
+  <text x="30" y="155" font-size="12" fill="#1e3a8a">• Góc tương ứng =</text>
+  <text x="30" y="180" font-size="12" fill="#1e3a8a">• Cạnh tương ứng tỉ lệ k</text>
+  <text x="30" y="205" font-size="12" fill="#1e3a8a">• Tỉ số chu vi = k</text>
+  <text x="30" y="230" font-size="12" fill="#1e3a8a">• Tỉ số diện tích = k²</text>
 
-**Ký hiệu:** $\triangle ABC \sim \triangle DEF$
+  <rect x="170" y="100" width="130" height="180" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="235" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">2. 3 TRƯỜNG HỢP ĐD</text>
+  <text x="180" y="155" font-size="12" fill="#14532d">• c.c.c (3 cạnh tỉ lệ)</text>
+  <text x="180" y="180" font-size="12" fill="#14532d">• c.g.c (2 cạnh tỉ lệ, góc kẹp giữa =)</text>
+  <text x="180" y="205" font-size="12" fill="#14532d">• g.g (2 góc =)</text>
 
-**Tỉ số đồng dạng:** $k = \frac{AB}{DE} = \frac{BC}{EF} = \frac{CA}{FD}$
+  <rect x="310" y="100" width="125" height="180" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="372" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">3. TAM GIÁC VUÔNG</text>
+  <text x="320" y="155" font-size="12" fill="#78350f">• c² = a² + b² (Pythagore)</text>
+  <text x="320" y="180" font-size="12" fill="#78350f">• 1 góc nhọn =</text>
+  <text x="320" y="205" font-size="12" fill="#78350f">• 2 cgv tỉ lệ</text>
+  <text x="320" y="230" font-size="12" fill="#78350f">• AH² = HB · HC</text>
 
+  <rect x="445" y="100" width="135" height="180" rx="8" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+  <text x="512" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#9d174d">4. HÌNH ĐỒNG DẠNG</text>
+  <text x="455" y="155" font-size="12" fill="#831843">• Cùng hình dạng</text>
+  <text x="455" y="180" font-size="12" fill="#831843">• Phối cảnh (Vị tự) tâm O</text>
+  <text x="455" y="205" font-size="12" fill="#831843">• Đường tròn, đa giác đều</text>
+  <text x="455" y="230" font-size="12" fill="#831843">• Ứng dụng thực tế</text>
+</svg>
+<p style="font-size:0.9rem;color:#475569;margin-top:0.5rem;"><em>Sơ đồ tư duy toàn bộ Kiến thức Chương 9: Tam giác đồng dạng &amp; Hình đồng dạng</em></p>
 </div>
 
-<h4 id="truong-hop-dong-dang">2. Các trường hợp đồng dạng</h4>
+---
 
-**Trường hợp 1 (AA):** Nếu hai góc của tam giác này bằng hai góc của tam giác kia thì hai tam giác đó đồng dạng.
+#### 1. Bảng hệ thống kiến thức cốt lõi Chương 9
 
-**Trường hợp 2 (SAS):** Nếu hai cạnh của tam giác này tỉ lệ với hai cạnh của tam giác kia và góc xen giữa bằng nhau thì hai tam giác đó đồng dạng.
-
-**Trường hợp 3 (SSS):** Nếu ba cạnh của tam giác này tỉ lệ với ba cạnh của tam giác kia thì hai tam giác đó đồng dạng.
-
-<h4 id="dinh-li-pythagore">3. Định lí Pythagore</h4>
-
-<div class="box-dinh-nghia">
-
-**Định lí:** Trong một tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông.
-
-$$c^2 = a^2 + b^2$$
-
-với $c$ là cạnh huyền, $a$, $b$ là hai cạnh góc vuông.
-
-</div>
-
-<h4 id="ti-so-dong-dang">4. Tỉ số đồng dạng</h4>
-
-Nếu $\triangle ABC \sim \triangle DEF$ với tỉ số đồng dạng $k$, thì:
-- Tỉ số chu vi: $\frac{P_{ABC}}{P_{DEF}} = k$
-- Tỉ số diện tích: $\frac{S_{ABC}}{S_{DEF}} = k^2$
+| Chủ đề | Định lí / Công thức cốt lõi | Ý nghĩa bài toán |
+| :--- | :--- | :--- |
+| **Tam giác đồng dạng** | $\dfrac{A'B'}{AB} = \dfrac{B'C'}{BC} = \dfrac{A'C'}{AC} = k$ | Tính độ dài cạnh, góc, tỉ số chu vi $k$, diện tích $k^2$ |
+| **Định lí Ta-lét / Song song** | $MN // BC \Rightarrow \Delta AMN \sim \Delta ABC$ | Chứng minh đồng dạng và tính cạnh nhanh |
+| **3 Dấu hiệu đồng dạng** | c.c.c, c.g.c, g.g | Chứng minh tam giác đồng dạng và tích đoạn thẳng |
+| **Định lí Pythagore** | $c^2 = a^2 + b^2$ | Tính cạnh tam giác vuông, nhận biết tam giác vuông |
+| **Hệ thức lượng tam giác vuông** | $AH^2 = HB \cdot HC$, $AB^2 = BH \cdot BC$ | Tính đường cao và hình chiếu trong tam giác vuông |
+| **Hình đồng dạng & Phối cảnh** | Phóng to/thu nhỏ $k$, đường qua tâm $O$ | Bản đồ, mô hình, thu phóng ảnh thực tế |
 
 </KhamPha>
 
-<LuyenTap>
+<LuyenTap title="Thực hành tương tác">
 
-<h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
+<h3 id="luyen-tap-tuong-tac">🎮 Thử thách tổng hợp Ôn tập Chương 9</h3>
+
+<OnTapChuong9Interactive client:load />
+
+</LuyenTap>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Câu 1 (Đo chiều cao hải đăng bằng góc ngắm nghiêng):** Để đo chiều cao ngọn hải đăng $AB$, người ta cắm một cọc $CD = 2$m vuông góc với mặt đất cách chân hải đăng $BC = 45$m. Người quan sát lùi lại đến $E$ ($E, D, B$ thẳng hàng, $DE = 3$m) sao cho mắt quan sát nhìn thấy đỉnh $A$ của hải đăng và đỉnh $C$ của cọc thẳng hàng.
+
+a) Chứng minh $\Delta CDE \sim \Delta ABE$ (g.g).  
+b) Tính chiều cao $AB$ của ngọn hải đăng.
+
+**Lời giải:**  
+a) Ta có $CD // AB$ (cùng $\perp BE$) $\Rightarrow \Delta CDE \sim \Delta ABE$ (g.g).  
+b) Ta có $BE = BD + DE = 45 + 3 = 48$m.  
+Tỉ số đồng dạng: $\dfrac{CD}{AB} = \dfrac{DE}{BE} \Rightarrow \dfrac{2}{AB} = \dfrac{3}{48} = \dfrac{1}{16} \Rightarrow AB = 2 \times 16 = 32$ mét.
+
+</div>
+
+</VanDung>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
-
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
-
-<h4 id="bai-1">Bài 1: Định nghĩa tam giác đồng dạng</h4>
-
-a) Nêu định nghĩa hai tam giác đồng dạng
-
-b) Viết ký hiệu đồng dạng của hai tam giác ABC và DEF
-
-c) Nếu $\triangle ABC \sim \triangle DEF$ với tỉ số đồng dạng $k = 2$, hãy so sánh các cạnh tương ứng
-
-d) Chứng minh rằng nếu hai tam giác bằng nhau thì chúng đồng dạng
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Hai tam giác được gọi là đồng dạng nếu các góc tương ứng bằng nhau và các cạnh tương ứng tỉ lệ
-
-b) $\triangle ABC \sim \triangle DEF$
-
-c) $\frac{AB}{DE} = \frac{BC}{EF} = \frac{CA}{FD} = 2$, suy ra các cạnh của tam giác ABC gấp 2 lần các cạnh tương ứng của tam giác DEF
-
-d) Nếu hai tam giác bằng nhau, các góc tương ứng bằng nhau và các cạnh tương ứng bằng nhau (tỉ số = 1), nên chúng đồng dạng
-
-</div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Trường hợp đồng dạng AA</h4>
-
-a) Phát biểu trường hợp đồng dạng AA
-
-b) Cho $\triangle ABC$ và $\triangle DEF$ có $\angle A = \angle D = 60°$, $\angle B = \angle E = 50°$. Chứng minh $\triangle ABC \sim \triangle DEF$
-
-c) Tính góc C và góc F
-
-d) Nếu AB = 6cm, DE = 9cm, tính tỉ số đồng dạng
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Nếu hai góc của tam giác này bằng hai góc của tam giác kia thì hai tam giác đó đồng dạng
-
-b) Vì $\angle A = \angle D$ và $\angle B = \angle E$, nên $\triangle ABC \sim \triangle DEF$ (AA)
-
-c) $\angle C = 180° - 60° - 50° = 70°$, $\angle F = 70°$
-
-d) Tỉ số đồng dạng = $\frac{AB}{DE} = \frac{6}{9} = \frac{2}{3}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Trường hợp đồng dạng SAS</h4>
-
-a) Phát biểu trường hợp đồng dạng SAS
-
-b) Cho $\triangle ABC$ và $\triangle DEF$ có $\frac{AB}{DE} = \frac{AC}{DF} = \frac{2}{3}$ và $\angle A = \angle D = 45°$. Chứng minh $\triangle ABC \sim \triangle DEF$
-
-c) Nếu BC = 8cm, tính EF
-
-d) Tính tỉ số diện tích của hai tam giác
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Nếu hai cạnh của tam giác này tỉ lệ với hai cạnh của tam giác kia và góc xen giữa bằng nhau thì hai tam giác đó đồng dạng
-
-b) Vì $\frac{AB}{DE} = \frac{AC}{DF}$ và $\angle A = \angle D$, nên $\triangle ABC \sim \triangle DEF$ (SAS)
-
-c) Vì $\triangle ABC \sim \triangle DEF$ với tỉ số $\frac{2}{3}$, nên $\frac{BC}{EF} = \frac{2}{3}$, suy ra $EF = \frac{8 \times 3}{2} = 12$ cm
-
-d) Tỉ số diện tích = $(\frac{2}{3})^2 = \frac{4}{9}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Trường hợp đồng dạng SSS</h4>
-
-a) Phát biểu trường hợp đồng dạng SSS
-
-b) Cho $\triangle ABC$ có AB = 4cm, BC = 5cm, CA = 6cm và $\triangle DEF$ có DE = 6cm, EF = 7.5cm, FD = 9cm. Chứng minh $\triangle ABC \sim \triangle DEF$
-
-c) Tính tỉ số đồng dạng
-
-d) Tính tỉ số chu vi của hai tam giác
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Nếu ba cạnh của tam giác này tỉ lệ với ba cạnh của tam giác kia thì hai tam giác đó đồng dạng
-
-b) $\frac{AB}{DE} = \frac{4}{6} = \frac{2}{3}$, $\frac{BC}{EF} = \frac{5}{7.5} = \frac{2}{3}$, $\frac{CA}{FD} = \frac{6}{9} = \frac{2}{3}$
-   Vì ba cạnh tỉ lệ, nên $\triangle ABC \sim \triangle DEF$ (SSS)
-
-c) Tỉ số đồng dạng = $\frac{2}{3}$
-
-d) Tỉ số chu vi = $\frac{2}{3}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Định lí Pythagore</h4>
-
-a) Phát biểu Định lí Pythagore
-
-b) Cho tam giác vuông có hai cạnh góc vuông là 5cm và 12cm. Tính cạnh huyền
-
-c) Cho tam giác vuông có cạnh huyền 13cm và một cạnh góc vuông 5cm. Tính cạnh góc vuông còn lại
-
-d) Chứng minh rằng tam giác với cạnh 3, 4, 5 là tam giác vuông
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Trong tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông: $c^2 = a^2 + b^2$
-
-b) $c^2 = 5^2 + 12^2 = 25 + 144 = 169$, suy ra $c = 13$ cm
-
-c) $b^2 = 13^2 - 5^2 = 169 - 25 = 144$, suy ra $b = 12$ cm
-
-d) $3^2 + 4^2 = 9 + 16 = 25 = 5^2$, nên tam giác này là tam giác vuông
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Tỉ số đồng dạng và diện tích</h4>
-
-a) Nếu $\triangle ABC \sim \triangle DEF$ với tỉ số đồng dạng $k = 3$, tính tỉ số chu vi
-
-b) Tính tỉ số diện tích
-
-c) Nếu chu vi tam giác ABC là 30cm, tính chu vi tam giác DEF
-
-d) Nếu diện tích tam giác ABC là 45cm², tính diện tích tam giác DEF
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Tỉ số chu vi = $k = 3$
-
-b) Tỉ số diện tích = $k^2 = 3^2 = 9$
-
-c) Chu vi DEF = $\frac{30}{3} = 10$ cm
-
-d) Diện tích DEF = $\frac{45}{9} = 5$ cm²
-
-</div>
-</details>
-
----
-
-<h4 id="bai-7">Bài 7: Bài toán tổng hợp</h4>
-
-a) Cho $\triangle ABC$ vuông tại A với AB = 6cm, AC = 8cm. Tính BC
-
-b) Cho $\triangle DEF$ vuông tại D với DE = 9cm, DF = 12cm. Tính EF
-
-c) Chứng minh $\triangle ABC \sim \triangle DEF$
-
-d) Tính tỉ số đồng dạng
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $BC^2 = 6^2 + 8^2 = 36 + 64 = 100$, suy ra $BC = 10$ cm
-
-b) $EF^2 = 9^2 + 12^2 = 81 + 144 = 225$, suy ra $EF = 15$ cm
-
-c) $\frac{AB}{DE} = \frac{6}{9} = \frac{2}{3}$, $\frac{AC}{DF} = \frac{8}{12} = \frac{2}{3}$, $\frac{BC}{EF} = \frac{10}{15} = \frac{2}{3}$
-   Vì ba cạnh tỉ lệ, nên $\triangle ABC \sim \triangle DEF$ (SSS)
-
-d) Tỉ số đồng dạng = $\frac{2}{3}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-8">Bài 8: Bài toán thực tế</h4>
-
-a) Một cây cao 5m có bóng dài 3m. Cùng lúc đó, một cây khác có bóng dài 6m. Tính chiều cao cây thứ hai
-
-b) Hai tam giác đồng dạng có tỉ số đồng dạng 2:3. Nếu tam giác nhỏ có chu vi 20cm, tính chu vi tam giác lớn
-
-c) Hai tam giác đồng dạng có tỉ số đồng dạng 1:2. Nếu tam giác nhỏ có diện tích 10cm², tính diện tích tam giác lớn
-
-d) Một bức ảnh hình tam giác được phóng to với tỉ lệ 3:1. Nếu ảnh gốc có diện tích 12cm², tính diện tích ảnh phóng to
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Hai tam giác tạo bởi cây và bóng đồng dạng. $\frac{5}{3} = \frac{h}{6}$, suy ra $h = 10$ m
-
-b) Tỉ số chu vi = tỉ số đồng dạng = $\frac{2}{3}$. Chu vi tam giác lớn = $20 \times \frac{3}{2} = 30$ cm
-
-c) Tỉ số diện tích = $(1:2)^2 = 1:4$. Diện tích tam giác lớn = $10 \times 4 = 40$ cm²
-
-d) Tỉ số diện tích = $(3:1)^2 = 9:1$. Diện tích ảnh phóng to = $12 \times 9 = 108$ cm²
-
-</div>
-</details>
-
----
-
-<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
-
-Cho $\triangle ABC$ có AB = 8cm, AC = 10cm, BC = 12cm. Trên AB lấy điểm D sao cho AD = 4cm. Qua D vẽ đường thẳng song song với BC cắt AC tại E.
-
-a) Chứng minh $\triangle ADE \sim \triangle ABC$
-
-b) Tính tỉ số đồng dạng
-
-c) Tính DE
-
-d) Tính AE
-
-e) Tính tỉ số diện tích của hai tam giác
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Vì DE // BC, nên $\angle ADE = \angle ABC$ (góc đồng vị) và $\angle AED = \angle ACB$ (góc đồng vị)
-   Suy ra $\triangle ADE \sim \triangle ABC$ (AA)
-
-b) Tỉ số đồng dạng = $\frac{AD}{AB} = \frac{4}{8} = \frac{1}{2}$
-
-c) $\frac{DE}{BC} = \frac{1}{2}$, suy ra $DE = \frac{12}{2} = 6$ cm
-
-d) $\frac{AE}{AC} = \frac{1}{2}$, suy ra $AE = \frac{10}{2} = 5$ cm
-
-e) Tỉ số diện tích = $(\frac{1}{2})^2 = \frac{1}{4}$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
-
-Cho hai tam giác vuông $\triangle ABC$ (vuông tại A) và $\triangle DEF$ (vuông tại D) với AB = 6cm, AC = 8cm, DE = 9cm, DF = 12cm.
-
-a) Tính BC và EF
-
-b) Chứng minh $\triangle ABC \sim \triangle DEF$
-
-c) Tính tỉ số đồng dạng
-
-d) Tính tỉ số chu vi
-
-e) Tính tỉ số diện tích
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $BC^2 = 6^2 + 8^2 = 100$, suy ra $BC = 10$ cm
-   $EF^2 = 9^2 + 12^2 = 225$, suy ra $EF = 15$ cm
-
-b) $\frac{AB}{DE} = \frac{6}{9} = \frac{2}{3}$, $\frac{AC}{DF} = \frac{8}{12} = \frac{2}{3}$, $\frac{BC}{EF} = \frac{10}{15} = \frac{2}{3}$
-   Vì ba cạnh tỉ lệ, nên $\triangle ABC \sim \triangle DEF$ (SSS)
-
-c) Tỉ số đồng dạng = $\frac{2}{3}$
-
-d) Tỉ số chu vi = $\frac{2}{3}$
-
-e) Tỉ số diện tích = $(\frac{2}{3})^2 = \frac{4}{9}$
-
-</div>
-</details>
-
-</VanDung>
-
 <GhiNho>
 
-<h3 id="ghi-nho">💡 Những điều cần ghi nhớ</h3>
-
-- **Tam giác đồng dạng:** Các góc tương ứng bằng nhau, các cạnh tương ứng tỉ lệ
-- **Trường hợp AA:** Hai góc tương ứng bằng nhau
-- **Trường hợp SAS:** Hai cạnh tỉ lệ, góc xen giữa bằng nhau
-- **Trường hợp SSS:** Ba cạnh tương ứng tỉ lệ
-- **Định lí Pythagore:** $c^2 = a^2 + b^2$ (tam giác vuông)
-- **Tỉ số chu vi:** Bằng tỉ số đồng dạng $k$
-- **Tỉ số diện tích:** Bằng $k^2$
+- **Đồng dạng tam giác**: c.c.c, c.g.c, g.g.
+- **Tam giác vuông**: $c^2 = a^2 + b^2$, $AH^2 = HB \cdot HC$.
+- **Hình đồng dạng**: Cùng hình dạng, kích thước tỉ lệ $k$, diện tích tỉ lệ $k^2$.
 
 </GhiNho>
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+**Bài 1 (Dễ — Ôn tập Đồng dạng & Pythagore cơ bản):**
+
+a) Cho $\Delta ABC \sim \Delta DEF$ với $AB = 6, DE = 9, AC = 8$. Tính độ dài $DF$.  
+b) Cho $\Delta ABC$ vuông tại $A$ có $AB = 9$ cm, $AC = 12$ cm. Tính $BC$ và đường cao $AH$.  
+c) Kiểm tra xem tam giác có ba cạnh $8$ cm, $15$ cm, $17$ cm có phải là tam giác vuông không.  
+d) Cho tam giác $ABC$ có $MN // BC$ ($M \in AB, N \in AC$). Biết $AM = 3$ cm, $MB = 6$ cm, $AN = 4$ cm. Tính $AC$.  
+e) Cho hai hình vuông có cạnh $5$ cm và $15$ cm. Tính tỉ số chu vi và tỉ số diện tích của hai hình vuông.  
+f) Cho $\Delta ABC \sim \Delta MNP$ theo tỉ số $k = 0.5$. Biết diện tích $\Delta ABC = 20$ cm². Tính diện tích $\Delta MNP$.
+
+**Bài 2 (Dễ — Chứng minh tam giác đồng dạng):**
+
+a) Cho tam giác $ABC$ có $AB = 4$ cm, $AC = 6$ cm, $\widehat{A} = 50^\circ$. Tam giác $A'B'C'$ có $A'B' = 6$ cm, $A'C' = 9$ cm, $\widehat{A'} = 50^\circ$. Chứng minh $\Delta ABC \sim \Delta A'B'C'$.  
+b) Cho tam giác $ABC$ vuông tại $A$, đường cao $AH$. Chứng minh $\Delta HBA \sim \Delta HAC$.  
+c) Cho góc $xOy$. Trên $Ox$ lấy $A(OA = 2), B(OB = 6)$. Trên $Oy$ lấy $C(OC = 3), D(OD = 4)$. Chứng minh $\Delta OAC \sim \Delta ODB$.  
+d) Cho tam giác $ABC$ cân tại $A$. Trên cạnh $AB, AC$ lấy $D, E$ sao cho $AD = AE$. Chứng minh $\Delta ADE \sim \Delta ABC$.  
+e) Cho hình thang $ABCD$ ($AB // CD$). Hai đường chéo $AC, BD$ cắt nhau tại $O$. Chứng minh $\Delta OAB \sim \Delta OCD$.  
+f) Cho hai đường tròn $(O_1; 3\text{ cm})$ và $(O_2; 6\text{ cm})$. Tìm tỉ số đồng dạng của hai đường tròn.
+
+**Bài 3 (Trung bình — Các bài toán hệ thức lượng tam giác vuông):** Cho tam giác $ABC$ vuông tại $A$, đường cao $AH$.
+
+a) Biết $BH = 9$ cm, $CH = 16$ cm. Tính $AH, AB, AC$.  
+b) Biết $AB = 15$ cm, $BH = 9$ cm. Tính $BC, AH, AC$.  
+c) Chứng minh $AH^2 = HB \cdot HC$.  
+d) Chứng minh $AB^2 = BH \cdot BC$ và $AC^2 = CH \cdot BC$.  
+e) Chứng minh $\dfrac{1}{AH^2} = \dfrac{1}{AB^2} + \dfrac{1}{AC^2}$.  
+f) Kẻ $HD \perp AB, HE \perp AC$. Chứng minh $DE = AH$ và $AD \cdot AB = AE \cdot AC$.
+
+**Bài 4 (Trung bình — Chứng minh đẳng thức tích đoạn thẳng):** Cho tam giác $ABC$ nhọn, các đường cao $BD$ và $CE$ cắt nhau tại $H$.
+
+a) Chứng minh $\Delta ABD \sim \Delta ACE$.  
+b) Chứng minh $AD \cdot AC = AE \cdot AB$.  
+c) Chứng minh $\Delta ADE \sim \Delta ABC$.  
+d) Chứng minh $HB \cdot HD = HC \cdot HE$.
+
+**Bài 5 (Trung bình — Hình bình hành & Hình thang):** Cho hình bình hành $ABCD$. Trên tia đối của tia $CD$ lấy điểm $E$. Đường thẳng $AE$ cắt $BD$ tại $F$ và cắt $BC$ tại $G$.
+
+a) Chứng minh $\Delta AFD \sim \Delta EFB$.  
+b) Chứng minh $\Delta ABG \sim \Delta EDA$.  
+c) Chứng minh $FA^2 = FG \cdot FE$.
+
+**Bài 6 (Khá — Đường phân giác và tam giác đồng dạng):** Cho tam giác $ABC$, đường phân giác trong $AD$.
+
+a) Chứng minh $\dfrac{DB}{DC} = \dfrac{AB}{AC}$.  
+b) Gọi $M$ là trung điểm $BC$. Qua $M$ kẻ đường thẳng song song với $AD$ cắt $AC$ tại $E$ và cắt $AB$ kéo dài tại $F$. Chứng minh $BF = CE$.
+
+**Bài 7 (Khá — Chứng minh tứ giác nội tiếp qua đồng dạng):** Cho tam giác $ABC$ nhọn có các đường cao $AD, BE, CF$ cắt nhau tại $H$.
+
+a) Chứng minh $\widehat{AHE} = \widehat{ACB}$.  
+b) Chứng minh $DH$ là đường phân giác của $\widehat{EDF}$.
+
+**Bài 8 (Khá - Nâng cao — Điểm cố định và tỉ số diện tích):** Cho tam giác $ABC$ có diện tích $S$. Một đường thẳng $d$ song song với $BC$ cắt $AB$ tại $D$ và cắt $AC$ tại $E$. Biết diện tích tam giác $ADE$ bằng $\dfrac{4}{9}S$.
+
+a) Tính tỉ số $\dfrac{AD}{AB}$.  
+b) Tính diện tích tứ giác $BDEC$ theo $S$.
+
+**Bài 9 (Ứng dụng thực tế 1 — Đo chiều cao cây và bóng nắng):** Một cọc tiêu cao $1.2$m cắm thẳng đứng trên mặt đất có bóng dài $0.8$m. Cùng lúc đó, bóng của một tháp truyền hình trên mặt đất dài $40$m.
+
+a) Giải thích vì sao tam giác tạo bởi tháp và bóng đồng dạng với tam giác tạo bởi cọc tiêu và bóng.  
+b) Tính chiều cao của tháp truyền hình.
+
+**Bài 10 (Ứng dụng thực tế 2 — Đo khoảng cách giữa hai đảo trên biển):** Một bản đồ hàng hải vẽ theo tỉ lệ $1 : 100.000$. Khoảng cách giữa hai hòn đảo A và B trên bản đồ đo được là $7.5$ cm.
+
+a) Tính khoảng cách thực tế giữa hai hòn đảo ngoài thực địa (km).  
+b) Một tàu thủy chạy với vận tốc $30$ km/h đi từ đảo A đến đảo B hết bao nhiêu thời gian?
+
+<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số & Lời giải chi tiết</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+**Bài 1:**
+a) $DF = 8 \times \dfrac{9}{6} = 12$.
+b) $BC = \sqrt{9^2 + 12^2} = 15$ cm. $AH = \dfrac{9 \times 12}{15} = 7.2$ cm.
+c) $8^2 + 15^2 = 64 + 225 = 289 = 17^2 \Rightarrow$ Tam giác vuông.
+d) $AC = 4 \times \dfrac{9}{3} = 12$ cm.
+e) Tỉ số chu vi $= 3$, Tỉ số diện tích $= 9$.
+f) $S_{MNP} = S_{ABC} \div k^2 = 20 \div 0.25 = 80$ cm².
+
+**Bài 2:**
+a) $\dfrac{AB}{A'B'} = \dfrac{AC}{A'C'} = \dfrac{2}{3}$ và góc kẹp $\widehat{A} = \widehat{A'} = 50^\circ \Rightarrow \Delta ABC \sim \Delta A'B'C'$ (c.g.c).
+b) $\widehat{AHB} = \widehat{AHC} = 90^\circ, \widehat{BAH} = \widehat{C}$ (cùng phụ $\widehat{B}$) $\Rightarrow \Delta HBA \sim \Delta HAC$ (g.g).
+c) $\dfrac{OA}{OD} = \dfrac{2}{4} = \dfrac{1}{2}, \dfrac{OC}{OB} = \dfrac{3}{6} = \dfrac{1}{2}, \widehat{O}$ chung $\Rightarrow \Delta OAC \sim \Delta ODB$ (c.g.c).
+d) $\dfrac{AD}{AB} = \dfrac{AE}{AC}, \widehat{A}$ chung $\Rightarrow \Delta ADE \sim \Delta ABC$ (c.g.c).
+e) $\widehat{OAB} = \widehat{OCD}$ (so le trong), $\widehat{AOB} = \widehat{COD}$ (đối đỉnh) $\Rightarrow \Delta OAB \sim \Delta OCD$ (g.g).
+f) Tỉ số đồng dạng $k = \dfrac{6}{3} = 2$.
+
+**Bài 3:**
+a) $AH = \sqrt{9 \times 16} = 12$ cm. $BC = 25$ cm. $AB = \sqrt{9 \times 25} = 15$ cm, $AC = \sqrt{16 \times 25} = 20$ cm.
+b) $BC = \dfrac{15^2}{9} = 25$ cm. $AH = \sqrt{15^2 - 9^2} = 12$ cm. $AC = \sqrt{25^2 - 15^2} = 20$ cm.
+c) Từ $\Delta HBA \sim \Delta HAC \Rightarrow AH^2 = HB \cdot HC$.
+d) Từ $\Delta HBA \sim \Delta ABC \Rightarrow AB^2 = BH \cdot BC$. Từ $\Delta HAC \sim \Delta ABC \Rightarrow AC^2 = CH \cdot BC$.
+e) $\dfrac{1}{AB^2} + \dfrac{1}{AC^2} = \dfrac{AB^2 + AC^2}{AB^2 \cdot AC^2} = \dfrac{BC^2}{(AH \cdot BC)^2} = \dfrac{1}{AH^2}$.
+f) $ADHE$ là hình chữ nhật $\Rightarrow DE = AH$. $AD \cdot AB = AH^2$ và $AE \cdot AC = AH^2 \Rightarrow AD \cdot AB = AE \cdot AC$.
+
+**Bài 4:**
+a) $\widehat{ADB} = \widehat{AEC} = 90^\circ, \widehat{A}$ chung $\Rightarrow \Delta ABD \sim \Delta ACE$ (g.g).
+b) Từ a $\Rightarrow \dfrac{AD}{AE} = \dfrac{AB}{AC} \Rightarrow AD \cdot AC = AE \cdot AB$.
+c) Tỉ số $\dfrac{AD}{AB} = \dfrac{AE}{AC}$ và $\widehat{A}$ chung $\Rightarrow \Delta ADE \sim \Delta ABC$ (c.g.c).
+d) $\Delta HBE \sim \Delta HCD \Rightarrow \dfrac{HB}{HC} = \dfrac{HE}{HD} \Rightarrow HB \cdot HD = HC \cdot HE$.
+
+**Bài 5:**
+a) $AD // BC \Rightarrow \Delta AFD \sim \Delta EFB$ (g.g).
+b) $AB // CD \Rightarrow \Delta ABG \sim \Delta EDA$ (g.g).
+c) Từ a $\Rightarrow \dfrac{FA}{FE} = \dfrac{FD}{FB}$. Từ $\Delta AFB \sim \Delta DFD$ (sửa $\Delta AFB \sim \Delta GFD$) $\Rightarrow \dfrac{FG}{FA} = \dfrac{FB}{FD} \Rightarrow \dfrac{FA}{FE} = \dfrac{FG}{FA} \Rightarrow FA^2 = FG \cdot FE$.
+
+**Bài 6:**
+a) Chứng minh qua diện tích tam giác hoặc đường thẳng song song.
+b) Dùng tính chất đường trung bình và các tam giác đồng dạng suy ra hai đoạn $BF, CE$ cùng bằng một đoạn trung gian.
+
+**Bài 7:**
+a) Tứ giác $ADHE$ có góc đối phụ nhau $\Rightarrow \widehat{AHE} = \widehat{ADE} = \widehat{ACB}$.
+b) Chứng minh các cặp góc bằng nhau do các tam giác vuông đồng dạng.
+
+**Bài 8:**
+a) $k^2 = \dfrac{4}{9} \Rightarrow k = \dfrac{2}{3} \Rightarrow \dfrac{AD}{AB} = \dfrac{2}{3}$.
+b) $S_{BDEC} = S - \dfrac{4}{9}S = \dfrac{5}{9}S$.
+
+**Bài 9:**
+a) Cùng vuông góc với mặt đất và tia nắng song song tạo góc nâng bằng nhau.
+b) Chiều cao tháp $h = 1.2 \times \dfrac{40}{0.8} = 1.2 \times 50 = 60$ mét.
+
+**Bài 10:**
+a) Khoảng cách thực tế $= 7.5 \text{ cm} \times 100.000 = 750.000 \text{ cm} = 7.5$ km.  
+b) Thời gian $t = \dfrac{7.5}{30} = 0.25$ giờ $= 15$ phút.
+
+</div>
+</details>

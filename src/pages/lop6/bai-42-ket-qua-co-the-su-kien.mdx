@@ -11,9 +11,10 @@ import KhoiDong from '../../components/sections/KhoiDong.astro';
 import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
-import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import KetQuaCoTheXayRaInteractive from '../../components/interactive/KetQuaCoTheXayRaInteractive';
 
 export const quizData = [
   {
@@ -50,6 +51,106 @@ export const quizData = [
     correct_option: "A",
     explanation: "Không gian mẫu là tập hợp tất cả các kết quả có thể xảy ra.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một xúc xắc, không gian mẫu có bao nhiêu phần tử?",
+    option_a: "6 phần tử",
+    option_b: "2 phần tử",
+    option_c: "1 phần tử",
+    option_d: "12 phần tử",
+    correct_option: "A",
+    explanation: "Không gian mẫu khi tung xúc xắc: Ω = &#123;1, 2, 3, 4, 5, 6&#125; có 6 phần tử.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung một đồng xu, sự kiện 'được mặt sấp' có mấy phần tử?",
+    option_a: "1 phần tử",
+    option_b: "2 phần tử",
+    option_c: "3 phần tử",
+    option_d: "0 phần tử",
+    correct_option: "A",
+    explanation: "Sự kiện 'được mặt sấp' = &#123;Sấp&#125; chỉ có 1 phần tử.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung xúc xắc, sự kiện 'được số lớn hơn 6' là sự kiện nào?",
+    option_a: "Sự kiện không thể",
+    option_b: "Sự kiện chắc chắn",
+    option_c: "Sự kiện ngẫu nhiên",
+    option_d: "Không gian mẫu",
+    correct_option: "A",
+    explanation: "Tung xúc xắc chỉ ra số từ 1-6, nên 'được số lớn hơn 6' không thể xảy ra.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi tung xúc xắc, sự kiện 'được số từ 1 đến 6' là sự kiện nào?",
+    option_a: "Sự kiện chắc chắn",
+    option_b: "Sự kiện không thể",
+    option_c: "Sự kiện ngẫu nhiên",
+    option_d: "Không gian mẫu",
+    correct_option: "A",
+    explanation: "Luôn luôn ra số từ 1-6 khi tung xúc xắc nên đây là sự kiện chắc chắn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Rút một lá bài từ bộ 52 lá, sự kiện 'rút được lá Cơ' có bao nhiêu phần tử?",
+    option_a: "13 phần tử",
+    option_b: "1 phần tử",
+    option_c: "4 phần tử",
+    option_d: "52 phần tử",
+    correct_option: "A",
+    explanation: "Bộ bài có 13 lá Cơ, nên sự kiện này có 13 phần tử.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khi tung xúc xắc, những sự kiện nào sau đây là sự kiện ngẫu nhiên?",
+    option_a: "Được số chẵn",
+    option_b: "Được số lớn hơn 6",
+    option_c: "Được số lẻ",
+    option_d: "Được số nguyên tố",
+    correct_options: ["A", "C", "D"],
+    explanation: "Sự kiện ngẫu nhiên là sự kiện có thể xảy ra hoặc không. 'Số lớn hơn 6' là sự kiện không thể.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để xác định không gian mẫu khi rút viên bi từ hộp, cần biết gì?",
+    option_a: "Tổng số viên bi trong hộp",
+    option_b: "Màu sắc hoặc loại của từng viên bi",
+    option_c: "Viên bi nào được rút trước đó",
+    option_d: "Kích thước hộp",
+    correct_options: ["A", "B"],
+    explanation: "Cần biết tổng số viên bi và màu sắc/loại để liệt kê tất cả kết quả có thể.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tung hai xúc xắc cùng lúc. a) Không gian mẫu có bao nhiêu phần tử? Liệt kê. b) Nêu sự kiện A: 'Tổng hai mặt bằng 7'. c) Nêu sự kiện B: 'Cả hai mặt đều chẵn'.",
+    answer: "a) 36 phần tử (6×6). Liệt kê: (1,1),(1,2),...,(6,6). b) A = &#123;(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)&#125; có 6 pt. c) B = &#123;(2,2),(2,4),(2,6),(4,2),(4,4),(4,6),(6,2),(6,4),(6,6)&#125; có 9 pt.",
+    explanation: "Tung 2 xúc xắc có 6×6 = 36 kết quả. Liệt kê từng sự kiện theo điều kiện.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một hộp có 3 viên bi đỏ, 2 viên bi xanh, 1 viên vàng. Rút ngẫu nhiên 1 viên. a) Không gian mẫu. b) Sự kiện 'Rút được bi không phải đỏ'. c) Sự kiện 'Rút được bi đỏ hoặc vàng'.",
+    answer: "a) Ω = &#123;Đỏ₁, Đỏ₂, Đỏ₃, Xanh₁, Xanh₂, Vàng&#125; hoặc Ω = &#123;Đỏ, Xanh, Vàng&#125; (tùy cách mô tả). b) = &#123;Xanh₁, Xanh₂, Vàng&#125; có 3 pt. c) = &#123;Đỏ₁, Đỏ₂, Đỏ₃, Vàng&#125; có 4 pt.",
+    explanation: "Liệt kê không gian mẫu đầy đủ, sau đó lọc theo điều kiện từng sự kiện.",
+    difficulty_level: "hard",
     is_dynamic: false,
   },
 ];
@@ -151,7 +252,8 @@ Là sự kiện có thể xảy ra hoặc không xảy ra.
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<KetQuaCoTheXayRaInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -169,215 +271,74 @@ c) Nêu sự kiện "Rút được viên bi xanh"
 
 d) Nêu sự kiện "Rút được viên bi vàng"
 
+**📝 Bài toán 2:** Quay một bánh xe có 6 ô đánh số từ 1 đến 6.
+
+a) Xác định không gian mẫu
+
+b) Nêu sự kiện A: "Được số chia hết cho 3"
+
+c) Nêu sự kiện B: "Được số nguyên tố"
+
+d) Sự kiện nào có nhiều phần tử hơn?
+
+**📝 Bài toán 3:** Gieo một con xúc xắc.
+
+a) Nêu 3 sự kiện chắc chắn
+
+b) Nêu 2 sự kiện không thể xảy ra
+
+c) Nêu 3 sự kiện ngẫu nhiên có đúng 3 phần tử
+
 </VanDung>
 
-<BaiTapTuLuan>
+### Bài tập tự luận
 
-**Bài 1:** Tung một đồng xu.
+**Bài 1:** Tung một đồng xu. a) Không gian mẫu? b) Sự kiện "Được mặt sấp"? c) Sự kiện "Được mặt ngửa"?
 
-a) Xác định không gian mẫu
+**Bài 2:** Tung xúc xắc. a) Không gian mẫu? b) Sự kiện "Được số chẵn"? c) Sự kiện "Được số lớn hơn 4"?
 
-b) Nêu sự kiện "Được mặt sấp"
+**Bài 3:** Hộp có 4 viên bi: 1 đỏ, 2 xanh, 1 vàng. Rút 1 viên. a) Không gian mẫu? b) Sự kiện "Rút được bi đỏ"? c) Sự kiện "Rút được bi không phải vàng"?
 
-c) Nêu sự kiện "Được mặt ngửa"
+**Bài 4:** Quay bánh xe 8 ô (1-8). a) Không gian mẫu? b) Sự kiện "Được số chia hết cho 2"? c) Sự kiện "Được số nguyên tố"?
 
-d) Sự kiện nào là sự kiện chắc chắn?
+**Bài 5:** Túi 5 thẻ (2,4,6,8,10). Rút 1 thẻ. a) Không gian mẫu? b) Sự kiện "Được số chia hết cho 4"? c) Sự kiện "Được số lớn hơn 5"?
 
-e) Nêu một sự kiện không thể xảy ra
+**Bài 6:** Gieo 2 đồng xu. a) Không gian mẫu (4 kết quả). b) Sự kiện "Cả hai đều sấp". c) Sự kiện "Có ít nhất 1 mặt ngửa".
 
-**Bài 2:** Tung một xúc xắc 6 mặt.
+**Bài 7:** Chọn 1 ngày trong tuần. a) Không gian mẫu. b) Sự kiện "Cuối tuần". c) Sự kiện "Ngày bắt đầu bằng chữ T".
 
-a) Xác định không gian mẫu
+**Bài 8:** Tung xúc xắc. Phân loại: a) "Được số từ 1 đến 6". b) "Được số 7". c) "Được số 3". d) "Được số lớn hơn 0".
 
-b) Nêu sự kiện A: "Được số chẵn"
+**Bài 9:** Hộp 6 viên bi (3 đỏ, 2 xanh, 1 vàng). a) Không gian mẫu? b) Sự kiện "Rút được bi xanh hoặc vàng"? c) Sự kiện "Rút được bi đỏ"?
 
-c) Nêu sự kiện B: "Được số lẻ"
-
-d) Nêu sự kiện C: "Được số lớn hơn 4"
-
-e) Nêu sự kiện D: "Được số nhỏ hơn 7"
-
-f) Sự kiện nào là sự kiện chắc chắn?
-
-g) Nêu một sự kiện không thể xảy ra
-
-**Bài 3:** Một hộp có 4 viên bi: 1 đỏ, 2 xanh, 1 vàng. Rút ngẫu nhiên 1 viên bi.
-
-a) Xác định không gian mẫu
-
-b) Nêu sự kiện "Rút được viên bi đỏ"
-
-c) Nêu sự kiện "Rút được viên bi xanh"
-
-d) Nêu sự kiện "Rút được viên bi không phải màu vàng"
-
-e) Nêu một sự kiện chắc chắn
-
-f) Nêu một sự kiện không thể
-
-**Bài 4:** Quay một bánh xe có 8 ô được đánh số từ 1 đến 8.
-
-a) Xác định không gian mẫu
-
-b) Nêu sự kiện "Được số chia hết cho 2"
-
-c) Nêu sự kiện "Được số chia hết cho 3"
-
-d) Nêu sự kiện "Được số nguyên tố"
-
-e) Nêu sự kiện "Được số lớn hơn 5"
-
-**Bài 5:** Một túi có 5 thẻ được đánh số: 2, 4, 6, 8, 10. Rút ngẫu nhiên 1 thẻ.
-
-a) Xác định không gian mẫu
-
-b) Nêu sự kiện "Được số chia hết cho 4"
-
-c) Nêu sự kiện "Được số lớn hơn 5"
-
-d) Nêu sự kiện "Được số chẵn"
-
-e) Sự kiện nào là sự kiện chắc chắn? Giải thích.
-
-f) Nêu một sự kiện không thể xảy ra
-
-**Bài 6:** Gieo hai đồng xu cùng lúc.
-
-a) Xác định không gian mẫu (gợi ý: có 4 kết quả)
-
-b) Nêu sự kiện "Cả hai đều sấp"
-
-c) Nêu sự kiện "Có ít nhất một mặt ngửa"
-
-d) Nêu sự kiện "Một sấp, một ngửa"
-
-**Bài 7:** Chọn ngẫu nhiên một ngày trong tuần.
-
-a) Xác định không gian mẫu
-
-b) Nêu sự kiện "Được ngày cuối tuần"
-
-c) Nêu sự kiện "Được ngày trong tuần (không phải cuối tuần)"
-
-d) Nêu sự kiện "Được ngày có tên bắt đầu bằng chữ T"
-
-e) Tính số phần tử của mỗi sự kiện trên
+**Bài 10:** Gieo 2 xúc xắc. a) Tổng 2 mặt bằng 7 có bao nhiêu cách? b) Cả hai mặt đều lẻ có bao nhiêu cách? c) Sự kiện nào lớn hơn?
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1: Tung đồng xu**
+**Bài 1:** a) Ω = &#123;Sấp, Ngửa&#125;. b) A = &#123;Sấp&#125;. c) B = &#123;Ngửa&#125;.
 
-a) Không gian mẫu: **Ω = &#123; Sấp, Ngửa &#125;**
+**Bài 2:** a) Ω = &#123;1,2,3,4,5,6&#125;. b) A = &#123;3,6&#125; (2 pt). c) B = &#123;2,3,5&#125; (3 pt).
 
-b) Sự kiện "Được mặt sấp": **A = &#123; Sấp &#125;**
+**Bài 3:** a) Ω = &#123;Đỏ, Xanh₁, Xanh₂, Vàng&#125;. b) A = &#123;Đỏ&#125; (1 pt). c) B = &#123;Đỏ, Xanh₁, Xanh₂&#125; (3 pt).
 
-c) Sự kiện "Được mặt ngửa": **B = &#123; Ngửa &#125;**
+**Bài 4:** a) Ω = &#123;1,2,3,4,5,6,7,8&#125;. b) A = &#123;2,4,6,8&#125; (4 pt). c) B = &#123;2,3,5,7&#125; (4 pt).
 
-d) Sự kiện chắc chắn: **"Được mặt sấp hoặc ngửa" = &#123; Sấp, Ngửa &#125;** (luôn xảy ra)
+**Bài 5:** a) Ω = &#123;2,4,6,8,10&#125;. b) A = &#123;4,8&#125; (2 pt). c) B = &#123;6,8,10&#125; (3 pt).
 
-e) Sự kiện không thể: **"Được mặt cạnh"** hoặc **"Được số 3"** (không bao giờ xảy ra)
+**Bài 6:** a) Ω = &#123;(S,S),(S,N),(N,S),(N,N)&#125;. b) A = &#123;(S,S)&#125; (1 pt). c) B = &#123;(S,N),(N,S),(N,N)&#125; (3 pt).
 
----
+**Bài 7:** a) Ω = &#123;T2,T3,T4,T5,T6,T7,CN&#125;. b) A = &#123;T7,CN&#125; (2 pt). c) B = &#123;T2,T3,T4,T5,T6,T7&#125; (6 pt).
 
-**Bài 2: Tung xúc xắc**
+**Bài 8:** a) Chắc chắn. b) Không thể. c) Ngẫu nhiên. d) Chắc chắn.
 
-a) Không gian mẫu: **Ω = &#123; 1, 2, 3, 4, 5, 6 &#125;**
+**Bài 9:** a) Ω = &#123;Đỏ₁,Đỏ₂,Đỏ₃,Xanh₁,Xanh₂,Vàng&#125;. b) = &#123;Xanh₁,Xanh₂,Vàng&#125; (3 pt). c) = &#123;Đỏ₁,Đỏ₂,Đỏ₃&#125; (3 pt).
 
-b) Sự kiện A "Được số chẵn": **A = &#123; 2, 4, 6 &#125;**
-
-c) Sự kiện B "Được số lẻ": **B = &#123; 1, 3, 5 &#125;**
-
-d) Sự kiện C "Được số lớn hơn 4": **C = &#123; 5, 6 &#125;**
-
-e) Sự kiện D "Được số nhỏ hơn 7": **D = &#123; 1, 2, 3, 4, 5, 6 &#125;**
-
-f) Sự kiện chắc chắn: **Sự kiện D** (vì tất cả các số từ 1 đến 6 đều nhỏ hơn 7)
-
-g) Sự kiện không thể: **"Được số 7"** hoặc **"Được số 0"** hoặc **"Được số âm"**
-
----
-
-**Bài 3: Rút viên bi**
-
-a) Không gian mẫu: **Ω = &#123; Đỏ, Xanh, Vàng &#125;**
-
-b) Sự kiện "Rút được viên bi đỏ": **A = &#123; Đỏ &#125;**
-
-c) Sự kiện "Rút được viên bi xanh": **B = &#123; Xanh &#125;**
-
-d) Sự kiện "Rút được viên bi không phải màu vàng": **C = &#123; Đỏ, Xanh &#125;**
-
-e) Sự kiện chắc chắn: **"Rút được viên bi màu đỏ, xanh hoặc vàng" = &#123; Đỏ, Xanh, Vàng &#125;**
-
-f) Sự kiện không thể: **"Rút được viên bi màu tím"** hoặc **"Rút được viên bi màu đen"**
-
----
-
-**Bài 4: Quay bánh xe**
-
-a) Không gian mẫu: **Ω = &#123; 1, 2, 3, 4, 5, 6, 7, 8 &#125;**
-
-b) Sự kiện "Được số chia hết cho 2": **A = &#123; 2, 4, 6, 8 &#125;**
-
-c) Sự kiện "Được số chia hết cho 3": **B = &#123; 3, 6 &#125;**
-
-d) Sự kiện "Được số nguyên tố": **C = &#123; 2, 3, 5, 7 &#125;**
-
-e) Sự kiện "Được số lớn hơn 5": **D = &#123; 6, 7, 8 &#125;**
-
----
-
-**Bài 5: Rút thẻ**
-
-a) Không gian mẫu: **Ω = &#123; 2, 4, 6, 8, 10 &#125;**
-
-b) Sự kiện "Được số chia hết cho 4": **A = &#123; 4, 8 &#125;**
-
-c) Sự kiện "Được số lớn hơn 5": **B = &#123; 6, 8, 10 &#125;**
-
-d) Sự kiện "Được số chẵn": **C = &#123; 2, 4, 6, 8, 10 &#125;**
-
-e) Sự kiện chắc chắn: **Sự kiện C "Được số chẵn"**
-   
-   **Giải thích:** Vì tất cả các thẻ trong túi đều là số chẵn (2, 4, 6, 8, 10), nên dù rút thẻ nào cũng được số chẵn.
-
-f) Sự kiện không thể: **"Được số lẻ"** hoặc **"Được số 5"** hoặc **"Được số lớn hơn 10"**
-
----
-
-**Bài 6: Gieo hai đồng xu**
-
-a) Không gian mẫu: **Ω = &#123; (Sấp, Sấp), (Sấp, Ngửa), (Ngửa, Sấp), (Ngửa, Ngửa) &#125;**
-
-b) Sự kiện "Cả hai đều sấp": **A = &#123; (Sấp, Sấp) &#125;**
-
-c) Sự kiện "Có ít nhất một mặt ngửa": **B = &#123; (Sấp, Ngửa), (Ngửa, Sấp), (Ngửa, Ngửa) &#125;**
-
-d) Sự kiện "Một sấp, một ngửa": **C = &#123; (Sấp, Ngửa), (Ngửa, Sấp) &#125;**
-
----
-
-**Bài 7: Chọn ngày trong tuần**
-
-a) Không gian mẫu: **Ω = &#123; Thứ 2, Thứ 3, Thứ 4, Thứ 5, Thứ 6, Thứ 7, Chủ nhật &#125;**
-
-b) Sự kiện "Được ngày cuối tuần": **A = &#123; Thứ 7, Chủ nhật &#125;**
-
-c) Sự kiện "Được ngày trong tuần": **B = &#123; Thứ 2, Thứ 3, Thứ 4, Thứ 5, Thứ 6 &#125;**
-
-d) Sự kiện "Được ngày có tên bắt đầu bằng chữ T": **C = &#123; Thứ 2, Thứ 3, Thứ 4, Thứ 5, Thứ 6, Thứ 7 &#125;**
-
-e) Số phần tử của mỗi sự kiện:
-   - Sự kiện A: **2 phần tử**
-   - Sự kiện B: **5 phần tử**
-   - Sự kiện C: **6 phần tử**
+**Bài 10:** a) 6 cách: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1). b) 9 cách: (1,1),(1,3),(1,5),(3,1),(3,3),(3,5),(5,1),(5,3),(5,5). c) Sự kiện b) lớn hơn (9 > 6).
 
 </div>
 </details>
-
-</BaiTapTuLuan>
 
 <GhiNho>
 

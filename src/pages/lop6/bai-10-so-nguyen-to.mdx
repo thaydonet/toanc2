@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import SoNguyenToInteractive from '../../components/interactive/SoNguyenToInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Số nào là số nguyên tố?",
@@ -53,18 +55,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những số nào là số nguyên tố?",
-    option_a: "$2$",
-    option_b: "$13$",
-    option_c: "$17$",
-    option_d: "$21$",
-    correct_option: "A,B,C",
-    explanation: "$2, 13, 17$ đều là số nguyên tố. $21 = 3 \\times 7$ là hợp số.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Số nguyên tố chẵn duy nhất là:",
     option_a: "$0$",
@@ -74,14 +64,6 @@ export const quizData = [
     correct_option: "B",
     explanation: "$2$ là số nguyên tố chẵn duy nhất. Các số chẵn khác đều chia hết cho $2$ nên là hợp số.",
     difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Có bao nhiêu số nguyên tố nhỏ hơn $10$?",
-    correct_option: "4",
-    explanation: "Các số nguyên tố nhỏ hơn $10$ là: $2, 3, 5, 7$. Có $4$ số.",
-    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
@@ -106,6 +88,74 @@ export const quizData = [
     correct_option: "A",
     explanation: "$24 = 2 \\times 2 \\times 2 \\times 3 = 2^3 \\times 3$.",
     difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phân tích $90$ ra thừa số nguyên tố:",
+    option_a: "$2 \\times 3^2 \\times 5$",
+    option_b: "$2^2 \\times 3 \\times 5$",
+    option_c: "$2 \\times 3 \\times 5$",
+    option_d: "$3^2 \\times 10$",
+    correct_option: "A",
+    explanation: "$90 = 2 \\times 45 = 2 \\times 3 \\times 15 = 2 \\times 3 \\times 3 \\times 5 = 2 \\times 3^2 \\times 5$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào KHÔNG phải là số nguyên tố?",
+    option_a: "$!p1(2,3,5,7)!$",
+    option_b: "$!p2(11,13,17,19)!$",
+    option_c: "$!p3(23,29,31,37)!$",
+    option_d: "$!tinh: !p1! * !p2!!$",
+    correct_option: "D",
+    explanation: "$!tinh: !p1! * !p2!! = !p1! \\times !p2!$ là tích của hai số nguyên tố nên là hợp số.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 2: MSQ (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những số nào là số nguyên tố?",
+    option_a: "$2$",
+    option_b: "$13$",
+    option_c: "$17$",
+    option_d: "$21$",
+    correct_option: "A,B,C",
+    explanation: "$2, 13, 17$ đều là số nguyên tố. $21 = 3 \\times 7$ là hợp số.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào là hợp số?",
+    option_a: "$15$",
+    option_b: "$21$",
+    option_c: "$23$",
+    option_d: "$25$",
+    correct_option: "A,B,D",
+    explanation: "$15 = 3 \\times 5$, $21 = 3 \\times 7$, $25 = 5 \\times 5$ là hợp số. $23$ chỉ có hai ước $1$ và $23$ nên là số nguyên tố.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+
+  // ─── Phần 3: SA (2 câu) ─────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Có bao nhiêu số nguyên tố nhỏ hơn $10$?",
+    correct_option: "4",
+    explanation: "Các số nguyên tố nhỏ hơn $10$ là: $2, 3, 5, 7$. Có $4$ số.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tổng của hai số nguyên tố nhỏ nhất là bao nhiêu?",
+    correct_option: "5",
+    explanation: "Hai số nguyên tố nhỏ nhất là $2$ và $3$. Tổng: $2 + 3 = 5$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
 ];
@@ -393,7 +443,9 @@ b) Tìm số nguyên tố có dạng $6k - 1$ với $k = 1, 2, 3$
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<SoNguyenToInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -449,6 +501,31 @@ Số cách xếp (loại $1$ và $60$): $10$ cách
 
 </div>
 
+**📝 Bài toán 3:** Một cửa hàng bánh mới mua về $37$ chiếc bánh (37 là số nguyên tố).
+
+a) Có thể xếp đều $37$ chiếc bánh vào $3$ khay không?
+
+b) Cần mua thêm ít nhất bao nhiêu chiếc bánh để xếp đều được vào $4$ khay?
+
+c) Nếu cửa hàng có $35$ chiếc bánh (35 là hợp số), hãy kể các cách xếp đều (mỗi khay có ít nhất $2$ bánh).
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) $37 = 3 \times 12 + 1$ (dư 1) ⇒ $37$ không chia hết cho $3$. **Không thể** xếp đều vào 3 khay.
+
+b) Số chia hết cho $4$ nhỏ nhất lớn hơn $37$ là $40 = 4 \times 10$. Vậy cần thêm $40 - 37 = 3$ (bánh).
+
+c) Ước của $35$: $1, 5, 7, 35$. Các cách xếp (mỗi khay ít nhất $2$ bánh):
+
+- $5$ khay, mỗi khay $7$ bánh.
+- $7$ khay, mỗi khay $5$ bánh.
+
+Vậy có $2$ cách xếp đều.
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -464,9 +541,11 @@ Số cách xếp (loại $1$ và $60$): $10$ cách
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Phân loại các số sau (số nguyên tố, hợp số, hay đặc biệt):
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
+
+**Bài 1 (Dễ - Nhận biết):** Phân loại các số sau (số nguyên tố, hợp số hay số đặc biệt):
 
 a) $1$
 
@@ -476,7 +555,7 @@ c) $15$
 
 d) $29$
 
-**Bài 2:** Kiểm tra các số sau có phải là số nguyên tố không:
+**Bài 2 (Dễ - Nhận biết):** Kiểm tra các số sau có phải là số nguyên tố không:
 
 a) $13$
 
@@ -486,7 +565,9 @@ c) $31$
 
 d) $39$
 
-**Bài 3:** Phân tích các số sau ra thừa số nguyên tố:
+**Bài 3 (Dễ - Nhận biết):** Viết các số nguyên tố nhỏ hơn $30$.
+
+**Bài 4 (Thông hiểu):** Phân tích các số sau ra thừa số nguyên tố:
 
 a) $18$
 
@@ -496,7 +577,7 @@ c) $48$
 
 d) $72$
 
-**Bài 4:** Viết các số sau dưới dạng tích các thừa số nguyên tố:
+**Bài 5 (Thông hiểu):** Viết các số sau dưới dạng tích các thừa số nguyên tố:
 
 a) $100$
 
@@ -506,7 +587,7 @@ c) $150$
 
 d) $200$
 
-**Bài 5:** Tìm các số nguyên tố:
+**Bài 6 (Thông hiểu):** Tìm các số nguyên tố trong các khoảng sau:
 
 a) Từ $20$ đến $30$
 
@@ -516,31 +597,129 @@ c) Từ $60$ đến $70$
 
 d) Từ $80$ đến $90$
 
-**Bài 6 (Thực tế):** Một trường học có $p$ học sinh (với $p$ là số nguyên tố).
+**Bài 7 (Vận dụng):**
 
-a) Nếu $p = 37$, có thể chia đều thành các lớp không? (Mỗi lớp ít nhất $2$ học sinh)
+a) Tìm số nguyên tố lớn nhất nhỏ hơn $50$.
 
-b) Nếu muốn chia đều thành các lớp, số học sinh tối thiểu phải thêm vào là bao nhiêu để có thể chia thành $4$ lớp?
+b) Tìm hai số nguyên tố có tổng bằng $20$.
 
-c) Tìm số học sinh nhỏ nhất (lớn hơn $37$) để có thể chia đều thành $5$ lớp.
+c) Chứng tỏ hai số nguyên tố liên tiếp duy nhất là $2$ và $3$.
 
-d) Giải thích tại sao số nguyên tố gây khó khăn cho việc chia nhóm.
+**Bài 8 (Vận dụng thực tế):** Một lớp học có $43$ học sinh.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+a) Cô giáo có thể chia đều thành các nhóm (mỗi nhóm ít nhất $2$ học sinh) được không? Vì sao?
 
-**Bài 1:** a) Đặc biệt; b) Số nguyên tố; c) Hợp số; d) Số nguyên tố
+b) Nếu nhận thêm $5$ học sinh thì có thể chia đều thành $4$ nhóm được không?
 
-**Bài 2:** a) Có; b) Không ($25 = 5^2$); c) Có; d) Không ($39 = 3 \times 13$)
+**Bài 9 (Vận dụng):** Biết $a = 2^3 \\times 3^2$ và $b = 2^4 \\times 5$.
 
-**Bài 3:** a) $2 \times 3^2$; b) $2^2 \times 3^2$; c) $2^4 \times 3$; d) $2^3 \times 3^2$
+a) Hỏi $a$ có bao nhiêu ước tự nhiên?
 
-**Bài 4:** a) $2^2 \times 5^2$; b) $2^3 \times 3 \times 5$; c) $2 \times 3 \times 5^2$; d) $2^3 \times 5^2$
+b) Hỏi $b$ có bao nhiêu ước tự nhiên?
 
-**Bài 5:** a) $23, 29$; b) $41, 43, 47$; c) $61, 67$; d) $83, 89$
+**Bài 10 (Vận dụng cao):** Tìm số nguyên tố $p$ nhỏ nhất sao cho cả ba số $p$, $p + 2$, $p + 4$ đều là số nguyên tố.
 
-**Bài 6:** a) Không thể; b) Thêm $3$ học sinh ($40 = 4 \times 10$); c) $40$ học sinh; d) Vì số nguyên tố chỉ có $2$ ước nên khó chia nhóm
+</div>
+
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
+
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
+
+**Bài 1:**
+a) $1$ chỉ có một ước là $1$ ⇒ **số đặc biệt** (không nguyên tố, không hợp số).
+
+b) $11$ có hai ước $1$ và $11$ ⇒ **số nguyên tố**.
+
+c) $15 = 3 \times 5$ có 4 ước ⇒ **hợp số**.
+
+d) $29$ có hai ước $1$ và $29$ ⇒ **số nguyên tố**.
+
+---
+
+**Bài 2:**
+a) $13$: $\sqrt{13} \approx 3,6$; $13$ không chia hết cho $2, 3$ ⇒ **là số nguyên tố**.
+
+b) $25 = 5^2$ ⇒ **không phải số nguyên tố** (là hợp số).
+
+c) $31$: $\sqrt{31} \approx 5,6$; $31$ không chia hết cho $2, 3, 5$ ⇒ **là số nguyên tố**.
+
+d) $39 = 3 \times 13$ ⇒ **không phải số nguyên tố** (là hợp số).
+
+---
+
+**Bài 3:**
+Các số nguyên tố nhỏ hơn $30$: $2, 3, 5, 7, 11, 13, 17, 19, 23, 29$.
+
+---
+
+**Bài 4:**
+a) $18 = 2 \times 3^2$.
+
+b) $36 = 2^2 \times 3^2$.
+
+c) $48 = 2^4 \times 3$.
+
+d) $72 = 2^3 \times 3^2$.
+
+---
+
+**Bài 5:**
+a) $100 = 2^2 \times 5^2$.
+
+b) $120 = 2^3 \times 3 \times 5$.
+
+c) $150 = 2 \times 3 \times 5^2$.
+
+d) $200 = 2^3 \times 5^2$.
+
+---
+
+**Bài 6:**
+a) Từ $20$ đến $30$: $23, 29$.
+
+b) Từ $40$ đến $50$: $41, 43, 47$.
+
+c) Từ $60$ đến $70$: $61, 67$.
+
+d) Từ $80$ đến $90$: $83, 89$.
+
+---
+
+**Bài 7:**
+a) Các số nguyên tố nhỏ hơn $50$: $2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47$. Số lớn nhất là $47$.
+
+b) Các cặp số nguyên tố có tổng bằng $20$: $3 + 17 = 20$ và $7 + 13 = 20$.
+
+c) Hai số tự nhiên liên tiếp luôn có một số chẵn. Nếu cả hai đều là số nguyên tố thì số chẵn đó phải là $2$ (số nguyên tố chẵn duy nhất). Số liền sau của $2$ là $3$, cũng là số nguyên tố. Vậy hai số nguyên tố liên tiếp duy nhất là $2$ và $3$.
+
+---
+
+**Bài 8:**
+a) $43$ là số nguyên tố, chỉ có hai ước $1$ và $43$. Vậy **không thể** chia đều thành các nhóm (mỗi nhóm ít nhất $2$ học sinh).
+
+b) Thêm $5$ học sinh: $43 + 5 = 48 = 4 \times 12$. Vậy **có thể** chia đều thành $4$ nhóm, mỗi nhóm $12$ học sinh.
+
+---
+
+**Bài 9:**
+a) $a = 2^3 \times 3^2$. Số ước: $(3+1) \times (2+1) = 4 \times 3 = 12$ (ước).
+
+b) $b = 2^4 \times 5$. Số ước: $(4+1) \times (1+1) = 5 \times 2 = 10$ (ước).
+
+---
+
+**Bài 10:**
+Thử lần lượt các số nguyên tố $p$ từ nhỏ đến lớn:
+
+- $p = 2$: $p + 2 = 4$ là hợp số (loại).
+- $p = 3$: $p + 2 = 5$, $p + 4 = 7$ đều là số nguyên tố ✓.
+
+**Đáp số:** $p = 3$.
+
+(Nhận xét: với $p > 3$, trong ba số $p$, $p+2$, $p+4$ luôn có một số chia hết cho $3$, nên không thể cả ba cùng nguyên tố.)
 
 </div>
 </details>

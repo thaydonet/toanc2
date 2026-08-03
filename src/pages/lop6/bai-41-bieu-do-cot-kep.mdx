@@ -11,9 +11,10 @@ import KhoiDong from '../../components/sections/KhoiDong.astro';
 import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
-import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import BieuDoCotKepInteractive from '../../components/interactive/BieuDoCotKepInteractive';
 
 export const quizData = [
   {
@@ -38,6 +39,118 @@ export const quizData = [
     correct_option: "A",
     explanation: "Biểu đồ cột kép có hai cột cạnh nhau cho mỗi tiêu chí.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong biểu đồ cột kép, mỗi tiêu chí có mấy cột?",
+    option_a: "Hai cột",
+    option_b: "Một cột",
+    option_c: "Ba cột",
+    option_d: "Bốn cột",
+    correct_option: "A",
+    explanation: "Mỗi tiêu chí trong biểu đồ cột kép có hai cột cạnh nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hai cột trong biểu đồ cột kép được phân biệt bằng gì?",
+    option_a: "Màu sắc khác nhau",
+    option_b: "Kích thước",
+    option_c: "Hình dạng",
+    option_d: "Vị trí",
+    correct_option: "A",
+    explanation: "Hai cột trong biểu đồ cột kép thường được phân biệt bằng màu sắc khác nhau.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khi nào nên dùng biểu đồ cột kép thay vì hai biểu đồ cột đơn?",
+    option_a: "Khi muốn so sánh trực tiếp hai bộ dữ liệu trên cùng biểu đồ",
+    option_b: "Luôn luôn",
+    option_c: "Khi dữ liệu quá nhiều",
+    option_d: "Khi không có thước kẻ",
+    correct_option: "A",
+    explanation: "Biểu đồ cột kép giúp so sánh trực tiếp hai bộ dữ liệu trên cùng một biểu đồ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Lớp 6A: Nam 18, Nữ 17. Lớp 6B: Nam 16, Nữ 19. Lớp nào nhiều nữ hơn?",
+    option_a: "Lớp 6B (19 > 17)",
+    option_b: "Lớp 6A (17 > 19)",
+    option_c: "Bằng nhau",
+    option_d: "Không thể so sánh",
+    correct_option: "A",
+    explanation: "Lớp 6B có 19 nữ, nhiều hơn lớp 6A (17 nữ).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong biểu đồ cột kép, chú thích có vai trò gì?",
+    option_a: "Giải thích ý nghĩa từng màu sắc/loại cột",
+    option_b: "Trang trí thêm",
+    option_c: "Không cần thiết",
+    option_d: "Che bớt dữ liệu",
+    correct_option: "A",
+    explanation: "Chú thích giúp người xem hiểu ý nghĩa từng màu sắc hoặc loại cột trong biểu đồ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "So sánh doanh thu hai cửa hàng qua 4 tháng. Tổng doanh thu A = 230 triệu, B = 250 triệu. Cửa hàng nào doanh thu cao hơn?",
+    option_a: "Cửa hàng B (250 > 230)",
+    option_b: "Cửa hàng A",
+    option_c: "Bằng nhau",
+    option_d: "Không đủ dữ liệu",
+    correct_option: "A",
+    explanation: "Tổng doanh thu B (250 triệu) lớn hơn A (230 triệu).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Biểu đồ cột kép có thể dùng để so sánh những gì?",
+    option_a: "Doanh thu hai cửa hàng qua các tháng",
+    option_b: "Điểm Toán và Văn của các học sinh",
+    option_c: "Số lượng nam nữ tham gia các hoạt động",
+    option_d: "Nhiệt độ ngày và đêm",
+    correct_options: ["A", "B", "C", "D"],
+    explanation: "Biểu đồ cột kép phù hợp để so sánh bất kỳ hai bộ dữ liệu nào có cùng tiêu chí.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Ưu điểm của biểu đồ cột kép so với hai biểu đồ cột riêng biệt?",
+    option_a: "So sánh trực tiếp dễ dàng hơn",
+    option_b: "Tiết kiệm không gian trình bày",
+    option_c: "Trực quan hơn khi đặt cạnh nhau",
+    option_d: "Chính xác hơn",
+    correct_options: ["A", "B", "C"],
+    explanation: "Biểu đồ cột kép giúp so sánh trực tiếp, tiết kiệm không gian và trực quan hơn.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "So sánh số lượng HS nam và nữ ở 4 lớp: 6A (Nam 18, Nữ 20), 6B (Nam 22, Nữ 16), 6C (Nam 19, Nữ 19), 6D (Nam 15, Nữ 23). a) Lập bảng thống kê. b) Lớp nào chênh lệch nam nữ lớn nhất? c) Lớp nào cân bằng nhất?",
+    answer: "a) Bảng 4 lớp với 2 cột Nam/Nữ. b) 6D chênh lệch lớn nhất (23-15=8). c) 6C cân bằng nhất (Nam=Nữ=19).",
+    explanation: "Lập bảng, tính chênh lệch |Nam-Nữ| từng lớp, so sánh.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Doanh thu hai cửa hàng X và Y trong 5 tháng: X(40,50,55,60,65), Y(45,48,52,58,70) triệu đồng. a) Lập bảng. b) Tổng doanh thu mỗi cửa hàng. c) Tháng nào X > Y? d) Tháng nào Y > X?",
+    answer: "a) Bảng 5 tháng, 2 cột X/Y. b) X=270, Y=273 triệu. c) X>Y: T2, T3, T4. d) Y>X: T1, T5.",
+    explanation: "Lập bảng đầy đủ, cộng tổng, so sánh từng tháng.",
+    difficulty_level: "hard",
     is_dynamic: false,
   },
 ];
@@ -105,7 +218,8 @@ Biểu đồ cột kép sẽ có:
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<BieuDoCotKepInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -126,205 +240,81 @@ b) Tháng nào cửa hàng B có doanh thu cao hơn A?
 
 c) Tính tổng doanh thu của mỗi cửa hàng
 
+**📝 Bài toán 2:** So sánh chiều cao trung bình (cm) của nam và nữ lớp 6A theo độ tuổi:
+
+- 11 tuổi: Nam 145, Nữ 147
+- 12 tuổi: Nam 150, Nữ 151
+- 13 tuổi: Nam 158, Nữ 155
+
+a) Lập bảng thống kê
+
+b) Ở độ tuổi nào nữ cao hơn nam?
+
+c) Nam phát triển mạnh nhất ở độ tuổi nào?
+
+**📝 Bài toán 3:** So sánh số lượng sách bán được của hai thể loại Truyện tranh và Tiểu thuyết qua 4 quý:
+
+- Quý 1: Truyện tranh 200, Tiểu thuyết 150
+- Quý 2: Truyện tranh 180, Tiểu thuyết 160
+- Quý 3: Truyện tranh 220, Tiểu thuyết 140
+- Quý 4: Truyện tranh 250, Tiểu thuyết 180
+
+a) Lập bảng thống kê
+
+b) Quý nào bán nhiều truyện tranh nhất?
+
+c) Thể loại nào bán được nhiều hơn tổng cộng?
+
 </VanDung>
 
-<BaiTapTuLuan>
+### Bài tập tự luận
 
-**Bài 1:** Điểm trung bình môn Toán và Văn của 4 học sinh:
+**Bài 1:** So sánh điểm Toán và Văn của 5 học sinh: An(8,7), Bình(7,8), Chi(9,8), Dũng(6,7), Hoa(8,9). Lập bảng và vẽ biểu đồ cột kép.
 
-| Học sinh | Toán | Văn |
-|---|---|---|
-| An | 8,5 | 7,5 |
-| Bình | 7,0 | 8,0 |
-| Chi | 9,0 | 8,5 |
-| Dũng | 6,5 | 7,0 |
+**Bài 2:** Số lượng HS nam nữ thích thể thao: Bóng đá(Nam 20, Nữ 5), Bóng chuyền(Nam 10, Nữ 15), Cầu lông(Nam 12, Nữ 18). Lập bảng, môn nào chênh lệch lớn nhất?
 
-a) Vẽ biểu đồ cột kép
+**Bài 3:** Doanh thu hai cửa hàng X,Y qua 5 tháng: X(40,50,55,60,65), Y(45,48,52,58,70). Tính tổng mỗi cửa hàng. Tháng nào X > Y?
 
-b) Học sinh nào có điểm Toán cao nhất?
+**Bài 4:** Lượng mưa (mm) hai thành phố A,B trong 6 tháng: A(120,100,80,60,90,150), B(100,120,90,70,80,130). Lập bảng và so sánh.
 
-c) Học sinh nào có điểm Văn cao nhất?
+**Bài 5:** SốHS thi học kỳ giỏi Toán và Anh của 4 lớp: 6A(Toán 8, Anh 6), 6B(Toán 10, Anh 8), 6C(Toán 7, Anh 9), 6D(Toán 12, Anh 5). Lập bảng, lớp nào giỏi Toán nhất?
 
-d) Học sinh nào có tổng điểm hai môn cao nhất?
+**Bài 6:** Số lượng khách hai nhà hàng X,Y qua 5 ngày: X(50,60,45,70,80), Y(55,50,60,65,75). Tính tổng, trung bình mỗi nhà hàng.
 
-**Bài 2:** Số lượng học sinh nam và nữ tham gia các môn thể thao:
+**Bài 7:** Chi phí ăn uống và vui chơi của 2 gia đình trong 4 tuần: GĐ1(Ăn 2, VC 1), GĐ2(Ăn 3, VC 2) triệu đồng. GĐ nào chi nhiều hơn?
 
-| Môn | Nam | Nữ |
-|---|---|---|
-| Bóng đá | 20 | 5 |
-| Bóng chuyền | 10 | 15 |
-| Cầu lông | 12 | 18 |
-| Bơi lội | 8 | 12 |
+**Bài 8:** Temperature trung bình ngày/đêm ở Hà Nội và TP.HCM: HN(30,24), HCM(33,26)°C. Tính chênh lệch ngày-đêm mỗi thành phố.
 
-a) Vẽ biểu đồ cột kép
+**Bài 9:** SốHS giỏi và khá của 3 lớp: 6A(Giỏi 15, Khá 20), 6B(Giỏi 18, Khá 17), 6C(Giỏi 12, Khá 22). Lớp nào tỷ lệ giỏi cao nhất?
 
-b) Môn nào có nhiều nam sinh tham gia nhất?
-
-c) Môn nào có nhiều nữ sinh tham gia nhất?
-
-d) Tính tổng số học sinh tham gia mỗi môn
-
-e) Môn nào có tổng số học sinh tham gia nhiều nhất?
-
-**Bài 3:** Doanh thu của hai cửa hàng X và Y trong 5 tháng (triệu đồng):
-
-| Tháng | Cửa hàng X | Cửa hàng Y |
-|---|---|---|
-| Tháng 1 | 40 | 45 |
-| Tháng 2 | 50 | 48 |
-| Tháng 3 | 55 | 52 |
-| Tháng 4 | 60 | 58 |
-| Tháng 5 | 65 | 70 |
-
-a) Vẽ biểu đồ cột kép
-
-b) Tháng nào cửa hàng X có doanh thu cao hơn Y?
-
-c) Tháng nào cửa hàng Y có doanh thu cao hơn X?
-
-d) Tính tổng doanh thu của mỗi cửa hàng
-
-e) Cửa hàng nào có tổng doanh thu cao hơn?
-
-**Bài 4:** Số lượng sách bán được của hai thể loại Văn học và Khoa học qua 4 quý:
-
-| Quý | Văn học | Khoa học |
-|---|---|---|
-| Quý 1 | 120 | 80 |
-| Quý 2 | 150 | 100 |
-| Quý 3 | 130 | 90 |
-| Quý 4 | 180 | 120 |
-
-a) Vẽ biểu đồ cột kép
-
-b) Quý nào bán được nhiều sách Văn học nhất?
-
-c) Quý nào bán được nhiều sách Khoa học nhất?
-
-d) Tính tổng số sách mỗi thể loại đã bán
-
-e) Thể loại nào bán được nhiều hơn?
-
-**Bài 5:** Nhiệt độ trung bình ban ngày và ban đêm của một thành phố trong 5 ngày (°C):
-
-| Ngày | Ban ngày | Ban đêm |
-|---|---|---|
-| Thứ 2 | 32 | 24 |
-| Thứ 3 | 33 | 25 |
-| Thứ 4 | 31 | 23 |
-| Thứ 5 | 34 | 26 |
-| Thứ 6 | 35 | 27 |
-
-a) Vẽ biểu đồ cột kép
-
-b) Ngày nào có nhiệt độ ban ngày cao nhất?
-
-c) Ngày nào có nhiệt độ ban đêm thấp nhất?
-
-d) Tính chênh lệch nhiệt độ trung bình giữa ngày và đêm mỗi ngày
-
-e) Ngày nào có chênh lệch nhiệt độ lớn nhất?
+**Bài 10:** Doanh thu online và tại cửa hàng của công ty qua 4 quý: Online(100,120,150,180), Cửa hàng(200,180,160,140) triệu. xu hướng ra sao?
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1: Điểm Toán và Văn**
+**Bài 1:** Bảng 5 học sinh, 2 cột Toán/Văn. Chi giỏi Toán nhất (9), Hoa giỏi Văn nhất (9).
 
-a) **Biểu đồ cột kép:** Vẽ biểu đồ với trục dọc từ 0 đến 10, mỗi học sinh có 2 cột (Toán và Văn) cạnh nhau
+**Bài 2:** Bóng đá chênh lệch lớn nhất (Nam 20 > Nữ 5, chênh 15).
 
-b) Học sinh có điểm Toán cao nhất: **Chi** (9,0 điểm)
+**Bài 3:** X = 270, Y = 273 triệu. X > Y ở T2(50>48), T3(55>52), T4(60>58).
 
-c) Học sinh có điểm Văn cao nhất: **Chi** (8,5 điểm)
+**Bài 4:** Tổng A = 600, B = 590 mm. A mưa nhiều hơn tổng.
 
-d) Tổng điểm hai môn:
-   - An: 8,5 + 7,5 = 16,0
-   - Bình: 7,0 + 8,0 = 15,0
-   - Chi: 9,0 + 8,5 = **17,5** (cao nhất)
-   - Dũng: 6,5 + 7,0 = 13,5
+**Bài 5:** 6D giỏi Toán nhất (12 HS).
 
-   Học sinh có tổng điểm cao nhất: **Chi** (17,5 điểm)
+**Bài 6:** Tổng X = 305, TB = 61; Tổng Y = 305, TB = 61. Bằng nhau.
 
----
+**Bài 7:** GĐ1: 4 triệu; GĐ2: 5 triệu. GĐ2 chi nhiều hơn.
 
-**Bài 2: Thể thao nam nữ**
+**Bài 8:** HN chênh 6°C; HCM chênh 7°C. HCM chênh lệch lớn hơn.
 
-a) **Biểu đồ cột kép:** Vẽ với trục dọc từ 0 đến 25, mỗi môn có 2 cột (Nam và Nữ)
+**Bài 9:** 6A: 15/35 = 42,9%; 6B: 18/35 = 51,4%; 6C: 12/34 = 35,3%. 6B tỷ lệ giỏi cao nhất.
 
-b) Môn có nhiều nam sinh nhất: **Bóng đá** (20 nam)
-
-c) Môn có nhiều nữ sinh nhất: **Cầu lông** (18 nữ)
-
-d) Tổng số học sinh mỗi môn:
-   - Bóng đá: 20 + 5 = 25
-   - Bóng chuyền: 10 + 15 = 25
-   - Cầu lông: 12 + 18 = 30
-   - Bơi lội: 8 + 12 = 20
-
-e) Môn có tổng số học sinh nhiều nhất: **Cầu lông** (30 học sinh)
-
----
-
-**Bài 3: Doanh thu hai cửa hàng**
-
-a) **Biểu đồ cột kép:** Vẽ với trục dọc từ 0 đến 80, mỗi tháng có 2 cột (X và Y)
-
-b) Tháng X có doanh thu cao hơn Y:
-   - Tháng 1: 40 < 45 (không)
-   - Tháng 2: 50 > 48 (có)
-   - Tháng 3: 55 > 52 (có)
-   - Tháng 4: 60 > 58 (có)
-   
-   Đáp án: **Tháng 2, 3, 4**
-
-c) Tháng Y có doanh thu cao hơn X:
-   - **Tháng 1 và Tháng 5**
-
-d) Tổng doanh thu:
-   - Cửa hàng X: 40 + 50 + 55 + 60 + 65 = **270 triệu**
-   - Cửa hàng Y: 45 + 48 + 52 + 58 + 70 = **273 triệu**
-
-e) Cửa hàng có tổng doanh thu cao hơn: **Cửa hàng Y** (273 triệu)
-
----
-
-**Bài 4: Sách Văn học và Khoa học**
-
-a) **Biểu đồ cột kép:** Vẽ với trục dọc từ 0 đến 200
-
-b) Quý bán nhiều sách Văn học nhất: **Quý 4** (180 quyển)
-
-c) Quý bán nhiều sách Khoa học nhất: **Quý 4** (120 quyển)
-
-d) Tổng số sách mỗi thể loại:
-   - Văn học: 120 + 150 + 130 + 180 = **580 quyển**
-   - Khoa học: 80 + 100 + 90 + 120 = **390 quyển**
-
-e) Thể loại bán được nhiều hơn: **Văn học** (580 quyển)
-
----
-
-**Bài 5: Nhiệt độ ngày và đêm**
-
-a) **Biểu đồ cột kép:** Vẽ với trục dọc từ 0 đến 40
-
-b) Ngày có nhiệt độ ban ngày cao nhất: **Thứ 6** (35°C)
-
-c) Ngày có nhiệt độ ban đêm thấp nhất: **Thứ 4** (23°C)
-
-d) Chênh lệch nhiệt độ mỗi ngày:
-   - Thứ 2: 32 - 24 = 8°C
-   - Thứ 3: 33 - 25 = 8°C
-   - Thứ 4: 31 - 23 = 8°C
-   - Thứ 5: 34 - 26 = 8°C
-   - Thứ 6: 35 - 27 = 8°C
-
-e) Ngày có chênh lệch nhiệt độ lớn nhất: **Tất cả các ngày đều bằng nhau** (8°C)
+**Bài 10:** Online tăng dần (100→180), Cửa hàng giảm dần (200→140). Xu hướng: Online tăng, Cửa hàng giảm.
 
 </div>
 </details>
-
-</BaiTapTuLuan>
 
 <GhiNho>
 

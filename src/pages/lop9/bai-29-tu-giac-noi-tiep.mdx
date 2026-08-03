@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 29: Tứ giác nội tiếp"
-description: "Khái niệm, định lí và các dấu hiệu nhận biết tứ giác nội tiếp đường tròn - Toán 9 Kết nối tri thức"
+description: "Định nghĩa tứ giác nội tiếp, tính chất tổng hai góc đối bằng 180 độ và 4 dấu hiệu nhận biết tứ giác nội tiếp - Toán 9 KNTT Chương 9"
 grade: "Lớp 9"
 chapter: "Chương IX: Đường tròn ngoại tiếp và đường tròn nội tiếp"
 currentSlug: "lop9/bai-29-tu-giac-noi-tiep"
@@ -13,225 +13,380 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Thế nào là một tứ giác nội tiếp đường tròn?",
-    option_a: "Là tứ giác có ba đỉnh nằm trên đường tròn và một đỉnh nằm bên trong.",
-    option_b: "Là tứ giác có tổng bốn góc bằng 360 độ.",
-    option_c: "Là tứ giác có cả bốn đỉnh cùng nằm trên một đường tròn.",
-    option_d: "Là tứ giác có bốn đỉnh nằm ngoài đường tròn.",
-    correct_option: "C",
-    explanation: "Định nghĩa: Một tứ giác có cả bốn đỉnh cùng thuộc một đường tròn được gọi là tứ giác nội tiếp đường tròn đó (gọi tắt là tứ giác nội tiếp).",
+    question: "Tứ giác nội tiếp đường tròn là tứ giác có đặc điểm gì?",
+    option_a: "Có cả 4 đỉnh cùng nằm trên một đường tròn",
+    option_b: "Có 4 cạnh tiếp xúc với đường tròn",
+    option_c: "Có hai đường chéo vuông góc với nhau",
+    option_d: "Có hai cạnh đối song song",
+    correct_option: "A",
+    explanation: "Định nghĩa: Tứ giác nội tiếp đường tròn là tứ giác có cả 4 đỉnh cùng nằm trên một đường tròn đó.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Định lí cơ bản và quan trọng nhất về tính chất góc của một tứ giác nội tiếp là gì?",
-    option_a: "Hai góc kề một cạnh có tổng bằng 180 độ.",
-    option_b: "Hai góc đối nhau bằng nhau.",
-    option_c: "Tổng số đo của hai góc đối diện nhau luôn bằng 180 độ.",
-    option_d: "Bốn góc của tứ giác luôn là góc vuông.",
-    correct_option: "C",
-    explanation: "Định lí: Trong một tứ giác nội tiếp, tổng số đo hai góc đối nhau luôn luôn bù nhau (bằng $180^\\circ$).",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Cho tứ giác ABCD nội tiếp một đường tròn. Biết góc $\\widehat{A} = 70^\\circ$. Số đo của góc $\\widehat{C}$ (góc đối diện với góc A) là bao nhiêu?",
-    option_a: "70 độ",
-    option_b: "110 độ",
-    option_c: "90 độ",
-    option_d: "180 độ",
+    question: "Trong một tứ giác nội tiếp, tổng số đo hai góc đối diện bằng bao nhiêu?",
+    option_a: "$90^\\circ$",
+    option_b: "$180^\\circ$",
+    option_c: "$360^\\circ$",
+    option_d: "$270^\\circ$",
     correct_option: "B",
-    explanation: "Vì tứ giác ABCD nội tiếp, tổng hai góc đối $\\widehat{A} + \\widehat{C} = 180^\\circ$. Suy ra $\\widehat{C} = 180^\\circ - 70^\\circ = 110^\\circ$.",
+    explanation: "Định lý: Trong một tứ giác nội tiếp, tổng số đo hai góc đối diện luôn bằng $180^\\circ$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Dấu hiệu nào sau đây ĐỦ chứng minh một tứ giác là tứ giác nội tiếp?",
-    option_a: "Tứ giác có các góc bằng nhau.",
-    option_b: "Tứ giác có hai đường chéo cắt nhau tại trung điểm mỗi đường.",
-    option_c: "Tứ giác có tổng hai góc đối diện bằng 180 độ.",
-    option_d: "Tứ giác có một đường chéo là trục đối xứng.",
+    question: "Hình nào sau đây LUÔN LUÔN là tứ giác nội tiếp?",
+    option_a: "Hình bình hành",
+    option_b: "Hình thoi",
+    option_c: "Hình chữ nhật",
+    option_d: "Hình thang vuông",
     correct_option: "C",
-    explanation: "Định lí đảo: Nếu một tứ giác có tổng số đo hai góc đối nhau bằng $180^\\circ$ thì tứ giác đó nội tiếp được đường tròn.",
+    explanation: "Hình chữ nhật có 4 góc vuông nên tổng hai góc đối bằng $90^\\circ + 90^\\circ = 180^\\circ$ (luôn nội tiếp).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tứ giác ABCD nội tiếp đường tròn. Nếu $\\widehat{A} = 70^\\circ$ thì số đo góc $\\widehat{C}$ đối diện bằng:",
+    option_a: "$70^\\circ$",
+    option_b: "$110^\\circ$",
+    option_c: "$20^\\circ$",
+    option_d: "$140^\\circ$",
+    correct_option: "B",
+    explanation: "$\\widehat{A} + \\widehat{C} = 180^\\circ \\Rightarrow \\widehat{C} = 180^\\circ - 70^\\circ = 110^\\circ$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Dấu hiệu nào sau đây KHÔNG ĐÚNG để chứng minh tứ giác ABCD nội tiếp?",
+    option_a: "Tứ giác có tổng hai góc đối $\\widehat{A} + \\widehat{C} = 180^\\circ$",
+    option_b: "Tứ giác có 4 đỉnh cách đều một điểm $O$",
+    option_c: "Tứ giác có góc ngoài tại một đỉnh bằng góc trong tại đỉnh đối diện",
+    option_d: "Tứ giác có hai đường chéo bằng nhau",
+    correct_option: "D",
+    explanation: "Tứ giác có 2 đường chéo bằng nhau chưa chắc nội tiếp (ví dụ hình thang cân thì nội tiếp, nhưng tứ giác bất kỳ có 2 đường chéo bằng nhau không nhất thiết nội tiếp).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Theo quan điểm hình học, loại tứ giác đặc biệt nào dưới đây LUÔN LUÔN nội tiếp được đường tròn?",
-    option_a: "Hình thoi",
-    option_b: "Hình bình hành",
-    option_c: "Hình chữ nhật (và Hình vuông)",
-    option_d: "Hình thang thường",
-    correct_option: "C",
-    explanation: "Mọi hình chữ nhật (kể cả hình vuông) đều luôn có bốn góc vuông ($90^\\circ + 90^\\circ = 180^\\circ$), nên chúng luôn nội tiếp được. Hình thang cân cũng luôn nội tiếp nhưng hình bình hành, hình thoi hay hình thang thường thì không chắc chắn.",
+    question: "Cho tam giác ABC nhọn, hai đường cao BD và CE cắt nhau tại H. Tứ giác ADHE nội tiếp đường tròn đường kính nào?",
+    option_a: "Đường kính BC",
+    option_b: "Đường kính AH",
+    option_c: "Đường kính AB",
+    option_d: "Đường kính AC",
+    correct_option: "B",
+    explanation: "$\\widehat{ADH} = \\widehat{AEH} = 90^\\circ \\Rightarrow D, E$ cùng nhìn $AH$ dưới góc $90^\\circ \\Rightarrow$ tứ giác ADHE nội tiếp đường tròn đường kính AH.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Ngoài việc chứng minh tổng hai góc đối bằng 180 độ, những phương pháp nào sau đây còn là dấu hiệu nhận biết tứ giác nội tiếp hợp lệ?",
-    option_a: "Chứng minh tứ giác có 4 đỉnh cách đều một điểm cố định nào đó (điểm đó là tâm).",
-    option_b: "Chứng minh tứ giác là một hình thoi.",
-    option_c: "Chứng minh tứ giác có góc ngoài tại một đỉnh bằng với góc trong tại đỉnh đối diện với nó.",
-    option_d: "Chứng minh tứ giác có hai đỉnh kề nhau cùng nhìn cạnh chứa hai đỉnh còn lại dưới những góc bằng nhau.",
-    correct_option: "A,C,D",
-    explanation: "Có $4$ dấu hiệu nhận biết chính: (1) Tổng 2 góc đối $= 180^\\circ$. (2) Bốn đỉnh cách đều 1 điểm (định nghĩa). (3) Lợi dụng góc bù: góc ngoài bằng góc đối trong. (4) Xét quỹ tích cung chứa góc: hai đỉnh cùng nhìn một cạnh chung dưới các góc bằng nhau.",
-    difficulty_level: "hard",
+    question: "Những hình tứ giác đặc biệt nào sau đây LUÔN nội tiếp được đường tròn?",
+    option_a: "Hình chữ nhật",
+    option_b: "Hình vuông",
+    option_c: "Hình thang cân",
+    option_d: "Hình bình hành",
+    correct_option: "A,B,C",
+    explanation: "Hình chữ nhật, hình vuông, hình thang cân luôn nội tiếp được. Hình bình hành chỉ nội tiếp được khi nó là hình chữ nhật.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Cho tứ giác $MNPQ$ nội tiếp đường tròn. Biết $\\widehat{M} = 85^\\circ$ và $\\widehat{N} = 100^\\circ$. Hãy tính số đo cực đại của góc $\\widehat{Q}$ đối diện với góc N (tính bằng độ).",
-    correct_option: "80",
-    explanation: "Do $MNPQ$ là tứ giác nội tiếp, các cặp góc đối bù nhau: $\\widehat{N} + \\widehat{Q} = 180^\\circ$. Từ đó $\\widehat{Q} = 180^\\circ - 100^\\circ = 80^\\circ$.",
+    type: "msq",
+    question: "Cho tứ giác ABCD nội tiếp đường tròn $(O)$. Kết luận nào ĐÚNG?",
+    option_a: "$\\widehat{A} + \\widehat{C} = 180^\\circ$",
+    option_b: "$\\widehat{B} + \\widehat{D} = 180^\\circ$",
+    option_c: "$\\widehat{ABD} = \\widehat{ACD}$ (hai góc nội tiếp cùng chắn cung AD)",
+    option_d: "Góc ngoài tại đỉnh A bằng góc $\\widehat{C}$",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 khẳng định đều là các tính chất cơ bản của tứ giác nội tiếp.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tứ giác $ABCD$ có $\\widehat{A} = 60^\\circ, \\widehat{B} = 80^\\circ$ và $\\widehat{C} = 120^\\circ$. Tính góc $\\widehat{D}$ và xác định xem tứ giác này CÓ nội tiếp được đường tròn hay không? Nếu CÓ hãy điền 1, nếu KHÔNG hãy điền 0.",
-    correct_option: "1",
-    explanation: "Tính góc còn lại: Tổng 4 góc tứ giác là $360^\\circ \\Rightarrow \\widehat{D} = 360^\\circ - (60^\\circ + 80^\\circ + 120^\\circ) = 100^\\circ$. Kiểm tra các cặp góc đối: $\\widehat{A} + \\widehat{C} = 60^\\circ + 120^\\circ = 180^\\circ$. $\\widehat{B} + \\widehat{D} = 80^\\circ + 100^\\circ = 180^\\circ$. Theo định lí đảo, tứ giác này hoàn toàn nội tiếp được đường tròn. Điền 1.",
-    difficulty_level: "medium",
+    question: "Cho tứ giác ABCD nội tiếp đường tròn. Biết góc $\\widehat{B} = 2 \\widehat{D}$. Số đo góc $\\widehat{B}$ bằng bao nhiêu độ?",
+    correct_option: "120",
+    explanation: "$\\widehat{B} + \\widehat{D} = 180^\\circ \\Rightarrow 2\\widehat{D} + \\widehat{D} = 180^\\circ \\Rightarrow 3\\widehat{D} = 180^\\circ \\Rightarrow \\widehat{D} = 60^\\circ \\Rightarrow \\widehat{B} = 120^\\circ$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Từ điểm M nằm ngoài (O), kẻ hai tiếp tuyến MA, MB với (O). Số đo góc $\\widehat{AOB} + \\widehat{AMB}$ bằng bao nhiêu độ?",
+    correct_option: "180",
+    explanation: "Tứ giác MAOB nội tiếp vì $\\widehat{MAO} = \\widehat{MBO} = 90^\\circ$. Do đó tổng hai góc đối $\\widehat{AOB} + \\widehat{AMB} = 180^\\circ$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🌠 Dấu ấn bảo chứng cho một khối đồng viên</h3>
+<h3 id="mo-dau">🏛️ Kiến Trúc Khung Cửa Sổ Tròn & Tứ Giác Nội Tiếp</h3>
 
-Năm xưa, khi lên bản đồ chia lô đất, có một thửa ruộng hình chéo bốn cạnh ngẫu nhiên, tạo thành một khung rào tứ giác khép kín. Quan hệ giữa các góc ở thửa ruộng này rất đặc biệt: tổng hai góc đối diện nhau luôn đong đúng $180$ độ (Bù nhau). Vài năm sau, kĩ sư đo đạc báo lại rằng, nhờ cấu trúc tổng góc bằng nhau kì diệu đó, cả bốn góc của thửa ruộng này có thể được nối thông đồng loạt bằng duy nhất một vòng xoay con đường cái dạng tròn, hoàn hảo ôm khít qua các góc.
+Trong các công trình kiến trúc cổ kính hay các ô cửa kính nghệ thuật hiện đại, người ta thường thiết kế các khung viền hình tứ giác $ABCD$ sao cho 4 đỉnh của tứ giác cùng nằm sát trên một vòng tròn trang trí.
 
-Trong hình học Euclid phẳng, việc một đa giác có nhiều đỉnh (từ 4 trở lên) cùng hội tụ chia sẻ duy nhất một quỹ đạo đường tròn không phải là điều ngẫu nhiên luôn xuất hiện. Các dạng hình học mang tính chất khép kín này tạo ra một chuyên đề trọng tâm thuộc kiến thức lớp 9: **Tứ giác nội tiếp**. Cùng tìm hiểu xem những quy luật khắt khe nào đưa 4 điểm tùy ý vào chung một đường tròn.
+Về mặt hình học:
+- Tứ giác $ABCD$ có cả 4 đỉnh $A, B, C, D$ cùng thuộc đường tròn $(O)$.
+- Tứ giác đó được gọi là một **Tứ giác nội tiếp**.
+- Hai góc đối diện của tứ giác này luôn có tổng bằng $180^\circ$ ($\widehat{A} + \widehat{C} = 180^\circ$)!
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="200" viewBox="0 0 420 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Circle */}
+  <circle cx="210" cy="100" r="75" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+  <circle cx="210" cy="100" r="4" fill="#ef4444"/>
+
+  {/* Cyclic Quadrilateral ABCD */}
+  <polygon points="210,25 140,120 230,173 280,70" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+
+  {/* Vertices */}
+  <circle cx="210" cy="25" r="4" fill="#16a34a"/>
+  <text x="210" y="15" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">A</text>
+
+  <circle cx="140" cy="120" r="4" fill="#16a34a"/>
+  <text x="125" y="125" font-size="12" font-weight="bold" fill="#15803d">B</text>
+
+  <circle cx="230" cy="173" r="4" fill="#16a34a"/>
+  <text x="230" y="190" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">C</text>
+
+  <circle cx="280" cy="70" r="4" fill="#16a34a"/>
+  <text x="292" y="75" font-size="12" font-weight="bold" fill="#15803d">D</text>
+
+  {/* Opposite angles highlight */}
+  <text x="210" y="48" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">Â + Ĉ = 180°</text>
+</svg>
+</div>
 
 </KhoiDong>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+<KhamPha title="Khám phá">
 
-<h3 id="dinh-nghia" style="margin-top:2rem;">📖 1. Khái niệm Tứ giác nội tiếp</h3>
+<h3 id="dinh-nghia-va-dinh-ly-tu-giac-noi-tiep">📖 1. Định nghĩa và Định lý Tứ giác nội tiếp</h3>
 
 <div class="box-dinh-nghia">
 
-- Định nghĩa: Một tứ giác có cả **bốn đỉnh nằm rải rác trên cùng một đường cong đường tròn** được gọi là **tứ giác nội tiếp** đường tròn (hoặc một tứ giác nội tiếp).
-- Đường tròn đi qua bốn đỉnh đó gọi là **đường tròn ngoại tiếp** tứ giác, tứ giác gọi là đa giác nội tiếp đường tròn.
+**1. Định nghĩa:**
+- Tứ giác có cả 4 đỉnh cùng nằm trên một đường tròn gọi là **tứ giác nội tiếp đường tròn** (nói gọn là tứ giác nội tiếp).
+
+**2. Định lý thuận:**
+Trong một tứ giác nội tiếp, tổng số đo hai góc đối diện bằng $180^^\circ$:
+$$\widehat{A} + \widehat{C} = 180^^\circ \qquad \text{và} \qquad \widehat{B} + \widehat{D} = 180^^\circ$$
+
+**3. Định lý đảo:**
+Nếu một tứ giác có tổng số đo hai góc đối diện bằng $180^^\circ$ thì tứ giác đó nội tiếp được đường tròn.
 
 </div>
 
-**Ví dụ:** Nếu vẽ một đường tròn tâm $O$, ta lần lượt chấm ngẫu nhiên 4 điểm $A, B, C, D$ trên biên của đường tròn đó. Dùng thước nối khép kín $AB, BC, CD$ và $DA$. Tứ giác $ABCD$ vừa tạo ra chính là một tứ giác nội tiếp.
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<h3 id="dinh-li" style="margin-top:2rem;">📖 2. Tính chất cơ bản của Góc đối diện</h3>
+**3 Ví dụ minh họa Định lý Tứ giác nội tiếp:**
 
-Vì cả 4 đỉnh đều chễm chệ trên đường tròn, các góc tại đỉnh của tứ giác bản chất chính là các **góc nội tiếp**. Xét sự tương quan giữa các góc nội tiếp này, định lý nền tảng nhất được phát biểu như sau:
+- **Ví dụ 1:** Cho tứ giác $ABCD$ nội tiếp đường tròn. Biết $\widehat{A} = 80^^\circ, \widehat{B} = 105^^\circ$. Tính số đo các góc $\widehat{C}$ và $\widehat{D}$.
+  - *Giải:* Vì $ABCD$ nội tiếp $\Rightarrow \widehat{A} + \widehat{C} = 180^^\circ \Rightarrow \widehat{C} = 180^^\circ - 80^^\circ = 100^^\circ$.  
+    $\widehat{B} + \widehat{D} = 180^^\circ \Rightarrow \widehat{D} = 180^^\circ - 105^^\circ = 75^^\circ$.
 
-<div class="box-dinh-ly">
+- **Ví dụ 2:** Chứng minh hình chữ nhật và hình vuông luôn nội tiếp được đường tròn.
+  - *Giải:* Hình chữ nhật $ABCD$ có $\widehat{A} = \widehat{B} = \widehat{C} = \widehat{D} = 90^^\circ$.  
+    Tổng hai góc đối $\widehat{A} + \widehat{C} = 90^^\circ + 90^^\circ = 180^^\circ \Rightarrow ABCD$ nội tiếp đường tròn (tâm $O$ là giao điểm 2 đường chéo).
 
-**Định lí (Thuận):** Trong một tứ giác nội tiếp, tổng số đo của hai góc đối diện nhau luôn luôn bằng $180^\circ$ (hai góc bù nhau).
-- Cho tứ giác nội tiếp $ABCD$, ta có được hệ thức: 
-$$\widehat{A} + \widehat{C} = 180^\circ$$
-$$\widehat{B} + \widehat{D} = 180^\circ$$
+- **Ví dụ 3:** Cho tứ giác $ABCD$ nội tiếp có góc ngoài tại đỉnh $A$ là $\widehat{xAB} = 70^^\circ$. Tính số đo góc trong đối diện $\widehat{C}$.
+  - *Giải:* Ta có $\widehat{DAB} = 180^^\circ - \widehat{xAB} = 180^^\circ - 70^^\circ = 110^^\circ$.  
+    Vì $ABCD$ nội tiếp $\Rightarrow \widehat{C} = 180^^\circ - \widehat{DAB} = 180^^\circ - 110^^\circ = 70^^\circ$.  
+    *(Chú ý: Góc ngoài tại một đỉnh bằng góc trong tại đỉnh đối diện!)*
 
 </div>
 
-*(Chứng minh: $\widehat{A}$ chắn cung $BCD$, $\widehat{C}$ chắn cung $DAB$. Tổng số đo hai cung chắn trải tròn bằng một vòng tròn $360^\circ$. Vì góc nội tiếp có bằng nửa số đo cung chắn $\Rightarrow \frac{1}{2} \cdot 360^\circ = 180^\circ$)*.
+<h3 id="4-dau-hieu-nhan-biet" style="margin-top:2rem;">📖 2. 4 Dấu hiệu nhận biết Tứ giác nội tiếp kinh điển</h3>
 
-<h3 id="nhan-biet" style="margin-top:2rem;">📖 3. Dấu hiệu nhận biết tứ giác nội tiếp (Định lí Đảo)</h3>
+<div class="box-dinh-nghia">
 
-Đây là phần mang tính ứng dụng cao nhất khi giải bài tập chứng minh. Làm sao để khẳng định một tứ giác bình thường thực chất là tứ giác nội tiếp?
+Để chứng minh tứ giác $ABCD$ nội tiếp đường tròn, ta có **4 phương pháp kinh điển**:
 
-1. **Dấu hiệu 1 (Tổng 2 góc đối bù nhau):** Tứ giác có tổng hai góc đối diện bằng $180^\circ$ thì chắc chắn tứ giác đó là nội tiếp.
-2. **Dấu hiệu 2 (Các đỉnh cách đều tâm):** Tứ giác mang 4 đỉnh cách đều một điểm $O$ cố định ($OA=OB=OC=OD$).
-3. **Dấu hiệu 3 (Góc ngoài bằng góc trong):** Tứ giác có góc mở bên ngoài tại một đỉnh (tạo bởi cạnh và phần kéo dài của cạnh kề) bằng với góc trong tại góc đỉnh đối diện.
-4. **Dấu hiệu 4 (Cung chứa góc đồng dạng):** Tứ giác có hai đỉnh sát kề nhau (như $A$ và $B$) đứng cùng nhìn vị trí cạnh ranh chứa hai đỉnh còn lại (đoạn $CD$) dưới các chùm tia góc bằng nhau ($\widehat{DAC} = \widehat{DBC}$). 
+1. **Dấu hiệu 1 (Tổng 2 góc đối):** Tứ giác có tổng hai góc đối diện bằng $180^^\circ$ ($\widehat{A} + \widehat{C} = 180^^\circ$).
+2. **Dấu hiệu 2 (Hai góc vuông cùng nhìn 1 cạnh):** Tứ giác có hai đỉnh kề nhau cùng nhìn cạnh chứa hai đỉnh còn lại dưới một góc $\alpha = 90^^\circ$ (hoặc góc $\alpha$ bằng nhau).
+3. **Dấu hiệu 3 (Góc ngoài bằng góc trong đỉnh đối):** Tứ giác có góc ngoài tại một đỉnh bằng góc trong tại đỉnh đối diện.
+4. **Dấu hiệu 4 (Cách đều 1 điểm):** Tứ giác có 4 đỉnh cách đều một điểm $O$ ($OA = OB = OC = OD = R$).
 
-<div style={{display: "flex", justifyContent: "space-around", flexWrap: "wrap", margin: "2rem 0"}}>
-{/* Minh hoạ Dấu hiệu 1 */}
-<div style={{textAlign: "center"}}>
-<svg width="200" height="200" viewBox="0 0 200 200">
-  <circle cx="100" cy="100" r="80" fill="none" stroke="#2563eb" strokeWidth="2"/>
-  <path d="M 43,43 L 157,43 L 170,140 L 70,174 Z" fill="none" stroke="#374151" strokeWidth="2"/>
-  {/* Đỉnh */}
-  <text x="30" y="35" fontWeight="bold">A</text>
-  <text x="165" y="35" fontWeight="bold">B</text>
-  <text x="180" y="150" fontWeight="bold">C</text>
-  <text x="50" y="185" fontWeight="bold">D</text>
-  <path d="M 43,63 A 20 20 0 0 0 63,43" fill="none" stroke="#ef4444" strokeWidth="2"/>
-  <path d="M 152,148 A 20 20 0 0 0 167,122" fill="none" stroke="#ef4444" strokeWidth="2"/>
-  <text x="90" y="110" fill="#ef4444" fontWeight="bold">A+C=180</text>
-</svg>
-<p style={{fontStyle: "italic", fontSize:"0.9rem"}}>DH1: Tổng hai góc đối</p>
 </div>
 
-{/* Minh hoạ Dấu hiệu 4 */}
-<div style={{textAlign: "center"}}>
-<svg width="200" height="200" viewBox="0 0 200 200">
-  <circle cx="100" cy="100" r="80" fill="none" stroke="#2563eb" strokeWidth="2"/>
-  <path d="M 43,43 L 157,43 L 170,140 L 70,174 Z" fill="none" stroke="#374151" strokeWidth="2"/>
-  {/* Chéo */}
-  <path d="M 43,43 L 170,140" fill="none" stroke="#10b981" strokeWidth="1" strokeDasharray="4,4"/>
-  <path d="M 157,43 L 70,174" fill="none" stroke="#10b981" strokeWidth="1" strokeDasharray="4,4"/>
-  <text x="30" y="35" fontWeight="bold">M</text>
-  <text x="165" y="35" fontWeight="bold">N</text>
-  <text x="180" y="150" fontWeight="bold">P</text>
-  <text x="50" y="185" fontWeight="bold">Q</text>
-  {/* Góc */}
-  <path d="M 54,54 A 15 15 0 0 0 63,43" fill="none" stroke="#f59e0b" strokeWidth="2"/>
-  <path d="M 143,62 A 15 15 0 0 0 137,43" fill="none" stroke="#f59e0b" strokeWidth="2"/>
-</svg>
-<p style={{fontStyle: "italic", fontSize:"0.9rem"}}>DH4: Cùng nhìn một cạnh</p>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Dấu hiệu nhận biết:**
+
+- **Ví dụ 1 (Hai góc vuông đối diện):** Cho tam giác $ABC$ nhọn. Hai đường cao $BD, CE$ cắt nhau tại $H$. Chứng minh tứ giác $ADHE$ nội tiếp.
+  - *Giải:* $BD \perp AC \Rightarrow \widehat{ADH} = 90^^\circ$. $CE \perp AB \Rightarrow \widehat{AEH} = 90^^\circ$.  
+    Xét tứ giác $ADHE$ có tổng hai góc đối: $\widehat{ADH} + \widehat{AEH} = 90^^\circ + 90^^\circ = 180^^\circ$.  
+    Do đó tứ giác $ADHE$ nội tiếp đường tròn đường kính $AH$ (Dấu hiệu 1).
+
+- **Ví dụ 2 (Hai góc vuông cùng nhìn 1 cạnh):** Chứng minh tứ giác $BEDC$ ở Ví dụ 1 nội tiếp.
+  - *Giải:* $\widehat{BEC} = 90^^\circ$ (do $CE \perp AB$), $\widehat{BDC} = 90^^\circ$ (do $BD \perp AC$).  
+    Hai đỉnh $E$ và $D$ kề nhau cùng nhìn cạnh $BC$ dưới góc vuông $90^^\circ$.  
+    Do đó tứ giác $BEDC$ nội tiếp đường tròn đường kính $BC$ (Dấu hiệu 2).
+
+- **Ví dụ 3 (Hai tiếp tuyến cắt nhau):** Từ điểm $M$ nằm ngoài $(O)$, kẻ 2 tiếp tuyến $MA, MB$ ($A, B$ là tiếp điểm). Chứng minh tứ giác $MAOB$ nội tiếp.
+  - *Giải:* $\widehat{MAO} = 90^^\circ$ (tiếp tuyến $MA \perp OA$), $\widehat{MBO} = 90^^\circ$ (tiếp tuyến $MB \perp OB$).  
+    Tổng hai góc đối $\widehat{MAO} + \widehat{MBO} = 90^^\circ + 90^^\circ = 180^^\circ \Rightarrow MAOB$ nội tiếp đường tròn đường kính $MO$.
+
 </div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Tính số đo các góc của Tứ giác nội tiếp**
+- **Phương pháp:** Áp dụng tính chất $\widehat{A} + \widehat{C} = 180^^\circ$, $\widehat{B} + \widehat{D} = 180^^\circ$ và các góc nội tiếp cùng chắn một cung.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tứ giác $ABCD$ nội tiếp có $\widehat{A} = 2 \widehat{C}$. Tính $\widehat{A}$ và $\widehat{C}$.
+  - *Lời giải:* $\widehat{A} + \widehat{C} = 180^^\circ \Rightarrow 2\widehat{C} + \widehat{C} = 180^^\circ \Rightarrow 3\widehat{C} = 180^^\circ \Rightarrow \widehat{C} = 60^^\circ, \widehat{A} = 120^^\circ$.
+
+- **Ví dụ 2:** Cho tứ giác $ABCD$ nội tiếp. Biết tỉ lệ các góc $\widehat{A} : \widehat{B} : \widehat{C} = 2 : 3 : 4$. Tính các góc của tứ giác.
+  - *Lời giải:* $\widehat{A} + \widehat{C} = 180^^\circ$. Đặt $\widehat{A} = 2k, \widehat{C} = 4k \Rightarrow 6k = 180^^\circ \Rightarrow k = 30^^\circ$.  
+    $\widehat{A} = 60^^\circ, \widehat{C} = 120^^\circ$. $\widehat{B} = 3k = 90^^\circ \Rightarrow \widehat{D} = 180^^\circ - 90^^\circ = 90^^\circ$.
+
+- **Ví dụ 3:** Cho hai đường chéo $AC$ và $BD$ của tứ giác nội tiếp $ABCD$ cắt nhau tại $I$. Biết $\widehat{ABD} = 40^^\circ, \widehat{DBC} = 30^^\circ$. Tính $\widehat{ACD}$ và $\widehat{CAD}$.
+  - *Lời giải:* $\widehat{ACD} = \widehat{ABD} = 40^^\circ$ (cùng chắn cung $AD$).  
+    $\widehat{CAD} = \widehat{CBD} = 30^^\circ$ (cùng chắn cung $CD$).
+
+</div>
+
+#### **Dạng 2: Chứng minh Tứ giác nội tiếp bằng Dấu hiệu Tổng 2 góc đối bằng $180^^\circ$**
+- **Phương pháp:** Tìm hai góc đối diện có tổng bằng $180^^\circ$ (thường là hai góc vuông $\widehat{A} = \widehat{C} = 90^^\circ$).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$. Trên cạnh $AC$ lấy điểm $M$. Kẻ $MN \perp BC$ ($N \in BC$). Chứng minh tứ giác $ABNM$ nội tiếp.
+  - *Lời giải:* $\widehat{MAB} = 90^^\circ$ ($\Delta ABC$ vuông tại $A$).  
+    $\widehat{MNB} = 90^^\circ$ (do $MN \perp BC$).  
+    Tứ giác $ABNM$ có $\widehat{MAB} + \widehat{MNB} = 90^^\circ + 90^^\circ = 180^^\circ \Rightarrow ABNM$ nội tiếp (ĐPCM).
+
+- **Ví dụ 2:** Cho nửa đường tròn $(O)$ đường kính $AB$. Từ điểm $C$ trên tiếp tuyến $Ax$ vẽ tiếp tuyến $CD$ với nửa đường tròn ($D$ là tiếp điểm). Chứng minh tứ giác $AODC$ nội tiếp.
+  - *Lời giải:* $\widehat{CAO} = 90^^\circ$ (tiếp tuyến $Ax \perp AB$), $\widehat{CDO} = 90^^\circ$ (tiếp tuyến $CD \perp OD$).  
+    $\widehat{CAO} + \widehat{CDO} = 90^^\circ + 90^^\circ = 180^^\circ \Rightarrow AODC$ nội tiếp đường tròn đường kính $CO$ (ĐPCM).
+
+- **Ví dụ 3:** Cho tam giác $ABC$ nội tiếp $(O)$. Hai đường cao $AD$ và $BE$ cắt nhau tại $H$. Chứng minh tứ giác $CDHE$ nội tiếp.
+  - *Lời giải:* $\widehat{CDH} = 90^^\circ$ ($AD \perp BC$), $\widehat{CEH} = 90^^\circ$ ($BE \perp AC$).  
+    $\widehat{CDH} + \widehat{CEH} = 180^^\circ \Rightarrow CDHE$ nội tiếp (ĐPCM).
+
+</div>
+
+#### **Dạng 3: Chứng minh Tứ giác nội tiếp bằng Dấu hiệu 2 đỉnh kề nhau cùng nhìn 1 cạnh**
+- **Phương pháp:** Tìm hai đỉnh $E, D$ kề nhau cùng nhìn cạnh $BC$ dưới góc bằng nhau ($\widehat{BEC} = \widehat{BDC}$).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ nhọn. Hai đường cao $BD, CE$ cắt nhau tại $H$. Chứng minh tứ giác $BEDC$ nội tiếp.
+  - *Lời giải:* $\widehat{BEC} = 90^^\circ$ ($CE \perp AB$), $\widehat{BDC} = 90^^\circ$ ($BD \perp AC$).  
+    Hai đỉnh $E, D$ kề nhau cùng nhìn cạnh $BC$ dưới góc $90^^\circ \Rightarrow BEDC$ nội tiếp đường tròn đường kính $BC$ (ĐPCM).
+
+- **Ví dụ 2:** Cho tam giác $ABC$ cân tại $A$. Hai đường cao $BD, CE$. Chứng minh tứ giác $BEDC$ nội tiếp.
+  - *Lời giải:* Tương tự Ví dụ 1, $E, D$ cùng nhìn $BC$ dưới góc $90^^\circ \Rightarrow BEDC$ nội tiếp.
+
+- **Ví dụ 3:** Cho hình vuông $ABCD$. Trên cạnh $BC$ lấy $M$, trên $CD$ lấy $N$ sao cho $\widehat{MAN} = 45^^\circ$. Kẻ $AH \perp MN$. Chứng minh 5 điểm $A, B, M, H, D$ cùng thuộc một đường tròn.
+  - *Lời giải:* $\widehat{ABM} = 90^^\circ, \widehat{AHM} = 90^^\circ \Rightarrow A, B, H, M$ thuộc đường tròn đường kính $AM$.  
+    Tương tự $A, D, N, H$ thuộc đường tròn đường kính $AN$...
+
+</div>
+
+#### **Dạng 4: Chứng minh Tứ giác nội tiếp bằng Dấu hiệu Góc ngoài bằng Góc trong đỉnh đối**
+- **Phương pháp:** Chứng minh góc ngoài tại đỉnh $A$ bằng góc trong tại đỉnh đối $C$ ($\widehat{xAB} = \widehat{C}$).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ có 3 đường cao $AD, BE, CF$ cắt nhau tại $H$. Chứng minh $\widehat{AFE} = \widehat{ACB}$.
+  - *Lời giải:* Tứ giác $BFEC$ nội tiếp (hai đỉnh $F, E$ cùng nhìn $BC$ dưới góc $90^^\circ$).  
+    Suy ra góc ngoài $\widehat{AFE}$ bằng góc trong đỉnh đối $\widehat{ACB}$ (ĐPCM).
+
+- **Ví dụ 2:** Chứng minh $\Delta AEF \sim \Delta ABC$ trong bài toán trên.
+  - *Lời giải:* $\Delta AEF$ và $\Delta ABC$ có $\widehat{A}$ chung và $\widehat{AFE} = \widehat{ACB} \Rightarrow \Delta AEF \sim \Delta ABC$ (g.g) (ĐPCM).
+
+- **Ví dụ 3:** Cho đường tròn $(O)$ và cát tuyến $MAB, MCD$. Chứng minh $\Delta MAC \sim \Delta MDB$ và tứ giác $ACDB$ nội tiếp.
+  - *Lời giải:* $\widehat{MCA} = \widehat{MBD}$ (hai góc nội tiếp cùng chắn cung $AD$).  
+    $\Delta MAC \sim \Delta MDB$ (g.g) $\Rightarrow$ góc ngoài $\widehat{MCA}$ bằng góc trong đối diện $\widehat{MBD} \Rightarrow ACDB$ nội tiếp (ĐPCM).
+
+</div>
+
+#### **Dạng 5: Bài toán Tổng hợp Ứng dụng Tứ giác nội tiếp**
+- **Phương pháp:** Dùng tính chất các góc nội tiếp bằng nhau để chứng minh tia phân giác, đường cao, đồng quy và thẳng hàng.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho tam giác $ABC$ nhọn có 3 đường cao $AD, BE, CF$ cắt nhau tại $H$. Chứng minh $H$ là tâm đường tròn nội tiếp tam giác $DEF$ (tức $DA$ là phân giác góc $\widehat{EDF}$).
+  - *Lời giải:* Tứ giác $DHEC$ nội tiếp $\Rightarrow \widehat{EDH} = \widehat{ECH}$.  
+    Tứ giác $DHFB$ nội tiếp $\Rightarrow \widehat{FDH} = \widehat{FBH}$.  
+    Mặt khác $\widehat{ECH} = \widehat{FBH}$ (cùng phụ với góc $\widehat{A}$) $\Rightarrow \widehat{EDH} = \widehat{FDH} \Rightarrow DH$ (tức $DA$) là tia phân giác góc $\widehat{EDF}$ (ĐPCM).
+
+- **Ví dụ 2:** Cho đường tròn $(O)$ và điểm $M$ ngoài $(O)$. Kẻ tiếp tuyến $MA$ và cát tuyến $MBC$. Gọi $I$ là trung điểm $BC$. Chứng minh 5 điểm $M, A, O, I, B$... (hoặc $M, A, O, I$) cùng thuộc một đường tròn.
+  - *Lời giải:* $I$ là trung điểm dây $BC \Rightarrow OI \perp BC \Rightarrow \widehat{MIO} = 90^^\circ$.  
+    $\widehat{MAO} = 90^^\circ$ (tiếp tuyến).  
+    Do đó 4 điểm $M, A, O, I$ cùng thuộc đường tròn đường kính $MO$ (ĐPCM).
+
+- **Ví dụ 3:** Chứng minh $MA^2 = MB \cdot MC$ bằng phương tích tứ giác nội tiếp.
+  - *Lời giải:* Áp dụng tam giác đồng dạng $\Delta MAB \sim \Delta MCA \Rightarrow MA^2 = MB \cdot MC$.
+
 </div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Tính số đo các góc của Tứ giác nội tiếp**
-**Phương pháp:** 
-- Đưa trực tiếp định lí trọng tâm góc đối diện: $\widehat{A} + \widehat{C} = 180^\circ$ và $\widehat{B} + \widehat{D} = 180^\circ$.
-- Kết hợp với tổng 4 góc của đa giác 4 cạnh bằng $360^\circ$ nếu bài toán phức tạp hơn.
-- Trong trường hợp đường chéo nội tiếp, truy vết góc nới tiếp bằng nhau chắn các cung nội tiếp tương tự (vận dụng góc kề).
+**Bài toán 1 (Thiết Kế Khung Cửa Sổ Tròn Nghệ Thuật):**  
+Một kiến trúc sư thiết kế khung cửa sổ hình tứ giác $ABCD$ có cả 4 đỉnh nằm trên vòm kính tròn đường kính $1,2\text{ m}$. Biết góc đỉnh $\widehat{A} = 75^^\circ$ và góc $\widehat{B} = 110^^\circ$.  
+a) Tính số đo hai góc đối diện $\widehat{C}$ và $\widehat{D}$ của khung cửa sổ.  
+b) Tính tổng số đo hai góc đối diện bất kỳ của khung cửa sổ.
 
-</div>
+**Bài toán 2 (Hàng Hải & Định Vị 4 Trạm Ra-đa Bờ Biển):**  
+Bốn trạm ra-đa hàng hải $A, B, C, D$ được xây dựng dọc bờ biển tạo thành một tứ giác nội tiếp đường tròn quét ra-đa bờ biển. Góc quét từ trạm $A$ nhìn hai trạm $B, D$ là $\widehat{BAD} = 85^^\circ$.  
+a) Tính góc quét từ trạm $C$ nhìn hai trạm $B, D$.  
+b) Nếu góc từ trạm $B$ nhìn hai trạm $A, C$ là $\widehat{ABC} = 95^^\circ$, tính góc quét tại trạm $D$.
 
-**Ví dụ 1:** 
-Cho tứ giác hình khép $ABCD$ bảo đảm tính chất nội tiếp một đường tròn. Giả sử ta đo lường được góc $\widehat{A} = 75^\circ$ và góc $\widehat{B} = 105^\circ$.
-Tính kích thước cụ thể của hai góc đỉnh còn sót lại $\widehat{C}$ và $\widehat{D}$?
-**Hướng dẫn:** 
-- Vì kết tủa tứ giác $ABCD$ rơi đúng vào nội tiếp đường tròn. Ta khai triển hai hệ lập cơ bản:
-  $\widehat{A} + \widehat{C} = 180^\circ \Rightarrow 75^\circ + \widehat{C} = 180^\circ \Rightarrow \widehat{C} = 180^\circ - 75^\circ = 105^\circ$.
-  $\widehat{B} + \widehat{D} = 180^\circ \Rightarrow 105^\circ + \widehat{D} = 180^\circ \Rightarrow \widehat{D} = 180^\circ - 105^\circ = 75^\circ$.
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Phân tích Chứng minh Tứ giác nội tiếp**
-**Phương pháp:** 
-- Sử dụng góc vuông (vuông góc): Nếu nhìn thấy có 2 góc $\widehat{A} = 90^\circ$ và $\widehat{C} = 90^\circ$ đối nhau, ta tổng lại $= 180^\circ$ cực nhanh.
-- Dò tìm góc chéo đường cao: Khi có 2 đường cao cắt nhau, các góc vuông $\widehat{D} = 90^\circ$ và $\widehat{E} = 90^\circ$ cùng nhìn một cạnh đáy, lập tức kết luận theo cung chứa góc.
-
-</div>
-
-**Ví dụ 2:** Quan sát một tam giác nhọn $\triangle ABC$. Tiến hành dựng hai đường cao $BD$ và $CE$ đi xuống vuông góc với mặt vách $AC$ và $AB$ (giao điểm hai chiều tạo điểm $H$).
-Chứng minh rằng có một cụm tứ giác tên là $BEDC$ đủ đặc tính nội tiếp đường tròn?
-**Hướng dẫn:** 
-- Xét trong cấu tạo tứ giác $BEDC$, hai cạnh $BE$ và $CD$ có góc được tạo hình là $\widehat{BEC} = 90^\circ$ (bởi vì đường cao CE thả xuống mốc sàn AB) và góc $\widehat{BDC} = 90^\circ$ (vì dải định BD rớt xuống mốc AC).
-- Chú ý đỉnh $E$ và $D$ là hai đỉnh kề sát của tứ giác, cùng đang hướng góc mắt theo dõi cạnh $BC$ dưới một khoảng giới hạn góc đạt $90^\circ$.
-- Dựa theo dấu hiệu đánh giá tính chất quỹ tích (cùng nhìn 1 góc chung), tứ giác $BEDC$ hoàn toàn nội tiếp trong một đường tròn. Tâm của đường tròn này là trung điểm của trục nối cạnh chung nhìn $BC$.
+**Bài toán 3 (Công Nghiệp Cơ Khí Khớp Xoay 4 Điểm):**  
+Trong một hệ thống truyền động đĩa quay tròn, 4 khớp xoay kim loại $A, B, C, D$ nối với nhau tạo thành một tứ giác. Hai đường chéo $AC$ và $BD$ cắt nhau tại tâm đĩa quay $O$. Giải thích vì sao tứ giác nối 4 khớp xoay phải là hình chữ nhật hoặc hình thang cân để đĩa quay được êm không bị kẹt.
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác dưới đây hỗ trợ tự động kiểm tra tứ giác nội tiếp, tính góc đối diện và tổng số đo góc!
+</div>
+
+<CanBacHaiInteractive client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 29:**
+
+1. **Định lý Tứ giác nội tiếp:** $\widehat{A} + \widehat{C} = 180^^\circ$ và $\widehat{B} + \widehat{D} = 180^^\circ$.  
+2. **4 Dấu hiệu nhận biết:**  
+   - Tổng 2 góc đối bằng $180^^\circ$.  
+   - 2 đỉnh kề nhau cùng nhìn 1 cạnh dưới góc bằng nhau.  
+   - Góc ngoài tại 1 đỉnh bằng góc trong đỉnh đối.  
+   - 4 đỉnh cách đều 1 điểm.  
+3. **Hình đặc biệt nội tiếp:** Hình chữ nhật, hình vuông, hình thang cân.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -240,36 +395,139 @@ Chứng minh rằng có một cụm tứ giác tên là $BEDC$ đủ đặc tín
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cấu tạo tứ giác $MNPQ$ được đăng kí danh mục nội tiếp đường tròn $(O)$. Cho thông số biểu thức tỉ luật $\widehat{M} = 3 \cdot \widehat{P}$.
-a) Hãy tính định mức số đo hai dải góc $\widehat{M}$ và góc $\widehat{P}$?
-b) Phụ lục nếu cho phép góc $\widehat{Q}$ nhỉnh hơn góc $\widehat{N}$ là $30^\circ$, hãy rà soát tính các góc còn lại để hoàn thành đa giác?
+**Bài 1:** Cho tứ giác $ABCD$ nội tiếp đường tròn. Tính các góc còn lại của tứ giác trong các trường hợp:  
+a) $\widehat{A} = 85^^\circ, \widehat{B} = 100^^\circ$  
+b) $\widehat{B} = 70^^\circ, \widehat{C} = 115^^\circ$  
+c) $\widehat{A} = 2 \widehat{C}, \widehat{B} = 3 \widehat{D}$  
+d) $\widehat{A} - \widehat{C} = 40^^\circ, \widehat{B} = \widehat{D}$  
+e) Tỉ lệ $\widehat{A} : \widehat{B} : \widehat{C} : \widehat{D} = 1 : 2 : 4 : 3$  
+f) $\widehat{A} = 90^^\circ, \widehat{B} = 90^^\circ$
 
-**Bài 2:** Khảo sát một tứ giác có tên gọi $ABCD$. Biết cấu trúc số liệu bao gồm $\widehat{A} = 50^\circ$, $\widehat{B} = 110^\circ$ và $\widehat{C} = 130^\circ$.
-a) Tham số góc thứ tư $\widehat{D}$ bằng bao nhiêu độ?
-b) Tứ giác này có đạt đủ điều kiện để có được một đường tròn ngoại tiếp thông qua 4 đỉnh của nó không? Giải thích rõ mệnh đề để hoàn tất bài toán.
+**Bài 2:** Trong các hình sau, hình nào LUÔN nội tiếp được đường tròn? Giải thích vì sao:  
+a) Hình chữ nhật  
+b) Hình vuông  
+c) Hình thang cân  
+d) Hình thoi  
+e) Hình bình hành  
+f) Hình thang vuông
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 3:** Cho tứ giác $ABCD$ nội tiếp đường tròn. Tính góc ngoài tại đỉnh $A$ biết:  
+a) $\widehat{C} = 65^^\circ$  
+b) $\widehat{C} = 110^^\circ$  
+c) $\widehat{A} = 80^^\circ$  
+d) $\widehat{B} = 100^^\circ, \widehat{D} = 80^^\circ$  
+e) Tứ giác $ABCD$ là hình chữ nhật  
+f) Tứ giác $ABCD$ là hình thang cân có góc ở đáy bằng $70^^\circ$
 
-**Bài 1:**
-a) Với giả thuyết $MNPQ$ là nhóm tứ giác chìm sâu nội tiếp trong màng hình tròn, định lý cân bằng bù đưa ra: $\widehat{M} + \widehat{P} = 180^\circ$.
-Lắp rập với điều kiện tỉ lệ biểu thức $\widehat{M} = 3 \widehat{P}$, ta thế vào phương trình dội hệ:
-$3\widehat{P} + \widehat{P} = 180^\circ \Rightarrow 4\widehat{P} = 180^\circ \Rightarrow \widehat{P} = 45^\circ$.
-Từ đó rút nốt góc khối kết đọng: $\widehat{M} = 3 \cdot 45^\circ = 135^\circ$.
-b) Dựa tiếp vào phương trình bù đối xứng trục dọc góc $\widehat{N} + \widehat{Q} = 180^\circ$.
-Cùng với rào thông số thứ cấp $\widehat{Q} - \widehat{N} = 30^\circ$.
-Thiết lập cộng vế song song hai phương trình trên:
-$2\widehat{Q} = 210^\circ \Rightarrow \widehat{Q} = 105^\circ$.
-Suy ra hệ quả chót góc $\widehat{N} = 105^\circ - 30^\circ = 75^\circ$.
+**Bài 4:** Cho tam giác $ABC$ nhọn. Hai đường cao $BD$ và $CE$ cắt nhau tại $H$.  
+a) Chứng minh tứ giác $ADHE$ nội tiếp.  
+b) Chứng minh tứ giác $BEDC$ nội tiếp.  
+c) Xác định tâm đường tròn ngoại tiếp tứ giác $ADHE$ và $BEDC$.
 
-**Bài 2:**
-a) Việc tính góc nội tại dựa theo tổng 4 góc phẳng:
-$\widehat{D} = 360^\circ - (50^\circ + 110^\circ + 130^\circ) = 360^\circ - 290^\circ = 70^\circ$.
-b) Gặp trường hợp chứng minh đa phím, xét các cặp góc đối diện của khối $ABCD$:
-- Tần đối $\widehat{A} + \widehat{C} = 50^\circ + 130^\circ = 180^\circ$.
-- Tần đối $\widehat{B} + \widehat{D} = 110^\circ + 70^\circ = 180^\circ$.
-Vì đạt chuẩn tính chất có tổng hai phần góc đối bù bằng $180^\circ$, căn cứ vào bổ đề nhận biết tứ giác, có biểu quyết khẳng định: Tứ giác $ABCD$ thỏa mãn là tứ giác nội tiếp (có đường tròn ngoại tiếp đi qua điểm mốc).
+**Bài 5:** Cho đường tròn $(O)$ và điểm $M$ nằm ngoài $(O)$. Kẻ hai tiếp tuyến $MA, MB$ với đường tròn ($A, B$ là tiếp điểm).  
+a) Chứng minh tứ giác $MAOB$ nội tiếp đường tròn. Xác định tâm và bán kính.  
+b) Gọi $I$ là giao điểm của $MO$ và $AB$. Chứng minh $MO \perp AB$ tại $I$.  
+c) Kẻ cát tuyến $MCD$ ($C$ nằm giữa $M$ và $D$). Chứng minh $MC \cdot MD = MA^2$.
+
+**Bài 6:** Cho tam giác $ABC$ nhọn có 3 đường cao $AD, BE, CF$ cắt nhau tại $H$.  
+a) Chứng minh các tứ giác $BFHD, CDHE, AFHE$ nội tiếp.  
+b) Chứng minh $\widehat{HDF} = \widehat{HDE}$.  
+c) Chứng minh $H$ là tâm đường tròn nội tiếp tam giác $DEF$.
+
+**Bài 7:** Cho nửa đường tròn $(O)$ đường kính $AB$. Từ điểm $C$ trên nửa đường tròn ($C \neq A, B$), kẻ $CH \perp AB$ ($H \in AB$). Gọi $M, N$ lần lượt là hình chiếu của $H$ trên $AC$ và $BC$.  
+a) Chứng minh tứ giác $HMCN$ là hình chữ nhật.  
+b) Chứng minh tứ giác $AMNB$ nội tiếp đường tròn.
+
+**Bài 8:** Chứng minh rằng một hình thang nội tiếp đường tròn thì phải là hình thang cân.
+
+**Bài 9 (Thực tế):** Một thợ làm kính trang trí cắt một tấm kính hình tứ giác $ABCD$ để lắp vào ô cửa tròn đường kính $1\text{ m}$. Ông đo được $\widehat{A} = 80^^\circ$ và $\widehat{B} = 105^^\circ$. Tính số đo hai góc còn lại $\widehat{C}$ và $\widehat{D}$ để tấm kính vừa khít ô cửa tròn.
+
+**Bài 10 (Thực tế):** Trong một trò chơi vòng quay may mắn, 4 vị trí nhận quà $A, B, C, D$ nằm trên vòng tròn quay. Biết hai góc $\widehat{ACB} = 35^^\circ$ và $\widehat{ADB} = 35^^\circ$. Giải thích vì sao 4 vị trí này tạo thành một tứ giác nội tiếp.
+
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
+
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
+
+**Bài 1:**  
+a) $\widehat{C} = 180^^\circ - 85^^\circ = 95^^\circ$; $\widehat{D} = 180^^\circ - 100^^\circ = 80^^\circ$.  
+b) $\widehat{A} = 180^^\circ - 115^^\circ = 65^^\circ$; $\widehat{D} = 180^^\circ - 70^^\circ = 110^^\circ$.  
+c) $\widehat{A} + \widehat{C} = 3\widehat{C} = 180^^\circ \Rightarrow \widehat{C} = 60^^\circ, \widehat{A} = 120^^\circ$. $\widehat{B} + \widehat{D} = 4\widehat{D} = 180^^\circ \Rightarrow \widehat{D} = 45^^\circ, \widehat{B} = 135^^\circ$.  
+d) $\widehat{A} + \widehat{C} = 180^^\circ$ và $\widehat{A} - \widehat{C} = 40^^\circ \Rightarrow \widehat{A} = 110^^\circ, \widehat{C} = 70^^\circ$. $\widehat{B} = \widehat{D} = 90^^\circ$.  
+e) $\widehat{A} + \widehat{C} = k + 4k = 5k = 180^^\circ \Rightarrow k = 36^^\circ \Rightarrow \widehat{A} = 36^^\circ, \widehat{C} = 144^^\circ$. $\widehat{B} = 2k = 72^^\circ, \widehat{D} = 3k = 108^^\circ$.  
+f) $\widehat{C} = 180^^\circ - 90^^\circ = 90^^\circ, \widehat{D} = 180^^\circ - 90^^\circ = 90^^\circ$.
+
+---
+
+**Bài 2:**  
+a) Hình chữ nhật: CÓ (4 góc vuông, tổng góc đối $= 180^^\circ$).  
+b) Hình vuông: CÓ (4 góc vuông).  
+c) Hình thang cân: CÓ (hai góc đối bù nhau $\widehat{A} + \widehat{C} = 180^^\circ$).  
+d) Hình thoi: KHÔNG (trừ khi là hình vuông).  
+e) Hình bình hành: KHÔNG (trừ khi là hình chữ nhật).  
+f) Hình thang vuông: KHÔNG (trừ khi là hình chữ nhật).
+
+---
+
+**Bài 3:**  
+Góc ngoài tại đỉnh $A$ bằng góc trong tại đỉnh đối $\widehat{C}$.  
+a) Góc ngoài tại $A = \widehat{C} = 65^^\circ$.  
+b) Góc ngoài tại $A = \widehat{C} = 110^^\circ$.  
+c) $\widehat{C} = 180^^\circ - 80^^\circ = 100^^\circ \Rightarrow$ góc ngoài tại $A = 100^^\circ$.  
+d) Góc ngoài tại $A = \widehat{C} = 180^^\circ - 80^^\circ = 100^^\circ$.  
+e) Góc ngoài tại $A = 90^^\circ$.  
+f) Góc ở đáy $= 70^^\circ \Rightarrow \widehat{C} = 70^^\circ \Rightarrow$ góc ngoài tại $A = 70^^\circ$.
+
+---
+
+**Bài 4:**  
+a) $\widehat{ADH} = 90^^\circ, \widehat{AEH} = 90^^\circ \Rightarrow \widehat{ADH} + \widehat{AEH} = 180^^\circ \Rightarrow ADHE$ nội tiếp.  
+b) $\widehat{BEC} = 90^^\circ, \widehat{BDC} = 90^^\circ \Rightarrow E, D$ cùng nhìn $BC$ dưới góc $90^^\circ \Rightarrow BEDC$ nội tiếp.  
+c) Tâm ngoại tiếp $ADHE$ là trung điểm $AH$. Tâm ngoại tiếp $BEDC$ là trung điểm $BC$.
+
+---
+
+**Bài 5:**  
+a) $\widehat{MAO} = \widehat{MBO} = 90^^\circ \Rightarrow \widehat{MAO} + \widehat{MBO} = 180^^\circ \Rightarrow MAOB$ nội tiếp đường tròn đường kính $MO$ (tâm $I$ là trung điểm $MO$, bán kính $R = MO/2$).  
+b) $MA = MB$ và $OA = OB = R \Rightarrow MO$ là đường trung trực của $AB \Rightarrow MO \perp AB$ tại $I$.  
+c) Xét $\Delta MAC$ và $\Delta MDA$: $\widehat{M}$ chung, $\widehat{MAC} = \widehat{MDA}$ (tiếp tuyến dây cung và góc nội tiếp cùng chắn $\overparen{AC}$) $\Rightarrow \Delta MAC \sim \Delta MDA$ (g.g) $\Rightarrow \frac{MA}{MD} = \frac{MC}{MA} \Rightarrow MA^2 = MC \cdot MD$ (ĐPCM).
+
+---
+
+**Bài 6:**  
+a) Tương tự Bài 4, các tứ giác $BFHD, CDHE, AFHE$ đều có tổng 2 góc đối bằng $180^^\circ \Rightarrow$ nội tiếp.  
+b) Tứ giác $BFHD$ nội tiếp $\Rightarrow \widehat{HDF} = \widehat{HBF}$. Tứ giác $CDHE$ nội tiếp $\Rightarrow \widehat{HDE} = \widehat{HCE}$.  
+Mà $\widehat{HBF} = \widehat{HCE}$ (cùng phụ $\widehat{A}$) $\Rightarrow \widehat{HDF} = \widehat{HDE}$.  
+c) Từ b) $\Rightarrow DH$ là phân giác $\widehat{EDF}$. Tương tự $EH, FH$ là phân giác $\widehat{DEF}, \widehat{DFE} \Rightarrow H$ là giao điểm 3 đường phân giác $\Rightarrow H$ là tâm đường tròn nội tiếp $\Delta DEF$ (ĐPCM).
+
+---
+
+**Bài 7:**  
+a) $\widehat{ACB} = 90^^\circ$ (chắn nửa đường tròn). $\widehat{HM C} = 90^^\circ, \widehat{HNC} = 90^^\circ \Rightarrow HMCN$ có 3 góc vuông nên là hình chữ nhật.  
+b) $HMCN$ là hình chữ nhật $\Rightarrow \widehat{MNC} = \widehat{MHC}$.  
+Mà $\widehat{MHC} = \widehat{A}$ (cùng phụ $\widehat{MHA}$) $\Rightarrow \widehat{MNC} = \widehat{A}$.  
+Xét tứ giác $AMNB$ có góc ngoài $\widehat{MNC}$ bằng góc trong đối diện $\widehat{A} \Rightarrow AMNB$ nội tiếp đường tròn (ĐPCM).
+
+---
+
+**Bài 8:**  
+Giả sử hình thang $ABCD$ ($AB // CD$) nội tiếp $(O)$.  
+$AB // CD \Rightarrow \widehat{A} + \widehat{D} = 180^^\circ$ (hai góc trong cùng phía).  
+Vì $ABCD$ nội tiếp $\Rightarrow \widehat{A} + \widehat{C} = 180^^\circ$.  
+Suy ra $\widehat{C} = \widehat{D} \Rightarrow$ Hình thang $ABCD$ có 2 góc kề một đáy bằng nhau nên $ABCD$ là hình thang cân (ĐPCM).
+
+---
+
+**Bài 9:**  
+Khung cửa sổ hình tứ giác $ABCD$ nội tiếp đường tròn:  
+$\widehat{C} = 180^^\circ - \widehat{A} = 180^^\circ - 80^^\circ = 100^^\circ$.  
+$\widehat{D} = 180^^\circ - \widehat{B} = 180^^\circ - 105^^\circ = 75^^\circ$.
+
+---
+
+**Bài 10:**  
+Hai đỉnh $C$ và $D$ kề nhau cùng nhìn đoạn thẳng $AB$ dưới hai góc bằng nhau $\widehat{ACB} = \widehat{ADB} = 35^^\circ$.  
+Theo dấu hiệu 2 nhận biết tứ giác nội tiếp, 4 vị trí $A, B, C, D$ cùng nằm trên một đường tròn, tạo thành tứ giác nội tiếp $ABCD$.
 
 </div>
 </details>

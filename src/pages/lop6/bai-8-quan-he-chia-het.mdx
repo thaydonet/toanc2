@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import QuanHeChiaHetInteractive from '../../components/interactive/QuanHeChiaHetInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Số nào chia hết cho $5$?",
@@ -53,18 +55,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những số nào chia hết cho $3$?",
-    option_a: "$12$",
-    option_b: "$15$",
-    option_c: "$18$",
-    option_d: "$20$",
-    correct_option: "A,B,C",
-    explanation: "$12 = 3 \\times 4$, $15 = 3 \\times 5$, $18 = 3 \\times 6$ đều chia hết cho $3$. $20$ không chia hết cho $3$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Nếu $a$ chia hết cho $b$ thì $a + b$ có chia hết cho $b$ không?",
     option_a: "Có",
@@ -74,14 +64,6 @@ export const quizData = [
     correct_option: "A",
     explanation: "Nếu $a \\vdots b$ thì $a + b \\vdots b$ theo tính chất của quan hệ chia hết.",
     difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Tìm số dư khi chia $25$ cho $7$.",
-    correct_option: "4",
-    explanation: "$25 = 7 \\times 3 + 4$, số dư là $4$.",
-    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
@@ -98,13 +80,81 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Nếu $!tinh: !b! * !x(2,3,4)!!$ chia hết cho $!b(2,3,4)!$ và $!tinh: !b! * !y(2,3,4)!!$ chia hết cho $!b!$ thì tổng của chúng có chia hết cho $!b!$ không?",
+    question: "Số nào là ước của $36$?",
+    option_a: "$18$",
+    option_b: "$20$",
+    option_c: "$27$",
+    option_d: "$14$",
+    correct_option: "A",
+    explanation: "$36 = 18 \\times 2$ nên $18$ là ước của $36$. Các số còn lại không chia hết cho $36$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào KHÔNG chia hết cho $!m(2,3,4)!$?",
+    option_a: "$!tinh: !m! * 4!!$",
+    option_b: "$!tinh: !m! * 6!!$",
+    option_c: "$!tinh: !m! * 8!!$",
+    option_d: "$!tinh: !m! * 5 + 1!!$",
+    correct_option: "D",
+    explanation: "$!tinh: !m! * 5 + 1!! = !m! \\times 5 + 1$ chia cho $!m!$ dư $1$ nên không chia hết cho $!m!$. Ba số còn lại đều là bội của $!m!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Biết $!tinh: !m! * 5!!$ chia hết cho $!m(3,4,5)!$. Hỏi $!tinh: !m! * 5 * 3!!$ có chia hết cho $!m!$ không?",
     option_a: "Có",
     option_b: "Không",
     option_c: "Không xác định",
     option_d: "Tùy trường hợp",
     correct_option: "A",
-    explanation: "$!tinh: !b! * !x!! + !tinh: !b! * !y!! = !b! \\times (!x! + !y!)$ nên tổng chia hết cho $!b!$.",
+    explanation: "Theo tính chất về tích: nếu $a \\vdots m$ thì $(a \\times k) \\vdots m$ với mọi số tự nhiên $k$. Ở đây $a = !tinh: !m! * 5!$, $k = 3$.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 2: MSQ (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những số nào chia hết cho $3$?",
+    option_a: "$12$",
+    option_b: "$15$",
+    option_c: "$18$",
+    option_d: "$20$",
+    correct_option: "A,B,C",
+    explanation: "$12 = 3 \\times 4$, $15 = 3 \\times 5$, $18 = 3 \\times 6$ đều chia hết cho $3$. $20$ không chia hết cho $3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào là ước của $24$?",
+    option_a: "$3$",
+    option_b: "$5$",
+    option_c: "$8$",
+    option_d: "$12$",
+    correct_option: "A,C,D",
+    explanation: "$24 = 3 \\times 8$, $24 = 8 \\times 3$, $24 = 12 \\times 2$ nên $3$, $8$, $12$ là ước của $24$. $5$ không chia hết $24$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+
+  // ─── Phần 3: SA (2 câu) ─────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tìm số dư khi chia $25$ cho $7$.",
+    correct_option: "4",
+    explanation: "$25 = 7 \\times 3 + 4$, số dư là $4$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho phép chia có dư: $a : !b(4,7)! = !q(5,9)!$ (dư $!r(1,3)!$). Tìm $a$.",
+    correct_option: "!tinh: !b! * !q! + !r!!",
+    explanation: "$a = !b! \\times !q! + !r! = !tinh: !b! * !q!! + !r! = !tinh: !b! * !q! + !r!!$.",
     difficulty_level: "medium",
     is_dynamic: true,
   },
@@ -336,7 +386,9 @@ b) $50 = 7 \times 7 + 1$
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<QuanHeChiaHetInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -388,6 +440,35 @@ b) Kiểm tra:
 
 </div>
 
+**📝 Bài toán 3:** Nhà trường mua $96$ quyển vở và $72$ cây bút để làm phần thưởng. Cô tổng phụ trách muốn chia đều thành các phần thưởng, mỗi phần có cả vở và bút như nhau.
+
+a) Có thể chia thành $8$ phần thưởng được không?
+
+b) Có thể chia thành $9$ phần thưởng được không?
+
+c) Từ kết quả trên, em hãy cho biết: nếu $96 \vdots 8$ và $72 \vdots 8$ thì tổng $(96 + 72)$ có chia hết cho $8$ không?
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Kiểm tra:
+- $96 = 8 \times 12$ (96 chia hết cho 8)
+- $72 = 8 \times 9$ (72 chia hết cho 8)
+
+**Có thể** chia thành 8 phần thưởng: mỗi phần 12 vở và 9 bút.
+
+b) Kiểm tra:
+- $96 = 9 \times 10 + 6$ (96 không chia hết cho 9)
+
+Vì 96 không chia hết cho 9 nên **không thể** chia đều thành 9 phần thưởng.
+
+c) Vì $96 \vdots 8$ và $72 \vdots 8$ nên theo tính chất về tổng: $(96 + 72) \vdots 8$.
+
+Thật vậy: $96 + 72 = 168 = 8 \times 21$.
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -405,9 +486,11 @@ b) Kiểm tra:
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Kiểm tra các số sau có chia hết cho số đã cho không:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
+
+**Bài 1 (Dễ - Nhận biết):** Kiểm tra các số sau có chia hết cho số đã cho không:
 
 a) $45$ cho $9$
 
@@ -417,7 +500,23 @@ c) $72$ cho $8$
 
 d) $100$ cho $7$
 
-**Bài 2:** Áp dụng tính chất bắc cầu:
+**Bài 2 (Dễ - Nhận biết):** Liệt kê:
+
+a) Các số chia hết cho $5$ từ $10$ đến $30$.
+
+b) Các ước của $12$.
+
+c) Các bội của $4$ không vượt quá $20$.
+
+**Bài 3 (Dễ - Nhận biết):** Viết số:
+
+a) Số tự nhiên nhỏ nhất khác $0$ chia hết cho $7$.
+
+b) Số tự nhiên lớn nhất có hai chữ số chia hết cho $9$.
+
+c) Số tự nhiên lớn nhất có ba chữ số chia hết cho $2$ và $5$.
+
+**Bài 4 (Thông hiểu):** Áp dụng tính chất bắc cầu:
 
 a) Biết $48 \vdots 12$ và $12 \vdots 4$. Hỏi $48$ có chia hết cho $4$ không?
 
@@ -427,17 +526,17 @@ c) Biết $90 \vdots 18$ và $18 \vdots 6$. Hỏi $90$ có chia hết cho $6$ kh
 
 d) Biết $120 \vdots 24$ và $24 \vdots 8$. Hỏi $120$ có chia hết cho $8$ không?
 
-**Bài 3:** Áp dụng tính chất tổng và hiệu:
+**Bài 5 (Thông hiểu):** Áp dụng tính chất tổng và hiệu:
 
-a) Biết $18 \vdots 6$ và $24 \vdots 6$. Tính $18 + 24$ có chia hết cho $6$ không?
+a) Biết $18 \vdots 6$ và $24 \vdots 6$. Hỏi $18 + 24$ có chia hết cho $6$ không?
 
-b) Biết $30 \vdots 5$ và $20 \vdots 5$. Tính $30 - 20$ có chia hết cho $5$ không?
+b) Biết $30 \vdots 5$ và $20 \vdots 5$. Hỏi $30 - 20$ có chia hết cho $5$ không?
 
-c) Biết $21 \vdots 7$ và $35 \vdots 7$. Tính $21 + 35$ có chia hết cho $7$ không?
+c) Biết $21 \vdots 7$ và $35 \vdots 7$. Hỏi $21 + 35$ có chia hết cho $7$ không?
 
-d) Biết $40 \vdots 8$ và $16 \vdots 8$. Tính $40 - 16$ có chia hết cho $8$ không?
+d) Biết $40 \vdots 8$ và $16 \vdots 8$. Hỏi $40 - 16$ có chia hết cho $8$ không?
 
-**Bài 4:** Thực hiện phép chia có dư:
+**Bài 6 (Thông hiểu):** Thực hiện phép chia có dư, chỉ rõ thương và số dư:
 
 a) $47 : 6$
 
@@ -447,41 +546,142 @@ c) $100 : 13$
 
 d) $125 : 11$
 
-**Bài 5:** Tìm số dư khi chia:
+**Bài 7 (Vận dụng):** Tìm $x$:
 
-a) $56$ cho $7$
+a) $x \vdots 5$ và $x < 25$ (liệt kê tất cả giá trị)
 
-b) $73$ cho $8$
+b) $x \vdots 7$ và $10 < x < 30$
 
-c) $91$ cho $10$
+c) $x$ là ước của $18$ và $x > 4$
 
-d) $150$ cho $12$
+**Bài 8 (Vận dụng thực tế):** Một vườn cam có $72$ cây được trồng thành các hàng đều nhau, mỗi hàng có số cây bằng nhau.
 
-**Bài 6 (Thực tế):** Một trường học có $240$ học sinh. Hiệu trưởng muốn xếp đều vào các lớp.
+a) Có thể trồng thành $8$ hàng được không? Nếu được, mỗi hàng có bao nhiêu cây?
 
-a) Có thể xếp thành $8$ lớp được không? Nếu được, mỗi lớp có bao nhiêu học sinh?
+b) Có thể trồng thành $9$ hàng được không?
 
-b) Có thể xếp thành $7$ lớp được không? Tại sao?
+c) Liệt kê tất cả các cách trồng có thể (số hàng là ước của $72$).
 
-c) Liệt kê các cách xếp có thể (số lớp từ 5 đến 12).
+**Bài 9 (Vận dụng thực tế):** Một cửa hàng có thùng gạo thứ nhất $56$ kg và thùng gạo thứ hai $48$ kg. Người bán muốn đóng đều thành các túi, mỗi túi $8$ kg.
 
-d) Cách xếp nào để mỗi lớp có khoảng 30-40 học sinh?
+a) Thùng thứ nhất đóng được bao nhiêu túi?
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+b) Thùng thứ hai đóng được bao nhiêu túi?
 
-**Bài 1:** a) Có ($45 = 9 \times 5$); b) Không ($37 = 6 \times 6 + 1$); c) Có ($72 = 8 \times 9$); d) Không ($100 = 7 \times 14 + 2$)
+c) Nếu đóng chung cả hai thùng, tổng số túi là bao nhiêu? Chứng tỏ tổng $(56 + 48)$ chia hết cho $8$.
 
-**Bài 2:** a) Có; b) Có; c) Có; d) Có
+**Bài 10 (Vận dụng cao):** Tìm số tự nhiên $x$ lớn nhất có hai chữ số sao cho $x \times 5$ chia hết cho $8$.
 
-**Bài 3:** a) Có ($42 \vdots 6$); b) Có ($10 \vdots 5$); c) Có ($56 \vdots 7$); d) Có ($24 \vdots 8$)
+</div>
 
-**Bài 4:** a) $7$ dư $5$; b) $9$ dư $2$; c) $7$ dư $9$; d) $11$ dư $4$
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-**Bài 5:** a) $0$; b) $1$; c) $1$; d) $6$
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-**Bài 6:** a) Có, mỗi lớp 30 học sinh; b) Không ($240 = 7 \times 34 + 2$); c) 5, 6, 8, 10, 12 lớp; d) 6 lớp (40 HS) hoặc 8 lớp (30 HS)
+**Bài 1:**
+a) $45 = 9 \times 5$ ⇒ $45 \vdots 9$. **Có.**
+
+b) $37 = 6 \times 6 + 1$ (dư 1) ⇒ $37$ không chia hết cho $6$. **Không.**
+
+c) $72 = 8 \times 9$ ⇒ $72 \vdots 8$. **Có.**
+
+d) $100 = 7 \times 14 + 2$ (dư 2) ⇒ $100$ không chia hết cho $7$. **Không.**
+
+---
+
+**Bài 2:**
+a) Các số từ $10$ đến $30$ chia hết cho $5$: $10, 15, 20, 25, 30$.
+
+b) Ước của $12$: $1, 2, 3, 4, 6, 12$ (các số chia hết cho $12$).
+
+c) Bội của $4$ không vượt quá $20$: $0, 4, 8, 12, 16, 20$.
+
+---
+
+**Bài 3:**
+a) Số nhỏ nhất khác $0$ chia hết cho $7$ là $7$.
+
+b) Các bội của $9$ có hai chữ số: $18, 27, ..., 99$. Lớn nhất là $99$.
+
+c) Số chia hết cho $2$ và $5$ phải tận cùng bằng $0$. Số lớn nhất có ba chữ số tận cùng $0$ là $990$.
+
+---
+
+**Bài 4:**
+a) Theo bắc cầu: $48 \vdots 12$ và $12 \vdots 4$ ⇒ $48 \vdots 4$. **Có** ($48 = 4 \times 12$).
+
+b) **Có** ($60 = 5 \times 12$).
+
+c) **Có** ($90 = 6 \times 15$).
+
+d) **Có** ($120 = 8 \times 15$).
+
+---
+
+**Bài 5:**
+a) $18 \vdots 6$, $24 \vdots 6$ ⇒ $(18 + 24) \vdots 6$. **Có.** Thật vậy $18 + 24 = 42 = 6 \times 7$.
+
+b) $30 \vdots 5$, $20 \vdots 5$ ⇒ $(30 - 20) \vdots 5$. **Có.** Thật vậy $30 - 20 = 10 = 5 \times 2$.
+
+c) **Có.** $21 + 35 = 56 = 7 \times 8$.
+
+d) **Có.** $40 - 16 = 24 = 8 \times 3$.
+
+---
+
+**Bài 6:**
+a) $47 = 6 \times 7 + 5$ ⇒ thương $7$, dư $5$.
+
+b) $83 = 9 \times 9 + 2$ ⇒ thương $9$, dư $2$.
+
+c) $100 = 13 \times 7 + 9$ ⇒ thương $7$, dư $9$.
+
+d) $125 = 11 \times 11 + 4$ ⇒ thương $11$, dư $4$.
+
+---
+
+**Bài 7:**
+a) $x \vdots 5$, $x < 25$ ⇒ $x \in \{0, 5, 10, 15, 20\}$.
+
+b) $x \vdots 7$, $10 < x < 30$ ⇒ $x \in \{14, 21, 28\}$.
+
+c) Ước của $18$: $1, 2, 3, 6, 9, 18$. Điều kiện $x > 4$ ⇒ $x \in \{6, 9, 18\}$.
+
+---
+
+**Bài 8:**
+a) $72 = 8 \times 9$ ⇒ trồng được $8$ hàng, mỗi hàng $9$ cây.
+
+b) $72 = 9 \times 8$ ⇒ trồng được $9$ hàng, mỗi hàng $8$ cây.
+
+c) Ước của $72$: $1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72$. Vậy có thể trồng thành $1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36$ hoặc $72$ hàng.
+
+---
+
+**Bài 9:**
+a) Thùng thứ nhất: $56 : 8 = 7$ (túi).
+
+b) Thùng thứ hai: $48 : 8 = 6$ (túi).
+
+c) Tổng số túi: $7 + 6 = 13$ (túi).
+
+Chứng tỏ: $56 = 8 \times 7$, $48 = 8 \times 6$ nên $56 + 48 = 8 \times (7 + 6) = 8 \times 13 = 104$. Vậy $(56 + 48) \vdots 8$.
+
+---
+
+**Bài 10:**
+Ta cần $8 \vdots (x \times 5)$, tức $x \times 5$ chia hết cho $8$.
+
+Vì $5$ không chia hết cho $8$ và $8$ là tích của các thừa số $2 \times 2 \times 2$ (không chứa thừa số $5$), nên để $x \times 5 \vdots 8$ thì $x \vdots 8$.
+
+Các số chia hết cho $8$ có hai chữ số: $16, 24, 32, ..., 96$. Số lớn nhất là $96$.
+
+Thử lại: $96 \times 5 = 480 = 8 \times 60$ ✓.
+
+**Đáp số:** $x = 96$.
 
 </div>
 </details>

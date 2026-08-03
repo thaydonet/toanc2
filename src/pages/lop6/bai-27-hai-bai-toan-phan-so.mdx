@@ -15,6 +15,7 @@ import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import FractionExercise from '../../components/interactive/FractionExercise';
 import QuizSession from '../../components/ui/QuizSession';
+import HaiBaiToanPhanSoInteractive from '../../components/interactive/HaiBaiToanPhanSoInteractive';
 
 export const quizData = [
   {
@@ -136,7 +137,49 @@ export const quizData = [
     explanation: "Hai bài toán cơ bản: (1) Tìm phân số của một số, (2) Tìm số khi biết phân số của nó.",
     difficulty_level: "easy",
     is_dynamic: false,
-  }
+  },
+  // ─── Phần 2: MSQ (2 câu) ──────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Chọn các phát biểu đúng về bài toán phân số:",
+    option_a: "Tìm $\\frac{2}{5}$ của 30: tính $\\frac{2}{5} \\times 30$",
+    option_b: "Biết $\\frac{3}{4}$ của x là 12: tính $x = 12 \\times \\frac{3}{4}$",
+    option_c: "Tìm $\\frac{1}{3}$ của 45: tính $\\frac{1}{3} \\times 45 = 15$",
+    option_d: "Biết $\\frac{2}{7}$ của x là 10: tính $x = 10 \\div \\frac{2}{7} = 35$",
+    correct_options: ["A", "C", "D"],
+    explanation: "Bài toán 2: x = b ÷ (m/n), không phải b × (m/n).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "$\\frac{2}{5}$ số học sinh lớp là 14 em. Chọn các cách giải đúng:",
+    option_a: "Số HS = $14 \\div \\frac{2}{5} = 35$",
+    option_b: "Số HS = $14 \\times \\frac{2}{5} = 5,6$",
+    option_c: "Gọi số HS là x: $\\frac{2}{5}x = 14 \\Rightarrow x = 35$",
+    option_d: "14 em chiếm 2 phần, mỗi phần 7 em, tổng 5 phần = 35 em",
+    correct_options: ["A", "C", "D"],
+    explanation: "Cách B sai vì đó là tìm phân số của số, không phải tìm số.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tính $\\frac{3}{8}$ của 64.",
+    answer: "24",
+    explanation: "$\\frac{3}{8} \\times 64 = \\frac{3 \\times 64}{8} = \\frac{192}{8} = 24$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Biết $\\frac{4}{9}$ của một số là 28. Tìm số đó.",
+    answer: "63",
+    explanation: "Số = $28 \\div \\frac{4}{9} = 28 \\times \\frac{9}{4} = 63$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong title="Khởi động">
@@ -332,6 +375,8 @@ b) Còn lại: $120 - 48 = 72$ kg
 
 </div>
 
+<HaiBaiToanPhanSoInteractive client:load />
+
 </LuyenTap>
 
 <VanDung title="Vận dụng">
@@ -375,43 +420,6 @@ b) Còn lại: $120 - 48 = 72$ kg
 
 </VanDung>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
-
-**Bài 1:** Tìm:
-
-a) $\dfrac{3}{8}$ của 64 b) $\dfrac{5}{12}$ của 84 c) $\dfrac{7}{15}$ của 120
-
-**Bài 2:** Tìm số $x$, biết:
-
-a) $\dfrac{2}{7}$ của $x$ là 18 b) $\dfrac{5}{9}$ của $x$ là 45 c) $\dfrac{4}{11}$ của $x$ là 36
-
-**Bài 3:** Một cửa hàng có 150kg gạo. Ngày thứ nhất bán được $\dfrac{2}{5}$ số gạo. Hỏi:
-
-a) Ngày thứ nhất bán được bao nhiêu kg gạo? b) Cửa hàng còn lại bao nhiêu kg gạo?
-
-**Bài 4:** Một mảnh vải dài 24m. Người ta cắt $\dfrac{1}{3}$ vải để may áo, $\dfrac{1}{4}$ vải để may quần. Hỏi còn lại bao nhiêu mét vải?
-
-**Bài 5:** Ba bạn chia nhau 120 viên kẹo. Bạn thứ nhất được $\dfrac{1}{3}$ số kẹo, bạn thứ hai được $\dfrac{2}{5}$ số kẹo. Hỏi mỗi bạn được bao nhiêu viên kẹo?
-
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Bài 1:** a) 24; b) 35; c) 56
-
-**Bài 2:** a) $x = 63$; b) $x = 81$; c) $x = 99$
-
-**Bài 3:** a) 60 kg; b) 90 kg
-
-**Bài 4:** 10 m
-
-**Bài 5:** Bạn 1: 40 viên; Bạn 2: 48 viên; Bạn 3: 32 viên
-
-</div>
-</details>
-
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
@@ -440,40 +448,54 @@ a) Ngày thứ nhất bán được bao nhiêu kg gạo? b) Cửa hàng còn l�
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu)</h3>
 
-**Bài 1:** Tìm:
+**Câu 1:** Tính $\dfrac{3}{8}$ của 64.
 
-a) $\dfrac{3}{8}$ của 64 b) $\dfrac{5}{12}$ của 84 c) $\dfrac{7}{15}$ của 120
+**Câu 2:** Tính $\dfrac{5}{12}$ của 84.
 
-**Bài 2:** Tìm số $x$, biết:
+**Câu 3:** Biết $\dfrac{2}{7}$ của một số là 18. Tìm số đó.
 
-a) $\dfrac{2}{7}$ của $x$ là 18 b) $\dfrac{5}{9}$ của $x$ là 45 c) $\dfrac{4}{11}$ của $x$ là 36
+**Câu 4:** Biết $\dfrac{5}{9}$ của một số là 45. Tìm số đó.
 
-**Bài 3:** Một cửa hàng có 150kg gạo. Ngày thứ nhất bán được $\dfrac{2}{5}$ số gạo. Hỏi:
+**Câu 5:** Một cửa hàng có 150kg gạo. Ngày thứ nhất bán $\dfrac{2}{5}$ số gạo. Hỏi còn lại bao nhiêu kg?
 
-a) Ngày thứ nhất bán được bao nhiêu kg gạo? b) Cửa hàng còn lại bao nhiêu kg gạo?
+**Câu 6:** Một mảnh vải dài 24m. Cắt $\dfrac{1}{3}$ may áo, $\dfrac{1}{4}$ may quần. Còn lại bao nhiêu mét?
 
-**Bài 4:** Một mảnh vải dài 24m. Người ta cắt $\dfrac{1}{3}$ vải để may áo, $\dfrac{1}{4}$ vải để may quần. Hỏi còn lại bao nhiêu mét vải?
+**Câu 7:** Ba bạn chia 120 viên kẹo. Bạn 1 được $\dfrac{1}{3}$, bạn 2 được $\dfrac{2}{5}$. Hỏi mỗi bạn được bao nhiêu viên?
 
-**Bài 5:** Ba bạn chia nhau 120 viên kẹo. Bạn thứ nhất được $\dfrac{1}{3}$ số kẹo, bạn thứ hai được $\dfrac{2}{5}$ số kẹo. Hỏi mỗi bạn được bao nhiêu viên kẹo?
+**Câu 8:** Tính $\dfrac{4}{9}$ của 54.
+
+**Câu 9:** Biết $\dfrac{3}{11}$ của một số là 36. Tìm số đó.
+
+**Câu 10:** Một lớp có 45 học sinh, $\dfrac{2}{5}$ là nữ. Hỏi lớp có bao nhiêu học sinh nam?
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) 24; b) 35; c) 56
+**Câu 1:** $\dfrac{3}{8} \times 64 = \dfrac{192}{8} = 24$.
 
-**Bài 2:** a) $x = 63$; b) $x = 81$; c) $x = 99$
+**Câu 2:** $\dfrac{5}{12} \times 84 = \dfrac{420}{12} = 35$.
 
-**Bài 3:** a) 60 kg; b) 90 kg
+**Câu 3:** $18 \div \dfrac{2}{7} = 18 \times \dfrac{7}{2} = 63$.
 
-**Bài 4:** 10 m
+**Câu 4:** $45 \div \dfrac{5}{9} = 45 \times \dfrac{9}{5} = 81$.
 
-**Bài 5:** Bạn 1: 40 viên; Bạn 2: 48 viên; Bạn 3: 32 viên
+**Câu 5:** Đã bán: $\dfrac{2}{5} \times 150 = 60$ kg. Còn: $150 - 60 = 90$ kg.
+
+**Câu 6:** Cắt may áo: $\dfrac{1}{3} \times 24 = 8$ m. Cắt may quần: $\dfrac{1}{4} \times 24 = 6$ m. Còn: $24 - 8 - 6 = 10$ m.
+
+**Câu 7:** Bạn 1: $\dfrac{1}{3} \times 120 = 40$ viên. Bạn 2: $\dfrac{2}{5} \times 120 = 48$ viên. Bạn 3: $120 - 40 - 48 = 32$ viên.
+
+**Câu 8:** $\dfrac{4}{9} \times 54 = \dfrac{216}{9} = 24$.
+
+**Câu 9:** $36 \div \dfrac{3}{11} = 36 \times \dfrac{11}{3} = 132$.
+
+**Câu 10:** Số nữ: $\dfrac{2}{5} \times 45 = 18$ em. Số nam: $45 - 18 = 27$ em.
 
 </div>
 </details>
 
-<QuizSession client:load questions={quizData} />
+<QuizSession client:load questions={quizData} groupedShuffle />
 

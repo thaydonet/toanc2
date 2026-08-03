@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 5: Bất đẳng thức và tính chất"
-description: "Khái niệm và các tính chất cơ bản của bất đẳng thức - Toán 9 KNTT Chương 2"
+description: "Khái niệm bất đẳng thức, các tính chất cơ bản và bất đẳng thức Cô-si - Toán 9 KNTT Chương 2"
 grade: "Lớp 9"
 chapter: "Chương II: Phương trình và bất phương trình bậc nhất một ẩn"
 currentSlug: "lop9/bai-5-bat-dang-thuc"
@@ -13,117 +13,118 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import LinearInequalitySolver from '../../components/interactive/LinearInequalitySolver';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Hệ thức nào sau đây là một bất đẳng thức?",
-    option_a: "a + b = c",
-    option_b: "a - b",
-    option_c: "2x + 1 > 3",
-    option_d: "A và C",
-    correct_option: "C",
-    explanation: "Bất đẳng thức chứa các dấu lớn hơn, nhỏ hơn, v.v.. $2x + 1 > 3$ là bất đẳng thức.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Hoàn thành tính chất sau: Nếu $a < b$ thì $a + c \\dots b + c$.",
-    option_a: "<",
-    option_b: ">",
-    option_c: "=",
-    option_d: "<=",
-    correct_option: "A",
-    explanation: "Khi cộng cùng một số vào hai vế của bất đẳng thức, chiều của bất đẳng thức không đổi.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Cho $a < b$ và $c < 0$. Khẳng định nào sau đây là đúng?",
-    option_a: "$a \\cdot c < b \\cdot c$",
-    option_b: "$a \\cdot c > b \\cdot c$",
-    option_c: "$a \\cdot c = b \\cdot c$",
-    option_d: "Không thể xác định",
+    question: "Cho $a < b$, khẳng định nào sau đây là ĐÚNG?",
+    option_a: "$a + 3 > b + 3$",
+    option_b: "$a - 5 < b - 5$",
+    option_c: "$-2a < -2b$",
+    option_d: "$\\frac{a}{-3} < \\frac{b}{-3}$",
     correct_option: "B",
-    explanation: "Khi nhân hai vế của bất đẳng thức với cùng MỘT SỐ ÂM, chiều của bất đẳng thức BỊ ĐẢO NGƯỢC.",
+    explanation: "Khi cộng hoặc trừ cả hai vế của bất đẳng thức với cùng một số thì chiều bất đẳng thức không đổi. Do $a < b \\Rightarrow a - 5 < b - 5$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $a > b$. Khi nhân cả hai vế của bất đẳng thức với số âm $-3$, ta được bất đẳng thức nào?",
+    option_a: "$-3a > -3b$",
+    option_b: "$-3a < -3b$",
+    option_c: "$-3a = -3b$",
+    option_d: "$3a < 3b$",
+    correct_option: "B",
+    explanation: "Khi nhân cả hai vế của một bất đẳng thức với cùng một số âm, ta phải ĐỔI CHIỀU bất đẳng thức. Vì $a > b \\Rightarrow -3a < -3b$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Bất đẳng thức Cô-si (Cauchy) cho hai số không âm $a, b \\ge 0$ là:",
+    option_a: "$a + b \\ge ab$",
+    option_b: "$a + b \\ge 2\\sqrt{ab}$",
+    option_c: "$a + b \\le 2\\sqrt{ab}$",
+    option_d: "$a^2 + b^2 \\le 2ab$",
+    correct_option: "B",
+    explanation: "Bất đẳng thức Cô-si cho 2 số không âm: $\\frac{a+b}{2} \\ge \\sqrt{ab} \\Leftrightarrow a + b \\ge 2\\sqrt{ab}$. Dấu '=' xảy ra khi $a = b$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $x > 0$. Giá trị nhỏ nhất của biểu thức $P = x + \\frac{4}{x}$ bằng bao nhiêu?",
+    option_a: "2",
+    option_b: "4",
+    option_c: "8",
+    option_d: "1",
+    correct_option: "B",
+    explanation: "Áp dụng BĐT Cô-si cho 2 số dương $x$ và $\\frac{4}{x}$: $P = x + \\frac{4}{x} \\ge 2\\sqrt{x \\cdot \\frac{4}{x}} = 2\\sqrt{4} = 4$. Dấu '=' khi $x = 2$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biết $x \\ge y$. Chọn phát biểu saì:",
-    option_a: "$x + 2 \\ge y + 2$",
-    option_b: "$3x \\ge 3y$",
-    option_c: "$-2x \\ge -2y$",
-    option_d: "$x - 5 \\ge y - 5$",
-    correct_option: "C",
-    explanation: "Khi nhân 2 vế với số âm -2, chiều phải thay đổi thành $-2x \\le -2y$. Do đó C sai.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Cho a, b là độ dài 2 cạnh của hình chữ nhật A và c, d là độ dài 2 cạnh hình chữ nhật B. Nếu $a < c$ và $b < d$ thì diện tích 2 hình chữ nhật so sánh nhau như thế nào?",
-    option_a: "$S_A < S_B$",
-    option_b: "$S_A > S_B$",
-    option_c: "$S_A = S_B$",
-    option_d: "Không thể kết luận",
+    question: "Cho $a, b$ là hai số thực bất kỳ. Bất đẳng thức nào luôn đúng?",
+    option_a: "$a^2 + b^2 \\ge 2ab$",
+    option_b: "$a^2 + b^2 < 2ab$",
+    option_c: "$a^2 + b^2 > ab$",
+    option_d: "$a + b > 0$",
     correct_option: "A",
-    explanation: "Vì a, b, c, d đều là số dương, thao tác nhân các vế $a \\cdot b < c \\cdot d \\Rightarrow S_A < S_B$.",
-    difficulty_level: "medium",
+    explanation: "Biến đổi tương đương: $a^2 + b^2 - 2ab = (a - b)^2 \\ge 0$ (luôn đúng với mọi $a, b$).",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Với mọi số thực $a$, biểu thức nào sau đây luôn không âm?",
-    option_a: "$a$",
-    option_b: "$-a$",
-    option_c: "$a^2$",
-    option_d: "$a^3$",
-    correct_option: "C",
-    explanation: "Bình phương của mọi số thực luôn phi âm: $a^2 \\ge 0$.",
+    question: "Nếu $a > b$ và $c < 0$ thì khẳng định nào sau đây là SAU?",
+    option_a: "$ac < bc$",
+    option_b: "$\\frac{a}{c} < \\frac{b}{c}$",
+    option_c: "$a - c > b - c$",
+    option_d: "$ac > bc$",
+    correct_option: "D",
+    explanation: "Vì $c < 0$ nên khi nhân $c$ vào hai vế của $a > b$ phải đổi chiều thành $ac < bc$. Do đó $ac > bc$ là khẳng định sai.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Cho $-2a > -2b$. Chọn các kết luận đúng:",
-    option_a: "$a < b$",
-    option_b: "$a > b$",
-    option_c: "$a + 1 < b + 1$",
-    option_d: "$-5a < -5b$",
-    correct_option: "A,C",
-    explanation: "Chia 2 vế cho -2 phải đổi chiều. Cộng 2 vế cho 1 thì giữ chiều.",
-    difficulty_level: "hard",
+    question: "Những bất đẳng thức nào sau đây luôn đúng với mọi số thực $a, b$?",
+    option_a: "$a^2 \\ge 0$",
+    option_b: "$a^2 + 1 > 0$",
+    option_c: "$a^2 + b^2 \\ge 0$",
+    option_d: "$a^2 - b^2 \\ge 0$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng. D sai ví dụ $a=1, b=2 \\Rightarrow 1^2 - 2^2 = -3 < 0$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Tính chất bắc cầu của bất đẳng thức gồm:",
-    option_a: "Nếu $a > b$ và $b > c$ thì $a > c$",
-    option_b: "Nếu $a < b$ và $b < c$ thì $a < c$",
-    option_c: "Nếu $a = b$ thì $a > b$",
-    option_d: "Nếu $a > b$ và $b = c$ thì $a = c$",
-    correct_option: "A,B",
-    explanation: "Chỉ có A và B là phát biểu đúng tính chất bắc cầu của thứ tự.",
-    difficulty_level: "easy",
+    question: "Cho $a \\ge b > 0$. Những bất đẳng thức nào sau đây ĐÚNG?",
+    option_a: "$a^2 \\ge b^2$",
+    option_b: "$\\sqrt{a} \\ge \\sqrt{b}$",
+    option_c: "$\\frac{1}{a} \\le \\frac{1}{b}$",
+    option_d: "$-a \\ge -b$",
+    correct_option: "A,B,C",
+    explanation: "Với $a \\ge b > 0$: $a^2 \\ge b^2$, $\\sqrt{a} \\ge \\sqrt{b}$ và $\\frac{1}{a} \\le \\frac{1}{b}$ đều đúng. D sai vì nhân $-1$ phải đổi chiều thành $-a \\le -b$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Biết $m < n$. Thay dấu '<' hoặc '>' thích hợp vào ô trống: $3m + 2 ...... 3n + 2$. Trả lời bằng cách nhập dấu.",
-    correct_option: "<",
-    explanation: "$m < n \\Rightarrow 3m < 3n \\Rightarrow 3m+2 < 3n+2$.",
-    difficulty_level: "easy",
+    question: "Tìm giá trị nhỏ nhất của biểu thức $A = x^2 - 6x + 13$.",
+    correct_option: "4",
+    explanation: "$A = (x^2 - 6x + 9) + 4 = (x - 3)^2 + 4 \\ge 4$. Dấu '=' xảy ra khi $x = 3$. Giá trị nhỏ nhất bằng 4.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Biết $x > y$. Thay dấu thích hợp vào: $-5x - 7 ...... -5y - 7$. Trả lời bằng cách nhập dấu.",
-    correct_option: "<",
-    explanation: "$x > y$, nhân 2 vế với -5 đảo chiều $\\Rightarrow -5x < -5y$. Trừ 7 hai vế giữ nguyên chiều.",
+    question: "Cho $a + b = 6$. Tìm giá trị lớn nhất của tích $P = a \\cdot b$ (với $a, b \\ge 0$).",
+    correct_option: "9",
+    explanation: "Theo BĐT Cô-si: $\\sqrt{ab} \\le \\frac{a+b}{2} = \\frac{6}{2} = 3 \\Rightarrow ab \\le 9$. Dấu '=' xảy ra khi $a = b = 3$. GTLN bằng 9.",
     difficulty_level: "medium",
     is_dynamic: false,
   }
@@ -131,25 +132,28 @@ export const quizData = [
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">⚖️ Chiếc bấp bênh</h3>
+<h3 id="mo-dau">⚖️ Khái niệm So sánh và Bất đẳng thức trong đời sống</h3>
 
-Em đã bao giờ thấy trò chơi bấp bênh ở công viên chưa? Chiếc bấp bênh sẽ nghiêng về phía người nào nặng hơn.
-- Nếu bạn A nặng hơn bạn B, ta viết A > B.
-- Nếu bạn A có thêm một chiếc cặp 5kg, và bạn B cũng cầm một vật nặng 5kg, bấp bênh sẽ nghiêng về bên nào?
+Trong thực tế, các đại lượng không chỉ bằng nhau mà thường xuyên ở dạng **so sánh hơn kém**:
+- Xe tải chở hàng không được vượt quá tải trọng $M \le 10$ tấn.
+- Điểm trung bình môn muốn đạt Học sinh Giỏi phải thỏa mãn $Đ \ge 8,0$.
+- Tối ưu hóa chi phí sản xuất sao cho $C$ đạt giá trị nhỏ nhất.
 
-Thực ra, trong toán học, dấu >, &lt;, &ge;, &le; được dùng để chỉ sự chênh lệch này, tạo thành **Bất đẳng thức**. Bất đẳng thức có những tính chất đặc biệt nào mà chúng ta có thể áp dụng giống như trò chơi bấp bênh đó?
+Trong toán học, các hệ thức chứa các dấu $<, >, \le, \ge$ được gọi là **bất đẳng thức**.
 
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="300" height="150" viewBox="0 0 300 150" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  <path d="M 150 130 L 130 150 L 170 150 Z" fill="#9ca3af"/>
-  <line x1="40" y1="120" x2="260" y2="80" stroke="#f97316" stroke-width="8" stroke-linecap="round"/>
-  <circle cx="60" cy="80" r="15" fill="#3b82f6"/>
-  <rect x="50" y="95" width="20" height="20" fill="#2563eb"/>
-  <text x="60" y="60" font-weight="bold" fill="#1f2937" text-anchor="middle">Bạn A</text>
-  <circle cx="240" cy="40" r="12" fill="#ef4444"/>
-  <rect x="232" y="52" width="16" height="20" fill="#dc2626"/>
-  <text x="240" y="20" font-weight="bold" fill="#1f2937" text-anchor="middle">Bạn B</text>
-  <text x="150" y="40" font-size="20" font-weight="bold" fill="#9333ea" text-anchor="middle">A > B</text>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="380" height="150" viewBox="0 0 380 150" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Axis */}
+  <line x1="30" y1="90" x2="350" y2="90" stroke="#475569" stroke-width="3"/>
+  <polygon points="350,90 340,84 340,96" fill="#475569"/>
+
+  <circle cx="120" cy="90" r="6" fill="#2563eb"/>
+  <circle cx="260" cy="90" r="6" fill="#dc2626"/>
+
+  <text x="120" y="65" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">a</text>
+  <text x="260" y="65" font-size="14" font-weight="bold" fill="#dc2626" text-anchor="middle">b</text>
+
+  <text x="190" y="125" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">a &lt; b  (a nằm bên trái b trên trục số)</text>
 </svg>
 </div>
 
@@ -157,98 +161,239 @@ Thực ra, trong toán học, dấu >, &lt;, &ge;, &le; được dùng để ch�
 
 <KhamPha title="Khám phá">
 
-<h3 id="khai-niem" style="margin-top:2rem;">📖 1. Khái niệm bất đẳng thức</h3>
+<h3 id="khai-niem-bdt">📖 1. Khái niệm Bất đẳng thức</h3>
 
 <div class="box-dinh-nghia">
 
-Hệ thức có dạng $a > b$ (hoặc $a < b, a \le b, a \ge b$ ) được gọi là một **bất đẳng thức**.
-Trong đó:
-- $a$ là vế trái
-- $b$ là vế phải
+**Định nghĩa:**  
+- Bất đẳng thức là hệ thức có một trong các dạng:
+  $$A < B, \quad A > B, \quad A \le B, \quad A \ge B$$
+  Trong đó $A$ gọi là **vế trái**, $B$ gọi là **vế phải** của bất đẳng thức.
+- **Quy tắc xét hiệu:** Với hai số thực $a$ và $b$:
+  1. Nếu $a - b > 0$ thì $a > b$.
+  2. Nếu $a - b < 0$ thì $a < b$.
+  3. Nếu $a - b \ge 0$ thì $a \ge b$.
 
 </div>
 
-**Ví dụ:** 
-- $3 < 5$ là bất đẳng thức đúng.
-- $x + 2 \ge y$ là bất đẳng thức.
-- $a^2 \ge 0$ là bất đẳng thức luôn đúng với mọi số thực $a$.
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<h3 id="tc-cong" style="margin-top:2rem;">📖 2. Tính chất liên hệ giữa thứ tự và phép cộng</h3>
+**3 Ví dụ minh họa Khái niệm BĐT:**
 
-Khi cộng cùng một lượng vào hai bên bấp bênh, trạng thái của bấp bênh có thay đổi không? Không!
+- **Ví dụ 1:** So sánh $a = 5$ và $b = 3$ bằng xét hiệu.
+  - *Giải:* Xét hiệu $a - b = 5 - 3 = 2 > 0 \Rightarrow 5 > 3$.
 
-<div class="box-dinh-ly">
+- **Ví dụ 2:** So sánh $A = (x + 1)^2$ và $B = 2x$.
+  - *Giải:* Xét hiệu $A - B = (x + 1)^2 - 2x = x^2 + 2x + 1 - 2x = x^2 + 1$.
+  - Vì $x^2 \ge 0$ với mọi $x \Rightarrow x^2 + 1 \ge 1 > 0$.
+  - Do $A - B > 0$ nên $(x + 1)^2 > 2x$ với mọi $x$.
 
-**Tính chất:** Khi cộng cùng một số vào cả hai vế của một bất đẳng thức, ta được bất đẳng thức mới **cùng chiều** với bất đẳng thức đã cho.
-Nếu $a < b$ thì $a + c < b + c$
-
-</div>
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ 1:** Ta có $-2 < 5$. Nếu cộng 3 vào hai vế, ta được $-2 + 3 < 5 + 3$, tức là $1 < 8$ (đúng).
-
-**Ví dụ 2:** Đặt dấu thích hợp. Nếu $m \ge n$ thì $m - 5$ và $n - 5$ quan hệ thế nào?
-**Giải:** Trừ 5 ở cả hai vế (tương đương cộng với $-5$). Chiều bất đẳng thức giữ nguyên. $m - 5 \ge n - 5$.
+- **Ví dụ 3:** Viết bất đẳng thức biểu thị các mối quan hệ thực tế:
+  - a) Số nguyên $x$ không vượt quá 10: $x \le 10$.
+  - b) Chiều cao $h$ (m) của người trưởng thành ít nhất là 1,5m: $h \ge 1,5$.
 
 </div>
 
-<h3 id="tc-nhan" style="margin-top:2rem;">📖 3. Tính chất liên hệ giữa thứ tự và phép nhân</h3>
+<h3 id="tinh-chat-bdt" style="margin-top:2rem;">📖 2. Tính chất liên hệ giữa thứ tự và phép toán</h3>
 
-Phép nhân phức tạp hơn một chút vì có dấu âm tham gia sẽ làm "rối loạn" mọi bề mặt gương phản chiếu!
+<div class="box-dinh-nghia">
 
-<div class="box-dinh-ly">
+**Các tính chất cơ bản của Bất đẳng thức:**
 
-**Tính chất 1 (Nhân số dương):** Khi nhân cả hai vế của một bất đẳng thức với cùng một **số dương**, ta được bất đẳng thức mới **cùng chiều** với nó.
-Nếu $a < b$ và **$c > 0$** thì $a \cdot c < b \cdot c$.
+1. **Tính chất bắc cầu:** 
+   If $a < b$ và $b < c$ thì $a < c$.
 
-**Tính chất 2 (Nhân số âm 🚨):** Khi nhân cả hai vế của một bất đẳng thức với cùng một **số âm**, ta được bất đẳng thức mới **ngược chiều** với nó.
-Nếu $a < b$ và **$c < 0$** thì $a \cdot c > b \cdot c$.
+2. **Liên hệ giữa thứ tự và phép cộng:**
+   When adding the same number $c$ to both sides of an inequality, the inequality direction DOES NOT change:
+   $$\text{If } a < b \Rightarrow a + c < b + c$$
 
-</div>
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ 3:** $3 < 5$. Nhân cả hai vế với 2 (số dương).
-$\Rightarrow 3 \times 2 < 5 \times 2 \Leftrightarrow 6 < 10$ (Giữ nguyên chiều).
-
-**Ví dụ 4:** $3 < 5$. Nhân cả hai vế với $-2$ (số âm).
-$\Rightarrow 3 \times (-2)$ so sánh như thế nào với $5 \times (-2)$?
-$-6 > -10$.
-Ta thấy dấu đã bị **đảo ngược** từ < thành >.
-
-**Ví dụ 5:** Cho $a \ge b$. So sánh $-3a - 2$ và $-3b - 2$.
-**Giải:**
-- Bước 1 (Nhân với $-3$): Vì $-3$ là số âm nên bị ĐẢO CHIỀU $\Rightarrow -3a \le -3b$.
-- Bước 2 (Cộng với $-2$): Cộng thì KHÔNG ĐỔI CHIỀU $\Rightarrow -3a - 2 \le -3b - 2$.
-Kết luận: $-3a - 2 \le -3b - 2$.
+3. **Liên hệ giữa thứ tự và phép nhân:**
+   - Khi nhân hai vế với **số dương** $c > 0$: **GIỮ NGUYÊN CHIỀU** BĐT.
+     $$\text{If } a < b \text{ và } c > 0 \Rightarrow ac < bc$$
+   - Khi nhân hai vế với **số âm** $c < 0$: **ĐỔI CHIỀU** BĐT.
+     $$\text{If } a < b \text{ và } c < 0 \Rightarrow ac > bc$$
 
 </div>
 
-<h3 id="bac-cau" style="margin-top:2rem;">📖 4. Tính chất bắc cầu</h3>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-Nếu bạn A cao hơn bạn B, và bạn B cao hơn bạn C. Thì suy ra bạn A chắc chắn cao hơn bạn C.
-Tính chất đối với các con số cũng vậy:
-$$ \text{Nếu } a < b \text{ và } b < c \text{ thì } a < c$$
+**3 Ví dụ minh họa Tính chất BĐT:**
+
+- **Ví dụ 1:** Cho $a > b$. So sánh $3a + 2$ và $3b + 2$.
+  - *Giải:* Vì $a > b$, nhân hai vế với $3 > 0$ ta được $3a > 3b$.  
+    Cộng $2$ vào hai vế ta được $3a + 2 > 3b + 2$.
+
+- **Ví dụ 2:** Cho $a < b$. So sánh $-4a - 1$ và $-4b - 1$.
+  - *Giải:* Vì $a < b$, nhân hai vế với $-4 < 0$ ta **đổi chiều** BĐT: $-4a > -4b$.  
+    Cộng $-1$ vào hai vế: $-4a - 1 > -4b - 1$.
+
+- **Ví dụ 3:** Cho $a > b > 0$. Chứng minh $\frac{1}{a} < \frac{1}{b}$.
+  - *Giải:* Xét hiệu $\frac{1}{a} - \frac{1}{b} = \frac{b - a}{ab}$.  
+    Vì $a > b \Rightarrow b - a < 0$, và $a > 0, b > 0 \Rightarrow ab > 0$.  
+    Do đó $\frac{b - a}{ab} < 0 \Rightarrow \frac{1}{a} - \frac{1}{b} < 0 \Rightarrow \frac{1}{a} < \frac{1}{b}$.
+
+</div>
+
+<h3 id="bdt-cosi" style="margin-top:2rem;">📖 3. Bất đẳng thức Cô-si (Cauchy) cho hai số không âm</h3>
+
+<div class="box-dinh-nghia">
+
+**Bất đẳng thức Cô-si (Cauchy):**
+Với hai số không âm $a \ge 0, b \ge 0$, ta có:
+$$\frac{a + b}{2} \ge \sqrt{ab} \quad \Leftrightarrow \quad a + b \ge 2\sqrt{ab}$$
+Dấu "=" xảy ra khi và chỉ khi $a = b$.
+
+**Ý nghĩa:** Trung bình cộng của hai số không âm luôn lớn hơn hoặc bằng Trung bình nhân của chúng.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: So sánh hai số hoặc hai biểu thức bằng cách xét hiệu**
+- **Phương pháp:** 
+  1. Lập hiệu $H = A - B$.
+  2. Biến đổi $H$ về dạng có dấu xác định (ví dụ dạng bình phương $H = (X)^2 \ge 0$ hoặc $H = (X)^2 + k > 0$).
+  3. Kết luận $A \ge B$ hoặc $A > B$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** So sánh $A = a^2 + b^2$ và $B = 2ab$.
+  - *Lời giải:* Xét hiệu $A - B = a^2 + b^2 - 2ab = (a - b)^2 \ge 0$ với mọi $a, b$.  
+    Do $A - B \ge 0 \Rightarrow a^2 + b^2 \ge 2ab$. Dấu '=' khi $a = b$.
+
+- **Ví dụ 2:** Chứng minh $x^2 + y^2 + 2 \ge 2(x + y)$.
+  - *Lời giải:* Xét hiệu $H = x^2 + y^2 + 2 - 2x - 2y = (x^2 - 2x + 1) + (y^2 - 2y + 1) = (x - 1)^2 + (y - 1)^2$.  
+    Vì $(x - 1)^2 \ge 0$ và $(y - 1)^2 \ge 0 \Rightarrow H \ge 0$. Vậy $x^2 + y^2 + 2 \ge 2(x + y)$. Dấu '=' khi $x = y = 1$.
+
+- **Ví dụ 3:** So sánh $\frac{a+b}{2}$ và $\sqrt{ab}$ với $a, b \ge 0$.
+  - *Lời giải:* $\frac{a+b}{2} - \sqrt{ab} = \frac{a - 2\sqrt{ab} + b}{2} = \frac{(\sqrt{a} - \sqrt{b})^2}{2} \ge 0$.  
+    Do đó $\frac{a+b}{2} \ge \sqrt{ab}$.
+
+</div>
+
+#### **Dạng 2: Chứng minh BĐT bằng biến đổi tương đương**
+- **Phương pháp:** Biến đổi BĐT cần chứng minh $A \ge B \Leftrightarrow ... \Leftrightarrow C \ge 0$ (với $C \ge 0$ là một BĐT hiển nhiên đúng).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho $a, b > 0$. Chứng minh $(a + b)\left(\frac{1}{a} + \frac{1}{b}\right) \ge 4$.
+  - *Lời giải:* Biến đổi vế trái: $(a + b)\left(\frac{1}{a} + \frac{1}{b}\right) = 1 + \frac{a}{b} + \frac{b}{a} + 1 = 2 + \frac{a}{b} + \frac{b}{a}$.  
+    BĐT tương đương: $2 + \frac{a}{b} + \frac{b}{a} \ge 4 \Leftrightarrow \frac{a}{b} + \frac{b}{a} \ge 2 \Leftrightarrow \frac{a^2 + b^2 - 2ab}{ab} \ge 0 \Leftrightarrow \frac{(a-b)^2}{ab} \ge 0$ (luôn đúng do $ab > 0$).
+
+- **Ví dụ 2:** Chứng minh $a^2 + b^2 + c^2 \ge ab + bc + ca$.
+  - *Lời giải:* Nhân 2 vào hai vế: $2a^2 + 2b^2 + 2c^2 \ge 2ab + 2bc + 2ca$.  
+    $\Leftrightarrow (a^2 - 2ab + b^2) + (b^2 - 2bc + c^2) + (c^2 - 2ca + a^2) \ge 0$.  
+    $\Leftrightarrow (a - b)^2 + (b - c)^2 + (c - a)^2 \ge 0$ (luôn đúng với mọi $a, b, c$).
+
+- **Ví dụ 3:** Cho $a + b \ge 2$. Chứng minh $a^2 + b^2 \ge 2$.
+  - *Lời giải:* Ta có $a^2 + b^2 \ge \frac{(a+b)^2}{2}$. Vì $a + b \ge 2 \Rightarrow (a+b)^2 \ge 4 \Rightarrow a^2 + b^2 \ge \frac{4}{2} = 2$.
+
+</div>
+
+#### **Dạng 3: Áp dụng Bất đẳng thức Cô-si (Cauchy)**
+- **Phương pháp:** Tách hạng tử sao cho tích của chúng là một hằng số.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho $x > 0$. Tìm GTNN của $P = x + \frac{9}{x}$.
+  - *Lời giải:* Vì $x > 0 \Rightarrow \frac{9}{x} > 0$. Áp dụng BĐT Cô-si:  
+    $P = x + \frac{9}{x} \ge 2\sqrt{x \cdot \frac{9}{x}} = 2\sqrt{9} = 6$.  
+    Dấu '=' xảy ra khi $x = \frac{9}{x} \Leftrightarrow x^2 = 9 \Rightarrow x = 3$ (do $x > 0$). Giá trị nhỏ nhất của $P$ là 6.
+
+- **Ví dụ 2:** Cho $a, b > 0$. Chứng minh $(a + b)(ab + 1) \ge 4ab$.
+  - *Lời giải:* Áp dụng BĐT Cô-si: $a + b \ge 2\sqrt{ab}$ và $ab + 1 \ge 2\sqrt{ab \cdot 1} = 2\sqrt{ab}$.  
+    Nhân hai BĐT vế theo vế: $(a+b)(ab+1) \ge 2\sqrt{ab} \cdot 2\sqrt{ab} = 4ab$. Dấu '=' khi $a = b = 1$.
+
+- **Ví dụ 3:** Cho $x > 2$. Tìm GTNN của $Q = x + \frac{1}{x-2}$.
+  - *Lời giải:* Viết lại $Q = (x - 2) + \frac{1}{x-2} + 2$. Vì $x > 2 \Rightarrow x - 2 > 0$.  
+    Áp dụng BĐT Cô-si cho 2 số dương $(x - 2)$ và $\frac{1}{x-2}$:  
+    $Q \ge 2\sqrt{(x-2) \cdot \frac{1}{x-2}} + 2 = 2(1) + 2 = 4$.  
+    Dấu '=' khi $x - 2 = \frac{1}{x-2} \Rightarrow (x-2)^2 = 1 \Rightarrow x - 2 = 1 \Rightarrow x = 3$. GTNN bằng 4.
+
+</div>
+
+#### **Dạng 4: Tìm Giá trị lớn nhất (GTLN) và Giá trị nhỏ nhất (GTNN)**
+- **Phương pháp:** Biến đổi biểu thức về dạng $A \ge k \Rightarrow \min A = k$ hoặc $B \le M \Rightarrow \max B = M$. Chỉ ra giá trị của ẩn để dấu "=" xảy ra.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tìm GTNN của $A = x^2 - 4x + 10$.
+  - *Lời giải:* $A = (x^2 - 4x + 4) + 6 = (x - 2)^2 + 6$.  
+    Vì $(x - 2)^2 \ge 0 \Rightarrow A \ge 6$. Dấu '=' khi $x = 2$. Vậy $\min A = 6$ tại $x = 2$.
+
+- **Ví dụ 2:** Tìm GTLN của $B = 5 - x^2 + 2x$.
+  - *Lời giải:* $B = -(x^2 - 2x + 1) + 6 = -(x - 1)^2 + 6$.  
+    Vì $-(x - 1)^2 \le 0 \Rightarrow B \le 6$. Dấu '=' khi $x = 1$. Vậy $\max B = 6$ tại $x = 1$.
+
+- **Ví dụ 3:** Cho $x + y = 4$. Tìm GTNN của $S = x^2 + y^2$.
+  - *Lời giải:* Áp dụng BĐT $x^2 + y^2 \ge \frac{(x+y)^2}{2} = \frac{4^2}{2} = \frac{16}{2} = 8$.  
+    Dấu '=' khi $x = y = 2$. Vậy $\min S = 8$.
+
+</div>
+
+#### **Dạng 5: So sánh biểu thức chứa ẩn sử dụng BĐT**
+- **Phương pháp:** Sử dụng các BĐT đã biết hoặc đánh giá qua biến trung gian.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho $a > 1$. So sánh $A = a^3$ và $B = a^2$.
+  - *Lời giải:* Xét hiệu $A - B = a^3 - a^2 = a^2(a - 1)$.  
+    Vì $a > 1 \Rightarrow a - 1 > 0$ và $a^2 > 1 > 0 \Rightarrow a^2(a - 1) > 0 \Rightarrow a^3 > a^2$.
+
+- **Ví dụ 2:** Cho $0 < a < 1$. So sánh $a$ và $a^2$.
+  - *Lời giải:* Xét hiệu $a - a^2 = a(1 - a)$. Vì $0 < a < 1 \Rightarrow a > 0$ và $1 - a > 0 \Rightarrow a(1 - a) > 0 \Rightarrow a > a^2$.
+
+- **Ví dụ 3:** Với $x > 0, y > 0$, so sánh $\sqrt{x+y}$ và $\sqrt{x} + \sqrt{y}$.
+  - *Lời giải:* Bình phương hai vế: $(\sqrt{x+y})^2 = x + y$. $(\sqrt{x} + \sqrt{y})^2 = x + y + 2\sqrt{xy}$.  
+    Vì $x, y > 0 \Rightarrow 2\sqrt{xy} > 0 \Rightarrow x + y < x + y + 2\sqrt{xy} \Rightarrow \sqrt{x+y} < \sqrt{x} + \sqrt{y}$.
+
+</div>
 
 </KhamPha>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Kiến trúc & Tối ưu hóa đất đai):**  
+Một hộ nông dân muốn rào một thửa đất hình chữ nhật ven sông để trồng rau. Mặt giáp sông không cần rào. Tổng chiều dài lưới B40 hiện có là 40 m.  
+a) Gọi $x$ là chiều rộng (m) vuông góc với bờ sông. Biểu diễn diện tích $S$ của thửa đất theo $x$.  
+b) Sử dụng BĐT Cô-si để tìm chiều rộng $x$ sao cho diện tích thửa đất rào được là lớn nhất.
+
+**Bài toán 2 (Bao bì & Thiết kế công nghiệp):**  
+Một công ty bao bì thiết kế vỏ hộp quà hình chữ nhật đáy vuông không nắp có thể tích $V = 108\text{ cm}^3$. Tính kích thước cạnh đáy và chiều cao để diện tích bìa carton dùng làm hộp là nhỏ nhất (tối ưu chi phí sản xuất).
+
+**Bài toán 3 (Giao thông & Khoảng cách an toàn):**  
+Khoảng cách phanh an toàn $d$ (mét) của một ô tô di chuyển với tốc độ $v$ (km/h) trên mặt đường khô ráo được ước tính theo bất đẳng thức $d \ge \frac{v}{10} + \frac{v^2}{200}$. Hỏi khi xe chạy với tốc độ 80 km/h thì khoảng cách an toàn tối thiểu với xe phía trước là bao nhiêu mét?
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ dưới đây giúp bạn thực hành giải và biến đổi bất đẳng thức bậc nhất một ẩn, rèn luyện kỹ năng đổi chiều BĐT khi nhân với số âm!
+</div>
+
+<LinearInequalitySolver client:load />
+
+</LuyenTap>
 
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Văn chú để nhớ:**
-1. **Cộng / Trừ:** Vô tư, luôn GIỮ NGUYÊN CHIỀU bất đẳng thức.
-2. **Nhân / Chia:** 
-   - Với số dương (+): Vẫn GIỮ NGUYÊN CHIỀU.
-   - Với số âm (-):  ⚠️ **BẮT BUỘC ĐẢO CHIỀU** ⚠️. 
+**Trọng tâm kiến thức Bài 5:**
+
+1. **Xét hiệu:** $A - B > 0 \Leftrightarrow A > B$.  
+2. **Quy tắc đổi chiều:** Nhân/chia hai vế BĐT cho số **ÂM** $\rightarrow$ **ĐỔI CHIỀU**.  
+3. **BĐT Cô-si (2 số không âm):** $a + b \ge 2\sqrt{ab}$ (dấu '=' khi $a = b$).
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -257,111 +402,136 @@ $$ \text{Nếu } a < b \text{ và } b < c \text{ thì } a < c$$
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Dùng dấu $<, >, \le, \ge$ để biểu diễn các phát biểu:
+**Bài 1:** So sánh hai số hoặc hai biểu thức bằng cách xét hiệu:  
+a) $A = 3^2 + 4^2$ và $B = (3 + 4)^2$  
+b) $A = a^2 + 1$ và $B = 2a$  
+c) $A = (x + 2)^2$ và $B = 4x + 4$  
+d) $A = a^2 + b^2 + c^2$ và $B = ab + bc + ca$  
+e) $A = \frac{a+b}{2}$ và $B = \sqrt{ab}$ (với $a, b > 0$)  
+f) $A = x^2 + y^2 + 1$ và $B = xy + x + y$
 
-a) $x$ là số âm.
+**Bài 2:** Cho $a > b$. Hãy so sánh các cặp biểu thức sau và giải thích:  
+a) $2a + 3$ và $2b + 3$  
+b) $-3a + 5$ và $-3b + 5$  
+c) $5 - 4a$ và $5 - 4b$  
+d) $\frac{a}{3} - 2$ và $\frac{b}{3} - 2$  
+e) $a^2$ và $b^2$ (trong trường hợp $a > b > 0$)  
+f) $\frac{1}{a}$ và $\frac{1}{b}$ (trong trường hợp $a > b > 0$)
 
-b) $y$ lớn hơn hoặc bằng 5.
+**Bài 3:** Áp dụng Bất đẳng thức Cô-si để chứng minh:  
+a) $x + \frac{1}{x} \ge 2$ với mọi $x > 0$  
+b) $\frac{a}{b} + \frac{b}{a} \ge 2$ với mọi $a, b > 0$  
+c) $(a + b)\left(\frac{1}{a} + \frac{1}{b}\right) \ge 4$ với mọi $a, b > 0$  
+d) $(a + b)(b + c)(c + a) \ge 8abc$ với mọi $a, b, c \ge 0$  
+e) $x^2 + \frac{4}{x^2} \ge 4$ với mọi $x \neq 0$  
+f) $a + b + c \ge \sqrt{ab} + \sqrt{bc} + \sqrt{ca}$ với mọi $a, b, c \ge 0$
 
-c) Cân nặng $w$ của túi xách không quá 7kg.
+**Bài 4:** Cho $x > 0$. Tìm giá trị nhỏ nhất của các biểu thức:  
+a) $A = x + \frac{4}{x}$  
+b) $B = x + \frac{16}{x} + 5$  
+c) $C = 2x + \frac{8}{x}$  
+d) $D = \frac{x^2 + 9}{x}$
 
-d) Tốc độ $v$ tối thiểu phải đạt 40km/h.
+**Bài 5:** Tìm Giá trị lớn nhất (GTLN) của các biểu thức sau:  
+a) $P = -(x - 3)^2 + 7$  
+b) $Q = 4 - x^2 - y^2$  
+c) $R = (x - 1)(5 - x)$ với $1 \le x \le 5$  
+d) $S = x(6 - x)$ với $0 \le x \le 6$
 
-**Bài 2:** Cho $a < b$, hãy so sánh:
+**Bài 6:** Cho $a + b = 2$. Chứng minh $a^2 + b^2 \ge 2$.
 
-a) $a + 7$ và $b + 7$
+**Bài 7:** Cho $x, y > 0$ thỏa mãn $xy = 1$. Tìm giá trị nhỏ nhất của $M = (x + y + 1)(x^2 + y^2) + \frac{4}{x+y}$.
 
-b) $a - 12$ và $b - 12$
+**Bài 8:** Cho $a, b, c$ là độ dài ba cạnh của một tam giác. Chứng minh:  
+$a^2 + b^2 + c^2 < 2(ab + bc + ca)$
 
-c) $3a$ và $3b$
+**Bài 9 (Thực tế):** Một người muốn rào một khu đất hình chữ nhật có diện tích $200\text{ m}^2$ bằng lưới thép để nuôi gà. Tính kích thước chiều dài và chiều rộng của khu đất để chu vi rào lưới là nhỏ nhất (tiết kiệm chi phí lưới nhất).
 
-d) $-5a$ và $-5b$
+**Bài 10 (Thực tế):** Trong thiết kế bao bì, một hộp sô-cô-la có dạng hình hộp chữ nhật đáy vuông với thể tích $V = 500\text{ cm}^3$. Tính cạnh đáy $x$ để diện tích toàn phần của hộp đạt giá trị nhỏ nhất.
 
-**Bài 3:** Cho $x > y$. Hãy đặt dấu thích hợp vào chỗ trống và giải thích qua từng bước biến đổi:
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-a) $2x - 3 \dots 2y - 3$
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-b) $-x + 4 \dots -y + 4$
+**Bài 1:**  
+a) $A = 9 + 16 = 25$; $B = 7^2 = 49 \Rightarrow A < B$.  
+b) $A - B = a^2 - 2a + 1 = (a-1)^2 \ge 0 \Rightarrow A \ge B$.  
+c) $A = x^2 + 4x + 4 = B \Rightarrow A = B$.  
+d) $A - B = \frac{1}{2}[(a-b)^2 + (b-c)^2 + (c-a)^2] \ge 0 \Rightarrow A \ge B$.  
+e) $A - B = \frac{(\sqrt{a}-\sqrt{b})^2}{2} \ge 0 \Rightarrow A \ge B$.  
+f) $A - B = \frac{1}{2}[(x-y)^2 + (x-1)^2 + (y-1)^2] \ge 0 \Rightarrow A \ge B$.
 
-c) $\frac{x}{5} + 2 \dots \frac{y}{5} + 2$
+---
 
-d) $10 - 2x \dots 10 - 2y$
+**Bài 2:**  
+a) $a > b \Rightarrow 2a > 2b \Rightarrow 2a + 3 > 2b + 3$.  
+b) $a > b \Rightarrow -3a < -3b$ (đổi chiều) $\Rightarrow -3a + 5 < -3b + 5$.  
+c) $a > b \Rightarrow -4a < -4b \Rightarrow 5 - 4a < 5 - 4b$.  
+d) $a > b \Rightarrow \frac{a}{3} > \frac{b}{3} \Rightarrow \frac{a}{3} - 2 > \frac{b}{3} - 2$.  
+e) $a > b > 0 \Rightarrow a^2 > b^2$.  
+f) $a > b > 0 \Rightarrow \frac{1}{a} < \frac{1}{b}$.
 
-**Bài 4:** Chứng minh các bất đẳng thức (Dựa vào luỹ thừa bình phương lớn hơn hoặc bằng 0):
+---
 
-a) $a^2 + 1 > 0$ với mọi $a$.
+**Bài 3:**  
+a) $x + \frac{1}{x} \ge 2\sqrt{x \cdot \frac{1}{x}} = 2$.  
+b) $\frac{a}{b} + \frac{b}{a} \ge 2\sqrt{\frac{a}{b} \cdot \frac{b}{a}} = 2$.  
+c) $(a+b)\left(\frac{1}{a}+\frac{1}{b}\right) \ge 2\sqrt{ab} \cdot 2\sqrt{\frac{1}{ab}} = 4$.  
+d) $a+b \ge 2\sqrt{ab}, b+c \ge 2\sqrt{bc}, c+a \ge 2\sqrt{ca} \Rightarrow$ Nhân 3 BĐT thu được $\ge 8abc$.  
+e) $x^2 + \frac{4}{x^2} \ge 2\sqrt{x^2 \cdot \frac{4}{x^2}} = 2\sqrt{4} = 4$.  
+f) $a+b \ge 2\sqrt{ab}, b+c \ge 2\sqrt{bc}, c+a \ge 2\sqrt{ca} \Rightarrow$ Cộng lại chia 2 ta có $a+b+c \ge \sqrt{ab}+\sqrt{bc}+\sqrt{ca}$.
 
-b) $(b - 1)^2 \ge 0$ với mọi $b$.
+---
 
-c) $x^2 + 2x + 2 > 0$ với mọi $x$. (Gợi ý đưa về bình phương)
+**Bài 4:**  
+a) $A \ge 2\sqrt{x \cdot \frac{4}{x}} = 4$. GTNN bằng 4 khi $x = 2$.  
+b) $B = x + \frac{16}{x} + 5 \ge 2\sqrt{16} + 5 = 8 + 5 = 13$. GTNN bằng 13 khi $x = 4$.  
+c) $C = 2x + \frac{8}{x} \ge 2\sqrt{2x \cdot \frac{8}{x}} = 2\sqrt{16} = 8$. GTNN bằng 8 khi $x = 2$.  
+d) $D = x + \frac{9}{x} \ge 2\sqrt{9} = 6$. GTNN bằng 6 khi $x = 3$.
 
-d) Tỉ số của số lớn chia cho số bé luôn lớn hơn 1 (nếu cả hai số đều dương mảnh). Dịch bằng công thức toán $a>b>0 \Rightarrow a/b > 1$.
+---
 
-**Bài 5 (Thực tế):**
-Quán tạp hóa A bán sữa hộp với mức giá niêm yết $50k$/hộp. Quán tạp hóa B bán giá $55k$/hộp. 
-Do lễ kỷ niệm, giám đốc quyết định:
+**Bài 5:**  
+a) $P = 7 - (x-3)^2 \le 7$. GTLN bằng 7 khi $x = 3$.  
+b) $Q = 4 - (x^2 + y^2) \le 4$. GTLN bằng 4 khi $x = y = 0$.  
+c) $R = (x-1)(5-x) \le \left(\frac{x-1+5-x}{2}\right)^2 = \left(\frac{4}{2}\right)^2 = 4$. GTLN bằng 4 khi $x = 3$.  
+d) $S = x(6-x) \le \left(\frac{x+6-x}{2}\right)^2 = 9$. GTLN bằng 9 khi $x = 3$.
 
-a) Nếu cả hai quán đều giảm $5k$/hộp. So sánh giá bán hai quán.
+---
 
-b) Nếu cả hai quán đều giảm giá 20% (tức là giá hộp chỉ bằng $80\%$ giá ban đầu). So sánh giá bán 2 quán. Chiều có đổi không?
+**Bài 6:**  
+Ta có $a^2 + b^2 \ge \frac{(a+b)^2}{2} = \frac{2^2}{2} = 2$. Dấu '=' khi $a = b = 1$.
 
-c) Cửa hàng C xuất hiện có giá rẻ nhất từ ngày khai trương. Chứng minh Giá cả hàng C nhỏ hơn Giá cửa hàng B bằng tính chất của BĐT.
+---
 
-d) Tùy vào giá bán, nếu nhập 100 hộp ở C và 100 hộp ở A thì tốn kém so sánh thế nào? 
+**Bài 7:**  
+Vì $xy = 1 \Rightarrow x + y \ge 2\sqrt{xy} = 2$.  
+$x^2 + y^2 = (x+y)^2 - 2xy = (x+y)^2 - 2$.  
+Đặt $t = x + y \ge 2$. Biểu thức thành $M = (t + 1)(t^2 - 2) + \frac{4}{t} = t^3 + t^2 - 2t - 2 + \frac{4}{t}$.  
+Đánh giá với $t \ge 2 \Rightarrow \min M = 12$ tại $t = 2 \Leftrightarrow x = y = 1$.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+---
 
-**Bài 1:**
+**Bài 8:**  
+Theo BĐT tam giác: $a < b + c \Rightarrow a^2 < a(b+c) = ab + ac$.  
+Tương tự: $b^2 < ab + bc$ và $c^2 < ac + bc$.  
+Cộng ba BĐT: $a^2 + b^2 + c^2 < 2(ab + bc + ca)$.
 
-a) $x < 0$
+---
 
-b) $y \ge 5$
+**Bài 9:**  
+Gọi chiều dài là $x$ (m), chiều rộng là $y$ (m) ($x, y > 0$). $S = xy = 200$.  
+Chu vi $P = 2(x + y) \ge 2 \cdot 2\sqrt{xy} = 4\sqrt{200} = 40\sqrt{2} \approx 56,57$ m.  
+Dấu '=' xảy ra khi $x = y = \sqrt{200} = 10\sqrt{2} \approx 14,14$ m (khu đất hình vuông).
 
-c) $w \le 7$
+---
 
-d) $v \ge 40$
-
-**Bài 2:**
-
-a) $a + 7 < b + 7$
-
-b) $a - 12 < b - 12$
-
-c) $3a < 3b$
-
-d) $-5a > -5b$ (Nhân số âm đảo chiều)
-
-**Bài 3:**
-
-a) $2x - 3 > 2y - 3$ ($cx>cy$, trừ không đổi chiều)
-
-b) $-x + 4 < -y + 4$ (Nhân -1 đảo chiều thành $-x<-y$)
-
-c) $\frac{x}{5} + 2 > \frac{y}{5} + 2$ (Nhân $1/5$ số dương giữ nguyên)
-
-d) $10 - 2x < 10 - 2y$ (Nhân -2 đảo chiều thành $-2x<-2y$, cộng 10 giữ nguyên dấu)
-
-**Bài 4:**
-
-a) Vì $a^2 \ge 0 \Rightarrow a^2 + 1 \ge 1 > 0$.
-
-b) Bình phương của một số luôn $\ge 0$.
-
-c) $x^2+2x+2 = x^2+2x+1 + 1 = (x+1)^2 + 1$. Vì $(x+1)^2 \ge 0 \Rightarrow (x+1)^2 + 1 \ge 1 > 0$. 
-
-d) Vì $a>b>0$, nhân cả hai vế với số dương $\frac{1}{b}$ ta được $a \cdot \frac{1}{b} > b \cdot \frac{1}{b} \Leftrightarrow \frac{a}{b} > 1$.
-
-**Bài 5:**
-
-a) $50k < 55k$, trừ 5 ở 2 vế: $45k < 50k$. Giá quán A vẫn nhỏ hơn quán B.
-
-b) Giảm 20% tức là nhân 2 vế với $0.8$ (số dương). Bất đẳng thức giữ nguyên chiều.
-
-c) Áp dụng tính chất bắc cầu: $P_B > P_A$ và $P_A > P_C \Rightarrow P_B > P_C$.
-
-d) $P_C < P_A$. Nhân 2 vế với 100 (số dương) $\Rightarrow 100 \times P_C < 100 \times P_A$. Nhập ở C tốn ít tiền hơn ở A.
+**Bài 10:**  
+Thể tích $V = x^2 h = 500 \Rightarrow h = \frac{500}{x^2}$.  
+Diện tích toàn phần $S_{tp} = 2x^2 + 4xh = 2x^2 + \frac{2000}{x} = 2x^2 + \frac{1000}{x} + \frac{1000}{x}$.  
+Theo BĐT Cô-si 3 số: $S_{tp} \ge 3\sqrt[3]{2x^2 \cdot \frac{1000}{x} \cdot \frac{1000}{x}} = 3\sqrt[3]{2000000} \approx 377,97\text{ cm}^2$.  
+Dấu '=' khi $2x^2 = \frac{1000}{x} \Rightarrow 2x^3 = 1000 \Rightarrow x^3 = 500 \Rightarrow x = \sqrt[3]{500} \approx 7,94$ cm.
 
 </div>
 </details>

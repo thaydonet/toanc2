@@ -11,9 +11,10 @@ import KhoiDong from '../../components/sections/KhoiDong.astro';
 import KhamPha from '../../components/sections/KhamPha.astro';
 import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
-import BaiTapTuLuan from '../../components/sections/BaiTapTuLuan.astro';
+
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import BieuDoCotInteractive from '../../components/interactive/BieuDoCotInteractive';
 
 export const quizData = [
   {
@@ -38,6 +39,118 @@ export const quizData = [
     correct_option: "A",
     explanation: "Biểu đồ cột dễ so sánh các giá trị, trực quan và chính xác.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trục dọc (Oy) trong biểu đồ cột biểu diễn gì?",
+    option_a: "Số lượng, tần số, giá trị",
+    option_b: "Các danh mục",
+    option_c: "Thời gian",
+    option_d: "Tên người vẽ",
+    correct_option: "A",
+    explanation: "Trục dọc (Oy) trong biểu đồ cột biểu diễn số lượng, tần số hoặc giá trị.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chiều cao của cột trong biểu đồ cột biểu thị điều gì?",
+    option_a: "Giá trị dữ liệu tương ứng",
+    option_b: "Màu sắc",
+    option_c: "Vị trí",
+    option_d: "Tên tiêu chí",
+    correct_option: "A",
+    explanation: "Chiều cao của mỗi cột tương ứng với giá trị dữ liệu.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong biểu đồ cột, trục ngang (Ox) thường biểu diễn gì?",
+    option_a: "Các tiêu chí, loại, danh mục",
+    option_b: "Số lượng",
+    option_c: "Thời gian",
+    option_d: "Kích thước",
+    correct_option: "A",
+    explanation: "Trục ngang (Ox) thường biểu diễn các tiêu chí, loại hoặc danh mục.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Biểu đồ cột khác biểu đồ tranh ở điểm nào?",
+    option_a: "Biểu đồ cột dùng cột hình chữ nhật, biểu đồ tranh dùng hình vẽ",
+    option_b: "Hai loại giống nhau",
+    option_c: "Biểu đồ tranh chính xác hơn",
+    option_d: "Biểu đồ cột không trực quan",
+    correct_option: "A",
+    explanation: "Biểu đồ cột dùng các cột hình chữ nhật có chiều cao tương ứng dữ liệu, còn biểu đồ tranh dùng hình vẽ/ký hiệu.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điều tra 40 học sinh: Toán 12, Văn 10, Anh 15, Khoa học 3. Học sinh nào chiếm tỉ lệ lớn nhất?",
+    option_a: "Anh (15/40 = 37,5%)",
+    option_b: "Toán (12/40 = 30%)",
+    option_c: "Văn (10/40 = 25%)",
+    option_d: "Khoa học (3/40 = 7,5%)",
+    correct_option: "A",
+    explanation: "Anh có 15/40 = 37,5%, chiếm tỉ lệ lớn nhất.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một cửa hàng có doanh thu: T1 50 triệu, T2 60 triệu, T3 55 triệu, T4 70 triệu. Tháng nào tăng so với tháng trước?",
+    option_a: "T2 tăng so với T1, T4 tăng so với T3",
+    option_b: "Chỉ T2",
+    option_c: "Chỉ T4",
+    option_d: "Không tháng nào tăng",
+    correct_option: "A",
+    explanation: "T2 (60 > 50) tăng so với T1, T4 (70 > 55) tăng so với T3. T3 (55 < 60) giảm so với T2.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khi vẽ biểu đồ cột, cần đảm bảo những yếu tố nào?",
+    option_a: "Có tiêu đề rõ ràng",
+    option_b: "Trục có ghi chú số liệu đầy đủ",
+    option_c: "Các cột có màu sắc khác nhau dễ phân biệt",
+    option_d: "Có chú thích giải thích ký hiệu",
+    correct_options: ["A", "B", "C"],
+    explanation: "Biểu đồ cột cần tiêu đề, trục đầy đủ số liệu và màu sắc phân biệt. Chú thích thêm nếu cần.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Dữ liệu sau đây thích hợp vẽ biểu đồ cột không? Tại sao?",
+    option_a: "Số lượng sách bán được trong 5 ngày → Có",
+    option_b: "Điểm Toán của 10 học sinh → Có",
+    option_c: "Chiều cao trung bình của học sinh lớp 6A theo tháng → Có",
+    option_d: "Số lần học sinh mắc lỗi theo tuần → Có",
+    correct_options: ["A", "B", "C", "D"],
+    explanation: "Tất cả đều là dữ liệu số có thể so sánh, rất thích hợp vẽ biểu đồ cột.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một cửa hàng có doanh thu 5 tháng: T1: 40, T2: 55, T3: 48, T4: 62, T5: 70 (triệu đồng). a) Lập bảng thống kê. b) Tháng nào doanh thu cao nhất? c) Tháng nào thấp nhất? d) Tính doanh thu trung bình.",
+    answer: "a) Bảng: T1 40, T2 55, T3 48, T4 62, T5 70, Tổng 275. b) Cao nhất: T5 (70 triệu). c) Thấp nhất: T1 (40 triệu). d) TB = 275/5 = 55 triệu đồng.",
+    explanation: "Lập bảng đầy đủ, so sánh để tìm max/min, tính trung bình cộng.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Điều tra số HS tham gia câu lạc bộ: MC 8, Nhạc 12, Họa 15, Thể thao 25, Khoa học 10. a) Lập bảng. b) CLB nào đông nhất? Ít nhất? c) Vẽ biểu đồ cột (trục dọc từ 0 đến 30). d) Tính tổng số HS.",
+    answer: "a) Bảng: MC 8, Nhạc 12, Họa 15, Thể thao 25, Khoa học 10. b) Đông nhất: Thể thao (25). Ít nhất: MC (8). c) Vẽ 5 cột với chiều cao tương ứng. d) Tổng: 8+12+15+25+10 = 70 HS.",
+    explanation: "Lập bảng, so sánh, vẽ biểu đồ cột với trục phù hợp và tính tổng.",
+    difficulty_level: "hard",
     is_dynamic: false,
   },
 ];
@@ -107,7 +220,8 @@ Từ bảng này, ta có thể vẽ biểu đồ cột với:
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<BieuDoCotInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -125,186 +239,98 @@ b) Loại sách nào được yêu thích nhất?
 
 c) Loại sách nào được yêu thích ít nhất?
 
+**📝 Bài toán 2:** Nhiệt độ trung bình các tháng (°C): T1: 20, T2: 22, T3: 25, T4: 28, T5: 32, T6: 35
+
+a) Lập bảng thống kê
+
+b) Tháng nào nóng nhất? Tháng nào mát nhất?
+
+c) Vẽ biểu đồ cột
+
+**📝 Bài toán 3:** Số lượng học sinh vắng mặt trong 5 ngày: T2: 3, T3: 5, T4: 2, T5: 4, T6: 1
+
+a) Lập bảng thống kê
+
+b) Ngày nào nhiều HS vắng nhất?
+
+c) Tính tổng số HS vắng mặt trong tuần
+
 </VanDung>
 
-<BaiTapTuLuan>
+### Bài tập tự luận
 
-**Bài 1:** Điểm trung bình môn Toán của 5 học sinh:
+**Bài 1:** Điểm kiểm tra của 8 học sinh: 7, 8, 9, 6, 7, 8, 10, 5. Lập bảng thống kê và vẽ biểu đồ cột.
 
-An: 8,5 điểm, Bình: 7,0 điểm, Chi: 9,0 điểm, Dũng: 6,5 điểm, Hoa: 8,0 điểm
+**Bài 2:** Số lượng hoa trong vườn: Hoa hồng 25, Hoa cúc 18, Hoa lan 30, Hoa ly 12. Lập bảng và vẽ biểu đồ.
 
-a) Lập bảng thống kê
+**Bài 3:** Doanh thu các ngày trong tuần (triệu đồng): T2: 5, T3: 7, T4: 6, T5: 8, T6: 10. Lập bảng, tính trung bình.
 
-b) Vẽ biểu đồ cột (trục dọc từ 0 đến 10)
+**Bài 4:** Số lượng xe qua cầu trong 5 giờ: 6h: 120, 7h: 180, 8h: 200, 9h: 150, 10h: 100. Vẽ biểu đồ cột.
 
-c) Học sinh nào có điểm cao nhất?
+**Bài 5:** Chiều cao trung bình (cm) các lớp: 6A: 148, 6B: 150, 6C: 147, 6D: 152. Lập bảng và so sánh.
 
-d) Tính điểm trung bình của cả 5 học sinh
+**Bài 6:** Số lượng sách mượn theo tháng: T1: 45, T2: 50, T3: 40, T4: 55, T5: 60, T6: 52. Lập bảng, vẽ biểu đồ cột.
 
-**Bài 2:** Doanh thu bán hàng của một cửa hàng trong 4 tháng (đơn vị: triệu đồng):
+**Bài 7:** Số người đi xe buýt theo giờ cao điểm: 6h30: 45, 7h: 60, 7h30: 55, 8h: 30. Tính tỉ lệ phần trăm mỗi khung giờ.
 
-Tháng 1: 50, Tháng 2: 60, Tháng 3: 55, Tháng 4: 70
+**Bài 8:** Điều tra số bạn thích thể thao: Bóng đá 20, Cầu lông 15, Bơi 10, Chạy 5. Lập bảng, tính tổng và tỉ lệ %.
 
-a) Lập bảng thống kê
+**Bài 9:** Doanh thu 4 quý: Q1: 200, Q2: 250, Q3: 180, Q4: 300 (triệu đồng). Quý nào cao nhất? Tính trung bình.
 
-b) Vẽ biểu đồ cột
-
-c) Tháng nào có doanh thu cao nhất?
-
-d) Tính tổng doanh thu 4 tháng
-
-e) Tính doanh thu trung bình mỗi tháng
-
-**Bài 3:** Số lượng sách mượn tại thư viện trong 5 ngày:
-
-Thứ 2: 45 quyển, Thứ 3: 50 quyển, Thứ 4: 40 quyển, Thứ 5: 55 quyển, Thứ 6: 60 quyển
-
-a) Lập bảng thống kê
-
-b) Vẽ biểu đồ cột
-
-c) Ngày nào có nhiều người mượn sách nhất?
-
-d) Tính tổng số sách được mượn trong tuần
-
-**Bài 4:** Chiều cao của 6 cây trong vườn (đơn vị: mét):
-
-Cây 1: 2,5m, Cây 2: 3,0m, Cây 3: 2,8m, Cây 4: 3,5m, Cây 5: 2,2m, Cây 6: 3,2m
-
-a) Lập bảng thống kê
-
-b) Vẽ biểu đồ cột
-
-c) Cây nào cao nhất? Cây nào thấp nhất?
-
-d) Tính chiều cao trung bình của các cây
-
-**Bài 5:** Số lượng học sinh tham gia các câu lạc bộ:
-
-Toán: 25, Văn: 20, Anh: 30, Tin học: 15, Thể thao: 35
-
-a) Lập bảng thống kê
-
-b) Vẽ biểu đồ cột
-
-c) Câu lạc bộ nào có nhiều học sinh nhất?
-
-d) Tính tổng số học sinh tham gia các câu lạc bộ
-
-e) Nếu mỗi học sinh chỉ tham gia 1 câu lạc bộ, có bao nhiêu học sinh tham gia?
+**Bài 10:** SốHS tham gia CLB: MC 10, Nhạc 15, Họa 20, Khoa học 12, Thể thao 30. Lập bảng, vẽ biểu đồ, tính tổng.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp án chi tiết</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1: Điểm trung bình môn Toán**
+**Bài 1:**
+| Điểm | Số HS |
+|------|-------|
+| 5 | 1 |
+| 6 | 1 |
+| 7 | 2 |
+| 8 | 2 |
+| 9 | 1 |
+| 10 | 1 |
+Biểu đồ: 6 cột với chiều cao tương ứng.
 
-a) **Bảng thống kê:**
+**Bài 2:**
+| Loại hoa | Số bông |
+|----------|---------|
+| Hồng | 25 |
+| Cúc | 18 |
+| Lan | 30 |
+| Ly | 12 |
+Lan nhiều nhất (30), Ly ít nhất (12).
 
-| Học sinh | Điểm |
-|----------|------|
-| An | 8,5 |
-| Bình | 7,0 |
-| Chi | 9,0 |
-| Dũng | 6,5 |
-| Hoa | 8,0 |
+**Bài 3:**
+TB = (5+7+6+8+10)/5 = 36/5 = 7,2 triệu đồng/ngày.
 
-b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 10, mỗi học sinh là một cột)
+**Bài 4:** Biểu đồ: 5 cột. 8h nhiều nhất (200 xe), 10h ít nhất (100 xe).
 
-c) Học sinh có điểm cao nhất: **Chi** (9,0 điểm)
+**Bài 5:** 6D cao nhất (152 cm), 6C thấp nhất (147 cm).
 
-d) Điểm trung bình: (8,5 + 7,0 + 9,0 + 6,5 + 8,0) ÷ 5 = 39 ÷ 5 = **7,8 điểm**
+**Bài 6:**
+| Tháng | Số sách |
+|-------|---------|
+| T1 | 45 |
+| T2 | 50 |
+| T3 | 40 |
+| T4 | 55 |
+| T5 | 60 |
+| T6 | 52 |
+T5 nhiều nhất (60).
 
----
+**Bài 7:** Tổng: 45+60+55+30=190. Tỉ lệ: 6h30: 23,7%; 7h: 31,6%; 7h30: 28,9%; 8h: 15,8%.
 
-**Bài 2: Doanh thu bán hàng**
+**Bài 8:** Tổng: 20+15+10+5=50. Tỉ lệ: Bóng đá 40%, Cầu lông 30%, Bơi 20%, Chạy 10%.
 
-a) **Bảng thống kê:**
+**Bài 9:** Q4 cao nhất (300). TB = (200+250+180+300)/4 = 232,5 triệu.
 
-| Tháng | Doanh thu (triệu đồng) |
-|-------|------------------------|
-| Tháng 1 | 50 |
-| Tháng 2 | 60 |
-| Tháng 3 | 55 |
-| Tháng 4 | 70 |
-
-b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 80, mỗi tháng là một cột)
-
-c) Tháng có doanh thu cao nhất: **Tháng 4** (70 triệu đồng)
-
-d) Tổng doanh thu: 50 + 60 + 55 + 70 = **235 triệu đồng**
-
-e) Doanh thu trung bình: 235 ÷ 4 = **58,75 triệu đồng/tháng**
-
----
-
-**Bài 3: Sách mượn tại thư viện**
-
-a) **Bảng thống kê:**
-
-| Ngày | Số sách (quyển) |
-|------|-----------------|
-| Thứ 2 | 45 |
-| Thứ 3 | 50 |
-| Thứ 4 | 40 |
-| Thứ 5 | 55 |
-| Thứ 6 | 60 |
-
-b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 70)
-
-c) Ngày có nhiều người mượn sách nhất: **Thứ 6** (60 quyển)
-
-d) Tổng số sách: 45 + 50 + 40 + 55 + 60 = **250 quyển**
-
----
-
-**Bài 4: Chiều cao các cây**
-
-a) **Bảng thống kê:**
-
-| Cây | Chiều cao (m) |
-|-----|---------------|
-| Cây 1 | 2,5 |
-| Cây 2 | 3,0 |
-| Cây 3 | 2,8 |
-| Cây 4 | 3,5 |
-| Cây 5 | 2,2 |
-| Cây 6 | 3,2 |
-
-b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 4)
-
-c) 
-- Cây cao nhất: **Cây 4** (3,5m)
-- Cây thấp nhất: **Cây 5** (2,2m)
-
-d) Chiều cao trung bình: (2,5 + 3,0 + 2,8 + 3,5 + 2,2 + 3,2) ÷ 6 = 17,2 ÷ 6 ≈ **2,87m**
-
----
-
-**Bài 5: Câu lạc bộ**
-
-a) **Bảng thống kê:**
-
-| Câu lạc bộ | Số học sinh |
-|------------|-------------|
-| Toán | 25 |
-| Văn | 20 |
-| Anh | 30 |
-| Tin học | 15 |
-| Thể thao | 35 |
-
-b) **Biểu đồ cột:** (Vẽ biểu đồ với trục dọc từ 0 đến 40)
-
-c) Câu lạc bộ có nhiều học sinh nhất: **Thể thao** (35 học sinh)
-
-d) Tổng số học sinh tham gia: 25 + 20 + 30 + 15 + 35 = **125 lượt tham gia**
-
-e) Nếu mỗi học sinh chỉ tham gia 1 câu lạc bộ: **125 học sinh**
+**Bài 10:** Tổng: 10+15+20+12+30=87. Thể thao nhiều nhất (30).
 
 </div>
 </details>
-
-</BaiTapTuLuan>
 
 <GhiNho>
 

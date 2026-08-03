@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 25: Phép thử ngẫu nhiên và không gian mẫu"
-description: "Khái niệm phép thử ngẫu nhiên, không gian mẫu và cách xác định kết quả thuận lợi cho các biến cố - Toán 9 Kết nối tri thức"
+description: "Khái niệm phép thử ngẫu nhiên, không gian mẫu, biến cố và cách liệt kê các kết quả có thể xảy ra - Toán 9 KNTT Chương 8"
 grade: "Lớp 9"
 chapter: "Chương VIII: Xác suất của biến cố trong một số mô hình xác suất đơn giản"
 currentSlug: "lop9/bai-25-phep-thu-ngau-nhien"
@@ -18,193 +18,362 @@ import ProbabilitySimulator from '../../components/interactive/ProbabilitySimula
 export const quizData = [
   {
     type: "mcq",
-    question: "Phép thử ngẫu nhiên là gì?",
-    option_a: "Là phép thử luôn biết trước kết quả một cách chính xác khi thực hiện.",
-    option_b: "Là phép thử mà ta không thể đoán trước được kết quả chính xác, nhưng biết được tập hợp tất cả các kết quả có thể xảy ra.",
-    option_c: "Là một quy trình chỉ có 2 kết quả: hoặc đúng, hoặc sai.",
-    option_d: "Là phép tính xác suất của một sự kiện đã xảy ra trong quá khứ.",
+    question: "Phép thử ngẫu nhiên là một thí nghiệm hay hành động mà:",
+    option_a: "Biết trước chính xác kết quả nào sẽ xảy ra",
+    option_b: "Không biết trước kết quả nào sẽ xảy ra, nhưng biết tập hợp tất cả các kết quả có thể xảy ra",
+    option_c: "Không thể xảy ra bất kỳ kết quả nào",
+    option_d: "Kết quả luôn luôn cố định một đáp án",
     correct_option: "B",
-    explanation: "Định nghĩa chuẩn của phép thử ngẫu nhiên: Mặc dù ta không thể biết chắc chắn kết quả cụ thể nào sẽ xuất hiện ở lượt thử sắp tới, nhưng ta có thể liệt kê tất cả các phương án có thể xảy ra của nó.",
+    explanation: "Phép thử ngẫu nhiên là một hành động mà ta không đoán trước được kết quả, nhưng biết đầy đủ tất cả các kết quả có thể có.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Kí hiệu phổ biến trong toán học để biểu diễn 'Không gian mẫu' là chữ cái nào?",
-    option_a: "A",
-    option_b: "N",
-    option_c: "$\\Omega$ (Omega)",
-    option_d: "$\\Sigma$ (Sigma)",
-    correct_option: "C",
-    explanation: "Để thống nhất, Toán thống kê và Xác suất luôn ấn định kí hiệu $\\Omega$ (chữ in hoa Omega từ bảng chữ cái Hy Lạp) đại diện cho tập hợp tất cả các kết quả của một phép thử ngẫu nhiên.",
+    question: "Tập hợp tất cả các kết quả có thể xảy ra của một phép thử ngẫu nhiên được gọi là gì?",
+    option_a: "Không gian mẫu (ký hiệu $\\Omega$)",
+    option_b: "Biến cố chắc chắn",
+    option_c: "Biến cố không thể",
+    option_d: "Tần số tương đối",
+    correct_option: "A",
+    explanation: "Không gian mẫu (ký hiệu $\\Omega$ - đọc là Ô-mê-ga) là tập hợp tất cả các kết quả có thể xảy ra của phép thử.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Không gian mẫu $\\Omega$ của phép thử gieo một con xúc xắc cân đối, đồng chất (6 mặt) chứa bao nhiêu phần tử?",
+    question: "Gieo một con xúc xắc cân đối và đồng chất 6 mặt. Số phần tử của không gian mẫu $n(\\Omega)$ là:",
     option_a: "2",
     option_b: "6",
     option_c: "12",
     option_d: "36",
     correct_option: "B",
-    explanation: "Con xúc xắc tiêu chuẩn có 6 mặt ứng với số chấm từ 1 đến 6. Ta dễ dàng liệt kê: $\\Omega = \\{1, 2, 3, 4, 5, 6\\}$. Suy ra có 6 kết quả (phần tử).",
+    explanation: "Không gian mẫu $\\Omega = \\{1; 2; 3; 4; 5; 6\\}$. Số phần tử $n(\\Omega) = 6$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Biến cố trong phép thử ngẫu nhiên đóng vai trò là:",
-    option_a: "Toàn bộ không gian mẫu của phép đối chiếu.",
-    option_b: "Một kết quả luôn luôn xảy ra.",
-    option_c: "Một tập con của không gian mẫu, bao gồm một hoặc nhiều kết quả, phụ thuộc vào một điều kiện nào đó.",
-    option_d: "Tỉ lệ phần trăm khả năng thất bại của phép thử.",
-    correct_option: "C",
-    explanation: "Biến cố là một hiện tượng mà việc nó xảy ra hay không còn tuỳ thuộc vào kết quả của phép thử ngẫu nhiên. Về mặt toán học tập hợp, biến cố được xem là một tập hợp con nhỏ (tập hợp các biểu hiện thỏa mãn điều kiện) lấy ra từ tập mẹ lớn (Không gian mẫu $\\Omega$).",
-    difficulty_level: "medium",
+    question: "Tung hai đồng xu cân đối đồng thời. Số phần tử của không gian mẫu $n(\\Omega)$ là:",
+    option_a: "2",
+    option_b: "4",
+    option_c: "6",
+    option_d: "8",
+    correct_option: "B",
+    explanation: "Các kết quả có thể là (S,S), (S,N), (N,S), (N,N). Số phần tử $n(\\Omega) = 4$.",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Bạn chọn ngẫu nhiên một lá bài từ bộ tú lơ khơ cơ bản 52 lá (không tính Joker). Không gian mẫu sẽ chứa số lượng phần tử là $N$. Biết:",
-    option_a: "N = 4",
-    option_b: "N = 13",
-    option_c: "N = 52",
-    option_d: "N = 54",
-    correct_option: "C",
-    explanation: "Vì bộ bài gồm tổng cộng 52 lá, mỗi lá rút ra được xem là một kết quả phân biệt. Tổng kho không gian mẫu sẽ có đúng $N = 52$ lá.",
+    question: "Biến cố chắc chắn là biến cố có tập hợp các kết quả thuận lợi bằng:",
+    option_a: "Tập rỗng $\\emptyset$",
+    option_b: "Không gian mẫu $\\Omega$",
+    option_c: "Nửa không gian mẫu",
+    option_d: "Một phần tử duy nhất",
+    correct_option: "B",
+    explanation: "Biến cố chắc chắn luôn luôn xảy ra trong mỗi lần thực hiện phép thử và trùng với không gian mẫu $\\Omega$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo một con xúc xắc. Biến cố $A$: 'Số chấm xuất hiện là số lẻ'. Các kết quả thuận lợi cho $A$ là:",
+    option_a: "$\\{1; 3; 5\\}$",
+    option_b: "$\\{2; 4; 6\\}$",
+    option_c: "$\\{1; 2; 3\\}$",
+    option_d: "$\\{4; 5; 6\\}$",
+    correct_option: "A",
+    explanation: "Các số lẻ từ 1 đến 6 là $1, 3, 5$. Tập kết quả thuận lợi cho $A$ là $\\{1; 3; 5\\}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Giả sử thực hiện phép thử tung một đồng xu hai lần liên tiếp (Mặt Sấp: S, Mặt Ngửa: N). Những tập hợp kết quả nào sau đây cấu thành nên toàn bộ không gian mẫu $\\Omega$?",
-    option_a: "(S, S)",
-    option_b: "(N, N)",
-    option_c: "(S, N) và (N, S)",
-    option_d: "(N, S, S)",
+    question: "Những ví dụ nào sau đây là Phép thử ngẫu nhiên?",
+    option_a: "Rút ngẫu nhiên một lá bài từ bộ bài 52 lá",
+    option_b: "Tung một đồng xu 1000 đồng",
+    option_c: "Chọn ngẫu nhiên 1 học sinh trong danh sách 40 học sinh",
+    option_d: "Đo nhiệt độ sôi của nước tinh khiết ở 1 atm (kết quả chắc chắn 100°C)",
     correct_option: "A,B,C",
-    explanation: "Tung đồng xu hai nhịp, mỗi nhịp xuất ra S hoặc N. Theo quy tắc đếm nhánh, không gian mẫu đầy đủ là: $\\Omega = \\{(S, S), (N, N), (S, N), (N, S)\\}$. Đồng xu không có chuyện xuất hiện 3 mặt cùng lúc, cũng như việc chú ý tính đến thứ tự rơi của S và N là cần thiết.",
+    explanation: "A, B, C là các phép thử ngẫu nhiên. D không phải vì kết quả đã biết trước cố định là 100°C.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
+    type: "msq",
+    question: "Gieo hai con xúc xắc cân đối cùng lúc. Những khẳng định nào ĐÚNG?",
+    option_a: "Không gian mẫu có $n(\\Omega) = 36$ phần tử",
+    option_b: "Biến cố 'Tổng số chấm bằng 13' là biến cố không thể (tập rỗng $\\emptyset$)",
+    option_c: "Biến cố 'Tổng số chấm lớn hơn 1' là biến cố chắc chắn",
+    option_d: "Có 6 kết quả thuận lợi cho biến cố 'Hai con xúc xắc xuất hiện số chấm bằng nhau'",
+    correct_option: "A,B,C,D",
+    explanation: "Cả 4 khẳng định đều đúng chính xác theo lý thuyết xác suất.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
     type: "sa",
-    question: "Trong rổ đựng 4 viên bi xanh, 5 viên bi đỏ và 1 viên bi vàng. Lấy ngẫu nhiên ra 1 viên bi từ rổ đó rương. Tính số lượng kết quả có thể xảy ra trong không gian mẫu của phép thử.",
-    correct_option: "10",
-    explanation: "Mỗi viên bi màu được tính là một phần tử có khả năng xuất hiện trong quá trình rút. Tổng mẫu phần tử hiện vật lấy màu ngẫu nhiên là $4 + 5 + 1 = 10$ viên, tương đương 10 trường hợp lấy bi khác nhau trong không gian mẫu.",
+    question: "Rút ngẫu nhiên 1 quả cầu từ một hộp chứa 5 quả cầu xanh và 3 quả cầu đỏ. Số phần tử n(Ω) của không gian mẫu bằng bao nhiêu?",
+    correct_option: "8",
+    explanation: "Tổng số quả cầu trong hộp là $5 + 3 = 8$. Số phần tử không gian mẫu $n(\\Omega) = 8$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Gieo 1 con xúc xắc cân đối. Tập hợp biến cố A: 'Gieo được mặt chẵn' gồm dãy các điểm: {2, 4, 6}. Tính số kết quả THUẬN LỢI cho biến cố A?",
-    correct_option: "3",
-    explanation: "Biến cố A chứa dải các số tự nhiên {2, 4, 6}. Đếm số lượng tập hợp này ta có đúng 3 phần tử. Vậy có 3 kết quả thuận lợi.",
-    difficulty_level: "medium",
+    question: "Gieo một con xúc xắc. Số kết quả thuận lợi cho biến cố B: 'Số chấm chia hết cho 3' bằng bao nhiêu?",
+    correct_option: "2",
+    explanation: "Các số chấm chia hết cho 3 từ 1 đến 6 là 3 và 6. Số kết quả thuận lợi là 2.",
+    difficulty_level: "easy",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🎲 Trò chơi và sự may rủi tính toán</h3>
+<h3 id="mo-dau">🎲 Trò Chơi Tung Đồng Xu & Khái Niệm Phép Thử Ngẫu Nhiên</h3>
 
-Từ việc dự báo thời tiết cho tới việc đổ xúc xắc trong các trò chơi cờ tỉ phú, cờ cá ngựa... đa phần các sự kiện trong thế giới này đều chịu sự chi phối ngầm của tính ngẫu nhiên (May rủi).
+Khi trọng tài bóng đá tung một đồng xu để quyết định đội nào chọn sân, ai cũng biết mặt sấp (S) hoặc mặt ngửa (N) có thể xuất hiện, nhưng không ai dự đoán trước được 100% mặt nào sẽ xuất hiện ở lần tung đó!
 
-Khi bạn ném một đồng xu lên không trung, sẽ không ai có thể xác định chính xác nó sẽ rơi xuống là mặt sấp (S) hay mặt ngửa (N). Điều duy nhất mà con người và toán học có thể chắc chắn được đó là: Nó sẽ CHỈ rơi vào 1 trong 2 trường hợp S hoặc N, chứ tuyệt nhiên không thể ra các mặt hiện tượng khác không tồn tại.
+Hành động tung đồng xu, gieo xúc xắc, rút thăm trúng thưởng hay chọn ngẫu nhiên một mẫu sản phẩm trong dây chuyền sản xuất được gọi là **Phép thử ngẫu nhiên**.
 
-Quá trình "ném đồng xu" đó được giới xác suất thống kê định danh một khái niệm khoa học là: **Phép thử ngẫu nhiên**. Khái niệm lý thuyết này là nền móng viên gạch đầu tiên khởi sinh nên định luật Tính xác suất.
+Tập hợp tất cả các kịch bản kết quả có thể xảy ra được gọi là **Không gian mẫu**!
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="170" viewBox="0 0 420 170" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Coin 1: Sấp */}
+  <g transform="translate(100, 85)">
+    <circle cx="0" cy="0" r="45" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/>
+    <text x="0" y="8" font-size="24" font-weight="bold" fill="#a16207" text-anchor="middle">S</text>
+    <text x="0" y="62" font-size="12" font-weight="bold" fill="#854d0e" text-anchor="middle">Mặt Sấp (S)</text>
+  </g>
+
+  {/* OR Label */}
+  <text x="210" y="90" font-size="16" font-weight="bold" fill="#64748b" text-anchor="middle">hoặc</text>
+
+  {/* Coin 2: Ngửa */}
+  <g transform="translate(320, 85)">
+    <circle cx="0" cy="0" r="45" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/>
+    <text x="0" y="8" font-size="24" font-weight="bold" fill="#0369a1" text-anchor="middle">N</text>
+    <text x="0" y="62" font-size="12" font-weight="bold" fill="#075985" text-anchor="middle">Mặt Ngửa (N)</text>
+  </g>
+</svg>
+</div>
 
 </KhoiDong>
 
-<KhamPha title="I. Lý thuyết trọng tâm">
+<KhamPha title="Khám phá">
 
-<h3 id="phep-thu-ngau-nhien" style="margin-top:2rem;">📖 1. Phép thử ngẫu nhiên. Không gian mẫu</h3>
-
-<div class="box-dinh-nghia">
-
-- **Phép thử ngẫu nhiên** (gọi tắt là phép thử) là một phép thử hay hành động bốc thăm, gieo xúc xắc... mà ta không thể đoán trước được trước kết quả của nó. Tuy nhiên, trước khi hành động, ta có khả năng mô tả và liệt kê **tất cả các kết quả có thể xảy ra** của phép thử đó.
-- Tập hợp mọi kết quả có thể xảy ra của một phép thử ngẫu nhiên được gọi là **Không gian mẫu** của phép thử đó.
-- Không gian mẫu thường được kí hiệu bằng chữ cái Hy Lạp $\Omega$. Số phần tử (chứa trong) không gian mẫu $\Omega$ được kí hiệu phổ biến là $n(\Omega)$ (hoặc $|\Omega|$).
-
-</div>
-
-**Ví dụ:**  
-1. **Hoạt động ném 1 đồng xu:** Kết quả chỉ có thể là Sấp (S) hoặc Ngửa (N). 
-   - Không gian mẫu: $\Omega = \{S, N\}$.
-   - Số phần tử của không gian mẫu: $n(\Omega) = 2$.
-   
-2. **Hành động tung 1 con xúc xắc:** Mặt hiện ra có thể là chấm (1, 2, 3, 4, 5, 6).
-   - Không gian mẫu: $\Omega = \{1, 2, 3, 4, 5, 6\}$.
-   - Có tổng số $n(\Omega) = 6$ kết quả chia đều.
-
-<h3 id="bien-co" style="margin-top:2rem;">📖 2. Biến cố và các kết quả thuận lợi</h3>
+<h3 id="dinh-nghia-phep-thu-khong-gian-mau">📖 1. Phép thử ngẫu nhiên và Không gian mẫu</h3>
 
 <div class="box-dinh-nghia">
 
-- **Biến cố** là một sự kiện (hiện tượng) liên quan trực tiếp đến các thành quả của một phép thử ngẫu nhiên. Nó sẽ chỉ xảy ra hoặc không xảy ra sau khi phép thử đã thực thi xong.
-- Các biến cố thường được gọi tên bằng những kí hiệu chữ cái in hoa như $A, B, C \dots$.
-- Mỗi biểu hiện kết quả của phép thử làm cho một biến cố $E$ xảy ra được gọi là **một kết quả thuận lợi** đài đáp của biến cố $E$. Tập hợp các kết quả thuận lợi đó ứng với tập con của không gian mẫu $\Omega$.
+**1. Phép thử ngẫu nhiên:**
+- Phép thử ngẫu nhiên (nói gọn là phép thử) là một thí nghiệm, một hành động hay một quá trình mà:
+  - Không đoán trước được kết quả nào sẽ xảy ra.
+  - Tuy nhiên, ta biết được **tập hợp tất cả các kết quả có thể xảy ra** của phép thử đó.
+
+**2. Không gian mẫu ($\Omega$):**
+- Tập hợp tất cả các kết quả có thể xảy ra của phép thử ngẫu nhiên gọi là **không gian mẫu**, ký hiệu là $\Omega$ (đọc là Ô-mê-ga).
+- Số phần tử của không gian mẫu được ký hiệu là $n(\Omega)$ hoặc $|\Omega|$.
 
 </div>
 
-**Ví dụ ứng dụng của Biến cố:**
-Quay lại việc tung con xúc xắc (Không gian mẫu $\Omega = \{1, 2, 3, 4, 5, 6\}$). Bạn xét xét một biến cố $E$ được định nghĩa: **"Xuất hiện mặt có số chấm là số nguyên tố"**.
-- Số nguyên tố nằm trên khoảng cấu thành từ $1$ đến $6$ là các chỉ số: $2, 3, 5$.
-- Vậy biến cố $E$ xảy ra nếu và chỉ nếu xúc xắc rơi vào một trong các mặt thuộc tập $\{2, 3, 5\}$.
-- Tập hợp $\{2, 3, 5\}$ được gọi là những **kết quả thuận lợi** của biến cố $E$. Nghĩa là tập có biểu diễn $n(E) = 3$.
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-<h3 id="tuong-tac" style="margin-top:2rem;">🖩 3. Mô phỏng Không gian mẫu</h3>
+**3 Ví dụ minh họa Phép thử & Không gian mẫu:**
 
-Công cụ dưới đây giúp bạn mô phỏng quá trình gieo xúc xắc, gieo đồng xu hàng loạt trong không gian ảo. Từ hàng ngàn phép thử bạn sẽ thấy phân bố các biến cố xuất hiện dựa trên lượng lớn lần gieo không gian mẫu sẽ được tự động đếm.
+- **Ví dụ 1:** Xác định không gian mẫu của phép thử gieo một con xúc xắc cân đối 6 mặt.
+  - *Giải:* Các kết quả có thể xảy ra là xuất hiện mặt 1, 2, 3, 4, 5 hoặc 6 chấm.  
+    Không gian mẫu $\Omega = \{1; 2; 3; 4; 5; 6\}$. Số phần tử $n(\Omega) = 6$.
 
-<ProbabilitySimulator client:load />
+- **Ví dụ 2:** Xác định không gian mẫu của phép thử tung hai đồng xu phân biệt đồng thời (đồng 1000đ và đồng 2000đ).
+  - *Giải:* Ký hiệu S là mặt sấp, N là mặt ngửa.  
+    Không gian mẫu $\Omega = \{(S, S); (S, N); (N, S); (N, N)\}$. Số phần tử $n(\Omega) = 4$.
+
+- **Ví dụ 3:** Rút ngẫu nhiên một tấm thẻ từ một hộp chứa 4 tấm thẻ được đánh số $10, 20, 30, 40$.
+  - *Giải:* Không gian mẫu $\Omega = \{10; 20; 30; 40\}$. Số phần tử $n(\Omega) = 4$.
+
+</div>
+
+<h3 id="bien-co-va-ket-qua-thuan-loi" style="margin-top:2rem;">📖 2. Biến cố và Kết quả Thuận lợi</h3>
+
+<div class="box-dinh-nghia">
+
+**1. Biến cố:**
+- Một **biến cố** $A$ liên quan đến phép thử là một tập con của không gian mẫu $\Omega$ ($A \subset \Omega$).
+- Mỗi phần tử thuộc tập $A$ được gọi là một **kết quả thuận lợi** cho biến cố $A$.
+
+**2. Phân loại biến cố:**
+- **Biến cố ngẫu nhiên:** Có thể xảy ra hoặc không xảy ra tùy thuộc vào kết quả của phép thử.
+- **Biến cố chắc chắn:** Biến cố **luôn luôn xảy ra**, trùng với không gian mẫu $A = \Omega$.
+- **Biến cố không thể:** Biến cố **không bao giờ xảy ra**, là tập rỗng $A = \emptyset$.
+
+</div>
+
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
+
+**3 Ví dụ minh họa Biến cố & Kết quả thuận lợi:**
+
+- **Ví dụ 1:** Gieo một con xúc xắc 6 mặt. Xét các biến cố:  
+  - $A$: "Số chấm xuất hiện là số chẵn" $\Rightarrow A = \{2; 4; 6\}$, số kết quả thuận lợi là $n(A) = 3$.  
+  - $B$: "Số chấm xuất hiện nhỏ hơn 7" $\Rightarrow B = \{1; 2; 3; 4; 5; 6\} = \Omega \Rightarrow B$ là **biến cố chắc chắn**.  
+  - $C$: "Số chấm xuất hiện lớn hơn 6" $\Rightarrow C = \emptyset \Rightarrow C$ là **biến cố không thể**.
+
+- **Ví dụ 2:** Tung hai đồng xu cân đối. Xét biến cố $D$: "Có ít nhất một đồng xu xuất hiện mặt sấp".
+  - *Giải:* Các kết quả thuận lợi cho $D$ là: $(S, S), (S, N), (N, S)$.  
+    Tập hợp $D = \{(S, S); (S, N); (N, S)\}$, số kết quả thuận lợi $n(D) = 3$.
+
+- **Ví dụ 3:** Chọn ngẫu nhiên một số từ tập các số tự nhiên có 1 chữ số. Xét biến cố $E$: "Số được chọn là số nguyên tố".
+  - *Giải:* Không gian mẫu $\Omega = \{0; 1; 2; 3; 4; 5; 6; 7; 8; 9\} \Rightarrow n(\Omega) = 10$.  
+    Các số nguyên tố nhỏ hơn 10 là $2, 3, 5, 7 \Rightarrow E = \{2; 3; 5; 7\}$, số kết quả thuận lợi $n(E) = 4$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Xác định và Liệt kê các phần tử của Không gian mẫu**
+- **Phương pháp:** Sử dụng phương pháp đếm trực tiếp, sơ đồ cây (Tree diagram) hoặc bảng tọa độ hai chiều để không bỏ sót hay lặp lại kết quả.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tung 3 đồng xu cân đối đồng thời. Liệt kê các phần tử của không gian mẫu $\Omega$.
+  - *Lời giải:* $\Omega = \{(S,S,S); (S,S,N); (S,N,S); (S,N,N); (N,S,S); (N,S,N); (N,N,S); (N,N,N)\}$.  
+    Số phần tử $n(\Omega) = 2^3 = 8$.
+
+- **Ví dụ 2:** Gieo hai con xúc xắc 6 mặt đồng thời. Có bao nhiêu phần tử trong không gian mẫu $\Omega$?
+  - *Lời giải:* Mỗi con xúc xắc có 6 kết quả. Số phần tử không gian mẫu $n(\Omega) = 6 \times 6 = 36$.
+
+- **Ví dụ 3:** Chọn ngẫu nhiên 2 học sinh từ nhóm 3 học sinh $A, B, C$. Liệt kê không gian mẫu.
+  - *Lời giải:* $\Omega = \{(A, B); (A, C); (B, C)\}$. Số phần tử $n(\Omega) = 3$.
+
+</div>
+
+#### **Dạng 2: Xác định các Kết quả Thuận lợi cho một Biến cố**
+- **Phương pháp:** Tìm các phần tử của $\Omega$ thỏa mãn tính chất đặc trưng của biến cố $A$, từ đó đếm số phần tử $n(A)$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Gieo hai con xúc xắc. Liệt kê kết quả thuận lợi cho biến cố $K$: "Tổng số chấm xuất hiện trên hai con xúc xắc bằng 8".
+  - *Lời giải:* $K = \{(2, 6); (3, 5); (4, 4); (5, 3); (6, 2)\}$. Số kết quả thuận lợi $n(K) = 5$.
+
+- **Ví dụ 2:** Rút ngẫu nhiên một con bài từ bộ bài tây 52 lá. Tìm số kết quả thuận lợi cho biến cố $H$: "Rút được lá bài màu đỏ".
+  - *Lời giải:* Bộ bài có 13 lá Cơ và 13 lá Rô màu đỏ. Số kết quả thuận lợi $n(H) = 13 + 13 = 26$.
+
+- **Ví dụ 3:** Chọn ngẫu nhiên một số tự nhiên có 2 chữ số. Tìm số kết quả thuận lợi cho biến cố $M$: "Số được chọn chia hết cho 10".
+  - *Lời giải:* Các số tự nhiên có 2 chữ số chia hết cho 10 là: $10, 20, 30, 40, 50, 60, 70, 80, 90$.  
+    Số kết quả thuận lợi $n(M) = 9$.
+
+</div>
+
+#### **Dạng 3: Phân loại Biến cố Chắc chắn, Khống thể và Ngẫu nhiên**
+- **Phương pháp:** 
+  - $n(A) = n(\Omega) \Rightarrow$ Chắc chắn.
+  - $n(A) = 0 \Rightarrow$ Không thể.
+  - $0 < n(A) < n(\Omega) \Rightarrow$ Ngẫu nhiên.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Trong một hộp có 5 quả bóng màu đỏ. Rút ngẫu nhiên 1 quả bóng. Phân loại biến cố "Rút được quả bóng màu đỏ".
+  - *Lời giải:* Vì tất cả quả bóng trong hộp đều là màu đỏ nên biến cố này luôn luôn xảy ra $\Rightarrow$ đây là **Biến cố chắc chắn**.
+
+- **Ví dụ 2:** Phân loại biến cố "Rút được quả bóng màu xanh" từ hộp bóng ở Ví dụ 1.
+  - *Lời giải:* Hộp không có bóng xanh $\Rightarrow$ đây là **Biến cố không thể**.
+
+- **Ví dụ 3:** Gieo một con xúc xắc. Phân loại biến cố $X$: "Số chấm xuất hiện là số lẻ".
+  - *Lời giải:* Số chấm có thể là $1, 3, 5$ (xảy ra) hoặc $2, 4, 6$ (không xảy ra) $\Rightarrow X$ là **Biến cố ngẫu nhiên**.
+
+</div>
+
+#### **Dạng 4: Sử dụng Sơ đồ cây (Tree Diagram) đếm kết quả**
+- **Phương pháp:** Dựng các nhánh sơ đồ từ giai đoạn 1 đến giai đoạn 2 để liệt kê có hệ thống.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Một thực đơn gồm 2 món chính (Gà, Cá) và 3 món tráng miệng (Táo, Cam, Chuối). Dùng sơ đồ cây để tính số cách chọn một bữa ăn gồm 1 món chính và 1 món tráng miệng.
+  - *Lời giải:* 
+    - Nhánh 1 (Gà): Gà-Táo, Gà-Cam, Gà-Chuối (3 cách).
+    - Nhánh 2 (Cá): Cá-Táo, Cá-Cam, Cá-Chuối (3 cách).  
+    Tổng số cách chọn $n(\Omega) = 2 \times 3 = 6$ cách.
+
+- **Ví dụ 2:** Bạn An có 3 áo màu (Xanh, Đỏ, Vàng) và 2 quần (Đen, Trắng). Có bao nhiêu trang phục gồm 1 áo và 1 quần?
+  - *Lời giải:* Số kết quả $n(\Omega) = 3 \times 2 = 6$ trang phục.
+
+- **Ví dụ 3:** Tung một đồng xu và gieo một con xúc xắc. Tính số phần tử không gian mẫu.
+  - *Lời giải:* Đồng xu có 2 kết quả (S, N). Xúc xắc có 6 kết quả (1 đến 6).  
+    Số phần tử $n(\Omega) = 2 \times 6 = 12$.
+
+</div>
+
+#### **Dạng 5: Bài toán Phép thử Thực tế trong Đời sống & Trò chơi**
+- **Phương pháp:** Chuyển tình huống trò chơi/thực tế thành mô hình phép thử và không gian mẫu.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1 (Xổ số kiến thiết):** Chọn ngẫu nhiên một vé số có 2 chữ số hàng đơn vị và hàng chục. Có bao nhiêu vé số khác nhau?
+  - *Lời giải:* Mỗi chữ số có 10 khả năng từ 0 đến 9.  
+    Số phần tử không gian mẫu $n(\Omega) = 10 \times 10 = 100$ vé số (từ 00 đến 99).
+
+- **Ví dụ 2 (Kiểm tra sản phẩm):** Kiểm tra ngẫu nhiên 2 sản phẩm từ một lô hàng. Gọi T là sản phẩm tốt, L là sản phẩm lỗi. Liệt kê các kết quả không gian mẫu.
+  - *Lời giải:* $\Omega = \{(T, T); (T, L); (L, T); (L, L)\}$. $n(\Omega) = 4$.
+
+- **Ví dụ 3 (Trò chơi Bốc thăm):** Hộp A chứa 2 thẻ xanh (X1, X2). Hộp B chứa 2 thẻ đỏ (Đ1, Đ2). Rút ngẫu nhiên từ mỗi hộp 1 thẻ. Liệt kê các kết quả.
+  - *Lời giải:* $\Omega = \{(X1, Đ1); (X1, Đ2); (X2, Đ1); (X2, Đ2)\}$. $n(\Omega) = 4$.
+
+</div>
 
 </KhamPha>
 
-<VanDung title="II. Các dạng toán và Phương pháp giải">
+<VanDung title="Vận dụng thực tế">
 
-<div class="box-dinh-ly">
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
 
-**Dạng 1: Xác định không gian mẫu của phép thử**
-**Phương pháp:** 
-- Nắm bắt quy trình hoạt động của phép thử được mô tả trong đề bài (như rút 1 lá, lấy ngẫu nhiên 2 quả bóng...).
-- Liệt kê theo cấu trúc tất cả những trường hợp có thể diễn ra thành một hệ thống theo dạng đại số kí tự đóng trong ngoặc chéo $\Omega = \{\dots\}$.
-- Đếm tổng số phần tử để đối chiếu và sử dụng nó làm số lượng không gian mẫu $n(\Omega)$. Tránh liệt kê thừa (trùng lặp) hoặc liệt kê thiếu dữ kiện nhánh.
+**Bài toán 1 (Quy Trình Bốc Thăm Thi Đấu Thể Thao):**  
+Trong một giải bóng đá học sinh THCS có 4 đội $A, B, C, D$. Ban tổ chức tiến hành bốc thăm chia 4 đội thành 2 cặp thi đấu bán kết.  
+a) Xác định số phần tử không gian mẫu của các cặp đấu bán kết có thể có.  
+b) Liệt kê các kết quả thuận lợi cho biến cố $M$: "Đội A thi đấu bán kết với đội B".
 
-</div>
+**Bài toán 2 (Kiểm Tra Đảm Bảo Chất Lượng Nhà Máy - QA/QC):**  
+Một kỹ sư kiểm định lấy ngẫu nhiên 3 linh kiện điện tử trong dây chuyền sản xuất để kiểm tra.  
+a) Viết tập hợp không gian mẫu $\Omega$ (dùng ký hiệu $Đ$ là đạt chuẩn, $K$ là không đạt chuẩn).  
+b) Liệt kê các kết quả thuận lợi cho biến cố $N$: "Có đúng 1 linh kiện không đạt chuẩn".
 
-**Ví dụ 1:** Thực hiện phép thử gieo liên tiếp **hai đồng xu** cùng một lúc. Hãy mô tả cấu tạo của không gian mẫu $\Omega$ cho hành động trên và xác định chính xác $n(\Omega)$?
-
-**Hướng dẫn:** 
-- Gieo một đồng xu, ta có hai biến S và N. Khi tung hai đồng, ta phải lập mô hình cặp đôi.
-- Phép lai chia nhánh ra gồm 4 kịch bản: (Sấp, Sấp), (Sấp, Ngửa), (Ngửa, Sấp), (Ngửa, Ngửa).
-- Kết luận lập biên thu được không gian mẫu: $\Omega = \{(S, S), (S, N), (N, S), (N, N)\}$.
-- Đếm số phần tử ta nhận được $n(\Omega) = 4$. (Lưu ý, (S, N) và (N, S) là phân tử mang biểu trưng khác nhau vì là do hai biến độc lập tạo thành).
-
-<div class="box-dinh-ly" style="margin-top:2rem">
-
-**Dạng 2: Phân nhóm các kết quả thuận lợi cho Biến cố**
-**Phương pháp:** 
-- Cho trước một mệnh đề về một định nghĩa Biến cố (ví dụ: Biến cố rút được bi màu xanh).
-- Tiến hành truy tìm tất cả các phần tử trong không gian mẫu $\Omega$ thỏa mãn trọn vẹn đặc trưng điều kiện của mệnh đề đó.
-- Gộp các yếu tố vào một tập hợp và đếm thành giá trị $n(A)$ hoặc số lượng khả dĩ thành công cho hiện tượng đó xảy ra.
-
-</div>
-
-**Ví dụ 2:**  Một hộp kín chứa $20$ viên bi được đánh số theo thứ tự từ $1$ đến $20$. Rút ngẫu nhiên một viên bi duy nhất từ trong chiếc hộp đó. Đặt tên biến cố $K$: "Viên bi rút ra có đánh số chẵn và lớn hơn $13$". Liệt kê tập hợp các kết quả thuận lợi cho biến cố $K$?
-
-**Hướng dẫn:** 
-- Không gian mẫu $\Omega$ của kho hộp chứa mốc từ: $\{1, 2, 3, \dots, 20\}$.
-- Để thỏa mãn quy định của biến cố $K$, con số $X$ trên bi phải tuân thủ điều kiện cấu thành: "Số chẵn" đồng thời "$X > 13$".
-- Lọc từ dải số ta thấy các số chẵn lớn hẳn $13$ trong phạm vi tới $20$ chỉ bao gồm: $14, 16, 18, 20$.
-- Các kết quả thuận lợi thuộc tập hợp biến cố $K$ là: $\{14, 16, 18, 20\}$. Tức là có $n(K) = 4$ phần tử thuận lợi!
+**Bài toán 3 (Trò Chơi Xổ Số Trúng Thưởng):**  
+Trong trò chơi bốc thăm trúng thưởng tại một hội chợ, người chơi quay một đĩa số gồm 8 phần bằng nhau đánh số từ 1 đến 8.  
+a) Tìm số phần tử của không gian mẫu $\Omega$.  
+b) Liệt kê các kết quả thuận lợi cho biến cố $P$: "Mũi tên chỉ vào số chia hết cho 3".
 
 </VanDung>
 
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ mô phỏng dưới đây hỗ trợ tự động thực hiện các phép thử tung đồng xu, gieo xúc xắc và đếm không gian mẫu một cách sinh động!
+</div>
+
+<ProbabilitySimulator client:load />
+
+</LuyenTap>
+
+<GhiNho title="Ghi nhớ">
+
+<div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
+
+**Trọng tâm kiến thức Bài 25:**
+
+1. **Phép thử ngẫu nhiên:** Không đoán trước kết quả, nhưng biết trước toàn bộ các kết quả có thể xảy ra.  
+2. **Không gian mẫu $\Omega$:** Tập hợp tất cả các kết quả có thể xảy ra.  
+3. **Biến cố $A \subset \Omega$:** Tập các kết quả thuận lợi cho $A$.  
+   - Chắc chắn: $A = \Omega$.  
+   - Không thể: $A = \emptyset$.
+
+</div>
+
+</GhiNho>
+
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -213,38 +382,139 @@ Công cụ dưới đây giúp bạn mô phỏng quá trình gieo xúc xắc, gi
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho một hộp quay lô tô ngẫu nhiên có chứa $100$ quả bóng y hệt và đều nhau, được đánh đánh kí hiệu số thứ tự từ $1$ cho tới $100$. Người dẫn chương trình xoay lồng máy và lấy ra duy nhất một bóng ngẫu nhiên. Xét biến cố $F$: "Quả bóng được quay ngẫu nhiên rút trúng mang một con số tròn chục".
+**Bài 1:** Viết tập hợp không gian mẫu $\Omega$ và tính số phần tử $n(\Omega)$ cho các phép thử sau:  
+a) Gieo một con xúc xắc 6 mặt 1 lần.  
+b) Tung hai đồng xu cân đối đồng thời.  
+c) Chọn ngẫu nhiên 1 chữ cái từ từ "TOANHOC".  
+d) Rút ngẫu nhiên 1 quả bóng từ hộp chứa 3 bóng Đỏ, 2 bóng Xanh.  
+e) Chọn ngẫu nhiên 1 số tự nhiên có 1 chữ số.  
+f) Gieo một đồng xu 3 lần liên tiếp.
 
-a) Giải trình Không gian mẫu $\Omega$ của phép thử trên? Nó có quy mô cỡ là bao nhiêu?
-b) Liệt kê cụ thể tất cả các kết quả thuận lợi thỏa mãn cho biến cố tròn chục $F$ xuất hiện.
-c) Cho gọi $n(F)$ là số đếm của tập $F$. Viết công thức tỉ số khả năng số biến xuất hiện giữa $n(F)$ và $n(\Omega)$?
+**Bài 2:** Gieo một con xúc xắc cân đối 6 mặt. Liệt kê các kết quả thuận lợi cho các biến cố sau:  
+a) $A$: "Số chấm xuất hiện là số chẵn"  
+b) $B$: "Số chấm xuất hiện lớn hơn 4"  
+c) $C$: "Số chấm xuất hiện là số nguyên tố"  
+d) $D$: "Số chấm xuất hiện chia hết cho 5"  
+e) $E$: "Số chấm xuất hiện nhỏ hơn 10"  
+f) $F$: "Số chấm xuất hiện bằng 0"
 
-**Bài 2:** Lôi từ hộc tủ ra một bộ bài Tây 52 lá tiêu chuẩn, thực thi một thao tác "Rút ngẫu nhiên 1 lá". 
+**Bài 3:** Tung hai con xúc xắc cân đối đồng thời. Liệt kê kết quả thuận lợi cho các biến cố:  
+a) $A$: "Tổng số chấm xuất hiện bằng 7"  
+b) $B$: "Tổng số chấm xuất hiện bằng 12"  
+c) $C$: "Hai con xúc xắc xuất hiện cùng số chấm (mặt ngửa giống nhau)"  
+d) $D$: "Tổng số chấm là số lẻ"  
+e) $E$: "Tích số chấm xuất hiện bằng 6"  
+f) $F$: "Số chấm trên hai con xúc xắc hơn kém nhau 3"
 
-- Biến cố A: "Rút được lá Cơ hoặc Rô (lá màu đỏ)". 
-- Biến cố B: "Rút được vị trí lá Át (A)". 
+**Bài 4:** Một hộp chứa 4 tấm thẻ được đánh số $1, 2, 3, 4$. Rút ngẫu nhiên 2 tấm thẻ cùng lúc.  
+a) Viết tập hợp không gian mẫu $\Omega$.  
+b) Liệt kê các kết quả thuận lợi cho biến cố $M$: "Tổng hai số ghi trên thẻ là số lẻ".
 
-a) Cho biết số các kết quả thuận lợi đối với Biến cố A (Đỏ) và Biến cố B (Át) lần lượt là gì?
-b) Xây dựng Biến cố kép $C$: "Rút được lá bài vừa là Át vừa là Chất Đỏ". Số kết quả thuận lợi cho C là bao nhiêu phần tử?
+**Bài 5:** Phân loại các biến cố sau thành Biến cố chắc chắn, Biến cố không thể hoặc Biến cố ngẫu nhiên:  
+a) Trong năm có 12 tháng.  
+b) Ngày mai mặt trời mọc ở hướng Tây.  
+c) Gieo con xúc xắc được mặt 7 chấm.  
+d) Rút ngẫu nhiên 1 lá bài tây được lá bài màu đen hoặc màu đỏ.  
+e) Tung đồng xu được mặt Sấp.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Hướng dẫn giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 6:** Một tổ có 3 học sinh nam (An, Bình, Cường) và 2 học sinh nữ (Hoa, Mai). Chọn ngẫu nhiên 2 học sinh đi làm trực nhật.  
+a) Tính số phần tử của không gian mẫu $n(\Omega)$.  
+b) Liệt kê các kết quả thuận lợi cho biến cố: "Chọn được 1 nam và 1 nữ".
 
-**Bài 1:**
-a) Không gian mẫu bao trùm mọi kết quả là: $\Omega = \{1, 2, 3, \dots, 100\}$.
-Tổng số phần tử được đếm là $n(\Omega) = 100$.
-b) Phép chọn lọc ra các dòng số "tròn chục" bên trong mảng giới hạn $100$. Có những điểm thỏa mãn:
-Tập hợp các kết quả cho biến cố F là: $F = \{10, 20, 30, 40, 50, 60, 70, 80, 90, 100\}$.
-c) Số lượng phần tử cho tập F là đếm được $n(F) = 10$. 
-Lập tỉ số $n(F) / n(\Omega) = \frac{10}{100} = \frac{1}{10}$. Tỉ số này mang ý nghĩa là cứ lấy ngẫu nhiên 10 lần thì trung bình có 1 lần rơi vào nhóm tròn chục.
+**Bài 7:** Tung một đồng xu và gieo một con xúc xắc 6 mặt đồng thời.  
+a) Liệt kê tất cả các phần tử của không gian mẫu $\Omega$.  
+b) Đếm số kết quả thuận lợi cho biến cố "Đồng xu xuất hiện mặt Sấp và xúc xắc xuất hiện số chấm chẵn".
 
-**Bài 2:**
-Bộ bài có $52$ lá phân làm $4$ chất đánh dấu: Cơ, Rô, Chuồn (Tép), Bích. Mỗi chất trải từ hạng $2$ đến $A$ (tổng cộng 13 lá/chất).
-a) Số kết quả thuận lợi cho Biến cố A (lá màu Đỏ - bao gồm các chất Cơ và Rô) là: $n(A) = 13 + 13 = 26$ (chiếc lá).
-Số kết quả thuận lợi cho Biến cố B (rút trúng lá vị trí Át) là: $n(B) = 4$ (lá, bao gồm Át Cơ, Át Rô, Át Chuồn, Át Bích).
-b) Biến cố C (vừa là lá Át kết hợp thỏa điều kiện chất Đỏ). Rõ ràng trong khối điều kiện đó chỉ có đúng 2 chiếc lá Át có cấu trúc Đỏ: Át Cơ và Át Rô. 
-Vậy số đáp ứng tính kiện cho Biến cố C là $n(C) = 2$ phần tử giới hạn.
+**Bài 8:** Chọn ngẫu nhiên một số tự nhiên từ $10$ đến $99$.  
+a) Tính số phần tử của không gian mẫu $n(\Omega)$.  
+b) Tính số kết quả thuận lợi cho biến cố "Số được chọn có hai chữ số giống nhau".
+
+**Bài 9 (Thực tế):** Trong một hộp bánh có 5 bánh nhân đậu xanh và 3 bánh nhân thập cẩm. Bạn Nam lấy ngẫu nhiên 2 chiếc bánh để ăn.  
+a) Tính số phần tử của không gian mẫu $n(\Omega)$.  
+b) Liệt kê các kết quả để Nam lấy được đúng 2 chiếc bánh cùng loại nhân.
+
+**Bài 10 (Thực tế):** Một nhà mạng viễn thông phát hành mã cào trúng thưởng gồm 3 chữ số ngẫu nhiên từ $000$ đến $999$.  
+a) Tính số phần tử của không gian mẫu $\Omega$.  
+b) Tìm số kết quả thuận lợi cho biến cố "Mã số cào kết thúc bằng chữ số 9".
+
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
+
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
+
+**Bài 1:**  
+a) $\Omega = \{1; 2; 3; 4; 5; 6\} \Rightarrow n(\Omega) = 6$.  
+b) $\Omega = \{(S,S); (S,N); (N,S); (N,N)\} \Rightarrow n(\Omega) = 4$.  
+c) Các chữ cái: T, O, A, N, H, C $\Rightarrow \Omega = \{T, O, A, N, H, C\} \Rightarrow n(\Omega) = 6$ (hoặc 7 nếu tính cả 2 chữ O).  
+d) Đ1, Đ2, Đ3, X1, X2 $\Rightarrow n(\Omega) = 5$.  
+e) $\Omega = \{0; 1; 2; 3; 4; 5; 6; 7; 8; 9\} \Rightarrow n(\Omega) = 10$.  
+f) $\Omega$ gồm $2^3 = 8$ phần tử từ (S,S,S) đến (N,N,N).
+
+---
+
+**Bài 2:**  
+a) $A = \{2; 4; 6\} \Rightarrow n(A) = 3$.  
+b) $B = \{5; 6\} \Rightarrow n(B) = 2$.  
+c) $C = \{2; 3; 5\} \Rightarrow n(C) = 3$.  
+d) $D = \{5\} \Rightarrow n(D) = 1$.  
+e) $E = \{1; 2; 3; 4; 5; 6\} = \Omega \Rightarrow n(E) = 6$.  
+f) $F = \emptyset \Rightarrow n(F) = 0$.
+
+---
+
+**Bài 3:**  
+a) $A = \{(1,6); (2,5); (3,4); (4,3); (5,2); (6,1)\} \Rightarrow n(A) = 6$.  
+b) $B = \{(6,6)\} \Rightarrow n(B) = 1$.  
+c) $C = \{(1,1); (2,2); (3,3); (4,4); (5,5); (6,6)\} \Rightarrow n(C) = 6$.  
+d) Tổng chẵn có 18 kết quả, tổng lẻ có 18 kết quả $\Rightarrow n(D) = 18$.  
+e) $E = \{(1,6); (2,3); (3,2); (6,1)\} \Rightarrow n(E) = 4$.  
+f) $F = \{(1,4); (2,5); (3,6); (4,1); (5,2); (6,3)\} \Rightarrow n(F) = 6$.
+
+---
+
+**Bài 4:**  
+a) $\Omega = \{(1,2); (1,3); (1,4); (2,3); (2,4); (3,4)\} \Rightarrow n(\Omega) = 6$.  
+b) Các cặp có tổng lẻ: $1+2=3, 1+4=5, 2+3=5, 3+4=7 \Rightarrow M = \{(1,2); (1,4); (2,3); (3,4)\} \Rightarrow n(M) = 4$.
+
+---
+
+**Bài 5:**  
+a) Biến cố chắc chắn.  
+b) Biến cố không thể.  
+c) Biến cố không thể (xúc xắc chỉ từ 1 đến 6).  
+d) Biến cố chắc chắn.  
+e) Biến cố ngẫu nhiên.
+
+---
+
+**Bài 6:**  
+a) Chọn 2 trong 5 HS $\Rightarrow n(\Omega) = \frac{5 \times 4}{2} = 10$ cặp.  
+b) Cặp 1 nam - 1 nữ: mỗi nam ghép với 2 nữ $\Rightarrow 3 \times 2 = 6$ kết quả.
+
+---
+
+**Bài 7:**  
+a) $\Omega = \{(S,1); (S,2); (S,3); (S,4); (S,5); (S,6); (N,1); (N,2); (N,3); (N,4); (N,5); (N,6)\} \Rightarrow n(\Omega) = 12$.  
+b) Kết quả thuận lợi: $(S,2); (S,4); (S,6) \Rightarrow 3$ kết quả.
+
+---
+
+**Bài 8:**  
+a) Các số từ 10 đến 99 có $99 - 10 + 1 = 90$ số $\Rightarrow n(\Omega) = 90$.  
+b) Các số có 2 chữ số giống nhau: $11, 22, 33, 44, 55, 66, 77, 88, 99 \Rightarrow 9$ kết quả.
+
+---
+
+**Bài 9:**  
+a) Chọn 2 trong 8 chiếc bánh $\Rightarrow n(\Omega) = \frac{8 \times 7}{2} = 28$ cách.  
+b) Chọn 2 bánh đậu xanh: $\frac{5 \times 4}{2} = 10$ cách. Chọn 2 bánh thập cẩm: $\frac{3 \times 2}{2} = 3$ cách.  
+Tổng số kết quả thuận lợi cùng loại nhân $= 10 + 3 = 13$ cách.
+
+---
+
+**Bài 10:**  
+a) Mã số từ 000 đến 999 có 1000 mã $\Rightarrow n(\Omega) = 1000$.  
+b) Mã kết thúc bằng chữ số 9 có dạng $ab9$ (với $a, b \in \{0;...;9\}$) $\Rightarrow 10 \times 10 = 100$ mã.
 
 </div>
 </details>

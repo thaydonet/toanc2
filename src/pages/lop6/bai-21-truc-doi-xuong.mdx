@@ -15,8 +15,10 @@ import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 
 import QuizSession from '../../components/ui/QuizSession';
+import TrucDoiXungInteractive from '../../components/interactive/TrucDoiXungInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Hình nào dưới đây có trục đối xứng?",
@@ -66,18 +68,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những chữ cái nào sau đây có trục đối xứng?",
-    option_a: "A",
-    option_b: "H",
-    option_c: "O",
-    option_d: "N",
-    correct_option: "A,B,C",
-    explanation: "Chữ A, H, O có trục đối xứng. Chữ N không có trục đối xứng.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Hình thoi có bao nhiêu trục đối xứng?",
     option_a: "1",
@@ -115,29 +105,58 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Trục đối xứng của hình thang cân là:",
-    option_a: "Đường chéo",
-    option_b: "Đường cao",
-    option_c: "Đường thẳng đi qua trung điểm hai đáy",
-    option_c_alt: "Đường trung bình",
-    option_d: "Cả a và c",
-    correct_option: "C",
-    explanation: "Hình thang cân có một trục đối xứng là đường thẳng đi qua trung điểm của hai đáy.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
     question: "Hình lục giác đều có bao nhiêu trục đối xứng?",
     option_a: "3",
     option_b: "4",
     option_c: "6",
     option_d: "8",
     correct_option: "C",
-    explanation: "Hình lục giác đều có 6 trục đối xứng: 3 đường thẳng đi qua các cặp đỉnh đối và 3 đường thẳng đi qua trung điểm các cạnh đối.",
+    explanation: "Hình lục giác đều có 6 trục đối xứng.",
     difficulty_level: "medium",
     is_dynamic: false,
-  }
+  },
+  // ─── Phần 2: MSQ (2 câu) ───────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những chữ cái nào sau đây có trục đối xứng?",
+    option_a: "A",
+    option_b: "H",
+    option_c: "O",
+    option_d: "N",
+    correct_option: "A,B,C",
+    explanation: "Chữ A, H, O có trục đối xứng. Chữ N không có trục đối xứng.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những hình nào sau đây có từ 2 trục đối xứng trở lên?",
+    option_a: "Hình vuông",
+    option_b: "Hình chữ nhật",
+    option_c: "Hình thang cân",
+    option_d: "Hình thoi",
+    correct_option: "A,B,D",
+    explanation: "Hình vuông (4), chữ nhật (2), thoi (2) có từ 2 trục. Thang cân chỉ có 1 trục.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Hình vuông có bao nhiêu trục đối xứng?",
+    correct_option: "4",
+    explanation: "Hình vuông có 4 trục đối xứng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Hình tròn có bao nhiêu trục đối xứng?",
+    correct_option: "Vô số",
+    explanation: "Hình tròn có vô số trục đối xứng.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong title="Khởi động">
@@ -319,6 +338,12 @@ Hình thang cân $ABCD$ (với $AB \parallel CD$) có trục đối xứng là �
 
 <LuyenTap title="Luyện tập">
 
+<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+
+<TrucDoiXungInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
+
 **Bài 1:** Trong các chữ cái sau, chữ nào có trục đối xứng?
 
 $A, H, E, O, M, N, P$
@@ -412,6 +437,25 @@ Các công trình kiến trúc thường có thiết kế đối xứng vì:
 
 </div>
 
+**📝 Bài toán 3:** Cho tam giác đều cạnh $6$ cm.
+
+a) Vẽ tam giác đều đó và tất cả các trục đối xứng.
+
+b) Mỗi trục đối xứng đi qua những điểm nào?
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Tam giác đều ABC cạnh $6$ cm có $3$ trục đối xứng.
+
+b) Mỗi trục đối xứng đi qua một đỉnh và trung điểm cạnh đối diện:
+- Trục đi qua A và trung điểm BC
+- Trục đi qua B và trung điểm AC
+- Trục đi qua C và trung điểm AB
+
+</div>
+
 </VanDung>
 
 <GhiNho title="Ghi nhớ">
@@ -424,7 +468,6 @@ Các công trình kiến trúc thường có thiết kế đối xứng vì:
 - Đường thẳng $d$ là trục đối xứng của hình $H$ nếu khi gập hình $H$ theo đường thẳng $d$, hai phần của hình sẽ chồng khít lên nhau.
 
 **2. Hình có trục đối xứng**
-- Hình có trục đối xứng còn gọi là hình đối xứng trục.
 - Các hình thường gặp:
   - Đoạn thẳng: 2 trục
   - Tam giác đều: 3 trục
@@ -437,7 +480,6 @@ Các công trình kiến trúc thường có thiết kế đối xứng vì:
 
 **3. Ứng dụng**
 - Tính đối xứng tạo nên sự cân đối, hài hòa trong tự nhiên và kiến trúc.
-- Nhiều chữ cái, số, biển báo có trục đối xứng.
 
 </div>
 
@@ -445,42 +487,78 @@ Các công trình kiến trúc thường có thiết kế đối xứng vì:
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Vẽ trục đối xứng (nếu có) của các hình sau và cho biết mỗi hình có bao nhiêu trục đối xứng:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) Hình tam giác đều
+**Bài 1 (Dễ - Nhận biết):** Hình vuông có bao nhiêu trục đối xứng?
 
-b) Hình chữ nhật
+**Bài 2 (Dễ - Nhận biết):** Hình chữ nhật có bao nhiêu trục đối xứng?
 
-c) Hình thoi
+**Bài 3 (Dễ - Nhận biết):** Hình tròn có bao nhiêu trục đối xứng?
 
-d) Hình bình hành
+**Bài 4 (Dễ - Nhận biết):** Chữ "A" có trục đối xứng không? Vẽ trục đó.
 
-**Bài 2:** Trong các chữ cái sau, chữ nào có trục đối xứng: A, B, C, D, E, H, I, K, M, N, O, P, X, Y?
+**Bài 5 (Thông hiểu):** Vẽ trục đối xứng của hình tam giác đều.
 
-**Bài 3:** Hãy vẽ một hình thang cân và vẽ trục đối xứng của nó.
+**Bài 6 (Thông hiểu):** Cho biết hình nào có nhiều trục đối xứng nhất: hình vuông, hình chữ nhật, hay hình thoi?
 
-**Bài 4:** Giải thích vì sao hình tròn có vô số trục đối xứng.
+**Bài 7 (Thông hiểu):** Giải thích vì sao hình tròn có vô số trục đối xứng.
 
-**Bài 5:** Tìm một số hình ảnh trong thực tế có trục đối xứng và vẽ sơ đồ minh họa.
+**Bài 8 (Vận dụng):** Tìm 3 hình ảnh trong thực tế có trục đối xứng và vẽ phác trục.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 9 (Vận dụng):** Cho hình thang cân ABCD có $AB \parallel CD$. Vẽ trục đối xứng của hình thang cân.
 
-**Bài 1:** a) 3 trục; b) 2 trục; c) 2 trục; d) 0 trục
+**Bài 10 (Vận dụng cao):** Chứng minh rằng tam giác đều có đúng 3 trục đối xứng.
 
-**Bài 2:** Có trục: A, E, H, I, O, X, Y; Không có trục: B, C, D, K, M, N, P
+</div>
 
-**Bài 3:** Trục đối xứng là đường thẳng đi qua trung điểm hai đáy
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-**Bài 4:** Mọi đường thẳng đi qua tâm đều là trục đối xứng
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-**Bài 5:** Chiếc lá, cánh bướm, mặt người, biển báo, kiến trúc
+**Bài 1:** Hình vuông có $4$ trục đối xứng.
+
+---
+
+**Bài 2:** Hình chữ nhật có $2$ trục đối xứng.
+
+---
+
+**Bài 3:** Hình tròn có vô số trục đối xứng.
+
+---
+
+**Bài 4:** Có. Trục đối xứng của chữ "A" là đường thẳng đứng đi qua đỉnh A và trung điểm cạnh đáy.
+
+---
+
+**Bài 5:** Tam giác đều ABC có 3 trục: đường thẳng từ A đến trung điểm BC, từ B đến trung điểm AC, từ C đến trung điểm AB.
+
+---
+
+**Bài 6:** Hình vuông có nhiều nhất ($4$ trục). Hình chữ nhật và thoi đều có $2$ trục.
+
+---
+
+**Bài 7:** Mọi đường thẳng đi qua tâm hình tròn đều là trục đối xứng vì khi gập hình tròn theo đường thẳng đó, hai nửa hình tròn luôn trùng khít.
+
+---
+
+**Bài 8:** Ví dụ: cánh bướm (trục đi qua thân), chiếc lá (trục đi qua cuống và đỉnh), mặt người (trục đi qua mũi).
+
+---
+
+**Bài 9:** Trục đối xứng của hình thang cân ABCD là đường thẳng đi qua trung điểm của hai đáy AB và CD.
+
+---
+
+**Bài 10:** Tam giác đều ABC có 3 đường trung tuyến (cũng là đường cao, đường phân giác). Mỗi đường là một trục đối xứng vì khi gập tam giác theo đường đó, hai nửa tam giác trùng khít. Không có trục nào khác vì chỉ có 3 đường thẳng từ đỉnh đến cạnh đối.
 
 </div>
 </details>
 
-<QuizSession client:load questions={quizData} />
 

@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import HinhPhang1Interactive from '../../components/interactive/HinhPhang1Interactive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Hình tam giác đều có bao nhiêu cạnh bằng nhau?",
@@ -53,18 +55,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những tính chất nào của hình tam giác đều?",
-    option_a: "$3$ cạnh bằng nhau",
-    option_b: "$3$ góc bằng nhau",
-    option_c: "$3$ góc mỗi góc $60°$",
-    option_d: "$4$ cạnh bằng nhau",
-    correct_option: "A,B,C",
-    explanation: "Tam giác đều có $3$ cạnh bằng nhau, $3$ góc bằng nhau, mỗi góc $60°$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Chu vi hình vuông cạnh $5$ cm là:",
     option_a: "$20$ cm",
@@ -77,16 +67,8 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Mỗi góc của hình lục giác đều bằng bao nhiêu độ?",
-    correct_option: "120",
-    explanation: "Mỗi góc của lục giác đều bằng $120°$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
-    question: "Diện tích hình vuông cạnh 4 cm là:",
+    question: "Diện tích hình vuông cạnh $4$ cm là:",
     option_a: "$16$ cm²",
     option_b: "$16$ cm",
     option_c: "$8$ cm²",
@@ -98,7 +80,7 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Chu vi tam giác đều cạnh 6 cm là:",
+    question: "Chu vi tam giác đều cạnh $6$ cm là:",
     option_a: "$18$ cm",
     option_b: "$12$ cm",
     option_c: "$24$ cm",
@@ -106,6 +88,72 @@ export const quizData = [
     correct_option: "A",
     explanation: "Chu vi = $3 \\times 6 = 18$ cm.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chu vi lục giác đều cạnh $5$ cm là:",
+    option_a: "$30$ cm",
+    option_b: "$25$ cm",
+    option_c: "$35$ cm",
+    option_d: "$20$ cm",
+    correct_option: "A",
+    explanation: "Chu vi = $6 \\times 5 = 30$ cm.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Mỗi góc của tam giác đều bằng:",
+    option_a: "$60°$",
+    option_b: "$90°$",
+    option_c: "$120°$",
+    option_d: "$45°$",
+    correct_option: "A",
+    explanation: "Tam giác đều có $3$ góc bằng nhau, mỗi góc bằng $60°$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  // ─── Phần 2: MSQ (2 câu) ───────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những tính chất nào của hình tam giác đều?",
+    option_a: "$3$ cạnh bằng nhau",
+    option_b: "$3$ góc bằng nhau",
+    option_c: "$3$ góc mỗi góc $60°$",
+    option_d: "$4$ cạnh bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "Tam giác đều có $3$ cạnh bằng nhau, $3$ góc bằng nhau, mỗi góc $60°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những tính chất nào của hình vuông?",
+    option_a: "$4$ cạnh bằng nhau",
+    option_b: "$4$ góc vuông",
+    option_c: "Đường chéo bằng nhau",
+    option_d: "$3$ cạnh bằng nhau",
+    correct_option: "A,B,C",
+    explanation: "Hình vuông có $4$ cạnh bằng nhau, $4$ góc vuông, $2$ đường chéo bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  // ─── Phần 3: SA (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Mỗi góc của hình lục giác đều bằng bao nhiêu độ?",
+    correct_option: "120",
+    explanation: "Mỗi góc của lục giác đều bằng $120°$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Cho tam giác đều có chu vi $36$ cm. Độ dài mỗi cạnh là bao nhiêu cm?",
+    correct_option: "12",
+    explanation: "Cạnh = $36 : 3 = 12$ cm.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
 ];
@@ -406,7 +454,9 @@ Chu vi: $P = 6 \times 5 = 30$ cm
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<HinhPhang1Interactive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -452,6 +502,24 @@ Vậy khung vừa đủ để bao quanh tấm gương ✓
 
 </div>
 
+**📝 Bài toán 3:** Một tấm kính hình lục giác đều cạnh $10$ cm.
+
+a) Tính chu vi tấm kính.
+
+b) Nếu viền kính dài $65$ cm, viền có đủ để bao quanh tấm kính không?
+
+<div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Chu vi: $P = 6 \times 10 = 60$ cm
+
+b) Viền dài $65$ cm $>$ chu vi $60$ cm
+
+Vậy viền đủ để bao quanh tấm kính ✓
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -465,83 +533,81 @@ Vậy khung vừa đủ để bao quanh tấm gương ✓
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Tính chu vi tam giác đều:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
 
-a) Cạnh $6$ cm
+**Bài 1 (Dễ - Nhận biết):** Tam giác đều có bao nhiêu cạnh bằng nhau? Mỗi góc bao nhiêu độ?
 
-b) Cạnh $10$ cm
+**Bài 2 (Dễ - Nhận biết):** Hình vuông có bao nhiêu cạnh bằng nhau? Bao nhiêu góc vuông?
 
-c) Cạnh $15$ cm
+**Bài 3 (Dễ - Nhận biết):** Lục giác đều có bao nhiêu cạnh? Mỗi góc bao nhiêu độ?
 
-d) Cạnh $25$ cm
+**Bài 4 (Dễ - Tính toán):** Tính chu vi tam giác đều cạnh $8$ cm.
 
-**Bài 2:** Tính chu vi và diện tích hình vuông:
+**Bài 5 (Dễ - Tính toán):** Tính chu vi và diện tích hình vuông cạnh $7$ cm.
 
-a) Cạnh $5$ cm
+**Bài 6 (Thông hiểu):** Tính chu vi lục giác đều cạnh $9$ cm.
 
-b) Cạnh $8$ cm
+**Bài 7 (Thông hiểu):** Cho tam giác đều có chu vi $45$ cm. Tìm độ dài cạnh.
 
-c) Cạnh $12$ cm
+**Bài 8 (Vận dụng):** Một mảnh vườn hình vuông có chu vi $60$ m. Tính diện tích mảnh vườn.
 
-d) Cạnh $20$ cm
+**Bài 9 (Vận dụng):** So sánh chu vi tam giác đều cạnh $10$ cm và chu vi hình vuông cạnh $7$ cm.
 
-**Bài 3:** Tính chu vi lục giác đều:
+**Bài 10 (Vận dụng cao):** Cho tam giác đều có chu vi $P$ cm. Chứng minh diện tích tam giác đó bằng $\frac{P^2\sqrt{3}}{36}$ cm².
 
-a) Cạnh $4$ cm
+</div>
 
-b) Cạnh $7$ cm
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-c) Cạnh $10$ cm
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-d) Cạnh $15$ cm
+**Bài 1:** Tam giác đều có $3$ cạnh bằng nhau, mỗi góc $= 60°$.
 
-**Bài 4:** Điền vào chỗ trống:
+---
 
-a) Tam giác đều cạnh $a$ có chu vi là ___
+**Bài 2:** Hình vuông có $4$ cạnh bằng nhau, có $4$ góc vuông ($90°$).
 
-b) Hình vuông cạnh $a$ có diện tích là ___
+---
 
-c) Lục giác đều cạnh $a$ có chu vi là ___
+**Bài 3:** Lục giác đều có $6$ cạnh bằng nhau, mỗi góc $= 120°$.
 
-d) Mỗi góc của lục giác đều bằng ___
+---
 
-**Bài 5:** So sánh:
+**Bài 4:** Chu vi tam giác đều $= 3 \times 8 = 24$ cm.
 
-a) Chu vi tam giác đều cạnh $10$ cm và chu vi hình vuông cạnh $7$ cm
+---
 
-b) Diện tích hình vuông cạnh $6$ cm và diện tích hình vuông cạnh $5$ cm
+**Bài 5:** Chu vi $= 4 \times 7 = 28$ cm. Diện tích $= 7^2 = 49$ cm².
 
-c) Chu vi lục giác đều cạnh $5$ cm và chu vi tam giác đều cạnh $10$ cm
+---
 
-d) Chu vi hình vuông cạnh $8$ cm và chu vi lục giác đều cạnh $5$ cm
+**Bài 6:** Chu vi lục giác đều $= 6 \times 9 = 54$ cm.
 
-**Bài 6 (Thực tế):** Một sân chơi hình vuông cạnh $30$ m.
+---
 
-a) Tính chu vi sân chơi.
+**Bài 7:** Cạnh $= 45 : 3 = 15$ cm.
 
-b) Tính diện tích sân chơi.
+---
 
-c) Nếu lát gạch hình vuông cạnh $1$ m, cần bao nhiêu viên gạch?
+**Bài 8:** Cạnh $= 60 : 4 = 15$ m. Diện tích $= 15^2 = 225$ m².
 
-d) Nếu trồng cây cách nhau $3$ m dọc theo chu vi, cần bao nhiêu cây?
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 9:**
+- Chu vi tam giác đều $= 3 \times 10 = 30$ cm
+- Chu vi hình vuông $= 4 \times 7 = 28$ cm
+- Vậy $30 > 28$: chu vi tam giác đều lớn hơn.
 
-**Bài 1:** a) $18$ cm; b) $30$ cm; c) $45$ cm; d) $75$ cm
+---
 
-**Bài 2:** a) $P = 20$ cm, $S = 25$ cm²; b) $P = 32$ cm, $S = 64$ cm²; c) $P = 48$ cm, $S = 144$ cm²; d) $P = 80$ cm, $S = 400$ cm²
+**Bài 10:** Gọi cạnh tam giác đều là $a$. Khi đó $P = 3a \Rightarrow a = \frac{P}{3}$.
 
-**Bài 3:** a) $24$ cm; b) $42$ cm; c) $60$ cm; d) $90$ cm
-
-**Bài 4:** a) $3a$; b) $a^2$; c) $6a$; d) $120°$
-
-**Bài 5:** a) $30$ cm $>$ $28$ cm; b) $36$ cm² $>$ $25$ cm²; c) $30$ cm $=$ $30$ cm; d) $32$ cm $<$ $30$ cm
-
-**Bài 6:** a) $120$ m; b) $900$ m²; c) $900$ viên; d) $40$ cây
+Diện tích tam giác đều $= \frac{a^2\sqrt{3}}{4} = \frac{(\frac{P}{3})^2\sqrt{3}}{4} = \frac{P^2\sqrt{3}}{36}$ cm². (đpcm)
 
 </div>
 </details>

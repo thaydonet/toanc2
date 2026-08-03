@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import DauHieuChiaHetInteractive from '../../components/interactive/DauHieuChiaHetInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Số nào chia hết cho $2$?",
@@ -53,34 +55,14 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những số nào chia hết cho $9$?",
-    option_a: "$108$",
-    option_b: "$126$",
-    option_c: "$135$",
-    option_d: "$144$",
-    correct_option: "A,C",
-    explanation: "$108$: $1+0+8=9 \\vdots 9$; $126$: $1+2+6=9 \\vdots 9$ (sai, tổng là 9 nên đúng); $135$: $1+3+5=9 \\vdots 9$; $144$: $1+4+4=9 \\vdots 9$ (sai, tổng là 9 nên đúng). Đáp án đúng: A, B, C, D đều chia hết cho 9.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Số $2340$ chia hết cho những số nào?",
     option_a: "Chỉ $2$ và $5$",
     option_b: "Chỉ $2, 3, 5$",
     option_c: "$2, 3, 5, 9$",
     option_d: "Chỉ $2$ và $3$",
-    correct_option: "B",
+    correct_option: "C",
     explanation: "$2340$ tận cùng $0$ (chia hết cho 2, 5); tổng $2+3+4+0=9$ (chia hết cho 3, 9). Vậy chia hết cho $2, 3, 5, 9$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Tìm chữ số $x$ để $23x$ chia hết cho $3$.",
-    correct_option: "1",
-    explanation: "Tổng $2+3+x = 5+x$ phải chia hết cho $3$. Vậy $x \\in \\{1, 4, 7\\}$. Đáp án nhỏ nhất: $x=1$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -98,6 +80,30 @@ export const quizData = [
   },
   {
     type: "mcq",
+    question: "Số nào chia hết cho $6$ (tức chia hết cho cả $2$ và $3$)?",
+    option_a: "$126$",
+    option_b: "$135$",
+    option_c: "$237$",
+    option_d: "$346$",
+    correct_option: "A",
+    explanation: "$126$: tận cùng $6$ (chẵn) ⇒ chia hết cho $2$; tổng $1+2+6=9$ chia hết cho $3$ ⇒ $126$ chia hết cho $6$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Số nào KHÔNG chia hết cho $3$?",
+    option_a: "$!tinh: 3 * !k1(4,9)!!$",
+    option_b: "$!tinh: 3 * !k2(4,9)!!$",
+    option_c: "$!tinh: 3 * !k3(4,9)!!$",
+    option_d: "$!tinh: 3 * !k4(4,9)! + 1!!$",
+    correct_option: "D",
+    explanation: "$!tinh: 3 * !k4! + 1!!$ chia cho $3$ dư $1$ nên không chia hết cho $3$. Ba số còn lại đều là bội của $3$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
     question: "Tổng các chữ số của $!a(123,456,789)!$ là bao nhiêu?",
     option_a: "$!tinh: sumDigits(!a!)!$",
     option_b: "$!tinh: !a! % 10!$",
@@ -105,6 +111,50 @@ export const quizData = [
     option_d: "$!tinh: Math.floor(!a! / 10)!$",
     correct_option: "A",
     explanation: "Tổng các chữ số: $!tinh: sumDigits(!a!)!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 2: MSQ (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những số nào chia hết cho $9$?",
+    option_a: "$108$",
+    option_b: "$126$",
+    option_c: "$135$",
+    option_d: "$144$",
+    correct_option: "A,B,C,D",
+    explanation: "$108$: $1+0+8=9 \\vdots 9$; $126$: $1+2+6=9 \\vdots 9$; $135$: $1+3+5=9 \\vdots 9$; $144$: $1+4+4=9 \\vdots 9$. Cả bốn số đều chia hết cho $9$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào chia hết cho cả $2$ và $5$?",
+    option_a: "$120$",
+    option_b: "$235$",
+    option_c: "$340$",
+    option_d: "$410$",
+    correct_option: "A,C,D",
+    explanation: "Số chia hết cho cả $2$ và $5$ phải có chữ số tận cùng là $0$. Các số $120$, $340$, $410$ tận cùng $0$; $235$ tận cùng $5$ nên không chia hết cho $2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+
+  // ─── Phần 3: SA (2 câu) ─────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tìm chữ số $x$ nhỏ nhất để $23x$ chia hết cho $3$.",
+    correct_option: "1",
+    explanation: "Tổng $2+3+x = 5+x$ phải chia hết cho $3$. Vậy $x \\in \\{1, 4, 7\\}$. Chữ số nhỏ nhất: $x=1$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tìm chữ số $x$ nhỏ nhất để số $!a(2,5)!!b(3,6)!x$ chia hết cho $9$.",
+    correct_option: "!tinh: (9 - (!a! + !b!) % 9) % 9!!",
+    explanation: "Tổng các chữ số: $!a! + !b! + x = !tinh: !a! + !b!! + x$. Cần $(!tinh: !a! + !b!! + x) \\vdots 9$ ⇒ $x = !tinh: (9 - (!a! + !b!) % 9) % 9!!$.",
     difficulty_level: "medium",
     is_dynamic: true,
   },
@@ -356,7 +406,9 @@ Vậy không tồn tại $x$ thỏa mãn.
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<DauHieuChiaHetInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -406,6 +458,30 @@ Vì $18 \vdots 9$ nên $x \in \{0, 9\}$
 
 </div>
 
+**📝 Bài toán 3:** Một đơn vị bộ đội có $1x8$ chiến sĩ (với $x$ là chữ số ở hàng chục). Đơn vị muốn xếp đều thành các hàng, mỗi hàng $3$ người.
+
+a) Tìm các giá trị của $x$ để số chiến sĩ chia hết cho $3$.
+
+b) Nếu mỗi hàng $9$ người thì tìm các giá trị của $x$ để số chiến sĩ chia hết cho $9$.
+
+c) Với giá trị $x$ tìm được ở câu b, số chiến sĩ có chia hết cho $6$ không?
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Số $1x8$ có tổng các chữ số: $1 + x + 8 = 9 + x$.
+
+Để $1x8 \vdots 3$ thì $(9 + x) \vdots 3$. Vì $9 \vdots 3$ nên $x \in \{0, 3, 6, 9\}$.
+
+b) Để $1x8 \vdots 9$ thì $(9 + x) \vdots 9$. Vì $9 \vdots 9$ nên $x \in \{0, 9\}$.
+
+c) Với $x = 0$: số $108$. $108$ tận cùng $8$ (chẵn) ⇒ chia hết cho $2$; $108 \vdots 3$ ⇒ $108 \vdots 6$. **Có.**
+
+Với $x = 9$: số $198$. $198$ tận cùng $8$ (chẵn) ⇒ chia hết cho $2$; $198 \vdots 9$ nên $\vdots 3$ ⇒ $198 \vdots 6$. **Có.**
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -421,9 +497,11 @@ Vì $18 \vdots 9$ nên $x \in \{0, 9\}$
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Kiểm tra các số sau chia hết cho $2, 3, 5, 9$:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
+
+**Bài 1 (Dễ - Nhận biết):** Kiểm tra các số sau chia hết cho $2, 3, 5, 9$ (kết quả dạng "chia hết cho ...", "không chia hết cho ..."):
 
 a) $120$
 
@@ -433,7 +511,27 @@ c) $234$
 
 d) $450$
 
-**Bài 2:** Tìm chữ số $x$:
+**Bài 2 (Dễ - Nhận biết):** Điền Đúng (Đ) hoặc Sai (S) vào ô trống:
+
+a) $2013 \vdots 3$
+
+b) $2500 \vdots 5$
+
+c) $9999 \vdots 9$
+
+d) $2222 \vdots 2$
+
+**Bài 3 (Dễ - Nhận biết):** Viết số tự nhiên nhỏ nhất có ba chữ số:
+
+a) chia hết cho $2$
+
+b) chia hết cho $5$
+
+c) chia hết cho $9$
+
+d) chia hết cho cả $2, 3, 5$
+
+**Bài 4 (Thông hiểu):** Tìm chữ số $x$:
 
 a) $12x$ chia hết cho $3$
 
@@ -441,19 +539,11 @@ b) $34x$ chia hết cho $5$
 
 c) $56x$ chia hết cho $9$
 
-d) $78x$ chia hết cho $2$ và $3$
+d) $78x$ chia hết cho cả $2$ và $3$
 
-**Bài 3:** Trong các số sau, số nào chia hết cho $6$?
+**Bài 5 (Thông hiểu):** Trong các số $126, 135, 234, 345$, số nào chia hết cho $6$? Giải thích vì sao.
 
-a) $126$
-
-b) $135$
-
-c) $234$
-
-d) $345$
-
-**Bài 4:** Tìm tất cả các chữ số $x$ để:
+**Bài 6 (Thông hiểu):** Tìm tất cả các chữ số $x$ để:
 
 a) $2x3$ chia hết cho $3$
 
@@ -463,41 +553,146 @@ c) $6x8$ chia hết cho $3$
 
 d) $7x0$ chia hết cho $9$
 
-**Bài 5:** Viết số tự nhiên nhỏ nhất:
+**Bài 7 (Vận dụng):** Dùng ba chữ số $4, 5, 0$ (mỗi chữ số đúng một lần) ghép thành các số có ba chữ số:
 
-a) Có 3 chữ số và chia hết cho $2$
+a) chia hết cho $2$
 
-b) Có 3 chữ số và chia hết cho $5$
+b) chia hết cho $5$
 
-c) Có 3 chữ số và chia hết cho $9$
+c) chia hết cho cả $2$ và $5$
 
-d) Có 3 chữ số và chia hết cho cả $2, 3, 5$
+d) chia hết cho $3$
 
-**Bài 6 (Thực tế):** Một trường học có $abc$ học sinh (số có 3 chữ số).
+**Bài 8 (Vận dụng thực tế):** Một kho có số gạo khoảng từ $80$ kg đến $100$ kg. Người ta đóng gạo vào các túi $2$ kg, $5$ kg hay $9$ kg đều vừa đủ. Hỏi số gạo chính xác là bao nhiêu kg?
 
-a) Nếu $c = 0$, trường có thể chia đều thành các lớp bao nhiêu học sinh?
+**Bài 9 (Vận dụng):** Tìm số tự nhiên lớn nhất có ba chữ số chia hết cho $3$ và $5$ nhưng không chia hết cho $2$.
 
-b) Nếu $a + b + c = 18$, trường có thể chia đều thành các lớp bao nhiêu học sinh?
+**Bài 10 (Vận dụng cao):** Tìm số tự nhiên nhỏ nhất có bốn chữ số chia hết cho cả $2, 3, 5$ và $9$.
 
-c) Tìm số học sinh nhỏ nhất để chia đều thành các lớp 2, 3, 5 học sinh.
+</div>
 
-d) Tìm số học sinh lớn nhất (dưới 1000) để chia đều thành các lớp 9 học sinh.
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-**Bài 1:** a) $\vdots 2, 3, 5$ (không $\vdots 9$); b) $\vdots 3, 5, 9$ (không $\vdots 2$); c) $\vdots 2, 3$ (không $\vdots 5, 9$); d) $\vdots 2, 3, 5, 9$
+**Bài 1:**
+a) $120$: tận cùng $0$ ⇒ chia hết cho $2, 5$; tổng $1+2+0=3 \vdots 3$ nhưng $3$ không chia hết cho $9$. Vậy $120 \vdots 2, 3, 5$ (không chia hết cho $9$).
 
-**Bài 2:** a) $x \in \{0, 3, 6, 9\}$; b) $x \in \{0, 5\}$; c) $x \in \{2\}$; d) $x \in \{0, 6\}$
+b) $135$: tận cùng $5$ ⇒ chia hết cho $5$; tổng $1+3+5=9 \vdots 3, 9$. Vậy $135 \vdots 3, 5, 9$ (không chia hết cho $2$).
 
-**Bài 3:** a) Có; b) Không; c) Có; d) Không
+c) $234$: tận cùng $4$ ⇒ chia hết cho $2$; tổng $2+3+4=9 \vdots 3$. Vậy $234 \vdots 2, 3$ (không chia hết cho $5, 9$).
 
-**Bài 4:** a) $\{0, 3, 6, 9\}$; b) $\{0\}$; c) $\{0, 3, 6, 9\}$; d) $\{2\}$
+d) $450$: tận cùng $0$ ⇒ chia hết cho $2, 5$; tổng $4+5+0=9 \vdots 3, 9$. Vậy $450 \vdots 2, 3, 5, 9$.
 
-**Bài 5:** a) $100$; b) $100$; c) $108$; d) $120$
+---
 
-**Bài 6:** a) 2, 5, 10 HS; b) 2, 3, 9 HS; c) $30$ HS; d) $999$ HS
+**Bài 2:**
+a) $2+0+1+3=6 \vdots 3$ ⇒ **Đ**.
+
+b) $2500$ tận cùng $0$ ⇒ **Đ**.
+
+c) $9+9+9+9=36 \vdots 9$ ⇒ **Đ**.
+
+d) $2222$ tận cùng $2$ (chẵn) ⇒ **Đ**.
+
+---
+
+**Bài 3:**
+a) Số nhỏ nhất có ba chữ số chia hết cho $2$ là $100$.
+
+b) Số nhỏ nhất có ba chữ số chia hết cho $5$ là $100$.
+
+c) Số nhỏ nhất có ba chữ số chia hết cho $9$: $108$ (vì $1+0+8=9$).
+
+d) Chia hết cho cả $2, 3, 5$ ⇒ tận cùng $0$ và tổng chữ số chia hết cho $3$. Số nhỏ nhất: $120$.
+
+---
+
+**Bài 4:**
+a) $1+2+x=3+x$ chia hết cho $3$ ⇒ $x \in \{0, 3, 6, 9\}$.
+
+b) $34x$ chia hết cho $5$ ⇒ tận cùng $0$ hoặc $5$ ⇒ $x \in \{0, 5\}$.
+
+c) $5+6+x=11+x$ chia hết cho $9$ ⇒ $x = 7$.
+
+d) Chia hết cho $2$ ⇒ $x \in \{0,2,4,6,8\}$; chia hết cho $3$ ⇒ $7+8+x=15+x$ chia hết cho $3$ ⇒ $x \in \{0,3,6,9\}$. Giao lại: $x \in \{0, 6\}$.
+
+---
+
+**Bài 5:**
+Số chia hết cho $6$ phải chia hết cho cả $2$ và $3$.
+
+- $126$: tận cùng $6$ (chẵn) ✓; $1+2+6=9 \vdots 3$ ✓ ⇒ **chia hết cho $6$**.
+- $135$: tận cùng $5$ (lẻ) ⇒ không chia hết cho $2$ ⇒ **không**.
+- $234$: tận cùng $4$ (chẵn) ✓; $2+3+4=9 \vdots 3$ ✓ ⇒ **chia hết cho $6$**.
+- $345$: tận cùng $5$ (lẻ) ⇒ **không**.
+
+Vậy $126$ và $234$ chia hết cho $6$.
+
+---
+
+**Bài 6:**
+a) $2x3$: $2+x+3=5+x \vdots 3$ ⇒ $x \in \{1, 4, 7\}$.
+
+b) $4x5$: $4+x+5=9+x \vdots 9$ ⇒ $x \in \{0, 9\}$.
+
+c) $6x8$: $6+x+8=14+x \vdots 3$ ⇒ $x \in \{1, 4, 7\}$.
+
+d) $7x0$: $7+x+0=7+x \vdots 9$ ⇒ $x = 2$.
+
+---
+
+**Bài 7:**
+Các số ghép được từ $4, 5, 0$: $405, 450, 504, 540$.
+
+a) Chia hết cho $2$ (tận cùng chẵn): $450, 504, 540$.
+
+b) Chia hết cho $5$ (tận cùng $0$ hoặc $5$): $405, 450, 540$.
+
+c) Chia hết cho cả $2$ và $5$ (tận cùng $0$): $450, 540$.
+
+d) Chia hết cho $3$ (tổng $4+5+0=9 \vdots 3$): tất cả bốn số đều chia hết cho $3$.
+
+---
+
+**Bài 8:**
+Số gạo chia hết cho $2, 5, 9$ ⇒ chia hết cho cả $2 \times 5 \times 9 = 90$ (vì $2, 5, 9$ đôi một nguyên tố cùng nhau).
+
+Bội của $90$ trong khoảng từ $80$ đến $100$: chỉ có $90$.
+
+**Đáp số:** $90$ kg gạo.
+
+---
+
+**Bài 9:**
+Chia hết cho $5$ mà không chia hết cho $2$ ⇒ tận cùng phải là $5$.
+
+Xét các số có ba chữ số tận cùng $5$ từ lớn xuống nhỏ: $995, 985, 975, ...$
+
+- $995$: tổng $9+9+5=23$, không chia hết cho $3$.
+- $985$: tổng $9+8+5=22$, không chia hết cho $3$.
+- $975$: tổng $9+7+5=21 \vdots 3$ ✓.
+
+**Đáp số:** $975$.
+
+---
+
+**Bài 10:**
+Chia hết cho $2$ và $5$ ⇒ tận cùng $0$.
+
+Chia hết cho $9$ ⇒ tổng các chữ số chia hết cho $9$.
+
+Xét các số có bốn chữ số tận cùng $0$ từ nhỏ đến lớn: $1000, 1010, 1020, ...$
+
+- $1000$: tổng $1$.
+- $1010$: tổng $2$.
+- ...
+- $1080$: tổng $1+0+8+0=9 \vdots 9$ ✓.
+
+**Đáp số:** $1080$ (thỏa mãn: $1080 \vdots 2, 3, 5, 9$).
 
 </div>
 </details>

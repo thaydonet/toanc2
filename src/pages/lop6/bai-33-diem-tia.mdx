@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import DiemTiaInteractive from '../../components/interactive/DiemTiaInteractive';
 
 export const quizData = [
   {
@@ -53,18 +54,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những phát biểu nào đúng về tia?",
-    option_a: "Tia có một gốc và kéo dài vô tận về một phía",
-    option_b: "Hai tia đối nhau có cùng gốc",
-    option_c: "Tia AB và tia BA là hai tia đối nhau",
-    option_d: "Tia AB chứa vô số điểm",
-    correct_option: "A,B,D",
-    explanation: "A, B, D đúng. C sai vì tia AB và tia BA không phải tia đối nhau (chúng có gốc khác nhau).",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "Hai tia đối nhau là gì?",
     option_a: "Hai tia có cùng gốc và kéo dài về hai phía ngược nhau trên cùng một đường thẳng",
@@ -73,14 +62,6 @@ export const quizData = [
     option_d: "Hai tia không có gốc chung",
     correct_option: "A",
     explanation: "Hai tia đối nhau có cùng gốc và kéo dài về hai phía ngược nhau trên cùng một đường thẳng.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Nếu B nằm giữa A và C, thì AB + BC = ?",
-    correct_option: "AC",
-    explanation: "Nếu B nằm giữa A và C, thì AB + BC = AC (tính chất cộng độ dài).",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -108,6 +89,70 @@ export const quizData = [
     difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Trên tia OA, lấy điểm B sao cho OB > OA. Điểm A có nằm giữa O và B không?",
+    option_a: "Có",
+    option_b: "Không",
+    option_c: "Tùy vị trí",
+    option_d: "Không thể xác định",
+    correct_option: "A",
+    explanation: "Vì OA < OB và cả hai đều trên tia OA nên A nằm giữa O và B.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tia OA. Lấy điểm B trên tia OA sao cho OA = 5 cm, OB = 8 cm. Tính AB.",
+    option_a: "3 cm",
+    option_b: "13 cm",
+    option_c: "8 cm",
+    option_d: "5 cm",
+    correct_option: "A",
+    explanation: "A nằm giữa O và B nên AB = OB - OA = 8 - 5 = 3 cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những phát biểu nào đúng về tia?",
+    option_a: "Tia có một gốc và kéo dài vô tận về một phía",
+    option_b: "Hai tia đối nhau có cùng gốc",
+    option_c: "Tia AB và tia BA là hai tia đối nhau",
+    option_d: "Tia AB chứa vô số điểm",
+    correct_option: "A,B,D",
+    explanation: "A, B, D đúng. C sai vì tia AB và tia BA không phải tia đối nhau (chúng có gốc khác nhau).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho A, B, C thẳng hàng, B nằm giữa A và C. Những khẳng định nào đúng?",
+    option_a: "AB + BC = AC",
+    option_b: "AC - AB = BC",
+    option_c: "AC - BC = AB",
+    option_d: "AB = BC",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đúng từ tính chất cộng độ dài. D sai vì AB không nhất thiết bằng BC.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Nếu B nằm giữa A và C, thì AB + BC = ?",
+    correct_option: "AC",
+    explanation: "Nếu B nằm giữa A và C, thì AB + BC = AC (tính chất cộng độ dài).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Trên đường thẳng d lấy điểm O. Trên tia đối của tia OA, lấy điểm B sao cho OB = 7 cm. Biết OA = 3 cm. Tính AB.",
+    correct_option: "10",
+    explanation: "Vì B nằm trên tia đối của OA nên O nằm giữa A và B. AB = OA + OB = 3 + 7 = 10 cm.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  }
 ];
 
 <KhoiDong>
@@ -286,7 +331,8 @@ AC = AB + BC = 5 + 7 = 12 cm
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<DiemTiaInteractive client:load />
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -334,6 +380,26 @@ c) Hai tia này là **hai tia đối nhau** (có cùng gốc, kéo dài về hai
 
 </div>
 
+**📝 Bài toán 3:** Trên đường thẳng d, lấy điểm O. Trên tia OA lấy điểm B sao cho OA = 3 cm, OB = 7 cm. Trên tia đối của tia OA lấy điểm C sao cho OC = 4 cm.
+
+a) Xác định vị trí các điểm A, B, C trên đường thẳng d.
+
+b) Tính AB, BC, AC.
+
+c) Điểm nào nằm giữa hai điểm còn lại?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Thứ tự trên đường thẳng: C --- O --- A --- B
+
+b) AB = OB - OA = 7 - 3 = 4 cm. BC = BO + OC = 7 + 4 = 11 cm. AC = AO + OC = 3 + 4 = 7 cm.
+
+c) O nằm giữa C và A. A nằm giữa O và B.
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -347,9 +413,7 @@ c) Hai tia này là **hai tia đối nhau** (có cùng gốc, kéo dài về hai
 
 </GhiNho>
 
----
-
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+📝 Bài tập tự luận
 
 **Bài 1:** Cho ba điểm A, B, C thẳng hàng, B nằm giữa A và C. Tính độ dài còn lại:
 
@@ -401,31 +465,39 @@ c) Kiểm tra xem B có nằm giữa A và C không?
 
 d) Kiểm tra xem A có nằm giữa O và B không?
 
-**Bài 6 (Thực tế):** Trên một con đường thẳng, có ba trạm dừng A, B, C theo thứ tự. Biết AB = 15 km, BC = 25 km.
+**Bài 6:** Trên tia OA lấy điểm B sao cho AB = 3 cm, OA = 5 cm. Tính OB.
 
-a) Tính khoảng cách AC.
+**Bài 7:** Cho A, B, C thẳng hàng, B nằm giữa A và C. Biết AC = 20 cm, AB = 3BC. Tính AB và BC.
 
-b) Nếu một xe buýt đi từ A đến C, xe buýt đó phải đi qua B không?
+**Bài 8:** Trên đường thẳng d, lấy 3 điểm O, A, B theo thứ tự. Biết OA = 4 cm, AB = 6 cm. Lấy tia đối của tia OA là tia Ox. Điểm C nằm trên tia Ox sao cho OC = 5 cm. Tính BC.
 
-c) Nếu một xe buýt đi từ B về phía A, xe buýt đó có thể đến được C không?
+**Bài 9:** Cho tia OA. Lấy điểm B trên tia OA sao cho OB = 2OA. Lấy điểm C trên tia đối của tia OA sao cho OC = OA. So sánh AB và AC.
 
-d) Nếu một xe buýt đi từ B về phía C, xe buýt đó có thể đến được A không?
+**Bài 10:** Trên đường thẳng d lấy điểm M. Lấy A và B hai phía đối nhau của M sao cho MA = 3 cm, MB = 5 cm. Lấy tia đối của tia MA là tia Mx. Điểm C nằm trên tia Mx sao cho MC = 2 cm. Tính AB, BC, AC.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) 8 cm; b) 5 cm; c) 7 cm; d) 10 cm
+**Bài 1:** a) AC = 3 + 5 = 8 cm; b) BC = 12 - 7 = 5 cm; c) AB = 15 - 8 = 7 cm; d) AC = 4 + 6 = 10 cm
 
-**Bài 2:** a) 5 cm; b) 7 cm; c) 9 cm; d) 7 cm
+**Bài 2:** a) AC = 2 + 3 = 5 cm; b) BD = 3 + 4 = 7 cm; c) AD = 2 + 3 + 4 = 9 cm; d) BD = 7 cm
 
-**Bài 3:** a) Có; b) 3 cm; c) Không; d) 2 cm
+**Bài 3:** a) Có (vì OA < OB và cùng tia); b) AB = 8 - 5 = 3 cm; c) Không (vì OC < OA nên C nằm giữa O và A); d) CA = 5 - 3 = 2 cm
 
-**Bài 4:** a) 2; b) Hai tia đối nhau; c) 2; d) 2
+**Bài 4:** a) 2 tia; b) Hai tia đối nhau; c) 2 tia; d) 2 tia
 
 **Bài 5:** a) O, A, B, C; b) AB = 3 cm, BC = 3 cm, AC = 6 cm; c) Có; d) Có
 
-**Bài 6:** a) 40 km; b) Có; c) Không; d) Không
+**Bài 6:** OB = OA + AB = 5 + 3 = 8 cm
+
+**Bài 7:** AB + BC = AC = 20 và AB = 3BC. Suy ra 3BC + BC = 20 → 4BC = 20 → BC = 5 cm, AB = 15 cm.
+
+**Bài 8:** Thứ tự: C --- O --- A --- B. BC = CO + OA + AB = 5 + 4 + 6 = 15 cm.
+
+**Bài 9:** AB = OB - OA = 2OA - OA = OA. AC = OA + OC = OA + OA = 2OA. Vậy AC = 2AB.
+
+**Bài 10:** Thứ tự: C --- M --- A --- B. AB = MA + MB = 3 + 5 = 8 cm. BC = CM + MB = 2 + 5 = 7 cm. AC = CM + MA = 2 + 3 = 5 cm.
 
 </div>
 </details>

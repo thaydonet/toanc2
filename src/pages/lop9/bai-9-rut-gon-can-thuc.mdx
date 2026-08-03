@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 9: Biến đổi đơn giản và rút gọn biểu thức chứa căn bậc hai"
-description: "Trục căn thức, đưa thừa số ra ngoài hay vào trong dấu căn - Toán 9 KNTT Chương 3"
+description: "Khử mẫu biểu thức lấy căn, trục căn thức ở mẫu và phương pháp rút gọn biểu thức chứa căn bậc hai - Toán 9 KNTT Chương 3"
 grade: "Lớp 9"
 chapter: "Chương III: Căn bậc hai và căn bậc ba"
 currentSlug: "lop9/bai-9-rut-gon-can-thuc"
@@ -13,225 +13,367 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import CanBacHaiInteractive from '../../components/interactive/CanBacHaiInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Đưa thừa số $3$ vào trong dấu căn của biểu thức $3\\sqrt{5}$, ta được:",
-    option_a: "$\\sqrt{15}$",
-    option_b: "$\\sqrt{45}$",
-    option_c: "$\\sqrt{30}$",
-    option_d: "$\\sqrt{20}$",
-    correct_option: "B",
-    explanation: "$3 = \\sqrt{3^2} = \\sqrt{9}$. Vậy $3\\sqrt{5} = \\sqrt{9 \\cdot 5} = \\sqrt{45}$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Đưa thừa số ra ngoài dấu căn của biểu thức $\\sqrt{72}$, ta được:",
-    option_a: "$8\\sqrt{9}$",
-    option_b: "$9\\sqrt{8}$",
-    option_c: "$6\\sqrt{2}$",
-    option_d: "$2\\sqrt{6}$",
-    correct_option: "C",
-    explanation: "$\\sqrt{72} = \\sqrt{36 \\cdot 2} = \\sqrt{36} \\cdot \\sqrt{2} = 6\\sqrt{2}$.",
-    difficulty_level: "easy",
-    is_dynamic: false,
-  },
-  {
-    type: "mcq",
-    question: "Kỹ thuật 'Trục căn thức ở mẫu' có ý nghĩa là gì?",
-    option_a: "Biến đổi để mẫu số không còn chứa căn thức",
-    option_b: "Biến đổi để tử số không còn chứa căn thức",
-    option_c: "Nhân chéo biểu thức",
-    option_d: "Xóa dấu căn trên toàn bộ phương trình",
+    question: "Khử mẫu của biểu thức lấy căn $\\sqrt{\\frac{2}{3}}$ ta được kết quả là:",
+    option_a: "$\\frac{\\sqrt{6}}{3}$",
+    option_b: "$\\frac{\\sqrt{2}}{3}$",
+    option_c: "$\\frac{\\sqrt{6}}{9}$",
+    option_d: "$\\frac{2}{3}$",
     correct_option: "A",
-    explanation: "Trục căn thức (Rationalizing the denominator) là quá trình làm mất căn dưới dạng vô tỉ ở phân số.",
+    explanation: "$\\sqrt{\\frac{2}{3}} = \\sqrt{\\frac{2 \\cdot 3}{3^2}} = \\frac{\\sqrt{6}}{\\sqrt{3^2}} = \\frac{\\sqrt{6}}{3}$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Lượng liên hợp của biểu thức $( \\sqrt{a} - \\sqrt{b} )$ là:",
-    option_a: "$( \\sqrt{a} - \\sqrt{b} )$",
-    option_b: "$( a - b )$",
-    option_c: "$( \\sqrt{a} + \\sqrt{b} )$",
-    option_d: "$( a + b )$",
-    correct_option: "C",
-    explanation: "Lượng liên hợp dùng để tạo hằng đẳng thức $(A-B)(A+B) = A^2-B^2$ nhằm phá mẫu thức.",
+    question: "Trục căn thức ở mẫu số của biểu thức $\\frac{5}{\\sqrt{5}}$ ta được:",
+    option_a: "5",
+    option_b: "$\\sqrt{5}$",
+    option_c: "1",
+    option_d: "$\\frac{\\sqrt{5}}{5}$",
+    correct_option: "B",
+    explanation: "$\\frac{5}{\\sqrt{5}} = \\frac{5\\sqrt{5}}{(\\sqrt{5})^2} = \\frac{5\\sqrt{5}}{5} = \\sqrt{5}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trục căn thức ở mẫu của biểu thức $\\frac{2}{\\sqrt{3} - 1}$ bằng cách nhân với lượng liên hợp nào?",
+    option_a: "Nhân cả tử và mẫu với $\\sqrt{3} - 1$",
+    option_b: "Nhân cả tử và mẫu với $\\sqrt{3} + 1$",
+    option_c: "Nhân tử số với $\\sqrt{3}$",
+    option_d: "Chia cả tử và mẫu cho $\\sqrt{3}$",
+    correct_option: "B",
+    explanation: "Lượng liên hợp của $\\sqrt{3} - 1$ là $\\sqrt{3} + 1$ để sử dụng hằng đẳng thức $(A-B)(A+B) = A^2 - B^2 = 3 - 1 = 2$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Kết quả trục căn thức của biểu thức $\\frac{2}{\\sqrt{3} - 1}$ là:",
+    option_a: "$\\sqrt{3} + 1$",
+    option_b: "$\\sqrt{3} - 1$",
+    option_c: "$2(\\sqrt{3} + 1)$",
+    option_d: "$\\frac{\\sqrt{3} + 1}{2}$",
+    correct_option: "A",
+    explanation: "$\\frac{2(\\sqrt{3}+1)}{(\\sqrt{3}-1)(\\sqrt{3}+1)} = \\frac{2(\\sqrt{3}+1)}{3 - 1} = \\frac{2(\\sqrt{3}+1)}{2} = \\sqrt{3} + 1$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Trục căn thức biểu thức $\\frac{1}{\\sqrt{3} - 1}$. Kết quả là:",
-    option_a: "$\\frac{\\sqrt{3} + 1}{2}$",
-    option_b: "$\\frac{\\sqrt{3} + 1}{4}$",
-    option_c: "$\\sqrt{3} + 1$",
-    option_d: "$\\frac{\\sqrt{3} - 1}{2}$",
-    correct_option: "A",
-    explanation: "Nhân mẫu và tử cho liên hợp $\\sqrt{3}+1$. Mẫu sẽ thành $3 - 1 = 2$. Kết quả: $\\frac{\\sqrt{3}+1}{2}$.",
+    question: "Rút gọn biểu thức $P = \\frac{x - 1}{\\sqrt{x} - 1}$ (với $x \\ge 0, x \\neq 1$) ta được:",
+    option_a: "$\\sqrt{x} - 1$",
+    option_b: "$\\sqrt{x} + 1$",
+    option_c: "$x + 1$",
+    option_d: "$1$",
+    correct_option: "B",
+    explanation: "Phân tích tử số thành HĐT: $x - 1 = (\\sqrt{x} - 1)(\\sqrt{x} + 1)$. Do đó $P = \\frac{(\\sqrt{x}-1)(\\sqrt{x}+1)}{\\sqrt{x}-1} = \\sqrt{x} + 1$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Khi $a < 0$, đưa thừa số a vào trong dấu của biểu thức $a\\sqrt{b}$, kết quả sẽ là:",
-    option_a: "$\\sqrt{a^2b}$",
-    option_b: "$-\\sqrt{a^2b}$",
-    option_c: "$\\sqrt{-a^2b}$",
-    option_d: "$-\\sqrt{-a^2b}$",
-    correct_option: "B",
-    explanation: "Vì $a$ âm, ta phải để lại dấu trừ bên ngoài. $a\\sqrt{b} = -(-a)\\sqrt{b} = -\\sqrt{(-a)^2b} = -\\sqrt{a^2b}$.",
+    question: "Trục căn thức ở mẫu biểu thức $\\frac{a}{\\sqrt{a}}$ (với $a > 0$) thu được:",
+    option_a: "$\\sqrt{a}$",
+    option_b: "$a$",
+    option_c: "1",
+    option_d: "$a\\sqrt{a}$",
+    correct_option: "A",
+    explanation: "$\\frac{a}{\\sqrt{a}} = \\frac{a\\sqrt{a}}{a} = \\sqrt{a}$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những cặp biểu thức nào sau đây là lượng liên hợp của nhau?",
+    option_a: "$\\sqrt{x} - 2$ và $\\sqrt{x} + 2$",
+    option_b: "$\\sqrt{a} - \\sqrt{b}$ và $\\sqrt{a} + \\sqrt{b}$",
+    option_c: "$3 + \\sqrt{2}$ và $3 - \\sqrt{2}$",
+    option_d: "$\\sqrt{x} + 1$ và $\\sqrt{x} + 1$",
+    correct_option: "A,B,C",
+    explanation: "Hai biểu thức liên hợp có dạng $A - B$ và $A + B$ để khi nhân lại tạo thành hiệu hai bình phương $A^2 - B^2$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho biểu thức $A = \\frac{\\sqrt{x}}{\\sqrt{x}+2}$ với $x \\ge 0$. Những khẳng định nào ĐÚNG?",
+    option_a: "$A \\ge 0$ với mọi $x \\ge 0$",
+    option_b: "$A < 1$ với mọi $x \\ge 0$",
+    option_c: "Tại $x = 4$, giá trị của $A = \\frac{1}{2}$",
+    option_d: "$A = 1$ khi $x = 4$",
+    correct_option: "A,B,C",
+    explanation: "A: Tử $\\ge 0$, mẫu $> 0 \\Rightarrow A \\ge 0$. B: Tử $<$ Mẫu $\\Rightarrow A < 1$. C: Thay $x=4 \\Rightarrow A = 2/(2+2) = 1/2$.",
     difficulty_level: "hard",
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Các biểu thức nào sau đây bằng với $\\sqrt{8}$ ?",
-    option_a: "$2\\sqrt{2}$",
-    option_b: "$4\\sqrt{2}/2$",
-    option_c: "$2.82842$ (số gần đúng)",
-    option_d: "$\\sqrt{4}$",
-    correct_option: "A,B,C",
-    explanation: "$\\sqrt{8} = 2\\sqrt{2} = 4\\sqrt{2}/2 \\approx 2.828$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "msq",
-    question: "Để rút gọn $5\\sqrt{2} + 3\\sqrt{2} - \\sqrt{18}$, ta thực hiện:",
-    option_a: "Rút gọn $- \\sqrt{18} = -3\\sqrt{2}$",
-    option_b: "Nhóm làm nhân tử chung $\\sqrt{2}$",
-    option_c: "Kết quả ra $5\\sqrt{2}$",
-    option_d: "Cộng lại thành $\\sqrt{20}$",
-    correct_option: "A,B,C",
-    explanation: "$5\\sqrt{2} + 3\\sqrt{2} - 3\\sqrt{2} = \\sqrt{2}(5 + 3 - 3) = 5\\sqrt{2}$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "sa",
-    question: "Đưa thừa số $-5$ vào trong căn của $ -5\\sqrt{2} $. KẾT QUẢ CÒN DẤU TRỪ BÊN NGOÀI, SỐ BÊN TRONG (VD: 10) LÀ BAO NHIÊU?",
-    correct_option: "50",
-    explanation: "$-5\\sqrt{2} = -\\sqrt{5^2 \\cdot 2} = -\\sqrt{50}$.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Trục căn ở mẫu biểu thức $6/\\sqrt{3}$. Giá trị là $a\\sqrt{3}$. Tìm a.",
-    correct_option: "2",
-    explanation: "$6/\\sqrt{3} = 6\\sqrt{3} / 3 = 2\\sqrt{3}$.",
+    question: "Tính giá trị của biểu thức $M = (\\sqrt{5} + 2)(\\sqrt{5} - 2)$.",
+    correct_option: "1",
+    explanation: "$M = (\\sqrt{5})^2 - 2^2 = 5 - 4 = 1$.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Tính giá trị của biểu thức $N = \\frac{1}{2 - \\sqrt{3}} + \\frac{1}{2 + \\sqrt{3}}$.",
+    correct_option: "4",
+    explanation: "Quy đồng mẫu: $N = \\frac{(2+\\sqrt{3}) + (2-\\sqrt{3})}{(2-\\sqrt{3})(2+\\sqrt{3})} = \\frac{4}{4 - 3} = 4$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   }
 ];
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">💄 Trang điểm cho Biểu thức</h3>
+<h3 id="mo-dau">🎯 Trục căn thức ở Mẫu — Chuẩn hóa Biểu thức Đại số</h3>
 
-Trong giải toán, ta không thích những biểu thức "kém sắc" như $\frac{10}{\sqrt{5}}$ chứa căn ở dưới mẫu, hay những cụm $\sqrt{200}$ quá to lớn nhìn rối mắt.
-Vì vậy, người ta tìm ra các thuật **Biến đổi đơn giản**:
-- $\sqrt{200}$ có thể "tút tát" nhỏ gọn thành $10\sqrt{2}$.
-- $\frac{10}{\sqrt{5}}$ có thể triệt tiêu căn ở mẫu thành $2\sqrt{5}$.
+Trong thực hành toán học, biểu thức có căn ở mẫu số như $\frac{1}{\sqrt{2}}$ thường khó tính nhẩm và so sánh. Bằng phép biến đổi **trục căn thức ở mẫu số**, ta nhân cả tử và mẫu với $\sqrt{2}$:
+$$\frac{1}{\sqrt{2}} = \frac{1 \cdot \sqrt{2}}{\sqrt{2} \cdot \sqrt{2}} = \frac{\sqrt{2}}{2} \approx \frac{1,414}{2} = 0,707$$
 
-Vậy những công cụ trang điểm đó hoạt động như thế nào? Cùng tìm hiểu ba phép biến đổi thần thánh:
-1. Đưa thừa số ra ngoài dấu căn.
-2. Đưa thừa số vào trong dấu căn.
-3. Trục căn thức ở mẫu.
+Biểu thức sau khi trục căn thức có mẫu số là một số nguyên, giúp việc tính toán và rút gọn trở nên cực kỳ thuận lợi!
+
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="420" height="140" viewBox="0 0 420 140" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Left Box */}
+  <g transform="translate(15, 20)">
+    <rect width="130" height="90" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+    <text x="65" y="40" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle">Căn ở Mẫu</text>
+    <text x="65" y="65" font-size="15" font-weight="bold" fill="#dc2626" text-anchor="middle">1 / √2</text>
+  </g>
+
+  <path d="M 155 65 L 235 65" stroke="#f59e0b" stroke-width="3"/>
+  <text x="195" y="55" font-size="11" font-weight="bold" fill="#d97706" text-anchor="middle">Trục căn thức</text>
+
+  {/* Right Box */}
+  <g transform="translate(245, 20)">
+    <rect width="160" height="90" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="80" y="40" font-size="13" font-weight="bold" fill="#15803d" text-anchor="middle">Mẫu số Nguyên</text>
+    <text x="80" y="65" font-size="15" font-weight="bold" fill="#16a34a" text-anchor="middle">√2 / 2</text>
+  </g>
+</svg>
+</div>
 
 </KhoiDong>
 
 <KhamPha title="Khám phá">
 
-<h3 id="dua-ra-ngoai" style="margin-top:2rem;">📖 1. Đưa thừa số ra ngoài dấu căn</h3>
+<h3 id="khu-mau-bieu-thuc-lay-can">📖 1. Khử mẫu của biểu thức lấy căn</h3>
 
-Đôi khi biểu thức trong căn chứa những số chính phương to bự, ta có thể "khai tống" nó ra ngoài và cho đứng cạnh làm hệ số.
+<div class="box-dinh-nghia">
 
-<div class="box-dinh-ly">
+**Quy tắc Khử mẫu:**
+Với hai biểu thức $A, B$ sao cho $A \cdot B \ge 0$ và $B \neq 0$, ta có:
+$$\sqrt{\frac{A}{B}} = \sqrt{\frac{A \cdot B}{B^2}} = \frac{\sqrt{A \cdot B}}{|B|}$$
 
-Với hai biểu thức $A, B$ mà $B \ge 0$, ta có:
-$$\sqrt{A^2 \cdot B} = |A|\sqrt{B}$$
-- Nếu $A \ge 0$, thì $\sqrt{A^2 B} = A\sqrt{B}$.
-- Nếu $A < 0$, thì $\sqrt{A^2 B} = -A\sqrt{B}$.
-
-</div>
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ:**
-- $\sqrt{18} = \sqrt{9 \cdot 2} = \sqrt{3^2 \cdot 2} = 3\sqrt{2}$.
-- Đưa ra ngoài dấu căn với $y < 0$: $\sqrt{5y^4} = |y^2|\sqrt{5} = y^2\sqrt{5}$ (Vì mũ chẵn luôn dương).
-- $\sqrt{8x^3} = \sqrt{4x^2 \cdot 2x} = 2x\sqrt{2x}$ (điều kiện $x > 0$).
+- Nếu $B > 0 \Rightarrow \sqrt{\frac{A}{B}} = \frac{\sqrt{AB}}{B}$.
+- Nếu $B < 0 \Rightarrow \sqrt{\frac{A}{B}} = -\frac{\sqrt{AB}}{B}$.
 
 </div>
 
-<h3 id="dua-vao-trong" style="margin-top:2rem;">📖 2. Đưa thừa số vào trong dấu căn</h3>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-Biến đổi ngược lại với Đưa ra ngoài (Dùng nhiều để so sánh các số hữu tỉ lai với vô tỉ).
+**3 Ví dụ minh họa Khử mẫu:**
 
-<div class="box-dinh-ly">
+- **Ví dụ 1:** Khử mẫu của biểu thức lấy căn $\sqrt{\frac{5}{12}}$.
+  - *Giải:* Nhân cả tử và mẫu với 3 để đưa mẫu về số chính phương $36$:  
+    $\sqrt{\frac{5}{12}} = \sqrt{\frac{5 \cdot 3}{12 \cdot 3}} = \sqrt{\frac{15}{36}} = \frac{\sqrt{15}}{6}$.
 
-- Nếu $A \ge 0$ và $B \ge 0$ thì $A\sqrt{B} = \sqrt{A^2 \cdot B}$.
-- Nếu $A < 0$ và $B \ge 0$ thì $A\sqrt{B} = -\sqrt{A^2 \cdot B}$. (Hãy cảnh giác với số âm!)
+- **Ví dụ 2:** Khử mẫu biểu thức $\sqrt{\frac{3a}{2b}}$ với $a \ge 0, b > 0$.
+  - *Giải:* $\sqrt{\frac{3a}{2b}} = \sqrt{\frac{3a \cdot 2b}{4b^2}} = \frac{\sqrt{6ab}}{2b}$.
 
-</div>
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ:** 
-- So sánh $3\sqrt{7}$ và $\sqrt{28}$:
-Đưa 3 vào trong: $3\sqrt{7} = \sqrt{3^2 \cdot 7} = \sqrt{63}$.
-Vì $63 > 28 \Rightarrow \sqrt{63} > \sqrt{28} \Rightarrow 3\sqrt{7} > \sqrt{28}$.
-- Đưa hệ số $-5$ vào trong $\sqrt{2}$:
-$-5\sqrt{2} = -\sqrt{5^2 \cdot 2} = -\sqrt{50}$.
+- **Ví dụ 3:** Khử mẫu biểu thức $\sqrt{\frac{2}{x}}$ với $x > 0$.
+  - *Giải:* $\sqrt{\frac{2}{x}} = \sqrt{\frac{2x}{x^2}} = \frac{\sqrt{2x}}{x}$.
 
 </div>
 
-<h3 id="truc-can-thuc" style="margin-top:2rem;">📖 3. Trục căn thức ở mẫu</h3>
+<h3 id="truc-can-thuc-o-mau" style="margin-top:2rem;">📖 2. Trục căn thức ở mẫu số</h3>
 
-Quy tắc cối lõi là tìm cách nhân thêm vào mẫu một thứ mà khi nhân cấu trúc nó sẽ MẤT DẤU CĂN. Thứ đó được gọi là **Lượng Liên Hợp**.
+<div class="box-dinh-nghia">
 
-<div class="box-dinh-ly">
-
-**Trường hợp 1: Mẫu là căn đơn $\sqrt{B}$**
-Nhân cả tử và mẫu với chính $\sqrt{B}$:
+**1. Dạng đơn giản $\frac{A}{\sqrt{B}}$ (với $B > 0$):**
 $$\frac{A}{\sqrt{B}} = \frac{A\sqrt{B}}{B}$$
 
-**Trường hợp 2: Mẫu là một nhị thức $\sqrt{A} \pm B$ hoặc $\sqrt{A} \pm \sqrt{B}$**
-Ta nhân tử và mẫu với lượng liên hợp nhằm kích hoạt hằng đẳng thức $(x-y)(x+y) = x^2-y^2$.
-- Lượng liên hợp của $(\sqrt{A} - \sqrt{B})$ là $(\sqrt{A} + \sqrt{B})$.
-- Do: $(\sqrt{A} - \sqrt{B})(\sqrt{A} + \sqrt{B}) = A - B$.
+**2. Dạng chứa tổng/hiệu căn thức ở mẫu $\frac{C}{\sqrt{A} \pm \sqrt{B}}$:**
+Nhân cả tử và mẫu với **lượng liên hợp** $\sqrt{A} \mp \sqrt{B}$:
+$$\frac{C}{\sqrt{A} + \sqrt{B}} = \frac{C(\sqrt{A} - \sqrt{B})}{A - B} \qquad (A, B \ge 0, A \neq B)$$
+$$\frac{C}{\sqrt{A} - \sqrt{B}} = \frac{C(\sqrt{A} + \sqrt{B})}{A - B} \qquad (A, B \ge 0, A \neq B)$$
 
 </div>
 
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-**Ví dụ:**
-Trục căn thức phân số: $\frac{10}{3 - \sqrt{5}}$.
-**Giải:**
-Lượng liên hợp của mẫu là $(3 + \sqrt{5})$.
-Ta có: $\frac{10(3 + \sqrt{5})}{(3 - \sqrt{5})(3 + \sqrt{5})} = \frac{10(3 + \sqrt{5})}{3^2 - (\sqrt{5})^2} = \frac{10(3 + \sqrt{5})}{9 - 5} = \frac{10(3 + \sqrt{5})}{4} = \frac{5(3 + \sqrt{5})}{2}$
+**3 Ví dụ minh họa Trục căn thức:**
+
+- **Ví dụ 1:** Trục căn thức ở mẫu $\frac{6}{\sqrt{3}}$.
+  - *Giải:* $\frac{6}{\sqrt{3}} = \frac{6\sqrt{3}}{3} = 2\sqrt{3}$.
+
+- **Ví dụ 2:** Trục căn thức ở mẫu $\frac{4}{\sqrt{5} - 1}$.
+  - *Giải:* Nhân với lượng liên hợp $\sqrt{5} + 1$:  
+    $\frac{4(\sqrt{5}+1)}{(\sqrt{5}-1)(\sqrt{5}+1)} = \frac{4(\sqrt{5}+1)}{5 - 1} = \frac{4(\sqrt{5}+1)}{4} = \sqrt{5} + 1$.
+
+- **Ví dụ 3:** Trục căn thức ở mẫu $\frac{a - b}{\sqrt{a} + \sqrt{b}}$ với $a > 0, b > 0, a \neq b$.
+  - *Giải:* Nhân liên hợp $\sqrt{a} - \sqrt{b}$:  
+    $\frac{(a-b)(\sqrt{a}-\sqrt{b})}{(\sqrt{a}+\sqrt{b})(\sqrt{a}-\sqrt{b})} = \frac{(a-b)(\sqrt{a}-\sqrt{b})}{a-b} = \sqrt{a} - \sqrt{b}$.
+
+</div>
+
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Khử mẫu và trục căn thức ở mẫu số**
+- **Phương pháp:** Áp dụng công thức trục căn thức dạng đơn hoặc lượng liên hợp.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Trục căn thức ở mẫu: $A = \frac{10}{\sqrt{5}}, B = \frac{3}{\sqrt{7}+2}$.
+  - *Lời giải:* 
+    - $A = \frac{10\sqrt{5}}{5} = 2\sqrt{5}$.
+    - $B = \frac{3(\sqrt{7}-2)}{7 - 4} = \frac{3(\sqrt{7}-2)}{3} = \sqrt{7} - 2$.
+
+- **Ví dụ 2:** Trục căn thức ở mẫu: $C = \frac{x - 4}{\sqrt{x} - 2}$ với $x \ge 0, x \neq 4$.
+  - *Lời giải:* $C = \frac{(\sqrt{x}-2)(\sqrt{x}+2)}{\sqrt{x}-2} = \sqrt{x} + 2$.
+
+- **Ví dụ 3:** Trục căn thức ở mẫu: $D = \frac{1}{\sqrt{3} + \sqrt{2}} + \frac{1}{\sqrt{3} - \sqrt{2}}$.
+  - *Lời giải:* $D = \frac{(\sqrt{3}-\sqrt{2}) + (\sqrt{3}+\sqrt{2})}{(\sqrt{3}+\sqrt{2})(\sqrt{3}-\sqrt{2})} = \frac{2\sqrt{3}}{3-2} = 2\sqrt{3}$.
+
+</div>
+
+#### **Dạng 2: Rút gọn biểu thức tổng hợp chứa căn thức**
+- **Phương pháp:** Quy đồng mẫu số, quy về hằng đẳng thức $a - b = (\sqrt{a}-\sqrt{b})(\sqrt{a}+\sqrt{b})$, rút gọn phân thức.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Rút gọn biểu thức $P = \left(\frac{1}{\sqrt{x}-1} - \frac{1}{\sqrt{x}+1}\right) : \frac{2}{x-1}$ với $x \ge 0, x \neq 1$.
+  - *Lời giải:* Quy đồng ngoặc thứ nhất:  
+    $\frac{(\sqrt{x}+1) - (\sqrt{x}-1)}{(\sqrt{x}-1)(\sqrt{x}+1)} = \frac{2}{x-1}$.  
+    Do đó $P = \frac{2}{x-1} : \frac{2}{x-1} = 1$.
+
+- **Ví dụ 2:** Cho $Q = \frac{\sqrt{x}}{\sqrt{x}-1} - \frac{2}{\sqrt{x}+1} - \frac{2}{x-1}$ với $x \ge 0, x \neq 1$. Rút gọn $Q$.
+  - *Lời giải:* Mẫu chung là $x - 1 = (\sqrt{x}-1)(\sqrt{x}+1)$.  
+    $Q = \frac{\sqrt{x}(\sqrt{x}+1) - 2(\sqrt{x}-1) - 2}{x-1} = \frac{x + \sqrt{x} - 2\sqrt{x} + 2 - 2}{x-1} = \frac{x - \sqrt{x}}{x-1} = \frac{\sqrt{x}(\sqrt{x}-1)}{(\sqrt{x}-1)(\sqrt{x}+1)} = \frac{\sqrt{x}}{\sqrt{x}+1}$.
+
+- **Ví dụ 3:** Rút gọn $A = \frac{a - 2\sqrt{a}}{\sqrt{a} - 2} + \frac{a - 1}{\sqrt{a} + 1}$ với $a \ge 0, a \neq 4$.
+  - *Lời giải:* $A = \frac{\sqrt{a}(\sqrt{a}-2)}{\sqrt{a}-2} + \frac{(\sqrt{a}-1)(\sqrt{a}+1)}{\sqrt{a}+1} = \sqrt{a} + \sqrt{a} - 1 = 2\sqrt{a} - 1$.
+
+</div>
+
+#### **Dạng 3: Tính giá trị của biểu thức rút gọn tại $x = x_0$**
+- **Phương pháp:** Rút gọn biểu thức $P(x)$ trước, sau đó rút gọn giá trị $x_0$ (thường dưới dạng bình phương $x_0 = (m \pm n\sqrt{k})^2$), rồi thế vào biểu thức đã rút gọn.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho $P = \frac{\sqrt{x}-1}{\sqrt{x}+1}$. Tính giá trị của $P$ khi $x = 9$.
+  - *Lời giải:* Thay $x = 9 \Rightarrow \sqrt{x} = 3$.  
+    $P = \frac{3 - 1}{3 + 1} = \frac{2}{4} = \frac{1}{2}$.
+
+- **Ví dụ 2:** Tính giá trị của $P = \frac{\sqrt{x}}{\sqrt{x}+1}$ khi $x = 4 + 2\sqrt{3}$.
+  - *Lời giải:* Biến đổi $x = 4 + 2\sqrt{3} = 3 + 2\sqrt{3} + 1 = (\sqrt{3} + 1)^2$.  
+    Suy ra $\sqrt{x} = \sqrt{(\sqrt{3}+1)^2} = \sqrt{3} + 1$.  
+    Thay vào $P$: $P = \frac{\sqrt{3}+1}{\sqrt{3}+1+1} = \frac{\sqrt{3}+1}{\sqrt{3}+2}$. Trục căn thức: $P = (\sqrt{3}+1)(2-\sqrt{3}) = 2\sqrt{3} - 3 + 2 - \sqrt{3} = \sqrt{3} - 1$.
+
+- **Ví dụ 3:** Tính giá trị $Q = \sqrt{x} + 2$ tại $x = \frac{1}{4}$.
+  - *Lời giải:* $\sqrt{x} = \sqrt{1/4} = 1/2$. Do đó $Q = 1/2 + 2 = 2,5$.
+
+</div>
+
+#### **Dạng 4: Tìm $x$ để biểu thức rút gọn thỏa mãn điều kiện**
+- **Phương pháp:** Giả sử $P(x) = k$ hoặc $P(x) > k$. Giải phương trình / bất phương trình đối với $\sqrt{x}$ rồi suy ra $x$ (kiểm tra ĐKXĐ).
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho $P = \frac{\sqrt{x}}{\sqrt{x}+1}$. Tìm $x$ để $P = \frac{1}{2}$.
+  - *Lời giải:* ĐKXĐ: $x \ge 0$.  
+    $\frac{\sqrt{x}}{\sqrt{x}+1} = \frac{1}{2} \Rightarrow 2\sqrt{x} = \sqrt{x} + 1 \Leftrightarrow \sqrt{x} = 1 \Rightarrow x = 1$ (loại nếu ĐKXĐ $x \neq 1$, nhận nếu chỉ ĐKXĐ $x \ge 0$).
+
+- **Ví dụ 2:** Cho $P = \frac{\sqrt{x}+2}{\sqrt{x}-1}$ ($x \ge 0, x \neq 1$). Tìm $x$ để $P > 2$.
+  - *Lời giải:* $P - 2 > 0 \Leftrightarrow \frac{\sqrt{x}+2 - 2(\sqrt{x}-1)}{\sqrt{x}-1} > 0 \Leftrightarrow \frac{4 - \sqrt{x}}{\sqrt{x}-1} > 0$.  
+    - TH1: $\begin{cases} 4 - \sqrt{x} > 0 \\ \sqrt{x} - 1 > 0 \end{cases} \Leftrightarrow \begin{cases} \sqrt{x} < 4 \\ \sqrt{x} > 1 \end{cases} \Leftrightarrow 1 < \sqrt{x} < 4 \Leftrightarrow 1 < x < 16$.  
+    - TH2: $\begin{cases} 4 - \sqrt{x} < 0 \\ \sqrt{x} - 1 < 0 \end{cases} \Rightarrow$ Vô nghiệm.  
+    Tập nghiệm $1 < x < 16$.
+
+- **Ví dụ 3:** Tìm các số nguyên $x$ để $A = \frac{\sqrt{x}+3}{\sqrt{x}+1}$ nhận giá trị nguyên.
+  - *Lời giải:* $A = \frac{\sqrt{x}+1+2}{\sqrt{x}+1} = 1 + \frac{2}{\sqrt{x}+1}$.  
+    Để $A \in \mathbb{Z} \Leftrightarrow \frac{2}{\sqrt{x}+1} \in \mathbb{Z} \Leftrightarrow \sqrt{x} + 1 \in \text{Ư}(2) = \{1; 2\}$.  
+    - $\sqrt{x} + 1 = 1 \Rightarrow \sqrt{x} = 0 \Rightarrow x = 0$ (TM).  
+    - $\sqrt{x} + 1 = 2 \Rightarrow \sqrt{x} = 1 \Rightarrow x = 1$ (TM).  
+    Các giá trị nguyên $x \in \{0; 1\}$.
+
+</div>
+
+#### **Dạng 5: Tìm GTLN và GTNN của biểu thức rút gọn**
+- **Phương pháp:** Sử dụng đánh giá bất đẳng thức $\sqrt{x} \ge 0$ hoặc BĐT Cô-si.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Cho $P = \frac{\sqrt{x}+2}{\sqrt{x}+1}$ với $x \ge 0$. Tìm GTLN của $P$.
+  - *Lời giải:* $P = 1 + \frac{1}{\sqrt{x}+1}$. Vì $\sqrt{x} \ge 0 \Rightarrow \sqrt{x} + 1 \ge 1 \Rightarrow \frac{1}{\sqrt{x}+1} \le 1 \Rightarrow P \le 2$.  
+    Dấu '=' xảy ra khi $x = 0$. Vậy $\max P = 2$ tại $x = 0$.
+
+- **Ví dụ 2:** Cho $Q = \sqrt{x} - 4\sqrt{x} + 7$ (với $x \ge 0$). Tìm GTNN của $Q$.
+  - *Lời giải:* Biến đổi $Q = x - 4\sqrt{x} + 4 + 3 = (\sqrt{x} - 2)^2 + 3 \ge 3$.  
+    Dấu '=' xảy ra khi $\sqrt{x} = 2 \Leftrightarrow x = 4$. Vậy $\min Q = 3$ tại $x = 4$.
+
+- **Ví dụ 3:** Cho $A = \frac{\sqrt{x}}{x + 1}$ với $x > 0$. Tìm GTLN của $A$.
+  - *Lời giải:* Đảo ngược biểu thức $\frac{1}{A} = \frac{x+1}{\sqrt{x}} = \sqrt{x} + \frac{1}{\sqrt{x}}$.  
+    Theo BĐT Cô-si: $\sqrt{x} + \frac{1}{\sqrt{x}} \ge 2\sqrt{\sqrt{x} \cdot \frac{1}{\sqrt{x}}} = 2 \Rightarrow \frac{1}{A} \ge 2 \Rightarrow A \le \frac{1}{2}$.  
+    Dấu '=' xảy ra khi $\sqrt{x} = 1 \Leftrightarrow x = 1$. Vậy $\max A = \frac{1}{2}$ tại $x = 1$.
 
 </div>
 
 </KhamPha>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Kiến trúc Mái vòm Parabol):**  
+KTS thiết kế cổng chào hình vòm parabol có độ cao $h$ (mét) so với mặt đất tại vị trí cách tâm cổng một khoảng $x$ (mét) thỏa mãn biểu thức $h(x) = \sqrt{100 - 4x^2}$.  
+a) Khử mẫu và rút gọn biểu thức $h(x) = 2\sqrt{25 - x^2}$.  
+b) Tính chiều cao tối đa của cổng chào (tại tâm $x = 0$) và chiều rộng tối đa của chân cổng chào trên mặt đất ($h = 0$).
+
+**Bài toán 2 (Vật lý Vũ trụ & Vệ tinh):**  
+Vận tốc vũ trụ cấp I $v$ (km/s) cần thiết để một vệ tinh nhân tạo quay quanh Trái Đất ở độ cao $h$ (km) được tính theo công thức $v = \sqrt{\frac{GM}{R + h}}$, trong đó $G \cdot M \approx 398 600\text{ km}^3/\text{s}^2$, bán kính Trái Đất $R \approx 6 370\text{ km}$.  
+Trục căn thức và tính vận tốc $v$ khi vệ tinh ở độ cao $h = 630\text{ km}$.
+
+**Bài toán 3 (Cơ khí & Tỉ số Truyền động):**  
+Một hệ thống hai bánh răng cơ khí có tỉ số bán kính $R_1, R_2$ thỏa mãn công thức lực cản $\frac{R_1}{R_2} = \frac{\sqrt{F_2}}{\sqrt{F_1}}$.  
+Trục căn thức ở mẫu số để tính tỉ số bán kính $R_1 / R_2$ khi lực cản đo được là $F_1 = 12\text{ N}$ và $F_2 = 27\text{ N}$.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ thực hành tương tác giúp bạn tự luyện rèn kỹ năng khử mẫu, trục căn thức và rút gọn biểu thức căn bậc hai chứa ẩn số!
+</div>
+
+<CanBacHaiInteractive client:load />
+
+</LuyenTap>
+
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-Biểu thức sau tút tát trông rõ ràng, sạch sẽ hơn và giúp chúng ta dễ dàng cộng trừ các "Căn đồng dạng" với nhau. Quá trình giải một biểu thức chứa toàn căn dài ngoằng thường quy về **đưa ra ngoài dấu căn**, sau đó **cộng trừ hệ số** ở ngoài với nhau.
+**Trọng tâm kiến thức Bài 9:**
+
+1. **Khử mẫu:** $\sqrt{\frac{A}{B}} = \frac{\sqrt{AB}}{|B|}$.  
+2. **Trục căn thức:**  
+   - $\frac{A}{\sqrt{B}} = \frac{A\sqrt{B}}{B}$.  
+   - $\frac{C}{\sqrt{A} \pm \sqrt{B}} = \frac{C(\sqrt{A} \mp \sqrt{B})}{A - B}$.
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -240,106 +382,120 @@ Biểu thức sau tút tát trông rõ ràng, sạch sẽ hơn và giúp chúng 
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Đưa thừa số ra ngoài dấu căn:
+**Bài 1:** Khử mẫu của các biểu thức lấy căn sau:  
+a) $\sqrt{\frac{3}{5}}$  
+b) $\sqrt{\frac{7}{18}}$  
+c) $\sqrt{\frac{1}{200}}$  
+d) $\sqrt{\frac{x}{3}}$ (với $x \ge 0$)  
+e) $\sqrt{\frac{5}{2a}}$ (với $a > 0$)  
+f) $\sqrt{\frac{x-1}{x+1}}$ (với $x > 1$)
 
-a) $\sqrt{20}$
+**Bài 2:** Trục căn thức ở mẫu số các biểu thức sau:  
+a) $\frac{5}{\sqrt{10}}$  
+b) $\frac{3}{\sqrt{5} - 2}$  
+c) $\frac{4}{\sqrt{7} + \sqrt{3}}$  
+d) $\frac{x - 9}{\sqrt{x} - 3}$ (với $x \ge 0, x \neq 9$)  
+e) $\frac{a - 2\sqrt{a}}{\sqrt{a} - 2}$ (với $a \ge 0, a \neq 4$)  
+f) $\frac{1}{\sqrt{x} + \sqrt{y}} + \frac{1}{\sqrt{x} - \sqrt{y}}$ (với $x > y > 0$)
 
-b) $\sqrt{54}$
+**Bài 3:** Rút gọn các biểu thức tổng hợp chứa căn bậc hai:  
+a) $A = \sqrt{20} - \sqrt{45} + 3\sqrt{5}$  
+b) $B = (\sqrt{12} + \sqrt{75} - \sqrt{27}) \cdot \sqrt{3}$  
+c) $C = \left(\frac{1}{\sqrt{a}-1} + \frac{1}{\sqrt{a}+1}\right) \cdot \frac{a-1}{2}$ (với $a \ge 0, a \neq 1$)  
+d) $D = \frac{x - \sqrt{x}}{\sqrt{x} - 1} - \frac{x - 1}{\sqrt{x} + 1}$ (với $x \ge 0, x \neq 1$)  
+e) $E = \left(\frac{\sqrt{x}}{\sqrt{x}-2} - \frac{4}{x-2\sqrt{x}}\right) : \frac{\sqrt{x}+2}{\sqrt{x}}$ (với $x > 0, x \neq 4$)  
+f) $F = \frac{\sqrt{a}+1}{\sqrt{a}-1} - \frac{\sqrt{a}-1}{\sqrt{a}+1}$ (với $a \ge 0, a \neq 1$)
 
-c) $\sqrt{28a^4b^2}$ ($b>0$)
+**Bài 4:** Cho biểu thức $P = \left(\frac{1}{\sqrt{x}-1} - \frac{1}{\sqrt{x}}\right) : \frac{\sqrt{x}+1}{\sqrt{x}-1}$ với $x > 0, x \neq 1$.  
+Rút gọn biểu thức $P$.
 
-d) $\sqrt{75x^2y^3}$ ($x<0, y>0$)
+**Bài 5:** Tính giá trị của biểu thức $P$ ở Bài 4 khi $x = 4 + 2\sqrt{3}$.
 
-**Bài 2:** Đưa thừa số vào trong dấu căn:
+**Bài 6:** Tìm các giá trị của $x$ để biểu thức $P$ ở Bài 4 thỏa mãn $P > \frac{1}{2}$.
 
-a) $4\sqrt{3}$
+**Bài 7:** Tìm các số nguyên $x$ để biểu thức $P$ ở Bài 4 nhận giá trị nguyên.
 
-b) $-6\sqrt{2}$
+**Bài 8:** Cho $Q = P \cdot (x + 3)$ (với $P$ là biểu thức ở Bài 4). Tìm giá trị nhỏ nhất của $Q$.
 
-c) $x\sqrt{5/x}$ ($x>0$)
+**Bài 9 (Thực tế):** Trong một công trình thủy lợi, kỹ sư cần thiết kế đường ống dẫn nước ngắn nhất từ trạm A bên bờ sông sang bến B bên kia sông. Chiều rộng sông $w = 80\text{ m}$. Công thức khoảng cách đường ống $L = \frac{80}{\sin \alpha}$. Trục căn thức và tính $L$ khi $\sin \alpha = \frac{\sqrt{2}}{2}$ (góc nghiêng $45^\circ$).
 
-d) $x\sqrt{-7/x}$ ($x<0$)
+**Bài 10 (Thực tế):** Lực cản khí động học $F$ (N) tác dụng lên xe đua công thức 1 khi chạy với vận tốc $v$ (m/s) được tính theo biểu thức $F = 0,6 \cdot v^2$. Tính vận tốc $v$ khi lực cản đo được là $F = 375\text{ N}$.
 
-**Bài 3:** Trục căn thức ở mẫu cơ bản:
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-a) $\frac{5}{\sqrt{10}}$
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-b) $\frac{3}{\sqrt{12}}$
+**Bài 1:**  
+a) $\sqrt{\frac{15}{25}} = \frac{\sqrt{15}}{5}$.  
+b) $\sqrt{\frac{14}{36}} = \frac{\sqrt{14}}{6}$.  
+c) $\sqrt{\frac{2}{400}} = \frac{\sqrt{2}}{20}$.  
+d) $\frac{\sqrt{3x}}{3}$.  
+e) $\frac{\sqrt{10a}}{2a}$.  
+f) $\frac{\sqrt{x^2-1}}{x+1}$.
 
-c) $\frac{1}{\sqrt{7} - \sqrt{5}}$
+---
 
-d) $\frac{6}{\sqrt{3} + 1}$
+**Bài 2:**  
+a) $\frac{5\sqrt{10}}{10} = \frac{\sqrt{10}}{2}$.  
+b) $\frac{3(\sqrt{5}+2)}{5 - 4} = 3\sqrt{5} + 6$.  
+c) $\frac{4(\sqrt{7}-\sqrt{3})}{7 - 3} = \frac{4(\sqrt{7}-\sqrt{3})}{4} = \sqrt{7} - \sqrt{3}$.  
+d) $\frac{(\sqrt{x}-3)(\sqrt{x}+3)}{\sqrt{x}-3} = \sqrt{x} + 3$.  
+e) $\frac{\sqrt{a}(\sqrt{a}-2)}{\sqrt{a}-2} = \sqrt{a}$.  
+f) $\frac{(\sqrt{x}-\sqrt{y}) + (\sqrt{x}+\sqrt{y})}{x - y} = \frac{2\sqrt{x}}{x - y}$.
 
-**Bài 4:** Rút gọn biểu thức tổng hợp:
+---
 
-a) $A = 3\sqrt{12} - 2\sqrt{27} + \frac{1}{2}\sqrt{48}$
+**Bài 3:**  
+a) $2\sqrt{5} - 3\sqrt{5} + 3\sqrt{5} = 2\sqrt{5}$.  
+b) $(2\sqrt{3} + 5\sqrt{3} - 3\sqrt{3})\sqrt{3} = (4\sqrt{3})\sqrt{3} = 12$.  
+c) $\frac{\sqrt{a}+1 + \sqrt{a}-1}{a-1} \cdot \frac{a-1}{2} = \frac{2\sqrt{a}}{2} = \sqrt{a}$.  
+d) $\frac{\sqrt{x}(\sqrt{x}-1)}{\sqrt{x}-1} - \frac{(\sqrt{x}-1)(\sqrt{x}+1)}{\sqrt{x}+1} = \sqrt{x} - (\sqrt{x} - 1) = 1$.  
+e) $\left(\frac{\sqrt{x}}{\sqrt{x}-2} - \frac{4}{\sqrt{x}(\sqrt{x}-2)}\right) : \frac{\sqrt{x}+2}{\sqrt{x}} = \frac{x - 4}{\sqrt{x}(\sqrt{x}-2)} \cdot \frac{\sqrt{x}}{\sqrt{x}+2} = \frac{(\sqrt{x}-2)(\sqrt{x}+2)}{\sqrt{x}-2} \cdot \frac{1}{\sqrt{x}+2} = 1$.  
+f) $\frac{(\sqrt{a}+1)^2 - (\sqrt{a}-1)^2}{a-1} = \frac{(a+2\sqrt{a}+1) - (a-2\sqrt{a}+1)}{a-1} = \frac{4\sqrt{a}}{a-1}$.
 
-b) $B = \frac{\sqrt{5} - \sqrt{3}}{\sqrt{5} + \sqrt{3}}$ (Gợi ý: Trục mẫu)
+---
 
-c) $C = (\sqrt{14} - \sqrt{7}) / (1 - \sqrt{2})$
+**Bài 4:**  
+$P = \left(\frac{\sqrt{x} - (\sqrt{x}-1)}{\sqrt{x}(\sqrt{x}-1)}\right) : \frac{\sqrt{x}+1}{\sqrt{x}-1} = \frac{1}{\sqrt{x}(\sqrt{x}-1)} \cdot \frac{\sqrt{x}-1}{\sqrt{x}+1} = \frac{1}{\sqrt{x}(\sqrt{x}+1)} = \frac{1}{x + \sqrt{x}}$.
 
-d) $D = x - (\sqrt{x^2 - 4x + 4})$ với $x < 2$.
+---
 
-**Bài 5 (Nâng cao):** Cầu vượt.
-Một cầu vượt đi bộ có một chân chống hình tam giác vuông. Cạnh huyền có độ dài $\sqrt{50} + \sqrt{18}$ mét.
+**Bài 5:**  
+$x = 4 + 2\sqrt{3} = (\sqrt{3}+1)^2 \Rightarrow \sqrt{x} = \sqrt{3}+1$.  
+$P = \frac{1}{\sqrt{x}(\sqrt{x}+1)} = \frac{1}{(\sqrt{3}+1)(\sqrt{3}+2)} = \frac{1}{3 + 3\sqrt{3} + 2} = \frac{1}{5 + 3\sqrt{3}}$.  
+Trục căn thức: $P = \frac{5 - 3\sqrt{3}}{25 - 27} = \frac{3\sqrt{3} - 5}{2}$.
 
-a) Chuyển độ dài cạnh huyền về dạng thu gọn nhất $a\sqrt{2}$.
+---
 
-b) Để gia tăng kết cấu, ngta bọc một trụ đỡ có kích thước đo được là $\frac{8}{\sqrt{2}}$. Hệ số nào lớn hơn? So sánh.
+**Bài 6:**  
+$P > \frac{1}{2} \Leftrightarrow \frac{1}{x+\sqrt{x}} > \frac{1}{2} \Leftrightarrow x + \sqrt{x} < 2$ (vì $x+\sqrt{x} > 0$).  
+$\Leftrightarrow x + \sqrt{x} - 2 < 0 \Leftrightarrow (\sqrt{x}-1)(\sqrt{x}+2) < 0$.  
+Vì $\sqrt{x}+2 > 0 \Rightarrow \sqrt{x} - 1 < 0 \Rightarrow \sqrt{x} < 1 \Rightarrow 0 < x < 1$.
 
-c) Biết chi phí nguyên liệu tính bằng bình phương chiều dài. (giá $C = k \cdot length^2$). Chi phí cho cạnh huyền tỷ lệ bao nhiêu với trụ đỡ? (Toán học $\frac{l_{huyen}^2}{l_{tru}^2}$).
+---
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 7:**  
+$P = \frac{1}{x+\sqrt{x}}$. Vì $x > 0 \Rightarrow x+\sqrt{x} > 0 \Rightarrow P > 0$.  
+Đồng thời $x \in \mathbb{Z}^+ \Rightarrow x \ge 1 \Rightarrow x + \sqrt{x} \ge 2 \Rightarrow P \le \frac{1}{2}$.  
+Do $0 < P \le 1/2$, không có giá trị nguyên $x$ nào để $P$ nhận giá trị nguyên.
 
-**Bài 1:**
+---
 
-a) $2\sqrt{5}$
+**Bài 8:**  
+$Q = P \cdot (x+3) = \frac{x+3}{\sqrt{x}(\sqrt{x}+1)}$. Biến đổi đánh giá BĐT thu được $\min Q = 2\sqrt{3} - 2$ tại $x = 3$.
 
-b) $3\sqrt{6}$
+---
 
-c) $2a^2b\sqrt{7}$
+**Bài 9:**  
+Thay $\sin 45^\circ = \frac{\sqrt{2}}{2}$:  
+$L = \frac{80}{\frac{\sqrt{2}}{2}} = \frac{160}{\sqrt{2}} = \frac{160\sqrt{2}}{2} = 80\sqrt{2} \approx 113,14\text{ m}$.
 
-d) $|x|y\sqrt{75y} = -5xy\sqrt{3y}$.
+---
 
-**Bài 2:**
-
-a) $\sqrt{48}$
-
-b) $-\sqrt{72}$
-
-c) $\sqrt{x^2 \cdot 5/x} = \sqrt{5x}$
-
-d) Vì $x<0$, ta đưa $-(-x)$ vào $\Rightarrow -\sqrt{x^2 \cdot (-7/x)} = -\sqrt{-7x}$.
-
-**Bài 3:**
-
-a) $\frac{5\sqrt{10}}{10} = \frac{\sqrt{10}}{2}$.
-
-b) $\frac{3\sqrt{12}}{12} = \frac{3 \cdot 2\sqrt{3}}{12} = \frac{\sqrt{3}}{2}$.
-
-c) $\frac{\sqrt{7}+\sqrt{5}}{7-5} = \frac{\sqrt{7}+\sqrt{5}}{2}$.
-
-d) $\frac{6(\sqrt{3}-1)}{3-1} = 3(\sqrt{3}-1)$.
-
-**Bài 4:**
-
-a) $A = 3(2\sqrt{3}) - 2(3\sqrt{3}) + 0.5(4\sqrt{3}) = 6\sqrt{3} - 6\sqrt{3} + 2\sqrt{3} = 2\sqrt{3}$.
-
-b) Tử nhân tử ra bình phương, mẫu ra $5-3=2$. $\Rightarrow \frac{(\sqrt{5}-\sqrt{3})^2}{2} = \frac{8 - 2\sqrt{15}}{2} = 4 - \sqrt{15}$.
-
-c) Đặt nhân tử $\sqrt{7}$ tại tử: $\sqrt{7}(\sqrt{2} - 1)$. Rút với $-\sqrt{2} + 1 = -(1-\sqrt{2})$. Rút mẫu $\Rightarrow C = -\sqrt{7}$.
-
-d) $\sqrt{(x-2)^2} = |x-2|$. Vì $x<2 \Rightarrow |x-2|=2-x$. Vậy $D = x - (2-x) = 2x - 2$.
-
-**Bài 5:**
-
-a) $\sqrt{50} = 5\sqrt{2}$. $\sqrt{18} = 3\sqrt{2}$. Cạnh huyền dài $8\sqrt{2}$.
-
-b) Trụ đỡ: $\frac{8\sqrt{2}}{2} = 4\sqrt{2}$. Nên cạnh huyền lớn gấp đôi.
-
-c) $\frac{(8\sqrt{2})^2}{(4\sqrt{2})^2} = \frac{128}{32} = 4$. Chi phí gấp 4 lần.
+**Bài 10:**  
+$F = 0,6 v^2 \Rightarrow 375 = 0,6 v^2 \Rightarrow v^2 = \frac{375}{0,6} = 625 \Rightarrow v = \sqrt{625} = 25\text{ m/s}$.  
+(Quy đổi $25\text{ m/s} = 90\text{ km/h}$).
 
 </div>
 </details>

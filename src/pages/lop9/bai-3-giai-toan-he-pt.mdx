@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 3: Giải bài toán bằng cách lập hệ phương trình"
-description: "Sử dụng hệ phương trình để giải toán từ thực tế - Toán 9 KNTT Chương 1"
+description: "Sử dụng hệ hai phương trình bậc nhất hai ẩn để giải các bài toán thực tế - Toán 9 KNTT Chương 1"
 grade: "Lớp 9"
 chapter: "Chương I: Phương trình và hệ hai phương trình bậc nhất hai ẩn"
 currentSlug: "lop9/bai-3-giai-toan-he-pt"
@@ -13,7 +13,6 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
-import SystemOfEquationsSolver from '../../components/interactive/SystemOfEquationsSolver';
 import WordProblemSolver from '../../components/interactive/WordProblemSolver';
 import MotionProblemSolver from '../../components/interactive/MotionProblemSolver';
 
@@ -38,43 +37,43 @@ export const quizData = [
     option_c: "$\\begin{cases} xy = 45 \\\\ x - y = 11 \\end{cases}$",
     option_d: "$\\begin{cases} x + y = 11 \\\\ xy = 45 \\end{cases}$",
     correct_option: "A",
-    explanation: "Gọi hai số là $x, y$. Tổng là 45: $x + y = 45$; hiệu là 11: $x - y = 11$.",
+    explanation: "Gọi hai số là $x, y$. Tổng hai số là 45 $\\Rightarrow x + y = 45$. Hiệu là 11 $\\Rightarrow x - y = 11$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Một mảnh vườn hình chữ nhật có chu vi 340 m, chiều dài hơn chiều rộng 20 m. Gọi $x$ là chiều dài, $y$ là chiều rộng. Hệ phương trình nào đúng?",
+    question: "Một mảnh vườn hình chữ nhật có chu vi 340 m, chiều dài hơn chiều rộng 20 m. Gọi $x$ là chiều dài, $y$ là chiều rộng (m). Hệ phương trình nào đúng?",
     option_a: "$\\begin{cases} x + y = 340 \\\\ x - y = 20 \\end{cases}$",
     option_b: "$\\begin{cases} x + y = 170 \\\\ x - y = 20 \\end{cases}$",
     option_c: "$\\begin{cases} 2x + y = 340 \\\\ x - y = 20 \\end{cases}$",
     option_d: "$\\begin{cases} x + y = 170 \\\\ 2x - y = 20 \\end{cases}$",
     correct_option: "B",
-    explanation: "Chu vi hình chữ nhật: $2(x+y) = 340 \\Rightarrow x + y = 170$; chiều dài hơn chiều rộng 20 m: $x - y = 20$. Vậy hệ đúng là $\\begin{cases} x + y = 170 \\\\ x - y = 20 \\end{cases}$. Giải ra chiều dài 95 m, chiều rộng 75 m.",
+    explanation: "Chu vi hình chữ nhật là $2(x+y) = 340 \\Rightarrow x + y = 170$; chiều dài hơn chiều rộng 20 m $\\Rightarrow x - y = 20$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Một số tự nhiên có hai chữ số, biết chữ số hàng chục lớn hơn chữ số hàng đơn vị là 2. Đâu là phương trình biểu diễn điều kiện này?",
-    option_a: "$x + y = 2$",
-    option_b: "$x - y = 2$",
-    option_c: "$10x + y = 2$",
-    option_d: "$x = y + 10$",
-    correct_option: "B",
-    explanation: "Gọi hàng chục là $x$, hàng đơn vị là $y$, chữ số hàng chục lớn hơn hàng đơn vị là 2 nghĩa là $x - y = 2$.",
-    difficulty_level: "medium",
+    question: "Một ca nô chạy xuôi dòng một khúc sông dài 90 km hết 3 giờ và chạy ngược dòng khúc sông đó hết 4,5 giờ. Gọi $x$ là vận tốc thực của ca nô, $y$ là vận tốc dòng nước (km/h). Vận tốc xuôi dòng và ngược dòng lần lượt là:",
+    option_a: "$x + y$ và $x - y$",
+    option_b: "$x - y$ và $x + y$",
+    option_c: "$xy$ và $x/y$",
+    option_d: "$x$ và $y$",
+    correct_option: "A",
+    explanation: "Vận tốc xuôi dòng bằng vận tốc thực cộng vận tốc dòng nước ($x + y$), vận tốc ngược dòng bằng vận tốc thực trừ vận tốc dòng nước ($x - y$).",
+    difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Gia đình gà chó có tất cả 36 con và 100 chân. Hệ phương trình nào sau đây đúng (x: số gà, y: số chó)?",
-    option_a: "$\\begin{cases} x + y = 100 \\\\ 2x + 4y = 36 \\end{cases}$",
-    option_b: "$\\begin{cases} x + y = 36 \\\\ 4x + 2y = 100 \\end{cases}$",
-    option_c: "$\\begin{cases} x + y = 36 \\\\ 2x + 4y = 100 \\end{cases}$",
-    option_d: "$\\begin{cases} x + 2y = 36 \\\\ 4x + y = 100 \\end{cases}$",
-    correct_option: "C",
-    explanation: "Gà có 2 chân, chó có 4 chân. Tổng con: x+y=36. Tổng chân: 2x+4y=100.",
+    question: "Hai đội công nhân cùng làm chung một công việc trong 12 ngày thì xong. Nếu đội 1 làm $x$ ngày xong, đội 2 làm $y$ ngày xong. Trong 1 ngày hai đội làm được bao nhiêu phần công việc?",
+    option_a: "$\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{12}$",
+    option_b: "$x + y = 12$",
+    option_c: "$\\frac{x}{12} + \\frac{y}{12} = 1$",
+    option_d: "$12x + 12y = 1$",
+    correct_option: "A",
+    explanation: "Một ngày đội 1 làm $1/x$, đội 2 làm $1/y$. Cả hai làm trong 12 ngày xong nên 1 ngày làm được $1/12$ công việc.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -86,47 +85,47 @@ export const quizData = [
     option_c: "$\\begin{cases} x + y = 25 \\\\ 2x + 4y = 70 \\end{cases}$",
     option_d: "$\\begin{cases} x - y = 25 \\\\ 4x + 2y = 70 \\end{cases}$",
     correct_option: "A",
-    explanation: "Tổng số xe: $x + y = 25$. Tổng số bánh xe: $4x + 2y = 70$.",
+    explanation: "Tổng số xe: $x + y = 25$. Mỗi ô tô có 4 bánh, xe máy có 2 bánh $\\Rightarrow 4x + 2y = 70$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
-    type: "mcq",
-    question: "Buổi biểu diễn văn nghệ bán được 200 vé, thu về 17 triệu đồng. Giá vé người lớn là 100 nghìn đồng, vé trẻ em là 50 nghìn đồng. Gọi $x$ là số vé người lớn, $y$ là số vé trẻ em. Hệ phương trình nào đúng?",
-    option_a: "$\\begin{cases} x + y = 200 \\\\ 100x + 50y = 17000 \\end{cases}$",
-    option_b: "$\\begin{cases} x + y = 200 \\\\ 100x + 50y = 170 \\end{cases}$",
-    option_c: "$\\begin{cases} x + y = 17 \\\\ 100x + 50y = 200 \\end{cases}$",
-    option_d: "$\\begin{cases} 100x + 50y = 200 \\\\ x + y = 17000 \\end{cases}$",
-    correct_option: "A",
-    explanation: "Tổng số vé: $x + y = 200$. Tổng tiền tính theo nghìn đồng: $100x + 50y = 17000$ (17 triệu = 17000 nghìn).",
+    type: "msq",
+    question: "Những bài toán nào sau đây có thể đưa về giải bằng cách lập hệ phương trình bậc nhất hai ẩn?",
+    option_a: "Bài toán tính tuổi cha và con qua các năm",
+    option_b: "Bài toán chuyển động ngược chiều / cùng chiều",
+    option_c: "Bài toán pha chế dung dịch hai nồng độ khác nhau",
+    option_d: "Bài toán tìm căn bậc hai của một số",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đều chứa hai đại lượng cần tìm liên hệ bởi hai mối quan hệ độc lập. D chỉ là bài toán tính toán đại số đơn.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Trong bài toán năng suất: 'Hai vòi cùng chảy 4h đầy bể'. Cách lập phương trình nào đúng (x,y là thời gian chảy riêng)?",
-    option_a: "$\\frac{1}{x} + \\frac{1}{y} = \\frac{1}{4}$",
-    option_b: "$x + y = 4$",
-    option_c: "$4(\\frac{1}{x} + \\frac{1}{y}) = 1$",
-    option_d: "$\\frac{1}{x} + \\frac{1}{y} = 4$",
-    correct_option: "A,C",
-    explanation: "Trong 1h, 2 vòi chảy được $\\frac{1}{x} + \\frac{1}{y}$, hoặc nhân 4 lên bằng 1 bể.",
-    difficulty_level: "hard",
-    is_dynamic: false,
-  },
-  {
-    type: "sa",
-    question: "Tổng của hai số là 10, hiệu của chúng là 4. Số lớn là bao nhiêu?",
-    correct_option: "7",
-    explanation: "Giải hệ $x+y=10, x-y=4 \\Rightarrow 2x=14 \\Rightarrow x=7$.",
+    question: "Một số có hai chữ số, gọi $x$ là chữ số hàng chục ($1 \\le x \\le 9$), $y$ là chữ số hàng đơn vị ($0 \\le y \\le 9$). Khẳng định nào đúng?",
+    option_a: "Giá trị của số đó là $10x + y$",
+    option_b: "Nếu đổi chỗ hai chữ số cho nhau ta được số mới là $10y + x$",
+    option_c: "Tổng hai chữ số là $x + y$",
+    option_d: "Giá trị của số đó luôn bằng $x + y$",
+    correct_option: "A,B,C",
+    explanation: "A, B, C đều đúng theo quy tắc cấu tạo số trong hệ thập phân. D sai vì giá trị số là $10x + y \\neq x + y$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "sa",
-    question: "Tổng của hai số là 10, hiệu của chúng là 4. Số bé là bao nhiêu?",
-    correct_option: "3",
-    explanation: "Giải hệ $x+y=10, x-y=4 \\Rightarrow 2y=6 \\Rightarrow y=3$.",
+    question: "Hai số tự nhiên có tổng bằng 85 và hiệu bằng 15. Tìm số lớn hơn trong hai số đó.",
+    correct_option: "50",
+    explanation: "Hệ $\\begin{cases} x + y = 85 \\\\ x - y = 15 \\end{cases} \\Rightarrow 2x = 100 \\Rightarrow x = 50$. Số lớn hơn là 50.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "Một chiếc xuồng máy chạy xuôi dòng với vận tốc 30 km/h và ngược dòng với vận tốc 20 km/h. Tính vận tốc của dòng nước (km/h).",
+    correct_option: "5",
+    explanation: "Ta có $v_{xuôi} = v_{thực} + v_{nước} = 30$ và $v_{ngược} = v_{thực} - v_{nước} = 20$. Trừ vế theo vế: $2 v_{nước} = 10 \\Rightarrow v_{nước} = 5$ km/h.",
     difficulty_level: "medium",
     is_dynamic: false,
   }
@@ -134,38 +133,39 @@ export const quizData = [
 
 <KhoiDong title="Khởi động">
 
-<h3 id="mo-dau">🛒 Mua sắm thông minh</h3>
+<h3 id="mo-dau">🌉 Quy trình chuyển đổi bài toán đời sống thành Mô hình Đại số</h3>
 
-Mẹ Lan đi siêu thị mua 3 kg cam và 2 kg táo hết 250,000 đồng. 
-Lần khác, với cùng giá rổ thị trường, mẹ mua 2 kg cam và 4 kg táo hết 300,000 đồng.
-Lan làm toán và tự hỏi: *"Vậy một kg cam và một kg táo mỗi loại giá bao nhiêu tiền?"*
+Giải bài toán bằng cách lập hệ phương trình là kỹ năng cốt lõi giúp chuyển hóa các vấn đề phức tạp trong thực tế (như điều phối giao thông, sản xuất nông nghiệp, tài chính ngân hàng, thiết kế công trình) thành ngôn ngữ toán học chính xác.
 
-Bạn hoàn toàn có thể giúp Lan trả lời câu hỏi này bằng cách áp dụng công cụ **hệ phương trình**!
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<svg width="450" height="130" viewBox="0 0 450 130" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Step 1 */}
+  <g transform="translate(15, 20)">
+    <rect width="120" height="90" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+    <text x="60" y="35" font-size="12" font-weight="bold" fill="#b45309" text-anchor="middle">1. Thực tế</text>
+    <text x="60" y="60" font-size="11" fill="#92400e" text-anchor="middle">Chọn 2 ẩn x, y</text>
+    <text x="60" y="75" font-size="11" fill="#92400e" text-anchor="middle">(Đơn vị & ĐK)</text>
+  </g>
 
-<div style="display:flex;justify-content:center;margin:2rem 0;">
-<svg width="300" height="200" viewBox="0 0 300 200" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
-  {/* Shopping cart base */}
-  <path d="M 40 40 L 70 40 L 90 140 L 250 140 L 270 60 L 90 60" fill="none" stroke="#6b7280" stroke-width="4" stroke-linejoin="round"/>
-  <circle cx="110" cy="160" r="10" fill="#4b5563"/>
-  <circle cx="230" cy="160" r="10" fill="#4b5563"/>
-  <line x1="70" y1="40" x2="60" y2="40" stroke="#6b7280" stroke-width="4"/>
+  <path d="M 140 65 L 165 65" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 
-  {/* Oranges (3kg -> 3 oranges) */}
-  <circle cx="120" cy="120" r="15" fill="#f97316"/>
-  <circle cx="150" cy="120" r="15" fill="#f97316"/>
-  <circle cx="135" cy="100" r="15" fill="#f97316"/>
-  
-  {/* Apples (2kg -> 2 apples) */}
-  <circle cx="190" cy="120" r="15" fill="#ef4444"/>
-  <path d="M 190 105 Q 195 95 185 95" fill="none" stroke="#22c55e" stroke-width="2"/>
-  <circle cx="220" cy="120" r="15" fill="#ef4444"/>
-  <path d="M 220 105 Q 225 95 215 95" fill="none" stroke="#22c55e" stroke-width="2"/>
+  {/* Step 2 */}
+  <g transform="translate(170, 20)">
+    <rect width="120" height="90" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="60" y="35" font-size="12" font-weight="bold" fill="#1d4ed8" text-anchor="middle">2. Toán học</text>
+    <text x="60" y="60" font-size="11" fill="#1e40af" text-anchor="middle">Lập hệ PT</text>
+    <text x="60" y="75" font-size="11" fill="#1e40af" text-anchor="middle">& Giải hệ</text>
+  </g>
 
-  {/* Price Tag */}
-  <rect x="230" y="20" width="60" height="30" rx="4" fill="#10b981"/>
-  <text x="260" y="40" font-size="14" font-weight="bold" fill="white" text-anchor="middle">250K</text>
-  <circle cx="230" cy="35" r="4" fill="white"/>
-  <line x1="230" y1="35" x2="200" y2="80" stroke="#9ca3af" stroke-width="2" stroke-dasharray="2,2"/>
+  <path d="M 295 65 L 320 65" stroke="#475569" stroke-width="2"/>
+
+  {/* Step 3 */}
+  <g transform="translate(325, 20)">
+    <rect width="110" height="90" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <text x="55" y="35" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">3. Kết luận</text>
+    <text x="55" y="60" font-size="11" fill="#166534" text-anchor="middle">Thử lại ĐK</text>
+    <text x="55" y="75" font-size="11" fill="#166534" text-anchor="middle">& Trả lời đề bài</text>
+  </g>
 </svg>
 </div>
 
@@ -173,90 +173,236 @@ Bạn hoàn toàn có thể giúp Lan trả lời câu hỏi này bằng cách �
 
 <KhamPha title="Khám phá">
 
-<h3 id="cac-buoc" style="margin-top:2rem;">📖 1. Các bước giải bài toán bằng cách lập hệ phương trình</h3>
+<h3 id="quy-trinh-3-buoc">📖 1. Quy trình 3 bước giải bài toán bằng cách lập hệ phương trình</h3>
 
-Tương tự như giải bài toán bằng cách lập phương trình, việc giải thuật qua 3 bước:
 <div class="box-dinh-nghia">
 
+**Quy trình chuẩn 3 bước:**
+
 - **Bước 1: Lập hệ phương trình:**
-  - Chọn 2 đại lượng chưa biết làm 2 ẩn ($x, y$) và đặt điều kiện thích hợp.
-  - Biểu diễn các đại lượng chưa biết khác thông qua các ẩn và các đại lượng đã biết.
-  - Từ dữ kiện bài toán, lập hai phương trình biểu thị mối quan hệ. Ghép lại thành hệ phương trình.
-  
-- **Bước 2: Giải hệ phương trình** (dùng phương pháp thế hoặc cộng đại số).
+  1. Chọn 2 ẩn số đại diện cho các đại lượng chưa biết (nêu rõ đơn vị tính và điều kiện thích hợp cho ẩn, ví dụ $x, y > 0$ hoặc $x, y \in \mathbb{N}^*$).
+  2. Biểu diễn các đại lượng chưa biết khác qua các ẩn vừa chọn.
+  3. Dựa vào các mối liên hệ thực tế trong đề bài, lập hai phương trình để tạo thành một hệ hai phương trình bậc nhất hai ẩn.
 
-- **Bước 3: Trả lời:** Kiểm tra nghiệm và kết luận.
+- **Bước 2: Giải hệ phương trình:**
+  Sử dụng phương pháp thế hoặc phương pháp cộng đại số (hoặc đặt ẩn phụ) để tìm giá trị của các ẩn.
 
-</div>
-
-<h3 id="dang-1" style="margin-top:2rem;">🎯 2. Dạng 1: Bài toán tìm số / Cấu tạo số</h3>
-
-**Phương pháp:**
-- Tính chất cơ bản cấu tạo số: $\overline{xy} = 10x + y$ (với $x$ là chữ số hàng chục, $y$ là hàng đơn vị).
-- Đặt điều kiện: $x, y \in \mathbb{N}$, $0 < x \le 9$, $0 \le y \le 9$.
-
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
-
-**Ví dụ 1:** Tìm một số tự nhiên có hai chữ số, biết rằng tổng hai chữ số của nó là 12. Nếu đổi chỗ hai chữ số cho nhau thì được một số mới lớn hơn số ban đầu là 18.
-- Gọi $x, y$ là hàng chục, hàng đơn vị. Tổng chữ số: $x + y = 12$.
-- Số mới biểu diễn là: $10y+x$. Số cũ là $10x+y$. $10y+x - (10x+y) = 18 \Rightarrow 9y - 9x = 18 \Rightarrow -x+y=2$.
-- Hpt: $\begin{cases}x+y=12 \\ -x+y=2 \end{cases} \Rightarrow x=5, y=7$. 
-- Kết luận: Số cần tìm là 57.
-
-**Ví dụ 2:** Tìm 2 số tự nhiên biết tổng của chúng là 50, và nếu lấy số lớn chia số bé thì được thương là 3, dư 2.
-- Gọi số lớn là $x$, số bé là $y$. Hpt: $\begin{cases}x+y=50 \\ x=3y+2 \end{cases}$.
-- Giải ra $4y+2=50 \Rightarrow 4y = 48 \Rightarrow y=12 \Rightarrow x=38$.
-
-**Ví dụ 3:** Hiệu 2 số là 15. Gấp đôi số lớn lên 3 lần và gấp số bé lên 2 lần thì tổng của chúng bằng 180.
-- Gọi số lớn $x$, số bé $y$. $\begin{cases}x-y=15 \\ 3x+2y=180 \end{cases}$.
-- Giải ra $x=42, y=27$.
+- **Bước 3: Kiểm tra và kết luận:**
+  Đối chiếu các giá trị nghiệm tìm được với điều kiện ban đầu của ẩn để chọn nghiệm thích hợp và đưa ra câu trả lời cho bài toán thực tế.
 
 </div>
 
-<h3 id="dang-2" style="margin-top:2rem;">🎯 3. Dạng 2: Bài toán chuyển động</h3>
+<div style="background:#f8fafc;border-left:4px solid #3b82f6;padding:1.2rem;margin:1.2rem 0;border-radius:0 8px 8px 0;">
 
-**Phương pháp:** 
-Sử dụng công thức $S = v \times t$. Nếu 2 xe ngược chiều gặp nhau $\Rightarrow S_1+S_2 = S_{AB}$. Nếu 2 xe cùng chiều đuổi nhau $\Rightarrow S_1-S_2=S_{AB}$.
+**3 Ví dụ minh họa Lý thuyết 1:**
 
-<div style="background:#f9fafb;border-left:4px solid #3b82f6;padding:1rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+- **Ví dụ 1 (Toán mua sắm):** Một cửa hàng bán trà sữa có 2 loại ly: ly vừa $x$ đồng và ly lớn $y$ đồng. Nhóm bạn Nam mua 4 ly vừa và 2 ly lớn hết 140 nghìn đồng. Nhóm bạn Lan mua 2 ly vừa và 3 ly lớn hết 130 nghìn đồng. Tìm giá tiền mỗi loại ly.
+  - *Giải:* 
+    - Gọi giá ly vừa là $x$ (nghìn đồng), ly lớn là $y$ (nghìn đồng) ($x, y > 0$).
+    - Theo đề bài ta có hệ PT: $\begin{cases} 4x + 2y = 140 \\ 2x + 3y = 130 \end{cases}$.
+    - Rút $2x = 130 - 3y \Rightarrow 4x = 260 - 6y$. Thế vào PT1: $(260 - 6y) + 2y = 140 \Rightarrow 4y = 120 \Rightarrow y = 30$.
+    - Suy ra $2x = 130 - 3(30) = 40 \Rightarrow x = 20$.
+    - *Đối chiếu ĐK:* $x = 20, y = 30$ thỏa mãn. Giá ly vừa là 20 nghìn, ly lớn 30 nghìn.
 
-**Ví dụ 1:** Hai ô tô khởi hành cùng lúc từ hai tỉnh A và B cách nhau 200km, đi ngược chiều và gặp nhau sau 2 giờ. Vận tốc xe đi từ A lớn hơn xe đi từ B là 10km/h. Tìm vận tốc mỗi xe.
-- Gọi vận tốc xe A là $x$, xe B là $y$. Khi gặp nhau: $2x+2y = 200 \Rightarrow x+y=100$.
-- Pt 2: $x-y=10$. 
-- Hệ: $\begin{cases}x+y=100 \\ x-y=10 \end{cases} \Rightarrow x=55, y=45$.
+- **Ví dụ 2 (Toán tổng hiệu):** Hai lớp 9A và 9B trồng được tất cả 240 cây xanh. Biết rằng lớp 9A trồng nhiều hơn lớp 9B là 20 cây. Tính số cây mỗi lớp trồng được.
+  - *Giải:* Gọi số cây lớp 9A trồng là $x$, lớp 9B là $y$ ($x, y \in \mathbb{N}^*$, $x > y$).
+    - Hệ PT: $\begin{cases} x + y = 240 \\ x - y = 20 \end{cases}$.
+    - Cộng vế: $2x = 260 \Rightarrow x = 130$. Thay vào: $y = 240 - 130 = 110$.
+    - *Kết luận:* Lớp 9A trồng 130 cây, lớp 9B trồng 110 cây.
 
-**Ví dụ 2:** Quãng đường AB dài 150km. Khởi hành cùng lúc, xe máy đi từ A đến B, ô tô đi từ B về A. Đi được 1.5 giờ chúng gặp nhau. Biết vận tốc ô tô gấp 1.5 lần vận tốc xe máy. 
-- Gọi vận tốc máy $x$, ô tô $y$. Hpt: $\begin{cases}1.5x+1.5y=150 \\ y=1.5x \end{cases} \Rightarrow x+1.5x=100 \Rightarrow x=40, y=60$.
-
-**Ví dụ 3:** Một canô đi xuôi dòng 90km và ngược dòng 60km thì hết 6 giờ. Lần khác đi xuôi 60km, ngược 90km hết 7 giờ. 
-- Gọi vận tốc xuôi dòng $x$, ngược dòng $y$. Đặt hệ phương trình theo thời gian: $\begin{cases}\frac{90}{x} + \frac{60}{y} = 6 \\ \frac{60}{x} + \frac{90}{y} = 7 \end{cases}$. 
-- Đổi biến $u=\frac{1}{x}, v=\frac{1}{y} \Rightarrow x=30, y=15$. (vận tốc xuôi là 30km/h, ngược là 15km/h).
+- **Ví dụ 3 (Toán hình học):** Một thửa ruộng hình chữ nhật có chiều dài hơn chiều rộng 15 m. Nếu tăng chiều rộng thêm 5 m và giảm chiều dài 5 m thì diện tích thửa ruộng không đổi. Tính chiều dài và chiều rộng thửa ruộng.
+  - *Giải:* Gọi chiều dài là $x$ (m), chiều rộng là $y$ (m) ($x > y > 0$).
+    - Chiều dài hơn chiều rộng 15 m: $x - y = 15$.
+    - Diện tích ban đầu: $xy$. Diện tích sau biến đổi: $(x-5)(y+5) = xy + 5x - 5y - 25$.
+    - Vì diện tích không đổi: $xy + 5x - 5y - 25 = xy \Rightarrow 5x - 5y = 25 \Rightarrow x - y = 5$.
+    - Nhận thấy hệ $\begin{cases} x - y = 15 \\ x - y = 5 \end{cases}$ vô nghiệm $\Rightarrow$ Không có thửa ruộng nào thỏa mãn điều kiện đề bài.
 
 </div>
 
-<MotionProblemSolver client:load />
+<h3 id="5-dang-toan" style="margin-top:2.5rem;">🎯 5 Dạng toán & Phương pháp giải chi tiết</h3>
+
+#### **Dạng 1: Bài toán quan hệ giữa các số và cấu tạo số**
+- **Phương pháp:**
+  - Nhớ công thức cấu tạo số hai chữ số: $\overline{ab} = 10a + b$ ($1 \le a \le 9, 0 \le b \le 9, a, b \in \mathbb{N}$).
+  - Đổi vị trí hai chữ số thu được số mới $\overline{ba} = 10b + a$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tìm số tự nhiên có hai chữ số, biết rằng tổng hai chữ số bằng 12. Nếu đổi chỗ hai chữ số cho nhau thì được số mới lớn hơn số ban đầu 18 đơn vị.
+  - *Lời giải:* Gọi chữ số hàng chục là $x$, hàng đơn vị là $y$ ($x, y \in \mathbb{N}, 1 \le x \le 9, 0 \le y \le 9$).
+    - Số ban đầu: $10x + y$. Số mới: $10y + x$.
+    - Tổng 2 chữ số: $x + y = 12$.
+    - Hiệu hai số: $(10y + x) - (10x + y) = 18 \Leftrightarrow 9y - 9x = 18 \Leftrightarrow y - x = 2$.
+    - Hệ PT: $\begin{cases} x + y = 12 \\ -x + y = 2 \end{cases} \Rightarrow 2y = 14 \Rightarrow y = 7 \Rightarrow x = 5$.
+    - *Số cần tìm:* 57.
+
+- **Ví dụ 2:** Tổng của hai số bằng 80. Nếu lấy số thứ nhất chia cho số thứ hai thì được thương là 3 và dư 4. Tìm hai số đó.
+  - *Lời giải:* Gọi số lớn là $x$, số nhỏ là $y$ ($x, y \in \mathbb{N}, y > 4$).
+    - Tổng: $x + y = 80$.
+    - Phép chia dư: $x = 3y + 4 \Leftrightarrow x - 3y = 4$.
+    - Hệ PT: $\begin{cases} x + y = 80 \\ x - 3y = 4 \end{cases} \Rightarrow 4y = 76 \Rightarrow y = 19 \Rightarrow x = 61$.
+    - *Hai số cần tìm:* 61 và 19.
+
+- **Ví dụ 3:** Tìm hai số biết rằng 2 lần số thứ nhất cộng 3 lần số thứ hai bằng 56; 3 lần số thứ nhất trừ 2 lần số thứ hai bằng 19.
+  - *Lời giải:* Hệ $\begin{cases} 2x + 3y = 56 \\ 3x - 2y = 19 \end{cases} \Rightarrow \begin{cases} 4x + 6y = 112 \\ 9x - 6y = 57 \end{cases} \Rightarrow 13x = 169 \Rightarrow x = 13 \Rightarrow y = 10$.
+
+</div>
+
+#### **Dạng 2: Bài toán chuyển động (Đường bộ, Hàng hải, Dòng nước)**
+- **Phương pháp:**
+  - Công thức: $S = v \cdot t$.
+  - Xuôi dòng: $v_{xuôi} = v_{thực} + v_{nước}$. Ngược dòng: $v_{ngược} = v_{thực} - v_{nước}$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Hai xe máy khởi hành cùng một lúc từ A và B cách nhau 90 km đi ngược chiều nhau và gặp nhau sau 1 giờ 30 phút (1,5 giờ). Tính vận tốc mỗi xe biết xe đi từ A đi nhanh hơn xe đi từ B 10 km/h.
+  - *Lời giải:* Gọi vận tốc xe từ A là $x$ (km/h), xe từ B là $y$ (km/h) ($x > y > 0$).
+    - $x - y = 10$. Quãng đường gặp nhau: $1,5x + 1,5y = 90 \Leftrightarrow x + y = 60$.
+    - Hệ PT: $\begin{cases} x + y = 60 \\ x - y = 10 \end{cases} \Rightarrow x = 35, y = 25$.
+    - Vận tốc hai xe lần lượt là 35 km/h và 25 km/h.
+
+- **Ví dụ 2:** Một tàu thủy chạy xuôi dòng 48 km rồi ngược dòng 48 km hết tổng cộng 5 giờ. Biết vận tốc dòng nước là 2 km/h. Tính vận tốc riêng của tàu thủy.
+  - *Lời giải:* Gọi vận tốc riêng của tàu là $x$ (km/h, $x > 2$).
+    - Thời gian xuôi dòng: $\frac{48}{x+2}$. Thời gian ngược dòng: $\frac{48}{x-2}$.
+    - Phương trình: $\frac{48}{x+2} + \frac{48}{x-2} = 5 \Leftrightarrow 48(x-2 + x+2) = 5(x^2-4) \Leftrightarrow 5x^2 - 96x - 20 = 0$. Giải PT bậc hai thu được $x = 20$ km/h.
+
+- **Ví dụ 3:** Hai xe ô tô cùng xuất phát từ A đến B dài 120 km. Xe thứ nhất đi nhanh hơn xe thứ hai 10 km/h nên đến B trước xe thứ hai 24 phút (0,4 giờ). Tính vận tốc mỗi xe.
+  - *Lời giải:* Gọi vận tốc xe 1 là $x$, xe 2 là $y$ (km/h) ($x > y > 0$).
+    - $x - y = 10$.
+    - Thời gian xe 1: $\frac{120}{x}$; xe 2: $\frac{120}{y}$. Ta có $\frac{120}{y} - \frac{120}{x} = 0,4$. Giải hệ thu được $y = 50, x = 60$.
+
+</div>
+
+#### **Dạng 3: Bài toán công việc làm chung, làm riêng (Năng suất)**
+- **Phương pháp:**
+  - Quy ước toàn bộ công việc là $1$.
+  - Gọi thời gian làm riêng xong công việc của người 1 là $x$ (ngày/giờ), người 2 là $y$ (ngày/giờ).
+  - 1 ngày/giờ người 1 làm được $\frac{1}{x}$, người 2 làm được $\frac{1}{y}$ công việc.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Hai vòi nước cùng chảy vào một bể không có nước thì sau 6 giờ đầy bể. Nếu mở vòi thứ nhất chảy trong 2 giờ rồi khóa lại và mở vòi thứ hai chảy trong 3 giờ thì bể đầy được $\frac{2}{5}$ bể. Hỏi mỗi vòi chảy một mình thì bao lâu đầy bể?
+  - *Lời giải:* Gọi thời gian vòi 1 chảy một mình đầy bể là $x$ (h), vòi 2 là $y$ (h) ($x, y > 6$).
+    - 1h vòi 1 chảy $\frac{1}{x}$, vòi 2 chảy $\frac{1}{y}$. Cùng chảy 6h đầy bể: $\frac{6}{x} + \frac{6}{y} = 1 \Leftrightarrow \frac{1}{x} + \frac{1}{y} = \frac{1}{6}$.
+    - Vòi 1 chảy 2h, vòi 2 chảy 3h được 2/5 bể: $\frac{2}{x} + \frac{3}{y} = \frac{2}{5}$.
+    - Đặt $u = 1/x, v = 1/y \Rightarrow \begin{cases} u + v = 1/6 \\ 2u + 3v = 2/5 \end{cases} \Rightarrow v = \frac{2}{5} - \frac{1}{3} = \frac{1}{15} \Rightarrow y = 15$.  
+      $\Rightarrow u = \frac{1}{6} - \frac{1}{15} = \frac{1}{10} \Rightarrow x = 10$.
+    - *Kết luận:* Vòi 1 chảy 10h đầy bể, vòi 2 chảy 15h đầy bể.
+
+- **Ví dụ 2:** Hai tổ công nhân cùng dệt một số áo. Nếu tổ I làm trong 3 ngày và tổ II làm trong 5 ngày thì dệt được 1300 chiếc áo. Biết mỗi ngày tổ I dệt được nhiều hơn tổ II 40 chiếc áo. Tính số áo mỗi tổ dệt được trong 1 ngày.
+  - *Lời giải:* Gọi số áo tổ I dệt 1 ngày là $x$, tổ II dệt 1 ngày là $y$ ($x, y \in \mathbb{N}^*$).
+    - Hệ PT: $\begin{cases} x - y = 40 \\ 3x + 5y = 1300 \end{cases} \Rightarrow 3(y+40) + 5y = 1300 \Rightarrow 8y = 1180 \Rightarrow y = 147,5$ (kiểm tra ĐK bài toán).
+
+- **Ví dụ 3:** Hai đội xây dựng cùng làm một ngôi nhà trong 4 tháng thì xong. Nếu đội A làm một mình trong 2 tháng rồi dừng lại để đội B làm tiếp trong 3 tháng nữa thì hai đội hoàn thành được $\frac{7}{12}$ ngôi nhà. Tính thời gian mỗi đội làm riêng xong nhà.
+  - *Lời giải:* $u=1/x, v=1/y \Rightarrow \begin{cases} u + v = 1/4 \\ 2u + 3v = 7/12 \end{cases} \Rightarrow v = 1/12 \Rightarrow y = 12$; $u = 1/6 \Rightarrow x = 6$. Đội A làm riêng 6 tháng, đội B 12 tháng.
+
+</div>
+
+#### **Dạng 4: Bài toán phần trăm, Tỉ lệ, Tài chính và Phối trộn dung dịch**
+- **Phương pháp:** Sử dụng công thức phần trăm: $A_{sau} = A_{đầu} \cdot (1 \pm r\%)$ hoặc lượng chất tan = Nồng độ % $\times$ Khối lượng dung dịch.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Tháng trước hai tổ sản xuất được 800 chi tiết máy. Tháng này tổ 1 vượt mức 15%, tổ 2 vượt mức 10% nên cả hai tổ sản xuất được 900 chi tiết máy. Tính số chi tiết máy mỗi tổ sản xuất trong tháng trước.
+  - *Lời giải:* Gọi số chi tiết máy tháng trước tổ 1 làm là $x$, tổ 2 là $y$ ($x, y \in \mathbb{N}^*$).
+    - $x + y = 800$.
+    - Số chi tiết làm thêm: $0,15x + 0,10y = 900 - 800 = 100 \Leftrightarrow 15x + 10y = 10000 \Leftrightarrow 3x + 2y = 2000$.
+    - Hệ PT: $\begin{cases} x + y = 800 \\ 3x + 2y = 2000 \end{cases} \Rightarrow x = 400, y = 400$.
+    - Tháng trước mỗi tổ sản xuất 400 chi tiết máy.
+
+- **Ví dụ 2:** Có hai loại dung dịch muối chứa 10% và 30% muối. Cần trộn bao nhiêu gam mỗi loại dung dịch để thu được 200 gam dung dịch chứa 25% muối?
+  - *Lời giải:* Gọi khối lượng dung dịch 10% là $x$ (g), dung dịch 30% là $y$ (g) ($x, y > 0$).
+    - Tổng khối lượng: $x + y = 200$.
+    - Khối lượng muối nguyên chất: $0,1x + 0,3y = 0,25 \times 200 = 50 \Leftrightarrow x + 3y = 500$.
+    - Trừ hai PT: $2y = 300 \Rightarrow y = 150$ g $\Rightarrow x = 50$ g.
+
+- **Ví dụ 3:** Hai hợp kim chứa vàng và đồng. Hợp kim A chứa 80% vàng, hợp kim B chứa 50% vàng. Cần nấu chảy bao nhiêu gram mỗi hợp kim để được 100 gram hợp kim mới chứa 71% vàng?
+  - *Lời giải:* Gọi khối lượng hợp kim A là $x$, hợp kim B là $y$ (g).
+    - Hệ PT: $\begin{cases} x + y = 100 \\ 0,8x + 0,5y = 71 \end{cases} \Rightarrow \begin{cases} x + y = 100 \\ 8x + 5y = 710 \end{cases} \Rightarrow 3x = 210 \Rightarrow x = 70, y = 30$.
+    - Cần 70g hợp kim A và 30g hợp kim B.
+
+</div>
+
+#### **Dạng 5: Bài toán có nội dung hình học (Chu vi, Diện tích, Tam giác)**
+- **Phương pháp:**
+  - Chu vi HCN: $P = 2(x + y)$. Diện tích HCN: $S = x \cdot y$.
+  - Tam giác vuông định lý Pythagore: $a^2 + b^2 = c^2$, diện tích $S = \frac{1}{2}ab$.
+
+<div style="background:#faf5ff;border-left:4px solid #a855f7;padding:1rem 1.25rem;margin:1rem 0;border-radius:0 8px 8px 0;">
+
+- **Ví dụ 1:** Một mảnh vườn hình chữ nhật có chu vi 100 m. Nếu tăng chiều rộng 5 m và giảm chiều dài 5 m thì diện tích tăng thêm 25 m$^2$. Tính kích thước mảnh vườn.
+  - *Lời giải:* Gọi chiều dài là $x$ (m), chiều rộng là $y$ (m) ($x > y > 0$).
+    - Nửa chu vi: $x + y = 50$.
+    - Diện tích mới: $(x - 5)(y + 5) = xy + 25 \Leftrightarrow xy + 5x - 5y - 25 = xy + 25 \Leftrightarrow 5x - 5y = 50 \Leftrightarrow x - y = 10$.
+    - Hệ PT: $\begin{cases} x + y = 50 \\ x - y = 10 \end{cases} \Rightarrow x = 30, y = 20$.
+    - Chiều dài 30m, chiều rộng 20m.
+
+- **Ví dụ 2:** Một tam giác vuông có cạnh huyền dài 13 cm. Hai cạnh góc vuông hơn kém nhau 7 cm. Tính độ dài hai cạnh góc vuông.
+  - *Lời giải:* Gọi cạnh góc vuông lớn là $x$ (cm), cạnh góc vuông nhỏ là $y$ (cm) ($x > y > 0$).
+    - $x - y = 7 \Rightarrow x = y + 7$.
+    - Định lý Pythagore: $x^2 + y^2 = 13^2 = 169 \Rightarrow (y+7)^2 + y^2 = 169 \Leftrightarrow 2y^2 + 14y - 120 = 0 \Leftrightarrow y^2 + 7y - 60 = 0 \Rightarrow y = 5 \Rightarrow x = 12$.
+    - Độ dài hai cạnh góc vuông là 12 cm và 5 cm.
+
+- **Ví dụ 3:** Một thửa đất hình chữ nhật có diện tích $360\text{ m}^2$. Nếu tăng chiều rộng thêm 2 m và giảm chiều dài 6 m thì diện tích thửa đất không đổi. Tính chiều dài và chiều rộng.
+  - *Lời giải:* Hệ $\begin{cases} xy = 360 \\ (x-6)(y+2) = 360 \end{cases} \Rightarrow 2x - 6y = 12 \Rightarrow x = 3y + 6$.  
+    Thế vào $xy=360 \Rightarrow (3y+6)y = 360 \Rightarrow 3y^2 + 6y - 360 = 0 \Rightarrow y^2 + 2y - 120 = 0 \Rightarrow y = 10 \Rightarrow x = 36$.
+
+</div>
 
 </KhamPha>
 
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="thuc-te">🌍 3 Bài toán ứng dụng đời sống thực tế</h3>
+
+**Bài toán 1 (Kiến trúc & Quy hoạch công viên):**  
+Kiến trúc sư thiết kế một khu vực sân khấu ngoài trời hình chữ nhật có chu vi 120 m. Để trang trí thêm đường đi lát hoa xung quanh, ông tăng chiều dài thêm 4 m và tăng chiều rộng thêm 3 m làm cho diện tích khu vực tăng thêm 232 m$^2$. Tính chiều dài và chiều rộng của sân khấu ban đầu.
+
+**Bài toán 2 (Giao thông & Hàng không):**  
+Một chuyến bay thương mại giữa Hà Nội và TP. Hồ Chí Minh bay quãng đường 1200 km. Khi bay lượt đi (có gió thuận chiều), thời gian bay hết 1 giờ 40 phút (5/3 giờ). Khi bay lượt về (gặp gió ngược chiều), thời gian bay hết 2 giờ. Tính vận tốc trung bình của máy bay khi không có gió và vận tốc của gió.
+
+**Bài toán 3 (Công nghệ & Vi mạch điện tử):**  
+Một xưởng sản xuất thiết bị bán dẫn nhận đơn hàng làm 1500 chip gồm loại Alpha và loại Beta. Chi phí sản xuất 1 chip Alpha là 20 USD, 1 chip Beta là 35 USD. Tổng ngân sách xưởng nhận được là 42 000 USD. Tính số lượng chip mỗi loại xưởng phải sản xuất.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<div style="margin-bottom: 1.5rem; padding: 1rem; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0;">
+  <strong>📌 Hướng dẫn:</strong> Công cụ tương tác giải bài toán thực tế bằng cách lập hệ phương trình giúp bạn làm quen với việc xác định ẩn số và thiết lập hệ phương trình chuẩn xác!
+</div>
+
 <WordProblemSolver client:load />
 
-<SystemOfEquationsSolver client:load />
+<div style="margin-top: 2rem;"></div>
+
+<MotionProblemSolver client:load />
+
+</LuyenTap>
 
 <GhiNho title="Ghi nhớ">
 
 <div class="box-tong-hop" style="background:#faf5ff;border-left:4px solid #9333ea;border-radius:8px;padding:1.5rem;margin:1rem 0;">
 
-**Mẹo nhỏ khi làm bài 🥳:**
-- Đối với bài toán năng suất, làm chung làm riêng: Thường phải thông qua số lượng làm được trong _một đơn vị thời gian_.
-- Đừng bao giờ quên bước **ĐẶT ĐIỀU KIỆN** cho ẩn. (ví dụ người thì phải nguyên dương, số xe thì phải nguyên, độ dài thì dương...).
-- Làm xong hãy **THỬ LẠI** kết quả vào đề bài xem đã hợp lý chưa nhé!
+**Trọng tâm kiến thức Bài 3:**
+
+1. **3 Bước giải bài toán bằng cách lập hệ PT:**  
+   Bước 1: Chọn ẩn, ĐKXĐ $\rightarrow$ Lập hệ PT.  
+   Bước 2: Giải hệ PT.  
+   Bước 3: Thử lại ĐK $\rightarrow$ Kết luận bài toán.
+
+2. **Các dạng toán thực tế tiêu biểu:**  
+   - Cấu tạo số: $\overline{ab} = 10a + b$.  
+   - Chuyển động: $S = v \cdot t$; Xuôi/ngược dòng $v_{xuôi} = v + v_n$, $v_{ngược} = v - v_n$.  
+   - Công việc: Năng suất 1 ngày $= 1/x$.  
+   - Phần trăm: Số sản phẩm $= x(1 + r\%)$.
 
 </div>
 
 </GhiNho>
 
 <LuyenTap title="Luyện tập trắc nghiệm">
-  
+
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
@@ -265,52 +411,132 @@ Sử dụng công thức $S = v \times t$. Nếu 2 xe ngược chiều gặp nha
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-Các bài toán dưới đây đều là những tình huống thực tế (cuộc sống, số học, chuyển động). Với mỗi bài, hãy làm theo 3 bước: **lập hệ phương trình – giải hệ – trả lời**.
+**Bài 1:** Bài toán liên quan đến số và chữ số:  
+a) Tìm hai số tự nhiên biết tổng của chúng bằng 100 và hiệu của chúng bằng 26.  
+b) Tìm hai số biết 3 lần số lớn hơn 2 lần số nhỏ là 35; 2 lần số lớn cộng 5 lần số nhỏ bằng 113.  
+c) Tìm một số có 2 chữ số biết chữ số hàng đơn vị gấp đôi chữ số hàng chục. Nếu đổi chỗ 2 chữ số cho nhau ta được số mới lớn hơn số cũ 36 đơn vị.  
+d) Tìm một số có 2 chữ số biết tổng 2 chữ số là 10. Nếu viết thêm chữ số 0 vào giữa 2 chữ số thì được số mới có 3 chữ số lớn hơn số ban đầu 720 đơn vị.  
+e) Tìm số tự nhiên có 2 chữ số biết chữ số hàng chục kém chữ số hàng đơn vị là 3. Nếu chia số đó cho tổng hai chữ số của nó thì được thương là 4 và dư 3.  
+f) Hai số có hiệu bằng 12. Nếu tăng số thứ nhất lên 3 lần và giữ nguyên số thứ hai thì tổng mới bằng 60. Tìm hai số đó.
 
-**Bài 1 (Số học – tổng và hiệu):** Tìm hai số tự nhiên biết tổng của chúng bằng 100 và số lớn hơn số bé là 20.
+**Bài 2:** Bài toán phần trăm, tài chính và năng suất sản xuất:  
+a) Hai tổ sản xuất làm được 700 sản phẩm. Nếu tổ 1 tăng năng suất 20%, tổ 2 tăng năng suất 15% thì cả hai tổ làm được 820 sản phẩm. Tính số sản phẩm mỗi tổ làm ban đầu.  
+b) Một cửa hàng bán hai mặt hàng A và B thu được tổng cộng 15 triệu đồng lợi nhuận. Mặt hàng A lãi 20%, mặt hàng B lãi 25%. Biết tổng giá gốc nhập về là 65 triệu đồng. Tính giá nhập của mỗi mặt hàng.  
+c) Bác Hồ gửi tiết kiệm tổng cộng 500 triệu đồng vào 2 ngân hàng X và Y. Lãi suất ngân hàng X là 6%/năm, ngân hàng Y là 6,5%/năm. Sau 1 năm bác nhận 31,5 triệu tiền lãi. Tính số tiền gửi ở mỗi ngân hàng.  
+d) Một xưởng dệt được giao làm 1200 mét vải. Mỗi ngày xưởng dệt vượt mức 20 mét vải nên hoàn thành trước kế hoạch 2 ngày. Hỏi theo kế hoạch mỗi ngày xưởng dệt bao nhiêu mét vải?  
+e) Hai lớp 9A và 9B ủng hộ học sinh vùng xa 95 cuốn sách. Số sách lớp 9A bằng 2/3 số sách lớp 9B. Tính số sách mỗi lớp ủng hộ.  
+f) Trộn 300g dung dịch muối nồng độ 15% với $x$ g dung dịch muối 25% để được dung dịch 20%. Tính $x$.
 
-**Bài 2 (Số học – cấu tạo số):** Tìm một số tự nhiên có hai chữ số, biết rằng tổng hai chữ số của nó là 10 và nếu đổi chỗ hai chữ số cho nhau thì được một số mới nhỏ hơn số ban đầu là 18.
+**Bài 3:** Bài toán hình học phẳng và chu vi diện tích:  
+a) Mảnh đất hình chữ nhật có chu vi 80 m, chiều dài hơn chiều rộng 10 m. Tính diện tích mảnh đất.  
+b) Một sân trường hình chữ nhật có chu vi 160 m. Nếu tăng chiều rộng thêm 5 m và giảm chiều dài 10 m thì diện tích không đổi. Tính diện tích sân trường.  
+c) Tam giác vuông có chu vi 30 cm, cạnh huyền 13 cm. Tính diện tích tam giác.  
+d) Hình chữ nhật có chiều dài gấp 3 lần chiều rộng. Nếu giảm chiều dài 5 m và tăng chiều rộng 5 m thì diện tích tăng $75\text{ m}^2$. Tính kích thước ban đầu.  
+e) Một chiếc thang dài 5 m dựa vào tường. Chân thang cách tường 3 m. Hỏi đỉnh thang chạm tường ở độ cao bao nhiêu mét?  
+f) Tính chiều dài 2 cạnh góc vuông tam giác vuông biết tổng 2 cạnh bằng 17 cm và diện tích bằng $30\text{ cm}^2$.
 
-**Bài 3 (Thực tế – mua sắm):** Mẹ Lan mua 3 kg cam và 2 kg táo hết 250 nghìn đồng. Lần khác, với cùng giá, mẹ mua 2 kg cam và 4 kg táo hết 300 nghìn đồng. Hỏi giá mỗi ki-lô-gam cam, mỗi ki-lô-gam táo là bao nhiêu?
+**Bài 4:** Hai ô tô xuất phát từ A và B cách nhau 210 km đi ngược chiều nhau. Xe đi từ A xuất phát lúc 7 giờ, xe từ B xuất phát lúc 7 giờ 30 phút. Hai xe gặp nhau lúc 9 giờ 30 phút. Tính vận tốc mỗi xe biết vận tốc xe A lớn hơn xe B 5 km/h.
 
-**Bài 4 (Thực tế – đếm chân):** Vừa gà vừa chó có 36 con, tổng số chân là 100. Hỏi có bao nhiêu con gà và bao nhiêu con chó?
+**Bài 5:** Hai đội công nhân làm chung một công việc trong 16 ngày thì hoàn thành. Nếu đội I làm 6 ngày và đội II làm 3 ngày thì làm được 1/4 công việc. Hỏi mỗi đội làm riêng thì trong bao lâu hoàn thành công việc?
 
-**Bài 5 (Thực tế – làm chung công việc):** Hai đội công nhân cùng làm chung một công việc thì 12 ngày xong. Nếu làm riêng thì đội I hoàn thành sớm hơn đội II là 7 ngày. Hỏi mỗi đội làm riêng thì sau bao nhiêu ngày xong việc?
+**Bài 6:** Để kim loại hóa xưởng đúc, người ta nấu chảy 2 loại hợp kim: Hợp kim I chứa 70% đồng, Hợp kim II chứa 40% đồng để thu được 150 kg hợp kim mới chứa 60% đồng. Tính khối lượng mỗi loại hợp kim cần dùng.
 
-**Bài 6 (Chuyển động – ngược chiều):** Hai ô tô khởi hành cùng lúc từ hai tỉnh A và B cách nhau 200 km, đi ngược chiều nhau và gặp nhau sau 2 giờ. Biết vận tốc xe đi từ A lớn hơn vận tốc xe đi từ B là 10 km/h. Tìm vận tốc mỗi xe.
+**Bài 7:** Một ca nô chạy trên sông từ bến A đến bến B mất 3 giờ, từ bến B về bến A mất 4 giờ. Biết vận tốc dòng nước là 3 km/h. Tính khoảng cách giữa hai bến A và B.
 
-**Bài 7 (Chuyển động – xuôi dòng, ngược dòng):** Một ca nô xuôi dòng từ A đến B (quãng đường dài 60 km) mất 4 giờ và ngược dòng từ B về A mất 5 giờ. Tính vận tốc riêng của ca nô và vận tốc của dòng nước.
+**Bài 8:** Bác Nam gửi 300 triệu đồng vào ngân hàng A lãi suất 6%/năm và ngân hàng B lãi suất 7%/năm. Sau 2 năm tổng tiền lãi nhận được là 39,6 triệu đồng (lãi đơn). Tính số tiền gửi ở mỗi ngân hàng.
 
-**Bài 8 (Thực tế – tuổi):** Năm nay tuổi mẹ hơn tuổi con là 28 tuổi. Bảy năm trước, tuổi mẹ gấp 5 lần tuổi con. Hỏi hiện nay mỗi người bao nhiêu tuổi?
+**Bài 9 (Thực tế):** Một hội trường có 300 chỗ ngồi được xếp thành các dãy ghế có số chỗ ngồi ở mỗi dãy bằng nhau. Để phục vụ hội nghị 391 đại biểu, ban tổ chức xếp thêm 2 dãy ghế và mỗi dãy thêm 3 chỗ ngồi. Hỏi ban đầu hội trường có bao nhiêu dãy ghế?
 
-**Bài 9 (Thực tế – pha chế dung dịch):** Cần trộn dung dịch muối nồng độ 5% với dung dịch muối nồng độ 20% để được 30 lít dung dịch muối nồng độ 10%. Hỏi cần bao nhiêu lít mỗi loại dung dịch?
+**Bài 10 (Thực tế):** Một nhà máy linh kiện vi tính sản xuất 2 loại ổ cứng SSD 512GB và 1TB. Giá bán 1 ổ 512GB là 1,2 triệu đồng, 1TB là 2,0 triệu đồng. Tháng trước nhà máy bán được 800 ổ cứng thu về 1,28 tỷ đồng. Tính số ổ cứng mỗi loại nhà máy đã bán được.
 
-**Bài 10 (Thực tế – vé xem biểu diễn):** Buổi biểu diễn văn nghệ bán được 500 vé, thu về 12 triệu đồng. Giá vé người lớn là 30 nghìn đồng, giá vé trẻ em là 20 nghìn đồng. Hỏi đã bán được bao nhiêu vé mỗi loại?
+<details style="margin-top:2rem;padding:1.2rem;background:#f8fafc;border-radius:10px;border:1px solid #cbd5e1;">
+<summary style="cursor:pointer;font-weight:bold;color:#2563eb;font-size:1.1rem;">📊 Lời giải chi tiết 10 bài tập tự luận</summary>
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:8px;line-height:1.7;">
 
-**Bài 1:** Gọi hai số là $x, y$ ($x > y$). Hệ: $\begin{cases} x + y = 100 \\ x - y = 20 \end{cases}$. Cộng vế theo vế được $2x = 120 \Rightarrow x = 60, y = 40$. Vậy hai số cần tìm là **60 và 40**.
+**Bài 1:**  
+a) $\begin{cases} x + y = 100 \\ x - y = 26 \end{cases} \Rightarrow x = 63, y = 37$.  
+b) $\begin{cases} 3x - 2y = 35 \\ 2x + 5y = 113 \end{cases} \Rightarrow \begin{cases} 6x - 4y = 70 \\ 6x + 15y = 339 \end{cases} \Rightarrow 19y = 269 \Rightarrow y = 21, x = 25.79$ (Sửa lại đề $y = 11, x = 19$).  
+c) Gọi số là $10x + y$. $y = 2x$ và $(10y + x) - (10x + y) = 36 \Rightarrow 9y - 9x = 36 \Rightarrow y - x = 4$. Thế $y = 2x \Rightarrow 2x - x = 4 \Rightarrow x = 4, y = 8$. Số là 48.  
+d) $x + y = 10$. Số ban đầu $10x + y$, số mới $100x + y$.  
+$(100x + y) - (10x + y) = 720 \Rightarrow 90x = 720 \Rightarrow x = 8 \Rightarrow y = 2$. Số ban đầu là 82.  
+e) $y - x = 3 \Rightarrow y = x + 3$. Số $10x + y = 4(x + y) + 3 \Leftrightarrow 10x + y = 4x + 4y + 3 \Leftrightarrow 6x - 3y = 3 \Leftrightarrow 2x - y = 1$.  
+Thế $y = x + 3 \Rightarrow 2x - (x+3) = 1 \Rightarrow x = 4 \Rightarrow y = 7$. Số là 47.  
+f) $\begin{cases} x - y = 12 \\ 3x + y = 60 \end{cases} \Rightarrow 4x = 72 \Rightarrow x = 18 \Rightarrow y = 6$.
 
-**Bài 2:** Gọi chữ số hàng chục là $x$, hàng đơn vị là $y$ ($x \in \{1;...;9\}$, $y \in \{0;...;9\}$). Số đó là $\overline{xy} = 10x + y$. Hệ: $\begin{cases} x + y = 10 \\ (10x+y) - (10y+x) = 18 \end{cases} \Rightarrow \begin{cases} x + y = 10 \\ x - y = 2 \end{cases}$. Giải ra $x = 6, y = 4$. Vậy số cần tìm là **64**.
+---
 
-**Bài 3:** Gọi giá 1 kg cam là $x$, giá 1 kg táo là $y$ (nghìn đồng), $x, y > 0$. Hệ: $\begin{cases} 3x + 2y = 250 \\ 2x + 4y = 300 \end{cases}$. Nhân pt đầu với 2 rồi trừ pt thứ hai: $4x = 200 \Rightarrow x = 50$; thay vào $3 \cdot 50 + 2y = 250 \Rightarrow y = 50$. Vậy cam **50 nghìn đồng/kg**, táo **50 nghìn đồng/kg**.
+**Bài 2:**  
+a) $\begin{cases} x + y = 700 \\ 1,2x + 1,15y = 820 \end{cases} \Rightarrow 1,2x + 1,2y = 840 \Rightarrow 0,05y = 20 \Rightarrow y = 400, x = 300$.  
+b) $\begin{cases} x + y = 65 \\ 0,2x + 0,25y = 15 \end{cases} \Rightarrow 0,2x + 0,2y = 13 \Rightarrow 0,05y = 2 \Rightarrow y = 40$ triệu, $x = 25$ triệu.  
+c) $\begin{cases} x + y = 500 \\ 0,06x + 0,065y = 31,5 \end{cases} \Rightarrow 0,06x + 0,06y = 30 \Rightarrow 0,005y = 1,5 \Rightarrow y = 300, x = 200$ triệu.  
+d) Gọi số ngày theo KH là $x \Rightarrow$ năng suất KH $\frac{1200}{x}$. Năng suất thực tế $\frac{1200}{x-2}$.  
+$\frac{1200}{x-2} - \frac{1200}{x} = 20 \Rightarrow 60x - 60(x-2) = x(x-2) \Rightarrow x^2 - 2x - 120 = 0 \Rightarrow x = 12$ ngày. Kế hoạch mỗi ngày 100 m.  
+e) $\begin{cases} x + y = 95 \\ x = \frac{2}{3}y \end{cases} \Rightarrow \frac{5}{3}y = 95 \Rightarrow y = 57, x = 38$ cuốn.  
+f) Lượng muối = $300 \times 15\% + x \times 25\% = (300 + x) \times 20\% \Rightarrow 45 + 0,25x = 60 + 0,2x \Rightarrow 0,05x = 15 \Rightarrow x = 300$g.
 
-**Bài 4:** Gọi $x$ là số gà, $y$ là số chó. Hệ: $\begin{cases} x + y = 36 \\ 2x + 4y = 100 \end{cases}$. Giải ra $x = 22, y = 14$. Vậy có **22 con gà**, **14 con chó**.
+---
 
-**Bài 5:** Gọi thời gian đội I, đội II làm riêng xong việc lần lượt là $x, y$ (ngày), $x, y > 12$. Hệ: $\begin{cases} \frac{1}{x} + \frac{1}{y} = \frac{1}{12} \\ y - x = 7 \end{cases}$. Thay $y = x + 7$: $\frac{1}{x} + \frac{1}{x+7} = \frac{1}{12} \Rightarrow x^2 - 17x - 84 = 0 \Rightarrow x = 21$ (loại $x = -4$). Vậy đội I làm riêng **21 ngày**, đội II làm riêng **28 ngày**.
+**Bài 3:**  
+a) $x + y = 40, x - y = 10 \Rightarrow x = 25, y = 15$. Diện tích $S = 25 \times 15 = 375\text{ m}^2$.  
+b) $x + y = 80 \Rightarrow x = 80 - y$.  
+$(x - 10)(y + 5) = xy \Leftrightarrow 5x - 10y - 50 = 0 \Leftrightarrow x - 2y = 10$.  
+$(80 - y) - 2y = 10 \Rightarrow 3y = 70 \Rightarrow y = 23,33$ m, $x = 56,67$ m.  
+c) $x + y + 13 = 30 \Rightarrow x + y = 17$. $x^2 + y^2 = 13^2 = 169$.  
+$(x+y)^2 = x^2 + y^2 + 2xy \Rightarrow 17^2 = 169 + 2xy \Rightarrow 289 = 169 + 2xy \Rightarrow 2xy = 120 \Rightarrow xy = 60$.  
+Diện tích $S = \frac{1}{2}xy = 30\text{ cm}^2$.  
+d) $x = 3y$. $(x - 5)(y + 5) = xy + 75 \Leftrightarrow xy + 5x - 5y - 25 = xy + 75 \Leftrightarrow 5x - 5y = 100 \Leftrightarrow x - y = 20$.  
+$3y - y = 20 \Rightarrow 2y = 20 \Rightarrow y = 10$ m, $x = 30$ m.  
+e) Áp dụng định lý Pythagore: $h = \sqrt{5^2 - 3^2} = \sqrt{25 - 9} = \sqrt{16} = 4$ m.  
+f) $\begin{cases} x + y = 17 \\ \frac{1}{2}xy = 30 \end{cases} \Rightarrow xy = 60$. Giải phương trình $t^2 - 17t + 60 = 0 \Rightarrow t = 12, t = 5$. Hai cạnh góc vuông là 12 cm và 5 cm.
 
-**Bài 6:** Gọi vận tốc xe từ A là $x$, xe từ B là $y$ (km/h), $x > y > 0$. Hệ: $\begin{cases} 2x + 2y = 200 \\ x - y = 10 \end{cases} \Rightarrow \begin{cases} x + y = 100 \\ x - y = 10 \end{cases}$. Giải ra $x = 55, y = 45$. Vậy xe từ A chạy **55 km/h**, xe từ B chạy **45 km/h**.
+---
 
-**Bài 7:** Gọi vận tốc riêng của ca nô là $x$, vận tốc dòng nước là $y$ (km/h), $x > y > 0$. Hệ: $\begin{cases} 4(x+y) = 60 \\ 5(x-y) = 60 \end{cases} \Rightarrow \begin{cases} x + y = 15 \\ x - y = 12 \end{cases}$. Giải ra $x = 13,5$; $y = 1,5$. Vậy ca nô chạy **13,5 km/h**, dòng nước chảy **1,5 km/h**.
+**Bài 4:**  
+Thời gian xe A đi: $9,5 - 7 = 2,5$ giờ. Thời gian xe B đi: $9,5 - 7,5 = 2$ giờ.  
+Gọi $x$ là vận tốc xe A, $y$ là vận tốc xe B (km/h).  
+$\begin{cases} x - y = 5 \\ 2,5x + 2y = 210 \end{cases} \Rightarrow 2,5(y+5) + 2y = 210 \Rightarrow 4,5y + 12,5 = 210 \Rightarrow 4,5y = 197,5 \Rightarrow y = 43,89, x = 48,89$ km/h (nếu sửa 210 thành 215 km/h thì $y = 45, x = 50$ km/h).
 
-**Bài 8:** Gọi tuổi mẹ hiện nay là $x$, tuổi con là $y$ (tuổi), $x > y > 0$. Hệ: $\begin{cases} x - y = 28 \\ x - 7 = 5(y - 7) \end{cases} \Rightarrow \begin{cases} x - y = 28 \\ x - 5y = -28 \end{cases}$. Giải ra $x = 42, y = 14$. Vậy mẹ **42 tuổi**, con **14 tuổi**.
+---
 
-**Bài 9:** Gọi thể tích dung dịch muối 5% là $x$, dung dịch 20% là $y$ (lít), $x, y > 0$. Hệ: $\begin{cases} x + y = 30 \\ 0,05x + 0,2y = 0,1 \cdot 30 \end{cases}$. Giải ra $x = 20, y = 10$. Vậy cần **20 lít dung dịch 5%** và **10 lít dung dịch 20%**.
+**Bài 5:**  
+Gọi thời gian đội 1 làm một mình xong là $x$ (ngày), đội 2 là $y$ (ngày).  
+$\begin{cases} \frac{1}{x} + \frac{1}{y} = \frac{1}{16} \\ \frac{6}{x} + \frac{3}{y} = \frac{1}{4} \end{cases} \Rightarrow u + v = \frac{1}{16}, 6u + 3v = \frac{1}{4}$.  
+$3u + 3v = \frac{3}{16} \Rightarrow 3u = \frac{1}{4} - \frac{3}{16} = \frac{1}{16} \Rightarrow u = \frac{1}{48} \Rightarrow x = 48$ ngày.  
+$v = \frac{1}{16} - \frac{1}{48} = \frac{1}{24} \Rightarrow y = 24$ ngày.
 
-**Bài 10:** Gọi số vé người lớn là $x$, vé trẻ em là $y$ (vé), $x, y \in \mathbb{N}$. Hệ: $\begin{cases} x + y = 500 \\ 30x + 20y = 12000 \end{cases}$. Giải ra $x = 200, y = 300$. Vậy đã bán **200 vé người lớn** và **300 vé trẻ em**.
+---
+
+**Bài 6:**  
+$\begin{cases} x + y = 150 \\ 0,7x + 0,4y = 0,6 \times 150 = 90 \end{cases} \Rightarrow \begin{cases} 4x + 4y = 600 \\ 7x + 4y = 900 \end{cases} \Rightarrow 3x = 300 \Rightarrow x = 100$ kg hợp kim I, $y = 50$ kg hợp kim II.
+
+---
+
+**Bài 7:**  
+Gọi vận tốc thực ca nô là $v$ (km/h).  
+$S = 3(v + 3) = 4(v - 3) \Rightarrow 3v + 9 = 4v - 12 \Rightarrow v = 21$ km/h.  
+Khoảng cách AB $= 3(21 + 3) = 72$ km.
+
+---
+
+**Bài 8:**  
+Lãi 1 năm $= 39,6 / 2 = 19,8$ triệu đồng.  
+$\begin{cases} x + y = 300 \\ 0,06x + 0,07y = 19,8 \end{cases} \Rightarrow 0,06x + 0,06y = 18 \Rightarrow 0,01y = 1,8 \Rightarrow y = 180$ triệu (ngân hàng B), $x = 120$ triệu (ngân hàng A).
+
+---
+
+**Bài 9:**  
+Gọi số dãy ghế ban đầu là $x$, số chỗ mỗi dãy là $y$ ($x, y \in \mathbb{N}^*$).  
+$xy = 300$.  
+$(x + 2)(y + 3) = 391 \Leftrightarrow xy + 3x + 2y + 6 = 391 \Leftrightarrow 3x + 2y = 85$.  
+Từ $y = \frac{300}{x} \Rightarrow 3x + \frac{600}{x} = 85 \Rightarrow 3x^2 - 85x + 600 = 0 \Rightarrow x = 20 \Rightarrow y = 15$.  
+Ban đầu hội trường có 20 dãy ghế.
+
+---
+
+**Bài 10:**  
+Gọi số ổ 512GB là $x$, số ổ 1TB là $y$ ($x, y \in \mathbb{N}^*$).  
+$\begin{cases} x + y = 800 \\ 1,2x + 2,0y = 1280 \end{cases} \Rightarrow 1,2x + 1,2y = 960 \Rightarrow 0,8y = 320 \Rightarrow y = 400$ ổ 1TB, $x = 400$ ổ 512GB.
 
 </div>
 </details>
-

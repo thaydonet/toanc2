@@ -14,8 +14,10 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import UocChungBCNNInteractive from '../../components/interactive/UocChungBCNNInteractive';
 
 export const quizData = [
+  // ─── Phần 1: MCQ (8 câu) ────────────────────────────────────────────────────
   {
     type: "mcq",
     question: "Ước chung của $12$ và $18$ là:",
@@ -53,18 +55,6 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "msq",
-    question: "Những cặp số nào nguyên tố cùng nhau?",
-    option_a: "$(8, 15)$",
-    option_b: "$(12, 18)$",
-    option_c: "$(7, 11)$",
-    option_d: "$(9, 16)$",
-    correct_option: "A,C,D",
-    explanation: "ƯCLN$(8,15)=1$, ƯCLN$(12,18)=6$, ƯCLN$(7,11)=1$, ƯCLN$(9,16)=1$. Nguyên tố cùng nhau: A, C, D.",
-    difficulty_level: "medium",
-    is_dynamic: false,
-  },
-  {
     type: "mcq",
     question: "ƯCLN$(a, 1)$ bằng:",
     option_a: "$a$",
@@ -77,10 +67,14 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Tìm ƯCLN$(24, 36)$.",
-    correct_option: "12",
-    explanation: "$24 = 2^3 \\times 3$, $36 = 2^2 \\times 3^2$. ƯCLN = $2^2 \\times 3 = 12$.",
+    type: "mcq",
+    question: "Nếu $a \\vdots b$ thì ƯCLN$(a, b)$ bằng:",
+    option_a: "$a$",
+    option_b: "$b$",
+    option_c: "$1$",
+    option_d: "$a + b$",
+    correct_option: "B",
+    explanation: "Nếu $a \\vdots b$ thì $b$ là ước của $a$, và $b$ cũng là ước của chính nó, nên ƯCLN$(a, b) = b$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -107,6 +101,62 @@ export const quizData = [
     explanation: "ƯCLN$(!a!, !b!) = 1$ nên hai số nguyên tố cùng nhau.",
     difficulty_level: "medium",
     is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Trong các số sau, số nào là ước chung của $!a#24!$ và $!b#36!$?",
+    option_a: "$!tinh: gcd(!a!, !b!)!$",
+    option_b: "$!tinh: !a! + 1!!$",
+    option_c: "$!tinh: !b! + 1!!$",
+    option_d: "$!tinh: !a! + !b!!$",
+    correct_option: "A",
+    explanation: "ƯCLN$(!a!, !b!) = !tinh: gcd(!a!, !b!)!$ nên $!tinh: gcd(!a!, !b!)!$ là ước chung của hai số. Các số còn lại không chia hết cho cả $!a!$ và $!b!$.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+
+  // ─── Phần 2: MSQ (2 câu) ────────────────────────────────────────────────────
+  {
+    type: "msq",
+    question: "Những cặp số nào nguyên tố cùng nhau?",
+    option_a: "$(8, 15)$",
+    option_b: "$(12, 18)$",
+    option_c: "$(7, 11)$",
+    option_d: "$(9, 16)$",
+    correct_option: "A,C,D",
+    explanation: "ƯCLN$(8,15)=1$, ƯCLN$(12,18)=6$, ƯCLN$(7,11)=1$, ƯCLN$(9,16)=1$. Nguyên tố cùng nhau: A, C, D.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Những số nào là ước chung của $24$ và $36$?",
+    option_a: "$4$",
+    option_b: "$6$",
+    option_c: "$12$",
+    option_d: "$8$",
+    correct_option: "A,B,C",
+    explanation: "$24 \\vdots 4, 6, 8, 12$ và $36 \\vdots 4, 6, 12$ (không chia hết cho $8$). Vậy ước chung là $4, 6, 12$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+
+  // ─── Phần 3: SA (2 câu) ─────────────────────────────────────────────────────
+  {
+    type: "sa",
+    question: "Tìm ƯCLN$(24, 36)$.",
+    correct_option: "12",
+    explanation: "$24 = 2^3 \\times 3$, $36 = 2^2 \\times 3^2$. ƯCLN = $2^2 \\times 3 = 12$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "sa",
+    question: "ƯCLN của $2^2 \\times 3$ và $2 \\times 3^2$ là bao nhiêu?",
+    correct_option: "6",
+    explanation: "Thừa số chung: $2$ (mũ nhỏ nhất $1$) và $3$ (mũ nhỏ nhất $1$). ƯCLN = $2 \\times 3 = 6$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
   },
 ];
 
@@ -366,7 +416,9 @@ Theo tính chất 5: ƯCLN$(2, 3) = 1$
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
-<QuizSession client:load questions={quizData} />
+<UocChungBCNNInteractive client:load />
+
+<QuizSession client:load questions={quizData} groupedShuffle />
 
 </LuyenTap>
 
@@ -427,6 +479,32 @@ b) Số ô vuông:
 
 </div>
 
+**📝 Bài toán 3:** Một kho lương thực có $180$ kg gạo tẻ và $120$ kg gạo nếp. Người ta muốn chia đều toàn bộ gạo vào các túi, mỗi túi có số gạo tẻ và số gạo nếp như nhau.
+
+a) Có thể chia được nhiều nhất bao nhiêu túi?
+
+b) Mỗi túi có bao nhiêu kg gạo tẻ và bao nhiêu kg gạo nếp?
+
+<div style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+a) Số túi nhiều nhất = ƯCLN$(180, 120)$
+
+Phân tích:
+- $180 = 2^2 \times 3^2 \times 5$
+- $120 = 2^3 \times 3 \times 5$
+
+ƯCLN$(180, 120) = 2^2 \times 3 \times 5 = 60$
+
+**Có thể chia được nhiều nhất 60 túi.**
+
+b) Mỗi túi có:
+- Gạo tẻ: $180 : 60 = 3$ (kg)
+- Gạo nếp: $120 : 60 = 2$ (kg)
+
+</div>
+
 </VanDung>
 
 <GhiNho>
@@ -443,9 +521,11 @@ b) Số ô vuông:
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận (10 câu từ dễ đến khó)</h3>
 
-**Bài 1:** Tìm ước chung của các cặp số sau:
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-top:2rem;">
+
+**Bài 1 (Dễ - Nhận biết):** Tìm ước chung của các cặp số sau:
 
 a) $ƯC(10, 15)$
 
@@ -455,7 +535,7 @@ c) $ƯC(20, 30)$
 
 d) $ƯC(12, 16)$
 
-**Bài 2:** Tìm ƯCLN bằng cách liệt kê ước:
+**Bài 2 (Dễ - Nhận biết):** Tìm ƯCLN bằng cách liệt kê ước:
 
 a) ƯCLN$(12, 18)$
 
@@ -465,7 +545,15 @@ c) ƯCLN$(20, 30)$
 
 d) ƯCLN$(14, 21)$
 
-**Bài 3:** Tìm ƯCLN bằng phân tích ra thừa số nguyên tố:
+**Bài 3 (Dễ - Nhận biết):** Áp dụng tính chất để tìm nhanh:
+
+a) ƯCLN$(17, 1)$
+
+b) ƯCLN$(24, 48)$
+
+c) ƯCLN$(5, 7)$
+
+**Bài 4 (Thông hiểu):** Tìm ƯCLN bằng phân tích ra thừa số nguyên tố:
 
 a) ƯCLN$(24, 36)$
 
@@ -475,7 +563,7 @@ c) ƯCLN$(60, 90)$
 
 d) ƯCLN$(100, 150)$
 
-**Bài 4:** Kiểm tra các cặp số sau có nguyên tố cùng nhau không:
+**Bài 5 (Thông hiểu):** Kiểm tra các cặp số sau có nguyên tố cùng nhau không:
 
 a) $(8, 15)$
 
@@ -485,7 +573,7 @@ c) $(9, 16)$
 
 d) $(14, 21)$
 
-**Bài 5:** Tìm ƯCLN của ba số:
+**Bài 6 (Thông hiểu):** Tìm ƯCLN của ba số:
 
 a) ƯCLN$(12, 18, 24)$
 
@@ -495,7 +583,9 @@ c) ƯCLN$(15, 25, 35)$
 
 d) ƯCLN$(24, 36, 48)$
 
-**Bài 6 (Thực tế):** Một lớp học có $30$ học sinh nam và $24$ học sinh nữ. Cô giáo muốn chia đều thành các nhóm, mỗi nhóm có số nam và số nữ như nhau.
+**Bài 7 (Vận dụng):** Tìm ƯCLN$(56, 84)$ rồi liệt kê tất cả các ước chung của $56$ và $84$.
+
+**Bài 8 (Vận dụng thực tế):** Một lớp học có $30$ học sinh nam và $24$ học sinh nữ. Cô giáo muốn chia đều thành các nhóm, mỗi nhóm có số nam và số nữ như nhau.
 
 a) Có thể chia được nhiều nhất bao nhiêu nhóm?
 
@@ -503,23 +593,120 @@ b) Mỗi nhóm có bao nhiêu học sinh nam và bao nhiêu học sinh nữ?
 
 c) Mỗi nhóm có tất cả bao nhiêu học sinh?
 
-d) Nếu muốn mỗi nhóm có đúng $9$ học sinh, có thể chia được không?
+**Bài 9 (Vận dụng):** Tìm hai số tự nhiên $a$ và $b$ biết $a \\times b = 90$ và ƯCLN$(a, b) = 3$.
 
-<details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+**Bài 10 (Vận dụng cao):** Biết ƯCLN$(a, b) = 6$ và $a \\times b = 288$. Tìm hai số tự nhiên $a$ và $b$.
 
-**Bài 1:** a) $\{1, 5\}$; b) $\{1, 2, 3, 6\}$; c) $\{1, 2, 5, 10\}$; d) $\{1, 2, 4\}$
+</div>
 
-**Bài 2:** a) $6$; b) $5$; c) $10$; d) $7$
+<details style="margin-top:2rem;padding:1.25rem;background:#f0f9ff;border-radius:12px;border:2px solid #bae6fd;">
+<summary style="cursor:pointer;font-weight:700;color:#0284c7;font-size:1.1rem;user-select:none;">
+📖 XEM LỜI GIẢI CHI TIẾT 10 BÀI TẬP TỰ LUẬN
+</summary>
 
-**Bài 3:** a) $12$; b) $24$; c) $30$; d) $50$
+<div style="margin-top:1.25rem;padding:1rem;background:white;border-radius:8px;color:#1e293b;line-height:1.7;">
 
-**Bài 4:** a) Có; b) Không; c) Có; d) Không
+**Bài 1:**
+a) Ư(10) = $\{1, 2, 5, 10\}$; Ư(15) = $\{1, 3, 5, 15\}$. $ƯC(10, 15) = \{1, 5\}$.
 
-**Bài 5:** a) $6$; b) $10$; c) $5$; d) $12$
+b) Ư(18) = $\{1, 2, 3, 6, 9, 18\}$; Ư(24) = $\{1, 2, 3, 4, 6, 8, 12, 24\}$. $ƯC(18, 24) = \{1, 2, 3, 6\}$.
 
-**Bài 6:** a) $6$ nhóm; b) $5$ nam, $4$ nữ; c) $9$ học sinh; d) Có (vì $5 + 4 = 9$)
+c) Ư(20) = $\{1, 2, 4, 5, 10, 20\}$; Ư(30) = $\{1, 2, 3, 5, 6, 10, 15, 30\}$. $ƯC(20, 30) = \{1, 2, 5, 10\}$.
+
+d) Ư(12) = $\{1, 2, 3, 4, 6, 12\}$; Ư(16) = $\{1, 2, 4, 8, 16\}$. $ƯC(12, 16) = \{1, 2, 4\}$.
+
+---
+
+**Bài 2:**
+a) $ƯC(12, 18) = \{1, 2, 3, 6\}$ ⇒ ƯCLN = $6$.
+
+b) $ƯC(15, 25) = \{1, 5\}$ ⇒ ƯCLN = $5$.
+
+c) $ƯC(20, 30) = \{1, 2, 5, 10\}$ ⇒ ƯCLN = $10$.
+
+d) Ư(14) = $\{1, 2, 7, 14\}$; Ư(21) = $\{1, 3, 7, 21\}$ ⇒ $ƯC = \{1, 7\}$ ⇒ ƯCLN = $7$.
+
+---
+
+**Bài 3:**
+a) ƯCLN$(17, 1) = 1$ (tính chất 1).
+
+b) Vì $48 \vdots 24$ nên ƯCLN$(24, 48) = 24$.
+
+c) ƯCLN$(5, 7) = 1$ (hai số nguyên tố cùng nhau).
+
+---
+
+**Bài 4:**
+a) $24 = 2^3 \times 3$; $36 = 2^2 \times 3^2$. ƯCLN = $2^2 \times 3 = 12$.
+
+b) $48 = 2^4 \times 3$; $72 = 2^3 \times 3^2$. ƯCLN = $2^3 \times 3 = 24$.
+
+c) $60 = 2^2 \times 3 \times 5$; $90 = 2 \times 3^2 \times 5$. ƯCLN = $2 \times 3 \times 5 = 30$.
+
+d) $100 = 2^2 \times 5^2$; $150 = 2 \times 3 \times 5^2$. ƯCLN = $2 \times 5^2 = 50$.
+
+---
+
+**Bài 5:**
+a) $8 = 2^3$; $15 = 3 \times 5$. Không có thừa số chung ⇒ ƯCLN = $1$. **Nguyên tố cùng nhau.**
+
+b) $12 = 2^2 \times 3$; $18 = 2 \times 3^2$. ƯCLN = $6 \neq 1$. **Không nguyên tố cùng nhau.**
+
+c) $9 = 3^2$; $16 = 2^4$. ƯCLN = $1$. **Nguyên tố cùng nhau.**
+
+d) $14 = 2 \times 7$; $21 = 3 \times 7$. ƯCLN = $7 \neq 1$. **Không nguyên tố cùng nhau.**
+
+---
+
+**Bài 6:**
+a) ƯCLN$(12, 18) = 6$, ƯCLN$(6, 24) = 6$. Vậy ƯCLN$(12, 18, 24) = 6$.
+
+b) ƯCLN$(20, 30) = 10$, ƯCLN$(10, 40) = 10$. Vậy ƯCLN$(20, 30, 40) = 10$.
+
+c) ƯCLN$(15, 25) = 5$, ƯCLN$(5, 35) = 5$. Vậy ƯCLN$(15, 25, 35) = 5$.
+
+d) ƯCLN$(24, 36) = 12$, ƯCLN$(12, 48) = 12$. Vậy ƯCLN$(24, 36, 48) = 12$.
+
+---
+
+**Bài 7:**
+$56 = 2^3 \times 7$; $84 = 2^2 \times 3 \times 7$.
+
+ƯCLN$(56, 84) = 2^2 \times 7 = 28$.
+
+Các ước chung của $56$ và $84$ là các ước của $28$: $1, 2, 4, 7, 14, 28$.
+
+---
+
+**Bài 8:**
+a) Số nhóm nhiều nhất = ƯCLN$(30, 24) = 6$ (vì $30 = 2 \times 3 \times 5$, $24 = 2^3 \times 3$, ƯCLN = $2 \times 3 = 6$).
+
+b) Mỗi nhóm có: $30 : 6 = 5$ học sinh nam, $24 : 6 = 4$ học sinh nữ.
+
+c) Mỗi nhóm có tất cả: $5 + 4 = 9$ học sinh.
+
+---
+
+**Bài 9:**
+Đặt $a = 3m$, $b = 3n$ với ƯCLN$(m, n) = 1$.
+
+$a \times b = 90 \Rightarrow 3m \times 3n = 90 \Rightarrow mn = 10$.
+
+Các cặp $(m, n)$ với ƯCLN$(m, n) = 1$ và $mn = 10$: $(1, 10), (2, 5), (5, 2), (10, 1)$.
+
+Vậy các cặp $(a, b)$: $(3, 30), (6, 15), (15, 6), (30, 3)$.
+
+---
+
+**Bài 10:**
+Đặt $a = 6m$, $b = 6n$ với ƯCLN$(m, n) = 1$.
+
+$a \times b = 288 \Rightarrow 36mn = 288 \Rightarrow mn = 8$.
+
+Các cặp $(m, n)$ với ƯCLN$(m, n) = 1$ và $mn = 8$: $(1, 8), (8, 1)$.
+
+Vậy các cặp $(a, b)$: $(6, 48)$ hoặc $(48, 6)$.
 
 </div>
 </details>
