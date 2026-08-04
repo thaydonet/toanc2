@@ -30,58 +30,110 @@ export const quizData = [
   },
   {
     type: "mcq",
-    question: "Nếu y tỉ lệ nghịch với x theo hệ số a thì:",
-    option_a: "$y = \\\\frac{a}{x}$",
+    question: "Nếu $y$ tỉ lệ nghịch với $x$ theo hệ số tỉ lệ $a$ ($a \neq 0$) thì:",
+    option_a: "$y = \\dfrac{a}{x}$",
     option_b: "$y = ax$",
     option_c: "$y = x + a$",
     option_d: "$y = x - a$",
     correct_option: "A",
-    explanation: "Công thức đại lượng tỉ lệ nghịch: $y = \\\\frac{a}{x}$ với a là hệ số tỉ lệ.",
+    explanation: "Công thức đại lượng tỉ lệ nghịch: $y = \\dfrac{a}{x}$ hay $xy = a$.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Cho y tỉ lệ nghịch với x. Khi x = 3 thì y = 12. Hệ số tỉ lệ a là:",
+    question: "Cho $y$ tỉ lệ nghịch với $x$. Khi $x = 3$ thì $y = 12$. Hệ số tỉ lệ $a$ là:",
     option_a: "36",
     option_b: "4",
     option_c: "9",
     option_d: "15",
     correct_option: "A",
-    explanation: "Từ $xy = a$, ta có $3 \\\\times 12 = 36$, suy ra $a = 36$",
+    explanation: "Từ $a = x \cdot y$, ta có $a = 3 \times 12 = 36$.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Nếu y tỉ lệ nghịch với x và x tăng 3 lần thì y:",
+    question: "Nếu $y$ tỉ lệ nghịch với $x$ và $x$ tăng 3 lần thì $y$:",
     option_a: "Giảm 3 lần",
     option_b: "Tăng 3 lần",
     option_c: "Không đổi",
     option_d: "Giảm 9 lần",
     correct_option: "A",
-    explanation: "Khi x tăng (hoặc giảm) bao nhiêu lần thì y giảm (hoặc tăng) bấy nhiêu lần.",
+    explanation: "Khi $x$ tăng (hoặc giảm) bao nhiêu lần thì $y$ giảm (hoặc tăng) bấy nhiêu lần.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
-    question: "Ví dụ nào là đại lượng tỉ lệ nghịch?",
-    option_a: "Vận tốc và thời gian (với quãng đường không đổi)",
-    option_b: "Số công nhân và thời gian hoàn thành (với khối lượng công việc không đổi)",
-    option_c: "Chiều dài và chiều rộng hình chữ nhật (với diện tích không đổi)",
-    option_d: "Quãng đường và thời gian (với vận tốc không đổi)",
+    question: "Ví dụ nào sau đây là hai đại lượng tỉ lệ nghịch?",
+    option_a: "Vận tốc và thời gian (khi quãng đường không đổi)",
+    option_b: "Số công nhân và thời gian hoàn thành (khi khối lượng công việc không đổi)",
+    option_c: "Chiều dài và chiều rộng hình chữ nhật (khi diện tích không đổi)",
+    option_d: "Quãng đường và thời gian (khi vận tốc không đổi)",
     correct_option: "A,B,C",
     explanation: "A, B, C đều là tỉ lệ nghịch. D là tỉ lệ thuận.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Cho y tỉ lệ nghịch với x theo hệ số a = 24. Khi x = 6 thì y bằng bao nhiêu?",
-    correct_option: "4",
-    explanation: "$y = \\\\frac{a}{x} = \\\\frac{24}{6} = 4$",
+    type: "mcq",
+    question: "Cho $y$ tỉ lệ nghịch với $x$ theo hệ số $a = 24$. Khi $x = 6$ thì $y$ bằng:",
+    option_a: "4",
+    option_b: "144",
+    option_c: "18",
+    option_d: "30",
+    correct_option: "A",
+    explanation: "$y = \\dfrac{a}{x} = \\dfrac{24}{6} = 4$.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $y$ tỉ lệ nghịch với $x$ theo hệ số $a = !a(24,36,48,60)!$. Khi $x = !b(4,6,8)!$ thì $y$ bằng:",
+    option_a: "${tinh: !a! / !b!}",
+    option_b: "${tinh: !a! / !b! + 2}",
+    option_c: "${tinh: !a! / !b! - 2}",
+    option_d: "${tinh: !a! * !b!}",
+    correct_option: "A",
+    explanation: "$y = \\dfrac{!a!}{!b!} = ${tinh: !a! / !b!}.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Một công việc nếu do 4 người làm thì mất 12 giờ. Hỏi nếu 6 người làm (với cùng năng suất) thì mất bao nhiêu giờ?",
+    option_a: "8 giờ",
+    option_b: "18 giờ",
+    option_c: "9 giờ",
+    option_d: "10 giờ",
+    correct_option: "A",
+    explanation: "Số công nhân và thời gian là 2 đại lượng tỉ lệ nghịch. Thời gian $= (4 \\times 12) : 6 = 8$ giờ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một ô tô đi hết quãng đường AB với vận tốc 60 km/h mất 2 giờ. Nếu xe đi với vận tốc 40 km/h thì đi hết quãng đường đó mất bao nhiêu giờ?",
+    option_a: "3 giờ",
+    option_b: "4 giờ",
+    option_c: "2.5 giờ",
+    option_d: "1.5 giờ",
+    correct_option: "A",
+    explanation: "Quãng đường $AB = 60 \\times 2 = 120$ km. Thời gian đi với vận tốc 40 km/h là $120 : 40 = 3$ giờ.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nếu $y$ tỉ lệ nghịch với $x$ theo hệ số tỉ lệ $a = 10$ thì $x$ tỉ lệ nghịch với $y$ theo hệ số tỉ lệ nào?",
+    option_a: "10",
+    option_b: "$\\dfrac{1}{10}$",
+    option_c: "-10",
+    option_d: "$-\\dfrac{1}{10}$",
+    correct_option: "A",
+    explanation: "Vì $x \\cdot y = 10 \Rightarrow x = \\dfrac{10}{y}$ nên $x$ tỉ lệ nghịch với $y$ cũng theo hệ số $a = 10$.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
 ];
@@ -295,6 +347,211 @@ Suy ra:
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Nhận biết hai đại lượng tỉ lệ nghịch và tìm hệ số tỉ lệ</h4>
+
+**Phương pháp:** 
+- Hai đại lượng $y$ và $x$ tỉ lệ nghịch nếu có công thức $y = \dfrac{a}{x}$ hay $x \cdot y = a$ (với $a \neq 0$). 
+- Khi đó $a$ là hệ số tỉ lệ. Hệ số tỉ lệ $a = x \cdot y$.
+- Để kiểm tra hai đại lượng có tỉ lệ nghịch không, ta xét tích các giá trị tương ứng của chúng. Nếu tích này không đổi thì chúng tỉ lệ nghịch.
+
+**Ví dụ 1.1:** Cho biết $y$ tỉ lệ nghịch với $x$. Khi $x = 8$ thì $y = 15$. Tìm hệ số tỉ lệ của $y$ đối với $x$ và viết công thức biểu diễn $y$ theo $x$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Vì $y$ tỉ lệ nghịch với $x$ nên hệ số tỉ lệ $a = x \cdot y = 8 \cdot 15 = 120$.
+Công thức biểu diễn $y$ theo $x$ là: $y = \dfrac{120}{x}$.
+</details>
+
+**Ví dụ 1.2:** Đại lượng $x$ tỉ lệ nghịch với $y$ theo hệ số tỉ lệ $a = -60$. Hỏi $y$ tỉ lệ nghịch với $x$ theo hệ số tỉ lệ nào? Viết công thức biểu diễn $y$ theo $x$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Vì $x$ tỉ lệ nghịch với $y$ theo hệ số $a = -60$ nên $x \cdot y = -60$.
+Do $x \cdot y = -60$ cũng có nghĩa là $y \cdot x = -60$, nên $y$ tỉ lệ nghịch với $x$ cũng theo hệ số tỉ lệ là $-60$.
+Công thức: $y = \dfrac{-60}{x}$.
+</details>
+
+**Ví dụ 1.3:** Cho bảng giá trị sau:
+
+| x | 2 | 3 | 4 | 6 |
+|---|---|---|---|---|
+| y | 12| 8 | 6 | 4 |
+
+Hỏi hai đại lượng $x$ và $y$ có tỉ lệ nghịch với nhau không? Vì sao?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Xét tích các giá trị tương ứng $x \cdot y$:
+$2 \cdot 12 = 24$; $3 \cdot 8 = 24$; $4 \cdot 6 = 24$; $6 \cdot 4 = 24$.
+Vì tất cả các tích đều bằng 24 (không đổi), nên $x$ và $y$ tỉ lệ nghịch với nhau theo hệ số tỉ lệ 24.
+</details>
+
+**Bài toán thực tế 1.1:** Biết rằng một công việc hoàn thành với số ngày tỉ lệ nghịch với số công nhân. Nếu có 15 công nhân thì làm xong trong 8 ngày. Hỏi hệ số tỉ lệ là bao nhiêu và hệ số đó có ý nghĩa gì?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Gọi số công nhân là $x$ và số ngày là $y$. $x$ và $y$ tỉ lệ nghịch.
+Hệ số tỉ lệ $a = x \cdot y = 15 \cdot 8 = 120$.
+Ý nghĩa: Cần tổng cộng 120 ngày công để hoàn thành công việc (nếu 1 người làm thì mất 120 ngày).
+</details>
+
+**Bài toán thực tế 1.2:** Thể tích của một khối khí không đổi là $V$, áp suất của nó là $p$. Trong quá trình đẳng nhiệt, người ta đo được khi $p = 2 \text{ atm}$ thì $V = 15 \text{ lít}$. Khẳng định $p$ tỉ lệ nghịch với $V$ là đúng hay sai (theo định luật Boyle-Mariotte)? Tìm hệ số tỉ lệ.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Đúng, trong vật lý, áp suất và thể tích khí lý tưởng ở nhiệt độ không đổi tỉ lệ nghịch với nhau.
+Hệ số tỉ lệ: $a = p \cdot V = 2 \cdot 15 = 30$.
+</details>
+
+**Bài toán thực tế 1.3:** Một hình chữ nhật có diện tích không đổi là $48 \text{ cm}^2$. Khi chiều rộng bằng 4 cm thì chiều dài là 12 cm. Mối quan hệ giữa chiều rộng $a$ và chiều dài $b$ của hình chữ nhật này là gì? Tìm hệ số tỉ lệ.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Diện tích hình chữ nhật là $a \cdot b = 48$.
+Vì tích của chiều dài và chiều rộng không đổi (luôn bằng 48) nên chiều dài và chiều rộng là hai đại lượng tỉ lệ nghịch.
+Hệ số tỉ lệ chính là diện tích $48$.
+</details>
+
+---
+
+<h4 id="dang-2">Dạng 2: Tìm giá trị chưa biết của đại lượng tỉ lệ nghịch</h4>
+
+**Phương pháp:** 
+Sử dụng tính chất của hai đại lượng tỉ lệ nghịch:
+- Tích hai giá trị tương ứng luôn không đổi: $x_1 \cdot y_1 = x_2 \cdot y_2 = a$.
+- Tỉ số hai giá trị bất kì của đại lượng này bằng nghịch đảo tỉ số hai giá trị tương ứng của đại lượng kia: $\dfrac{y_1}{y_2} = \dfrac{x_2}{x_1}$.
+
+**Ví dụ 2.1:** Biết $y$ tỉ lệ nghịch với $x$. Khi $x = -4$ thì $y = -15$. Tìm giá trị của $y$ khi $x = 10$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Hệ số tỉ lệ $a = (-4) \cdot (-15) = 60$. Công thức $y = \dfrac{60}{x}$.
+Khi $x = 10$, ta có $y = \dfrac{60}{10} = 6$.
+</details>
+
+**Ví dụ 2.2:** Cho $x$ và $y$ là hai đại lượng tỉ lệ nghịch với nhau. Biết $x_1 = 3, y_1 = 16$ và $x_2 = 12$. Tìm $y_2$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Theo tính chất: $x_1 \cdot y_1 = x_2 \cdot y_2 \Rightarrow 3 \cdot 16 = 12 \cdot y_2$.
+Suy ra $48 = 12 \cdot y_2 \Rightarrow y_2 = 4$.
+</details>
+
+**Ví dụ 2.3:** Cho biết $x$ và $y$ tỉ lệ nghịch theo hệ số $a = -24$. Khi $y = 8$, tìm $x$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Ta có $x \cdot y = -24$.
+Thay $y = 8$ vào: $x \cdot 8 = -24 \Rightarrow x = -24 : 8 = -3$.
+</details>
+
+**Bài toán thực tế 2.1:** Cùng một quãng đường AB, một xe máy chạy với vận tốc 45 km/h mất 4 giờ. Nếu chạy với vận tốc 60 km/h thì mất bao nhiêu thời gian?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Trên cùng một quãng đường, vận tốc và thời gian là hai đại lượng tỉ lệ nghịch.
+Ta có: $v_1 \cdot t_1 = v_2 \cdot t_2 \Rightarrow 45 \cdot 4 = 60 \cdot t_2$.
+$180 = 60 \cdot t_2 \Rightarrow t_2 = 3$ (giờ).
+Vậy chạy với vận tốc 60 km/h thì mất 3 giờ.
+</details>
+
+**Bài toán thực tế 2.2:** Để cày xong một cánh đồng trong 14 ngày thì cần 18 máy cày (có cùng năng suất). Hỏi muốn cày xong cánh đồng đó trong 12 ngày thì cần bao nhiêu máy cày?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Số ngày hoàn thành và số máy cày tỉ lệ nghịch với nhau.
+Ta có: $14 \cdot 18 = 12 \cdot x$ (với $x$ là số máy cày cần thiết).
+$252 = 12 \cdot x \Rightarrow x = 252 : 12 = 21$.
+Vậy cần 21 máy cày (tức là cần bổ sung thêm $21 - 18 = 3$ máy).
+</details>
+
+**Bài toán thực tế 2.3:** Một đội công nhân chuẩn bị đủ gạo cho 45 người ăn trong 15 ngày. Nếu số người tăng thêm 5 người thì số gạo đó đủ ăn trong bao nhiêu ngày? (Biết khẩu phần ăn của mỗi người như nhau).
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Sau khi tăng, số người là $45 + 5 = 50$ (người).
+Số người ăn và số ngày ăn tỉ lệ nghịch với nhau:
+$45 \cdot 15 = 50 \cdot y$ (với $y$ là số ngày).
+$675 = 50 \cdot y \Rightarrow y = 675 : 50 = 13.5$ (ngày).
+Vậy số gạo đó đủ ăn trong 13.5 ngày.
+</details>
+
+---
+
+<h4 id="dang-3">Dạng 3: Bài toán chia một số thành các phần tỉ lệ nghịch</h4>
+
+**Phương pháp:** 
+- Nếu chia số $S$ thành 3 phần $x, y, z$ tỉ lệ nghịch với $a, b, c$, thì $x, y, z$ sẽ tỉ lệ thuận với $\dfrac{1}{a}, \dfrac{1}{b}, \dfrac{1}{c}$.
+- Nghĩa là: $a \cdot x = b \cdot y = c \cdot z$.
+- Đưa về bài toán tỉ lệ thuận bằng cách chia cả 3 biểu thức cho BCNN(a,b,c), rồi áp dụng tính chất dãy tỉ số bằng nhau.
+
+**Ví dụ 3.1:** Chia số 310 thành 3 phần tỉ lệ nghịch với 2, 3 và 5.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Gọi 3 phần là $x, y, z$. Ta có $2x = 3y = 5z$ và $x + y + z = 310$.
+Chia cho BCNN(2,3,5) = 30:
+$\dfrac{2x}{30} = \dfrac{3y}{30} = \dfrac{5z}{30} \Rightarrow \dfrac{x}{15} = \dfrac{y}{10} = \dfrac{z}{6}$.
+Áp dụng tính chất: $\dfrac{x}{15} = \dfrac{y}{10} = \dfrac{z}{6} = \dfrac{x+y+z}{15+10+6} = \dfrac{310}{31} = 10$.
+Vậy $x = 150, y = 100, z = 60$.
+</details>
+
+**Ví dụ 3.2:** Tìm 3 số $a, b, c$ tỉ lệ nghịch với 5, 2, 4. Biết tổng $a + b + c = 114$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Ta có $5a = 2b = 4c$. BCNN(5,2,4) = 20.
+$\dfrac{a}{4} = \dfrac{b}{10} = \dfrac{c}{5} = \dfrac{a+b+c}{4+10+5} = \dfrac{114}{19} = 6$.
+Suy ra $a = 24, b = 60, c = 30$.
+</details>
+
+**Ví dụ 3.3:** Biết 3 cạnh của một tam giác tỉ lệ nghịch với 3, 4, 6 và chu vi tam giác bằng 54 cm. Tính độ dài các cạnh của tam giác đó.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Gọi 3 cạnh là $x,y,z$. Ta có $3x = 4y = 6z$ và $x + y + z = 54$.
+BCNN(3,4,6) = 12 $\Rightarrow \dfrac{x}{4} = \dfrac{y}{3} = \dfrac{z}{2}$.
+$\dfrac{x}{4} = \dfrac{y}{3} = \dfrac{z}{2} = \dfrac{54}{9} = 6$.
+Các cạnh là $x = 24\text{ cm}, y = 18\text{ cm}, z = 12\text{ cm}$.
+</details>
+
+**Bài toán thực tế 3.1:** Có 3 đội máy san đất cùng làm 3 khối lượng công việc như nhau. Đội thứ nhất hoàn thành trong 4 ngày, đội thứ hai trong 6 ngày, đội thứ ba trong 8 ngày. Biết tổng số máy của ba đội là 26 máy (năng suất các máy như nhau). Hỏi mỗi đội có bao nhiêu máy?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Gọi số máy của 3 đội là $x, y, z$. Số máy tỉ lệ nghịch với thời gian nên:
+$4x = 6y = 8z$ và $x + y + z = 26$.
+Chia cho 24 (BCNN của 4, 6, 8):
+$\dfrac{x}{6} = \dfrac{y}{4} = \dfrac{z}{3} = \dfrac{26}{13} = 2$.
+Vậy đội 1 có 12 máy, đội 2 có 8 máy, đội 3 có 6 máy.
+</details>
+
+**Bài toán thực tế 3.2:** Một người mua 3 loại trái cây: Táo, Nho, Cam, tổng cộng hết cùng một số tiền. Giá 1 kg Táo là 40k, 1 kg Nho là 60k, 1 kg Cam là 30k. Biết người đó mua tổng cộng 18 kg trái cây. Hỏi người đó mua bao nhiêu kg mỗi loại?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Khối lượng mua được tỉ lệ nghịch với giá tiền. Gọi số kg mỗi loại là $x, y, z$.
+Ta có $40x = 60y = 30z$ và $x + y + z = 18$.
+Chia cho 120: $\dfrac{x}{3} = \dfrac{y}{2} = \dfrac{z}{4} = \dfrac{18}{9} = 2$.
+Người đó mua 6 kg Táo, 4 kg Nho, 8 kg Cam.
+</details>
+
+**Bài toán thực tế 3.3:** Một hồ bơi có thể được làm đầy bởi 3 vòi nước khác nhau. Biết thời gian để 3 vòi chảy riêng đầy bể lần lượt là 2 giờ, 3 giờ, 6 giờ. Nếu cả 3 vòi cùng chảy thì bao lâu đầy bể? (Đây là một dạng toán liên quan năng suất và thời gian)
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+Trong 1 giờ: Vòi 1 chảy $\dfrac{1}{2}$ bể, Vòi 2 chảy $\dfrac{1}{3}$ bể, Vòi 3 chảy $\dfrac{1}{6}$ bể.
+Cả 3 vòi cùng chảy trong 1 giờ được: $\dfrac{1}{2} + \dfrac{1}{3} + \dfrac{1}{6} = \dfrac{3+2+1}{6} = 1$ (bể).
+Vậy nếu cả 3 vòi cùng chảy thì sau 1 giờ bể sẽ đầy.
+</details>
+
+</VanDung>
+
+
 <LuyenTap>
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
@@ -345,79 +602,53 @@ c) Khi $t = 10$ ngày: $n = \frac{180}{10} = 18$ người
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho biết $y$ tỉ lệ nghịch với $x$ theo hệ số $a = 36$.
+**Bài 1:** Cho biết $y$ tỉ lệ nghịch với $x$ theo hệ số tỉ lệ là $15$.
+a) Biểu diễn $y$ theo $x$.
+b) Tính $y$ khi $x = 3, x = -5$.
 
-a) Viết công thức liên hệ giữa $y$ và $x$
+**Bài 2:** Hai đại lượng $x$ và $y$ tỉ lệ nghịch. Biết khi $x = 8$ thì $y = 5$.
+a) Tìm hệ số tỉ lệ.
+b) Tính $x$ khi $y = -10$.
 
-b) Tính $y$ khi $x = 9$
+**Bài 3:** Cho $x, y$ tỉ lệ nghịch. Biết $x_1 = 4, y_1 = 20$. Tìm $y_2$ biết $x_2 = 10$.
 
-c) Tính $x$ khi $y = 12$
+**Bài 4:** 12 người thợ xây xong một bức tường trong 15 ngày. Hỏi nếu chỉ có 9 người thợ (năng suất như nhau) thì sẽ xây xong bức tường đó trong bao nhiêu ngày?
 
-**Bài 2:** Biết $y$ tỉ lệ nghịch với $x$. Khi $x = 8$ thì $y = 5$.
+**Bài 5:** Một xe ô tô chạy với vận tốc 45 km/h đi từ A đến B mất 4 giờ. Lúc về, ô tô chạy với vận tốc 60 km/h thì đi từ B về A mất bao nhiêu thời gian?
 
-a) Tìm hệ số tỉ lệ
+**Bài 6:** Chia số 104 thành 3 phần tỉ lệ nghịch với 2, 3, 4. Tìm ba phần đó.
 
-b) Tính $y$ khi $x = 10$
+**Bài 7:** Bốn đội máy cày có 36 máy (cùng năng suất) làm việc trên bốn cánh đồng có diện tích bằng nhau. Đội 1 hoàn thành trong 4 ngày, đội 2 trong 6 ngày, đội 3 trong 10 ngày, đội 4 trong 12 ngày. Hỏi mỗi đội có bao nhiêu máy?
 
-c) Nếu $x$ tăng 4 lần thì $y$ thay đổi như thế nào?
+**Bài 8:** Ba người cùng làm một công việc. Người thứ nhất làm xong trong 3 giờ, người thứ hai trong 4 giờ, người thứ ba trong 6 giờ. Nếu họ làm cùng nhau thì sẽ chia tiền công 1.800.000 đồng như thế nào (tiền công chia tỉ lệ thuận với năng suất, hay tỉ lệ nghịch với thời gian làm một mình)?
 
-**Bài 3:** Cho hai đại lượng $x$ và $y$ tỉ lệ nghịch. Điền vào bảng:
+**Bài 9:** Một xưởng in có 6 máy in giống nhau in xong một số tài liệu trong 8 giờ. Nếu muốn in xong trong 4 giờ thì cần thêm bao nhiêu máy in nữa?
 
-| x | 2 | 4 | 5 | ? |
-|---|---|---|---|---|
-| y | 20 | ? | ? | 5 |
-
-**Bài 4:** Chia số 260 thành ba phần tỉ lệ nghịch với:
-
-a) 2, 3, 4
-
-b) 1, 2, 5
-
-c) 3, 4, 6
-
-**Bài 5:** Một ô tô đi từ A đến B với vận tốc 60 km/h mất 4 giờ.
-
-a) Vận tốc và thời gian có tỉ lệ nghịch không?
-
-b) Nếu vận tốc tăng lên 80 km/h thì thời gian đi là bao nhiêu?
-
-c) Muốn đi hết quãng đường trong 3 giờ thì vận tốc phải là bao nhiêu?
-
-**Bài 6:** Một hình chữ nhật có diện tích 120 cm². Biết khi chiều dài là 15 cm thì chiều rộng là 8 cm.
-
-a) Chứng tỏ chiều dài tỉ lệ nghịch với chiều rộng
-
-b) Tính chiều rộng khi chiều dài là 20 cm
-
-c) Tính chiều dài khi chiều rộng là 10 cm
-
-**Bài 7:** Ba đội công nhân cùng làm một công việc. Thời gian hoàn thành của ba đội tỉ lệ nghịch với số công nhân là 6, 8, 12. Biết đội thứ nhất hoàn thành trong 20 ngày. Tính thời gian hoàn thành của hai đội còn lại.
-
-**Bài 8:** Một lượng gạo đủ cho 30 người ăn trong 24 ngày.
-
-a) Nếu có 40 người thì ăn hết trong bao nhiêu ngày?
-
-b) Muốn ăn hết trong 20 ngày thì đủ cho bao nhiêu người?
+**Bài 10:** Hai ô tô xuất phát cùng một lúc từ A đến B. Vận tốc xe 1 bằng $\dfrac{4}{5}$ vận tốc xe 2. Biết thời gian xe 1 đi nhiều hơn xe 2 là 30 phút. Tính thời gian đi của mỗi xe.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
 <summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $y = \frac{36}{x}$; b) $y = 4$; c) $x = 3$
+**Bài 1:** a) $y = \dfrac{15}{x}$; b) $y = 5$ (khi $x=3$), $y = -3$ (khi $x=-5$).
 
-**Bài 2:** a) $a = 40$; b) $y = 4$; c) $y$ giảm 4 lần
+**Bài 2:** a) $a = 40$; b) $x = -4$.
 
-**Bài 3:** x: 2, 4, 5, 8; y: 20, 10, 8, 5
+**Bài 3:** $y_2 = (4 \cdot 20) / 10 = 8$.
 
-**Bài 4:** a) 120, 80, 60; b) 200, 100, 40 (tổng 340, không phải 260 - đề có vấn đề); c) 120, 90, 60 (tổng 270, không phải 260)
+**Bài 4:** $12 \cdot 15 = 9 \cdot x \Rightarrow x = 20$ ngày.
 
-**Bài 5:** a) Có; b) 3 giờ; c) 80 km/h
+**Bài 5:** $45 \cdot 4 = 60 \cdot t \Rightarrow t = 3$ giờ.
 
-**Bài 6:** a) $a \times b = 120$; b) $b = 6$ cm; c) $a = 12$ cm
+**Bài 6:** $2x = 3y = 4z$, BCNN = 12 $\Rightarrow \dfrac{x}{6} = \dfrac{y}{4} = \dfrac{z}{3} = \dfrac{104}{13} = 8$. Các phần là 48; 32; 24.
 
-**Bài 7:** Đội 2: 15 ngày, Đội 3: 10 ngày
+**Bài 7:** $4x = 6y = 10z = 12t$, BCNN = 60 $\Rightarrow \dfrac{x}{15} = \dfrac{y}{10} = \dfrac{z}{6} = \dfrac{t}{5} = \dfrac{36}{36} = 1$. Số máy mỗi đội: 15; 10; 6; 5.
 
-**Bài 8:** a) 18 ngày; b) 36 người
+**Bài 8:** $3x = 4y = 6z$ (với $x,y,z$ là tiền). $\dfrac{x}{4} = \dfrac{y}{3} = \dfrac{z}{2} = \dfrac{1.8}{9} = 0.2$. Tiền: 800k; 600k; 400k.
+
+**Bài 9:** $6 \cdot 8 = x \cdot 4 \Rightarrow x = 12$ máy. Cần thêm $12 - 6 = 6$ máy.
+
+**Bài 10:** $v_1 = \dfrac{4}{5} v_2 \Rightarrow \dfrac{v_1}{v_2} = \dfrac{4}{5} \Rightarrow \dfrac{t_1}{t_2} = \dfrac{5}{4} \Rightarrow \dfrac{t_1}{5} = \dfrac{t_2}{4} = \dfrac{0.5}{1} = 0.5$ (30 ph = 0.5h). $t_1 = 2.5$ h; $t_2 = 2$ h.
 
 </div>
 </details>

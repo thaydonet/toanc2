@@ -84,6 +84,66 @@ export const quizData = [
     difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Biến cố chắc chắn là biến cố:",
+    option_a: "Luôn luôn xảy ra",
+    option_b: "Không bao giờ xảy ra",
+    option_c: "Có thể xảy ra hoặc không",
+    option_d: "Xảy ra với xác suất 50%",
+    correct_option: "A",
+    explanation: "Biến cố chắc chắn là biến cố chắc chắn xảy ra.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung một con xúc xắc 6 mặt cân đối. Biến cố 'Mặt xuất hiện có số chấm là 7' là biến cố:",
+    option_a: "Không thể",
+    option_b: "Chắc chắn",
+    option_c: "Ngẫu nhiên",
+    option_d: "Đồng khả năng",
+    correct_option: "A",
+    explanation: "Con xúc xắc chỉ có các mặt từ 1 đến 6 chấm nên số chấm bằng 7 là không thể.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung một đồng xu cân đối. Biến cố 'Đồng xu xuất hiện mặt sấp' là biến cố:",
+    option_a: "Ngẫu nhiên",
+    option_b: "Chắc chắn",
+    option_c: "Không thể",
+    option_d: "Dự đoán",
+    correct_option: "A",
+    explanation: "Kết quả tung đồng xu có thể là sấp hoặc ngửa nên đây là biến cố ngẫu nhiên.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Chọn ngẫu nhiên 1 học sinh từ lớp 7A. Biến cố 'Học sinh được chọn học lớp 7' là biến cố:",
+    option_a: "Chắc chắn",
+    option_b: "Ngẫu nhiên",
+    option_c: "Không thể",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Mọi học sinh lớp 7A đều là học sinh lớp 7.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hộp chứa !a(3,4,5)! viên bi đỏ và !b(2,3,4)! viên bi xanh. Biến cố nào sau đây là **chắc chắn** khi lấy ngẫu nhiên 1 viên bi?",
+    option_a: "Viên bi lấy ra có màu đỏ hoặc màu xanh",
+    option_b: "Viên bi lấy ra có màu vàng",
+    option_c: "Viên bi lấy ra chắc chắn màu đỏ",
+    option_d: "Viên bi lấy ra chắc chắn màu xanh",
+    correct_option: "A",
+    explanation: "Vì trong hộp chỉ có bi đỏ và bi xanh nên lấy 1 viên chắc chắn sẽ thu được bi đỏ hoặc xanh.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
 ];
 
 <KhoiDong>
@@ -224,6 +284,33 @@ Số kết quả thuận lợi được ký hiệu là $n(A)$ với $A$ là bi�
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Nhận biết biến cố chắc chắn, biến cố không thể và biến cố ngẫu nhiên</h4>
+
+**Phương pháp:** 
+- **Chắc chắn:** Khẳng định chắc chắn xảy ra trong mọi điều kiện thử nghiệm.
+- **Không thể:** Khẳng định không thể xảy ra trong bất kỳ điều kiện thử nghiệm nào.
+- **Ngẫu nhiên:** Không thể biết trước có xảy ra hay không trước khi thực hiện thử nghiệm.
+
+**Ví dụ 1.1:** Xác định loại biến cố sau khi gieo con xúc xắc 6 mặt:
+- A: "Số chấm xuất hiện lớn hơn 0".
+- B: "Số chấm xuất hiện là số lẻ".
+- C: "Số chấm xuất hiện chia hết cho 7".
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+- A là biến cố **chắc chắn** (vì số chấm luôn từ 1 đến 6 > 0).
+- B là biến cố **ngẫu nhiên** (có thể xuất hiện 1, 3, 5 lẻ hoặc 2, 4, 6 chẵn).
+- C là biến cố **không thể** (các số từ 1 đến 6 không có số nào chia hết cho 7).
+
+</details>
+
+</VanDung>
+
 <LuyenTap>
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
@@ -257,6 +344,22 @@ Xét các biến cố sau và cho biết loại biến cố:
 **d) Biến cố $D$:** "Được bi xanh hoặc vàng"
 
 → Biến cố ngẫu nhiên (có 6 bi xanh và vàng trong 10 bi)
+
+</div>
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán (Rút thăm trúng thưởng):**
+Một chương trình bốc thăm có 100 vé chứa các số từ 1 đến 100. Xét các biến cố khi bạn Nam bốc 1 vé:
+- a) "Vé bốc được có số lớn hơn 0": Chắc chắn.
+- b) "Vé bốc được có số 105": Không thể.
+- c) "Vé bốc được là số chẵn": Ngẫu nhiên.
 
 </div>
 

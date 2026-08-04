@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import TongBaGocTamGiacInteractive from '../../components/interactive/TongBaGocTamGiacInteractive';
 
 export const quizData = [
   {
@@ -87,6 +88,54 @@ export const quizData = [
     explanation: "Tam giác vuông có một góc vuông, hai góc nhọn phụ nhau (tổng $90^\\circ$), và tổng ba góc bằng $180^\\circ$.",
     difficulty_level: "medium",
     is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác ABC có góc A = !a(20,30,40)!°, góc B = !b(50,60,70)!°. Góc C bằng:",
+    option_a: "${tinh: 180 - !a! - !b!}°",
+    option_b: "${tinh: 180 - !a! - !b! + 20}°",
+    option_c: "${tinh: 180 - !a! - !b! - 20}°",
+    option_d: "${tinh: 180 - !a! - !b! + 40}°",
+    correct_option: "A",
+    explanation: "Góc C = 180° − góc A − góc B = 180° − !a!° − !b!° = ${tinh: 180 - !a! - !b!}°.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác vuông có một góc nhọn bằng !a(20,25,30,35,40)!°. Góc nhọn còn lại bằng:",
+    option_a: "${tinh: 90 - !a!}°",
+    option_b: "${tinh: 90 - !a! + 15}°",
+    option_c: "${tinh: 90 - !a! - 15}°",
+    option_d: "${tinh: 90 - !a! + 30}°",
+    correct_option: "A",
+    explanation: "Hai góc nhọn trong tam giác vuông phụ nhau: 90° − !a!° = ${tinh: 90 - !a!}°.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác có ba góc theo tỉ lệ $1:2:3$. Góc lớn nhất bằng:",
+    option_a: "$90^\\circ$",
+    option_b: "$60^\\circ$",
+    option_c: "$30^\\circ$",
+    option_d: "$120^\\circ$",
+    correct_option: "A",
+    explanation: "Gọi ba góc là $x, 2x, 3x$. Ta có $x + 2x + 3x = 180^\\circ \\Rightarrow 6x = 180^\\circ \\Rightarrow x = 30^\\circ$. Góc lớn nhất = $3 \\times 30^\\circ = 90^\\circ$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác ABC, góc A = !a(40,50,60)!°, góc B gấp đôi góc A. Tính góc C.",
+    option_a: "${tinh: 180 - !a! - !a! * 2}°",
+    option_b: "${tinh: 180 - !a! + !a! * 2}°",
+    option_c: "${tinh: 180 - !a! * 2}°",
+    option_d: "${tinh: 90 - !a!}°",
+    correct_option: "A",
+    explanation: "Góc B = 2 × góc A = 2 × !a!°. Góc C = 180° − !a!° − ${tinh: !a! * 2}° = ${tinh: 180 - !a! - !a! * 2}°.",
+    difficulty_level: "medium",
+    is_dynamic: true,
   },
 ];
 
@@ -295,9 +344,80 @@ Mỗi góc ở đáy: $140^\\circ : 2 = 70^\\circ$
 
 </KhamPha>
 
-<LuyenTap>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:1rem 0;">
+
+**Dạng 1: Tính góc thứ ba trong tam giác**
+**Phương pháp giải:** Tổng ba góc trong tam giác bằng $180^\circ$. Góc thứ ba = $180^\circ$ − (tổng hai góc còn lại).
+
+</div>
+
+**Ví dụ 1:** Tam giác có hai góc bằng $50^\circ$ và $60^\circ$. Tính góc thứ ba.
+
+*Lời giải:* Góc thứ ba = $180^\circ - 50^\circ - 60^\circ = 70^\circ$.
+
+**Ví dụ 2:** Tam giác đều có mỗi góc bằng:
+
+*Lời giải:* Ba góc bằng nhau, nên mỗi góc = $180^\circ : 3 = 60^\circ$.
+
+**Ví dụ 3:** Tam giác vuông có một góc nhọn bằng $35^\circ$. Tìm góc nhọn còn lại.
+
+*Lời giải:* Góc nhọn còn lại = $90^\circ - 35^\circ = 55^\circ$.
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 2: Vận dụng góc ngoài của tam giác**
+**Phương pháp giải:** Góc ngoài của tam giác bằng tổng hai góc trong không kề với nó.
+
+</div>
+
+**Ví dụ 1:** Cho tam giác có góc ngoài bằng $110^\circ$. Tính hai góc trong không kề.
+
+*Lời giải:* Tổng hai góc trong không kề = $110^\circ$.
+
+**Ví dụ 2:** Cho tam giác có một góc ngoài bằng $80^\circ$. Tính góc kề với nó.
+
+*Lời giải:* Góc kề = $180^\circ - 80^\circ = 100^\circ$.
+
+**Ví dụ 3:** Cho tam giác đều. Góc ngoài bằng bao nhiêu?
+
+*Lời giải:* Mỗi góc trong = $60^\circ$, góc ngoài = $180^\circ - 60^\circ = 120^\circ$.
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 3: Tính số đo góc trong tam giác khi biết tỉ lệ**
+**Phương pháp giải:** Gọi các góc theo tỉ lệ rồi giải phương trình tổng = $180^\circ$.
+
+</div>
+
+**Ví dụ 1:** Ba góc trong tam giác theo tỉ lệ $2:3:4$. Tính mỗi góc.
+
+*Lời giải:* Gọi $2x, 3x, 4x$. Ta có $2x + 3x + 4x = 180^\circ \Rightarrow 9x = 180^\circ \Rightarrow x = 20^\circ$. Các góc lần lượt $40^\circ, 60^\circ, 80^\circ$.
+
+**Ví dụ 2:** Hai góc bằng nhau, góc thứ ba gấp đôi mỗi góc. Tính các góc.
+
+*Lời giải:* Gọi mỗi góc bằng $x$, góc thứ ba $= 2x$. Ta có $x + x + 2x = 180^\circ \Rightarrow 4x = 180^\circ \Rightarrow x = 45^\circ$. Các góc $45^\circ, 45^\circ, 90^\circ$.
+
+**Ví dụ 3:** Góc A gấp đôi góc B, góc C hơn góc B $20^\circ$. Tính ba góc.
+
+*Lời giải:* Gọi $\widehat{B} = x$, $\widehat{A} = 2x$, $\widehat{C} = x + 20^\circ$. Ta có $2x + x + (x + 20^\circ) = 180^\circ \Rightarrow 4x + 20^\circ = 180^\circ \Rightarrow x = 40^\circ$. Vậy $\widehat{A} = 80^\circ, \widehat{B} = 40^\circ, \widehat{C} = 60^\circ$.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
+
+<TongBaGocTamGiacInteractive client:load />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
@@ -344,47 +464,91 @@ Mỗi góc: $80^\\circ : 2 = 40^\\circ$
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Tính góc còn lại của tam giác, biết:
+**Bài 1:** Cho tam giác ABC có $\widehat{A} = 50^\circ$ và $\widehat{B} = 60^\circ$.
 
-a) Hai góc bằng $45^\\circ$ và $65^\\circ$
+a) Tính góc C.
 
-b) Hai góc bằng $30^\\circ$ và $80^\\circ$
+b) Tính góc ngoài tại đỉnh A.
 
-c) Hai góc bằng $55^\\circ$ và $55^\\circ$
+**Bài 2:** Cho tam giác đều.
 
-**Bài 2:** Tam giác vuông có một góc nhọn bằng:
+a) Tính số đo mỗi góc.
 
-a) $40^\\circ$ &nbsp;&nbsp;&nbsp; b) $25^\\circ$ &nbsp;&nbsp;&nbsp; c) $60^\\circ$
+b) Tính số đo góc ngoài tại mỗi đỉnh.
 
-Tính góc nhọn còn lại.
+c) Tổng ba góc ngoài bằng bao nhiêu? Nhận xét.
 
-**Bài 3:** Tam giác có góc ngoài tại một đỉnh bằng $130^\\circ$. Biết hai góc trong không kề với góc ngoài này bằng nhau. Tính các góc của tam giác.
+**Bài 3:** Ba góc trong tam giác theo tỉ lệ $2:3:5$.
 
-**Bài 4:** Tam giác cân có góc ở đỉnh bằng:
+a) Tính mỗi góc.
 
-a) $80^\\circ$ &nbsp;&nbsp;&nbsp; b) $100^\\circ$ &nbsp;&nbsp;&nbsp; c) $50^\\circ$
+b) Xác định tam giác đó là tam giác gì?
 
-Tính các góc ở đáy.
+**Bài 4:** Cho tam giác vuông có góc nhọn bằng $30^\circ$.
 
-**Bài 5:** Tam giác $ABC$ có $\widehat{A} = 2\widehat{B}$ và $\widehat{B} = \widehat{C}$. Tính các góc của tam giác.
+a) Tính góc nhọn còn lại.
 
-**Bài 6:** Chứng minh: Trong tam giác vuông, góc ngoài tại đỉnh góc vuông bằng $90^\\circ$.
+b) Tính góc ngoài tại đỉnh góc vuông.
+
+**Bài 5:** Cho tam giác ABC có $\widehat{A} = 2\widehat{B}$ và $\widehat{C} = 30^\circ$.
+
+a) Tính $\widehat{A}$ và $\widehat{B}$.
+
+b) Xác định tam giác đó là tam giác gì?
+
+**Bài 6:** Cho tam giác ABC có $\widehat{A} = 70^\circ$. Góc ngoài tại B bằng $110^\circ$.
+
+a) Tính $\widehat{B}$.
+
+b) Tính $\widehat{C}$.
+
+**Bài 7:** Cho tam giác ABC cân tại A, có $\widehat{A} = 40^\circ$.
+
+a) Tính $\widehat{B}$ và $\widehat{C}$.
+
+b) Tổng hai góc ngoài tại B và C bằng bao nhiêu?
+
+**Bài 8:** Trong tam giác ABC, $\widehat{A} - \widehat{B} = 20^\circ$ và $\widehat{B} - \widehat{C} = 10^\circ$.
+
+a) Tìm ba góc của tam giác ABC.
+
+b) Xác định tam giác đó là tam giác gì?
+
+**Bài 9 (Ứng dụng thực tế - Góc chiếu):** Một người đang đứng ở góc A của mảnh đất hình tam giác ABC, thấy hai cạnh đất AB và AC tạo với nhau một góc $65^\circ$. Góc ngoài tại B bằng $120^\circ$.
+
+a) Tính các góc của mảnh đất.
+
+b) Mảnh đất đó là tam giác gì? Tại sao điều này quan trọng trong xây dựng?
+
+**Bài 10 (Ứng dụng thực tế - Cánh cửa):** Một cánh cửa có thể mở được hai góc $115^\circ$ và $65^\circ$ so với tường. Hai góc này là hai góc trong cùng phía của tam giác tạo bởi cánh cửa và tường.
+
+a) Tính góc thứ ba (góc ngoài tại bản lề).
+
+b) Tổng ba góc của tam giác có đúng bằng $180^\circ$ không? Giải thích.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $70^\\circ$; b) $70^\\circ$; c) $70^\\circ$
+**Bài 1:** a) $70^\circ$; b) $130^\circ$.
 
-**Bài 2:** a) $50^\\circ$; b) $65^\\circ$; c) $30^\\circ$
+**Bài 2:** a) $60^\circ$; b) $120^\circ$; c) Tổng = $360^\circ$ (luôn đúng với mọi tam giác).
 
-**Bài 3:** Hai góc bằng nhau mỗi góc $65^\\circ$, góc còn lại $50^\\circ$
+**Bài 3:** a) $36^\circ, 54^\circ, 90^\circ$; b) Tam giác vuông.
 
-**Bài 4:** a) $50^\\circ$; b) $40^\\circ$; c) $65^\\circ$
+**Bài 4:** a) $60^\circ$; b) $90^\circ$.
 
-**Bài 5:** $\widehat{A} = 90^\\circ$, $\widehat{B} = \widehat{C} = 45^\\circ$
+**Bài 5:** a) $\widehat{B} = 50^\circ$, $\widehat{A} = 100^\circ$; b) Tam giác tù.
 
-**Bài 6:** Góc ngoài = tổng hai góc nhọn = $90^\\circ$
+**Bài 6:** a) $70^\circ$; b) $40^\circ$.
+
+**Bài 7:** a) $\widehat{B} = \widehat{C} = 70^\circ$; b) Tổng góc ngoài = $240^\circ$.
+
+**Bài 8:** a) $\widehat{A} = 70^\circ, \widehat{B} = 50^\circ, \widehat{C} = 60^\circ$; b) Tam giác nhọn.
+
+**Bài 9:** a) $\widehat{B} = 60^\circ, \widehat{C} = 55^\circ, \widehat{A} = 65^\circ$; b) Tam giác nhọn, phù hợp xây dựng vì diện tích tối ưu.
+
+**Bài 10:** a) Góc thứ ba = $180^\circ - 115^\circ - 65^\circ = 0^\circ$ (góc ngoài tại bản lề); b) Đúng, tổng luôn bằng $180^\circ$ theo định lí tổng ba góc trong tam giác.
 
 </div>
 </details>

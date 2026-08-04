@@ -84,6 +84,66 @@ export const quizData = [
     difficulty_level: "hard",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Từ điểm A nằm ngoài đường thẳng d, kẻ đường vuông góc AH và đường xiên AB đến d. Khẳng định đúng là:",
+    option_a: "AH < AB",
+    option_b: "AH > AB",
+    option_c: "AH = AB",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "Trong các đường vuông góc và đường xiên kẻ từ một điểm đến một đường thẳng, đường vuông góc là đường ngắn nhất.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Khoảng cách từ một điểm A đến đường thẳng d là:",
+    option_a: "Độ dài đoạn vuông góc kẻ từ A đến d",
+    option_b: "Độ dài đường xiên bất kỳ",
+    option_c: "Độ dài từ A đến điểm bất kỳ trên d",
+    option_d: "Độ dài nhỏ nhất từ d đến gốc tọa độ",
+    correct_option: "A",
+    explanation: "Khoảng cách từ A đến d chính là độ dài đường vuông góc AH.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho AH ⊥ d tại H, B và C nằm trên d sao cho HB < HC. So sánh hai đường xiên AB và AC:",
+    option_a: "AB < AC",
+    option_b: "AB > AC",
+    option_c: "AB = AC",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "Đường xiên nào có hình chiếu lớn hơn thì lớn hơn: HB < HC => AB < AC.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hình chiếu của đường xiên AB trên đường thẳng d (với AH ⊥ d tại H) là:",
+    option_a: "Đoạn thẳng HB",
+    option_b: "Đoạn thẳng AH",
+    option_c: "Đoạn thẳng AB",
+    option_d: "Điểm H",
+    correct_option: "A",
+    explanation: "Hình chiếu của điểm A là H, của B là B nên hình chiếu của đường xiên AB là đoạn HB.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho AH ⊥ d tại H. Nếu HB = !a(3,4,5)! cm, HC = !b(6,7,8)! cm thì đường xiên AC so với AB:",
+    option_a: "Dài hơn",
+    option_b: "Ngắn hơn",
+    option_c: "Bằng nhau",
+    option_d: "Không so sánh được",
+    correct_option: "A",
+    explanation: "Vì hình chiếu HC (!b! cm) > HB (!a! cm) nên đường xiên AC > AB (dài hơn).",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
 ];
 
 <KhoiDong>
@@ -262,6 +322,27 @@ $HB = 8$ cm
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: So sánh đường vuông góc và đường xiên, so sánh hai đường xiên</h4>
+
+**Phương pháp:** 
+- Đường vuông góc là đường ngắn nhất trong các đường nối từ một điểm bên ngoài đến một đường thẳng.
+- Trong hai đường xiên kẻ từ cùng một điểm: đường xiên nào có hình chiếu lớn hơn thì lớn hơn.
+
+**Ví dụ 1.1:** Cho tam giác $ABC$ vuông tại $A$. So sánh $AB$ và $BC$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+Từ $B$, $BA \perp AC$ (đường vuông góc), $BC$ là đường xiên kẻ từ $B$ đến $AC$. Do đó $BA < BC$.
+
+</details>
+
+</VanDung>
+
 <LuyenTap>
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
@@ -301,6 +382,19 @@ $AC = \sqrt{AH^2 + HC^2} = \sqrt{64 + 81} = \sqrt{145} \approx 12.04$ m
 c) Vì $HC = 9$ m $> HB = 6$ m nên $AC > AB$
 
 Dây thứ hai dài hơn.
+
+</div>
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán (Con đường ngắn nhất ra sông):**
+Một người đứng tại vị trí $A$ cách con đường thẳng $d$ một khoảng. Đoạn đường ngắn nhất để người đó đi từ $A$ ra đến bờ đường $d$ chính là đoạn đường vuông góc $AH$.
 
 </div>
 

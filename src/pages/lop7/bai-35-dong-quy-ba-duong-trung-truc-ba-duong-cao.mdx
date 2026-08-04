@@ -84,6 +84,66 @@ export const quizData = [
     difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Giao điểm của ba đường trung trực trong tam giác có tính chất:",
+    option_a: "Cách đều ba đỉnh của tam giác",
+    option_b: "Cách đều ba cạnh của tam giác",
+    option_c: "Cách đỉnh 2/3 đường cao",
+    option_d: "Trùng với trực tâm",
+    correct_option: "A",
+    explanation: "Giao điểm 3 đường trung trực cách đều 3 đỉnh (tâm đường tròn ngoại tiếp).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Giao điểm của ba đường cao trong tam giác gọi là:",
+    option_a: "Trực tâm",
+    option_b: "Trọng tâm",
+    option_c: "Tâm ngoại tiếp",
+    option_d: "Tâm nội tiếp",
+    correct_option: "A",
+    explanation: "Ba đường cao của tam giác đồng quy tại trực tâm H.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác vuông, trực tâm của tam giác nằm ở:",
+    option_a: "Đỉnh góc vuông",
+    option_b: "Trung điểm cạnh huyền",
+    option_c: "Nằm bên ngoài tam giác",
+    option_d: "Nằm bên trong tam giác",
+    correct_option: "A",
+    explanation: "Trong tam giác vuông, hai cạnh góc vuông chính là hai đường cao, cắt nhau tại đỉnh góc vuông.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Trong tam giác tù, trực tâm nằm ở:",
+    option_a: "Bên ngoài tam giác",
+    option_b: "Bên trong tam giác",
+    option_c: "Trên một cạnh",
+    option_d: "Tại một đỉnh",
+    correct_option: "A",
+    explanation: "Trực tâm của tam giác tù nằm bên ngoài tam giác.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác đều ABC. Khẳng định nào sau đây **đúng**?",
+    option_a: "Trọng tâm, trực tâm, tâm ngoại tiếp, tâm nội tiếp trùng nhau",
+    option_b: "Trực tâm nằm ngoài tam giác",
+    option_c: "Trọng tâm khác tâm ngoại tiếp",
+    option_d: "Ba đường cao có độ dài khác nhau",
+    correct_option: "A",
+    explanation: "Trong tam giác đều, 4 điểm đặc biệt (trọng tâm, trực tâm, tâm ngoại tiếp, tâm nội tiếp) trùng làm một.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong>
@@ -286,6 +346,31 @@ Bán kính: $R = \frac{BC}{2} = \frac{10}{2} = 5$ cm
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Xác định tâm đường tròn ngoại tiếp tam giác</h4>
+
+**Phương pháp:** Tâm đường tròn ngoại tiếp là giao điểm của ba đường trung trực, cách đều 3 đỉnh $OA = OB = OC$.
+
+**Ví dụ 1.1:** Cho tam giác $ABC$ vuông tại $A$. Xác định tâm đường tròn ngoại tiếp tam giác $ABC$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+Trong tam giác vuông, tâm đường tròn ngoại tiếp là trung điểm của cạnh huyền $BC$.
+
+</details>
+
+---
+
+<h4 id="dang-2">Dạng 2: Chứng minh vuông góc nhờ giao điểm ba đường cao (trực tâm)</h4>
+
+**Phương pháp:** Nếu hai đường cao cắt nhau tại $H$ thì $H$ là trực tâm, đường thẳng nối từ đỉnh thứ ba qua $H$ sẽ vuông góc với cạnh đối diện.
+
+</VanDung>
+
 <LuyenTap>
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
@@ -317,6 +402,19 @@ Tam giác vuông tại $A$.
 Tâm ngoại tiếp là trung điểm $BC$.
 
 Khoảng cách: $R = \frac{BC}{2} = \frac{10}{2} = 5$ km
+
+</div>
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán (Xây dựng trạm phát sóng):**
+Ba ngôi làng ở ba vị trí $A, B, C$. Cần xây 1 trạm phát sóng cách đều cả 3 ngôi làng. Vị trí đặt trạm phát sóng chính là **giao điểm 3 đường trung trực** của tam giác $ABC$.
 
 </div>
 

@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import BieuDoDoanThangInteractive from '../../components/interactive/BieuDoDoanThangInteractive';
 
 export const quizData = [
   {
@@ -77,11 +78,63 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Nhiệt độ tăng từ 25°C lên 30°C. Nhiệt độ tăng bao nhiêu độ?",
-    correct_option: "5",
-    explanation: "Nhiệt độ tăng: 30 - 25 = 5°C",
+    type: "mcq",
+    question: "Nhiệt độ tăng từ 25°C lên 30°C. Nhiệt độ đã tăng thêm bao nhiêu độ?",
+    option_a: "5°C",
+    option_b: "10°C",
+    option_c: "15°C",
+    option_d: "25°C",
+    correct_option: "A",
+    explanation: "Nhiệt độ tăng: 30°C - 25°C = 5°C.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Nhiệt độ tăng từ !a(20,22,25)!°C lên !b(28,30,32,35)!°C. Nhiệt độ đã tăng thêm bao nhiêu độ?",
+    option_a: "${tinh: !b! - !a!}°C",
+    option_b: "${tinh: !b! - !a! + 2}°C",
+    option_c: "${tinh: !b! - !a! - 2}°C",
+    option_d: "${tinh: !b! - !a! + 5}°C",
+    correct_option: "A",
+    explanation: "Nhiệt độ tăng thêm: !b!°C − !a!°C = ${tinh: !b! - !a!}°C.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Doanh số bán hàng của một cửa hàng tăng từ !a(40,45,50)! triệu đồng lên !b(52,56,60)! triệu đồng. Doanh số đã tăng thêm bao nhiêu triệu đồng?",
+    option_a: "${tinh: !b! - !a!} triệu đồng",
+    option_b: "${tinh: !b! - !a! + 5} triệu đồng",
+    option_c: "${tinh: !b! - !a! - 3} triệu đồng",
+    option_d: "${tinh: !b! - !a! + 10} triệu đồng",
+    correct_option: "A",
+    explanation: "Doanh số tăng thêm: !b! − !a! = ${tinh: !b! - !a!} triệu đồng.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Trong biểu đồ đoạn thẳng thể hiện nhiệt độ trong tuần, nhiệt độ cao nhất là 35°C vào thứ 4, thấp nhất là 20°C vào thứ 7. Biên độ biến thiên nhiệt độ là:",
+    option_a: "10°C",
+    option_b: "15°C",
+    option_c: "20°C",
+    option_d: "25°C",
+    correct_option: "B",
+    explanation: "Biên độ = Giá trị lớn nhất - Giá trị nhỏ nhất = 35°C - 20°C = 15°C.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Khi vẽ biểu đồ đoạn thẳng từ bảng số liệu, cần lưu ý:",
+    option_a: "Chọn thang đo phù hợp cho trục dọc",
+    option_b: "Ghi rõ đơn vị đo trên trục dọc",
+    option_c: "Nối các điểm theo thứ tự thời gian",
+    option_d: "Vẽ đường cong thay vì đoạn thẳng",
+    correct_option: "A,B,C",
+    explanation: "Cần chọn thang đo phù hợp, ghi rõ đơn vị, và nối điểm theo thứ tự thời gian bằng đoạn thẳng.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
 ];
@@ -263,7 +316,79 @@ Dựa vào xu hướng hiện tại để dự đoán giá trị tương lai.
 
 </KhamPha>
 
-<LuyenTap>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Đọc và đọc xu hướng biến đổi từ biểu đồ đoạn thẳng</h4>
+
+**Phương pháp:** 
+- Quan sát hướng của các đoạn thẳng: đi lên (tăng), đi xuống (giảm), nằm ngang (không đổi).
+- Xác định điểm cao nhất (giá trị lớn nhất) và điểm thấp nhất (giá trị nhỏ nhất) trên biểu đồ.
+
+**Ví dụ 1.1:** Biểu đồ thể hiện số mét đường làm được trong các ngày từ Thứ 2 đến Thứ 6: T2 (15m), T3 (20m), T4 (25m), T5 (20m), T6 (30m). Trong khoảng thời gian nào số mét đường làm được giảm?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Từ Thứ 4 (25m) đến Thứ 5 (20m) đoạn thẳng đi xuống, do đó số mét đường làm được giảm từ Thứ 4 đến Thứ 5.
+
+</details>
+
+---
+
+<h4 id="dang-2">Dạng 2: Phân tích và so sánh số liệu giữa các thời điểm</h4>
+
+**Phương pháp:** 
+- Tìm giá trị ứng với mỗi thời điểm trên trục Oy.
+- Thực hiện các phép tính cộng, trừ để tính độ chênh lệch hoặc tỉ lệ tăng/giảm giữa các mốc thời gian.
+
+**Ví dụ 2.1:** Chiều cao của cây trồng sau 4 tuần: Tuần 1 (5cm), Tuần 2 (12cm), Tuần 3 (18cm), Tuần 4 (25cm). Hỏi trong tuần nào cây phát triển (tăng chiều cao) nhanh nhất?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+- Tăng từ T1 đến T2: $12 - 5 = 7$ cm.
+- Tăng từ T2 đến T3: $18 - 12 = 6$ cm.
+- Tăng từ T3 đến T4: $25 - 18 = 7$ cm.
+Vậy cây phát triển nhanh nhất trong Tuần 2 (tăng 7cm) và Tuần 4 (tăng 7cm).
+
+</details>
+
+---
+
+<h4 id="dang-3">Dạng 3: Vẽ biểu đồ đoạn thẳng từ bảng số liệu</h4>
+
+**Phương pháp:** 
+- Vẽ trục Ox (thời gian) và Oy (giá trị).
+- Đánh dấu tọa độ từng điểm (thời gian, giá trị).
+- Nối các điểm liên tiếp bằng đoạn thẳng.
+
+**Ví dụ 3.1:** Hãy nêu các bước chính để biểu diễn số lượng xe bán ra trong 6 tháng đầu năm lên biểu đồ đoạn thẳng.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+1. Vẽ hệ trục vuông góc: trục ngang chia 6 tháng (1 đến 6), trục đứng chia số xe.
+2. Chấm điểm doanh số tương ứng của từng tháng.
+3. Nối các điểm lần lượt từ Tháng 1 đến Tháng 6 bằng đoạn thẳng.
+4. Ghi tiêu đề biểu đồ.
+
+</details>
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-hanh-tuong-tac">🎮 Thực hành tương tác</h3>
+
+Hãy kéo các nhãn vào vị trí đúng để luyện tập đọc và phân tích biểu đồ đoạn thẳng!
+
+<BieuDoDoanThangInteractive />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
 
@@ -271,39 +396,25 @@ Dựa vào xu hướng hiện tại để dự đoán giá trị tương lai.
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Vận dụng thực tế">
 
 <h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-**Bài toán:** Điểm trung bình môn Toán của An qua các kỳ:
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-| Kỳ | Kỳ 1 | Kỳ 2 | Kỳ 3 | Kỳ 4 | Kỳ 5 |
-|---|---|---|---|---|---|
-| Điểm | 6.5 | 7.0 | 7.5 | 8.0 | 8.5 |
+**📝 Bài toán (Theo dõi chiều cao phát triển của học sinh):**
+Bảng theo dõi chiều cao của bạn Minh từ 10 tuổi đến 14 tuổi:
+- 10 tuổi: 138 cm
+- 11 tuổi: 143 cm
+- 12 tuổi: 150 cm
+- 13 tuổi: 160 cm
+- 14 tuổi: 165 cm
 
-a) Vẽ biểu đồ đoạn thẳng
-
-b) Nhận xét về xu hướng điểm số của An
-
-c) Dự đoán điểm số kỳ 6 của An
-
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) Vẽ biểu đồ với:
-- Trục ngang: Kỳ 1, 2, 3, 4, 5
-- Trục dọc: Điểm số (0 đến 10)
-- Đánh dấu các điểm (1, 6.5), (2, 7.0), (3, 7.5), (4, 8.0), (5, 8.5)
-- Nối các điểm bằng đoạn thẳng
-
-b) Nhận xét:
-- Điểm số của An tăng đều qua các kỳ
-- Mỗi kỳ tăng 0.5 điểm
-- Xu hướng tích cực, An học tập tiến bộ
-
-c) Dự đoán:
-- Nếu xu hướng tiếp tục, kỳ 6 An có thể đạt: 8.5 + 0.5 = 9.0 điểm
+a) Hãy nhận xét về sự phát triển chiều cao của Minh qua các năm. (Chiều cao tăng liên tục từ 10 đến 14 tuổi).
+b) Bạn Minh phát triển chiều cao nhanh nhất trong độ tuổi nào?
+   *Giải:* Từ 12 đến 13 tuổi, chiều cao tăng mạnh nhất: $160 - 150 = 10$ cm/năm.
+c) Tổng số cm chiều cao tăng thêm từ 10 đến 14 tuổi là bao nhiêu?
+   *Giải:* $165 - 138 = 27$ cm.
 
 </div>
 

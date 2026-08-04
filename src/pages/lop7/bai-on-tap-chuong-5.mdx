@@ -13,6 +13,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import OnTapChuong5Interactive from '../../components/interactive/OnTapChuong5Interactive';
 
 export const quizData = [
   {
@@ -241,7 +242,76 @@ $$\bar{x} = \frac{x_1 + x_2 + ... + x_n}{n}$$
 
 </KhamPha>
 
-<LuyenTap>
+<VanDung title="II. Các dạng toán ôn tập và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán ôn tập và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Phân loại dữ liệu và kiểm tra tính hợp lý của dữ liệu</h4>
+
+**Phương pháp:** 
+- Phân biệt dữ liệu định tính (chữ, tên, nhãn) và định lượng (số đo, số đếm).
+- Kiểm tra dữ liệu xem có vi phạm các quy tắc thực tế hay không (như số phần trăm tổng khác 100%, số âm cho chiều cao/điểm số...).
+
+**Ví dụ 1.1:** Kết quả điều tra sở thích phương tiện đi học của 40 học sinh: Xe đạp (18), Đi bộ (10), Xe buýt (8), Xe máy (4). 
+- a) Dữ liệu thu được thuộc loại định tính hay định lượng?
+- b) Kiểm tra xem tổng số liệu có hợp lý với tổng số học sinh không.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+- a) Dữ liệu tên phương tiện (xe đạp, đi bộ, xe buýt, xe máy) là dữ liệu định tính.
+- b) Tổng số học sinh trong điều tra là $18 + 10 + 8 + 4 = 40$ học sinh. Số liệu hoàn toàn hợp lý!
+
+</details>
+
+---
+
+<h4 id="dang-2">Dạng 2: Phân tích biểu đồ hình quạt tròn</h4>
+
+**Phương pháp:** 
+- Tính số lượng từng thành phần: $\text{Số lượng} = N \times \frac{\%}{100}$.
+- Góc ở tâm tương ứng: $\text{Góc} = \% \times 3.6^\circ$.
+
+**Ví dụ 2.1:** Một trường học có 600 học sinh. Biểu đồ quạt tròn cho biết tỉ lệ tham gia các câu lạc bộ: Thể thao (40%), Nghệ thuật (30%), Học thuật (20%), Kỹ năng (10%). Tính số học sinh tham gia CLB Thể thao và CLB Nghệ thuật.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+- Số học sinh CLB Thể thao: $600 \times 40\% = 240$ (học sinh).
+- Số học sinh CLB Nghệ thuật: $600 \times 30\% = 180$ (học sinh).
+
+</details>
+
+---
+
+<h4 id="dang-3">Dạng 3: Đọc và phân tích biểu đồ đoạn thẳng</h4>
+
+**Phương pháp:** Nhận xét xu hướng tăng, giảm, điểm cao nhất, điểm thấp nhất và khoảng biến động lớn nhất trên biểu đồ chuỗi thời gian.
+
+**Ví dụ 3.1:** Nhiệt độ trung bình trong 5 ngày liên tiếp: T2 ($25^\circ\text{C}$), T3 ($27^\circ\text{C}$), T4 ($32^\circ\text{C}$), T5 ($28^\circ\text{C}$), T6 ($24^\circ\text{C}$). Tính biên độ chênh lệch giữa ngày nóng nhất và ngày mát nhất.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+- Ngày nóng nhất: Thứ 4 ($32^\circ\text{C}$).
+- Ngày mát nhất: Thứ 6 ($24^\circ\text{C}$).
+- Chênh lệch: $32 - 24 = 8^\circ\text{C}$.
+
+</details>
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-hanh-tuong-tac">🎮 I. THỰC HÀNH TƯƠNG TÁC</h3>
+
+Hãy chọn đáp án đúng để ôn lại các kiến thức trọng tâm của Chương 5!
+
+<OnTapChuong5Interactive />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
 
 <h3 id="luy-en-tap">📝 II. LUYỆN TẬP - TRẮC NGHIỆM</h3>
 
@@ -249,319 +319,24 @@ $$\bar{x} = \frac{x_1 + x_2 + ... + x_n}{n}$$
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Vận dụng thực tế">
 
-<h3 id="van-dung">🌍 III. BÀI TẬP TỰ LUẬN</h3>
+<h3 id="van-dung-thuc-te">🌍 Vận dụng thực tế</h3>
 
-<h4 id="bai-1">Bài 1: Tần số và tần số tương đối</h4>
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-Cho dữ liệu: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4
+**📝 Bài toán (Dự án xanh - Khảo sát và Phân tích rác thải trường học):**
+Đội thanh niên xung kích trường THCS Hoa Sen tiến hành khảo sát phân loại rác thải thu gom trong 1 tuần:
+- Rác hữu cơ (thức ăn dư thừa, lá cây): 120 kg (40%)
+- Rác tái chế (giấy, vỏ chai nhựa, lon nhôm): 150 kg (50%)
+- Rác nguy hại/khác: 30 kg (10%)
 
-a) Lập bảng tần số
-
-b) Tính tần số tương đối của mỗi giá trị
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Bảng tần số:
-
-| Giá trị | 1 | 2 | 3 | 4 |
-|--------|---|---|---|---|
-| Tần số | 1 | 2 | 3 | 4 |
-
-b) Tần số tương đối:
-- Giá trị 1: $\frac{1}{10} = 0.1 = 10\%$
-- Giá trị 2: $\frac{2}{10} = 0.2 = 20\%$
-- Giá trị 3: $\frac{3}{10} = 0.3 = 30\%$
-- Giá trị 4: $\frac{4}{10} = 0.4 = 40\%$
+a) Lập bảng thống kê và tính góc ở tâm biểu diễn rác tái chế trên biểu đồ hình quạt tròn.
+   *Giải:* Góc ở tâm rác tái chế $= 50\% \times 360^\circ = 180^\circ$.
+b) Nhóm nghiên cứu nhận định rằng lượng rác tái chế chiếm một nửa tổng lượng rác thải. Nhận định này có chính xác không?
+   *Giải:* Đúng, vì $150 / (120 + 150 + 30) = 150 / 300 = 50\%$ (đúng một nửa).
 
 </div>
-</details>
-
----
-
-<h4 id="bai-2">Bài 2: Trung bình cộng</h4>
-
-Tính trung bình cộng của dữ liệu: 5, 7, 8, 9, 10, 11
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-$\bar{x} = \frac{5 + 7 + 8 + 9 + 10 + 11}{6} = \frac{50}{6} = \frac{25}{3} \approx 8.33$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-3">Bài 3: Số trung vị</h4>
-
-Tìm số trung vị của dữ liệu:
-
-a) 3, 5, 7, 9, 11
-
-b) 2, 4, 6, 8, 10, 12
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Số lượng dữ liệu là 5 (lẻ), nên trung vị là giá trị ở giữa: **7**
-
-b) Số lượng dữ liệu là 6 (chẵn), nên trung vị là trung bình cộng của hai giá trị ở giữa:
-
-Trung vị = $\frac{6 + 8}{2} = 7$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-4">Bài 4: Mốt</h4>
-
-Tìm mốt của dữ liệu: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-Đếm tần số:
-- 1 xuất hiện 1 lần
-- 2 xuất hiện 2 lần
-- 3 xuất hiện 3 lần
-- 4 xuất hiện 4 lần
-- 5 xuất hiện 1 lần
-
-Mốt là **4** (xuất hiện nhiều nhất, 4 lần)
-
-</div>
-</details>
-
----
-
-<h4 id="bai-5">Bài 5: Biểu đồ hình quạt</h4>
-
-Một lớp học có 40 học sinh. Số học sinh yêu thích các môn học:
-- Toán: 10 học sinh
-- Văn: 8 học sinh
-- Anh: 12 học sinh
-- Khoa học: 10 học sinh
-
-a) Tính tỉ lệ phần trăm của mỗi môn
-
-b) Tính góc ở tâm của mỗi hình quạt
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Tỉ lệ phần trăm:
-- Toán: $\frac{10}{40} \times 100\% = 25\%$
-- Văn: $\frac{8}{40} \times 100\% = 20\%$
-- Anh: $\frac{12}{40} \times 100\% = 30\%$
-- Khoa học: $\frac{10}{40} \times 100\% = 25\%$
-
-b) Góc ở tâm:
-- Toán: $25\% \times 360° = 90°$
-- Văn: $20\% \times 360° = 72°$
-- Anh: $30\% \times 360° = 108°$
-- Khoa học: $25\% \times 360° = 90°$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-6">Bài 6: Bài toán kết hợp</h4>
-
-Cho dữ liệu điểm kiểm tra của 10 học sinh: 6, 7, 7, 8, 8, 8, 9, 9, 9, 10
-
-a) Tính trung bình cộng
-
-b) Tìm số trung vị
-
-c) Tìm mốt
-
-d) Lập bảng tần số
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) $\bar{x} = \frac{6 + 7 + 7 + 8 + 8 + 8 + 9 + 9 + 9 + 10}{10} = \frac{81}{10} = 8.1$
-
-b) Trung vị = $\frac{8 + 8}{2} = 8$
-
-c) Mốt = 8 và 9 (cùng xuất hiện 3 lần)
-
-d) Bảng tần số:
-
-| Điểm | 6 | 7 | 8 | 9 | 10 |
-|------|---|---|---|---|----|
-| Tần số | 1 | 2 | 3 | 3 | 1 |
-
-</div>
-</details>
-
----
-
-<h4 id="bai-7">Bài 7: Bài toán thực tế</h4>
-
-Một cửa hàng bán quần áo có doanh thu hàng tháng (triệu đồng):
-Tháng 1: 50, Tháng 2: 55, Tháng 3: 60, Tháng 4: 65, Tháng 5: 70
-
-a) Tính doanh thu trung bình
-
-b) Vẽ biểu đồ đoạn thẳng
-
-c) Nhận xét về xu hướng doanh thu
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Doanh thu trung bình = $\frac{50 + 55 + 60 + 65 + 70}{5} = \frac{300}{5} = 60$ (triệu đồng)
-
-b) Biểu đồ đoạn thẳng: Vẽ các điểm (1, 50), (2, 55), (3, 60), (4, 65), (5, 70) và nối chúng
-
-c) Doanh thu tăng đều đặn mỗi tháng 5 triệu đồng
-
-</div>
-</details>
-
----
-
-<h4 id="bai-8">Bài 8: Bài toán kết hợp</h4>
-
-Một trường học có 200 học sinh. Số học sinh theo các khối:
-- Khối 6: 50 học sinh
-- Khối 7: 60 học sinh
-- Khối 8: 55 học sinh
-- Khối 9: 35 học sinh
-
-a) Tính tỉ lệ phần trăm của mỗi khối
-
-b) Tính góc ở tâm của mỗi hình quạt
-
-c) Vẽ biểu đồ hình quạt
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Tỉ lệ phần trăm:
-- Khối 6: $\frac{50}{200} \times 100\% = 25\%$
-- Khối 7: $\frac{60}{200} \times 100\% = 30\%$
-- Khối 8: $\frac{55}{200} \times 100\% = 27.5\%$
-- Khối 9: $\frac{35}{200} \times 100\% = 17.5\%$
-
-b) Góc ở tâm:
-- Khối 6: $25\% \times 360° = 90°$
-- Khối 7: $30\% \times 360° = 108°$
-- Khối 8: $27.5\% \times 360° = 99°$
-- Khối 9: $17.5\% \times 360° = 63°$
-
-c) Vẽ biểu đồ hình quạt với các góc tương ứng
-
-</div>
-</details>
-
----
-
-<h4 id="bai-9">Bài 9: Bài toán nâng cao (Câu lớn)</h4>
-
-Một lớp học có 30 học sinh. Điểm kiểm tra Toán của các học sinh:
-6, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 5, 5, 6, 6, 7, 8, 9, 9, 10, 10, 8, 7
-
-a) Lập bảng tần số
-
-b) Tính trung bình cộng
-
-c) Tìm số trung vị
-
-d) Tìm mốt
-
-e) Tính tỉ lệ phần trăm học sinh đạt điểm 8 trở lên
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Bảng tần số:
-
-| Điểm | 5 | 6 | 7 | 8 | 9 | 10 |
-|------|---|---|---|---|---|----|
-| Tần số | 2 | 3 | 5 | 6 | 6 | 8 |
-
-b) $\bar{x} = \frac{5 \times 2 + 6 \times 3 + 7 \times 5 + 8 \times 6 + 9 \times 6 + 10 \times 8}{30} = \frac{240}{30} = 8$
-
-c) Trung vị = $\frac{8 + 8}{2} = 8$
-
-d) Mốt = 10 (xuất hiện 8 lần)
-
-e) Học sinh đạt 8 trở lên: $6 + 6 + 8 = 20$ học sinh
-
-Tỉ lệ: $\frac{20}{30} \times 100\% = 66.67\%$
-
-</div>
-</details>
-
----
-
-<h4 id="bai-10">Bài 10: Bài toán nâng cao (Câu lớn)</h4>
-
-Một công ty bán hàng có doanh thu (triệu đồng) trong 12 tháng:
-100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210
-
-a) Tính doanh thu trung bình
-
-b) Tìm số trung vị
-
-c) Tính tỉ lệ phần trăm tăng trưởng từ tháng 1 đến tháng 12
-
-d) Vẽ biểu đồ đoạn thẳng
-
-e) Dự đoán doanh thu tháng 13
-
-<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
-<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
-
-**Lời giải:**
-
-a) Doanh thu trung bình = $\frac{100 + 110 + ... + 210}{12} = \frac{1800}{12} = 150$ (triệu đồng)
-
-b) Trung vị = $\frac{150 + 160}{2} = 155$ (triệu đồng)
-
-c) Tỉ lệ tăng trưởng = $\frac{210 - 100}{100} \times 100\% = 110\%$
-
-d) Vẽ biểu đồ đoạn thẳng với các điểm (1, 100), (2, 110), ..., (12, 210)
-
-e) Doanh thu tăng 10 triệu đồng mỗi tháng, nên tháng 13 dự đoán: $210 + 10 = 220$ (triệu đồng)
-
-</div>
-</details>
 
 </VanDung>
 
@@ -580,3 +355,153 @@ e) Doanh thu tăng 10 triệu đồng mỗi tháng, nên tháng 13 dự đoán: 
 - **Góc ở tâm**: Tỉ lệ % × 360°
 
 </GhiNho>
+
+
+---
+
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
+
+<h4 id="bai-1">Bài 1: Phân loại dữ liệu</h4>
+
+Phân loại các dữ liệu sau thành định tính hoặc định lượng:
+- a) Điểm môn Ngữ văn cuối học kỳ 1 của 35 học sinh.
+- b) Xếp loại rèn luyện (Tốt, Khá, Đạt, Chưa đạt).
+- c) Chiều dài các cạnh của một tam giác (cm).
+- d) Tên các thủ đô trên thế giới.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+- a) Định lượng (số điểm)
+- b) Định tính (loại xếp loại)
+- c) Định lượng (số đo chiều dài)
+- d) Định tính (tên địa danh)
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-2">Bài 2: Tính hợp lý của dữ liệu</h4>
+
+Cho bảng thống kê điểm kiểm tra Toán của 5 học sinh: Nam (8), Hoa (9), An (11), Bình (-1), Cường (7.5). Tìm các dữ liệu không hợp lý và giải thích.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+- Điểm 11 không hợp lý vì thang điểm thi tối đa là 10.
+- Điểm -1 không hợp lý vì điểm số không thể là số âm.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-3">Bài 3: Biểu đồ hình quạt tròn</h4>
+
+Kết quả khảo sát món ăn sáng yêu thích của 50 học sinh: Phở: 20 học sinh, Bánh mì: 15 học sinh, Xôi: 10 học sinh, Bún: 5 học sinh.
+- a) Tính tỉ lệ phần trăm của mỗi món ăn.
+- b) Tính góc ở tâm tương ứng biểu diễn mỗi món ăn trên biểu đồ hình quạt tròn.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+- a) Tỉ lệ %: Phở $= 40\%$, Bánh mì $= 30\%$, Xôi $= 20\%$, Bún $= 10\%$.
+- b) Góc ở tâm: Phở $= 144^\circ$, Bánh mì $= 108^\circ$, Xôi $= 72^\circ$, Bún $= 36^\circ$.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-4">Bài 4: Phân tích biểu đồ hình quạt</h4>
+
+Một nông trường trồng trọt có tổng diện tích 120 ha. Biểu đồ quạt tròn cho biết diện tích trồng lúa chiếm 50%, ngô chiếm 25%, rau màu chiếm 15%, cây ăn quả chiếm 10%. Tính diện tích (ha) trồng từng loại cây.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+- Lúa: $120 \times 50\% = 60$ ha
+- Ngô: $120 \times 25\% = 30$ ha
+- Rau màu: $120 \times 15\% = 18$ ha
+- Cây ăn quả: $120 \times 10\% = 12$ ha
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-5">Bài 5: Biểu đồ đoạn thẳng</h4>
+
+Bảng nhiệt độ trung bình ngày tại một trạm đo trong tuần (đơn vị: $^\circ\text{C}$): Thứ 2 (22), Thứ 3 (24), Thứ 4 (28), Thứ 5 (26), Thứ 6 (25), Thứ 7 (23), Chủ nhật (21).
+- a) Nhiệt độ cao nhất và thấp nhất trong tuần là bao nhiêu?
+- b) Khoảng thời gian nào nhiệt độ tăng nhanh nhất?
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+- a) Nhiệt độ cao nhất: $28^\circ\text{C}$ (Thứ 4); Thấp nhất: $21^\circ\text{C}$ (Chủ nhật).
+- b) Nhiệt độ tăng nhanh nhất từ Thứ 3 đến Thứ 4 (tăng $28 - 24 = 4^\circ\text{C}$).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-6">Bài 6: Phân tích xu hướng số liệu</h4>
+
+Số sản phẩm bán ra của một doanh nghiệp trong 4 quý: Q1 (1200 sản phẩm), Q2 (1500 sản phẩm), Q3 (1400 sản phẩm), Q4 (2000 sản phẩm).
+- a) Doanh số tăng nhiều nhất ở quý nào so với quý trước đó?
+- b) Tính tổng số sản phẩm bán ra cả năm và doanh số trung bình mỗi quý.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+- a) Q2 tăng 300; Q3 giảm 100; Q4 tăng 600. Vậy Q4 tăng nhiều nhất ($+600$ sản phẩm).
+- b) Tổng sản phẩm: $1200 + 1500 + 1400 + 2000 = 6100$. Trung bình mỗi quý: $6100 / 4 = 1525$ sản phẩm.
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-7">Bài 7: Lựa chọn biểu đồ thích hợp</h4>
+
+Trong các tình huống sau, nên chọn biểu đồ hình quạt tròn hay biểu đồ đoạn thẳng?
+- a) Biểu diễn tỉ lệ đóng góp ngân sách của các ngành kinh tế trong năm 2023.
+- b) Theo dõi diễn biến giá vàng hàng ngày trong tháng 5.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+- a) Chọn **Biểu đồ hình quạt tròn** (biểu diễn tỉ lệ phần trăm cơ cấu).
+- b) Chọn **Biểu đồ đoạn thẳng** (theo dõi sự thay đổi theo thời gian).
+
+</div>
+</details>
+
+---
+
+<h4 id="bai-8">Bài 8: Bài toán thực tế tổng hợp</h4>
+
+Một câu lạc bộ thể thao điều tra 100 thành viên về thời gian rèn luyện mỗi tuần (giờ): 20 người tập 2h; 40 người tập 4h; 30 người tập 6h; 10 người tập 8h.
+- a) Lập bảng tần số và tính số giờ rèn luyện trung bình của một thành viên.
+- b) Tính góc ở tâm biểu diễn nhóm người tập 4h/tuần trên biểu đồ hình quạt tròn.
+
+<details style="margin:1rem 0;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Xem lời giải</summary>
+<div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
+
+- a) Trung bình $= (20 \times 2 + 40 \times 4 + 30 \times 6 + 10 \times 8) / 100 = (40 + 160 + 180 + 80)/100 = 4.6$ (giờ/tuần).
+- b) Nhóm 4h chiếm $40/100 = 40\%$. Góc ở tâm $= 40\% \times 360^\circ = 144^\circ$.
+
+</div>
+</details>
+

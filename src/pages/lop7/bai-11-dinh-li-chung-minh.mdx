@@ -89,6 +89,66 @@ export const quizData = [
     difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Trong định lí \"Nếu hai góc đối đỉnh thì bằng nhau\", giả thiết là:",
+    option_a: "Hai góc đối đỉnh",
+    option_b: "Hai góc bằng nhau",
+    option_c: "Một góc",
+    option_d: "Chứng minh",
+    correct_option: "A",
+    explanation: "Giả thiết là điều cho trước: hai góc đối đỉnh.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Phát biểu nào sau đây là đúng?",
+    option_a: "Định lí cần được chứng minh còn tiên đề không cần",
+    option_b: "Tiên đề cần được chứng minh còn định lí không cần",
+    option_c: "Cả định lí và tiên đề đều cần chứng minh",
+    option_d: "Cả định lí và tiên đề đều không cần chứng minh",
+    correct_option: "A",
+    explanation: "Định lí là khẳng định cần chứng minh; tiên đề là khẳng định được thừa nhận không cần chứng minh.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Ví dụ nào sau đây là một định lí đảo của định lí \"Nếu $a \\parallel b$ và $b \\parallel c$ thì $a \\parallel c$\"?",
+    option_a: "\"Nếu $a \\parallel c$ thì $a \\parallel b$ và $b \\parallel c$\"",
+    option_b: "\"Nếu $a \\parallel c$ thì $a$ không song song $b$\"",
+    option_c: "\"Nếu $a \\parallel b$ thì $b \\parallel c$\"",
+    option_d: "Không có định lí đảo",
+    correct_option: "A",
+    explanation: "Định lí đảo đổi giả thiết và kết luận cho nhau.",
+    difficulty_level: "hard",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để chứng minh một định lí, ta cần làm những việc nào?",
+    option_a: "Vẽ hình (nếu cần)",
+    option_b: "Viết giả thiết và kết luận",
+    option_c: "Lập luận từ giả thiết suy ra kết luận",
+    option_d: "Đo đạc trên hình",
+    correct_option: "A,B,C",
+    explanation: "Chứng minh định lí gồm: vẽ hình, viết GT–KL, rồi lập luận logic để suy ra kết luận.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Hệ quả là:",
+    option_a: "Kết quả suy ra trực tiếp từ định lí",
+    option_b: "Một câu hỏi",
+    option_c: "Một phép tính",
+    option_d: "Một tiên đề về phép cộng",
+    correct_option: "A",
+    explanation: "Hệ quả là kết quả được suy ra trực tiếp từ một định lí.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong>
@@ -272,6 +332,69 @@ Hai góc so le trong bằng nhau nên $a \parallel c$
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:1rem 0;">
+
+**Dạng 1: Phát biểu giả thiết và kết luận của định lí**
+**Phương pháp giải:** Từ một phát biểu định lí dạng "Nếu ... thì ...", phần trước "Nếu" là giả thiết, phần sau "thì" là kết luận.
+
+</div>
+
+**Ví dụ 1:** Phát biểu định lí: "Nếu hai góc đối đỉnh thì chúng bằng nhau". Viết giả thiết và kết luận.
+
+*Lời giải:* GT: Hai góc đối đỉnh; KL: Hai góc đó bằng nhau.
+
+**Ví dụ 2:** Phát biểu: "Nếu hai góc kề bù thì tổng của chúng bằng $180^\circ$". Viết GT–KL.
+
+*Lời giải:* GT: Hai góc kề bù; KL: Tổng của chúng bằng $180^\circ$.
+
+**Ví dụ 3:** Phát biểu: "Nếu hai đường thẳng song song thì các góc so le trong bằng nhau". Viết GT–KL.
+
+*Lời giải:* GT: Hai đường thẳng song song; KL: Các góc so le trong bằng nhau.
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 2: Phát biểu định lí đảo**
+**Phương pháp giải:** Đổi giả thiết và kết luận của định lí thuận cho nhau để được định lí đảo, rồi nhận xét tính đúng sai.
+
+</div>
+
+**Ví dụ 1:** Viết định lí đảo của định lí: "Nếu hai góc đối đỉnh thì bằng nhau".
+
+*Lời giải:* "Nếu hai góc bằng nhau thì chúng đối đỉnh" (không đúng). Vậy định lí đảo sai.
+
+**Ví dụ 2:** Viết định lí đảo của: "Nếu hai góc so le trong bằng nhau thì hai đường thẳng song song".
+
+*Lời giải:* "Nếu hai đường thẳng song song thì các góc so le trong bằng nhau" (đúng).
+
+**Ví dụ 3:** Kiểm tra định lí đảo: "Nếu $a^2 = b^2$ thì $a = b$".
+
+*Lời giải:* Sai, vì $a$ và $b$ có thể đối nhau ($a = -b$).
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 3: Chứng minh định lí**
+**Phương pháp giải:** Vẽ hình, viết GT–KL, sau đó dùng các tính chất, định lí đã biết để lập luận suy ra kết luận.
+
+</div>
+
+**Ví dụ 1:** Chứng minh hai góc đối đỉnh bằng nhau.
+
+*Lời giải:* Hai góc đối đỉnh $\widehat{O_1}$, $\widehat{O_3}$ cùng kề bù với $\widehat{O_2}$, có tổng $180^\circ$ nên chúng bằng nhau.
+
+**Ví dụ 2:** Chứng minh: Nếu $a \perp c$ và $b \perp c$ thì $a \parallel b$.
+
+*Lời giải:* Hai góc đồng vị đều bằng $90^\circ$ nên $a \parallel b$.
+
+**Ví dụ 3:** Chứng minh: Hai góc kề bù có tổng bằng $180^\circ$.
+
+*Lời giải:* Theo định nghĩa hai góc kề bù (một cạnh chung, hai cạnh kia là hai tia đối nhau), chúng tạo thành góc bẹt $180^\circ$.
+
+</VanDung>
+
 <LuyenTap title="Thực hành tương tác">
 
 <h3 id="thuc-tanh" style="display:none">Thực hành tương tác</h3>
@@ -330,49 +453,91 @@ b) Định lí đảo: "Nếu hai đường thẳng song song thì chúng cùng 
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Phát biểu định lí: "Hai góc kề bù có tổng bằng $180^\\circ$"
+**Bài 1:** Phát biểu định lí: "Hai góc kề bù có tổng bằng $180^\circ$."
 
-a) Viết giả thiết và kết luận
+a) Viết giả thiết và kết luận.
 
-b) Phát biểu định lí đảo (nếu có)
+b) Phát biểu định lí đảo. Định lí đảo có đúng không? Giải thích.
 
-**Bài 2:** Cho định lí: "Nếu hai góc đồng vị bằng nhau thì hai đường thẳng song song"
+**Bài 2:** Cho định lí: "Nếu hai góc đồng vị bằng nhau thì hai đường thẳng song song."
 
-a) Viết GT và KL
+a) Viết GT và KL.
 
-b) Phát biểu định lí đảo
+b) Phát biểu định lí đảo.
 
 c) Định lí đảo có đúng không?
 
-**Bài 3:** Chứng minh: Nếu $a \perp c$ và $b \perp c$ thì $a \parallel b$
+**Bài 3:** Cho hai đường thẳng $a$ và $b$ cùng vuông góc với đường thẳng $c$.
 
-**Bài 4:** Phân biệt tiên đề và định lí. Cho ví dụ.
+a) Viết GT và KL.
 
-**Bài 5:** Cho định lí: "Nếu $x > 0$ thì $x^2 > 0$"
+b) Chứng minh $a \parallel b$.
 
-a) Viết GT và KL
+**Bài 4:** Phân biệt tiên đề, định lí, tính chất và hệ quả. Cho ví dụ cụ thể cho mỗi khái niệm.
 
-b) Phát biểu định lí đảo
+**Bài 5:** Cho định lí: "Nếu $x > 0$ thì $x^2 > 0$."
+
+a) Viết GT và KL.
+
+b) Phát biểu định lí đảo.
 
 c) Định lí đảo có đúng không? Giải thích.
 
-**Bài 6:** Chứng minh: Hai góc kề bù có tổng bằng $180^\\circ$
+**Bài 6:** Hai đường thẳng cắt nhau tại $O$, tạo thành góc $\widehat{AOB} = 40^\circ$.
+
+a) Viết GT và KL của định lí về góc đối đỉnh.
+
+b) Chứng minh góc đối đỉnh $\widehat{A'OB'}$ cũng bằng $40^\circ$.
+
+**Bài 7:** Cho định lí: "Nếu hai góc trong cùng phía bù nhau thì hai đường thẳng song song."
+
+a) Viết GT–KL.
+
+b) Viết định lí đảo.
+
+c) Chứng minh định lí đảo.
+
+**Bài 8:** Trong một bài toán, học sinh viết: "Giả thiết: $a \parallel b$, Kết luận: Góc so le trong bằng nhau."
+
+a) Em nhận xét cách viết này đúng hay sai? Vì sao?
+
+b) Viết lại đúng theo chuẩn.
+
+**Bài 9 (Ứng dụng thực tế - Mái nhà):** Hai thanh xà ngang của mái nhà được làm song song để chịu lực đều. Người thợ đo góc giữa một thanh dọc chống lên mái và thanh xà trên bằng $72^\circ$.
+
+a) Viết GT–KL để chứng minh thanh dọc đó cũng vuông góc với thanh xà dưới.
+
+b) Góc giữa thanh dọc và thanh xà dưới là bao nhiêu? Giải thích ý nghĩa thực tế.
+
+**Bài 10 (Ứng dụng thực tế - Thước kẻ):** Một người thợ mộc dùng thước thẳng để vẽ hai đường thẳng song song trên mặt gỗ, biết góc giữa thước và đường thẳng thứ nhất là $30^\circ$.
+
+a) Viết GT–KL để chứng minh góc giữa thước và đường thẳng thứ hai cũng bằng $30^\circ$.
+
+b) Vì sao việc xác định chính xác hai đường thẳng song song trên gỗ lại quan trọng trong thi công?
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) GT: Hai góc kề bù; KL: Tổng = $180^\\circ$; b) Nếu hai góc có tổng $180^\\circ$ và có cạnh chung thì chúng kề bù (không hoàn toàn đúng)
+**Bài 1:** a) GT: Hai góc kề bù; KL: Tổng = $180^\circ$. b) Định lí đảo: Nếu tổng hai góc bằng $180^\circ$ và chúng có cạnh chung thì chúng kề bù — không hoàn toàn đúng vì hai góc có thể không kề nhau.
 
-**Bài 2:** a) GT: Hai góc đồng vị bằng nhau; KL: Hai đường thẳng song song; b) Nếu hai đường thẳng song song thì hai góc đồng vị bằng nhau; c) Đúng
+**Bài 2:** a) GT: Hai góc đồng vị bằng nhau; KL: Hai đường thẳng song song. b) Nếu hai đường thẳng song song thì hai góc đồng vị bằng nhau. c) Đúng.
 
-**Bài 3:** Dùng tính chất góc đồng vị
+**Bài 3:** a) GT: $a \perp c$ và $b \perp c$; KL: $a \parallel b$. b) Hai góc đồng vị đều bằng $90^\circ$ nên $a \parallel b$.
 
-**Bài 4:** Tiên đề không cần chứng minh, định lí cần chứng minh
+**Bài 4:** Tiên đề không cần chứng minh (VD: Tiên đề Euclid). Định lí cần chứng minh (VD: Hai góc đối đỉnh bằng nhau). Tính chất là đặc điểm (VD: Tính chất giao hoán của phép cộng). Hệ quả suy ra từ định lí (VD: Từ định tính góc đối đỉnh).
 
-**Bài 5:** a) GT: $x > 0$; KL: $x^2 > 0$; b) Nếu $x^2 > 0$ thì $x > 0$; c) Sai, vì $x$ có thể âm
+**Bài 5:** a) GT: $x > 0$; KL: $x^2 > 0$. b) Nếu $x^2 > 0$ thì $x > 0$. c) Sai, vì $x$ có thể là số âm ($(-2)^2 = 4 > 0$).
 
-**Bài 6:** Theo định nghĩa góc kề bù
+**Bài 6:** a) GT: Hai đường thẳng cắt nhau; KL: Các cặp góc đối đỉnh bằng nhau. b) Góc $\widehat{A'OB'}$ và $\widehat{AOB}$ kề bù với góc kề, suy ra hai góc đối đỉnh bằng nhau = $40^\circ$.
+
+**Bài 7:** a) GT: Hai góc trong cùng phía bù nhau; KL: Hai đường thẳng song song. b) Đảo: Nếu hai đường thẳng song song thì hai góc trong cùng phía bù nhau. c) Chứng minh: Dùng tính chất góc đồng vị khi song song, rồi tính góc trong cùng phía.
+
+**Bài 8:** a) Cách viết chưa đúng chuẩn; GT và KL cần ghi rõ ràng. b) Nên viết: GT: $a \parallel b$ (hoặc điều kiện); KL: Góc so le trong bằng nhau.
+
+**Bài 9:** a) GT: $x_{trên} \perp x_{dọc}$; KL: $x_{dọc} \perp x_{dưới}$. Vì $x_{trên} \parallel x_{dưới}$ và góc đồng vị bằng $90^\circ$. b) Góc bằng $90^\circ$, mối nối vuông góc giúp mái nhà chịu lực tốt.
+
+**Bài 10:** a) GT: Thứ tự $dd_1$, $dd_2$ song song và thước tạo góc $30^\circ$ với $dd_1$; KL: Thước tạo góc $30^\circ$ với $dd_2$ (đối đỉnh/góc đồng vị). b) Đảm bảo khoảng cách giữa hai đường thẳng luôn bằng nhau, giúp các chi tiết vừa khít, không bị lệch.
 
 </div>
 </details>

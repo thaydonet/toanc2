@@ -84,6 +84,66 @@ export const quizData = [
     difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố chắc chắn bằng:",
+    option_a: "1",
+    option_b: "0",
+    option_c: "0.5",
+    option_d: "100",
+    correct_option: "A",
+    explanation: "Xác suất của biến cố chắc chắn luôn bằng 1.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Xác suất của biến cố không thể bằng:",
+    option_a: "0",
+    option_b: "1",
+    option_c: "0.5",
+    option_d: "-1",
+    correct_option: "A",
+    explanation: "Xác suất của biến cố không thể luôn bằng 0.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tung một đồng xu cân đối 1 lần. Xác suất xuất hiện mặt ngửa là:",
+    option_a: "$\\dfrac{1}{2}$",
+    option_b: "1",
+    option_c: "0",
+    option_d: "$\\dfrac{1}{4}$",
+    correct_option: "A",
+    explanation: "Đồng xu có 2 mặt đồng khả năng nên xác suất mặt ngửa là 1/2.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Gieo 1 con xúc xắc 6 mặt cân đối. Xác suất xuất hiện mặt có số chấm chia hết cho 3 (mặt 3 hoặc 6) là:",
+    option_a: "$\\dfrac{1}{3}$",
+    option_b: "$\\dfrac{1}{6}$",
+    option_c: "$\\dfrac{1}{2}$",
+    option_d: "$\\dfrac{2}{3}$",
+    correct_option: "A",
+    explanation: "Có 2 kết quả thuận lợi (3, 6) trên tổng 6 kết quả: $2/6 = 1/3$.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một túi đựng !a(2,3,4)! quả cầu đỏ và !b(3,4,5)! quả cầu xanh cùng kích thước. Rút ngẫu nhiên 1 quả. Xác suất rút được quả cầu đỏ là:",
+    option_a: "$\\dfrac{!a!}{${tinh: !a! + !b!}}$",
+    option_b: "$\\dfrac{!b!}{${tinh: !a! + !b!}}$",
+    option_c: "$\\dfrac{1}{!a!}$",
+    option_d: "$\\dfrac{1}{!b!}$",
+    correct_option: "A",
+    explanation: "Tổng số quả cầu là !a! + !b! = ${tinh: !a! + !b!}. Xác suất rút quả đỏ là !a!/${tinh: !a! + !b!}.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
 ];
 
 <KhoiDong>
@@ -244,6 +304,30 @@ $P(\text{Số lẻ}) = 1 - P(\text{Số chẵn}) = 1 - \frac{1}{2} = \frac{1}{2}
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Tính xác suất của biến cố trong trò chơi đồng khả năng</h4>
+
+**Phương pháp:** 
+- Xác định tổng số kết quả có thể xảy ra $N$.
+- Xác định số kết quả thuận lợi cho biến cố $n$.
+- Xác suất của biến cố là $P = \dfrac{n}{N}$.
+
+**Ví dụ 1.1:** Rút ngẫu nhiên 1 lá bài từ bộ bài 52 lá. Tính xác suất rút được lá bài là lá Át (Ace).
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+- Tổng số lá bài $N = 52$.
+- Số lá bài Át $n = 4$.
+- Xác suất rút được lá Át: $P = \dfrac{4}{52} = \dfrac{1}{13}$.
+
+</details>
+
+</VanDung>
+
 <LuyenTap>
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
@@ -281,6 +365,20 @@ $P(B) = \frac{16}{40} = \frac{2}{5}$
 **Cách 2:** Dùng biến cố đối
 
 $P(B) = 1 - P(A) = 1 - \frac{3}{5} = \frac{2}{5}$
+
+</div>
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán (Vòng quay may mắn):**
+Một chiếc bánh xe may mắn gồm 8 hình quạt bằng nhau đánh số từ 1 đến 8.
+- Tính xác suất quay vào ô số chẵn: Có 4 ô chẵn (2, 4, 6, 8) nên xác suất $P = \dfrac{4}{8} = 0.5$.
 
 </div>
 

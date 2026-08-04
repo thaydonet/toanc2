@@ -84,6 +84,66 @@ export const quizData = [
     difficulty_level: "hard",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Diện tích xung quanh của hình lăng trụ đứng là:",
+    option_a: "Tích chu vi đáy với chiều cao",
+    option_b: "Tích diện tích đáy với chiều cao",
+    option_c: "Tổng chu vi đáy và chiều cao",
+    option_d: "Tích hai đáy",
+    correct_option: "A",
+    explanation: "$S_{xq} = C_{đáy} \\cdot h$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích của hình lăng trụ đứng bằng:",
+    option_a: "Diện tích đáy nhân với chiều cao",
+    option_b: "Chu vi đáy nhân với chiều cao",
+    option_c: "Nửa diện tích đáy nhân với chiều cao",
+    option_d: "Tích ba cạnh đáy",
+    correct_option: "A",
+    explanation: "$V = S_{đáy} \\cdot h$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Các mặt bên của hình lăng trụ đứng tam giác là:",
+    option_a: "Các hình chữ nhật",
+    option_b: "Các hình tam giác",
+    option_c: "Các hình vuông",
+    option_d: "Các hình ngũ giác",
+    correct_option: "A",
+    explanation: "Hình lăng trụ đứng có tất cả các mặt bên là hình chữ nhật.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hình lăng trụ đứng tam giác có diện tích đáy 15 cm², chiều cao 8 cm. Thể tích hình lăng trụ đó là:",
+    option_a: "120 cm³",
+    option_b: "60 cm³",
+    option_c: "23 cm³",
+    option_d: "180 cm³",
+    correct_option: "A",
+    explanation: "$V = S_{đáy} \\cdot h = 15 \\times 8 = 120$ cm³.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hình lăng trụ đứng tam giác có diện tích đáy !a(12,18,24,30)! cm² và chiều cao !b(5,6,10)! cm. Thể tích bằng:",
+    option_a: "${tinh: !a! * !b!} cm³",
+    option_b: "${tinh: !a! * !b! / 2} cm³",
+    option_c: "${tinh: !a! + !b!} cm³",
+    option_d: "${tinh: !a! * 2 + !b!} cm³",
+    correct_option: "A",
+    explanation: "$V = S_{đáy} \\cdot h = !a! \\times !b! = ${tinh: !a! * !b!} cm³.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
 ];
 
 <KhoiDong>
@@ -289,6 +349,28 @@ Quan hệ: Hình lập phương ⊂ Hình hộp chữ nhật ⊂ Hình lăng tr�
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Tính diện tích xung quanh và thể tích của hình lăng trụ đứng</h4>
+
+**Phương pháp:** 
+- $S_{xq} = C_{đáy} \cdot h$.
+- $V = S_{đáy} \cdot h$.
+
+**Ví dụ 1.1:** Cho hình lăng trụ đứng tam giác có đáy là tam giác vuông cân cạnh góc vuông 3 cm, chiều cao lăng trụ là 10 cm. Tính thể tích $V$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+- $S_{đáy} = \dfrac{1}{2} \cdot 3 \cdot 3 = 4.5$ cm².
+- $V = S_{đáy} \cdot h = 4.5 \cdot 10 = 45$ cm³.
+
+</details>
+
+</VanDung>
+
 <LuyenTap>
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
@@ -336,6 +418,19 @@ b) Thể tích: $V = 6 \times 5 = 30$ m³
 Diện tích đáy: $S = 8 \times 5 = 40$ cm²
 
 Thể tích: $V = 40 \times 12 = 480$ cm³
+
+</div>
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán (Hộp quà lăng trụ):**
+Một chiếc hộp quà hình lăng trụ đứng tam giác có đáy là tam giác đều cạnh 10 cm, chiều cao 15 cm. Diện tích bìa dùng làm các mặt bên là $S_{xq} = (10 + 10 + 10) \times 15 = 450$ cm².
 
 </div>
 

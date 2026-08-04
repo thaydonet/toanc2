@@ -113,6 +113,30 @@ export const quizData = [
     difficulty_level: "hard",
     is_dynamic: true,
   },
+  {
+    type: "mcq",
+    question: "Qua điểm $M$ nằm ngoài đường thẳng $d$, có bao nhiêu đường thẳng song song với $d$?",
+    option_a: "Duy nhất một đường thẳng",
+    option_b: "Hai đường thẳng",
+    option_c: "Không có đường thẳng nào",
+    option_d: "Vô số đường thẳng",
+    correct_option: "A",
+    explanation: "Theo tiên đề Euclid: qua một điểm ngoài đường thẳng có duy nhất một đường thẳng song song với đường thẳng đó.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho $a \\parallel b$. Tính chất nào sau đây là ĐÚNG?",
+    option_a: "Hai góc so le trong bằng nhau",
+    option_b: "Hai góc đồng vị bằng nhau",
+    option_c: "Hai góc trong cùng phía bù nhau",
+    option_d: "Tổng bốn góc tạo thành luôn bằng $240^\\circ$",
+    correct_option: "A,B,C",
+    explanation: "Khi hai đường thẳng song song bị cắt bởi đường thẳng thứ ba, các góc so le trong và đồng vị bằng nhau, các góc trong cùng phía bù nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong>
@@ -245,6 +269,69 @@ Vậy $c \perp b$
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:1rem 0;">
+
+**Dạng 1: Vẽ và nhận biết đường thẳng song song qua một điểm**
+**Phương pháp giải:** Vận dụng tiên đề Euclid: qua một điểm nằm ngoài đường thẳng có duy nhất một đường thẳng song song với đường thẳng đó.
+
+</div>
+
+**Ví dụ 1:** Qua điểm $M$ nằm ngoài đường thẳng $d$, vẽ được bao nhiêu đường thẳng song song với $d$?
+
+*Lời giải:* Theo tiên đề Euclid, vẽ được duy nhất một đường thẳng.
+
+**Ví dụ 2:** Cho điểm $A$ nằm ngoài đường thẳng $b$. Qua $A$ vẽ đường thẳng $a$ song song với $b$. Có thể vẽ thêm đường thẳng $a'$ phân biệt với $a$ song song với $b$ không?
+
+*Lời giải:* Không. Vì qua $A$ chỉ có duy nhất một đường thẳng song song với $b$.
+
+**Ví dụ 3:** Hai đường thẳng $a$ và $b$ cùng đi qua điểm $P$ và cùng song song với $c$. Em có nhận xét gì?
+
+*Lời giải:* Vì qua $P$ chỉ có duy nhất một đường thẳng song song với $c$, nên $a$ và $b$ trùng nhau.
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 2: Tính số đo góc dựa vào tính chất hai đường thẳng song song**
+**Phương pháp giải:** Với $a \parallel b$ bị $c$ cắt, các góc so le trong bằng nhau, góc đồng vị bằng nhau, góc trong cùng phía bù nhau. Từ một góc suy ra các góc còn lại.
+
+</div>
+
+**Ví dụ 1:** Cho $a \parallel b$, $c$ cắt cả hai. Một góc so le trong bằng $55^\circ$. Tính góc đồng vị tương ứng.
+
+*Lời giải:* Vì $a \parallel b$ nên góc đồng vị tương ứng bằng $55^\circ$.
+
+**Ví dụ 2:** Cho $a \parallel b$, $c$ cắt cả hai. Một góc so le trong bằng $70^\circ$. Tính góc trong cùng phía với nó.
+
+*Lời giải:* Góc trong cùng phía bù nhau: $180^\circ - 70^\circ = 110^\circ$.
+
+**Ví dụ 3:** Cho $a \parallel b$, $c$ cắt cả hai. Một góc trong cùng phía bằng $2x$, góc kia bằng $x$. Tính $x$.
+
+*Lời giải:* $2x + x = 180^\circ \Rightarrow 3x = 180^\circ \Rightarrow x = 60^\circ$.
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 3: Chứng minh quan hệ vuông góc giữa hai đường thẳng khi song song**
+**Phương pháp giải:** Nếu $a \parallel b$ và $c \perp a$ thì ta chứng minh $c \perp b$ nhờ các góc đồng vị bằng nhau.
+
+</div>
+
+**Ví dụ 1:** Cho $a \parallel b$ và $c \perp a$. Chứng minh $c \perp b$.
+
+*Lời giải:* Góc tạo bởi $c$ và $b$ đồng vị với góc $90^\circ$ tạo bởi $c$ và $a$ nên cũng bằng $90^\circ$, do đó $c \perp b$.
+
+**Ví dụ 2:** Cho $a \parallel b$ và $d \perp b$. Chứng minh $d \perp a$.
+
+*Lời giải:* Tương tự, hai góc đồng vị đều bằng $90^\circ$, vậy $d \perp a$.
+
+**Ví dụ 3:** Cho $a \parallel b$. Nếu đường thẳng $c$ vuông góc với $a$ tạo với $a$ góc $90^\circ$, tính góc tạo bởi $c$ và $b$.
+
+*Lời giải:* Góc đồng vị bằng $90^\circ$, nên $c$ và $b$ cũng vuông góc.
+
+</VanDung>
+
 <LuyenTap title="Thực hành tương tác">
 
 <h3 id="thuc-tanh" style="display:none">Thực hành tương tác</h3>
@@ -297,39 +384,79 @@ b) Góc trong cùng phía = $180^\\circ - 75^\\circ = 105^\\circ$
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết góc so le trong bằng $55^\\circ$. Tính:
+**Bài 1:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết góc so le trong bằng $55^\circ$.
 
-a) Góc so le trong còn lại
+a) Tính góc so le trong còn lại.
 
-b) Các góc đồng vị
+b) Tính các góc đồng vị.
 
-c) Các góc trong cùng phía
+c) Tính các góc trong cùng phía.
 
-**Bài 2:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết góc đồng vị bằng $80^\\circ$. Tính các góc còn lại.
+**Bài 2:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết góc đồng vị bằng $80^\circ$.
+
+a) Tính góc so le trong tương ứng.
+
+b) Tính các góc còn lại trong hình.
 
 **Bài 3:** Cho $a \parallel b$, $c$ cắt $a$ và $b$. Biết hai góc trong cùng phía là $x$ và $2x$. Tính $x$.
 
-**Bài 4:** Cho $a \parallel b$, $c \perp a$. Chứng minh $c \perp b$.
+**Bài 4:** Cho $a \parallel b$, đường thẳng $c \perp a$. Chứng minh $c \perp b$.
 
-**Bài 5:** Cho $a \parallel b \parallel c$. Chứng minh $a \parallel c$.
+**Bài 5:** Cho $a \parallel b \parallel c$. 
 
-**Bài 6:** Qua điểm $M$ nằm ngoài đường thẳng $d$, vẽ được bao nhiêu đường thẳng song song với $d$?
+a) Chứng minh $a \parallel c$.
+
+b) Nếu đường thẳng $d$ vuông góc với $a$, em hãy biểu diễn lại mối quan hệ của $d$ với $b$ và $c$.
+
+**Bài 6:** Qua điểm $M$ nằm ngoài đường thẳng $d$.
+
+a) Vẽ được bao nhiêu đường thẳng song song với $d$?
+
+b) Nếu qua $M$ vẽ được hai đường thẳng phân biệt cùng song song với $d$, điều này mâu thuẫn với tiên đề nào?
+
+**Bài 7:** Cho $a \parallel b$ và $\widehat{A_1} = 42^\circ$ (so le trong với $\widehat{B_1}$).
+
+a) Tính $\widehat{B_1}$.
+
+b) Tính các góc còn lại tại đỉnh $A$ và $B$.
+
+**Bài 8:** Trong một hình vẽ có hai đường thẳng $a$ và $b$ song song. Một góc so le trong bằng $\dfrac{2}{3}$ góc kề bù với nó. Tính hai góc đó.
+
+**Bài 9 (Ứng dụng thực tế - Hai bức tường):** Hai bức tường thẳng đứng được xem là song song với nhau. Một cây thước đặt chéo tạo với bức tường thứ nhất một góc $75^\circ$.
+
+a) Tính góc tạo bởi thước và bức tường thứ hai (góc đồng vị).
+
+b) Tính góc trong cùng phía và giải thích ứng dụng của tính song song trong xây dựng.
+
+**Bài 10 (Ứng dụng thực tế - Bàn bi-a):** Hai đường biên dài của bàn bi-a song song. Một cú đánh làm bi lăn theo đường thẳng cắt hai đường biên, tạo với đường biên dưới một góc $30^\circ$.
+
+a) Tính góc tạo với đường biên trên (góc đồng vị).
+
+b) Tính góc tạo với đường biên khi bi bật trở lại theo định luật phản xạ (góc tới bằng góc phản xạ) và giải thích.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** a) $55^\\circ$; b) $55^\\circ$; c) $55^\\circ$ và $125^\\circ$
+**Bài 1:** a) $55^\circ$; b) Các góc đồng vị đều bằng $55^\circ$; c) $55^\circ$ và $125^\circ$.
 
-**Bài 2:** Góc so le trong: $80^\\circ$; Góc trong cùng phía: $80^\\circ$ và $100^\\circ$
+**Bài 2:** a) $80^\circ$; b) Góc trong cùng phía $80^\circ$ và $100^\circ$.
 
-**Bài 3:** $x + 2x = 180^\\circ$ → $x = 60^\\circ$
+**Bài 3:** $x + 2x = 180^\circ \Rightarrow x = 60^\circ$.
 
-**Bài 4:** Dùng tính chất góc đồng vị
+**Bài 4:** Góc đồng vị đều bằng $90^\circ$ nên $c \perp b$.
 
-**Bài 5:** Dùng tính chất bắc cầu
+**Bài 5:** a) Theo tính chất bắc cầu, $a \parallel c$. b) $d \perp b$ và $d \perp c$.
 
-**Bài 6:** Duy nhất một đường (Tiên đề Euclid)
+**Bài 6:** a) Duy nhất một đường thẳng. b) Mâu thuẫn với tiên đề Euclid về tính duy nhất của đường song song.
+
+**Bài 7:** a) $\widehat{B_1} = 42^\circ$. b) Tại mỗi đỉnh các góc so le trong và đồng vị bằng $42^\circ$; các góc kề bù và trong cùng phía bằng $138^\circ$.
+
+**Bài 8:** Gọi góc so le trong là $x$, góc kề bù là $3x$. Ta có $x = \dfrac{2}{3}\cdot 3x$. Vì $x + 3x = 180^\circ \Rightarrow 4x = 180^\circ \Rightarrow x = 45^\circ$; góc kề bù $135^\circ$.
+
+**Bài 9:** a) $75^\circ$; b) Góc trong cùng phía $105^\circ$. Tính song song giúp bức tường luôn thẳng, chịu lực tốt và thi công đồng đều.
+
+**Bài 10:** a) $30^\circ$; b) Góc tạo với đường biên khi bật lại bằng $30^\circ$ (góc tới bằng góc phản xạ), nhờ hai đường biên song song mà góc này đối ứng đều nhau.
 
 </div>
 </details>

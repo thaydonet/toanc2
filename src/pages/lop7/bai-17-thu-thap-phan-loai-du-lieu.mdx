@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import ThuThapDuLieuInteractive from '../../components/interactive/ThuThapDuLieuInteractive';
 
 export const quizData = [
   {
@@ -77,11 +78,63 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Một lớp có 40 học sinh, điều tra chiều cao thì thu được bao nhiêu dữ liệu?",
-    correct_option: "40",
-    explanation: "Mỗi học sinh có một giá trị chiều cao, nên có 40 dữ liệu.",
+    type: "mcq",
+    question: "Một lớp có 40 học sinh, khi điều tra chiều cao của từng học sinh trong lớp thì thu được bao nhiêu dữ liệu?",
+    option_a: "40 dữ liệu",
+    option_b: "1 dữ liệu",
+    option_c: "20 dữ liệu",
+    option_d: "80 dữ liệu",
+    correct_option: "A",
+    explanation: "Mỗi học sinh cung cấp một giá trị chiều cao, nên có 40 dữ liệu.",
     difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Điều tra số con trong gia đình của !a(20,25,30,35,40)! học sinh thì thu được bao nhiêu dữ liệu?",
+    option_a: "${tinh: !a!}",
+    option_b: "${tinh: !a! + 1}",
+    option_c: "${tinh: !a! - 1}",
+    option_d: "${tinh: !a! + 2}",
+    correct_option: "A",
+    explanation: "Mỗi học sinh cung cấp một dữ liệu nên thu được !a! dữ liệu.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Điều tra sở thích môn thể thao của !a(30,40,50,60)! học sinh: có !b(10,15,20)! học sinh thích bóng đá, còn lại thích các môn khác. Số học sinh thích môn khác là:",
+    option_a: "${tinh: !a! - !b!}",
+    option_b: "${tinh: !a! - !b! + 10}",
+    option_c: "${tinh: !a! - !b! - 10}",
+    option_d: "${tinh: !a! - !b! + 20}",
+    correct_option: "A",
+    explanation: "Số học sinh thích môn khác = !a! − !b! = ${tinh: !a! - !b!}.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "msq",
+    question: "Đâu là dữ liệu định lượng?",
+    option_a: "Tuổi của học sinh",
+    option_b: "Màu mắt",
+    option_c: "Chiều cao",
+    option_d: "Sở thích",
+    correct_option: "A,C",
+    explanation: "Tuổi và chiều cao có thể đo lường bằng số, còn màu mắt và sở thích là định tính.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Để điều tra điểm trung bình môn Toán của 35 học sinh, phương pháp thu thập phù hợp nhất là:",
+    option_a: "Quan sát",
+    option_b: "Thí nghiệm",
+    option_c: "Điều tra, khảo sát",
+    option_d: "Đo lường trực tiếp",
+    correct_option: "C",
+    explanation: "Điểm số cần được cung cấp bởi học sinh hoặc giáo viên, nên dùng phiếu điều tra/khảo sát.",
+    difficulty_level: "medium",
     is_dynamic: false,
   },
 ];
@@ -127,6 +180,41 @@ export const quizData = [
 - Nhiệt độ trung bình hàng ngày
 
 </div>
+
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="600" height="260" viewBox="0 0 600 260" style="background:white;border-radius:12px;border:2px solid #e5e7eb;max-width:100%;">
+  {/* Root: Dữ liệu thống kê */}
+  <rect x="200" y="15" width="200" height="40" rx="8" fill="#2563eb" />
+  <text x="300" y="40" font-size="15" font-weight="bold" fill="white" text-anchor="middle">DỮ LIỆU THỐNG KÊ</text>
+
+  {/* Lines from Root */}
+  <path d="M 300 55 L 150 100" stroke="#64748b" stroke-width="2" />
+  <path d="M 300 55 L 450 100" stroke="#64748b" stroke-width="2" />
+
+  {/* Node 1: Định tính */}
+  <rect x="60" y="100" width="180" height="40" rx="8" fill="#0284c7" />
+  <text x="150" y="125" font-size="14" font-weight="bold" fill="white" text-anchor="middle">1. Dữ liệu định tính</text>
+  <text x="150" y="160" font-size="12" fill="#475569" text-anchor="middle">(Tên gọi, đặc điểm, nhãn)</text>
+
+  {/* Node 2: Định lượng */}
+  <rect x="360" y="100" width="180" height="40" rx="8" fill="#059669" />
+  <text x="450" y="125" font-size="14" font-weight="bold" fill="white" text-anchor="middle">2. Dữ liệu định lượng</text>
+  <text x="450" y="160" font-size="12" fill="#475569" text-anchor="middle">(Số đo, số đếm)</text>
+
+  {/* Lines from Định lượng */}
+  <path d="M 450 140 L 370 190" stroke="#64748b" stroke-width="2" />
+  <path d="M 450 140 L 530 190" stroke="#64748b" stroke-width="2" />
+
+  {/* Subnodes */}
+  <rect x="300" y="190" width="130" height="35" rx="6" fill="#10b981" />
+  <text x="365" y="212" font-size="12" fill="white" text-anchor="middle">Rời rạc (Số đếm)</text>
+
+  <rect x="465" y="190" width="130" height="35" rx="6" fill="#10b981" />
+  <text x="530" y="212" font-size="12" fill="white" text-anchor="middle">Liên tục (Số đo)</text>
+</svg>
+</div>
+
 
 <h3 id="phan-loai-du-lieu" style="margin-top:2rem;">📖 2. Phân loại dữ liệu</h3>
 
@@ -230,41 +318,108 @@ Sắp xếp dữ liệu thành bảng, nhóm để dễ phân tích.
 
 </KhamPha>
 
-<LuyenTap>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Phân loại dữ liệu định tính và định lượng</h4>
+
+**Phương pháp:** 
+- Dữ liệu định tính: Mô tả tính chất, màu sắc, tên gọi, trạng thái, đánh giá (không biểu diễn bằng số hoặc biểu diễn bằng chữ).
+- Dữ liệu định lượng: Biểu diễn bằng số đo, số đếm, có thể thực hiện tính toán số học.
+
+**Ví dụ 1.1:** Cho các dữ liệu sau: Chiều cao (cm), Loại trái cây yêu thích, Số điểm kiểm tra 15 phút, Quốc tịch. Hãy phân loại thành dữ liệu định tính và định lượng.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+- **Dữ liệu định lượng:** Chiều cao (cm), Số điểm kiểm tra 15 phút (do là các số đo/số đếm).
+- **Dữ liệu định tính:** Loại trái cây yêu thích, Quốc tịch (do là các đặc điểm/tên gọi không đo bằng số).
+
+</details>
+
+**Ví dụ 1.2:** Lớp 7A thống kê phương tiện đi học của 40 học sinh: Xe đạp, Xe máy điện, Đi bộ, Xe buýt. Đây là loại dữ liệu nào?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Đây là dữ liệu định tính vì tên phương tiện đi học mô tả loại hình/đặc điểm chứ không phải số đo.
+
+</details>
+
+---
+
+<h4 id="dang-2">Dạng 2: Phát hiện dữ liệu không hợp lý</h4>
+
+**Phương pháp:** Kiểm tra dữ liệu thu thập xem có tuân theo các quy tắc logic cơ bản (như chiều cao không thể âm, điểm số từ 0 đến 10, tỉ lệ phần trăm có tổng bằng 100%...) hay không.
+
+**Ví dụ 2.1:** Bạn Nam thu thập điểm thi môn Toán của 5 bạn trong nhóm: $8$; $9$; $10.5$; $7$; $-2$. Dữ liệu nào không hợp lý?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+- Dữ liệu $10.5$ không hợp lý vì thang điểm thi phổ thông tối đa là 10.
+- Dữ liệu $-2$ không hợp lý vì điểm số không thể là số âm.
+
+</details>
+
+---
+
+<h4 id="dang-3">Dạng 3: Lựa chọn phương pháp thu thập dữ liệu phù hợp</h4>
+
+**Phương pháp:** 
+- Thu thập trực tiếp: Quan sát (đếm số xe), Thí nghiệm (đo thời gian sôi).
+- Thu thập gián tiếp: Phỏng vấn, Lập phiếu khảo sát/điều tra, Tra cứu sách báo/Internet.
+
+**Ví dụ 3.1:** Để biết được nhiệt độ trung bình hàng ngày của Hà Nội trong tuần qua, ta nên dùng phương pháp thu thập nào?
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Nên thu thập gián tiếp qua tra cứu trang web của Trung tâm Dự báo Khí tượng Thủy văn hoặc báo chí.
+
+</details>
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
+
+<ThuThapDuLieuInteractive client:load />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Vận dụng thực tế">
 
 <h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-**Bài toán:** Một nhóm học sinh muốn điều tra về sở thích đọc sách của học sinh trong trường.
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-a) Xác định mục đích thu thập dữ liệu
+**📝 Bài toán 1 (Khảo sát sở thích đọc sách của trường):**
+Một nhóm học sinh lớp 7 muốn lập đề án phát triển văn hóa đọc cho thư viện trường.
+- a) **Mục đích:** Tìm hiểu loại sách được yêu thích nhất để bổ sung sách mới.
+- b) **Phương pháp:** Phát 100 phiếu khảo sát ngẫu nhiên cho học sinh các khối 6, 7, 8, 9.
+- c) **Phân loại dữ liệu thu được:**
+  - *Tên loại sách thích nhất (Truyện tranh, Văn học, Khoa học, Lịch sử)* $\rightarrow$ Dữ liệu định tính.
+  - *Số giờ đọc sách mỗi tuần (1h, 2h, 5h...)* $\rightarrow$ Dữ liệu định lượng (số đo).
+  - *Số quyển sách đã đọc trong tháng qua* $\rightarrow$ Dữ liệu định lượng (số đếm).
 
-b) Đề xuất phương pháp thu thập phù hợp
+</div>
 
-c) Dữ liệu thu thập được là định lượng hay định tính?
+<div style="background:#f0fdf4;border-left:4px solid #16a34a;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
-
-**Giải:**
-
-a) Mục đích: Tìm hiểu sở thích đọc sách của học sinh để đề xuất mua thêm sách cho thư viện
-
-b) Phương pháp: Điều tra bằng phiếu khảo sát với các câu hỏi:
-- Bạn có thích đọc sách không?
-- Loại sách nào bạn thích nhất?
-- Bạn đọc bao nhiêu quyển sách mỗi tháng?
-
-c) Dữ liệu thu thập được:
-- "Có thích đọc sách không" → Định tính (có/không)
-- "Loại sách thích nhất" → Định tính (truyện tranh, tiểu thuyết, khoa học...)
-- "Số quyển sách đọc mỗi tháng" → Định lượng (1, 2, 3... quyển)
+**📝 Bài toán 2 (Kiểm tra chất lượng nguồn nước sinh hoạt):**
+Trạm y tế xã đo chỉ số pH của nguồn nước tại 5 thôn: Thôn 1: 6.8; Thôn 2: 7.2; Thôn 3: 7.0; Thôn 4: 14.5; Thôn 5: 6.9.
+- Dữ liệu ở Thôn 4 (pH = 14.5) là không hợp lý vì chỉ số pH tự nhiên của nước nguồn sinh hoạt chỉ dao động từ 0 đến 14 và thường ở khoảng 6.5 - 8.5.
 
 </div>
 

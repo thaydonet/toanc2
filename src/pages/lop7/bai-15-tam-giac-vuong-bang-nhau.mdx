@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import TamGiacVuongBangNhauInteractive from '../../components/interactive/TamGiacVuongBangNhauInteractive';
 
 export const quizData = [
   {
@@ -61,6 +62,78 @@ export const quizData = [
     option_d: "Cạnh góc vuông - góc nhọn kề",
     correct_option: "A,B,C,D",
     explanation: "Tất cả đều là trường hợp bằng nhau của tam giác vuông.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác ABC vuông tại A có góc B = !a(20,30,40,50)!°. Góc C bằng:",
+    option_a: "${tinh: 90 - !a!}°",
+    option_b: "${tinh: 90 - !a! + 15}°",
+    option_c: "${tinh: 90 - !a! - 15}°",
+    option_d: "${tinh: 90 - !a! + 30}°",
+    correct_option: "A",
+    explanation: "Hai góc nhọn trong tam giác vuông phụ nhau: góc C = 90° − góc B = 90° − !a!° = ${tinh: 90 - !a!}°.",
+    difficulty_level: "easy",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ vuông tại A và $\\triangle DEF$ vuông tại D, có AB = DE = !a(3,4,5,6)! cm và góc B = góc E = !b(30,40,50)!°. Hai tam giác vuông bằng nhau theo trường hợp nào?",
+    option_a: "Cạnh góc vuông và góc nhọn kề (g.c.g)",
+    option_b: "Hai cạnh góc vuông",
+    option_c: "Cạnh huyền – góc nhọn",
+    option_d: "Cạnh huyền – cạnh góc vuông",
+    correct_option: "A",
+    explanation: "Cạnh góc vuông AB = DE và góc nhọn kề B = E tương ứng bằng nhau nên hai tam giác vuông bằng nhau (g.c.g).",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác ABC vuông tại A có AB = 5 cm, AC = 12 cm. Tính cạnh huyền BC:",
+    option_a: "13 cm",
+    option_b: "17 cm",
+    option_c: "7 cm",
+    option_d: "60 cm",
+    correct_option: "A",
+    explanation: "Áp dụng định lý Pytago: BC² = AB² + AC² = 5² + 12² = 25 + 144 = 169. Vậy BC = 13 cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho hai tam giác vuông ABC (vuông tại A) và DEF (vuông tại D). Những trường hợp nào sau đây đảm bảo hai tam giác bằng nhau?",
+    option_a: "AB = DE và BC = EF",
+    option_b: "AB = DE và AC = DF",
+    option_c: "BC = EF và góc B = góc E",
+    option_d: "AB = DE và góc B = góc E",
+    correct_option: "A,B,C,D",
+    explanation: "Tất cả các trường hợp trên đều đảm bảo hai tam giác vuông bằng nhau: (A) cạnh huyền-cạnh góc vuông, (B) hai cạnh góc vuông, (C) cạnh huyền-góc nhọn, (D) cạnh góc vuông-góc nhọn kề.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác ABC vuông tại A có AB = 6 cm, AC = 8 cm. Tam giác DEF vuông tại D có DE = 6 cm, góc E = góc B. Độ dài cạnh DF bằng:",
+    option_a: "8 cm",
+    option_b: "6 cm",
+    option_c: "10 cm",
+    option_d: "14 cm",
+    correct_option: "A",
+    explanation: "Vì góc B = góc E và AB = DE nên hai tam giác vuông bằng nhau theo trường hợp cạnh góc vuông - góc nhọn kề (g.c.g). Suy ra DF = AC = 8 cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác ABC vuông cân tại A, kẻ đường cao AH. Khi đó tam giác ABH và tam giác ACH bằng nhau theo trường hợp nào?",
+    option_a: "Cạnh huyền - cạnh góc vuông",
+    option_b: "Hai cạnh góc vuông",
+    option_c: "Cạnh góc vuông - góc nhọn kề",
+    option_d: "Cạnh huyền - góc nhọn",
+    correct_option: "A",
+    explanation: "Vì tam giác ABC vuông cân tại A nên AB = AC. AH là cạnh góc vuông chung. Vậy tam giác ABH = tam giác ACH theo trường hợp cạnh huyền - cạnh góc vuông.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -121,27 +194,135 @@ Kết luận: $\\triangle ABC = \\triangle DEF$ (cạnh huyền - cạnh góc vu
 
 </KhamPha>
 
-<LuyenTap>
+<VanDung>
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="cang-toc-va-phuong-phap-giai">📐 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4>Dạng 1: Nhận biết hai tam giác vuông bằng nhau theo trường hợp đặc biệt</h4>
+
+**Ví dụ 1:** Cho $\\triangle ABC$ vuông tại $A$ có $AB = 5$ cm, $AC = 12$ cm. Cho $\\triangle DEF$ vuông tại $D$ có $DE = 5$ cm, $DF = 12$ cm. Xác định trường hợp bằng nhau.
+
+**Giải:** Hai tam giác vuông có hai cạnh góc vuông tương ứng bằng nhau ($AB = DE$ và $AC = DF$). Vậy $\\triangle ABC = \\triangle DEF$ theo trường hợp hai cạnh góc vuông (c.g.c).
+
+**Ví dụ 2:** Cho $\\triangle ABC$ vuông tại $A$ có $BC = 13$ cm, $AB = 5$ cm. Cho $\\triangle DEF$ vuông tại $D$ có $EF = 13$ cm, $DE = 5$ cm. Xác định trường hợp bằng nhau.
+
+**Giải:** Hai tam giác vuông có cạnh huyền và một cạnh góc vuông tương ứng bằng nhau ($BC = EF$ và $AB = DE$). Vậy $\\triangle ABC = \\triangle DEF$ theo trường hợp cạnh huyền - cạnh góc vuông.
+
+**Ví dụ 3:** Cho $\\triangle ABC$ vuông tại $A$ có $BC = 10$ cm, $\\angle B = 30°$. Cho $\\triangle DEF$ vuông tại $D$ có $EF = 10$ cm, $\\angle E = 30°$. Xác định trường hợp bằng nhau.
+
+**Giải:** Hai tam giác vuông có cạnh huyền và một góc nhọn tương ứng bằng nhau ($BC = EF$ và $\\angle B = \\angle E$). Vậy $\\triangle ABC = \\triangle DEF$ theo trường hợp cạnh huyền - góc nhọn.
+
+<h4>Dạng 2: Chứng minh hai tam giác vuông bằng nhau</h4>
+
+**Ví dụ 1:** Cho tam giác $ABC$ vuông tại $A$, kẻ $AH \\perp BC$. Chứng minh $\\triangle ABH = \\triangle ACH$ nếu $AB = AC$.
+
+**Giải:** Xét $\\triangle ABH$ và $\\triangle ACH$ (vuông tại $H$) có:
+- $AB = AC$ (gt)
+- $AH$ chung
+
+Vậy $\\triangle ABH = \\triangle ACH$ (cạnh huyền - cạnh góc vuông).
+
+**Ví dụ 2:** Cho tam giác $ABC$ vuông tại $A$, có $AB = AC$. Kẻ $BM \\perp AC$ tại $M$, kẻ $CN \\perp AB$ tại $N$. Chứng minh $\\triangle ABM = \\triangle ACN$.
+
+**Giải:** Xét $\\triangle ABM$ và $\\triangle ACN$ (vuông tại $M$ và $N$) có:
+- $AB = AC$ (gt)
+- $\\angle A$ chung
+
+Vậy $\\triangle ABM = \\triangle ACN$ (cạnh huyền - góc nhọn).
+
+**Ví dụ 3:** Cho hình vuông $ABCD$, kẻ $AH \\perp BD$ tại $H$. Chứng minh $\\triangle ABH = \\triangle ACH$.
+
+**Giải:** Xét $\\triangle ABH$ và $\\triangle ACH$ (vuông tại $H$) có:
+- $AB = AC$ (cạnh hình vuông)
+- $AH$ chung
+
+Vậy $\\triangle ABH = \\triangle ACH$ (cạnh huyền - cạnh góc vuông).
+
+<h4>Dạng 3: Tính cạnh/khi biết hai tam giác vuông bằng nhau</h4>
+
+**Ví dụ 1:** Cho $\\triangle ABC = \\triangle DEF$, vuông tại $A$ và $D$. Biết $AB = 3$ cm, $BC = 5$ cm. Tính $DE$ và $EF$.
+
+**Giải:** Vì $\\triangle ABC = \\triangle DEF$ nên các cạnh tương ứng bằng nhau:
+- $DE = AB = 3$ cm
+- $EF = BC = 5$ cm
+
+**Ví dụ 2:** Cho $\\triangle ABC = \\triangle DEF$, vuông tại $A$ và $D$. Biết $AC = 8$ cm, $DF = 8$ cm, $BC = 10$ cm. Tính $AB$.
+
+**Giải:** Vì $\\triangle ABC = \\triangle DEF$ nên $AB = DE$. Áp dụng định lý Pytago trong $\\triangle ABC$: $AB² = BC² - AC² = 10² - 8² = 100 - 64 = 36$. Vậy $AB = 6$ cm.
+
+**Ví dụ 3:** Cho $\\triangle ABC = \\triangle DEF$, vuông tại $A$ và $D$. Biết $AB = 5$ cm, $\\angle B = 60°$. Tính $BC$.
+
+**Giải:** Vì $\\triangle ABC = \\triangle DEF$ nên $BC = EF$. Trong $\\triangle ABC$ vuông tại $A$: $\\cos B = \\frac{AB}{BC}$. Suy ra $BC = \\frac{AB}{\\cos B} = \\frac{5}{\\cos 60°} = \\frac{5}{0.5} = 10$ cm.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
+
+<TamGiacVuongBangNhauInteractive client:load />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Vận dụng thực tế">
 
-<h3 id="van-dung">🌍 Vận dụng</h3>
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-**Bài toán:** Cho $\\triangle ABC$ vuông tại $A$, có $AB = AC$. Kẻ $AH \\perp BC$. Chứng minh $\\triangle ABH = \\triangle ACH$.
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**📝 Bài toán 1 (Thiết kế thanh chống khung cửa):**
+Một khung cửa sổ hình chữ nhật $ABCD$ có hai thanh chống chéo $AC$ và $BD$ bằng thép. Người thợ muốn kiểm tra xem hai tam giác vuông $\triangle ABC$ và $\triangle DCB$ có bằng nhau không.
+- a) Chứng minh $\triangle ABC = \triangle DCB$.
+- b) Nêu trường hợp bằng nhau của hai tam giác vuông này.
 
-Xét $\\triangle ABH$ và $\\triangle ACH$ (vuông tại $H$) có:
-- $AB = AC$ (gt)
-- $AH$ chung
+*Lời giải:*
+- a) Xét $\triangle ABC$ (vuông tại $B$) và $\triangle DCB$ (vuông tại $C$) có:
+  - $AB = DC$ (hai cạnh đối hình chữ nhật)
+  - $BC$ chung (cạnh góc vuông)
+  - Vậy $\triangle ABC = \triangle DCB$ (hai cạnh góc vuông).
+- b) Trường hợp bằng nhau là hai cạnh góc vuông (c.g.c).
 
-Vậy $\\triangle ABH = \\triangle ACH$ (cạnh huyền - cạnh góc vuông)
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán 2 (Mái nhà hình tam giác cân):**
+Một ngôi nhà có mái hình tam giác $ABC$ vuông cân tại $A$ với $AB = AC = 5$ m. Người ta muốn lắp thêm một thanh chống $AH \perp BC$.
+- a) Chứng minh $\triangle ABH = \triangle ACH$.
+- b) Tính chiều dài thanh chống $AH$ và chiều rộng mái $BC$.
+
+*Lời giải:*
+- a) Xét $\triangle ABH$ (vuông tại $H$) và $\triangle ACH$ (vuông tại $H$) có:
+  - $AB = AC = 5$ m (gt)
+  - $AH$ chung
+  - Vậy $\triangle ABH = \triangle ACH$ (cạnh huyền - cạnh góc vuông).
+- b) Áp dụng định lý Pytago trong $\triangle ABC$ vuông tại $A$: $BC = \sqrt{AB^2 + AC^2} = \sqrt{5^2 + 5^2} = \sqrt{50} = 5\sqrt{2} \approx 7{,}07$ m.
+  - Do $\triangle ABH = \triangle ACH$ nên $H$ là trung điểm $BC$, suy ra $BH = \dfrac{BC}{2} = \dfrac{5\sqrt{2}}{2}$ m.
+  - Chiều dài thanh chống: $AH = \sqrt{AB^2 - BH^2} = \sqrt{25 - 12{,}5} = \sqrt{12{,}5} = \dfrac{5\sqrt{2}}{2} \approx 3{,}54$ m.
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán 3 (Đo chiều cao cột cờ bằng góc nghiêng):**
+Hai học sinh đứng ở hai phía đối diện của một ngọn tháp $SH$ (vuông góc với mặt đất tại $H$), cách $H$ các khoảng $HA$ và $HB$. Biết $HA = HB = 20$ m và góc quan sát đỉnh tháp $\widehat{SAH} = \widehat{SBH} = 45^\circ$.
+- a) Chứng minh $\triangle SAH = \triangle SBH$.
+- b) Tính chiều cao ngọn tháp $SH$.
+
+*Lời giải:*
+- a) Xét $\triangle SAH$ (vuông tại $H$) và $\triangle SBH$ (vuông tại $H$) có:
+  - $HA = HB = 20$ m
+  - $\widehat{SAH} = \widehat{SBH} = 45^\circ$
+  - Vậy $\triangle SAH = \triangle SBH$ (cạnh góc vuông - góc nhọn kề).
+- b) Trong tam giác vuông $SAH$ có $\widehat{SAH} = 45^\circ$ nên tam giác $SAH$ vuông cân tại $H$, suy ra $SH = HA = 20$ m. Ngọn tháp cao 20 m.
 
 </div>
 
@@ -159,19 +340,111 @@ Vậy $\\triangle ABH = \\triangle ACH$ (cạnh huyền - cạnh góc vuông)
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho $\\triangle ABC$ vuông tại $A$, có $AB = 3$ cm, $AC = 4$ cm. Tam giác $DEF$ vuông tại $D$, có $DE = 3$ cm, $DF = 4$ cm. Hai tam giác có bằng nhau không?
+**Câu 1:** Cho $\\triangle ABC$ vuông tại $A$ có $AB = 6$ cm, $AC = 8$ cm. Cho $\\triangle DEF$ vuông tại $D$ có $DE = 6$ cm, $DF = 8$ cm.
 
-**Bài 2:** Cho $\\triangle ABC$ vuông cân tại $A$. Kẻ $AH \\perp BC$. Chứng minh $\\triangle ABH = \\triangle ACH$.
+a) Tính cạnh huyền $BC$ và $EF$.
+
+b) Hai tam giác có bằng nhau không? Nêu trường hợp bằng nhau.
+
+c) Tính diện tích tam giác $ABC$.
+
+**Câu 2:** Cho $\\triangle ABC$ vuông tại $A$ có $BC = 10$ cm, $AB = 6$ cm. Cho $\\triangle DEF$ vuông tại $D$ có $EF = 10$ cm, $DE = 6$ cm.
+
+a) Tính cạnh góc vuông $AC$ và $DF$.
+
+b) Chứng minh $\\triangle ABC = \\triangle DEF$.
+
+c) Tính chu vi của mỗi tam giác.
+
+**Câu 3:** Cho $\\triangle ABC$ vuông tại $A$ có $AB = 5$ cm, $\\angle B = 60°$. Cho $\\triangle DEF$ vuông tại $D$ có $DE = 5$ cm, $\\angle E = 60°$.
+
+a) Tính góc $C$ và góc $F$.
+
+b) Hai tam giác có bằng nhau không? Nêu trường hợp bằng nhau.
+
+c) Tính cạnh huyền $BC$ (làm tròn đến chữ số thập phân thứ nhất).
+
+**Câu 4:** Cho tam giác $ABC$ vuông tại $A$, kẻ đường cao $AH \\perp BC$.
+
+a) Chứng minh $\\triangle ABH$ vuông tại $H$.
+
+b) Nếu $AB = AC$, chứng minh $\\triangle ABH = \\triangle ACH$.
+
+c) Nếu $AB = 5$ cm, $AC = 12$ cm, tính $AH$.
+
+**Câu 5:** Cho hình chữ nhật $ABCD$ có $AB = 6$ cm, $AD = 8$ cm. Gọi $O$ là giao điểm hai đường chéo.
+
+a) Tính độ dài đường chéo $AC$.
+
+b) Chứng minh $\\triangle AOB = \\triangle COD$.
+
+c) Tính diện tích tam giác $AOB$.
+
+**Câu 6:** Cho $\\triangle ABC$ vuông cân tại $A$ có cạnh góc vuông $AB = AC = 5$ cm. Kẻ $AH \\perp BC$.
+
+a) Tính cạnh huyền $BC$.
+
+b) Chứng minh $H$ là trung điểm của $BC$.
+
+c) Tính độ dài đường cao $AH$.
+
+**Câu 7:** Cho $\\triangle ABC$ vuông tại $A$ có $AB = 9$ cm, $AC = 12$ cm. Cho $\\triangle DEF$ vuông tại $D$ có $DE = 9$ cm, $\\angle E = \\angle B$.
+
+a) Chứng minh $\\triangle ABC = \\triangle DEF$.
+
+b) Tính cạnh huyền $BC$ và $EF$.
+
+c) Tính diện tích tam giác $DEF$.
+
+**Câu 8:** Cho tam giác $ABC$ vuông tại $A$, có $AB = AC$. Kẻ $BM \\perp AC$ tại $M$, kẻ $CN \\perp AB$ tại $N$.
+
+a) Chứng minh $\\triangle ABM = \\triangle ACN$.
+
+b) Chứng minh $BM = CN$.
+
+c) Nếu $AB = AC = 10$ cm, tính $BM$.
+
+**Câu 9 (Ứng dụng thực tế):** Một ngôi nhà có mái hình tam giác $ABC$ vuông tại $A$ với $AB = AC = 5$ m. Người ta muốn lắp thêm một thanh chống $AH \\perp BC$.
+
+a) Tính độ dài mái $BC$.
+
+b) Chứng minh $H$ là trung điểm của $BC$.
+
+c) Tính độ dài thanh chống $AH$.
+
+**Câu 10 (Ứng dụng thực tế):** Một ngọn đèn cao $AB$ (A ở dưới, B ở trên). Từ điểm $C$ trên mặt đất cách chân đèn $AC = 30$ m, đo được góc nâng đến đỉnh đèn $\\angle ACB = 60°$. Từ điểm $D$ trên mặt đất nằm thẳng hàng với $A$ và $C$, cách $A$ là $DA = 90$ m, đo được góc nâng đến đỉnh đèn $\\angle ADB = 30°$.
+
+a) Chứng minh $\\triangle ABC$ và $\\triangle ABD$ đều vuông tại $A$.
+
+b) Tính chiều cao đèn $AB$ từ thông tin góc $\\angle ACB = 60°$.
+
+c) Kiểm tra lại với thông tin góc $\\angle ADB = 30°$ và so sánh kết quả.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
 <summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** Có, theo trường hợp hai cạnh góc vuông
+**Câu 1:** a) $BC = EF = 10$ cm; b) Có, hai cạnh góc vuông (c.g.c); c) $S_{ABC} = 24$ cm²
 
-**Bài 2:** Dùng cạnh huyền - cạnh góc vuông với $AB = AC$, $AH$ chung
+**Câu 2:** a) $AC = DF = 8$ cm; b) Cạnh huyền - cạnh góc vuông; c) $P = 24$ cm
+
+**Câu 3:** a) $\\angle C = \\angle F = 30°$; b) Có, cạnh góc vuông - góc nhọn kề (g.c.g); c) $BC = 10.0$ cm
+
+**Câu 4:** a) $\\angle AHB = 90°$ do $AH \\perp BC$; b) $AB = AC$, $AH$ chung; c) $AH = \\frac{60}{13} \\approx 4.6$ cm
+
+**Câu 5:** a) $AC = 10$ cm; b) $O$ là trung điểm hai đường chéo; c) $S_{AOB} = 12$ cm²
+
+**Câu 6:** a) $BC = 5\\sqrt{2} \\approx 7.07$ cm; b) Đường cao tam giác cân là đường trung tuyến; c) $AH = \\frac{5\\sqrt{2}}{2} \\approx 3.54$ cm
+
+**Câu 7:** a) G.c.g với $AB = DE$, $\\angle B = \\angle E$; b) $BC = EF = 15$ cm; c) $S_{DEF} = 54$ cm²
+
+**Câu 8:** a) Cạnh huyền - góc nhọn với $AB = AC$, $\\angle A$ chung; b) Từ $\\triangle ABM = \\triangle ACN$; c) $BM = 5\\sqrt{2} \\approx 7.07$ cm
+
+**Câu 9:** a) $BC = 5\\sqrt{2} \\approx 7.07$ m; b) Đường cao tam giác cân là đường trung tuyến; c) $AH = \\frac{5\\sqrt{2}}{2} \\approx 3.54$ m
+
+**Câu 10:** a) $AB \\perp AC$ và $AB \\perp AD$ do đèn thẳng đứng; b) $AB = 30\\sqrt{3} \\approx 51.96$ m; c) $AB = 90 \\cdot \\tan 30° = 30\\sqrt{3} \\approx 51.96$ m (trùng khớp)
 
 </div>
 </details>

@@ -1,7 +1,7 @@
-﻿---
+---
 layout: ../../layouts/MdxLessonLayout.astro
 title: "Bài 13: Hai tam giác bằng nhau. Trường hợp bằng nhau thứ nhất"
-description: "Tam giác bằng nhau và trường hợp c.c.c - Toán 7 KNTT Chương 4"
+description: "Hai tam giác bằng nhau và trường hợp bằng nhau c.c.c - Toán 7 KNTT Chương 4"
 grade: "Lớp 7"
 chapter: "Chương IV: Tam giác bằng nhau"
 currentSlug: "lop7/bai-13-hai-tam-giac-bang-nhau-ccc"
@@ -14,108 +14,215 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import HaiTamGiacBangNhauInteractive from '../../components/interactive/HaiTamGiacBangNhauInteractive';
 
 export const quizData = [
   {
     type: "mcq",
-    question: "Hai tam giác bằng nhau khi:",
+    question: "Hai tam giác bằng nhau khi nào?",
     option_a: "Các cạnh và góc tương ứng bằng nhau",
     option_b: "Chỉ các cạnh bằng nhau",
     option_c: "Chỉ các góc bằng nhau",
-    option_d: "Diện tích bằng nhau",
+    option_d: "Có diện tích bằng nhau",
     correct_option: "A",
-    explanation: "Hai tam giác bằng nhau khi các cạnh và góc tương ứng bằng nhau.",
+    explanation: "Hai tam giác bằng nhau khi các cạnh tương ứng và các góc tương ứng bằng nhau.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
     question: "Trường hợp bằng nhau c.c.c là:",
-    option_a: "Ba cạnh bằng nhau từng đôi một",
-    option_b: "Ba góc bằng nhau",
-    option_c: "Hai cạnh và một góc",
-    option_d: "Một cạnh và hai góc",
+    option_a: "Ba cạnh của tam giác này bằng ba cạnh của tam giác kia",
+    option_b: "Ba góc tương ứng bằng nhau",
+    option_c: "Hai cạnh và góc xen giữa bằng nhau",
+    option_d: "Một cạnh và hai góc kề bằng nhau",
     correct_option: "A",
-    explanation: "Trường hợp c.c.c: Nếu ba cạnh của tam giác này bằng ba cạnh của tam giác kia thì hai tam giác bằng nhau.",
+    explanation: "Trường hợp c.c.c: Nếu ba cạnh của tam giác này bằng ba cạnh của tam giác kia thì hai tam giác đó bằng nhau.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
     question: "Ký hiệu hai tam giác ABC và DEF bằng nhau là:",
-    option_a: "$\\\\triangle ABC = \\\\triangle DEF$",
-    option_b: "$\\\\triangle ABC \\\\sim \\\\triangle DEF$",
-    option_c: "$\\\\triangle ABC \\\\parallel \\\\triangle DEF$",
-    option_d: "$\\\\triangle ABC \\\\perp \\\\triangle DEF$",
+    option_a: "$\\triangle ABC = \\triangle DEF$",
+    option_b: "$\\triangle ABC \\sim \\triangle DEF$",
+    option_c: "$\\triangle ABC \\parallel \\triangle DEF$",
+    option_d: "$\\triangle ABC \\perp \\triangle DEF$",
     correct_option: "A",
-    explanation: "Ký hiệu bằng nhau là dấu =",
+    explanation: "Hai tam giác bằng nhau được ký hiệu bằng dấu = giữa hai tam giác.",
     difficulty_level: "easy",
     is_dynamic: false,
   },
   {
     type: "mcq",
-    question: "Cho $\\\\triangle ABC = \\\\triangle DEF$. Cạnh tương ứng với AB là:",
+    question: "Cho $\\triangle ABC = \\triangle DEF$. Cạnh tương ứng với AB là:",
     option_a: "DE",
     option_b: "EF",
     option_c: "DF",
     option_d: "FD",
     correct_option: "A",
-    explanation: "Cạnh tương ứng với AB là DE (theo thứ tự đỉnh).",
+    explanation: "Viết theo thứ tự đỉnh A ↔ D, B ↔ E, C ↔ F nên cạnh AB tương ứng với cạnh DE.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC = \\triangle MNP$. Góc tương ứng với góc B là:",
+    option_a: "Góc M",
+    option_b: "Góc N",
+    option_c: "Góc P",
+    option_d: "Góc A",
+    correct_option: "B",
+    explanation: "Theo thứ tự đỉnh A ↔ M, B ↔ N, C ↔ P nên góc B tương ứng với góc N.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
   {
     type: "msq",
     question: "Để chứng minh hai tam giác bằng nhau theo c.c.c cần:",
-    option_a: "Ba cạnh của tam giác này",
-    option_b: "Ba cạnh của tam giác kia",
+    option_a: "Ba cạnh của tam giác thứ nhất",
+    option_b: "Ba cạnh của tam giác thứ hai",
     option_c: "Chứng minh ba cặp cạnh tương ứng bằng nhau",
-    option_d: "Chứng minh các góc bằng nhau",
+    option_d: "Chứng minh các góc tương ứng bằng nhau",
     correct_option: "A,B,C",
-    explanation: "Cần chứng minh ba cặp cạnh tương ứng bằng nhau.",
+    explanation: "Trường hợp c.c.c chỉ cần ba cặp cạnh tương ứng bằng nhau, không cần xét góc.",
     difficulty_level: "medium",
     is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC = \\triangle DEF$. Biết $AB = !a(4,5,6,7,8)!$ cm. Độ dài $DE$ bằng:",
+    option_a: "$!a!$ cm",
+    option_b: "${tinh: !a! + 1} cm",
+    option_c: "${tinh: !a! - 1} cm",
+    option_d: "${tinh: !a! * 2} cm",
+    correct_option: "A",
+    explanation: "Cạnh AB tương ứng với cạnh DE nên $DE = AB = !a!$ cm.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ có $AB = AC = !a(6,7,8)!$ cm và $BC = !b(4,6,8,10)!$ cm. Gọi $M$ là trung điểm của $BC$. Độ dài $BM$ bằng:",
+    option_a: "${tinh: !b! / 2} cm",
+    option_b: "$!b!$ cm",
+    option_c: "${tinh: !a! + !b!} cm",
+    option_d: "${tinh: !a! / 2} cm",
+    correct_option: "A",
+    explanation: "Vì $M$ là trung điểm của $BC$ nên $BM = \\dfrac{BC}{2} = \\dfrac{!b!}{2} = {tinh: !b! / 2}$ cm.",
+    difficulty_level: "hard",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ có $AB = !a(5,6,7,8)!$ cm, $BC = !b(6,7,8,9)!$ cm và $AC = !c(7,8,9,10)!$ cm. Cho thêm $\\triangle DEF$ có $DE = !a!$ cm, $EF = !b!$ cm, $DF = !c!$ cm. Khi đó:",
+    option_a: "$\\triangle ABC = \\triangle DEF$ theo c.c.c",
+    option_b: "$\\triangle ABC \\neq \\triangle DEF$ vì chưa đủ dữ kiện",
+    option_c: "$\\triangle ABC = \\triangle DEF$ theo c.g.c",
+    option_d: "Không xác định được",
+    correct_option: "A",
+    explanation: "Ba cạnh tương ứng bằng nhau: $AB = DE = !a!$ cm, $BC = EF = !b!$ cm, $AC = DF = !c!$ cm. Vậy $\\triangle ABC = \\triangle DEF$ theo trường hợp c.c.c.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC = \\triangle MNP$ với $AB = !a(4,5,6)!$ cm, $BC = !b(5,6,7)!$ cm. Gọi $M_1$, $N_1$ lần lượt là trung điểm của $BC$ và $NP$. Độ dài $M_1C$ bằng:",
+    option_a: "${tinh: !b! / 2} cm",
+    option_b: "$!b!$ cm",
+    option_c: "${tinh: !a! / 2} cm",
+    option_d: "${tinh: !a! + !b!} cm",
+    correct_option: "A",
+    explanation: "Vì $M_1$ là trung điểm của $BC$ nên $M_1C = \\dfrac{BC}{2} = \\dfrac{!b!}{2} = {tinh: !b! / 2}$ cm.",
+    difficulty_level: "hard",
+    is_dynamic: true,
   },
 ];
 
 <KhoiDong>
 
-<h3 id="mo-dau"> Hai tam giác bằng nhau</h3>
+<h3 id="mo-dau">🔷 Hai tam giác bằng nhau</h3>
 
-Khi nào hai tam giác được coi là bằng nhau?
+Khi nào hai hình tam giác được coi là bằng nhau? Hãy cùng khám phá!
 
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.25rem 0;">
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin:1.25rem 0;">
   <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #bfdbfe;">
-    <div style="font-size:1.5rem;margin-bottom:.5rem;"> = </div>
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">🔍</div>
+    <strong>Quan sát</strong>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Hai hình giống hệt nhau khi chồng khít</p>
+  </div>
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+    <div style="font-size:1.5rem;margin-bottom:.5rem;">≅</div>
     <strong>Bằng nhau</strong>
     <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Cạnh và góc tương ứng bằng nhau</p>
   </div>
-  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #a7f3d0;">
+  <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #fde68a;">
     <div style="font-size:1.5rem;margin-bottom:.5rem;">c.c.c</div>
     <strong>Trường hợp 1</strong>
-    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Ba cạnh bằng nhau</p>
+    <p style="margin:.5rem 0 0;font-size:.9rem;color:#475569;">Chỉ cần ba cạnh bằng nhau</p>
   </div>
+</div>
+
+<div style="background:#fefce8;border-left:4px solid #eab308;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**💡 Em có biết?** Người thợ mộc khi ghép các thanh gỗ thành khung tam giác chỉ cần đo chính xác ba cạnh là hai khung tam giác ghép khít với nhau — đó chính là ứng dụng của trường hợp bằng nhau c.c.c!
+
 </div>
 
 </KhoiDong>
 
 <KhamPha>
 
-<h3 id="khai-niem"> 1. Hai tam giác bằng nhau</h3>
+<h3 id="hai-tam-giac-bang-nhau">📖 1. Hai tam giác bằng nhau</h3>
 
 <div class="box-dinh-nghia">
 
 **Định nghĩa:** Hai tam giác bằng nhau là hai tam giác có các cạnh tương ứng bằng nhau và các góc tương ứng bằng nhau.
 
-**Ký hiệu:** $\\triangle ABC = \\triangle DEF$
-
 </div>
 
 **Ví dụ 1:** Nếu $\\triangle ABC = \\triangle DEF$ thì:
--  = DE$,  = EF$,  = FD$
+- $AB = DE$, $BC = EF$, $CA = FD$
 - $\\widehat{A} = \\widehat{D}$, $\\widehat{B} = \\widehat{E}$, $\\widehat{C} = \\widehat{F}$
 
-<h3 id="truong-hop-ccc" style="margin-top:2rem;"> 2. Trường hợp bằng nhau c.c.c</h3>
+<h3 id="cac-yeu-to-tuong-ung" style="margin-top:2rem;">🔠 2. Các yếu tố tương ứng</h3>
+
+Khi viết $\\triangle ABC = \\triangle DEF$, thứ tự các đỉnh rất quan trọng:
+
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+<svg width="420" height="240" viewBox="0 0 420 240" style="background:white;border-radius:12px;border:2px solid #e5e7eb;">
+  {/* Tam giác ABC */}
+  <polygon points="80,190 40,40 180,40" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+  <circle cx="80" cy="190" r="3" fill="#1f2937"/>
+  <text x="80" y="210" font-size="15" font-weight="bold" text-anchor="middle" fill="#1f2937">A</text>
+  <circle cx="40" cy="40" r="3" fill="#1f2937"/>
+  <text x="30" y="30" font-size="15" font-weight="bold" text-anchor="middle" fill="#1f2937">B</text>
+  <circle cx="180" cy="40" r="3" fill="#1f2937"/>
+  <text x="190" y="30" font-size="15" font-weight="bold" text-anchor="middle" fill="#1f2937">C</text>
+  <text x="105" y="75" font-size="13" text-anchor="middle" fill="#6b7280">△ABC</text>
+
+  {/* Tam giác DEF */}
+  <polygon points="340,190 240,40 380,40" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="2"/>
+  <circle cx="340" cy="190" r="3" fill="#1f2937"/>
+  <text x="340" y="210" font-size="15" font-weight="bold" text-anchor="middle" fill="#1f2937">D</text>
+  <circle cx="240" cy="40" r="3" fill="#1f2937"/>
+  <text x="230" y="30" font-size="15" font-weight="bold" text-anchor="middle" fill="#1f2937">E</text>
+  <circle cx="380" cy="40" r="3" fill="#1f2937"/>
+  <text x="390" y="30" font-size="15" font-weight="bold" text-anchor="middle" fill="#1f2937">F</text>
+  <text x="305" y="75" font-size="13" text-anchor="middle" fill="#6b7280">△DEF</text>
+</svg>
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Nếu $\\triangle ABC = \\triangle DEF$ thì các cặp đỉnh, cạnh, góc tương ứng là:
+- Đỉnh $A \\leftrightarrow D$, $B \\leftrightarrow E$, $C \\leftrightarrow F$
+- Cạnh $AB \\leftrightarrow DE$, $BC \\leftrightarrow EF$, $CA \\leftrightarrow FD$
+- Góc $\\widehat{A} \\leftrightarrow \\widehat{D}$, $\\widehat{B} \\leftrightarrow \\widehat{E}$, $\\widehat{C} \\leftrightarrow \\widehat{F}$
+
+</div>
+
+<h3 id="truong-hop-ccc" style="margin-top:2rem;">📐 3. Trường hợp bằng nhau c.c.c</h3>
 
 <div class="box-dinh-ly">
 
@@ -125,55 +232,185 @@ Nếu ba cạnh của tam giác này lần lượt bằng ba cạnh của tam gi
 
 </div>
 
-**Ví dụ 2:** Cho $\\triangle ABC$ và $\\triangle DEF$ có:
--  = DE = 5$ cm
--  = EF = 6$ cm  
--  = FD = 7$ cm
+**Ví dụ 2:** Cho $\\triangle ABC$ và $\\triangle DEF$ có $AB = DE = 5$ cm, $BC = EF = 6$ cm, $CA = FD = 7$ cm.
 
-Kết luận: $\\triangle ABC = \\triangle DEF$ (c.c.c)
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
 
-<h3 id="chung-minh" style="margin-top:2rem;"> 3. Cách chứng minh</h3>
+Xét $\\triangle ABC$ và $\\triangle DEF$ có:
+- $AB = DE = 5$ cm
+- $BC = EF = 6$ cm
+- $CA = FD = 7$ cm
 
-**Các bước chứng minh hai tam giác bằng nhau:**
+Vậy $\\triangle ABC = \\triangle DEF$ (c.c.c)
+
+</div>
+
+<h3 id="cach-chung-minh" style="margin-top:2rem;">📝 4. Cách chứng minh hai tam giác bằng nhau</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Các bước chứng minh hai tam giác bằng nhau theo c.c.c:**
 
 1. Xét hai tam giác cần chứng minh
-2. Chỉ ra ba cặp cạnh tương ứng bằng nhau
+2. Chỉ ra ba cặp cạnh tương ứng bằng nhau (kèm lý do)
 3. Kết luận hai tam giác bằng nhau theo c.c.c
 
-**Ví dụ 3:** Cho $\\triangle ABC$ có  = AC$. Gọi $ là trung điểm của $. Chứng minh $\\triangle ABM = \\triangle ACM$.
+</div>
+
+**Ví dụ 3:** Cho $\\triangle ABC$ có $AB = AC$. Gọi $M$ là trung điểm của $BC$. Chứng minh $\\triangle ABM = \\triangle ACM$.
 
 <div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
 
 **Chứng minh:**
 
 Xét $\\triangle ABM$ và $\\triangle ACM$ có:
--  = AC$ (gt)
--  = CM$ ($ là trung điểm của $)
-- $ chung
+- $AB = AC$ (giả thiết)
+- $BM = CM$ (vì $M$ là trung điểm của $BC$)
+- $AM$ là cạnh chung
 
 Vậy $\\triangle ABM = \\triangle ACM$ (c.c.c)
 
 </div>
 
+<h3 id="ung-dung" style="margin-top:2rem;">🌐 5. Ứng dụng của tam giác bằng nhau</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+Nhờ có hai tam giác bằng nhau ta có thể:
+- Tính độ dài cạnh, số đo góc chưa biết của tam giác
+- Chứng minh hai đoạn thẳng bằng nhau
+- Chứng minh hai góc bằng nhau
+
+</div>
+
+**Ví dụ 4:** Cho $\\triangle ABC = \\triangle MNP$. Biết $AB = 4$ cm, $BC = 5$ cm và $\\widehat{A} = 60^\\circ$. Tính $MN$, $NP$ và $\\widehat{M}$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Vì $\\triangle ABC = \\triangle MNP$ nên:
+- $MN = AB = 4$ cm
+- $NP = BC = 5$ cm
+- $\\widehat{M} = \\widehat{A} = 60^\\circ$
+
+</div>
+
 </KhamPha>
 
-<LuyenTap>
+<VanDung title="II. Các dạng toán và Phương pháp giải">
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:1rem 0;">
+
+**Dạng 1: Nhận biết hai tam giác bằng nhau theo trường hợp c.c.c**
+**Phương pháp giải:** Kiểm tra ba cặp cạnh tương ứng có bằng nhau không. Nếu ba cặp cạnh tương ứng bằng nhau thì hai tam giác bằng nhau theo c.c.c.
+
+</div>
+
+**Ví dụ 1:** Cho $\\triangle ABC$ có $AB = 5$ cm, $BC = 6$ cm, $CA = 7$ cm. Cho $\\triangle DEF$ có $DE = 5$ cm, $EF = 6$ cm, $FD = 7$ cm. Hai tam giác có bằng nhau không?
+
+*Lời giải:* Ta có $AB = DE = 5$ cm, $BC = EF = 6$ cm, $CA = FD = 7$ cm. Vậy $\\triangle ABC = \\triangle DEF$ (c.c.c).
+
+**Ví dụ 2:** Cho $\\triangle MNP$ có $MN = 8$ cm, $NP = 10$ cm, $PM = 6$ cm. Cho $\\triangle XYZ$ có $XY = 10$ cm, $YZ = 8$ cm, $ZX = 6$ cm. Xác định hai tam giác có bằng nhau không?
+
+*Lời giải:* Ta có $MN = YZ = 8$ cm, $NP = XY = 10$ cm, $PM = ZX = 6$ cm. Vậy $\\triangle MNP = \\triangle YXZ$ (c.c.c) (chú ý thứ tự đỉnh: $M \\leftrightarrow Y$, $N \\leftrightarrow X$, $P \\leftrightarrow Z$).
+
+**Ví dụ 3:** Cho $\\triangle ABC$ có $AB = AC = 5$ cm và $BC = 6$ cm. Cho $\\triangle DEF$ có $DE = DF = 5$ cm và $EF = 6$ cm. Hai tam giác có bằng nhau không?
+
+*Lời giải:* Ta có $AB = DE = 5$ cm, $AC = DF = 5$ cm, $BC = EF = 6$ cm. Vậy $\\triangle ABC = \\triangle DEF$ (c.c.c).
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 2: Chứng minh hai tam giác bằng nhau theo c.c.c**
+**Phương pháp giải:** Xét hai tam giác cần chứng minh, chỉ ra ba cặp cạnh tương ứng bằng nhau (kèm lý do: giả thiết, cạnh chung, tính chất tam giác cân, trung điểm...), rồi kết luận.
+
+</div>
+
+**Ví dụ 1:** Cho $\\triangle ABC$ có $AB = AC$. Gọi $M$ là trung điểm của $BC$. Chứng minh $\\triangle ABM = \\triangle ACM$.
+
+*Lời giải:* Xét $\\triangle ABM$ và $\\triangle ACM$ có: $AB = AC$ (gt), $BM = CM$ ($M$ là trung điểm), $AM$ là cạnh chung. Vậy $\\triangle ABM = \\triangle ACM$ (c.c.c).
+
+**Ví dụ 2:** Cho hình thoi $ABCD$. Chứng minh $\\triangle ABC = \\triangle ADC$.
+
+*Lời giải:* Xét $\\triangle ABC$ và $\\triangle ADC$ có: $AB = AD$ (cạnh hình thoi), $BC = DC$ (cạnh hình thoi), $AC$ là cạnh chung. Vậy $\\triangle ABC = \\triangle ADC$ (c.c.c).
+
+**Ví dụ 3:** Cho tam giác $ABC$ có $AB = AC$. Trên $AB$ lấy điểm $M$, trên $AC$ lấy điểm $N$ sao cho $AM = AN$. Chứng minh $\\triangle ABN = \\triangle ACM$.
+
+*Lời giải:* Xét $\\triangle ABN$ và $\\triangle ACM$ có: $AB = AC$ (gt), $AN = AM$ (gt), $\\widehat{A}$ là góc chung. Dùng trường hợp c.g.c (không phải c.c.c). **Lưu ý:** Để dùng c.c.c, cần thêm điều kiện về cạnh $BN$ và $CM$.
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 3: Tính cạnh khi biết hai tam giác bằng nhau theo c.c.c**
+**Phương pháp giải:** Từ $\\triangle ABC = \\triangle DEF$ (c.c.c), suy ra các cạnh tương ứng bằng nhau: $AB = DE$, $BC = EF$, $CA = FD$ để tính cạnh chưa biết.
+
+</div>
+
+**Ví dụ 1:** Cho $\\triangle ABC = \\triangle DEF$ với $AB = 4$ cm, $BC = 5$ cm, $AC = 6$ cm. Tính $DE$, $EF$, $FD$.
+
+*Lời giải:* Vì $\\triangle ABC = \\triangle DEF$ nên: $DE = AB = 4$ cm, $EF = BC = 5$ cm, $FD = AC = 6$ cm.
+
+**Ví dụ 2:** Cho $\\triangle MNP = \\triangle XYZ$ với $MN = 7$ cm, $NP = 9$ cm. Biết $MP = 2 \\cdot MN - 5$ cm. Tính $XZ$.
+
+*Lời giải:* $MP = 2 \\cdot 7 - 5 = 9$ cm. Vì $\\triangle MNP = \\triangle XYZ$ nên $XZ = MP = 9$ cm.
+
+**Ví dụ 3:** Cho $\\triangle ABC = \\triangle DEF$ với $AB = !a(3,4,5)!$ cm, $BC = !b(4,5,6)!$ cm. Gọi $M$ là trung điểm của $BC$, $N$ là trung điểm của $EF$. Tính $MN$ khi biết $MN = \\dfrac{AB + AC}{2}$ với $AC = !c(5,6,7)!$ cm.
+
+*Lời giải:* Vì $\\triangle ABC = \\triangle DEF$ nên $EF = BC = !b!$ cm, $DF = AC = !c!$ cm. Vậy $MN = \\dfrac{!a! + !c!}{2} = {tinh: (!a! + !c!) / 2}$ cm.
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
+
+<HaiTamGiacBangNhauInteractive client:load />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Vận dụng thực tế">
 
-<h3 id="van-dung"> Vận dụng thực tế</h3>
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-** Bài toán:** Hai mảnh ghép hình tam giác có ba cạnh lần lượt bằng nhau. Hai mảnh ghép này có giống hệt nhau không?
+**📝 Bài toán 1:** Hai mảnh ghép hình tam giác có ba cạnh lần lượt bằng nhau. Hỏi hai mảnh ghép này có chồng khít lên nhau được không?
 
 <div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
 
-**Giải:** Có, vì hai tam giác có ba cạnh tương ứng bằng nhau thì bằng nhau (c.c.c).
+**Giải:** Có. Vì hai tam giác có ba cạnh tương ứng bằng nhau nên bằng nhau theo c.c.c, do đó chồng khít lên nhau.
+
+</div>
+
+**📝 Bài toán 2:** Một khung tam giác trang trí gồm ba thanh gỗ. Để làm hai khung giống hệt nhau, người thợ cần đảm bảo điều kiện gì về các thanh gỗ?
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:** Cần đảm bảo ba thanh gỗ của khung này lần lượt bằng ba thanh gỗ của khung kia (ba cặp cạnh tương ứng bằng nhau). Khi đó hai khung tam giác bằng nhau theo c.c.c.
+
+</div>
+
+**📝 Bài toán 3:** Cho $\\triangle ABC$ cân tại $A$ ($AB = AC$). Gọi $M$ là trung điểm của $BC$. Chứng minh $\\widehat{B} = \\widehat{C}$.
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+
+**Giải:**
+
+Xét $\\triangle ABM$ và $\\triangle ACM$ có:
+- $AB = AC$ (giả thiết)
+- $BM = CM$ ($M$ là trung điểm của $BC$)
+- $AM$ là cạnh chung
+
+Vậy $\\triangle ABM = \\triangle ACM$ (c.c.c)
+
+Suy ra $\\widehat{B} = \\widehat{C}$ (hai góc tương ứng).
 
 </div>
 
@@ -181,33 +418,121 @@ Vậy $\\triangle ABM = \\triangle ACM$ (c.c.c)
 
 <GhiNho>
 
-- **Hai tam giác bằng nhau**: Cạnh và góc tương ứng bằng nhau
-- **Trường hợp c.c.c**: Ba cạnh bằng nhau  hai tam giác bằng nhau
-- **Ký hiệu**: $\\triangle ABC = \\triangle DEF$
-- Thứ tự đỉnh quan trọng khi viết bằng nhau
-- Cạnh chung, cạnh trung điểm thường dùng trong chứng minh
+- **Hai tam giác bằng nhau**: các cạnh và góc tương ứng bằng nhau
+- **Ký hiệu**: $\\triangle ABC = \\triangle DEF$ (chú ý thứ tự đỉnh)
+- **Trường hợp c.c.c**: ba cạnh tương ứng bằng nhau thì hai tam giác bằng nhau
+- **Cách chứng minh**: xét hai tam giác → chứng minh ba cặp cạnh bằng nhau → kết luận
+- **Ứng dụng**: tính cạnh, tính góc, chứng minh đoạn thẳng và góc bằng nhau
 
 </GhiNho>
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;"> Bài tập tự luận</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho $\\triangle ABC = \\triangle MNP$. Biết  = 5$ cm,  = 6$ cm, $\\widehat{A} = 60^\\circ$. Tính $, $, $\\widehat{M}$.
+**Bài 1:** Cho $\\triangle ABC = \\triangle DEF$ với $AB = 5$ cm, $BC = 7$ cm, $AC = 6$ cm.
 
-**Bài 2:** Cho $\\triangle ABC$ có  = AC$. Gọi $ là trung điểm của $. Chứng minh $\\triangle ABM = \\triangle ACM$.
+a) Liệt kê ba cặp cạnh tương ứng bằng nhau.
 
-**Bài 3:** Cho đoạn thẳng $. Gọi $ là trung điểm. Trên cùng một nửa mặt phẳng bờ $, vẽ  = BD$ và  \\perp AB$,  \\perp AB$. Chứng minh $\\triangle AMC = \\triangle BMD$.
+b) Liệt kê ba cặp góc tương ứng bằng nhau.
+
+c) Cho điểm $M$ là trung điểm của $BC$ và điểm $N$ là trung điểm của $EF$. Tính $MN$ biết $MN = \\dfrac{DE + DF}{2}$ với $DE = 5$ cm, $DF = 6$ cm.
+
+**Bài 2:** Cho $\\triangle ABC$ có $AB = AC = 8$ cm và $BC = 6$ cm.
+
+a) Gọi $M$ là trung điểm của $BC$. Tính $BM$ và $CM$.
+
+b) Chứng minh $\\triangle ABM = \\triangle ACM$.
+
+c) Suy ra $\\widehat{B} = \\widehat{C}$ hay không? Vì sao?
+
+**Bài 3:** Cho hình thoi $ABCD$ có cạnh bằng $5$ cm.
+
+a) Chứng minh $\\triangle ABC = \\triangle ADC$.
+
+b) Gọi $O$ là giao điểm hai đường chéo. Chứng minh $\\triangle AOB = \\triangle AOD$.
+
+c) Tính $AC$ biết $BD = 6$ cm (dùng tính chất đường chéo hình thoi).
+
+**Bài 4:** Cho tam giác $ABC$ có $AB = AC$. Trên $AB$ lấy điểm $D$ sao cho $AD = AB / 2$, trên $AC$ lấy điểm $E$ sao cho $AE = AC / 2$.
+
+a) Chứng minh $\\triangle ADE = \\triangle AED$ (chú ý thứ tự đỉnh).
+
+b) Gọi $M$ là trung điểm của $DE$. Chứng minh $AM \\perp DE$.
+
+c) Tính $DE$ biết $AB = 10$ cm và $\\widehat{A} = 60^\\circ$.
+
+**Bài 5:** Cho $\\triangle ABC$ có $AB = 7$ cm, $BC = 9$ cm, $AC = 8$ cm. Cho $\\triangle DEF$ có $DE = 7$ cm, $EF = 9$ cm, $DF = 8$ cm.
+
+a) Chứng minh $\\triangle ABC = \\triangle DEF$.
+
+b) Gọi $M$ là trung điểm của $BC$, $N$ là trung điểm của $EF$. Tính $MN$.
+
+c) Gọi $H$ là chân đường cao từ $A$ xuống $BC$, $K$ là chân đường cao từ $D$ xuống $EF$. Tính $HK$ khi biết $AH = 6$ cm.
+
+**Bài 6:** Cho tam giác $ABC$ có $AB = AC$. Gọi $M$ là trung điểm của $BC$.
+
+a) Chứng minh $\\triangle ABM = \\triangle ACM$.
+
+b) Suy ra $AM \\perp BC$.
+
+c) Nếu $AB = 5$ cm và $BC = 6$ cm, tính $AM$.
+
+**Bài 7:** Cho hình chữ nhật $ABCD$ có $AB = 8$ cm, $BC = 6$ cm. Gọi $O$ là giao điểm hai đường chéo.
+
+a) Chứng minh $\\triangle AOB = \\triangle COD$.
+
+b) Chứng minh $\\triangle AOD = \\triangle BOC$.
+
+c) Tính $AC$ và $BD$. Nhận xét.
+
+**Bài 8:** Cho tam giác $ABC$ vuông tại $A$ có $AB = 6$ cm, $AC = 8$ cm. Gọi $M$ là trung điểm của $BC$.
+
+a) Chứng minh $\\triangle ABM = \\triangle ACM$ (c.c.c).
+
+b) Suy ra $AM = \\dfrac{BC}{2}$.
+
+c) Tính $AM$ và so sánh với $BC$.
+
+**Bài 9 (Ứng dụng thực tế - Khung cửa):** Một thợ mộc làm hai khung cửa hình tam giác giống hệt nhau. Khung thứ nhất có ba thanh gỗ lần lượt dài $90$ cm, $120$ cm và $150$ cm.
+
+a) Khung thứ hai cũng phải có ba thanh gỗ dài bao nhiêu để bằng khung thứ nhất?
+
+b) Hai khung này có chồng khít lên nhau được không? Vì sao?
+
+c) Nếu muốn làm một khung cửa nhỏ hơn với ba cạnh gấp đôi khung thứ nhất, liệu khung nhỏ có bằng khung lớn không? Giải thích.
+
+**Bài 10 (Ứng dụng thực tế - Đoạn đường):** Một kỹ sưsurvey đo mảnh đất hình tam giác $ABC$ với $AB = 50$ m, $BC = 70$ m, $AC = 80$ m. Ông ta muốn dựng lại mảnh đất hình tam giác $DEF$ bằng nhau trên bản vẽ.
+
+a) Trên bản vẽ, kỹ sư cần vẽ $DE$, $EF$, $DF$ với độ dài bao nhiêu (tỷ lệ $1:1000$)?
+
+b) Nếu.measure lại và thấy $EF = 72$ m thay vì $70$ m, mảnh đất đo được có bằng mảnh đất gốc không? Tại sao điều này quan trọng trong thực tế?
+
+c) Đề xuất một cách kiểm tra trực tiếp tại hiện trường để xác nhận hai mảnh đất bằng nhau (dùng thước đo ba cạnh).
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;"> Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:**  = 5$ cm,  = 6$ cm, $\\widehat{M} = 60^\\circ$
+**Bài 1:** a) $AB = DE = 5$ cm, $BC = EF = 7$ cm, $AC = DF = 6$ cm. b) $\\widehat{A} = \\widehat{D}$, $\\widehat{B} = \\widehat{E}$, $\\widehat{C} = \\widehat{F}$. c) $MN = \\dfrac{5 + 6}{2} = 5{,}5$ cm.
 
-**Bài 2:** Dùng c.c.c với  = AC$,  = CM$, $ chung
+**Bài 2:** a) $BM = CM = 3$ cm. b) Xét $\\triangle ABM$ và $\\triangle ACM$: $AB = AC$, $BM = CM$, $AM$ chung ⇒ bằng nhau theo c.c.c. c) Có, $\\widehat{B} = \\widehat{C}$ vì là hai góc tương ứng.
 
-**Bài 3:** Dùng c.c.c với  = BM$,  = BD$,  = MD$
+**Bài 3:** a) $AB = AD$, $BC = DC$, $AC$ chung ⇒ bằng nhau theo c.c.c. b) $AO = AC/2$, $AB = AD$, $BO = DO$ (đường chéo hình thoi cắt nhau tại trung điểm each) ⇒ bằng nhau theo c.c.c. c) $AC = \\sqrt{AB^2 - BO^2} \\cdot 2 = \\sqrt{25 - 9} \\cdot 2 = 8$ cm.
+
+**Bài 4:** a) $AD = AE = AB/2 = 4$ cm, $\\widehat{A}$ chung, $AD = AE$ ⇒ $\\triangle ADE$ cân tại $A$. b) Trong tam giác cân, đường cao kiêm trung tuyến nên $AM \\perp DE$. c) $DE = AB/2 = 5$ cm (đoạn thẳng nối trung điểm hai cạnh).
+
+**Bài 5:** a) Ba cạnh tương ứng bằng nhau ⇒ bằng nhau theo c.c.c. b) $MN = \\dfrac{AB + AC}{2} = \\dfrac{7 + 8}{2} = 7{,}5$ cm (đoạn thẳng nối trung điểm hai cạnh). c) $HK = AH = 6$ cm (hai tam giác bằng nhau có đường cao tương ứng bằng nhau).
+
+**Bài 6:** a) $AB = AC$, $BM = CM$, $AM$ chung ⇒ bằng nhau theo c.c.c. b) Từ $\\triangle ABM = \\triangle ACM$ suy ra $\\widehat{AMB} = \\widehat{AMC}$. Mà $\\widehat{AMB} + \\widehat{AMC} = 180^\\circ$ (kề bù) nên $\\widehat{AMB} = \\widehat{AMC} = 90^\\circ$, do đó $AM \\perp BC$. c) $BC = 6$ cm ⇒ $BM = 3$ cm. $AM = \\sqrt{AB^2 - BM^2} = \\sqrt{25 - 9} = 4$ cm.
+
+**Bài 7:** a) $AB = CD$, $AO = CO$ (đường chéo cắt nhau tại trung điểm), $BO = DO$ ⇒ bằng nhau theo c.c.c. b) Tương tự. c) $AC = BD = \\sqrt{AB^2 + BC^2} = \\sqrt{64 + 36} = 10$ cm. Hai đường chéo bằng nhau.
+
+**Bài 8:** a) $AB = AC$ (gt), $BM = CM$ ($M$ trung điểm), $AM$ chung ⇒ bằng nhau theo c.c.c. b) Từ $\\triangle ABM = \\triangle ACM$ suy ra $\\widehat{AMB} = \\widehat{AMC} = 90^\\circ$ nên $AM \\perp BC$. Trong tam giác vuông, đường trung tuyến ứng với cạnh huyền bằng nửa cạnh huyền. c) $BC = \\sqrt{AB^2 + AC^2} = \\sqrt{36 + 64} = 10$ cm. $AM = BC/2 = 5$ cm.
+
+**Bài 9:** a) Ba thanh gỗ lần lượt: $90$ cm, $120$ cm, $150$ cm. b) Có, vì hai tam giác có ba cạnh tương ứng bằng nhau nên bằng nhau theo c.c.c,do đó chồng khít lên nhau. c) Không bằng, vì ba cạnh gấp đôi nên không còn bằng nhau theo c.c.c (c.c.c yêu cầu bằng nhau tuyệt đối).
+
+**Bài 10:** a) $DE = 50/1000 = 5$ cm, $EF = 70/1000 = 7$ cm, $DF = 80/1000 = 8$ cm. b) Không bằng, vì $EF = 72$ m ≠ $70$ m. Điều này quan trọng vì sai lệch đo đạc có thể dẫn đến tranh chấp ranh giới đất đai. c) Đo ba cạnh của mảnh đất mới và so sánh với ba cạnh mảnh đất gốc. Nếu ba cặp cạnh bằng nhau thì hai mảnh đất bằng nhau theo c.c.c.
 
 </div>
 </details>

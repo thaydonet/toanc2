@@ -85,6 +85,66 @@ export const quizData = [
     difficulty_level: "medium",
     is_dynamic: false,
   },
+  {
+    type: "mcq",
+    question: "Hình hộp chữ nhật có bao nhiêu mặt, bao nhiêu đỉnh, bao nhiêu cạnh?",
+    option_a: "6 mặt, 8 đỉnh, 12 cạnh",
+    option_b: "6 mặt, 12 đỉnh, 8 cạnh",
+    option_c: "8 mặt, 6 đỉnh, 12 cạnh",
+    option_d: "6 mặt, 6 đỉnh, 6 cạnh",
+    correct_option: "A",
+    explanation: "Hình hộp chữ nhật gồm 6 mặt hình chữ nhật, 8 đỉnh và 12 cạnh.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích hình hộp chữ nhật có các kích thước $a, b, c$ được tính theo công thức:",
+    option_a: "$V = a \\cdot b \\cdot c$",
+    option_b: "$V = 2(a + b)c$",
+    option_c: "$V = a + b + c$",
+    option_d: "$V = a^2b$",
+    correct_option: "A",
+    explanation: "$V = a \\cdot b \\cdot c$ (chiều dài × chiều rộng × chiều cao).",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Thể tích hình lập phương cạnh $a$ là:",
+    option_a: "$V = a^3$",
+    option_b: "$V = 6a^2$",
+    option_c: "$V = 4a^2$",
+    option_d: "$V = 12a$",
+    correct_option: "A",
+    explanation: "Hình lập phương có 3 kích thước bằng $a$ nên $V = a \\cdot a \\cdot a = a^3$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Diện tích xung quanh của hình hộp chữ nhật chiều dài $a$, chiều rộng $b$, chiều cao $h$ là:",
+    option_a: "$S_{xq} = 2(a + b)h$",
+    option_b: "$S_{xq} = abh$",
+    option_c: "$S_{xq} = (a + b)h$",
+    option_d: "$S_{xq} = 2(ab + bh + ah)$",
+    correct_option: "A",
+    explanation: "$S_{xq} = \\text{Chu vi đáy} \\times \\text{Chiều cao} = 2(a+b)h$.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Một hình lập phương có cạnh !a(3,4,5,6)! cm. Thể tích hình lập phương đó là:",
+    option_a: "${tinh: !a! * !a! * !a!} cm³",
+    option_b: "${tinh: 6 * !a! * !a!} cm³",
+    option_c: "${tinh: 4 * !a! * !a!} cm³",
+    option_d: "${tinh: 12 * !a!} cm³",
+    correct_option: "A",
+    explanation: "$V = a^3 = (!a!)^3 = ${tinh: !a! * !a! * !a!} cm³.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
 ];
 
 <KhoiDong>
@@ -301,6 +361,29 @@ $V = a^3 = 6^3 = 216$ cm³
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Tính diện tích xung quanh, diện tích toàn phần và thể tích hình hộp chữ nhật</h4>
+
+**Phương pháp:** 
+- $S_{xq} = 2(a + b)h$.
+- $S_{tp} = S_{xq} + 2ab$.
+- $V = a \cdot b \cdot h$.
+
+**Ví dụ 1.1:** Cho hình hộp chữ nhật có $a = 6$ cm, $b = 4$ cm, $h = 5$ cm. Tính $S_{xq}$ và $V$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0f4ff;border-radius:8px;border:1px solid #a5b4fc;">
+<summary style="cursor:pointer;font-weight:600;color:#4338ca;">Lời giải</summary>
+
+- $S_{xq} = 2(6 + 4) \cdot 5 = 20 \cdot 5 = 100$ cm².
+- $V = 6 \cdot 4 \cdot 5 = 120$ cm³.
+
+</details>
+
+</VanDung>
+
 <LuyenTap>
 
 <h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
@@ -347,6 +430,20 @@ b) Cần 3600 lít nước để đổ đầy bể.
 Diện tích giấy = Diện tích toàn phần hộp
 
 $S = 6a^2 = 6 \times 20^2 = 6 \times 400 = 2400$ cm²
+
+</div>
+
+</VanDung>
+
+<VanDung title="Vận dụng thực tế">
+
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán (Tính lượng nước bể cá):**
+Một bể cá hình hộp chữ nhật có chiều dài 80 cm, chiều rộng 50 cm, chiều cao 40 cm.
+- Thể tích bể cá: $V = 80 \times 50 \times 40 = 160000$ cm³ $= 160$ lít nước.
 
 </div>
 

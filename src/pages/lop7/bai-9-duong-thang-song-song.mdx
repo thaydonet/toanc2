@@ -113,6 +113,30 @@ export const quizData = [
     difficulty_level: "hard",
     is_dynamic: true,
   },
+  {
+    type: "mcq",
+    question: "Cho hai đường thẳng $a$ và $b$ bị cắt bởi đường thẳng $c$. Nếu hai góc so le trong bằng nhau thì hai đường thẳng $a$ và $b$:",
+    option_a: "Song song với nhau",
+    option_b: "Vuông góc với nhau",
+    option_c: "Trùng nhau",
+    option_d: "Cắt nhau tại một điểm",
+    correct_option: "A",
+    explanation: "Đây là dấu hiệu nhận biết: hai góc so le trong bằng nhau thì hai đường thẳng song song.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho hình vẽ có đường thẳng $c$ cắt hai đường thẳng $a$, $b$. Các góc nào dưới đây là cặp góc so le trong?",
+    option_a: "Góc 3 và góc 5",
+    option_b: "Góc 4 và góc 6",
+    option_c: "Góc 1 và góc 5",
+    option_d: "Góc 3 và góc 6",
+    correct_option: "A,B",
+    explanation: "Góc so le trong nằm ở hai phía của cắt tuyến và trong khoảng hai đường thẳng: góc 3 với góc 5, góc 4 với góc 6.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
 ];
 
 <KhoiDong>
@@ -294,6 +318,69 @@ Hai góc trong cùng phía bù nhau nên $a \parallel b$
 
 </KhamPha>
 
+<VanDung title="II. Các dạng toán và Phương pháp giải">
+
+<h3 id="cac-dang-toan" style="display:none">Các dạng toán</h3>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:1rem 0;">
+
+**Dạng 1: Nhận biết hai đường thẳng song song qua dấu hiệu góc**
+**Phương pháp giải:** Vận dụng ba dấu hiệu nhận biết: hai góc so le trong bằng nhau, hai góc đồng vị bằng nhau, hai góc trong cùng phía bù nhau (tổng $180^\circ$).
+
+</div>
+
+**Ví dụ 1:** Cho hình vẽ biết góc 3 = góc 5 = $60^\circ$. Chứng minh $a \parallel b$.
+
+*Lời giải:* Góc 3 và góc 5 là hai góc so le trong và bằng nhau, theo dấu hiệu nhận biết suy ra $a \parallel b$.
+
+**Ví dụ 2:** Cho hình vẽ biết góc 1 = $70^\circ$ và góc 5 = $70^\circ$. Chứng minh $a \parallel b$.
+
+*Lời giải:* Góc 1 và góc 5 là hai góc đồng vị và bằng nhau nên $a \parallel b$.
+
+**Ví dụ 3:** Cho hình vẽ biết góc 3 = $70^\circ$ và góc 6 = $110^\circ$. Chứng minh $a \parallel b$.
+
+*Lời giải:* Góc 3 và góc 6 là hai góc trong cùng phía, tổng $70^\circ + 110^\circ = 180^\circ$ (bù nhau) nên $a \parallel b$.
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 2: Tính số đo góc dựa vào hai đường thẳng song song**
+**Phương pháp giải:** Khi $a \parallel b$ bị cắt bởi đường thẳng $c$, các góc so le trong bằng nhau, các góc đồng vị bằng nhau, các góc trong cùng phía bù nhau. Từ một góc đã biết suy ra các góc còn lại.
+
+</div>
+
+**Ví dụ 1:** Cho $a \parallel b$, đường thẳng $c$ cắt cả hai. Một góc so le trong bằng $65^\circ$. Tính góc đồng vị tương ứng.
+
+*Lời giải:* Vì $a \parallel b$ nên góc đồng vị tương ứng cũng bằng $65^\circ$.
+
+**Ví dụ 2:** Cho $a \parallel b$, $c$ cắt cả hai. Một góc so le trong bằng $75^\circ$. Tính góc trong cùng phía với nó.
+
+*Lời giải:* Góc trong cùng phía bù với góc so le trong: $180^\circ - 75^\circ = 105^\circ$.
+
+**Ví dụ 3:** Cho $a \parallel b$, $c$ cắt cả hai. Một góc trong cùng phía bằng $2x$, góc còn lại bằng $x$. Tính $x$.
+
+*Lời giải:* Hai góc trong cùng phía bù nhau: $2x + x = 180^\circ \Rightarrow 3x = 180^\circ \Rightarrow x = 60^\circ$.
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem;margin:2rem 0 1rem;">
+
+**Dạng 3: Chứng minh hai đường thẳng song song kết hợp tính chất**
+**Phương pháp giải:** Kết hợp dấu hiệu nhận biết với các tính chất đã biết (góc đối đỉnh, kề bù) để suy ra cặp góc bằng nhau hoặc bù nhau.
+
+</div>
+
+**Ví dụ 1:** Cho $a \perp c$ và $b \perp c$. Chứng minh $a \parallel b$.
+
+*Lời giải:* Hai góc đồng vị cùng bằng $90^\circ$ (vì đều vuông góc với $c$) nên $a \parallel b$.
+
+**Ví dụ 2:** Cho $a \parallel b$, $b \parallel c$. Chứng minh $a \parallel c$.
+
+*Lời giải:* Theo tính chất bắc cầu: hai đường thẳng cùng song song với một đường thẳng thứ ba thì song song với nhau.
+
+**Ví dụ 3:** Cho hình vẽ, biết $\widehat{A_1} = 50^\circ$ và $\widehat{B_2} = 50^\circ$. Chứng minh $a \parallel b$.
+
+*Lời giải:* Hai góc $\widehat{A_1}$ và $\widehat{B_2}$ là cặp góc so le trong và bằng nhau nên $a \parallel b$.
+
+</VanDung>
+
 <LuyenTap title="Thực hành tương tác">
 
 <h3 id="thuc-hanh" style="display:none">Thực hành tương tác</h3>
@@ -347,37 +434,89 @@ b) Góc đồng vị = góc so le trong = $85^\\circ$
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Biết hai góc so le trong bằng $75^\\circ$. Chứng minh $a \parallel b$.
+**Bài 1:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$, tạo thành cặp góc so le trong bằng nhau.
 
-**Bài 2:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Biết hai góc đồng vị bằng $50^\\circ$. Chứng minh $a \parallel b$.
+a) Chứng minh $a \parallel b$.
 
-**Bài 3:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Biết hai góc trong cùng phía là $70^\\circ$ và $110^\\circ$. Chứng minh $a \parallel b$.
+b) Nếu đường thẳng $c$ vuông góc với $a$ thì $c$ có vuông góc với $b$ không? Vì sao?
 
-**Bài 4:** Cho $a \parallel b$, đường thẳng $c$ cắt $a$ tại $A$ và cắt $b$ tại $B$. Biết một góc so le trong bằng $65^\\circ$. Tính góc so le trong còn lại.
+**Bài 2:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Biết một cặp góc đồng vị bằng nhau và đều bằng $50^\circ$.
 
-**Bài 5:** Cho $a \parallel b$, đường thẳng $c$ cắt $a$ và $b$. Biết một góc đồng vị bằng $80^\\circ$. Tính:
+a) Chứng minh $a \parallel b$.
 
-a) Góc đồng vị còn lại
+b) Tính các góc còn lại được tạo thành.
 
-b) Các góc trong cùng phía
+**Bài 3:** Cho đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Biết một cặp góc trong cùng phía là $70^\circ$ và $110^\circ$.
 
-**Bài 6:** Cho ba đường thẳng $a$, $b$, $c$. Biết $a \parallel b$ và $b \parallel c$. Chứng minh $a \parallel c$.
+a) Chứng minh $a \parallel b$.
+
+b) Trên hình có tồn tại cặp góc so le trong bằng nhau không? Giải thích.
+
+**Bài 4:** Cho $a \parallel b$, đường thẳng $c$ cắt $a$ tại $A$ và cắt $b$ tại $B$. Biết một góc so le trong bằng $65^\circ$.
+
+a) Tính góc so le trong còn lại.
+
+b) Tính góc đồng vị và góc trong cùng phía với góc đã cho.
+
+**Bài 5:** Cho $a \parallel b$, đường thẳng $c$ cắt $a$ và $b$. Biết một góc đồng vị bằng $80^\circ$.
+
+a) Tính góc đồng vị còn lại.
+
+b) Tính các góc trong cùng phía.
+
+**Bài 6:** Cho ba đường thẳng $a$, $b$, $c$. Biết $a \parallel b$ và $c \parallel b$ nhưng $a$ và $c$ phân biệt.
+
+a) Chứng minh $a \parallel c$.
+
+b) Em có nhận xét gì về số đường thẳng đi qua một điểm song song với một đường thẳng cho trước? Hãy phát biểu tiên đề liên quan.
+
+**Bài 7:** Cho hai đường thẳng $a$, $b$ cùng vuông góc với đường thẳng $c$.
+
+a) Chứng minh $a \parallel b$.
+
+b) Cho thêm đường thẳng $d$ cắt $a$ tạo thành một góc $55^\circ$. Tính các góc tạo bởi $d$ và $b$.
+
+**Bài 8:** Cho hình vẽ có $\widehat{A_1} = 42^\circ$, $\widehat{B_2} = 42^\circ$ (cặp góc so le trong).
+
+a) Chứng minh $a \parallel b$.
+
+b) Tính $\widehat{A_3}$ và $\widehat{B_1}$ (các góc kề bù), từ đó kết luận về cặp góc trong cùng phía.
+
+**Bài 9 (Ứng dụng thực tế - Đường ray):** Hai thanh ray của đường tàu được xem là hai đường thẳng song song. Người ta đặt một thanh ngang cắt hai thanh ray, tạo thành một góc so le trong bằng $85^\circ$.
+
+a) Tính góc so le trong còn lại.
+
+b) Tính các góc đồng vị và góc trong cùng phía. Giải thích ý nghĩa của việc các thanh ray song song trong giao thông.
+
+**Bài 10 (Ứng dụng thực tế - Cây thước):** Một người dùng thước để kẻ hai đường thẳng song song bằng cách đặt thước tạo với cạnh thước kia một góc $72^\circ$ rồi trượt thước. Khẳng định rằng hai đường kẻ được là song song.
+
+a) Giải thích vì sao khẳng định trên là đúng.
+
+b) Khi các đường kẻ đó song song, một đường ngang cắt chúng tạo thành góc trong cùng phía là bao nhiêu? Tính góc còn lại.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
-<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
+<summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số và hướng dẫn</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** Hai góc so le trong bằng nhau nên $a \parallel b$
+**Bài 1:** a) Hai góc so le trong bằng nhau nên $a \parallel b$. b) Có, vì góc đồng vị với góc vuông cũng bằng $90^\circ$.
 
-**Bài 2:** Hai góc đồng vị bằng nhau nên $a \parallel b$
+**Bài 2:** a) Hai góc đồng vị bằng nhau nên $a \parallel b$. b) Các góc so le trong và đồng vị bằng $50^\circ$; các góc trong cùng phía và kề bù bằng $130^\circ$.
 
-**Bài 3:** $70^\\circ + 110^\\circ = 180^\\circ$, hai góc trong cùng phía bù nhau nên $a \parallel b$
+**Bài 3:** a) $70^\circ + 110^\circ = 180^\circ$, hai góc trong cùng phía bù nhau nên $a \parallel b$. b) Có, vì khi hai đường thẳng song song thì các cặp góc so le trong bằng nhau.
 
-**Bài 4:** $65^\\circ$ (hai góc so le trong bằng nhau khi hai đường thẳng song song)
+**Bài 4:** a) $65^\circ$; b) Góc đồng vị $65^\circ$, góc trong cùng phía $115^\circ$.
 
-**Bài 5:** a) $80^\\circ$; b) $80^\\circ$ và $100^\\circ$
+**Bài 5:** a) $80^\circ$; b) Hai góc trong cùng phía là $80^\circ$ và $100^\circ$.
 
-**Bài 6:** Theo tính chất bắc cầu
+**Bài 6:** a) Theo tính chất bắc cầu, $a \parallel c$. b) Qua một điểm ngoài đường thẳng có duy nhất một đường thẳng song song (Tiên đề Euclid).
+
+**Bài 7:** a) Hai góc đồng vị đều bằng $90^\circ$ nên $a \parallel b$. b) Các góc so le trong, đồng vị bằng $55^\circ$; các góc trong cùng phía, kề bù bằng $125^\circ$.
+
+**Bài 8:** a) Hai góc so le trong bằng nhau nên $a \parallel b$. b) $\widehat{A_3} = 138^\circ$, $\widehat{B_1} = 138^\circ$; cặp góc tương ứng trong cùng phía bù nhau ($42^\circ + 138^\circ = 180^\circ$).
+
+**Bài 9:** a) $85^\circ$. b) Góc đồng vị $85^\circ$, góc trong cùng phía $95^\circ$. Tính song song giúp đường tàu chạy an toàn, không chệch khỏi ray theo chiều dài lớn.
+
+**Bài 10:** a) Các góc đồng vị khi trượt thước luôn bằng nhau nên hai đường kẻ song song. b) Góc trong cùng phía $72^\circ$; góc còn lại $180^\circ - 72^\circ = 108^\circ$.
 
 </div>
 </details>

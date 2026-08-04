@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import TamGiacCanInteractive from '../../components/interactive/TamGiacCanInteractive';
 
 export const quizData = [
   {
@@ -77,11 +78,63 @@ export const quizData = [
     is_dynamic: false,
   },
   {
-    type: "sa",
-    question: "Tam giác ABC cân tại A có góc A = 40°. Tính góc B (đơn vị độ).",
-    correct_option: "70",
-    explanation: "Góc B = góc C = (180° - 40°) : 2 = 70°",
+    type: "mcq",
+    question: "Tam giác ABC cân tại A có góc A = 40°. Góc B bằng bao nhiêu độ?",
+    option_a: "70°",
+    option_b: "40°",
+    option_c: "100°",
+    option_d: "80°",
+    correct_option: "A",
+    explanation: "Góc B = góc C = (180° - 40°) : 2 = 70°.",
     difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác ABC cân tại A có góc A = !a(30,40,50,60,70)!°. Góc B bằng:",
+    option_a: "${tinh: (180 - !a!) / 2}°",
+    option_b: "${tinh: (180 - !a!) / 2 + 10}°",
+    option_c: "${tinh: (180 - !a!) / 2 - 10}°",
+    option_d: "${tinh: (180 - !a!) / 2 + 25}°",
+    correct_option: "A",
+    explanation: "Tam giác cân tại A có góc B = góc C = (180° − góc A) : 2 = (180° − !a!°) : 2 = ${tinh: (180 - !a!) / 2}°.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Tam giác ABC cân tại A có góc B = !a(50,55,60,65,70)!°. Góc A bằng:",
+    option_a: "${tinh: 180 - 2 * !a!}°",
+    option_b: "${tinh: 180 - 2 * !a! + 20}°",
+    option_c: "${tinh: 180 - 2 * !a! - 20}°",
+    option_d: "${tinh: 180 - 2 * !a! + 40}°",
+    correct_option: "A",
+    explanation: "Góc B = góc C = !a!° nên góc A = 180° − 2 × !a!° = ${tinh: 180 - 2 * !a!}°.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho tam giác ABC cân tại A, AB = AC = 5 cm, BC = 6 cm. Đường cao AH = ?",
+    option_a: "4 cm",
+    option_b: "3 cm",
+    option_c: "5 cm",
+    option_d: "6 cm",
+    correct_option: "A",
+    explanation: "Ta có BH = HC = 3 cm. Áp dụng định lí Pytago trong tam giác vuông ABH: AH = √(AB² − BH²) = √(25 − 9) = √16 = 4 cm.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Cho đoạn thẳng AB. Điểm M thỏa MA = MB. Điểm N nằm trên đường trung trực của AB. Chọn các khẳng định đúng:",
+    option_a: "M nằm trên đường trung trực của AB",
+    option_b: "N cách đều A và B",
+    option_c: "MA = MB",
+    option_d: "NA ≠ NB",
+    correct_option: "A,B,C",
+    explanation: "M cách đều A và B nên M nằm trên đường trung trực (định lí đảo). N nằm trên đường trung trực nên N cách đều A và B (định lí trực). Do đó A, B, C đúng, D sai.",
+    difficulty_level: "hard",
     is_dynamic: false,
   },
 ];
@@ -292,9 +345,195 @@ Vậy $MA = MB$
 
 </KhamPha>
 
-<LuyenTap>
+<VanDung>
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="cac-dang-toan">📚 II. Các dạng toán và Phương pháp giải</h3>
+
+**Dạng 1: Tính góc trong tam giác cân**
+
+**Cách giải:**
+- Bước 1: Xác định tam giác cân, xác định đỉnh và đáy
+- Bước 2: Áp dụng tính chất hai góc ở đáy bằng nhau
+- Bước 3: Sử dụng tổng ba góc trong tam giác bằng 180° để tính góc còn lại
+
+**Ví dụ 1.1:** Cho tam giác $ABC$ cân tại $A$ có $\\widehat{A} = 50°$. Tính $\\widehat{B}$ và $\\widehat{C}$.
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $\\triangle ABC$ cân tại $A$ nên $\\widehat{B} = \\widehat{C}$
+
+Ta có: $\\widehat{A} + \\widehat{B} + \\widehat{C} = 180°$
+
+$50° + 2\\widehat{B} = 180°$
+
+$2\\widehat{B} = 130°$
+
+$\\widehat{B} = 65°$
+
+Vậy $\\widehat{B} = \\widehat{C} = 65°$
+
+</details>
+
+**Ví dụ 1.2:** Cho tam giác $MNP$ cân tại $N$, có $\\widehat{M} = \\widehat{P} = 55°$. Tính $\\widehat{N}$.
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $\\triangle MNP$ cân tại $N$ nên $\\widehat{M} = \\widehat{P} = 55°$
+
+Ta có: $\\widehat{N} + \\widehat{M} + \\widehat{P} = 180°$
+
+$\\widehat{N} + 55° + 55° = 180°$
+
+$\\widehat{N} = 180° − 110° = 70°$
+
+Vậy $\\widehat{N} = 70°$
+
+</details>
+
+**Ví dụ 1.3:** Cho tam giác $DEF$ cân tại $D$, có $\\widehat{D} = 3 \\times \\widehat{E}$. Tính ba góc của tam giác.
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $\\triangle DEF$ cân tại $D$ nên $\\widehat{E} = \\widehat{F}$
+
+Gọi $\\widehat{E} = x$ thì $\\widehat{D} = 3x$
+
+Ta có: $\\widehat{D} + \\widehat{E} + \\widehat{F} = 180°$
+
+$3x + x + x = 180°$
+
+$5x = 180°$
+
+$x = 36°$
+
+Vậy $\\widehat{E} = \\widehat{F} = 36°$, $\\widehat{D} = 108°$
+
+</details>
+
+---
+
+**Dạng 2: Nhận biết tam giác cân từ cạnh và góc**
+
+**Cách giải:**
+- Nếu biết hai cạnh bằng nhau → tam giác cân tại đỉnh chung của hai cạnh đó
+- Nếu biết hai góc bằng nhau → tam giác cân tại đỉnh không thuộc hai góc đó
+- Kết hợp nhiều dữ kiện để chứng minh tam giác cân
+
+**Ví dụ 2.1:** Cho tam giác $ABC$ có $AB = AC = 5$ cm, $BC = 6$ cm. Xác định tam giác cân tại đỉnh nào?
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $AB = AC$ nên hai cạnh bên bằng nhau
+
+Đỉnh chung của $AB$ và $AC$ là $A$
+
+Vậy tam giác $ABC$ cân tại $A$
+
+</details>
+
+**Ví dụ 2.2:** Cho tam giác $XYZ$ có $\\widehat{X} = \\widehat{Y} = 70°$. Chứng minh tam giác $XYZ$ cân.
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $\\widehat{X} = \\widehat{Y} = 70°$ nên tam giác có hai góc bằng nhau
+
+Theo định lí đảo của tam giác cân: tam giác có hai góc bằng nhau thì là tam giác cân
+
+Đỉnh không thuộc hai góc $X$ và $Y$ là $Z$
+
+Vậy tam giác $XYZ$ cân tại $Z$
+
+</details>
+
+**Ví dụ 2.3:** Cho tam giác $ABC$ có $AB = 7$ cm, $AC = 7$ cm, $BC = 9$ cm. Tính diện tích tam giác $ABC$ biết đường cao $AH = \\sqrt{7^2 − 4{,}5^2}$.
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $AB = AC$ nên tam giác $ABC$ cân tại $A$
+
+Đường cao $AH$ cũng là đường trung tuyến nên $BH = HC = \\dfrac{BC}{2} = 4{,}5$ cm
+
+$AH = \\sqrt{AB^2 − BH^2} = \\sqrt{49 − 20{,}25} = \\sqrt{28{,}75} ≈ 5{,}36$ cm
+
+Diện tích $S = \\dfrac{BC \\times AH}{2} = \\dfrac{9 \\times 5{,}36}{2} ≈ 24{,}1$ cm²
+
+</details>
+
+---
+
+**Dạng 3: Vận dụng tính chất đường trung trực**
+
+**Cách giải:**
+- Điểm nằm trên đường trung trực → cách đều hai đầu mút
+- Điểm cách đều hai đầu mút → nằm trên đường trung trực
+- Kết hợp tam giác cân và đường trung trực để giải bài toán
+
+**Ví dụ 3.1:** Cho đoạn thẳng $AB$ dài 8 cm. Điểm $M$ nằm trên đường trung trực của $AB$. Chứng minh $MA = MB$.
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $M$ nằm trên đường trung trực của $AB$
+
+Theo tính chất đường trung trực: điểm nằm trên đường trung trực thì cách đều hai đầu mút
+
+Vậy $MA = MB$
+
+</details>
+
+**Ví dụ 3.2:** Cho tam giác $ABC$ cân tại $A$. Kẻ $AH \\perp BC$ tại $H$. Chứng minh $H$ nằm trên đường trung trực của $BC$.
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $\\triangle ABC$ cân tại $A$ nên $AB = AC$
+
+$AH$ là đường cao từ $A$ xuống $BC$ nên $AH \\perp BC$
+
+Trong tam giác cân, đường cao từ đỉnh đồng thời là đường trung tuyến
+
+Vậy $H$ là trung điểm của $BC$
+
+Mà đường trung trực của $BC$ đi qua trung điểm $H$ và vuông góc với $BC$
+
+Do đó $H$ nằm trên đường trung trực của $BC$
+
+</details>
+
+**Ví dụ 3.3:** Cho hai điểm $M$ và $N$ cùng nằm trên đường trung trực của đoạn thẳng $AB$. Chứng minh tam giác $MAB$ và tam giác $NAB$ cân.
+
+<details style="margin:0.75rem 0;padding:0.75rem 1rem;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe;">
+<summary style="cursor:pointer;font-weight:600;color:#1d4ed8;">Giải chi tiết</summary>
+
+Vì $M$ nằm trên đường trung trực của $AB$ nên $MA = MB$
+
+Vậy tam giác $MAB$ cân tại $M$
+
+Tương tự, $N$ nằm trên đường trung trực của $AB$ nên $NA = NB$
+
+Vậy tam giác $NAB$ cân tại $N$
+
+</details>
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
+
+<TamGiacCanInteractive client:load />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
@@ -345,33 +584,156 @@ Vậy $AH$ là tia phân giác của góc $A$
 
 <h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho tam giác $ABC$ cân tại $A$, có $\\widehat{A} = 50°$. Tính $\\widehat{B}$ và $\\widehat{C}$.
+**Câu 1:** Cho tam giác $ABC$ cân tại $A$ có $\\widehat{A} = 50°$.
 
-**Bài 2:** Cho tam giác $DEF$ có $\\widehat{D} = 70°$, $\\widehat{E} = 70°$. Chứng minh tam giác $DEF$ cân.
+a) Tính $\\widehat{B}$ và $\\widehat{C}$.
 
-**Bài 3:** Cho đoạn thẳng $AB$ dài 6 cm. Vẽ đường trung trực $d$ của $AB$. Lấy điểm $M$ trên $d$. Tính $MA + MB$.
+b) Cho $H$ nằm trên $BC$ sao cho $AH \\perp BC$. Tính $\\widehat{BAH}$.
 
-**Bài 4:** Cho tam giác $ABC$ cân tại $A$. Kẻ $AH \\perp BC$. Biết $BC = 8$ cm, $AH = 3$ cm. Tính chu vi tam giác $ABC$.
+c) Chứng minh $AH$ là đường phân giác của góc $A$.
 
-**Bài 5:** Cho tam giác $MNP$ cân tại $M$, có $\\widehat{N} = 65°$. Tính $\\widehat{M}$.
+---
 
-**Bài 6:** Cho đoạn thẳng $AB$. Điểm $M$ cách đều $A$ và $B$, điểm $N$ cách đều $A$ và $B$. Chứng minh $M$, $N$ nằm trên đường trung trực của $AB$.
+**Câu 2:** Cho tam giác $DEF$ cân tại $D$ có $DE = DF = 5$ cm, $EF = 6$ cm.
+
+a) Tính chiều cao $DH$ (với $H$ thuộc $EF$, $DH \\perp EF$).
+
+b) Tính diện tích tam giác $DEF$.
+
+c) Tính chu vi tam giác $DEF$.
+
+---
+
+**Câu 3:** Cho đoạn thẳng $AB$ dài 10 cm, $I$ là trung điểm của $AB$.
+
+a) Vẽ đường trung trực $d$ của $AB$.
+
+b) Lấy điểm $M$ trên $d$ sao cho $MA = 13$ cm. Tính $MB$.
+
+c) Chứng minh tam giác $MAB$ cân tại $M$.
+
+---
+
+**Câu 4:** Cho tam giác $MNP$ cân tại $N$ có $\\widehat{N} = 80°$.
+
+a) Tính $\\widehat{M}$ và $\\widehat{P}$.
+
+b) Cho $K$ là trung điểm của $MP$. Tính $\\widehat{MNK}$.
+
+c) Chứng minh $NK \\perp MP$.
+
+---
+
+**Câu 5:** Cho tam giác $ABC$ cân tại $A$ có $AB = AC = 8$ cm, $BC = 12$ cm.
+
+a) Tính đường cao $AH$ (với $H$ thuộc $BC$).
+
+b) Tính diện tích tam giác $ABC$.
+
+c) Điểm $M$ nằm trên đường trung trực của $BC$ sao cho $MB = 5$ cm. Tính $MC$.
+
+---
+
+**Câu 6:** Cho tam giác $XYZ$ cân tại $Y$ có $\\widehat{X} = \\widehat{Z} = 50°$.
+
+a) Tính $\\widehat{Y}$.
+
+b) Cho $W$ là trung điểm của $XZ$. Tính $\\widehat{XYW}$.
+
+c) Chứng minh $YW$ là đường trung tuyến, đường phân giác và đường cao của tam giác $XYZ$.
+
+---
+
+**Câu 7:** Cho đoạn thẳng $PQ$ dài 14 cm. Điểm $M$ nằm trên đường trung trực của $PQ$ sao cho $MP = 10$ cm.
+
+a) Tính $MQ$.
+
+b) Gọi $I$ là trung điểm của $PQ$. Tính $MI$.
+
+c) Tính diện tích tam giác $MPQ$.
+
+---
+
+**Câu 8:** Cho tam giác $ABC$ cân tại $A$ có $AB = AC = 10$ cm, $\\widehat{A} = 60°$.
+
+a) Chứng minh tam giác $ABC$ là tam giác đều.
+
+b) Tính $BC$.
+
+c) Tính diện tích tam giác $ABC$.
+
+---
+
+**Câu 9: Ứng dụng thực tế.** Một mảnh vườn hình tam giác $ABC$ cân tại $A$ có $AB = AC = 15$ m, $BC = 18$ m. Chủ vườn muốn kẻ một hàng rào $AH$ vuông góc với $BC$ để chia vườn thành hai phần bằng nhau.
+
+a) Chứng minh $AH$ chia vườn thành hai phần có diện tích bằng nhau.
+
+b) Tính chiều dài hàng rào $AH$.
+
+c) Tính diện tích mỗi phần vườn sau khi chia.
+
+---
+
+**Câu 10: Ứng dụng thực tế.** Một chiếc mái nhà hình tam giác cân $PQR$ cân tại $P$ có $PQ = PR = 5$ m, $QR = 6$ m. Thợ xây cần lắp một thanh chống $PS$ vuông góc với $QR$ (với $S$ thuộc $QR$).
+
+a) Tính độ dài thanh chống $PS$.
+
+b) Chứng minh $S$ là trung điểm của $QR$.
+
+c) Nếu mỗi mét vuông mái nhà cần 20 viên ngói, tính tổng số viên ngói cần thiết để lợp toàn bộ mái nhà.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
 <summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** $\\widehat{B} = \\widehat{C} = 65°$
+**Câu 1:**
+a) $\\widehat{B} = \\widehat{C} = \\dfrac{180° − 50°}{2} = 65°$
+b) $\\widehat{BAH} = \\dfrac{50°}{2} = 25°$ (vì $AH$ là phân giác)
+c) Vì $\\triangle ABH = \\triangle ACH$ (c.huyền - c.g.vuông) nên $\\widehat{BAH} = \\widehat{CAH}$, do đó $AH$ là phân giác
 
-**Bài 2:** Vì $\\widehat{D} = \\widehat{E} = 70°$ nên tam giác $DEF$ cân tại $F$
+**Câu 2:**
+a) $H$ là trung điểm $EF$ nên $EH = HF = 3$ cm. $DH = \\sqrt{DE^2 − EH^2} = \\sqrt{25 − 9} = 4$ cm
+b) $S = \\dfrac{6 \\times 4}{2} = 12$ cm²
+c) Chu vi = $5 + 5 + 6 = 16$ cm
 
-**Bài 3:** $MA + MB = 2MA = 2MB$ (vì $MA = MB$). Không tính được giá trị cụ thể vì không biết vị trí $M$
+**Câu 3:**
+b) $MB = MA = 13$ cm (vì $M$ trên đường trung trực)
+c) $MA = MB$ nên $\\triangle MAB$ cân tại $M$
 
-**Bài 4:** $BH = HC = 4$ cm. $AB = AC = \\sqrt{AH^2 + BH^2} = \\sqrt{9 + 16} = 5$ cm. Chu vi = $5 + 5 + 8 = 18$ cm
+**Câu 4:**
+a) $\\widehat{M} = \\widehat{P} = \\dfrac{180° − 80°}{2} = 50°$
+b) $\\widehat{MNK} = \\dfrac{80°}{2} = 40°$ (vì $NK$ là phân giác)
+c) $NK$ là đường cao nên $NK \\perp MP$
 
-**Bài 5:** $\\widehat{M} = 180° - 65° - 65° = 50°$
+**Câu 5:**
+a) $BH = HC = 6$ cm. $AH = \\sqrt{AB^2 − BH^2} = \\sqrt{64 − 36} = \\sqrt{28} = 2\\sqrt{7}$ cm
+b) $S = \\dfrac{12 \\times 2\\sqrt{7}}{2} = 12\\sqrt{7}$ cm²
+c) $MC = MB = 5$ cm (vì $M$ trên đường trung trực)
 
-**Bài 6:** Vì $M$ và $N$ đều cách đều hai đầu mút $A$, $B$ nên theo định lí đảo, chúng nằm trên đường trung trực của $AB$
+**Câu 6:**
+a) $\\widehat{Y} = 180° − 50° − 50° = 80°$
+b) $\\widehat{XYW} = \\dfrac{80°}{2} = 40°$
+c) Vì tam giác cân nên đường trung tuyến từ đỉnh đồng thời là phân giác và cao
+
+**Câu 7:**
+a) $MQ = MP = 10$ cm
+b) $I$ là trung điểm $PQ$ nên $PI = IQ = 7$ cm. $MI = \\sqrt{MP^2 − PI^2} = \\sqrt{100 − 49} = \\sqrt{51}$ cm
+c) $S_{MPQ} = \\dfrac{14 \\times \\sqrt{51}}{2} = 7\\sqrt{51}$ cm²
+
+**Câu 8:**
+a) $\\widehat{B} = \\widehat{C} = \\dfrac{180° − 60°}{2} = 60°$. Tam giác đều vì ba góc bằng nhau
+b) $BC = AB = AC = 10$ cm
+c) $S = \\dfrac{\\sqrt{3}}{4} \\times 10^2 = 25\\sqrt{3}$ cm²
+
+**Câu 9:**
+a) Vì $AH \\perp BC$ và tam giác cân nên $H$ là trung điểm $BC$, suy ra $S_{ABH} = S_{ACH}$
+b) $BH = HC = 9$ m. $AH = \\sqrt{AB^2 − BH^2} = \\sqrt{225 − 81} = \\sqrt{144} = 12$ m
+c) Diện tích mỗi phần = $\\dfrac{18 \\times 12}{2 : 2} = 54$ m²
+
+**Câu 10:**
+a) $S$ là trung điểm $QR$ nên $QS = SR = 3$ m. $PS = \\sqrt{PQ^2 − QS^2} = \\sqrt{25 − 9} = 4$ m
+b) Vì tam giác cân, đường cao từ đỉnh cũng là đường trung tuyến nên $S$ là trung điểm
+c) Diện tích mái = $\\dfrac{6 \\times 4}{2} = 12$ m². Số viên ngói = $12 \\times 20 = 240$ viên
 
 </div>
 </details>

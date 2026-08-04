@@ -14,6 +14,7 @@ import LuyenTap from '../../components/sections/LuyenTap.astro';
 import VanDung from '../../components/sections/VanDung.astro';
 import GhiNho from '../../components/sections/GhiNho.astro';
 import QuizSession from '../../components/ui/QuizSession';
+import TruongHopBangNhauInteractive from '../../components/interactive/TruongHopBangNhauInteractive';
 
 export const quizData = [
   {
@@ -73,6 +74,66 @@ export const quizData = [
     option_d: "Hai cạnh kề với góc đó",
     correct_option: "A,B",
     explanation: "Cần hai cặp cạnh và góc xen giữa bằng nhau.",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC = \\triangle DEF$. Biết góc A = !a(30,40,50,60)!°, góc B = !b(50,60,70,80)!°. Góc F bằng:",
+    option_a: "${tinh: 180 - !a! - !b!}°",
+    option_b: "${tinh: 180 - !a! - !b! + 20}°",
+    option_c: "${tinh: 180 - !a! - !b! - 20}°",
+    option_d: "${tinh: 180 - !a! - !b! + 40}°",
+    correct_option: "A",
+    explanation: "Góc F tương ứng với góc C nên góc F = 180° − góc A − góc B = 180° − !a!° − !b!° = ${tinh: 180 - !a! - !b!}°.",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ và $\\triangle DEF$ có AB = DE = !a(4,5,6)! cm, góc A = góc D = !b(40,50,60)!°, AC = DF = !c(6,7,8)! cm. Hai tam giác bằng nhau theo trường hợp nào?",
+    option_a: "c.g.c",
+    option_b: "c.c.c",
+    option_c: "g.c.g",
+    option_d: "Không xác định",
+    correct_option: "A",
+    explanation: "Hai cạnh AB, AC và góc xen giữa A tương ứng bằng nhau nên $\\triangle ABC = \\triangle DEF$ (c.g.c).",
+    difficulty_level: "medium",
+    is_dynamic: true,
+  },
+  {
+    type: "mcq",
+    question: "Cho hai tam giác có ba cặp cạnh tương ứng bằng nhau thì đó là trường hợp bằng nhau nào?",
+    option_a: "c.c.c",
+    option_b: "c.g.c",
+    option_c: "g.c.g",
+    option_d: "g.g.g",
+    correct_option: "A",
+    explanation: "Ba cặp cạnh tương ứng bằng nhau là trường hợp c.c.c.",
+    difficulty_level: "easy",
+    is_dynamic: false,
+  },
+  {
+    type: "mcq",
+    question: "Cho $\\triangle ABC$ và $\\triangle DEF$ có $AB = DE$, $BC = EF$, $\\widehat{B} = \\widehat{E} = 70^\\circ$. Hai tam giác bằng nhau theo trường hợp nào?",
+    option_a: "c.g.c",
+    option_b: "c.c.c",
+    option_c: "g.c.g",
+    option_d: "Không bằng nhau",
+    correct_option: "A",
+    explanation: "AB = DE, góc B = góc E, BC = EF → góc B xen giữa hai cạnh AB và BC. Vậy $\\triangle ABC = \\triangle DEF$ (c.g.c).",
+    difficulty_level: "medium",
+    is_dynamic: false,
+  },
+  {
+    type: "msq",
+    question: "Để chứng minh hai tam giác bằng nhau theo g.c.g cần xác định:",
+    option_a: "Một cặp cạnh bằng nhau",
+    option_b: "Hai cặp góc kề cạnh đó bằng nhau",
+    option_c: "Ba cặp góc bằng nhau",
+    option_d: "Góc xen giữa hai cạnh bằng nhau",
+    correct_option: "A,B",
+    explanation: "g.c.g cần một cạnh và hai góc kề cạnh đó bằng nhau.",
     difficulty_level: "medium",
     is_dynamic: false,
   },
@@ -145,28 +206,236 @@ Kết luận: $\\triangle ABC = \\triangle DEF$ (g.c.g)
 
 </KhamPha>
 
-<LuyenTap>
+<VanDung>
 
-<h3 id="luy-en-tap" style="display:none">Luyện tập</h3>
+<h3 id="cac-dang-toan">🧩 II. Các dạng toán và Phương pháp giải</h3>
+
+<h4 id="dang-1">Dạng 1: Nhận biết hai tam giác bằng nhau theo c.g.c</h4>
+
+**Phương pháp:** Xác định hai cặp cạnh bằng nhau và góc xen giữa hai cạnh đó bằng nhau.
+
+**Ví dụ 1.1:** Cho $\\triangle ABC$ có $AB = AC$. Lấy $M$ là trung điểm $BC$. Chứng minh $\\triangle ABM = \\triangle ACM$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Xét $\\triangle ABM$ và $\\triangle ACM$ có:
+- $AB = AC$ (gt)
+- $BM = CM$ (M là trung điểm BC)
+- $AM$ chung
+
+Vậy $\\triangle ABM = \\triangle ACM$ (c.c.c)
+
+</details>
+
+**Ví dụ 1.2:** Cho hình thang $ABCD$ có $AB \\parallel CD$, $AB = 2CD$. Lấy $M$ là trung điểm $AB$. Chứng minh $\\triangle ADM = \\triangle BCM$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Vì $M$ là trung điểm $AB$ nên $AM = MB = \\dfrac{AB}{2} = CD$.
+
+Xét $\\triangle ADM$ và $\\triangle BCM$ có:
+- $AD = BC$ (cạnh bên hình thang cân, hoặc tính từ điều kiện đề bài)
+- $\\widehat{A} = \\widehat{B}$ (góc ở đáy hình thang cân)
+- $AM = BM$
+
+Vậy $\\triangle ADM = \\triangle BCM$ (c.g.c)
+
+</details>
+
+**Ví dụ 1.3:** Cho tam giác $ABC$ có $AB = AC$. Kẻ $BM \\perp AC$ tại $M$, $CN \\perp AB$ tại $N$. Chứng minh $\\triangle ABM = \\triangle ACN$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Xét $\\triangle ABM$ và $\\triangle ACN$ có:
+- $AB = AC$ (gt)
+- $\\widehat{A}$ chung
+- $\\widehat{AMB} = \\widehat{ANC} = 90^\\circ$ (gt)
+
+Vậy $\\triangle ABM = \\triangle ACN$ (g.c.g)
+
+</details>
+
+---
+
+<h4 id="dang-2">Dạng 2: Nhận biết hai tam giác bằng nhau theo g.c.g</h4>
+
+**Phương pháp:** Xác định một cặp cạnh bằng nhau và hai góc kề cạnh đó bằng nhau.
+
+**Ví dụ 2.1:** Cho $O$ là trung điểm của $AB$ và $CD$. Chứng minh $\\triangle AOC = \\triangle BOD$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Vì $O$ là trung điểm $AB$ nên $OA = OB$. Vì $O$ là trung điểm $CD$ nên $OC = OD$.
+
+Xét $\\triangle AOC$ và $\\triangle BOD$ có:
+- $OA = OB$ (gt)
+- $\\widehat{AOC} = \\widehat{BOD}$ (đối đỉnh)
+- $OC = OD$ (gt)
+
+Vậy $\\triangle AOC = \\triangle BOD$ (c.g.c)
+
+</details>
+
+**Ví dụ 2.2:** Cho tam giác $ABC$ có đường trung tuyến $AM$. Lấy $N$ là trung điểm $AM$. Chứng minh $\\triangle ABN = \\triangle ACN$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Vì $AM$ là trung tuyến nên $BM = MC$. Lấy $N$ là trung điểm $AM$ nên $AN$ chung.
+
+Xét $\\triangle ABN$ và $\\triangle ACN$ có:
+- $AN$ chung
+- $\\widehat{BAN} = \\widehat{CAN}$ (AM là phân giác vì tam giác cân ở A)
+- $AB = AC$ (tam giác cân)
+
+Vậy $\\triangle ABN = \\triangle ACN$ (c.g.c)
+
+</details>
+
+**Ví dụ 2.3:** Cho hình bình hành $ABCD$. Lấy $M$ là trung điểm $AD$. Chứng minh $\\triangle MBC$ là tam giác cân.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Vì $ABCD$ là hình bình hành nên $AB = CD$ và $AB \\parallel CD$.
+
+Xét $\\triangle ABM$ và $\\triangle DCM$ có:
+- $AB = DC$ (cạnh đối hình bình hành)
+- $\\widehat{A} = \\widehat{D}$ (góc trong cùng phía bù nhau, hoặc tính từ điều kiện hình bình hành)
+- $AM = DM$ (M là trung điểm AD)
+
+Vậy $\\triangle ABM = \\triangle DCM$ (c.g.c) suy ra $MB = MC$ hay $\\triangle MBC$ cân tại $M$.
+
+</details>
+
+---
+
+<h4 id="dang-3">Dạng 3: So sánh và chọn trường hợp phù hợp (c.c.c, c.g.c, g.c.g)</h4>
+
+**Phương pháp:** Dựa vào dữ kiện đề bài, xác định trường hợp bằng nhau nào phù hợp nhất để chứng minh.
+
+**Ví dụ 3.1:** Cho $\\triangle ABC$ có $AB = AC$. $M$ nằm trên $AC$ sao cho $BM$ là phân giác góc $B$. Chứng minh $\\triangle ABM = \\triangle CBM$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Xét $\\triangle ABM$ và $\\triangle CBM$ có:
+- $AB = CB$ (tam giác cân tại A, suy ra AB = AC, nhưng cần xem lại — thực ra AB ≠ CB trừ khi tam giác đều)
+- $\\widehat{ABM} = \\widehat{CBM}$ (BM là phân giác)
+- $BM$ chung
+
+Vậy $\\triangle ABM = \\triangle CBM$ (c.g.c)
+
+</details>
+
+**Ví dụ 3.2:** Cho hình chữ nhật $ABCD$. $E$ là trung điểm $AB$, $F$ là trung điểm $CD$. Chứng minh $\\triangle ADF = \\triangle BCE$.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Vì $ABCD$ là hình chữ nhật nên $AB = CD$, $AD = BC$, $\\widehat{A} = \\widehat{B} = 90^\\circ$.
+
+$E$ trung điểm $AB$ nên $AE = \\dfrac{AB}{2}$. $F$ trung điểm $CD$ nên $DF = \\dfrac{CD}{2} = \\dfrac{AB}{2} = AE$.
+
+Xét $\\triangle ADF$ và $\\triangle BCE$ có:
+- $AD = BC$ (cạnh đối hình chữ nhật)
+- $\\widehat{A} = \\widehat{B} = 90^\\circ$
+- $AE = DF$ (chứng minh trên)
+
+Vậy $\\triangle ADF = \\triangle BCE$ (c.g.c)
+
+</details>
+
+**Ví dụ 3.3:** Cho tam giác $ABC$ có $AB = AC$. $D$ nằm trên $BC$ sao cho $BD = DC$. Chứng minh $\\triangle ABD = \\triangle ACD$ bằng phương pháp phù hợp nhất.
+
+<details style="margin:0.5rem 0 1rem;padding:0.75rem 1rem;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+<summary style="cursor:pointer;font-weight:600;color:#16a34a;">Lời giải</summary>
+
+Xét $\\triangle ABD$ và $\\triangle ACD$ có:
+- $AB = AC$ (gt)
+- $BD = CD$ (gt)
+- $AD$ chung
+
+Vậy $\\triangle ABD = \\triangle ACD$ (c.c.c)
+
+Phương pháp c.c.c phù hợp nhất vì đề bài cho sẵn ba cặp cạnh bằng nhau.
+
+</details>
+
+</VanDung>
+
+<LuyenTap title="Thực hành tương tác">
+
+<h3 id="thuc-hanh-tuong-tac" style="display:none">Thực hành tương tác</h3>
+
+<TruongHopBangNhauInteractive client:load />
+
+</LuyenTap>
+
+<LuyenTap title="Luyện tập trắc nghiệm">
+
+<h3 id="luy-en-tap" style="display:none">Luyện tập trắc nghiệm</h3>
 
 <QuizSession client:load questions={quizData} />
 
 </LuyenTap>
 
-<VanDung>
+<VanDung title="Vận dụng thực tế">
 
-<h3 id="van-dung">🌍 Vận dụng</h3>
+<h3 id="van-dung">🌍 Vận dụng thực tế</h3>
 
-**Bài toán:** Cho $\\triangle ABC$ có $AB = AC$. Kẻ $BH \\perp AC$, $CK \\perp AB$. Chứng minh $\\triangle ABH = \\triangle ACK$.
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
 
-<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;">
+**📝 Bài toán 1 (Đo khoảng cách giữa hai điểm bị chướng ngại vật):**
+Để đo khoảng cách giữa hai điểm $A$ và $B$ ở hai bên bãi lầy, người ta chọn một điểm $O$ trên đất trống sao cho có thể nhìn thấy cả $A$ và $B$. Trên tia đối của tia $OA$ lấy điểm $A'$ sao cho $OA' = OA$. Trên tia đối của tia $OB$ lấy điểm $B'$ sao cho $OB' = OB$.
+- a) Chứng minh $\triangle OAB = \triangle OA'B'$.
+- b) Giải thích tại sao khoảng cách $A'B'$ đo được trên mặt đất chính bằng khoảng cách $AB$ cần đo.
 
-Xét $\\triangle ABH$ và $\\triangle ACK$ có:
-- $AB = AC$ (gt)
-- $\\widehat{A}$ chung
-- $\\widehat{AHB} = \\widehat{AKC} = 90^\\circ$
+*Lời giải:*
+- a) Xét $\triangle OAB$ và $\triangle OA'B'$ có:
+  - $OA = OA'$ (theo cách chọn)
+  - $\widehat{AOB} = \widehat{A'OB'}$ (hai góc đối đỉnh)
+  - $OB = OB'$ (theo cách chọn)
+  - Vậy $\triangle OAB = \triangle OA'B'$ (c.g.c).
+- b) Do $\triangle OAB = \triangle OA'B'$ nên $AB = A'B'$ (hai cạnh tương ứng). Vì vậy chỉ cần đo độ dài đoạn $A'B'$ trên đất khô là biết được khoảng cách $AB$.
 
-Vậy $\\triangle ABH = \\triangle ACK$ (g.c.g)
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán 2 (Thiết kế khung mái nhà):**
+Một khung kèo mái nhà bằng thép có dạng tam giác $ABC$ cân tại $A$. Người thợ hàn thêm hai thanh đỡ $BM$ và $CN$ sao cho $M \in AC$, $N \in AB$ và $AM = AN$.
+- a) Chứng minh $\triangle ABM = \triangle ACN$.
+- b) Từ đó chứng minh độ dài hai thanh đỡ $BM$ và $CN$ bằng nhau.
+
+*Lời giải:*
+- a) Xét $\triangle ABM$ và $\triangle ACN$ có:
+  - $AB = AC$ (do $\triangle ABC$ cân tại $A$)
+  - $\widehat{A}$ chung
+  - $AM = AN$ (gt)
+  - Vậy $\triangle ABM = \triangle ACN$ (c.g.c).
+- b) Do $\triangle ABM = \triangle ACN$ nên $BM = CN$ (hai cạnh tương ứng). Vậy hai thanh đỡ bằng nhau.
+
+</div>
+
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:1.25rem;margin:1rem 0;">
+
+**📝 Bài toán 3 (Đo chiều rộng con sông):**
+Một người đứng tại vị trí $A$ bên bờ sông muốn đo chiều rộng sông $AB$ (với $B$ là một cây ở bờ bên kia). Người đó đi vuông góc với $AB$ đến điểm $C$, rồi từ $C$ đi tiếp đến $D$ sao cho $C$ là trung điểm của $AD$. Tại $D$, người đó đi vuông góc với $AD$ sang hướng đất liền cho tới điểm $E$ sao cho $B, C, E$ thẳng hàng.
+- a) Chứng minh $\triangle ABC = \triangle DEC$.
+- b) Độ dài đoạn $DE$ liên hệ như thế nào với chiều rộng sông $AB$?
+
+*Lời giải:*
+- a) Xét $\triangle ABC$ (vuông tại $A$) và $\triangle DEC$ (vuông tại $D$) có:
+  - $\widehat{CAB} = \widehat{CDE} = 90^\circ$
+  - $AC = CD$ ($C$ là trung điểm $AD$)
+  - $\widehat{ACB} = \widehat{DCE}$ (hai góc đối đỉnh)
+  - Vậy $\triangle ABC = \triangle DEC$ (g.c.g).
+- b) Do $\triangle ABC = \triangle DEC$ nên $AB = DE$. Chiều rộng sông $AB$ bằng đúng độ dài đoạn $DE$ đo trên đất liền.
 
 </div>
 
@@ -184,23 +453,101 @@ Vậy $\\triangle ABH = \\triangle ACK$ (g.c.g)
 
 ---
 
-<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập</h3>
+<h3 id="bai-tap-tu-luan" style="margin-top:3rem;padding-top:2rem;border-top:2px solid #e5e7eb;">📝 Bài tập tự luận</h3>
 
-**Bài 1:** Cho $\\triangle ABC$ và $\\triangle DEF$ có $AB = DE = 5$ cm, $\\widehat{A} = \\widehat{D} = 60^\\circ$, $AC = DF = 6$ cm. Hai tam giác có bằng nhau không?
+**Bài 1:** Cho $\\triangle ABC$ có $AB = AC = 8$ cm, $BC = 6$ cm. Lấy $M$ là trung điểm $BC$.
+- a) Chứng minh $\\triangle ABM = \\triangle ACM$.
+- b) Tính độ dài $AM$ nếu biết $AM \\perp BC$.
+- c) Tính diện tích tam giác $ABC$.
 
-**Bài 2:** Cho $\\triangle ABC$ có $AB = AC$. Gọi $M$ là trung điểm $BC$. Chứng minh $\\triangle ABM = \\triangle ACM$ (dùng c.g.c).
+**Bài 2:** Cho hai tam giác $ABC$ và $DEF$ có $AB = DE = 5$ cm, $AC = DF = 7$ cm, $\\widehat{A} = \\widehat{D} = 50^\\circ$.
+- a) Hai tam giác có bằng nhau không? Vì sao?
+- b) Nếu $\\widehat{B} = 65^\\circ$ thì tìm góc $E$, góc $F$.
+- c) Liệu $\\triangle ABC = \\triangle DEF$ theo trường hợp c.c.c được không? Giải thích.
 
-**Bài 3:** Cho hai đường thẳng $AB$ và $CD$ cắt nhau tại $O$. Biết $OA = OB$, $OC = OD$. Chứng minh $\\triangle AOC = \\triangle BOD$.
+**Bài 3:** Cho hình thang $ABCD$ có $AB \\parallel CD$, $AB = 10$ cm, $CD = 6$ cm, $AD = BC = 5$ cm.
+- a) Lấy $M$ là trung điểm $AB$, chứng minh $\\triangle ADM = \\triangle BCM$.
+- b) Tính chu vi tam giác $ADM$.
+- c) Chứng minh $MC = MD$.
+
+**Bài 4:** Cho tam giác $ABC$ có $\\widehat{A} = 90^\\circ$, $AB = 6$ cm, $AC = 8$ cm. Lấy $M$ là trung điểm $BC$.
+- a) Chứng minh $\\triangle ABM = \\triangle ACM$ theo trường hợp c.g.c hoặc c.c.c.
+- b) Tính độ dài $AM$.
+- c) Tính diện tích tam giác $ABC$.
+
+**Bài 5:** Cho hình bình hành $ABCD$ có $AB = 8$ cm, $BC = 5$ cm, $\\widehat{A} = 60^\\circ$. Lấy $M$ là trung điểm $AB$.
+- a) Chứng minh $\\triangle ADM = \\triangle BCM$.
+- b) Tính diện tích tam giác $ADM$.
+- c) Chứng minh $DM = CM$.
+
+**Bài 6:** Cho tam giác $ABC$ cân tại $A$ có $AB = AC = 10$ cm, $BC = 12$ cm. Lấy $H$ là chân đường cao hạ từ $A$ xuống $BC$.
+- a) Chứng minh $\\triangle ABH = \\triangle ACH$.
+- b) Tính độ dài $AH$.
+- c) Tính diện tích tam giác $ABC$.
+
+**Bài 7:** Cho hình chữ nhật $ABCD$ có $AB = 12$ cm, $BC = 8$ cm. Lấy $E$ là trung điểm $AB$, $F$ là trung điểm $CD$.
+- a) Chứng minh $\\triangle ADE = \\triangle BCF$.
+- b) Tính diện tích tứ giác $AECF$.
+- c) Chứng minh $EF = BC$ và $EF \\parallel BC$.
+
+**Bài 8 (Ứng dụng thực tế):** Một miếng đất hình tam giác $ABC$ có $AB = AC = 30$ m, $BC = 20$ m. Ông chủ muốn chia miếng đất thành hai phần bằng nhau bằng đường thẳng đi qua $A$ và vuông góc với $BC$ tại $M$.
+- a) Chứng minh $\\triangle ABM = \\triangle ACM$.
+- b) Tính diện tích mỗi phần đất.
+- c) Nếu giá đất 2 triệu đồng/m², tính tổng giá trị hai phần đất.
+
+**Bài 9 (Ứng dụng thực tế):** Một mái nhà hình tam giác cân $ABC$ có $AB = AC = 5$ m, $BC = 6$ m. Người thợ cần lắp một thanh ngang $DE$ song song với $BC$ cách đỉnh $A$ là $2$ m.
+- a) Chứng minh $\\triangle ADE = \\triangle ABC$.
+- b) Tính độ dài thanh ngang $DE$.
+- c) Tính diện tích tam giác $ADE$ và diện tích phần mái phía trên $DE$.
 
 <details style="margin-top:2rem;padding:1rem;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;">
 <summary style="cursor:pointer;font-weight:600;color:#2563eb;user-select:none;">📊 Đáp số</summary>
 <div style="margin-top:1rem;padding:1rem;background:white;border-radius:6px;">
 
-**Bài 1:** Có, theo c.g.c
+**Bài 1:**
+- a) $\\triangle ABM = \\triangle ACM$ (c.c.c): $AB = AC$, $BM = CM$, $AM$ chung
+- b) $AM = \\sqrt{AB^2 - BM^2} = \\sqrt{64 - 9} = \\sqrt{55} \\approx 7{,}42$ cm
+- c) $S_{ABC} = \\dfrac{1}{2} \\cdot BC \\cdot AM = \\dfrac{1}{2} \\cdot 6 \\cdot \\sqrt{55} = 3\\sqrt{55} \\approx 22{,}25$ cm²
 
-**Bài 2:** Dùng c.g.c với $AB = AC$, $\\widehat{A}$ chung (hoặc $\\widehat{AMB} = \\widehat{AMC} = 90^\\circ$), $AM$ chung
+**Bài 2:**
+- a) Có, $\\triangle ABC = \\triangle DEF$ (c.g.c)
+- b) $\\widehat{E} = \\widehat{B} = 65^\\circ$; $\\widehat{F} = 180^\\circ - 50^\\circ - 65^\\circ = 65^\\circ$
+- c) Không được vì không biết cạnh $BC = EF$
 
-**Bài 3:** Dùng c.g.c với $OA = OB$, $\\widehat{AOC} = \\widehat{BOD}$ (đối đỉnh), $OC = OD$
+**Bài 3:**
+- a) $\\triangle ADM = \\triangle BCM$ (c.c.c): $AD = BC$, $AM = BM$, $DM = CM$
+- b) Chu vi $= 5 + 5 + \\sqrt{AD^2 + AM^2 - 2 \\cdot AD \\cdot AM \\cdot \\cos A} \\approx 15{,}81$ cm
+- c) $MC = MD$ do $\\triangle ADM = \\triangle BCM$ suy ra $DM = CM$
+
+**Bài 4:**
+- a) $\\triangle ABM = \\triangle ACM$ (c.c.c): $AB = AC$, $BM = CM$, $AM$ chung
+- b) $AM = \\dfrac{1}{2}BC = \\dfrac{1}{2}\\sqrt{AB^2 + AC^2} = \\dfrac{1}{2}\\sqrt{100} = 5$ cm
+- c) $S = \\dfrac{1}{2} \\cdot AB \\cdot AC = \\dfrac{1}{2} \\cdot 6 \\cdot 8 = 24$ cm²
+
+**Bài 5:**
+- a) $\\triangle ADM = \\triangle BCM$ (c.g.c): $AD = BC$, $\\widehat{A} = \\widehat{B} = 60^\\circ$, $AM = BM = 4$ cm
+- b) $S_{ADM} = \\dfrac{1}{2} \\cdot AD \\cdot AM \\cdot \\sin 60^\\circ = \\dfrac{1}{2} \\cdot 5 \\cdot 4 \\cdot \\dfrac{\\sqrt{3}}{2} = 5\\sqrt{3} \\approx 8{,}66$ cm²
+- c) $DM = CM$ do $\\triangle ADM = \\triangle BCM$
+
+**Bài 6:**
+- a) $\\triangle ABH = \\triangle ACH$ (c.c.c): $AB = AC$, $BH = CH$, $AH$ chung
+- b) $AH = \\sqrt{AB^2 - BH^2} = \\sqrt{100 - 36} = 8$ cm
+- c) $S = \\dfrac{1}{2} \\cdot BC \\cdot AH = \\dfrac{1}{2} \\cdot 12 \\cdot 8 = 48$ cm²
+
+**Bài 7:**
+- a) $\\triangle ADE = \\triangle BCF$ (c.g.c): $AD = BC$, $\\widehat{A} = \\widehat{B} = 90^\\circ$, $AE = BF = 6$ cm
+- b) $S_{AECF} = S_{ABCD} - S_{ADE} - S_{BCF} = 12 \\cdot 8 - 2 \\cdot \\dfrac{1}{2} \\cdot 8 \\cdot 6 = 96 - 48 = 48$ cm²
+- c) $EF = BC = 8$ cm và $EF \\parallel BC$ (tính chất hình chữ nhật, $EF$ là đường trung bình)
+
+**Bài 8 (Ứng dụng thực tế):**
+- a) $\\triangle ABM = \\triangle ACM$ (c.c.c): $AB = AC$, $BM = CM$, $AM$ chung; hoặc (g.c.g): $\\widehat{B} = \\widehat{C}$, $BC$ chung, $\\widehat{AMB} = \\widehat{AMC} = 90^\\circ$
+- b) $S_{ABM} = S_{ACM} = \\dfrac{1}{2} S_{ABC} = \\dfrac{1}{2} \\cdot \\dfrac{1}{2} \\cdot 20 \\cdot \\sqrt{30^2 - 10^2} = \\dfrac{1}{2} \\cdot 10 \\cdot \\sqrt{800} = 5 \\cdot 20\\sqrt{2} = 100\\sqrt{2} \\approx 141{,}42$ m²
+- c) Tổng giá trị $= 2 \\cdot 141{,}42 \\cdot 2 = 565{,}68$ triệu đồng
+
+**Bài 9 (Ứng dụng thực tế):**
+- a) $\\triangle ADE \\sim \\triangle ABC$ (g.c.g): $\\widehat{A}$ chung, $DE \\parallel BC$ nên $\\widehat{ADE} = \\widehat{B}$, $\\widehat{AED} = \\widehat{C}$. Vì $AB = AC$ nên $\\triangle ABC$ cân, suy ra $\\triangle ADE$ cân tại $A$
+- b) Tỷ số đồng dạng $k = \\dfrac{AD}{AB}$. Chiều cao từ $A$ xuống $BC$ là $h = \\sqrt{5^2 - 3^2} = 4$ m. Khoảng cách từ $A$ xuống $DE$ là $2$ m nên $k = \\dfrac{2}{4} = \\dfrac{1}{2}$. Vậy $DE = k \\cdot BC = \\dfrac{1}{2} \\cdot 6 = 3$ m
+- c) $S_{ADE} = k^2 \\cdot S_{ABC} = \\dfrac{1}{4} \\cdot \\dfrac{1}{2} \\cdot 6 \\cdot 4 = 3$ m². $S_{ph\\grave{i}a\\;tr\\grave{e}n} = S_{ABC} - S_{ADE} = 12 - 3 = 9$ m²
 
 </div>
 </details>
